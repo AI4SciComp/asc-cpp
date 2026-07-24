@@ -1,0 +1,21 @@
+asc-cpp third-party notices
+===========================
+
+The random-generator implementations adapted through MdeCpp include the
+following acknowledged upstream work:
+
+1. SplitMix64
+   Original implementation by Sebastiano Vigna, released into the public
+   domain and also made available under the MIT License.
+
+2. PCG32
+   Copyright (c) 2014 Melissa O'Neill. The implementation is made available
+   under the Apache License, Version 2.0. See https://www.pcg-random.org/.
+
+3. xoroshiro64* and xoroshiro128+
+   Original implementations by David Blackman and Sebastiano Vigna, released
+   into the public domain and also made available under the MIT License.
+
+The source comments in include/asc/random/generator.h retain the algorithm and
+license attributions. The Apache License 2.0 text distributed with asc-cpp is
+in LICENSE.

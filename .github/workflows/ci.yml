@@ -1,0 +1,101 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+    env:
+      CC: ${{ matrix.compiler == 'gcc' && 'gcc' || 'clang' }}
+      CXX: ${{ matrix.compiler == 'gcc' && 'g++' || 'clang++' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: work/asc-cpp
+      - name: Install test dependencies
+        run: sudo apt-get update && sudo apt-get install -y libgtest-dev
+      - name: Check out asc-cmake
+        run: git clone --depth 1 https://github.com/AI4SciComp/asc-cmake.git work/asc-cmake
+      - name: Configure
+        working-directory: work/asc-cpp
+        run: cmake --preset default
+      - name: Build
+        working-directory: work/asc-cpp
+        run: cmake --build --preset default --parallel 2
+      - name: Test
+        working-directory: work/asc-cpp
+        run: ctest --preset default
+
+  strict:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: work/asc-cpp
+      - name: Install test dependencies
+        run: sudo apt-get update && sudo apt-get install -y libgtest-dev
+      - name: Check out asc-cmake
+        run: git clone --depth 1 https://github.com/AI4SciComp/asc-cmake.git work/asc-cmake
+      - name: Configure
+        working-directory: work/asc-cpp
+        run: cmake --preset strict
+      - name: Build
+        working-directory: work/asc-cpp
+        run: cmake --build --preset strict --parallel 2
+      - name: Test
+        working-directory: work/asc-cpp
+        run: ctest --preset strict
+
+  optional:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        feature: [openmp, eigen, single, shared]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: work/asc-cpp
+      - name: Install test dependencies
+        run: sudo apt-get update && sudo apt-get install -y libgtest-dev libeigen3-dev
+      - name: Check out asc-cmake
+        run: git clone --depth 1 https://github.com/AI4SciComp/asc-cmake.git work/asc-cmake
+      - name: Configure
+        working-directory: work/asc-cpp
+        shell: bash
+        run: |
+          args=(-S . -B "build/${{ matrix.feature }}"
+                -DASC_CPP_BUILD_TESTING=ON
+                -DASC_CPP_BUILD_EXAMPLES=ON
+                -DASC_CPP_WARNINGS_AS_ERRORS=ON)
+          case "${{ matrix.feature }}" in
+            openmp) args+=(-DASC_CPP_ENABLE_OPENMP=ON) ;;
+            eigen) args+=(-DASC_CPP_ENABLE_EIGEN=ON) ;;
+            single) args+=(-DASC_CPP_PRECISION=single) ;;
+            shared) args+=(-DBUILD_SHARED_LIBS=ON) ;;
+          esac
+          cmake "${args[@]}"
+      - name: Build
+        working-directory: work/asc-cpp
+        run: cmake --build "build/${{ matrix.feature }}" --parallel 2
+      - name: Test
+        working-directory: work/asc-cpp
+        run: ctest --test-dir "build/${{ matrix.feature }}" --output-on-failure
+
+  cpplint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install cpplint
+        run: python3 -m pip install cpplint
+      - name: Lint C++ sources
+        run: cpplint --recursive include/asc src tests examples
