@@ -1,0 +1,18 @@
+format|asc-cpp-elf-abi-digest-v1
+environment|Ubuntu 22.04|x86_64|GCC 11.4.0|NVCC 12.9.86|libstdc++|Release|shared|CUDA enabled
+report-sha256|4e3cd06d933ac1a847162547bd962bddd8fa02b74a1b78840fa843e9f799d4bb
+library|libasc_core.so|defined-dynamic-symbols|146|weak-or-unique|5
+library|libasc_core_cuda.so|defined-dynamic-symbols|39|weak-or-unique|1
+library|libasc_dense.so|defined-dynamic-symbols|20|weak-or-unique|0
+library|libasc_dense_cuda.so|defined-dynamic-symbols|11|weak-or-unique|0
+library|libasc_random.so|defined-dynamic-symbols|6|weak-or-unique|0
+library|libasc_random_cuda.so|defined-dynamic-symbols|1|weak-or-unique|0
+library|libasc_random_dense_cuda.so|defined-dynamic-symbols|1|weak-or-unique|0
+library|libasc_random_sparse_cuda.so|defined-dynamic-symbols|1|weak-or-unique|0
+library|libasc_sparse.so|defined-dynamic-symbols|2|weak-or-unique|0
+library|libasc_sparse_cuda.so|defined-dynamic-symbols|13|weak-or-unique|0
+library|libasc_utilities.so|defined-dynamic-symbols|24|weak-or-unique|15
+observation|ELF64|little-endian|x86-64|unversioned SONAMEs
+observation|CUDA provider libraries expose only approved API and public-template support symbols in this Release observation.
+observation|Runtime dependencies include the approved CUDA Runtime, cuBLAS, and cuSPARSE implementation libraries.
+scope|Observation baseline only; no cross-minor, toolkit, driver, GPU, or toolchain ABI promise.

@@ -1,5 +1,7 @@
 # Optional backends
 
+> **Superseded historical document.** This file describes the deleted implementation at historical HEAD `33b261ea33616a6395c4ad3b20646093103344f7`; it is retained only for auditability and is not current API, build, package, or implementation guidance. See the [approved Stage A six-module blueprint](development/asc-cpp-architecture/architecture-blueprint.md).
+
 Canonical Core/Array/Linalg/Random M1 and the MdeCpp-derived
 compatibility runtime have different backend availability:
 

@@ -1,5 +1,7 @@
 # Core migration
 
+> **Superseded historical document.** This file describes the deleted implementation at historical HEAD `33b261ea33616a6395c4ad3b20646093103344f7`; it is retained only for auditability and is not current API, build, package, or implementation guidance. See the [approved Stage A six-module blueprint](../development/asc-cpp-architecture/architecture-blueprint.md).
+
 Core is migrating from the MdeCpp-derived global memory/device runtime to the
 explicit foundation approved in the architecture blueprint. The migration is
 staged because current arrays depend on legacy alias registration, lazy

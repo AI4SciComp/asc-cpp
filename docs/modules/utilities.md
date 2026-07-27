@@ -1,302 +1,307 @@
 # Utilities module
 
-`ASC::utilities` provides lightweight configuration, command-line, and timing
-facilities. Utilities Milestone 1 (M1) corrects inherited parsing and timer
-hazards while preserving familiar pre-1.0 class names.
+`ASC::utilities` is the provider-free C++20 convenience component in the
+unreleased ASCCpp `0.9.0` candidate. It owns transactional command-line
+configuration parsing and monotonic elapsed-time measurement.
 
-| Surface | M1 status | Intended use |
-| --- | --- | --- |
-| `ConfigValue` and status-oriented `ConfigParser` operations | Canonical M1 | New configuration code |
-| `Option`, `Variable<T>`, `Switch`, and status-oriented `OptionParser` operations | Canonical M1 through `<asc/utilities/cli.h>` | New command-line code |
-| Hardened `Timer` | Canonical M1 | New timing code |
-| Existing void/value parser wrappers | Compatibility M1 | Migration of existing callers |
-| `<asc/utilities/optparser.h>` | Forwarding compatibility header | Existing include spelling |
-| Diagnostics and tracing | Deferred | Not implemented in M1 |
+It does not own the recursive configuration model, which remains in
+`ASC::core`. It also contains no local configuration-file parser, environment
+or response-file input, numerical storage, expression operation, random
+facility, provider adapter, or GPU code.
 
-Use the component umbrella and minimal target:
+## Build and dependency contract
 
-```cpp
-#include <asc/utilities.h>
+```text
+build target:     asc_utilities
+build-tree alias: ASC::utilities
+installed target: ASC::utilities
+direct ASC deps:  ASC::core
+external deps:    none
 ```
 
+The library follows `BUILD_SHARED_LIBS`. A consumer requests only this
+component:
+
 ```cmake
-find_package(ASCCpp REQUIRED COMPONENTS utilities)
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS utilities)
 target_link_libraries(my_target PRIVATE ASC::utilities)
 ```
 
-The canonical Utilities implementation depends only on the C++ standard
-library and stable Core configuration, types, status/result, and contracts. It
-does not depend on numerical arrays, execution backends, provider SDKs, or a
-global output/error policy.
+`ASC::core` is loaded transitively. `ASC::expression`, `ASC::random`, dense,
+sparse, the aggregate, and every provider target remain absent from an
+isolated utilities consumer.
 
-The installed utilities-only consumer builds and runs the following sequence
-while linking only `ASC::utilities`:
+## Public headers
+
+| Header | Contract |
+| --- | --- |
+| `<asc/utilities.h>` | complete Milestone 2 utilities surface |
+| `<asc/utilities/command_line.h>` | option schema, parser, parse result, and deterministic help |
+| `<asc/utilities/timer.h>` | monotonic accumulated timer |
+| `<asc/utilities/export.h>` | shared-library symbol visibility |
+
+The headers are self-contained. All supported declarations are directly in
+`namespace asc`.
+
+## Command-line option declaration
+
+`CommandLineOption` declares:
+
+- one long option name without leading dashes;
+- an optional one-character short name;
+- a JSON Pointer path naming one configuration-schema leaf;
+- a caller-facing value label; and
+- caller-owned help wording copied into the validated parser.
+
+`CommandLineParser::Create` requires a schema whose root is
+`ConfigurationValueType::kObject` and validates the complete table before
+returning a parser. A scalar, list, or null root is rejected rather than
+creating an ambiguous configuration when no options are present; the failure
+code is `ErrorCode::kInvalidArgument`. Long names, short names, and destination
+paths must each be unique. Names use the frozen ASCII option-name grammar.
+Each destination must resolve to a schema leaf of one supported type:
+
+```text
+bool, signed 64-bit integer, unsigned 64-bit integer, double, UTF-8 string
+```
+
+Null, list, and object destinations return `ErrorCode::kUnsupported`.
+Malformed names, duplicates, missing schema paths, and incompatible
+declarations fail before a parser is published.
+
+The parser owns its validated schema and option table. Callers may destroy the
+declaration values after successful creation. The references returned by
+`schema()` and `options()` borrow the parser and must not outlive it.
+
+`CommandLineParser` has value copy/move semantics. Copying deep-copies the
+recursive schema, options, and owned strings and may allocate in proportion to
+that content. Moving transfers the owned content; use a moved-from parser only
+for assignment or destruction.
+
+## Command-line example
+
+`Parse` receives the tokens to interpret. An application using `argc`/`argv`
+normally passes the sequence beginning at `argv[1]`; the parser does not
+special-case an executable name. Tokens containing text use UTF-8 bytes.
+Windows applications that start from native wide `wchar_t` arguments must
+perform an explicit checked UTF-8 conversion before calling this narrow-byte
+API; the parser does not guess or use the active Windows code page.
 
 ```cpp
 #include <asc/utilities.h>
 
-#include <string>
+#include <array>
+#include <optional>
+#include <string_view>
+#include <utility>
+#include <vector>
 
 int main() {
-  asc::ConfigParser configuration;
-  if (!configuration
-           .TryLoadFromString("answer = 42\n",
-                              asc::UnknownConfigKeyPolicy::kAdd)
-           .ok()) {
-    return 1;
-  }
-  asc::Result<std::string> serialized = configuration.Serialize();
-  if (!serialized.ok() || serialized.value() != "answer = 42\n") {
+  asc::ConfigurationSchema schema(asc::ConfigurationValueType::kObject);
+  asc::ConfigurationSchema steps(asc::ConfigurationValueType::kSignedInteger);
+  steps.SetRequired(true);
+  if (!schema.AddField("steps", std::move(steps)).ok()) {
     return 1;
   }
 
-  int number = 0;
-  asc::OptionParser options;
-  options.AddOption<asc::Variable<int>>("n", "number", "number", 0,
-                                        &number);
-  const char* argv[] = {"consumer", "--number", "-7"};
-  if (!options.TryParse(3, argv).ok() || number != -7) {
+  std::vector<asc::CommandLineOption> options;
+  options.push_back(asc::CommandLineOption{
+      .long_name = "steps",
+      .short_name = std::optional<char>('n'),
+      .configuration_path = "/steps",
+      .value_name = "COUNT",
+      .help = "Set the signed step count.",
+  });
+
+  auto parser =
+      asc::CommandLineParser::Create(std::move(schema), std::move(options));
+  if (!parser.ok()) {
     return 1;
   }
 
-  const asc::Timer timer;
-  return timer.GetMeasurementCount() == 0 && timer.LastTime() == 0 &&
-                 timer.TotalTime() == 0 && timer.AverageTime() == 0
+  constexpr std::array<std::string_view, 3> arguments = {"--steps", "-3",
+                                                         "mesh.dat"};
+  auto parsed = parser->Parse(arguments);
+  if (!parsed.ok()) {
+    return 1;
+  }
+
+  auto value = parsed->configuration.Find("/steps");
+  if (!value.ok()) {
+    return 1;
+  }
+  auto count = value->get().AsSignedInteger();
+  if (!count.ok()) {
+    return 1;
+  }
+
+  return *count == -3 && parsed->positional_arguments.size() == 1 ? 0 : 1;
+}
+```
+
+The returned `CommandLineParseResult` owns both the validated
+`Configuration` and copies of positional token bytes.
+
+## Accepted command-line syntax
+
+Long value options accept:
+
+```text
+--count=64
+--count 64
+```
+
+Short value options accept exactly:
+
+```text
+-n 64
+```
+
+Short clusters and attached short values are unsupported. A token expected as
+a value is consumed even when it begins with `-`, so negative signed integers
+and floating-point values are ordinary values.
+
+Boolean options accept:
+
+```text
+--enabled
+--no-enabled
+--enabled=true
+--enabled=false
+-e
+```
+
+Boolean negation is long-form only. Supplying the same destination more than
+once is an error, including long/short aliases and positive/negative boolean
+spellings.
+
+`--` ends option recognition. Subsequent tokens and otherwise bare tokens are
+returned in order as positional arguments. Milestone 2 does not interpret
+positionals or subcommands.
+
+Unknown options, malformed tokens, missing values, unsupported spellings,
+duplicate destinations, invalid UTF-8 strings, incomplete numeric
+conversions, and numeric overflow return a failed `Result`. Integer and
+floating conversion is locale-independent and never coerces between schema
+types. A value rejected by its leaf schema reports the configured constraint
+or range along with argv and option context; the received value remains
+redacted when the schema marks it sensitive. Diagnostic prose is not a stable
+API.
+
+## Transaction, validation, and origin
+
+Each parse constructs a fresh recursive `ConfigurationValue`, validates the
+complete tree against the core `ConfigurationSchema`, and publishes a
+`CommandLineParseResult` only after success. On failure, no partial
+configuration or positional result is returned, and the reusable parser has
+no mutable committed invocation state to corrupt.
+
+Schema defaults are inserted by core validation. Every non-default leaf
+parsed from the command line receives
+`ConfigurationOriginKind::kCommandLine`; its diagnostic location records the
+zero-based token index. Sensitive schema values remain redacted by core
+rendering and parser diagnostics.
+
+The approved precedence is:
+
+```text
+schema default < approved files in command order < command line
+               < explicit programmatic override
+```
+
+Milestone 2 implements only schema-default plus command-line input. There is
+no implicit merge with an existing programmatic configuration.
+
+`RenderHelp` returns deterministic caller-owned text. It performs no terminal
+I/O and has no implicit `--help` control flow. The application chooses when and
+where to display it.
+
+## Monotonic timing
+
+`Timer` uses `std::chrono::steady_clock` and has three explicit states:
+
+| State | Meaning |
+| --- | --- |
+| `TimerState::kEmpty` | no active interval and no completed sample |
+| `TimerState::kRunning` | one interval is in progress |
+| `TimerState::kStopped` | at least one sample is complete |
+
+`Start` is valid from empty or stopped. Calling it while running returns
+`kInvalidState` without restarting the interval. `Stop` is valid only while
+running; it records one non-negative interval, adds it to the total,
+increments the sample count, transitions to stopped, and returns the interval.
+
+`Elapsed` returns accumulated completed time plus the current interval while
+running. The `total()` accessor returns completed time only. `Last` and
+`Average` return `kInvalidState` until the first completed sample. Average uses
+duration arithmetic. `Reset` is valid in every state, discards all samples and
+any running interval, and returns to empty.
+
+```cpp
+#include <asc/utilities/timer.h>
+
+int main() {
+  asc::Timer timer;
+  if (!timer.Start().ok()) {
+    return 1;
+  }
+
+  auto interval = timer.Stop();
+  if (!interval.ok()) {
+    return 1;
+  }
+
+  auto average = timer.Average();
+  return average.ok() && timer.state() == asc::TimerState::kStopped &&
+                 timer.sample_count() == 1
              ? 0
              : 1;
 }
 ```
 
-## Error handling
+Clock or accumulated-duration overflow returns an explicit error. A failed
+`Stop` does not publish a sample or transition out of running state.
 
-Failures caused by external input return `Status` or `Result<T>`. Examples are
-malformed configuration text, a missing file, validator rejection, an unknown
-option, conversion overflow, and a missing required option. Their signatures
-do not change when exception translation is disabled.
+The timer owns fixed-size timing state and no sample buffer. Successful timing
+state operations do not intentionally allocate; failed operations return core
+status diagnostics, whose strings follow the core status-storage contract. The
+timer performs no terminal output, logging, global registration, wall-clock
+conversion, GPU event timing, or hidden synchronization. A timer instance is
+not safe for concurrent mutation. Independent timers contain no shared mutable
+state.
 
-Programmer errors use release-active contracts. Timer state misuse and invalid
-output buffers are examples.
+`Timer` has value copy/move semantics. Copying duplicates the current state,
+completed summaries, and start time. Copying a running timer therefore creates
+two independent timers whose in-progress intervals share the same historical
+start point but whose later stops, starts, and resets mutate only their own
+state.
 
-Legacy void/value wrappers remain during the bounded pre-1.0 transition. A
-wrapper translates a failed canonical status through the historical
-throw-or-abort path. New code should call the `Try*` operation and inspect its
-status instead.
+A successfully created `CommandLineParser` is immutable. Concurrent `Parse`
+and `RenderHelp` calls on one shared parser use only const parser state and
+call-local working storage and are safe. Concurrent assignment or destruction
+of that parser requires caller synchronization, as does mutation of an object
+whose borrowed `schema()` or `options()` view is in use.
 
-## Configuration values
+## Cost, failure, and scope summary
 
-`<asc/utilities/config.h>` provides `ConfigValue` and `ConfigParser`.
-`ConfigValue` stores one of:
+| Surface | Ownership | Failure and mutation | Cost |
+| --- | --- | --- | --- |
+| parser creation | returned parser owns schema/options/text | validates complete declarations before publication | linear in schema and option-table content, plus owned copies/allocations |
+| command-line parse | returned result owns configuration and positionals | transactional; no partial result | scales with tokens, option/path lookup, conversion text, owned output, and complete configuration validation |
+| help rendering | caller owns returned string | no I/O or process exit | linear in rendered option text |
+| timer | value owns state and samples summary | invalid transitions return status | constant-time operations; no sample buffer |
 
-| Kind | C++ representation | Canonical text |
-| --- | --- | --- |
-| Empty | `std::monostate` | `null` |
-| Boolean | `bool` | `true` or `false` |
-| Integer | `int` | decimal integer |
-| Floating point | `double` | finite round-trippable decimal |
-| String | `std::string` | quoted and escaped string |
-| Vector | `ConfigVector`, an alias of `std::vector<double>` | `vector[...]` |
-| Matrix | `ConfigMatrix`, a nested standard vector | `matrix[[...], ...]` |
+No operation selects an execution provider, allocates numerical storage,
+transfers memory, or synchronizes a device.
 
-Configuration storage is deliberately independent of ASC numerical arrays.
+## Deferred work and provenance
 
-### Checked access
+No local-file format has been approved. Environment variables, response files,
+option repetition/list append, short clustering, subcommand interpretation,
+completion output, scoped-timer registry, statistics buffer, and built-in-array
+wrapper are deferred rather than inferred.
 
-`AsInt()` reads an integer directly. A stored double converts to `int` only
-when it is finite, exactly integral, and in range. It never silently truncates
-or overflows. `AsDouble()` accepts an integer by widening it. Other mismatched
-`As*` calls are programmer-contract violations.
-
-Canonical configuration rejects non-finite doubles. A matrix must be
-rectangular; empty rows are valid only when every row has the same length.
-`ConfigValue` constructors still permit raw compatibility values, but
-`TryAddConfig`, `TrySetConfig`, parsing, and `Serialize` reject non-finite or
-ragged state at the canonical collection boundary.
-
-### Status-oriented collection operations
-
-Use these operations for data that can be invalid:
-
-- `TryAddConfig` defines or replaces a key after validating its name, value,
-  and optional validator;
-- `TrySetConfig` updates an existing key and never creates a misspelled key;
-- `FindConfig` returns a value result without exposing a reference whose
-  lifetime could be invalidated by later changes;
-- `TryParseValue` parses one canonical value;
-- `TryLoadFromString` and `TryLoadFromFile` load a complete collection
-  transactionally;
-- `Serialize` produces canonical text.
-
-A failed set or load leaves the entire previous collection unchanged.
-Validators run for defaults and updates. A rejected value returns an invalid
-argument status identifying the key.
-
-Unknown loaded keys fail by default. Pass the explicit
-`UnknownConfigKeyPolicy` that permits additions only when the input is intended
-to extend the collection's schema. Duplicate keys in one input always fail.
-
-The existing `AddConfig`, `SetConfig`, `GetConfig`, `LoadFromFile`, and
-`ParseValue` names remain compatibility wrappers. In particular, legacy
-`SetConfig` can still add a missing key; canonical `TrySetConfig` cannot.
-
-### Canonical configuration text
-
-A collection contains one `key = value` entry per line. Canonical output sorts
-keys lexicographically and terminates every entry with a newline. This makes
-serialization independent of definition order.
-
-Keys are non-empty. The first character is an ASCII letter or `_`; remaining
-characters may also contain digits, `.`, or `-`.
-
-```text
-enabled = true
-label = "baseline\nrun"
-matrix = matrix[[1.0, 2.0], [3.0, 4.0]]
-origin = vector[0.0, 0.0, 0.0]
-samples = 64
-step = 1.0e-3
-```
-
-Strings use `\"`, `\\`, `\n`, `\r`, and `\t` escapes. `#` starts a comment
-only outside a quoted string. Canonical output uses lowercase Booleans and
-quoted strings. Input also accepts case-insensitive Booleans and an unquoted,
-non-reserved token as a compatibility string.
-
-The following inputs fail rather than being guessed: an empty value, invalid
-escape, malformed bracket, duplicate key, integer or floating-point overflow,
-non-finite number, and ragged matrix.
-
-`vector[]` is an empty vector. `matrix[]` is an empty matrix. Floating output is
-locale-independent and contains a decimal point or exponent when necessary to
-remain distinct from an integer.
-
-## Command-line parsing
-
-`<asc/utilities/cli.h>` contains `Option`, `Variable<T>`, `Switch`, and
-`OptionParser`. Built-in value types are `int`, `float`, `double`, `bool`, and
-`std::string`.
-
-Option names are owned strings and are declared without leading hyphens. At
-least one of the short and long names must be present; names cannot contain
-whitespace or `=`. Duplicate short or long declarations fail. Short names are
-not silently truncated.
-
-### Supported tokens
-
-```text
--n value
---number value
---number=value
-```
-
-A value option consumes the next token even when it begins with `-`, so
-negative integers, decimals, and scientific notation work. A switch consumes
-no following token. Short-option clustering such as `-abc` is not supported.
-
-`--` ends option recognition. M1 has no positional-argument facility, so any
-token after `--` returns an unsupported positional-argument status. An
-unprefixed token in ordinary parsing is also reported instead of ignored.
-
-Unknown options, missing values, invalid values, overflow, and unsatisfied
-required options return status. Repeated occurrences are allowed and the last
-value wins.
-
-### Transaction and lifetime rules
-
-`TryParse` validates names, conversions, required constraints, and the complete
-candidate invocation before committing. On success, that invocation replaces
-the option set/unset state and values from the previous parse. On failure,
-previously committed values and bound output variables remain unchanged.
-
-The parser owns its option objects and names. A pointer supplied through the
-output-binding facility must outlive the option and parser operations that can
-update it. `AddOption` returns the owned option object for state inspection;
-the existing `GetOption<T>` lookup remains a compatibility path rather than a
-new status-oriented retrieval API.
-
-`TryParseFile` retains the compatibility file form:
-
-```text
-number = -3
-label = run-a
-```
-
-It is not a second canonical configuration system. New applications should use
-`ConfigParser` for configuration files and `OptionParser` for argv input.
-
-### Help and usage
-
-Canonical help and usage operations return text or write to an explicitly
-provided stream. Formatting uses dynamic standard containers and has no fixed
-line-count limit. It does not write to global `mout` unless a caller explicitly
-uses the no-argument compatibility overload.
-
-Custom subclasses of `Option` are compatibility-only in M1. The option
-subclass ABI and extension hooks are not a stable pre-1.0 interface.
-
-## Timing
-
-`<asc/utilities/timer.h>` provides the hardened `Timer`. It uses
-`std::chrono::steady_clock`; durations are reported as `real_t` seconds unless
-milliseconds are requested.
-
-### State transitions
-
-| Current state | Operation | Result |
-| --- | --- | --- |
-| Idle | `Start()` | Starts a measurement |
-| Running | `Start()` | Restarts the active interval for compatibility |
-| Running | `Stop()` | Records a non-negative interval and becomes idle |
-| Idle | `Stop()` | Release-active precondition failure |
-| Either | `Reset()` | Clears measurements and becomes idle |
-
-`IsRunning()` reports the state. `GetMeasurementCount()` reports the true
-number of completed measurements.
-
-All queries are safe before the first measurement:
-
-| Query | Empty value |
-| --- | ---: |
-| `LastTime()` | `0` |
-| `TotalTime()` | `0` |
-| `AverageTime()` | `0` |
-| `GetMeasurementCount()` | `0` |
-| `AccumulateTime()` | no writes |
-
-Total, last, average, count, and accumulation prefixes remain correct after
-more than 128 samples and after `Compress()`. M1 implements `Compress()` as a
-semantic no-op so no retained prefix is lost. Seconds and milliseconds differ
-by exactly `1000`.
-
-`Print` writes the last interval—not the total or minimum—to the explicit
-stream, followed by `s` or `ms` and exactly one newline. An invalid unit is a
-contract violation.
-
-A `Timer` instance is not thread-safe. Independent timers contain no shared
-mutable state and may be used by different threads.
-
-## Compatibility boundary
-
-`<asc/utilities/optparser.h>` forwards to the canonical CLI declarations so
-existing include paths remain valid; it is not a second parser. Existing
-void/value wrappers remain available during the documented pre-1.0 migration
-window.
-
-Behavior that was unsafe or contradicted the documentation is intentionally
-corrected in M1. Negative numeric options work, unknown positional input fails,
-switches do not consume a following value, help has no 500-line limit,
-configuration loading is transactional on the canonical path, and empty or
-long-running timers produce defined statistics.
-
-No removal release is declared by M1. Compatibility wrappers are removed only
-after an equivalent status-oriented path exists, known downstream users have
-migrated, and a breaking release is announced.
-
-## Deferred scope
-
-Utilities M1 does not provide tracing, telemetry, profiling orchestration,
-workflow scheduling, an experiment database, or persistent result storage.
-An injected diagnostic sink usable by Core must live at a lower dependency
-boundary; Utilities cannot own it without creating a reverse dependency.
-
-See [Utilities migration](../migration/utilities.md) for detailed mapping from
-the inherited interfaces.
+The implementation is project-owned and follows the frozen
+[Milestone 2 contract](../development/asc-cpp-m2-independent-foundations/milestone-contract.md).
+MdeCpp is behavior and test-category evidence only; no MdeCpp/deleted asc-cpp
+source, test, or literal corpus is copied.

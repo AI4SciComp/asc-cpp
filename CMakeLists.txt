@@ -2,134 +2,486 @@ cmake_minimum_required(VERSION 3.25)
 
 project(
   ASCCpp
-  VERSION 0.1.0
-  DESCRIPTION "C++20 foundations for AI4SciComp"
+  VERSION 0.9.0
+  DESCRIPTION "AI4SciComp C++ scientific-computing foundation"
   LANGUAGES CXX
 )
 
-set(CMAKE_CXX_EXTENSIONS OFF)
-
 if(PROJECT_IS_TOP_LEVEL)
   include(CTest)
-  set(_asc_cpp_build_testing_default "${BUILD_TESTING}")
-else()
-  set(_asc_cpp_build_testing_default OFF)
 endif()
 
-option(
-  ASC_CPP_BUILD_TESTING
-  "Build the asc-cpp test suite"
-  "${_asc_cpp_build_testing_default}"
-)
-option(ASC_CPP_BUILD_EXAMPLES "Build asc-cpp examples" ${PROJECT_IS_TOP_LEVEL})
-option(ASC_CPP_ENABLE_ASSERTIONS "Enable ASC runtime assertions" ON)
-option(ASC_CPP_ENABLE_EXCEPTIONS "Throw exceptions for recoverable ASC errors" ON)
-option(ASC_CPP_ENABLE_OPENMP "Enable the OpenMP execution backend" OFF)
-option(ASC_CPP_ENABLE_CUDA "Enable CUDA-aware APIs" OFF)
-option(ASC_CPP_ENABLE_EIGEN "Enable Eigen interoperability" OFF)
-option(ASC_CPP_ENABLE_MKL "Enable Eigen's Intel MKL/Pardiso adapters" OFF)
-option(ASC_CPP_WARNINGS_AS_ERRORS "Treat asc-cpp warnings as errors" OFF)
-option(ASC_CPP_ENABLE_SANITIZERS "Enable address and undefined-behavior sanitizers" OFF)
-set(ASC_CPP_PRECISION "double" CACHE STRING "Scalar precision: single or double")
-set_property(CACHE ASC_CPP_PRECISION PROPERTY STRINGS single double)
-if(ASC_CPP_PRECISION STREQUAL "single")
-  set(ASC_USE_SINGLE ON)
-  set(ASC_USE_DOUBLE OFF)
-elseif(ASC_CPP_PRECISION STREQUAL "double")
-  set(ASC_USE_SINGLE OFF)
-  set(ASC_USE_DOUBLE ON)
-else()
-  message(FATAL_ERROR "ASC_CPP_PRECISION must be 'single' or 'double'")
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/ASCCppOptions.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/ASCCppComponents.cmake")
+
+find_package(ASCCMake 0.1.0 EXACT CONFIG REQUIRED)
+if(NOT ASCCMake_VERSION VERSION_EQUAL "0.1.0")
+  message(FATAL_ERROR
+    "Milestone 8 requires ASCCMake 0.1.0 exactly; found "
+    "'${ASCCMake_VERSION}'."
+  )
 endif()
-set(ASC_DEBUG "${ASC_CPP_ENABLE_ASSERTIONS}")
-set(ASC_USE_EXCEPTION "${ASC_CPP_ENABLE_EXCEPTIONS}")
-set(ASC_USE_OPENMP "${ASC_CPP_ENABLE_OPENMP}")
-set(ASC_USE_CUDA "${ASC_CPP_ENABLE_CUDA}")
-set(ASC_USE_EIGEN "${ASC_CPP_ENABLE_EIGEN}")
-set(ASC_USE_MKL "${ASC_CPP_ENABLE_MKL}")
-if(ASC_CPP_ENABLE_MKL AND NOT ASC_CPP_ENABLE_EIGEN)
-  message(FATAL_ERROR "ASC_CPP_ENABLE_MKL requires ASC_CPP_ENABLE_EIGEN")
-endif()
+
 if(ASC_CPP_ENABLE_CUDA)
-  if(NOT CMAKE_CUDA_HOST_COMPILER)
-    set(CMAKE_CUDA_HOST_COMPILER "${CMAKE_CXX_COMPILER}")
+  include(CheckLanguage)
+  check_language(CUDA)
+  if(NOT CMAKE_CUDA_COMPILER)
+    message(FATAL_ERROR
+      "ASC_CPP_ENABLE_CUDA=ON requires an available CUDA compiler."
+    )
   endif()
   enable_language(CUDA)
-  set(CMAKE_CUDA_STANDARD 20)
-  set(CMAKE_CUDA_STANDARD_REQUIRED ON)
-  set(CMAKE_CUDA_EXTENSIONS OFF)
-endif()
-unset(_asc_cpp_build_testing_default)
-set(
-  ASC_CPP_ASCCMAKE_SOURCE_DIR ""
-  CACHE PATH "Source tree fallback for asc-cmake when ASCCMake is not installed"
-)
-
-find_package(ASCCMake 0.1 CONFIG QUIET)
-if(NOT ASCCMake_FOUND)
-  if(NOT ASC_CPP_ASCCMAKE_SOURCE_DIR)
-    get_filename_component(
-      _asc_cpp_sibling_asc_cmake "${CMAKE_CURRENT_SOURCE_DIR}/../asc-cmake" ABSOLUTE
-    )
-    if(EXISTS "${_asc_cpp_sibling_asc_cmake}/modules/ASCProjectOptions.cmake")
-      set(ASC_CPP_ASCCMAKE_SOURCE_DIR "${_asc_cpp_sibling_asc_cmake}")
+  # Every CUDA-enabled target and producer-side test must observe the same
+  # runtime state as the approved CUDA::cudart dependency.  NVCC otherwise
+  # defaults producer executables and shared libraries to cudart_static.
+  set(CMAKE_CUDA_RUNTIME_LIBRARY Shared)
+  block(SCOPE_FOR VARIABLES)
+    # CMake 3.25's FindCUDAToolkit unconditionally deprecates the
+    # CUDA::nvToolsExt target after CUDA 12.9 removed that library. Suppress
+    # only that module-side deprecation branch; keep standard toolkit
+    # discovery and the project's actual minimum unchanged.
+    if(CMAKE_VERSION VERSION_LESS 4.1)
+      set(CMAKE_MINIMUM_REQUIRED_VERSION 3.24)
     endif()
-  endif()
-  if(NOT EXISTS "${ASC_CPP_ASCCMAKE_SOURCE_DIR}/modules/ASCProjectOptions.cmake")
-    message(FATAL_ERROR
-      "asc-cpp requires asc-cmake 0.1. Install ASCCMake, set ASCCMake_DIR, "
-      "or set ASC_CPP_ASCCMAKE_SOURCE_DIR to an asc-cmake source tree."
+    find_package(CUDAToolkit 12 REQUIRED)
+  endblock()
+  foreach(_asc_cpp_cuda_target IN ITEMS
+      CUDA::cudart
+      CUDA::cublas
+      CUDA::cusparse
+  )
+    if(NOT TARGET "${_asc_cpp_cuda_target}")
+      message(FATAL_ERROR
+        "Milestone 8 requires CUDAToolkit target "
+        "'${_asc_cpp_cuda_target}'."
+      )
+    endif()
+  endforeach()
+  unset(_asc_cpp_cuda_target)
+endif()
+
+add_subdirectory(src/core)
+add_subdirectory(src/utilities)
+add_subdirectory(src/expression)
+add_subdirectory(src/random)
+add_subdirectory(src/dense)
+add_subdirectory(src/sparse)
+
+add_library(asc_cpp INTERFACE)
+add_library(ASC::cpp ALIAS asc_cpp)
+set_target_properties(
+  asc_cpp
+  PROPERTIES
+    CXX_EXTENSIONS OFF
+    CXX_STANDARD 20
+    CXX_STANDARD_REQUIRED ON
+    EXPORT_NAME cpp
+)
+target_link_libraries(
+  asc_cpp
+  INTERFACE
+    ASC::core
+    ASC::utilities
+    ASC::expression
+    ASC::dense
+    ASC::sparse
+    ASC::random
+    ASC::random_dense
+    ASC::random_sparse
+)
+# Released ASCCMake v0.1.0 deliberately rejects interface libraries in
+# asc_target_enable_cxx20. Use its exact standard-CMake equivalent.
+target_compile_features(asc_cpp INTERFACE cxx_std_20)
+
+set(ASC_CPP_AVAILABLE_COMPONENTS
+  core
+  utilities
+  expression
+  random
+  dense
+  sparse
+  random_dense
+  random_sparse
+  cpp
+)
+if(ASC_CPP_ENABLE_CUDA)
+  list(APPEND ASC_CPP_AVAILABLE_COMPONENTS
+    core_cuda
+    dense_cuda
+    sparse_cuda
+    random_cuda
+    random_dense_cuda
+    random_sparse_cuda
+  )
+endif()
+
+include(CMakePackageConfigHelpers)
+if(DEFINED CMAKE_INSTALL_LIBDIR AND NOT CMAKE_INSTALL_LIBDIR STREQUAL "")
+  set(_asc_cpp_install_libdir "${CMAKE_INSTALL_LIBDIR}")
+else()
+  # Keep the package layout deterministic without depending on platform-
+  # specific GNUInstallDirs inference.
+  set(_asc_cpp_install_libdir "lib")
+endif()
+if(DEFINED CMAKE_INSTALL_DOCDIR AND NOT CMAKE_INSTALL_DOCDIR STREQUAL "")
+  set(_asc_cpp_install_docdir "${CMAKE_INSTALL_DOCDIR}")
+elseif(DEFINED CMAKE_INSTALL_DATAROOTDIR
+       AND NOT CMAKE_INSTALL_DATAROOTDIR STREQUAL "")
+  set(_asc_cpp_install_docdir "${CMAKE_INSTALL_DATAROOTDIR}/doc/ASCCpp")
+else()
+  set(_asc_cpp_install_docdir "share/doc/ASCCpp")
+endif()
+if(DEFINED CMAKE_INSTALL_BINDIR AND NOT CMAKE_INSTALL_BINDIR STREQUAL "")
+  set(_asc_cpp_install_bindir "${CMAKE_INSTALL_BINDIR}")
+else()
+  set(_asc_cpp_install_bindir "bin")
+endif()
+if(DEFINED CMAKE_INSTALL_INCLUDEDIR
+   AND NOT CMAKE_INSTALL_INCLUDEDIR STREQUAL "")
+  set(_asc_cpp_install_includedir "${CMAKE_INSTALL_INCLUDEDIR}")
+else()
+  set(_asc_cpp_install_includedir "include")
+endif()
+
+set(ASC_CPP_BUILD_PACKAGE_DIR
+  "${CMAKE_CURRENT_BINARY_DIR}/package/ASCCpp"
+  CACHE INTERNAL "ASCCpp build-tree package directory"
+)
+set(_asc_cpp_install_package_dir
+  "${_asc_cpp_install_libdir}/cmake/ASCCpp"
+)
+set(_asc_cpp_install_staging_dir
+  "${CMAKE_CURRENT_BINARY_DIR}/package/install"
+)
+file(MAKE_DIRECTORY
+  "${ASC_CPP_BUILD_PACKAGE_DIR}"
+  "${_asc_cpp_install_staging_dir}"
+)
+
+configure_package_config_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ASCCppConfig.cmake.in"
+  "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppConfig.cmake"
+  INSTALL_DESTINATION "."
+)
+write_basic_package_version_file(
+  "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppConfigVersion.cmake"
+  VERSION "${PROJECT_VERSION}"
+  COMPATIBILITY SameMinorVersion
+)
+export(
+  TARGETS asc_core
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppCoreTargets.cmake"
+  NAMESPACE ASC::
+)
+export(
+  TARGETS asc_utilities
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppUtilitiesTargets.cmake"
+  NAMESPACE ASC::
+)
+export(
+  TARGETS asc_expression
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppExpressionTargets.cmake"
+  NAMESPACE ASC::
+)
+export(
+  TARGETS asc_random
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppRandomTargets.cmake"
+  NAMESPACE ASC::
+)
+export(
+  TARGETS asc_dense
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppDenseTargets.cmake"
+  NAMESPACE ASC::
+)
+export(
+  TARGETS asc_sparse
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppSparseTargets.cmake"
+  NAMESPACE ASC::
+)
+export(
+  TARGETS asc_random_dense
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppRandomDenseTargets.cmake"
+  NAMESPACE ASC::
+)
+export(
+  TARGETS asc_random_sparse
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppRandomSparseTargets.cmake"
+  NAMESPACE ASC::
+)
+export(
+  TARGETS asc_cpp
+  FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppCppTargets.cmake"
+  NAMESPACE ASC::
+)
+if(ASC_CPP_ENABLE_CUDA)
+  export(
+    TARGETS asc_core_cuda
+    FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppCoreCudaTargets.cmake"
+    NAMESPACE ASC::
+  )
+  export(
+    TARGETS asc_dense_cuda
+    FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppDenseCudaTargets.cmake"
+    NAMESPACE ASC::
+  )
+  export(
+    TARGETS asc_sparse_cuda
+    FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppSparseCudaTargets.cmake"
+    NAMESPACE ASC::
+  )
+  export(
+    TARGETS asc_random_cuda
+    FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppRandomCudaTargets.cmake"
+    NAMESPACE ASC::
+  )
+  export(
+    TARGETS asc_random_dense_cuda
+    FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppRandomDenseCudaTargets.cmake"
+    NAMESPACE ASC::
+  )
+  export(
+    TARGETS asc_random_sparse_cuda
+    FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppRandomSparseCudaTargets.cmake"
+    NAMESPACE ASC::
+  )
+endif()
+
+configure_package_config_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ASCCppConfig.cmake.in"
+  "${_asc_cpp_install_staging_dir}/ASCCppConfig.cmake"
+  INSTALL_DESTINATION "${_asc_cpp_install_package_dir}"
+)
+write_basic_package_version_file(
+  "${_asc_cpp_install_staging_dir}/ASCCppConfigVersion.cmake"
+  VERSION "${PROJECT_VERSION}"
+  COMPATIBILITY SameMinorVersion
+)
+
+if(ASC_CPP_INSTALL)
+  install(
+    TARGETS asc_core
+    EXPORT ASCCppCoreTargets
+    RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+    LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+    ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+    FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+  )
+  install(
+    EXPORT ASCCppCoreTargets
+    FILE ASCCppCoreTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    TARGETS asc_utilities
+    EXPORT ASCCppUtilitiesTargets
+    RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+    LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+    ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+    FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+  )
+  install(
+    EXPORT ASCCppUtilitiesTargets
+    FILE ASCCppUtilitiesTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    TARGETS asc_expression
+    EXPORT ASCCppExpressionTargets
+    FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+  )
+  install(
+    EXPORT ASCCppExpressionTargets
+    FILE ASCCppExpressionTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    TARGETS asc_random
+    EXPORT ASCCppRandomTargets
+    RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+    LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+    ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+    FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+  )
+  install(
+    EXPORT ASCCppRandomTargets
+    FILE ASCCppRandomTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    TARGETS asc_dense
+    EXPORT ASCCppDenseTargets
+    RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+    LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+    ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+    FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+  )
+  install(
+    EXPORT ASCCppDenseTargets
+    FILE ASCCppDenseTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    TARGETS asc_sparse
+    EXPORT ASCCppSparseTargets
+    RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+    LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+    ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+    FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+  )
+  install(
+    EXPORT ASCCppSparseTargets
+    FILE ASCCppSparseTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    TARGETS asc_random_dense
+    EXPORT ASCCppRandomDenseTargets
+    FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+  )
+  install(
+    EXPORT ASCCppRandomDenseTargets
+    FILE ASCCppRandomDenseTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    TARGETS asc_random_sparse
+    EXPORT ASCCppRandomSparseTargets
+    FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+  )
+  install(
+    EXPORT ASCCppRandomSparseTargets
+    FILE ASCCppRandomSparseTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    TARGETS asc_cpp
+    EXPORT ASCCppCppTargets
+  )
+  install(
+    EXPORT ASCCppCppTargets
+    FILE ASCCppCppTargets.cmake
+    NAMESPACE ASC::
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  if(ASC_CPP_ENABLE_CUDA)
+    install(
+      TARGETS asc_core_cuda
+      EXPORT ASCCppCoreCudaTargets
+      RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+      LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+      ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+      FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+    )
+    install(
+      EXPORT ASCCppCoreCudaTargets
+      FILE ASCCppCoreCudaTargets.cmake
+      NAMESPACE ASC::
+      DESTINATION "${_asc_cpp_install_package_dir}"
+    )
+    install(
+      TARGETS asc_dense_cuda
+      EXPORT ASCCppDenseCudaTargets
+      RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+      LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+      ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+      FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+    )
+    install(
+      EXPORT ASCCppDenseCudaTargets
+      FILE ASCCppDenseCudaTargets.cmake
+      NAMESPACE ASC::
+      DESTINATION "${_asc_cpp_install_package_dir}"
+    )
+    install(
+      TARGETS asc_sparse_cuda
+      EXPORT ASCCppSparseCudaTargets
+      RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+      LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+      ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+      FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+    )
+    install(
+      EXPORT ASCCppSparseCudaTargets
+      FILE ASCCppSparseCudaTargets.cmake
+      NAMESPACE ASC::
+      DESTINATION "${_asc_cpp_install_package_dir}"
+    )
+    install(
+      TARGETS asc_random_cuda
+      EXPORT ASCCppRandomCudaTargets
+      RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+      LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+      ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+      FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+    )
+    install(
+      EXPORT ASCCppRandomCudaTargets
+      FILE ASCCppRandomCudaTargets.cmake
+      NAMESPACE ASC::
+      DESTINATION "${_asc_cpp_install_package_dir}"
+    )
+    install(
+      TARGETS asc_random_dense_cuda
+      EXPORT ASCCppRandomDenseCudaTargets
+      RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+      LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+      ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+      FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+    )
+    install(
+      EXPORT ASCCppRandomDenseCudaTargets
+      FILE ASCCppRandomDenseCudaTargets.cmake
+      NAMESPACE ASC::
+      DESTINATION "${_asc_cpp_install_package_dir}"
+    )
+    install(
+      TARGETS asc_random_sparse_cuda
+      EXPORT ASCCppRandomSparseCudaTargets
+      RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+      LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+      ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+      FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}"
+    )
+    install(
+      EXPORT ASCCppRandomSparseCudaTargets
+      FILE ASCCppRandomSparseCudaTargets.cmake
+      NAMESPACE ASC::
+      DESTINATION "${_asc_cpp_install_package_dir}"
     )
   endif()
-  include("${ASC_CPP_ASCCMAKE_SOURCE_DIR}/modules/ASCProjectOptions.cmake")
-  include("${ASC_CPP_ASCCMAKE_SOURCE_DIR}/modules/ASCInstallPackage.cmake")
-  include("${ASC_CPP_ASCCMAKE_SOURCE_DIR}/modules/ASCTesting.cmake")
-endif()
-
-set(_asc_cpp_project_option_arguments WARNINGS)
-if(ASC_CPP_WARNINGS_AS_ERRORS)
-  list(APPEND _asc_cpp_project_option_arguments WARNINGS_AS_ERRORS)
-endif()
-if(ASC_CPP_ENABLE_SANITIZERS)
-  list(APPEND _asc_cpp_project_option_arguments SANITIZERS ADDRESS UNDEFINED)
-endif()
-asc_add_project_options(
-  TARGET asc_cpp_project_options
-  ${_asc_cpp_project_option_arguments}
-)
-
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/dependencies.cmake")
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/ASCCppTargetHelpers.cmake")
-
-# Configuration and components own their generated files, sources, public
-# headers, direct dependencies, and backend-specific usage requirements.
-add_subdirectory(config)
-add_subdirectory(src)
-
-asc_install_package(
-  PACKAGE ASCCpp
-  EXPORT ASCCppTargets
-  NAMESPACE ASC::
-  VERSION "${PROJECT_VERSION}"
-  TARGETS asc_core asc_utilities asc_array asc_linalg asc_random asc_cpp
-  CONFIG_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ASCCppConfig.cmake.in"
-)
-
-include(GNUInstallDirs)
-install(
-  FILES LICENSE README.md CHANGELOG.md CONTRIBUTING.md THIRD_PARTY_NOTICES
-  DESTINATION "${CMAKE_INSTALL_DOCDIR}"
-)
-install(DIRECTORY docs DESTINATION "${CMAKE_INSTALL_DOCDIR}")
-
-if(ASC_CPP_BUILD_EXAMPLES)
-  add_subdirectory(examples)
+  install(
+    FILES
+      "${_asc_cpp_install_staging_dir}/ASCCppConfig.cmake"
+      "${_asc_cpp_install_staging_dir}/ASCCppConfigVersion.cmake"
+    DESTINATION "${_asc_cpp_install_package_dir}"
+  )
+  install(
+    FILES
+      "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+    DESTINATION "${_asc_cpp_install_docdir}"
+  )
 endif()
 
 if(ASC_CPP_BUILD_TESTING)
-  include(CTest)
   if(NOT BUILD_TESTING)
-    message(FATAL_ERROR "ASC_CPP_BUILD_TESTING requires BUILD_TESTING=ON")
+    message(FATAL_ERROR
+      "ASC_CPP_BUILD_TESTING requires BUILD_TESTING=ON so CTest is enabled."
+    )
   endif()
   add_subdirectory(tests)
 endif()
+
+unset(_asc_cpp_install_package_dir)
+unset(_asc_cpp_install_staging_dir)
+unset(_asc_cpp_install_docdir)
+unset(_asc_cpp_install_bindir)
+unset(_asc_cpp_install_includedir)
+unset(_asc_cpp_install_libdir)

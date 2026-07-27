@@ -1,69 +1,88 @@
-function(asc_cpp_add_core_test name source)
-  add_executable("asc_cpp_test_core_${name}" "${source}"
-                 "${PROJECT_SOURCE_DIR}/tests/unit_test_main.cc")
-  target_link_libraries(
-    "asc_cpp_test_core_${name}"
-    PRIVATE ASC::core GTest::gtest asc_cpp_project_options
-  )
-  asc_register_test(
-    NAME "asc-cpp.core.${name}"
-    TARGET "asc_cpp_test_core_${name}"
-    LABELS "unit;core"
-    TIMEOUT 60
-  )
+function(_asc_core_configure_runtime_test target)
+  target_link_libraries("${target}" PRIVATE ASC::core)
+  target_include_directories("${target}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
+  asc_target_enable_cxx20(TARGET "${target}")
+  if(ASC_CPP_WARNINGS_AS_ERRORS)
+    asc_target_enable_warnings(TARGET "${target}" AS_ERRORS)
+  else()
+    asc_target_enable_warnings(TARGET "${target}")
+  endif()
+  if(ASC_CPP_SANITIZER_ARGUMENTS)
+    asc_target_enable_sanitizers(
+      TARGET "${target}"
+      ${ASC_CPP_SANITIZER_ARGUMENTS}
+    )
+  endif()
 endfunction()
 
-asc_cpp_add_core_test(types unit_test_types.cc)
-asc_cpp_add_core_test(base unit_test_base.cc)
-asc_cpp_add_core_test(memory-resource unit_test_memory_resource.cc)
-asc_cpp_add_core_test(buffer unit_test_buffer.cc)
-asc_cpp_add_core_test(event unit_test_event.cc)
-asc_cpp_add_core_test(execution-context unit_test_execution_context.cc)
+set(_asc_core_runtime_test_sources
+  configuration_test.cc
+  io_test.cc
+  memory_execution_test.cc
+  status_result_test.cc
+  types_extents_test.cc
+)
 
-if(ASC_CPP_ENABLE_EXCEPTIONS)
-  add_executable(asc_cpp_test_core_release_contract
-                 release_contract_test.cc)
-  target_compile_definitions(asc_cpp_test_core_release_contract PRIVATE NDEBUG)
-  target_link_libraries(
-    asc_cpp_test_core_release_contract
-    PRIVATE ASC::core asc_cpp_project_options
-  )
+set(_asc_core_runtime_working_directory
+  "${CMAKE_CURRENT_BINARY_DIR}/runtime working directory with spaces"
+)
+file(MAKE_DIRECTORY "${_asc_core_runtime_working_directory}")
+
+foreach(_source IN LISTS _asc_core_runtime_test_sources)
+  get_filename_component(_name "${_source}" NAME_WE)
+  set(_target "asc_core_${_name}")
+  add_executable("${_target}" "${_source}")
+  _asc_core_configure_runtime_test("${_target}")
   asc_register_test(
-    NAME asc-cpp.core.release-contract
-    TARGET asc_cpp_test_core_release_contract
-    LABELS "contract;core;release"
-    TIMEOUT 30
+    NAME "asc_cpp.core.${_name}"
+    TARGET "${_target}"
+    LABELS "core;milestone-1;runtime"
+    WORKING_DIRECTORY "${_asc_core_runtime_working_directory}"
   )
-endif()
+endforeach()
+
+add_executable(asc_core_contract_failure_test contract_failure_test.cc)
+_asc_core_configure_runtime_test(asc_core_contract_failure_test)
+
+add_executable(
+  asc_core_result_fatal_no_allocation_test
+  result_fatal_no_allocation_test.cc
+)
+_asc_core_configure_runtime_test(
+  asc_core_result_fatal_no_allocation_test
+)
+
+foreach(_mode IN ITEMS check result dcheck file-move-assignment)
+  add_test(
+    NAME "asc_cpp.core.contract_failure.${_mode}"
+    COMMAND
+      "${CMAKE_COMMAND}"
+      "-DEXECUTABLE:FILEPATH=$<TARGET_FILE:asc_core_contract_failure_test>"
+      "-DMODE:STRING=${_mode}"
+      "-DWORK_DIR:PATH=${_asc_core_runtime_working_directory}"
+      -P "${CMAKE_CURRENT_SOURCE_DIR}/expect_contract_failure.cmake"
+  )
+endforeach()
 
 add_test(
-  NAME asc-cpp.core.dependency-boundary
-  COMMAND "${CMAKE_COMMAND}"
-    "-DASC_CPP_SOURCE_DIR=${PROJECT_SOURCE_DIR}"
-    -P "${CMAKE_CURRENT_SOURCE_DIR}/dependency_check.cmake"
-)
-set_property(
-  TEST asc-cpp.core.dependency-boundary
-  PROPERTY LABELS "architecture;compile;core"
-)
-set_property(TEST asc-cpp.core.dependency-boundary PROPERTY TIMEOUT 30)
-
-add_executable(asc_cpp_test_core_odr odr_a.cc odr_b.cc odr_main.cc)
-target_link_libraries(
-  asc_cpp_test_core_odr PRIVATE ASC::core asc_cpp_project_options
-)
-asc_register_test(
-  NAME asc-cpp.core.odr
-  TARGET asc_cpp_test_core_odr
-  LABELS "compile;core;odr"
-  TIMEOUT 30
+  NAME asc_cpp.core.result_fatal_no_allocation
+  COMMAND
+    "${CMAKE_COMMAND}"
+    "-DEXECUTABLE:FILEPATH=$<TARGET_FILE:asc_core_result_fatal_no_allocation_test>"
+    "-DMODE:STRING=result-no-allocation"
+    -P "${CMAKE_CURRENT_SOURCE_DIR}/expect_contract_failure.cmake"
 )
 
-get_target_property(_asc_cpp_core_links asc_core INTERFACE_LINK_LIBRARIES)
-if(_asc_cpp_core_links MATCHES
-   "ASC::(utilities|array|linalg|random|cpp)")
-  message(FATAL_ERROR
-    "ASC::core has a forbidden higher-component dependency: "
-    "${_asc_cpp_core_links}"
-  )
-endif()
+set_tests_properties(
+  asc_cpp.core.contract_failure.check
+  asc_cpp.core.contract_failure.result
+  asc_cpp.core.contract_failure.dcheck
+  asc_cpp.core.contract_failure.file-move-assignment
+  asc_cpp.core.result_fatal_no_allocation
+  PROPERTIES
+    LABELS "contracts;core;milestone-1;runtime"
+    TIMEOUT 30
+)
+
+unset(_asc_core_runtime_test_sources)
+unset(_asc_core_runtime_working_directory)

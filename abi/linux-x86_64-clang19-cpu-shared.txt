@@ -1,0 +1,12 @@
+format|asc-cpp-elf-abi-digest-v1
+environment|Ubuntu 22.04|x86_64|Clang 19.0.0|libstdc++|Debug|shared|CUDA disabled
+report-sha256|be98aae8178e50ea952cf5052b12effbd13e9a1c39a4098a977ffe2ae794fe79
+library|libasc_core.so|defined-dynamic-symbols|228|weak-or-unique|75
+library|libasc_dense.so|defined-dynamic-symbols|46|weak-or-unique|25
+library|libasc_random.so|defined-dynamic-symbols|13|weak-or-unique|6
+library|libasc_sparse.so|defined-dynamic-symbols|2|weak-or-unique|0
+library|libasc_utilities.so|defined-dynamic-symbols|194|weak-or-unique|169
+observation|ELF64|little-endian|x86-64|unversioned SONAMEs
+observation|Public-template support includes internal_dense_linalg and internal_sparse_linalg symbols.
+observation|The exported set includes libstdc++ weak/unique template instantiations and differs materially from GCC 11.
+scope|Observation baseline only; no cross-minor or cross-toolchain ABI promise.

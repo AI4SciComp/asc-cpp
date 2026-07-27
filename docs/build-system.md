@@ -1,5 +1,7 @@
 # Build-system architecture
 
+> **Superseded historical document.** This file describes the deleted implementation at historical HEAD `33b261ea33616a6395c4ad3b20646093103344f7`; it is retained only for auditability and is not current API, build, package, or implementation guidance. See the [approved Stage A six-module blueprint](development/asc-cpp-architecture/architecture-blueprint.md).
+
 asc-cpp adopts the strongest part of MdeCpp's CMake design: ownership follows
 the source tree. A component's build description sits beside its implementation
 instead of contributing source and header lists to a growing root file. The

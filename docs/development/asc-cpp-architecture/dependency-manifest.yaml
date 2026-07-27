@@ -1,0 +1,193 @@
+schema_version: 1
+status: "milestone-8-publication-checkpoint-b-unchanged-dependency-graph"
+package:
+  name: "ASCCpp"
+  namespace: "ASC::"
+  no_component_behavior: "request cpp"
+  provider_free_components:
+    - "core"
+    - "utilities"
+    - "expression"
+    - "dense"
+    - "sparse"
+    - "random"
+    - "random_dense"
+    - "random_sparse"
+    - "cpp"
+  implemented_components:
+    - "core"
+    - "utilities"
+    - "expression"
+    - "random"
+    - "dense"
+    - "sparse"
+    - "random_dense"
+    - "random_sparse"
+    - "cpp"
+    - "core_cuda"
+    - "dense_cuda"
+  unavailable_components: []
+
+modules:
+  core:
+    build_target: "asc_core"
+    installed_target: "ASC::core"
+    direct_dependencies: []
+    forbidden_dependencies:
+      - "utilities"
+      - "expression"
+      - "dense"
+      - "sparse"
+      - "random"
+  utilities:
+    build_target: "asc_utilities"
+    installed_target: "ASC::utilities"
+    direct_dependencies:
+      - "core"
+    forbidden_dependencies:
+      - "expression"
+      - "dense"
+      - "sparse"
+      - "random"
+  expression:
+    build_target: "asc_expression"
+    installed_target: "ASC::expression"
+    direct_dependencies:
+      - "core"
+    forbidden_dependencies:
+      - "utilities"
+      - "dense"
+      - "sparse"
+      - "random"
+  dense:
+    build_target: "asc_dense"
+    installed_target: "ASC::dense"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    forbidden_dependencies:
+      - "utilities"
+      - "sparse"
+      - "random"
+  sparse:
+    build_target: "asc_sparse"
+    installed_target: "ASC::sparse"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    forbidden_dependencies:
+      - "utilities"
+      - "dense"
+      - "random"
+  random:
+    build_target: "asc_random"
+    installed_target: "ASC::random"
+    direct_dependencies:
+      - "core"
+    forbidden_dependencies:
+      - "utilities"
+      - "expression"
+      - "dense"
+      - "sparse"
+
+facets:
+  random_dense:
+    owner: "random"
+    build_target: "asc_random_dense"
+    installed_target: "ASC::random_dense"
+    direct_dependencies:
+      - "random"
+      - "dense"
+    is_module: false
+  random_sparse:
+    owner: "random"
+    build_target: "asc_random_sparse"
+    installed_target: "ASC::random_sparse"
+    direct_dependencies:
+      - "random"
+      - "sparse"
+    is_module: false
+  cpp:
+    owner: "package"
+    build_target: "asc_cpp"
+    installed_target: "ASC::cpp"
+    direct_dependencies:
+      - "core"
+      - "utilities"
+      - "expression"
+      - "dense"
+      - "sparse"
+      - "random"
+      - "random_dense"
+      - "random_sparse"
+    is_module: false
+
+provider_facets:
+  core_cuda:
+    owner: "core"
+    build_target: "asc_core_cuda"
+    installed_target: "ASC::core_cuda"
+    milestone: 6
+    direct_dependencies:
+      - "core"
+    external_dependencies:
+      - "CUDA::cudart"
+  dense_cuda:
+    owner: "dense"
+    build_target: "asc_dense_cuda"
+    installed_target: "ASC::dense_cuda"
+    milestone: 6
+    direct_dependencies:
+      - "dense"
+      - "core_cuda"
+    external_dependencies:
+      - "CUDA::cublas"
+  sparse_cuda:
+    owner: "sparse"
+    build_target: "asc_sparse_cuda"
+    installed_target: "ASC::sparse_cuda"
+    milestone: 7
+    direct_dependencies:
+      - "sparse"
+      - "core_cuda"
+    external_dependencies:
+      - "CUDA::cusparse"
+  random_cuda:
+    owner: "random"
+    build_target: "asc_random_cuda"
+    installed_target: "ASC::random_cuda"
+    milestone: 7
+    direct_dependencies:
+      - "random"
+      - "core_cuda"
+    external_dependencies: []
+  random_dense_cuda:
+    owner: "random"
+    build_target: "asc_random_dense_cuda"
+    installed_target: "ASC::random_dense_cuda"
+    milestone: 7
+    direct_dependencies:
+      - "random_dense"
+      - "random_cuda"
+      - "core_cuda"
+    external_dependencies: []
+  random_sparse_cuda:
+    owner: "random"
+    build_target: "asc_random_sparse_cuda"
+    installed_target: "ASC::random_sparse_cuda"
+    milestone: 7
+    direct_dependencies:
+      - "random_sparse"
+      - "random_cuda"
+      - "core_cuda"
+    external_dependencies: []
+
+rules:
+  - "There are exactly six modules; facets are not modules."
+  - "Every public-header include dependency has a matching direct target edge."
+  - "Expression contains no dense, sparse, utilities, random, or provider include."
+  - "Dense and sparse do not include or link one another."
+  - "Random base contains no storage header or storage target edge."
+  - "Provider SDK requirements load only for a requested provider component."
+  - "ASC::cpp contains the complete provider-free surface and no provider facet."
+  - "No unimplemented target or component is exported."

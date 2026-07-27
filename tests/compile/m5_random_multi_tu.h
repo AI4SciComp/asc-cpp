@@ -1,0 +1,7 @@
+#ifndef ASC_TESTS_COMPILE_M5_RANDOM_MULTI_TU_H_
+#define ASC_TESTS_COMPILE_M5_RANDOM_MULTI_TU_H_
+
+float M5DenseValue();
+double M5SparseValue();
+
+#endif  // ASC_TESTS_COMPILE_M5_RANDOM_MULTI_TU_H_
