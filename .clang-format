@@ -1,0 +1,27 @@
+---
+Language: Cpp
+BasedOnStyle: Google
+Standard: c++20
+ColumnLimit: 80
+
+# Preserve explicit type qualifiers and use Google pointer/reference spelling.
+QualifierAlignment: Leave
+DerivePointerAlignment: false
+PointerAlignment: Left
+ReferenceAlignment: Pointer
+
+# Keep the related header first and regroup the remaining includes according to
+# clang-format's Google include categories.
+IncludeBlocks: Regroup
+SortIncludes: CaseSensitive
+
+# The source policy requires braces and namespace-closing comments.
+InsertBraces: true
+RemoveBracesLLVM: false
+FixNamespaceComments: true
+ShortNamespaceLines: 0
+
+# Do not indent namespace contents or preprocessor directives.
+NamespaceIndentation: None
+IndentPPDirectives: None
+...

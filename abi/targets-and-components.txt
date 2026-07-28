@@ -1,0 +1,32 @@
+# target|local|alias|kind|export|output|static-macro|direct|public|provider
+target|asc_core|ASC::core|COMPILED|core|asc_core|ASC_CORE_STATIC_DEFINE|||cpu
+target|asc_utilities|ASC::utilities|COMPILED|utilities|asc_utilities|ASC_UTILITIES_STATIC_DEFINE|ASC::core|ASC::core|cpu
+target|asc_expression|ASC::expression|INTERFACE|expression|||ASC::core|ASC::core|cpu
+target|asc_random|ASC::random|COMPILED|random|asc_random|ASC_RANDOM_STATIC_DEFINE|ASC::core|ASC::core|cpu
+target|asc_dense|ASC::dense|COMPILED|dense|asc_dense|ASC_DENSE_STATIC_DEFINE|ASC::core,ASC::expression|ASC::core,ASC::expression|cpu
+target|asc_sparse|ASC::sparse|COMPILED|sparse|asc_sparse|ASC_SPARSE_STATIC_DEFINE|ASC::core,ASC::expression|ASC::core,ASC::expression|cpu
+target|asc_random_dense|ASC::random_dense|INTERFACE|random_dense|||ASC::random,ASC::dense|ASC::random,ASC::dense|cpu
+target|asc_random_sparse|ASC::random_sparse|INTERFACE|random_sparse|||ASC::random,ASC::sparse|ASC::random,ASC::sparse|cpu
+target|asc_cpp|ASC::cpp|INTERFACE|cpp|||ASC::core,ASC::utilities,ASC::expression,ASC::dense,ASC::sparse,ASC::random,ASC::random_dense,ASC::random_sparse|ASC::core,ASC::utilities,ASC::expression,ASC::dense,ASC::sparse,ASC::random,ASC::random_dense,ASC::random_sparse|cpu
+target|asc_core_cuda|ASC::core_cuda|COMPILED|core_cuda|asc_core_cuda|ASC_CORE_CUDA_STATIC_DEFINE|ASC::core,CUDA::cudart|ASC::core|cuda
+target|asc_dense_cuda|ASC::dense_cuda|COMPILED|dense_cuda|asc_dense_cuda|ASC_DENSE_CUDA_STATIC_DEFINE|ASC::dense,ASC::core_cuda,CUDA::cublas|ASC::dense,ASC::core_cuda|cuda
+target|asc_sparse_cuda|ASC::sparse_cuda|COMPILED|sparse_cuda|asc_sparse_cuda|ASC_SPARSE_CUDA_STATIC_DEFINE|ASC::sparse,ASC::core_cuda,CUDA::cusparse|ASC::sparse,ASC::core_cuda|cuda
+target|asc_random_cuda|ASC::random_cuda|COMPILED|random_cuda|asc_random_cuda|ASC_RANDOM_CUDA_STATIC_DEFINE|ASC::random,ASC::core_cuda|ASC::random,ASC::core_cuda|cuda
+target|asc_random_dense_cuda|ASC::random_dense_cuda|COMPILED|random_dense_cuda|asc_random_dense_cuda|ASC_RANDOM_DENSE_CUDA_STATIC_DEFINE|ASC::random_dense,ASC::random_cuda,ASC::core_cuda|ASC::random_dense,ASC::random_cuda,ASC::core_cuda|cuda
+target|asc_random_sparse_cuda|ASC::random_sparse_cuda|COMPILED|random_sparse_cuda|asc_random_sparse_cuda|ASC_RANDOM_SPARSE_CUDA_STATIC_DEFINE|ASC::random_sparse,ASC::random_cuda,ASC::core_cuda|ASC::random_sparse,ASC::random_cuda,ASC::core_cuda|cuda
+# component|name|direct-component-dependencies
+component|core|
+component|utilities|core
+component|expression|core
+component|dense|core,expression
+component|sparse|core,expression
+component|random|core
+component|random_dense|random,dense
+component|random_sparse|random,sparse
+component|cpp|core,utilities,expression,dense,sparse,random,random_dense,random_sparse
+component|core_cuda|core
+component|dense_cuda|dense,core_cuda
+component|sparse_cuda|sparse,core_cuda
+component|random_cuda|random,core_cuda
+component|random_dense_cuda|random_dense,random_cuda,core_cuda
+component|random_sparse_cuda|random_sparse,random_cuda,core_cuda

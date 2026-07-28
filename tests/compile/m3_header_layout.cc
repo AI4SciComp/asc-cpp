@@ -1,0 +1,3 @@
+#include "asc/dense/layout.h"
+
+int main() { return 0; }

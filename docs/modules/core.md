@@ -1,310 +1,418 @@
 # Core module
 
-`ASC::core` provides the lowest-level contracts used by asc-cpp. Core
-Milestone 1 (M1) adds a canonical serial foundation without changing the
-MdeCpp-derived runtime that legacy arrays still use. Array M1 has since
-added a separate canonical `Tensor`/`TensorView` path over `Buffer<T>`, and
-Linalg M1 uses those views with an explicit Core context and
-status values. Random M1 likewise uses explicit Core execution and status
-contracts for deterministic canonical-view filling; its keys and counters
-remain caller-owned Random values.
+`ASC::core` is the provider-free CPU foundation of asc-cpp. It has no direct
+ASC or external dependency, and its public headers use only C++20
+standard-library facilities. Milestone 6 adds the separately requested
+`ASC::core_cuda` provider facet; it does not add CUDA to the base target or
+umbrella.
 
-This distinction matters when choosing an API:
-
-| API family | M1 status | Intended use |
-| --- | --- | --- |
-| Types, status/result, and contracts | Canonical | New code |
-| `MemorySpace`, `MemoryResource`, and `Buffer<T>` | Canonical, serial host resource only | New low-level ownership code |
-| `ExecutionContext` and `Event` | Canonical, synchronous serial provider only | New explicit execution code |
-| Array M1 `Tensor` ownership over `Buffer<T>` | Canonical, synchronous serial host path | New dense ownership |
-| Linalg M1 `serial-reference` operations | Canonical consumer of `ExecutionContext`, `Status`, and Array views | New dense linear algebra |
-| Random M1 Philox/uniform/fill path | Canonical consumer of `ExecutionContext`, `Status`, fixed-width types, and Array views | New deterministic generation |
-| `Memory<T>`, `MemoryManager mm`, and `Device` | Legacy compatibility, unchanged | Existing array implementation and migration only |
-| `Read`/`Write`, `UseDevice`, and `forall` | Legacy compatibility, unchanged | Existing call sites only |
-| Canonical OpenMP/CUDA resources and contexts | Planned, not implemented in M1 | Do not rely on them yet |
-
-New code should include the canonical umbrella and link the minimal component:
-
-```cpp
-#include <asc/core.h>
-```
+Request the component and include its umbrella:
 
 ```cmake
-find_package(ASCCpp REQUIRED COMPONENTS core)
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core)
 target_link_libraries(my_target PRIVATE ASC::core)
 ```
 
-The following serial-host path is compiled and run by the installed
-core-component consumer:
-
 ```cpp
 #include <asc/core.h>
+```
 
-#include <utility>
+The umbrella exposes the same declarations as the ten narrow headers under
+`<asc/core/>`. All public declarations are directly in `namespace asc`.
 
-int main() {
-  const asc::ExecutionContext context = asc::ExecutionContext::Serial();
+## Errors, results, and contracts
 
-  asc::Result<asc::MemoryResourcePtr> resource =
-      context.GetMemoryResource(asc::MemorySpace::kHost);
-  if (!resource.ok()) return 1;
+`ErrorCode` is a stable classification for success and the Core failure
+domains: invalid arguments, shape, index, overflow, invalid state,
+allocation, memory access or transfer, unsupported or unavailable
+capabilities, providers, numerical operations, configuration, I/O, EOF,
+encoding, versions, and internal failures.
 
-  asc::Result<asc::Buffer<double>> allocation =
-      asc::Buffer<double>::Allocate(4, resource.value());
-  if (!allocation.ok()) return 1;
+`Status` is a nodiscard value. A successful status has `ErrorCode::kOk`;
+failed statuses may also carry diagnostic text, a provider name, and a signed
+native provider code. These details help diagnosis but are not stable
+machine-readable interfaces. In particular, do not branch on message text.
 
-  asc::Buffer<double> values = std::move(allocation).value();
-  asc::Result<double*> data = values.HostData();
-  if (!data.ok()) return 1;
+`Result<T>` is a nodiscard discriminated value containing either a `T` or a
+non-OK `Status`. It supports move-only values. Test `ok()` before reading the
+value, and inspect `status()` when it is false. Reading the value from a failed
+result invokes the release-active fatal-contract path; it does not throw a
+recoverable public exception.
 
-  for (asc::extent_t i = 0; i < values.GetSize(); ++i) {
-    data.value()[i] = static_cast<double>(i + 1);
+The contract macros serve programmer errors:
+
+- `ASC_CHECK(condition)` is active in every build.
+- `ASC_DCHECK(condition)` is active only in debug builds.
+
+Each active macro evaluates its condition once. A failed active check calls
+`FatalContract`; Core exposes no mutable global failure handler. Use a returned
+`Status` or `Result<T>` for failures a caller can recover from, including bad
+input data, allocation failure, unavailable execution, and I/O errors.
+
+## Logical metadata and extents
+
+`<asc/core/types.h>` defines:
+
+| Type | Representation | Purpose |
+| --- | --- | --- |
+| `index_t` | signed 64-bit | logical indices and offsets |
+| `extent_t` | signed 64-bit | logical extents and counts |
+| `stride_t` | signed 64-bit | logical strides |
+| `nnz_t` | signed 64-bit | nonzero counts |
+| `rank_t` | unsigned 32-bit | rank values |
+| `std::size_t` | implementation standard | byte counts |
+
+`kDynamicExtent` is the distinct signed value `-1`.
+
+Checked integral conversion, addition, multiplication, and element-to-byte
+conversion return `Result` values. They reject negative-to-unsigned and
+out-of-range conversions and avoid undefined signed overflow. Use them at
+public boundaries instead of unchecked casts or arithmetic.
+
+`Extents<...>` has compile-time rank with any mix of static and dynamic
+dimensions. Its factory validates every supplied dynamic extent and the
+complete logical product before returning an object. Negative extents fail.
+Rank zero has logical size one; an extent list containing zero has logical
+size zero. Product overflow fails before allocation or publication.
+
+```cpp
+using MatrixExtents = asc::Extents<2, asc::kDynamicExtent>;
+auto extents = MatrixExtents::Create(5);
+if (!extents.ok()) {
+  return extents.status();
+}
+// rank() == 2, dynamic_rank() == 1, logical_size() == 10
+```
+
+## Programmatic configuration
+
+`ConfigurationValue` owns one recursively nested value of exactly these
+types:
+
+- null;
+- `bool`;
+- signed or unsigned 64-bit integer;
+- `double`;
+- validated UTF-8 string bytes;
+- list of configuration values; or
+- string-keyed object of configuration values.
+
+String values are created with `ConfigurationValue::Utf8String`; the deleted
+`const char*` constructor prevents accidental unvalidated strings. Object and
+schema keys are opaque string bytes, not values of the UTF-8 alternative.
+
+No parser is part of Core. Command-line arguments, environment variables,
+response files, local configuration files, and numerical container types are
+outside this API.
+
+`ConfigurationSchema` describes a recursive object. Each field has an exact
+type and may specify required, default, deprecated, or sensitive state,
+nested fields, and bounds appropriate to numeric or sized values. Validation
+rejects unknown keys and does not silently convert or truncate numeric types.
+Defaults are subjected to their own declared constraints before insertion.
+
+`ValidateConfiguration` is transactional. It returns a `Configuration` only
+after the entire input and every inserted default have passed validation.
+Failure publishes no partially validated output.
+
+Each successful path records a `ConfigurationOrigin`: default, explicit
+programmatic, or command-line origin, plus an optional source label and source
+location. The stable origin values are `kDefault = 0`, `kProgrammatic = 1`,
+and `kCommandLine = 2`. Sensitivity also follows the path. Diagnostic
+rendering of a sensitive value returns a redaction marker rather than its
+contents. Redaction is a diagnostic boundary; it does not encrypt the owned
+value.
+
+Lookup and origin maps use JSON Pointer paths. The empty path denotes the
+root, `/name` denotes an object field, decimal tokens index lists, and `~0`
+and `~1` escape `~` and `/`. An exact origin entry applies to that value and
+its descendants unless a deeper entry overrides it. Defaults always retain
+default origin.
+
+Schema objects own their field names, constraints, and default values.
+Validated `Configuration` objects independently own their value tree and
+per-path metadata; validation does not retain a reference to the input or the
+schema. References or pointers obtained from a contained value remain subject
+to ordinary C++ container invalidation and the lifetime of the owning
+configuration object.
+
+## Byte and text I/O
+
+`ByteSource::ReadSome` and `ByteSink::WriteSome` are partial-transfer
+interfaces. A successful operation may transfer fewer bytes than requested.
+A zero-byte request succeeds without dereferencing a pointer or touching the
+underlying resource.
+
+`ReadExact` loops over partial reads and distinguishes full completion from
+clean EOF or truncated input. `WriteAll` loops over partial writes and rejects
+a successful zero-progress sink so it cannot spin forever. Callers keep the
+supplied destination or source storage alive and unmodified by other threads
+for the duration of the call.
+
+`File` is a move-only owner of one native local-file resource. It supports
+explicit open, read, write, flush, and close operations. Ownership transfers
+on move; destruction and repeated close do not throw. A move-assignment
+destination must already be closed; violating that precondition invokes the
+release-active fatal-contract path because an implicit close could discard a
+close error. Once closed or moved from, operations fail rather than use the
+former native resource.
+
+Bounded text-file helpers check file sizes and configured limits before
+publishing output. A failed or oversized read publishes no partial
+destination.
+
+The fixed-width little-endian helpers encode and decode integer values and IEC
+60559 floating values by their specified bits. They do not dump native object
+layout and therefore do not inherit native byte order or padding. Dense,
+sparse, random-state, logging, and device-transfer formats are not defined in
+Milestone 1.
+
+## Memory spaces and allocation
+
+`MemorySpace` distinguishes host, pinned host, device, and managed address
+spaces. The distinction describes accessibility and is not an availability
+claim. Base Core implements host allocation only. The optional
+`ASC::core_cuda` facet adds pinned-host, device, and managed resources without
+changing `ASC::core`.
+
+`MemoryResource` allocates and deallocates bytes in exactly one declared
+space. `HostMemoryResource` supplies explicitly aligned host storage.
+Zero-byte allocation is a successful no-allocation operation. Invalid
+alignment, byte-count overflow, and allocation failure are reported as
+failures.
+
+Every successful nonzero allocation must be returned exactly once to the same
+resource with its matching byte count and alignment. A custom resource must
+preserve those rules and must not claim a space it does not implement.
+
+### `Buffer` ownership and resource lifetime
+
+`Buffer` is a move-only byte owner:
+
+- a buffer is created by the fallible `Buffer::Allocate` factory;
+- a successful zero-byte buffer is valid but owns no allocation;
+- a successful nonzero allocation owns one pointer, byte count, alignment,
+  and memory space;
+- copying is disabled;
+- moving transfers ownership and empties the source; and
+- destruction or replacement releases a held allocation exactly once.
+
+The buffer retains a **non-owning** `MemoryResource*`. The resource must
+outlive every buffer allocated from it. Moving a buffer does not extend the
+resource lifetime. Destroying the resource first leaves the buffer unable to
+perform its required deallocation and is a caller lifetime error.
+
+Core does not provide buffer adoption, resizing, cloning, implicit pointer
+conversion, implicit allocation, mirroring, or hidden transfer.
+
+### Views, aliasing, and lifetime
+
+`ConstMemoryView` and `MutableMemoryView` are non-owning byte descriptors.
+They carry an address, byte count, and `MemorySpace`; they do not retain a
+buffer or resource and never deallocate.
+
+The view's referenced storage must remain alive and valid for the complete
+operation using it. Resetting or destroying the owner invalidates its views.
+Moving a buffer does not change the allocation address, but the destination
+owner must then remain alive; the moved-from buffer no longer controls that
+lifetime. Replacing a buffer by move assignment invalidates views of the
+destination's former allocation. A mutable view additionally requires
+exclusive mutation discipline from the caller. Two views may alias; an API
+documents whether that overlap is permitted.
+
+Serial `CopyBytes` explicitly permits overlap for host source and destination
+ranges and behaves like an overlap-safe byte move. CUDA `CopyBytes` permits
+exact self-copy as a no-op but rejects partial overlap. Bounds, context,
+accessibility, devices, and overlap are validated before host mutation or CUDA
+enqueue. No other operation may be assumed to tolerate overlap unless it says
+so.
+
+```cpp
+asc::HostMemoryResource resource;
+auto allocation = asc::Buffer::Allocate(resource, 64);
+if (!allocation.ok()) {
+  return allocation.status();
+}
+
+asc::Buffer buffer = std::move(*allocation);
+auto bytes = buffer.mutable_view();
+if (!bytes.ok()) {
+  return bytes.status();
+}
+// resource must remain alive until buffer has been reset or destroyed.
+```
+
+## Execution contexts and completion events
+
+The backend-neutral vocabulary comprises `Backend`, `Device`, `Determinism`,
+`ExecutionContext`, and `CompletionEvent`. Base Core always provides immutable
+serial CPU execution on host memory. The optional CUDA factory creates an
+immutable, copyable context with provider-owned opaque state; provider-neutral
+headers expose no CUDA SDK declaration or type.
+
+There is no process-global or thread-local default context. Pass the context
+explicitly to an operation. A request for CUDA, another unavailable backend,
+or an unsupported memory space returns `kUnavailable` or `kUnsupported`.
+Core never silently selects a provider, falls back, allocates temporary
+storage, transfers data, packs input, or synchronizes hidden work.
+
+`CopyBytes` takes an explicit context plus source and destination views. For
+the serial context it performs a synchronous overlap-safe host copy and
+returns an already-complete move-only `CompletionEvent`.
+
+`CompletionEvent::Query()` reports whether that event has completed without
+turning it into a process-wide synchronization. `Wait()` waits only for that
+event. An event is move-only. Destroying a CUDA event does not synchronize the
+device; destruction therefore does not make it safe to release storage that
+an unfinished operation still uses.
+
+## Optional CUDA runtime facet
+
+CUDA is opt-in and is disabled by default. A source build requires
+CUDAToolkit 12 or newer and a CUDA compiler:
+
+```sh
+cmake -S . -B build-cuda \
+  -DASC_CPP_ENABLE_CUDA=ON \
+  -DCMAKE_CUDA_ARCHITECTURES=86
+cmake --build build-cuda
+```
+
+Choose architecture codes appropriate for the deployment machines; asc-cpp
+does not replace a caller-provided `CMAKE_CUDA_ARCHITECTURES`. Enabling CUDA
+builds both `core_cuda` and `dense_cuda`. A missing toolkit, compiler, runtime
+target, or cuBLAS target is a configuration error rather than a reason to
+disable the provider silently.
+
+An installed consumer requests the facet explicitly:
+
+```cmake
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core_cuda)
+target_link_libraries(my_target PRIVATE ASC::core_cuda)
+```
+
+```cpp
+#include <asc/core/providers/cuda.h>
+```
+
+The required component closure is exactly `core;core_cuda`. The package finds
+CUDAToolkit only because that requested closure contains a CUDA component.
+Requesting `core`, any other provider-free component, or the provider-free
+`cpp` aggregate does not discover CUDA.
+
+The public provider API is deliberately SDK-neutral:
+
+- `CudaDeviceCount()` reports the number of currently available CUDA devices;
+- `CudaMemoryResource::Create(device_ordinal, space)` creates one stable
+  resource for pinned-host, device, or managed allocations;
+- `CreateCudaExecutionContext(device_ordinal, determinism)` creates one
+  nonblocking stream owned by an immutable execution context; and
+- `RecordCudaEvent(context)` records completion in that explicit stream.
+
+```cpp
+constexpr std::int32_t kDeviceOrdinal = 0;
+auto context = asc::CreateCudaExecutionContext(kDeviceOrdinal);
+if (!context.ok()) {
+  return context.status();
+}
+auto marker = asc::RecordCudaEvent(*context);
+if (!marker.ok()) {
+  return marker.status();
+}
+auto ready = marker->Query();
+if (!ready.ok()) {
+  return ready.status();
+}
+if (!*ready) {
+  asc::Status waited = marker->Wait();
+  if (!waited.ok()) {
+    return waited;
   }
-
-  return context.Synchronize().ok() ? 0 : 1;
 }
 ```
 
-Allocation, host access, and synchronization can each fail independently, so
-production code should propagate the corresponding status rather than collapse
-all failures to an integer as this small consumer does.
+Ordinary host allocation remains `HostMemoryResource` work.
+`CudaMemoryResource` is noncopyable and nonmovable because every `Buffer`
+allocated from it retains a non-owning resource address. Keep the resource
+alive until every such buffer has been reset or destroyed. A CUDA context owns
+its execution state and stream, so copied contexts refer to the same immutable
+state; there is no default device, global current context, provider registry,
+or native-stream adoption.
 
-The common canonical headers use the C++ standard library and asc-cpp's
-generated configuration. They do not expose CUDA, OpenMP, Eigen, MKL, or other
-provider SDK types.
+CUDA `CopyBytes` supports the placement routes accepted by the explicit CUDA
+context. It checks byte count, nullability, accessibility, device identity,
+and overlap before enqueueing work on that context's stream. An exact
+self-copy returns a no-op event, while partial overlap fails. The operation
+does not select another device, stage through hidden memory, synchronize the
+device, or fall back to the serial implementation.
 
-## Fundamental types
+The returned event retains the provider execution state, not the source or
+destination buffers. Until `Query()` reports completion or `Wait()` succeeds,
+the context, resources, memory owners, and referenced views must remain alive,
+and the referenced bytes must not be released or incompatibly accessed.
+Pageable-host CUDA copies are not promised to return without host-side
+blocking; the API's asynchronous contract concerns completion represented by
+the event and prohibits a hidden device-wide synchronization.
 
-`<asc/core/types.h>` defines signed 64-bit metadata aliases:
+Factories, allocation, copies, event recording, query, and wait report
+failures through `Status` or `Result`. Provider failures retain a stable ASC
+`ErrorCode`, the provider name, and a signed native code. Diagnostic text and
+native codes are not portable branching interfaces. No production exception
+API is added.
 
-- `index_t` for logical indices and offsets;
-- `extent_t` for element counts and extents;
-- `stride_t` for strides;
-- `nnz_t` for sparse nonzero counts;
-- `dynamic_extent`, whose value is `-1`.
+## Thread safety
 
-`std::size_t` remains the byte-count type. Canonical allocation paths reject
-negative counts and check the element-count-to-byte-count conversion before
-calling a resource. The existing integer `kDynamicExtent` is retained
-separately for legacy arrays in M1.
+Core does not add synchronization to caller-owned state:
 
-`real_t` remains the build-selected default floating-point type. It is a
-convenience and ABI choice, not a restriction on generic algorithm scalar
-types.
+- independent immutable values, statuses, extents, schemas, configurations,
+  origins, and serial contexts may be read concurrently;
+- concurrent access to one object is safe only when every access is const and
+  the object is not concurrently moved, assigned, or destroyed;
+- a `Buffer`, `File`, `Result<T>`, or `CompletionEvent` must not be moved,
+  assigned, closed, waited on, or destroyed concurrently with another access
+  to that same object;
+- views do not synchronize the referenced bytes; the caller must prevent data
+  races, including races through aliased views;
+- a byte source or sink determines its own concurrency properties; Core's
+  transfer helpers do not serialize calls; and
+- separate host allocations and separate serial contexts do not create shared
+  execution state; and
+- independent CUDA contexts and storage may execute concurrently, while
+  callers still serialize mutation, move, reset, destruction, and event access
+  for any one ASC object.
 
-## Status and results
+These rules describe library object access. They do not make concurrent
+mutation of referenced memory safe under the C++ memory model.
 
-`<asc/core/status.h>` provides two value-oriented error types:
+## Package and scope boundary
 
-- `Status` represents success or a failure code with diagnostic information;
-- `Result<T>` contains either a `T` or a failed `Status`.
+The build target is `asc_core`; the build-tree and installed target is
+`ASC::core`. It follows `BUILD_SHARED_LIBS` and exports a strict C++20
+requirement with extensions disabled. No warning or sanitizer flags are
+propagated to consumers.
 
-The stable status codes cover invalid arguments and ranges, failed
-preconditions, overflow, allocation failure, unavailable or unsupported
-capabilities, backend errors, numerical failure, and internal errors. A
-provider name, native provider code, and message may add diagnostics. Do not
-parse message or provider text as a stable interface.
+Build-tree, installed, relocated, static, shared, and isolated consumers use
+the same component name and headers. A component-free
+`find_package(ASCCpp 0.9 CONFIG REQUIRED)` request selects the provider-free
+`cpp` aggregate. It does not select `core_cuda` or discover CUDAToolkit.
 
-Always inspect a status before continuing and a result before accessing its
-value. `Result<T>` supports move-only values, including `Buffer<T>`. Accessing
-the missing value of a failed result is a contract violation.
+Milestone 6 Core deliberately excludes:
 
-Status-returning interfaces have the same signatures whether legacy exception
-translation is enabled or disabled. Recoverable allocation and provider
-failures are represented by status values rather than by changing the API at
-configuration time.
+- a provider edge from `ASC::core` or `ASC::cpp`;
+- automatic device choice, mutable global policy, provider registries, or a
+  default context;
+- native CUDA stream/type exposure, stream adoption, peer copies, graph
+  capture, prefetch, or a pool allocator;
+- implicit transfer, staging, synchronization, allocation, or fallback;
+- numerical containers or kernels owned by Dense, Sparse, or Random;
+- Sparse CUDA, Random CUDA, HIP, SYCL, or an optimized CPU provider;
+- command-line, environment, response-file, or concrete configuration-file
+  parsers; and
+- compatibility APIs from the deleted implementation.
 
-## Public contracts
+The [frozen Milestone 6 contract][contract] is authoritative for the CUDA
+facet. The [Milestone 1 contract][core-contract] remains the base Core
+authority.
 
-`<asc/core/contracts.h>` separates programmer errors from recoverable runtime
-failures:
-
-- `ASC_REQUIRE` checks a public precondition;
-- `ASC_ENSURE` checks a public postcondition;
-- `ASC_DCHECK` checks an internal invariant in debug builds.
-
-`ASC_REQUIRE` and `ASC_ENSURE` remain active in release builds and evaluate
-their condition once. In an exception-enabled build, failure is translated to
-the canonical contract exception. Otherwise the library emits a minimal
-diagnostic and aborts. This canonical path has no mutable global error action.
-
-Use a returned `Status` for failures a caller can handle, such as an unavailable
-provider or failed allocation. Use a contract for violated API rules that
-indicate a programming error.
-
-The older `ASC_VERIFY`, `ASC_ASSERT`, `ASC_ABORT`, and `ErrorAction` interfaces
-retain their existing behavior for compatibility; they are not aliases for the
-new contract model in M1.
-
-## Memory spaces
-
-`<asc/core/memory_space.h>` distinguishes four address spaces:
-
-| Space | Host accessible | Device accessible | M1 resource |
-| --- | ---: | ---: | --- |
-| Host | Yes | No | Yes |
-| Pinned host | Yes | No | No |
-| Device | No | Yes | No |
-| Managed/unified | Yes | Yes | No |
-
-The accessibility entries describe the space contract, not provider
-availability. M1 supplies only a host resource. It does not emulate pinned,
-device, or managed memory with ordinary host allocation.
-
-External ownership is not a memory space. External adoption and non-owning
-views require separate lifetime contracts and are deferred to later
-milestones.
-
-## Memory resources
-
-`<asc/core/memory_resource.h>` defines the allocation boundary.
-`MemoryResource` reports its space and diagnostic name, allocates bytes with an
-explicit alignment, deallocates without throwing, and supports resource
-equality. Resource handles are shared so an allocation can retain the resource
-needed to release it.
-
-M1 ships one immutable, thread-safe host resource. Zero-byte allocation is a
-successful no-allocation operation. Invalid alignment and allocation failure
-are returned as status failures.
-
-A custom resource must obey the same allocation/deallocation pairing: the
-pointer, byte count, and alignment passed to deallocation correspond to the
-successful allocation. A resource must not claim a memory space whose
-allocation and accessibility rules it does not implement.
-
-## `Buffer<T>` ownership
-
-`<asc/core/buffer.h>` provides the canonical low-level owner.
-
-- A buffer owns one allocation in one explicit memory space.
-- Default construction creates a valid empty buffer.
-- Allocation is performed by a factory returning `Result<Buffer<T>>`.
-- Copy construction and copy assignment are disabled.
-- Move construction and assignment transfer ownership and leave the source
-  empty.
-- Destruction releases exactly once and does not throw.
-- The buffer retains the resource that must deallocate its storage.
-- Host access is checked and succeeds only for a host-accessible space.
-- There is no implicit pointer conversion, manual deletion, resize, alias,
-  mirror, execution preference, or public raw device-pointer accessor.
-
-Non-trivial objects in host-accessible storage are constructed and destroyed
-as objects. A partially completed construction is rolled back before an
-allocation failure is returned.
-
-Deep copy and clone operations are intentionally absent in M1. Their final
-interfaces must include an execution context and explicit source, destination,
-and synchronization semantics. Do not use the legacy mirrored-memory API to
-make a canonical `Buffer<T>` appear copyable.
-
-## Execution contexts
-
-`<asc/core/execution_context.h>` makes execution choice explicit.
-`ExecutionContext` is a cheap, copyable handle to immutable provider state and
-construction options. Those options identify:
-
-- backend kind and device identifier;
-- fallback policy;
-- determinism policy.
-
-The serial context is always available and deterministic. It provides the host
-resource and synchronous execution capability. Creating an OpenMP or CUDA
-canonical context in M1 returns an unavailable status; enabling a legacy build
-option does not change that fact.
-
-Fallback is disabled by default. A context never performs an implicit transfer
-to satisfy an operation. A resource query for an unsupported space fails before
-a pointer is acquired.
-
-Contexts contain no mutable setters or global provider registry. Independent
-contexts hold independent options and state. Copies of an immutable serial
-context may be inspected and used concurrently. M1 deliberately has no mutable
-global or thread-local default context: canonical operations require the
-context explicitly.
-
-The Linalg M1 operations follow this rule: all seven take a
-mandatory context first, query a compiled capability boundary, and return
-`Status` or `Result<T>`. They do not make Core OpenMP/CUDA contexts available,
-and legacy backend switches do not alter their serial context.
-
-The legacy `Device` singleton remains the execution default for legacy arrays
-and loops only. Configuring it does not configure or mutate a canonical
-`ExecutionContext`.
-
-## Events and lifetime
-
-`<asc/core/event.h>` defines a copyable shared-state `Event` handle.
-
-- A default event is completed successfully.
-- `IsReady()` is a non-blocking readiness query.
-- `Wait()` is idempotent and returns the provider status.
-- The event identifies its backend kind.
-- Event destruction does not silently wait.
-
-M1 serial work completes synchronously, so M1 events are completed events. The
-event retains provider event state, not input or output buffers. Future
-asynchronous operations will require the caller to keep every referenced
-buffer and view alive until the event completes.
-
-## What is still legacy
-
-The following narrow headers remain available because legacy array, linalg,
-and random code depends on their behavior:
-
-- `<asc/core/memory.h>` and `<asc/core/memory_impl.h>`;
-- `<asc/core/device.h>` and `<asc/core/forall.h>`;
-- `<asc/core/cuda.h>`;
-- `<asc/core/error.h>` and `<asc/core/globals.h>`;
-- the device-coupled operation functors in `<asc/core/operators.h>`.
-
-These interfaces still provide manual `Memory<T>::Delete()`, global
-`MemoryManager mm`, the process-wide `Device`, lazy mirrored-memory transfers,
-and build-dependent loop dispatch. Core M1 does not change or deprecate them,
-because the inherited array implementation has not migrated to typed owners
-and views. Canonical Array M1 instead adds a separate move-only dense owner and
-element-typed view path; it does not adapt these compatibility types.
-
-Do not mix the two ownership models. In particular, a canonical `Buffer<T>` is
-not registered with `mm`, and M1 provides no conversion or hidden transfer
-between `Buffer<T>` and `Memory<T>`.
-
-## Provider roadmap
-
-The following behavior is planned, not part of M1:
-
-- explicit copy/fill operations and asynchronous events;
-- pinned-host, managed-memory, OpenMP, and CUDA resources/providers;
-- provider translation units isolated from ordinary C++ consumers;
-- allocation-local compatibility mirroring;
-- context-scoped diagnostic sinks;
-- an explicit CUDA extension path for user-authored kernels;
-- eventual removal of global/manual compatibility APIs before 1.0.
-
-Provider availability will be exposed through context capabilities and status
-values. Optional providers will not add or remove declarations from the common
-canonical API.
-
-## Migration guidance
-
-For new foundational code:
-
-1. include `<asc/core.h>` or the narrow canonical header;
-2. pass `ExecutionContext` explicitly;
-3. allocate through a `MemoryResource` and own storage with `Buffer<T>`;
-4. propagate `Status`/`Result<T>` failures;
-5. use release-active contracts for programmer preconditions;
-6. do not introduce a dependency on `Device`, `mm`, or implicit mirroring.
-
-Existing array-facing code should remain on the characterized compatibility
-path when it needs inherited expressions, sparse storage, transforms, or
-device/mirroring behavior. New dense host code may adopt Array M1 when it can
-use the new ownership, lifetime, and constness rules coherently. See
-[Array migration](../migration/array.md) for that mapping and
-[Core migration](../migration/core.md) for the staged runtime mapping. New
-dense linear algebra should follow the
-[Linalg module](linalg.md) and [Linalg migration](../migration/linalg.md)
-contracts rather than routing a canonical view through the legacy runtime.
-New unit-uniform generation should follow the
-[Random module](random.md) and [Random migration](../migration/random.md)
-contracts; entropy, mutable engines, inherited samplers, and device generation
-are not Core M1 capabilities.
+[contract]: ../development/asc-cpp-m6-gpu-core-dense/milestone-contract.md
+[core-contract]: ../development/asc-cpp-m1-core/milestone-contract.md

@@ -1,219 +1,167 @@
-find_package(GTest REQUIRED)
+if(CMAKE_VERSION VERSION_LESS 3.25)
+  message(FATAL_ERROR "Milestone 8 tests require CMake 3.25 or newer.")
+endif()
 
-function(asc_cpp_add_mdecpp_test_group group component)
-  file(GLOB sources CONFIGURE_DEPENDS
-       "${CMAKE_CURRENT_SOURCE_DIR}/${group}/unit_test_*.cc")
-  if(group STREQUAL "random")
-    list(FILTER sources EXCLUDE REGEX
-         "/unit_test_(engine|distribution|fill)\\.cc$")
-  endif()
-  if(ASC_CPP_ENABLE_CUDA)
-    set_source_files_properties(unit_test_main.cc ${sources} PROPERTIES LANGUAGE CUDA)
-  endif()
-  add_executable("asc_cpp_test_${group}" unit_test_main.cc ${sources})
-  target_include_directories(
-    "asc_cpp_test_${group}" PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
+set(
+  ASC_CPP_TEST_WORKSPACE_ROOT
+  "${PROJECT_BINARY_DIR}/asc-cpp-test-workspaces"
+  CACHE INTERNAL "Dedicated root for recursively cleaned ASCCpp test work"
+)
+set(
+  ASC_CPP_TEST_WORKSPACE_GUARD
+  "${ASC_CPP_TEST_WORKSPACE_ROOT}/.asc-cpp-test-workspace-root"
+  CACHE INTERNAL "Guard proving the dedicated ASCCpp test workspace root"
+)
+file(MAKE_DIRECTORY "${ASC_CPP_TEST_WORKSPACE_ROOT}")
+file(WRITE "${ASC_CPP_TEST_WORKSPACE_GUARD}"
+  "ASCCpp dedicated test workspace root\n"
+  "source=${PROJECT_SOURCE_DIR}\n"
+  "binary=${PROJECT_BINARY_DIR}\n"
+)
+add_test(
+  NAME asc_cpp.test_workspace.guard
+  COMMAND
+    "${CMAKE_COMMAND}"
+    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
+    "-DBINARY_DIR:PATH=${PROJECT_BINARY_DIR}"
+    "-DROOT:PATH=${ASC_CPP_TEST_WORKSPACE_ROOT}"
+    "-DGUARD:FILEPATH=${ASC_CPP_TEST_WORKSPACE_GUARD}"
+    -P
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/test_workspace_guard_test.cmake"
+)
+set_tests_properties(
+  asc_cpp.test_workspace.guard
+  PROPERTIES
+    LABELS "architecture;security;hardening;milestone-8"
+    RUN_SERIAL TRUE
+)
+
+set(
+  _asc_cpp_target_inventory
+  "${CMAKE_CURRENT_BINARY_DIR}/architecture/observed-targets-$<CONFIG>.txt"
+)
+set_property(
+  GLOBAL
+  PROPERTY ASC_CPP_M1_TARGET_INVENTORY
+  "${_asc_cpp_target_inventory}"
+)
+set_property(
+  GLOBAL
+  PROPERTY ASC_CPP_M1_SOURCE_DIRECTORY
+  "${PROJECT_SOURCE_DIR}"
+)
+
+function(_asc_cpp_collect_target_inventory directory output_variable)
+  set(_records)
+
+  get_property(
+    _build_targets DIRECTORY "${directory}" PROPERTY BUILDSYSTEM_TARGETS
   )
-  target_link_libraries(
-    "asc_cpp_test_${group}"
-    PRIVATE "ASC::${component}" GTest::gtest asc_cpp_project_options
+  foreach(_target IN LISTS _build_targets)
+    get_target_property(_type "${_target}" TYPE)
+    get_target_property(_imported "${_target}" IMPORTED)
+    list(APPEND _records "build|${_target}|${_type}|${_imported}")
+  endforeach()
+
+  get_property(
+    _imported_targets DIRECTORY "${directory}" PROPERTY IMPORTED_TARGETS
   )
-  asc_register_test(
-    NAME "asc-cpp.${group}"
-    TARGET "asc_cpp_test_${group}"
-    LABELS "unit;${component};mdecpp-migration"
-    TIMEOUT 180
-  )
+  foreach(_target IN LISTS _imported_targets)
+    get_target_property(_type "${_target}" TYPE)
+    get_target_property(_imported "${_target}" IMPORTED)
+    list(APPEND _records "imported|${_target}|${_type}|${_imported}")
+  endforeach()
+
+  get_property(_subdirectories DIRECTORY "${directory}" PROPERTY SUBDIRECTORIES)
+  foreach(_subdirectory IN LISTS _subdirectories)
+    _asc_cpp_collect_target_inventory("${_subdirectory}" _child_records)
+    list(APPEND _records ${_child_records})
+  endforeach()
+
+  set("${output_variable}" "${_records}" PARENT_SCOPE)
 endfunction()
 
-asc_cpp_add_mdecpp_test_group(generic cpp)
-asc_cpp_add_mdecpp_test_group(algebra linalg)
-asc_cpp_add_mdecpp_test_group(random cpp)
+function(_asc_cpp_write_target_inventory)
+  get_property(_source_directory GLOBAL PROPERTY ASC_CPP_M1_SOURCE_DIRECTORY)
+  get_property(_output_file GLOBAL PROPERTY ASC_CPP_M1_TARGET_INVENTORY)
+  _asc_cpp_collect_target_inventory("${_source_directory}" _records)
+
+  set(_known_product_targets
+    asc_core
+    asc_utilities
+    asc_expression
+    asc_dense
+    asc_sparse
+    asc_random
+    asc_random_dense
+    asc_random_sparse
+    asc_cpp
+    asc_core_cuda
+    asc_dense_cuda
+    asc_sparse_cuda
+    asc_random_cuda
+    asc_random_dense_cuda
+    asc_random_sparse_cuda
+    ASC::core
+    ASC::utilities
+    ASC::expression
+    ASC::dense
+    ASC::sparse
+    ASC::random
+    ASC::random_dense
+    ASC::random_sparse
+    ASC::cpp
+    ASC::core_cuda
+    ASC::dense_cuda
+    ASC::sparse_cuda
+    ASC::random_cuda
+    ASC::random_dense_cuda
+    ASC::random_sparse_cuda
+  )
+  foreach(_target IN LISTS _known_product_targets)
+    if(TARGET "${_target}")
+      get_target_property(_type "${_target}" TYPE)
+      get_target_property(_imported "${_target}" IMPORTED)
+      list(APPEND _records "known-product|${_target}|${_type}|${_imported}")
+    endif()
+  endforeach()
+
+  list(REMOVE_DUPLICATES _records)
+  list(SORT _records)
+  string(REPLACE ";" "\n" _contents "${_records}")
+  if(_contents)
+    string(APPEND _contents "\n")
+  endif()
+  file(GENERATE OUTPUT "${_output_file}" CONTENT "${_contents}")
+endfunction()
+
+cmake_language(
+  DEFER
+  DIRECTORY "${PROJECT_SOURCE_DIR}"
+  CALL _asc_cpp_write_target_inventory
+)
+
+add_subdirectory(architecture)
+add_subdirectory(compile)
 add_subdirectory(core)
 add_subdirectory(utilities)
-add_subdirectory(array)
-add_subdirectory(linalg)
+add_subdirectory(expression)
+add_subdirectory(dense)
+add_subdirectory(sparse)
 add_subdirectory(random)
-
-function(asc_cpp_add_header_isolation header component)
-  string(MAKE_C_IDENTIFIER "${header}" _asc_cpp_header_id)
-  set(_asc_cpp_header_source
-      "${CMAKE_CURRENT_BINARY_DIR}/header_${_asc_cpp_header_id}.cc")
-  file(GENERATE OUTPUT "${_asc_cpp_header_source}"
-       CONTENT "#include <${header}>\n")
-  if(ASC_CPP_ENABLE_CUDA)
-    set_source_files_properties(
-      "${_asc_cpp_header_source}" PROPERTIES LANGUAGE CUDA
-    )
-  endif()
-  add_library("asc_cpp_header_${_asc_cpp_header_id}" OBJECT
-              "${_asc_cpp_header_source}")
-  target_link_libraries(
-    "asc_cpp_header_${_asc_cpp_header_id}"
-    PRIVATE "ASC::${component}" asc_cpp_project_options
-  )
-endfunction()
-
-set(_asc_cpp_core_headers
-  asc/core.h
-  asc/core/buffer.h
-  asc/core/casts.h
-  asc/core/config.h
-  asc/core/contracts.h
-  asc/core/cuda.h
-  asc/core/device.h
-  asc/core/error.h
-  asc/core/event.h
-  asc/core/execution_context.h
-  asc/core/forall.h
-  asc/core/globals.h
-  asc/core/math.h
-  asc/core/memory.h
-  asc/core/memory_impl.h
-  asc/core/memory_resource.h
-  asc/core/memory_space.h
-  # Transitional forwarding header retained by legacy Array compatibility.
-  asc/core/numeric.h
-  asc/core/operators.h
-  asc/core/status.h
-  asc/core/string.h
-  asc/core/types.h
-)
-foreach(_asc_cpp_header IN LISTS _asc_cpp_core_headers)
-  asc_cpp_add_header_isolation("${_asc_cpp_header}" core)
-endforeach()
-
-set(_asc_cpp_headers
-  asc/asc.h
-  asc/cpp.h
-  asc/array/carray.h
-  asc/array/concepts.h
-  asc/array/dsmarray.h
-  asc/array/dsmarray_impl.h
-  asc/array/expr.h
-  asc/array/forwards.h
-  asc/array/marray.h
-  asc/array/mindex.h
-  asc/array/miterator.h
-  asc/array/mlayout.h
-  asc/array/mobject.h
-  asc/array/mobject_impl.h
-  asc/array/mshape.h
-  asc/array/spmarray.h
-  asc/array/spmarray_impl.h
-  asc/array/spmindex.h
-  asc/array/spmiterator.h
-  asc/array/spmlayout.h
-  asc/array/uarray.h
-  asc/linalg/blas.h
-  asc/linalg/decomp.h
-  asc/linalg/lapack.h
-  asc/random/generator.h
-  asc/random/halton.h
-  asc/random/hammersley.h
-  asc/random/latin.h
-  asc/random/normal.h
-  asc/random/permutation.h
-  asc/random/pseudo.h
-  asc/random/sampler.h
-  asc/random/sobol.h
-  asc/random/spherical.h
-)
-if(ASC_CPP_ENABLE_EIGEN)
-  list(APPEND _asc_cpp_headers asc/linalg/eigen.h)
-endif()
-foreach(_asc_cpp_header IN LISTS _asc_cpp_headers)
-  asc_cpp_add_header_isolation("${_asc_cpp_header}" cpp)
-endforeach()
-
-set(_asc_cpp_array_headers
-  asc/array.h
-  asc/array/accessor.h
-  asc/array/extents.h
-  asc/array/layout.h
-  asc/array/tensor.h
-  asc/array/tensor_concepts.h
-  asc/array/tensor_view.h
-)
-foreach(_asc_cpp_header IN LISTS _asc_cpp_array_headers)
-  asc_cpp_add_header_isolation("${_asc_cpp_header}" array)
-endforeach()
-
-set(_asc_cpp_utilities_headers
-  asc/utilities.h
-  asc/utilities/cli.h
-  asc/utilities/config.h
-  asc/utilities/optparser.h
-  asc/utilities/timer.h
-)
-foreach(_asc_cpp_header IN LISTS _asc_cpp_utilities_headers)
-  asc_cpp_add_header_isolation("${_asc_cpp_header}" utilities)
-endforeach()
-
-set(_asc_cpp_linalg_headers
-  asc/linalg.h
-  asc/linalg/blas1.h
-  asc/linalg/blas2.h
-  asc/linalg/blas3.h
-  asc/linalg/capabilities.h
-  asc/linalg/concepts.h
-  asc/linalg/detail/reference_kernels.h
-  asc/linalg/types.h
-)
-foreach(_asc_cpp_header IN LISTS _asc_cpp_linalg_headers)
-  asc_cpp_add_header_isolation("${_asc_cpp_header}" linalg)
-endforeach()
-
-set(_asc_cpp_random_headers
-  asc/random.h
-  asc/random/counter_engine.h
-  asc/random/detail/fill_validation.h
-  asc/random/distribution.h
-  asc/random/fill.h
-  asc/random/types.h
-)
-foreach(_asc_cpp_header IN LISTS _asc_cpp_random_headers)
-  asc_cpp_add_header_isolation("${_asc_cpp_header}" random)
-endforeach()
-
-set(_asc_cpp_odr_a "${CMAKE_CURRENT_BINARY_DIR}/odr_a.cc")
-set(_asc_cpp_odr_b "${CMAKE_CURRENT_BINARY_DIR}/odr_b.cc")
-set(_asc_cpp_odr_main "${CMAKE_CURRENT_BINARY_DIR}/odr_main.cc")
-file(GENERATE OUTPUT "${_asc_cpp_odr_a}" CONTENT
-  "#include <asc/cpp.h>\nint OdrA() { return asc::Factorial(3); }\n")
-file(GENERATE OUTPUT "${_asc_cpp_odr_b}" CONTENT
-  "#include <asc/cpp.h>\nint OdrB() { return asc::Factorial(4); }\n")
-file(GENERATE OUTPUT "${_asc_cpp_odr_main}" CONTENT
-  "int OdrA();\nint OdrB();\nint main() { return OdrA() + OdrB() == 30 ? 0 : 1; }\n")
+add_subdirectory(random_dense)
+add_subdirectory(random_sparse)
+add_subdirectory(consumer)
+add_subdirectory(package)
+add_subdirectory(hardening)
+add_subdirectory(downstream)
 if(ASC_CPP_ENABLE_CUDA)
-  set_source_files_properties(
-    "${_asc_cpp_odr_a}" "${_asc_cpp_odr_b}" "${_asc_cpp_odr_main}"
-    PROPERTIES LANGUAGE CUDA
-  )
+  add_subdirectory(core_cuda)
+  add_subdirectory(dense_cuda)
+  add_subdirectory(sparse_cuda)
+  add_subdirectory(random_cuda)
+  add_subdirectory(random_dense_cuda)
+  add_subdirectory(random_sparse_cuda)
 endif()
-add_executable(
-  asc_cpp_test_odr "${_asc_cpp_odr_a}" "${_asc_cpp_odr_b}"
-  "${_asc_cpp_odr_main}"
-)
-target_link_libraries(asc_cpp_test_odr PRIVATE ASC::cpp asc_cpp_project_options)
-asc_register_test(
-  NAME asc-cpp.odr
-  TARGET asc_cpp_test_odr
-  LABELS "compile;odr"
-  TIMEOUT 30
-)
 
-if(NOT ASC_CPP_ENABLE_SANITIZERS)
-  add_test(
-    NAME asc-cpp.package-relocation
-    COMMAND "${CMAKE_COMMAND}"
-      "-DASC_CPP_BINARY_DIR=${CMAKE_BINARY_DIR}"
-      "-DASC_CPP_CONSUMER_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}/consumer"
-      "-DASC_CPP_TEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}/package-test"
-      "-DASC_CPP_GENERATOR=${CMAKE_GENERATOR}"
-      -P "${CMAKE_CURRENT_SOURCE_DIR}/package_test.cmake"
-  )
-  set_property(TEST asc-cpp.package-relocation
-               PROPERTY LABELS "integration;package")
-  set_property(TEST asc-cpp.package-relocation PROPERTY TIMEOUT 300)
-endif()
+unset(_asc_cpp_target_inventory)

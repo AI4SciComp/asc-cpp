@@ -1,82 +1,92 @@
-// ============================================================================
-// Copyright (C) 2025, ASC team.
-// All rights reserved. See files LICENSE for details.
-//
-// File: asc/timer.cc
-// Author: Yi Cai
-// E-mail: yicaim@stu.xmu.edu.cn
-// ============================================================================
-
 #include "asc/utilities/timer.h"
 
-#include <algorithm>
+#include <chrono>
+#include <cstddef>
 
-#include "asc/core/contracts.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "timer_internal.h"
 
 namespace asc {
 
-real_t Timer::Stop() {
-  ASC_REQUIRE(is_running_, "Timer::Stop requires an active measurement");
-  const TimePoint stop_time = Clock::now();
-  const Duration difference = Duration(stop_time - start_time_);
-  const real_t elapsed = std::max<real_t>(difference.count(), 0);
-  time_deltas_.push_back(elapsed);
-  total_time_ += elapsed;
-  last_time_ = elapsed;
-  ++measurement_count_;
-  is_running_ = false;
-  return elapsed;
+Status Timer::Start() noexcept {
+  if (state_ == TimerState::kRunning) {
+    return Status(ErrorCode::kInvalidState, "The timer is already running");
+  }
+  start_time_ = Clock::now();
+  state_ = TimerState::kRunning;
+  return Status::Ok();
 }
 
-real_t Timer::TotalTime(int unit) const {
-  ASC_REQUIRE(unit == kSecond || unit == kMilliSecond,
-              "Timer time unit is invalid");
-  switch (unit) {
-    case kSecond:
-      return total_time_;
-    case kMilliSecond:
-      return total_time_ * 1.e3;
+Result<Timer::Duration> Timer::Stop() noexcept {
+  if (state_ != TimerState::kRunning) {
+    return Status(ErrorCode::kInvalidState, "The timer is not running");
   }
-  return 0;
+  const Clock::time_point stop_time = Clock::now();
+  auto interval =
+      internal_utilities_timer::CheckedElapsedDuration(start_time_, stop_time);
+  if (!interval.ok()) {
+    return interval.status();
+  }
+  auto next_total =
+      internal_utilities_timer::CheckedDurationAdd(total_, *interval);
+  if (!next_total.ok()) {
+    return next_total.status();
+  }
+  auto next_sample_count =
+      internal_utilities_timer::CheckedNextSampleCount(sample_count_);
+  if (!next_sample_count.ok()) {
+    return next_sample_count.status();
+  }
+
+  last_ = *interval;
+  total_ = *next_total;
+  sample_count_ = *next_sample_count;
+  state_ = TimerState::kStopped;
+  return last_;
 }
 
-void Timer::AccumulateTime(real_t* result) const {
-  if (time_deltas_.empty()) {
-    return;
+Timer::Duration Timer::Elapsed() const noexcept {
+  if (state_ == TimerState::kRunning) {
+    auto interval = internal_utilities_timer::CheckedElapsedDuration(
+        start_time_, Clock::now());
+    if (!interval.ok()) {
+      return Duration::max();
+    }
+    auto elapsed =
+        internal_utilities_timer::CheckedDurationAdd(total_, *interval);
+    return elapsed.ok() ? *elapsed : Duration::max();
   }
-  ASC_REQUIRE(result != nullptr,
-              "Timer accumulation requires a non-null output buffer");
-  real_t accumulated = 0;
-  for (std::size_t i = 0; i < time_deltas_.size(); ++i) {
-    accumulated += time_deltas_[i];
-    result[i] = accumulated;
-  }
+  return total_;
 }
 
-void Timer::Compress() {}
+Result<Timer::Duration> Timer::Last() const noexcept {
+  if (sample_count_ == 0) {
+    return Status(ErrorCode::kInvalidState,
+                  "The timer has no completed interval");
+  }
+  return last_;
+}
+
+Result<Timer::Duration> Timer::Average() const noexcept {
+  if (sample_count_ == 0) {
+    return Status(ErrorCode::kInvalidState,
+                  "The timer has no completed interval");
+  }
+  auto divisor =
+      internal_utilities_timer::SampleCountAsDurationRep(sample_count_);
+  if (!divisor.ok()) {
+    return divisor.status();
+  }
+  return total_ / *divisor;
+}
 
 void Timer::Reset() noexcept {
-  start_time_ = TimePoint{};
-  time_deltas_.clear();
-  total_time_ = 0;
-  last_time_ = 0;
-  measurement_count_ = 0;
-  is_running_ = false;
-}
-
-void Timer::Print(std::ostream& os, std::string msg, int unit) {
-  ASC_REQUIRE(unit == kSecond || unit == kMilliSecond,
-              "Timer time unit is invalid");
-  os << msg << ": ";
-  switch (unit) {
-    case kSecond:
-      os << LastTime() << " s";
-      break;
-    case kMilliSecond:
-      os << LastTime() * 1.e3 << " ms";
-      break;
-  }
-  os << '\n';
+  state_ = TimerState::kEmpty;
+  start_time_ = Clock::time_point{};
+  total_ = Duration{};
+  last_ = Duration{};
+  sample_count_ = 0;
 }
 
 }  // namespace asc

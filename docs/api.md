@@ -1,226 +1,187 @@
 # API map
 
-All public APIs are in namespace `asc`. The header comments are the detailed
-reference; this page explains where to start.
+All supported public declarations are directly in `namespace asc`. Prefer a
+module umbrella for application code and a narrow owning header for reusable
+libraries.
+
+## Component map
+
+| Component | Build target | Consumer target | Kind | Direct ASC dependency |
+| --- | --- | --- | --- | --- |
+| Core | `asc_core` | `ASC::core` | Compiled | None |
+| Utilities | `asc_utilities` | `ASC::utilities` | Compiled | `ASC::core` |
+| Expression | `asc_expression` | `ASC::expression` | Interface | `ASC::core` |
+| Dense | `asc_dense` | `ASC::dense` | Compiled | `ASC::core`, `ASC::expression` |
+| Sparse | `asc_sparse` | `ASC::sparse` | Compiled | `ASC::core`, `ASC::expression` |
+| Random | `asc_random` | `ASC::random` | Compiled | `ASC::core` |
+| Random Dense | `asc_random_dense` | `ASC::random_dense` | Interface | `ASC::random`, `ASC::dense` |
+| Random Sparse | `asc_random_sparse` | `ASC::random_sparse` | Interface | `ASC::random`, `ASC::sparse` |
+| Aggregate | `asc_cpp` | `ASC::cpp` | Interface | All provider-free targets |
+| Core CUDA | `asc_core_cuda` | `ASC::core_cuda` | Compiled, optional | `ASC::core`; private `CUDA::cudart` |
+| Dense CUDA | `asc_dense_cuda` | `ASC::dense_cuda` | Compiled, optional | `ASC::dense`, `ASC::core_cuda`; private `CUDA::cublas` |
+| Sparse CUDA | `asc_sparse_cuda` | `ASC::sparse_cuda` | Compiled, optional | `ASC::sparse`, `ASC::core_cuda`; private `CUDA::cusparse` |
+| Random CUDA | `asc_random_cuda` | `ASC::random_cuda` | Compiled, optional | `ASC::random`, `ASC::core_cuda` |
+| Random Dense CUDA | `asc_random_dense_cuda` | `ASC::random_dense_cuda` | Compiled, optional | `ASC::random_dense`, `ASC::random_cuda`, `ASC::core_cuda` |
+| Random Sparse CUDA | `asc_random_sparse_cuda` | `ASC::random_sparse_cuda` | Compiled, optional | `ASC::random_sparse`, `ASC::random_cuda`, `ASC::core_cuda` |
+
+Dense and Sparse load Core and Expression but do not load one another.
+Utilities, Expression, and base Random neither include nor link one another.
+Storage modules do not import Random; the Random-owned facets provide the
+approved integration points.
 
 ## Core
 
-Core Milestone 1 provides a canonical serial foundation through
-`<asc/core.h>`. The umbrella contains the canonical headers below plus core
-configuration, and links with `ASC::core`.
+Umbrella: `<asc/core.h>`.
 
-- `<asc/core/types.h>`: signed 64-bit `index_t`, `extent_t`, `stride_t`, and
-  `nnz_t` metadata aliases.
-- `<asc/core/status.h>`: stable `Status` codes and `Result<T>` values.
-- `<asc/core/contracts.h>`: release-active public contracts and debug-only
-  internal checks.
-- `<asc/core/memory_space.h>` and `<asc/core/memory_resource.h>`: memory-space
-  properties, the resource interface, and the M1 host resource.
-- `<asc/core/buffer.h>`: move-only, single-space RAII ownership.
-- `<asc/core/execution_context.h>` and `<asc/core/event.h>`: an explicit
-  immutable context and completed-event interface. The canonical M1 provider
-  is synchronous serial only.
-- `<asc/core/config.h>`: version macros, `real_t`, backend feature macros, and
-  the `_r` literal.
+- `<asc/core/status.h>` and `<asc/core/result.h>`: stable error categories and
+  value-or-error transport.
+- `<asc/core/contracts.h>`: release-active and debug-only programmer
+  contracts.
+- `<asc/core/types.h>` and `<asc/core/extents.h>`: checked signed 64-bit
+  metadata, byte counts, and compile-time-rank extents.
+- `<asc/core/configuration.h>`: recursive programmatic configuration values,
+  object schemas, validation, origins, metadata, and redaction.
+- `<asc/core/io.h>`: partial byte interfaces, exact/all transfer helpers,
+  move-only local files, bounded text files, and little-endian scalars.
+- `<asc/core/memory.h>`: memory spaces, host allocation, move-only byte
+  ownership, and non-owning byte views.
+- `<asc/core/execution.h>`: backend-neutral vocabulary, immutable serial
+  execution, overlap-safe host copies, and completed move-only events.
+- `<asc/core/export.h>`: Core shared/static visibility macros.
+- `<asc/core/providers/cuda.h>`: optional explicit CUDA device discovery,
+  pinned/device/managed resources, execution contexts, copies, and events.
+- `<asc/core/providers/cuda_export.h>`: Core CUDA shared/static visibility
+  macros.
 
-See the [Core module guide](modules/core.md) for ownership, lifetime, status,
-memory-space, and execution contracts.
-
-### Core compatibility APIs
-
-The following MdeCpp-derived APIs remain available and unchanged because the
-legacy array, linalg, and random implementations still consume them:
-
-- `<asc/core/error.h>`: `ASC_ASSERT`, `ASC_VERIFY`, `ASC_ABORT`, mutable error
-  action, and legacy exception translation;
-- `<asc/core/device.h>` and `<asc/core/forall.h>`: the process-wide device
-  policy and legacy serial/OpenMP/CUDA loop dispatch;
-- `<asc/core/memory.h>`: `MemoryType`, `MemoryClass`, manual-lifetime
-  `Memory<T>`, lazy mirroring, and global `MemoryManager mm`;
-- `<asc/core/cuda.h>`: legacy CUDA runtime wrappers;
-- `<asc/core/globals.h>` and `<asc/core/operators.h>`: global diagnostic streams
-  and device-coupled operation functors.
-
-Existing conversion, numeric, and string helpers remain available through the
-narrow `<asc/core/casts.h>`, `<asc/core/math.h>`, and `<asc/core/string.h>`
-headers. They are not included by `<asc/core.h>` in M1 because their current
-implementations transitively use legacy error, global-stream, or device
-facilities.
-
-These interfaces are compatibility surfaces, not the model for new code. M1
-does not deprecate or internally replace them, and it provides no implicit
-conversion between `Buffer<T>` and `Memory<T>`.
-
-## Arrays
-
-Array M1 provides the canonical dense descriptor, mapping, view, and owner
-path through `ASC::array`.
-
-- `<asc/array.h>`: the canonical umbrella; it contains only the M1 dense
-  descriptor, mapping, accessor, view, owner, and structural concept surface.
-- `<asc/array/extents.h>`: fixed-rank `Extents`, including mixed static/dynamic
-  extents and the `DynamicTensorExtents` spelling.
-- `<asc/array/layout.h>`: checked left, right, and non-negative-stride mapping
-  types using signed 64-bit metadata.
-- `<asc/array/accessor.h>` and `<asc/array/tensor_view.h>`: explicit pointer
-  access and non-owning views whose element type carries mutability.
-- `<asc/array/tensor.h>`: move-only contiguous ownership over Core `Buffer`,
-  plus explicit synchronous host `Clone` through an `ExecutionContext`.
-- `<asc/array/tensor_concepts.h>`: structural readable, writable, contiguous,
-  vector, and matrix concepts.
-
-Canonical Array M1 is host-accessible and synchronous serial only. It does not
-provide transforms, expression evaluation, broadcasting, sparse ownership, or
-device transfer. See the [Array module guide](modules/array.md) and
-[Array migration](migration/array.md) for the implemented contract and
-boundary.
-
-### Array compatibility APIs
-
-The MdeCpp-derived Array APIs remain available while downstream modules
-migrate:
-
-- `<asc/array/mshape.h>`: `MShape<Extents...>`, `DShape<Rank>`, static/dynamic
-  extents, and shape operations.
-- `<asc/array/mlayout.h>`: dense left/right/strided maps.
-- `<asc/array/mindex.h>` and `<asc/array/miterator.h>`: multidimensional index
-  and traversal types.
-- `<asc/array/uarray.h>`: resizable one-dimensional storage over `Memory<T>`.
-- `<asc/array/dsmarray.h>`: `DenseMArray<T, Shape, Layout>`, references, device
-  selection, indexing, serialization, and expression assignment.
-- `<asc/array/spmarray.h>`: `SparseMArray<T, Shape, Layout>`, COO insertion,
-  finalization, layout conversion, sparse operations, and reductions.
-- `<asc/array/marray.h>`: the `DVector`, `DMatrix`, `DTensor`, `SVector`,
-  `SMatrix`, sparse, and view aliases used by most applications.
-- `<asc/array/carray.h>`: compile-time nested C arrays and allocation helpers for
-  dynamically indexed C pointer trees.
-
-Dense copies own independent data. `MakeRef` and `*View` types are explicitly
-non-owning, so the referenced allocation must outlive the view. `HostRead`,
-`HostWrite`, `Read`, and `Write` communicate access intent to the memory system.
-These statements describe compatibility behavior; those types do not implement
-canonical M1 ownership, const-view, metadata, dependency, or execution
-contracts.
-
-## Linear algebra
-
-Canonical Linalg M1 uses the compiled `ASC::linalg` component:
-
-- `<asc/linalg.h>`: canonical umbrella for narrow concepts, modes,
-  capabilities, and the three BLAS-level headers; it does not re-export Array
-  ownership or descriptor construction;
-- `<asc/linalg/concepts.h>`: exact-rank readable/writable vector and matrix
-  concepts over canonical Array descriptors;
-- `<asc/linalg/capabilities.h>`: the seven-operation capability query and the
-  `serial-reference` provider identity;
-- `<asc/linalg/blas1.h>`: context-first `Copy`, `Scal`, `Axpy`, `Dot`, and
-  `Nrm2` for identical `float` or `double` rank-one views;
-- `<asc/linalg/blas2.h>`: context-first `Gemv`;
-- `<asc/linalg/blas3.h>`: context-first `Gemm`;
-- `<asc/linalg/types.h>`: common mode values; only `TransposeMode` is used by
-  canonical M1.
-
-All seven operations require an explicit `ExecutionContext`, preallocated
-canonical views, host-accessible storage, checked shapes and aliasing, and
-explicit modes/scalars. Mutations return `Status`; `Dot` and `Nrm2` return
-`Result<T>`. M1 allocates, resizes, transfers, and synchronizes nothing. The
-only canonical provider is the compiled deterministic synchronous
-`serial-reference` implementation for `float` and `double`.
-
-See the [Linalg module guide](modules/linalg.md) and
-[Linalg migration guide](migration/linalg.md) for exact shape, layout, empty,
-alias, numerical-order, status, and compatibility rules.
-
-### Linalg compatibility APIs
-
-The MdeCpp-derived headers remain installed for existing callers and are not
-included by the canonical umbrella:
-
-- `<asc/linalg/blas.h>` contains context-free pointwise, reduction, BLAS,
-  matrix-product, Kronecker, and tensor-contraction algorithms over legacy
-  arrays;
-- `<asc/linalg/decomp.h>` contains LUP, Cholesky, QR, and optional SVD/eigen
-  decomposition/solve routines;
-- `<asc/linalg/lapack.h>` supplies LAPACK-style factor/solve wrappers,
-  determinant/inverse helpers, automatic solver policy, and `LinearSolver`;
-- `<asc/linalg/eigen.h>` is available with the compatibility Eigen option and
-  exposes dense/sparse conversions, maps, and solver adapters.
-
-Pointwise/general reductions belong to a future canonical Array evaluation
-layer. Factors and solvers begin in Linalg M2. Eigen, MKL, BLAS/LAPACK, and
-CUDA canonical providers require later private-provider milestones. Enabling a
-compatibility option does not change the common canonical API or select an M1
-provider.
-
-## Random
-
-Canonical Random M1 uses the compiled `ASC::random` component:
-
-- `<asc/random.h>`: canonical umbrella for M1 types, counter engine, unit
-  transform, and bulk fill; it does not include Array construction or any
-  inherited sampler;
-- `<asc/random/types.h>`: value-comparable `RandomKey` and `RandomCounter`;
-- `<asc/random/counter_engine.h>`: compiled, versioned
-  `Philox4x32_10::Generate` and `Generate64`;
-- `<asc/random/distribution.h>`: stateless `Uniform01<float>` and
-  `Uniform01<double>` mapping the high 24 or 53 input bits to `[0,1)`; and
-- `<asc/random/fill.h>`: context-first `FillRandom` over writable structural
-  canonical views.
-
-The raw Philox words are bitwise stable for the named version. The unit
-transform is bitwise stable under its documented IEC 60559 binary32/binary64
-assumptions. Serial bulk fill uses rightmost-axis-fastest logical order and is
-independent of supported physical layout and valid logical partition order.
-See the [Random module guide](modules/random.md) and
-[Random migration guide](migration/random.md) for the exact counter,
-partition, status, and compatibility contracts.
-
-### Random compatibility APIs
-
-The inherited MdeCpp-derived headers remain installed through the aggregate
-`ASC::cpp` compatibility surface and are not included by `<asc/random.h>`:
-
-- `<asc/random/generator.h>`: `Splitmix64`, `Pcg32`, xoroshiro engines, and
-  configurable standard-library uniform/normal generators;
-- `<asc/random/permutation.h>`: mutable prime/permutation caches and radical
-  inverse functions;
-- `<asc/random/sampler.h>` and individual sampler headers: `PseudoSampler`,
-  `LatinSampler`, `HaltonSampler`, `HammersleySampler`, `SobolSampler`,
-  `NormalSampler`, and `SphericalSampler`.
-
-These families retain legacy arrays, reseeding, layout, singleton, and Linalg
-behavior. They gain no canonical cross-library bitwise promise. Sobol direction
-numbers remain compiled into the compatibility implementation; an installed
-program does not read a source-tree data file at runtime.
+See the [Core module guide](modules/core.md).
 
 ## Utilities
 
-Utilities Milestone 1 is available through `<asc/utilities.h>` and links with
-`ASC::utilities`.
+Umbrella: `<asc/utilities.h>`.
 
-- `<asc/utilities/config.h>`: standard-container `ConfigValue` alternatives;
-  status-oriented definition, lookup, parsing, transactional loading, and
-  canonical serialization through `ConfigParser`.
-- `<asc/utilities/cli.h>`: owned typed options, transactional argv parsing,
-  the migration-era option-file parser, and help/usage text with explicit
-  output sinks.
-- `<asc/utilities/timer.h>`: steady-clock state, empty-safe queries, lossless
-  measurement statistics, reset, and explicit-stream printing.
-- `<asc/utilities/optparser.h>`: a forwarding compatibility spelling for
-  `<asc/utilities/cli.h>`; it is not a second parser implementation.
+- `<asc/utilities/command_line.h>`: a schema-directed, transactional
+  command-line parser, positional results, command-line origins, and
+  deterministic caller-owned help text.
+- `<asc/utilities/timer.h>`: an empty/running/stopped monotonic timer with
+  completed interval, total, last, and average queries.
+- `<asc/utilities/export.h>`: Utilities shared/static visibility macros.
 
-Recoverable configuration and CLI input failures return `Status` or
-`Result<T>`. Existing void/value wrappers retain the historical throw-or-abort
-translation for migration. See the [Utilities module guide](modules/utilities.md)
-and [Utilities migration](migration/utilities.md) for the exact grammar,
-transaction rules, timer state model, and compatibility boundary.
+Utilities parses command-line tokens only. It does not parse local files,
+environment variables, response files, list repetition, or implicit
+programmatic merges.
 
-## Aggregate interface
+See the [Utilities module guide](modules/utilities.md).
 
-`<asc/cpp.h>` includes the five canonical module umbrellas, retains the legacy
-Linalg and Random compatibility headers required during migration, and
-conditionally includes the Eigen adapter when the package was built with
-Eigen. `<asc/asc.h>` is an equivalent top-level compatibility include. Prefer
-`<asc/core.h>` or another narrow owning header in reusable libraries. The
-aggregate continues to expose legacy core APIs needed by the compatibility
-array stack.
+## Expression
+
+Umbrella: `<asc/expression.h>`.
+
+- `<asc/expression/expression.h>`: `ExpressionAdapter<T>`,
+  `ReadableExpression`, alias and sparsity metadata, scalar terminals, safe
+  lvalue/rvalue holders, optional recursive access validation, and pointwise
+  negate/add/subtract/multiply nodes.
+- `<asc/expression/writable.h>`: opt-in placed-readable and writable
+  customization, memory placement, conservative byte-span aliases, and
+  coordinate writes for existing caller-owned destinations.
+
+Expression defines no storage, evaluator, allocation, reduction, provider, or
+result materialization. Ranked operands require exact shape. The only
+pointwise expansion is rank-zero scalar against one ranked operand.
+
+See the [Expression module guide](modules/expression.md).
+
+## Dense
+
+Umbrella: `<asc/dense.h>`.
+
+- `<asc/dense/layout.h>`: checked left-, right-, and explicit-stride mappings.
+- `<asc/dense/view.h>`: typed non-owning dense views and rank-preserving
+  subviews.
+- `<asc/dense/array.h>`: move-only typed dense ownership backed by Core
+  buffers and memory resources.
+- `<asc/dense/evaluate.h>`: destination evaluation and scalar reductions.
+- `<asc/dense/linalg.h>`: allocation-free serial CPU reference vector,
+  matrix-vector, and matrix-matrix algebra for `float` and `double`.
+- `<asc/dense/export.h>`: Dense shared/static visibility macros.
+- `<asc/dense/providers/cuda.h>`: optional move-only CUDA Dense context,
+  bounded pointwise evaluation, and Copy/Scal/Axpy/Gemv/Gemm.
+- `<asc/dense/providers/cuda_export.h>`: Dense CUDA shared/static visibility
+  macros.
+
+Dense does not dispatch to an optional provider, transfer memory, synchronize,
+allocate evaluation temporaries, or expose a sparse or random-storage facet.
+
+See the [Dense module guide](modules/dense.md).
+
+## Sparse
+
+Umbrella: `<asc/sparse.h>`.
+
+- `<asc/sparse/coordinate.h>`: explicit-capacity coordinate builders,
+  duplicate/zero finalization policies, and canonical coordinate owners/views.
+- `<asc/sparse/compressed.h>`: canonical rank-two CSR/CSC owners/views and
+  named coordinate/compressed conversions.
+- `<asc/sparse/evaluate.h>`: allocation-free, structure-preserving evaluation
+  into an existing Sparse structure.
+- `<asc/sparse/linalg.h>`: allocation-free serial CSR SpMV for `float` and
+  `double` over storage-neutral placed vector operands.
+- `<asc/sparse/export.h>`: Sparse shared/static visibility macros.
+- `<asc/sparse/providers/cuda.h>`: optional move-only CUDA Sparse context,
+  canonical host-CSR cloning, CSR SpMV, and bounded structure-preserving
+  evaluation.
+- `<asc/sparse/providers/cuda_export.h>`: Sparse CUDA shared/static visibility
+  macros.
+
+Sparse never imports Dense, densifies, grows a finalized structure, hides a
+conversion/workspace, or dispatches to an optional provider.
+
+See the [Sparse module guide](modules/sparse.md).
+
+## Random
+
+Umbrella: `<asc/random.h>`.
+
+- `<asc/random/engine.h>`: fixed-width Philox4x32-10 counter/key blocks,
+  stream/subsequence/word-offset addressing, direct block and positioned-word
+  generation, and checked offset advancement.
+- `<asc/random/distribution.h>`: exact scalar `Uniform01<float>` and
+  `Uniform01<double>` transforms.
+- `<asc/random/dense.h>`: deterministic logical-order uniform filling of
+  caller-provided Dense views with explicit address advancement.
+- `<asc/random/sparse.h>`: deterministic exact-count canonical coordinate
+  generation with separate structure/value address domains.
+- `<asc/random/export.h>`: Random shared/static visibility macros.
+- `<asc/random/providers/cuda.h>`: asynchronous
+  `CudaRandomWordGeneration` over the Core `ExecutionContext`, with
+  `CudaFillPhilox4x32` accepting a capacity-carrying `MutableMemoryView`,
+  explicit word count, and explicit Random address.
+- `<asc/random/providers/dense_cuda.h>`: CUDA logical-order uniform filling of
+  caller-provided Dense views.
+- `<asc/random/providers/sparse_cuda.h>`: CUDA exact-count canonical Sparse
+  generation with separate structure and value addresses.
+- `<asc/random/providers/cuda_export.h>`,
+  `<asc/random/providers/dense_cuda_export.h>`, and
+  `<asc/random/providers/sparse_cuda_export.h>`: Random CUDA facet
+  shared/static visibility macros.
+
+Base Random owns no storage and includes neither facet header. The facets adapt
+caller-owned Dense and Sparse contracts without introducing entropy,
+mutable/default state, additional distributions, providers, or GPU code.
+
+See the [Random module guide](modules/random.md) and
+[frozen provenance record][random-provenance].
+
+## Aggregate and optional providers
+
+`ASC::cpp` aggregates all six provider-free modules and both Random storage
+facets. It owns no production behavior and is never a dependency of a narrower
+target.
+
+The six `*_cuda` components are available only in packages built with
+`ASC_CPP_ENABLE_CUDA=ON`. Provider-free or no-component package lookups do not
+load them or discover CUDAToolkit. Each provider component loads its exact
+declared closure; requesting `random_dense_cuda`, for example, does not load
+Sparse or Random Sparse. Public provider headers expose no native CUDA,
+cuBLAS, or cuSPARSE type.
+
+[random-provenance]: development/asc-cpp-m2-independent-foundations/provenance-record.md

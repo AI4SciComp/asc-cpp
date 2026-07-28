@@ -1,250 +1,163 @@
 # asc-cpp
 
-`asc-cpp` is the C++20 numerical foundation of AI4SciComp. Its implementation
-preserves the selected design and behavior of MdeCpp while presenting a smaller,
-installable package in namespace `asc`.
+`asc-cpp` is being rebuilt as the C++20 numerical foundation for
+AI4SciComp. The current checkout is the unreleased **Milestone 8:
+packaging/API/performance/downstream hardening** candidate. Milestone 8
+hardens the Milestone 7 product surface without adding a product target,
+operation, provider, or dependency.
 
-The architecture is compositional: descriptors define extents, mappings turn
-logical coordinates into storage offsets, views borrow typed element access,
-and owners manage storage independently of execution choice. The repository is
-moving to that canonical model in reviewed milestones. Linalg M1 provides
-seven canonical serial-reference BLAS operations over canonical Array views.
-Random M1 adds an explicit Philox4x32-10 key/counter engine, a unit-uniform
-transform, and deterministic serial bulk fill. Broader algebra and inherited
-Random samplers remain on the retained MdeCpp-derived compatibility path.
+## Available components
 
-## Functionality
+| Component | Build target | Consumer target | Kind | Direct ASC dependency |
+| --- | --- | --- | --- | --- |
+| Core | `asc_core` | `ASC::core` | Compiled | None |
+| Utilities | `asc_utilities` | `ASC::utilities` | Compiled | `ASC::core` |
+| Expression | `asc_expression` | `ASC::expression` | Interface | `ASC::core` |
+| Dense | `asc_dense` | `ASC::dense` | Compiled | `ASC::core`, `ASC::expression` |
+| Sparse | `asc_sparse` | `ASC::sparse` | Compiled | `ASC::core`, `ASC::expression` |
+| Random | `asc_random` | `ASC::random` | Compiled | `ASC::core` |
+| Random Dense | `asc_random_dense` | `ASC::random_dense` | Interface | `ASC::random`, `ASC::dense` |
+| Random Sparse | `asc_random_sparse` | `ASC::random_sparse` | Interface | `ASC::random`, `ASC::sparse` |
+| Aggregate | `asc_cpp` | `ASC::cpp` | Interface | All provider-free targets |
+| Core CUDA | `asc_core_cuda` | `ASC::core_cuda` | Compiled, optional | `ASC::core`; private `CUDA::cudart` |
+| Dense CUDA | `asc_dense_cuda` | `ASC::dense_cuda` | Compiled, optional | `ASC::dense`, `ASC::core_cuda`; private `CUDA::cublas` |
+| Sparse CUDA | `asc_sparse_cuda` | `ASC::sparse_cuda` | Compiled, optional | `ASC::sparse`, `ASC::core_cuda`; private `CUDA::cusparse` |
+| Random CUDA | `asc_random_cuda` | `ASC::random_cuda` | Compiled, optional | `ASC::random`, `ASC::core_cuda` |
+| Random Dense CUDA | `asc_random_dense_cuda` | `ASC::random_dense_cuda` | Compiled, optional | `ASC::random_dense`, `ASC::random_cuda`, `ASC::core_cuda` |
+| Random Sparse CUDA | `asc_random_sparse_cuda` | `ASC::random_sparse_cuda` | Compiled, optional | `ASC::random_sparse`, `ASC::random_cuda`, `ASC::core_cuda` |
 
-| Component | CMake target | Main functionality | Direct dependency |
-| --- | --- | --- | --- |
-| `core` | `ASC::core` | Canonical types, status/contracts, host resources, move-only buffers, and serial contexts/events; retained diagnostics and CPU/OpenMP/CUDA memory/dispatch compatibility | C++ standard library |
-| `array` | `ASC::array` | Canonical mixed 64-bit extents, checked mappings, typed non-owning views, and a move-only host tensor owner; retained dense/sparse/expression arrays remain for compatibility | `ASC::core` |
-| `utilities` | `ASC::utilities` | Typed configuration values backed by standard containers, command-line option parsing, and timers | `ASC::core` |
-| `linalg` | `ASC::linalg` | Canonical `Copy`, `Scal`, `Axpy`, `Dot`, `Nrm2`, `Gemv`, and `Gemm` through a compiled serial-reference provider; broader algebra, factors, solvers, and Eigen/MKL integration remain compatibility-only or deferred | `ASC::array`, `ASC::core` |
-| `random` | `ASC::random` | Canonical Philox4x32-10 counter generation, `Uniform01<float/double>`, and explicit-context deterministic fill over Array views | `ASC::array`, `ASC::core` |
-| `cpp` | `ASC::cpp` | Convenience target, `<asc/cpp.h>` aggregate, and inherited Linalg/Random compatibility headers | All components |
+The provider-free surface uses only C++20 standard-library facilities:
 
-Geometry, integration, meshes, finite elements, ODE solvers, kinetic models,
-analysis, and visualization remain outside this repository. See the
-[architecture](docs/architecture.md) and
-[migration inventory](docs/migration/inventory.md). Developers extending a
-component should also read the [build-system architecture](docs/build-system.md).
-The canonical Array contract and its compatibility boundary are in
-the [Array module guide](docs/modules/array.md) and
-[Array migration guide](docs/migration/array.md).
-The canonical Linalg contract and legacy-family classification are in the
-[Linalg module guide](docs/modules/linalg.md) and
-[Linalg migration guide](docs/migration/linalg.md).
-The canonical Random reproducibility contract and inherited-sampler boundary
-are in the [Random module guide](docs/modules/random.md) and
-[Random migration guide](docs/migration/random.md).
+- Utilities provides transactional command-line configuration and a checked
+  monotonic timer.
+- Expression provides a storage-neutral readable-expression customization
+  protocol and safe pointwise negate, add, subtract, and multiply nodes.
+- Dense provides checked left-, right-, and explicit-stride mappings,
+  non-owning views, move-only ownership, expression evaluation, reductions,
+  and allocation-free serial CPU reference algebra.
+- Sparse provides explicit coordinate construction/finalization, canonical
+  CSR/CSC ownership and views, named conversions, structure-preserving
+  evaluation, and allocation-free serial CSR SpMV.
+- Random provides the pure Philox4x32-10 raw-bit engine and exact scalar
+  `Uniform01<float>` and `Uniform01<double>` transforms.
+- Random Dense fills caller-provided Dense views in logical coordinate order.
+- Random Sparse creates exact-count canonical coordinate arrays from separate
+  structure and value address domains.
+- Core CUDA supplies explicit CUDA resources, streams, asynchronous copies,
+  and completion events without exposing CUDA SDK types in public signatures.
+- Dense CUDA supplies bounded pointwise evaluation and selected
+  Copy/Scal/Axpy/Gemv/Gemm operations for device-resident `float` and
+  `double` views.
+- Sparse CUDA supplies explicit canonical CSR staging, deterministic
+  unit-stride CSR SpMV, positive-nonunit-stride CSR SpMV, and bounded
+  structure-preserving evaluation.
+- Random CUDA supplies the exact provider-free Philox word sequence on a CUDA
+  device. Its Dense and Sparse facets preserve the Milestone 5 logical order,
+  canonical structure, and explicit address contracts.
 
-## Prerequisites
+File parsing, general broadcasting, entropy, additional distributions,
+HIP, SYCL, and later-roadmap providers are not implemented.
 
-Required:
+## Consuming a component
 
-- a C++20 compiler;
+Requirements:
+
 - CMake 3.25 or newer;
-- `asc-cmake` 0.1, installed or present as the sibling directory
-  `../asc-cmake`;
-- a CMake build tool such as Make or Ninja;
-- GoogleTest only when `ASC_CPP_BUILD_TESTING=ON`.
+- a C++20 compiler;
+- released `ASCCMake` 0.1.0 when building asc-cpp; and
+- a build tool supported by the selected CMake generator; and
+- for CUDA providers only, CUDAToolkit 12 or newer, a CUDA compiler, and a
+  caller-selected CUDA architecture.
 
-Optional:
-
-- OpenMP for the threaded loop backend;
-- CUDA Toolkit for CUDA memory and kernel execution;
-- Eigen 3.3 or newer for Eigen conversion and solver adapters;
-- Intel oneAPI MKL, together with Eigen, for MKL-backed Eigen adapters.
-
-The default library build is CPU-only and requires no numerical third-party
-package. The canonical Linalg M1 path uses its compiled
-`serial-reference` provider. BLAS and LAPACK are not separate build
-dependencies; Eigen/MKL options affect the explicit legacy adapter and solver
-path and do not become canonical M1 providers.
-Canonical Random M1 is likewise serial and, in the default CPU-only build,
-requires no standard distribution or optional provider library.
-
-## Installation
-
-Install `asc-cmake` first, or keep its checkout next to this repository. If it
-is installed in a non-system prefix, add that prefix to `CMAKE_PREFIX_PATH`.
-
-### Personal computer
-
-On a machine where `/usr/local` is writable through `sudo`:
-
-```bash
-git clone https://github.com/AI4SciComp/asc-cpp.git
-cd asc-cpp
-cmake -S . -B build/release \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DASC_CPP_BUILD_TESTING=OFF \
-  -DASC_CPP_BUILD_EXAMPLES=OFF
-cmake --build build/release --parallel
-sudo cmake --install build/release
-```
-
-Only installation needs elevated permission. Add
-`-DCMAKE_INSTALL_PREFIX=/absolute/prefix` and omit `sudo` for any writable
-prefix.
-
-### Supercomputer or other unprivileged machine
-
-Load the compiler/CMake modules supplied by the site, then install to a private,
-versioned prefix:
-
-```bash
-module load gcc cmake  # Example only; use the site's module names.
-
-asc_cpp_prefix="$HOME/.local/opt/asc-cpp/0.1.0"
-asc_cmake_prefix="$HOME/.local/opt/asc-cmake/0.1.0"
-cmake -S . -B build/release \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_INSTALL_PREFIX="$asc_cpp_prefix" \
-  -DCMAKE_PREFIX_PATH="$asc_cmake_prefix" \
-  -DASC_CPP_BUILD_TESTING=OFF \
-  -DASC_CPP_BUILD_EXAMPLES=OFF
-cmake --build build/release --parallel "${SLURM_CPUS_PER_TASK:-2}"
-cmake --install build/release
-```
-
-No administrative permission is required. Put the two prefixes in a site/user
-module, toolchain file, job script, or untracked `CMakeUserPresets.json` rather
-than committing machine-specific paths.
-
-## Use from another repository
+Request only the components a target uses:
 
 ```cmake
 cmake_minimum_required(VERSION 3.25)
-project(MySimulation LANGUAGES CXX)
+project(MyConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.1 CONFIG REQUIRED COMPONENTS linalg)
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_dense)
 
-add_executable(simulation main.cc)
-target_link_libraries(simulation PRIVATE ASC::linalg)
+add_executable(my_consumer main.cc)
+target_link_libraries(my_consumer PRIVATE ASC::random_dense)
 ```
 
-Configure with the installation prefix if it is not in CMake's default search
-path:
+Requesting `random_dense` loads only Random, Dense, Expression, and Core;
+`random_sparse` loads only Random, Sparse, Expression, and Core. The two
+facets do not load one another. A no-component lookup requests the
+provider-free `cpp` aggregate. Required unknown components fail; an optional
+unknown component does not invalidate a successful available request.
+Requesting a `*_cuda` component is valid only for a package built with
+`ASC_CPP_ENABLE_CUDA=ON`; only provider requests discover CUDAToolkit.
+Provider closures are exact—for example, `random_dense_cuda` loads Random
+Dense, Random CUDA, Core CUDA, and their provider-free prerequisites without
+loading Sparse. `ASC::cpp` remains provider-free.
 
-```bash
-cmake -S . -B build \
-  -DCMAKE_PREFIX_PATH="$HOME/.local/opt/asc-cpp/0.1.0"
-cmake --build build --parallel
+## Building and validating
+
+Use an out-of-source build and supply the released ASCCMake package:
+
+```sh
+cmake -S . -B build/m8-debug \
+  -DCMAKE_BUILD_TYPE=Debug \
+  -DBUILD_TESTING=ON \
+  -DASC_CPP_BUILD_TESTING=ON \
+  -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
+cmake --build build/m8-debug --parallel
+ctest --test-dir build/m8-debug --output-on-failure
 ```
 
-Canonical Linalg M1 program:
+Enable the bounded CUDA provider facets explicitly:
 
-```cpp
-#include <asc/array.h>
-#include <asc/linalg.h>
-
-#include <utility>
-
-int main() {
-  using Shape = asc::Extents<2>;
-  using Vector = asc::Tensor<double, Shape>;
-
-  auto x_result = Vector::Create(Shape{});
-  auto y_result = Vector::Create(Shape{});
-  if (!x_result.ok() || !y_result.ok()) return 1;
-
-  Vector x = std::move(x_result).value();
-  Vector y = std::move(y_result).value();
-  auto x_view = x.View();
-  auto y_view = y.View();
-  if (!x_view.ok() || !y_view.ok()) return 1;
-
-  x_view.value()(0) = 1.0;
-  x_view.value()(1) = 2.0;
-  y_view.value()(0) = 3.0;
-  y_view.value()(1) = 4.0;
-
-  const asc::ExecutionContext context = asc::ExecutionContext::Serial();
-  const asc::Status status =
-      asc::Axpy(context, 2.0, x_view.value(), y_view.value());
-  return status.ok() && y_view.value()(0) == 5.0 &&
-                 y_view.value()(1) == 8.0
-             ? 0
-             : 1;
-}
+```sh
+cmake -S . -B build/m8-cuda \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_TESTING=ON \
+  -DASC_CPP_BUILD_TESTING=ON \
+  -DASC_CPP_ENABLE_CUDA=ON \
+  -DCMAKE_CUDA_ARCHITECTURES=86 \
+  -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
+cmake --build build/m8-cuda --parallel
+ctest --test-dir build/m8-cuda --output-on-failure
 ```
 
-Existing code may continue to include narrow legacy headers such as
-`<asc/linalg/blas.h>`; those context-free overloads are not the canonical M1
-contract. `<asc/linalg.h>` intentionally does not
-re-export Array ownership, so code constructing `Tensor` or `TensorView`
-operands includes `<asc/array.h>` explicitly while still linking only
-`ASC::linalg`.
+`BUILD_SHARED_LIBS` selects shared or static Core, Utilities, Dense, Sparse,
+and Random libraries. Expression, both Random storage facets, and the
+aggregate remain interface targets in either mode. Development warning and
+sanitizer controls are build-local and are not exported to consumers.
 
-Canonical Random code requests component `random`, includes both
-`<asc/array.h>` and `<asc/random.h>`, and supplies literal `RandomKey` and
-`RandomCounter` values. The Random umbrella does not re-export Array ownership.
-Inherited headers such as `<asc/random/halton.h>` remain available through the
-`ASC::cpp` compatibility surface; they are not supplied by the minimal
-`ASC::random` component.
+## Documentation and scope
 
-A canonical fill always makes random state explicit:
+Start with the [API map](docs/api.md) and module guides for
+[Core](docs/modules/core.md), [Utilities](docs/modules/utilities.md),
+[Expression](docs/modules/expression.md), [Dense](docs/modules/dense.md), and
+[Sparse](docs/modules/sparse.md), and [Random](docs/modules/random.md). The
+[documentation index](docs/README.md) links the frozen milestone contracts,
+architecture decisions, and retained historical material.
 
-```cpp
-const asc::Status random_status = asc::FillRandom(
-    asc::ExecutionContext::Serial(), destination_view,
-    asc::Uniform01<double>{}, asc::RandomKey{0x72616e646f6d5f31ULL},
-    asc::RandomCounter{0, 0});
-```
+Milestone 8 also records the [support matrix](docs/support-matrix.md),
+[API and ABI policy](docs/api-compatibility.md),
+[package capabilities](docs/package-capabilities.md),
+[extension rules](docs/extension-guide.md),
+[downstream integration trial](docs/downstream-integration.md), and
+[performance envelope](docs/performance.md).
 
-Here `destination_view` is a writable canonical Array view. See the Random
-module guide for a complete owner/view example and the exact logical
-partition guarantee.
+This clean restart follows the approved six-module architecture and
+clean-room provenance policy. The Philox implementation is independently
+derived from the frozen primary-paper contract; no MdeCpp, deleted asc-cpp,
+Random123 implementation, or upstream vector corpus is copied. See the
+[Milestone 2 provenance record][m2-provenance]. Dense is a clean-room
+implementation of the approved Milestone 3 contract.
+Sparse is a clean-room implementation of the approved Milestone 4 contract.
+The Random storage facets are clean-room implementations of the approved
+Milestone 5 contract.
+The Core/Dense CUDA facets are clean-room implementations of the approved
+Milestone 6 contract. The Sparse/Random CUDA facets are clean-room
+implementations of the approved Milestone 7 contract.
 
-Applications may link `ASC::cpp` and include `<asc/cpp.h>`. Reusable libraries
-should select the narrowest component target and header.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before making changes. Security
+reporting guidance is in [SECURITY.md](SECURITY.md). The project is licensed
+under [Apache License 2.0](LICENSE).
 
-## Build options
+Milestone completion is not publication. This checkout is not a release.
 
-| Option | Default | Meaning |
-| --- | --- | --- |
-| `ASC_CPP_PRECISION` | `double` | Selects the library-wide `asc::real_t` as `single` or `double`. |
-| `ASC_CPP_ENABLE_ASSERTIONS` | `ON` | Enables ASC runtime assertions. |
-| `ASC_CPP_ENABLE_EXCEPTIONS` | `ON` | Uses exceptions for recoverable ASC errors. |
-| `ASC_CPP_ENABLE_OPENMP` | `OFF` | Enables OpenMP dispatch and exports `OpenMP::OpenMP_CXX`. |
-| `ASC_CPP_ENABLE_CUDA` | `OFF` | Enables the CUDA language, memory backend, kernels, cuBLAS, and cuSPARSE. |
-| `ASC_CPP_ENABLE_EIGEN` | `OFF` | Enables the compatibility `<asc/linalg/eigen.h>` adapter and exports Eigen; it does not add a canonical provider. |
-| `ASC_CPP_ENABLE_MKL` | `OFF` | Enables the compatibility Eigen/MKL path; requires the Eigen option and does not add a canonical provider. |
-| `ASC_CPP_WARNINGS_AS_ERRORS` | `OFF` | Promotes project warnings to errors. |
-| `ASC_CPP_ENABLE_SANITIZERS` | `OFF` | Enables address and undefined-behavior sanitizers. |
-
-For CUDA, compile translation units that instantiate ASC device algorithms as
-CUDA (normally use a `.cu` suffix). Set `CMAKE_CUDA_ARCHITECTURES` for the GPUs
-that will run the result. Full backend details are in
-[optional backends](docs/optional-backends.md).
-
-## Development and quality checks
-
-```bash
-cmake --preset strict
-cmake --build --preset strict --parallel
-ctest --preset strict
-
-cpplint --recursive include/asc src tests examples
-```
-
-The migrated MdeCpp behavioral suite contains more than 500 CPU tests. The
-repository additionally checks every public header in isolation, multi-TU ODR
-safety, every installed component, package relocation, and unknown-component
-rejection. See [testing](docs/testing.md) and the [API map](docs/api.md).
-
-## Provenance and license
-
-The selected `generic/core`, `generic/device`, `generic/utility`,
-`generic/array`, `algebra`, and `random` sources were adapted at source level
-from the project owner's MdeCpp repository at commit
-`f6294e9079262682ce63ae7ff2d8a643e658bf5d`. Namespace, include paths, package
-boundaries, build system, install interface, and identified correctness or
-cpplint defects were changed for `asc-cpp`. The precise disposition is recorded
-in [docs/migration/inventory.md](docs/migration/inventory.md).
-
-`asc-cpp` carries the Apache License 2.0 in [LICENSE](LICENSE). Notices for
-adapted random-generator material are in
-[THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES).
+[m2-provenance]: docs/development/asc-cpp-m2-independent-foundations/provenance-record.md
