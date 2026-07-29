@@ -1,5 +1,16 @@
 # asc-cpp Architecture Blueprint v1
 
+> [!WARNING]
+> **Superseded historical document.** The body below records the deleted
+> five-component implementation at commit
+> `33b261ea33616a6395c4ad3b20646093103344f7`. It is retained only for audit
+> history and does not describe the active API or package. See the
+> [current documentation][current-docs] and the
+> [approved Stage A architecture][stage-a].
+
+[current-docs]: ../README.md
+[stage-a]: ../development/asc-cpp-architecture/architecture-blueprint.md
+
 **Status:** Approved; Phase III implementation authorized  
 **Date:** 2026-07-22  
 **Authority:** Lead Architect synthesis of Designer Agents A, B, and C  

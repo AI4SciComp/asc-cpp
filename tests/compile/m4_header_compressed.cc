@@ -1,0 +1,3 @@
+#include "asc/sparse/compressed.h"
+
+int main() { return 0; }

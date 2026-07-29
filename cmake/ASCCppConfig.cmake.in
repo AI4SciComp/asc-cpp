@@ -1,59 +1,222 @@
 @PACKAGE_INIT@
 
-include(CMakeFindDependencyMacro)
-
-set(_ASCCpp_supported_components core utilities array linalg random cpp)
-set(ASCCpp_FOUND TRUE)
-set(_ASCCpp_needs_linalg FALSE)
-if(NOT ASCCpp_FIND_COMPONENTS)
-  set(_ASCCpp_needs_linalg TRUE)
-endif()
-foreach(_ASCCpp_requested IN LISTS ASCCpp_FIND_COMPONENTS)
-  if(NOT _ASCCpp_requested IN_LIST _ASCCpp_supported_components)
-    set(ASCCpp_${_ASCCpp_requested}_FOUND FALSE)
-    set(ASCCpp_NOT_FOUND_MESSAGE
-      "Unsupported ASCCpp component '${_ASCCpp_requested}'. Supported components: ${_ASCCpp_supported_components}."
-    )
-  else()
-    set(ASCCpp_${_ASCCpp_requested}_FOUND TRUE)
-  endif()
-  if(_ASCCpp_requested STREQUAL "linalg" OR
-     _ASCCpp_requested STREQUAL "cpp")
-    set(_ASCCpp_needs_linalg TRUE)
-  endif()
-endforeach()
-check_required_components(ASCCpp)
-if(NOT ASCCpp_FOUND)
-  return()
-endif()
-
-if(@ASC_CPP_ENABLE_OPENMP@)
-  find_dependency(OpenMP COMPONENTS CXX)
-endif()
-if(@ASC_CPP_ENABLE_CUDA@)
-  find_dependency(CUDAToolkit)
-endif()
-if(_ASCCpp_needs_linalg AND @ASC_CPP_ENABLE_EIGEN@)
-  find_dependency(Eigen3 3.3 NO_MODULE)
-endif()
-if(_ASCCpp_needs_linalg AND @ASC_CPP_ENABLE_MKL@)
-  find_dependency(MKL CONFIG)
-endif()
-
-include("${CMAKE_CURRENT_LIST_DIR}/ASCCppTargets.cmake")
-
 set(ASCCpp_VERSION "@PROJECT_VERSION@")
+set(ASCCpp_KNOWN_COMPONENTS "@ASC_CPP_KNOWN_COMPONENTS@")
+set(ASCCpp_AVAILABLE_COMPONENTS "@ASC_CPP_AVAILABLE_COMPONENTS@")
+set(ASCCpp_FOUND TRUE)
+
+set(_ASCCpp_COMPONENT_core_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_core_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_utilities_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_utilities_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_expression_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_expression_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_dense_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_dense_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_sparse_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_sparse_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_random_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_random_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_random_dense_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_random_dense_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_random_sparse_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_random_sparse_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_cpp_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_cpp_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_core_cuda_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_core_cuda_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_dense_cuda_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_dense_cuda_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_sparse_cuda_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_sparse_cuda_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_random_cuda_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_random_cuda_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_random_dense_cuda_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_random_dense_cuda_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_random_sparse_cuda_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_random_sparse_cuda_DEPENDENCIES@"
+)
+set(_ASCCpp_COMPONENT_core_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_core_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_utilities_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_utilities_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_expression_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_expression_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_dense_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_dense_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_sparse_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_sparse_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_random_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_random_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_random_dense_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_random_dense_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_random_sparse_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_random_sparse_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_cpp_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_cpp_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_core_cuda_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_core_cuda_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_dense_cuda_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_dense_cuda_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_sparse_cuda_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_sparse_cuda_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_random_cuda_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_random_cuda_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_random_dense_cuda_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_random_dense_cuda_EXPORT_NAME@"
+)
+set(_ASCCpp_COMPONENT_random_sparse_cuda_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_random_sparse_cuda_EXPORT_NAME@"
+)
+
+if(NOT ASCCpp_FIND_COMPONENTS)
+  set(ASCCpp_FIND_COMPONENTS cpp)
+  set(ASCCpp_FIND_REQUIRED_cpp TRUE)
+endif()
+
+set(_ASCCpp_not_found_messages)
 foreach(_ASCCpp_component IN LISTS ASCCpp_FIND_COMPONENTS)
-  if(NOT TARGET "ASC::${_ASCCpp_component}")
+  if(NOT _ASCCpp_component IN_LIST ASCCpp_KNOWN_COMPONENTS)
     set(ASCCpp_${_ASCCpp_component}_FOUND FALSE)
-    set(ASCCpp_NOT_FOUND_MESSAGE
-      "ASCCpp component '${_ASCCpp_component}' is missing its imported target."
+    list(APPEND _ASCCpp_not_found_messages
+      "Unknown ASCCpp component '${_ASCCpp_component}'."
+    )
+  elseif(_ASCCpp_component IN_LIST ASCCpp_AVAILABLE_COMPONENTS)
+    set(ASCCpp_${_ASCCpp_component}_FOUND TRUE)
+  else()
+    set(ASCCpp_${_ASCCpp_component}_FOUND FALSE)
+    list(APPEND _ASCCpp_not_found_messages
+      "ASCCpp component '${_ASCCpp_component}' is not available in "
+      "this ASCCpp build."
     )
   endif()
 endforeach()
+
+list(JOIN _ASCCpp_not_found_messages " " ASCCpp_NOT_FOUND_MESSAGE)
 check_required_components(ASCCpp)
 
+if(ASCCpp_FOUND)
+  set(_ASCCpp_cuda_components
+    core_cuda
+    dense_cuda
+    sparse_cuda
+    random_cuda
+    random_dense_cuda
+    random_sparse_cuda
+  )
+  set(_ASCCpp_requested_cuda_components)
+  set(_ASCCpp_has_required_cuda FALSE)
+  foreach(_ASCCpp_component IN LISTS ASCCpp_FIND_COMPONENTS)
+    if(_ASCCpp_component IN_LIST _ASCCpp_cuda_components
+       AND ASCCpp_${_ASCCpp_component}_FOUND)
+      list(APPEND
+        _ASCCpp_requested_cuda_components
+        "${_ASCCpp_component}"
+      )
+      if(ASCCpp_FIND_REQUIRED_${_ASCCpp_component})
+        set(_ASCCpp_has_required_cuda TRUE)
+      endif()
+    endif()
+  endforeach()
+
+  if(_ASCCpp_requested_cuda_components)
+    include(CMakeFindDependencyMacro)
+    if(_ASCCpp_has_required_cuda)
+      find_dependency(CUDAToolkit 12)
+    else()
+      find_package(CUDAToolkit 12 QUIET)
+      if(NOT CUDAToolkit_FOUND)
+        foreach(
+          _ASCCpp_component
+          IN LISTS _ASCCpp_requested_cuda_components
+        )
+          set(ASCCpp_${_ASCCpp_component}_FOUND FALSE)
+        endforeach()
+      endif()
+    endif()
+  endif()
+
+  set(_ASCCpp_required_exports)
+  set(_ASCCpp_pending_components)
+  foreach(_ASCCpp_component IN LISTS ASCCpp_FIND_COMPONENTS)
+    if(ASCCpp_${_ASCCpp_component}_FOUND)
+      list(APPEND _ASCCpp_pending_components "${_ASCCpp_component}")
+    endif()
+  endforeach()
+  while(_ASCCpp_pending_components)
+    list(POP_FRONT _ASCCpp_pending_components _ASCCpp_component)
+    if(_ASCCpp_component IN_LIST ASCCpp_AVAILABLE_COMPONENTS
+       AND NOT _ASCCpp_component IN_LIST _ASCCpp_required_exports)
+      list(APPEND _ASCCpp_required_exports "${_ASCCpp_component}")
+      list(APPEND _ASCCpp_pending_components
+        ${_ASCCpp_COMPONENT_${_ASCCpp_component}_DEPENDENCIES}
+      )
+    endif()
+  endwhile()
+
+  check_required_components(ASCCpp)
+  if(NOT ASCCpp_FOUND)
+    set(_ASCCpp_required_exports)
+  endif()
+
+  foreach(_ASCCpp_component IN LISTS ASCCpp_KNOWN_COMPONENTS)
+    if(_ASCCpp_component IN_LIST _ASCCpp_required_exports)
+      set(ASCCpp_${_ASCCpp_component}_FOUND TRUE)
+      set(_ASCCpp_export_name
+        "${_ASCCpp_COMPONENT_${_ASCCpp_component}_EXPORT_NAME}"
+      )
+      include(
+        "${CMAKE_CURRENT_LIST_DIR}/ASCCpp${_ASCCpp_export_name}Targets.cmake"
+      )
+      if(NOT TARGET "ASC::${_ASCCpp_component}")
+        set(ASCCpp_${_ASCCpp_component}_FOUND FALSE)
+        set(ASCCpp_FOUND FALSE)
+        set(ASCCpp_NOT_FOUND_MESSAGE
+          "ASCCpp component '${_ASCCpp_component}' is missing its imported "
+          "target."
+        )
+        break()
+      endif()
+    endif()
+  endforeach()
+endif()
+
+foreach(_ASCCpp_component IN LISTS ASCCpp_KNOWN_COMPONENTS)
+  unset(_ASCCpp_COMPONENT_${_ASCCpp_component}_DEPENDENCIES)
+  unset(_ASCCpp_COMPONENT_${_ASCCpp_component}_EXPORT_NAME)
+endforeach()
 unset(_ASCCpp_component)
-unset(_ASCCpp_needs_linalg)
-unset(_ASCCpp_requested)
-unset(_ASCCpp_supported_components)
+unset(_ASCCpp_cuda_components)
+unset(_ASCCpp_export_name)
+unset(_ASCCpp_has_required_cuda)
+unset(_ASCCpp_not_found_messages)
+unset(_ASCCpp_pending_components)
+unset(_ASCCpp_requested_cuda_components)
+unset(_ASCCpp_required_exports)

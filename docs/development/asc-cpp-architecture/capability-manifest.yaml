@@ -1,0 +1,480 @@
+schema_version: 1
+status: "milestone-8-publication-checkpoint-b"
+evidence_date: "2026-07-28"
+evidence_labels:
+  - "proposed"
+  - "configure-tested"
+  - "compile-tested"
+  - "runtime-tested"
+  - "parity-tested"
+  - "unsupported"
+  - "skipped"
+  - "blocked"
+
+capabilities:
+  - capability: "checked logical metadata and mixed extents"
+    owner: "core"
+    milestone: 1
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/core/types.h"
+      - "include/asc/core/extents.h"
+    direct_dependencies: []
+    tests:
+      - "rank-zero and zero-extent semantics"
+      - "negative input and multiplication overflow"
+      - "integral checked narrowing"
+    guarantees:
+      - "signed 64-bit logical metadata"
+      - "compile-time rank with mixed static and dynamic extents"
+    non_guarantees:
+      - "general runtime-rank storage"
+
+  - capability: "status, result, and release-active contracts"
+    owner: "core"
+    milestone: 1
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/core/status.h"
+      - "include/asc/core/result.h"
+      - "include/asc/core/contracts.h"
+    direct_dependencies: []
+    tests:
+      - "nodiscard compile diagnostics"
+      - "provider-code preservation"
+      - "release-build public invalid-input paths"
+    guarantees:
+      - "no public production exceptions"
+      - "stable ASC error code"
+    non_guarantees:
+      - "stable diagnostic message text"
+
+  - capability: "storage-independent configuration model"
+    owner: "core"
+    milestone: 1
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/core/configuration.h"
+    direct_dependencies: []
+    tests:
+      - "recursive schema defaults, bounds, unknown keys, and rollback"
+      - "origin and sensitive-value redaction"
+      - "strict UTF-8 values and opaque object keys"
+    guarantees:
+      - "no dense or sparse value alternative"
+    non_guarantees:
+      - "concrete file-format parsing"
+
+  - capability: "portable byte/text I/O primitives"
+    owner: "core"
+    milestone: 1
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/core/io.h"
+    direct_dependencies: []
+    tests:
+      - "short read/write and EOF"
+      - "bounded text files and little-endian round trips"
+    guarantees:
+      - "explicit ownership and errors"
+    non_guarantees:
+      - "implicit device transfer"
+      - "dense or sparse serialization"
+
+  - capability: "host memory resource and move-only raw buffer"
+    owner: "core"
+    milestone: 1
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/core/memory.h"
+    direct_dependencies: []
+    tests:
+      - "allocation failure rollback"
+      - "alignment and zero byte"
+      - "move and exactly-once release"
+    guarantees:
+      - "one explicit memory space and resource"
+    non_guarantees:
+      - "implicit mirroring"
+
+  - capability: "serial execution context and completion event"
+    owner: "core"
+    milestone: 1
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/core/execution.h"
+    direct_dependencies: []
+    tests:
+      - "independent contexts"
+      - "unsupported provider before access"
+    guarantees:
+      - "explicit context"
+      - "no automatic fallback"
+    non_guarantees:
+      - "asynchronous device execution"
+
+  - capability: "transactional command-line configuration"
+    owner: "utilities"
+    milestone: 2
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/utilities/command_line.h"
+    direct_dependencies:
+      - "core"
+    tests:
+      - "all scalar conversions, bounds, negative numeric values, and --"
+      - "duplicate, unknown, malformed, rollback, origin, and redaction behavior"
+      - "isolated build-tree and relocated installed consumer"
+    guarantees:
+      - "documented precedence and value origin"
+    non_guarantees:
+      - "environment-variable input"
+
+  - capability: "monotonic timer"
+    owner: "utilities"
+    milestone: 2
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/utilities/timer.h"
+    direct_dependencies:
+      - "core"
+    tests:
+      - "empty, running, stopped, reset states"
+      - "overflow and non-mutating failure paths"
+    guarantees:
+      - "steady-clock measurement"
+    non_guarantees:
+      - "GPU kernel timing without events"
+
+  - capability: "storage-neutral pointwise expression protocol"
+    owner: "expression"
+    milestone: 2
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/expression/expression.h"
+    direct_dependencies:
+      - "core"
+    tests:
+      - "external non-ASC operand"
+      - "lvalue/rvalue/nested lifetime"
+      - "sparsity and alias metadata"
+      - "adapter and factory negative compilation"
+      - "isolated build-tree and relocated installed consumer"
+    guarantees:
+      - "no storage or provider knowledge"
+      - "exact shape plus rank-zero scalar expansion"
+      - "storage-neutral readable customization"
+    non_guarantees:
+      - "general implicit broadcasting"
+      - "evaluation or result allocation"
+
+  - capability: "Philox4x32-10 raw-bit and Uniform01 contract"
+    owner: "random"
+    milestone: 2
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/random/engine.h"
+      - "include/asc/random/distribution.h"
+    direct_dependencies:
+      - "core"
+    tests:
+      - "independently derived raw-word vectors"
+      - "float/double endpoint transforms"
+      - "stream, subsequence, block, offset, lane, and overflow mapping"
+      - "isolated build-tree and relocated installed consumer"
+    guarantees:
+      - "explicit key and counter"
+      - "no hidden entropy"
+    non_guarantees:
+      - "MdeCpp vector/source reuse"
+      - "standard-library distribution sequence"
+    provenance:
+      source: "Salmon et al., SC11, author-hosted primary paper"
+      clean_room: true
+      record: "docs/development/asc-cpp-m2-independent-foundations/provenance-record.md"
+
+  - capability: "dense owner and strided mutable/const views"
+    owner: "dense"
+    milestone: 3
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/dense/array.h"
+      - "include/asc/dense/view.h"
+      - "include/asc/dense/layout.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "rank-zero, zero-extent, left/right, and padded unique-stride mappings"
+      - "negative metadata, bounds, span, address, and product overflow"
+      - "const propagation, subviews, owner lifetime, move, and invalidation"
+      - "clone, transactional resize, allocation failure, and rollback"
+      - "self-contained and exceptions-disabled public headers"
+      - "static/shared package relocation and isolated dense consumers"
+    guarantees:
+      - "non-owning explicit-memory-space views"
+      - "move-only owner"
+    non_guarantees:
+      - "negative strides"
+      - "shared ownership"
+
+  - capability: "dense pointwise evaluation and reductions"
+    owner: "dense"
+    milestone: 3
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/dense/evaluate.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "exact shape, rank-zero scalar expansion, and logical traversal"
+      - "direct self no-op and conservative nested/independent overlap rejection"
+      - "transactional metadata and host-memory rejection"
+      - "zero allocation, packing, transfer, synchronization, or fallback"
+      - "deterministic sum/minimum/maximum and integral-sum overflow"
+    guarantees:
+      - "destination-owned evaluation"
+    non_guarantees:
+      - "arbitrary external expressions on GPU"
+
+  - capability: "serial dense BLAS subset"
+    owner: "dense"
+    milestone: 3
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/dense/linalg.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "copy/scal/axpy/dot/nrm2/gemv/gemm"
+      - "mutable and const readable operands"
+      - "left/right/padded strides, transpose pairs, aliases, and degenerate shapes"
+      - "extreme finite norm, NaN/infinity, and beta-zero no-read"
+      - "allocation-free serial reference benchmark"
+    guarantees:
+      - "float/double CPU reference"
+    non_guarantees:
+      - "factorization or solver"
+
+  - capability: "general-rank coordinate sparse storage"
+    owner: "sparse"
+    milestone: 4
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/sparse/coordinate.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "duplicates, explicit zeros, canonical ordering"
+      - "empty and 64-bit boundaries"
+      - "transactional finalization and allocation failure rollback"
+      - "external structure/value overlap rejection"
+    guarantees:
+      - "explicit finalization policies"
+    non_guarantees:
+      - "compressed arbitrary-rank format"
+
+  - capability: "rank-two CSR and CSC"
+    owner: "sparse"
+    milestone: 4
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/sparse/compressed.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "offset/index validation and empty outer table"
+      - "COO/CSR/CSC round trip"
+      - "all pairwise external span overlap rejection"
+      - "static/shared relocation and isolated sparse consumer"
+    guarantees:
+      - "sorted unique immutable structure"
+    non_guarantees:
+      - "BSR or SELL"
+
+  - capability: "sparse expression evaluation and serial CSR SpMV"
+    owner: "sparse"
+    milestone: 4
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/sparse/evaluate.h"
+      - "include/asc/sparse/linalg.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "no silent densification"
+      - "generic readable/writable vector operands"
+      - "reference SpMV"
+      - "failure-before-mutation alias, shape, placement, and context gates"
+      - "zero operation allocations and beta-zero no-read"
+    guarantees:
+      - "no dense dependency"
+    non_guarantees:
+      - "SpMM or solver"
+
+  - capability: "deterministic dense random fill"
+    owner: "random"
+    facet: "random_dense"
+    milestone: 5
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/random/dense.h"
+    direct_dependencies:
+      - "random"
+      - "dense"
+    tests:
+      - "rank-zero, zero-extent, layout/stride/padding, and partition invariance"
+      - "deterministic rerun, explicit address advancement, and counter overflow"
+      - "host placement, failure-before-mutation, and zero operation allocation"
+      - "header isolation, multi-TU ODR, package relocation, and isolated consumer"
+    guarantees:
+      - "caller-provided destination and state"
+      - "dimension-zero-fastest logical traversal"
+    non_guarantees:
+      - "variable-consumption distributions"
+
+  - capability: "deterministic sparse exact-count generation"
+    owner: "random"
+    facet: "random_sparse"
+    milestone: 5
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/random/sparse.h"
+    direct_dependencies:
+      - "random"
+      - "sparse"
+    tests:
+      - "rank-zero, zero-extent, static/dynamic extents, and exact counts"
+      - "independent priority oracle, uniqueness, and canonical order"
+      - "separate structure/value streams, reproducibility, and offset overflow"
+      - "allocation failure rollback, exactly-once release, and declared allocation counts"
+      - "header isolation, multi-TU ODR, package relocation, and isolated consumer"
+    guarantees:
+      - "canonical coordinate order"
+      - "deterministic pseudorandom exact-count structure"
+    non_guarantees:
+      - "mathematically uniform sampling over coordinate subsets"
+      - "Bernoulli density mode in first release"
+
+  - capability: "CUDA resources, copies, streams, and events"
+    owner: "core"
+    facet: "core_cuda"
+    milestone: 6
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/core/providers/cuda.h"
+    direct_dependencies:
+      - "core"
+    tests:
+      - "real-hardware device count, allocation, every approved copy route, event query/wait, and stream ordering"
+      - "invalid resource, alignment, size, overlap, placement, device, context, and moved-event failures"
+      - "post-enqueue event failure drains the affected stream before source or destination lifetime can end"
+      - "provider-free headers, exact package closure, relocation, and isolated consumer"
+    guarantees:
+      - "explicit CUDA context, memory resource, stream, and completion event"
+      - "pinned, device, and managed resource ownership"
+      - "no device-wide synchronization on successful copy submission"
+    non_guarantees:
+      - "host-nonblocking behavior for pageable-host copies"
+      - "native stream adoption or public CUDA SDK types"
+
+  - capability: "CUDA dense evaluation and selected cuBLAS"
+    owner: "dense"
+    facet: "dense_cuda"
+    milestone: 6
+    status: "parity-tested"
+    public_headers:
+      - "include/asc/dense/providers/cuda.h"
+    direct_dependencies:
+      - "dense"
+      - "core_cuda"
+    tests:
+      - "real-hardware float/double pointwise and Copy/Scal/Axpy/Gemv/Gemm parity"
+      - "rank zero through eight, left/right/padded mappings, transpose pairs, beta-zero, aliases, and provider-width bounds"
+      - "custom-kernel, cuBLAS, completion-event, and clone rollback failures drain the affected stream"
+      - "stream concurrency, compile contracts, package relocation, isolated consumer, and smoke benchmark"
+    guarantees:
+      - "CUDA and cuBLAS SDK isolation from common dense headers"
+      - "explicit execution, memory placement, asynchronous completion, and no fallback"
+      - "bounded built-in pointwise expression surface"
+    non_guarantees:
+      - "all layouts, types, reductions, factorization, or solvers"
+      - "cuSOLVER, implicit transfer, packing, or workspace management"
+
+  - capability: "CUDA sparse evaluation and selected cuSPARSE operations"
+    owner: "sparse"
+    facet: "sparse_cuda"
+    milestone: 7
+    status: "parity-tested"
+    public_headers:
+      - "include/asc/sparse/providers/cuda.h"
+    direct_dependencies:
+      - "sparse"
+      - "core_cuda"
+    tests:
+      - "real-hardware canonical clone, CSR SpMV, and bounded evaluator parity"
+      - "format, provenance, index, algorithm, workspace, and rejection checks"
+    guarantees:
+      - "unit-stride CUSPARSE_SPMV_CSR_ALG2 with explicit workspace"
+      - "positive nonunit-stride original project kernel with zero workspace"
+    non_guarantees:
+      - "trusted device CSC staging or general sparse algebra"
+
+  - capability: "CUDA random raw-bit provider"
+    owner: "random"
+    facet: "random_cuda"
+    milestone: 7
+    status: "parity-tested"
+    public_headers:
+      - "include/asc/random/providers/cuda.h"
+    direct_dependencies:
+      - "random"
+      - "core_cuda"
+    tests:
+      - "independent CPU/GPU raw-bit vectors, irregular reordered partitions, offsets, concurrency, and overflow"
+    guarantees:
+      - "bit-identical Philox4x32 word mapping"
+    non_guarantees:
+      - "cuRAND or mutable/default provider state"
+
+  - capability: "CUDA dense random generation"
+    owner: "random"
+    facet: "random_dense_cuda"
+    milestone: 7
+    status: "parity-tested"
+    public_headers:
+      - "include/asc/random/providers/dense_cuda.h"
+    direct_dependencies:
+      - "random_dense"
+      - "random_cuda"
+      - "core_cuda"
+    tests:
+      - "real-hardware rank/layout/stride/irregular reordered double partitions and CPU bit parity"
+    guarantees:
+      - "logical-fill evidence independent of physical layout"
+    non_guarantees:
+      - "unverified distributions"
+
+  - capability: "CUDA sparse random generation"
+    owner: "random"
+    facet: "random_sparse_cuda"
+    milestone: 7
+    status: "parity-tested"
+    public_headers:
+      - "include/asc/random/providers/sparse_cuda.h"
+    direct_dependencies:
+      - "random_sparse"
+      - "random_cuda"
+      - "core_cuda"
+    tests:
+      - "real-hardware exact-count structure/value CPU bit parity"
+      - "forced equal-priority collision uses ordinal tie-breaking on the host and device"
+    guarantees:
+      - "canonical-order evidence"
+    non_guarantees:
+      - "unverified structure algorithms"
