@@ -371,7 +371,6 @@ add_test(
   COMMAND
     "${CMAKE_COMMAND}"
     "-DASC_CPP_SOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
-    "-DASC_CPP_EXPECTED_PREDECESSOR_COMMIT:STRING=33b261ea33616a6395c4ad3b20646093103344f7"
     -P "${CMAKE_CURRENT_SOURCE_DIR}/documentation_consistency_test.cmake"
 )
 set_tests_properties(
