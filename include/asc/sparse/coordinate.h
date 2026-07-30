@@ -135,8 +135,9 @@ template <typename Element>
 Result<Element> AddDuplicate(Element left, Element right) {
   if constexpr (std::integral<Element>) {
     return CheckedAdd(left, right);
+  } else {
+    return static_cast<Element>(left + right);
   }
-  return static_cast<Element>(left + right);
 }
 
 inline bool ByteSpanContains(const void* begin, std::size_t size,

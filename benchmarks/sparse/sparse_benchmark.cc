@@ -177,8 +177,9 @@ int main() {
   PrintResult("spmv", kSpmvIterations, spmv_elapsed, spmv_checksum,
               spmv_allocations);
 
-  if (evaluate_allocations != 0 || spmv_allocations != 0 ||
-      !std::isfinite(evaluate_checksum) || !std::isfinite(spmv_checksum)) {
+  if (!asc_test::ProcessAllocationCountMatches(evaluate_allocations, 0) ||
+      spmv_allocations != 0 || !std::isfinite(evaluate_checksum) ||
+      !std::isfinite(spmv_checksum)) {
     return 9;
   }
   return 0;

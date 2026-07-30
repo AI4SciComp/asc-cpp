@@ -418,7 +418,8 @@ void TestEvaluationAndTraversal(TestContext& test) {
     allocations = probe.count();
     ASC_DENSE_TEST_CHECK(test, status.ok());
   }
-  ASC_DENSE_TEST_EQ(test, allocations, std::size_t{0});
+  ASC_DENSE_TEST_CHECK(test,
+                       asc_test::ProcessAllocationCountMatches(allocations, 0));
 }
 
 void TestEvaluationFailuresAndIdentity(TestContext& test) {
@@ -536,7 +537,8 @@ void TestReductions(TestContext& test) {
     allocations = probe.count();
     ASC_DENSE_TEST_CHECK(test, allocation_sum.ok());
   }
-  ASC_DENSE_TEST_EQ(test, allocations, std::size_t{0});
+  ASC_DENSE_TEST_CHECK(test,
+                       asc_test::ProcessAllocationCountMatches(allocations, 0));
 }
 
 void TestIntegralReductionOverflow(TestContext& test) {

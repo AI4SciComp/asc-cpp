@@ -90,13 +90,16 @@ class CountingResource final : public asc::MemoryResource {
 
 class MisalignedResource final : public asc::MemoryResource {
  public:
+  explicit MisalignedResource(std::byte* storage) noexcept
+      : storage_(storage) {}
+
   [[nodiscard]] asc::MemorySpace space() const noexcept override {
     return asc::MemorySpace::kHost;
   }
 
   asc::Result<void*> Allocate(std::size_t, std::size_t) override {
     ++allocate_calls_;
-    return static_cast<void*>(storage_.data() + 1);
+    return static_cast<void*>(storage_ + 1);
   }
 
   void Deallocate(void* pointer, std::size_t, std::size_t) noexcept override {
@@ -108,15 +111,13 @@ class MisalignedResource final : public asc::MemoryResource {
   [[nodiscard]] int deallocate_calls() const noexcept {
     return deallocate_calls_;
   }
-  [[nodiscard]] void* returned_pointer() noexcept {
-    return storage_.data() + 1;
-  }
+  [[nodiscard]] void* returned_pointer() noexcept { return storage_ + 1; }
   [[nodiscard]] void* deallocated_pointer() const noexcept {
     return deallocated_pointer_;
   }
 
  private:
-  alignas(64) std::array<std::byte, 128> storage_{};
+  std::byte* storage_;
   void* deallocated_pointer_ = nullptr;
   int allocate_calls_ = 0;
   int deallocate_calls_ = 0;
@@ -200,7 +201,8 @@ void CheckBufferFailures(asc_core_test::TestContext& context) {
   ASC_TEST_CHECK(context, !asc::Buffer::Allocate(bad_zero, 0, 16).ok());
   ASC_TEST_EQ(context, bad_zero.deallocate_calls(), 1);
 
-  MisalignedResource misaligned;
+  alignas(64) std::array<std::byte, 128> misaligned_storage{};
+  MisalignedResource misaligned(misaligned_storage.data());
   ASC_TEST_CHECK(context, !asc::Buffer::Allocate(misaligned, 32, 64).ok());
   ASC_TEST_EQ(context, misaligned.allocate_calls(), 1);
   ASC_TEST_EQ(context, misaligned.deallocate_calls(), 1);

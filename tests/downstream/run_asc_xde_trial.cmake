@@ -181,10 +181,14 @@ if(NOT _build_result EQUAL 0)
   )
 endif()
 
-set(_executable "${WORK_DIR}/build/asc_xde_trial")
+set(_executable_suffix)
+if(WIN32)
+  set(_executable_suffix ".exe")
+endif()
+set(_executable "${WORK_DIR}/build/asc_xde_trial${_executable_suffix}")
 if(DEFINED TEST_CONFIGURATION AND NOT "${TEST_CONFIGURATION}" STREQUAL "")
   set(_configured_executable
-    "${WORK_DIR}/build/${TEST_CONFIGURATION}/asc_xde_trial"
+    "${WORK_DIR}/build/${TEST_CONFIGURATION}/asc_xde_trial${_executable_suffix}"
   )
   if(EXISTS "${_configured_executable}")
     set(_executable "${_configured_executable}")

@@ -222,8 +222,9 @@ int main() {
   PrintResult("gemm", kExtent, kExtent, kGemmIterations, gemm_elapsed,
               gemm_checksum, gemm_allocations);
 
-  if (evaluation_allocations != 0 || gemm_allocations != 0 ||
-      !std::isfinite(evaluation_checksum) || !std::isfinite(gemm_checksum)) {
+  if (!asc_test::ProcessAllocationCountMatches(evaluation_allocations, 0) ||
+      gemm_allocations != 0 || !std::isfinite(evaluation_checksum) ||
+      !std::isfinite(gemm_checksum)) {
     return 13;
   }
   return 0;

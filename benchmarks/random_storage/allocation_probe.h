@@ -3,6 +3,8 @@
 
 #include <cstddef>
 
+#include "../../tests/allocation_observation.h"
+
 namespace asc_random_storage_benchmark {
 
 class AllocationProbe {

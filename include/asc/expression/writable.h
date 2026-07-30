@@ -133,8 +133,9 @@ template <WritableExpression T>
                   } -> std::same_as<Status>;
                 }) {
     return Adapter::ValidateAccess(expression, context);
+  } else {
+    return ValidateExpressionAccess(context, expression);
   }
-  return ValidateExpressionAccess(context, expression);
 }
 
 namespace internal_expression_writable {

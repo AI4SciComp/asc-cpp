@@ -134,6 +134,11 @@ std::optional<double> ParseDouble(std::string_view text) {
   if (text.empty() || text.front() == '+') {
     return std::nullopt;
   }
+  const std::string_view magnitude =
+      text.front() == '-' ? text.substr(1) : text;
+  if (magnitude.starts_with("0x") || magnitude.starts_with("0X")) {
+    return std::nullopt;
+  }
 
   std::istringstream input{std::string(text)};
   input.imbue(std::locale::classic());

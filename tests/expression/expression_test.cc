@@ -9,6 +9,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "../allocation_observation.h"
 #include "test_support.h"
 
 namespace allocation_probe {
@@ -396,7 +397,8 @@ void CheckConstructionHasNoEffects(asc_expression_test::TestContext& context) {
   allocation_probe::enabled = false;
 
   ASC_EXPRESSION_TEST_CHECK(context, expression.ok());
-  ASC_EXPRESSION_TEST_EQ(context, allocation_probe::count, std::size_t{0});
+  ASC_EXPRESSION_TEST_CHECK(context, asc_test::ProcessAllocationCountMatches(
+                                         allocation_probe::count, 0));
   ASC_EXPRESSION_TEST_EQ(context, left_reads, 0);
   ASC_EXPRESSION_TEST_EQ(context, right_reads, 0);
   ASC_EXPRESSION_TEST_EQ(context, alias_queries, 0);

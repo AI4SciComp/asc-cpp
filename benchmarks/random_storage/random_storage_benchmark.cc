@@ -156,7 +156,7 @@ bool BenchmarkDense(Layout layout, const char* layout_name,
             << " operation_allocation_calls=" << allocation_calls
             << " elapsed_ns=" << elapsed.count() << " next_offset=" << next
             << " checksum=" << checksum << " oracle=independent\n";
-  return allocation_calls == 0;
+  return asc_test::ProcessAllocationCountMatches(allocation_calls, 0);
 }
 
 bool BenchmarkSparse(std::uint64_t& aggregate_checksum) {
@@ -251,7 +251,8 @@ bool BenchmarkSparse(std::uint64_t& aggregate_checksum) {
             << " next_value_offset=" << next_value << " checksum=" << checksum
             << " oracle=independent\n";
   return resource.live_allocations() == 0 &&
-         process_allocation_calls == resource.allocation_calls();
+         asc_test::ProcessAllocationCountMatches(process_allocation_calls,
+                                                 resource.allocation_calls());
 }
 
 }  // namespace
