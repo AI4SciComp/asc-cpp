@@ -13,6 +13,7 @@ namespace asc_test {
 [[nodiscard]] constexpr std::size_t ProcessVisibleResourceAllocationCount(
     std::size_t resource_allocations) noexcept {
 #if defined(_WIN32) && !defined(ASC_CORE_STATIC_DEFINE)
+  static_cast<void>(resource_allocations);
   return 0;
 #else
   return resource_allocations;
