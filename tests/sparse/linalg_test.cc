@@ -214,7 +214,8 @@ void TestNumericalOracle(TestContext& test) {
     allocations = probe.count();
     ASC_SPARSE_TEST_CHECK(test, measured.ok());
   }
-  ASC_SPARSE_TEST_EQ(test, allocations, std::size_t{0});
+  ASC_SPARSE_TEST_CHECK(
+      test, asc_test::ProcessAllocationCountMatches(allocations, 0));
 }
 
 void TestDeterministicRowOrder(TestContext& test) {

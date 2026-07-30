@@ -178,8 +178,8 @@ int main() {
               spmv_allocations);
 
   if (!asc_test::ProcessAllocationCountMatches(evaluate_allocations, 0) ||
-      spmv_allocations != 0 || !std::isfinite(evaluate_checksum) ||
-      !std::isfinite(spmv_checksum)) {
+      !asc_test::ProcessAllocationCountMatches(spmv_allocations, 0) ||
+      !std::isfinite(evaluate_checksum) || !std::isfinite(spmv_checksum)) {
     return 9;
   }
   return 0;

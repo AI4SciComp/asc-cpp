@@ -20,9 +20,10 @@ inline constexpr bool kHasExactProcessAllocationObservation = true;
   if constexpr (kHasExactProcessAllocationObservation) {
     return observed == expected;
   } else {
-    // Confirm that the documented iterator-instrumentation overhead was
-    // observed; the required Windows Release job enforces the exact count.
-    return observed > expected;
+    // Preserve the operation's required allocations while allowing the
+    // documented instrumentation overhead. The required Windows Release job
+    // enforces the exact count.
+    return observed >= expected;
   }
 }
 
