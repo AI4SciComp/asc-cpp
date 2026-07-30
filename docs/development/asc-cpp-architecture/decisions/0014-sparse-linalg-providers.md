@@ -1,6 +1,6 @@
 # ADR 0014: sparse-owned algebra with neutral vector operands
 
-Status: Proposed at Architecture Checkpoint A
+Status: Superseded by ADR 0019
 
 ## Context
 

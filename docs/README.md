@@ -33,6 +33,10 @@ surface.
   asc-xde-shaped package trial and its limits.
 - [Performance](performance.md): measurement contract and bounded local
   observations.
+- [BLAS coverage](blas-coverage.md): generated Dense/Sparse BLAS standards
+  inventory, current evidence states, and dense-to-sparse crosswalk. This is
+  an approved implementation contract, not a claim that the planned rename or
+  routines already exist.
 
 The [Milestone 8 contract][m8-contract], [ownership ledger][m8-ownership], and
 [preflight][m8-preflight] freeze the current scope and preserved stale-branch
@@ -89,9 +93,10 @@ each request loads only its exact transitive component closure.
 The approved Stage A package remains the architectural source of truth:
 
 - [architecture blueprint][blueprint];
-- [ADRs 0001–0018][adrs];
+- [ADRs 0001–0019][adrs];
 - [dependency manifest][dependencies];
 - [capability manifest][capabilities];
+- [BLAS coverage manifest][blas-manifest];
 - [asc-cmake consumption][asc-cmake];
 - [testing strategy][testing-strategy];
 - [CI strategy][ci-strategy];
@@ -104,9 +109,11 @@ components, [0003][adr-0003] for C++20/public-source policy,
 [0008][adr-0008] for memory/execution,
 [0009][adr-0009] for ownership/views,
 [0010][adr-0010] for storage-neutral protocols, [0012][adr-0012] for Sparse
-invariants, [0013][adr-0013] for Dense providers, [0016][adr-0016] for sibling
-isolation, [0017][adr-0017] for provenance, and [0018][adr-0018] for the 0.9.x
-boundary.
+invariants, [0016][adr-0016] for sibling isolation, [0017][adr-0017] for
+provenance, [0018][adr-0018] for the 0.9.x boundary, and
+[0019][adr-0019] for the Dense/Sparse BLAS contract. ADR 0019 supersedes the
+linear-algebra/provider scope in ADRs [0013][adr-0013] and
+[0014][adr-0014].
 
 ## Deferred scope
 
@@ -129,8 +136,10 @@ names do not make them available.
 [adr-0016]: development/asc-cpp-architecture/decisions/0016-mixed-dense-sparse.md
 [adr-0017]: development/asc-cpp-architecture/decisions/0017-third-party-provenance.md
 [adr-0018]: development/asc-cpp-architecture/decisions/0018-versioning-release-boundaries.md
+[adr-0019]: development/asc-cpp-architecture/decisions/0019-blas-contract.md
 [adrs]: development/asc-cpp-architecture/decisions
 [asc-cmake]: development/asc-cpp-architecture/asc-cmake-consumption.md
+[blas-manifest]: development/asc-cpp-architecture/blas-coverage.yaml
 [blueprint]: development/asc-cpp-architecture/architecture-blueprint.md
 [capabilities]: development/asc-cpp-architecture/capability-manifest.yaml
 [ci-strategy]: development/asc-cpp-architecture/ci-strategy.md
