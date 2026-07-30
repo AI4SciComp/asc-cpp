@@ -77,9 +77,9 @@ template <typename Element, PlacedReadableExpression Input,
            kExpressionRank<Output> == 1 &&
            std::same_as<ExpressionValue<Input>, Element> &&
            std::same_as<ExpressionValue<Output>, Element>)
-Status ValidateSpmv(const ExecutionContext& context, Element,
-                    CsrView<const Element> matrix, const Input& input, Element,
-                    const Output& output) {
+Status ValidateSpmv(const ExecutionContext& context, Element /*alpha*/,
+                    CsrView<const Element> matrix, const Input& input,
+                    Element /*beta*/, const Output& output) {
   Status context_status = internal_sparse_coordinate::ValidateSerialHost(
       context, "Sparse SpMV requires serial execution");
   if (!context_status.ok()) {

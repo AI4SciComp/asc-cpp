@@ -65,6 +65,8 @@ class DenseView {
     requires(std::is_const_v<Element> &&
              std::same_as<std::remove_const_t<OtherElement>, value_type> &&
              !std::is_const_v<OtherElement>)
+  // Mutable-to-const views intentionally convert implicitly.
+  // NOLINTNEXTLINE(google-explicit-constructor)
   constexpr DenseView(const DenseView<OtherElement, Rank>& other) noexcept
       : data_(other.data()),
         mapping_(other.mapping()),

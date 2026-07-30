@@ -19,6 +19,9 @@ class [[nodiscard]] Result {
   static_assert(!std::is_void_v<T>, "Use Status for operations without values");
 
  public:
+  // Value and failure conversions enable direct propagation from functions
+  // returning Result<T>.
+  // NOLINTBEGIN(google-explicit-constructor)
   Result(const T& value)
     requires std::copy_constructible<T>
       : value_(value) {}
@@ -32,6 +35,7 @@ class [[nodiscard]] Result {
     ASC_CHECK_MESSAGE(!status_.ok(),
                       "A failed Result requires a non-OK Status");
   }
+  // NOLINTEND(google-explicit-constructor)
 
   static Result Failure(Status status) {
     ASC_CHECK_MESSAGE(!status.ok(), "A failed Result requires a non-OK Status");
@@ -49,47 +53,44 @@ class [[nodiscard]] Result {
   [[nodiscard]] bool ok() const noexcept { return value_.has_value(); }
   [[nodiscard]] const Status& status() const noexcept { return status_; }
 
-  T& value() & {
-    CheckHasValue();
-    return *value_;
-  }
+  [[nodiscard]] T& value() & { return CheckedValue(); }
 
-  const T& value() const& {
-    CheckHasValue();
-    return *value_;
-  }
+  [[nodiscard]] const T& value() const& { return CheckedValue(); }
 
-  T&& value() && {
-    CheckHasValue();
-    return std::move(*value_);
-  }
+  [[nodiscard]] T&& value() && { return std::move(CheckedValue()); }
 
   T& operator*() & { return value(); }
   const T& operator*() const& { return value(); }
   T&& operator*() && { return std::move(*this).value(); }
 
-  T* operator->() {
-    CheckHasValue();
-    return &*value_;
-  }
+  T* operator->() { return &CheckedValue(); }
 
-  const T* operator->() const {
-    CheckHasValue();
-    return &*value_;
-  }
+  const T* operator->() const { return &CheckedValue(); }
 
  private:
   struct FailureTag {};
 
-  Result(FailureTag, Status status) : status_(std::move(status)) {}
+  Result(FailureTag /*tag*/, Status status) : status_(std::move(status)) {}
 
-  void CheckHasValue() const {
+  [[noreturn]] void FailMissingValue() const {
+    const std::string_view diagnostic =
+        status_.message().empty() ? ErrorCodeName(status_.code())
+                                  : std::string_view(status_.message());
+    FatalContract("value_.has_value()", __FILE__, __LINE__, diagnostic);
+  }
+
+  [[nodiscard]] T& CheckedValue() {
     if (!value_.has_value()) {
-      const std::string_view diagnostic =
-          status_.message().empty() ? ErrorCodeName(status_.code())
-                                    : std::string_view(status_.message());
-      FatalContract("value_.has_value()", __FILE__, __LINE__, diagnostic);
+      FailMissingValue();
     }
+    return *value_;
+  }
+
+  [[nodiscard]] const T& CheckedValue() const {
+    if (!value_.has_value()) {
+      FailMissingValue();
+    }
+    return *value_;
   }
 
   std::optional<T> value_;

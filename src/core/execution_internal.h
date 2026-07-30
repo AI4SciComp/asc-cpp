@@ -14,6 +14,8 @@ class CompletionState {
   CompletionState() = default;
   CompletionState(const CompletionState&) = delete;
   CompletionState& operator=(const CompletionState&) = delete;
+  CompletionState(CompletionState&&) = delete;
+  CompletionState& operator=(CompletionState&&) = delete;
   virtual ~CompletionState() = default;
 
   [[nodiscard]] virtual Result<bool> Query() const = 0;
@@ -25,6 +27,8 @@ class ExecutionState {
   ExecutionState() = default;
   ExecutionState(const ExecutionState&) = delete;
   ExecutionState& operator=(const ExecutionState&) = delete;
+  ExecutionState(ExecutionState&&) = delete;
+  ExecutionState& operator=(ExecutionState&&) = delete;
   virtual ~ExecutionState() = default;
 
   [[nodiscard]] virtual bool CanAccess(MemorySpace space) const noexcept = 0;
@@ -42,7 +46,7 @@ class Access {
   static ExecutionContext MakeContext(
       Backend backend, Device device, Determinism determinism,
       std::shared_ptr<const ExecutionState> state) noexcept {
-    return ExecutionContext(backend, device, determinism, std::move(state));
+    return {backend, device, determinism, std::move(state)};
   }
 
   static CompletionEvent MakeEvent(

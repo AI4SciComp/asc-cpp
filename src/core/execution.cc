@@ -5,6 +5,9 @@
 #include <memory>
 #include <utility>
 
+#include "asc/core/memory.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "execution_internal.h"
 
 namespace asc {
@@ -28,8 +31,7 @@ Device Device::Serial() noexcept {
 }
 
 ExecutionContext ExecutionContext::Serial() noexcept {
-  return ExecutionContext(Backend::kSerial, Device::Serial(),
-                          Determinism::kDeterministic);
+  return {Backend::kSerial, Device::Serial(), Determinism::kDeterministic};
 }
 
 Result<ExecutionContext> ExecutionContext::Create(Backend backend,
@@ -147,7 +149,7 @@ Status CompletionEvent::Wait() const {
     return Status(ErrorCode::kInternal,
                   "A pending CompletionEvent has no provider state");
   }
-  const Status status = state_->Wait();
+  Status status = state_->Wait();
   if (!status.ok()) {
     return status;
   }

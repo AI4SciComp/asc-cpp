@@ -6,6 +6,7 @@
 #include <new>
 #include <utility>
 
+#include "asc/core/result.h"
 #include "asc/core/status.h"
 
 namespace asc {

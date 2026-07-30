@@ -343,12 +343,21 @@ void CheckNumericBoundaries(TestContext& context) {
       context, *exact_double->configuration.Find("/ratio")->get().AsDouble(),
       0.125);
 
+  const auto scientific_double =
+      Parse(parser, std::array<std::string_view, 1>{"--ratio=1.25e-1"});
+  ASC_UTILITIES_TEST_CHECK(context, scientific_double.ok());
+  ASC_UTILITIES_TEST_EQ(
+      context,
+      *scientific_double->configuration.Find("/ratio")->get().AsDouble(),
+      0.125);
+
   for (std::string_view argument :
        {"--wide-signed=9223372036854775808",
         "--wide-signed=-9223372036854775809", "--wide-signed=1.0",
         "--wide-signed=1x", "--size=-1", "--size=18446744073709551616",
-        "--size=1.0", "--ratio=1,5", "--ratio=1x", "--ratio=1e9999",
-        "--ratio=nan"}) {
+        "--size=1.0", "--ratio=+0.5", "--ratio= 0.5", "--ratio=0.5 ",
+        "--ratio=0x1p0", "--ratio=1,5", "--ratio=1x", "--ratio=1e9999",
+        "--ratio=1e-9999", "--ratio=nan"}) {
     ASC_UTILITIES_TEST_CHECK(
         context,
         !Parse(parser, std::array<std::string_view, 1>{argument}).ok());

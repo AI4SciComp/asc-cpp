@@ -13,9 +13,10 @@
 #include <string_view>
 #include <system_error>
 #include <utility>
-#include <variant>
 
 #include "asc/core/contracts.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 
 namespace asc {
 
@@ -220,10 +221,10 @@ Status ValidateBounds(const ConfigurationSchema& schema,
     if (!number.ok()) {
       return number.status();
     }
-    if ((schema.signed_minimum().has_value() &&
-         *number < *schema.signed_minimum()) ||
-        (schema.signed_maximum().has_value() &&
-         *number > *schema.signed_maximum())) {
+    const auto minimum = schema.signed_minimum();
+    const auto maximum = schema.signed_maximum();
+    if ((minimum.has_value() && *number < *minimum) ||
+        (maximum.has_value() && *number > *maximum)) {
       return ConfigurationError(path, "signed integer is outside its bounds");
     }
   } else if (schema.type() == ConfigurationValueType::kUnsignedInteger) {
@@ -231,10 +232,10 @@ Status ValidateBounds(const ConfigurationSchema& schema,
     if (!number.ok()) {
       return number.status();
     }
-    if ((schema.unsigned_minimum().has_value() &&
-         *number < *schema.unsigned_minimum()) ||
-        (schema.unsigned_maximum().has_value() &&
-         *number > *schema.unsigned_maximum())) {
+    const auto minimum = schema.unsigned_minimum();
+    const auto maximum = schema.unsigned_maximum();
+    if ((minimum.has_value() && *number < *minimum) ||
+        (maximum.has_value() && *number > *maximum)) {
       return ConfigurationError(path, "unsigned integer is outside its bounds");
     }
   } else if (schema.type() == ConfigurationValueType::kDouble) {
@@ -242,15 +243,13 @@ Status ValidateBounds(const ConfigurationSchema& schema,
     if (!number.ok()) {
       return number.status();
     }
-    if ((schema.double_minimum().has_value() ||
-         schema.double_maximum().has_value()) &&
-        std::isnan(*number)) {
+    const auto minimum = schema.double_minimum();
+    const auto maximum = schema.double_maximum();
+    if ((minimum.has_value() || maximum.has_value()) && std::isnan(*number)) {
       return ConfigurationError(path, "NaN does not satisfy numeric bounds");
     }
-    if ((schema.double_minimum().has_value() &&
-         *number < *schema.double_minimum()) ||
-        (schema.double_maximum().has_value() &&
-         *number > *schema.double_maximum())) {
+    if ((minimum.has_value() && *number < *minimum) ||
+        (maximum.has_value() && *number > *maximum)) {
       return ConfigurationError(path, "double is outside its bounds");
     }
   }
@@ -270,9 +269,11 @@ Status ValidateBounds(const ConfigurationSchema& schema,
     size = list->get().size();
   }
 
+  const auto minimum_size = schema.size_minimum();
+  const auto maximum_size = schema.size_maximum();
   if (size.has_value() &&
-      ((schema.size_minimum().has_value() && *size < *schema.size_minimum()) ||
-       (schema.size_maximum().has_value() && *size > *schema.size_maximum()))) {
+      ((minimum_size.has_value() && *size < *minimum_size) ||
+       (maximum_size.has_value() && *size > *maximum_size))) {
     return ConfigurationError(path, "value size is outside its bounds");
   }
   return Status::Ok();
@@ -308,6 +309,8 @@ void RecordDescendantMetadata(
   }
 }
 
+// The recursive schema validation remains cohesive as one operation.
+// NOLINTNEXTLINE(readability-function-size)
 Result<ConfigurationValue> ValidateNode(
     const ConfigurationSchema& schema, const ConfigurationValue& input,
     std::string_view path, const ConfigurationOrigin& inherited_origin,
@@ -395,10 +398,10 @@ Result<ConfigurationValue> ValidateNode(
       return ConfigurationError(child_path, "required key is missing");
     }
   }
-  if ((schema.size_minimum().has_value() &&
-       output_object.size() < *schema.size_minimum()) ||
-      (schema.size_maximum().has_value() &&
-       output_object.size() > *schema.size_maximum())) {
+  const auto minimum_size = schema.size_minimum();
+  const auto maximum_size = schema.size_maximum();
+  if ((minimum_size.has_value() && output_object.size() < *minimum_size) ||
+      (maximum_size.has_value() && output_object.size() > *maximum_size)) {
     return ConfigurationError(path, "value size is outside its bounds");
   }
   return ConfigurationValue(std::move(output_object));
@@ -440,7 +443,7 @@ ConfigurationValue::ConfigurationValue(std::int64_t value) noexcept
 ConfigurationValue::ConfigurationValue(std::uint64_t value) noexcept
     : storage_(value) {}
 
-ConfigurationValue::ConfigurationValue(Utf8Tag, std::string value)
+ConfigurationValue::ConfigurationValue(Utf8Tag /*tag*/, std::string value)
     : storage_(std::move(value)) {}
 
 Result<ConfigurationValue> ConfigurationValue::Utf8String(std::string value) {
@@ -769,6 +772,8 @@ Result<bool> Configuration::IsDeprecated(std::string_view path) const {
   return iterator->second.deprecated;
 }
 
+// Preserve the established public by-value origin ABI.
+// NOLINTBEGIN(performance-unnecessary-value-param)
 Result<Configuration> ValidateConfiguration(const ConfigurationSchema& schema,
                                             const ConfigurationValue& value,
                                             ConfigurationOrigin origin) {
@@ -799,6 +804,7 @@ Result<Configuration> ValidateConfigurationWithOrigins(
   }
   return Configuration(std::move(*validated), std::move(metadata));
 }
+// NOLINTEND(performance-unnecessary-value-param)
 
 std::string RenderConfigurationValue(const ConfigurationValue& value,
                                      bool sensitive) {
@@ -822,7 +828,7 @@ std::string RenderConfigurationValue(const ConfigurationValue& value,
       if (result.ec != std::errc{}) {
         return "<unrenderable-double>";
       }
-      return std::string(buffer.data(), result.ptr);
+      return {buffer.data(), result.ptr};
     }
     case ConfigurationValueType::kString:
       return internal_core_configuration::QuoteDiagnosticString(

@@ -20,6 +20,8 @@ namespace asc {
 // the identity-token-only contract used by earlier expression adapters.
 class ExpressionAliasMetadata {
  public:
+  // Identity-only alias metadata intentionally supports implicit construction.
+  // NOLINTNEXTLINE(google-explicit-constructor)
   constexpr ExpressionAliasMetadata(const void* identity) noexcept
       : identity_(identity) {}
 

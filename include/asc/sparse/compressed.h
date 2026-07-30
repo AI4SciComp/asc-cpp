@@ -28,16 +28,18 @@ template <SparseCompressedFormat Format>
 constexpr extent_t OuterExtent(std::span<const extent_t, 2> shape) noexcept {
   if constexpr (Format == SparseCompressedFormat::kCsr) {
     return shape[0];
+  } else {
+    return shape[1];
   }
-  return shape[1];
 }
 
 template <SparseCompressedFormat Format>
 constexpr extent_t InnerExtent(std::span<const extent_t, 2> shape) noexcept {
   if constexpr (Format == SparseCompressedFormat::kCsr) {
     return shape[1];
+  } else {
+    return shape[0];
   }
-  return shape[0];
 }
 
 template <SparseCompressedFormat Format>
@@ -45,8 +47,9 @@ constexpr std::array<index_t, 2> Coordinate(extent_t outer,
                                             index_t inner) noexcept {
   if constexpr (Format == SparseCompressedFormat::kCsr) {
     return {outer, inner};
+  } else {
+    return {inner, outer};
   }
-  return {inner, outer};
 }
 
 inline Result<std::size_t> OffsetCount(extent_t outer_extent) {
@@ -173,6 +176,8 @@ class CompressedSparseView {
     requires(std::is_const_v<Element> &&
              std::same_as<std::remove_const_t<OtherElement>, value_type> &&
              !std::is_const_v<OtherElement>)
+  // Mutable-to-const views intentionally convert implicitly.
+  // NOLINTNEXTLINE(google-explicit-constructor)
   constexpr CompressedSparseView(
       const CompressedSparseView<OtherElement, Format>& other) noexcept
       : outer_offsets_(other.outer_offsets()),
@@ -868,7 +873,7 @@ struct WritableExpressionAdapter<CompressedSparseView<Element, Format>> {
   }
 
   static constexpr bool IsUnique(
-      const CompressedSparseView<Element, Format>&) noexcept {
+      const CompressedSparseView<Element, Format>& /*view*/) noexcept {
     return true;
   }
 

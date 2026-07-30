@@ -65,7 +65,7 @@ Status::Status(ErrorCode code, std::string message, std::string provider,
       "An OK Status cannot contain failure diagnostics");
 }
 
-Status Status::Ok() noexcept { return Status(); }
+Status Status::Ok() noexcept { return {}; }
 
 std::string Status::ToString() const {
   if (ok()) {

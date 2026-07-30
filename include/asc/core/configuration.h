@@ -38,6 +38,8 @@ class ConfigurationValue {
   using List = std::vector<ConfigurationValue>;
   using Object = std::map<std::string, ConfigurationValue, std::less<>>;
 
+  // These conversions provide the variant-style construction contract.
+  // NOLINTBEGIN(google-explicit-constructor)
   ASC_CORE_EXPORT ConfigurationValue() noexcept;
   ASC_CORE_EXPORT ConfigurationValue(std::nullptr_t) noexcept;
 
@@ -65,6 +67,7 @@ class ConfigurationValue {
   ConfigurationValue(const char*) = delete;
   ASC_CORE_EXPORT ConfigurationValue(List value);
   ASC_CORE_EXPORT ConfigurationValue(Object value);
+  // NOLINTEND(google-explicit-constructor)
 
   ASC_CORE_EXPORT ConfigurationValue(const ConfigurationValue&);
   ASC_CORE_EXPORT ConfigurationValue& operator=(const ConfigurationValue&);
@@ -103,7 +106,7 @@ class ConfigurationValue {
     }
   }
 
-  ConfigurationValue(Utf8Tag, std::string value);
+  ConfigurationValue(Utf8Tag /*tag*/, std::string value);
 
   Storage storage_;
 };
@@ -228,11 +231,11 @@ class Configuration {
 
  private:
   friend ASC_CORE_EXPORT Result<Configuration> ValidateConfiguration(
-      const ConfigurationSchema&, const ConfigurationValue&,
-      ConfigurationOrigin);
+      const ConfigurationSchema& schema, const ConfigurationValue& value,
+      ConfigurationOrigin origin);
   friend ASC_CORE_EXPORT Result<Configuration> ValidateConfigurationWithOrigins(
-      const ConfigurationSchema&, const ConfigurationValue&,
-      const ConfigurationOrigins&, ConfigurationOrigin);
+      const ConfigurationSchema& schema, const ConfigurationValue& value,
+      const ConfigurationOrigins& origins, ConfigurationOrigin fallback_origin);
 
   Configuration(
       ConfigurationValue value,

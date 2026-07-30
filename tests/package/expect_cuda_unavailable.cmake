@@ -60,7 +60,7 @@ if(_configure_result EQUAL 0)
 endif()
 set(_diagnostic "${_configure_stdout}\n${_configure_stderr}")
 if(NOT _diagnostic MATCHES
-   "(ASC_CPP_ENABLE_CUDA|CUDA compiler|CMAKE_CUDA_COMPILER|nvcc)")
+   "(ASC_CPP_ENABLE_CUDA|CUDA compiler|CUDA toolset|CMAKE_CUDA_COMPILER|nvcc)")
   message(FATAL_ERROR
     "Missing-CUDA failure lacks an actionable diagnostic.\n${_diagnostic}"
   )

@@ -11,6 +11,8 @@ namespace asc {
 
 // Stable machine-readable error categories. Diagnostic message text is not a
 // stable interface.
+// The fixed 32-bit representation is part of the public error-code ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class ErrorCode : std::uint32_t {
   kOk = 0,
   kInvalidArgument = 1,

@@ -1,12 +1,9 @@
-#include <cstddef>
-
 #include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/sparse/compressed.h"
 #include "asc/sparse/linalg.h"
 
-namespace asc {
-namespace internal_sparse_linalg {
+namespace asc::internal_sparse_linalg {
 namespace {
 
 template <typename Element>
@@ -57,5 +54,4 @@ Status SpmvReference(double alpha, CsrView<const double> matrix,
   return SpmvReferenceImpl(alpha, matrix, input, beta, output);
 }
 
-}  // namespace internal_sparse_linalg
-}  // namespace asc
+}  // namespace asc::internal_sparse_linalg

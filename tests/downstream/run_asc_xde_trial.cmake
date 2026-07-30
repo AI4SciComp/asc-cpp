@@ -115,6 +115,18 @@ endforeach()
 add_executable(asc_xde_trial asc_xde_trial.cc)
 target_link_libraries(asc_xde_trial PRIVATE ASC::dense)
 target_compile_features(asc_xde_trial PRIVATE cxx_std_20)
+get_target_property(_asc_dense_type ASC::dense TYPE)
+if(WIN32 AND _asc_dense_type STREQUAL "SHARED_LIBRARY")
+  add_custom_command(
+    TARGET asc_xde_trial
+    POST_BUILD
+    COMMAND
+      "${CMAKE_COMMAND}" -E copy_if_different
+      "$<TARGET_RUNTIME_DLLS:asc_xde_trial>"
+      "$<TARGET_FILE_DIR:asc_xde_trial>"
+    COMMAND_EXPAND_LISTS
+  )
+endif()
 ]=])
 
 set(_configure_command

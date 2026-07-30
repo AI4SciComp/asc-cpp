@@ -67,14 +67,17 @@ function(asc_cpp_validate_test_workspace)
     )
   endif()
   cmake_path(NORMAL_PATH _work_dir OUTPUT_VARIABLE _work_normal)
-  if(EXISTS "${_work_normal}" AND IS_SYMLINK "${_work_normal}")
-    message(FATAL_ERROR
-      "The ASCCpp test work directory must not be a symlink: "
-      "'${_work_normal}'"
-    )
-  endif()
   set(_work_existing_ancestor "${_work_normal}")
-  while(NOT EXISTS "${_work_existing_ancestor}")
+  while(TRUE)
+    if(IS_SYMLINK "${_work_existing_ancestor}")
+      message(FATAL_ERROR
+        "The ASCCpp test work directory must not contain a symlink: "
+        "'${_work_existing_ancestor}'"
+      )
+    endif()
+    if(EXISTS "${_work_existing_ancestor}")
+      break()
+    endif()
     cmake_path(GET _work_existing_ancestor PARENT_PATH _work_parent)
     cmake_path(
       COMPARE
