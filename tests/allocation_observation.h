@@ -5,9 +5,23 @@
 
 namespace asc_test {
 
+// A replacement global operator new in a Windows executable does not
+// interpose allocations made inside a DLL. Resource allocations made by
+// asc_core therefore remain visible to the resource's own counter but not to
+// the executable-local process probe. Static Windows and non-Windows builds
+// observe those allocations in the process probe as well.
+[[nodiscard]] constexpr std::size_t ProcessVisibleResourceAllocationCount(
+    std::size_t resource_allocations) noexcept {
+#if defined(_WIN32) && !defined(ASC_CORE_STATIC_DEFINE)
+  return 0;
+#else
+  return resource_allocations;
+#endif
+}
+
 // MSVC Debug iterator instrumentation allocates container proxy state when the
 // public Status and Result scaffolding constructs standard-library containers.
-// The Windows Release matrix enforces exact process-allocation counts.
+// Release and non-MSVC builds enforce exact process-allocation counts.
 #if defined(_MSC_VER) && defined(_DEBUG)
 inline constexpr bool kHasExactProcessAllocationObservation = false;
 #else

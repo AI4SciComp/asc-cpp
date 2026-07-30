@@ -250,9 +250,14 @@ bool BenchmarkSparse(std::uint64_t& aggregate_checksum) {
             << " next_structure_offset=" << next_structure
             << " next_value_offset=" << next_value << " checksum=" << checksum
             << " oracle=independent\n";
-  return resource.live_allocations() == 0 &&
-         asc_test::ProcessAllocationCountMatches(process_allocation_calls,
-                                                 resource.allocation_calls());
+  constexpr std::size_t kExpectedResourceAllocations = 2U * kRepetitions;
+  return resource.allocation_calls() == kExpectedResourceAllocations &&
+         resource.deallocation_calls() == kExpectedResourceAllocations &&
+         resource.live_allocations() == 0 &&
+         asc_test::ProcessAllocationCountMatches(
+             process_allocation_calls,
+             asc_test::ProcessVisibleResourceAllocationCount(
+                 kExpectedResourceAllocations));
 }
 
 }  // namespace

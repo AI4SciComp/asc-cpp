@@ -34,6 +34,8 @@ int main() {
   ASC_RANDOM_SPARSE_TEST_EQ(test, resource.allocation_attempts(),
                             std::size_t{2});
   ASC_RANDOM_SPARSE_TEST_CHECK(
-      test, asc_test::ProcessAllocationCountMatches(allocations, 2));
+      test, asc_test::ProcessAllocationCountMatches(
+                allocations, asc_test::ProcessVisibleResourceAllocationCount(
+                                 resource.allocation_attempts())));
   return test.Finish();
 }
