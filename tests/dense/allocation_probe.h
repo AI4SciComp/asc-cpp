@@ -3,6 +3,8 @@
 
 #include <cstddef>
 
+#include "../allocation_observation.h"
+
 namespace asc_dense_test {
 
 class AllocationProbe {

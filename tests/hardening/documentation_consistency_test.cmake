@@ -1,13 +1,8 @@
 cmake_minimum_required(VERSION 3.24)
 
-foreach(_required_variable IN ITEMS
-    ASC_CPP_SOURCE_DIR
-    ASC_CPP_EXPECTED_PREDECESSOR_COMMIT)
-  if(NOT DEFINED ${_required_variable}
-     OR "${${_required_variable}}" STREQUAL "")
-    message(FATAL_ERROR "${_required_variable} is required.")
-  endif()
-endforeach()
+if(NOT DEFINED ASC_CPP_SOURCE_DIR OR "${ASC_CPP_SOURCE_DIR}" STREQUAL "")
+  message(FATAL_ERROR "ASC_CPP_SOURCE_DIR is required.")
+endif()
 
 set(_security_file "${ASC_CPP_SOURCE_DIR}/SECURITY.md")
 set(_capability_file
@@ -16,10 +11,12 @@ set(_capability_file
 set(_roadmap_file
   "${ASC_CPP_SOURCE_DIR}/docs/development/asc-cpp-architecture/release-roadmap.md"
 )
+set(_documentation_index_file "${ASC_CPP_SOURCE_DIR}/docs/README.md")
 foreach(_required_file IN ITEMS
     "${_security_file}"
     "${_capability_file}"
-    "${_roadmap_file}")
+    "${_roadmap_file}"
+    "${_documentation_index_file}")
   if(NOT EXISTS "${_required_file}")
     message(FATAL_ERROR "Required policy input does not exist: ${_required_file}")
   endif()
@@ -28,6 +25,7 @@ endforeach()
 file(READ "${_security_file}" _security)
 file(READ "${_capability_file}" _capability)
 file(READ "${_roadmap_file}" _roadmap)
+file(READ "${_documentation_index_file}" _documentation_index)
 
 foreach(_security_text IN ITEMS
     "unreleased `0.9.0` Milestone 8 correction candidate"
@@ -80,6 +78,47 @@ if(_roadmap_status_position EQUAL -1)
   )
 endif()
 
+string(FIND "${_documentation_index}"
+  "## Retained historical documents"
+  _retained_historical_documents_position
+)
+if(NOT _retained_historical_documents_position EQUAL -1)
+  message(FATAL_ERROR
+    "The documentation index still claims deleted historical documents are "
+    "retained."
+  )
+endif()
+
+set(_removed_historical_documents
+  docs/architecture.md
+  docs/build-system.md
+  docs/design/architecture_blueprint_v1.md
+  docs/design/architecture_review_v1.md
+  docs/design/array_design.md
+  docs/design/core_design.md
+  docs/design/linalg_design.md
+  docs/design/random_design.md
+  docs/design/utilities_design.md
+  docs/migration/array.md
+  docs/migration/core.md
+  docs/migration/handoff.md
+  docs/migration/inventory.md
+  docs/migration/linalg.md
+  docs/migration/random.md
+  docs/migration/utilities.md
+  docs/modules/array.md
+  docs/modules/linalg.md
+  docs/optional-backends.md
+  docs/testing.md
+)
+foreach(_removed_document IN LISTS _removed_historical_documents)
+  if(EXISTS "${ASC_CPP_SOURCE_DIR}/${_removed_document}")
+    message(FATAL_ERROR
+      "Deleted historical document was restored: ${_removed_document}"
+    )
+  endif()
+endforeach()
+
 file(GLOB_RECURSE _documentation_files
   LIST_DIRECTORIES FALSE
   "${ASC_CPP_SOURCE_DIR}/docs/*.md"
@@ -87,34 +126,23 @@ file(GLOB_RECURSE _documentation_files
 set(_historical_banner_count 0)
 foreach(_documentation_file IN LISTS _documentation_files)
   file(READ "${_documentation_file}" _documentation)
-  string(FIND "${_documentation}" "> [!WARNING]" _warning_position)
-  if(NOT _warning_position EQUAL -1)
+  string(FIND "${_documentation}"
+    "**Superseded historical document.**"
+    _historical_banner_position
+  )
+  if(NOT _historical_banner_position EQUAL -1)
     math(EXPR _historical_banner_count "${_historical_banner_count} + 1")
-    foreach(_banner_text IN ITEMS
-        "**Superseded historical document.**"
-        "body below records the deleted"
-        "${ASC_CPP_EXPECTED_PREDECESSOR_COMMIT}"
-        "does not describe the active API or package"
-        "[current documentation]"
-        "[approved Stage A architecture]")
-      string(FIND "${_documentation}" "${_banner_text}" _banner_position)
-      if(_banner_position EQUAL -1)
-        message(FATAL_ERROR
-          "Historical banner in ${_documentation_file} is missing: "
-          "${_banner_text}"
-        )
-      endif()
-    endforeach()
   endif()
 endforeach()
 
-if(NOT _historical_banner_count EQUAL 20)
+if(NOT _historical_banner_count EQUAL 0)
   message(FATAL_ERROR
-    "Expected exactly 20 neutral historical banners; found "
-    "${_historical_banner_count}."
+    "Superseded historical documents must not be restored; found "
+    "${_historical_banner_count} historical banner(s)."
   )
 endif()
 
 message(STATUS
-  "Milestone 8 security policy and 20 historical banners are consistent."
+  "Milestone 8 security policy, 20 removed historical documents, and zero "
+  "historical banners are consistent."
 )

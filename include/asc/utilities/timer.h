@@ -14,6 +14,8 @@ namespace internal_utilities_timer {
 class TimerAccess;
 }  // namespace internal_utilities_timer
 
+// Preserve the established public enum representation.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class TimerState {
   kEmpty,
   kRunning,
@@ -43,7 +45,7 @@ class Timer {
   friend class internal_utilities_timer::TimerAccess;
 
   TimerState state_ = TimerState::kEmpty;
-  Clock::time_point start_time_{};
+  Clock::time_point start_time_;
   Duration total_{};
   Duration last_{};
   std::size_t sample_count_ = 0;

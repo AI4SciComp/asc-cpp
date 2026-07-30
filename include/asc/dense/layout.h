@@ -20,6 +20,8 @@ struct LayoutStride {
   std::array<stride_t, Rank> strides;
 };
 
+// Preserve the established public enum representation.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class DenseLayoutKind {
   kLeft,
   kRight,
@@ -33,7 +35,7 @@ class DenseLayout {
 
  public:
   static Result<DenseLayout> Create(std::span<const extent_t, Rank> extents,
-                                    LayoutLeft = {}) {
+                                    LayoutLeft /*layout*/ = {}) {
     auto validated = ValidateExtents(extents);
     if (!validated.ok()) {
       return validated.status();
@@ -54,7 +56,7 @@ class DenseLayout {
   }
 
   static Result<DenseLayout> Create(std::span<const extent_t, Rank> extents,
-                                    LayoutRight) {
+                                    LayoutRight /*layout*/) {
     auto validated = ValidateExtents(extents);
     if (!validated.ok()) {
       return validated.status();

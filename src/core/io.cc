@@ -12,6 +12,8 @@
 #include <utility>
 
 #include "asc/core/contracts.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 
 namespace asc {
 
@@ -235,11 +237,11 @@ Status WriteTextFile(const std::filesystem::path& path, std::string_view text) {
     return file.status();
   }
   const auto bytes = std::as_bytes(std::span(text.data(), text.size()));
-  const Status write_status = WriteAll(*file, bytes);
+  Status write_status = WriteAll(*file, bytes);
   if (!write_status.ok()) {
     return write_status;
   }
-  const Status flush_status = file->Flush();
+  Status flush_status = file->Flush();
   if (!flush_status.ok()) {
     return flush_status;
   }

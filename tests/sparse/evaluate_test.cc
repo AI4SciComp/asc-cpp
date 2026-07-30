@@ -160,7 +160,8 @@ void TestCoordinateAndCompressedEvaluation(TestContext& test) {
     allocations = probe.count();
     ASC_SPARSE_TEST_CHECK(test, status.ok());
   }
-  ASC_SPARSE_TEST_EQ(test, allocations, std::size_t{0});
+  ASC_SPARSE_TEST_CHECK(
+      test, asc_test::ProcessAllocationCountMatches(allocations, 0));
 }
 
 template <asc::SparsityEffect Effect>
@@ -338,10 +339,10 @@ void TestEmptyDestination(TestContext& test) {
 void TestCoordinateStructuralOverlapRejected(TestContext& test) {
   constexpr std::array<asc::extent_t, 1> kVectorShape{4};
   std::array<asc::index_t, 3> source_coordinates{0, 1, 3};
-  constexpr std::array<asc::index_t, 3> kSourceValues{101, 202, 303};
+  constexpr std::array<asc::index_t, 3> kOverlapSourceValues{101, 202, 303};
   constexpr std::array<asc::index_t, 2> kDestinationCoordinates{0, 3};
   auto source = asc::CoordinateView<const asc::index_t, 1>::Create(
-      source_coordinates.data(), kSourceValues.data(), kVectorShape, 3,
+      source_coordinates.data(), kOverlapSourceValues.data(), kVectorShape, 3,
       asc::MemorySpace::kHost);
   auto destination = asc::CoordinateView<asc::index_t, 1>::Create(
       kDestinationCoordinates.data(), source_coordinates.data() + 1,
@@ -371,11 +372,11 @@ void TestCompressedStructuralOverlapRejected(TestContext& test) {
   constexpr std::array<asc::extent_t, 2> kMatrixShape{2, 2};
   std::array<asc::nnz_t, 3> source_offsets{0, 1, 2};
   std::array<asc::index_t, 2> source_indices{0, 1};
-  constexpr std::array<asc::index_t, 2> kSourceValues{17, 29};
+  constexpr std::array<asc::index_t, 2> kOverlapSourceValues{17, 29};
   constexpr std::array<asc::nnz_t, 3> kDestinationOffsets{0, 1, 2};
   constexpr std::array<asc::index_t, 2> kDestinationIndices{0, 1};
   auto source = asc::CsrView<const asc::index_t>::Create(
-      source_offsets.data(), source_indices.data(), kSourceValues.data(),
+      source_offsets.data(), source_indices.data(), kOverlapSourceValues.data(),
       kMatrixShape, 2, asc::MemorySpace::kHost);
   ASC_SPARSE_TEST_CHECK(test, source.ok());
   if (!source.ok()) {

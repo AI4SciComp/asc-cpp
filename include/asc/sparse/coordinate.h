@@ -135,8 +135,9 @@ template <typename Element>
 Result<Element> AddDuplicate(Element left, Element right) {
   if constexpr (std::integral<Element>) {
     return CheckedAdd(left, right);
+  } else {
+    return static_cast<Element>(left + right);
   }
-  return static_cast<Element>(left + right);
 }
 
 inline bool ByteSpanContains(const void* begin, std::size_t size,
@@ -268,6 +269,8 @@ class CoordinateView {
     requires(std::is_const_v<Element> &&
              std::same_as<std::remove_const_t<OtherElement>, value_type> &&
              !std::is_const_v<OtherElement>)
+  // Mutable-to-const views intentionally convert implicitly.
+  // NOLINTNEXTLINE(google-explicit-constructor)
   constexpr CoordinateView(
       const CoordinateView<OtherElement, Rank>& other) noexcept
       : coordinates_(other.coordinates()),
@@ -1017,7 +1020,7 @@ struct WritableExpressionAdapter<CoordinateView<Element, Rank>> {
   }
 
   static constexpr bool IsUnique(
-      const CoordinateView<Element, Rank>&) noexcept {
+      const CoordinateView<Element, Rank>& /*view*/) noexcept {
     return true;
   }
 

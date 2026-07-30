@@ -3,6 +3,8 @@
 
 #include <cstddef>
 
+#include "../allocation_observation.h"
+
 namespace asc_sparse_test {
 
 class AllocationProbe {

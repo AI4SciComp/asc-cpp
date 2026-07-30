@@ -494,7 +494,8 @@ void TestSubviews(TestContext& test) {
     allocation_count = probe.count();
     ASC_DENSE_TEST_CHECK(test, no_allocation.ok());
   }
-  ASC_DENSE_TEST_EQ(test, allocation_count, std::size_t{0});
+  ASC_DENSE_TEST_CHECK(
+      test, asc_test::ProcessAllocationCountMatches(allocation_count, 0));
 }
 
 void TestExpressionAdapter(TestContext& test) {

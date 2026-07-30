@@ -30,6 +30,8 @@ class AliasToken {
   const void* identity_;
 };
 
+// Preserve the established public enum representation.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class SparsityEffect {
   kStructurePreserving,
   kStructureFiltering,
@@ -40,6 +42,8 @@ enum class SparsityEffect {
   kDestinationRequired,
 };
 
+// Preserve the established public enum representation.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class ExpressionOperation {
   kExternal,
   kScalar,
@@ -64,16 +68,17 @@ struct ExpressionAdapter<T> {
       SparsityEffect::kValueDependent;
   static constexpr ExpressionOperation operation = ExpressionOperation::kScalar;
 
-  static constexpr std::array<extent_t, 0> Shape(const T&) noexcept {
+  static constexpr std::array<extent_t, 0> Shape(const T& /*value*/) noexcept {
     return {};
   }
 
   static constexpr T Read(const T& value,
-                          std::span<const index_t, 0>) noexcept {
+                          std::span<const index_t, 0> /*indices*/) noexcept {
     return value;
   }
 
-  static constexpr bool MayAlias(const T&, AliasToken) noexcept {
+  static constexpr bool MayAlias(const T& /*value*/,
+                                 AliasToken /*token*/) noexcept {
     return false;
   }
 };
@@ -149,13 +154,13 @@ template <ReadableExpression T>
 
 template <ReadableExpression T>
 [[nodiscard]] constexpr SparsityEffect ExpressionSparsityEffect(
-    const T&) noexcept {
+    const T& /*expression*/) noexcept {
   return ExpressionAdapter<std::remove_cvref_t<T>>::sparsity_effect;
 }
 
 template <ReadableExpression T>
 [[nodiscard]] constexpr ExpressionOperation ExpressionOperationCategory(
-    const T&) noexcept {
+    const T& /*expression*/) noexcept {
   using Adapter = ExpressionAdapter<std::remove_cvref_t<T>>;
   if constexpr (requires { Adapter::operation; }) {
     return Adapter::operation;
@@ -375,12 +380,15 @@ struct ExpressionAdapter<
   using value_type =
       internal_expression::BinaryValueType<Operation, Left, Right>;
   static constexpr rank_t rank = kLeftRank == 0 ? kRightRank : kLeftRank;
-  static constexpr SparsityEffect sparsity_effect =
-      (kLeftRank == 0) != (kRightRank == 0)
-          ? SparsityEffect::kValueDependent
-          : (Operation == ExpressionOperation::kMultiply
-                 ? SparsityEffect::kStructureIntersection
-                 : SparsityEffect::kStructureUnion);
+  static constexpr SparsityEffect sparsity_effect = [] {
+    if constexpr ((kLeftRank == 0) != (kRightRank == 0)) {
+      return SparsityEffect::kValueDependent;
+    } else if constexpr (Operation == ExpressionOperation::kMultiply) {
+      return SparsityEffect::kStructureIntersection;
+    } else {
+      return SparsityEffect::kStructureUnion;
+    }
+  }();
   static constexpr ExpressionOperation operation = Operation;
 
   static constexpr std::array<extent_t, rank> Shape(const Node& node) {

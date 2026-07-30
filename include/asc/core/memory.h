@@ -49,8 +49,10 @@ class ASC_CORE_EXPORT MutableMemoryView {
   [[nodiscard]] constexpr bool valid() const noexcept {
     return size_ == 0 || data_ != nullptr;
   }
+  // Mutable-to-const view conversion is intentionally implicit.
+  // NOLINTNEXTLINE(google-explicit-constructor)
   [[nodiscard]] constexpr operator ConstMemoryView() const noexcept {
-    return ConstMemoryView(data_, size_, space_);
+    return {data_, size_, space_};
   }
 
  private:

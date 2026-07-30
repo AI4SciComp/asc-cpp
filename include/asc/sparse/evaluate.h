@@ -49,6 +49,8 @@ bool IsExactSelfAssignment(const Expression& expression,
              expression.shape() == destination.shape() &&
              expression.nnz() == destination.nnz() &&
              expression.memory_space() == destination.memory_space();
+    } else {
+      return false;
     }
   } else if constexpr (IsCompressedView<Source>::value &&
                        IsCompressedView<Destination>::value) {
@@ -61,9 +63,12 @@ bool IsExactSelfAssignment(const Expression& expression,
              expression.shape() == destination.shape() &&
              expression.nnz() == destination.nnz() &&
              expression.memory_space() == destination.memory_space();
+    } else {
+      return false;
     }
+  } else {
+    return false;
   }
-  return false;
 }
 
 template <ReadableExpression Expression, typename Destination>
@@ -105,8 +110,8 @@ Status ValidateCommon(const ExecutionContext& context,
       return Status(ErrorCode::kShape,
                     "Sparse expression and destination shapes do not match");
     }
+    return Status::Ok();
   }
-  return Status::Ok();
 }
 
 template <ReadableExpression Expression, typename Destination,

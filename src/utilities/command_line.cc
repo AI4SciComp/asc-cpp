@@ -1,13 +1,17 @@
 #include "asc/utilities/command_line.h"
 
+#include <algorithm>
 #include <cctype>
 #include <charconv>
 #include <cstddef>
 #include <cstdint>
-#include <map>
+#include <functional>
+#include <ios>
+#include <locale>
 #include <optional>
 #include <set>
 #include <span>
+#include <sstream>
 #include <string>
 #include <string_view>
 #include <system_error>
@@ -103,18 +107,50 @@ bool IsAsciiName(std::string_view name) noexcept {
   if (name.empty() || name.front() == '-') {
     return false;
   }
-  for (unsigned char character : name) {
-    if (character > 0x7fU || !(std::isalnum(character) != 0 ||
-                               character == '-' || character == '_')) {
-      return false;
-    }
-  }
-  return true;
+  return std::ranges::all_of(name, [](unsigned char character) {
+    return character <= 0x7fU && (std::isalnum(character) != 0 ||
+                                  character == '-' || character == '_');
+  });
 }
 
 bool IsAsciiShortName(char name) noexcept {
   const auto character = static_cast<unsigned char>(name);
   return character <= 0x7fU && std::isalnum(character) != 0;
+}
+
+bool HasNonzeroDecimalSignificand(std::string_view text) noexcept {
+  const std::size_t exponent = text.find_first_of("eE");
+  const std::size_t significand_end =
+      exponent == std::string_view::npos ? text.size() : exponent;
+  for (std::size_t index = 0; index < significand_end; ++index) {
+    if (text[index] >= '1' && text[index] <= '9') {
+      return true;
+    }
+  }
+  return false;
+}
+
+std::optional<double> ParseDouble(std::string_view text) {
+  if (text.empty() || text.front() == '+') {
+    return std::nullopt;
+  }
+  const std::string_view magnitude =
+      text.front() == '-' ? text.substr(1) : text;
+  if (magnitude.starts_with("0x") || magnitude.starts_with("0X")) {
+    return std::nullopt;
+  }
+
+  std::istringstream input{std::string(text)};
+  input.imbue(std::locale::classic());
+  double value = 0.0;
+  input >> std::noskipws >> value;
+  if (!input || !input.eof()) {
+    return std::nullopt;
+  }
+  if (value == 0.0 && HasNonzeroDecimalSignificand(text)) {
+    return std::nullopt;
+  }
+  return value;
 }
 
 const CommandLineOption* FindLongOption(
@@ -175,16 +211,12 @@ Result<ConfigurationValue> ParseValue(std::string_view text,
   }
 
   if (type == ConfigurationValueType::kDouble) {
-    double value = 0.0;
-    const auto conversion =
-        std::from_chars(text.data(), text.data() + text.size(), value,
-                        std::chars_format::general);
-    if (conversion.ec != std::errc{} ||
-        conversion.ptr != text.data() + text.size()) {
+    const std::optional<double> value = ParseDouble(text);
+    if (!value.has_value()) {
       return CommandLineError(
           "A double command-line value is not an exact number");
     }
-    return ConfigurationValue(value);
+    return ConfigurationValue(*value);
   }
 
   if (type == ConfigurationValueType::kString) {
@@ -323,6 +355,8 @@ Result<CommandLineParser> CommandLineParser::Create(
       std::vector<CommandLineOption>(options.begin(), options.end()));
 }
 
+// Parsing preserves one state machine so option-order behavior stays explicit.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CommandLineParseResult> CommandLineParser::Parse(
     std::span<const std::string_view> arguments) const {
   using internal_utilities_command_line::CommandLineError;

@@ -1,7 +1,6 @@
 #include "asc/utilities/timer.h"
 
 #include <chrono>
-#include <cstddef>
 
 #include "asc/core/result.h"
 #include "asc/core/status.h"

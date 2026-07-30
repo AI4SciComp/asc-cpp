@@ -39,6 +39,49 @@ if(NOT COMPILER_STYLE STREQUAL "gnu"
   )
 endif()
 
+if(COMPILER_STYLE STREQUAL "msvc")
+  if(NOT WIN32)
+    message(FATAL_ERROR "MSVC-style compile observation requires Windows")
+  endif()
+  get_filename_component(_compiler_directory "${CXX_COMPILER}" DIRECTORY)
+  get_filename_component(_msvc_target_architecture
+    "${_compiler_directory}" NAME
+  )
+  set(_vc_directory "${_compiler_directory}")
+  foreach(_parent IN ITEMS 1 2 3 4 5 6)
+    get_filename_component(_vc_directory "${_vc_directory}" DIRECTORY)
+  endforeach()
+  set(_vcvarsall "${_vc_directory}/Auxiliary/Build/vcvarsall.bat")
+  if(NOT EXISTS "${_vcvarsall}")
+    message(FATAL_ERROR
+      "Cannot locate vcvarsall.bat for the configured compiler: "
+      "${CXX_COMPILER}"
+    )
+  endif()
+  find_program(_powershell
+    NAMES pwsh.exe powershell.exe pwsh powershell
+    REQUIRED
+  )
+  set(_timing_script "${WORK_DIR}/time_compile.ps1")
+  file(WRITE "${_timing_script}" [=[
+param(
+  [Parameter(Mandatory = $true)]
+  [string]$BatchPath
+)
+
+$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+& $BatchPath
+$result = $LASTEXITCODE
+$stopwatch.Stop()
+$seconds = $stopwatch.Elapsed.TotalSeconds.ToString(
+  "0.000000",
+  [System.Globalization.CultureInfo]::InvariantCulture
+)
+[Console]::Out.WriteLine("Elapsed time (seconds): {0}", $seconds)
+exit $result
+]=])
+endif()
+
 execute_process(
   COMMAND "${CXX_COMPILER}" --version
   RESULT_VARIABLE _version_result
@@ -119,18 +162,42 @@ foreach(_source_name IN LISTS _sources)
   set(_source "${CMAKE_CURRENT_LIST_DIR}/${_source_name}")
   if(COMPILER_STYLE STREQUAL "msvc")
     set(_object "${WORK_DIR}/${_source_name}.obj")
+    file(TO_NATIVE_PATH "${CXX_COMPILER}" _compiler_native)
+    file(TO_NATIVE_PATH "${_vcvarsall}" _vcvarsall_native)
+    file(TO_NATIVE_PATH "${INCLUDE_DIR}" _include_native)
+    file(TO_NATIVE_PATH "${_source}" _source_native)
+    file(TO_NATIVE_PATH "${_object}" _object_native)
+    set(_compile_batch "${WORK_DIR}/${_source_name}.bat")
+    file(TO_NATIVE_PATH "${_compile_batch}" _compile_batch_native)
+    file(TO_NATIVE_PATH "${_timing_script}" _timing_script_native)
+    string(CONCAT _compile_batch_contents
+      "@echo off\n"
+      "call \"${_vcvarsall_native}\" ${_msvc_target_architecture} >nul\n"
+      "if errorlevel 1 exit /b %errorlevel%\n"
+      "\"${_compiler_native}\" /nologo /std:c++20 /EHsc "
+      "\"/I${_include_native}\""
+    )
+    foreach(_flag IN LISTS COMPILE_FLAGS)
+      string(APPEND _compile_batch_contents " ${_flag}")
+    endforeach()
+    string(APPEND _compile_batch_contents
+      " /c \"${_source_native}\" \"/Fo${_object_native}\"\n"
+      "exit /b %errorlevel%\n"
+    )
+    file(WRITE "${_compile_batch}" "${_compile_batch_contents}")
     set(_compile_command
-      "${CXX_COMPILER}"
-      /nologo
-      /std:c++20
-      "/I${INCLUDE_DIR}"
-      ${COMPILE_FLAGS}
-      /c "${_source}"
-      "/Fo${_object}"
+      "${_powershell}"
+      -NoLogo
+      -NoProfile
+      -NonInteractive
+      -ExecutionPolicy Bypass
+      -File "${_timing_script_native}"
+      -BatchPath "${_compile_batch_native}"
     )
   else()
     set(_object "${WORK_DIR}/${_source_name}.o")
     set(_compile_command
+      "${CMAKE_COMMAND}" -E time
       "${CXX_COMPILER}"
       -std=c++20
       "-I${INCLUDE_DIR}"
@@ -144,9 +211,7 @@ foreach(_source_name IN LISTS _sources)
   endif()
 
   execute_process(
-    COMMAND
-      "${CMAKE_COMMAND}" -E time
-      ${_compile_command}
+    COMMAND ${_compile_command}
     RESULT_VARIABLE _compile_result
     OUTPUT_VARIABLE _compile_stdout
     ERROR_VARIABLE _compile_stderr

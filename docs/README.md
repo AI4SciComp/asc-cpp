@@ -108,15 +108,6 @@ invariants, [0013][adr-0013] for Dense providers, [0016][adr-0016] for sibling
 isolation, [0017][adr-0017] for provenance, and [0018][adr-0018] for the 0.9.x
 boundary.
 
-## Retained historical documents
-
-Bannered topic pages other than this live API map, prior records under
-[`design/`](design) and [`migration/`](migration), and the `array` and `linalg`
-pages under [`modules/`](modules) preserve the deleted five-component
-implementation at commit `33b261ea33616a6395c4ad3b20646093103344f7`.
-Their bodies are audit history, not current API, package, provider, security,
-or compatibility claims.
-
 ## Deferred scope
 
 File parsing, general broadcasting, entropy, further distributions, HIP,

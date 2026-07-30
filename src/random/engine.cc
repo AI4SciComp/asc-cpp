@@ -1,6 +1,6 @@
 #include "asc/random/engine.h"
 
-#include <array>
+#include <cstddef>
 #include <cstdint>
 #include <limits>
 
@@ -20,8 +20,8 @@ constexpr std::uint32_t HighWord(std::uint64_t value) noexcept {
 
 Philox4x32Result PhiloxRound(Philox4x32Counter counter,
                              Philox4x32Key key) noexcept {
-  constexpr std::uint64_t kFirstMultiplier = UINT64_C(0xD2511F53);
-  constexpr std::uint64_t kSecondMultiplier = UINT64_C(0xCD9E8D57);
+  constexpr std::uint64_t kFirstMultiplier = 0xD2511F53ULL;
+  constexpr std::uint64_t kSecondMultiplier = 0xCD9E8D57ULL;
 
   const std::uint64_t first_product =
       kFirstMultiplier * static_cast<std::uint64_t>(counter[0]);
@@ -33,8 +33,8 @@ Philox4x32Result PhiloxRound(Philox4x32Counter counter,
 }
 
 Philox4x32Key BumpKey(Philox4x32Key key) noexcept {
-  constexpr std::uint32_t kFirstWeyl = UINT32_C(0x9E3779B9);
-  constexpr std::uint32_t kSecondWeyl = UINT32_C(0xBB67AE85);
+  constexpr std::uint32_t kFirstWeyl = 0x9E3779B9U;
+  constexpr std::uint32_t kSecondWeyl = 0xBB67AE85U;
   return {static_cast<std::uint32_t>(key[0] + kFirstWeyl),
           static_cast<std::uint32_t>(key[1] + kSecondWeyl)};
 }

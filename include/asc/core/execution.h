@@ -62,7 +62,8 @@ class ExecutionContext {
  private:
   friend class internal_core_execution::Access;
   friend ASC_CORE_EXPORT Result<CompletionEvent> CopyBytes(
-      const ExecutionContext&, MutableMemoryView, ConstMemoryView, std::size_t);
+      const ExecutionContext& context, MutableMemoryView destination,
+      ConstMemoryView source, std::size_t byte_count);
 
   ASC_CORE_EXPORT ExecutionContext(
       Backend backend, Device device, Determinism determinism,
@@ -93,7 +94,8 @@ class CompletionEvent {
  private:
   friend class internal_core_execution::Access;
   friend ASC_CORE_EXPORT Result<CompletionEvent> CopyBytes(
-      const ExecutionContext&, MutableMemoryView, ConstMemoryView, std::size_t);
+      const ExecutionContext& context, MutableMemoryView destination,
+      ConstMemoryView source, std::size_t byte_count);
 
   explicit ASC_CORE_EXPORT CompletionEvent(bool complete) noexcept;
   explicit ASC_CORE_EXPORT CompletionEvent(
