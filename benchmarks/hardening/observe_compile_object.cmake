@@ -139,6 +139,7 @@ file(WRITE "${OBSERVATION_FILE}"
 
 foreach(_source_name IN LISTS _sources)
   set(_source "${CMAKE_CURRENT_LIST_DIR}/${_source_name}")
+  unset(_compile_input_file_arguments)
   if(COMPILER_STYLE STREQUAL "msvc")
     set(_object "${WORK_DIR}/${_source_name}.obj")
     file(TO_NATIVE_PATH "${CXX_COMPILER}" _compiler_native)
@@ -147,7 +148,6 @@ foreach(_source_name IN LISTS _sources)
     file(TO_NATIVE_PATH "${_source}" _source_native)
     file(TO_NATIVE_PATH "${_object}" _object_native)
     set(_compile_batch "${WORK_DIR}/${_source_name}.bat")
-    file(TO_NATIVE_PATH "${_compile_batch}" _compile_batch_native)
     string(CONCAT _compile_batch_contents
       "@echo off\n"
       "call \"${_vcvarsall_native}\" ${_msvc_target_architecture} >nul\n"
@@ -160,11 +160,13 @@ foreach(_source_name IN LISTS _sources)
     endforeach()
     string(APPEND _compile_batch_contents
       " /c \"${_source_native}\" \"/Fo${_object_native}\"\n"
+      "exit /b %errorlevel%\n"
     )
     file(WRITE "${_compile_batch}" "${_compile_batch_contents}")
     set(_compile_command
-      "${_command_interpreter}" /D /C call "${_compile_batch_native}"
+      "${_command_interpreter}" /D /Q
     )
+    set(_compile_input_file_arguments INPUT_FILE "${_compile_batch}")
   else()
     set(_object "${WORK_DIR}/${_source_name}.o")
     set(_compile_command
@@ -184,6 +186,7 @@ foreach(_source_name IN LISTS _sources)
     COMMAND
       "${CMAKE_COMMAND}" -E time
       ${_compile_command}
+    ${_compile_input_file_arguments}
     RESULT_VARIABLE _compile_result
     OUTPUT_VARIABLE _compile_stdout
     ERROR_VARIABLE _compile_stderr
