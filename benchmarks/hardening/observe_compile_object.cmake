@@ -58,7 +58,28 @@ if(COMPILER_STYLE STREQUAL "msvc")
       "${CXX_COMPILER}"
     )
   endif()
-  find_program(_command_interpreter NAMES cmd.exe cmd REQUIRED)
+  find_program(_powershell
+    NAMES pwsh.exe powershell.exe pwsh powershell
+    REQUIRED
+  )
+  set(_timing_script "${WORK_DIR}/time_compile.ps1")
+  file(WRITE "${_timing_script}" [=[
+param(
+  [Parameter(Mandatory = $true)]
+  [string]$BatchPath
+)
+
+$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+& $BatchPath
+$result = $LASTEXITCODE
+$stopwatch.Stop()
+$seconds = $stopwatch.Elapsed.TotalSeconds.ToString(
+  "0.000000",
+  [System.Globalization.CultureInfo]::InvariantCulture
+)
+[Console]::Out.WriteLine("Elapsed time (seconds): {0}", $seconds)
+exit $result
+]=])
 endif()
 
 execute_process(
@@ -139,7 +160,6 @@ file(WRITE "${OBSERVATION_FILE}"
 
 foreach(_source_name IN LISTS _sources)
   set(_source "${CMAKE_CURRENT_LIST_DIR}/${_source_name}")
-  unset(_compile_input_file_arguments)
   if(COMPILER_STYLE STREQUAL "msvc")
     set(_object "${WORK_DIR}/${_source_name}.obj")
     file(TO_NATIVE_PATH "${CXX_COMPILER}" _compiler_native)
@@ -148,6 +168,8 @@ foreach(_source_name IN LISTS _sources)
     file(TO_NATIVE_PATH "${_source}" _source_native)
     file(TO_NATIVE_PATH "${_object}" _object_native)
     set(_compile_batch "${WORK_DIR}/${_source_name}.bat")
+    file(TO_NATIVE_PATH "${_compile_batch}" _compile_batch_native)
+    file(TO_NATIVE_PATH "${_timing_script}" _timing_script_native)
     string(CONCAT _compile_batch_contents
       "@echo off\n"
       "call \"${_vcvarsall_native}\" ${_msvc_target_architecture} >nul\n"
@@ -164,12 +186,18 @@ foreach(_source_name IN LISTS _sources)
     )
     file(WRITE "${_compile_batch}" "${_compile_batch_contents}")
     set(_compile_command
-      "${_command_interpreter}" /D /Q
+      "${_powershell}"
+      -NoLogo
+      -NoProfile
+      -NonInteractive
+      -ExecutionPolicy Bypass
+      -File "${_timing_script_native}"
+      -BatchPath "${_compile_batch_native}"
     )
-    set(_compile_input_file_arguments INPUT_FILE "${_compile_batch}")
   else()
     set(_object "${WORK_DIR}/${_source_name}.o")
     set(_compile_command
+      "${CMAKE_COMMAND}" -E time
       "${CXX_COMPILER}"
       -std=c++20
       "-I${INCLUDE_DIR}"
@@ -183,10 +211,7 @@ foreach(_source_name IN LISTS _sources)
   endif()
 
   execute_process(
-    COMMAND
-      "${CMAKE_COMMAND}" -E time
-      ${_compile_command}
-    ${_compile_input_file_arguments}
+    COMMAND ${_compile_command}
     RESULT_VARIABLE _compile_result
     OUTPUT_VARIABLE _compile_stdout
     ERROR_VARIABLE _compile_stderr
