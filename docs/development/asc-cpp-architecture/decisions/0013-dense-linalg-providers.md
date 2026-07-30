@@ -1,6 +1,6 @@
 # ADR 0013: dense-owned linear algebra and coarse provider dispatch
 
-Status: Proposed at Architecture Checkpoint A
+Status: Superseded by ADR 0019
 
 ## Context
 
