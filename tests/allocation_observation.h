@@ -8,8 +8,7 @@ namespace asc_test {
 // MSVC Debug iterator instrumentation allocates container proxy state when the
 // public Status and Result scaffolding constructs standard-library containers.
 // The Windows Release matrix enforces exact process-allocation counts.
-#if defined(_MSC_VER) && defined(_ITERATOR_DEBUG_LEVEL) && \
-    _ITERATOR_DEBUG_LEVEL != 0
+#if defined(_MSC_VER) && defined(_DEBUG)
 inline constexpr bool kHasExactProcessAllocationObservation = false;
 #else
 inline constexpr bool kHasExactProcessAllocationObservation = true;

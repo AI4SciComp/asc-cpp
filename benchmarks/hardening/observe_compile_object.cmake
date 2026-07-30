@@ -163,8 +163,7 @@ foreach(_source_name IN LISTS _sources)
     )
     file(WRITE "${_compile_batch}" "${_compile_batch_contents}")
     set(_compile_command
-      "${_command_interpreter}" /D /S /C
-      "call \"${_compile_batch_native}\""
+      "${_command_interpreter}" /D /C call "${_compile_batch_native}"
     )
   else()
     set(_object "${WORK_DIR}/${_source_name}.o")
