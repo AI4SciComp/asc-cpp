@@ -9,6 +9,7 @@
 #include "asc/expression/expression.h"
 #include "asc/expression/writable.h"
 #include "asc/sparse.h"
+#include "asc/sparse/blas.h"
 
 template <typename Element>
 struct ConsumerVector {

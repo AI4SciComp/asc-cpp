@@ -12,7 +12,7 @@
 #include "asc/core/result.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
-#include "asc/dense/linalg.h"
+#include "asc/dense/blas.h"
 #include "asc/dense/providers/cuda_export.h"
 #include "asc/dense/view.h"
 #include "asc/expression/expression.h"
@@ -290,7 +290,7 @@ Result<CompletionEvent> CudaEvaluate(DenseCudaContext& context,
   }
 }
 
-using MatrixOperation = DenseTranspose;
+using MatrixOperation = DenseBlasTranspose;
 
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseView<const float, 1> source,

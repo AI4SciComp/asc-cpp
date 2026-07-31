@@ -100,7 +100,7 @@ Umbrella: `<asc/dense.h>`.
 - `<asc/dense/array.h>`: move-only typed dense ownership backed by Core
   buffers and memory resources.
 - `<asc/dense/evaluate.h>`: destination evaluation and scalar reductions.
-- `<asc/dense/linalg.h>`: allocation-free serial CPU reference vector,
+- `<asc/dense/blas.h>`: allocation-free serial CPU reference vector,
   matrix-vector, and matrix-matrix algebra for `float` and `double`.
 - `<asc/dense/export.h>`: Dense shared/static visibility macros.
 - `<asc/dense/providers/cuda.h>`: optional move-only CUDA Dense context,
@@ -123,7 +123,7 @@ Umbrella: `<asc/sparse.h>`.
   named coordinate/compressed conversions.
 - `<asc/sparse/evaluate.h>`: allocation-free, structure-preserving evaluation
   into an existing Sparse structure.
-- `<asc/sparse/linalg.h>`: allocation-free serial CSR SpMV for `float` and
+- `<asc/sparse/blas.h>`: allocation-free serial CSR SpMV for `float` and
   `double` over storage-neutral placed vector operands.
 - `<asc/sparse/export.h>`: Sparse shared/static visibility macros.
 - `<asc/sparse/providers/cuda.h>`: optional move-only CUDA Sparse context,

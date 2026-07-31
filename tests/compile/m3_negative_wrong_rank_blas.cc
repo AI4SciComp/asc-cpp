@@ -1,5 +1,5 @@
 #include "asc/core/execution.h"
-#include "asc/dense/linalg.h"
+#include "asc/dense/blas.h"
 
 auto WrongRankDot(const asc::ExecutionContext& context,
                   asc::DenseView<const double, 2> left,

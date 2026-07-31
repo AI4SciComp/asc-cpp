@@ -32,7 +32,7 @@ set(_expected_core
 )
 set(_expected_utilities "asc::Timer::Start\\(\\)")
 set(_expected_dense "asc::Gemv\\(")
-set(_expected_sparse "asc::internal_sparse_linalg::SpmvReference\\(")
+set(_expected_sparse "asc::internal_sparse_blas::SpmvReference\\(")
 set(_expected_random "asc::GeneratePhilox4x32Word\\(")
 set(_expected_core_cuda "asc::CudaMemoryResource::Create\\(")
 set(_expected_dense_cuda "asc::DenseCudaContext::Create\\(")

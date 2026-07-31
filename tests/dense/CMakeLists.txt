@@ -18,7 +18,7 @@ endfunction()
 foreach(_source IN ITEMS
     layout_view_test.cc
     array_evaluate_test.cc
-    linalg_test.cc
+    blas_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_dense_${_name}")
@@ -52,8 +52,9 @@ foreach(_negative_source IN ITEMS
     m3_negative_owner_copy.cc
     m3_negative_const_view_mutation.cc
     m3_negative_unsupported_owner_element.cc
-    m3_negative_unsupported_linalg_scalar.cc
-    m3_negative_wrong_rank_linalg.cc
+    m3_negative_unsupported_blas_scalar.cc
+    m3_negative_wrong_rank_blas.cc
+    m3_negative_removed_transpose_alias.cc
 )
   get_filename_component(_negative_name "${_negative_source}" NAME_WE)
   try_compile(

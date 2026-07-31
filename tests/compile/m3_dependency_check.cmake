@@ -14,11 +14,11 @@ set(_expected_public_files
   include/asc/dense/evaluate.h
   include/asc/dense/export.h
   include/asc/dense/layout.h
-  include/asc/dense/linalg.h
+  include/asc/dense/blas.h
   include/asc/dense/view.h
 )
 set(_expected_source_files
-  src/dense/linalg.cc
+  src/dense/blas.cc
 )
 
 set(_observed_public_files)
@@ -95,7 +95,8 @@ foreach(_relative_file IN LISTS _all_files)
         endif()
       endif()
       string(TOLOWER "${_included_path}" _included_path_lower)
-      if(_included_path_lower MATCHES "${_provider_pattern}")
+      if(NOT _included_path_lower STREQUAL "asc/dense/blas.h"
+         AND _included_path_lower MATCHES "${_provider_pattern}")
         message(FATAL_ERROR
           "Provider SDK include leaked into ${_relative_file}: "
           "${_included_path}"

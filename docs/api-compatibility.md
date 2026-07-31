@@ -1,8 +1,8 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Milestone 8 candidate
+Status: unreleased `0.9.0` Issue 6 Feature Gate B candidate
 
-Date: 2026-07-28
+Date: 2026-07-31
 
 Milestone completion, validation, publication, and release are separate
 decisions. This `0.9.0` candidate is neither a release nor a claim of `1.0`
@@ -50,8 +50,8 @@ is installed by that file set.
 | `core` | `asc/core.h`; `asc/core/{configuration,contracts,execution,export,extents,io,memory,result,status,types}.h` |
 | `utilities` | `asc/utilities.h`; `asc/utilities/{command_line,export,timer}.h` |
 | `expression` | `asc/expression.h`; `asc/expression/{expression,writable}.h` |
-| `dense` | `asc/dense.h`; `asc/dense/{array,evaluate,export,layout,linalg,view}.h` |
-| `sparse` | `asc/sparse.h`; `asc/sparse/{compressed,coordinate,evaluate,export,linalg}.h` |
+| `dense` | `asc/dense.h`; `asc/dense/{array,blas,evaluate,export,layout,view}.h` |
+| `sparse` | `asc/sparse.h`; `asc/sparse/{blas,compressed,coordinate,evaluate,export}.h` |
 | `random` | `asc/random.h`; `asc/random/{distribution,engine,export}.h` |
 | `random_dense` | `asc/random/dense.h` |
 | `random_sparse` | `asc/random/sparse.h` |
@@ -66,6 +66,10 @@ is installed by that file set.
 Provider-neutral umbrellas do not include provider headers. Deleted
 `asc/array*`, `asc/linalg*`, and `asc/cpp.h` paths are not compatibility
 aliases.
+
+The owner-scoped `asc/dense/linalg.h` and `asc/sparse/linalg.h` paths and the
+`DenseTranspose` name were also removed by the approved breaking pre-1.0
+migration. See the [mechanical migration guide](migration/linalg-to-blas.md).
 
 Names in an `internal_` namespace are implementation details even when a
 public template header must declare them or a shared library must export a

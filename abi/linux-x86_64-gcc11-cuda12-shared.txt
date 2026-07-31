@@ -1,6 +1,6 @@
 format|asc-cpp-elf-abi-digest-v1
 environment|Ubuntu 22.04.5 LTS|x86_64|GCC 11.4.0|NVCC 12.9.86|libstdc++.so.6.0.30 ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128|glibc 2.35-0ubuntu3.13|Release|shared|CUDA enabled
-report-sha256|0da3f872cb76f1a876567409f8baae09a80198214368faa229c0698e456646b4
+report-sha256|e12ebeab0395f576f0ae8bdc32fe43f40d0ae19964be2283bff389917d251228
 library|libasc_core.so|defined-dynamic-symbols|146|weak-or-unique|23
 library|libasc_core_cuda.so|defined-dynamic-symbols|20|weak-or-unique|9
 library|libasc_dense.so|defined-dynamic-symbols|20|weak-or-unique|0

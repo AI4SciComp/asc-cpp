@@ -16,7 +16,8 @@ target_link_libraries(my_target PRIVATE ASC::sparse)
 ```
 
 The umbrella includes coordinate, compressed, evaluation, and reference SpMV
-APIs. `<asc/sparse/export.h>` supplies the compiled-library visibility macro.
+APIs. The narrow `<asc/sparse/blas.h>` header declares `Spmv`, and
+`<asc/sparse/export.h>` supplies the compiled-library visibility macro.
 
 ## Common vocabulary
 

@@ -5,6 +5,7 @@
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/dense.h"
+#include "asc/dense/blas.h"
 
 int main() {
   using MatrixExtents = asc::Extents<asc::kDynamicExtent, asc::kDynamicExtent>;
@@ -54,7 +55,7 @@ int main() {
   }
   asc::DenseView<const double, 2> const_matrix(*matrix_view);
   const asc::Status status =
-      asc::Gemv(asc::ExecutionContext::Serial(), asc::DenseTranspose::kNone,
+      asc::Gemv(asc::ExecutionContext::Serial(), asc::DenseBlasTranspose::kNone,
                 1.0, const_matrix, *input, 0.0, *output);
   if (!status.ok()) {
     return 7;

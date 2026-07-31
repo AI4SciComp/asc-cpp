@@ -14,10 +14,10 @@ set(_expected_sparse_headers
   include/asc/sparse/coordinate.h
   include/asc/sparse/evaluate.h
   include/asc/sparse/export.h
-  include/asc/sparse/linalg.h
+  include/asc/sparse/blas.h
 )
 set(_expected_sparse_sources
-  src/sparse/reference_linalg.cc
+  src/sparse/reference_blas.cc
 )
 
 set(_observed_sparse_headers)
@@ -124,7 +124,8 @@ foreach(_relative_file IN LISTS _audited_files)
         endif()
       endif()
       string(TOLOWER "${_included_path}" _included_path_lower)
-      if(_included_path_lower MATCHES "${_provider_pattern}")
+      if(NOT _included_path_lower STREQUAL "asc/sparse/blas.h"
+         AND _included_path_lower MATCHES "${_provider_pattern}")
         message(FATAL_ERROR
           "Provider SDK include leaked into ${_relative_file}: "
           "${_included_path}"

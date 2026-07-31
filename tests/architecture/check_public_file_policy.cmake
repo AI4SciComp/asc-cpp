@@ -23,7 +23,7 @@ set(_expected_public_files
   include/asc/dense/evaluate.h
   include/asc/dense/export.h
   include/asc/dense/layout.h
-  include/asc/dense/linalg.h
+  include/asc/dense/blas.h
   include/asc/dense/providers/cuda.h
   include/asc/dense/providers/cuda_export.h
   include/asc/dense/view.h
@@ -47,7 +47,7 @@ set(_expected_public_files
   include/asc/sparse/coordinate.h
   include/asc/sparse/evaluate.h
   include/asc/sparse/export.h
-  include/asc/sparse/linalg.h
+  include/asc/sparse/blas.h
   include/asc/sparse/providers/cuda.h
   include/asc/sparse/providers/cuda_export.h
   include/asc/utilities.h
@@ -66,7 +66,7 @@ set(_expected_compiled_sources
   src/dense/cuda/context.cc
   src/dense/cuda/kernels.cu
   src/dense/cuda/operations.cc
-  src/dense/linalg.cc
+  src/dense/blas.cc
   src/random/distribution.cc
   src/random/engine.cc
   src/random/cuda/dense.cc
@@ -75,7 +75,7 @@ set(_expected_compiled_sources
   src/random/cuda/raw_kernels.cu
   src/random/cuda/sparse.cc
   src/random/cuda/sparse_kernels.cu
-  src/sparse/reference_linalg.cc
+  src/sparse/reference_blas.cc
   src/sparse/cuda/context.cc
   src/sparse/cuda/kernels.cu
   src/sparse/cuda/operations.cc
@@ -174,9 +174,13 @@ set(_retired_paths
   include/asc/array
   include/asc/linalg.h
   include/asc/linalg
+  include/asc/dense/linalg.h
+  include/asc/sparse/linalg.h
   include/asc/cpp.h
   src/array
   src/linalg
+  src/dense/linalg.cc
+  src/sparse/reference_linalg.cc
 )
 foreach(_path IN LISTS _retired_paths)
   if(EXISTS "${SOURCE_DIR}/${_path}")

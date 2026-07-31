@@ -6,7 +6,7 @@
 #include "asc/core/types.h"
 #include "asc/expression/expression.h"
 #include "asc/expression/writable.h"
-#include "asc/sparse/linalg.h"
+#include "asc/sparse/blas.h"
 #include "m4_multi_tu.h"
 
 struct M4RankTwoOutput {

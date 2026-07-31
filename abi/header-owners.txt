@@ -13,10 +13,10 @@ asc/core/status.h|asc_core
 asc/core/types.h|asc_core
 asc/dense.h|asc_dense
 asc/dense/array.h|asc_dense
+asc/dense/blas.h|asc_dense
 asc/dense/evaluate.h|asc_dense
 asc/dense/export.h|asc_dense
 asc/dense/layout.h|asc_dense
-asc/dense/linalg.h|asc_dense
 asc/dense/providers/cuda.h|asc_dense_cuda
 asc/dense/providers/cuda_export.h|asc_dense_cuda
 asc/dense/view.h|asc_dense
@@ -36,11 +36,11 @@ asc/random/providers/sparse_cuda.h|asc_random_sparse_cuda
 asc/random/providers/sparse_cuda_export.h|asc_random_sparse_cuda
 asc/random/sparse.h|asc_random_sparse
 asc/sparse.h|asc_sparse
+asc/sparse/blas.h|asc_sparse
 asc/sparse/compressed.h|asc_sparse
 asc/sparse/coordinate.h|asc_sparse
 asc/sparse/evaluate.h|asc_sparse
 asc/sparse/export.h|asc_sparse
-asc/sparse/linalg.h|asc_sparse
 asc/sparse/providers/cuda.h|asc_sparse_cuda
 asc/sparse/providers/cuda_export.h|asc_sparse_cuda
 asc/utilities.h|asc_utilities

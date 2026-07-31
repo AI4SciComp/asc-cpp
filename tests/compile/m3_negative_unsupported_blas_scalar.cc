@@ -1,5 +1,5 @@
 #include "asc/core/execution.h"
-#include "asc/dense/linalg.h"
+#include "asc/dense/blas.h"
 
 auto UnsupportedDot(const asc::ExecutionContext& context,
                     asc::DenseView<const int, 1> left,

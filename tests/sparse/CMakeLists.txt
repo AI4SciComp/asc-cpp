@@ -32,7 +32,7 @@ endforeach()
 
 foreach(_source IN ITEMS
     evaluate_test.cc
-    linalg_test.cc
+    blas_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_sparse_${_name}")

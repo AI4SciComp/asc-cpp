@@ -180,13 +180,13 @@ if (!sum.ok()) {
 // *sum == 12.0
 ```
 
-## Serial reference linear algebra
+## Serial reference BLAS
 
-The compiled reference operations are `Copy`, `Scal`, `Axpy`, `Dot`, `Nrm2`,
-`Gemv`, and `Gemm`. They accept explicit serial execution, operate on
-rank-one or rank-two ordinary host views, and support only `float` and
-`double`.
-`DenseTranspose` has `kNone` and `kTranspose`; conjugate transpose is
+The `<asc/dense/blas.h>` header declares the compiled reference operations
+`Copy`, `Scal`, `Axpy`, `Dot`, `Nrm2`, `Gemv`, and `Gemm`. They accept explicit
+serial execution, operate on rank-one or rank-two ordinary host views, and
+support only `float` and `double`.
+`DenseBlasTranspose` has `kNone` and `kTranspose`; conjugate transpose is
 unavailable.
 
 Every operation validates backend, memory, complete shape, checked arithmetic,
