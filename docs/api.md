@@ -102,13 +102,12 @@ Umbrella: `<asc/dense.h>`.
 - `<asc/dense/evaluate.h>`: destination evaluation and scalar reductions.
 - `<asc/dense/blas.h>`: allocation-free serial CPU BLAS, including the
   complete classic Level 1 real/complex surface over checked signed-stride
-  vector descriptors and all 66 applicable classic Level 2 real/complex rows
-  over checked full, band, packed, and signed-stride descriptors.
+  vector descriptors, all 66 applicable classic Level 2 real/complex rows,
+  and all 30 applicable classic Level 3 rows over checked matrix descriptors.
 - `<asc/dense/export.h>`: Dense shared/static visibility macros.
 - `<asc/dense/providers/cuda.h>`: optional move-only CUDA Dense context,
   bounded pointwise evaluation, complete classic Level 1 real/complex BLAS,
-  all applicable classic Level 2 real/complex BLAS, and the existing
-  float/double Gemm operation.
+  all applicable classic Level 2 and Level 3 real/complex BLAS.
 - `<asc/dense/providers/cuda_export.h>`: Dense CUDA shared/static visibility
   macros.
 

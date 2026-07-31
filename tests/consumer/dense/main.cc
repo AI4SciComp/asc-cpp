@@ -115,5 +115,35 @@ int main() {
            .ok()) {
     return 13;
   }
-  return level2_output_storage == std::array<double, 2>{4.0, 7.0} ? 0 : 14;
+  if (level2_output_storage != std::array<double, 2>{4.0, 7.0}) {
+    return 14;
+  }
+
+  std::array<double, 4> level3_left{1.0, 3.0, 2.0, 4.0};
+  std::array<double, 4> level3_right{2.0, 1.0, 0.0, 2.0};
+  std::array<double, 4> level3_output{};
+  auto level3_left_view = asc::DenseBlasMatrixView<const double>::Create(
+      level3_left.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 2,
+      asc::ConstMemoryView(level3_left.data(), sizeof(level3_left),
+                           asc::MemorySpace::kHost));
+  auto level3_right_view = asc::DenseBlasMatrixView<const double>::Create(
+      level3_right.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 2,
+      asc::ConstMemoryView(level3_right.data(), sizeof(level3_right),
+                           asc::MemorySpace::kHost));
+  auto level3_output_view = asc::DenseBlasMatrixView<double>::Create(
+      level3_output.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 2,
+      asc::ConstMemoryView(level3_output.data(), sizeof(level3_output),
+                           asc::MemorySpace::kHost));
+  if (!level3_left_view.ok() || !level3_right_view.ok() ||
+      !level3_output_view.ok()) {
+    return 15;
+  }
+  if (!asc::Gemm(asc::ExecutionContext::Serial(),
+                 asc::DenseBlasTranspose::kNone, asc::DenseBlasTranspose::kNone,
+                 1.0, *level3_left_view, *level3_right_view, 0.0,
+                 *level3_output_view)
+           .ok()) {
+    return 16;
+  }
+  return level3_output == std::array<double, 4>{4.0, 10.0, 4.0, 8.0} ? 0 : 17;
 }

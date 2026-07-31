@@ -1,6 +1,6 @@
 # Verification strategy
 
-Status: Implemented through the Milestone 8 local Publication Checkpoint B
+Status: Implemented through the Issue 9 local Feature Gate B candidate
 
 ## Test ownership
 
@@ -130,6 +130,9 @@ Milestone 7 applies the same independent labels to `sparse_cuda` and the three
 random CUDA facets for their exact tested subsets. Hosted GPU, multi-device
 runtime, and trusted device CSC staging evidence are skipped explicitly.
 Milestone 8 revalidates those labels without widening their capability scope.
+Issue 9 adds runtime and parity evidence for exactly the 30 approved Dense
+Level 3 rows on the named RTX 3060 Laptop GPU; forced zero-device cases remain
+explicit skips and do not verify a CUDA coverage row.
 
 ## MdeCpp test policy
 

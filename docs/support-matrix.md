@@ -1,17 +1,35 @@
 # ASCCpp support and evidence matrix
 
-Status: unreleased `0.9.0` Issue 8 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 9 Feature Gate B candidate
 
-Date: 2026-07-31
+Date: 2026-08-01
 
 This matrix separates the candidate contract from evidence collected in a
 particular environment. It is not a support-window promise. The Milestone 8
-Publication Checkpoint B report is authoritative for final commands, counts,
-failures, and skips.
+Publication Checkpoint B report remains authoritative for its historical
+commands, counts, failures, and skips; the Issue 9 Feature Gate B report adds
+only the Level 3 evidence recorded below.
 
 The matrix below records the clean post-checkpoint correction reruns. Earlier
 revision-2 counts are historical and are not substituted for these corrected
 results.
+
+## Issue 9 Level 3 evidence addendum
+
+Issue 9 leaves the recorded Milestone 8 environment and support boundaries
+unchanged. On 2026-08-01, the complete GCC 11.4 Debug/static CPU suite passed
+198/198 and the complete Debug/shared suite passed 200/200. The exact Level 3
+CPU test also passed under ASan+UBSan.
+
+CUDA 12.9.86 static and shared builds exercised all 30 declared Level 3 rows
+on the NVIDIA GeForce RTX 3060 Laptop GPU (driver 576.83, compute capability
+8.6). The shared affected selection passed 24 tests with two intentional
+forced-zero-device skips and zero failures; it included CPU and real-device
+Level 3 conformance, explicit completion, benchmark, architecture,
+documentation, build-tree/install/relocation consumer, and package aggregate
+checks. The package aggregate passed in both the build tree and relocated
+installation. Optimized CPU remains not applicable, and no CUDA row is
+verified from a forced-no-device execution.
 
 ## Language, build, and package contract
 
@@ -186,7 +204,7 @@ compiler, Windows/MSVC CUDA, and other host/toolkit pairings remain `skipped`.
 | `ASC::core` | none | status/result, checked metadata, configuration vocabulary, byte I/O, host memory, serial execution |
 | `ASC::utilities` | `ASC::core` | transactional command-line configuration and checked steady-clock timing |
 | `ASC::expression` | `ASC::core` | storage-neutral readable, placement, writable, alias, and sparsity protocols |
-| `ASC::dense` | `ASC::core`, `ASC::expression` | host storage/views, pointwise evaluation, reductions, complete reference real/complex BLAS Levels 1 and 2, existing float/double Gemm |
+| `ASC::dense` | `ASC::core`, `ASC::expression` | host storage/views, pointwise evaluation, reductions, complete reference real/complex BLAS Levels 1, 2, and 3 |
 | `ASC::sparse` | `ASC::core`, `ASC::expression` | canonical coordinate/CSR/CSC storage, conversion, evaluation, reference float/double CSR SpMV |
 | `ASC::random` | `ASC::core` | Philox4x32-10 words and exact float/double `Uniform01` transforms |
 | `ASC::random_dense` | `ASC::random`, `ASC::dense` | logical-order host Dense `Uniform01` fill |
@@ -211,7 +229,7 @@ and a caller-selected architecture.
 | Component | Exact direct ASC edge | Private provider edge | Bounded capability |
 | --- | --- | --- | --- |
 | `ASC::core_cuda` | `ASC::core` | `CUDA::cudart` | device inventory, pinned/device/managed resources, stream-backed contexts, copies, events |
-| `ASC::dense_cuda` | `ASC::dense`, `ASC::core_cuda` | `CUDA::cublas` | bounded float/double pointwise evaluation, complete real/complex BLAS Levels 1 and 2, existing float/double Gemm |
+| `ASC::dense_cuda` | `ASC::dense`, `ASC::core_cuda` | `CUDA::cublas` | bounded float/double pointwise evaluation and complete real/complex BLAS Levels 1, 2, and 3 |
 | `ASC::sparse_cuda` | `ASC::sparse`, `ASC::core_cuda` | `CUDA::cusparse` | trusted CSR clone, CSR SpMV, bounded trusted sparse evaluation |
 | `ASC::random_cuda` | `ASC::random`, `ASC::core_cuda` | none | raw Philox words into a capacity-carrying `MutableMemoryView` |
 | `ASC::random_dense_cuda` | `ASC::random_dense`, `ASC::random_cuda`, `ASC::core_cuda` | none | logical-order Dense `Uniform01` |

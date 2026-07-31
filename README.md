@@ -1,8 +1,8 @@
 # asc-cpp
 
 `asc-cpp` is being rebuilt as the C++20 numerical foundation for
-AI4SciComp. The current checkout is the unreleased **Dense BLAS Level 2
-(Issue 8) Feature Gate B** candidate. It adds the approved classic Level 2
+AI4SciComp. The current checkout is the unreleased **Dense BLAS Level 3
+(Issue 9) Feature Gate B** candidate. It adds the approved classic Level 3
 surface to the Milestone 8 baseline without adding a module, provider, or
 dependency edge.
 
@@ -34,7 +34,7 @@ The provider-free surface uses only C++20 standard-library facilities:
   protocol and safe pointwise negate, add, subtract, and multiply nodes.
 - Dense provides checked left-, right-, and explicit-stride mappings,
   non-owning views, move-only ownership, expression evaluation, reductions,
-  and complete classic real/complex BLAS Levels 1 and 2 on the allocation-free
+  and complete classic real/complex BLAS Levels 1, 2, and 3 on the allocation-free
   serial CPU reference path.
 - Sparse provides explicit coordinate construction/finalization, canonical
   CSR/CSC ownership and views, named conversions, structure-preserving
@@ -47,8 +47,7 @@ The provider-free surface uses only C++20 standard-library facilities:
 - Core CUDA supplies explicit CUDA resources, streams, asynchronous copies,
   and completion events without exposing CUDA SDK types in public signatures.
 - Dense CUDA supplies bounded pointwise evaluation, complete classic
-  real/complex BLAS Levels 1 and 2, and the existing float/double Gemm
-  operations for caller-owned device storage.
+  real/complex BLAS Levels 1, 2, and 3 for caller-owned device storage.
 - Sparse CUDA supplies explicit canonical CSR staging, deterministic
   unit-stride CSR SpMV, positive-nonunit-stride CSR SpMV, and bounded
   structure-preserving evaluation.
@@ -56,7 +55,7 @@ The provider-free surface uses only C++20 standard-library facilities:
   device. Its Dense and Sparse facets preserve the Milestone 5 logical order,
   canonical structure, and explicit address contracts.
 
-Dense BLAS Level 3 expansion, file parsing, general broadcasting, entropy,
+Sparse BLAS expansion, file parsing, general broadcasting, entropy,
 additional distributions, HIP, SYCL, and later-roadmap providers are not
 implemented.
 
@@ -99,27 +98,27 @@ loading Sparse. `ASC::cpp` remains provider-free.
 Use an out-of-source build and supply the released ASCCMake package:
 
 ```sh
-cmake -S . -B build/m8-debug \
+cmake -S . -B build/issue-9-debug \
   -DCMAKE_BUILD_TYPE=Debug \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/m8-debug --parallel
-ctest --test-dir build/m8-debug --output-on-failure
+cmake --build build/issue-9-debug --parallel
+ctest --test-dir build/issue-9-debug --output-on-failure
 ```
 
 Enable the bounded CUDA provider facets explicitly:
 
 ```sh
-cmake -S . -B build/m8-cuda \
+cmake -S . -B build/issue-9-cuda \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASC_CPP_ENABLE_CUDA=ON \
   -DCMAKE_CUDA_ARCHITECTURES=86 \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/m8-cuda --parallel
-ctest --test-dir build/m8-cuda --output-on-failure
+cmake --build build/issue-9-cuda --parallel
+ctest --test-dir build/issue-9-cuda --output-on-failure
 ```
 
 `BUILD_SHARED_LIBS` selects shared or static Core, Utilities, Dense, Sparse,

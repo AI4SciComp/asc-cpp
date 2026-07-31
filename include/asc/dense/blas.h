@@ -213,6 +213,11 @@ enum class DenseBlasDiagonal : std::uint8_t {
   kUnit,
 };
 
+enum class DenseBlasSide : std::uint8_t {
+  kLeft,
+  kRight,
+};
+
 namespace internal_dense_blas {
 
 struct StorageBounds {
@@ -1032,6 +1037,80 @@ ASC_DENSE_EXPORT Status Spr2(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> x,
                              DenseBlasVectorView<const Element> y,
                              DenseBlasPackedMatrixView<Element> matrix);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Gemm(const ExecutionContext& context,
+                             DenseBlasTranspose left_transpose,
+                             DenseBlasTranspose right_transpose, Element alpha,
+                             DenseBlasMatrixView<const Element> left,
+                             DenseBlasMatrixView<const Element> right,
+                             Element beta, DenseBlasMatrixView<Element> output);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Symm(const ExecutionContext& context,
+                             DenseBlasSide side, DenseBlasTriangle triangle,
+                             Element alpha,
+                             DenseBlasMatrixView<const Element> symmetric,
+                             DenseBlasMatrixView<const Element> other,
+                             Element beta, DenseBlasMatrixView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Hemm(const ExecutionContext& context,
+                             DenseBlasSide side, DenseBlasTriangle triangle,
+                             Element alpha,
+                             DenseBlasMatrixView<const Element> hermitian,
+                             DenseBlasMatrixView<const Element> other,
+                             Element beta, DenseBlasMatrixView<Element> output);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Syrk(const ExecutionContext& context,
+                             DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose, Element alpha,
+                             DenseBlasMatrixView<const Element> input,
+                             Element beta, DenseBlasMatrixView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Herk(const ExecutionContext& context,
+                             DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasRealType<Element> alpha,
+                             DenseBlasMatrixView<const Element> input,
+                             DenseBlasRealType<Element> beta,
+                             DenseBlasMatrixView<Element> output);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Syr2k(const ExecutionContext& context,
+                              DenseBlasTriangle triangle,
+                              DenseBlasTranspose transpose, Element alpha,
+                              DenseBlasMatrixView<const Element> left,
+                              DenseBlasMatrixView<const Element> right,
+                              Element beta,
+                              DenseBlasMatrixView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Her2k(const ExecutionContext& context,
+                              DenseBlasTriangle triangle,
+                              DenseBlasTranspose transpose, Element alpha,
+                              DenseBlasMatrixView<const Element> left,
+                              DenseBlasMatrixView<const Element> right,
+                              DenseBlasRealType<Element> beta,
+                              DenseBlasMatrixView<Element> output);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Trmm(const ExecutionContext& context,
+                             DenseBlasSide side, DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasDiagonal diagonal, Element alpha,
+                             DenseBlasMatrixView<const Element> triangular,
+                             DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Trsm(const ExecutionContext& context,
+                             DenseBlasSide side, DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasDiagonal diagonal, Element alpha,
+                             DenseBlasMatrixView<const Element> triangular,
+                             DenseBlasMatrixView<Element> matrix);
 
 ASC_DENSE_EXPORT Status Copy(const ExecutionContext& context,
                              DenseView<const float, 1> source,
