@@ -5,6 +5,22 @@ completion and release publication require separate approval.
 
 ## Unreleased
 
+### Dense BLAS Level 3 (Issue 9)
+
+- Added all 30 frozen classic dense BLAS Level 3 S/D/C/Z rows on the portable
+  serial CPU path and explicit CUDA provider: Gemm, Symm, Hemm, Syrk, Herk,
+  Syr2k, Her2k, Trmm, and Trsm.
+- Added common checked row/column-major matrix descriptors with explicit side,
+  triangle, transpose/conjugation, and unit-diagonal controls.
+- Added CPU/CUDA conformance, invalid-input, degenerate, edge-value,
+  no-allocation, packaging-consumer, generated coverage, documentation, and
+  representative Gemm benchmark checks.
+
+No Sparse BLAS or optimized CPU provider is included. Successful Level 3
+calls add no hidden allocation, transfer, packing, synchronization, or
+fallback; CUDA returns an explicit completion event and retains only the
+established error-path stream drain.
+
 ### Dense BLAS Level 2 (Issue 8)
 
 - Added all 66 frozen classic dense BLAS Level 2 S/D/C/Z rows on the portable

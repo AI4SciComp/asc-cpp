@@ -1,8 +1,8 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 8 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 9 Feature Gate B candidate
 
-Date: 2026-07-31
+Date: 2026-08-01
 
 Milestone completion, validation, publication, and release are separate
 decisions. This `0.9.0` candidate is neither a release nor a claim of `1.0`
@@ -96,6 +96,12 @@ requirements, layouts/formats, ownership, alias, memory-space, and execution
 rules are part of the source contract. Unsupported cases fail constraints or
 return an explicit status; they do not silently convert, transfer, pack,
 allocate, synchronize, or fall back.
+
+Issue 9 adds exact checked-descriptor overloads for all classic Dense BLAS
+Level 3 families and the `DenseBlasSide` enum. The pre-existing ordinary-view
+float/double `Gemm` overloads remain source compatible and keep their original
+bounded layout contract. No alias, forwarding header, compatibility target,
+or runtime fallback is introduced.
 
 `Timer::Stop` checks interval, accumulated-duration, and sample-count
 arithmetic before publishing a completed sample. Overflow returns

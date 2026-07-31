@@ -182,8 +182,8 @@ if (!sum.ok()) {
 
 ## Serial reference BLAS
 
-The `<asc/dense/blas.h>` header declares the complete frozen classic Level 1
-and Level 2 surfaces. Level 1 contains `Rotg`, `Rotmg`, `Rot`, `Rotm`, `Swap`,
+The `<asc/dense/blas.h>` header declares the complete frozen classic Level 1,
+Level 2, and Level 3 surfaces. Level 1 contains `Rotg`, `Rotmg`, `Rot`, `Rotm`, `Swap`,
 `Scal`, `Copy`, `Axpy`, `Dot`, `Dotu`, `Dotc`, `Nrm2`, `Asum`, and `Iamax`.
 The real families support `float` and `double`; applicable complex families
 support `std::complex<float>` and `std::complex<double>`. The `Dot` overloads
@@ -277,6 +277,43 @@ preserve the same checked no-work contract. The serial path accepts host and
 pinned-host descriptors and executes synchronously in deterministic logical
 index order without allocation, packing, transfer, synchronization, or
 fallback.
+
+Level 3 contains `Gemm`, `Symm`, `Hemm`, `Syrk`, `Herk`, `Syr2k`, `Her2k`,
+`Trmm`, and `Trsm` for all 30 mathematically applicable S/D/C/Z rows.
+Every matrix in one call has the same explicit row- or column-major layout.
+Structured rank updates modify only the selected triangle; Hermitian updates
+ignore stored diagonal imaginary inputs and publish a real diagonal. `Trmm`
+and `Trsm` update their general matrix operand in place and accept left/right,
+upper/lower, none/transpose/conjugate-transpose, and unit/nonunit controls.
+
+```cpp
+std::array<double, 4> left_storage{1.0, 3.0, 2.0, 4.0};
+std::array<double, 4> right_storage{2.0, 1.0, 0.0, 2.0};
+std::array<double, 4> output_storage{};
+auto left = asc::DenseBlasMatrixView<const double>::Create(
+    left_storage.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 2,
+    asc::ConstMemoryView(left_storage.data(), sizeof(left_storage),
+                         asc::MemorySpace::kHost));
+auto right = asc::DenseBlasMatrixView<const double>::Create(
+    right_storage.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 2,
+    asc::ConstMemoryView(right_storage.data(), sizeof(right_storage),
+                         asc::MemorySpace::kHost));
+auto output = asc::DenseBlasMatrixView<double>::Create(
+    output_storage.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 2,
+    asc::ConstMemoryView(output_storage.data(), sizeof(output_storage),
+                         asc::MemorySpace::kHost));
+asc::Status level3_status = asc::Gemm(
+    asc::ExecutionContext::Serial(), asc::DenseBlasTranspose::kNone,
+    asc::DenseBlasTranspose::kNone, 1.0, *left, *right, 0.0, *output);
+// output_storage == {4.0, 10.0, 4.0, 8.0}.
+```
+
+Level 3 has the same single CPU/GPU semantic contract: validate the complete
+call before mutation or submission; do not read multiplicative operands when
+`alpha == 0`; do not read the destination when `beta == 0`; accept empty and
+rectangular valid shapes; reject forbidden overlap; and never allocate,
+transfer, pack, synchronize, or select another backend. The serial path is
+synchronous. The CUDA path returns explicit asynchronous completion.
 
 Scalar inputs and outputs for `Rotg`, `Rotmg`, reductions, and mixed dot
 products are size-one caller-owned descriptors. Modified-rotation parameter
@@ -436,7 +473,9 @@ every applicable frozen Level 1 row. It also supplies `CudaGemv`, `CudaGbmv`,
 `CudaTrmv`, `CudaTbmv`, `CudaTpmv`, `CudaTrsv`, `CudaTbsv`, `CudaTpsv`,
 `CudaGer`, `CudaGeru`, `CudaGerc`, `CudaHer`, `CudaHpr`, `CudaHer2`,
 `CudaHpr2`, `CudaSyr`, `CudaSpr`, `CudaSyr2`, and `CudaSpr2` for every
-applicable frozen Level 2 row. The existing ordinary-view `CudaCopy`,
+applicable frozen Level 2 row. Level 3 adds `CudaGemm`, `CudaSymm`, `CudaHemm`,
+`CudaSyrk`, `CudaHerk`, `CudaSyr2k`, `CudaHer2k`, `CudaTrmm`, and `CudaTrsm`
+for all 30 applicable rows. The existing ordinary-view `CudaCopy`,
 `CudaScal`, `CudaAxpy`, `CudaGemv`, and `CudaGemm` overloads remain available.
 
 Level 1 vector, modified-rotation parameter, scalar-result, and Iamax-result
@@ -478,13 +517,18 @@ before enqueue. Dimensions, leading dimensions, and vector increments are
 checked before narrowing to provider integers. Output overlap with any input
 is rejected. When `beta == 0`, the prior output value is not read.
 
+The exact Level 3 API uses typed 64-bit cuBLAS entry points and direct caller
+device storage. Row-major calls use algebraically equivalent flag, side,
+triangle, dimension, and operand transformations; no transpose buffer is
+created. By-value coefficients remain host values. Matrices and the context
+must outlive the returned completion event.
+
 No successful CUDA Dense operation allocates, transfers, packs, silently
 waits, or falls back. Extended `sdsdot` and mixed `dsdot` use approved project
 kernels because the frozen CUDA provider does not supply their exact
 accumulation/result contracts; both still write caller-owned device results
-asynchronously. Level 3 expansion, factorizations beyond triangular Level 2
-solve, batching, native handles, and Tensor Core or fast-math modes remain
-outside this facet.
+asynchronously. Factorizations, batching, native handles, and Tensor Core or
+fast-math modes remain outside this facet.
 
 ### Errors, costs, and evidence
 
@@ -501,9 +545,9 @@ and bias addition in one project kernel; nonempty `CudaIamax` converts the
 provider index with a second project kernel. Empty scalar-producing operations
 launch a scalar write.
 Level 1 uses no workspace except the explicit caller-owned `CudaIamax`
-workspace. Level 2 and Gemm use no ASC-managed workspace.
+workspace. Levels 2 and 3 use no ASC-managed workspace.
 
-Issue 8 evidence labels are independent. `dense_cuda` requires
+Issue 9 evidence labels are independent. `dense_cuda` requires
 **configure-tested**, **compile-tested**, **runtime-tested**, and
 **parity-tested** evidence. Documentation or successful toolkit discovery
 alone establishes none of these labels; the Feature Gate B report records the
@@ -546,7 +590,7 @@ The current Dense surface provides no:
 - negative-stride or repeated-address ordinary `DenseView`;
 - shared ownership, external adoption, or custom deleter;
 - hidden temporary, packing, transfer, synchronization, or fallback;
-- Level 3, mixed-precision, batched, or tensor operation;
+- mixed-precision, batched, or tensor operation;
 - factorization, solver, or workspace-bearing algorithm;
 - optimized CPU provider; or
 - CUDA arbitrary external expression evaluation, general broadcasting,

@@ -172,10 +172,51 @@ std::int64_t MeasureNanoseconds(std::size_t warmup, std::size_t repetitions,
       .count();
 }
 
+struct TimingDistribution {
+  std::int64_t total_ns = -1;
+  long double sample_variance_ns2 = 0.0L;
+};
+
+template <std::size_t Samples, typename Operation>
+TimingDistribution MeasureDistribution(std::size_t warmup,
+                                       std::size_t repetitions,
+                                       Operation&& operation) {
+  for (std::size_t iteration = 0; iteration < warmup; ++iteration) {
+    if (!operation()) {
+      return {};
+    }
+  }
+  std::array<std::int64_t, Samples> samples{};
+  std::int64_t total = 0;
+  for (std::size_t sample = 0; sample < Samples; ++sample) {
+    const auto begin = std::chrono::steady_clock::now();
+    for (std::size_t iteration = 0; iteration < repetitions; ++iteration) {
+      if (!operation()) {
+        return {};
+      }
+    }
+    const auto end = std::chrono::steady_clock::now();
+    samples[sample] =
+        std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin)
+            .count();
+    total += samples[sample];
+  }
+  const long double mean =
+      static_cast<long double>(total) / static_cast<long double>(Samples);
+  long double variance = 0.0L;
+  for (std::int64_t sample : samples) {
+    const long double difference = static_cast<long double>(sample) - mean;
+    variance += difference * difference;
+  }
+  variance /= static_cast<long double>(Samples - 1);
+  return TimingDistribution{total, variance};
+}
+
 void Report(std::string_view name, std::int64_t elapsed_ns,
             std::size_t repetitions, long double work_per_repetition,
             std::string_view unit, long double checksum,
-            std::size_t asc_resource_allocations) {
+            std::size_t asc_resource_allocations, std::size_t samples = 1,
+            long double sample_variance_ns2 = 0.0L) {
   const long double seconds = static_cast<long double>(elapsed_ns) / 1.0e9L;
   const long double throughput =
       seconds > 0 ? work_per_repetition * repetitions / seconds : 0;
@@ -184,6 +225,8 @@ void Report(std::string_view name, std::int64_t elapsed_ns,
             << " throughput=" << static_cast<double>(throughput) << ' ' << unit
             << " checksum=" << static_cast<double>(checksum)
             << " asc_resource_allocation_calls=" << asc_resource_allocations
+            << " samples=" << samples << " sample_variance_ns2="
+            << static_cast<double>(sample_variance_ns2)
             << " oracle=independent\n";
 }
 
@@ -192,6 +235,7 @@ void Report(std::string_view name, std::int64_t elapsed_ns,
 int main() {
   constexpr std::size_t kWarmup = 3;
   constexpr std::size_t kRepetitions = 12;
+  constexpr std::size_t kGemmSamples = 5;
   constexpr std::size_t kVectorSize = 1U << 20;
   constexpr std::size_t kGemvDimension = 1024;
   constexpr std::size_t kGemmDimension = 512;
@@ -493,23 +537,30 @@ int main() {
     return 21;
   }
 
-  auto gemm_left_mutable =
-      LeftView(static_cast<float*>(device_left->data()),
-               std::array<asc::extent_t, 2>{kGemmDimension, kGemmDimension});
-  auto gemm_right_mutable =
-      LeftView(static_cast<float*>(device_right->data()),
-               std::array<asc::extent_t, 2>{kGemmDimension, kGemmDimension});
-  auto gemm_output =
-      LeftView(static_cast<float*>(device_output->data()),
-               std::array<asc::extent_t, 2>{kGemmDimension, kGemmDimension});
-  asc::DenseView<const float, 2> gemm_left = gemm_left_mutable;
-  asc::DenseView<const float, 2> gemm_right = gemm_right_mutable;
+  auto gemm_left = asc::DenseBlasMatrixView<const float>::Create(
+      static_cast<const float*>(device_left->data()), kGemmDimension,
+      kGemmDimension, asc::DenseBlasLayout::kColumnMajor, kGemmDimension,
+      *left_const_memory);
+  auto gemm_right = asc::DenseBlasMatrixView<const float>::Create(
+      static_cast<const float*>(device_right->data()), kGemmDimension,
+      kGemmDimension, asc::DenseBlasLayout::kColumnMajor, kGemmDimension,
+      *right_const_memory);
+  auto gemm_output = asc::DenseBlasMatrixView<float>::Create(
+      static_cast<float*>(device_output->data()), kGemmDimension,
+      kGemmDimension, asc::DenseBlasLayout::kColumnMajor, kGemmDimension,
+      *output_const_memory);
+  if (!gemm_left.ok() || !gemm_right.ok() || !gemm_output.ok()) {
+    return 30;
+  }
   allocation_checkpoint = allocation_calls();
-  const auto gemm_ns = MeasureNanoseconds(kWarmup, kRepetitions, [&] {
-    return Wait(asc::CudaGemm(*dense_context, asc::MatrixOperation::kNone,
-                              asc::MatrixOperation::kNone, 1.0F, gemm_left,
-                              gemm_right, 0.0F, gemm_output));
-  });
+  const auto gemm_timing =
+      MeasureDistribution<kGemmSamples>(kWarmup, kRepetitions, [&] {
+        return Wait(asc::CudaGemm(*dense_context,
+                                  asc::DenseBlasTranspose::kNone,
+                                  asc::DenseBlasTranspose::kNone, 1.0F,
+                                  *gemm_left, *gemm_right, 0.0F, *gemm_output));
+      });
+  const std::int64_t gemm_ns = gemm_timing.total_ns;
   const std::size_t gemm_allocations =
       allocation_calls() - allocation_checkpoint;
   if (h2d_ns < 0 || d2h_ns < 0 || d2d_ns < 0 || evaluate_ns < 0 ||
@@ -551,9 +602,10 @@ int main() {
          static_cast<long double>(sizeof(float)) *
              (kGemvDimension * kGemvDimension + 2 * kGemvDimension),
          "bytes/s", gemv_checksum, gemv_allocations);
-  Report("gemm", gemm_ns, kRepetitions,
+  Report("blas_level3_gemm", gemm_ns, kRepetitions * kGemmSamples,
          static_cast<long double>(2) * kGemmDimension * kGemmDimension *
              kGemmDimension,
-         "flop/s", gemm_checksum, gemm_allocations);
+         "flop/s", gemm_checksum, gemm_allocations, kGemmSamples,
+         gemm_timing.sample_variance_ns2);
   return 0;
 }

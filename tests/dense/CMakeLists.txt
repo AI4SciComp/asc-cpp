@@ -21,6 +21,7 @@ foreach(_source IN ITEMS
     blas_test.cc
     blas_level1_test.cc
     blas_level2_test.cc
+    blas_level3_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_dense_${_name}")
@@ -36,6 +37,11 @@ endforeach()
 set_property(
   TEST asc_cpp.dense.blas_level2_test
   APPEND PROPERTY LABELS "blas-level2;milestone-8"
+)
+
+set_property(
+  TEST asc_cpp.dense.blas_level3_test
+  APPEND PROPERTY LABELS "blas-level3;milestone-9"
 )
 
 add_executable(
@@ -92,7 +98,7 @@ _asc_dense_configure_test(asc_dense_benchmark)
 asc_register_test(
   NAME asc_cpp.dense.benchmark
   TARGET asc_dense_benchmark
-  LABELS "benchmark;dense;milestone-3;performance"
+  LABELS "benchmark;blas-level3;dense;milestone-3;milestone-9;performance"
 )
 set_tests_properties(
   asc_cpp.dense.benchmark

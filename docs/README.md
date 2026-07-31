@@ -1,10 +1,10 @@
 # asc-cpp documentation
 
-The repository is at the unreleased **Milestone 8:
-packaging/API/performance/downstream hardening** candidate. All six modules,
-both Random storage facets, the provider-free aggregate, and all six approved
-opt-in CUDA facets remain implemented with the unchanged Milestone 7 product
-surface.
+The repository is at the unreleased **Dense BLAS Level 3 (Issue 9) Feature
+Gate B** candidate. All six modules, both Random storage facets, the
+provider-free aggregate, and all six approved opt-in CUDA facets remain in the
+same dependency graph; this issue adds only the approved classic Dense BLAS
+Level 3 surface to `dense` and `dense_cuda`.
 
 ## Current API documentation
 
@@ -34,9 +34,9 @@ surface.
 - [Performance](performance.md): measurement contract and bounded local
   observations.
 - [BLAS coverage](blas-coverage.md): generated Dense/Sparse BLAS standards
-  inventory, current evidence states, and dense-to-sparse crosswalk. The
-  owner-scoped header rename is implemented; planned operation rows remain
-  future work.
+  inventory, current evidence states, and dense-to-sparse crosswalk. All 30
+  approved Dense Level 3 rows carry portable CPU and real-CUDA implementation
+  and test evidence; rows outside the issue remain planned or not applicable.
 - [Linalg-to-BLAS migration](migration/linalg-to-blas.md): mechanical path and
   type changes for the approved breaking pre-1.0 rename.
 
@@ -119,10 +119,10 @@ linear-algebra/provider scope in ADRs [0013][adr-0013] and
 
 ## Deferred scope
 
-File parsing, general broadcasting, entropy, further distributions, HIP,
-SYCL, and other providers require later explicit approval. Milestone 8 adds no
-new product capability, provider, or compatibility facade. Reserved provider
-names do not make them available.
+Sparse BLAS expansion, file parsing, general broadcasting, entropy, further
+distributions, HIP, SYCL, and other providers require later explicit
+approval. Issue 9 adds no module, provider, dependency edge, or compatibility
+facade. Reserved provider names do not make them available.
 
 [adr-0002]: development/asc-cpp-architecture/decisions/0002-package-target-naming.md
 [adr-0003]: development/asc-cpp-architecture/decisions/0003-namespace-and-source-policy.md

@@ -66,9 +66,11 @@ set(_expected_compiled_sources
   src/dense/blas.cc
   src/dense/blas_level1.cc
   src/dense/blas_level2.cc
+  src/dense/blas_level3.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/blas_level2.cc
+  src/dense/cuda/blas_level3.cc
   src/dense/cuda/blas_level2_kernels.cu
   src/dense/cuda/context.cc
   src/dense/cuda/kernels.cu

@@ -27,6 +27,7 @@ foreach(_source IN ITEMS
     dense_cuda_blas_test.cc
     dense_cuda_blas_level1_test.cc
     dense_cuda_blas_level2_test.cc
+    dense_cuda_blas_level3_test.cc
     dense_cuda_move_assignment_test.cc
     dense_cuda_owner_test.cc
     dense_cuda_scalar_release_regression_test.cc
@@ -64,6 +65,13 @@ set_property(
   APPEND PROPERTY LABELS "blas-level2;milestone-8"
 )
 
+set_property(
+  TEST
+    asc_cpp.dense_cuda.dense_cuda_blas_level3_test
+    asc_cpp.dense_cuda.dense_cuda_blas_level3_test.forced_no_device
+  APPEND PROPERTY LABELS "blas-level3;milestone-9"
+)
+
 target_link_libraries(
   asc_dense_cuda_dense_cuda_concurrency_test
   PRIVATE Threads::Threads
@@ -81,7 +89,7 @@ target_link_libraries(
 asc_register_test(
   NAME asc_cpp.dense_cuda.benchmark
   TARGET asc_dense_cuda_benchmark
-  LABELS "benchmark;cuda;dense_cuda;gpu;milestone-6;performance"
+  LABELS "benchmark;blas-level3;cuda;dense_cuda;gpu;milestone-6;milestone-9;performance"
 )
 set_tests_properties(
   asc_cpp.dense_cuda.benchmark
@@ -97,7 +105,7 @@ set_tests_properties(
   asc_cpp.dense_cuda.benchmark.forced_no_device
   PROPERTIES
     ENVIRONMENT "ASC_CPP_TEST_FORCE_NO_CUDA_DEVICE=1"
-    LABELS "benchmark;dense_cuda;cuda;gpu;milestone-8;no-device"
+    LABELS "benchmark;blas-level3;dense_cuda;cuda;gpu;milestone-8;milestone-9;no-device"
     SKIP_RETURN_CODE 77
     TIMEOUT 120
 )
@@ -114,7 +122,7 @@ add_test(
 set_tests_properties(
   asc_cpp.dense_cuda.benchmark.forced_enumeration_failure
   PROPERTIES
-    LABELS "benchmark;dense_cuda;cuda;gpu;milestone-8;provider-failure"
+    LABELS "benchmark;blas-level3;dense_cuda;cuda;gpu;milestone-8;milestone-9;provider-failure"
     TIMEOUT 120
 )
 

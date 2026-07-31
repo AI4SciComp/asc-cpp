@@ -115,7 +115,9 @@ void PrintResult(std::string_view operation, std::size_t rows,
                  std::size_t columns, std::size_t iterations,
                  Clock::duration elapsed, double checksum,
                  std::size_t allocations,
-                 std::size_t estimated_bytes_per_iteration = 0) {
+                 std::size_t estimated_bytes_per_iteration = 0,
+                 std::size_t samples = 1,
+                 long double sample_variance_ns2 = 0.0L) {
   const auto nanoseconds =
       std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
   std::cout << "compiler=" << CompilerName()
@@ -126,6 +128,8 @@ void PrintResult(std::string_view operation, std::size_t rows,
             << static_cast<double>(nanoseconds) /
                    static_cast<double>(iterations)
             << " checksum=" << checksum << " allocations=" << allocations;
+  std::cout << " samples=" << samples << " sample_variance_ns2="
+            << static_cast<double>(sample_variance_ns2);
   if (estimated_bytes_per_iteration != 0 && nanoseconds > 0) {
     const long double seconds = static_cast<long double>(nanoseconds) / 1.0e9L;
     const long double bandwidth =
@@ -147,6 +151,7 @@ int main() {
   constexpr asc::extent_t kVectorExtent = 1U << 16;
   constexpr std::size_t kEvaluationIterations = 64;
   constexpr std::size_t kGemmIterations = 4;
+  constexpr std::size_t kGemmSamples = 5;
   constexpr std::size_t kLevel1Iterations = 64;
   constexpr std::size_t kLevel2Iterations = 16;
 
@@ -177,6 +182,26 @@ int main() {
 
   asc::DenseView<const double, 2> const_input(*input_view);
   asc::DenseView<const double, 2> const_right(*right_view);
+  const std::size_t level3_bytes =
+      static_cast<std::size_t>(kExtent * kExtent) * sizeof(double);
+  auto level3_left = asc::DenseBlasMatrixView<const double>::Create(
+      const_input.data(), kExtent, kExtent, asc::DenseBlasLayout::kColumnMajor,
+      kExtent,
+      asc::ConstMemoryView(const_input.data(), level3_bytes,
+                           asc::MemorySpace::kHost));
+  auto level3_right = asc::DenseBlasMatrixView<const double>::Create(
+      const_right.data(), kExtent, kExtent, asc::DenseBlasLayout::kColumnMajor,
+      kExtent,
+      asc::ConstMemoryView(const_right.data(), level3_bytes,
+                           asc::MemorySpace::kHost));
+  auto level3_output = asc::DenseBlasMatrixView<double>::Create(
+      output_view->data(), kExtent, kExtent, asc::DenseBlasLayout::kColumnMajor,
+      kExtent,
+      asc::ConstMemoryView(output_view->data(), level3_bytes,
+                           asc::MemorySpace::kHost));
+  if (!level3_left.ok() || !level3_right.ok() || !level3_output.ok()) {
+    return 22;
+  }
   auto multiplied = asc::MakeMultiply(2.0, const_input);
   if (!multiplied.ok()) {
     return 5;
@@ -212,33 +237,54 @@ int main() {
               evaluation_elapsed, evaluation_checksum, evaluation_allocations);
 
   if (!asc::Gemm(context, asc::DenseBlasTranspose::kNone,
-                 asc::DenseBlasTranspose::kNone, 1.0, const_input, const_right,
-                 0.0, *output_view)
+                 asc::DenseBlasTranspose::kNone, 1.0, *level3_left,
+                 *level3_right, 0.0, *level3_output)
            .ok()) {
     return 9;
   }
-  const auto gemm_start = Clock::now();
+  std::array<Clock::duration, kGemmSamples> gemm_samples{};
   std::size_t gemm_allocations = 0;
   {
     asc_dense_test::AllocationProbe probe;
-    for (std::size_t iteration = 0; iteration < kGemmIterations; ++iteration) {
-      if (!asc::Gemm(context, asc::DenseBlasTranspose::kNone,
-                     asc::DenseBlasTranspose::kNone, 1.0, const_input,
-                     const_right, 0.0, *output_view)
-               .ok()) {
-        return 10;
+    for (std::size_t sample = 0; sample < kGemmSamples; ++sample) {
+      const auto sample_start = Clock::now();
+      for (std::size_t iteration = 0; iteration < kGemmIterations;
+           ++iteration) {
+        if (!asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                       asc::DenseBlasTranspose::kNone, 1.0, *level3_left,
+                       *level3_right, 0.0, *level3_output)
+                 .ok()) {
+          return 10;
+        }
       }
+      gemm_samples[sample] = Clock::now() - sample_start;
     }
     gemm_allocations = probe.count();
   }
-  const auto gemm_elapsed = Clock::now() - gemm_start;
+  Clock::duration gemm_elapsed{};
+  long double gemm_mean_ns = 0.0L;
+  for (Clock::duration sample : gemm_samples) {
+    gemm_elapsed += sample;
+    gemm_mean_ns += static_cast<long double>(
+        std::chrono::duration_cast<std::chrono::nanoseconds>(sample).count());
+  }
+  gemm_mean_ns /= static_cast<long double>(kGemmSamples);
+  long double gemm_variance_ns2 = 0.0L;
+  for (Clock::duration sample : gemm_samples) {
+    const long double sample_ns = static_cast<long double>(
+        std::chrono::duration_cast<std::chrono::nanoseconds>(sample).count());
+    const long double difference = sample_ns - gemm_mean_ns;
+    gemm_variance_ns2 += difference * difference;
+  }
+  gemm_variance_ns2 /= static_cast<long double>(kGemmSamples - 1);
   const asc::DenseView<const double, 2> gemm_output(*output_view);
   const double gemm_checksum = Checksum(gemm_output);
   if (!VerifyGemm(gemm_output)) {
     return 12;
   }
-  PrintResult("gemm", kExtent, kExtent, kGemmIterations, gemm_elapsed,
-              gemm_checksum, gemm_allocations);
+  PrintResult("blas_level3_gemm", kExtent, kExtent,
+              kGemmIterations * kGemmSamples, gemm_elapsed, gemm_checksum,
+              gemm_allocations, 0, kGemmSamples, gemm_variance_ns2);
 
   const std::size_t level2_extent = static_cast<std::size_t>(kLevel2Extent);
   std::vector<double> level2_matrix(level2_extent * level2_extent);
