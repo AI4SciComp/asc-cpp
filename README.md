@@ -1,10 +1,10 @@
 # asc-cpp
 
 `asc-cpp` is being rebuilt as the C++20 numerical foundation for
-AI4SciComp. The current checkout is the unreleased **Milestone 8:
-packaging/API/performance/downstream hardening** candidate. Milestone 8
-hardens the Milestone 7 product surface without adding a product target,
-operation, provider, or dependency.
+AI4SciComp. The current checkout is the unreleased **Dense BLAS Level 1
+(Issue 7) Feature Gate B** candidate. It adds the approved classic Level 1
+surface to the Milestone 8 baseline without adding a module, provider, or
+dependency edge.
 
 ## Available components
 
@@ -34,7 +34,8 @@ The provider-free surface uses only C++20 standard-library facilities:
   protocol and safe pointwise negate, add, subtract, and multiply nodes.
 - Dense provides checked left-, right-, and explicit-stride mappings,
   non-owning views, move-only ownership, expression evaluation, reductions,
-  and allocation-free serial CPU reference algebra.
+  complete classic real/complex BLAS Level 1, and the existing allocation-free
+  serial CPU reference matrix algebra.
 - Sparse provides explicit coordinate construction/finalization, canonical
   CSR/CSC ownership and views, named conversions, structure-preserving
   evaluation, and allocation-free serial CSR SpMV.
@@ -45,9 +46,9 @@ The provider-free surface uses only C++20 standard-library facilities:
   structure and value address domains.
 - Core CUDA supplies explicit CUDA resources, streams, asynchronous copies,
   and completion events without exposing CUDA SDK types in public signatures.
-- Dense CUDA supplies bounded pointwise evaluation and selected
-  Copy/Scal/Axpy/Gemv/Gemm operations for device-resident `float` and
-  `double` views.
+- Dense CUDA supplies bounded pointwise evaluation, complete classic
+  real/complex BLAS Level 1, and the existing float/double Gemv/Gemm operations
+  for caller-owned device storage.
 - Sparse CUDA supplies explicit canonical CSR staging, deterministic
   unit-stride CSR SpMV, positive-nonunit-stride CSR SpMV, and bounded
   structure-preserving evaluation.
@@ -55,8 +56,9 @@ The provider-free surface uses only C++20 standard-library facilities:
   device. Its Dense and Sparse facets preserve the Milestone 5 logical order,
   canonical structure, and explicit address contracts.
 
-File parsing, general broadcasting, entropy, additional distributions,
-HIP, SYCL, and later-roadmap providers are not implemented.
+Dense BLAS Level 2/3 expansion, file parsing, general broadcasting, entropy,
+additional distributions, HIP, SYCL, and later-roadmap providers are not
+implemented.
 
 ## Consuming a component
 

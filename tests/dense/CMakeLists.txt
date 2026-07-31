@@ -19,6 +19,7 @@ foreach(_source IN ITEMS
     layout_view_test.cc
     array_evaluate_test.cc
     blas_test.cc
+    blas_level1_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_dense_${_name}")

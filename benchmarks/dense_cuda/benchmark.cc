@@ -264,8 +264,17 @@ int main() {
       asc::Buffer::Allocate(counted_device, kMatrixBytes, alignof(float));
   auto device_output =
       asc::Buffer::Allocate(counted_device, kMatrixBytes, alignof(float));
+  auto host_scalar =
+      asc::Buffer::Allocate(counted_pinned, sizeof(float), alignof(float));
+  auto device_scalar =
+      asc::Buffer::Allocate(counted_device, sizeof(float), alignof(float));
+  auto host_index = asc::Buffer::Allocate(
+      counted_pinned, 2 * sizeof(asc::index_t), alignof(asc::index_t));
+  auto device_index = asc::Buffer::Allocate(
+      counted_device, 2 * sizeof(asc::index_t), alignof(asc::index_t));
   if (!host_source.ok() || !host_destination.ok() || !device_left.ok() ||
-      !device_right.ok() || !device_output.ok()) {
+      !device_right.ok() || !device_output.ok() || !host_scalar.ok() ||
+      !device_scalar.ok() || !host_index.ok() || !device_index.ok()) {
     return 5;
   }
 
@@ -282,10 +291,16 @@ int main() {
   auto right_const_memory = device_right->const_view();
   auto output_mutable_memory = device_output->mutable_view();
   auto output_const_memory = device_output->const_view();
+  auto host_scalar_memory = host_scalar->mutable_view();
+  auto device_scalar_memory = device_scalar->const_view();
+  auto host_index_memory = host_index->mutable_view();
+  auto device_index_memory = device_index->const_view();
   if (!host_source_view.ok() || !host_destination_view.ok() ||
       !left_mutable_memory.ok() || !left_const_memory.ok() ||
       !right_mutable_memory.ok() || !right_const_memory.ok() ||
-      !output_mutable_memory.ok() || !output_const_memory.ok()) {
+      !output_mutable_memory.ok() || !output_const_memory.ok() ||
+      !host_scalar_memory.ok() || !device_scalar_memory.ok() ||
+      !host_index_memory.ok() || !device_index_memory.ok()) {
     return 6;
   }
   const auto* observed_values =
@@ -354,6 +369,24 @@ int main() {
   auto vector_output = LeftView(static_cast<float*>(device_output->data()),
                                 std::array<asc::extent_t, 1>{kVectorSize});
   asc::DenseView<const float, 1> vector_left = vector_left_mutable;
+  auto blas_left = asc::DenseBlasVectorView<const float>::Create(
+      static_cast<const float*>(device_left->data()), kVectorSize, 1,
+      *left_const_memory);
+  auto blas_output = asc::DenseBlasVectorView<float>::Create(
+      static_cast<float*>(device_output->data()), kVectorSize, 1,
+      *output_const_memory);
+  auto blas_scalar = asc::DenseBlasVectorView<float>::Create(
+      static_cast<float*>(device_scalar->data()), 1, 1, *device_scalar_memory);
+  auto blas_index = asc::DenseBlasVectorView<asc::index_t>::Create(
+      static_cast<asc::index_t*>(device_index->data()), 1, 1,
+      *device_index_memory);
+  if (!blas_left.ok() || !blas_output.ok() || !blas_scalar.ok() ||
+      !blas_index.ok()) {
+    return 24;
+  }
+  asc::MutableMemoryView iamax_workspace(
+      static_cast<asc::index_t*>(device_index->data()) + 1,
+      sizeof(asc::index_t), asc::MemorySpace::kDevice);
   allocation_checkpoint = allocation_calls();
   const auto evaluate_ns = MeasureNanoseconds(kWarmup, kRepetitions, [&] {
     return Wait(asc::CudaEvaluate(*dense_context, vector_left, vector_output));
@@ -372,8 +405,7 @@ int main() {
 
   allocation_checkpoint = allocation_calls();
   const auto axpy_ns = MeasureNanoseconds(kWarmup, kRepetitions, [&] {
-    return Wait(
-        asc::CudaAxpy(*dense_context, 0.25F, vector_left, vector_output));
+    return Wait(asc::CudaAxpy(*dense_context, 0.25F, *blas_left, *blas_output));
   });
   const std::size_t axpy_allocations =
       allocation_calls() - allocation_checkpoint;
@@ -387,6 +419,47 @@ int main() {
   if (!ScaledOracle(observed_values, host_values, kVectorSize, kAxpyResultScale,
                     &axpy_checksum)) {
     return 19;
+  }
+
+  allocation_checkpoint = allocation_calls();
+  const auto dot_ns = MeasureNanoseconds(kWarmup, kRepetitions, [&] {
+    return Wait(asc::CudaDot(
+        *dense_context, *blas_left,
+        asc::DenseBlasVectorView<const float>(*blas_output), *blas_scalar));
+  });
+  const std::size_t dot_allocations =
+      allocation_calls() - allocation_checkpoint;
+  if (!Wait(asc::CopyBytes(*execution, *host_scalar_memory,
+                           *device_scalar_memory))) {
+    return 25;
+  }
+  long double expected_dot = 0.0L;
+  for (std::size_t index = 0; index < kVectorSize; ++index) {
+    const long double value = host_values[index];
+    expected_dot += kAxpyResultScale * value * value;
+  }
+  const float observed_dot = *static_cast<const float*>(host_scalar->data());
+  const long double dot_difference =
+      std::abs(static_cast<long double>(observed_dot) - expected_dot);
+  if (dot_difference > 1.0e-4L * std::max(1.0L, std::abs(expected_dot))) {
+    return 26;
+  }
+
+  allocation_checkpoint = allocation_calls();
+  const auto iamax_ns = MeasureNanoseconds(kWarmup, kRepetitions, [&] {
+    return Wait(asc::CudaIamax(*dense_context, *blas_left, *blas_index,
+                               iamax_workspace));
+  });
+  const std::size_t iamax_allocations =
+      allocation_calls() - allocation_checkpoint;
+  if (!Wait(asc::CopyBytes(*execution, *host_index_memory,
+                           *device_index_memory))) {
+    return 27;
+  }
+  const asc::index_t observed_index =
+      *static_cast<const asc::index_t*>(host_index->data());
+  if (observed_index != 0) {
+    return 28;
   }
 
   auto gemv_matrix_mutable =
@@ -436,7 +509,7 @@ int main() {
   const std::size_t gemm_allocations =
       allocation_calls() - allocation_checkpoint;
   if (h2d_ns < 0 || d2h_ns < 0 || d2d_ns < 0 || evaluate_ns < 0 ||
-      axpy_ns < 0 || gemv_ns < 0 || gemm_ns < 0) {
+      axpy_ns < 0 || dot_ns < 0 || iamax_ns < 0 || gemv_ns < 0 || gemm_ns < 0) {
     return 8;
   }
 
@@ -459,9 +532,14 @@ int main() {
          d2d_allocations);
   Report("terminal_evaluate", evaluate_ns, kRepetitions, kVectorBytes,
          "bytes/s", evaluate_checksum, evaluate_allocations);
-  Report("axpy", axpy_ns, kRepetitions,
+  Report("blas_level1_axpy", axpy_ns, kRepetitions,
          static_cast<long double>(2) * kVectorSize, "flop/s", axpy_checksum,
          axpy_allocations);
+  Report("blas_level1_dot", dot_ns, kRepetitions,
+         static_cast<long double>(2) * kVectorSize, "flop/s", observed_dot,
+         dot_allocations);
+  Report("blas_level1_iamax", iamax_ns, kRepetitions, kVectorSize, "items/s",
+         observed_index, iamax_allocations);
   Report("gemv", gemv_ns, kRepetitions,
          static_cast<long double>(2) * kGemvDimension * kGemvDimension,
          "flop/s", gemv_checksum, gemv_allocations);

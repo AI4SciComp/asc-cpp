@@ -2,6 +2,7 @@
 #define ASC_DENSE_PROVIDERS_CUDA_H_
 
 #include <array>
+#include <complex>
 #include <concepts>
 #include <cstddef>
 #include <memory>
@@ -291,6 +292,200 @@ Result<CompletionEvent> CudaEvaluate(DenseCudaContext& context,
 }
 
 using MatrixOperation = DenseBlasTranspose;
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
+    DenseCudaContext& context, DenseBlasVectorView<float> a,
+    DenseBlasVectorView<float> b, DenseBlasVectorView<float> c,
+    DenseBlasVectorView<float> s);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
+    DenseCudaContext& context, DenseBlasVectorView<double> a,
+    DenseBlasVectorView<double> b, DenseBlasVectorView<double> c,
+    DenseBlasVectorView<double> s);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
+    DenseCudaContext& context, DenseBlasVectorView<std::complex<float>> a,
+    DenseBlasVectorView<const std::complex<float>> b,
+    DenseBlasVectorView<float> c, DenseBlasVectorView<std::complex<float>> s);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
+    DenseCudaContext& context, DenseBlasVectorView<std::complex<double>> a,
+    DenseBlasVectorView<const std::complex<double>> b,
+    DenseBlasVectorView<double> c, DenseBlasVectorView<std::complex<double>> s);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotmg(
+    DenseCudaContext& context, DenseBlasVectorView<float> d1,
+    DenseBlasVectorView<float> d2, DenseBlasVectorView<float> x1,
+    DenseBlasVectorView<const float> y1, DenseBlasVectorView<float> parameters);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotmg(
+    DenseCudaContext& context, DenseBlasVectorView<double> d1,
+    DenseBlasVectorView<double> d2, DenseBlasVectorView<double> x1,
+    DenseBlasVectorView<const double> y1,
+    DenseBlasVectorView<double> parameters);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
+    DenseCudaContext& context, DenseBlasVectorView<float> x,
+    DenseBlasVectorView<float> y, float c, float s);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
+    DenseCudaContext& context, DenseBlasVectorView<double> x,
+    DenseBlasVectorView<double> y, double c, double s);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
+    DenseCudaContext& context, DenseBlasVectorView<std::complex<float>> x,
+    DenseBlasVectorView<std::complex<float>> y, float c, float s);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
+    DenseCudaContext& context, DenseBlasVectorView<std::complex<double>> x,
+    DenseBlasVectorView<std::complex<double>> y, double c, double s);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotm(
+    DenseCudaContext& context, DenseBlasVectorView<float> x,
+    DenseBlasVectorView<float> y, DenseBlasVectorView<const float> parameters);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotm(
+    DenseCudaContext& context, DenseBlasVectorView<double> x,
+    DenseBlasVectorView<double> y,
+    DenseBlasVectorView<const double> parameters);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
+    DenseCudaContext& context, DenseBlasVectorView<float> x,
+    DenseBlasVectorView<float> y);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
+    DenseCudaContext& context, DenseBlasVectorView<double> x,
+    DenseBlasVectorView<double> y);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
+    DenseCudaContext& context, DenseBlasVectorView<std::complex<float>> x,
+    DenseBlasVectorView<std::complex<float>> y);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
+    DenseCudaContext& context, DenseBlasVectorView<std::complex<double>> x,
+    DenseBlasVectorView<std::complex<double>> y);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
+    DenseCudaContext& context, float alpha,
+    DenseBlasVectorView<float> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
+    DenseCudaContext& context, double alpha,
+    DenseBlasVectorView<double> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
+    DenseCudaContext& context, std::complex<float> alpha,
+    DenseBlasVectorView<std::complex<float>> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
+    DenseCudaContext& context, std::complex<double> alpha,
+    DenseBlasVectorView<std::complex<double>> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
+    DenseCudaContext& context, float alpha,
+    DenseBlasVectorView<std::complex<float>> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
+    DenseCudaContext& context, double alpha,
+    DenseBlasVectorView<std::complex<double>> destination);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
+    DenseCudaContext& context, DenseBlasVectorView<const float> source,
+    DenseBlasVectorView<float> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
+    DenseCudaContext& context, DenseBlasVectorView<const double> source,
+    DenseBlasVectorView<double> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<float>> source,
+    DenseBlasVectorView<std::complex<float>> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<double>> source,
+    DenseBlasVectorView<std::complex<double>> destination);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
+    DenseCudaContext& context, float alpha,
+    DenseBlasVectorView<const float> source,
+    DenseBlasVectorView<float> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
+    DenseCudaContext& context, double alpha,
+    DenseBlasVectorView<const double> source,
+    DenseBlasVectorView<double> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
+    DenseCudaContext& context, std::complex<float> alpha,
+    DenseBlasVectorView<const std::complex<float>> source,
+    DenseBlasVectorView<std::complex<float>> destination);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
+    DenseCudaContext& context, std::complex<double> alpha,
+    DenseBlasVectorView<const std::complex<double>> source,
+    DenseBlasVectorView<std::complex<double>> destination);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
+    DenseCudaContext& context, DenseBlasVectorView<const float> left,
+    DenseBlasVectorView<const float> right, DenseBlasVectorView<float> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
+    DenseCudaContext& context, DenseBlasVectorView<const double> left,
+    DenseBlasVectorView<const double> right,
+    DenseBlasVectorView<double> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
+    DenseCudaContext& context, float bias,
+    DenseBlasVectorView<const float> left,
+    DenseBlasVectorView<const float> right, DenseBlasVectorView<float> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
+    DenseCudaContext& context, DenseBlasDotAccumulation accumulation,
+    DenseBlasVectorView<const float> left,
+    DenseBlasVectorView<const float> right, DenseBlasVectorView<double> result);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotu(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<float>> left,
+    DenseBlasVectorView<const std::complex<float>> right,
+    DenseBlasVectorView<std::complex<float>> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotu(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<double>> left,
+    DenseBlasVectorView<const std::complex<double>> right,
+    DenseBlasVectorView<std::complex<double>> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotc(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<float>> left,
+    DenseBlasVectorView<const std::complex<float>> right,
+    DenseBlasVectorView<std::complex<float>> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotc(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<double>> left,
+    DenseBlasVectorView<const std::complex<double>> right,
+    DenseBlasVectorView<std::complex<double>> result);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
+    DenseCudaContext& context, DenseBlasVectorView<const float> operand,
+    DenseBlasVectorView<float> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
+    DenseCudaContext& context, DenseBlasVectorView<const double> operand,
+    DenseBlasVectorView<double> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<float>> operand,
+    DenseBlasVectorView<float> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<double>> operand,
+    DenseBlasVectorView<double> result);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
+    DenseCudaContext& context, DenseBlasVectorView<const float> operand,
+    DenseBlasVectorView<float> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
+    DenseCudaContext& context, DenseBlasVectorView<const double> operand,
+    DenseBlasVectorView<double> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<float>> operand,
+    DenseBlasVectorView<float> result);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<double>> operand,
+    DenseBlasVectorView<double> result);
+
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
+    DenseCudaContext& context, DenseBlasVectorView<const float> operand,
+    DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
+    DenseCudaContext& context, DenseBlasVectorView<const double> operand,
+    DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<float>> operand,
+    DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
+    DenseCudaContext& context,
+    DenseBlasVectorView<const std::complex<double>> operand,
+    DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
 
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseView<const float, 1> source,

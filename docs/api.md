@@ -100,16 +100,22 @@ Umbrella: `<asc/dense.h>`.
 - `<asc/dense/array.h>`: move-only typed dense ownership backed by Core
   buffers and memory resources.
 - `<asc/dense/evaluate.h>`: destination evaluation and scalar reductions.
-- `<asc/dense/blas.h>`: allocation-free serial CPU reference vector,
-  matrix-vector, and matrix-matrix algebra for `float` and `double`.
+- `<asc/dense/blas.h>`: allocation-free serial CPU BLAS, including the
+  complete classic Level 1 real/complex surface over checked signed-stride
+  vector descriptors and the existing float/double matrix operations.
 - `<asc/dense/export.h>`: Dense shared/static visibility macros.
 - `<asc/dense/providers/cuda.h>`: optional move-only CUDA Dense context,
-  bounded pointwise evaluation, and Copy/Scal/Axpy/Gemv/Gemm.
+  bounded pointwise evaluation, complete classic Level 1 real/complex BLAS,
+  and the existing float/double Gemv/Gemm operations.
 - `<asc/dense/providers/cuda_export.h>`: Dense CUDA shared/static visibility
   macros.
 
-Dense does not dispatch to an optional provider, transfer memory, synchronize,
-allocate evaluation temporaries, or expose a sparse or random-storage facet.
+Successful Dense BLAS and evaluation calls do not dispatch to an optional
+provider, transfer memory, synchronize, allocate temporaries, or expose a
+sparse or random-storage facet. CUDA scalar results remain in caller-owned
+device storage; CUDA Iamax also takes caller-owned device workspace for
+provider-index conversion. A CUDA failure after possible enqueue follows the
+documented stream-drain recovery rule before returning its error.
 
 See the [Dense module guide](modules/dense.md).
 

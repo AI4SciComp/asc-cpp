@@ -25,6 +25,7 @@ foreach(_source IN ITEMS
     dense_cuda_concurrency_test.cc
     dense_cuda_evaluate_test.cc
     dense_cuda_blas_test.cc
+    dense_cuda_blas_level1_test.cc
     dense_cuda_move_assignment_test.cc
     dense_cuda_owner_test.cc
     dense_cuda_scalar_release_regression_test.cc
@@ -54,6 +55,11 @@ foreach(_source IN ITEMS
       SKIP_RETURN_CODE 77
   )
 endforeach()
+
+target_link_libraries(
+  asc_dense_cuda_dense_cuda_concurrency_test
+  PRIVATE Threads::Threads
+)
 
 add_executable(
   asc_dense_cuda_benchmark

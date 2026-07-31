@@ -4,6 +4,7 @@
 #include <cublas_v2.h>
 
 #include <cstdint>
+#include <mutex>
 
 #include "asc/dense/providers/cuda.h"
 
@@ -21,10 +22,14 @@ class ContextState {
 
   [[nodiscard]] std::int32_t device() const noexcept { return device_; }
   [[nodiscard]] cublasHandle_t handle() const noexcept { return handle_; }
+  [[nodiscard]] std::unique_lock<std::mutex> Lock() {
+    return std::unique_lock(handle_mutex_);
+  }
 
  private:
   std::int32_t device_;
   cublasHandle_t handle_;
+  std::mutex handle_mutex_;
 };
 
 class Access {

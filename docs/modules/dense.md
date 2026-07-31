@@ -1,8 +1,8 @@
 # Dense module
 
 `ASC::dense` is the provider-free CPU foundation for fixed-rank dense storage,
-views, expression evaluation, deterministic reductions, and a narrow serial
-linear-algebra reference path. It is a compiled C++20 library with exactly two
+views, expression evaluation, deterministic reductions, and a portable serial
+BLAS reference path. It is a compiled C++20 library with exactly two
 direct ASC dependencies: `ASC::core` and `ASC::expression`. Milestone 6 adds
 the separately requested `ASC::dense_cuda` provider facet without adding a
 provider edge to the base module.
@@ -182,23 +182,75 @@ if (!sum.ok()) {
 
 ## Serial reference BLAS
 
-The `<asc/dense/blas.h>` header declares the compiled reference operations
-`Copy`, `Scal`, `Axpy`, `Dot`, `Nrm2`, `Gemv`, and `Gemm`. They accept explicit
-serial execution, operate on rank-one or rank-two ordinary host views, and
-support only `float` and `double`.
-`DenseBlasTranspose` has `kNone` and `kTranspose`; conjugate transpose is
-unavailable.
+The `<asc/dense/blas.h>` header declares the complete frozen classic Level 1
+surface: `Rotg`, `Rotmg`, `Rot`, `Rotm`, `Swap`, `Scal`, `Copy`, `Axpy`,
+`Dot`, `Dotu`, `Dotc`, `Nrm2`, `Asum`, and `Iamax`. The real families support
+`float` and `double`; applicable complex families support
+`std::complex<float>` and `std::complex<double>`. The `Dot` overloads also
+cover the frozen `sdsdot` bias form, whose products and bias are accumulated
+in `double` before conversion to `float`, and the float-input/double-result
+`dsdot` form.
 
-Every operation validates backend, memory, complete shape, checked arithmetic,
-and forbidden output overlap before mutation. `Copy` permits exact
-source/destination identity as a no-op. `Scal` and `Axpy` permit exact identity
-when the same-index mathematical operation is well-defined. Other possible
-output overlap is rejected.
+Level 1 operations use `DenseBlasVectorView<Element>`. It stores a pointer to
+logical element zero, a signed 64-bit size, a nonzero signed increment, and a
+caller-supplied backing `ConstMemoryView`. `Create` proves the complete
+reachable byte span, including negative increments, before publishing the
+descriptor. It never owns, extends, or deallocates the backing storage.
+Ordinary `DenseView` layout, arrays, expressions, and the existing overloads
+are unchanged.
 
-`Dot` accumulates in logical index order. `Nrm2` uses scaled sum-of-squares so
-intermediate squares do not needlessly overflow or underflow. A zero `beta` in
-`Gemv` or `Gemm` guarantees that the prior destination is not read. NaN and
-infinity otherwise follow ordinary IEEE arithmetic without normalization.
+```cpp
+std::array<double, 5> x_storage{1.0, 0.0, 2.0, 0.0, 3.0};
+std::array<double, 5> y_storage{4.0, 0.0, 5.0, 0.0, 6.0};
+std::array<double, 1> result_storage{};
+
+auto x = asc::DenseBlasVectorView<const double>::Create(
+    x_storage.data() + 4, 3, -2,
+    asc::ConstMemoryView(x_storage.data(), sizeof(x_storage),
+                         asc::MemorySpace::kHost));
+auto y = asc::DenseBlasVectorView<const double>::Create(
+    y_storage.data(), 3, 2,
+    asc::ConstMemoryView(y_storage.data(), sizeof(y_storage),
+                         asc::MemorySpace::kHost));
+auto result = asc::DenseBlasVectorView<double>::Create(
+    result_storage.data(), 1, 1,
+    asc::ConstMemoryView(result_storage.data(), sizeof(result_storage),
+                         asc::MemorySpace::kHost));
+if (!x.ok() || !y.ok() || !result.ok()) {
+  return asc::Status(asc::ErrorCode::kInvalidArgument,
+                     "invalid BLAS descriptor");
+}
+asc::Status status =
+    asc::Dot(asc::ExecutionContext::Serial(), *x, *y, *result);
+// result_storage[0] == 28.0: 3*4 + 2*5 + 1*6.
+```
+
+Scalar inputs and outputs for `Rotg`, `Rotmg`, reductions, and mixed dot
+products are size-one caller-owned descriptors. Modified-rotation parameter
+arrays have size five and unit increment. `Rot` applies
+`x' = c*x + s*y`, `y' = c*y - s*x`; complex rotations use real `c` and `s`.
+`Dotu` is unconjugated and `Dotc` conjugates the left operand. Complex `Asum`
+and `Iamax` use `abs(real) + abs(imag)`. `Iamax` returns the first maximum as
+a zero-based logical index and returns `-1` for an empty operand.
+
+Every operation validates execution backend, host placement, shape, checked
+descriptor arithmetic, and forbidden overlap before mutation. `Copy` and
+`Swap` allow exact identity; `Axpy` allows exact identity and does not read its
+source when `alpha` is zero. Partial overlap is rejected conservatively.
+Rotations reject overlap between their independently mutable operands.
+Reduction results cannot overlap inputs. Empty dot, norm, and absolute-sum
+operations publish zero.
+
+Dot products use explicit serial logical-index order. `Nrm2` uses scaled
+sum-of-squares so intermediate squares do not needlessly overflow or
+underflow. NaN, infinity, signed zero, and subnormal values otherwise follow
+the documented operation formula and ordinary IEEE behavior.
+
+The pre-existing ordinary-view `Copy`, `Scal`, `Axpy`, `Dot`, `Nrm2`, `Gemv`,
+and `Gemm` overloads remain available for `float` and `double`.
+`DenseBlasTranspose` has `kNone` and `kTranspose`; conjugate transpose is not
+yet part of those matrix operations. A zero `beta` in `Gemv` or `Gemm`
+guarantees that the prior destination is not read.
 
 ## Optional CUDA Dense facet
 
@@ -233,14 +285,19 @@ stream, and exposes the provider-neutral context through
 and disabled atomic reductions are provider implementation details of the
 frozen contract, not native-handle interoperability.
 
-One `DenseCudaContext` is not concurrently mutable. Independent provider
-contexts and streams may execute concurrently when their storage does not
-race. All CUDA evaluation and algebra operations return
-`Result<CompletionEvent>` and do not wait. Until the event completes, keep the
+One `DenseCudaContext` serializes access to its mutable cuBLAS handle state,
+including temporary scalar pointer-mode changes, so independent callers may
+submit concurrently when their storage does not race. Separate provider
+contexts retain independent handles and streams. All successful CUDA
+evaluation and BLAS operations return `Result<CompletionEvent>` and do not
+wait. Until the event completes, keep the
 Dense provider context, its execution context, every resource and owner, all
 views and expression nodes, and the referenced storage alive. Do not mutate,
 move, resize, reset, or destroy an operand or destination while work using it
-is pending. Destroying the event does not complete the work.
+is pending. Destroying the event does not complete the work. If a provider or
+kernel failure occurs after work may have entered the stream, the established
+recovery path drains that stream before returning an error so no untracked
+asynchronous use survives the failed call.
 
 ### Device owners and explicit transfer
 
@@ -316,14 +373,35 @@ no-op event; other destination overlap fails. Evaluation follows
 dimension-zero-fastest logical order. It performs no allocation, workspace,
 packing, transfer, fallback, or hidden wait.
 
-### CUDA algebra subset
+### CUDA BLAS
 
-The asynchronous operations are `CudaCopy`, `CudaScal`, `CudaAxpy`,
-`CudaGemv`, and `CudaGemm`.
+The provider supplies asynchronous `CudaRotg`, `CudaRotmg`, `CudaRot`,
+`CudaRotm`, `CudaSwap`, `CudaScal`, `CudaCopy`, `CudaAxpy`, `CudaDot`,
+`CudaDotu`, `CudaDotc`, `CudaNrm2`, `CudaAsum`, and `CudaIamax` overloads for
+every applicable frozen Level 1 row. It also retains the existing ordinary
+view `CudaCopy`, `CudaScal`, `CudaAxpy`, `CudaGemv`, and `CudaGemm` overloads.
 
-Copy, Scal, and Axpy accept only `float` or `double` rank-one and rank-two
-unique nonnegative-stride device views. Their project-owned kernels handle
-layout-left, layout-right, and valid padded mappings without packing.
+Level 1 vector, modified-rotation parameter, scalar-result, and Iamax-result
+descriptors all reference caller-owned storage on the CUDA context device.
+Vector increments may be positive or negative and preserve the same logical
+element-zero convention as the CPU API. By-value coefficients remain host
+values. Every modified scalar or reduction result remains in device storage;
+the call returns without copying or reading it on the host.
+
+`CudaIamax` additionally requires an aligned device `MutableMemoryView` of at
+least `sizeof(index_t)` bytes. For positive increments, cuBLAS writes its
+native one-based result there. For negative increments, where cuBLAS defines
+no result, a project kernel scans in public logical order and writes the same
+one-based intermediate while preserving the first-maximum tie rule. A final
+project kernel converts that intermediate to the public zero-based logical
+index. The workspace, public result, operand, context, and execution context
+must all outlive asynchronous completion. Workspace cannot overlap either
+operand or result.
+
+The ordinary-view Copy, Scal, and Axpy overloads accept only `float` or
+`double` rank-one and rank-two unique nonnegative-stride device views. Their
+project-owned kernels handle layout-left, layout-right, and valid padded
+mappings without packing.
 
 Gemv and Gemm use typed float/double cuBLAS calls and
 `MatrixOperation::kNone` or `MatrixOperation::kTranspose`. Matrix operands
@@ -333,11 +411,12 @@ before enqueue. Dimensions, leading dimensions, and vector increments are
 checked before narrowing to provider integers. Output overlap with any input
 is rejected. When `beta == 0`, the prior output value is not read.
 
-No CUDA Dense operation allocates ASC workspace, transfers, packs, changes
-precision, silently waits, or falls back. Dot and Nrm2 are absent because a
-host-scalar return would require hidden synchronization or a new asynchronous
-scalar owner. Factorizations, solvers, reductions, batching, complex or mixed
-precision, native handles, and Tensor Core or fast-math modes are also outside
+No successful CUDA Dense operation allocates, transfers, packs, silently
+waits, or falls back. Extended `sdsdot` and mixed `dsdot` use approved project
+kernels because the frozen CUDA provider does not supply their exact
+accumulation/result contracts; both still write caller-owned device results
+asynchronously. Factorizations, solvers, Level 2/3 complex or mixed precision,
+batching, native handles, and Tensor Core or fast-math modes remain outside
 this facet.
 
 ### Errors, costs, and evidence
@@ -349,25 +428,28 @@ codes are diagnostic rather than portable control-flow values.
 
 The caller-visible costs are one explicitly created stream per Core CUDA
 context, one cuBLAS handle per Dense CUDA context, explicit owner allocations,
-explicit transfer or clone operations, at most one kernel or cuBLAS enqueue
-per nontrivial operation, and one completion event. No-op and empty operations
-need not launch a kernel. The pointwise and level-one operations use no
+explicit transfer or clone operations, a bounded provider/kernel enqueue
+sequence, and one completion event. `sdsdot` performs extended accumulation
+and bias addition in one project kernel; nonempty `CudaIamax` converts the
+provider index with a second project kernel. Empty scalar-producing operations
+launch a scalar write.
+Level 1 uses no workspace except the explicit caller-owned `CudaIamax`
 workspace. Gemv/Gemm use no ASC-managed workspace.
 
-Milestone 6 evidence labels are independent. `core_cuda` requires
-**configure-tested**, **compile-tested**, and **runtime-tested** evidence.
-`dense_cuda` additionally requires **parity-tested** evidence. Documentation
-or successful toolkit discovery alone establishes none of these labels; the
-Publication Checkpoint B report records the exact toolkit, compiler, driver,
-device, compute capability, architecture code, operations, layouts, sizes,
-tolerances, and any skip.
+Issue 7 evidence labels are independent. `dense_cuda` requires
+**configure-tested**, **compile-tested**, **runtime-tested**, and
+**parity-tested** evidence. Documentation or successful toolkit discovery
+alone establishes none of these labels; the Feature Gate B report records the
+exact toolkit, compiler, driver, device, compute capability, architecture
+code, operations, layouts, sizes, tolerances, and every skip.
 
 ## Allocation, transfer, and provider boundary
 
 Dense supplies a deterministic serial correctness baseline, not an optimized
-provider. Operations use caller-owned destinations and never hide allocation,
-temporary storage, packing, transfer, precision conversion, synchronization,
-or fallback. The optional CUDA facet follows the same explicit policy. An
+provider. Successful operations use caller-owned destinations and never hide
+allocation, temporary storage, packing, transfer, precision conversion,
+synchronization, or fallback. The optional CUDA facet follows the same
+explicit policy; its post-enqueue failure drain is documented above. An
 unsupported context, memory space, scalar type, layout, expression, or
 operation returns a status rather than selecting another implementation.
 
@@ -384,24 +466,24 @@ valid only while the referenced objects and bytes remain alive and no thread
 mutates, moves, resizes, or destroys them. Any concurrent write requires
 caller-provided synchronization and non-overlapping access under the C++
 memory model. CUDA event dependencies and stream ordering additionally govern
-device storage. One `DenseCudaContext` is not concurrently mutable;
-independent contexts may submit independent work.
+device storage. A `DenseCudaContext` serializes its mutable provider handle;
+independent contexts may submit independent work without that serialization.
 
 ## Deliberately absent
 
-Milestone 6 Dense provides no:
+The current Dense surface provides no:
 
 - Sparse storage or operation;
 - provider edge in `ASC::dense` or `ASC::cpp`;
 - runtime-rank owner or rank-reducing slice;
-- negative-stride or repeated-address view;
+- negative-stride or repeated-address ordinary `DenseView`;
 - shared ownership, external adoption, or custom deleter;
 - hidden temporary, packing, transfer, synchronization, or fallback;
-- complex, mixed-precision, batched, or tensor operation;
+- complex or mixed-precision Level 2/3, batched, or tensor operation;
 - factorization, solver, or workspace-bearing algorithm;
 - optimized CPU provider; or
-- CUDA Dot, Nrm2, reduction, arbitrary external expression evaluation, general
-  broadcasting, native handle/stream adoption, or hidden workspace;
+- CUDA arbitrary external expression evaluation, general broadcasting,
+  native handle/stream adoption, or hidden workspace;
 - CUDA layout-right/arbitrary-stride Gemv or Gemm;
 - Sparse CUDA, Random CUDA, HIP, or SYCL; or
 - OpenMP, TBB, Eigen, BLAS/LAPACK, or oneMKL integration.

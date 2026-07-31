@@ -30,6 +30,10 @@ static_assert(std::is_move_constructible_v<Grid>);
 static_assert(!std::is_copy_constructible_v<Grid>);
 static_assert(std::is_convertible_v<asc::DenseView<double, 2>,
                                     asc::DenseView<const double, 2>>);
+static_assert(std::is_convertible_v<asc::DenseBlasVectorView<double>,
+                                    asc::DenseBlasVectorView<const double>>);
+static_assert(!std::is_convertible_v<asc::DenseBlasVectorView<const double>,
+                                     asc::DenseBlasVectorView<double>>);
 
 #if defined(ASC_M8_VERIFY_CUDA)
 template <typename Destination>

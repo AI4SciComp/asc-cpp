@@ -5,6 +5,23 @@ completion and release publication require separate approval.
 
 ## Unreleased
 
+### Dense BLAS Level 1 remediation (Issue 7)
+
+- Added the complete frozen classic dense BLAS Level 1 real and complex
+  families on the portable serial CPU path and the explicit CUDA provider,
+  including mixed/extended dot variants.
+- Added checked caller-owned signed-stride vector descriptors, asynchronous
+  caller-owned CUDA scalar results, and explicit device workspace for
+  zero-based `CudaIamax` result conversion.
+- Added CPU/CUDA conformance, negative-stride, invalid-input, extreme-value,
+  allocation, packaging-consumer, documentation-example, coverage-manifest,
+  and representative benchmark evidence.
+
+No Level 2 or Level 3 routine or optimized CPU provider is included.
+Successful Level 1 calls add no hidden allocation, transfer, synchronization,
+or fallback; the established post-enqueue CUDA failure drain remains explicit
+in the error contract.
+
 ### Milestone 8: packaging/API/performance/downstream hardening
 
 - Advanced the unreleased package candidate to 0.9.0 without adding or
