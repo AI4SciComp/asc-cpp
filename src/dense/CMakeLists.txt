@@ -5,6 +5,7 @@ target_sources(
   asc_dense
   PRIVATE
     blas.cc
+    blas_level1.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -59,6 +60,8 @@ if(ASC_CPP_ENABLE_CUDA)
     asc_dense_cuda
     PRIVATE
       cuda/context.cc
+      cuda/blas_level1.cc
+      cuda/blas_level1_kernels.cu
       cuda/kernels.cu
       cuda/operations.cc
     PUBLIC

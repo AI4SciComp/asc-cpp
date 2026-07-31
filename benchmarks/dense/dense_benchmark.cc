@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <array>
 #include <chrono>
 #include <cmath>
@@ -5,6 +6,7 @@
 #include <iostream>
 #include <span>
 #include <string_view>
+#include <vector>
 
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
@@ -129,8 +131,10 @@ void PrintResult(std::string_view operation, std::size_t rows,
 
 int main() {
   constexpr asc::extent_t kExtent = 32;
+  constexpr asc::extent_t kVectorExtent = 1U << 16;
   constexpr std::size_t kEvaluationIterations = 64;
   constexpr std::size_t kGemmIterations = 4;
+  constexpr std::size_t kLevel1Iterations = 64;
 
   asc::HostMemoryResource resource;
   auto extents = MatrixExtents::Create(kExtent, kExtent);
@@ -222,9 +226,95 @@ int main() {
   PrintResult("gemm", kExtent, kExtent, kGemmIterations, gemm_elapsed,
               gemm_checksum, gemm_allocations);
 
+  std::vector<double> level1_left(static_cast<std::size_t>(kVectorExtent));
+  std::vector<double> level1_output(static_cast<std::size_t>(kVectorExtent));
+  for (asc::index_t index = 0; index < kVectorExtent; ++index) {
+    const double value = static_cast<double>(1 + index % 17);
+    level1_left[static_cast<std::size_t>(index)] = 0.125 * value;
+    level1_output[static_cast<std::size_t>(index)] = 0.25 * value;
+  }
+  std::array<double, 1> level1_result{};
+  auto left_vector = asc::DenseBlasVectorView<const double>::Create(
+      level1_left.data(), kVectorExtent, 1,
+      asc::ConstMemoryView(level1_left.data(),
+                           level1_left.size() * sizeof(double),
+                           asc::MemorySpace::kHost));
+  auto output_vector = asc::DenseBlasVectorView<double>::Create(
+      level1_output.data(), kVectorExtent, 1,
+      asc::ConstMemoryView(level1_output.data(),
+                           level1_output.size() * sizeof(double),
+                           asc::MemorySpace::kHost));
+  auto result_vector = asc::DenseBlasVectorView<double>::Create(
+      level1_result.data(), 1, 1,
+      asc::ConstMemoryView(level1_result.data(), sizeof(level1_result),
+                           asc::MemorySpace::kHost));
+  if (!left_vector.ok() || !output_vector.ok() || !result_vector.ok()) {
+    return 14;
+  }
+
+  const auto axpy_start = Clock::now();
+  std::size_t axpy_allocations = 0;
+  {
+    asc_dense_test::AllocationProbe probe;
+    for (std::size_t iteration = 0; iteration < kLevel1Iterations;
+         ++iteration) {
+      if (!asc::Axpy(context, 0.5, *left_vector, *output_vector).ok()) {
+        return 15;
+      }
+    }
+    axpy_allocations = probe.count();
+  }
+  const auto axpy_elapsed = Clock::now() - axpy_start;
+  double axpy_checksum = 0.0;
+  const double axpy_scale =
+      0.25 + 0.5 * 0.125 * static_cast<double>(kLevel1Iterations);
+  for (asc::index_t index = 0; index < kVectorExtent; ++index) {
+    const double expected = axpy_scale * static_cast<double>(1 + index % 17);
+    const double actual = level1_output[static_cast<std::size_t>(index)];
+    if (std::abs(actual - expected) >
+        1.0e-12 * std::max(1.0, std::abs(expected))) {
+      return 16;
+    }
+    axpy_checksum += actual;
+  }
+  PrintResult("blas_level1_axpy", static_cast<std::size_t>(kVectorExtent), 1,
+              kLevel1Iterations, axpy_elapsed, axpy_checksum, axpy_allocations);
+
+  const auto dot_start = Clock::now();
+  std::size_t dot_allocations = 0;
+  {
+    asc_dense_test::AllocationProbe probe;
+    for (std::size_t iteration = 0; iteration < kLevel1Iterations;
+         ++iteration) {
+      if (!asc::Dot(context, *left_vector,
+                    asc::DenseBlasVectorView<const double>(*output_vector),
+                    *result_vector)
+               .ok()) {
+        return 17;
+      }
+    }
+    dot_allocations = probe.count();
+  }
+  const auto dot_elapsed = Clock::now() - dot_start;
+  long double expected_dot = 0.0L;
+  for (asc::index_t index = 0; index < kVectorExtent; ++index) {
+    expected_dot +=
+        static_cast<long double>(level1_left[static_cast<std::size_t>(index)]) *
+        static_cast<long double>(
+            level1_output[static_cast<std::size_t>(index)]);
+  }
+  if (std::abs(static_cast<long double>(level1_result[0]) - expected_dot) >
+      1.0e-12L * std::max(1.0L, std::abs(expected_dot))) {
+    return 18;
+  }
+  PrintResult("blas_level1_dot", static_cast<std::size_t>(kVectorExtent), 1,
+              kLevel1Iterations, dot_elapsed, level1_result[0],
+              dot_allocations);
+
   if (!asc_test::ProcessAllocationCountMatches(evaluation_allocations, 0) ||
-      gemm_allocations != 0 || !std::isfinite(evaluation_checksum) ||
-      !std::isfinite(gemm_checksum)) {
+      gemm_allocations != 0 || axpy_allocations != 0 || dot_allocations != 0 ||
+      !std::isfinite(evaluation_checksum) || !std::isfinite(gemm_checksum) ||
+      !std::isfinite(axpy_checksum) || !std::isfinite(level1_result[0])) {
     return 13;
   }
   return 0;

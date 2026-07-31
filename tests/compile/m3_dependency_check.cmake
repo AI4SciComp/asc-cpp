@@ -19,6 +19,7 @@ set(_expected_public_files
 )
 set(_expected_source_files
   src/dense/blas.cc
+  src/dense/blas_level1.cc
 )
 
 set(_observed_public_files)

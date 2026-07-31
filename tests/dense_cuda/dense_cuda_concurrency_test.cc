@@ -1,8 +1,10 @@
 #include <algorithm>
 #include <array>
+#include <atomic>
 #include <chrono>
 #include <cstddef>
 #include <iostream>
+#include <thread>
 #include <utility>
 
 #include "asc/core/execution.h"
@@ -57,11 +59,18 @@ int main() {
   auto host_b = asc::Buffer::Allocate(pinned, kBytes, alignof(float));
   auto device_a = asc::Buffer::Allocate(device, kBytes, alignof(float));
   auto device_b = asc::Buffer::Allocate(device, kBytes, alignof(float));
+  auto host_scalar =
+      asc::Buffer::Allocate(pinned, sizeof(float), alignof(float));
+  auto device_scalar =
+      asc::Buffer::Allocate(device, sizeof(float), alignof(float));
   ASC_DENSE_CUDA_CHECK(test, host_a.ok());
   ASC_DENSE_CUDA_CHECK(test, host_b.ok());
   ASC_DENSE_CUDA_CHECK(test, device_a.ok());
   ASC_DENSE_CUDA_CHECK(test, device_b.ok());
-  if (!host_a.ok() || !host_b.ok() || !device_a.ok() || !device_b.ok()) {
+  ASC_DENSE_CUDA_CHECK(test, host_scalar.ok());
+  ASC_DENSE_CUDA_CHECK(test, device_scalar.ok());
+  if (!host_a.ok() || !host_b.ok() || !device_a.ok() || !device_b.ok() ||
+      !host_scalar.ok() || !device_scalar.ok()) {
     return test.Finish();
   }
   std::fill_n(asc_dense_cuda_test::Data<float>(*host_a), kElements, 2.0F);
@@ -81,6 +90,53 @@ int main() {
   auto view_b = asc_dense_cuda_test::MakeView(
       asc_dense_cuda_test::Data<float>(*device_b), extents, strides,
       asc::MemorySpace::kDevice);
+
+  auto blas_a = asc::DenseBlasVectorView<const float>::Create(
+      asc_dense_cuda_test::Data<float>(*device_a), kElements, 1,
+      asc::ConstMemoryView(device_a->data(), device_a->size(),
+                           asc::MemorySpace::kDevice));
+  auto blas_b = asc::DenseBlasVectorView<float>::Create(
+      asc_dense_cuda_test::Data<float>(*device_b), kElements, 1,
+      asc::ConstMemoryView(device_b->data(), device_b->size(),
+                           asc::MemorySpace::kDevice));
+  auto blas_scalar = asc::DenseBlasVectorView<float>::Create(
+      asc_dense_cuda_test::Data<float>(*device_scalar), 1, 1,
+      asc::ConstMemoryView(device_scalar->data(), device_scalar->size(),
+                           asc::MemorySpace::kDevice));
+  ASC_DENSE_CUDA_CHECK(test, blas_a.ok());
+  ASC_DENSE_CUDA_CHECK(test, blas_b.ok());
+  ASC_DENSE_CUDA_CHECK(test, blas_scalar.ok());
+  if (!blas_a.ok() || !blas_b.ok() || !blas_scalar.ok()) {
+    return test.Finish();
+  }
+
+  std::atomic<bool> shared_context_ok{true};
+  std::thread reduction_thread([&] {
+    for (std::size_t iteration = 0; iteration < 32; ++iteration) {
+      auto event = asc::CudaDot(*context_a, *blas_a, *blas_a, *blas_scalar);
+      if (!event.ok() || !event->Wait().ok()) {
+        shared_context_ok.store(false, std::memory_order_release);
+        return;
+      }
+    }
+  });
+  std::thread scaling_thread([&] {
+    for (std::size_t iteration = 0; iteration < 32; ++iteration) {
+      auto event = asc::CudaScal(*context_a, 1.0F, *blas_b);
+      if (!event.ok() || !event->Wait().ok()) {
+        shared_context_ok.store(false, std::memory_order_release);
+        return;
+      }
+    }
+  });
+  reduction_thread.join();
+  scaling_thread.join();
+  ASC_DENSE_CUDA_CHECK(test, shared_context_ok.load(std::memory_order_acquire));
+  ASC_DENSE_CUDA_CHECK(
+      test, asc_dense_cuda_test::CopyAndWait(context_a->execution_context(),
+                                             *host_scalar, *device_scalar));
+  ASC_DENSE_CUDA_EQ(test, asc_dense_cuda_test::Data<float>(*host_scalar)[0],
+                    static_cast<float>(4 * kElements));
 
   const auto submit_begin = std::chrono::steady_clock::now();
   auto event_a = asc::CudaScal(*context_a, 4.0F, view_a);

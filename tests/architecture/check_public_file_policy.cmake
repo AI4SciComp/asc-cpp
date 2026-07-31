@@ -63,10 +63,13 @@ set(_expected_compiled_sources
   src/core/memory.cc
   src/core/status.cc
   src/core/cuda/runtime.cc
+  src/dense/blas.cc
+  src/dense/blas_level1.cc
+  src/dense/cuda/blas_level1.cc
+  src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/context.cc
   src/dense/cuda/kernels.cu
   src/dense/cuda/operations.cc
-  src/dense/blas.cc
   src/random/distribution.cc
   src/random/engine.cc
   src/random/cuda/dense.cc

@@ -186,7 +186,7 @@ compiler, Windows/MSVC CUDA, and other host/toolkit pairings remain `skipped`.
 | `ASC::core` | none | status/result, checked metadata, configuration vocabulary, byte I/O, host memory, serial execution |
 | `ASC::utilities` | `ASC::core` | transactional command-line configuration and checked steady-clock timing |
 | `ASC::expression` | `ASC::core` | storage-neutral readable, placement, writable, alias, and sparsity protocols |
-| `ASC::dense` | `ASC::core`, `ASC::expression` | host storage/views, pointwise evaluation, reductions, reference float/double algebra |
+| `ASC::dense` | `ASC::core`, `ASC::expression` | host storage/views, pointwise evaluation, reductions, complete reference real/complex BLAS Level 1, existing float/double Gemv/Gemm |
 | `ASC::sparse` | `ASC::core`, `ASC::expression` | canonical coordinate/CSR/CSC storage, conversion, evaluation, reference float/double CSR SpMV |
 | `ASC::random` | `ASC::core` | Philox4x32-10 words and exact float/double `Uniform01` transforms |
 | `ASC::random_dense` | `ASC::random`, `ASC::dense` | logical-order host Dense `Uniform01` fill |
@@ -211,7 +211,7 @@ and a caller-selected architecture.
 | Component | Exact direct ASC edge | Private provider edge | Bounded capability |
 | --- | --- | --- | --- |
 | `ASC::core_cuda` | `ASC::core` | `CUDA::cudart` | device inventory, pinned/device/managed resources, stream-backed contexts, copies, events |
-| `ASC::dense_cuda` | `ASC::dense`, `ASC::core_cuda` | `CUDA::cublas` | bounded float/double pointwise evaluation and Copy/Scal/Axpy/Gemv/Gemm |
+| `ASC::dense_cuda` | `ASC::dense`, `ASC::core_cuda` | `CUDA::cublas` | bounded float/double pointwise evaluation, complete real/complex BLAS Level 1, existing float/double Gemv/Gemm |
 | `ASC::sparse_cuda` | `ASC::sparse`, `ASC::core_cuda` | `CUDA::cusparse` | trusted CSR clone, CSR SpMV, bounded trusted sparse evaluation |
 | `ASC::random_cuda` | `ASC::random`, `ASC::core_cuda` | none | raw Philox words into a capacity-carrying `MutableMemoryView` |
 | `ASC::random_dense_cuda` | `ASC::random_dense`, `ASC::random_cuda`, `ASC::core_cuda` | none | logical-order Dense `Uniform01` |

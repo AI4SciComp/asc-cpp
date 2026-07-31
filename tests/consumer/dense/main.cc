@@ -60,5 +60,30 @@ int main() {
   if (!status.ok()) {
     return 7;
   }
-  return output_storage == std::array<double, 2>{3.0, 7.0} ? 0 : 8;
+  if (output_storage != std::array<double, 2>{3.0, 7.0}) {
+    return 8;
+  }
+
+  std::array<double, 5> left_storage{1.0, 0.0, 2.0, 0.0, 3.0};
+  std::array<double, 5> right_storage{4.0, 0.0, 5.0, 0.0, 6.0};
+  std::array<double, 1> dot_storage{};
+  auto left = asc::DenseBlasVectorView<const double>::Create(
+      left_storage.data() + 4, 3, -2,
+      asc::ConstMemoryView(left_storage.data(), sizeof(left_storage),
+                           asc::MemorySpace::kHost));
+  auto right = asc::DenseBlasVectorView<const double>::Create(
+      right_storage.data(), 3, 2,
+      asc::ConstMemoryView(right_storage.data(), sizeof(right_storage),
+                           asc::MemorySpace::kHost));
+  auto dot = asc::DenseBlasVectorView<double>::Create(
+      dot_storage.data(), 1, 1,
+      asc::ConstMemoryView(dot_storage.data(), sizeof(dot_storage),
+                           asc::MemorySpace::kHost));
+  if (!left.ok() || !right.ok() || !dot.ok()) {
+    return 9;
+  }
+  if (!asc::Dot(asc::ExecutionContext::Serial(), *left, *right, *dot).ok()) {
+    return 10;
+  }
+  return dot_storage[0] == 28.0 ? 0 : 11;
 }

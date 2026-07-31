@@ -303,6 +303,7 @@ Result<CompletionEvent> GemvImpl(DenseCudaContext& context,
   }
 
   ContextState* state = Access::State(context);
+  auto handle_lock = state->Lock();
   const cublasOperation_t provider_operation =
       operation == MatrixOperation::kNone ? CUBLAS_OP_N : CUBLAS_OP_T;
   cublasStatus_t provider_status;
@@ -432,6 +433,7 @@ Result<CompletionEvent> GemmImpl(DenseCudaContext& context,
   }
 
   ContextState* state = Access::State(context);
+  auto handle_lock = state->Lock();
   const cublasOperation_t provider_left =
       left_operation == MatrixOperation::kNone ? CUBLAS_OP_N : CUBLAS_OP_T;
   const cublasOperation_t provider_right =
