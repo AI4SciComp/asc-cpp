@@ -1,8 +1,8 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Milestone 8 candidate
+Status: unreleased `0.9.0` Issue 8 Feature Gate B candidate
 
-Date: 2026-07-28
+Date: 2026-07-31
 
 ASCCpp performance evidence is correctness-checked observational data, not a
 cross-machine timing guarantee. Serial implementations are reference paths;
@@ -59,10 +59,10 @@ timed interval; parity-sensitive probes also use an independent oracle.
 
 | Probe | Representative workload | Correctness guard |
 | --- | --- | --- |
-| Dense CPU | pointwise evaluation, Level 1 Axpy/Dot, and GEMM | exact/expected result and zero ASCCpp computational allocation |
+| Dense CPU | pointwise evaluation, Level 1 Axpy/Dot, Level 2 GEMV latency/estimated bandwidth, and GEMM | exact/expected result and zero ASCCpp computational allocation |
 | Sparse CPU | canonical CSR SpMV | independent result and zero workspace/allocation |
 | Random storage CPU | Dense fill and exact-count Sparse generation | deterministic checksums and declared result allocations |
-| Dense CUDA | pointwise, Level 1 Axpy/Dot/Iamax, GEMV, and GEMM | completed events, numerical parity, caller-owned Iamax workspace, and zero operation allocation |
+| Dense CUDA | pointwise, Level 1 Axpy/Dot/Iamax, Level 2 GEMV latency/estimated bandwidth, and GEMM | completed events, numerical parity, caller-owned Iamax workspace, and zero operation allocation |
 | Sparse CUDA | float/double CSR SpMV | explicit workspace where required and numerical parity |
 | Random CUDA | raw words, Dense `Uniform01`, Sparse `Uniform01` | independent bit/structure/value oracles |
 
@@ -97,7 +97,8 @@ an exact Sparse random count.
 | checked metadata/layout/view creation | linear in inspected rank/metadata; no numerical result allocation |
 | Dense serial evaluation/reduction | one logical traversal with current built-in mapping work `O(N * R)`; no computational temporary/workspace |
 | Dense serial BLAS Level 1 | `O(N)` vector work (`O(1)` for scalar rotations); no allocation, packing, or workspace |
-| Dense serial GEMV/GEMM | conventional `O(mn)` / `O(mnk)` reference work; no packing/workspace |
+| Dense serial BLAS Level 2 | conventional `O(mn)` matrix-vector/rank-update work, reduced for band storage; no allocation, packing, or workspace |
+| Dense serial GEMM | conventional `O(mnk)` reference work; no packing/workspace |
 | coordinate finalization | current worst case `O(R * Z^2)`; declared owner buffers and `O(R)` local work storage |
 | Sparse conversion | deterministic scans documented by the Sparse module; destination owner buffers only |
 | serial CSR SpMV | `O(rows + Z)` plus adapter access cost; no workspace |
@@ -105,7 +106,8 @@ an exact Sparse random count.
 | Sparse serial random | `O(K * N)` selection plus current `O(K^2 * R)` coordinate finalization; result buffers plus `O(R)` local storage |
 | Dense CUDA pointwise/random | current logical coordinate work `O(N * R)`; no ASCCpp computational workspace |
 | CUDA BLAS Level 1 | provider or bounded project-kernel `O(N)` work; no ASC-managed allocation, with only explicit caller-owned Iamax workspace |
-| CUDA GEMV/GEMM | provider algebra cost; no ASCCpp packing/workspace |
+| CUDA BLAS Level 2 | provider or bounded project-kernel algebra cost; no ASCCpp packing/workspace |
+| CUDA GEMM | provider algebra cost; no ASCCpp packing/workspace |
 | CUDA CSR SpMV | cuSPARSE ALG2 with queried caller workspace for unit stride; project kernel with zero workspace for positive nonunit stride |
 | CUDA Sparse evaluation | `O(Z)` project-kernel work; no workspace |
 | CUDA raw Random | `O(word_count)`; no computational allocation/workspace |

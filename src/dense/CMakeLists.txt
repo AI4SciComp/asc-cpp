@@ -6,6 +6,7 @@ target_sources(
   PRIVATE
     blas.cc
     blas_level1.cc
+    blas_level2.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -62,6 +63,8 @@ if(ASC_CPP_ENABLE_CUDA)
       cuda/context.cc
       cuda/blas_level1.cc
       cuda/blas_level1_kernels.cu
+      cuda/blas_level2.cc
+      cuda/blas_level2_kernels.cu
       cuda/kernels.cu
       cuda/operations.cc
     PUBLIC

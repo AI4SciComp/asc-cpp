@@ -183,13 +183,13 @@ if (!sum.ok()) {
 ## Serial reference BLAS
 
 The `<asc/dense/blas.h>` header declares the complete frozen classic Level 1
-surface: `Rotg`, `Rotmg`, `Rot`, `Rotm`, `Swap`, `Scal`, `Copy`, `Axpy`,
-`Dot`, `Dotu`, `Dotc`, `Nrm2`, `Asum`, and `Iamax`. The real families support
-`float` and `double`; applicable complex families support
-`std::complex<float>` and `std::complex<double>`. The `Dot` overloads also
-cover the frozen `sdsdot` bias form, whose products and bias are accumulated
-in `double` before conversion to `float`, and the float-input/double-result
-`dsdot` form.
+and Level 2 surfaces. Level 1 contains `Rotg`, `Rotmg`, `Rot`, `Rotm`, `Swap`,
+`Scal`, `Copy`, `Axpy`, `Dot`, `Dotu`, `Dotc`, `Nrm2`, `Asum`, and `Iamax`.
+The real families support `float` and `double`; applicable complex families
+support `std::complex<float>` and `std::complex<double>`. The `Dot` overloads
+also cover the frozen `sdsdot` bias form, whose products and bias are
+accumulated in `double` before conversion to `float`, and the
+float-input/double-result `dsdot` form.
 
 Level 1 operations use `DenseBlasVectorView<Element>`. It stores a pointer to
 logical element zero, a signed 64-bit size, a nonzero signed increment, and a
@@ -225,6 +225,59 @@ asc::Status status =
 // result_storage[0] == 28.0: 3*4 + 2*5 + 1*6.
 ```
 
+Level 2 contains `Gemv`, `Gbmv`, `Hemv`, `Hbmv`, `Hpmv`, `Symv`, `Sbmv`,
+`Spmv`, `Trmv`, `Tbmv`, `Tpmv`, `Trsv`, `Tbsv`, `Tpsv`, `Ger`, `Geru`,
+`Gerc`, `Her`, `Hpr`, `Her2`, `Hpr2`, `Syr`, `Spr`, `Syr2`, and `Spr2` for
+every mathematically applicable S/D/C/Z row. Its checked non-owning matrix
+descriptors are `DenseBlasMatrixView`, `DenseBlasBandMatrixView`,
+`DenseBlasTriangularBandView`, and `DenseBlasPackedMatrixView`. Each retains a
+caller-owned backing span and explicit row- or column-major layout. Bandwidth,
+leading dimension, packed span, alignment, overflow, and reachability are
+proved by `Create` before a descriptor is published.
+
+```cpp
+std::array<double, 6> matrix_storage{1.0, 4.0, 2.0, 5.0, 3.0, 6.0};
+std::array<double, 3> input_storage{1.0, 2.0, -1.0};
+std::array<double, 2> output_storage{};
+
+auto matrix = asc::DenseBlasMatrixView<const double>::Create(
+    matrix_storage.data(), 2, 3, asc::DenseBlasLayout::kColumnMajor, 2,
+    asc::ConstMemoryView(matrix_storage.data(), sizeof(matrix_storage),
+                         asc::MemorySpace::kHost));
+auto input = asc::DenseBlasVectorView<const double>::Create(
+    input_storage.data(), 3, 1,
+    asc::ConstMemoryView(input_storage.data(), sizeof(input_storage),
+                         asc::MemorySpace::kHost));
+auto output = asc::DenseBlasVectorView<double>::Create(
+    output_storage.data(), 2, 1,
+    asc::ConstMemoryView(output_storage.data(), sizeof(output_storage),
+                         asc::MemorySpace::kHost));
+if (!matrix.ok() || !input.ok() || !output.ok()) {
+  return asc::Status(asc::ErrorCode::kInvalidArgument,
+                     "invalid Level 2 descriptor");
+}
+asc::Status level2_status = asc::Gemv(
+    asc::ExecutionContext::Serial(), asc::DenseBlasTranspose::kNone, 1.0,
+    *matrix, *input, 0.0, *output);
+// output_storage == {2.0, 8.0}.
+```
+
+`DenseBlasTranspose` includes none, transpose, and conjugate transpose;
+triangular and structured operations take explicit upper/lower and
+unit/nonunit controls. General, symmetric, and Hermitian matrix-vector calls
+reject output overlap with a read operand. Triangular multiply and solve
+update their vector in place but reject overlap with matrix storage. Rank
+updates reject matrix overlap with input vectors. The referenced triangle is
+the only stored triangle modified, and Hermitian diagonal imaginary parts are
+zeroed as required by BLAS.
+
+For `alpha == 0`, Level 2 does not read multiplicative matrix or vector
+operands. For `beta == 0`, it does not read the prior output. Empty operations
+preserve the same checked no-work contract. The serial path accepts host and
+pinned-host descriptors and executes synchronously in deterministic logical
+index order without allocation, packing, transfer, synchronization, or
+fallback.
+
 Scalar inputs and outputs for `Rotg`, `Rotmg`, reductions, and mixed dot
 products are size-one caller-owned descriptors. Modified-rotation parameter
 arrays have size five and unit increment. `Rot` applies
@@ -247,10 +300,10 @@ underflow. NaN, infinity, signed zero, and subnormal values otherwise follow
 the documented operation formula and ordinary IEEE behavior.
 
 The pre-existing ordinary-view `Copy`, `Scal`, `Axpy`, `Dot`, `Nrm2`, `Gemv`,
-and `Gemm` overloads remain available for `float` and `double`.
-`DenseBlasTranspose` has `kNone` and `kTranspose`; conjugate transpose is not
-yet part of those matrix operations. A zero `beta` in `Gemv` or `Gemm`
-guarantees that the prior destination is not read.
+and `Gemm` overloads remain available for `float` and `double`. Conjugate
+transpose is identical to transpose for those real-valued matrix overloads. A
+zero `beta` in `Gemv` or `Gemm` guarantees that the prior destination is not
+read.
 
 ## Optional CUDA Dense facet
 
@@ -378,8 +431,13 @@ packing, transfer, fallback, or hidden wait.
 The provider supplies asynchronous `CudaRotg`, `CudaRotmg`, `CudaRot`,
 `CudaRotm`, `CudaSwap`, `CudaScal`, `CudaCopy`, `CudaAxpy`, `CudaDot`,
 `CudaDotu`, `CudaDotc`, `CudaNrm2`, `CudaAsum`, and `CudaIamax` overloads for
-every applicable frozen Level 1 row. It also retains the existing ordinary
-view `CudaCopy`, `CudaScal`, `CudaAxpy`, `CudaGemv`, and `CudaGemm` overloads.
+every applicable frozen Level 1 row. It also supplies `CudaGemv`, `CudaGbmv`,
+`CudaHemv`, `CudaHbmv`, `CudaHpmv`, `CudaSymv`, `CudaSbmv`, `CudaSpmv`,
+`CudaTrmv`, `CudaTbmv`, `CudaTpmv`, `CudaTrsv`, `CudaTbsv`, `CudaTpsv`,
+`CudaGer`, `CudaGeru`, `CudaGerc`, `CudaHer`, `CudaHpr`, `CudaHer2`,
+`CudaHpr2`, `CudaSyr`, `CudaSpr`, `CudaSyr2`, and `CudaSpr2` for every
+applicable frozen Level 2 row. The existing ordinary-view `CudaCopy`,
+`CudaScal`, `CudaAxpy`, `CudaGemv`, and `CudaGemm` overloads remain available.
 
 Level 1 vector, modified-rotation parameter, scalar-result, and Iamax-result
 descriptors all reference caller-owned storage on the CUDA context device.
@@ -403,7 +461,16 @@ The ordinary-view Copy, Scal, and Axpy overloads accept only `float` or
 project-owned kernels handle layout-left, layout-right, and valid padded
 mappings without packing.
 
-Gemv and Gemm use typed float/double cuBLAS calls and
+The exact Level 2 API accepts the same checked full, band, packed, and
+signed-stride descriptors as the serial API, with all nonempty storage on the
+CUDA context device. Row- and column-major layouts, transpose and conjugate
+transpose, upper and lower triangles, and unit and nonunit diagonals preserve
+the serial semantic contract. Representable paths use typed 64-bit cuBLAS
+entry points. Approved project kernels implement row-major complex cases that
+cannot be represented by a cuBLAS flag transformation without conjugating the
+wrong operand. These kernels use caller storage directly and add no workspace.
+
+The ordinary-view Gemv and Gemm overloads use typed float/double cuBLAS calls and
 `MatrixOperation::kNone` or `MatrixOperation::kTranspose`. Matrix operands
 must have cuBLAS-compatible column-major layout-left/leading-dimension
 mappings. Layout-right and arbitrary strided matrices return `kUnsupported`
@@ -415,9 +482,9 @@ No successful CUDA Dense operation allocates, transfers, packs, silently
 waits, or falls back. Extended `sdsdot` and mixed `dsdot` use approved project
 kernels because the frozen CUDA provider does not supply their exact
 accumulation/result contracts; both still write caller-owned device results
-asynchronously. Factorizations, solvers, Level 2/3 complex or mixed precision,
-batching, native handles, and Tensor Core or fast-math modes remain outside
-this facet.
+asynchronously. Level 3 expansion, factorizations beyond triangular Level 2
+solve, batching, native handles, and Tensor Core or fast-math modes remain
+outside this facet.
 
 ### Errors, costs, and evidence
 
@@ -434,9 +501,9 @@ and bias addition in one project kernel; nonempty `CudaIamax` converts the
 provider index with a second project kernel. Empty scalar-producing operations
 launch a scalar write.
 Level 1 uses no workspace except the explicit caller-owned `CudaIamax`
-workspace. Gemv/Gemm use no ASC-managed workspace.
+workspace. Level 2 and Gemm use no ASC-managed workspace.
 
-Issue 7 evidence labels are independent. `dense_cuda` requires
+Issue 8 evidence labels are independent. `dense_cuda` requires
 **configure-tested**, **compile-tested**, **runtime-tested**, and
 **parity-tested** evidence. Documentation or successful toolkit discovery
 alone establishes none of these labels; the Feature Gate B report records the
@@ -479,12 +546,12 @@ The current Dense surface provides no:
 - negative-stride or repeated-address ordinary `DenseView`;
 - shared ownership, external adoption, or custom deleter;
 - hidden temporary, packing, transfer, synchronization, or fallback;
-- complex or mixed-precision Level 2/3, batched, or tensor operation;
+- Level 3, mixed-precision, batched, or tensor operation;
 - factorization, solver, or workspace-bearing algorithm;
 - optimized CPU provider; or
 - CUDA arbitrary external expression evaluation, general broadcasting,
   native handle/stream adoption, or hidden workspace;
-- CUDA layout-right/arbitrary-stride Gemv or Gemm;
+- CUDA arbitrary-stride ordinary-view Gemv or Gemm;
 - Sparse CUDA, Random CUDA, HIP, or SYCL; or
 - OpenMP, TBB, Eigen, BLAS/LAPACK, or oneMKL integration.
 

@@ -85,5 +85,35 @@ int main() {
   if (!asc::Dot(asc::ExecutionContext::Serial(), *left, *right, *dot).ok()) {
     return 10;
   }
-  return dot_storage[0] == 28.0 ? 0 : 11;
+  if (dot_storage[0] != 28.0) {
+    return 11;
+  }
+
+  std::array<double, 3> packed_storage{2.0, 1.0, 3.0};
+  std::array<double, 2> level2_input_storage{1.0, 2.0};
+  std::array<double, 2> level2_output_storage{};
+  auto packed = asc::DenseBlasPackedMatrixView<const double>::Create(
+      packed_storage.data(), 2, asc::DenseBlasLayout::kColumnMajor,
+      asc::ConstMemoryView(packed_storage.data(), sizeof(packed_storage),
+                           asc::MemorySpace::kHost));
+  auto level2_input = asc::DenseBlasVectorView<const double>::Create(
+      level2_input_storage.data(), 2, 1,
+      asc::ConstMemoryView(level2_input_storage.data(),
+                           sizeof(level2_input_storage),
+                           asc::MemorySpace::kHost));
+  auto level2_output = asc::DenseBlasVectorView<double>::Create(
+      level2_output_storage.data(), 2, 1,
+      asc::ConstMemoryView(level2_output_storage.data(),
+                           sizeof(level2_output_storage),
+                           asc::MemorySpace::kHost));
+  if (!packed.ok() || !level2_input.ok() || !level2_output.ok()) {
+    return 12;
+  }
+  if (!asc::Spmv(asc::ExecutionContext::Serial(),
+                 asc::DenseBlasTriangle::kUpper, 1.0, *packed, *level2_input,
+                 0.0, *level2_output)
+           .ok()) {
+    return 13;
+  }
+  return level2_output_storage == std::array<double, 2>{4.0, 7.0} ? 0 : 14;
 }

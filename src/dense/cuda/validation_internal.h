@@ -205,6 +205,7 @@ inline Status ValidateMatrixOperation(MatrixOperation operation) {
   switch (operation) {
     case MatrixOperation::kNone:
     case MatrixOperation::kTranspose:
+    case MatrixOperation::kConjugateTranspose:
       return Status::Ok();
   }
   return Status(ErrorCode::kInvalidArgument,

@@ -20,6 +20,7 @@ set(_expected_public_files
 set(_expected_source_files
   src/dense/blas.cc
   src/dense/blas_level1.cc
+  src/dense/blas_level2.cc
 )
 
 set(_observed_public_files)
@@ -33,8 +34,8 @@ file(
   "${SOURCE_DIR}/include/asc/dense/*"
 )
 list(APPEND _observed_public_files ${_dense_headers})
-# Milestone 6 adds a separately audited Dense CUDA provider facet. Retain this
-# predecessor check for the exact provider-free Milestone 3 layer.
+# The separately audited Dense CUDA provider facet is not part of this
+# provider-free Dense dependency check.
 list(REMOVE_ITEM
   _observed_public_files
   include/asc/dense/providers/cuda.h
@@ -60,14 +61,14 @@ list(SORT _observed_public_files)
 list(SORT _observed_source_files)
 if(NOT _observed_public_files STREQUAL _expected_public_files)
   message(FATAL_ERROR
-    "Milestone 3 public inventory differs from the frozen contract.\n"
+    "Provider-free Dense public inventory differs from the frozen contract.\n"
     "Expected: ${_expected_public_files}\n"
     "Observed: ${_observed_public_files}"
   )
 endif()
 if(NOT _observed_source_files STREQUAL _expected_source_files)
   message(FATAL_ERROR
-    "Milestone 3 source inventory differs from the frozen contract.\n"
+    "Provider-free Dense source inventory differs from the frozen contract.\n"
     "Expected: ${_expected_source_files}\n"
     "Observed: ${_observed_source_files}"
   )
