@@ -24,7 +24,7 @@ endfunction()
 foreach(_source IN ITEMS
     dense_cuda_concurrency_test.cc
     dense_cuda_evaluate_test.cc
-    dense_cuda_linalg_test.cc
+    dense_cuda_blas_test.cc
     dense_cuda_move_assignment_test.cc
     dense_cuda_owner_test.cc
     dense_cuda_scalar_release_regression_test.cc

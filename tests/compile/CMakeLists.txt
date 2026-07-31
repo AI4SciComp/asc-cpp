@@ -313,7 +313,7 @@ set(_asc_m3_public_headers
   asc/dense/evaluate.h
   asc/dense/export.h
   asc/dense/layout.h
-  asc/dense/linalg.h
+  asc/dense/blas.h
   asc/dense/view.h
 )
 
@@ -387,7 +387,7 @@ foreach(_compile_source IN ITEMS
     m3_header_evaluate.cc
     m3_header_export.cc
     m3_header_layout.cc
-    m3_header_linalg.cc
+    m3_header_blas.cc
     m3_header_view.cc
 )
   get_filename_component(_compile_name "${_compile_source}" NAME_WE)
@@ -477,7 +477,7 @@ set(_asc_m4_public_headers
   asc/sparse/coordinate.h
   asc/sparse/evaluate.h
   asc/sparse/export.h
-  asc/sparse/linalg.h
+  asc/sparse/blas.h
 )
 
 foreach(_header IN LISTS _asc_m4_public_headers)
@@ -558,7 +558,7 @@ foreach(_compile_source IN ITEMS
     m4_header_compressed.cc
     m4_header_evaluate.cc
     m4_header_export.cc
-    m4_header_linalg.cc
+    m4_header_blas.cc
     m4_header_writable.cc
 )
   get_filename_component(_compile_name "${_compile_source}" NAME_WE)

@@ -193,9 +193,9 @@ int main() {
   PrintResult("evaluate", kExtent, kExtent, kEvaluationIterations,
               evaluation_elapsed, evaluation_checksum, evaluation_allocations);
 
-  if (!asc::Gemm(context, asc::DenseTranspose::kNone,
-                 asc::DenseTranspose::kNone, 1.0, const_input, const_right, 0.0,
-                 *output_view)
+  if (!asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                 asc::DenseBlasTranspose::kNone, 1.0, const_input, const_right,
+                 0.0, *output_view)
            .ok()) {
     return 9;
   }
@@ -204,9 +204,9 @@ int main() {
   {
     asc_dense_test::AllocationProbe probe;
     for (std::size_t iteration = 0; iteration < kGemmIterations; ++iteration) {
-      if (!asc::Gemm(context, asc::DenseTranspose::kNone,
-                     asc::DenseTranspose::kNone, 1.0, const_input, const_right,
-                     0.0, *output_view)
+      if (!asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                     asc::DenseBlasTranspose::kNone, 1.0, const_input,
+                     const_right, 0.0, *output_view)
                .ok()) {
         return 10;
       }

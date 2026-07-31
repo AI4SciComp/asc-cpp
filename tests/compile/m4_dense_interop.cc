@@ -5,7 +5,7 @@
 #include "asc/core/memory.h"
 #include "asc/dense/layout.h"
 #include "asc/dense/view.h"
-#include "asc/sparse/linalg.h"
+#include "asc/sparse/blas.h"
 
 int main() {
   constexpr std::array<asc::extent_t, 2> kMatrixShape{1, 2};

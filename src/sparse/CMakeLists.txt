@@ -4,7 +4,7 @@ add_library(ASC::sparse ALIAS asc_sparse)
 target_sources(
   asc_sparse
   PRIVATE
-    reference_linalg.cc
+    reference_blas.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -14,7 +14,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/coordinate.h"
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/evaluate.h"
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/export.h"
-      "${PROJECT_SOURCE_DIR}/include/asc/sparse/linalg.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/sparse/blas.h"
 )
 
 set_target_properties(

@@ -1,5 +1,5 @@
-#ifndef ASC_SPARSE_LINALG_H_
-#define ASC_SPARSE_LINALG_H_
+#ifndef ASC_SPARSE_BLAS_H_
+#define ASC_SPARSE_BLAS_H_
 
 #include <array>
 #include <concepts>
@@ -16,7 +16,7 @@
 #include "asc/sparse/export.h"
 
 namespace asc {
-namespace internal_sparse_linalg {
+namespace internal_sparse_blas {
 
 template <typename Element>
 struct ReadableVectorDescriptor {
@@ -116,19 +116,19 @@ Status ValidateSpmv(const ExecutionContext& context, Element /*alpha*/,
   const ExpressionAliasMetadata output_alias = WritableExpressionAlias(output);
   if (ExpressionMayOverlap(input, output_alias) ||
       ExpressionMayOverlap(matrix, output_alias) ||
-      internal_sparse_linalg::MatrixStructureMayOverlap(matrix, output_alias)) {
+      internal_sparse_blas::MatrixStructureMayOverlap(matrix, output_alias)) {
     return Status(ErrorCode::kInvalidArgument,
                   "Sparse SpMV rejects output operand overlap");
   }
   return Status::Ok();
 }
 
-}  // namespace internal_sparse_linalg
+}  // namespace internal_sparse_blas
 
 template <SparseViewElement MatrixElement, PlacedReadableExpression Input,
           WritableExpression Output>
   requires(
-      internal_sparse_linalg::SpmvElement<std::remove_const_t<MatrixElement>> &&
+      internal_sparse_blas::SpmvElement<std::remove_const_t<MatrixElement>> &&
       kExpressionRank<Input> == 1 && kExpressionRank<Output> == 1 &&
       std::same_as<ExpressionValue<Input>,
                    std::remove_const_t<MatrixElement>> &&
@@ -139,13 +139,13 @@ Status Spmv(const ExecutionContext& context,
             std::remove_const_t<MatrixElement> beta, Output& output) {
   using Element = std::remove_const_t<MatrixElement>;
   const CsrView<const Element> const_matrix = matrix;
-  Status validation_status = internal_sparse_linalg::ValidateSpmv(
+  Status validation_status = internal_sparse_blas::ValidateSpmv(
       context, alpha, const_matrix, input, beta, output);
   if (!validation_status.ok()) {
     return validation_status;
   }
 
-  const internal_sparse_linalg::ReadableVectorDescriptor<Element>
+  const internal_sparse_blas::ReadableVectorDescriptor<Element>
       input_descriptor{
           .object = &input,
           .read =
@@ -156,7 +156,7 @@ Status Spmv(const ExecutionContext& context,
                                       std::span<const index_t, 1>(coordinate));
               },
       };
-  internal_sparse_linalg::WritableVectorDescriptor<Element> output_descriptor{
+  internal_sparse_blas::WritableVectorDescriptor<Element> output_descriptor{
       .object = &output,
       .read =
           [](const void* object, index_t index) {
@@ -173,10 +173,10 @@ Status Spmv(const ExecutionContext& context,
                             value);
           },
   };
-  return internal_sparse_linalg::SpmvReference(
+  return internal_sparse_blas::SpmvReference(
       alpha, const_matrix, input_descriptor, beta, output_descriptor);
 }
 
 }  // namespace asc
 
-#endif  // ASC_SPARSE_LINALG_H_
+#endif  // ASC_SPARSE_BLAS_H_

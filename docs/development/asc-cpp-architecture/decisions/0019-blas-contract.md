@@ -1,15 +1,15 @@
 # ADR 0019: dense and sparse BLAS contract
 
-Status: Approved at Issue 5 Feature Gate A; pending Feature Gate B
+Status: Approved by Issue 5; Issue 6 migration pending Feature Gate B
 
-Date: 2026-07-30
+Date: 2026-07-31
 
 Supersedes: ADR 0013 and ADR 0014 where they describe the linear-algebra
 surface, provider plan, or deferred operation inventory
 
 ## Context
 
-ASCCpp currently exposes a small float/double linear-algebra subset through
+Before Issue 6, ASCCpp exposed a small float/double linear-algebra subset through
 `asc/dense/linalg.h` and `asc/sparse/linalg.h`. The names do not distinguish
 the BLAS layer from general linear algebra, and the existing subset is not an
 auditable completeness definition. Dense BLAS and Sparse BLAS are separate
@@ -147,7 +147,7 @@ API alone does not define ASCCpp semantics.
 
 ## Public API and rename decision
 
-Issue 6 performs a breaking rename in the next approved pre-1.0 minor:
+Issue 6 implements the approved breaking rename in the next pre-1.0 minor:
 
 - `include/asc/dense/linalg.h` becomes `include/asc/dense/blas.h`;
 - `include/asc/sparse/linalg.h` becomes `include/asc/sparse/blas.h`;

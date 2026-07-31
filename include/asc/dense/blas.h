@@ -1,5 +1,5 @@
-#ifndef ASC_DENSE_LINALG_H_
-#define ASC_DENSE_LINALG_H_
+#ifndef ASC_DENSE_BLAS_H_
+#define ASC_DENSE_BLAS_H_
 
 #include <cstdint>
 
@@ -11,7 +11,7 @@
 
 namespace asc {
 
-enum class DenseTranspose : std::uint8_t {
+enum class DenseBlasTranspose : std::uint8_t {
   kNone,
   kTranspose,
 };
@@ -64,29 +64,29 @@ ASC_DENSE_EXPORT Result<double> Nrm2(const ExecutionContext& context,
                                      DenseView<const double, 1> operand);
 
 ASC_DENSE_EXPORT Status Gemv(const ExecutionContext& context,
-                             DenseTranspose transpose, float alpha,
+                             DenseBlasTranspose transpose, float alpha,
                              DenseView<const float, 2> matrix,
                              DenseView<const float, 1> input, float beta,
                              DenseView<float, 1> output);
 ASC_DENSE_EXPORT Status Gemv(const ExecutionContext& context,
-                             DenseTranspose transpose, double alpha,
+                             DenseBlasTranspose transpose, double alpha,
                              DenseView<const double, 2> matrix,
                              DenseView<const double, 1> input, double beta,
                              DenseView<double, 1> output);
 
 ASC_DENSE_EXPORT Status Gemm(const ExecutionContext& context,
-                             DenseTranspose left_transpose,
-                             DenseTranspose right_transpose, float alpha,
+                             DenseBlasTranspose left_transpose,
+                             DenseBlasTranspose right_transpose, float alpha,
                              DenseView<const float, 2> left,
                              DenseView<const float, 2> right, float beta,
                              DenseView<float, 2> output);
 ASC_DENSE_EXPORT Status Gemm(const ExecutionContext& context,
-                             DenseTranspose left_transpose,
-                             DenseTranspose right_transpose, double alpha,
+                             DenseBlasTranspose left_transpose,
+                             DenseBlasTranspose right_transpose, double alpha,
                              DenseView<const double, 2> left,
                              DenseView<const double, 2> right, double beta,
                              DenseView<double, 2> output);
 
 }  // namespace asc
 
-#endif  // ASC_DENSE_LINALG_H_
+#endif  // ASC_DENSE_BLAS_H_

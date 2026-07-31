@@ -1,4 +1,4 @@
-#include "asc/dense/linalg.h"
+#include "asc/dense/blas.h"
 
 #include <array>
 #include <cmath>
@@ -16,7 +16,7 @@
 #include "asc/dense/view.h"
 
 namespace asc {
-namespace internal_dense_linalg {
+namespace internal_dense_blas {
 
 Status ValidateContext(const ExecutionContext& context) {
   if (context.backend() != Backend::kSerial) {
@@ -301,13 +301,13 @@ Result<Element> Nrm2Impl(const ExecutionContext& context,
                     : scale * static_cast<Element>(std::sqrt(sum_of_squares));
 }
 
-bool IsValidTranspose(DenseTranspose transpose) {
-  return transpose == DenseTranspose::kNone ||
-         transpose == DenseTranspose::kTranspose;
+bool IsValidTranspose(DenseBlasTranspose transpose) {
+  return transpose == DenseBlasTranspose::kNone ||
+         transpose == DenseBlasTranspose::kTranspose;
 }
 
 template <typename Element>
-Status GemvImpl(const ExecutionContext& context, DenseTranspose transpose,
+Status GemvImpl(const ExecutionContext& context, DenseBlasTranspose transpose,
                 Element alpha, DenseView<const Element, 2> matrix,
                 DenseView<const Element, 1> input, Element beta,
                 DenseView<Element, 1> output) {
@@ -326,10 +326,10 @@ Status GemvImpl(const ExecutionContext& context, DenseTranspose transpose,
     }
   }
 
-  const extent_t output_size = transpose == DenseTranspose::kNone
+  const extent_t output_size = transpose == DenseBlasTranspose::kNone
                                    ? matrix.extents()[0]
                                    : matrix.extents()[1];
-  const extent_t inner_size = transpose == DenseTranspose::kNone
+  const extent_t inner_size = transpose == DenseBlasTranspose::kNone
                                   ? matrix.extents()[1]
                                   : matrix.extents()[0];
   if (input.extents()[0] != inner_size || output.extents()[0] != output_size) {
@@ -344,7 +344,7 @@ Status GemvImpl(const ExecutionContext& context, DenseTranspose transpose,
     Element product = 0;
     for (index_t inner = 0; inner < inner_size; ++inner) {
       const std::array<index_t, 2> matrix_coordinate =
-          transpose == DenseTranspose::kNone
+          transpose == DenseBlasTranspose::kNone
               ? std::array<index_t, 2>{output_index, inner}
               : std::array<index_t, 2>{inner, output_index};
       const std::array<index_t, 1> input_coordinate{inner};
@@ -365,8 +365,9 @@ Status GemvImpl(const ExecutionContext& context, DenseTranspose transpose,
 }
 
 template <typename Element>
-Status GemmImpl(const ExecutionContext& context, DenseTranspose left_transpose,
-                DenseTranspose right_transpose, Element alpha,
+Status GemmImpl(const ExecutionContext& context,
+                DenseBlasTranspose left_transpose,
+                DenseBlasTranspose right_transpose, Element alpha,
                 DenseView<const Element, 2> left,
                 DenseView<const Element, 2> right, Element beta,
                 DenseView<Element, 2> output) {
@@ -385,16 +386,16 @@ Status GemmImpl(const ExecutionContext& context, DenseTranspose left_transpose,
     }
   }
 
-  const extent_t rows = left_transpose == DenseTranspose::kNone
+  const extent_t rows = left_transpose == DenseBlasTranspose::kNone
                             ? left.extents()[0]
                             : left.extents()[1];
-  const extent_t inner = left_transpose == DenseTranspose::kNone
+  const extent_t inner = left_transpose == DenseBlasTranspose::kNone
                              ? left.extents()[1]
                              : left.extents()[0];
-  const extent_t right_inner = right_transpose == DenseTranspose::kNone
+  const extent_t right_inner = right_transpose == DenseBlasTranspose::kNone
                                    ? right.extents()[0]
                                    : right.extents()[1];
-  const extent_t columns = right_transpose == DenseTranspose::kNone
+  const extent_t columns = right_transpose == DenseBlasTranspose::kNone
                                ? right.extents()[1]
                                : right.extents()[0];
   if (inner != right_inner || output.extents()[0] != rows ||
@@ -411,11 +412,11 @@ Status GemmImpl(const ExecutionContext& context, DenseTranspose left_transpose,
       Element product = 0;
       for (index_t inner_index = 0; inner_index < inner; ++inner_index) {
         const std::array<index_t, 2> left_coordinate =
-            left_transpose == DenseTranspose::kNone
+            left_transpose == DenseBlasTranspose::kNone
                 ? std::array<index_t, 2>{row, inner_index}
                 : std::array<index_t, 2>{inner_index, row};
         const std::array<index_t, 2> right_coordinate =
-            right_transpose == DenseTranspose::kNone
+            right_transpose == DenseBlasTranspose::kNone
                 ? std::array<index_t, 2>{inner_index, column}
                 : std::array<index_t, 2>{column, inner_index};
         product +=
@@ -435,124 +436,122 @@ Status GemmImpl(const ExecutionContext& context, DenseTranspose left_transpose,
   return Status::Ok();
 }
 
-}  // namespace internal_dense_linalg
+}  // namespace internal_dense_blas
 
 Status Copy(const ExecutionContext& context, DenseView<const float, 1> source,
             DenseView<float, 1> destination) {
-  return internal_dense_linalg::CopyImpl(context, source, destination);
+  return internal_dense_blas::CopyImpl(context, source, destination);
 }
 
 Status Copy(const ExecutionContext& context, DenseView<const float, 2> source,
             DenseView<float, 2> destination) {
-  return internal_dense_linalg::CopyImpl(context, source, destination);
+  return internal_dense_blas::CopyImpl(context, source, destination);
 }
 
 Status Copy(const ExecutionContext& context, DenseView<const double, 1> source,
             DenseView<double, 1> destination) {
-  return internal_dense_linalg::CopyImpl(context, source, destination);
+  return internal_dense_blas::CopyImpl(context, source, destination);
 }
 
 Status Copy(const ExecutionContext& context, DenseView<const double, 2> source,
             DenseView<double, 2> destination) {
-  return internal_dense_linalg::CopyImpl(context, source, destination);
+  return internal_dense_blas::CopyImpl(context, source, destination);
 }
 
 Status Scal(const ExecutionContext& context, float alpha,
             DenseView<float, 1> destination) {
-  return internal_dense_linalg::ScalImpl(context, alpha, destination);
+  return internal_dense_blas::ScalImpl(context, alpha, destination);
 }
 
 Status Scal(const ExecutionContext& context, float alpha,
             DenseView<float, 2> destination) {
-  return internal_dense_linalg::ScalImpl(context, alpha, destination);
+  return internal_dense_blas::ScalImpl(context, alpha, destination);
 }
 
 Status Scal(const ExecutionContext& context, double alpha,
             DenseView<double, 1> destination) {
-  return internal_dense_linalg::ScalImpl(context, alpha, destination);
+  return internal_dense_blas::ScalImpl(context, alpha, destination);
 }
 
 Status Scal(const ExecutionContext& context, double alpha,
             DenseView<double, 2> destination) {
-  return internal_dense_linalg::ScalImpl(context, alpha, destination);
+  return internal_dense_blas::ScalImpl(context, alpha, destination);
 }
 
 Status Axpy(const ExecutionContext& context, float alpha,
             DenseView<const float, 1> source, DenseView<float, 1> destination) {
-  return internal_dense_linalg::AxpyImpl(context, alpha, source, destination);
+  return internal_dense_blas::AxpyImpl(context, alpha, source, destination);
 }
 
 Status Axpy(const ExecutionContext& context, float alpha,
             DenseView<const float, 2> source, DenseView<float, 2> destination) {
-  return internal_dense_linalg::AxpyImpl(context, alpha, source, destination);
+  return internal_dense_blas::AxpyImpl(context, alpha, source, destination);
 }
 
 Status Axpy(const ExecutionContext& context, double alpha,
             DenseView<const double, 1> source,
             DenseView<double, 1> destination) {
-  return internal_dense_linalg::AxpyImpl(context, alpha, source, destination);
+  return internal_dense_blas::AxpyImpl(context, alpha, source, destination);
 }
 
 Status Axpy(const ExecutionContext& context, double alpha,
             DenseView<const double, 2> source,
             DenseView<double, 2> destination) {
-  return internal_dense_linalg::AxpyImpl(context, alpha, source, destination);
+  return internal_dense_blas::AxpyImpl(context, alpha, source, destination);
 }
 
 Result<float> Dot(const ExecutionContext& context,
                   DenseView<const float, 1> left,
                   DenseView<const float, 1> right) {
-  return internal_dense_linalg::DotImpl(context, left, right);
+  return internal_dense_blas::DotImpl(context, left, right);
 }
 
 Result<double> Dot(const ExecutionContext& context,
                    DenseView<const double, 1> left,
                    DenseView<const double, 1> right) {
-  return internal_dense_linalg::DotImpl(context, left, right);
+  return internal_dense_blas::DotImpl(context, left, right);
 }
 
 Result<float> Nrm2(const ExecutionContext& context,
                    DenseView<const float, 1> operand) {
-  return internal_dense_linalg::Nrm2Impl(context, operand);
+  return internal_dense_blas::Nrm2Impl(context, operand);
 }
 
 Result<double> Nrm2(const ExecutionContext& context,
                     DenseView<const double, 1> operand) {
-  return internal_dense_linalg::Nrm2Impl(context, operand);
+  return internal_dense_blas::Nrm2Impl(context, operand);
 }
 
-Status Gemv(const ExecutionContext& context, DenseTranspose transpose,
+Status Gemv(const ExecutionContext& context, DenseBlasTranspose transpose,
             float alpha, DenseView<const float, 2> matrix,
             DenseView<const float, 1> input, float beta,
             DenseView<float, 1> output) {
-  return internal_dense_linalg::GemvImpl(context, transpose, alpha, matrix,
-                                         input, beta, output);
+  return internal_dense_blas::GemvImpl(context, transpose, alpha, matrix, input,
+                                       beta, output);
 }
 
-Status Gemv(const ExecutionContext& context, DenseTranspose transpose,
+Status Gemv(const ExecutionContext& context, DenseBlasTranspose transpose,
             double alpha, DenseView<const double, 2> matrix,
             DenseView<const double, 1> input, double beta,
             DenseView<double, 1> output) {
-  return internal_dense_linalg::GemvImpl(context, transpose, alpha, matrix,
-                                         input, beta, output);
+  return internal_dense_blas::GemvImpl(context, transpose, alpha, matrix, input,
+                                       beta, output);
 }
 
-Status Gemm(const ExecutionContext& context, DenseTranspose left_transpose,
-            DenseTranspose right_transpose, float alpha,
+Status Gemm(const ExecutionContext& context, DenseBlasTranspose left_transpose,
+            DenseBlasTranspose right_transpose, float alpha,
             DenseView<const float, 2> left, DenseView<const float, 2> right,
             float beta, DenseView<float, 2> output) {
-  return internal_dense_linalg::GemmImpl(context, left_transpose,
-                                         right_transpose, alpha, left, right,
-                                         beta, output);
+  return internal_dense_blas::GemmImpl(context, left_transpose, right_transpose,
+                                       alpha, left, right, beta, output);
 }
 
-Status Gemm(const ExecutionContext& context, DenseTranspose left_transpose,
-            DenseTranspose right_transpose, double alpha,
+Status Gemm(const ExecutionContext& context, DenseBlasTranspose left_transpose,
+            DenseBlasTranspose right_transpose, double alpha,
             DenseView<const double, 2> left, DenseView<const double, 2> right,
             double beta, DenseView<double, 2> output) {
-  return internal_dense_linalg::GemmImpl(context, left_transpose,
-                                         right_transpose, alpha, left, right,
-                                         beta, output);
+  return internal_dense_blas::GemmImpl(context, left_transpose, right_transpose,
+                                       alpha, left, right, beta, output);
 }
 
 }  // namespace asc

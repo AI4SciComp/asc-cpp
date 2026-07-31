@@ -4,7 +4,7 @@ add_library(ASC::dense ALIAS asc_dense)
 target_sources(
   asc_dense
   PRIVATE
-    linalg.cc
+    blas.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -14,7 +14,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/dense/evaluate.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/export.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/layout.h"
-      "${PROJECT_SOURCE_DIR}/include/asc/dense/linalg.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/blas.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/view.h"
 )
 

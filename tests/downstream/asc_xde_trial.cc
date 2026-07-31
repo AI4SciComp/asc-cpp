@@ -6,6 +6,7 @@
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/dense.h"
+#include "asc/dense/blas.h"
 
 #if __has_include("asc/array.h")
 #error "The asc-xde trial must not depend on the deleted asc/array.h facade"
@@ -13,6 +14,14 @@
 
 #if __has_include("asc/linalg.h")
 #error "The asc-xde trial must not depend on the deleted asc/linalg.h facade"
+#endif
+
+#if __has_include("asc/dense/linalg.h")
+#error "The removed asc/dense/linalg.h header must not be installed"
+#endif
+
+#if __has_include("asc/sparse/linalg.h")
+#error "The removed asc/sparse/linalg.h header must not be installed"
 #endif
 
 namespace {

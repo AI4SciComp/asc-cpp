@@ -1,7 +1,7 @@
 #include <array>
 
 #include "asc/core/memory.h"
-#include "asc/sparse/linalg.h"
+#include "asc/sparse/blas.h"
 #include "m4_multi_tu.h"
 
 double M4SpmvFromSecondTranslationUnit() {

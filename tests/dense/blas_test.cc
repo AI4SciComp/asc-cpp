@@ -1,4 +1,4 @@
-#include "asc/dense/linalg.h"
+#include "asc/dense/blas.h"
 
 #include <array>
 #include <cmath>
@@ -330,7 +330,7 @@ void TestGemv(TestContext& test) {
   constexpr std::array<asc::extent_t, 1> kOutputShape{2};
   std::array<Real, 4> output_storage{};
   auto output = MakeView<Real, 1>(output_storage.data(), kOutputShape, {3});
-  ASC_DENSE_TEST_CHECK(test, asc::Gemv(context, asc::DenseTranspose::kNone,
+  ASC_DENSE_TEST_CHECK(test, asc::Gemv(context, asc::DenseBlasTranspose::kNone,
                                        Real{1}, matrix, input, Real{0}, output)
                                  .ok());
   constexpr std::array<Real, 2> kExpected{Real{5.5}, Real{7.5}};
@@ -338,7 +338,7 @@ void TestGemv(TestContext& test) {
 
   constexpr std::array<Real, 2> kPrior{Real{10}, Real{20}};
   SetVector(output, kPrior);
-  ASC_DENSE_TEST_CHECK(test, asc::Gemv(context, asc::DenseTranspose::kNone,
+  ASC_DENSE_TEST_CHECK(test, asc::Gemv(context, asc::DenseBlasTranspose::kNone,
                                        Real{2}, matrix, input, Real{-1}, output)
                                  .ok());
   constexpr std::array<Real, 2> kAlphaBeta{Real{1}, Real{-5}};
@@ -350,7 +350,7 @@ void TestGemv(TestContext& test) {
   auto nan_output =
       MakeView<Real, 1>(nan_output_storage.data(), kOutputShape, {1});
   ASC_DENSE_TEST_CHECK(
-      test, asc::Gemv(context, asc::DenseTranspose::kNone, Real{1}, matrix,
+      test, asc::Gemv(context, asc::DenseBlasTranspose::kNone, Real{1}, matrix,
                       input, Real{0}, nan_output)
                 .ok());
   CheckVector(test, nan_output, std::span<const Real>(kExpected));
@@ -366,8 +366,8 @@ void TestGemv(TestContext& test) {
   auto transpose_output =
       MakeView<Real, 1>(transpose_output_storage.data(), kInputShape, {2});
   ASC_DENSE_TEST_CHECK(
-      test, asc::Gemv(context, asc::DenseTranspose::kTranspose, Real{1}, matrix,
-                      transpose_input, Real{0}, transpose_output)
+      test, asc::Gemv(context, asc::DenseBlasTranspose::kTranspose, Real{1},
+                      matrix, transpose_input, Real{0}, transpose_output)
                 .ok());
   constexpr std::array<Real, 3> kTransposeExpected{Real{-2}, Real{-4}, Real{7}};
   CheckVector(test, transpose_output,
@@ -391,7 +391,7 @@ void TestGemvFailures(TestContext& test) {
   const auto before = output_storage;
 
   CheckStatusError(test,
-                   asc::Gemv(context, static_cast<asc::DenseTranspose>(255),
+                   asc::Gemv(context, static_cast<asc::DenseBlasTranspose>(255),
                              Real{1}, matrix, input, Real{0}, output),
                    asc::ErrorCode::kInvalidArgument);
   ASC_DENSE_TEST_EQ(test, output_storage, before);
@@ -400,7 +400,7 @@ void TestGemvFailures(TestContext& test) {
   auto short_input =
       MakeView<const Real, 1>(input_storage.data(), short_input_shape, {1});
   CheckStatusError(test,
-                   asc::Gemv(context, asc::DenseTranspose::kNone, Real{1},
+                   asc::Gemv(context, asc::DenseBlasTranspose::kNone, Real{1},
                              matrix, short_input, Real{0}, output),
                    asc::ErrorCode::kShape);
   ASC_DENSE_TEST_EQ(test, output_storage, before);
@@ -408,14 +408,14 @@ void TestGemvFailures(TestContext& test) {
   auto overlapping_output =
       MakeView<Real, 1>(matrix_storage.data(), output_shape, {1});
   CheckStatusError(test,
-                   asc::Gemv(context, asc::DenseTranspose::kNone, Real{1},
+                   asc::Gemv(context, asc::DenseBlasTranspose::kNone, Real{1},
                              matrix, input, Real{0}, overlapping_output),
                    asc::ErrorCode::kInvalidArgument);
 
   auto device_output = MakeView<Real, 1>(output_storage.data(), output_shape,
                                          {1}, asc::MemorySpace::kDevice);
   CheckStatusError(test,
-                   asc::Gemv(context, asc::DenseTranspose::kNone, Real{1},
+                   asc::Gemv(context, asc::DenseBlasTranspose::kNone, Real{1},
                              matrix, input, Real{0}, device_output),
                    asc::ErrorCode::kMemoryAccess);
   ASC_DENSE_TEST_EQ(test, output_storage, before);
@@ -438,15 +438,16 @@ void TestGemm(TestContext& test) {
   asc::DenseView<const Real, 2> left(left_mutable);
   asc::DenseView<const Real, 2> right(right_mutable);
 
-  constexpr std::array<std::array<asc::DenseTranspose, 2>, 4> kModes{
-      std::array<asc::DenseTranspose, 2>{asc::DenseTranspose::kNone,
-                                         asc::DenseTranspose::kNone},
-      std::array<asc::DenseTranspose, 2>{asc::DenseTranspose::kTranspose,
-                                         asc::DenseTranspose::kNone},
-      std::array<asc::DenseTranspose, 2>{asc::DenseTranspose::kNone,
-                                         asc::DenseTranspose::kTranspose},
-      std::array<asc::DenseTranspose, 2>{asc::DenseTranspose::kTranspose,
-                                         asc::DenseTranspose::kTranspose},
+  constexpr std::array<std::array<asc::DenseBlasTranspose, 2>, 4> kModes{
+      std::array<asc::DenseBlasTranspose, 2>{asc::DenseBlasTranspose::kNone,
+                                             asc::DenseBlasTranspose::kNone},
+      std::array<asc::DenseBlasTranspose, 2>{
+          asc::DenseBlasTranspose::kTranspose, asc::DenseBlasTranspose::kNone},
+      std::array<asc::DenseBlasTranspose, 2>{
+          asc::DenseBlasTranspose::kNone, asc::DenseBlasTranspose::kTranspose},
+      std::array<asc::DenseBlasTranspose, 2>{
+          asc::DenseBlasTranspose::kTranspose,
+          asc::DenseBlasTranspose::kTranspose},
   };
   constexpr std::array<std::array<Real, 4>, 4> kExpected{
       std::array<Real, 4>{Real{19}, Real{22}, Real{43}, Real{50}},
@@ -466,8 +467,8 @@ void TestGemm(TestContext& test) {
 
   constexpr std::array<Real, 4> kPrior{Real{1}, Real{2}, Real{3}, Real{4}};
   SetMatrix(output, kPrior);
-  ASC_DENSE_TEST_CHECK(test, asc::Gemm(context, asc::DenseTranspose::kNone,
-                                       asc::DenseTranspose::kNone, Real{2},
+  ASC_DENSE_TEST_CHECK(test, asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                                       asc::DenseBlasTranspose::kNone, Real{2},
                                        left, right, Real{-1}, output)
                                  .ok());
   constexpr std::array<Real, 4> kAlphaBeta{Real{37}, Real{42}, Real{83},
@@ -480,8 +481,8 @@ void TestGemm(TestContext& test) {
                         std::numeric_limits<Real>::quiet_NaN(),
                         std::numeric_limits<Real>::quiet_NaN(),
                     });
-  ASC_DENSE_TEST_CHECK(test, asc::Gemm(context, asc::DenseTranspose::kNone,
-                                       asc::DenseTranspose::kNone, Real{1},
+  ASC_DENSE_TEST_CHECK(test, asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                                       asc::DenseBlasTranspose::kNone, Real{1},
                                        left, right, Real{0}, output)
                                  .ok());
   CheckMatrix(test, output, std::span<const Real>(kExpected[0]));
@@ -489,9 +490,9 @@ void TestGemm(TestContext& test) {
   std::size_t allocations = 0;
   {
     asc_dense_test::AllocationProbe probe;
-    const asc::Status status = asc::Gemm(context, asc::DenseTranspose::kNone,
-                                         asc::DenseTranspose::kNone, Real{1},
-                                         left, right, Real{0}, output);
+    const asc::Status status = asc::Gemm(
+        context, asc::DenseBlasTranspose::kNone, asc::DenseBlasTranspose::kNone,
+        Real{1}, left, right, Real{0}, output);
     allocations = probe.count();
     ASC_DENSE_TEST_CHECK(test, status.ok());
   }
@@ -511,18 +512,21 @@ void TestRectangularPaddedGemm(TestContext& test) {
   constexpr std::array<Real, 8> kExpected{Real{74},  Real{80},  Real{86},
                                           Real{92},  Real{173}, Real{188},
                                           Real{203}, Real{218}};
-  constexpr std::array<std::array<asc::DenseTranspose, 2>, 4> kModes{
-      std::array{asc::DenseTranspose::kNone, asc::DenseTranspose::kNone},
-      std::array{asc::DenseTranspose::kTranspose, asc::DenseTranspose::kNone},
-      std::array{asc::DenseTranspose::kNone, asc::DenseTranspose::kTranspose},
-      std::array{asc::DenseTranspose::kTranspose,
-                 asc::DenseTranspose::kTranspose},
+  constexpr std::array<std::array<asc::DenseBlasTranspose, 2>, 4> kModes{
+      std::array{asc::DenseBlasTranspose::kNone,
+                 asc::DenseBlasTranspose::kNone},
+      std::array{asc::DenseBlasTranspose::kTranspose,
+                 asc::DenseBlasTranspose::kNone},
+      std::array{asc::DenseBlasTranspose::kNone,
+                 asc::DenseBlasTranspose::kTranspose},
+      std::array{asc::DenseBlasTranspose::kTranspose,
+                 asc::DenseBlasTranspose::kTranspose},
   };
   const asc::ExecutionContext context = asc::ExecutionContext::Serial();
 
   for (const auto& mode : kModes) {
-    const bool transpose_left = mode[0] == asc::DenseTranspose::kTranspose;
-    const bool transpose_right = mode[1] == asc::DenseTranspose::kTranspose;
+    const bool transpose_left = mode[0] == asc::DenseBlasTranspose::kTranspose;
+    const bool transpose_right = mode[1] == asc::DenseBlasTranspose::kTranspose;
     const std::array<asc::extent_t, 2> left_shape{
         transpose_left ? kInner : kRows, transpose_left ? kRows : kInner};
     const std::array<asc::extent_t, 2> right_shape{
@@ -592,8 +596,8 @@ void TestGemmZeroInnerAndFailures(TestContext& test) {
   constexpr std::array<Real, 6> kPrior{Real{1}, Real{2}, Real{3},
                                        Real{4}, Real{5}, Real{6}};
   SetMatrix(output, kPrior);
-  ASC_DENSE_TEST_CHECK(test, asc::Gemm(context, asc::DenseTranspose::kNone,
-                                       asc::DenseTranspose::kNone, Real{3},
+  ASC_DENSE_TEST_CHECK(test, asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                                       asc::DenseBlasTranspose::kNone, Real{3},
                                        left, right, Real{2}, output)
                                  .ok());
   constexpr std::array<Real, 6> kScaled{Real{2}, Real{4},  Real{6},
@@ -608,8 +612,8 @@ void TestGemmZeroInnerAndFailures(TestContext& test) {
                         std::numeric_limits<Real>::quiet_NaN(),
                         std::numeric_limits<Real>::quiet_NaN(),
                     });
-  ASC_DENSE_TEST_CHECK(test, asc::Gemm(context, asc::DenseTranspose::kNone,
-                                       asc::DenseTranspose::kNone, Real{3},
+  ASC_DENSE_TEST_CHECK(test, asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                                       asc::DenseBlasTranspose::kNone, Real{3},
                                        left, right, Real{0}, output)
                                  .ok());
   constexpr std::array<Real, 6> kZeros{};
@@ -623,32 +627,35 @@ void TestGemmZeroInnerAndFailures(TestContext& test) {
       MakeView<const Real, 2>(storage.data() + 4, square, {1, 2});
   auto overlapping_output =
       MakeView<Real, 2>(storage.data() + 1, square, {1, 2});
-  CheckStatusError(test,
-                   asc::Gemm(context, asc::DenseTranspose::kNone,
-                             asc::DenseTranspose::kNone, Real{1}, square_left,
-                             square_right, Real{0}, overlapping_output),
-                   asc::ErrorCode::kInvalidArgument);
+  CheckStatusError(
+      test,
+      asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                asc::DenseBlasTranspose::kNone, Real{1}, square_left,
+                square_right, Real{0}, overlapping_output),
+      asc::ErrorCode::kInvalidArgument);
 
   std::array<Real, 4> independent_output_storage{Real{1}, Real{2}, Real{3},
                                                  Real{4}};
   auto independent_output =
       MakeView<Real, 2>(independent_output_storage.data(), square, {1, 2});
   const auto before = independent_output_storage;
-  CheckStatusError(test,
-                   asc::Gemm(context, static_cast<asc::DenseTranspose>(255),
-                             asc::DenseTranspose::kNone, Real{1}, square_left,
-                             square_right, Real{0}, independent_output),
-                   asc::ErrorCode::kInvalidArgument);
+  CheckStatusError(
+      test,
+      asc::Gemm(context, static_cast<asc::DenseBlasTranspose>(255),
+                asc::DenseBlasTranspose::kNone, Real{1}, square_left,
+                square_right, Real{0}, independent_output),
+      asc::ErrorCode::kInvalidArgument);
   ASC_DENSE_TEST_EQ(test, independent_output_storage, before);
 
   const std::array<asc::extent_t, 2> mismatched{3, 2};
   auto mismatched_right =
       MakeView<const Real, 2>(storage.data() + 4, mismatched, {1, 3});
-  CheckStatusError(test,
-                   asc::Gemm(context, asc::DenseTranspose::kNone,
-                             asc::DenseTranspose::kNone, Real{1}, square_left,
-                             mismatched_right, Real{0}, independent_output),
-                   asc::ErrorCode::kShape);
+  CheckStatusError(
+      test,
+      asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                asc::DenseBlasTranspose::kNone, Real{1}, square_left,
+                mismatched_right, Real{0}, independent_output),
+      asc::ErrorCode::kShape);
   ASC_DENSE_TEST_EQ(test, independent_output_storage, before);
 }
 

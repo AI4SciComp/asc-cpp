@@ -34,9 +34,11 @@ surface.
 - [Performance](performance.md): measurement contract and bounded local
   observations.
 - [BLAS coverage](blas-coverage.md): generated Dense/Sparse BLAS standards
-  inventory, current evidence states, and dense-to-sparse crosswalk. This is
-  an approved implementation contract, not a claim that the planned rename or
-  routines already exist.
+  inventory, current evidence states, and dense-to-sparse crosswalk. The
+  owner-scoped header rename is implemented; planned operation rows remain
+  future work.
+- [Linalg-to-BLAS migration](migration/linalg-to-blas.md): mechanical path and
+  type changes for the approved breaking pre-1.0 rename.
 
 The [Milestone 8 contract][m8-contract], [ownership ledger][m8-ownership], and
 [preflight][m8-preflight] freeze the current scope and preserved stale-branch
