@@ -487,6 +487,169 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
     DenseBlasVectorView<const std::complex<double>> operand,
     DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
 
+template <DenseBlasScalar Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemv(
+    DenseCudaContext& context, DenseBlasTranspose transpose, Element alpha,
+    DenseBlasMatrixView<const Element> matrix,
+    DenseBlasVectorView<const Element> input, Element beta,
+    DenseBlasVectorView<Element> output);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGbmv(
+    DenseCudaContext& context, DenseBlasTranspose transpose, Element alpha,
+    DenseBlasBandMatrixView<const Element> matrix,
+    DenseBlasVectorView<const Element> input, Element beta,
+    DenseBlasVectorView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHemv(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasMatrixView<const Element> matrix,
+    DenseBlasVectorView<const Element> input, Element beta,
+    DenseBlasVectorView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHbmv(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasTriangularBandView<const Element> matrix,
+    DenseBlasVectorView<const Element> input, Element beta,
+    DenseBlasVectorView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpmv(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasPackedMatrixView<const Element> matrix,
+    DenseBlasVectorView<const Element> input, Element beta,
+    DenseBlasVectorView<Element> output);
+
+template <DenseBlasReal Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSymv(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasMatrixView<const Element> matrix,
+    DenseBlasVectorView<const Element> input, Element beta,
+    DenseBlasVectorView<Element> output);
+
+template <DenseBlasReal Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSbmv(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasTriangularBandView<const Element> matrix,
+    DenseBlasVectorView<const Element> input, Element beta,
+    DenseBlasVectorView<Element> output);
+
+template <DenseBlasReal Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpmv(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasPackedMatrixView<const Element> matrix,
+    DenseBlasVectorView<const Element> input, Element beta,
+    DenseBlasVectorView<Element> output);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrmv(
+    DenseCudaContext& context, DenseBlasTriangle triangle,
+    DenseBlasTranspose transpose, DenseBlasDiagonal diagonal,
+    DenseBlasMatrixView<const Element> matrix,
+    DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTbmv(
+    DenseCudaContext& context, DenseBlasTriangle triangle,
+    DenseBlasTranspose transpose, DenseBlasDiagonal diagonal,
+    DenseBlasTriangularBandView<const Element> matrix,
+    DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTpmv(
+    DenseCudaContext& context, DenseBlasTriangle triangle,
+    DenseBlasTranspose transpose, DenseBlasDiagonal diagonal,
+    DenseBlasPackedMatrixView<const Element> matrix,
+    DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrsv(
+    DenseCudaContext& context, DenseBlasTriangle triangle,
+    DenseBlasTranspose transpose, DenseBlasDiagonal diagonal,
+    DenseBlasMatrixView<const Element> matrix,
+    DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTbsv(
+    DenseCudaContext& context, DenseBlasTriangle triangle,
+    DenseBlasTranspose transpose, DenseBlasDiagonal diagonal,
+    DenseBlasTriangularBandView<const Element> matrix,
+    DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTpsv(
+    DenseCudaContext& context, DenseBlasTriangle triangle,
+    DenseBlasTranspose transpose, DenseBlasDiagonal diagonal,
+    DenseBlasPackedMatrixView<const Element> matrix,
+    DenseBlasVectorView<Element> vector);
+
+template <DenseBlasReal Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGer(
+    DenseCudaContext& context, Element alpha,
+    DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
+    DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGeru(
+    DenseCudaContext& context, Element alpha,
+    DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
+    DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGerc(
+    DenseCudaContext& context, Element alpha,
+    DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
+    DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer(
+    DenseCudaContext& context, DenseBlasTriangle triangle,
+    DenseBlasRealType<Element> alpha, DenseBlasVectorView<const Element> x,
+    DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpr(
+    DenseCudaContext& context, DenseBlasTriangle triangle,
+    DenseBlasRealType<Element> alpha, DenseBlasVectorView<const Element> x,
+    DenseBlasPackedMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer2(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
+    DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpr2(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
+    DenseBlasPackedMatrixView<Element> matrix);
+
+template <DenseBlasReal Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasVectorView<const Element> x, DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasReal Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpr(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasVectorView<const Element> x,
+    DenseBlasPackedMatrixView<Element> matrix);
+
+template <DenseBlasReal Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr2(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
+    DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasReal Element>
+ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpr2(
+    DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
+    DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
+    DenseBlasPackedMatrixView<Element> matrix);
+
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseView<const float, 1> source,
     DenseView<float, 1> destination);

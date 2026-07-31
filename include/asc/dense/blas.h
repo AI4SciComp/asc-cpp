@@ -20,6 +20,28 @@
 namespace asc {
 
 template <typename Element>
+concept DenseBlasScalar =
+    std::same_as<std::remove_cv_t<Element>, float> ||
+    std::same_as<std::remove_cv_t<Element>, double> ||
+    std::same_as<std::remove_cv_t<Element>, std::complex<float>> ||
+    std::same_as<std::remove_cv_t<Element>, std::complex<double>>;
+
+template <typename Element>
+concept DenseBlasReal = std::same_as<std::remove_cv_t<Element>, float> ||
+                        std::same_as<std::remove_cv_t<Element>, double>;
+
+template <typename Element>
+concept DenseBlasComplex =
+    std::same_as<std::remove_cv_t<Element>, std::complex<float>> ||
+    std::same_as<std::remove_cv_t<Element>, std::complex<double>>;
+
+template <DenseBlasScalar Element>
+using DenseBlasRealType = std::conditional_t<
+    std::same_as<std::remove_cv_t<Element>, float> ||
+        std::same_as<std::remove_cv_t<Element>, std::complex<float>>,
+    float, double>;
+
+template <typename Element>
 class DenseBlasVectorView {
  public:
   using value_type = Element;
@@ -173,6 +195,460 @@ class DenseBlasVectorView {
 enum class DenseBlasTranspose : std::uint8_t {
   kNone,
   kTranspose,
+  kConjugateTranspose,
+};
+
+enum class DenseBlasLayout : std::uint8_t {
+  kColumnMajor,
+  kRowMajor,
+};
+
+enum class DenseBlasTriangle : std::uint8_t {
+  kUpper,
+  kLower,
+};
+
+enum class DenseBlasDiagonal : std::uint8_t {
+  kNonUnit,
+  kUnit,
+};
+
+namespace internal_dense_blas {
+
+struct StorageBounds {
+  const void* data = nullptr;
+  std::size_t size = 0;
+};
+
+inline Result<StorageBounds> ValidateStorageBounds(
+    const void* data, stride_t element_span, std::size_t element_size,
+    std::size_t element_alignment, ConstMemoryView backing_storage) {
+  if (element_span < 0 || !backing_storage.valid()) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "A BLAS storage descriptor is invalid");
+  }
+  if (element_span == 0) {
+    return StorageBounds{};
+  }
+  if (data == nullptr || backing_storage.data() == nullptr) {
+    return Status(ErrorCode::kMemoryAccess,
+                  "Nonempty BLAS storage requires backing memory");
+  }
+  const std::uintptr_t begin = reinterpret_cast<std::uintptr_t>(data);
+  if (begin % element_alignment != 0) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "A BLAS storage pointer is not properly aligned");
+  }
+  auto byte_span = CheckedMultiply<stride_t>(
+      element_span, static_cast<stride_t>(element_size));
+  if (!byte_span.ok()) {
+    return byte_span.status();
+  }
+  auto converted_span = CheckedCast<std::size_t>(*byte_span);
+  if (!converted_span.ok()) {
+    return converted_span.status();
+  }
+  if (*converted_span > std::numeric_limits<std::uintptr_t>::max() - begin) {
+    return Status(ErrorCode::kOverflow,
+                  "A BLAS storage address calculation overflowed");
+  }
+  const std::uintptr_t end = begin + *converted_span;
+  const std::uintptr_t backing_begin =
+      reinterpret_cast<std::uintptr_t>(backing_storage.data());
+  if (backing_storage.size() >
+      std::numeric_limits<std::uintptr_t>::max() - backing_begin) {
+    return Status(ErrorCode::kOverflow,
+                  "A BLAS backing span calculation overflowed");
+  }
+  const std::uintptr_t backing_end = backing_begin + backing_storage.size();
+  if (begin < backing_begin || end > backing_end) {
+    return Status(ErrorCode::kMemoryAccess,
+                  "BLAS storage is outside its backing span");
+  }
+  return StorageBounds{data, *converted_span};
+}
+
+inline bool IsValidLayout(DenseBlasLayout layout) noexcept {
+  return layout == DenseBlasLayout::kColumnMajor ||
+         layout == DenseBlasLayout::kRowMajor;
+}
+
+}  // namespace internal_dense_blas
+
+template <DenseBlasScalar Element>
+class DenseBlasMatrixView {
+ public:
+  using value_type = Element;
+  using element_type = std::remove_const_t<Element>;
+
+  static Result<DenseBlasMatrixView> Create(Element* data, extent_t rows,
+                                            extent_t columns,
+                                            DenseBlasLayout layout,
+                                            stride_t leading_dimension,
+                                            ConstMemoryView backing_storage) {
+    if (rows < 0 || columns < 0 ||
+        !internal_dense_blas::IsValidLayout(layout)) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "A BLAS matrix descriptor is invalid");
+    }
+    const extent_t contiguous_extent =
+        layout == DenseBlasLayout::kColumnMajor ? rows : columns;
+    if (leading_dimension < std::max<stride_t>(1, contiguous_extent)) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "A BLAS matrix leading dimension is too small");
+    }
+    stride_t span = 0;
+    if (rows != 0 && columns != 0) {
+      const extent_t major_extent =
+          layout == DenseBlasLayout::kColumnMajor ? columns : rows;
+      auto leading_span =
+          CheckedMultiply<stride_t>(major_extent - 1, leading_dimension);
+      if (!leading_span.ok()) {
+        return leading_span.status();
+      }
+      auto total_span = CheckedAdd<stride_t>(*leading_span, contiguous_extent);
+      if (!total_span.ok()) {
+        return total_span.status();
+      }
+      span = *total_span;
+    }
+    auto bounds = internal_dense_blas::ValidateStorageBounds(
+        data, span, sizeof(element_type), alignof(element_type),
+        backing_storage);
+    if (!bounds.ok()) {
+      return bounds.status();
+    }
+    return DenseBlasMatrixView(data, rows, columns, layout, leading_dimension,
+                               backing_storage, *bounds);
+  }
+
+  // Mutable-to-const view conversion is intentionally implicit.
+  // NOLINTNEXTLINE(google-explicit-constructor)
+  operator DenseBlasMatrixView<const element_type>() const noexcept
+    requires(!std::is_const_v<Element>)
+  {
+    return DenseBlasMatrixView<const element_type>(data_, rows_, columns_,
+                                                   layout_, leading_dimension_,
+                                                   backing_storage_, bounds_);
+  }
+
+  [[nodiscard]] Element* data() const noexcept { return data_; }
+  [[nodiscard]] extent_t rows() const noexcept { return rows_; }
+  [[nodiscard]] extent_t columns() const noexcept { return columns_; }
+  [[nodiscard]] DenseBlasLayout layout() const noexcept { return layout_; }
+  [[nodiscard]] stride_t leading_dimension() const noexcept {
+    return leading_dimension_;
+  }
+  [[nodiscard]] MemorySpace memory_space() const noexcept {
+    return backing_storage_.space();
+  }
+  [[nodiscard]] ConstMemoryView backing_storage() const noexcept {
+    return backing_storage_;
+  }
+  [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
+    return ConstMemoryView(bounds_.data, bounds_.size,
+                           backing_storage_.space());
+  }
+
+ private:
+  template <DenseBlasScalar>
+  friend class DenseBlasMatrixView;
+
+  DenseBlasMatrixView(Element* data, extent_t rows, extent_t columns,
+                      DenseBlasLayout layout, stride_t leading_dimension,
+                      ConstMemoryView backing_storage,
+                      internal_dense_blas::StorageBounds bounds) noexcept
+      : data_(data),
+        rows_(rows),
+        columns_(columns),
+        layout_(layout),
+        leading_dimension_(leading_dimension),
+        backing_storage_(backing_storage),
+        bounds_(bounds) {}
+
+  Element* data_;
+  extent_t rows_;
+  extent_t columns_;
+  DenseBlasLayout layout_;
+  stride_t leading_dimension_;
+  ConstMemoryView backing_storage_;
+  internal_dense_blas::StorageBounds bounds_;
+};
+
+template <DenseBlasScalar Element>
+class DenseBlasBandMatrixView {
+ public:
+  using value_type = Element;
+  using element_type = std::remove_const_t<Element>;
+
+  static Result<DenseBlasBandMatrixView> Create(
+      Element* data, extent_t rows, extent_t columns, extent_t lower_bandwidth,
+      extent_t upper_bandwidth, DenseBlasLayout layout,
+      stride_t leading_dimension, ConstMemoryView backing_storage) {
+    if (rows < 0 || columns < 0 || lower_bandwidth < 0 || upper_bandwidth < 0 ||
+        !internal_dense_blas::IsValidLayout(layout)) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "A general band descriptor is invalid");
+    }
+    if ((rows == 0 ? lower_bandwidth != 0 : lower_bandwidth >= rows) ||
+        (columns == 0 ? upper_bandwidth != 0 : upper_bandwidth >= columns)) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "A general band width exceeds its matrix extent");
+    }
+    auto band_sum = CheckedAdd<stride_t>(lower_bandwidth, upper_bandwidth);
+    if (!band_sum.ok()) {
+      return band_sum.status();
+    }
+    auto band_rows = CheckedAdd<stride_t>(*band_sum, stride_t{1});
+    if (!band_rows.ok()) {
+      return band_rows.status();
+    }
+    if (leading_dimension < *band_rows) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "A general band leading dimension is too small");
+    }
+    stride_t span = 0;
+    if (rows != 0 && columns != 0) {
+      const extent_t major_extent =
+          layout == DenseBlasLayout::kColumnMajor ? columns : rows;
+      auto checked_span =
+          CheckedMultiply<stride_t>(major_extent, leading_dimension);
+      if (!checked_span.ok()) {
+        return checked_span.status();
+      }
+      span = *checked_span;
+    }
+    auto bounds = internal_dense_blas::ValidateStorageBounds(
+        data, span, sizeof(element_type), alignof(element_type),
+        backing_storage);
+    if (!bounds.ok()) {
+      return bounds.status();
+    }
+    return DenseBlasBandMatrixView(data, rows, columns, lower_bandwidth,
+                                   upper_bandwidth, layout, leading_dimension,
+                                   backing_storage, *bounds);
+  }
+
+  // Mutable-to-const view conversion is intentionally implicit.
+  // NOLINTNEXTLINE(google-explicit-constructor)
+  operator DenseBlasBandMatrixView<const element_type>() const noexcept
+    requires(!std::is_const_v<Element>)
+  {
+    return DenseBlasBandMatrixView<const element_type>(
+        data_, rows_, columns_, lower_bandwidth_, upper_bandwidth_, layout_,
+        leading_dimension_, backing_storage_, bounds_);
+  }
+
+  [[nodiscard]] Element* data() const noexcept { return data_; }
+  [[nodiscard]] extent_t rows() const noexcept { return rows_; }
+  [[nodiscard]] extent_t columns() const noexcept { return columns_; }
+  [[nodiscard]] extent_t lower_bandwidth() const noexcept {
+    return lower_bandwidth_;
+  }
+  [[nodiscard]] extent_t upper_bandwidth() const noexcept {
+    return upper_bandwidth_;
+  }
+  [[nodiscard]] DenseBlasLayout layout() const noexcept { return layout_; }
+  [[nodiscard]] stride_t leading_dimension() const noexcept {
+    return leading_dimension_;
+  }
+  [[nodiscard]] MemorySpace memory_space() const noexcept {
+    return backing_storage_.space();
+  }
+  [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
+    return ConstMemoryView(bounds_.data, bounds_.size,
+                           backing_storage_.space());
+  }
+
+ private:
+  template <DenseBlasScalar>
+  friend class DenseBlasBandMatrixView;
+
+  DenseBlasBandMatrixView(Element* data, extent_t rows, extent_t columns,
+                          extent_t lower_bandwidth, extent_t upper_bandwidth,
+                          DenseBlasLayout layout, stride_t leading_dimension,
+                          ConstMemoryView backing_storage,
+                          internal_dense_blas::StorageBounds bounds) noexcept
+      : data_(data),
+        rows_(rows),
+        columns_(columns),
+        lower_bandwidth_(lower_bandwidth),
+        upper_bandwidth_(upper_bandwidth),
+        layout_(layout),
+        leading_dimension_(leading_dimension),
+        backing_storage_(backing_storage),
+        bounds_(bounds) {}
+
+  Element* data_;
+  extent_t rows_;
+  extent_t columns_;
+  extent_t lower_bandwidth_;
+  extent_t upper_bandwidth_;
+  DenseBlasLayout layout_;
+  stride_t leading_dimension_;
+  ConstMemoryView backing_storage_;
+  internal_dense_blas::StorageBounds bounds_;
+};
+
+template <DenseBlasScalar Element>
+class DenseBlasTriangularBandView {
+ public:
+  using value_type = Element;
+  using element_type = std::remove_const_t<Element>;
+
+  static Result<DenseBlasTriangularBandView> Create(
+      Element* data, extent_t order, extent_t bandwidth, DenseBlasLayout layout,
+      stride_t leading_dimension, ConstMemoryView backing_storage) {
+    if (order < 0 || bandwidth < 0 ||
+        !internal_dense_blas::IsValidLayout(layout) ||
+        (order != 0 && bandwidth >= order)) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "A triangular band descriptor is invalid");
+    }
+    auto stored_rows = CheckedAdd<stride_t>(bandwidth, stride_t{1});
+    if (!stored_rows.ok()) {
+      return stored_rows.status();
+    }
+    if (leading_dimension < *stored_rows) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "A triangular band leading dimension is too small");
+    }
+    auto span = CheckedMultiply<stride_t>(order, leading_dimension);
+    if (!span.ok()) {
+      return span.status();
+    }
+    auto bounds = internal_dense_blas::ValidateStorageBounds(
+        data, *span, sizeof(element_type), alignof(element_type),
+        backing_storage);
+    if (!bounds.ok()) {
+      return bounds.status();
+    }
+    return DenseBlasTriangularBandView(data, order, bandwidth, layout,
+                                       leading_dimension, backing_storage,
+                                       *bounds);
+  }
+
+  // Mutable-to-const view conversion is intentionally implicit.
+  // NOLINTNEXTLINE(google-explicit-constructor)
+  operator DenseBlasTriangularBandView<const element_type>() const noexcept
+    requires(!std::is_const_v<Element>)
+  {
+    return DenseBlasTriangularBandView<const element_type>(
+        data_, order_, bandwidth_, layout_, leading_dimension_,
+        backing_storage_, bounds_);
+  }
+
+  [[nodiscard]] Element* data() const noexcept { return data_; }
+  [[nodiscard]] extent_t order() const noexcept { return order_; }
+  [[nodiscard]] extent_t bandwidth() const noexcept { return bandwidth_; }
+  [[nodiscard]] DenseBlasLayout layout() const noexcept { return layout_; }
+  [[nodiscard]] stride_t leading_dimension() const noexcept {
+    return leading_dimension_;
+  }
+  [[nodiscard]] MemorySpace memory_space() const noexcept {
+    return backing_storage_.space();
+  }
+  [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
+    return ConstMemoryView(bounds_.data, bounds_.size,
+                           backing_storage_.space());
+  }
+
+ private:
+  template <DenseBlasScalar>
+  friend class DenseBlasTriangularBandView;
+
+  DenseBlasTriangularBandView(
+      Element* data, extent_t order, extent_t bandwidth, DenseBlasLayout layout,
+      stride_t leading_dimension, ConstMemoryView backing_storage,
+      internal_dense_blas::StorageBounds bounds) noexcept
+      : data_(data),
+        order_(order),
+        bandwidth_(bandwidth),
+        layout_(layout),
+        leading_dimension_(leading_dimension),
+        backing_storage_(backing_storage),
+        bounds_(bounds) {}
+
+  Element* data_;
+  extent_t order_;
+  extent_t bandwidth_;
+  DenseBlasLayout layout_;
+  stride_t leading_dimension_;
+  ConstMemoryView backing_storage_;
+  internal_dense_blas::StorageBounds bounds_;
+};
+
+template <DenseBlasScalar Element>
+class DenseBlasPackedMatrixView {
+ public:
+  using value_type = Element;
+  using element_type = std::remove_const_t<Element>;
+
+  static Result<DenseBlasPackedMatrixView> Create(
+      Element* data, extent_t order, DenseBlasLayout layout,
+      ConstMemoryView backing_storage) {
+    if (order < 0 || !internal_dense_blas::IsValidLayout(layout)) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "A packed matrix descriptor is invalid");
+    }
+    auto successor = CheckedAdd<stride_t>(order, stride_t{1});
+    if (!successor.ok()) {
+      return successor.status();
+    }
+    auto product = CheckedMultiply<stride_t>(order, *successor);
+    if (!product.ok()) {
+      return product.status();
+    }
+    const stride_t span = *product / 2;
+    auto bounds = internal_dense_blas::ValidateStorageBounds(
+        data, span, sizeof(element_type), alignof(element_type),
+        backing_storage);
+    if (!bounds.ok()) {
+      return bounds.status();
+    }
+    return DenseBlasPackedMatrixView(data, order, layout, backing_storage,
+                                     *bounds);
+  }
+
+  // Mutable-to-const view conversion is intentionally implicit.
+  // NOLINTNEXTLINE(google-explicit-constructor)
+  operator DenseBlasPackedMatrixView<const element_type>() const noexcept
+    requires(!std::is_const_v<Element>)
+  {
+    return DenseBlasPackedMatrixView<const element_type>(
+        data_, order_, layout_, backing_storage_, bounds_);
+  }
+
+  [[nodiscard]] Element* data() const noexcept { return data_; }
+  [[nodiscard]] extent_t order() const noexcept { return order_; }
+  [[nodiscard]] DenseBlasLayout layout() const noexcept { return layout_; }
+  [[nodiscard]] MemorySpace memory_space() const noexcept {
+    return backing_storage_.space();
+  }
+  [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
+    return ConstMemoryView(bounds_.data, bounds_.size,
+                           backing_storage_.space());
+  }
+
+ private:
+  template <DenseBlasScalar>
+  friend class DenseBlasPackedMatrixView;
+
+  DenseBlasPackedMatrixView(Element* data, extent_t order,
+                            DenseBlasLayout layout,
+                            ConstMemoryView backing_storage,
+                            internal_dense_blas::StorageBounds bounds) noexcept
+      : data_(data),
+        order_(order),
+        layout_(layout),
+        backing_storage_(backing_storage),
+        bounds_(bounds) {}
+
+  Element* data_;
+  extent_t order_;
+  DenseBlasLayout layout_;
+  ConstMemoryView backing_storage_;
+  internal_dense_blas::StorageBounds bounds_;
 };
 
 enum class DenseBlasDotAccumulation : std::uint8_t {
@@ -380,6 +856,182 @@ ASC_DENSE_EXPORT Status
 Iamax(const ExecutionContext& context,
       DenseBlasVectorView<const std::complex<double>> operand,
       DenseBlasVectorView<index_t> result);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Gemv(const ExecutionContext& context,
+                             DenseBlasTranspose transpose, Element alpha,
+                             DenseBlasMatrixView<const Element> matrix,
+                             DenseBlasVectorView<const Element> input,
+                             Element beta, DenseBlasVectorView<Element> output);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Gbmv(const ExecutionContext& context,
+                             DenseBlasTranspose transpose, Element alpha,
+                             DenseBlasBandMatrixView<const Element> matrix,
+                             DenseBlasVectorView<const Element> input,
+                             Element beta, DenseBlasVectorView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Hemv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasMatrixView<const Element> matrix,
+                             DenseBlasVectorView<const Element> input,
+                             Element beta, DenseBlasVectorView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Hbmv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasTriangularBandView<const Element> matrix,
+                             DenseBlasVectorView<const Element> input,
+                             Element beta, DenseBlasVectorView<Element> output);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Hpmv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasPackedMatrixView<const Element> matrix,
+                             DenseBlasVectorView<const Element> input,
+                             Element beta, DenseBlasVectorView<Element> output);
+
+template <DenseBlasReal Element>
+ASC_DENSE_EXPORT Status Symv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasMatrixView<const Element> matrix,
+                             DenseBlasVectorView<const Element> input,
+                             Element beta, DenseBlasVectorView<Element> output);
+
+template <DenseBlasReal Element>
+ASC_DENSE_EXPORT Status Sbmv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasTriangularBandView<const Element> matrix,
+                             DenseBlasVectorView<const Element> input,
+                             Element beta, DenseBlasVectorView<Element> output);
+
+template <DenseBlasReal Element>
+ASC_DENSE_EXPORT Status Spmv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasPackedMatrixView<const Element> matrix,
+                             DenseBlasVectorView<const Element> input,
+                             Element beta, DenseBlasVectorView<Element> output);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Trmv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasDiagonal diagonal,
+                             DenseBlasMatrixView<const Element> matrix,
+                             DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Tbmv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasDiagonal diagonal,
+                             DenseBlasTriangularBandView<const Element> matrix,
+                             DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Tpmv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasDiagonal diagonal,
+                             DenseBlasPackedMatrixView<const Element> matrix,
+                             DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Trsv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasDiagonal diagonal,
+                             DenseBlasMatrixView<const Element> matrix,
+                             DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Tbsv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasDiagonal diagonal,
+                             DenseBlasTriangularBandView<const Element> matrix,
+                             DenseBlasVectorView<Element> vector);
+
+template <DenseBlasScalar Element>
+ASC_DENSE_EXPORT Status Tpsv(const ExecutionContext& context,
+                             DenseBlasTriangle triangle,
+                             DenseBlasTranspose transpose,
+                             DenseBlasDiagonal diagonal,
+                             DenseBlasPackedMatrixView<const Element> matrix,
+                             DenseBlasVectorView<Element> vector);
+
+template <DenseBlasReal Element>
+ASC_DENSE_EXPORT Status Ger(const ExecutionContext& context, Element alpha,
+                            DenseBlasVectorView<const Element> x,
+                            DenseBlasVectorView<const Element> y,
+                            DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Geru(const ExecutionContext& context, Element alpha,
+                             DenseBlasVectorView<const Element> x,
+                             DenseBlasVectorView<const Element> y,
+                             DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Gerc(const ExecutionContext& context, Element alpha,
+                             DenseBlasVectorView<const Element> x,
+                             DenseBlasVectorView<const Element> y,
+                             DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Her(const ExecutionContext& context,
+                            DenseBlasTriangle triangle,
+                            DenseBlasRealType<Element> alpha,
+                            DenseBlasVectorView<const Element> x,
+                            DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Hpr(const ExecutionContext& context,
+                            DenseBlasTriangle triangle,
+                            DenseBlasRealType<Element> alpha,
+                            DenseBlasVectorView<const Element> x,
+                            DenseBlasPackedMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Her2(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasVectorView<const Element> x,
+                             DenseBlasVectorView<const Element> y,
+                             DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasComplex Element>
+ASC_DENSE_EXPORT Status Hpr2(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasVectorView<const Element> x,
+                             DenseBlasVectorView<const Element> y,
+                             DenseBlasPackedMatrixView<Element> matrix);
+
+template <DenseBlasReal Element>
+ASC_DENSE_EXPORT Status Syr(const ExecutionContext& context,
+                            DenseBlasTriangle triangle, Element alpha,
+                            DenseBlasVectorView<const Element> x,
+                            DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasReal Element>
+ASC_DENSE_EXPORT Status Spr(const ExecutionContext& context,
+                            DenseBlasTriangle triangle, Element alpha,
+                            DenseBlasVectorView<const Element> x,
+                            DenseBlasPackedMatrixView<Element> matrix);
+
+template <DenseBlasReal Element>
+ASC_DENSE_EXPORT Status Syr2(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasVectorView<const Element> x,
+                             DenseBlasVectorView<const Element> y,
+                             DenseBlasMatrixView<Element> matrix);
+
+template <DenseBlasReal Element>
+ASC_DENSE_EXPORT Status Spr2(const ExecutionContext& context,
+                             DenseBlasTriangle triangle, Element alpha,
+                             DenseBlasVectorView<const Element> x,
+                             DenseBlasVectorView<const Element> y,
+                             DenseBlasPackedMatrixView<Element> matrix);
 
 ASC_DENSE_EXPORT Status Copy(const ExecutionContext& context,
                              DenseView<const float, 1> source,

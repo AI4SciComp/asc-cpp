@@ -303,7 +303,8 @@ Result<Element> Nrm2Impl(const ExecutionContext& context,
 
 bool IsValidTranspose(DenseBlasTranspose transpose) {
   return transpose == DenseBlasTranspose::kNone ||
-         transpose == DenseBlasTranspose::kTranspose;
+         transpose == DenseBlasTranspose::kTranspose ||
+         transpose == DenseBlasTranspose::kConjugateTranspose;
 }
 
 template <typename Element>

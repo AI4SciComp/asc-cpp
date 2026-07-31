@@ -1,6 +1,6 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 6 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 8 Feature Gate B candidate
 
 Date: 2026-07-31
 

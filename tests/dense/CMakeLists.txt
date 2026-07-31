@@ -20,6 +20,7 @@ foreach(_source IN ITEMS
     array_evaluate_test.cc
     blas_test.cc
     blas_level1_test.cc
+    blas_level2_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_dense_${_name}")
@@ -31,6 +32,11 @@ foreach(_source IN ITEMS
     LABELS "dense;milestone-3;runtime"
   )
 endforeach()
+
+set_property(
+  TEST asc_cpp.dense.blas_level2_test
+  APPEND PROPERTY LABELS "blas-level2;milestone-8"
+)
 
 add_executable(
   asc_dense_multi_tu

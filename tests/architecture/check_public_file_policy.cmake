@@ -65,8 +65,11 @@ set(_expected_compiled_sources
   src/core/cuda/runtime.cc
   src/dense/blas.cc
   src/dense/blas_level1.cc
+  src/dense/blas_level2.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
+  src/dense/cuda/blas_level2.cc
+  src/dense/cuda/blas_level2_kernels.cu
   src/dense/cuda/context.cc
   src/dense/cuda/kernels.cu
   src/dense/cuda/operations.cc
@@ -107,14 +110,14 @@ list(SORT _expected_public_files)
 list(SORT _expected_compiled_sources)
 if(NOT _public_files STREQUAL _expected_public_files)
   message(FATAL_ERROR
-    "Milestone 7 public-file set differs from the frozen contract.\n"
+    "Milestone 8 public-file set differs from the frozen contract.\n"
     "Expected: ${_expected_public_files}\n"
     "Actual:   ${_public_files}"
   )
 endif()
 if(NOT _compiled_sources STREQUAL _expected_compiled_sources)
   message(FATAL_ERROR
-    "Milestone 7 compiled-source set differs from the frozen contract.\n"
+    "Milestone 8 compiled-source set differs from the frozen contract.\n"
     "Expected: ${_expected_compiled_sources}\n"
     "Actual:   ${_compiled_sources}"
   )

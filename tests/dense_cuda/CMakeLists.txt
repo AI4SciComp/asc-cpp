@@ -26,6 +26,7 @@ foreach(_source IN ITEMS
     dense_cuda_evaluate_test.cc
     dense_cuda_blas_test.cc
     dense_cuda_blas_level1_test.cc
+    dense_cuda_blas_level2_test.cc
     dense_cuda_move_assignment_test.cc
     dense_cuda_owner_test.cc
     dense_cuda_scalar_release_regression_test.cc
@@ -55,6 +56,13 @@ foreach(_source IN ITEMS
       SKIP_RETURN_CODE 77
   )
 endforeach()
+
+set_property(
+  TEST
+    asc_cpp.dense_cuda.dense_cuda_blas_level2_test
+    asc_cpp.dense_cuda.dense_cuda_blas_level2_test.forced_no_device
+  APPEND PROPERTY LABELS "blas-level2;milestone-8"
+)
 
 target_link_libraries(
   asc_dense_cuda_dense_cuda_concurrency_test

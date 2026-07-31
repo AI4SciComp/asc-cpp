@@ -3,6 +3,7 @@
 #include <chrono>
 #include <cmath>
 #include <cstddef>
+#include <cstdint>
 #include <iostream>
 #include <span>
 #include <string_view>
@@ -113,7 +114,8 @@ bool VerifyGemm(asc::DenseView<const double, 2> view) {
 void PrintResult(std::string_view operation, std::size_t rows,
                  std::size_t columns, std::size_t iterations,
                  Clock::duration elapsed, double checksum,
-                 std::size_t allocations) {
+                 std::size_t allocations,
+                 std::size_t estimated_bytes_per_iteration = 0) {
   const auto nanoseconds =
       std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
   std::cout << "compiler=" << CompilerName()
@@ -123,18 +125,30 @@ void PrintResult(std::string_view operation, std::size_t rows,
             << " total_ns=" << nanoseconds << " per_iteration_ns="
             << static_cast<double>(nanoseconds) /
                    static_cast<double>(iterations)
-            << " checksum=" << checksum << " allocations=" << allocations
-            << " oracle=independent\n";
+            << " checksum=" << checksum << " allocations=" << allocations;
+  if (estimated_bytes_per_iteration != 0 && nanoseconds > 0) {
+    const long double seconds = static_cast<long double>(nanoseconds) / 1.0e9L;
+    const long double bandwidth =
+        static_cast<long double>(estimated_bytes_per_iteration) * iterations /
+        seconds;
+    std::cout << " estimated_bytes_per_iteration="
+              << estimated_bytes_per_iteration
+              << " estimated_bandwidth_bytes_per_second="
+              << static_cast<double>(bandwidth);
+  }
+  std::cout << " oracle=independent\n";
 }
 
 }  // namespace
 
 int main() {
   constexpr asc::extent_t kExtent = 32;
+  constexpr asc::extent_t kLevel2Extent = 128;
   constexpr asc::extent_t kVectorExtent = 1U << 16;
   constexpr std::size_t kEvaluationIterations = 64;
   constexpr std::size_t kGemmIterations = 4;
   constexpr std::size_t kLevel1Iterations = 64;
+  constexpr std::size_t kLevel2Iterations = 16;
 
   asc::HostMemoryResource resource;
   auto extents = MatrixExtents::Create(kExtent, kExtent);
@@ -226,6 +240,72 @@ int main() {
   PrintResult("gemm", kExtent, kExtent, kGemmIterations, gemm_elapsed,
               gemm_checksum, gemm_allocations);
 
+  const std::size_t level2_extent = static_cast<std::size_t>(kLevel2Extent);
+  std::vector<double> level2_matrix(level2_extent * level2_extent);
+  std::vector<double> level2_input(level2_extent);
+  std::vector<double> level2_output(level2_extent);
+  for (std::size_t column = 0; column < level2_extent; ++column) {
+    level2_input[column] = 0.125 * static_cast<double>(1 + column % 11);
+    for (std::size_t row = 0; row < level2_extent; ++row) {
+      level2_matrix[row + column * level2_extent] =
+          0.0625 * static_cast<double>(
+                       1 + static_cast<std::int32_t>((row + column) % 7));
+    }
+  }
+  auto level2_matrix_view = asc::DenseBlasMatrixView<const double>::Create(
+      level2_matrix.data(), kLevel2Extent, kLevel2Extent,
+      asc::DenseBlasLayout::kColumnMajor, kLevel2Extent,
+      asc::ConstMemoryView(level2_matrix.data(),
+                           level2_matrix.size() * sizeof(double),
+                           asc::MemorySpace::kHost));
+  auto level2_input_view = asc::DenseBlasVectorView<const double>::Create(
+      level2_input.data(), kLevel2Extent, 1,
+      asc::ConstMemoryView(level2_input.data(),
+                           level2_input.size() * sizeof(double),
+                           asc::MemorySpace::kHost));
+  auto level2_output_view = asc::DenseBlasVectorView<double>::Create(
+      level2_output.data(), kLevel2Extent, 1,
+      asc::ConstMemoryView(level2_output.data(),
+                           level2_output.size() * sizeof(double),
+                           asc::MemorySpace::kHost));
+  if (!level2_matrix_view.ok() || !level2_input_view.ok() ||
+      !level2_output_view.ok()) {
+    return 19;
+  }
+  const auto level2_start = Clock::now();
+  std::size_t level2_allocations = 0;
+  {
+    asc_dense_test::AllocationProbe probe;
+    for (std::size_t iteration = 0; iteration < kLevel2Iterations;
+         ++iteration) {
+      if (!asc::Gemv(context, asc::DenseBlasTranspose::kNone, 1.0,
+                     *level2_matrix_view, *level2_input_view, 0.0,
+                     *level2_output_view)
+               .ok()) {
+        return 20;
+      }
+    }
+    level2_allocations = probe.count();
+  }
+  const auto level2_elapsed = Clock::now() - level2_start;
+  double level2_checksum = 0.0;
+  for (std::size_t row = 0; row < level2_extent; ++row) {
+    long double expected = 0.0L;
+    for (std::size_t column = 0; column < level2_extent; ++column) {
+      expected +=
+          level2_matrix[row + column * level2_extent] * level2_input[column];
+    }
+    if (std::abs(static_cast<long double>(level2_output[row]) - expected) >
+        1.0e-12L * std::max(1.0L, std::abs(expected))) {
+      return 21;
+    }
+    level2_checksum += level2_output[row];
+  }
+  PrintResult(
+      "blas_level2_gemv", level2_extent, level2_extent, kLevel2Iterations,
+      level2_elapsed, level2_checksum, level2_allocations,
+      (level2_extent * level2_extent + 2 * level2_extent) * sizeof(double));
+
   std::vector<double> level1_left(static_cast<std::size_t>(kVectorExtent));
   std::vector<double> level1_output(static_cast<std::size_t>(kVectorExtent));
   for (asc::index_t index = 0; index < kVectorExtent; ++index) {
@@ -312,9 +392,11 @@ int main() {
               dot_allocations);
 
   if (!asc_test::ProcessAllocationCountMatches(evaluation_allocations, 0) ||
-      gemm_allocations != 0 || axpy_allocations != 0 || dot_allocations != 0 ||
+      gemm_allocations != 0 || level2_allocations != 0 ||
+      axpy_allocations != 0 || dot_allocations != 0 ||
       !std::isfinite(evaluation_checksum) || !std::isfinite(gemm_checksum) ||
-      !std::isfinite(axpy_checksum) || !std::isfinite(level1_result[0])) {
+      !std::isfinite(level2_checksum) || !std::isfinite(axpy_checksum) ||
+      !std::isfinite(level1_result[0])) {
     return 13;
   }
   return 0;

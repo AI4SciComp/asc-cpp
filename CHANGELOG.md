@@ -5,6 +5,23 @@ completion and release publication require separate approval.
 
 ## Unreleased
 
+### Dense BLAS Level 2 (Issue 8)
+
+- Added all 66 frozen classic dense BLAS Level 2 S/D/C/Z rows on the portable
+  serial CPU path and explicit CUDA provider: general, symmetric, Hermitian,
+  triangular, band, packed, solve, and rank-update families.
+- Added checked caller-owned full, general-band, triangular-band, and packed
+  matrix descriptors with row- and column-major layouts, plus transpose,
+  conjugate-transpose, triangle, and unit-diagonal controls.
+- Added CPU/CUDA conformance, signed-stride, invalid-input, edge-value,
+  allocation, packaging-consumer, generated coverage, public example, and
+  representative Gemv latency/estimated-bandwidth benchmark evidence.
+
+No Level 3 routine or optimized CPU provider is included. Successful Level 2
+calls add no hidden allocation, transfer, packing, synchronization, or
+fallback; CUDA returns an explicit completion event and retains only the
+established error-path stream drain.
+
 ### Dense BLAS Level 1 remediation (Issue 7)
 
 - Added the complete frozen classic dense BLAS Level 1 real and complex

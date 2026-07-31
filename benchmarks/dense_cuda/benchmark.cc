@@ -462,20 +462,24 @@ int main() {
     return 28;
   }
 
-  auto gemv_matrix_mutable =
-      LeftView(static_cast<float*>(device_left->data()),
-               std::array<asc::extent_t, 2>{kGemvDimension, kGemvDimension});
-  auto gemv_input_mutable =
-      LeftView(static_cast<float*>(device_right->data()),
-               std::array<asc::extent_t, 1>{kGemvDimension});
-  auto gemv_output = LeftView(static_cast<float*>(device_output->data()),
-                              std::array<asc::extent_t, 1>{kGemvDimension});
-  asc::DenseView<const float, 2> gemv_matrix = gemv_matrix_mutable;
-  asc::DenseView<const float, 1> gemv_input = gemv_input_mutable;
+  auto gemv_matrix = asc::DenseBlasMatrixView<const float>::Create(
+      static_cast<const float*>(device_left->data()), kGemvDimension,
+      kGemvDimension, asc::DenseBlasLayout::kColumnMajor, kGemvDimension,
+      *left_const_memory);
+  auto gemv_input = asc::DenseBlasVectorView<const float>::Create(
+      static_cast<const float*>(device_right->data()), kGemvDimension, 1,
+      *right_const_memory);
+  auto gemv_output = asc::DenseBlasVectorView<float>::Create(
+      static_cast<float*>(device_output->data()), kGemvDimension, 1,
+      *output_const_memory);
+  if (!gemv_matrix.ok() || !gemv_input.ok() || !gemv_output.ok()) {
+    return 29;
+  }
   allocation_checkpoint = allocation_calls();
   const auto gemv_ns = MeasureNanoseconds(kWarmup, kRepetitions, [&] {
-    return Wait(asc::CudaGemv(*dense_context, asc::MatrixOperation::kNone, 1.0F,
-                              gemv_matrix, gemv_input, 0.0F, gemv_output));
+    return Wait(asc::CudaGemv(*dense_context, asc::DenseBlasTranspose::kNone,
+                              1.0F, *gemv_matrix, *gemv_input, 0.0F,
+                              *gemv_output));
   });
   const std::size_t gemv_allocations =
       allocation_calls() - allocation_checkpoint;
@@ -540,9 +544,13 @@ int main() {
          dot_allocations);
   Report("blas_level1_iamax", iamax_ns, kRepetitions, kVectorSize, "items/s",
          observed_index, iamax_allocations);
-  Report("gemv", gemv_ns, kRepetitions,
+  Report("blas_level2_gemv", gemv_ns, kRepetitions,
          static_cast<long double>(2) * kGemvDimension * kGemvDimension,
          "flop/s", gemv_checksum, gemv_allocations);
+  Report("blas_level2_gemv_bandwidth", gemv_ns, kRepetitions,
+         static_cast<long double>(sizeof(float)) *
+             (kGemvDimension * kGemvDimension + 2 * kGemvDimension),
+         "bytes/s", gemv_checksum, gemv_allocations);
   Report("gemm", gemm_ns, kRepetitions,
          static_cast<long double>(2) * kGemmDimension * kGemmDimension *
              kGemmDimension,

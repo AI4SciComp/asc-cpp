@@ -81,5 +81,62 @@ int main() {
   if (!copied.ok() || !copied->Wait().ok()) {
     return 12;
   }
-  return *static_cast<const float*>(host_result->data()) == 6.0F ? 0 : 13;
+  if (*static_cast<const float*>(host_result->data()) != 6.0F) {
+    return 13;
+  }
+
+  auto host_level2 =
+      asc::Buffer::Allocate(**pinned, 8 * sizeof(float), alignof(float));
+  auto device_level2 =
+      asc::Buffer::Allocate(**device, 8 * sizeof(float), alignof(float));
+  if (!host_level2.ok() || !device_level2.ok()) {
+    return 14;
+  }
+  auto* level2_values = static_cast<float*>(host_level2->data());
+  level2_values[0] = 1.0F;
+  level2_values[1] = 3.0F;
+  level2_values[2] = 2.0F;
+  level2_values[3] = 4.0F;
+  level2_values[4] = 1.0F;
+  level2_values[5] = 1.0F;
+  level2_values[6] = 0.0F;
+  level2_values[7] = 0.0F;
+  auto host_level2_view = host_level2->const_view();
+  auto device_level2_view = device_level2->mutable_view();
+  if (!host_level2_view.ok() || !device_level2_view.ok()) {
+    return 15;
+  }
+  copied = asc::CopyBytes(*execution, *device_level2_view, *host_level2_view);
+  if (!copied.ok() || !copied->Wait().ok()) {
+    return 16;
+  }
+  const asc::ConstMemoryView level2_backing(
+      device_level2->data(), device_level2->size(), asc::MemorySpace::kDevice);
+  auto matrix = asc::DenseBlasMatrixView<const float>::Create(
+      static_cast<const float*>(device_level2->data()), 2, 2,
+      asc::DenseBlasLayout::kColumnMajor, 2, level2_backing);
+  auto input = asc::DenseBlasVectorView<const float>::Create(
+      static_cast<const float*>(device_level2->data()) + 4, 2, 1,
+      level2_backing);
+  auto output = asc::DenseBlasVectorView<float>::Create(
+      static_cast<float*>(device_level2->data()) + 6, 2, 1, level2_backing);
+  if (!matrix.ok() || !input.ok() || !output.ok()) {
+    return 17;
+  }
+  auto multiplied = asc::CudaGemv(*context, asc::DenseBlasTranspose::kNone,
+                                  1.0F, *matrix, *input, 0.0F, *output);
+  if (!multiplied.ok() || !multiplied->Wait().ok()) {
+    return 18;
+  }
+  auto host_level2_destination = host_level2->mutable_view();
+  auto device_level2_source = device_level2->const_view();
+  if (!host_level2_destination.ok() || !device_level2_source.ok()) {
+    return 19;
+  }
+  copied = asc::CopyBytes(*execution, *host_level2_destination,
+                          *device_level2_source);
+  if (!copied.ok() || !copied->Wait().ok()) {
+    return 20;
+  }
+  return level2_values[6] == 3.0F && level2_values[7] == 7.0F ? 0 : 21;
 }
