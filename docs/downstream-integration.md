@@ -1,6 +1,6 @@
 # Downstream integration
 
-Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
 
 Date: 2026-08-01
 

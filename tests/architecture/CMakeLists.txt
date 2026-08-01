@@ -55,14 +55,25 @@ add_test(
     -P "${CMAKE_CURRENT_SOURCE_DIR}/check_blas_coverage_failures.cmake"
 )
 
+add_test(
+  NAME asc_cpp.architecture.blas_completion
+  COMMAND
+    "${CMAKE_COMMAND}"
+    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
+    "-DBINARY_DIR:PATH=${PROJECT_BINARY_DIR}"
+    "-DENABLE_CUDA:BOOL=${ASC_CPP_ENABLE_CUDA}"
+    -P "${CMAKE_CURRENT_SOURCE_DIR}/check_blas_completion.cmake"
+)
+
 set_tests_properties(
   asc_cpp.architecture.dependency_manifest
   asc_cpp.architecture.approved_product_targets
   asc_cpp.architecture.public_file_policy
   asc_cpp.architecture.blas_coverage
   asc_cpp.architecture.blas_coverage_failures
+  asc_cpp.architecture.blas_completion
   PROPERTIES LABELS
-    "architecture;milestone-7;milestone-8;milestone-9;milestone-10"
+    "architecture;milestone-7;milestone-8;milestone-9;milestone-10;milestone-11"
 )
 
 unset(_blas_coverage_manifest)

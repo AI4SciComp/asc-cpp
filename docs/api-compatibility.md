@@ -1,6 +1,6 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
 
 Date: 2026-08-01
 
@@ -110,6 +110,10 @@ overload remains source compatible; the standardized accumulating overload is
 selected only by its explicit transpose and descriptor arguments. Existing
 Sparse names are not renamed, and no forwarding header or runtime fallback is
 introduced.
+
+Issue 11 adds no public name or compatibility behavior. Its completion audit
+rejects retired `linalg` text in product code while retaining the approved
+historical migration prose and negative compatibility checks.
 
 `Timer::Stop` checks interval, accumulated-duration, and sample-count
 arithmetic before publishing a completed sample. Overflow returns

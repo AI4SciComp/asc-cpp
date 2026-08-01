@@ -111,6 +111,45 @@ _expect_validation_failure(
   FALSE
 )
 
+string(REPLACE
+  "public_api: \"asc::Rotg\""
+  "public_api: \"asc::MissingRotg\""
+  _missing_public_api
+  "${_valid_manifest}"
+)
+_expect_validation_failure(
+  missing-public-api
+  _missing_public_api
+  "public API 'asc::MissingRotg' is absent"
+  FALSE
+)
+
+string(REPLACE
+  "implementation: \"src/dense/blas_level1.cc\""
+  "implementation: \"src/dense/blas_level2.cc\""
+  _changed_evidence
+  "${_valid_manifest}"
+)
+_expect_validation_failure(
+  changed-evidence
+  _changed_evidence
+  "BLAS coverage evidence differs from its frozen Issue 11 identity"
+  FALSE
+)
+
+string(REPLACE
+  "sparse_analogue: \"usga,usgz,ussc\"\n    status: \"verified\""
+  "sparse_analogue: \"usga,usgz,ussc\"\n    status: \"planned\""
+  _incomplete_crosswalk
+  "${_valid_manifest}"
+)
+_expect_validation_failure(
+  incomplete-crosswalk
+  _incomplete_crosswalk
+  "Dense-to-sparse 'copy' is incomplete: planned"
+  FALSE
+)
+
 string(REGEX REPLACE
   "evidence_date: \"[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\""
   "evidence_date: \"2099-01-01\""

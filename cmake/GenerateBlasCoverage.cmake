@@ -69,6 +69,40 @@ function(_require_path_pattern label value pattern)
   endif()
 endfunction()
 
+function(_require_registered_path label value registration_file)
+  _require_source_path("${label} registration" "${registration_file}")
+  file(READ "${SOURCE_DIR}/${registration_file}" _registration)
+  get_filename_component(_basename "${value}" NAME)
+  string(FIND "${_registration}" "${_basename}" _registration_position)
+  if(_registration_position EQUAL -1)
+    message(FATAL_ERROR
+      "${label} is not registered by ${registration_file}: ${value}"
+    )
+  endif()
+endfunction()
+
+function(_require_public_api_symbol label public_api public_header)
+  if(NOT "${public_api}" MATCHES "^asc::")
+    return()
+  endif()
+  if("${public_header}" STREQUAL "")
+    message(FATAL_ERROR
+      "${label} claims '${public_api}' without a public header."
+    )
+  endif()
+  string(REGEX MATCH "([A-Za-z_][A-Za-z0-9_]*)$" _match "${public_api}")
+  if(NOT _match)
+    message(FATAL_ERROR "${label} has an invalid public API: ${public_api}")
+  endif()
+  set(_symbol "${CMAKE_MATCH_1}")
+  file(READ "${SOURCE_DIR}/${public_header}" _header)
+  if(NOT _header MATCHES "(^|[^A-Za-z0-9_])${_symbol}([^A-Za-z0-9_]|$)")
+    message(FATAL_ERROR
+      "${label} public API '${public_api}' is absent from ${public_header}."
+    )
+  endif()
+endfunction()
+
 function(_markdown_code value output)
   if("${value}" STREQUAL "")
     set("${output}" "-" PARENT_SCOPE)
@@ -119,11 +153,15 @@ _extract_quoted("dense_inventory_sha256" _expected_dense_inventory_sha256)
 _extract_quoted("sparse_inventory_sha256" _expected_sparse_inventory_sha256)
 _extract_quoted("coverage_inventory_sha256"
                 _expected_coverage_inventory_sha256)
+_extract_quoted("coverage_evidence_sha256" _expected_coverage_evidence_sha256)
 _extract_quoted("dense_to_sparse_crosswalk_sha256"
                 _expected_crosswalk_sha256)
 _extract_integer("expected_dense_rows" _expected_dense_rows)
 _extract_integer("expected_sparse_rows" _expected_sparse_rows)
 _extract_integer("expected_total_rows" _expected_total_rows)
+_extract_integer("expected_verified_rows" _expected_verified_rows)
+_extract_integer("expected_not_applicable_rows"
+                 _expected_not_applicable_rows)
 
 set(_frozen_allowed_statuses
   "planned,implemented,verified,not-applicable,blocked"
@@ -143,9 +181,14 @@ set(_frozen_nist_sparse_sha256
 set(_frozen_cuda_toolkit "12.9.1 compiler 12.9.86")
 set(_frozen_cublas_version "12.9.1.4")
 set(_frozen_cusparse_version "12.5.10.65")
+set(_frozen_contract_status
+  "issue-11-blas-completion-audit-verified-candidate"
+)
 set(_frozen_dense_rows 150)
 set(_frozen_sparse_rows 79)
 set(_frozen_total_rows 229)
+set(_frozen_verified_rows 182)
+set(_frozen_not_applicable_rows 47)
 set(_frozen_dense_inventory_sha256
   "3915d69e0a2339ed73c0c63539a9ed60d4fc1f075b0caa1711309ca7d52fb6b3"
 )
@@ -155,9 +198,19 @@ set(_frozen_sparse_inventory_sha256
 set(_frozen_coverage_inventory_sha256
   "45778d5dd3639c9f3557ddf3610a9e01442d29b4503f90b41164f7326c9a8ad0"
 )
-set(_frozen_crosswalk_sha256
-  "78dfab7b056c546f6db1ca2f9ef95b78c357b2dec0ade9ee9ead2f7fca39ca64"
+set(_frozen_coverage_evidence_sha256
+  "6f601aa7528206ddb35e280ef066280f479f01d81ed10a89d3d834f8e25107f0"
 )
+set(_frozen_crosswalk_sha256
+  "85232aa45cf9cce51af433d9629e6b9781c000af170221176ab89d9f63ace454"
+)
+
+if(NOT _contract_status STREQUAL _frozen_contract_status)
+  message(FATAL_ERROR
+    "BLAS manifest contract_status is '${_contract_status}'; the Issue 11 "
+    "completion audit freezes '${_frozen_contract_status}'."
+  )
+endif()
 
 foreach(_baseline IN ITEMS
     dense_commit
@@ -181,9 +234,12 @@ foreach(_frozen_declaration IN ITEMS
     dense_rows
     sparse_rows
     total_rows
+    verified_rows
+    not_applicable_rows
     dense_inventory_sha256
     sparse_inventory_sha256
     coverage_inventory_sha256
+    coverage_evidence_sha256
     crosswalk_sha256
 )
   if(_frozen_declaration STREQUAL "allowed_statuses")
@@ -192,6 +248,9 @@ foreach(_frozen_declaration IN ITEMS
   elseif(_frozen_declaration MATCHES "_rows$")
     set(_declared_value "${_expected_${_frozen_declaration}}")
     set(_frozen_value "${_frozen_${_frozen_declaration}}")
+  elseif(_frozen_declaration STREQUAL "coverage_evidence_sha256")
+    set(_declared_value "${_expected_coverage_evidence_sha256}")
+    set(_frozen_value "${_frozen_coverage_evidence_sha256}")
   elseif(_frozen_declaration STREQUAL "crosswalk_sha256")
     set(_declared_value "${_expected_crosswalk_sha256}")
     set(_frozen_value "${_frozen_crosswalk_sha256}")
@@ -211,11 +270,14 @@ set(_section)
 set(_row_active FALSE)
 set(_crosswalk_active FALSE)
 set(_coverage_keys)
+set(_coverage_evidence_keys)
 set(_dense_coverage_keys)
 set(_sparse_coverage_keys)
 set(_dense_families)
 set(_crosswalk_families)
 set(_crosswalk_keys)
+set(_crosswalk_verified_count 0)
+set(_crosswalk_not_applicable_count 0)
 set(_coverage_rows_markdown)
 set(_crosswalk_rows_markdown)
 set(_coverage_count 0)
@@ -418,6 +480,27 @@ macro(_finalize_coverage_row)
     math(EXPR _implementation_evidence_count
       "${_implemented_backend_count} + ${_verified_backend_count}"
     )
+    if(NOT "${_row_public_header}" STREQUAL "")
+      _require_source_path(
+        "Coverage row '${_row_official_routine}' public_header"
+        "${_row_public_header}"
+      )
+      _require_path_pattern(
+        "Coverage row '${_row_official_routine}' public_header"
+        "${_row_public_header}"
+        "^include/asc/${_row_module}/.+\\.h$"
+      )
+      _require_registered_path(
+        "Coverage row '${_row_official_routine}' public_header"
+        "${_row_public_header}"
+        "src/${_row_module}/CMakeLists.txt"
+      )
+    endif()
+    _require_public_api_symbol(
+      "Coverage row '${_row_official_routine}'"
+      "${_row_public_api}"
+      "${_row_public_header}"
+    )
     if(_implementation_evidence_count GREATER 0)
       if("${_row_public_api}" STREQUAL "")
         message(FATAL_ERROR
@@ -442,6 +525,11 @@ macro(_finalize_coverage_row)
         "${_row_implementation}"
         "^src/${_row_module}/.+\\.(cc|cu)$"
       )
+      _require_registered_path(
+        "${_row_status} row '${_row_official_routine}' implementation"
+        "${_row_implementation}"
+        "src/${_row_module}/CMakeLists.txt"
+      )
       _require_source_path(
         "${_row_status} row '${_row_official_routine}' conformance test"
         "${_row_test_conformance}"
@@ -460,6 +548,17 @@ macro(_finalize_coverage_row)
         "${_row_test_invalid_input}"
         "^tests/.+\\.(cc|cu|cmake)$"
       )
+      foreach(_test_field IN ITEMS test_conformance test_invalid_input)
+        string(REGEX REPLACE
+          "^(tests/[^/]+)/.*" "\\1/CMakeLists.txt"
+          _test_registration "${_row_${_test_field}}"
+        )
+        _require_registered_path(
+          "${_row_status} row '${_row_official_routine}' ${_test_field}"
+          "${_row_${_test_field}}"
+          "${_test_registration}"
+        )
+      endforeach()
       if(_row_backend_cuda STREQUAL "implemented"
          OR _row_backend_cuda STREQUAL "verified")
         _require_source_path(
@@ -471,6 +570,11 @@ macro(_finalize_coverage_row)
           "${_row_cuda_implementation}"
           "^src/${_row_module}/cuda/.+\\.(cc|cu)$"
         )
+        _require_registered_path(
+          "${_row_status} row '${_row_official_routine}' CUDA implementation"
+          "${_row_cuda_implementation}"
+          "src/${_row_module}/CMakeLists.txt"
+        )
         _require_source_path(
           "${_row_status} row '${_row_official_routine}' CPU/GPU test"
           "${_row_test_cpu_gpu}"
@@ -479,6 +583,15 @@ macro(_finalize_coverage_row)
           "${_row_status} row '${_row_official_routine}' CPU/GPU test"
           "${_row_test_cpu_gpu}"
           "^tests/.+\\.(cc|cu|cmake)$"
+        )
+        string(REGEX REPLACE
+          "^(tests/[^/]+)/.*" "\\1/CMakeLists.txt"
+          _test_registration "${_row_test_cpu_gpu}"
+        )
+        _require_registered_path(
+          "${_row_status} row '${_row_official_routine}' test_cpu_gpu"
+          "${_row_test_cpu_gpu}"
+          "${_test_registration}"
         )
       endif()
     endif()
@@ -492,6 +605,17 @@ macro(_finalize_coverage_row)
       message(FATAL_ERROR "Duplicate coverage key: ${_coverage_key}")
     endif()
     list(APPEND _coverage_keys "${_coverage_key}")
+    set(_coverage_evidence_key
+      "${_row_module}|${_row_standard}|${_row_level}|"
+      "${_row_operation}|${_row_official_routine}|${_row_scalar_type}|"
+      "${_row_layout}|${_row_backend_reference_cpu}|"
+      "${_row_backend_optimized_cpu}|${_row_backend_cuda}|"
+      "${_row_public_api}|${_row_public_header}|${_row_implementation}|"
+      "${_row_cuda_implementation}|${_row_test_conformance}|"
+      "${_row_test_cpu_gpu}|${_row_test_invalid_input}|${_row_status}"
+    )
+    string(CONCAT _coverage_evidence_key ${_coverage_evidence_key})
+    list(APPEND _coverage_evidence_keys "${_coverage_evidence_key}")
     if(_row_module STREQUAL "dense")
       list(APPEND _dense_coverage_keys "${_coverage_key}")
     else()
@@ -572,6 +696,13 @@ macro(_finalize_crosswalk_row)
       "Dense-to-sparse '${_crosswalk_dense_operation}'"
       "${_crosswalk_status}"
     )
+    if(NOT _crosswalk_status STREQUAL "verified"
+       AND NOT _crosswalk_status STREQUAL "not-applicable")
+      message(FATAL_ERROR
+        "Dense-to-sparse '${_crosswalk_dense_operation}' is incomplete: "
+        "${_crosswalk_status}."
+      )
+    endif()
     if(_crosswalk_status STREQUAL "not-applicable"
        AND "${_crosswalk_notes}" STREQUAL "")
       message(FATAL_ERROR
@@ -591,6 +722,15 @@ macro(_finalize_crosswalk_row)
     )
     string(CONCAT _crosswalk_key ${_crosswalk_key})
     list(APPEND _crosswalk_keys "${_crosswalk_key}")
+    if(_crosswalk_status STREQUAL "verified")
+      math(EXPR _crosswalk_verified_count
+        "${_crosswalk_verified_count} + 1"
+      )
+    else()
+      math(EXPR _crosswalk_not_applicable_count
+        "${_crosswalk_not_applicable_count} + 1"
+      )
+    endif()
     _markdown_code("${_crosswalk_dense_operation}" _md_dense_operation)
     _markdown_code("${_crosswalk_sparse_analogue}" _md_sparse_analogue)
     _markdown_text("${_crosswalk_notes}" _md_crosswalk_notes)
@@ -615,9 +755,10 @@ foreach(_line IN LISTS _manifest_lines)
     set(_section "crosswalk")
   elseif(_section STREQUAL "coverage"
          AND _line MATCHES "^  - operation: \"([^\"]+)\"$")
+    set(_next_operation "${CMAKE_MATCH_1}")
     _finalize_coverage_row()
     set(_row_active TRUE)
-    set(_row_operation "${CMAKE_MATCH_1}")
+    set(_row_operation "${_next_operation}")
     list(APPEND _row_seen_fields operation)
   elseif(_section STREQUAL "coverage"
          AND _line MATCHES "^    ([a-z_]+): \"([^\"]*)\"$")
@@ -637,9 +778,10 @@ foreach(_line IN LISTS _manifest_lines)
     set("_row_${_field}" "${CMAKE_MATCH_2}")
   elseif(_section STREQUAL "crosswalk"
          AND _line MATCHES "^  - dense_operation: \"([^\"]+)\"$")
+    set(_next_dense_operation "${CMAKE_MATCH_1}")
     _finalize_crosswalk_row()
     set(_crosswalk_active TRUE)
-    set(_crosswalk_dense_operation "${CMAKE_MATCH_1}")
+    set(_crosswalk_dense_operation "${_next_dense_operation}")
     list(APPEND _crosswalk_seen_fields dense_operation)
   elseif(_section STREQUAL "crosswalk"
          AND _line MATCHES "^    ([a-z_]+): \"([^\"]*)\"$")
@@ -681,6 +823,23 @@ if(NOT _coverage_count EQUAL _expected_total_rows)
     "${_expected_total_rows}."
   )
 endif()
+if(NOT _planned_count EQUAL 0
+   OR NOT _implemented_count EQUAL 0
+   OR NOT _blocked_count EQUAL 0)
+  message(FATAL_ERROR
+    "BLAS completion audit found incomplete rows: planned=${_planned_count}, "
+    "implemented=${_implemented_count}, blocked=${_blocked_count}."
+  )
+endif()
+if(NOT _verified_count EQUAL _expected_verified_rows
+   OR NOT _not_applicable_count EQUAL _expected_not_applicable_rows)
+  message(FATAL_ERROR
+    "BLAS completion counts differ from the frozen audit: "
+    "verified=${_verified_count}/${_expected_verified_rows}, "
+    "not-applicable=${_not_applicable_count}/"
+    "${_expected_not_applicable_rows}."
+  )
+endif()
 
 foreach(_inventory IN ITEMS dense sparse coverage)
   if(_inventory STREQUAL "dense")
@@ -704,6 +863,18 @@ foreach(_inventory IN ITEMS dense sparse coverage)
   endif()
 endforeach()
 
+list(SORT _coverage_evidence_keys)
+string(JOIN "\n" _coverage_evidence ${_coverage_evidence_keys})
+string(SHA256 _observed_coverage_evidence_sha256 "${_coverage_evidence}")
+if(NOT _observed_coverage_evidence_sha256
+   STREQUAL _frozen_coverage_evidence_sha256)
+  message(FATAL_ERROR
+    "BLAS coverage evidence differs from its frozen Issue 11 identity.\n"
+    "  expected: ${_frozen_coverage_evidence_sha256}\n"
+    "  observed: ${_observed_coverage_evidence_sha256}"
+  )
+endif()
+
 list(REMOVE_DUPLICATES _dense_families)
 list(SORT _dense_families)
 list(SORT _crosswalk_families)
@@ -715,6 +886,14 @@ if(NOT _dense_families STREQUAL _crosswalk_families)
   )
 endif()
 list(LENGTH _crosswalk_families _crosswalk_count)
+if(NOT _crosswalk_verified_count EQUAL 11
+   OR NOT _crosswalk_not_applicable_count EQUAL 38)
+  message(FATAL_ERROR
+    "Dense-to-sparse completion counts differ from the frozen audit: "
+    "verified=${_crosswalk_verified_count}/11, not-applicable="
+    "${_crosswalk_not_applicable_count}/38."
+  )
+endif()
 list(SORT _crosswalk_keys)
 string(JOIN "\n" _crosswalk_inventory ${_crosswalk_keys})
 string(SHA256 _observed_crosswalk_sha256 "${_crosswalk_inventory}")
@@ -757,7 +936,9 @@ set(_report
   "${_sparse_count}. The dense inventory identity is "
   "`${_observed_dense_inventory_sha256}`, the sparse inventory identity is "
   "`${_observed_sparse_inventory_sha256}`, and the combined identity is "
-  "`${_observed_coverage_inventory_sha256}`. The family crosswalk contains "
+  "`${_observed_coverage_inventory_sha256}`. The frozen API, implementation, "
+  "backend, status, and test evidence identity is "
+  "`${_observed_coverage_evidence_sha256}`. The family crosswalk contains "
   "${_crosswalk_count} rows with identity "
   "`${_observed_crosswalk_sha256}`.\n\n"
   "## Routine coverage\n\n"
