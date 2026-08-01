@@ -35,12 +35,14 @@ set(_expected_public_files
   include/asc/random/dense.h
   include/asc/random/engine.h
   include/asc/random/export.h
+  include/asc/random/generator.h
   include/asc/random/providers/cuda.h
   include/asc/random/providers/cuda_export.h
   include/asc/random/providers/dense_cuda.h
   include/asc/random/providers/dense_cuda_export.h
   include/asc/random/providers/sparse_cuda.h
   include/asc/random/providers/sparse_cuda_export.h
+  include/asc/random/seed.h
   include/asc/random/sparse.h
   include/asc/sparse.h
   include/asc/sparse/compressed.h
@@ -77,6 +79,7 @@ set(_expected_compiled_sources
   src/dense/cuda/operations.cc
   src/random/distribution.cc
   src/random/engine.cc
+  src/random/seed.cc
   src/random/cuda/dense.cc
   src/random/cuda/dense_kernels.cu
   src/random/cuda/raw.cc

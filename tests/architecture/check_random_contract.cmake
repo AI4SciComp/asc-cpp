@@ -54,7 +54,7 @@ endfunction()
 
 _require_document_text(
   "README.md"
-  "provenance (Issue 12) Feature Gate B"
+  "Random engines and"
 )
 _require_document_text(
   "docs/README.md"
@@ -62,7 +62,7 @@ _require_document_text(
 )
 _require_document_text(
   "docs/modules/random.md"
-  "names are not public declarations and cannot be consumed yet"
+  "AcquireNondeterministicSeed"
 )
 _require_document_text(
   "docs/random-crosswalk.md"
@@ -78,7 +78,7 @@ _require_document_text(
 )
 _require_document_text(
   "docs/development/asc-cpp-architecture/mdecpp-disposition.yaml"
-  "Issue 12 freezes explicit nondeterministic acquisition"
+  "Issue 13 implements explicit nondeterministic acquisition"
 )
 
 function(_expect_failure name manifest_text expected)
@@ -118,7 +118,7 @@ string(REPLACE
   "${_valid_manifest}"
 )
 _expect_failure(changed-source "${_changed_source}"
-                "source_commit differs from the frozen Issue 12 value")
+                "source_commit differs from the approved Issue 13 value")
 
 string(REPLACE
   "efb0ddedcb6a11ed3defd85764e352f16b09f13784c15225a1b2dd19dcbc2d6b"
@@ -136,7 +136,7 @@ string(REPLACE
   "${_valid_manifest}"
 )
 _expect_failure(changed-classification "${_changed_classification}"
-                "clean_room_required count")
+                "equivalent count")
 
 string(REPLACE
   "splitmix64_sha256: \"071795a8e29978a5cbd7015ce8f7d772e7ab4631e574e9102b748fe99105ff3d\""

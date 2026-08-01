@@ -15,6 +15,8 @@ set(_expected_public_files
   include/asc/random/distribution.h
   include/asc/random/engine.h
   include/asc/random/export.h
+  include/asc/random/generator.h
+  include/asc/random/seed.h
   include/asc/utilities.h
   include/asc/utilities/command_line.h
   include/asc/utilities/export.h
@@ -23,6 +25,7 @@ set(_expected_public_files
 set(_expected_source_files
   src/random/distribution.cc
   src/random/engine.cc
+  src/random/seed.cc
   src/utilities/command_line.cc
   src/utilities/timer.cc
   src/utilities/timer_internal.h

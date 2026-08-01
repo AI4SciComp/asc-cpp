@@ -432,9 +432,9 @@ records:
       - "reset and exact-width state export/import"
     blockers: []
     notes: >-
-      Issue 12 freezes explicit nondeterministic acquisition, exact-width
-      versioned state, and no byte serialization for 0.9.x. TimeSeed is
-      rejected.
+      Issue 13 implements explicit nondeterministic acquisition, exact-width
+      versioned state, and value composition without byte serialization.
+      TimeSeed remains rejected.
 
   - id: "MDE-017"
     source: "random/generator.h - SplitMix64, PCG32, xoroshiro64*, xoroshiro128+"
@@ -463,7 +463,8 @@ records:
     notes: >-
       SplitMix64 2015, PCG32 XSH-RR set-sequence 0.9, xoroshiro64* 1.0,
       and xoroshiro128+ 1.0 parameters 24,16,37 are the only approved
-      stateful engine variants.
+      stateful engine variants. Issue 13 implements them through the recorded
+      clean-room routes and links independent vectors in the Random crosswalk.
 
   - id: "MDE-018"
     source: "random/{permutation.h,permutation.cc,halton.h,hammersley.h}"

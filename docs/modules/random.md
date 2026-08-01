@@ -1,11 +1,12 @@
 # Random module
 
-`ASC::random` provides reproducible raw Philox4x32-10 words and exact scalar
-unit-interval transforms. Its Dense and Sparse storage-generation facets are
-separately consumable. Milestone 7 adds three separately requested CUDA
-provider facets without changing the provider-free graph. The base is a
-compiled library with one direct ASC dependency, `ASC::core`, and no external
-dependency.
+`ASC::random` provides explicit seed acquisition, four versioned stateful
+engines, generic engine/distribution composition, unbiased uniform integer
+generation, half-open uniform real generation, scalar Box-Muller normal
+generation, reproducible Philox4x32-10 words, and exact raw-word unit
+transforms. Its Dense and Sparse storage-generation facets are separately
+consumable. The base remains a compiled library with one direct ASC
+dependency, `ASC::core`, and no external dependency.
 
 ```cmake
 find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random)
@@ -16,9 +17,10 @@ target_link_libraries(my_target PRIVATE ASC::random)
 #include <asc/random.h>
 ```
 
-The umbrella includes `<asc/random/engine.h>` and
-`<asc/random/distribution.h>`. Base Random does not include Utilities,
-Expression, Dense, Sparse, a provider header, or a storage view.
+The umbrella includes `<asc/random/engine.h>`,
+`<asc/random/distribution.h>`, `<asc/random/generator.h>`, and
+`<asc/random/seed.h>`. Base Random does not include Utilities, Expression,
+Dense, Sparse, a provider header, or a storage view.
 
 The storage facets are explicit:
 
@@ -41,18 +43,21 @@ paper and exact project mapping frozen in the
 Random123 implementation, upstream test-vector corpus, generated table, or
 vendored source is an implementation input.
 
-Issue 12 adds no Random API. It freezes a generated
-[33-row architecture and provenance crosswalk][random-crosswalk] and the
-[Random contract for Issues 13–15][random-contract]. The approved future work
-uses exact stateful-engine versions, a separately licensed Joe/Kuo Sobol input,
-and free-function Dense/Sparse adapters on the existing target graph. New work
-is portable serial CPU only unless a later Gate A explicitly approves a GPU
-implementation. It may not hide allocation, transfer, synchronization,
-provider selection, or fallback.
+Issue 13 implements rows `RND-001` and `RND-003` through `RND-010` from the
+generated [33-row architecture and provenance crosswalk][random-crosswalk].
+SplitMix64 and both xoroshiro engines are original asc-cpp expressions derived
+from the exact pinned public-domain Blackman/Vigna artifacts. PCG32 is an
+original expression of the pinned Apache-2.0 PCG minimal-C 0.9 XSH-RR
+contract. The integer rejection mapping, real transform, value-composition
+API, and Box-Muller implementation are independently authored from the
+accepted [Random contract][random-contract]. No MdeCpp source, test, vector,
+benchmark, data, or prose was copied or mechanically translated.
 
-The examples below intentionally use only currently shipped Philox,
-`Uniform01`, Dense fill, Sparse generation, and CUDA APIs. Planned Issue 13–15
-names are not public declarations and cannot be consumed yet.
+These additions are portable serial CPU operations. They accept no execution
+context or storage, and no CUDA implementation or CPU/GPU bit-parity claim is
+declared for them. Existing Philox and `Uniform01` CPU/CUDA behavior is
+unchanged. No added operation allocates, transfers, synchronizes, selects a
+provider, falls back, or touches Dense or Sparse storage.
 
 Philox4x32-10 identity, lane mapping, stream/subsequence/offset mapping, and
 the scalar transform rules are exact pre-1.0 sequence API first published for
@@ -60,6 +65,122 @@ ASCCpp 0.2.x. Milestone 5 extends that sequence contract with exact dense
 logical-coordinate mapping and deterministic sparse structure/value mapping.
 These guarantees are narrower than statistical suitability for a particular
 scientific application and do not imply provider parity.
+
+## Explicit nondeterministic seed acquisition
+
+`AcquireNondeterministicSeed` is the only nondeterministic seed operation. It
+borrows a caller-owned `std::random_device`; asc-cpp never constructs one and
+never invokes it from an engine, distribution, generator, reset, or default
+constructor. Version 1 accepts only a source with `min() == 0` and
+`max() == UINT32_MAX`. An unsupported range returns `kUnsupported` before a
+draw. A supported source is called exactly twice, high word then low word, and
+the result is `(uint64_t(high) << 32) | low`.
+
+```cpp
+std::random_device source;
+auto seed = asc::AcquireNondeterministicSeed(source);
+if (!seed.ok()) {
+  return 1;
+}
+asc::Pcg32 engine(*seed, /*stream=*/7);
+```
+
+A standard-library acquisition exception becomes `kUnavailable` and no seed
+is published. Calls already made by the external source cannot be rolled back.
+The diagnostic contains operation context but no acquired word. Time-based
+seeding is not provided. Tests and scientific examples use fixed literals.
+
+## Stateful engine contract
+
+All engines are non-cryptographic, copyable value types with full unsigned
+result domains and no default constructor or hidden state.
+
+| Engine | Result and state | Explicit construction | Partition support |
+| --- | --- | --- | --- |
+| `SplitMix64` | `uint64_t`; one `uint64_t` state | one `uint64_t` seed | no skip/jump API |
+| `Pcg32` | `uint32_t`; `uint64_t` state plus odd encoded increment | seed with stream zero, or initial state plus stream; only the low 63 stream bits select a sequence | no Issue 13 advance API |
+| `Xoroshiro64Star` | `uint32_t`; two nonzero-together `uint32_t` words | one `uint64_t` seed expanded by two SplitMix64 outputs, narrowed to their low words | fixed version-1 `Jump` and `LongJump` |
+| `Xoroshiro128Plus` | `uint64_t`; two nonzero-together `uint64_t` words | one `uint64_t` seed expanded by two complete SplitMix64 outputs | fixed version-1 `Jump` and `LongJump` |
+
+The algorithm identities are SplitMix64 fixed-increment 2015, PCG32 XSH-RR
+set-sequence 0.9, xoroshiro64* 1.0, and xoroshiro128+ 1.0 with parameters
+24, 16, and 37. `Pcg32(initial_state, stream)` follows the official
+set-sequence initialization; its public exported state stores the already
+encoded odd increment.
+
+```cpp
+asc::Xoroshiro128Plus engine(/*seed=*/0);
+const std::uint64_t first = engine();
+const asc::Xoroshiro128PlusState checkpoint = engine.ExportState();
+
+auto restored = asc::Xoroshiro128Plus::FromState(checkpoint);
+if (!restored.ok() || (*restored)() != engine()) {
+  return 1;
+}
+```
+
+Every public state struct carries `sequence_version`. Version 1 is
+`kRandomSequenceVersion1`. `FromState` and `RestoreState` reject an unknown
+tag with `kVersion`; PCG rejects an even increment and xoroshiro rejects an
+all-zero state with `kInvalidState`. `RestoreState` validates before changing
+the engine. No byte-stream or object-layout serialization format is defined.
+
+A copy continues with the same sequence independently. A move is equivalent
+to a copy for these trivially copyable states. Concurrent mutation of one
+engine is a data race; separate engine values, immutable exported states, and
+the existing pure Philox functions may be used concurrently.
+
+## Generator and distribution contract
+
+`Generator<Engine, Distribution>` owns its caller-selected engine and valid
+distribution by value. `UniformGenerator<Engine, Value>` and
+`NormalGenerator<Engine, Real>` are transparent aliases. There is no virtual
+base, seed provider, global pool, allocation, spare-normal cache, or reference
+to caller storage.
+
+Distribution factories validate parameters before a generator exists or an
+engine can be consumed:
+
+- `UniformIntegerDistribution<Integer>::Create(lower, upper)` supports
+  non-Boolean 8-, 16-, 32-, and 64-bit integral types and the closed interval
+  `[lower, upper]`. It assembles a candidate with the result width, handles a
+  full-width signed or unsigned interval explicitly, and uses threshold
+  rejection rather than biased modulo-only mapping.
+- `UniformRealDistribution<Real>::Create(lower, upper)` supports `float` and
+  `double` on finite strictly ordered bounds with finite span. It returns
+  `[lower, upper)`, uses a 24- or 53-leading-bit unit value, evaluates
+  `fma(upper - lower, unit, lower)`, and repairs a rounded upper endpoint with
+  `nextafter` toward the lower bound.
+- `NormalDistribution<Real>::Create(mean, standard_deviation)` requires a
+  finite mean and finite positive deviation. Version 1 consumes exactly two
+  unit values, computes `u_radius = 1 - U1`, `u_angle = U2`, and returns only
+  the cosine Box-Muller result. It has no cached sine spare.
+
+For an approved 64-bit engine, one float or double unit value consumes one
+engine call. For an approved 32-bit engine, float consumes one call and double
+consumes two. Complete engine results are concatenated in call order from high
+to low; unused low bits are discarded and never cached. Engine type is thus
+part of the sequence contract.
+
+```cpp
+auto distribution = asc::UniformRealDistribution<double>::Create(-2.0, 3.0);
+if (!distribution.ok()) {
+  return 1;
+}
+asc::UniformGenerator<asc::Pcg32, double> generator(
+    asc::Pcg32(/*initial_state=*/42, /*stream=*/54), *distribution);
+auto value = generator();
+if (!value.ok()) {
+  return 1;
+}
+```
+
+Invalid parameters return `kInvalidArgument` before consumption. A valid real
+or normal transform that produces a nonfinite or out-of-range value returns
+`kNumerical` after its documented draws and publishes no value; engine state
+cannot be rolled back. Normal transcendental results repeat for the same
+supported math ABI but are not promised bit-identical across different libm
+implementations or between CPU and GPU.
 
 ## Raw blocks and rounds
 
@@ -518,9 +639,11 @@ Sparse generation returns a move-only owner whose caller-provided resource
 must outlive final deallocation. Input address values are never modified;
 successful operations return new checked offsets.
 
-Engine, transforms, and facet operations retain no global, thread-local, or
-mutable shared state. Independent calls may run concurrently when every
-destination, owner, and resource use is safe under the C++ memory model.
+Philox, raw-word transforms, and facet operations retain no global,
+thread-local, or mutable shared state. The added stateful engines and
+generators own only their explicit value state and are not safe for concurrent
+mutation. Independent copies may run concurrently when every destination,
+owner, and resource use is safe under the C++ memory model.
 Writing the same or overlapping dense storage, concurrently using a
 non-thread-safe resource, or moving/destroying storage during an operation
 requires caller synchronization. Reusing an address intentionally reproduces
@@ -529,12 +652,14 @@ are required.
 
 ## Provider and failure boundary
 
-The provider-free facets accept exactly serial execution and host memory. An
-unsupported backend reports `kUnsupported`; inaccessible or non-host storage
-and resources are rejected. The CUDA facets require an explicit Core CUDA
-context and exact device placement. No operation silently transfers,
-synchronizes, selects a provider, falls back, changes precision, or narrows
-metadata.
+The scalar engines, distributions, and generators are CPU-only and
+storage-neutral; they accept neither an execution context nor a memory view.
+Provider-free storage facets accept exactly serial execution and host memory.
+An unsupported storage backend reports `kUnsupported`; inaccessible or
+non-host storage and resources are rejected. The CUDA facets require an
+explicit Core CUDA context and exact device placement. No operation silently
+transfers, synchronizes, selects a provider, falls back, changes precision, or
+narrows metadata.
 
 Every public failure is a `Status` carried directly or by `Result<T>`.
 Validation and checked offset advance are transactional: dense failure leaves
@@ -543,17 +668,18 @@ is diagnostic rather than a compatibility guarantee.
 
 ## Deliberately absent from the current product
 
-Issue 12 is design-only, so the current Random product still provides no:
+Issue 13 deliberately provides no:
 
-- entropy acquisition, seed facility, global or thread-local engine;
-- mutable engine, default engine, pool, or implicit advancing state;
-- normal, rejection, integer-range, affine, or user-defined distribution;
+- time-based or implicit seed acquisition, default engine, global or
+  thread-local engine, or mutable pool;
+- arbitrary jump-polynomial machinery or byte serialization;
+- user-defined distribution registration or cached normal spare;
 - density/Bernoulli sparse mode or statistically uniform subset claim;
 - compressed sparse output, duplicate combination, densification, or hidden
   coordinate conversion;
 - shared fill header or a base Random dependency on Dense or Sparse;
-- Sobol implementation or direction data;
-- serialized engine state or object-layout persistence;
+- QMC, Sobol implementation, or direction data;
+- multivariate normal or uniform hypersphere sampler;
 - optimized CPU provider, OpenMP, TBB, Eigen, BLAS/LAPACK, oneMKL, or
   third-party dependency;
 - cuRAND, provider-native public type, hidden GPU workspace, or additional
