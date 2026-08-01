@@ -1,10 +1,11 @@
 # asc-cpp
 
 `asc-cpp` is being rebuilt as the C++20 numerical foundation for
-AI4SciComp. The current checkout is the unreleased **BLAS completion audit
-(Issue 11) Feature Gate B** candidate. It independently verifies the approved
-Dense and Sparse BLAS inventory and evidence without adding a module, provider,
-dependency edge, operation, or compatibility surface.
+AI4SciComp. The current checkout is the unreleased **Random architecture and
+provenance (Issue 12) Feature Gate B** candidate. It freezes the complete
+Random crosswalk, semantic contract, storage-adapter ownership, compatible
+provenance routes, and Issue 13–15 boundaries without adding product API,
+targets, dependencies, or providers.
 
 ## Available components
 
@@ -100,27 +101,27 @@ loading Sparse. `ASC::cpp` remains provider-free.
 Use an out-of-source build and supply the released ASCCMake package:
 
 ```sh
-cmake -S . -B build/issue-11-debug \
+cmake -S . -B build/issue-12-debug \
   -DCMAKE_BUILD_TYPE=Debug \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-11-debug --parallel
-ctest --test-dir build/issue-11-debug --output-on-failure
+cmake --build build/issue-12-debug --parallel
+ctest --test-dir build/issue-12-debug --output-on-failure
 ```
 
 Enable the bounded CUDA provider facets explicitly:
 
 ```sh
-cmake -S . -B build/issue-11-cuda \
+cmake -S . -B build/issue-12-cuda \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASC_CPP_ENABLE_CUDA=ON \
   -DCMAKE_CUDA_ARCHITECTURES=86 \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-11-cuda --parallel
-ctest --test-dir build/issue-11-cuda --output-on-failure
+cmake --build build/issue-12-cuda --parallel
+ctest --test-dir build/issue-12-cuda --output-on-failure
 ```
 
 `BUILD_SHARED_LIBS` selects shared or static Core, Utilities, Dense, Sparse,
@@ -145,6 +146,11 @@ Milestone 8 also records the [support matrix](docs/support-matrix.md),
 [performance envelope](docs/performance.md).
 The [BLAS completion audit](docs/blas-completion-audit.md) describes the frozen
 inventory, evidence-link validation, backend contract, and reproducible checks.
+The generated [Random crosswalk](docs/random-crosswalk.md) and
+[Random contract](docs/development/asc-cpp-architecture/decisions/0020-random-contract.md)
+freeze the Issue 12 design and compatible provenance routes. They deliberately
+do not expose the planned Issue 13–15 APIs; all examples in the current Random
+module guide compile against the existing product surface.
 
 This clean restart follows the approved six-module architecture and
 clean-room provenance policy. The Philox implementation is independently

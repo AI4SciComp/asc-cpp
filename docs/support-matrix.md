@@ -1,6 +1,6 @@
 # ASCCpp support and evidence matrix
 
-Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
 
 Date: 2026-08-01
 
@@ -10,11 +10,48 @@ Publication Checkpoint B report remains authoritative for its historical
 commands, counts, failures, and skips; the Issue 9 Feature Gate B report adds
 only the Level 3 evidence recorded below, and the Issue 10 report adds only the
 Sparse BLAS evidence recorded below. Issue 11 audits those recorded boundaries
-without widening them.
+without widening them. Issue 12 freezes future Random contracts without
+changing a product capability or evidence row.
 
 The matrix below records the clean post-checkpoint correction reruns. Earlier
 revision-2 counts are historical and are not substituted for these corrected
 results.
+
+## Issue 12 Random architecture evidence
+
+Issue 12 adds no engine, distribution, sampler, helper, adapter, target,
+dependency, or backend implementation. Its 33-row crosswalk contains 18
+clean-room-required, three incomplete, one permission-route, and 11 rejected
+rows; none is marked implemented or backend-verified by this milestone.
+
+On 2026-08-01, a clean GNU 11.4 Debug/static warnings-as-errors build used
+CMake 4.1.2 and the real ASCCMake 0.1.0 package. The complete suite passed
+201/201 in 174.00 seconds. It includes manifest drift and invalid-fixture
+checks, current Random
+known-answer/endpoint, invalid-input, empty/layout/thread/allocation tests, 47
+package-labeled checks, downstream consumers, documentation consistency, and
+three correctness-guarded CPU benchmarks.
+
+After the final diff review tightened the row, source-inventory, and complete
+provenance-metadata identities, exact scalar/QMC mappings, strict schema, and
+negative tamper coverage, the affected static architecture/documentation
+selection passed 2/2 on the final files. The Random contract check also passed
+directly with CMake 4.4.0.
+
+The corresponding Debug/shared build passed the 12-test architecture label
+and a separate 12-test selection covering current Random CPU behavior,
+allocation, package/install/relocation, documentation, and the Random storage
+benchmark. A CUDA 12.9.86 Release/static build for architecture 8.6 passed the
+12-test architecture label and 5/5 existing Random CUDA runtime/parity/
+benchmark checks on the NVIDIA GeForce RTX 3060 Laptop GPU with driver 576.83.
+No new Random feature is approved for CUDA, and this real-backend regression
+does not verify a planned Issue 13–15 GPU row.
+
+No sanitizer rerun is claimed: the milestone changes no production C++ or
+data, and the complete static plus shared/CUDA affected selections exercise the
+changed generator, CMake registration, and documentation. Statistical sample
+sizes and thresholds are frozen for child implementation, but no unimplemented
+statistical row is reported as exercised.
 
 ## Issue 11 BLAS completion audit
 

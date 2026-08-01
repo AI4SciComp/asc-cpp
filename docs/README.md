@@ -1,10 +1,11 @@
 # asc-cpp documentation
 
-The repository is at the unreleased **BLAS completion audit (Issue 11) Feature
-Gate B** candidate. All six modules, both Random storage facets, the
-provider-free aggregate, and all six approved opt-in CUDA facets remain in the
-same dependency graph; this issue independently audits the completed Dense and
-Sparse BLAS contract without expanding it.
+The repository is at the unreleased **Random architecture and provenance
+(Issue 12) Feature Gate B** candidate. All six modules, both Random storage
+facets, the provider-free aggregate, and all six approved opt-in CUDA facets
+remain in the same dependency graph. This issue freezes design and provenance
+for Issues 13–15 without adding implementation or expanding the product
+surface.
 
 ## Current API documentation
 
@@ -42,6 +43,11 @@ Sparse BLAS contract without expanding it.
 - [BLAS completion audit](blas-completion-audit.md): frozen evidence identity,
   build registration, retired-interface, package, consumer, and benchmark
   audit contract and reproduction commands.
+- [Random crosswalk](random-crosswalk.md): generated 33-row MdeCpp inventory,
+  classifications, approved routes, destination owners, and child boundaries.
+- [Random contract](development/asc-cpp-architecture/decisions/0020-random-contract.md):
+  frozen seed, state, stream, reproducibility, QMC, storage-adapter, failure,
+  CPU/GPU, testing, packaging, and performance semantics.
 - [Linalg-to-BLAS migration](migration/linalg-to-blas.md): mechanical path and
   type changes for the approved breaking pre-1.0 rename.
 
@@ -100,7 +106,7 @@ each request loads only its exact transitive component closure.
 The approved Stage A package remains the architectural source of truth:
 
 - [architecture blueprint][blueprint];
-- [ADRs 0001–0019][adrs];
+- [ADRs 0001–0020][adrs];
 - [dependency manifest][dependencies];
 - [capability manifest][capabilities];
 - [BLAS coverage manifest][blas-manifest];
@@ -118,17 +124,19 @@ components, [0003][adr-0003] for C++20/public-source policy,
 [0010][adr-0010] for storage-neutral protocols, [0012][adr-0012] for Sparse
 invariants, [0016][adr-0016] for sibling isolation, [0017][adr-0017] for
 provenance, [0018][adr-0018] for the 0.9.x boundary, and
-[0019][adr-0019] for the Dense/Sparse BLAS contract. ADR 0019 supersedes the
-linear-algebra/provider scope in ADRs [0013][adr-0013] and
-[0014][adr-0014].
+[0019][adr-0019] for the Dense/Sparse BLAS contract, and
+[0020][adr-0020] for the complete Random contract. ADR 0019 supersedes the
+linear-algebra/provider scope in ADRs [0013][adr-0013] and [0014][adr-0014].
+ADR 0020 extends [0015][adr-0015] without changing its existing Philox and
+storage-generation guarantees.
 
 ## Deferred scope
 
 Sparse addition/multiplication, BSR/VBR/SELL formats, file parsing, general
-broadcasting, entropy, further distributions, HIP, SYCL, and other providers
-require later explicit approval. Issue 11 adds no module, provider, operation,
-dependency edge, or compatibility facade. Reserved provider names do not make
-them available.
+broadcasting, HIP, SYCL, and other providers require later explicit approval.
+Issue 12 approves only the documented future Random CPU work within Issues
+13–15; none of it is implemented or exported by this milestone. Reserved API
+or provider names do not make them available.
 
 [adr-0002]: development/asc-cpp-architecture/decisions/0002-package-target-naming.md
 [adr-0003]: development/asc-cpp-architecture/decisions/0003-namespace-and-source-policy.md
@@ -145,6 +153,7 @@ them available.
 [adr-0017]: development/asc-cpp-architecture/decisions/0017-third-party-provenance.md
 [adr-0018]: development/asc-cpp-architecture/decisions/0018-versioning-release-boundaries.md
 [adr-0019]: development/asc-cpp-architecture/decisions/0019-blas-contract.md
+[adr-0020]: development/asc-cpp-architecture/decisions/0020-random-contract.md
 [adrs]: development/asc-cpp-architecture/decisions
 [asc-cmake]: development/asc-cpp-architecture/asc-cmake-consumption.md
 [blas-manifest]: development/asc-cpp-architecture/blas-coverage.yaml

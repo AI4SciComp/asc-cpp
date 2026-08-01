@@ -1,10 +1,13 @@
 # MdeCpp provenance and reuse review
 
-Status: Designer B provenance gate
+Status: Designer B provenance gate; Random decisions resolved by Issue 12
 
 Reviewed MdeCpp commit: `f6294e9079262682ce63ae7ff2d8a643e658bf5d`
 
 Reviewed asc-cpp baseline: `33b261ea33616a6395c4ad3b20646093103344f7`
+
+Issue 12 Random destination baseline:
+`bd73a5bc63524bfec8fae9b4d6446e0fcdf8e851`
 
 ## 1. Conclusion
 
@@ -27,6 +30,12 @@ The conservative rules are:
 
 This is an engineering provenance assessment, not a legal opinion. A
 rightsholder or project owner must decide any relicensing exception.
+
+For Random, ADR 0020 and the machine-readable Random crosswalk supersede this
+review's unresolved planning recommendations. They pin the approved
+authoritative engine artifacts, select the separately licensed Joe/Kuo
+direction data, and continue to reject every inspected MdeCpp Random
+implementation, test, benchmark, and generated artifact.
 
 ## 2. Reproducible evidence boundary
 
@@ -315,9 +324,9 @@ For a direct permissive-upstream adaptation, add:
 | --- | --- | --- |
 | `PROV-01` | Clarify MdeCpp's intended SPDX expression and whether relevant rightsholders offer an Apache-compatible grant | Any direct MdeCpp source/test adaptation |
 | `PROV-02` | Approve clean-room behavioral reimplementation as the default path | All six asc-cpp modules |
-| `PROV-03` | Select exact random engines and authoritative upstream revisions | Engine implementation and stable vectors |
-| `PROV-04` | Approve a current asc-cpp third-party notice process and owner | Any accepted external source/data |
-| `PROV-05` | Select or reject Sobol; if selected, approve implementation and direction-data sources separately | Sobol |
+| `PROV-03` | **Resolved by Issue 12:** SplitMix64 2015, PCG32 minimal C 0.9 XSH-RR, xoroshiro64* 1.0, and xoroshiro128+ 1.0 are pinned by URL and SHA-256 | Issue 13 must preserve those identities and independently derive vectors |
+| `PROV-04` | **Resolved for Random by Issue 12:** Issue 14 must retain the Joe/Kuo license in source and binary distributions and add `THIRD_PARTY_NOTICES` | Other accepted external source/data still needs a component-specific owner decision |
+| `PROV-05` | **Resolved by Issue 12:** independently implement Joe/Kuo Sobol and use only the pinned BSD-style `new-joe-kuo-6.21201` input; reject all MdeCpp Sobol artifacts | Issue 14 must verify input, license, generator, generated, install, and compiled-table identities |
 | `PROV-06` | Resolve Lebedev dataset lineage in `asc-xde` | Lebedev quadrature |
 | `PROV-07` | Decide whether any MFEM-derived build ideas are needed; otherwise require new asc-cmake implementation | Build system |
 | `PROV-08` | Approve exact optional provider versions and public/private header policy | CUDA/Eigen/MKL/MPI/OpenMP/provider facets |

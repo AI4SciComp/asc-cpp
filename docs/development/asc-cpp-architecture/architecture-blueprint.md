@@ -245,8 +245,12 @@ level.
 exact-count, without-replacement, canonical-coordinate generation. Variable-
 consumption distributions require a separate substream design.
 
-Sobol and its historical tables are blocked pending a named source, data
-lineage, license, notices, schema, generator, and checksums.
+ADR 0020 approves a clean-room Joe/Kuo Sobol recurrence and the exact
+BSD-style `new-joe-kuo-6.21201` input for Issue 14. The historical MdeCpp
+source, tables, binary, converter, and vectors remain blocked. The approved
+route requires retained notices, an original deterministic offline generator,
+and checked identities; normal builds perform no network or runtime data-file
+access.
 
 ## 12. Configuration, I/O, and errors
 

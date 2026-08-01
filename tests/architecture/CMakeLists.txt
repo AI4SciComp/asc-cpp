@@ -65,6 +65,15 @@ add_test(
     -P "${CMAKE_CURRENT_SOURCE_DIR}/check_blas_completion.cmake"
 )
 
+add_test(
+  NAME asc_cpp.architecture.random_contract
+  COMMAND
+    "${CMAKE_COMMAND}"
+    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
+    "-DBINARY_DIR:PATH=${CMAKE_CURRENT_BINARY_DIR}"
+    -P "${CMAKE_CURRENT_SOURCE_DIR}/check_random_contract.cmake"
+)
+
 set_tests_properties(
   asc_cpp.architecture.dependency_manifest
   asc_cpp.architecture.approved_product_targets
@@ -72,8 +81,9 @@ set_tests_properties(
   asc_cpp.architecture.blas_coverage
   asc_cpp.architecture.blas_coverage_failures
   asc_cpp.architecture.blas_completion
+  asc_cpp.architecture.random_contract
   PROPERTIES LABELS
-    "architecture;milestone-7;milestone-8;milestone-9;milestone-10;milestone-11"
+    "architecture;milestone-7;milestone-8;milestone-9;milestone-10;milestone-11;milestone-12"
 )
 
 unset(_blas_coverage_manifest)
