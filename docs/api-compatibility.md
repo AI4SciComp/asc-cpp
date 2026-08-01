@@ -1,6 +1,6 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 9 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
 
 Date: 2026-08-01
 
@@ -102,6 +102,14 @@ Level 3 families and the `DenseBlasSide` enum. The pre-existing ordinary-view
 float/double `Gemm` overloads remain source compatible and keep their original
 bounded layout contract. No alias, forwarding header, compatibility target,
 or runtime fallback is introduced.
+
+Issue 10 extends the existing Sparse `blas.h` surface with checked S/D/C/Z
+indexed-vector, CSR/CSC matrix, and triangular descriptors and operations. The
+pre-existing expression-adapted float/double CSR `Spmv(alpha, A, x, beta, y)`
+overload remains source compatible; the standardized accumulating overload is
+selected only by its explicit transpose and descriptor arguments. Existing
+Sparse names are not renamed, and no forwarding header or runtime fallback is
+introduced.
 
 `Timer::Stop` checks interval, accumulated-duration, and sample-count
 arithmetic before publishing a completed sample. Overflow returns

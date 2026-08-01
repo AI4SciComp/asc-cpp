@@ -15,16 +15,18 @@ target_link_libraries(my_target PRIVATE ASC::sparse)
 #include <asc/sparse.h>
 ```
 
-The umbrella includes coordinate, compressed, evaluation, and reference SpMV
-APIs. The narrow `<asc/sparse/blas.h>` header declares `Spmv`, and
+The umbrella includes coordinate, compressed, evaluation, and Sparse BLAS
+APIs. The narrow `<asc/sparse/blas.h>` header declares the standardized
+operations and the retained pre-standardization `Spmv` overload, and
 `<asc/sparse/export.h>` supplies the compiled-library visibility macro.
 
 ## Common vocabulary
 
-`SparseElement<T>` accepts an unqualified, non-Boolean arithmetic type that is
-trivially copyable and trivially destructible. Views additionally permit
-`const T`; constness applies to values, while structure is always immutable.
-SpMV narrows the element type further to exactly `float` or `double`.
+`SparseElement<T>` accepts an unqualified, non-Boolean arithmetic type or
+`std::complex<float>`/`std::complex<double>` that is trivially copyable and
+trivially destructible. Views additionally permit `const T`; constness applies
+to values, while structure is always immutable. `SparseBlasScalar` is exactly
+`float`, `double`, `std::complex<float>`, or `std::complex<double>`.
 
 The public policy and format enums are:
 
@@ -245,9 +247,80 @@ traversal is linear in destination NNZ apart from source reads. The current
 compressed coordinate reconstruction additionally scans outer offsets for
 each stored entry.
 
-## Serial reference CSR SpMV
+## Standardized Sparse BLAS
 
-The sole Sparse algebra operation is:
+The allocation-free serial reference surface implements every applicable
+BLAS Technical Forum Sparse BLAS compute family for S, D, C, and Z:
+
+| Level | API | Contract |
+| --- | --- | --- |
+| 1 | `SparseDot` | selected unconjugated/conjugated indexed dot |
+| 1 | `SparseAxpy` | `y[indx] += alpha * x` |
+| 1 | `SparseGather` | `x = y[indx]` |
+| 1 | `SparseGatherZero` | gather, then set selected `y` entries to zero |
+| 1 | `SparseScatter` | `y[indx] = x` |
+| 2 | `Spmv` | `y += alpha * op(A) * x` |
+| 2 | `SparseTriangularSolve` | `x = alpha * inv(op(T)) * x` |
+| 3 | `Spmm` | `C += alpha * op(A) * B` |
+| 3 | `SparseTriangularSolveMultiple` | `B = alpha * inv(op(T)) * B` |
+
+`SparseBlasVectorView`, `SparseBlasIndexedVectorView`, and
+`SparseBlasMatrixView` describe caller-owned storage with an explicit backing
+span. Vector increments may be positive or negative but not zero; dense
+matrices may be row- or column-major. Indexed vectors use public signed 64-bit,
+zero-based indices and must be sorted, unique, and in range. Host construction
+validates those invariants. Device construction cannot inspect indices and is
+therefore untrusted; CUDA operations accept only a trusted provider clone.
+
+`SparseBlasTriangularView::Create` is the explicit analysis step. It requires a
+square canonical host CSR or CSC matrix, validates that stored entries stay in
+the declared upper or lower triangle, and rejects a missing or zero non-unit
+diagonal. Unit diagonals are implicit. A successful descriptor therefore
+cannot become singular unless the caller violates the documented immutable
+matrix lifetime.
+
+Matrix operations accept canonical CSR and CSC on the serial CPU. Coordinate
+storage participates through the explicit `ConvertToCsr`/`ConvertToCsc`
+operations; execution never converts implicitly. Transpose and conjugate
+transpose are explicit. All output shapes, placements, writable spans, and
+overlap rules are checked before mutation, and invalid enum values return
+`kInvalidArgument`. Where `alpha` is present, zero prevents reads of its
+multiplicative operands; SpMV/SpMM leave their additive destination unchanged,
+while triangular solves publish zero. Calls do not allocate, transfer, pack,
+densify, synchronize, dispatch to another backend, or fall back.
+
+Sparse matrix addition and sparse matrix multiplication are not admitted by
+ADR 0019 and are not supplied. BSR/VBR/SELL, one-based descriptors, unsorted
+finalized storage, and finalized duplicate entries remain unsupported rather
+than being represented inaccurately. Duplicate summation and explicit-zero
+keep/drop behavior remain explicit construction policies.
+
+This Sparse-only indexed-vector example exercises the standardized Level 1
+surface:
+
+```cpp
+constexpr std::array<asc::index_t, 2> indices{0, 2};
+const std::array<double, 2> sparse_values{2.0, -1.0};
+std::array<double, 3> dense_values{3.0, 4.0, 5.0};
+
+auto sparse = asc::SparseBlasIndexedVectorView<const double>::Create(
+    indices.data(), sparse_values.data(), 2, 3,
+    {indices.data(), sizeof(indices), asc::MemorySpace::kHost},
+    {sparse_values.data(), sizeof(sparse_values), asc::MemorySpace::kHost});
+auto dense = asc::SparseBlasVectorView<double>::Create(
+    dense_values.data(), 3, 1,
+    {dense_values.data(), sizeof(dense_values), asc::MemorySpace::kHost});
+if (!sparse.ok() || !dense.ok() ||
+    !asc::SparseAxpy(asc::ExecutionContext::Serial(), 2.0, *sparse, *dense)
+         .ok()) {
+  return 1;
+}
+// dense_values == {7.0, 4.0, 3.0}
+```
+
+## Compatibility CSR SpMV
+
+The earlier expression-adapted overload remains source compatible:
 
 ```text
 Spmv(context, alpha, csr_matrix, input, beta, output)
@@ -340,7 +413,8 @@ does not discover CUDAToolkit or import a CUDA target. Enabling CUDA without a
 usable compiler, toolkit, runtime, or cuSPARSE is a configuration failure, not
 a silent provider disablement.
 
-The public provider header contains no CUDA or cuSPARSE SDK type. It exposes:
+The public provider header contains no CUDA or cuSPARSE SDK type. In addition
+to the retained Milestone 7 APIs, it exposes:
 
 ```text
 SparseCudaContext
@@ -351,6 +425,12 @@ CudaCloneCsr
 CudaCsrSpmvWorkspaceSize
 CudaCsrSpmv
 CudaEvaluate
+CudaIndexedVectorArray / CudaCloneIndexedVector
+CudaTriangularCsrArray / CudaCloneTriangularCsr
+CudaSparseDot / CudaSparseAxpy / CudaSparseGather
+CudaSparseGatherZero / CudaSparseScatter
+CudaSpmv / CudaSpmm
+CudaSparseTriangularSolve / CudaSparseTriangularSolveMultiple
 ```
 
 ### Context, staging, and trusted structure
@@ -361,10 +441,13 @@ to the Core context's stream. It is not a native-handle adoption interface.
 One Sparse context must not be used concurrently; independent contexts and
 streams may execute concurrently only when their storage does not race.
 
-`CudaCloneCsr(context, host_csr, device_resource)` is the sole sparse staging
-operation. The source must be canonical host CSR with exactly `float` or
-`double` values, and the resource must be device storage on the context
-device. Success returns a move-only `CudaCsrClone` containing:
+`CudaCloneCsr(context, host_csr, device_resource)` stages canonical CSR with
+any `SparseBlasScalar`. `CudaCloneIndexedVector` stages a validated canonical
+indexed vector. `CudaCloneTriangularCsr` accepts only a successfully analyzed
+host triangular descriptor and publishes only a const matrix view with the
+validated triangle/diagonal metadata. The resource must be device storage on
+the context device. `CudaCloneCsr` returns a move-only `CudaCsrClone`
+containing:
 
 - `array`, a device `CudaCsrArray` with exactly three caller-resource
   allocations for offsets, indices, and values; and
@@ -452,6 +535,25 @@ unit-stride path has the explicit queried workspace, and the strided path has
 zero workspace. There is no transfer, packing, allocation, conversion,
 synchronization, precision change, or fallback.
 
+### Standardized CUDA Sparse BLAS
+
+The standardized CUDA calls use the same formulas, scalar families,
+transpose/conjugation choices, dense layouts, signed strides, shape checks,
+and overlap rules as the serial API. CUDA matrix execution accepts trusted CSR
+only; callers convert coordinate/CSC storage explicitly on the host before an
+explicit clone. Level 1, standardized SpMV/SpMM, and triangular solves use
+project-owned CUDA kernels with zero operation workspace. The retained
+unit-stride real compatibility SpMV continues to use the explicitly queried
+`CUSPARSE_SPMV_CSR_ALG2` path.
+
+Every standardized call returns a `CompletionEvent`. It validates metadata,
+memory space, context device, and storage spans before enqueue. It neither
+allocates nor transfers, and successful submission does not synchronize.
+Indexed and triangular clone calls are visibly named setup operations; they
+allocate only from the supplied device resource and return the event for their
+explicit host-to-device copies. Keep descriptors, owners, and all borrowed
+storage alive and unmodified until the returned event completes.
+
 ### Bounded device evaluation
 
 `CudaEvaluate(context, expression, destination)` writes only the values of an
@@ -473,12 +575,12 @@ workspace.
 
 ### Asynchronous lifetime and failures
 
-Clone, SpMV, and evaluation return move-only completion state and do not wait
-on success. Until completion, keep the Core and Sparse contexts, resources,
-owners, external storage, views/expression nodes, and SpMV workspace alive and
-unmodified. A completion event retains provider completion state, not user
-arrays or workspace. Destroying it does not complete the work or synchronize
-the device.
+Clone, all Sparse BLAS calls, compatibility SpMV, and evaluation return
+move-only completion state and do not wait on success. Until completion, keep
+the Core and Sparse contexts, resources, owners, external storage,
+views/expression nodes, and compatibility SpMV workspace alive and unmodified.
+A completion event retains provider completion state, not user arrays or
+workspace. Destroying it does not complete the work or synchronize the device.
 
 Failures use `Status`/`Result` with stable ASC error codes plus provider/native
 diagnostics. Diagnostic strings and native codes are not control-flow APIs.
@@ -487,20 +589,21 @@ safe; successful calls never hide a wait or device-wide synchronization.
 
 ## Deliberate omissions
 
-Milestone 7 has no hidden COO temporary, Dense dependency, provider registry,
-device CSC/coordinate staging helper, CSC or transpose SpMV, SpMM, triangular
-operation, preconditioner, solver, factorization, BSR/SELL, arbitrary sparse
-conversion, general sparse device evaluation, mixed dense/sparse algebra,
-native-handle adoption, implicit transfer/workspace, or compatibility layer.
+Issue 10 adds no hidden coordinate temporary, Dense dependency, provider
+registry, device CSC/coordinate staging helper, preconditioner, iterative
+solver, factorization, BSR/SELL, arbitrary sparse conversion, general sparse
+device evaluation, mixed dense/sparse expression algebra, native-handle
+adoption, or implicit transfer/workspace. Sparse addition and sparse
+multiplication remain deferred because ADR 0019 does not approve them.
 
-Final local Milestone 7 evidence classifies `sparse_cuda` as
-**configure-tested**, **compile-tested**, **runtime-tested**, and
+Final local Issue 10 evidence classifies the standardized Sparse BLAS CUDA
+rows as **configure-tested**, **compile-tested**, **runtime-tested**, and
 **parity-tested** on the recorded RTX 3060 environment. Trusted device CSC
 success is **skipped** because Milestone 7 has no approved device CSC producer;
-CSR evidence is not generalized to that path. Exact commands, versions,
-counts, sanitizer/package status, and hardware details belong to Publication
-Checkpoint B. A documentation or compile-only example is not runtime or
-parity evidence.
+CSR evidence is not generalized to unimplemented device CSC execution. Exact
+commands, versions, counts, sanitizer/package status, and hardware details
+belong to Publication Checkpoint B. A documentation or compile-only example is
+not runtime or parity evidence.
 
 The [frozen Milestone 7 contract][m7-contract] is authoritative for the
 provider surface and deferred work. The [Milestone 4 contract][m4-contract]

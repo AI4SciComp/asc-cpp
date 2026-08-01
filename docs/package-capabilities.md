@@ -1,8 +1,8 @@
 # ASCCpp package capabilities
 
-Status: unreleased `0.9.0` Milestone 8 candidate
+Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
 
-Date: 2026-07-28
+Date: 2026-08-01
 
 An ASCCpp CMake component is a capability request. It imports the named target
 and its exact transitive `ASC::` closure. It does not enable a provider, add an

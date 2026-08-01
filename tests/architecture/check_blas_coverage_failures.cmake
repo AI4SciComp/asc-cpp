@@ -99,16 +99,10 @@ _expect_validation_failure(
 )
 
 string(REPLACE
-  "backend_reference_cpu: \"planned\""
-  "backend_reference_cpu: \"verified\""
+  "backend_cuda: \"verified\""
+  "backend_cuda: \"planned\""
   _partially_verified
   "${_valid_manifest}"
-)
-string(REPLACE
-  "status: \"planned\""
-  "status: \"verified\""
-  _partially_verified
-  "${_partially_verified}"
 )
 _expect_validation_failure(
   partially-verified

@@ -1,6 +1,6 @@
 # ASCCpp support and evidence matrix
 
-Status: unreleased `0.9.0` Issue 9 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
 
 Date: 2026-08-01
 
@@ -8,11 +8,46 @@ This matrix separates the candidate contract from evidence collected in a
 particular environment. It is not a support-window promise. The Milestone 8
 Publication Checkpoint B report remains authoritative for its historical
 commands, counts, failures, and skips; the Issue 9 Feature Gate B report adds
-only the Level 3 evidence recorded below.
+only the Level 3 evidence recorded below, and the Issue 10 report adds only the
+Sparse BLAS evidence recorded below.
 
 The matrix below records the clean post-checkpoint correction reruns. Earlier
 revision-2 counts are historical and are not substituted for these corrected
 results.
+
+## Issue 10 Sparse BLAS evidence addendum
+
+Issue 10 preserves the recorded environment and support boundaries. On
+2026-08-01, the final corrected GCC 11.4 Debug/static CPU suite passed 199/199
+in 155.81 seconds and the Debug/shared suite passed 201/201 in 144.93 seconds.
+The GCC ASan+UBSan suite passed its complete registered 156/156 selection in
+34.54 seconds. These runs include the standardized S/D/C/Z Sparse BLAS
+conformance, invalid-enum and invalid-structure rejection, empty and signed
+stride cases, zero-alpha no-read checks, allocation probes, architecture,
+documentation, package, relocation, and downstream-consumer checks.
+
+CUDA 12.9.86 static and shared builds exercised all 36 declared Sparse BLAS
+rows on the NVIDIA GeForce RTX 3060 Laptop GPU (driver 576.83, CUDA driver API
+12.9, compute capability 8.6). The final static Issue 10 selection passed 9/9
+and the corresponding shared selection passed 9/9, including real-device
+S/D/C/Z conformance, explicit completion, and the benchmark. The final shared
+package/consumer selection passed 6/6: build-tree and installed/relocated
+consumers for both Sparse and Sparse CUDA, plus the build-tree and
+installed/relocated component aggregates. The shared package aggregates passed
+in 304.23 and 339.81 seconds. Optimized CPU remains not applicable, and no
+forced-zero-device result verifies a CUDA row.
+
+The final correctness-guarded Issue 10 Release observations were:
+
+| Probe row | Observation |
+| --- | --- |
+| Sparse CPU indexed dot | 70.6143 ns/iteration over 1,024 iterations; zero allocations; independent oracle |
+| Sparse CPU CSR SpMM | 1,246.91 ns/iteration over 64 iterations; zero allocations; independent oracle |
+| Standardized CUDA CSR SpMV float | 227.381 million nonzeros/s over 20 repetitions; zero workspace and operation allocations; independent oracle |
+| Standardized CUDA CSR SpMV double | 215.335 million nonzeros/s over 20 repetitions; zero workspace and operation allocations; independent oracle |
+
+These values are threshold-free observations, not speedup claims or support
+guarantees.
 
 ## Issue 9 Level 3 evidence addendum
 
@@ -205,7 +240,7 @@ compiler, Windows/MSVC CUDA, and other host/toolkit pairings remain `skipped`.
 | `ASC::utilities` | `ASC::core` | transactional command-line configuration and checked steady-clock timing |
 | `ASC::expression` | `ASC::core` | storage-neutral readable, placement, writable, alias, and sparsity protocols |
 | `ASC::dense` | `ASC::core`, `ASC::expression` | host storage/views, pointwise evaluation, reductions, complete reference real/complex BLAS Levels 1, 2, and 3 |
-| `ASC::sparse` | `ASC::core`, `ASC::expression` | canonical coordinate/CSR/CSC storage, conversion, evaluation, reference float/double CSR SpMV |
+| `ASC::sparse` | `ASC::core`, `ASC::expression` | canonical coordinate/CSR/CSC storage, conversion, evaluation, and all 36 applicable S/D/C/Z Sparse BLAS compute rows |
 | `ASC::random` | `ASC::core` | Philox4x32-10 words and exact float/double `Uniform01` transforms |
 | `ASC::random_dense` | `ASC::random`, `ASC::dense` | logical-order host Dense `Uniform01` fill |
 | `ASC::random_sparse` | `ASC::random`, `ASC::sparse` | host exact-count canonical coordinate generation |
@@ -230,7 +265,7 @@ and a caller-selected architecture.
 | --- | --- | --- | --- |
 | `ASC::core_cuda` | `ASC::core` | `CUDA::cudart` | device inventory, pinned/device/managed resources, stream-backed contexts, copies, events |
 | `ASC::dense_cuda` | `ASC::dense`, `ASC::core_cuda` | `CUDA::cublas` | bounded float/double pointwise evaluation and complete real/complex BLAS Levels 1, 2, and 3 |
-| `ASC::sparse_cuda` | `ASC::sparse`, `ASC::core_cuda` | `CUDA::cusparse` | trusted CSR clone, CSR SpMV, bounded trusted sparse evaluation |
+| `ASC::sparse_cuda` | `ASC::sparse`, `ASC::core_cuda` | `CUDA::cusparse` | trusted indexed/CSR/triangular clones, all 36 applicable asynchronous S/D/C/Z Sparse BLAS compute rows, retained CSR SpMV, and bounded trusted sparse evaluation |
 | `ASC::random_cuda` | `ASC::random`, `ASC::core_cuda` | none | raw Philox words into a capacity-carrying `MutableMemoryView` |
 | `ASC::random_dense_cuda` | `ASC::random_dense`, `ASC::random_cuda`, `ASC::core_cuda` | none | logical-order Dense `Uniform01` |
 | `ASC::random_sparse_cuda` | `ASC::random_sparse`, `ASC::random_cuda`, `ASC::core_cuda` | none | exact-count canonical coordinate/value `Uniform01` |

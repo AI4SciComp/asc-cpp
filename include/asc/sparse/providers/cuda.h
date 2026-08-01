@@ -2,6 +2,7 @@
 #define ASC_SPARSE_PROVIDERS_CUDA_H_
 
 #include <array>
+#include <complex>
 #include <concepts>
 #include <cstddef>
 #include <cstdint>
@@ -15,6 +16,7 @@
 #include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/expression/expression.h"
+#include "asc/sparse/blas.h"
 #include "asc/sparse/compressed.h"
 #include "asc/sparse/coordinate.h"
 #include "asc/sparse/providers/cuda_export.h"
@@ -23,8 +25,33 @@ namespace asc {
 
 class SparseCudaContext;
 template <typename Element>
-  requires(std::same_as<Element, float> || std::same_as<Element, double>)
+  requires SparseBlasScalar<Element>
 struct CudaCsrClone;
+template <typename Element>
+  requires SparseBlasScalar<Element>
+class CudaIndexedVectorArray;
+template <typename Element>
+  requires SparseBlasScalar<Element>
+struct CudaIndexedVectorClone;
+template <typename Element>
+  requires SparseBlasScalar<Element>
+class CudaTriangularCsrArray;
+template <typename Element>
+  requires SparseBlasScalar<Element>
+struct CudaTriangularCsrClone;
+
+template <typename SourceElement>
+  requires SparseBlasScalar<SourceElement>
+Result<CudaIndexedVectorClone<std::remove_const_t<SourceElement>>>
+CudaCloneIndexedVector(SparseCudaContext& context,
+                       SparseBlasIndexedVectorView<SourceElement> source,
+                       MemoryResource& resource);
+
+template <SparseBlasScalar Element>
+Result<CudaTriangularCsrClone<Element>> CudaCloneTriangularCsr(
+    SparseCudaContext& context,
+    SparseBlasTriangularView<Element, SparseCompressedFormat::kCsr> source,
+    MemoryResource& resource);
 
 namespace internal_sparse_cuda {
 
@@ -34,6 +61,21 @@ class ContextState;
 enum class ElementKind {
   kFloat,
   kDouble,
+  kComplexFloat,
+  kComplexDouble,
+};
+
+enum class StandardOperation {
+  kDot,
+  kAxpy,
+  kGather,
+  kGatherZero,
+  kScatter,
+};
+
+struct ScalarValue {
+  double real = 0.0;
+  double imaginary = 0.0;
 };
 
 enum class FormatKind {
@@ -64,6 +106,8 @@ struct SparseDescriptor {
   FormatKind format = FormatKind::kCoordinate;
   std::size_t rank = 0;
   const extent_t* extents = nullptr;
+  extent_t rows = 0;
+  extent_t columns = 0;
   nnz_t nonzeros = 0;
   bool canonical_structure_trusted = false;
 };
@@ -76,10 +120,36 @@ struct OperandDescriptor {
 
 struct VectorDescriptor {
   const void* data = nullptr;
+  const void* reachable_data = nullptr;
+  std::size_t reachable_size = 0;
   MemorySpace memory_space = MemorySpace::kHost;
   ElementKind element_kind = ElementKind::kFloat;
   extent_t extent = 0;
   stride_t stride = 1;
+  bool writable = false;
+};
+
+struct IndexedVectorDescriptor {
+  const index_t* indices = nullptr;
+  const void* values = nullptr;
+  MemorySpace memory_space = MemorySpace::kHost;
+  ElementKind element_kind = ElementKind::kFloat;
+  nnz_t nonzeros = 0;
+  extent_t dense_extent = 0;
+  bool writable = false;
+  bool canonical_structure_trusted = false;
+};
+
+struct MatrixDescriptor {
+  const void* data = nullptr;
+  const void* reachable_data = nullptr;
+  std::size_t reachable_size = 0;
+  MemorySpace memory_space = MemorySpace::kHost;
+  ElementKind element_kind = ElementKind::kFloat;
+  extent_t rows = 0;
+  extent_t columns = 0;
+  stride_t leading_dimension = 1;
+  SparseBlasLayout layout = SparseBlasLayout::kColumnMajor;
   bool writable = false;
 };
 
@@ -90,8 +160,18 @@ struct CloneBuffers {
   CompletionEvent completion;
 };
 
+struct IndexedCloneBuffers {
+  Buffer indices;
+  Buffer values;
+  CompletionEvent completion;
+};
+
 ASC_SPARSE_CUDA_EXPORT Result<CloneBuffers> CloneCsrErased(
     SparseCudaContext& context, SparseDescriptor source,
+    MemoryResource& resource);
+
+ASC_SPARSE_CUDA_EXPORT Result<IndexedCloneBuffers> CloneIndexedErased(
+    SparseCudaContext& context, IndexedVectorDescriptor source,
     MemoryResource& resource);
 
 ASC_SPARSE_CUDA_EXPORT Result<std::size_t> CsrSpmvWorkspaceSizeErased(
@@ -108,10 +188,59 @@ ASC_SPARSE_CUDA_EXPORT Result<CompletionEvent> EvaluateErased(
     OperandDescriptor left, OperandDescriptor right,
     SparseDescriptor destination);
 
+ASC_SPARSE_CUDA_EXPORT Result<CompletionEvent> StandardLevel1Erased(
+    SparseCudaContext& context, StandardOperation operation,
+    SparseBlasConjugation conjugation, ScalarValue alpha,
+    IndexedVectorDescriptor sparse, VectorDescriptor dense,
+    VectorDescriptor result);
+
+ASC_SPARSE_CUDA_EXPORT Result<CompletionEvent> StandardSpmvErased(
+    SparseCudaContext& context, SparseBlasTranspose transpose,
+    ScalarValue alpha, SparseDescriptor matrix, VectorDescriptor input,
+    VectorDescriptor output);
+
+ASC_SPARSE_CUDA_EXPORT Result<CompletionEvent> StandardSpmmErased(
+    SparseCudaContext& context, SparseBlasTranspose transpose,
+    ScalarValue alpha, SparseDescriptor matrix, MatrixDescriptor input,
+    MatrixDescriptor output);
+
+ASC_SPARSE_CUDA_EXPORT Result<CompletionEvent> StandardTriangularSolveErased(
+    SparseCudaContext& context, SparseBlasTranspose transpose,
+    ScalarValue alpha, SparseDescriptor matrix, SparseBlasTriangle triangle,
+    SparseBlasDiagonal diagonal, MatrixDescriptor right_hand_sides);
+
 template <typename T>
 inline constexpr bool kSupportedElement =
     !std::is_volatile_v<T> && (std::same_as<std::remove_cv_t<T>, float> ||
                                std::same_as<std::remove_cv_t<T>, double>);
+
+template <typename T>
+inline constexpr bool kSupportedBlasElement =
+    !std::is_volatile_v<T> && SparseBlasScalar<T>;
+
+template <typename Element>
+constexpr ElementKind Kind() {
+  using Value = std::remove_cv_t<Element>;
+  if constexpr (std::same_as<Value, float>) {
+    return ElementKind::kFloat;
+  } else if constexpr (std::same_as<Value, double>) {
+    return ElementKind::kDouble;
+  } else if constexpr (std::same_as<Value, std::complex<float>>) {
+    return ElementKind::kComplexFloat;
+  } else {
+    return ElementKind::kComplexDouble;
+  }
+}
+
+template <SparseBlasScalar Element>
+ScalarValue Scalar(Element value) {
+  if constexpr (SparseBlasComplex<Element>) {
+    return {static_cast<double>(value.real()),
+            static_cast<double>(value.imag())};
+  } else {
+    return {static_cast<double>(value), 0.0};
+  }
+}
 
 template <typename T>
 inline constexpr ExpressionOperation kOperation = [] {
@@ -142,9 +271,7 @@ SparseDescriptor Describe(const CoordinateView<Element, Rank>& view) {
   descriptor.structure_first = view.coordinates();
   descriptor.values = view.values();
   descriptor.memory_space = view.memory_space();
-  descriptor.element_kind = std::same_as<std::remove_cv_t<Element>, float>
-                                ? ElementKind::kFloat
-                                : ElementKind::kDouble;
+  descriptor.element_kind = Kind<Element>();
   descriptor.format = FormatKind::kCoordinate;
   descriptor.rank = Rank;
   descriptor.extents = view.extents().data();
@@ -160,13 +287,13 @@ SparseDescriptor Describe(const CompressedSparseView<Element, Format>& view) {
   descriptor.structure_second = view.inner_indices();
   descriptor.values = view.values();
   descriptor.memory_space = view.memory_space();
-  descriptor.element_kind = std::same_as<std::remove_cv_t<Element>, float>
-                                ? ElementKind::kFloat
-                                : ElementKind::kDouble;
+  descriptor.element_kind = Kind<Element>();
   descriptor.format = Format == SparseCompressedFormat::kCsr ? FormatKind::kCsr
                                                              : FormatKind::kCsc;
   descriptor.rank = 2;
   descriptor.extents = view.extents().data();
+  descriptor.rows = view.rows();
+  descriptor.columns = view.columns();
   descriptor.nonzeros = view.nnz();
   descriptor.canonical_structure_trusted = view.canonical_structure_trusted();
   return descriptor;
@@ -403,6 +530,50 @@ VectorDescriptor Describe(CudaStridedVectorView<Element> view) {
   return descriptor;
 }
 
+template <SparseBlasScalar Element>
+VectorDescriptor Describe(SparseBlasVectorView<Element> view) {
+  VectorDescriptor descriptor;
+  descriptor.data = view.data();
+  descriptor.reachable_data = view.reachable_storage().data();
+  descriptor.reachable_size = view.reachable_storage().size();
+  descriptor.memory_space = view.memory_space();
+  descriptor.element_kind = Kind<Element>();
+  descriptor.extent = view.size();
+  descriptor.stride = view.increment();
+  descriptor.writable = !std::is_const_v<Element>;
+  return descriptor;
+}
+
+template <SparseBlasScalar Element>
+IndexedVectorDescriptor Describe(SparseBlasIndexedVectorView<Element> view) {
+  IndexedVectorDescriptor descriptor;
+  descriptor.indices = view.indices();
+  descriptor.values = view.values();
+  descriptor.memory_space = view.memory_space();
+  descriptor.element_kind = Kind<Element>();
+  descriptor.nonzeros = view.nnz();
+  descriptor.dense_extent = view.dense_extent();
+  descriptor.writable = !std::is_const_v<Element>;
+  descriptor.canonical_structure_trusted = view.canonical_structure_trusted();
+  return descriptor;
+}
+
+template <SparseBlasScalar Element>
+MatrixDescriptor Describe(SparseBlasMatrixView<Element> view) {
+  MatrixDescriptor descriptor;
+  descriptor.data = view.data();
+  descriptor.reachable_data = view.reachable_storage().data();
+  descriptor.reachable_size = view.reachable_storage().size();
+  descriptor.memory_space = view.memory_space();
+  descriptor.element_kind = Kind<Element>();
+  descriptor.rows = view.rows();
+  descriptor.columns = view.columns();
+  descriptor.leading_dimension = view.leading_dimension();
+  descriptor.layout = view.layout();
+  descriptor.writable = !std::is_const_v<Element>;
+  return descriptor;
+}
+
 class Access {
  public:
   [[nodiscard]] static ContextState* State(
@@ -414,7 +585,7 @@ class Access {
 }  // namespace internal_sparse_cuda
 
 template <typename Element>
-  requires internal_sparse_cuda::kSupportedElement<Element>
+  requires internal_sparse_cuda::kSupportedBlasElement<Element>
 class CudaCsrArray {
  public:
   CudaCsrArray(const CudaCsrArray&) = delete;
@@ -458,7 +629,7 @@ class CudaCsrArray {
 
  private:
   template <typename SourceElement>
-    requires internal_sparse_cuda::kSupportedElement<SourceElement>
+    requires internal_sparse_cuda::kSupportedBlasElement<SourceElement>
   friend Result<CudaCsrClone<std::remove_const_t<SourceElement>>> CudaCloneCsr(
       SparseCudaContext&, CsrView<SourceElement>, MemoryResource&);
 
@@ -479,14 +650,14 @@ class CudaCsrArray {
 };
 
 template <typename Element>
-  requires(std::same_as<Element, float> || std::same_as<Element, double>)
+  requires SparseBlasScalar<Element>
 struct CudaCsrClone {
   CudaCsrArray<Element> array;
   CompletionEvent completion;
 };
 
 template <typename SourceElement>
-  requires internal_sparse_cuda::kSupportedElement<SourceElement>
+  requires internal_sparse_cuda::kSupportedBlasElement<SourceElement>
 [[nodiscard]] Result<CudaCsrClone<std::remove_const_t<SourceElement>>>
 CudaCloneCsr(SparseCudaContext& context, CsrView<SourceElement> source,
              MemoryResource& resource) {
@@ -501,6 +672,284 @@ CudaCloneCsr(SparseCudaContext& context, CsrView<SourceElement> source,
       std::move(cloned->inner_indices), std::move(cloned->values));
   return CudaCsrClone<Element>{.array = std::move(array),
                                .completion = std::move(cloned->completion)};
+}
+
+template <typename Element>
+  requires SparseBlasScalar<Element>
+class CudaIndexedVectorArray {
+ public:
+  CudaIndexedVectorArray(const CudaIndexedVectorArray&) = delete;
+  CudaIndexedVectorArray& operator=(const CudaIndexedVectorArray&) = delete;
+  CudaIndexedVectorArray(CudaIndexedVectorArray&&) noexcept = default;
+  CudaIndexedVectorArray& operator=(CudaIndexedVectorArray&&) noexcept =
+      default;
+  ~CudaIndexedVectorArray() = default;
+
+  [[nodiscard]] bool valid() const noexcept {
+    return indices_.valid() && values_.valid();
+  }
+
+  [[nodiscard]] Result<SparseBlasIndexedVectorView<Element>> view() {
+    if (!valid()) {
+      return Status(ErrorCode::kInvalidState,
+                    "A moved-from CUDA indexed vector has no view");
+    }
+    return internal_sparse_standard_blas::ProviderAccess::
+        MakeCanonicalIndexedVector<Element>(
+            static_cast<const index_t*>(indices_.data()),
+            static_cast<Element*>(values_.data()), nonzeros_, dense_extent_,
+            {indices_.data(), indices_.size(), MemorySpace::kDevice},
+            {values_.data(), values_.size(), MemorySpace::kDevice});
+  }
+
+  [[nodiscard]] Result<SparseBlasIndexedVectorView<const Element>> view()
+      const {
+    if (!valid()) {
+      return Status(ErrorCode::kInvalidState,
+                    "A moved-from CUDA indexed vector has no view");
+    }
+    return internal_sparse_standard_blas::ProviderAccess::
+        MakeCanonicalIndexedVector<const Element>(
+            static_cast<const index_t*>(indices_.data()),
+            static_cast<const Element*>(values_.data()), nonzeros_,
+            dense_extent_,
+            {indices_.data(), indices_.size(), MemorySpace::kDevice},
+            {values_.data(), values_.size(), MemorySpace::kDevice});
+  }
+
+ private:
+  template <typename SourceElement>
+    requires SparseBlasScalar<SourceElement>
+  friend Result<CudaIndexedVectorClone<std::remove_const_t<SourceElement>>>
+  CudaCloneIndexedVector(SparseCudaContext&,
+                         SparseBlasIndexedVectorView<SourceElement>,
+                         MemoryResource&);
+
+  CudaIndexedVectorArray(extent_t dense_extent, nnz_t nonzeros, Buffer indices,
+                         Buffer values) noexcept
+      : dense_extent_(dense_extent),
+        nonzeros_(nonzeros),
+        indices_(std::move(indices)),
+        values_(std::move(values)) {}
+
+  extent_t dense_extent_;
+  nnz_t nonzeros_;
+  Buffer indices_;
+  Buffer values_;
+};
+
+template <typename Element>
+  requires SparseBlasScalar<Element>
+struct CudaIndexedVectorClone {
+  CudaIndexedVectorArray<Element> array;
+  CompletionEvent completion;
+};
+
+template <typename SourceElement>
+  requires SparseBlasScalar<SourceElement>
+[[nodiscard]]
+Result<CudaIndexedVectorClone<std::remove_const_t<SourceElement>>>
+CudaCloneIndexedVector(SparseCudaContext& context,
+                       SparseBlasIndexedVectorView<SourceElement> source,
+                       MemoryResource& resource) {
+  auto cloned = internal_sparse_cuda::CloneIndexedErased(
+      context, internal_sparse_cuda::Describe(source), resource);
+  if (!cloned.ok()) {
+    return cloned.status();
+  }
+  CudaIndexedVectorArray<std::remove_const_t<SourceElement>> array(
+      source.dense_extent(), source.nnz(), std::move(cloned->indices),
+      std::move(cloned->values));
+  return CudaIndexedVectorClone<std::remove_const_t<SourceElement>>{
+      .array = std::move(array), .completion = std::move(cloned->completion)};
+}
+
+template <typename Element>
+  requires SparseBlasScalar<Element>
+class CudaTriangularCsrArray {
+ public:
+  CudaTriangularCsrArray(const CudaTriangularCsrArray&) = delete;
+  CudaTriangularCsrArray& operator=(const CudaTriangularCsrArray&) = delete;
+  CudaTriangularCsrArray(CudaTriangularCsrArray&&) noexcept = default;
+  CudaTriangularCsrArray& operator=(CudaTriangularCsrArray&&) noexcept =
+      default;
+  ~CudaTriangularCsrArray() = default;
+
+  [[nodiscard]] Result<CsrView<const Element>> matrix() const {
+    return array_.view();
+  }
+  [[nodiscard]] SparseBlasTriangle triangle() const noexcept {
+    return triangle_;
+  }
+  [[nodiscard]] SparseBlasDiagonal diagonal() const noexcept {
+    return diagonal_;
+  }
+
+ private:
+  template <SparseBlasScalar SourceElement>
+  friend Result<CudaTriangularCsrClone<SourceElement>> CudaCloneTriangularCsr(
+      SparseCudaContext&,
+      SparseBlasTriangularView<SourceElement, SparseCompressedFormat::kCsr>,
+      MemoryResource&);
+
+  CudaTriangularCsrArray(CudaCsrArray<Element> array,
+                         SparseBlasTriangle triangle,
+                         SparseBlasDiagonal diagonal) noexcept
+      : array_(std::move(array)), triangle_(triangle), diagonal_(diagonal) {}
+
+  CudaCsrArray<Element> array_;
+  SparseBlasTriangle triangle_;
+  SparseBlasDiagonal diagonal_;
+};
+
+template <typename Element>
+  requires SparseBlasScalar<Element>
+struct CudaTriangularCsrClone {
+  CudaTriangularCsrArray<Element> array;
+  CompletionEvent completion;
+};
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CudaTriangularCsrClone<Element>> CudaCloneTriangularCsr(
+    SparseCudaContext& context,
+    SparseBlasTriangularView<Element, SparseCompressedFormat::kCsr> source,
+    MemoryResource& resource) {
+  auto cloned = CudaCloneCsr(context, source.matrix(), resource);
+  if (!cloned.ok()) {
+    return cloned.status();
+  }
+  CudaTriangularCsrArray<Element> array(std::move(cloned->array),
+                                        source.triangle(), source.diagonal());
+  return CudaTriangularCsrClone<Element>{
+      .array = std::move(array), .completion = std::move(cloned->completion)};
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSparseDot(
+    SparseCudaContext& context, SparseBlasConjugation conjugation,
+    SparseBlasIndexedVectorView<const Element> sparse,
+    SparseBlasVectorView<const Element> dense,
+    SparseBlasVectorView<Element> result) {
+  return internal_sparse_cuda::StandardLevel1Erased(
+      context, internal_sparse_cuda::StandardOperation::kDot, conjugation,
+      internal_sparse_cuda::Scalar(Element{1}),
+      internal_sparse_cuda::Describe(sparse),
+      internal_sparse_cuda::Describe(dense),
+      internal_sparse_cuda::Describe(result));
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSparseAxpy(
+    SparseCudaContext& context, Element alpha,
+    SparseBlasIndexedVectorView<const Element> sparse,
+    SparseBlasVectorView<Element> dense) {
+  return internal_sparse_cuda::StandardLevel1Erased(
+      context, internal_sparse_cuda::StandardOperation::kAxpy,
+      SparseBlasConjugation::kUnconjugated, internal_sparse_cuda::Scalar(alpha),
+      internal_sparse_cuda::Describe(sparse),
+      internal_sparse_cuda::Describe(dense), {});
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSparseGather(
+    SparseCudaContext& context, SparseBlasVectorView<const Element> dense,
+    SparseBlasIndexedVectorView<Element> sparse) {
+  return internal_sparse_cuda::StandardLevel1Erased(
+      context, internal_sparse_cuda::StandardOperation::kGather,
+      SparseBlasConjugation::kUnconjugated,
+      internal_sparse_cuda::Scalar(Element{}),
+      internal_sparse_cuda::Describe(sparse),
+      internal_sparse_cuda::Describe(dense), {});
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSparseGatherZero(
+    SparseCudaContext& context, SparseBlasVectorView<Element> dense,
+    SparseBlasIndexedVectorView<Element> sparse) {
+  return internal_sparse_cuda::StandardLevel1Erased(
+      context, internal_sparse_cuda::StandardOperation::kGatherZero,
+      SparseBlasConjugation::kUnconjugated,
+      internal_sparse_cuda::Scalar(Element{}),
+      internal_sparse_cuda::Describe(sparse),
+      internal_sparse_cuda::Describe(dense), {});
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSparseScatter(
+    SparseCudaContext& context,
+    SparseBlasIndexedVectorView<const Element> sparse,
+    SparseBlasVectorView<Element> dense) {
+  return internal_sparse_cuda::StandardLevel1Erased(
+      context, internal_sparse_cuda::StandardOperation::kScatter,
+      SparseBlasConjugation::kUnconjugated,
+      internal_sparse_cuda::Scalar(Element{}),
+      internal_sparse_cuda::Describe(sparse),
+      internal_sparse_cuda::Describe(dense), {});
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSpmv(
+    SparseCudaContext& context, SparseBlasTranspose transpose, Element alpha,
+    CsrView<const Element> matrix, SparseBlasVectorView<const Element> input,
+    SparseBlasVectorView<Element> output) {
+  return internal_sparse_cuda::StandardSpmvErased(
+      context, transpose, internal_sparse_cuda::Scalar(alpha),
+      internal_sparse_cuda::Describe(matrix),
+      internal_sparse_cuda::Describe(input),
+      internal_sparse_cuda::Describe(output));
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSpmm(
+    SparseCudaContext& context, SparseBlasTranspose transpose, Element alpha,
+    CsrView<const Element> matrix, SparseBlasMatrixView<const Element> input,
+    SparseBlasMatrixView<Element> output) {
+  return internal_sparse_cuda::StandardSpmmErased(
+      context, transpose, internal_sparse_cuda::Scalar(alpha),
+      internal_sparse_cuda::Describe(matrix),
+      internal_sparse_cuda::Describe(input),
+      internal_sparse_cuda::Describe(output));
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSparseTriangularSolve(
+    SparseCudaContext& context, SparseBlasTranspose transpose, Element alpha,
+    const CudaTriangularCsrArray<Element>& triangular,
+    SparseBlasVectorView<Element> right_hand_side) {
+  auto matrix = triangular.matrix();
+  if (!matrix.ok()) {
+    return matrix.status();
+  }
+  internal_sparse_cuda::MatrixDescriptor rhs;
+  rhs.data = right_hand_side.data();
+  rhs.reachable_data = right_hand_side.reachable_storage().data();
+  rhs.reachable_size = right_hand_side.reachable_storage().size();
+  rhs.memory_space = right_hand_side.memory_space();
+  rhs.element_kind = internal_sparse_cuda::Kind<Element>();
+  rhs.rows = right_hand_side.size();
+  rhs.columns = 1;
+  rhs.leading_dimension = right_hand_side.increment();
+  rhs.layout = SparseBlasLayout::kRowMajor;
+  rhs.writable = true;
+  return internal_sparse_cuda::StandardTriangularSolveErased(
+      context, transpose, internal_sparse_cuda::Scalar(alpha),
+      internal_sparse_cuda::Describe(*matrix), triangular.triangle(),
+      triangular.diagonal(), rhs);
+}
+
+template <SparseBlasScalar Element>
+[[nodiscard]] Result<CompletionEvent> CudaSparseTriangularSolveMultiple(
+    SparseCudaContext& context, SparseBlasTranspose transpose, Element alpha,
+    const CudaTriangularCsrArray<Element>& triangular,
+    SparseBlasMatrixView<Element> right_hand_sides) {
+  auto matrix = triangular.matrix();
+  if (!matrix.ok()) {
+    return matrix.status();
+  }
+  return internal_sparse_cuda::StandardTriangularSolveErased(
+      context, transpose, internal_sparse_cuda::Scalar(alpha),
+      internal_sparse_cuda::Describe(*matrix), triangular.triangle(),
+      triangular.diagonal(), internal_sparse_cuda::Describe(right_hand_sides));
 }
 
 template <typename Element>

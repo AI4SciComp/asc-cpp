@@ -1,8 +1,8 @@
 # Downstream integration
 
-Status: unreleased `0.9.0` Milestone 8 candidate
+Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
 
-Date: 2026-07-28
+Date: 2026-08-01
 
 Downstreams should consume the installed or explicitly selected build-tree
 CMake package, request the smallest component set, and link only imported
@@ -17,7 +17,7 @@ or editing generated target files.
 | command-line configuration or timer | `utilities` / `ASC::utilities` |
 | storage-neutral expression protocol only | `expression` / `ASC::expression` |
 | host Dense storage/evaluation/algebra | `dense` / `ASC::dense` |
-| host Sparse storage/evaluation/SpMV | `sparse` / `ASC::sparse` |
+| host Sparse storage/evaluation/Sparse BLAS | `sparse` / `ASC::sparse` |
 | raw Philox/`Uniform01` | `random` / `ASC::random` |
 | host Dense random fill | `random_dense` / `ASC::random_dense` |
 | host Sparse random generation | `random_sparse` / `ASC::random_sparse` |
