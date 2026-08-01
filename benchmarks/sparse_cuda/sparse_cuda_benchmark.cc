@@ -245,6 +245,71 @@ bool Run(asc::SparseCudaContext& context, asc::MemoryResource& raw_resource) {
             << " setup_asc_resource_allocation_calls=" << setup_allocations
             << " setup_asc_resource_allocated_bytes=" << setup_bytes
             << " checksum=" << checksum << '\n';
+
+  std::fill(initial.begin(), initial.end(), Element{});
+  if (cudaMemcpy(device_output->data(), initial.data(), vector_bytes,
+                 cudaMemcpyHostToDevice) != cudaSuccess) {
+    return false;
+  }
+  auto standard_input = asc::SparseBlasVectorView<const Element>::Create(
+      static_cast<const Element*>(device_input->data()), kDimension, 1,
+      {device_input->data(), device_input->size(), asc::MemorySpace::kDevice});
+  auto standard_output = asc::SparseBlasVectorView<Element>::Create(
+      static_cast<Element*>(device_output->data()), kDimension, 1,
+      {device_output->data(), device_output->size(),
+       asc::MemorySpace::kDevice});
+  if (!standard_input.ok() || !standard_output.ok()) {
+    return false;
+  }
+  const auto standard_operation = [&]() {
+    auto event =
+        asc::CudaSpmv(context, asc::SparseBlasTranspose::kNone, Element{1},
+                      const_matrix, *standard_input, *standard_output);
+    return event.ok() && event->Wait().ok();
+  };
+  for (std::size_t iteration = 0; iteration < kWarmup; ++iteration) {
+    if (!standard_operation()) {
+      return false;
+    }
+  }
+  const auto standard_begin = std::chrono::steady_clock::now();
+  for (std::size_t iteration = 0; iteration < kRepetitions; ++iteration) {
+    if (!standard_operation()) {
+      return false;
+    }
+  }
+  const std::int64_t standard_elapsed =
+      std::chrono::duration_cast<std::chrono::nanoseconds>(
+          std::chrono::steady_clock::now() - standard_begin)
+          .count();
+  if (resource.allocation_calls() != setup_allocations ||
+      resource.allocated_bytes() != setup_bytes) {
+    return false;
+  }
+  if (cudaMemcpy(actual.data(), device_output->data(), vector_bytes,
+                 cudaMemcpyDeviceToHost) != cudaSuccess) {
+    return false;
+  }
+  std::uint64_t standard_checksum = 1469598103934665603ULL;
+  const Element factor = static_cast<Element>(kWarmup + kRepetitions);
+  for (std::size_t row = 0; row < actual.size(); ++row) {
+    if (!NearlyEqual(actual[row], factor * expected[row])) {
+      return false;
+    }
+    standard_checksum = Mix(standard_checksum, Bits(actual[row]));
+  }
+  const long double standard_seconds =
+      static_cast<long double>(standard_elapsed) / 1.0e9L;
+  std::cout << "operation=standard_sparse_blas_spmv scalar="
+            << (std::same_as<Element, float> ? "float" : "double")
+            << " shape=1024x1024 nnz=" << kNonzeros
+            << " algorithm=asc_project_csr warmups=" << kWarmup
+            << " repetitions=" << kRepetitions
+            << " elapsed_ns=" << standard_elapsed << " nonzeros_per_second="
+            << static_cast<double>(static_cast<long double>(kNonzeros) *
+                                   kRepetitions / standard_seconds)
+            << " workspace_bytes=0 operation_allocation_calls=0"
+            << " checksum=" << standard_checksum << '\n';
   return true;
 }
 

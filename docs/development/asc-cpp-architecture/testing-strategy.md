@@ -1,6 +1,6 @@
 # Verification strategy
 
-Status: Implemented through the Issue 9 local Feature Gate B candidate
+Status: Implemented through the Issue 10 local Feature Gate B candidate
 
 ## Test ownership
 
@@ -98,7 +98,11 @@ An `ASC::cpp` test never substitutes for a component-isolation test.
 - empty compressed invariant and COO/CSR/CSC round trips;
 - structure immutability and view invalidation;
 - no densification under a strict allocation resource;
-- reference CSR SpMV with generic vector descriptors.
+- reference CSR SpMV with generic vector descriptors;
+- standardized indexed Level 1, CSR/CSC matrix, and triangular S/D/C/Z
+  conformance against independent mathematical oracles;
+- invalid structure, singular diagonal, empty storage, signed-stride, overlap,
+  and zero-operation-allocation cases.
 
 ### Random and facets
 
@@ -133,6 +137,9 @@ Milestone 8 revalidates those labels without widening their capability scope.
 Issue 9 adds runtime and parity evidence for exactly the 30 approved Dense
 Level 3 rows on the named RTX 3060 Laptop GPU; forced zero-device cases remain
 explicit skips and do not verify a CUDA coverage row.
+Issue 10 adds runtime and parity evidence for exactly the 36 applicable Sparse
+BLAS compute rows on that device, including S/D/C/Z indexed, CSR, transpose,
+triangular, signed-stride, completion-event, and allocation-contract cases.
 
 ## MdeCpp test policy
 

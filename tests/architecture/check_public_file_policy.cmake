@@ -84,6 +84,7 @@ set(_expected_compiled_sources
   src/random/cuda/sparse.cc
   src/random/cuda/sparse_kernels.cu
   src/sparse/reference_blas.cc
+  src/sparse/standard_blas.cc
   src/sparse/cuda/context.cc
   src/sparse/cuda/kernels.cu
   src/sparse/cuda/operations.cc
@@ -119,7 +120,7 @@ if(NOT _public_files STREQUAL _expected_public_files)
 endif()
 if(NOT _compiled_sources STREQUAL _expected_compiled_sources)
   message(FATAL_ERROR
-    "Milestone 8 compiled-source set differs from the frozen contract.\n"
+    "Approved compiled-source set differs from the frozen contract.\n"
     "Expected: ${_expected_compiled_sources}\n"
     "Actual:   ${_compiled_sources}"
   )

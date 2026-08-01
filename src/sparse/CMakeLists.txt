@@ -5,6 +5,7 @@ target_sources(
   asc_sparse
   PRIVATE
     reference_blas.cc
+    standard_blas.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"

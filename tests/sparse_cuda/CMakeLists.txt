@@ -27,6 +27,27 @@ set_tests_properties(
   PROPERTIES SKIP_RETURN_CODE 77
 )
 
+add_executable(asc_sparse_cuda_standard_blas_test standard_blas_cuda_test.cc)
+target_link_libraries(
+  asc_sparse_cuda_standard_blas_test
+  PRIVATE ASC::sparse_cuda
+)
+asc_target_enable_cxx20(TARGET asc_sparse_cuda_standard_blas_test)
+if(ASC_CPP_WARNINGS_AS_ERRORS)
+  asc_target_enable_warnings(TARGET asc_sparse_cuda_standard_blas_test AS_ERRORS)
+else()
+  asc_target_enable_warnings(TARGET asc_sparse_cuda_standard_blas_test)
+endif()
+asc_register_test(
+  NAME asc_cpp.sparse_cuda.standard_blas
+  TARGET asc_sparse_cuda_standard_blas_test
+  LABELS "cuda;gpu;milestone-10;parity;runtime;sparse_cuda"
+)
+set_tests_properties(
+  asc_cpp.sparse_cuda.standard_blas
+  PROPERTIES SKIP_RETURN_CODE 77
+)
+
 add_executable(
   asc_sparse_cuda_benchmark
   "${PROJECT_SOURCE_DIR}/benchmarks/sparse_cuda/sparse_cuda_benchmark.cc"
@@ -53,7 +74,8 @@ endif()
 asc_register_test(
   NAME asc_cpp.sparse_cuda.benchmark
   TARGET asc_sparse_cuda_benchmark
-  LABELS "benchmark;cuda;gpu;milestone-7;performance;sparse_cuda"
+  LABELS
+    "benchmark;cuda;gpu;milestone-7;milestone-10;performance;sparse_cuda"
 )
 set_tests_properties(
   asc_cpp.sparse_cuda.benchmark

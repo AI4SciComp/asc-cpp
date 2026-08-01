@@ -1,12 +1,12 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Issue 9 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
 
 Date: 2026-08-01
 
 ASCCpp performance evidence is correctness-checked observational data, not a
 cross-machine timing guarantee. Serial implementations are reference paths;
-CUDA facets are bounded explicit providers. Issue 9 makes no optimization or
+CUDA facets are bounded explicit providers. Issue 10 makes no optimization or
 speedup claim.
 
 ## Required measurement record
@@ -60,10 +60,10 @@ timed interval; parity-sensitive probes also use an independent oracle.
 | Probe | Representative workload | Correctness guard |
 | --- | --- | --- |
 | Dense CPU | pointwise evaluation, Level 1 Axpy/Dot, Level 2 GEMV latency/estimated bandwidth, and exact-descriptor Level 3 GEMM | exact/expected result and zero ASCCpp computational allocation |
-| Sparse CPU | canonical CSR SpMV | independent result and zero workspace/allocation |
+| Sparse CPU | indexed dot, canonical CSR SpMV, and CSR SpMM | independent results and zero workspace/allocation |
 | Random storage CPU | Dense fill and exact-count Sparse generation | deterministic checksums and declared result allocations |
 | Dense CUDA | pointwise, Level 1 Axpy/Dot/Iamax, Level 2 GEMV latency/estimated bandwidth, and exact-descriptor Level 3 GEMM | completed events, numerical parity, caller-owned Iamax workspace, and zero operation allocation |
-| Sparse CUDA | float/double CSR SpMV | explicit workspace where required and numerical parity |
+| Sparse CUDA | retained float/double cuSPARSE SpMV and standardized float/double project-kernel SpMV | explicit/zero workspace as declared, numerical parity, and zero operation allocation |
 | Random CUDA | raw words, Dense `Uniform01`, Sparse `Uniform01` | independent bit/structure/value oracles |
 
 The Issue 9 Level 3 GEMM probes record five repeated timing samples and their
@@ -103,7 +103,9 @@ an exact Sparse random count.
 | Dense serial BLAS Level 3 | conventional matrix-matrix algebra cost (`O(mnk)` for GEMM); no packing/workspace |
 | coordinate finalization | current worst case `O(R * Z^2)`; declared owner buffers and `O(R)` local work storage |
 | Sparse conversion | deterministic scans documented by the Sparse module; destination owner buffers only |
-| serial CSR SpMV | `O(rows + Z)` plus adapter access cost; no workspace |
+| serial indexed Sparse BLAS Level 1 | `O(Z)`; no workspace |
+| serial CSR/CSC SpMV and SpMM | `O(Z)` and `O(Z * nrhs)` respectively; no workspace |
+| serial sparse triangular solve | allocation-free reference traversal; current general CSR/CSC lookup is `O(order * Z)` per right-hand side |
 | Dense serial random | `O(N * R)`; no computational allocation |
 | Sparse serial random | `O(K * N)` selection plus current `O(K^2 * R)` coordinate finalization; result buffers plus `O(R)` local storage |
 | Dense CUDA pointwise/random | current logical coordinate work `O(N * R)`; no ASCCpp computational workspace |
@@ -111,6 +113,7 @@ an exact Sparse random count.
 | CUDA BLAS Level 2 | provider or bounded project-kernel algebra cost; no ASCCpp packing/workspace |
 | CUDA BLAS Level 3 | provider algebra cost; no ASCCpp packing/workspace |
 | CUDA CSR SpMV | cuSPARSE ALG2 with queried caller workspace for unit stride; project kernel with zero workspace for positive nonunit stride |
+| standardized CUDA Sparse BLAS | indexed Level 1 and non-transposed CSR matrix operations use `O(Z)`/`O(Z * nrhs)` project kernels; transpose and triangular reference kernels may scan CSR repeatedly; zero operation workspace |
 | CUDA Sparse evaluation | `O(Z)` project-kernel work; no workspace |
 | CUDA raw Random | `O(word_count)`; no computational allocation/workspace |
 | CUDA Sparse random | `O(N * K + K^2 + R * K)`; exactly two result-buffer allocation attempts and no computational workspace |

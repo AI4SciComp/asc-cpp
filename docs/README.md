@@ -1,10 +1,10 @@
 # asc-cpp documentation
 
-The repository is at the unreleased **Dense BLAS Level 3 (Issue 9) Feature
-Gate B** candidate. All six modules, both Random storage facets, the
-provider-free aggregate, and all six approved opt-in CUDA facets remain in the
-same dependency graph; this issue adds only the approved classic Dense BLAS
-Level 3 surface to `dense` and `dense_cuda`.
+The repository is at the unreleased **Sparse BLAS (Issue 10) Feature Gate B**
+candidate. All six modules, both Random storage facets, the provider-free
+aggregate, and all six approved opt-in CUDA facets remain in the same
+dependency graph; this issue adds only the 36 approved applicable S/D/C/Z
+Sparse BLAS compute rows to `sparse` and `sparse_cuda`.
 
 ## Current API documentation
 
@@ -18,7 +18,8 @@ Level 3 surface to `dense` and `dense_cuda`.
 - [Dense module](modules/dense.md): mappings, views, ownership, expression
   evaluation, serial CPU algebra, and the optional CUDA facet.
 - [Sparse module](modules/sparse.md): canonical coordinate/CSR/CSC storage,
-  conversions, structure-preserving evaluation, and serial CSR SpMV.
+  conversions, structure-preserving evaluation, the standardized Sparse BLAS
+  compute surface, and the optional CUDA facet.
 - [Random module](modules/random.md): Philox4x32-10 addressing, raw-bit
   sequence, and exact scalar unit transforms.
 - [Support matrix](support-matrix.md): locally tested and skipped platform,
@@ -34,9 +35,10 @@ Level 3 surface to `dense` and `dense_cuda`.
 - [Performance](performance.md): measurement contract and bounded local
   observations.
 - [BLAS coverage](blas-coverage.md): generated Dense/Sparse BLAS standards
-  inventory, current evidence states, and dense-to-sparse crosswalk. All 30
-  approved Dense Level 3 rows carry portable CPU and real-CUDA implementation
-  and test evidence; rows outside the issue remain planned or not applicable.
+  inventory, current evidence states, and dense-to-sparse crosswalk. All 36
+  applicable Sparse BLAS compute rows carry portable CPU and real-CUDA
+  implementation and test evidence; 43 handle-oriented rows remain explicitly
+  not applicable under the approved typed-owner mapping.
 - [Linalg-to-BLAS migration](migration/linalg-to-blas.md): mechanical path and
   type changes for the approved breaking pre-1.0 rename.
 
@@ -119,10 +121,11 @@ linear-algebra/provider scope in ADRs [0013][adr-0013] and
 
 ## Deferred scope
 
-Sparse BLAS expansion, file parsing, general broadcasting, entropy, further
-distributions, HIP, SYCL, and other providers require later explicit
-approval. Issue 9 adds no module, provider, dependency edge, or compatibility
-facade. Reserved provider names do not make them available.
+Sparse addition/multiplication, BSR/VBR/SELL formats, file parsing, general
+broadcasting, entropy, further distributions, HIP, SYCL, and other providers
+require later explicit approval. Issue 10 adds no module, provider, dependency
+edge, or compatibility facade. Reserved provider names do not make them
+available.
 
 [adr-0002]: development/asc-cpp-architecture/decisions/0002-package-target-naming.md
 [adr-0003]: development/asc-cpp-architecture/decisions/0003-namespace-and-source-policy.md

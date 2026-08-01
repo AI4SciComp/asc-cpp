@@ -2,6 +2,7 @@
 #include <cusparse.h>
 
 #include <algorithm>
+#include <complex>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
@@ -20,7 +21,31 @@ namespace asc::internal_sparse_cuda {
 namespace {
 
 std::size_t ElementBytes(ElementKind kind) {
-  return kind == ElementKind::kFloat ? sizeof(float) : sizeof(double);
+  switch (kind) {
+    case ElementKind::kFloat:
+      return sizeof(float);
+    case ElementKind::kDouble:
+      return sizeof(double);
+    case ElementKind::kComplexFloat:
+      return sizeof(std::complex<float>);
+    case ElementKind::kComplexDouble:
+      return sizeof(std::complex<double>);
+  }
+  return 0;
+}
+
+std::size_t ElementAlignment(ElementKind kind) {
+  switch (kind) {
+    case ElementKind::kFloat:
+      return alignof(float);
+    case ElementKind::kDouble:
+      return alignof(double);
+    case ElementKind::kComplexFloat:
+      return alignof(std::complex<float>);
+    case ElementKind::kComplexDouble:
+      return alignof(std::complex<double>);
+  }
+  return 1;
 }
 
 Result<void*> ValidateContext(SparseCudaContext& context) {
@@ -207,7 +232,7 @@ Result<SparseBytes> ValidateSparseMetadata(const SparseDescriptor& descriptor) {
     return second;
   }
   Status values = ValidateAddress(descriptor.values, bytes.values,
-                                  ElementBytes(descriptor.element_kind),
+                                  ElementAlignment(descriptor.element_kind),
                                   "Sparse CUDA value storage is incomplete",
                                   "Sparse CUDA value storage is misaligned");
   if (!values.ok()) {
@@ -250,14 +275,19 @@ Status ValidateSparseDevice(const SparseDescriptor& descriptor,
 }
 
 Result<std::size_t> VectorBytes(const VectorDescriptor& vector) {
-  if (vector.extent < 0 || vector.stride <= 0) {
+  if (vector.extent < 0 || vector.stride == 0) {
     return Status(ErrorCode::kInvalidArgument,
                   "Sparse CUDA vector metadata is invalid");
   }
   if (vector.extent == 0) {
     return std::size_t{0};
   }
-  auto last = CheckedMultiply<stride_t>(vector.extent - 1, vector.stride);
+  if (vector.stride == std::numeric_limits<stride_t>::min()) {
+    return Status(ErrorCode::kOverflow,
+                  "Sparse CUDA vector stride magnitude overflows");
+  }
+  const stride_t magnitude = vector.stride < 0 ? -vector.stride : vector.stride;
+  auto last = CheckedMultiply<stride_t>(vector.extent - 1, magnitude);
   if (!last.ok()) {
     return last.status();
   }
@@ -286,15 +316,19 @@ Status ValidateVector(const VectorDescriptor& vector, ElementKind element_kind,
   if (!bytes.ok()) {
     return bytes.status();
   }
-  Status address =
-      ValidateAddress(vector.data, *bytes, ElementBytes(vector.element_kind),
-                      "A nonempty sparse CUDA vector cannot be null",
-                      "A sparse CUDA vector is misaligned");
+  Status address = ValidateAddress(
+      vector.reachable_data == nullptr ? vector.data : vector.reachable_data,
+      vector.reachable_size == 0 ? *bytes : vector.reachable_size,
+      ElementAlignment(vector.element_kind),
+      "A nonempty sparse CUDA vector cannot be null",
+      "A sparse CUDA vector is misaligned");
   if (!address.ok()) {
     return address;
   }
-  return ValidateDevicePointer(vector.data, *bytes, device,
-                               "CUDA could not inspect a sparse vector");
+  return ValidateDevicePointer(
+      vector.reachable_data == nullptr ? vector.data : vector.reachable_data,
+      vector.reachable_size == 0 ? *bytes : vector.reachable_size, device,
+      "CUDA could not inspect a sparse vector");
 }
 
 bool Overlap(const void* left, std::size_t left_bytes, const void* right,
@@ -364,7 +398,17 @@ Status ValidateSpmvOperands(const SparseDescriptor& matrix,
 }
 
 cudaDataType DataType(ElementKind kind) {
-  return kind == ElementKind::kFloat ? CUDA_R_32F : CUDA_R_64F;
+  switch (kind) {
+    case ElementKind::kFloat:
+      return CUDA_R_32F;
+    case ElementKind::kDouble:
+      return CUDA_R_64F;
+    case ElementKind::kComplexFloat:
+      return CUDA_C_32F;
+    case ElementKind::kComplexDouble:
+      return CUDA_C_64F;
+  }
+  return CUDA_R_32F;
 }
 
 class SpmvDescriptors {
@@ -490,6 +534,163 @@ Status ValidateEvaluationOperand(const OperandDescriptor& operand,
   return SameStructure(operand.view, destination);
 }
 
+struct IndexedBytes {
+  std::size_t indices = 0;
+  std::size_t values = 0;
+};
+
+Result<IndexedBytes> ValidateIndexedMetadata(
+    const IndexedVectorDescriptor& sparse) {
+  if (sparse.nonzeros < 0 || sparse.dense_extent < 0 ||
+      sparse.nonzeros > sparse.dense_extent ||
+      !sparse.canonical_structure_trusted) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "CUDA Sparse BLAS requires a canonical indexed vector");
+  }
+  auto count = CheckedCast<std::uint64_t>(sparse.nonzeros);
+  if (!count.ok()) {
+    return count.status();
+  }
+  auto index_bytes = CheckedBytes(*count, sizeof(index_t));
+  auto value_bytes = CheckedBytes(*count, ElementBytes(sparse.element_kind));
+  if (!index_bytes.ok()) {
+    return index_bytes.status();
+  }
+  if (!value_bytes.ok()) {
+    return value_bytes.status();
+  }
+  Status indices =
+      ValidateAddress(sparse.indices, *index_bytes, alignof(index_t),
+                      "A nonempty CUDA indexed vector requires indices",
+                      "CUDA indexed-vector indices are misaligned");
+  if (!indices.ok()) {
+    return indices;
+  }
+  Status values = ValidateAddress(
+      sparse.values, *value_bytes, ElementAlignment(sparse.element_kind),
+      "A nonempty CUDA indexed vector requires values",
+      "CUDA indexed-vector values are misaligned");
+  if (!values.ok()) {
+    return values;
+  }
+  if (Overlap(sparse.indices, *index_bytes, sparse.values, *value_bytes)) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "CUDA indexed-vector indices and values overlap");
+  }
+  return IndexedBytes{*index_bytes, *value_bytes};
+}
+
+Result<IndexedBytes> ValidateIndexedDevice(
+    const IndexedVectorDescriptor& sparse, bool writable, std::int32_t device) {
+  if (sparse.memory_space != MemorySpace::kDevice ||
+      sparse.writable != writable) {
+    return Status(ErrorCode::kMemoryAccess,
+                  "CUDA indexed-vector memory or mutability is invalid");
+  }
+  auto bytes = ValidateIndexedMetadata(sparse);
+  if (!bytes.ok()) {
+    return bytes.status();
+  }
+  Status indices =
+      ValidateDevicePointer(sparse.indices, bytes->indices, device,
+                            "CUDA could not inspect indexed-vector indices");
+  if (!indices.ok()) {
+    return indices;
+  }
+  Status values =
+      ValidateDevicePointer(sparse.values, bytes->values, device,
+                            "CUDA could not inspect indexed-vector values");
+  if (!values.ok()) {
+    return values;
+  }
+  return *bytes;
+}
+
+Result<std::size_t> ValidateMatrixDevice(const MatrixDescriptor& matrix,
+                                         ElementKind kind, bool writable,
+                                         std::int32_t device) {
+  if (matrix.rows < 0 || matrix.columns < 0 || matrix.element_kind != kind ||
+      matrix.writable != writable ||
+      matrix.memory_space != MemorySpace::kDevice ||
+      (matrix.layout != SparseBlasLayout::kColumnMajor &&
+       matrix.layout != SparseBlasLayout::kRowMajor)) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "A CUDA Sparse BLAS dense-matrix descriptor is invalid");
+  }
+  const extent_t contiguous = matrix.layout == SparseBlasLayout::kColumnMajor
+                                  ? matrix.rows
+                                  : matrix.columns;
+  const bool vector_like =
+      matrix.layout == SparseBlasLayout::kRowMajor && matrix.columns == 1;
+  if ((!vector_like &&
+       matrix.leading_dimension < std::max<stride_t>(1, contiguous)) ||
+      (vector_like && matrix.leading_dimension == 0)) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "A CUDA Sparse BLAS leading dimension is too small");
+  }
+  stride_t span = 0;
+  if (matrix.rows != 0 && matrix.columns != 0) {
+    const extent_t major = matrix.layout == SparseBlasLayout::kColumnMajor
+                               ? matrix.columns
+                               : matrix.rows;
+    auto magnitude =
+        matrix.leading_dimension < 0
+            ? CheckedMultiply<stride_t>(matrix.leading_dimension, stride_t{-1})
+            : Result<stride_t>(matrix.leading_dimension);
+    if (!magnitude.ok()) {
+      return magnitude.status();
+    }
+    auto leading = CheckedMultiply<stride_t>(major - 1, *magnitude);
+    if (!leading.ok()) {
+      return leading.status();
+    }
+    auto total = CheckedAdd<stride_t>(*leading, contiguous);
+    if (!total.ok()) {
+      return total.status();
+    }
+    span = *total;
+  }
+  auto count = CheckedCast<std::uint64_t>(span);
+  if (!count.ok()) {
+    return count.status();
+  }
+  auto bytes = CheckedBytes(*count, ElementBytes(kind));
+  if (!bytes.ok()) {
+    return bytes.status();
+  }
+  const void* reachable =
+      matrix.reachable_data == nullptr ? matrix.data : matrix.reachable_data;
+  const std::size_t reachable_size =
+      matrix.reachable_size == 0 ? *bytes : matrix.reachable_size;
+  Status address =
+      ValidateAddress(reachable, reachable_size, ElementAlignment(kind),
+                      "A nonempty CUDA Sparse BLAS matrix cannot be null",
+                      "A CUDA Sparse BLAS matrix is misaligned");
+  if (!address.ok()) {
+    return address;
+  }
+  Status pointer = ValidateDevicePointer(
+      reachable, reachable_size, device,
+      "CUDA could not inspect a Sparse BLAS dense matrix");
+  if (!pointer.ok()) {
+    return pointer;
+  }
+  return reachable_size;
+}
+
+const void* ReachableData(const VectorDescriptor& vector) {
+  return vector.reachable_data == nullptr ? vector.data : vector.reachable_data;
+}
+
+std::size_t ReachableSize(const VectorDescriptor& vector,
+                          std::size_t calculated) {
+  return vector.reachable_size == 0 ? calculated : vector.reachable_size;
+}
+
+const void* ReachableData(const MatrixDescriptor& matrix) {
+  return matrix.reachable_data == nullptr ? matrix.data : matrix.reachable_data;
+}
+
 }  // namespace
 
 Result<CloneBuffers> CloneCsrErased(SparseCudaContext& context,
@@ -523,7 +724,7 @@ Result<CloneBuffers> CloneCsrErased(SparseCudaContext& context,
     return inner_indices.status();
   }
   auto values = Buffer::Allocate(resource, source_bytes->values,
-                                 ElementBytes(source.element_kind));
+                                 ElementAlignment(source.element_kind));
   if (!values.ok()) {
     return values.status();
   }
@@ -596,6 +797,88 @@ Result<CloneBuffers> CloneCsrErased(SparseCudaContext& context,
                       .inner_indices = std::move(*inner_indices),
                       .values = std::move(*values),
                       .completion = std::move(completion)};
+}
+
+Result<IndexedCloneBuffers> CloneIndexedErased(SparseCudaContext& context,
+                                               IndexedVectorDescriptor source,
+                                               MemoryResource& resource) {
+  auto stream = ValidateContext(context);
+  if (!stream.ok()) {
+    return stream.status();
+  }
+  if (source.memory_space != MemorySpace::kHost) {
+    return Status(ErrorCode::kMemoryAccess,
+                  "CudaCloneIndexedVector requires a canonical host indexed "
+                  "vector");
+  }
+  auto source_bytes = ValidateIndexedMetadata(source);
+  if (!source_bytes.ok()) {
+    return source_bytes.status();
+  }
+  if (resource.space() != MemorySpace::kDevice) {
+    return Status(ErrorCode::kMemoryAccess,
+                  "CudaCloneIndexedVector requires device memory");
+  }
+  auto indices =
+      Buffer::Allocate(resource, source_bytes->indices, alignof(index_t));
+  if (!indices.ok()) {
+    return indices.status();
+  }
+  auto values = Buffer::Allocate(resource, source_bytes->values,
+                                 ElementAlignment(source.element_kind));
+  if (!values.ok()) {
+    return values.status();
+  }
+  auto guard = internal_core_cuda::DeviceGuard::Create(
+      context.execution_context().device().ordinal);
+  if (!guard.ok()) {
+    return guard.status();
+  }
+  bool enqueued = false;
+  const auto enqueue = [&](void* destination, const void* source_pointer,
+                           std::size_t bytes) -> Status {
+    if (bytes == 0) {
+      return Status::Ok();
+    }
+    const cudaError_t error = cudaMemcpyAsync(
+        destination, source_pointer, bytes, cudaMemcpyHostToDevice,
+        static_cast<cudaStream_t>(*stream));
+    if (error != cudaSuccess) {
+      if (enqueued) {
+        static_cast<void>(
+            cudaStreamSynchronize(static_cast<cudaStream_t>(*stream)));
+      }
+      return internal_core_cuda::CudaStatus(
+          error, ErrorCode::kMemoryTransfer,
+          "CUDA could not enqueue an indexed-vector clone copy");
+    }
+    enqueued = true;
+    return Status::Ok();
+  };
+  Status index_copy =
+      enqueue(indices->data(), source.indices, source_bytes->indices);
+  if (!index_copy.ok()) {
+    return index_copy;
+  }
+  Status value_copy =
+      enqueue(values->data(), source.values, source_bytes->values);
+  if (!value_copy.ok()) {
+    return value_copy;
+  }
+  CompletionEvent completion =
+      internal_core_execution::Access::MakeCompletedEvent();
+  if (enqueued) {
+    auto recorded = RecordCudaEvent(context.execution_context());
+    if (!recorded.ok()) {
+      static_cast<void>(
+          cudaStreamSynchronize(static_cast<cudaStream_t>(*stream)));
+      return recorded.status();
+    }
+    completion = std::move(*recorded);
+  }
+  return IndexedCloneBuffers{.indices = std::move(*indices),
+                             .values = std::move(*values),
+                             .completion = std::move(completion)};
 }
 
 Result<std::size_t> CsrSpmvWorkspaceSizeErased(SparseCudaContext& context,
@@ -824,6 +1107,336 @@ Result<CompletionEvent> EvaluateErased(SparseCudaContext& context,
   }
   Status launch =
       LaunchSparsePointwise(*stream, operation, left, right, destination);
+  if (!launch.ok()) {
+    return launch;
+  }
+  auto completion = RecordCudaEvent(context.execution_context());
+  if (!completion.ok()) {
+    static_cast<void>(
+        cudaStreamSynchronize(static_cast<cudaStream_t>(*stream)));
+    return completion.status();
+  }
+  return completion;
+}
+
+Result<CompletionEvent> StandardLevel1Erased(SparseCudaContext& context,
+                                             StandardOperation operation,
+                                             SparseBlasConjugation conjugation,
+                                             ScalarValue alpha,
+                                             IndexedVectorDescriptor sparse,
+                                             VectorDescriptor dense,
+                                             VectorDescriptor result) {
+  Status enum_status =
+      internal_sparse_standard_blas::ValidateConjugation(conjugation);
+  if (!enum_status.ok()) {
+    return enum_status;
+  }
+  auto stream = ValidateContext(context);
+  if (!stream.ok()) {
+    return stream.status();
+  }
+  auto guard = internal_core_cuda::DeviceGuard::Create(
+      context.execution_context().device().ordinal);
+  if (!guard.ok()) {
+    return guard.status();
+  }
+  const std::int32_t device = context.execution_context().device().ordinal;
+  const bool sparse_writable = operation == StandardOperation::kGather ||
+                               operation == StandardOperation::kGatherZero;
+  auto sparse_bytes = ValidateIndexedDevice(sparse, sparse_writable, device);
+  if (!sparse_bytes.ok()) {
+    return sparse_bytes.status();
+  }
+  const bool dense_writable = operation == StandardOperation::kAxpy ||
+                              operation == StandardOperation::kGatherZero ||
+                              operation == StandardOperation::kScatter;
+  Status dense_status =
+      ValidateVector(dense, sparse.element_kind, dense_writable, device);
+  if (!dense_status.ok()) {
+    return dense_status;
+  }
+  if (dense.extent != sparse.dense_extent) {
+    return Status(ErrorCode::kShape,
+                  "CUDA Sparse BLAS level-one vector extents do not match");
+  }
+  auto dense_bytes = VectorBytes(dense);
+  if (!dense_bytes.ok()) {
+    return dense_bytes.status();
+  }
+  const void* dense_data = ReachableData(dense);
+  const std::size_t dense_size = ReachableSize(dense, *dense_bytes);
+  if (operation != StandardOperation::kDot &&
+      (Overlap(sparse.values, sparse_bytes->values, dense_data, dense_size) ||
+       Overlap(sparse.indices, sparse_bytes->indices, dense_data,
+               dense_size))) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "CUDA Sparse BLAS level-one writable operands overlap");
+  }
+  if (operation == StandardOperation::kDot) {
+    Status result_status =
+        ValidateVector(result, sparse.element_kind, true, device);
+    if (!result_status.ok()) {
+      return result_status;
+    }
+    if (result.extent != 1) {
+      return Status(ErrorCode::kShape,
+                    "CUDA sparse dot requires one result element");
+    }
+    auto result_bytes = VectorBytes(result);
+    if (!result_bytes.ok()) {
+      return result_bytes.status();
+    }
+    const void* result_data = ReachableData(result);
+    const std::size_t result_size = ReachableSize(result, *result_bytes);
+    if (Overlap(result_data, result_size, dense_data, dense_size) ||
+        Overlap(result_data, result_size, sparse.indices,
+                sparse_bytes->indices) ||
+        Overlap(result_data, result_size, sparse.values,
+                sparse_bytes->values)) {
+      return Status(ErrorCode::kInvalidArgument,
+                    "CUDA sparse dot result overlaps an input");
+    }
+  }
+  Status launch = LaunchStandardLevel1(*stream, operation, conjugation, alpha,
+                                       sparse, dense, result);
+  if (!launch.ok()) {
+    return launch;
+  }
+  auto completion = RecordCudaEvent(context.execution_context());
+  if (!completion.ok()) {
+    static_cast<void>(
+        cudaStreamSynchronize(static_cast<cudaStream_t>(*stream)));
+    return completion.status();
+  }
+  return completion;
+}
+
+Result<CompletionEvent> StandardSpmvErased(SparseCudaContext& context,
+                                           SparseBlasTranspose transpose,
+                                           ScalarValue alpha,
+                                           SparseDescriptor matrix,
+                                           VectorDescriptor input,
+                                           VectorDescriptor output) {
+  Status enum_status =
+      internal_sparse_standard_blas::ValidateTranspose(transpose);
+  if (!enum_status.ok()) {
+    return enum_status;
+  }
+  auto stream = ValidateContext(context);
+  if (!stream.ok()) {
+    return stream.status();
+  }
+  auto guard = internal_core_cuda::DeviceGuard::Create(
+      context.execution_context().device().ordinal);
+  if (!guard.ok()) {
+    return guard.status();
+  }
+  const std::int32_t device = context.execution_context().device().ordinal;
+  if (matrix.format != FormatKind::kCsr) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "CUDA standardized SpMV requires explicit CSR storage");
+  }
+  Status matrix_status = ValidateSparseDevice(matrix, device);
+  if (!matrix_status.ok()) {
+    return matrix_status;
+  }
+  Status input_status =
+      ValidateVector(input, matrix.element_kind, false, device);
+  if (!input_status.ok()) {
+    return input_status;
+  }
+  Status output_status =
+      ValidateVector(output, matrix.element_kind, true, device);
+  if (!output_status.ok()) {
+    return output_status;
+  }
+  const extent_t input_extent = transpose == SparseBlasTranspose::kNone
+                                    ? matrix.extents[1]
+                                    : matrix.extents[0];
+  const extent_t output_extent = transpose == SparseBlasTranspose::kNone
+                                     ? matrix.extents[0]
+                                     : matrix.extents[1];
+  if (input.extent != input_extent || output.extent != output_extent) {
+    return Status(ErrorCode::kShape,
+                  "CUDA standardized SpMV vector extents do not match");
+  }
+  auto matrix_bytes = ValidateSparseMetadata(matrix);
+  auto input_bytes = VectorBytes(input);
+  auto output_bytes = VectorBytes(output);
+  if (!matrix_bytes.ok()) {
+    return matrix_bytes.status();
+  }
+  if (!input_bytes.ok()) {
+    return input_bytes.status();
+  }
+  if (!output_bytes.ok()) {
+    return output_bytes.status();
+  }
+  const void* output_data = ReachableData(output);
+  const std::size_t output_size = ReachableSize(output, *output_bytes);
+  if (Overlap(ReachableData(input), ReachableSize(input, *input_bytes),
+              output_data, output_size) ||
+      Overlap(matrix.structure_first, matrix_bytes->first, output_data,
+              output_size) ||
+      Overlap(matrix.structure_second, matrix_bytes->second, output_data,
+              output_size) ||
+      Overlap(matrix.values, matrix_bytes->values, output_data, output_size)) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "CUDA standardized SpMV output overlaps an input");
+  }
+  Status launch =
+      LaunchStandardSpmv(*stream, transpose, alpha, matrix, input, output);
+  if (!launch.ok()) {
+    return launch;
+  }
+  auto completion = RecordCudaEvent(context.execution_context());
+  if (!completion.ok()) {
+    static_cast<void>(
+        cudaStreamSynchronize(static_cast<cudaStream_t>(*stream)));
+    return completion.status();
+  }
+  return completion;
+}
+
+Result<CompletionEvent> StandardSpmmErased(SparseCudaContext& context,
+                                           SparseBlasTranspose transpose,
+                                           ScalarValue alpha,
+                                           SparseDescriptor matrix,
+                                           MatrixDescriptor input,
+                                           MatrixDescriptor output) {
+  Status enum_status =
+      internal_sparse_standard_blas::ValidateTranspose(transpose);
+  if (!enum_status.ok()) {
+    return enum_status;
+  }
+  auto stream = ValidateContext(context);
+  if (!stream.ok()) {
+    return stream.status();
+  }
+  auto guard = internal_core_cuda::DeviceGuard::Create(
+      context.execution_context().device().ordinal);
+  if (!guard.ok()) {
+    return guard.status();
+  }
+  const std::int32_t device = context.execution_context().device().ordinal;
+  if (matrix.format != FormatKind::kCsr) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "CUDA standardized SpMM requires explicit CSR storage");
+  }
+  Status matrix_status = ValidateSparseDevice(matrix, device);
+  if (!matrix_status.ok()) {
+    return matrix_status;
+  }
+  auto input_bytes =
+      ValidateMatrixDevice(input, matrix.element_kind, false, device);
+  auto output_bytes =
+      ValidateMatrixDevice(output, matrix.element_kind, true, device);
+  if (!input_bytes.ok()) {
+    return input_bytes.status();
+  }
+  if (!output_bytes.ok()) {
+    return output_bytes.status();
+  }
+  const extent_t inner = transpose == SparseBlasTranspose::kNone
+                             ? matrix.extents[1]
+                             : matrix.extents[0];
+  const extent_t rows = transpose == SparseBlasTranspose::kNone
+                            ? matrix.extents[0]
+                            : matrix.extents[1];
+  if (input.rows != inner || output.rows != rows ||
+      input.columns != output.columns) {
+    return Status(ErrorCode::kShape,
+                  "CUDA standardized SpMM matrix extents do not match");
+  }
+  auto sparse_bytes = ValidateSparseMetadata(matrix);
+  if (!sparse_bytes.ok()) {
+    return sparse_bytes.status();
+  }
+  const void* output_data = ReachableData(output);
+  if (Overlap(ReachableData(input), *input_bytes, output_data, *output_bytes) ||
+      Overlap(matrix.structure_first, sparse_bytes->first, output_data,
+              *output_bytes) ||
+      Overlap(matrix.structure_second, sparse_bytes->second, output_data,
+              *output_bytes) ||
+      Overlap(matrix.values, sparse_bytes->values, output_data,
+              *output_bytes)) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "CUDA standardized SpMM output overlaps an input");
+  }
+  Status launch =
+      LaunchStandardSpmm(*stream, transpose, alpha, matrix, input, output);
+  if (!launch.ok()) {
+    return launch;
+  }
+  auto completion = RecordCudaEvent(context.execution_context());
+  if (!completion.ok()) {
+    static_cast<void>(
+        cudaStreamSynchronize(static_cast<cudaStream_t>(*stream)));
+    return completion.status();
+  }
+  return completion;
+}
+
+Result<CompletionEvent> StandardTriangularSolveErased(
+    SparseCudaContext& context, SparseBlasTranspose transpose,
+    ScalarValue alpha, SparseDescriptor matrix, SparseBlasTriangle triangle,
+    SparseBlasDiagonal diagonal, MatrixDescriptor right_hand_sides) {
+  Status enum_status =
+      internal_sparse_standard_blas::ValidateTranspose(transpose);
+  if (!enum_status.ok()) {
+    return enum_status;
+  }
+  enum_status = internal_sparse_standard_blas::ValidateTriangle(triangle);
+  if (!enum_status.ok()) {
+    return enum_status;
+  }
+  enum_status = internal_sparse_standard_blas::ValidateDiagonal(diagonal);
+  if (!enum_status.ok()) {
+    return enum_status;
+  }
+  auto stream = ValidateContext(context);
+  if (!stream.ok()) {
+    return stream.status();
+  }
+  auto guard = internal_core_cuda::DeviceGuard::Create(
+      context.execution_context().device().ordinal);
+  if (!guard.ok()) {
+    return guard.status();
+  }
+  const std::int32_t device = context.execution_context().device().ordinal;
+  if (matrix.format != FormatKind::kCsr ||
+      matrix.extents[0] != matrix.extents[1]) {
+    return Status(ErrorCode::kShape,
+                  "CUDA triangular solve requires square CSR storage");
+  }
+  Status matrix_status = ValidateSparseDevice(matrix, device);
+  if (!matrix_status.ok()) {
+    return matrix_status;
+  }
+  auto rhs_bytes =
+      ValidateMatrixDevice(right_hand_sides, matrix.element_kind, true, device);
+  if (!rhs_bytes.ok()) {
+    return rhs_bytes.status();
+  }
+  if (right_hand_sides.rows != matrix.extents[0]) {
+    return Status(ErrorCode::kShape,
+                  "CUDA triangular right-hand-side extent does not match");
+  }
+  auto sparse_bytes = ValidateSparseMetadata(matrix);
+  if (!sparse_bytes.ok()) {
+    return sparse_bytes.status();
+  }
+  const void* rhs_data = ReachableData(right_hand_sides);
+  if (Overlap(matrix.structure_first, sparse_bytes->first, rhs_data,
+              *rhs_bytes) ||
+      Overlap(matrix.structure_second, sparse_bytes->second, rhs_data,
+              *rhs_bytes) ||
+      Overlap(matrix.values, sparse_bytes->values, rhs_data, *rhs_bytes)) {
+    return Status(ErrorCode::kInvalidArgument,
+                  "CUDA triangular right-hand sides overlap the matrix");
+  }
+  Status launch = LaunchStandardTriangularSolve(
+      *stream, transpose, alpha, matrix, triangle, diagonal, right_hand_sides);
   if (!launch.ok()) {
     return launch;
   }

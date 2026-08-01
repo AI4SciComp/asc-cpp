@@ -61,7 +61,8 @@ set_tests_properties(
   asc_cpp.architecture.public_file_policy
   asc_cpp.architecture.blas_coverage
   asc_cpp.architecture.blas_coverage_failures
-  PROPERTIES LABELS "architecture;milestone-7;milestone-8;milestone-9"
+  PROPERTIES LABELS
+    "architecture;milestone-7;milestone-8;milestone-9;milestone-10"
 )
 
 unset(_blas_coverage_manifest)

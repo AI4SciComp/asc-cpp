@@ -1,10 +1,10 @@
 # asc-cpp
 
 `asc-cpp` is being rebuilt as the C++20 numerical foundation for
-AI4SciComp. The current checkout is the unreleased **Dense BLAS Level 3
-(Issue 9) Feature Gate B** candidate. It adds the approved classic Level 3
-surface to the Milestone 8 baseline without adding a module, provider, or
-dependency edge.
+AI4SciComp. The current checkout is the unreleased **Sparse BLAS (Issue 10)
+Feature Gate B** candidate. It adds the approved 36 applicable S/D/C/Z Sparse
+BLAS compute rows to the Milestone 8 baseline without adding a module,
+provider, or dependency edge.
 
 ## Available components
 
@@ -38,7 +38,8 @@ The provider-free surface uses only C++20 standard-library facilities:
   serial CPU reference path.
 - Sparse provides explicit coordinate construction/finalization, canonical
   CSR/CSC ownership and views, named conversions, structure-preserving
-  evaluation, and allocation-free serial CSR SpMV.
+  evaluation, and all 36 applicable S/D/C/Z Sparse BLAS compute rows on the
+  allocation-free serial reference path.
 - Random provides the pure Philox4x32-10 raw-bit engine and exact scalar
   `Uniform01<float>` and `Uniform01<double>` transforms.
 - Random Dense fills caller-provided Dense views in logical coordinate order.
@@ -48,16 +49,17 @@ The provider-free surface uses only C++20 standard-library facilities:
   and completion events without exposing CUDA SDK types in public signatures.
 - Dense CUDA supplies bounded pointwise evaluation, complete classic
   real/complex BLAS Levels 1, 2, and 3 for caller-owned device storage.
-- Sparse CUDA supplies explicit canonical CSR staging, deterministic
-  unit-stride CSR SpMV, positive-nonunit-stride CSR SpMV, and bounded
+- Sparse CUDA supplies explicit canonical indexed-vector/CSR/triangular
+  staging, all 36 applicable asynchronous S/D/C/Z Sparse BLAS compute rows,
+  retained deterministic compatibility SpMV, and bounded
   structure-preserving evaluation.
 - Random CUDA supplies the exact provider-free Philox word sequence on a CUDA
   device. Its Dense and Sparse facets preserve the Milestone 5 logical order,
   canonical structure, and explicit address contracts.
 
-Sparse BLAS expansion, file parsing, general broadcasting, entropy,
-additional distributions, HIP, SYCL, and later-roadmap providers are not
-implemented.
+Sparse addition/multiplication, BSR/VBR/SELL, file parsing, general
+broadcasting, entropy, additional distributions, HIP, SYCL, and later-roadmap
+providers are not implemented.
 
 ## Consuming a component
 
@@ -98,27 +100,27 @@ loading Sparse. `ASC::cpp` remains provider-free.
 Use an out-of-source build and supply the released ASCCMake package:
 
 ```sh
-cmake -S . -B build/issue-9-debug \
+cmake -S . -B build/issue-10-debug \
   -DCMAKE_BUILD_TYPE=Debug \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-9-debug --parallel
-ctest --test-dir build/issue-9-debug --output-on-failure
+cmake --build build/issue-10-debug --parallel
+ctest --test-dir build/issue-10-debug --output-on-failure
 ```
 
 Enable the bounded CUDA provider facets explicitly:
 
 ```sh
-cmake -S . -B build/issue-9-cuda \
+cmake -S . -B build/issue-10-cuda \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASC_CPP_ENABLE_CUDA=ON \
   -DCMAKE_CUDA_ARCHITECTURES=86 \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-9-cuda --parallel
-ctest --test-dir build/issue-9-cuda --output-on-failure
+cmake --build build/issue-10-cuda --parallel
+ctest --test-dir build/issue-10-cuda --output-on-failure
 ```
 
 `BUILD_SHARED_LIBS` selects shared or static Core, Utilities, Dense, Sparse,
@@ -153,7 +155,9 @@ The Random storage facets are clean-room implementations of the approved
 Milestone 5 contract.
 The Core/Dense CUDA facets are clean-room implementations of the approved
 Milestone 6 contract. The Sparse/Random CUDA facets are clean-room
-implementations of the approved Milestone 7 contract.
+implementations of the approved Milestone 7 contract. The complete Sparse
+BLAS compute surface is a clean-room implementation of the approved Issue 10
+contract and frozen primary specifications.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before making changes. Security
 reporting guidance is in [SECURITY.md](SECURITY.md). The project is licensed

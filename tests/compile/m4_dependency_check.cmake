@@ -18,6 +18,7 @@ set(_expected_sparse_headers
 )
 set(_expected_sparse_sources
   src/sparse/reference_blas.cc
+  src/sparse/standard_blas.cc
 )
 
 set(_observed_sparse_headers)
@@ -63,7 +64,7 @@ if(NOT _observed_sparse_headers STREQUAL _expected_sparse_headers)
 endif()
 if(NOT _observed_sparse_sources STREQUAL _expected_sparse_sources)
   message(FATAL_ERROR
-    "Milestone 4 Sparse source inventory differs from the contract.\n"
+    "Approved Sparse source inventory differs from the contract.\n"
     "Expected: ${_expected_sparse_sources}\n"
     "Observed: ${_observed_sparse_sources}"
   )

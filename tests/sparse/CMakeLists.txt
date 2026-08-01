@@ -33,6 +33,7 @@ endforeach()
 foreach(_source IN ITEMS
     evaluate_test.cc
     blas_test.cc
+    standard_blas_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_sparse_${_name}")
@@ -44,6 +45,11 @@ foreach(_source IN ITEMS
     LABELS "sparse;milestone-4;runtime"
   )
 endforeach()
+
+set_property(
+  TEST asc_cpp.sparse.standard_blas_test
+  APPEND PROPERTY LABELS milestone-10
+)
 
 add_executable(
   asc_sparse_multi_tu
@@ -74,6 +80,7 @@ foreach(_negative_source IN ITEMS
     m4_negative_wrong_rank_spmv.cc
     m4_negative_invalid_compressed_format.cc
     m4_negative_same_format_conversion.cc
+    m10_negative_unsupported_sparse_blas_scalar.cc
 )
   get_filename_component(_negative_name "${_negative_source}" NAME_WE)
   try_compile(
@@ -109,6 +116,10 @@ asc_register_test(
 set_tests_properties(
   asc_cpp.sparse.benchmark
   PROPERTIES TIMEOUT 60
+)
+set_property(
+  TEST asc_cpp.sparse.benchmark
+  APPEND PROPERTY LABELS milestone-10
 )
 
 unset(_name)
