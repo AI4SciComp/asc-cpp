@@ -1,6 +1,6 @@
 # Downstream integration
 
-Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
 
 Date: 2026-08-01
 
@@ -8,6 +8,10 @@ Downstreams should consume the installed or explicitly selected build-tree
 CMake package, request the smallest component set, and link only imported
 targets. ASCCpp does not support copying headers/libraries into an application
 or editing generated target files.
+
+Issue 12 changes no downstream surface. The stateful engines, QMC algorithms,
+and advanced storage adapters planned for Issues 13–15 cannot be requested or
+consumed until their individual implementation gates are complete.
 
 ## Choose the owning component
 

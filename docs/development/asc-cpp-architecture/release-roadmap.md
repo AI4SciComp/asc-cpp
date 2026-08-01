@@ -1,7 +1,7 @@
 # Milestone and release roadmap
 
 Status: Approved architecture; Milestone 8 reached local Publication
-Checkpoint B
+Checkpoint B; Issue 12 Random design is at local Feature Gate B
 
 ## Version policy
 
@@ -36,6 +36,11 @@ performance observations, documentation, and an isolated asc-xde-shaped
 downstream trial, and reached its local Publication Checkpoint B on
 2026-07-28. This is not a release. A hosted GPU runner, multi-device hardware
 evidence, publication approval, and 1.0 readiness remain outstanding.
+
+Issue 12 freezes the post-Milestone-8 Random inventory, provenance routes, and
+child boundaries without changing the `0.9.0` product or release readiness.
+Issues 13–15 must independently implement and verify their approved CPU scope;
+Issue 16 remains the completion audit. None is implied by this design gate.
 
 ## Provider sequencing
 

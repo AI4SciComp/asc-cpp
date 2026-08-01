@@ -1,12 +1,16 @@
 # ASCCpp package capabilities
 
-Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
 
 Date: 2026-08-01
 
 An ASCCpp CMake component is a capability request. It imports the named target
 and its exact transitive `ASC::` closure. It does not enable a provider, add an
 operation, or make every package target available.
+
+Issue 12 is architecture-only. It adds no component, target, dependency,
+installed file, or package variable; planned Random work must stay within the
+existing `random`, `random_dense`, and `random_sparse` closures.
 
 ## Minimal consumption
 

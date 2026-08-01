@@ -1,6 +1,6 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
 
 Date: 2026-08-01
 
@@ -237,6 +237,14 @@ The Random contract is narrower and exact:
 A future incompatible sequence requires a separately versioned algorithm or
 an approved breaking version. Native object layouts are not serialized random
 state.
+
+Issue 12 preserves every existing Random sequence and spelling. Its approved
+future stateful engines carry explicit algorithm/version state; distribution
+transforms, sampler indexing/consumption, storage mappings, and provider parity
+are separate compatibility dimensions. The milestone approves no byte-state
+serialization and no CPU/GPU bit-identity claim for new transcendental or QMC
+work. Planned Issue 13–15 APIs remain unavailable until their own gates are
+implemented and verified.
 
 ## Provider and downstream upgrade policy
 

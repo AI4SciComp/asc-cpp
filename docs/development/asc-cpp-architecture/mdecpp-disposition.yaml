@@ -418,7 +418,7 @@ records:
     behavior: "Engine ownership, seed/reset, uniform and normal scalar generation."
     destination_module: "random"
     destination_owner: "asc-cpp/random"
-    disposition: "redesign"
+    disposition: "approved-design"
     reuse_mode: "behavioral-reimplementation"
     rationale: >-
       Base random can own explicit deterministic state, but MdeCpp's default
@@ -429,10 +429,12 @@ records:
     tests_to_preserve:
       - "same explicit state gives the same sequence"
       - "min/max and range behavior"
-      - "reset and state serialization"
-    blockers:
-      - "Engine/version, entropy, serialization, and cross-platform reproducibility policy required."
-    notes: "Nondeterministic seed acquisition must be a separate explicit facility."
+      - "reset and exact-width state export/import"
+    blockers: []
+    notes: >-
+      Issue 12 freezes explicit nondeterministic acquisition, exact-width
+      versioned state, and no byte serialization for 0.9.x. TimeSeed is
+      rejected.
 
   - id: "MDE-017"
     source: "random/generator.h - SplitMix64, PCG32, xoroshiro64*, xoroshiro128+"
@@ -440,24 +442,28 @@ records:
     behavior: "Small-state pseudorandom engine transition and output functions."
     destination_module: "random"
     destination_owner: "asc-cpp/random"
-    disposition: "defer"
-    reuse_mode: "authoritative-upstream-or-clean-room-only"
+    disposition: "approved-design"
+    reuse_mode: "clean-room-authoritative-specification"
     rationale: >-
       The local file records public-domain/MIT claims for Blackman/Vigna
       algorithms and an Apache-2.0 notice for PCG32, but asc-cpp currently has
       no third-party notice and MdeCpp's local adaptation remains covered by
-      the repository's GPLv3 working assumption.
-    license: "SplitMix/xoroshiro upstream public-domain dedication; PCG32 upstream Apache-2.0; local MdeCpp adaptation GPLv3 working assumption"
-    provenance: "Named upstream authors are present in the file, but no locked upstream revision or complete repository notice inventory is present."
+      the repository's GPLv3 working assumption. Issue 12 pins exact
+      authoritative public-domain and Apache-2.0 artifacts instead.
+    license: "SplitMix/xoroshiro upstream public-domain dedication; PCG32 0.9 upstream Apache-2.0; local MdeCpp adaptation rejected"
+    provenance: >-
+      Issue 12 random-crosswalk.yaml freezes exact upstream URLs and SHA-256
+      identities. Implementation is independently authored from those
+      specifications and never from MdeCpp.
     tests_to_preserve:
       - "authoritative fixed-seed engine vectors"
       - "all-zero-state rejection where applicable"
       - "jump/partition vectors if the approved version supports them"
-    blockers:
-      - "Owner must select exact algorithm versions and authoritative upstream revisions."
-      - "Required attribution and notice file must be approved."
-      - "Do not copy the MdeCpp adaptations."
-    notes: "Algorithm names alone are not approval to inherit MdeCpp code."
+    blockers: []
+    notes: >-
+      SplitMix64 2015, PCG32 XSH-RR set-sequence 0.9, xoroshiro64* 1.0,
+      and xoroshiro128+ 1.0 parameters 24,16,37 are the only approved
+      stateful engine variants.
 
   - id: "MDE-018"
     source: "random/{permutation.h,permutation.cc,halton.h,hammersley.h}"
@@ -465,8 +471,8 @@ records:
     behavior: "Prime generation, digit permutations, Halton and Hammersley low-discrepancy sampling."
     destination_module: "random"
     destination_owner: "asc-cpp/random"
-    disposition: "redesign"
-    reuse_mode: "mathematical-specification"
+    disposition: "approved-design"
+    reuse_mode: "clean-room-mathematical-specification"
     rationale: >-
       Low-discrepancy scalar/index mathematics belongs in base random, but
       MdeCpp uses hidden mutable singleton caches. State and caches must be
@@ -478,9 +484,11 @@ records:
       - "early Halton/Hammersley points from independent formulas"
       - "dimension/index/range validation"
       - "concurrent deterministic use"
-    blockers:
-      - "Select and cite exact mathematical specifications."
-    notes: "Reject singleton cache behavior; do not copy local literal vectors."
+    blockers: []
+    notes: >-
+      Issue 12 approves stateless prime/radical-inverse helpers and explicit
+      caller-owned permutation spans. Singleton cache behavior remains
+      rejected.
 
   - id: "MDE-019"
     source: "random/{sobol.h,sobol.cc,data/sobol.txt,data/sobol.bin,data/convert_sobol_to_binary.py}"
@@ -488,30 +496,23 @@ records:
     behavior: "Sobol sequence generation through polynomial and direction-number data."
     destination_module: "random"
     destination_owner: "asc-cpp/random"
-    disposition: "defer"
-    reuse_mode: "blocked"
+    disposition: "approved-design"
+    reuse_mode: "clean-room-plus-compatible-data"
     rationale: >-
-      sobol.h has distinctive Burkardt-derived comments, control structure,
-      and polynomial data but omits the upstream MIT licensing and author
-      block. The local text and binary direction data have no origin, version,
-      copyright, or license metadata. sobol.cc reads a raw host-endian binary
-      through an absolute configured source-tree path with no version/hash
-      check.
-    license: "Burkardt upstream source is MIT; local MdeCpp files are under a GPLv3 working assumption; direction-data license is unresolved"
+      MdeCpp Sobol source and all three data artifacts remain rejected. Issue
+      12 instead approves an original Joe-Kuo recurrence implementation and
+      the exact new-joe-kuo-6.21201 input under its verified BSD-style grant.
+    license: "MdeCpp artifacts rejected; exact Joe-Kuo data and program BSD-3-Clause-style with retained notice"
     provenance: >-
-      Implementation derivation is strongly indicated from John Burkardt's
-      Sobol C++ source. Direction-data lineage is unproven and may involve
-      Fox, Joe/Kuo, and Steffan Berridge data.
+      Historical derivation is strongly indicated from John Burkardt's Sobol
+      source. The approved replacement is the Kuo/Joe authoritative D6
+      dataset pinned in Issue 12 random-crosswalk.yaml.
     tests_to_preserve:
       - "only independently derived Sobol reference vectors after an exact version is approved"
       - "dimension and index bounds"
       - "sequence reset/index behavior"
-      - "table version, checksum, format, and endianness validation"
-    blockers:
-      - "Do not reuse local source, sobol.txt, sobol.bin, converter, or derived vectors."
-      - "Select an authoritative upstream release and preserve its MIT notice."
-      - "Establish direction-number dataset origin, version, license, and redistribution permission."
-      - "Owner/provenance approval required before implementation."
+      - "input, license, generator, generated, install, and compiled-table identities"
+    blockers: []
     notes: >-
       Pinned hashes: sobol.txt
       16722f0f9978c1d4f5f0cfc67228f5417f217f4fa30bc7666a03e10d52bd3e14;
@@ -519,6 +520,8 @@ records:
       836668fdbb3b72fabc0f0d07febfa06d9b022bed59b51d8eb5e5deed32a4b3cd;
       converter
       f43157752ad613be02b0e5c2271fcd801f0f5695f6f4b85b2d17cf5a5f8ceda2.
+      These identify rejected evidence. The approved replacement input is
+      68eedd2a4e3b659b9695e7aff0f8ac68718bcf620730fc3d3a8c65df2a067441.
 
   - id: "MDE-020"
     source: "random/{sampler.h,pseudo.h,latin.h,normal.h,spherical.h}"
@@ -526,8 +529,8 @@ records:
     behavior: "Dense-output pseudo, Latin, normal, and spherical sampling."
     destination_module: "random"
     destination_owner: "asc-cpp/random_dense facet"
-    disposition: "redesign"
-    reuse_mode: "behavioral-reimplementation"
+    disposition: "approved-design"
+    reuse_mode: "clean-room-behavioral-reimplementation"
     rationale: >-
       These samplers include MdeCpp array and sometimes algebra facilities.
       Allocation, dense views, and dense linalg belong in a separately linked
@@ -539,10 +542,11 @@ records:
       - "same explicit state gives the same logical sample"
       - "normal/spherical geometric invariants"
       - "layout-independent logical fill order"
-    blockers:
-      - "random_dense target and dependency contract required."
-      - "Approved algorithms and deterministic transforms required."
-    notes: "Base random remains core-only."
+    blockers: []
+    notes: >-
+      Issue 12 keeps scalar algorithms in random and all Dense views,
+      factorization, BLAS, and hypersphere output in random_dense. The base
+      remains core-only.
 
   - id: "MDE-021"
     source: "No adequate MdeCpp sparse-random source"
@@ -550,17 +554,21 @@ records:
     behavior: "Sparse pattern and sparse value generation."
     destination_module: "random"
     destination_owner: "asc-cpp/random_sparse facet"
-    disposition: "defer"
-    reuse_mode: "new-specification"
+    disposition: "approved-design"
+    reuse_mode: "original-new-specification"
     rationale: >-
-      The approved architecture reserves an independent sparse integration
-      facet, but MdeCpp does not provide enough behavior or tests to define it.
-    license: "Not applicable until sources/algorithms are selected"
+      MdeCpp does not provide sufficient behavior. Current asc-cpp supplies
+      combined exact-count generation, and Issue 12 separately freezes
+      existing-pattern value fill, structure-only generation, and combined
+      generation.
+    license: "Original asc-cpp design; no MdeCpp implementation route"
     provenance: "No sufficient source evidence in the pinned MdeCpp tree."
     tests_to_preserve: []
-    blockers:
-      - "New pattern, density, duplicate, ordering, determinism, and complexity specification required."
-    notes: "Do not infer random_sparse semantics from dense samplers."
+    blockers: []
+    notes: >-
+      Exact count, canonical order, separate structure/value domains, and
+      explicit zero retention are approved. Density/Bernoulli mode remains
+      excluded.
 
   - id: "MDE-022"
     source: "tests/common/common.h and tests/CMakeLists.txt"

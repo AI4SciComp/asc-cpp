@@ -1,13 +1,20 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
 
 Date: 2026-08-01
 
 ASCCpp performance evidence is correctness-checked observational data, not a
 cross-machine timing guarantee. Serial implementations are reference paths;
-CUDA facets are bounded explicit providers. Issue 11 audits the registered
-correctness guards and makes no optimization or speedup claim.
+CUDA facets are bounded explicit providers. Issue 12 adds no implementation or
+new measurement. It freezes the future Random benchmark contract and uses the
+existing correctness-guarded benchmarks only as regression evidence.
+
+Future Issue 13–15 Random benchmarks must name algorithm/version, explicit
+state, distribution or sampler parameters, shape/layout/sparsity, repetition
+count, allocation/workspace, and a deterministic checksum or invariant. They
+report throughput and memory traffic without a speed pass gate. The new work
+is CPU-only; no planned GPU benchmark or provider claim is approved.
 
 ## Required measurement record
 

@@ -1,6 +1,6 @@
 # ADR 0015: explicit counter random and separate storage generation facets
 
-Status: Proposed at Architecture Checkpoint A
+Status: Accepted; extended by ADR 0020 for Issue 12
 
 ## Context
 
@@ -39,8 +39,10 @@ initially generates an exact number of unique coordinates without replacement,
 in canonical order, with independent structure and value streams. Sparse
 density/Bernoulli mode is deferred.
 
-CPU/GPU identity is claimed only after bit-vector hardware evidence. Sobol is
-blocked pending implementation and direction-data provenance.
+CPU/GPU identity is claimed only after bit-vector hardware evidence. ADR 0020
+selects the independently implemented Joe/Kuo Sobol route and exact compatible
+direction-number input; it does not approve the historical MdeCpp source or
+data.
 
 ## Consequences
 
@@ -53,3 +55,13 @@ Random facets are separately consumable and never create a base storage edge.
 Independently derive vectors; test copy/state/counter overflow, layout/stride/
 partition/thread equivalence, sparse uniqueness/order/stream independence, no
 hidden allocation/transfer, and CPU/GPU bits only where promised.
+
+## Issue 12 extension
+
+[ADR 0020][adr-0020] freezes the complete Random crosswalk, exact stateful-engine
+versions, distribution and QMC semantics, Dense/Sparse adapter ownership,
+reproducible statistical thresholds, provenance identities, and child issue
+boundaries. This ADR remains authoritative for the existing Philox,
+`Uniform01`, logical-fill, and provider contracts.
+
+[adr-0020]: 0020-random-contract.md

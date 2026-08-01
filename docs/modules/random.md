@@ -41,6 +41,19 @@ paper and exact project mapping frozen in the
 Random123 implementation, upstream test-vector corpus, generated table, or
 vendored source is an implementation input.
 
+Issue 12 adds no Random API. It freezes a generated
+[33-row architecture and provenance crosswalk][random-crosswalk] and the
+[Random contract for Issues 13–15][random-contract]. The approved future work
+uses exact stateful-engine versions, a separately licensed Joe/Kuo Sobol input,
+and free-function Dense/Sparse adapters on the existing target graph. New work
+is portable serial CPU only unless a later Gate A explicitly approves a GPU
+implementation. It may not hide allocation, transfer, synchronization,
+provider selection, or fallback.
+
+The examples below intentionally use only currently shipped Philox,
+`Uniform01`, Dense fill, Sparse generation, and CUDA APIs. Planned Issue 13–15
+names are not public declarations and cannot be consumed yet.
+
 Philox4x32-10 identity, lane mapping, stream/subsequence/offset mapping, and
 the scalar transform rules are exact pre-1.0 sequence API first published for
 ASCCpp 0.2.x. Milestone 5 extends that sequence contract with exact dense
@@ -528,9 +541,9 @@ Validation and checked offset advance are transactional: dense failure leaves
 the destination unchanged, and sparse failure publishes no owner. Message text
 is diagnostic rather than a compatibility guarantee.
 
-## Deliberately absent
+## Deliberately absent from the current product
 
-Milestone 7 Random provides no:
+Issue 12 is design-only, so the current Random product still provides no:
 
 - entropy acquisition, seed facility, global or thread-local engine;
 - mutable engine, default engine, pool, or implicit advancing state;
@@ -561,3 +574,5 @@ remains authoritative for provider-free storage generation.
 [provenance]: ../development/asc-cpp-m2-independent-foundations/provenance-record.md
 [m5-contract]: ../development/asc-cpp-m5-random-storage-generation/milestone-contract.md
 [m7-contract]: ../development/asc-cpp-m7-gpu-sparse-random/milestone-contract.md
+[random-contract]: ../development/asc-cpp-architecture/decisions/0020-random-contract.md
+[random-crosswalk]: ../random-crosswalk.md
