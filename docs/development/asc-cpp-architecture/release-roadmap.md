@@ -1,7 +1,7 @@
 # Milestone and release roadmap
 
 Status: Approved architecture; Milestone 8 reached local Publication
-Checkpoint B; Issue 12 Random design is at local Feature Gate B
+Checkpoint B; Issue 13 Random generators are at local Feature Gate B
 
 ## Version policy
 
@@ -38,9 +38,10 @@ downstream trial, and reached its local Publication Checkpoint B on
 evidence, publication approval, and 1.0 readiness remain outstanding.
 
 Issue 12 freezes the post-Milestone-8 Random inventory, provenance routes, and
-child boundaries without changing the `0.9.0` product or release readiness.
-Issues 13–15 must independently implement and verify their approved CPU scope;
-Issue 16 remains the completion audit. None is implied by this design gate.
+child boundaries. Issue 13 implements only its approved CPU seed, engine,
+generator, and scalar-distribution rows without changing targets or providers.
+Issues 14–15 must independently implement and verify their approved CPU scope;
+Issue 16 remains the completion audit. No child milestone implies release.
 
 ## Provider sequencing
 

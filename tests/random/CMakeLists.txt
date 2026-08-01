@@ -15,7 +15,14 @@ function(_asc_random_configure_test target)
   endif()
 endfunction()
 
-foreach(_source IN ITEMS distribution_test.cc engine_test.cc)
+foreach(_source IN ITEMS
+    distribution_test.cc
+    engine_test.cc
+    generator_test.cc
+    seed_test.cc
+    stateful_engine_test.cc
+    statistical_test.cc
+)
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_random_${_name}")
   add_executable("${_target}" "${_source}")
@@ -23,6 +30,22 @@ foreach(_source IN ITEMS distribution_test.cc engine_test.cc)
   asc_register_test(
     NAME "asc_cpp.random.${_name}"
     TARGET "${_target}"
-    LABELS "milestone-2;random;runtime"
+    LABELS "milestone-2;milestone-13;random;runtime"
   )
 endforeach()
+
+add_executable(
+  asc_random_generator_benchmark
+  "${PROJECT_SOURCE_DIR}/benchmarks/random/random_benchmark.cc"
+  "${PROJECT_SOURCE_DIR}/benchmarks/random_storage/allocation_probe.cc"
+)
+target_include_directories(
+  asc_random_generator_benchmark
+  PRIVATE "${PROJECT_SOURCE_DIR}/benchmarks/random_storage"
+)
+_asc_random_configure_test(asc_random_generator_benchmark)
+asc_register_test(
+  NAME asc_cpp.random.generator_benchmark
+  TARGET asc_random_generator_benchmark
+  LABELS "benchmark;milestone-13;performance;random"
+)

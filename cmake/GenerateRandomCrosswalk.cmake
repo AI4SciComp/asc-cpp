@@ -56,10 +56,12 @@ set(_expected_metadata_fields
   allowed_classifications
   expected_source_artifacts
   expected_crosswalk_rows
+  expected_equivalent
   expected_clean_room_required
   expected_incomplete
   expected_permission_relicensing_required
   expected_rejected
+  expected_absent
   source_inventory_sha256
   crosswalk_sha256
   provenance_identity_sha256
@@ -123,12 +125,14 @@ _extract_quoted("destination_license" _destination_license)
 _extract_quoted("allowed_classifications" _allowed_classifications)
 _extract_integer("expected_source_artifacts" _expected_source_artifacts)
 _extract_integer("expected_crosswalk_rows" _expected_crosswalk_rows)
+_extract_integer("expected_equivalent" _expected_equivalent)
 _extract_integer("expected_clean_room_required"
                  _expected_clean_room_required)
 _extract_integer("expected_incomplete" _expected_incomplete)
 _extract_integer("expected_permission_relicensing_required"
                  _expected_permission_relicensing_required)
 _extract_integer("expected_rejected" _expected_rejected)
+_extract_integer("expected_absent" _expected_absent)
 _extract_quoted("source_inventory_sha256" _source_inventory_sha256)
 _extract_quoted("crosswalk_sha256" _expected_crosswalk_sha256)
 _extract_quoted("provenance_identity_sha256"
@@ -151,13 +155,13 @@ foreach(_upstream IN LISTS _upstream_names)
 endforeach()
 
 set(_frozen_contract_status
-  "issue-12-random-architecture-feature-gate-b-candidate"
+  "issue-13-random-generators-feature-gate-b-candidate"
 )
 set(_frozen_source_commit
   "f6294e9079262682ce63ae7ff2d8a643e658bf5d"
 )
 set(_frozen_destination_base_commit
-  "bd73a5bc63524bfec8fae9b4d6446e0fcdf8e851"
+  "47367b9e79fde8cd633e8e91e2eeb41fb751e1ec"
 )
 set(_frozen_allowed_classifications
   "equivalent,incomplete,absent,rejected,clean-room-required,permission-relicensing-required"
@@ -166,10 +170,10 @@ set(_frozen_source_inventory_sha256
   "f47d8ecf5cfbb689fe0643d1bbb8e772138523b68a8055cdb73dc4ae3b1cb6ff"
 )
 set(_frozen_crosswalk_sha256
-  "855b08c06db84b81e090d64e2a5817a54f48ef829978aa385b40e6c47a2e1926"
+  "702880332f603b3b5535668c60631e67ef62239642ddb63ace06dc42706b69f1"
 )
 set(_frozen_provenance_identity_sha256
-  "4ddc61de0313dbea28bdf74c352a64e7b0de25b792b4a88f9ab21af78926d492"
+  "8150f0245c299a98337aef482eaab48d348eb8efafbb34f9f728b519fc80a1a7"
 )
 
 foreach(_frozen IN ITEMS
@@ -184,24 +188,24 @@ foreach(_frozen IN ITEMS
   if(NOT "${${_declared_variable}}" STREQUAL
          "${${_frozen_variable}}")
     message(FATAL_ERROR
-      "Random contract ${_frozen} differs from the frozen Issue 12 value."
+      "Random contract ${_frozen} differs from the approved Issue 13 value."
     )
   endif()
 endforeach()
 if(NOT _expected_crosswalk_sha256 STREQUAL _frozen_crosswalk_sha256)
   message(FATAL_ERROR
-    "Random crosswalk declared identity differs from the frozen Issue 12 "
+    "Random crosswalk declared identity differs from the frozen Issue 13 "
     "value."
   )
 endif()
 if(NOT _expected_provenance_identity_sha256 STREQUAL
        _frozen_provenance_identity_sha256)
   message(FATAL_ERROR
-    "Random provenance metadata identity differs from the frozen Issue 12 "
+    "Random provenance metadata identity differs from the frozen Issue 13 "
     "value."
   )
 endif()
-if(NOT _schema_version EQUAL 1)
+if(NOT _schema_version EQUAL 2)
   message(FATAL_ERROR "Unsupported random crosswalk schema version.")
 endif()
 if(NOT _source_license MATCHES "GPL-3.0"
@@ -432,10 +436,12 @@ if(NOT _row_count EQUAL _expected_crosswalk_rows)
   )
 endif()
 foreach(_count IN ITEMS
+    equivalent
     clean_room_required
     incomplete
     permission_relicensing_required
     rejected
+    absent
 )
   if(NOT _${_count}_count EQUAL _expected_${_count})
     message(FATAL_ERROR
@@ -444,11 +450,6 @@ foreach(_count IN ITEMS
     )
   endif()
 endforeach()
-if(NOT _equivalent_count EQUAL 0 OR NOT _absent_count EQUAL 0)
-  message(FATAL_ERROR
-    "Issue 12 freezes zero equivalent and zero bare-absent rows."
-  )
-endif()
 
 list(REMOVE_DUPLICATES _source_records)
 list(SORT _source_records)
@@ -476,7 +477,7 @@ string(JOIN "\n" _identity ${_identity_rows})
 string(SHA256 _observed_crosswalk_sha256 "${_identity}")
 if(NOT _observed_crosswalk_sha256 STREQUAL _frozen_crosswalk_sha256)
   message(FATAL_ERROR
-    "Random crosswalk identity differs from its frozen Issue 12 identity.\n"
+    "Random crosswalk identity differs from its frozen Issue 13 identity.\n"
     "  expected: ${_frozen_crosswalk_sha256}\n"
     "  observed: ${_observed_crosswalk_sha256}"
   )
@@ -496,10 +497,12 @@ set(_provenance_records
   "allowed_classifications|${_allowed_classifications}"
   "expected_source_artifacts|${_expected_source_artifacts}"
   "expected_crosswalk_rows|${_expected_crosswalk_rows}"
+  "expected_equivalent|${_expected_equivalent}"
   "expected_clean_room_required|${_expected_clean_room_required}"
   "expected_incomplete|${_expected_incomplete}"
   "expected_permission_relicensing_required|${_expected_permission_relicensing_required}"
   "expected_rejected|${_expected_rejected}"
+  "expected_absent|${_expected_absent}"
   "source_inventory_sha256|${_source_inventory_sha256}"
   "crosswalk_sha256|${_expected_crosswalk_sha256}"
 )
@@ -515,7 +518,7 @@ string(SHA256 _observed_provenance_identity_sha256
 if(NOT _observed_provenance_identity_sha256 STREQUAL
        _frozen_provenance_identity_sha256)
   message(FATAL_ERROR
-    "Random provenance metadata identity differs from its frozen Issue 12 "
+    "Random provenance metadata identity differs from its frozen Issue 13 "
     "identity.\n"
     "  expected: ${_frozen_provenance_identity_sha256}\n"
     "  observed: ${_observed_provenance_identity_sha256}"

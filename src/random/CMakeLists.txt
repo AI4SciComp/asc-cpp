@@ -6,6 +6,7 @@ target_sources(
   PRIVATE
     distribution.cc
     engine.cc
+    seed.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -14,6 +15,8 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/random/distribution.h"
       "${PROJECT_SOURCE_DIR}/include/asc/random/engine.h"
       "${PROJECT_SOURCE_DIR}/include/asc/random/export.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/random/generator.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/random/seed.h"
 )
 
 set_target_properties(

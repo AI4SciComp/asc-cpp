@@ -1,13 +1,13 @@
 # MdeCpp provenance and reuse review
 
-Status: Designer B provenance gate; Random decisions resolved by Issue 12
+Status: Designer B provenance gate; Issue 13 engine routes implemented
 
 Reviewed MdeCpp commit: `f6294e9079262682ce63ae7ff2d8a643e658bf5d`
 
 Reviewed asc-cpp baseline: `33b261ea33616a6395c4ad3b20646093103344f7`
 
-Issue 12 Random destination baseline:
-`bd73a5bc63524bfec8fae9b4d6446e0fcdf8e851`
+Issue 13 Random destination baseline:
+`47367b9e79fde8cd633e8e91e2eeb41fb751e1ec`
 
 ## 1. Conclusion
 
@@ -152,10 +152,10 @@ mde library” is not a sufficient asc-cpp provenance record:
   GPLv3;
 - the exact delta from the upstream source has not been recorded.
 
-Recommended path: decide whether these older engine variants are still desired,
-then independently implement from the exact selected primary source and
-publish authoritative fixed-seed vectors, attribution, version, and sequence
-contract.
+Issue 13 completes the recommended path: the selected older variants are
+independently implemented from the exact pinned primary artifacts, with
+separately derived fixed-seed, transition, jump, and long-jump vectors. No
+upstream source file or MdeCpp expression is vendored.
 
 ### 5.3 PCG32
 
@@ -324,7 +324,7 @@ For a direct permissive-upstream adaptation, add:
 | --- | --- | --- |
 | `PROV-01` | Clarify MdeCpp's intended SPDX expression and whether relevant rightsholders offer an Apache-compatible grant | Any direct MdeCpp source/test adaptation |
 | `PROV-02` | Approve clean-room behavioral reimplementation as the default path | All six asc-cpp modules |
-| `PROV-03` | **Resolved by Issue 12:** SplitMix64 2015, PCG32 minimal C 0.9 XSH-RR, xoroshiro64* 1.0, and xoroshiro128+ 1.0 are pinned by URL and SHA-256 | Issue 13 must preserve those identities and independently derive vectors |
+| `PROV-03` | **Implemented by Issue 13:** SplitMix64 2015, PCG32 minimal C 0.9 XSH-RR, xoroshiro64* 1.0, and xoroshiro128+ 1.0 retain the Issue 12 URL/SHA identities and independently derived vectors | No blocker for these four rows; later algorithms retain their own routes |
 | `PROV-04` | **Resolved for Random by Issue 12:** Issue 14 must retain the Joe/Kuo license in source and binary distributions and add `THIRD_PARTY_NOTICES` | Other accepted external source/data still needs a component-specific owner decision |
 | `PROV-05` | **Resolved by Issue 12:** independently implement Joe/Kuo Sobol and use only the pinned BSD-style `new-joe-kuo-6.21201` input; reject all MdeCpp Sobol artifacts | Issue 14 must verify input, license, generator, generated, install, and compiled-table identities |
 | `PROV-06` | Resolve Lebedev dataset lineage in `asc-xde` | Lebedev quadrature |

@@ -148,11 +148,16 @@ See the [Sparse module guide](modules/sparse.md).
 
 Umbrella: `<asc/random.h>`.
 
-- `<asc/random/engine.h>`: fixed-width Philox4x32-10 counter/key blocks,
-  stream/subsequence/word-offset addressing, direct block and positioned-word
-  generation, and checked offset advancement.
-- `<asc/random/distribution.h>`: exact scalar `Uniform01<float>` and
-  `Uniform01<double>` transforms.
+- `<asc/random/engine.h>`: versioned SplitMix64, PCG32, xoroshiro64*, and
+  xoroshiro128+ value engines plus fixed-width Philox4x32-10 counter/key
+  blocks, explicit addressing, and checked offset advancement.
+- `<asc/random/distribution.h>`: unbiased closed uniform integers, half-open
+  uniform `float`/`double`, scalar Box-Muller normal, and exact raw-word
+  `Uniform01` transforms.
+- `<asc/random/generator.h>`: nonvirtual engine/distribution value composition
+  and transparent uniform/normal aliases.
+- `<asc/random/seed.h>`: explicit `Result<uint64_t>` acquisition from one
+  caller-owned full-width `std::random_device`.
 - `<asc/random/dense.h>`: deterministic logical-order uniform filling of
   caller-provided Dense views with explicit address advancement.
 - `<asc/random/sparse.h>`: deterministic exact-count canonical coordinate
@@ -171,9 +176,11 @@ Umbrella: `<asc/random.h>`.
   `<asc/random/providers/sparse_cuda_export.h>`: Random CUDA facet
   shared/static visibility macros.
 
-Base Random owns no storage and includes neither facet header. The facets adapt
-caller-owned Dense and Sparse contracts without introducing entropy,
-mutable/default state, additional distributions, providers, or GPU code.
+Base Random owns no storage and includes neither facet header. Its mutable
+engines are explicit caller-owned values, and its nondeterministic source is
+never invoked implicitly. The facets adapt caller-owned Dense and Sparse
+contracts without introducing a default engine, hidden allocation, provider,
+or new GPU code.
 
 See the [Random module guide](modules/random.md) and
 [frozen provenance record][random-provenance].

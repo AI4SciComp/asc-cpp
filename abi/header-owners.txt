@@ -28,12 +28,14 @@ asc/random/dense.h|asc_random_dense
 asc/random/distribution.h|asc_random
 asc/random/engine.h|asc_random
 asc/random/export.h|asc_random
+asc/random/generator.h|asc_random
 asc/random/providers/cuda.h|asc_random_cuda
 asc/random/providers/cuda_export.h|asc_random_cuda
 asc/random/providers/dense_cuda.h|asc_random_dense_cuda
 asc/random/providers/dense_cuda_export.h|asc_random_dense_cuda
 asc/random/providers/sparse_cuda.h|asc_random_sparse_cuda
 asc/random/providers/sparse_cuda_export.h|asc_random_sparse_cuda
+asc/random/seed.h|asc_random
 asc/random/sparse.h|asc_random_sparse
 asc/sparse.h|asc_sparse
 asc/sparse/blas.h|asc_sparse

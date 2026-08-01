@@ -1,11 +1,10 @@
 # asc-cpp documentation
 
-The repository is at the unreleased **Random architecture and provenance
-(Issue 12) Feature Gate B** candidate. All six modules, both Random storage
+The repository is at the unreleased **Random engines and distributions
+(Issue 13) Feature Gate B** candidate. All six modules, both Random storage
 facets, the provider-free aggregate, and all six approved opt-in CUDA facets
-remain in the same dependency graph. This issue freezes design and provenance
-for Issues 13–15 without adding implementation or expanding the product
-surface.
+remain in the same dependency graph. This issue adds only storage-neutral CPU
+seed, engine, generator, and scalar-distribution APIs to `ASC::random`.
 
 ## Current API documentation
 
@@ -21,8 +20,9 @@ surface.
 - [Sparse module](modules/sparse.md): canonical coordinate/CSR/CSC storage,
   conversions, structure-preserving evaluation, the standardized Sparse BLAS
   compute surface, and the optional CUDA facet.
-- [Random module](modules/random.md): Philox4x32-10 addressing, raw-bit
-  sequence, and exact scalar unit transforms.
+- [Random module](modules/random.md): explicit seed acquisition, versioned
+  stateful engines, generic value composition, uniform and scalar normal
+  distributions, Philox4x32-10 addressing, and storage facets.
 - [Support matrix](support-matrix.md): locally tested and skipped platform,
   compiler, linkage, sanitizer, and provider combinations.
 - [API compatibility](api-compatibility.md): distinct source, ABI, numerical,
@@ -134,9 +134,10 @@ storage-generation guarantees.
 
 Sparse addition/multiplication, BSR/VBR/SELL formats, file parsing, general
 broadcasting, HIP, SYCL, and other providers require later explicit approval.
-Issue 12 approves only the documented future Random CPU work within Issues
-13–15; none of it is implemented or exported by this milestone. Reserved API
-or provider names do not make them available.
+Issue 13 implements only its approved CPU engine/distribution rows. QMC,
+multivariate normal, hypersphere sampling, and new storage adapters remain
+deferred to Issues 14 and 15. Reserved API or provider names do not make those
+features available.
 
 [adr-0002]: development/asc-cpp-architecture/decisions/0002-package-target-naming.md
 [adr-0003]: development/asc-cpp-architecture/decisions/0003-namespace-and-source-policy.md

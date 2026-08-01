@@ -78,6 +78,8 @@ set(_asc_m2_public_headers
   asc/random/distribution.h
   asc/random/engine.h
   asc/random/export.h
+  asc/random/generator.h
+  asc/random/seed.h
   asc/utilities.h
   asc/utilities/command_line.h
   asc/utilities/export.h

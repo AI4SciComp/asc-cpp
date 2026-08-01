@@ -1,20 +1,48 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
 
-Date: 2026-08-01
+Date: 2026-08-02
 
 ASCCpp performance evidence is correctness-checked observational data, not a
 cross-machine timing guarantee. Serial implementations are reference paths;
-CUDA facets are bounded explicit providers. Issue 12 adds no implementation or
-new measurement. It freezes the future Random benchmark contract and uses the
-existing correctness-guarded benchmarks only as regression evidence.
+CUDA facets are bounded explicit providers. Issue 13 adds a threshold-free
+CPU probe for all four versioned engines, uniform integer/real transforms, and
+scalar Box-Muller normal generation. Every row uses fixed seed/state and
+parameters, records repetitions and elapsed time, checks zero successful-path
+allocation, and guards correctness with an independently derived checksum or
+fixed-seed moment invariant.
 
-Future Issue 13–15 Random benchmarks must name algorithm/version, explicit
-state, distribution or sampler parameters, shape/layout/sparsity, repetition
-count, allocation/workspace, and a deterministic checksum or invariant. They
-report throughput and memory traffic without a speed pass gate. The new work
-is CPU-only; no planned GPU benchmark or provider claim is approved.
+Future Issue 14–15 Random benchmarks must likewise name algorithm/version,
+explicit state, distribution or sampler parameters, shape/layout/sparsity,
+repetition count, allocation/workspace, and a deterministic checksum or
+invariant. They report throughput and memory traffic without a speed pass
+gate. Issue 13 work is CPU-only; no new GPU benchmark or provider claim is
+approved.
+
+## Issue 13 local observation
+
+The threshold-free probe was run once on Linux/WSL2 6.18, an Intel
+Core i7-11800H (16 logical CPUs) with 15 GiB RAM, GNU C++ 11.4, CMake 4.1.2,
+Release/static, and ASCCMake 0.1.0. There is no warmup phase; construction and
+correctness checking are outside the timed region. Every row observed zero
+successful-path allocation calls.
+
+| Operation | Repetitions | Elapsed (ns) | Correctness observation |
+| --- | ---: | ---: | --- |
+| SplitMix64 v1 raw engine | 200,000 | 363,542 | checksum `0x31094ac056ef6f0a` |
+| PCG32 v1 raw engine | 200,000 | 294,972 | checksum `0xb74ea408b377181a` |
+| xoroshiro64* v1 raw engine | 200,000 | 699,953 | checksum `0xb47e791cf8607c35` |
+| xoroshiro128+ v1 raw engine | 200,000 | 684,874 | checksum `0x9b8ab4ac4d3e0e4c` |
+| PCG32 uniform integer `[-1000,1000]` | 200,000 | 2,150,740 | checksum `0xc7b222fe03542292` |
+| xoroshiro128+ double uniform real `[0,1)` | 200,000 | 1,147,067 | checksum `0x9eb2f1cfad9f6ca8` |
+| SplitMix64 double standard normal | 100,000 | 3,768,467 | mean `0.00173651`; variance `1.00033` |
+
+These single-process totals are an implementation observation, not a speed
+threshold or cross-machine comparison. The engine and uniform checksums were
+derived independently from the frozen mappings; the normal row uses a
+fixed-seed moment invariant because libm transcendental bits are not a
+cross-ABI promise.
 
 ## Required measurement record
 
@@ -113,6 +141,7 @@ an exact Sparse random count.
 | serial indexed Sparse BLAS Level 1 | `O(Z)`; no workspace |
 | serial CSR/CSC SpMV and SpMM | `O(Z)` and `O(Z * nrhs)` respectively; no workspace |
 | serial sparse triangular solve | allocation-free reference traversal; current general CSR/CSC lookup is `O(order * Z)` per right-hand side |
+| stateful Random engines and fixed-width distributions | `O(1)` work and storage per accepted engine/real/normal value; uniform-integer rejection has expected `O(1)` work and no finite worst-case attempt bound; no allocation |
 | Dense serial random | `O(N * R)`; no computational allocation |
 | Sparse serial random | `O(K * N)` selection plus current `O(K^2 * R)` coordinate finalization; result buffers plus `O(R)` local storage |
 | Dense CUDA pointwise/random | current logical coordinate work `O(N * R)`; no ASCCpp computational workspace |

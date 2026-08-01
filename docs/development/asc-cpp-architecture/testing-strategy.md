@@ -1,6 +1,6 @@
 # Verification strategy
 
-Status: Product evidence through Issue 11; Issue 12 Random child contract frozen
+Status: Product evidence through Issue 13 Random engines and distributions
 
 ## Test ownership
 
@@ -115,12 +115,13 @@ An `ASC::cpp` test never substitutes for a component-isolation test.
 - statistical smoke failures print the reproducing state and use non-flaky
   bounds.
 
-Issue 12 keeps the new Issue 13–15 implementation CPU-only and freezes
-deterministic sample sizes and thresholds in ADR 0020. Known-answer and
-invariant tests remain primary; a future statistical row must record its exact
-algorithm/version, state, samples, statistic, threshold derivation, and
-observed failure value. No planned GPU row is verified by configuration,
-compilation, documentation, or an existing-Philox regression.
+Issue 13 uses the deterministic ADR 0020 sample sizes and thresholds: 65,536
+uniform samples in 16 bins with chi-square at most 72, and 131,072 standard
+normal samples with mean magnitude at most 0.02 and variance error at most
+0.03. Failures print algorithm/version, fixed seed/stream, sample count,
+observed statistic, and threshold. Known-answer and invariant tests remain
+primary. No new GPU row is verified by configuration, compilation,
+documentation, or an existing-Philox regression.
 
 ## GPU evidence levels
 

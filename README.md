@@ -1,11 +1,11 @@
 # asc-cpp
 
 `asc-cpp` is being rebuilt as the C++20 numerical foundation for
-AI4SciComp. The current checkout is the unreleased **Random architecture and
-provenance (Issue 12) Feature Gate B** candidate. It freezes the complete
-Random crosswalk, semantic contract, storage-adapter ownership, compatible
-provenance routes, and Issue 13–15 boundaries without adding product API,
-targets, dependencies, or providers.
+AI4SciComp. The current checkout is the unreleased **Random engines and
+distributions (Issue 13) Feature Gate B** candidate. It implements the
+approved explicit seed, stateful engine, generic generator, uniform, and
+scalar normal rows without changing targets, dependencies, storage facets, or
+providers.
 
 ## Available components
 
@@ -41,8 +41,11 @@ The provider-free surface uses only C++20 standard-library facilities:
   CSR/CSC ownership and views, named conversions, structure-preserving
   evaluation, and all 36 applicable S/D/C/Z Sparse BLAS compute rows on the
   allocation-free serial reference path.
-- Random provides the pure Philox4x32-10 raw-bit engine and exact scalar
-  `Uniform01<float>` and `Uniform01<double>` transforms.
+- Random provides explicit nondeterministic seed acquisition; SplitMix64,
+  PCG32, xoroshiro64*, and xoroshiro128+ value engines; generic value
+  composition; unbiased uniform integer, half-open uniform real, and scalar
+  Box-Muller normal distributions; plus the existing pure Philox4x32-10 and
+  exact raw-word `Uniform01` transforms.
 - Random Dense fills caller-provided Dense views in logical coordinate order.
 - Random Sparse creates exact-count canonical coordinate arrays from separate
   structure and value address domains.
@@ -59,8 +62,8 @@ The provider-free surface uses only C++20 standard-library facilities:
   canonical structure, and explicit address contracts.
 
 Sparse addition/multiplication, BSR/VBR/SELL, file parsing, general
-broadcasting, entropy, additional distributions, HIP, SYCL, and later-roadmap
-providers are not implemented.
+broadcasting, time/default seeding, QMC and advanced random samplers, HIP,
+SYCL, and later-roadmap providers are not implemented.
 
 ## Consuming a component
 
@@ -96,32 +99,50 @@ Provider closures are exact—for example, `random_dense_cuda` loads Random
 Dense, Random CUDA, Core CUDA, and their provider-free prerequisites without
 loading Sparse. `ASC::cpp` remains provider-free.
 
+A fixed-seed scalar generator is an ordinary value with no hidden seed source
+or allocation:
+
+```cpp
+#include <asc/random.h>
+
+auto distribution = asc::UniformIntegerDistribution<int>::Create(-5, 5);
+if (!distribution.ok()) {
+  return 1;
+}
+asc::UniformGenerator<asc::Pcg32, int> generator(
+    asc::Pcg32(/*initial_state=*/42, /*stream=*/54), *distribution);
+auto value = generator();
+if (!value.ok()) {
+  return 1;
+}
+```
+
 ## Building and validating
 
 Use an out-of-source build and supply the released ASCCMake package:
 
 ```sh
-cmake -S . -B build/issue-12-debug \
+cmake -S . -B build/issue-13-debug \
   -DCMAKE_BUILD_TYPE=Debug \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-12-debug --parallel
-ctest --test-dir build/issue-12-debug --output-on-failure
+cmake --build build/issue-13-debug --parallel
+ctest --test-dir build/issue-13-debug --output-on-failure
 ```
 
 Enable the bounded CUDA provider facets explicitly:
 
 ```sh
-cmake -S . -B build/issue-12-cuda \
+cmake -S . -B build/issue-13-cuda \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASC_CPP_ENABLE_CUDA=ON \
   -DCMAKE_CUDA_ARCHITECTURES=86 \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-12-cuda --parallel
-ctest --test-dir build/issue-12-cuda --output-on-failure
+cmake --build build/issue-13-cuda --parallel
+ctest --test-dir build/issue-13-cuda --output-on-failure
 ```
 
 `BUILD_SHARED_LIBS` selects shared or static Core, Utilities, Dense, Sparse,
@@ -133,7 +154,7 @@ sanitizer controls are build-local and are not exported to consumers.
 
 Start with the [API map](docs/api.md) and module guides for
 [Core](docs/modules/core.md), [Utilities](docs/modules/utilities.md),
-[Expression](docs/modules/expression.md), [Dense](docs/modules/dense.md), and
+[Expression](docs/modules/expression.md), [Dense](docs/modules/dense.md),
 [Sparse](docs/modules/sparse.md), and [Random](docs/modules/random.md). The
 [documentation index](docs/README.md) links the frozen milestone contracts,
 architecture decisions, and retained historical material.
@@ -148,9 +169,10 @@ The [BLAS completion audit](docs/blas-completion-audit.md) describes the frozen
 inventory, evidence-link validation, backend contract, and reproducible checks.
 The generated [Random crosswalk](docs/random-crosswalk.md) and
 [Random contract](docs/development/asc-cpp-architecture/decisions/0020-random-contract.md)
-freeze the Issue 12 design and compatible provenance routes. They deliberately
-do not expose the planned Issue 13–15 APIs; all examples in the current Random
-module guide compile against the existing product surface.
+record the Issue 12 design and compatible provenance routes. The crosswalk now
+links the nine Issue 13 implementation rows to actual public headers, sources,
+tests, package consumers, and benchmarks. QMC and advanced adapters remain
+planned for Issues 14 and 15.
 
 This clean restart follows the approved six-module architecture and
 clean-room provenance policy. The Philox implementation is independently

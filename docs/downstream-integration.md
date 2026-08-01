@@ -1,17 +1,18 @@
 # Downstream integration
 
-Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
 
-Date: 2026-08-01
+Date: 2026-08-02
 
 Downstreams should consume the installed or explicitly selected build-tree
 CMake package, request the smallest component set, and link only imported
 targets. ASCCpp does not support copying headers/libraries into an application
 or editing generated target files.
 
-Issue 12 changes no downstream surface. The stateful engines, QMC algorithms,
-and advanced storage adapters planned for Issues 13–15 cannot be requested or
-consumed until their individual implementation gates are complete.
+Issue 13 installs the stateful engines, scalar distributions, generator
+composition, and explicit random-device wrapper through the existing
+`random` component. QMC algorithms and advanced storage adapters planned for
+Issues 14–15 cannot be consumed until their implementation gates are complete.
 
 ## Choose the owning component
 
@@ -22,7 +23,7 @@ consumed until their individual implementation gates are complete.
 | storage-neutral expression protocol only | `expression` / `ASC::expression` |
 | host Dense storage/evaluation/algebra | `dense` / `ASC::dense` |
 | host Sparse storage/evaluation/Sparse BLAS | `sparse` / `ASC::sparse` |
-| raw Philox/`Uniform01` | `random` / `ASC::random` |
+| explicit seeds, stateful engines, scalar distributions, generators, raw Philox/`Uniform01` | `random` / `ASC::random` |
 | host Dense random fill | `random_dense` / `ASC::random_dense` |
 | host Sparse random generation | `random_sparse` / `ASC::random_sparse` |
 | complete provider-free surface | `cpp` / `ASC::cpp` |

@@ -1,8 +1,8 @@
 # ASCCpp support and evidence matrix
 
-Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
 
-Date: 2026-08-01
+Date: 2026-08-02
 
 This matrix separates the candidate contract from evidence collected in a
 particular environment. It is not a support-window promise. The Milestone 8
@@ -10,12 +10,48 @@ Publication Checkpoint B report remains authoritative for its historical
 commands, counts, failures, and skips; the Issue 9 Feature Gate B report adds
 only the Level 3 evidence recorded below, and the Issue 10 report adds only the
 Sparse BLAS evidence recorded below. Issue 11 audits those recorded boundaries
-without widening them. Issue 12 freezes future Random contracts without
-changing a product capability or evidence row.
+without widening them. Issue 12 freezes the Random contract; Issue 13 adds
+only the CPU engine/distribution evidence recorded below.
 
 The matrix below records the clean post-checkpoint correction reruns. Earlier
 revision-2 counts are historical and are not substituted for these corrected
 results.
+
+## Issue 13 Random engine and distribution evidence
+
+Issue 13 adds nine implemented crosswalk rows for explicit seed acquisition,
+four stateful engines, generic value composition, uniform integer/real, and
+scalar Box-Muller normal generation. These additions are CPU-only and
+storage-neutral. No new CUDA row is declared; real-device checks cover only
+the pre-existing Philox/`Uniform01` CUDA contract.
+
+On Linux/WSL2 6.18 with GNU C++ 11.4, CMake 4.1.2, and the installed
+ASCCMake 0.1.0 package, the warnings-as-errors Debug/static complete build
+compiled all 51 public headers normally and with exceptions disabled. After
+correcting one stale Milestone-2 inventory oracle, the affected architecture,
+compile, Random, documentation, public-surface, and Random package selection
+passed 55/55. The final complete suite passed 210/210 in 142.95 seconds.
+
+The corresponding Debug/shared build passed 31/31 affected tests, including
+the source/install/relocation 51/39-header projections, build-tree and
+installed/relocated Random consumers, and the selected ELF ABI observation.
+An AddressSanitizer plus UndefinedBehaviorSanitizer build passed all six
+Random runtime/statistical tests. Fixed statistical workloads are 65,536
+uniform integer samples, 65,536 uniform-real samples, and 131,072 standard
+normal samples with the thresholds justified by ADR 0020.
+An independent Clang 19 warnings-as-errors Debug/static build also passed the
+same six Random runtime/statistical tests.
+
+The Release/static threshold-free CPU benchmark exercised all four engines,
+uniform integer/real, and scalar normal generation with zero observed
+successful-path allocations and all checksum/moment guards passing. Exact
+local timings and observations are in the [performance record](performance.md).
+
+CUDA 12.9.86 with driver 576.83 on an NVIDIA GeForce RTX 3060 Laptop GPU
+(compute 8.6) passed the 12-test architecture selection and 5/5 existing
+Random CUDA runtime/parity/benchmark checks. This is regression evidence only
+for the pre-existing Philox/`Uniform01` and Random storage facets. The nine
+Issue 13 rows remain CPU-only and are not marked GPU-verified.
 
 ## Issue 12 Random architecture evidence
 

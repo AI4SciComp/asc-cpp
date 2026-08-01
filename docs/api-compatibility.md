@@ -1,8 +1,8 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 12 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
 
-Date: 2026-08-01
+Date: 2026-08-02
 
 Milestone completion, validation, publication, and release are separate
 decisions. This `0.9.0` candidate is neither a release nor a claim of `1.0`
@@ -31,7 +31,7 @@ candidate version.
 | ABI | Local symbols, layouts, sizes, and alignments are observations only; there is no cross-toolchain or cross-minor ABI promise |
 | symbol | Shared targets request hidden project visibility and export compiled public APIs plus intentional template-support symbols; compiler/STL weak artifacts can remain observable |
 | numerical | Named traversal and validation rules are contractual; floating rounding, contraction, NaN, infinity, signed zero, and provider behavior remain within documented bounds |
-| random-bit | Philox4x32-10, `Uniform01`, and storage-address mappings are exact where documented |
+| random-bit | Philox4x32-10, `Uniform01`, four named stateful engine versions, distribution draw mappings, and storage-address mappings are exact where documented; Box-Muller transcendental results are scoped to one supported math ABI |
 | provider | A claim applies only to an explicit provider target, operation subset, environment, and recorded evidence label |
 | file/schema | Core supplies scalar little-endian helpers; no Dense, Sparse, random-state, checkpoint, or application file schema is defined |
 | package | Version metadata, known/available components, target closures, and C++20 propagation are CMake package contracts |
@@ -52,7 +52,7 @@ is installed by that file set.
 | `expression` | `asc/expression.h`; `asc/expression/{expression,writable}.h` |
 | `dense` | `asc/dense.h`; `asc/dense/{array,blas,evaluate,export,layout,view}.h` |
 | `sparse` | `asc/sparse.h`; `asc/sparse/{blas,compressed,coordinate,evaluate,export}.h` |
-| `random` | `asc/random.h`; `asc/random/{distribution,engine,export}.h` |
+| `random` | `asc/random.h`; `asc/random/{distribution,engine,export,generator,seed}.h` |
 | `random_dense` | `asc/random/dense.h` |
 | `random_sparse` | `asc/random/sparse.h` |
 | `core_cuda` | `asc/core/providers/{cuda,cuda_export}.h` |
@@ -75,8 +75,8 @@ Names in an `internal_` namespace are implementation details even when a
 public template header must declare them or a shared library must export a
 support symbol. They are not downstream extension points.
 
-The complete CUDA-enabled surface has 49 headers. A CUDA-disabled install
-contains the exact 37 provider-free headers; provider headers are not installed
+The complete CUDA-enabled surface has 51 headers. A CUDA-disabled install
+contains the exact 39 provider-free headers; provider headers are not installed
 as unusable stubs.
 
 ## Source contract
@@ -238,13 +238,14 @@ A future incompatible sequence requires a separately versioned algorithm or
 an approved breaking version. Native object layouts are not serialized random
 state.
 
-Issue 12 preserves every existing Random sequence and spelling. Its approved
-future stateful engines carry explicit algorithm/version state; distribution
-transforms, sampler indexing/consumption, storage mappings, and provider parity
-are separate compatibility dimensions. The milestone approves no byte-state
-serialization and no CPU/GPU bit-identity claim for new transcendental or QMC
-work. Planned Issue 13–15 APIs remain unavailable until their own gates are
-implemented and verified.
+Issue 13 preserves every existing Random sequence and spelling while adding
+version-1 SplitMix64, PCG32, xoroshiro64*, xoroshiro128+, uniform integer/real,
+and scalar Box-Muller mappings. Exported state structs carry an explicit
+sequence tag; unknown tags fail rather than reinterpret state. Engine,
+distribution, sampler, storage, and provider mappings remain separate
+compatibility dimensions. No byte-state serialization or GPU implementation is
+added. QMC and advanced adapter APIs remain unavailable until Issues 14 and 15
+are implemented and verified.
 
 ## Provider and downstream upgrade policy
 
