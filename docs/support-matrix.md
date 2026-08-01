@@ -1,6 +1,6 @@
 # ASCCpp support and evidence matrix
 
-Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
 
 Date: 2026-08-01
 
@@ -9,11 +9,48 @@ particular environment. It is not a support-window promise. The Milestone 8
 Publication Checkpoint B report remains authoritative for its historical
 commands, counts, failures, and skips; the Issue 9 Feature Gate B report adds
 only the Level 3 evidence recorded below, and the Issue 10 report adds only the
-Sparse BLAS evidence recorded below.
+Sparse BLAS evidence recorded below. Issue 11 audits those recorded boundaries
+without widening them.
 
 The matrix below records the clean post-checkpoint correction reruns. Earlier
 revision-2 counts are historical and are not substituted for these corrected
 results.
+
+## Issue 11 BLAS completion audit
+
+Issue 11 adds no product capability. On 2026-08-01, the independent audit
+resolved the frozen 229-row inventory to 182 verified rows and 47
+standards-based not-applicable rows, with no planned, implemented, or blocked
+row. The 49-family dense-to-sparse crosswalk resolves to 11 verified analogues
+and 38 standards-based not-applicable mappings. The audit removed four
+incorrect `gemmtr` API/header claims for excluded extension rows and completed
+11 stale crosswalk states after verifying their Sparse analogues.
+
+Fresh GCC 11.4 Debug/static and Debug/shared builds used the real ASCCMake
+0.1.0 package and warnings as errors. Their complete suites passed 200/200 in
+161.29 seconds and 202/202 in 147.25 seconds, respectively. These runs include
+the generated-report drift check, negative manifest fixtures, conformance,
+invalid-input and edge-case tests, package and relocation aggregates,
+downstream consumers, documentation checks, and correctness-guarded
+benchmarks. The AddressSanitizer plus UndefinedBehaviorSanitizer selection
+passed 157/157 in 41.48 seconds with package-labeled downstream builds excluded
+because sanitizer runtime requirements are intentionally not exported to
+consumers.
+
+CUDA 12.9.86 Release/static and Release/shared builds used compute
+architecture 8.6. In each linkage mode, the 18-test BLAS audit selection passed
+18/18 on the NVIDIA GeForce RTX 3060 Laptop GPU (driver 576.83, CUDA driver API
+12.9). The selection exercised all three Dense BLAS levels, all applicable
+Sparse BLAS compute families, CPU/GPU conformance, explicit completion, and
+four correctness-guarded CPU/GPU benchmarks. No forced-no-device result was
+used as verification.
+
+The shared CUDA package/consumer selection passed 10/10 in 755.15 seconds. It
+covered build-tree and installed/relocated consumers for Dense, Sparse, Dense
+CUDA, and Sparse CUDA, followed by the complete build-tree component aggregate
+(358.65 seconds) and installed/relocated component aggregate (309.60 seconds).
+The audit found no retired `linalg` interface text in product headers, sources,
+benchmarks, or build logic.
 
 ## Issue 10 Sparse BLAS evidence addendum
 

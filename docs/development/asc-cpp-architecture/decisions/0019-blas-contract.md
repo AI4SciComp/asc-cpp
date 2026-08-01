@@ -1,6 +1,7 @@
 # ADR 0019: dense and sparse BLAS contract
 
-Status: Approved by Issue 5; Issue 6 migration pending Feature Gate B
+Status: Approved by Issue 5; implementation completed through Issue 10 and
+independently audited by Issue 11
 
 Date: 2026-07-31
 

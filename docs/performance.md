@@ -1,13 +1,13 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Issue 10 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 11 Feature Gate B candidate
 
 Date: 2026-08-01
 
 ASCCpp performance evidence is correctness-checked observational data, not a
 cross-machine timing guarantee. Serial implementations are reference paths;
-CUDA facets are bounded explicit providers. Issue 10 makes no optimization or
-speedup claim.
+CUDA facets are bounded explicit providers. Issue 11 audits the registered
+correctness guards and makes no optimization or speedup claim.
 
 ## Required measurement record
 

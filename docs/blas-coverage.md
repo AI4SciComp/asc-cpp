@@ -4,7 +4,7 @@
 
 # BLAS coverage
 
-Contract status: `issue-10-feature-gate-b-verified-candidate`
+Contract status: `issue-11-blas-completion-audit-verified-candidate`
 
 Evidence date: `2026-08-01`
 
@@ -26,7 +26,7 @@ Only `verified` rows count as complete. `implemented` means code exists but the 
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 229 | 0 | 0 | 182 | 47 | 0 |
 
-Dense contributes 150 rows and Sparse contributes 79. The dense inventory identity is `3915d69e0a2339ed73c0c63539a9ed60d4fc1f075b0caa1711309ca7d52fb6b3`, the sparse inventory identity is `ae06c937b9dc8a884e57c666f0939b3b0a13e01714021a64aebe9b54125b272e`, and the combined identity is `45778d5dd3639c9f3557ddf3610a9e01442d29b4503f90b41164f7326c9a8ad0`. The family crosswalk contains 49 rows with identity `78dfab7b056c546f6db1ca2f9ef95b78c357b2dec0ade9ee9ead2f7fca39ca64`.
+Dense contributes 150 rows and Sparse contributes 79. The dense inventory identity is `3915d69e0a2339ed73c0c63539a9ed60d4fc1f075b0caa1711309ca7d52fb6b3`, the sparse inventory identity is `ae06c937b9dc8a884e57c666f0939b3b0a13e01714021a64aebe9b54125b272e`, and the combined identity is `45778d5dd3639c9f3557ddf3610a9e01442d29b4503f90b41164f7326c9a8ad0`. The frozen API, implementation, backend, status, and test evidence identity is `6f601aa7528206ddb35e280ef066280f479f01d81ed10a89d3d834f8e25107f0`. The family crosswalk contains 49 rows with identity `85232aa45cf9cce51af433d9629e6b9781c000af170221176ab89d9f63ace454`.
 
 ## Routine coverage
 
@@ -178,10 +178,10 @@ Dense contributes 150 rows and Sparse contributes 79. The dense inventory identi
 | dense | 3 | `trsm` | `dtrsm` | `real_double` | row_major_triangular,column_major_triangular | verified | not-applicable | verified | **verified** | `asc::Trsm`<br>[`include/asc/dense/blas.h`](../include/asc/dense/blas.h) | [`src/dense/blas_level3.cc`](../src/dense/blas_level3.cc) | [`tests/dense/blas_level3_test.cc`](../tests/dense/blas_level3_test.cc)<br>[`tests/dense_cuda/dense_cuda_blas_level3_test.cc`](../tests/dense_cuda/dense_cuda_blas_level3_test.cc)<br>[`tests/dense/blas_level3_test.cc`](../tests/dense/blas_level3_test.cc) | Verified locally on 2026-08-01 with the portable serial CPU and CUDA 12.9.1.4 on an RTX 3060 Laptop GPU (compute capability 8.6) row/column-major, side, triangle, transpose/conjugation, unit-diagonal, alpha/beta, degenerate, invalid-input, alias, explicit-completion, and no-hidden-allocation contracts are exercised, and optimized CPU is not applicable. |
 | dense | 3 | `trsm` | `ctrsm` | `complex_single` | row_major_triangular,column_major_triangular | verified | not-applicable | verified | **verified** | `asc::Trsm`<br>[`include/asc/dense/blas.h`](../include/asc/dense/blas.h) | [`src/dense/blas_level3.cc`](../src/dense/blas_level3.cc) | [`tests/dense/blas_level3_test.cc`](../tests/dense/blas_level3_test.cc)<br>[`tests/dense_cuda/dense_cuda_blas_level3_test.cc`](../tests/dense_cuda/dense_cuda_blas_level3_test.cc)<br>[`tests/dense/blas_level3_test.cc`](../tests/dense/blas_level3_test.cc) | Verified locally on 2026-08-01 with the portable serial CPU and CUDA 12.9.1.4 on an RTX 3060 Laptop GPU (compute capability 8.6) row/column-major, side, triangle, transpose/conjugation, unit-diagonal, alpha/beta, degenerate, invalid-input, alias, explicit-completion, and no-hidden-allocation contracts are exercised, and optimized CPU is not applicable. |
 | dense | 3 | `trsm` | `ztrsm` | `complex_double` | row_major_triangular,column_major_triangular | verified | not-applicable | verified | **verified** | `asc::Trsm`<br>[`include/asc/dense/blas.h`](../include/asc/dense/blas.h) | [`src/dense/blas_level3.cc`](../src/dense/blas_level3.cc) | [`tests/dense/blas_level3_test.cc`](../tests/dense/blas_level3_test.cc)<br>[`tests/dense_cuda/dense_cuda_blas_level3_test.cc`](../tests/dense_cuda/dense_cuda_blas_level3_test.cc)<br>[`tests/dense/blas_level3_test.cc`](../tests/dense/blas_level3_test.cc) | Verified locally on 2026-08-01 with the portable serial CPU and CUDA 12.9.1.4 on an RTX 3060 Laptop GPU (compute capability 8.6) row/column-major, side, triangle, transpose/conjugation, unit-diagonal, alpha/beta, degenerate, invalid-input, alias, explicit-completion, and no-hidden-allocation contracts are exercised, and optimized CPU is not applicable. |
-| dense | extension | `gemmtr` | `sgemmtr` | `real_single` | row_major_triangular,column_major_triangular | not-applicable | not-applicable | not-applicable | **not-applicable** | `asc::Gemmtr`<br>[`include/asc/dense/blas.h`](../include/asc/dense/blas.h) | - | -<br>-<br>- | Frozen source extension excluded from the required classic BLAS contract. |
-| dense | extension | `gemmtr` | `dgemmtr` | `real_double` | row_major_triangular,column_major_triangular | not-applicable | not-applicable | not-applicable | **not-applicable** | `asc::Gemmtr`<br>[`include/asc/dense/blas.h`](../include/asc/dense/blas.h) | - | -<br>-<br>- | Frozen source extension excluded from the required classic BLAS contract. |
-| dense | extension | `gemmtr` | `cgemmtr` | `complex_single` | row_major_triangular,column_major_triangular | not-applicable | not-applicable | not-applicable | **not-applicable** | `asc::Gemmtr`<br>[`include/asc/dense/blas.h`](../include/asc/dense/blas.h) | - | -<br>-<br>- | Frozen source extension excluded from the required classic BLAS contract. |
-| dense | extension | `gemmtr` | `zgemmtr` | `complex_double` | row_major_triangular,column_major_triangular | not-applicable | not-applicable | not-applicable | **not-applicable** | `asc::Gemmtr`<br>[`include/asc/dense/blas.h`](../include/asc/dense/blas.h) | - | -<br>-<br>- | Frozen source extension excluded from the required classic BLAS contract. |
+| dense | extension | `gemmtr` | `sgemmtr` | `real_single` | row_major_triangular,column_major_triangular | not-applicable | not-applicable | not-applicable | **not-applicable** | -<br>- | - | -<br>-<br>- | Frozen source extension excluded from the required classic BLAS contract. |
+| dense | extension | `gemmtr` | `dgemmtr` | `real_double` | row_major_triangular,column_major_triangular | not-applicable | not-applicable | not-applicable | **not-applicable** | -<br>- | - | -<br>-<br>- | Frozen source extension excluded from the required classic BLAS contract. |
+| dense | extension | `gemmtr` | `cgemmtr` | `complex_single` | row_major_triangular,column_major_triangular | not-applicable | not-applicable | not-applicable | **not-applicable** | -<br>- | - | -<br>-<br>- | Frozen source extension excluded from the required classic BLAS contract. |
+| dense | extension | `gemmtr` | `zgemmtr` | `complex_double` | row_major_triangular,column_major_triangular | not-applicable | not-applicable | not-applicable | **not-applicable** | -<br>- | - | -<br>-<br>- | Frozen source extension excluded from the required classic BLAS contract. |
 | sparse | 1 | `usdot` | `susdot` | `real_single` | indexed_sparse_vector,dense_vector | verified | not-applicable | verified | **verified** | `asc::SparseDot`<br>[`include/asc/sparse/blas.h`](../include/asc/sparse/blas.h) | [`src/sparse/standard_blas.cc`](../src/sparse/standard_blas.cc) | [`tests/sparse/standard_blas_test.cc`](../tests/sparse/standard_blas_test.cc)<br>[`tests/sparse_cuda/standard_blas_cuda_test.cc`](../tests/sparse_cuda/standard_blas_cuda_test.cc)<br>[`tests/sparse/standard_blas_test.cc`](../tests/sparse/standard_blas_test.cc) | Verified locally on 2026-08-01 with allocation-free portable serial C++20 and explicit asynchronous CUDA project kernels on an RTX 3060 Laptop GPU (compute capability 8.6) optimized CPU is unapproved and not applicable. |
 | sparse | 1 | `usdot` | `dusdot` | `real_double` | indexed_sparse_vector,dense_vector | verified | not-applicable | verified | **verified** | `asc::SparseDot`<br>[`include/asc/sparse/blas.h`](../include/asc/sparse/blas.h) | [`src/sparse/standard_blas.cc`](../src/sparse/standard_blas.cc) | [`tests/sparse/standard_blas_test.cc`](../tests/sparse/standard_blas_test.cc)<br>[`tests/sparse_cuda/standard_blas_cuda_test.cc`](../tests/sparse_cuda/standard_blas_cuda_test.cc)<br>[`tests/sparse/standard_blas_test.cc`](../tests/sparse/standard_blas_test.cc) | Verified locally on 2026-08-01 with allocation-free portable serial C++20 and explicit asynchronous CUDA project kernels on an RTX 3060 Laptop GPU (compute capability 8.6) optimized CPU is unapproved and not applicable. |
 | sparse | 1 | `usdot` | `cusdot` | `complex_single` | indexed_sparse_vector,dense_vector | verified | not-applicable | verified | **verified** | `asc::SparseDot`<br>[`include/asc/sparse/blas.h`](../include/asc/sparse/blas.h) | [`src/sparse/standard_blas.cc`](../src/sparse/standard_blas.cc) | [`tests/sparse/standard_blas_test.cc`](../tests/sparse/standard_blas_test.cc)<br>[`tests/sparse_cuda/standard_blas_cuda_test.cc`](../tests/sparse_cuda/standard_blas_cuda_test.cc)<br>[`tests/sparse/standard_blas_test.cc`](../tests/sparse/standard_blas_test.cc) | Verified locally on 2026-08-01 with allocation-free portable serial C++20 and explicit asynchronous CUDA project kernels on an RTX 3060 Laptop GPU (compute capability 8.6) optimized CPU is unapproved and not applicable. |
@@ -272,15 +272,15 @@ Dense contributes 150 rows and Sparse contributes 79. The dense inventory identi
 | `rotm` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `swap` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `scal` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
-| `copy` | `usga,usgz,ussc` | **planned** | Sparse gather and scatter are related indexed movement operations, not a one-to-one dense copy. |
-| `axpy` | `usaxpy` | **planned** | Sparse indexed vector update is standardized. |
-| `dot` | `usdot` | **planned** | Sparse dot selects conjugated or unconjugated behavior explicitly. |
-| `dotu` | `usdot` | **planned** | Sparse dot selects conjugated or unconjugated behavior explicitly. |
-| `dotc` | `usdot` | **planned** | Sparse dot selects conjugated or unconjugated behavior explicitly. |
+| `copy` | `usga,usgz,ussc` | **verified** | Verified Sparse gather/scatter analogues are related indexed movement operations, not a one-to-one dense copy. |
+| `axpy` | `usaxpy` | **verified** | The standardized sparse indexed vector update is verified. |
+| `dot` | `usdot` | **verified** | The verified Sparse dot analogue selects conjugated or unconjugated behavior explicitly. |
+| `dotu` | `usdot` | **verified** | The verified Sparse dot analogue selects unconjugated behavior explicitly. |
+| `dotc` | `usdot` | **verified** | The verified Sparse dot analogue selects conjugated behavior explicitly. |
 | `nrm2` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `asum` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `iamax` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
-| `gemv` | `usmv` | **planned** | Sparse matrix-vector multiply is standardized independently. |
+| `gemv` | `usmv` | **verified** | The independently standardized sparse matrix-vector multiply analogue is verified. |
 | `gbmv` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `hemv` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `hbmv` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
@@ -291,9 +291,9 @@ Dense contributes 150 rows and Sparse contributes 79. The dense inventory identi
 | `trmv` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `tbmv` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `tpmv` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
-| `trsv` | `ussv` | **planned** | Sparse triangular solve uses sparse structure rather than dense full, banded, or packed storage variants. |
-| `tbsv` | `ussv` | **planned** | Sparse triangular solve uses sparse structure rather than dense full, banded, or packed storage variants. |
-| `tpsv` | `ussv` | **planned** | Sparse triangular solve uses sparse structure rather than dense full, banded, or packed storage variants. |
+| `trsv` | `ussv` | **verified** | The verified Sparse triangular solve uses sparse structure rather than dense full, banded, or packed storage variants. |
+| `tbsv` | `ussv` | **verified** | The verified Sparse triangular solve uses sparse structure rather than dense full, banded, or packed storage variants. |
+| `tpsv` | `ussv` | **verified** | The verified Sparse triangular solve uses sparse structure rather than dense full, banded, or packed storage variants. |
 | `ger` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `geru` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `gerc` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
@@ -305,7 +305,7 @@ Dense contributes 150 rows and Sparse contributes 79. The dense inventory identi
 | `spr` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `syr2` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `spr2` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
-| `gemm` | `usmm` | **planned** | Sparse matrix-dense matrix multiply is standardized independently. |
+| `gemm` | `usmm` | **verified** | The independently standardized sparse matrix-dense matrix multiply analogue is verified. |
 | `symm` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `hemm` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `syrk` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
@@ -313,7 +313,7 @@ Dense contributes 150 rows and Sparse contributes 79. The dense inventory identi
 | `syr2k` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `her2k` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
 | `trmm` | - | **not-applicable** | No standardized Sparse BLAS analogue for this dense family. |
-| `trsm` | `ussm` | **planned** | Sparse triangular multi-right-hand-side solve is standardized independently. |
+| `trsm` | `ussm` | **verified** | The independently standardized sparse triangular multi-right-hand-side solve analogue is verified. |
 | `gemmtr` | - | **not-applicable** | The dense extension is outside both classic dense completion and the frozen Sparse BLAS contract. |
 
 <!-- markdownlint-enable MD013 -->

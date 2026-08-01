@@ -1,10 +1,10 @@
 # asc-cpp documentation
 
-The repository is at the unreleased **Sparse BLAS (Issue 10) Feature Gate B**
-candidate. All six modules, both Random storage facets, the provider-free
-aggregate, and all six approved opt-in CUDA facets remain in the same
-dependency graph; this issue adds only the 36 approved applicable S/D/C/Z
-Sparse BLAS compute rows to `sparse` and `sparse_cuda`.
+The repository is at the unreleased **BLAS completion audit (Issue 11) Feature
+Gate B** candidate. All six modules, both Random storage facets, the
+provider-free aggregate, and all six approved opt-in CUDA facets remain in the
+same dependency graph; this issue independently audits the completed Dense and
+Sparse BLAS contract without expanding it.
 
 ## Current API documentation
 
@@ -39,6 +39,9 @@ Sparse BLAS compute rows to `sparse` and `sparse_cuda`.
   applicable Sparse BLAS compute rows carry portable CPU and real-CUDA
   implementation and test evidence; 43 handle-oriented rows remain explicitly
   not applicable under the approved typed-owner mapping.
+- [BLAS completion audit](blas-completion-audit.md): frozen evidence identity,
+  build registration, retired-interface, package, consumer, and benchmark
+  audit contract and reproduction commands.
 - [Linalg-to-BLAS migration](migration/linalg-to-blas.md): mechanical path and
   type changes for the approved breaking pre-1.0 rename.
 
@@ -123,9 +126,9 @@ linear-algebra/provider scope in ADRs [0013][adr-0013] and
 
 Sparse addition/multiplication, BSR/VBR/SELL formats, file parsing, general
 broadcasting, entropy, further distributions, HIP, SYCL, and other providers
-require later explicit approval. Issue 10 adds no module, provider, dependency
-edge, or compatibility facade. Reserved provider names do not make them
-available.
+require later explicit approval. Issue 11 adds no module, provider, operation,
+dependency edge, or compatibility facade. Reserved provider names do not make
+them available.
 
 [adr-0002]: development/asc-cpp-architecture/decisions/0002-package-target-naming.md
 [adr-0003]: development/asc-cpp-architecture/decisions/0003-namespace-and-source-policy.md
