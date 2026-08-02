@@ -505,7 +505,8 @@ void CheckNoSuccessfulPathAllocation(asc_random_test::TestContext& context) {
     allocation_count = probe.count();
   }
   ASC_RANDOM_TEST_CHECK(context, succeeded);
-  ASC_RANDOM_TEST_EQ(context, allocation_count, std::size_t{0});
+  ASC_RANDOM_TEST_CHECK(
+      context, asc_test::ProcessAllocationCountMatches(allocation_count, 0));
 }
 
 }  // namespace

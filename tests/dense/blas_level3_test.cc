@@ -526,7 +526,8 @@ void TestScalarEdges(TestContext& test) {
       Value<Element>(std::numeric_limits<Real<Element>>::quiet_NaN())};
   for (Element alpha : coefficients) {
     At(output, 0, 0) = Element{1};
-    const Element expected = alpha * Element{1} * Element{1} + Element{1};
+    const Element product = Element{1} * Element{1};
+    const Element expected = alpha * product + Element{1};
     ASC_DENSE_TEST_CHECK(
         test, asc::Gemm(context, asc::DenseBlasTranspose::kNone,
                         asc::DenseBlasTranspose::kNone, alpha,
