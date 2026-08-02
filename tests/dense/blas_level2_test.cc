@@ -178,8 +178,9 @@ template <typename Element>
 Element MaybeConjugate(Element value) {
   if constexpr (asc::DenseBlasComplex<Element>) {
     return std::conj(value);
+  } else {
+    return value;
   }
-  return value;
 }
 
 template <typename Element>

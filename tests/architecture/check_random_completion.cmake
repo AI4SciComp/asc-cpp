@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.25)
 
-foreach(_required_variable IN ITEMS SOURCE_DIR BINARY_DIR ENABLE_CUDA)
+foreach(_required_variable IN ITEMS
+    SOURCE_DIR BINARY_DIR ENABLE_CUDA SUPPORTS_DISABLED_EXCEPTIONS
+)
   if(NOT DEFINED "${_required_variable}"
      OR "${${_required_variable}}" STREQUAL "")
     message(FATAL_ERROR "${_required_variable} is required.")
@@ -133,23 +135,14 @@ set(_required_tests
   asc_cpp.architecture.random_contract
   asc_cpp.architecture.random_completion
   asc_cpp.compile.m2_header.asc_random_h
-  asc_cpp.compile.m2_header_no_exceptions.asc_random_h
   asc_cpp.compile.m2_header.asc_random_distribution_h
-  asc_cpp.compile.m2_header_no_exceptions.asc_random_distribution_h
   asc_cpp.compile.m2_header.asc_random_engine_h
-  asc_cpp.compile.m2_header_no_exceptions.asc_random_engine_h
   asc_cpp.compile.m2_header.asc_random_export_h
-  asc_cpp.compile.m2_header_no_exceptions.asc_random_export_h
   asc_cpp.compile.m2_header.asc_random_generator_h
-  asc_cpp.compile.m2_header_no_exceptions.asc_random_generator_h
   asc_cpp.compile.m2_header.asc_random_quasi_h
-  asc_cpp.compile.m2_header_no_exceptions.asc_random_quasi_h
   asc_cpp.compile.m2_header.asc_random_seed_h
-  asc_cpp.compile.m2_header_no_exceptions.asc_random_seed_h
   asc_cpp.compile.m5_header.asc_random_dense_h
-  asc_cpp.compile.m5_header_no_exceptions.asc_random_dense_h
   asc_cpp.compile.m5_header.asc_random_sparse_h
-  asc_cpp.compile.m5_header_no_exceptions.asc_random_sparse_h
   asc_cpp.compile.m5_random_dense_header
   asc_cpp.compile.m5_random_sparse_header
   asc_cpp.random.distribution_test
@@ -186,20 +179,27 @@ set(_required_tests
   asc_cpp.downstream.asc_xde.build_tree
   asc_cpp.downstream.asc_xde.relocated
 )
+if(SUPPORTS_DISABLED_EXCEPTIONS)
+  list(APPEND _required_tests
+    asc_cpp.compile.m2_header_no_exceptions.asc_random_h
+    asc_cpp.compile.m2_header_no_exceptions.asc_random_distribution_h
+    asc_cpp.compile.m2_header_no_exceptions.asc_random_engine_h
+    asc_cpp.compile.m2_header_no_exceptions.asc_random_export_h
+    asc_cpp.compile.m2_header_no_exceptions.asc_random_generator_h
+    asc_cpp.compile.m2_header_no_exceptions.asc_random_quasi_h
+    asc_cpp.compile.m2_header_no_exceptions.asc_random_seed_h
+    asc_cpp.compile.m5_header_no_exceptions.asc_random_dense_h
+    asc_cpp.compile.m5_header_no_exceptions.asc_random_sparse_h
+  )
+endif()
 if(ENABLE_CUDA)
   list(APPEND _required_tests
     asc_cpp.compile.m7_header.asc_random_providers_cuda_h
-    asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_cuda_h
     asc_cpp.compile.m7_header.asc_random_providers_cuda_export_h
-    asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_cuda_export_h
     asc_cpp.compile.m7_header.asc_random_providers_dense_cuda_h
-    asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_dense_cuda_h
     asc_cpp.compile.m7_header.asc_random_providers_dense_cuda_export_h
-    asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_dense_cuda_export_h
     asc_cpp.compile.m7_header.asc_random_providers_sparse_cuda_h
-    asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_sparse_cuda_h
     asc_cpp.compile.m7_header.asc_random_providers_sparse_cuda_export_h
-    asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_sparse_cuda_export_h
     asc_cpp.compile.m7_random_cuda_header
     asc_cpp.compile.m7_random_dense_cuda_header
     asc_cpp.compile.m7_random_sparse_cuda_header
@@ -215,6 +215,16 @@ if(ENABLE_CUDA)
     asc_cpp.consumer.random_sparse_cuda.build_tree
     asc_cpp.consumer.random_sparse_cuda.install_relocate
   )
+  if(SUPPORTS_DISABLED_EXCEPTIONS)
+    list(APPEND _required_tests
+      asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_cuda_h
+      asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_cuda_export_h
+      asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_dense_cuda_h
+      asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_dense_cuda_export_h
+      asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_sparse_cuda_h
+      asc_cpp.compile.m7_header_no_exceptions.asc_random_providers_sparse_cuda_export_h
+    )
+  endif()
 endif()
 
 foreach(_required_test IN LISTS _required_tests)

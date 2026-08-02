@@ -25,9 +25,10 @@ template <typename Element>
 Element Value(Real<Element> real, Real<Element> imaginary = Real<Element>{0}) {
   if constexpr (asc::DenseBlasComplex<Element>) {
     return Element{real, imaginary};
+  } else {
+    static_cast<void>(imaginary);
+    return real;
   }
-  static_cast<void>(imaginary);
-  return real;
 }
 
 template <typename Element, std::size_t Extent>
@@ -64,8 +65,9 @@ template <typename Element>
 Element Conjugate(Element value) {
   if constexpr (asc::DenseBlasComplex<Element>) {
     return std::conj(value);
+  } else {
+    return value;
   }
-  return value;
 }
 
 template <typename Element>

@@ -1,8 +1,6 @@
 #include <complex>
-#include <cstddef>
 #include <cstdint>
 #include <limits>
-#include <type_traits>
 #include <utility>
 
 #include "asc/core/execution.h"
@@ -10,6 +8,7 @@
 #include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/dense/blas.h"
+#include "asc/dense/export.h"
 
 namespace asc {
 namespace internal_dense_blas {
@@ -257,9 +256,12 @@ Status GeneralMv(const ExecutionContext& context, DenseBlasTranspose transpose,
     Element product{0};
     if (alpha != Element{0}) {
       for (index_t column = 0; column < input_size; ++column) {
-        Element matrix_value = transpose == DenseBlasTranspose::kNone
-                                   ? access(row, column)
-                                   : access(column, row);
+        Element matrix_value =
+            transpose == DenseBlasTranspose::kNone
+                ? access(row, column)
+                // Transpose intentionally reverses the matrix indices.
+                // NOLINTNEXTLINE(readability-suspicious-call-argument)
+                : access(column, row);
         matrix_value = MaybeConjugate(
             matrix_value, transpose == DenseBlasTranspose::kConjugateTranspose);
         product += matrix_value * VectorAt(input, column);
@@ -389,8 +391,11 @@ struct PackedTriangularAccess {
 template <typename Element, typename Access>
 Element OperationAt(const Access& access, DenseBlasTranspose transpose,
                     index_t row, index_t column) {
-  Element value = transpose == DenseBlasTranspose::kNone ? access(row, column)
-                                                         : access(column, row);
+  Element value = transpose == DenseBlasTranspose::kNone
+                      ? access(row, column)
+                      // Transpose intentionally reverses the matrix indices.
+                      // NOLINTNEXTLINE(readability-suspicious-call-argument)
+                      : access(column, row);
   return MaybeConjugate(value,
                         transpose == DenseBlasTranspose::kConjugateTranspose);
 }
@@ -1004,106 +1009,106 @@ Status Spr2(const ExecutionContext& context, DenseBlasTriangle triangle,
       });
 }
 
-#define ASC_INSTANTIATE_GENERAL(Type)                                     \
-  template Status Gemv<Type>(const ExecutionContext&, DenseBlasTranspose, \
-                             Type, DenseBlasMatrixView<const Type>,       \
-                             DenseBlasVectorView<const Type>, Type,       \
-                             DenseBlasVectorView<Type>);                  \
-  template Status Gbmv<Type>(const ExecutionContext&, DenseBlasTranspose, \
-                             Type, DenseBlasBandMatrixView<const Type>,   \
-                             DenseBlasVectorView<const Type>, Type,       \
-                             DenseBlasVectorView<Type>);                  \
-  template Status Trmv<Type>(const ExecutionContext&, DenseBlasTriangle,  \
-                             DenseBlasTranspose, DenseBlasDiagonal,       \
-                             DenseBlasMatrixView<const Type>,             \
-                             DenseBlasVectorView<Type>);                  \
-  template Status Tbmv<Type>(const ExecutionContext&, DenseBlasTriangle,  \
-                             DenseBlasTranspose, DenseBlasDiagonal,       \
-                             DenseBlasTriangularBandView<const Type>,     \
-                             DenseBlasVectorView<Type>);                  \
-  template Status Tpmv<Type>(const ExecutionContext&, DenseBlasTriangle,  \
-                             DenseBlasTranspose, DenseBlasDiagonal,       \
-                             DenseBlasPackedMatrixView<const Type>,       \
-                             DenseBlasVectorView<Type>);                  \
-  template Status Trsv<Type>(const ExecutionContext&, DenseBlasTriangle,  \
-                             DenseBlasTranspose, DenseBlasDiagonal,       \
-                             DenseBlasMatrixView<const Type>,             \
-                             DenseBlasVectorView<Type>);                  \
-  template Status Tbsv<Type>(const ExecutionContext&, DenseBlasTriangle,  \
-                             DenseBlasTranspose, DenseBlasDiagonal,       \
-                             DenseBlasTriangularBandView<const Type>,     \
-                             DenseBlasVectorView<Type>);                  \
-  template Status Tpsv<Type>(const ExecutionContext&, DenseBlasTriangle,  \
-                             DenseBlasTranspose, DenseBlasDiagonal,       \
-                             DenseBlasPackedMatrixView<const Type>,       \
-                             DenseBlasVectorView<Type>)
+#define ASC_INSTANTIATE_GENERAL(Type)                                         \
+  template ASC_DENSE_EXPORT Status Gemv<Type>(                                \
+      const ExecutionContext&, DenseBlasTranspose, Type,                      \
+      DenseBlasMatrixView<const Type>, DenseBlasVectorView<const Type>, Type, \
+      DenseBlasVectorView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Gbmv<Type>(                                \
+      const ExecutionContext&, DenseBlasTranspose, Type,                      \
+      DenseBlasBandMatrixView<const Type>, DenseBlasVectorView<const Type>,   \
+      Type, DenseBlasVectorView<Type>);                                       \
+  template ASC_DENSE_EXPORT Status Trmv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose,         \
+      DenseBlasDiagonal, DenseBlasMatrixView<const Type>,                     \
+      DenseBlasVectorView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Tbmv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose,         \
+      DenseBlasDiagonal, DenseBlasTriangularBandView<const Type>,             \
+      DenseBlasVectorView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Tpmv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose,         \
+      DenseBlasDiagonal, DenseBlasPackedMatrixView<const Type>,               \
+      DenseBlasVectorView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Trsv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose,         \
+      DenseBlasDiagonal, DenseBlasMatrixView<const Type>,                     \
+      DenseBlasVectorView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Tbsv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose,         \
+      DenseBlasDiagonal, DenseBlasTriangularBandView<const Type>,             \
+      DenseBlasVectorView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Tpsv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose,         \
+      DenseBlasDiagonal, DenseBlasPackedMatrixView<const Type>,               \
+      DenseBlasVectorView<Type>)
 
-#define ASC_INSTANTIATE_REAL(Type)                                             \
-  ASC_INSTANTIATE_GENERAL(Type);                                               \
-  template Status Symv<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasMatrixView<const Type>,                  \
-                             DenseBlasVectorView<const Type>, Type,            \
-                             DenseBlasVectorView<Type>);                       \
-  template Status Sbmv<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasTriangularBandView<const Type>,          \
-                             DenseBlasVectorView<const Type>, Type,            \
-                             DenseBlasVectorView<Type>);                       \
-  template Status Spmv<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasPackedMatrixView<const Type>,            \
-                             DenseBlasVectorView<const Type>, Type,            \
-                             DenseBlasVectorView<Type>);                       \
-  template Status Ger<Type>(                                                   \
-      const ExecutionContext&, Type, DenseBlasVectorView<const Type>,          \
-      DenseBlasVectorView<const Type>, DenseBlasMatrixView<Type>);             \
-  template Status Syr<Type>(const ExecutionContext&, DenseBlasTriangle, Type,  \
-                            DenseBlasVectorView<const Type>,                   \
-                            DenseBlasMatrixView<Type>);                        \
-  template Status Spr<Type>(const ExecutionContext&, DenseBlasTriangle, Type,  \
-                            DenseBlasVectorView<const Type>,                   \
-                            DenseBlasPackedMatrixView<Type>);                  \
-  template Status Syr2<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasVectorView<const Type>,                  \
-                             DenseBlasVectorView<const Type>,                  \
-                             DenseBlasMatrixView<Type>);                       \
-  template Status Spr2<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasVectorView<const Type>,                  \
-                             DenseBlasVectorView<const Type>,                  \
-                             DenseBlasPackedMatrixView<Type>)
+#define ASC_INSTANTIATE_REAL(Type)                                            \
+  ASC_INSTANTIATE_GENERAL(Type);                                              \
+  template ASC_DENSE_EXPORT Status Symv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasMatrixView<const Type>, DenseBlasVectorView<const Type>, Type, \
+      DenseBlasVectorView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Sbmv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasTriangularBandView<const Type>,                                \
+      DenseBlasVectorView<const Type>, Type, DenseBlasVectorView<Type>);      \
+  template ASC_DENSE_EXPORT Status Spmv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasPackedMatrixView<const Type>, DenseBlasVectorView<const Type>, \
+      Type, DenseBlasVectorView<Type>);                                       \
+  template ASC_DENSE_EXPORT Status Ger<Type>(                                 \
+      const ExecutionContext&, Type, DenseBlasVectorView<const Type>,         \
+      DenseBlasVectorView<const Type>, DenseBlasMatrixView<Type>);            \
+  template ASC_DENSE_EXPORT Status Syr<Type>(                                 \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasVectorView<const Type>, DenseBlasMatrixView<Type>);            \
+  template ASC_DENSE_EXPORT Status Spr<Type>(                                 \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasVectorView<const Type>, DenseBlasPackedMatrixView<Type>);      \
+  template ASC_DENSE_EXPORT Status Syr2<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasVectorView<const Type>, DenseBlasVectorView<const Type>,       \
+      DenseBlasMatrixView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Spr2<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasVectorView<const Type>, DenseBlasVectorView<const Type>,       \
+      DenseBlasPackedMatrixView<Type>)
 
-#define ASC_INSTANTIATE_COMPLEX(Type, Real)                                    \
-  ASC_INSTANTIATE_GENERAL(Type);                                               \
-  template Status Hemv<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasMatrixView<const Type>,                  \
-                             DenseBlasVectorView<const Type>, Type,            \
-                             DenseBlasVectorView<Type>);                       \
-  template Status Hbmv<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasTriangularBandView<const Type>,          \
-                             DenseBlasVectorView<const Type>, Type,            \
-                             DenseBlasVectorView<Type>);                       \
-  template Status Hpmv<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasPackedMatrixView<const Type>,            \
-                             DenseBlasVectorView<const Type>, Type,            \
-                             DenseBlasVectorView<Type>);                       \
-  template Status Geru<Type>(                                                  \
-      const ExecutionContext&, Type, DenseBlasVectorView<const Type>,          \
-      DenseBlasVectorView<const Type>, DenseBlasMatrixView<Type>);             \
-  template Status Gerc<Type>(                                                  \
-      const ExecutionContext&, Type, DenseBlasVectorView<const Type>,          \
-      DenseBlasVectorView<const Type>, DenseBlasMatrixView<Type>);             \
-  template Status Her<Type>(const ExecutionContext&, DenseBlasTriangle, Real,  \
-                            DenseBlasVectorView<const Type>,                   \
-                            DenseBlasMatrixView<Type>);                        \
-  template Status Hpr<Type>(const ExecutionContext&, DenseBlasTriangle, Real,  \
-                            DenseBlasVectorView<const Type>,                   \
-                            DenseBlasPackedMatrixView<Type>);                  \
-  template Status Her2<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasVectorView<const Type>,                  \
-                             DenseBlasVectorView<const Type>,                  \
-                             DenseBlasMatrixView<Type>);                       \
-  template Status Hpr2<Type>(const ExecutionContext&, DenseBlasTriangle, Type, \
-                             DenseBlasVectorView<const Type>,                  \
-                             DenseBlasVectorView<const Type>,                  \
-                             DenseBlasPackedMatrixView<Type>)
+#define ASC_INSTANTIATE_COMPLEX(Type, Real)                                   \
+  ASC_INSTANTIATE_GENERAL(Type);                                              \
+  template ASC_DENSE_EXPORT Status Hemv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasMatrixView<const Type>, DenseBlasVectorView<const Type>, Type, \
+      DenseBlasVectorView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Hbmv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasTriangularBandView<const Type>,                                \
+      DenseBlasVectorView<const Type>, Type, DenseBlasVectorView<Type>);      \
+  template ASC_DENSE_EXPORT Status Hpmv<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasPackedMatrixView<const Type>, DenseBlasVectorView<const Type>, \
+      Type, DenseBlasVectorView<Type>);                                       \
+  template ASC_DENSE_EXPORT Status Geru<Type>(                                \
+      const ExecutionContext&, Type, DenseBlasVectorView<const Type>,         \
+      DenseBlasVectorView<const Type>, DenseBlasMatrixView<Type>);            \
+  template ASC_DENSE_EXPORT Status Gerc<Type>(                                \
+      const ExecutionContext&, Type, DenseBlasVectorView<const Type>,         \
+      DenseBlasVectorView<const Type>, DenseBlasMatrixView<Type>);            \
+  template ASC_DENSE_EXPORT Status Her<Type>(                                 \
+      const ExecutionContext&, DenseBlasTriangle, Real,                       \
+      DenseBlasVectorView<const Type>, DenseBlasMatrixView<Type>);            \
+  template ASC_DENSE_EXPORT Status Hpr<Type>(                                 \
+      const ExecutionContext&, DenseBlasTriangle, Real,                       \
+      DenseBlasVectorView<const Type>, DenseBlasPackedMatrixView<Type>);      \
+  template ASC_DENSE_EXPORT Status Her2<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasVectorView<const Type>, DenseBlasVectorView<const Type>,       \
+      DenseBlasMatrixView<Type>);                                             \
+  template ASC_DENSE_EXPORT Status Hpr2<Type>(                                \
+      const ExecutionContext&, DenseBlasTriangle, Type,                       \
+      DenseBlasVectorView<const Type>, DenseBlasVectorView<const Type>,       \
+      DenseBlasPackedMatrixView<Type>)
 
 ASC_INSTANTIATE_REAL(float);
 ASC_INSTANTIATE_REAL(double);

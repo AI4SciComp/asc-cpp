@@ -426,8 +426,10 @@ void CheckDiscrepancyAndConcurrency(asc_random_test::TestContext& context) {
     std::array<double, 2> point{};
     ASC_RANDOM_TEST_CHECK(context,
                           asc::GenerateHaltonPoint<double>(index, point).ok());
-    const auto x = std::min<std::size_t>(7, point[0] * 8);
-    const auto y = std::min<std::size_t>(7, point[1] * 8);
+    const auto x =
+        std::min<std::size_t>(7, static_cast<std::size_t>(point[0] * 8));
+    const auto y =
+        std::min<std::size_t>(7, static_cast<std::size_t>(point[1] * 8));
     ++bins[y * 8 + x];
   }
   const auto maximum = *std::max_element(bins.begin(), bins.end());

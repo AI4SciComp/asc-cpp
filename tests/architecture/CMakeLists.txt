@@ -74,6 +74,11 @@ add_test(
     -P "${CMAKE_CURRENT_SOURCE_DIR}/check_random_contract.cmake"
 )
 
+set(_random_completion_supports_disabled_exceptions FALSE)
+if(CMAKE_CXX_COMPILER_ID MATCHES "^(GNU|Clang|AppleClang)$"
+   AND NOT CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "MSVC")
+  set(_random_completion_supports_disabled_exceptions TRUE)
+endif()
 add_test(
   NAME asc_cpp.architecture.random_completion
   COMMAND
@@ -81,8 +86,10 @@ add_test(
     "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
     "-DBINARY_DIR:PATH=${PROJECT_BINARY_DIR}"
     "-DENABLE_CUDA:BOOL=${ASC_CPP_ENABLE_CUDA}"
+    "-DSUPPORTS_DISABLED_EXCEPTIONS:BOOL=${_random_completion_supports_disabled_exceptions}"
     -P "${CMAKE_CURRENT_SOURCE_DIR}/check_random_completion.cmake"
 )
+unset(_random_completion_supports_disabled_exceptions)
 
 set_tests_properties(
   asc_cpp.architecture.dependency_manifest

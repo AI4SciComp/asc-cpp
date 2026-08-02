@@ -2,13 +2,13 @@
 #include <cstddef>
 #include <cstdint>
 #include <limits>
-#include <type_traits>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/dense/blas.h"
+#include "asc/dense/export.h"
 
 namespace asc {
 namespace internal_dense_blas {
@@ -96,6 +96,8 @@ Element OperationAt(DenseBlasMatrixView<const Element> matrix,
                     DenseBlasTranspose transpose, index_t row, index_t column) {
   Element value = transpose == DenseBlasTranspose::kNone
                       ? MatrixAt(matrix, row, column)
+                      // Transpose intentionally reverses the matrix indices.
+                      // NOLINTNEXTLINE(readability-suspicious-call-argument)
                       : MatrixAt(matrix, column, row);
   if (transpose == DenseBlasTranspose::kConjugateTranspose) {
     value = Conjugate(value);
@@ -146,6 +148,8 @@ Element TriangularOperationAt(DenseBlasMatrixView<const Element> matrix,
                               index_t column) {
   Element value = transpose == DenseBlasTranspose::kNone
                       ? TriangularAt(matrix, triangle, diagonal, row, column)
+                      // Transpose intentionally reverses the matrix indices.
+                      // NOLINTNEXTLINE(readability-suspicious-call-argument)
                       : TriangularAt(matrix, triangle, diagonal, column, row);
   if (transpose == DenseBlasTranspose::kConjugateTranspose) {
     value = Conjugate(value);
@@ -343,11 +347,17 @@ Status SymmetricRankK(const ExecutionContext& context,
       Element product{0};
       if (alpha != Element{0}) {
         for (index_t index = 0; index < inner; ++index) {
-          product += OperationAt(left, transpose, row, index) *
-                     OperationAt(right, transpose, column, index);
+          product +=
+              OperationAt(left, transpose, row, index) *
+              // The output column selects a source row for rank-k products.
+              // NOLINTNEXTLINE(readability-suspicious-call-argument)
+              OperationAt(right, transpose, column, index);
           if (rank_two) {
-            product += OperationAt(right, transpose, row, index) *
-                       OperationAt(left, transpose, column, index);
+            product +=
+                OperationAt(right, transpose, row, index) *
+                // The output column selects a source row for rank-k products.
+                // NOLINTNEXTLINE(readability-suspicious-call-argument)
+                OperationAt(left, transpose, column, index);
           }
         }
       }
@@ -390,12 +400,17 @@ Status HermitianRankK(const ExecutionContext& context,
       Element product{0};
       if (alpha != Element{0}) {
         for (index_t index = 0; index < inner; ++index) {
-          product += alpha * OperationAt(left, transpose, row, index) *
-                     Conjugate(OperationAt(right, transpose, column, index));
+          product +=
+              alpha * OperationAt(left, transpose, row, index) *
+              // The output column selects a source row for rank-k products.
+              // NOLINTNEXTLINE(readability-suspicious-call-argument)
+              Conjugate(OperationAt(right, transpose, column, index));
           if (rank_two) {
-            product += Conjugate(alpha) *
-                       OperationAt(right, transpose, row, index) *
-                       Conjugate(OperationAt(left, transpose, column, index));
+            product +=
+                Conjugate(alpha) * OperationAt(right, transpose, row, index) *
+                // The output column selects a source row for rank-k products.
+                // NOLINTNEXTLINE(readability-suspicious-call-argument)
+                Conjugate(OperationAt(left, transpose, column, index));
           }
         }
       }
@@ -677,40 +692,40 @@ Status Trsm(const ExecutionContext& context, DenseBlasSide side,
 }
 
 #define ASC_INSTANTIATE_LEVEL3(Type)                                          \
-  template Status Gemm<Type>(                                                 \
+  template ASC_DENSE_EXPORT Status Gemm<Type>(                                \
       const ExecutionContext&, DenseBlasTranspose, DenseBlasTranspose, Type,  \
       DenseBlasMatrixView<const Type>, DenseBlasMatrixView<const Type>, Type, \
       DenseBlasMatrixView<Type>);                                             \
-  template Status Symm<Type>(                                                 \
+  template ASC_DENSE_EXPORT Status Symm<Type>(                                \
       const ExecutionContext&, DenseBlasSide, DenseBlasTriangle, Type,        \
       DenseBlasMatrixView<const Type>, DenseBlasMatrixView<const Type>, Type, \
       DenseBlasMatrixView<Type>);                                             \
-  template Status Syrk<Type>(                                                 \
+  template ASC_DENSE_EXPORT Status Syrk<Type>(                                \
       const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose, Type,   \
       DenseBlasMatrixView<const Type>, Type, DenseBlasMatrixView<Type>);      \
-  template Status Syr2k<Type>(                                                \
+  template ASC_DENSE_EXPORT Status Syr2k<Type>(                               \
       const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose, Type,   \
       DenseBlasMatrixView<const Type>, DenseBlasMatrixView<const Type>, Type, \
       DenseBlasMatrixView<Type>);                                             \
-  template Status Trmm<Type>(                                                 \
+  template ASC_DENSE_EXPORT Status Trmm<Type>(                                \
       const ExecutionContext&, DenseBlasSide, DenseBlasTriangle,              \
       DenseBlasTranspose, DenseBlasDiagonal, Type,                            \
       DenseBlasMatrixView<const Type>, DenseBlasMatrixView<Type>);            \
-  template Status Trsm<Type>(                                                 \
+  template ASC_DENSE_EXPORT Status Trsm<Type>(                                \
       const ExecutionContext&, DenseBlasSide, DenseBlasTriangle,              \
       DenseBlasTranspose, DenseBlasDiagonal, Type,                            \
       DenseBlasMatrixView<const Type>, DenseBlasMatrixView<Type>)
 
 #define ASC_INSTANTIATE_LEVEL3_COMPLEX(Type, Real)                            \
   ASC_INSTANTIATE_LEVEL3(Type);                                               \
-  template Status Hemm<Type>(                                                 \
+  template ASC_DENSE_EXPORT Status Hemm<Type>(                                \
       const ExecutionContext&, DenseBlasSide, DenseBlasTriangle, Type,        \
       DenseBlasMatrixView<const Type>, DenseBlasMatrixView<const Type>, Type, \
       DenseBlasMatrixView<Type>);                                             \
-  template Status Herk<Type>(                                                 \
+  template ASC_DENSE_EXPORT Status Herk<Type>(                                \
       const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose, Real,   \
       DenseBlasMatrixView<const Type>, Real, DenseBlasMatrixView<Type>);      \
-  template Status Her2k<Type>(                                                \
+  template ASC_DENSE_EXPORT Status Her2k<Type>(                               \
       const ExecutionContext&, DenseBlasTriangle, DenseBlasTranspose, Type,   \
       DenseBlasMatrixView<const Type>, DenseBlasMatrixView<const Type>, Real, \
       DenseBlasMatrixView<Type>)

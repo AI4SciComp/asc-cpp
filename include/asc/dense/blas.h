@@ -54,9 +54,10 @@ class DenseBlasVectorView {
           std::same_as<element_type, index_t>,
       "DenseBlasVectorView supports BLAS value and public index types");
 
-  static Result<DenseBlasVectorView> Create(Element* logical_first,
-                                            extent_t size, stride_t increment,
-                                            ConstMemoryView backing_storage) {
+  static Result<DenseBlasVectorView>
+  Create(  // NOLINT(readability-function-size)
+      Element* logical_first, extent_t size, stride_t increment,
+      ConstMemoryView backing_storage) {
     if (size < 0) {
       return Status(ErrorCode::kInvalidArgument,
                     "A BLAS vector size cannot be negative");
@@ -141,6 +142,8 @@ class DenseBlasVectorView {
     }
     return DenseBlasVectorView(
         logical_first, size, increment, backing_storage,
+        // The checked integer address preserves negative-stride bounds.
+        // NOLINTNEXTLINE(performance-no-int-to-ptr)
         reinterpret_cast<const void*>(reachable_begin),
         static_cast<std::size_t>(reachable_end - reachable_begin));
   }
@@ -165,8 +168,7 @@ class DenseBlasVectorView {
     return backing_storage_;
   }
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
-    return ConstMemoryView(reachable_data_, reachable_size_,
-                           backing_storage_.space());
+    return {reachable_data_, reachable_size_, backing_storage_.space()};
   }
 
  private:
@@ -351,8 +353,7 @@ class DenseBlasMatrixView {
     return backing_storage_;
   }
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
-    return ConstMemoryView(bounds_.data, bounds_.size,
-                           backing_storage_.space());
+    return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
 
  private:
@@ -461,8 +462,7 @@ class DenseBlasBandMatrixView {
     return backing_storage_.space();
   }
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
-    return ConstMemoryView(bounds_.data, bounds_.size,
-                           backing_storage_.space());
+    return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
 
  private:
@@ -554,8 +554,7 @@ class DenseBlasTriangularBandView {
     return backing_storage_.space();
   }
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
-    return ConstMemoryView(bounds_.data, bounds_.size,
-                           backing_storage_.space());
+    return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
 
  private:
@@ -631,8 +630,7 @@ class DenseBlasPackedMatrixView {
     return backing_storage_.space();
   }
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
-    return ConstMemoryView(bounds_.data, bounds_.size,
-                           backing_storage_.space());
+    return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
 
  private:

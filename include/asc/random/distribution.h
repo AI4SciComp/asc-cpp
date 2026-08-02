@@ -5,6 +5,7 @@
 #include <concepts>
 #include <cstdint>
 #include <limits>
+#include <numbers>
 #include <type_traits>
 
 #include "asc/core/result.h"
@@ -135,7 +136,9 @@ class UniformIntegerDistribution final {
       return internal_random_distribution::AddOffset(lower_, candidate);
     }
 
-    const Unsigned threshold = static_cast<Unsigned>(-range) % range;
+    const Unsigned wrapped_negative =
+        std::numeric_limits<Unsigned>::max() - range + Unsigned{1};
+    const Unsigned threshold = wrapped_negative % range;
     while (true) {
       const Unsigned candidate = static_cast<Unsigned>(
           internal_random_distribution::CanonicalBits<kBits>(engine));
@@ -227,13 +230,7 @@ class NormalDistribution final {
         internal_random_distribution::UnitReal<Real>(engine);
     const Real unit_radius = Real{1} - first_unit;
     const Real unit_angle = second_unit;
-    constexpr Real kPi = [] {
-      if constexpr (std::same_as<Real, float>) {
-        return 0x1.921fb6p+1F;
-      } else {
-        return 0x1.921fb54442d18p+1;
-      }
-    }();
+    constexpr Real kPi = std::numbers::pi_v<Real>;
     const Real radius = std::sqrt(Real{-2} * std::log(unit_radius));
     const Real z = radius * std::cos(Real{2} * kPi * unit_angle);
     const Real candidate = std::fma(standard_deviation_, z, mean_);

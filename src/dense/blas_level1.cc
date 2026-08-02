@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <cmath>
 #include <complex>
+#include <concepts>
 #include <cstdint>
-#include <limits>
 #include <type_traits>
 
 #include "asc/core/execution.h"
@@ -188,9 +188,9 @@ Status ComplexRotg(const ExecutionContext& context,
 }
 
 template <typename Element>
-Status RotmgImpl(const ExecutionContext& context, Vector<Element> d1,
-                 Vector<Element> d2, Vector<Element> x1,
-                 Vector<const Element> y1, Vector<Element> parameters) {
+Status RotmgImpl(  // NOLINT(readability-function-size)
+    const ExecutionContext& context, Vector<Element> d1, Vector<Element> d2,
+    Vector<Element> x1, Vector<const Element> y1, Vector<Element> parameters) {
   Status context_status = ValidateContext(context);
   if (!context_status.ok()) {
     return context_status;
@@ -580,7 +580,7 @@ Status SdsdotImpl(const ExecutionContext& context, float bias,
   return Status::Ok();
 }
 
-template <typename Element, bool kConjugate>
+template <typename Element, bool Conjugate>
 Status ComplexDotImpl(const ExecutionContext& context,
                       Vector<const Element> left, Vector<const Element> right,
                       Vector<Element> result) {
@@ -590,7 +590,7 @@ Status ComplexDotImpl(const ExecutionContext& context,
   }
   Element sum{0, 0};
   for (index_t index = 0; index < left.size(); ++index) {
-    if constexpr (kConjugate) {
+    if constexpr (Conjugate) {
       sum += std::conj(At(left, index)) * At(right, index);
     } else {
       sum += At(left, index) * At(right, index);
