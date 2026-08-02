@@ -1,6 +1,6 @@
 # ASCCpp package capabilities
 
-Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -10,10 +10,13 @@ operation, or make every package target available.
 
 Issues 13 and 14 add `asc/random/generator.h`, `asc/random/seed.h`, and
 `asc/random/quasi.h` to the existing `random` header file set plus compiled
-seed, engine, and QMC symbols in the existing library. The Joe--Kuo dataset,
-license, and third-party notice are installed as documentation/data artifacts.
-No component, target, dependency, package variable, or CUDA claim is added;
-the exact `random -> core` closure is unchanged.
+seed, engine, and QMC symbols in the existing library. Issue 15 adds only
+header-defined advanced CPU samplers and adapters to the existing
+`random_dense` and `random_sparse` facets. The Joe--Kuo dataset, license, and
+third-party notice remain installed as documentation/data artifacts. No
+component, target, dependency, package variable, or CUDA claim is added; the
+exact `random -> core`, `random_dense -> random + dense`, and
+`random_sparse -> random + sparse` closures are unchanged.
 
 ## Minimal consumption
 

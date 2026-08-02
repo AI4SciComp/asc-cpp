@@ -15,6 +15,10 @@
 #include "asc/core/providers/cuda.h"
 #include "asc/dense/layout.h"
 #include "asc/dense/view.h"
+#include "asc/random/dense.h"
+#include "asc/random/distribution.h"
+#include "asc/random/engine.h"
+#include "asc/random/generator.h"
 #include "asc/random/providers/dense_cuda.h"
 
 namespace {
@@ -425,6 +429,82 @@ void CheckIrregularDoublePartitions(Fixture& fixture, TestContext& test) {
   }
 }
 
+void CheckAdvancedCpuOnlyRejection(Fixture& fixture, TestContext& test) {
+  constexpr std::array<asc::extent_t, 2> kExtents{2, 2};
+  constexpr std::array<asc::extent_t, 1> kWorkspaceExtents{2};
+  auto mapping = asc::DenseLayout<2>::Create(kExtents, asc::LayoutRight{});
+  auto workspace_mapping =
+      asc::DenseLayout<1>::Create(kWorkspaceExtents, asc::LayoutLeft{});
+  std::array<double, 4> output{17.0, 17.0, 17.0, 17.0};
+  std::array<double, 2> workspace{19.0, 19.0};
+  std::array<std::uint32_t, 4> permutation_workspace{31, 31, 31, 31};
+  auto output_view = asc::DenseView<double, 2>::Create(output.data(), *mapping,
+                                                       asc::MemorySpace::kHost);
+  auto workspace_view = asc::DenseView<double, 1>::Create(
+      workspace.data(), *workspace_mapping, asc::MemorySpace::kHost);
+  auto permutation_view = asc::DenseView<std::uint32_t, 2>::Create(
+      permutation_workspace.data(), *mapping, asc::MemorySpace::kHost);
+  ASC_M7_CUDA_CHECK(test, output_view.ok());
+  ASC_M7_CUDA_CHECK(test, workspace_view.ok());
+  ASC_M7_CUDA_CHECK(test, permutation_view.ok());
+  if (!output_view.ok() || !workspace_view.ok() || !permutation_view.ok()) {
+    return;
+  }
+  auto CheckUnsupported = [&test](const asc::Status& status) {
+    ASC_M7_CUDA_CHECK(test, !status.ok());
+    ASC_M7_CUDA_EQ(test, status.code(), asc::ErrorCode::kUnsupported);
+  };
+
+  auto uniform = asc::UniformRealDistribution<double>::Create(0.0, 1.0);
+  asc::UniformGenerator<asc::Pcg32, double> pseudo_generator(asc::Pcg32(23, 29),
+                                                             *uniform);
+  const auto pseudo_state = pseudo_generator.engine().ExportState();
+  CheckUnsupported(
+      asc::FillDensePseudo(fixture.execution, *output_view, pseudo_generator));
+  ASC_M7_CUDA_EQ(test, pseudo_generator.engine().ExportState(), pseudo_state);
+
+  asc::DenseView<const double, 1> mean = *workspace_view;
+  asc::DenseView<const double, 2> factor = *output_view;
+  CheckUnsupported(asc::PrepareDenseMultivariateNormal(fixture.execution, mean,
+                                                       factor, *output_view));
+  auto normal = asc::NormalDistribution<double>::Create(0.0, 1.0);
+  asc::NormalGenerator<asc::Pcg32, double> normal_generator(asc::Pcg32(37, 41),
+                                                            *normal);
+  const auto normal_state = normal_generator.engine().ExportState();
+  CheckUnsupported(asc::FillDenseMultivariateNormal(
+      fixture.execution, *output_view, mean, factor, normal_generator,
+      *workspace_view));
+  ASC_M7_CUDA_EQ(test, normal_generator.engine().ExportState(), normal_state);
+
+  asc::Pcg32 engine(43, 47);
+  const auto initial_state = engine.ExportState();
+  CheckUnsupported(asc::FillDenseUnitSphere(fixture.execution, *output_view,
+                                            engine, *workspace_view));
+  CheckUnsupported(asc::FillDenseLatinHypercubeMidpoints(
+      fixture.execution, *output_view, engine, *permutation_view));
+  CheckUnsupported(asc::FillDenseLatinHypercubeJittered(
+      fixture.execution, *output_view, engine, *permutation_view));
+  ASC_M7_CUDA_EQ(test, engine.ExportState(), initial_state);
+
+  constexpr std::array<std::uint32_t, 2> kBaseTwo{0, 1};
+  constexpr std::array<std::uint32_t, 3> kBaseThree{0, 1, 2};
+  const std::array<std::span<const std::uint32_t>, 2> permutations{kBaseTwo,
+                                                                   kBaseThree};
+  CheckUnsupported(asc::FillDenseHalton(fixture.execution, *output_view, 0,
+                                        *workspace_view));
+  CheckUnsupported(asc::FillDenseScrambledHalton(
+      fixture.execution, *output_view, 0, permutations, *workspace_view));
+  CheckUnsupported(asc::FillDenseHammersley(fixture.execution, *output_view, 0,
+                                            2, *workspace_view));
+  CheckUnsupported(
+      asc::FillDenseSobol(fixture.execution, *output_view, 0, *workspace_view));
+
+  ASC_M7_CUDA_EQ(test, output, (std::array<double, 4>{17.0, 17.0, 17.0, 17.0}));
+  ASC_M7_CUDA_EQ(test, workspace, (std::array<double, 2>{19.0, 19.0}));
+  ASC_M7_CUDA_EQ(test, permutation_workspace,
+                 (std::array<std::uint32_t, 4>{31, 31, 31, 31}));
+}
+
 }  // namespace
 
 int main() {
@@ -443,5 +523,6 @@ int main() {
   CheckRankZeroAndEmpty(*fixture, test);
   CheckPartitionAndFailures(*fixture, test);
   CheckIrregularDoublePartitions(*fixture, test);
+  CheckAdvancedCpuOnlyRejection(*fixture, test);
   return test.Finish();
 }

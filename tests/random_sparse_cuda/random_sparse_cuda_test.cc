@@ -18,8 +18,12 @@
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
 #include "asc/core/status.h"
+#include "asc/random/distribution.h"
+#include "asc/random/generator.h"
 #include "asc/random/providers/sparse_cuda.h"
 #include "asc/random/sparse.h"
+#include "asc/sparse/compressed.h"
+#include "asc/sparse/coordinate.h"
 
 namespace {
 
@@ -411,6 +415,67 @@ void CheckFailures(Fixture& fixture, TestContext& test) {
   ASC_M7_CUDA_EQ(test, failing.attempts(), std::size_t{2});
   ASC_M7_CUDA_EQ(test, failing.live(), std::size_t{0});
   ASC_M7_CUDA_EQ(test, failing.deallocations(), std::size_t{1});
+
+  std::array<asc::SparseRandomStructureCandidate, 12> workspace{};
+  std::array<std::uint64_t, 3> ordinals{17, 17, 17};
+  const auto cpu_only = asc::GenerateSparseStructure(
+      fixture.execution, *extents, 3, 7, 11, 13, workspace, ordinals);
+  ASC_M7_CUDA_CHECK(test, !cpu_only.ok());
+  ASC_M7_CUDA_EQ(test, cpu_only.status().code(), asc::ErrorCode::kUnsupported);
+  ASC_M7_CUDA_EQ(test, ordinals, (std::array<std::uint64_t, 3>{17, 17, 17}));
+
+  constexpr std::array<asc::extent_t, 2> kShape{3, 4};
+  constexpr std::array<asc::index_t, 6> kCoordinates{0, 1, 1, 2, 2, 3};
+  constexpr std::array<asc::nnz_t, 4> kOffsets{0, 1, 2, 3};
+  constexpr std::array<asc::index_t, 3> kIndices{1, 2, 3};
+  std::array<float, 3> coordinate_values{23.0F, 23.0F, 23.0F};
+  std::array<float, 3> compressed_values{29.0F, 29.0F, 29.0F};
+  auto coordinate_view = asc::CoordinateView<float, 2>::Create(
+      kCoordinates.data(), coordinate_values.data(), kShape, 3,
+      asc::MemorySpace::kHost);
+  auto compressed_view =
+      asc::CompressedSparseView<float, asc::SparseCompressedFormat::kCsr>::
+          Create(kOffsets, kIndices, std::span<float>(compressed_values),
+                 kShape, asc::MemorySpace::kHost);
+  ASC_M7_CUDA_CHECK(test, coordinate_view.ok());
+  ASC_M7_CUDA_CHECK(test, compressed_view.ok());
+  if (!coordinate_view.ok() || !compressed_view.ok()) {
+    return;
+  }
+  const auto coordinate_uniform =
+      asc::FillSparseUniform01(fixture.execution, *coordinate_view, 31, 37, 41);
+  const auto compressed_uniform =
+      asc::FillSparseUniform01(fixture.execution, *compressed_view, 31, 37, 41);
+  ASC_M7_CUDA_CHECK(test, !coordinate_uniform.ok());
+  ASC_M7_CUDA_CHECK(test, !compressed_uniform.ok());
+  ASC_M7_CUDA_EQ(test, coordinate_uniform.status().code(),
+                 asc::ErrorCode::kUnsupported);
+  ASC_M7_CUDA_EQ(test, compressed_uniform.status().code(),
+                 asc::ErrorCode::kUnsupported);
+
+  auto uniform = asc::UniformRealDistribution<float>::Create(0.0F, 1.0F);
+  asc::UniformGenerator<asc::Pcg32, float> coordinate_generator(
+      asc::Pcg32(43, 47), *uniform);
+  asc::UniformGenerator<asc::Pcg32, float> compressed_generator(
+      asc::Pcg32(53, 59), *uniform);
+  const auto coordinate_state = coordinate_generator.engine().ExportState();
+  const auto compressed_state = compressed_generator.engine().ExportState();
+  const auto coordinate_pseudo = asc::FillSparsePseudo(
+      fixture.execution, *coordinate_view, coordinate_generator);
+  const auto compressed_pseudo = asc::FillSparsePseudo(
+      fixture.execution, *compressed_view, compressed_generator);
+  ASC_M7_CUDA_CHECK(test, !coordinate_pseudo.ok());
+  ASC_M7_CUDA_CHECK(test, !compressed_pseudo.ok());
+  ASC_M7_CUDA_EQ(test, coordinate_pseudo.code(), asc::ErrorCode::kUnsupported);
+  ASC_M7_CUDA_EQ(test, compressed_pseudo.code(), asc::ErrorCode::kUnsupported);
+  ASC_M7_CUDA_EQ(test, coordinate_generator.engine().ExportState(),
+                 coordinate_state);
+  ASC_M7_CUDA_EQ(test, compressed_generator.engine().ExportState(),
+                 compressed_state);
+  ASC_M7_CUDA_EQ(test, coordinate_values,
+                 (std::array<float, 3>{23.0F, 23.0F, 23.0F}));
+  ASC_M7_CUDA_EQ(test, compressed_values,
+                 (std::array<float, 3>{29.0F, 29.0F, 29.0F}));
 }
 
 }  // namespace

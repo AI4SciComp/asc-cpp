@@ -260,6 +260,152 @@ bool BenchmarkSparse(std::uint64_t& aggregate_checksum) {
                  kExpectedResourceAllocations));
 }
 
+bool BenchmarkAdvancedAdapters(std::uint64_t& aggregate_checksum) {
+  constexpr std::size_t kSamples = 2048;
+  constexpr std::size_t kDimensions = 8;
+  constexpr std::size_t kDenseRepetitions = 10;
+  constexpr std::array<asc::extent_t, 2> kDenseExtents{kSamples, kDimensions};
+  constexpr std::array<asc::extent_t, 1> kPointExtents{kDimensions};
+  auto dense_mapping =
+      asc::DenseLayout<2>::Create(kDenseExtents, asc::LayoutRight{});
+  auto point_mapping =
+      asc::DenseLayout<1>::Create(kPointExtents, asc::LayoutLeft{});
+  if (!dense_mapping.ok() || !point_mapping.ok()) {
+    return false;
+  }
+  std::vector<double> dense_storage(kSamples * kDimensions);
+  std::array<double, kDimensions> point_storage{};
+  auto dense_view = asc::DenseView<double, 2>::Create(
+      dense_storage.data(), *dense_mapping, asc::MemorySpace::kHost);
+  auto point_view = asc::DenseView<double, 1>::Create(
+      point_storage.data(), *point_mapping, asc::MemorySpace::kHost);
+  if (!dense_view.ok() || !point_view.ok()) {
+    return false;
+  }
+
+  std::uint64_t dense_checksum = 1469598103934665603ULL;
+  std::size_t dense_allocations = 0;
+  const auto dense_begin = std::chrono::steady_clock::now();
+  for (std::size_t repetition = 0; repetition < kDenseRepetitions;
+       ++repetition) {
+    asc::Status status;
+    {
+      asc_random_storage_benchmark::AllocationProbe probe;
+      status = asc::FillDenseSobol(
+          asc::ExecutionContext::Serial(), *dense_view,
+          static_cast<std::uint64_t>(repetition * kSamples), *point_view);
+      dense_allocations += probe.count();
+    }
+    if (!status.ok()) {
+      return false;
+    }
+    for (double value : dense_storage) {
+      dense_checksum = Mix(dense_checksum, std::bit_cast<std::uint64_t>(value));
+    }
+  }
+  const auto dense_elapsed =
+      std::chrono::duration_cast<std::chrono::nanoseconds>(
+          std::chrono::steady_clock::now() - dense_begin);
+  std::uint64_t expected_dense_checksum = 1469598103934665603ULL;
+  for (std::size_t repetition = 0; repetition < kDenseRepetitions;
+       ++repetition) {
+    for (std::size_t sample = 0; sample < kSamples; ++sample) {
+      for (std::size_t dimension = 0; dimension < kDimensions; ++dimension) {
+        auto expected = asc::SobolCoordinate<double>(
+            static_cast<std::uint64_t>(repetition * kSamples + sample),
+            dimension);
+        if (!expected.ok()) {
+          return false;
+        }
+        expected_dense_checksum = Mix(expected_dense_checksum,
+                                      std::bit_cast<std::uint64_t>(*expected));
+      }
+    }
+  }
+  if (dense_checksum != expected_dense_checksum ||
+      !asc_test::ProcessAllocationCountMatches(dense_allocations, 0)) {
+    return false;
+  }
+  aggregate_checksum = Mix(aggregate_checksum, dense_checksum);
+  std::cout << "dense adapter=sobol scalar=double shape=2048x8 repetitions="
+            << kDenseRepetitions
+            << " operation_allocation_calls=" << dense_allocations
+            << " elapsed_ns=" << dense_elapsed.count()
+            << " checksum=" << dense_checksum
+            << " oracle=scalar-sobol-coordinate\n";
+
+  using Shape = asc::Extents<asc::kDynamicExtent, asc::kDynamicExtent>;
+  auto sparse_shape = Shape::Create(64, 64);
+  if (!sparse_shape.ok()) {
+    return false;
+  }
+  constexpr std::size_t kSparseCount = 256;
+  constexpr std::size_t kSparseRepetitions = 10;
+  std::vector<asc::SparseRandomStructureCandidate> candidate_workspace(4096);
+  std::array<std::uint64_t, kSparseCount> ordinals{};
+  std::uint64_t sparse_checksum = 1469598103934665603ULL;
+  std::size_t sparse_allocations = 0;
+  asc::RandomOffset next_offset = 0;
+  const auto sparse_begin = std::chrono::steady_clock::now();
+  for (std::size_t repetition = 0; repetition < kSparseRepetitions;
+       ++repetition) {
+    asc::Result<asc::RandomOffset> generated =
+        asc::Status(asc::ErrorCode::kInternal, "not generated");
+    {
+      asc_random_storage_benchmark::AllocationProbe probe;
+      generated = asc::GenerateSparseStructure(
+          asc::ExecutionContext::Serial(), *sparse_shape, kSparseCount, 131,
+          static_cast<asc::RandomSubsequence>(repetition), 137,
+          candidate_workspace, ordinals);
+      sparse_allocations += probe.count();
+    }
+    if (!generated.ok()) {
+      return false;
+    }
+    next_offset = *generated;
+    for (std::uint64_t ordinal : ordinals) {
+      sparse_checksum = Mix(sparse_checksum, ordinal);
+    }
+  }
+  const auto sparse_elapsed =
+      std::chrono::duration_cast<std::chrono::nanoseconds>(
+          std::chrono::steady_clock::now() - sparse_begin);
+  std::uint64_t expected_sparse_checksum = 1469598103934665603ULL;
+  for (std::size_t repetition = 0; repetition < kSparseRepetitions;
+       ++repetition) {
+    std::vector<std::pair<std::uint64_t, std::uint64_t>> candidates;
+    candidates.reserve(4096);
+    for (std::uint64_t ordinal = 0; ordinal < 4096; ++ordinal) {
+      candidates.emplace_back(
+          PriorityOracle(131, static_cast<asc::RandomSubsequence>(repetition),
+                         137 + 2 * ordinal),
+          ordinal);
+    }
+    std::sort(candidates.begin(), candidates.end());
+    std::vector<std::uint64_t> expected;
+    expected.reserve(kSparseCount);
+    for (std::size_t position = 0; position < kSparseCount; ++position) {
+      expected.push_back(candidates[position].second);
+    }
+    std::sort(expected.begin(), expected.end());
+    for (std::uint64_t ordinal : expected) {
+      expected_sparse_checksum = Mix(expected_sparse_checksum, ordinal);
+    }
+  }
+  if (sparse_checksum != expected_sparse_checksum || next_offset != 8329 ||
+      !asc_test::ProcessAllocationCountMatches(sparse_allocations, 0)) {
+    return false;
+  }
+  aggregate_checksum = Mix(aggregate_checksum, sparse_checksum);
+  std::cout << "sparse adapter=structure-only shape=64x64 count=256"
+            << " repetitions=" << kSparseRepetitions
+            << " operation_allocation_calls=" << sparse_allocations
+            << " elapsed_ns=" << sparse_elapsed.count()
+            << " next_offset=" << next_offset << " checksum=" << sparse_checksum
+            << " oracle=independent-priority-sort\n";
+  return true;
+}
+
 }  // namespace
 
 int main() {
@@ -282,7 +428,7 @@ int main() {
   std::uint64_t checksum = 1469598103934665603ULL;
   if (!BenchmarkDense(asc::LayoutLeft{}, "left", checksum) ||
       !BenchmarkDense(asc::LayoutRight{}, "right", checksum) ||
-      !BenchmarkSparse(checksum)) {
+      !BenchmarkSparse(checksum) || !BenchmarkAdvancedAdapters(checksum)) {
     return 1;
   }
   std::cout << "aggregate_checksum=" << checksum << '\n';

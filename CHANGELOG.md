@@ -5,6 +5,26 @@ completion and release publication require separate approval.
 
 ## Unreleased
 
+### Advanced samplers and storage adapters (Issue 15)
+
+- Added allocation-free generic pseudo and Dense Latin/Halton/Hammersley/Sobol
+  fills over caller-owned views and explicit workspaces.
+- Added clean-room lower-Cholesky preparation, multivariate-normal Dense
+  sampling, and bounded normalized-Gaussian unit-sphere sampling on the
+  portable serial CPU path.
+- Added structure-preserving coordinate/CSR/CSC value fills and average-linear
+  exact-count Sparse ordinal selection into caller-owned candidate/output
+  workspace while retaining the combined owner generator unchanged.
+- Added deterministic known-answer, parameter/failure, padded-layout,
+  statistical, allocation, package/relocation consumer, CUDA-context rejection,
+  crosswalk, documentation, and correctness-guarded performance checks.
+
+No target, dependency, storage customization protocol, factorization package,
+GPU implementation, compressed random output, hidden allocation/workspace,
+transfer, synchronization, fallback, or global state is added. MdeCpp remains
+behavioral evidence only; no GPL-covered code, data, tests, benchmarks, or
+prose is reused.
+
 ### Dense BLAS Level 3 (Issue 9)
 
 - Added all 30 frozen classic dense BLAS Level 3 S/D/C/Z rows on the portable

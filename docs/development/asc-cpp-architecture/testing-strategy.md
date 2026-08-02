@@ -1,6 +1,6 @@
 # Verification strategy
 
-Status: Product evidence through Issue 14 quasi-random samplers
+Status: Product evidence through Issue 15 advanced Random adapters
 
 ## Test ownership
 
@@ -133,6 +133,18 @@ evaluation; and build-tree/install/relocation consumption. The imported data,
 license, offline generator, generated source, runtime table, installed data,
 and notice each have explicit identity evidence. QMC remains CPU-only and no
 new GPU row is verified.
+
+Issue 15 adds known-answer, invariant, parameter, statistical, packaging,
+allocation, performance, and CPU/GPU-boundary tests for the advanced Dense and
+Sparse adapters. Multivariate-normal moments use 65,536 fixed-state samples,
+with mean error at most 0.04 and covariance error at most 0.06; these limits
+are more than nine and eight of the fixture's largest asymptotic standard
+errors. Unit-sphere moments use 131,072 fixed-state samples per tested
+dimension, with mean/cross-moment limit 0.015 and diagonal second-moment error
+at most 0.02. Known answers and exact invariants remain primary. Real-CUDA
+tests verify that these portable-CPU APIs reject a CUDA context without
+mutation, state consumption, transfer, synchronization, or allocation; they
+do not claim a GPU implementation or CPU/GPU parity.
 
 ## GPU evidence levels
 

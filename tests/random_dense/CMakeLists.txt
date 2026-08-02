@@ -16,7 +16,9 @@ function(_asc_random_dense_configure_test target)
 endfunction()
 
 foreach(_source IN ITEMS
+    advanced_sampler_test.cc
     dense_generation_test.cc
+    qmc_fill_test.cc
     thread_partition_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
@@ -29,6 +31,16 @@ foreach(_source IN ITEMS
     LABELS "random;random_dense;milestone-5;runtime"
   )
 endforeach()
+set_tests_properties(
+  asc_cpp.random_dense.advanced_sampler_test
+  PROPERTIES
+    LABELS "random;random_dense;issue-15;numerical;statistical;runtime"
+    TIMEOUT 120
+)
+set_tests_properties(
+  asc_cpp.random_dense.qmc_fill_test
+  PROPERTIES LABELS "random;random_dense;issue-15;qmc;runtime"
+)
 target_link_libraries(
   asc_random_dense_thread_partition_test
   PRIVATE Threads::Threads
@@ -43,7 +55,7 @@ _asc_random_dense_configure_test(asc_random_dense_allocation_test)
 asc_register_test(
   NAME asc_cpp.random_dense.allocation_test
   TARGET asc_random_dense_allocation_test
-  LABELS "random;random_dense;allocation;milestone-5;runtime"
+  LABELS "random;random_dense;allocation;issue-15;milestone-5;runtime"
 )
 
 foreach(_negative_source IN ITEMS

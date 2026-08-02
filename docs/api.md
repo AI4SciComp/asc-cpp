@@ -161,10 +161,14 @@ Umbrella: `<asc/random.h>`.
   initialization, and a checked sequential Sobol index value.
 - `<asc/random/seed.h>`: explicit `Result<uint64_t>` acquisition from one
   caller-owned full-width `std::random_device`.
-- `<asc/random/dense.h>`: deterministic logical-order uniform filling of
-  caller-provided Dense views with explicit address advancement.
-- `<asc/random/sparse.h>`: deterministic exact-count canonical coordinate
-  generation with separate structure/value address domains.
+- `<asc/random/dense.h>`: deterministic logical-order uniform and generic
+  pseudo fills, prepared multivariate-normal and unit-sphere sampling, and
+  Dense Latin/Halton/Hammersley/Sobol adapters over explicit caller views and
+  workspaces.
+- `<asc/random/sparse.h>`: structure-preserving coordinate/CSR/CSC value
+  fills, exact-count structure-only ordinal selection into caller workspace,
+  and combined canonical coordinate-owner generation with separate
+  structure/value address domains.
 - `<asc/random/export.h>`: Random shared/static visibility macros.
 - `<asc/random/providers/cuda.h>`: asynchronous
   `CudaRandomWordGeneration` over the Core `ExecutionContext`, with
@@ -182,8 +186,9 @@ Umbrella: `<asc/random.h>`.
 Base Random owns no storage and includes neither facet header. Its mutable
 engines are explicit caller-owned values, and its nondeterministic source is
 never invoked implicitly. The facets adapt caller-owned Dense and Sparse
-contracts without introducing a default engine, hidden allocation, provider,
-or new GPU code.
+contracts without introducing a default engine, hidden allocation/workspace,
+provider, factorization package, or new GPU code. All Issue 15 additions
+reject non-serial contexts before access or mutation.
 
 See the [Random module guide](modules/random.md) and
 [frozen provenance record][random-provenance].

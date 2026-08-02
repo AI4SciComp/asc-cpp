@@ -85,6 +85,11 @@ set_tests_properties(
   PROPERTIES LABELS
     "architecture;milestone-7;milestone-8;milestone-9;milestone-10;milestone-11;milestone-12"
 )
+set_tests_properties(
+  asc_cpp.architecture.random_contract
+  PROPERTIES LABELS
+    "architecture;issue-15;milestone-7;milestone-8;milestone-9;milestone-10;milestone-11;milestone-12"
+)
 
 unset(_blas_coverage_manifest)
 unset(_architecture_script_arguments)

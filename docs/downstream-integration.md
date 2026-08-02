@@ -1,6 +1,6 @@
 # Downstream integration
 
-Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -11,10 +11,11 @@ or editing generated target files.
 
 Issues 13 and 14 install the stateful engines, scalar distributions, generator
 composition, explicit random-device wrapper, and storage-neutral QMC through
-the existing `random` component. The licensed Joe--Kuo input and notice remain
-package documentation; QMC execution reads only its compiled table. Advanced
-storage adapters planned for Issue 15 cannot be consumed until that gate is
-complete.
+the existing `random` component. Issue 15 installs only updated headers in the
+existing `random_dense` and `random_sparse` components. The licensed Joe--Kuo
+input and notice remain package documentation; QMC execution reads only its
+compiled table. No package target, component closure, provider discovery rule,
+or external dependency changes.
 
 ## Choose the owning component
 
@@ -26,8 +27,8 @@ complete.
 | host Dense storage/evaluation/algebra | `dense` / `ASC::dense` |
 | host Sparse storage/evaluation/Sparse BLAS | `sparse` / `ASC::sparse` |
 | explicit seeds, engines, scalar distributions, QMC, raw Philox/`Uniform01` | `random` / `ASC::random` |
-| host Dense random fill | `random_dense` / `ASC::random_dense` |
-| host Sparse random generation | `random_sparse` / `ASC::random_sparse` |
+| host Dense pseudo/QMC/normal/sphere adapters | `random_dense` / `ASC::random_dense` |
+| host Sparse value/structure/combined adapters | `random_sparse` / `ASC::random_sparse` |
 | complete provider-free surface | `cpp` / `ASC::cpp` |
 | CUDA capability | the corresponding explicit `*_cuda` component/target |
 

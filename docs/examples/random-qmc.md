@@ -59,3 +59,6 @@ permutations and jitter repeat exactly on a supported CPU math ABI. Indexed
 Halton, Hammersley, and Sobol evaluation has no seed or mutable state. These
 Issue 14 operations are portable serial CPU APIs only; they do not accept a
 CUDA context and do not transfer, synchronize, allocate, or fall back.
+Issue 15 maps the same point definitions into caller-owned Dense views through
+the `random_dense` facet; see the [advanced adapter example](random-advanced.md)
+for the explicit context and workspace boundary.

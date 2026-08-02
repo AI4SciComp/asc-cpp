@@ -1,3 +1,6 @@
+#include <array>
+#include <cstdint>
+
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
@@ -35,6 +38,19 @@ int main() {
     if (**value != expected) {
       return 5;
     }
+  }
+  auto refilled = asc::FillSparseUniform01(asc::ExecutionContext::Serial(),
+                                           *view, 11, 12, 13);
+  if (!refilled.ok() || *refilled != 17) {
+    return 6;
+  }
+  std::array<asc::SparseRandomStructureCandidate, 6> workspace{};
+  std::array<std::uint64_t, 2> ordinals{};
+  auto structure =
+      asc::GenerateSparseStructure(asc::ExecutionContext::Serial(), *shape, 2,
+                                   17, 19, 23, workspace, ordinals);
+  if (!structure.ok() || *structure != 35 || ordinals[0] >= ordinals[1]) {
+    return 7;
   }
   return 0;
 }

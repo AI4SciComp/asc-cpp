@@ -65,11 +65,21 @@ installed artifacts, and `THIRD_PARTY_NOTICES` are checked independently. No
 Joe--Kuo program is copied, and no MdeCpp/Burkardt source, test, converter, or
 data is copied.
 
-These additions are portable serial CPU operations. They accept no execution
-context or storage, and no CUDA implementation or CPU/GPU bit-parity claim is
-declared for them. Existing Philox and `Uniform01` CPU/CUDA behavior is
-unchanged. No added operation allocates, transfers, synchronizes, selects a
-provider, falls back, or touches Dense or Sparse storage.
+Issue 15 completes `RND-017` through `RND-021` and `RND-026` through
+`RND-028`. Generic and QMC Dense fills and all Sparse adapter code are
+original asc-cpp compositions over the approved engine, view, and priority
+contracts. Multivariate normal uses an independently written Cholesky and
+Box--Muller composition; unit-sphere sampling uses the published
+normalized-Gaussian method. The GPL-covered MdeCpp implementations, tests,
+fixtures, literal vectors, benchmarks, data, and prose remain prohibited and
+were not used.
+
+The Issue 13 and 14 base additions are portable serial CPU operations that
+accept no execution context or storage. Issue 15 storage adapters accept an
+explicit context and reject every non-serial backend. No new CUDA
+implementation or CPU/GPU bit-parity claim is declared. Existing Philox and
+`Uniform01` CPU/CUDA behavior is unchanged. No added operation hides an
+allocation, transfer, synchronization, provider selection, or fallback.
 
 Philox4x32-10 identity, lane mapping, stream/subsequence/offset mapping, and
 the scalar transform rules are exact pre-1.0 sequence API first published for
@@ -140,6 +150,60 @@ The raw Joe--Kuo input and license install below
 `share/doc/ASCCpp/random`, while `THIRD_PARTY_NOTICES` installs in
 `share/doc/ASCCpp`. Builds and consumers need neither those runtime files nor
 Python. See the [storage-neutral QMC example][qmc-example].
+
+## Issue 15 advanced adapter contract
+
+Issue 15 adds only free functions to `ASC::random_dense` and
+`ASC::random_sparse`; base `ASC::random` remains storage-neutral. There is no
+sampler hierarchy, virtual dispatch, raw generator owner, new target edge,
+factorization dependency, or storage customization protocol. All destinations
+and workspaces are explicit non-owning views or spans.
+
+`FillDensePseudo` invokes a caller-owned generator once per logical element,
+with dimension zero varying fastest independent of physical layout. The
+`FillDenseLatinHypercubeMidpoints` and `FillDenseLatinHypercubeJittered`
+adapters use a caller-owned `uint32_t` Dense permutation workspace matching
+the output shape. `FillDenseHalton`, `FillDenseScrambledHalton`,
+`FillDenseHammersley`, and `FillDenseSobol` use a disjoint one-point Dense
+workspace. Their logical shape is `[sample_count, dimension_count]`; dimension
+zero is generated first inside each sample, while padding is untouched.
+
+`PrepareDenseMultivariateNormal` requires finite mean, finite square
+covariance, exact scalar symmetry, matching output-factor shape, and strict
+positive definiteness. It writes a lower Cholesky factor to caller storage and
+zeros the upper triangle. Invalid shape, placement, aliasing, mean, covariance,
+or symmetry leaves the factor unchanged. An SPD failure is `kNumerical` and
+may leave the explicitly designated factor workspace partially updated; no
+prepared result is published. Factorization uses `O(d^3)` work and the
+caller-owned `O(d^2)` factor, with no hidden factorization or BLAS dependency.
+
+`FillDenseMultivariateNormal` requires that prepared factor, a finite mean, a
+standard `NormalGenerator` (mean zero, deviation one), a
+`[sample_count,d]` destination, and a disjoint `d`-element workspace. It draws
+standard normals in increasing dimension order and evaluates `mean + L*z` in
+the written FMA order. The transform is version 1. Engine type/version/state,
+normal-transform version, scalar type, mean/factor values, sample count, and
+logical order determine reproducibility. Transcendentals repeat on the same
+supported math ABI but are not promised bit-identical across libm or CPU/GPU.
+
+`FillDenseUnitSphere` also uses a `d`-element workspace. For `d == 1`, each
+sample consumes one canonical 32-bit request and maps its high bit to `-1` or
+`+1`. For `d > 1`, each version-1 attempt draws `d` standard normals in
+dimension order and accepts only a finite nonzero norm. At most
+`kUnitSphereMaximumAttemptsVersion1 == 64` attempts are made per sample.
+Attempt exhaustion is `kNumerical`. A completed sample is normalized and
+published as one unit; on failure, earlier samples and engine consumption are
+observable, the failing sample is untouched, and later samples are untouched.
+Each attempt is `O(d)` with only caller workspace.
+
+Every Issue 15 Dense operation is synchronous, serial CPU, and host-only. It
+does not allocate, pack, transfer, synchronize, or fall back. Context,
+placement, shape, parameter, index/offset, workspace, and alias validation
+precedes random consumption and destination mutation. Stateful engines and
+generators are not safe for concurrent mutation; immutable factors/QMC data,
+independent engine copies, disjoint destinations, and separate workspaces are
+safe under the ordinary C++ memory model. See the [advanced adapter
+example][advanced-example].
 
 ## Explicit nondeterministic seed acquisition
 
@@ -436,6 +500,11 @@ before the first write. A successful fill allocates no storage or workspace
 and performs no packing, materialization, transfer, synchronization, provider
 selection, or fallback.
 
+The same facet owns `FillDensePseudo`, prepared multivariate-normal and
+unit-sphere sampling, and all Dense QMC fills described in the Issue 15
+contract above. Those APIs preserve the same host-only placement, logical
+layout invariance, explicit-workspace, and no-hidden-allocation boundary.
+
 ## Sparse generation facet
 
 Request and link the sparse facet independently:
@@ -449,6 +518,27 @@ target_link_libraries(my_target PRIVATE ASC::random_sparse)
 #include <asc/random/sparse.h>
 #include <asc/sparse.h>
 ```
+
+`FillSparseUniform01` overloads accept mutable canonical `CoordinateView` and
+rank-two `CompressedSparseView` (CSR or CSC). They write values only in stored
+order and return the first unused Philox value offset. Coordinates, offsets,
+indices, entry count, and order never change; generated zeros remain explicit.
+`FillSparsePseudo` provides the same structure-preserving operation for an
+explicit generator returning the exact stored scalar type. Both operations
+are `O(nnz)`, allocate nothing, and may leave earlier values and consumed
+generator state observable if a later generator result fails.
+
+`GenerateSparseStructure` separates structure selection from value generation.
+It accepts fixed-rank extents, an exact count, one Philox address, a
+`logical_size`-element `SparseRandomStructureCandidate` workspace for nonzero
+count, and an `exact_count`-element `uint64_t` output span. The spans must be
+disjoint. It assigns the same version-1 `(priority, ordinal)` keys used by
+combined generation, selects the exact smallest set in average `O(n)` work,
+and writes the selected ordinals in strictly increasing canonical order. It
+allocates no owner and consumes no value domain. Count zero requires empty
+spans and consumes no structure words; nonzero count addresses exactly `2*n`
+structure words regardless of selected count. Workspace contents after return
+are unspecified.
 
 `GenerateSparseUniform01<Element>` accepts an explicit serial context,
 fixed-rank Core extents, a nonnegative exact count, an explicit host
@@ -514,6 +604,11 @@ Changing only the value address leaves the selected structure unchanged.
 Changing only the structure address leaves the canonical value sequence
 unchanged for the same shape, count, and value address, though the values may
 be attached to different coordinates.
+
+Value-only, structure-only, and combined generation are separate contracts.
+The value-only operations cannot alter structure; structure-only generation
+cannot consume or publish values; combined generation remains the only one
+that allocates a Sparse owner through an explicit `MemoryResource`.
 
 Metadata, count, address-domain, context, placement, and both offset advances
 are validated before allocation. Successful generation performs exactly the
@@ -709,7 +804,10 @@ engine and transforms retain no reference and allocate no result storage.
 Returned words and scalars are ordinary values.
 
 Dense generation borrows the destination view and never acquires ownership.
-The destination owner and storage outlive the complete synchronous operation.
+Advanced Dense preparation/sampling additionally borrows every factor, mean,
+permutation, point, or sample workspace named by the signature. The
+destination owner and all borrowed storage outlive the complete synchronous
+operation.
 Sparse generation returns a move-only owner whose caller-provided resource
 must outlive final deallocation. Input address values are never modified;
 successful operations return new checked offsets.
@@ -738,12 +836,16 @@ narrows metadata.
 
 Every public failure is a `Status` carried directly or by `Result<T>`.
 Validation and checked offset advance are transactional: dense failure leaves
-the destination unchanged, and sparse failure publishes no owner. Message text
-is diagnostic rather than a compatibility guarantee.
+the destination unchanged until generation begins, and sparse combined failure
+publishes no owner. A data-dependent generator or numerical failure preserves
+completed outputs and consumed state, does not publish the failing logical
+output, and leaves later outputs untouched. Cholesky SPD failure may modify
+only the explicitly designated factor workspace. Message text is diagnostic
+rather than a compatibility guarantee.
 
 ## Deliberately absent from the current product
 
-Issues 13 and 14 deliberately provide no:
+Issues 13 through 15 deliberately provide no:
 
 - time-based or implicit seed acquisition, default engine, global or
   thread-local engine, or mutable pool;
@@ -753,8 +855,9 @@ Issues 13 and 14 deliberately provide no:
 - compressed sparse output, duplicate combination, densification, or hidden
   coordinate conversion;
 - shared fill header or a base Random dependency on Dense or Sparse;
-- Dense/Sparse QMC adapter or implicit result owner;
-- multivariate normal or uniform hypersphere sampler;
+- sampler base class, virtual generator owner, new storage adapter protocol,
+  or implicit result owner;
+- multivariate-normal or sphere GPU implementation;
 - optimized CPU provider, OpenMP, TBB, Eigen, BLAS/LAPACK, oneMKL, or
   third-party dependency;
 - cuRAND, provider-native public type, hidden GPU workspace, or additional
@@ -778,3 +881,4 @@ remains authoritative for provider-free storage generation.
 [random-contract]: ../development/asc-cpp-architecture/decisions/0020-random-contract.md
 [random-crosswalk]: ../random-crosswalk.md
 [qmc-example]: ../examples/random-qmc.md
+[advanced-example]: ../examples/random-advanced.md

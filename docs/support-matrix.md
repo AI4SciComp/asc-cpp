@@ -1,6 +1,6 @@
 # ASCCpp support and evidence matrix
 
-Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -13,21 +13,68 @@ Sparse BLAS evidence recorded below. Issue 11 audits those recorded boundaries
 without widening them. Issue 12 freezes the Random contract; Issue 13 adds
 only the CPU engine/distribution evidence recorded below. Issue 14 adds the
 storage-neutral CPU QMC and licensed direction-data evidence recorded below.
+Issue 15 adds only portable serial-CPU advanced samplers and storage adapters
+through the existing Random Dense/Sparse facets.
 
 The matrix below records the clean post-checkpoint correction reruns. Earlier
 revision-2 counts are historical and are not substituted for these corrected
 results.
+
+## Issue 15 advanced sampler and storage-adapter evidence
+
+Issue 15 completes crosswalk rows `RND-017` through `RND-021` and `RND-026`
+through `RND-028`. The 33-row manifest now records 22 equivalent and 11
+rejected rows, with no incomplete, absent, permission-pending, or
+clean-room-pending row. Base Random remains storage-neutral; the target graph
+and package component closures are unchanged.
+
+Deterministic CPU tests cover generic pseudo fill, left/right/padded layouts,
+QMC scalar-to-Dense equivalence, index and workspace failures, Cholesky known
+answers, exact symmetry, SPD/indefinite behavior, sample publication, unit
+norm, dimension-one signs, bounded rejection, coordinate and CSR value fill,
+generated-zero retention, structure-only exact selection, combined-domain
+independence, and zero hidden allocation. The statistical fixtures use fixed
+PCG32 version-1 state: 65,536 non-diagonal three-dimensional normal samples
+with per-mean error at most 0.04 and per-covariance error at most 0.06, plus
+131,072 sphere samples in dimensions 1, 2, 3, and 8 with mean/cross-moment
+limit 0.015 and diagonal second-moment error at most 0.02. The covariance
+fixture's largest asymptotic mean and covariance standard errors are below
+0.0044 and 0.0069, so the thresholds exceed nine and eight such errors,
+respectively. Sphere thresholds exceed five standard errors for the largest
+dimension-one mean variance and are deliberately shared across dimensions.
+
+CUDA builds run rejection tests on a real CUDA context: every new CPU-only
+adapter returns `kUnsupported` before host/device access, mutation, engine
+consumption, transfer, synchronization, or allocation. These are negative
+boundary checks, not new GPU implementation or parity claims. Existing Random
+CUDA rows and their historical evidence remain unchanged.
+
+On Linux/WSL2 6.18 with GNU C++ 11.4, CMake 4.1.2, and ASCCMake 0.1.0,
+the warnings-as-errors Debug/static complete suite passed 217/217 in 142.48
+seconds after updating the two approved Random facet public-header hashes. The
+Debug/shared affected architecture, header, runtime, package, relocation, and
+public-surface selection passed 29/29; the Release/static affected selection
+passed 17/17; and AddressSanitizer plus UndefinedBehaviorSanitizer passed all
+five new runtime/allocation suites. Clang 19 compiled the eight changed test,
+benchmark, and consumer translation units with C++20 pedantic warnings as
+errors.
+
+CUDA 12.9.86 with driver 576.83 on an NVIDIA GeForce RTX 3060 Laptop GPU
+(compute 8.6) passed both Random Dense and Random Sparse real-context runtime
+tests with no skip. Their Issue 15 additions are rejection/no-mutation checks;
+the same executables' older operations retain their separately documented GPU
+runtime/parity scope.
 
 ## Issue 14 quasi-random sampler evidence
 
 Issue 14 implements the storage-neutral CPU portions of crosswalk rows
 `RND-011` through `RND-014` and `RND-018` through `RND-022`: prime and
 radical-inverse helpers, explicit digit permutations, Latin midpoint and
-jittered sampling, Halton, Hammersley, and Sobol through dimension 21201. The
-four sampler rows remain machine-classified `incomplete` because their same
-rows also declare Issue 15 Dense adapters; this milestone does not claim that
-unimplemented adapter scope. The complete 33-row manifest therefore records
-14 equivalent, two clean-room-required, six incomplete, and 11 rejected rows.
+jittered sampling, Halton, Hammersley, and Sobol through dimension 21201. At
+the Issue 14 checkpoint, four sampler rows remained machine-classified
+`incomplete` because their same rows also declared the then-unimplemented
+Issue 15 Dense adapters. That historical 33-row manifest recorded 14
+equivalent, two clean-room-required, six incomplete, and 11 rejected rows.
 
 On Linux/WSL2 6.18 with GNU C++ 11.4, CMake 4.1.2, and the installed
 ASCCMake 0.1.0 package, the warnings-as-errors Debug/static complete suite

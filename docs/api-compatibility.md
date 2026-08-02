@@ -1,6 +1,6 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -253,8 +253,21 @@ fixes the Joe--Kuo D(6) table, 64-bit Gray-code mapping, dimension range, and
 that same mapping. Latin output additionally depends on engine type/version,
 engine state, scalar type, logical shape, midpoint/jitter choice, and frozen
 consumption order. Changing any of these mappings requires a new versioned
-algorithm, not a silent patch. Dense QMC and advanced adapter mappings remain
-unavailable until Issue 15 is implemented and verified.
+algorithm, not a silent patch.
+
+Issue 15 adds Random Dense sampler mapping version 1 and Random Sparse adapter
+mapping version 1 without changing earlier spellings or sequences. Dense
+pseudo fill fixes dimension-zero-fastest logical traversal. Dense QMC fixes
+shape `[sample,dimension]`, dimension-first point consumption, explicit
+workspace, and indexed range behavior. Multivariate normal fixes exact
+symmetry, lower-Cholesky preparation, standard Box--Muller draw order, and the
+written `mean + L*z` FMA order. Unit sphere fixes the dimension-one sign bit,
+normalized-Gaussian method, and 64-attempt limit. Sparse fixes stored-value
+order, zero preservation, `(priority,ordinal)` structure selection, and
+separate structure/value domains. Engine type/version/state, scalar type,
+parameters, logical shape/order, and adapter version are part of reproducible
+output. A change to any mapping requires a new named version or an approved
+breaking release; it cannot silently alter version 1.
 
 ## Provider and downstream upgrade policy
 

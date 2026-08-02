@@ -21,7 +21,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.random_sparse_cuda.runtime
   TARGET asc_random_sparse_cuda_test
-  LABELS "cuda;gpu;milestone-7;parity;random_sparse_cuda;runtime"
+  LABELS "cuda;gpu;issue-15;milestone-7;parity;random_sparse_cuda;runtime"
 )
 set_tests_properties(
   asc_cpp.random_sparse_cuda.runtime

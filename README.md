@@ -1,10 +1,10 @@
 # asc-cpp
 
-`asc-cpp` is being rebuilt as the C++20 numerical foundation for
-AI4SciComp. The current checkout is the unreleased **Quasi-random samplers
-(Issue 14) Feature Gate B** candidate. It adds storage-neutral Latin
-hypercube, Halton, Hammersley, and Sobol APIs to the existing Random component
-without changing targets, dependencies, storage facets, or providers.
+`asc-cpp` is being rebuilt as the C++20 numerical foundation for AI4SciComp.
+The current checkout is the unreleased **Advanced samplers and storage adapters
+(Issue 15) Feature Gate B** candidate. It completes the approved portable-CPU
+Random inventory through the existing Random Dense and Random Sparse facets
+without changing targets, dependencies, or providers.
 
 ## Available components
 
@@ -46,9 +46,12 @@ The provider-free surface uses only C++20 standard-library facilities:
   Box-Muller normal distributions; storage-neutral Latin, Halton, Hammersley,
   and Joe--Kuo Sobol QMC; plus the existing pure Philox4x32-10 and exact
   raw-word `Uniform01` transforms.
-- Random Dense fills caller-provided Dense views in logical coordinate order.
-- Random Sparse creates exact-count canonical coordinate arrays from separate
-  structure and value address domains.
+- Random Dense provides generic pseudo fills, prepared multivariate-normal and
+  unit-sphere sampling, and explicit Dense Latin/Halton/Hammersley/Sobol fills
+  over caller-owned views and workspaces.
+- Random Sparse fills existing coordinate or CSR/CSC values without changing
+  structure, selects exact-count canonical ordinals into caller workspace, and
+  retains combined owner generation with separate structure/value domains.
 - Core CUDA supplies explicit CUDA resources, streams, asynchronous copies,
   and completion events without exposing CUDA SDK types in public signatures.
 - Dense CUDA supplies bounded pointwise evaluation, complete classic
@@ -62,8 +65,9 @@ The provider-free surface uses only C++20 standard-library facilities:
   canonical structure, and explicit address contracts.
 
 Sparse addition/multiplication, BSR/VBR/SELL, file parsing, general
-broadcasting, time/default seeding, advanced random samplers and QMC storage
-adapters, HIP, SYCL, and later-roadmap providers are not implemented.
+broadcasting, time/default seeding, compressed random output generation,
+advanced Random GPU implementations, HIP, SYCL, and later-roadmap providers
+are not implemented.
 
 ## Consuming a component
 
@@ -120,33 +124,36 @@ if (!value.ok()) {
 The [storage-neutral QMC example](docs/examples/random-qmc.md) shows indexed
 and sequential Sobol evaluation plus Latin-hypercube generation with an
 explicit engine and permutation workspace.
+The [advanced Random adapter example](docs/examples/random-advanced.md) shows
+prepared multivariate-normal sampling and exact-count Sparse structure
+generation with caller-owned workspace.
 
 ## Building and validating
 
 Use an out-of-source build and supply the released ASCCMake package:
 
 ```sh
-cmake -S . -B build/issue-14-debug \
+cmake -S . -B build/issue-15-debug \
   -DCMAKE_BUILD_TYPE=Debug \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-14-debug --parallel
-ctest --test-dir build/issue-14-debug --output-on-failure
+cmake --build build/issue-15-debug --parallel
+ctest --test-dir build/issue-15-debug --output-on-failure
 ```
 
 Enable the bounded CUDA provider facets explicitly:
 
 ```sh
-cmake -S . -B build/issue-14-cuda \
+cmake -S . -B build/issue-15-cuda \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASC_CPP_ENABLE_CUDA=ON \
   -DCMAKE_CUDA_ARCHITECTURES=86 \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-14-cuda --parallel
-ctest --test-dir build/issue-14-cuda --output-on-failure
+cmake --build build/issue-15-cuda --parallel
+ctest --test-dir build/issue-15-cuda --output-on-failure
 ```
 
 `BUILD_SHARED_LIBS` selects shared or static Core, Utilities, Dense, Sparse,
@@ -174,9 +181,9 @@ inventory, evidence-link validation, backend contract, and reproducible checks.
 The generated [Random crosswalk](docs/random-crosswalk.md) and
 [Random contract](docs/development/asc-cpp-architecture/decisions/0020-random-contract.md)
 record the Issue 12 design and compatible provenance routes. The crosswalk now
-links Issue 13 engine/distribution evidence and Issue 14 QMC helper, sampler,
-data, test, package, and benchmark evidence to real paths. Dense QMC and
-advanced adapters remain planned for Issue 15.
+classifies all accepted Issue 13--15 engine, distribution, QMC, advanced
+sampler, and storage-adapter rows as equivalent and links their implementation,
+test, package, documentation, and benchmark evidence to real paths.
 
 This clean restart follows the approved six-module architecture and
 clean-room provenance policy. The Philox implementation is independently
@@ -186,7 +193,9 @@ Random123 implementation, or upstream vector corpus is copied. See the
 implementation of the approved Milestone 3 contract.
 Sparse is a clean-room implementation of the approved Milestone 4 contract.
 The Random storage facets are clean-room implementations of the approved
-Milestone 5 contract.
+Milestone 5 and Issue 15 contracts. Multivariate normal and sphere sampling
+are original clean-room compositions of the published mathematical methods;
+no MdeCpp implementation, test, fixture, benchmark, data, or prose is reused.
 The Core/Dense CUDA facets are clean-room implementations of the approved
 Milestone 6 contract. The Sparse/Random CUDA facets are clean-room
 implementations of the approved Milestone 7 contract. The complete Sparse

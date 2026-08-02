@@ -54,7 +54,7 @@ endfunction()
 
 _require_document_text(
   "README.md"
-  "Quasi-random samplers"
+  "Advanced samplers and storage adapters"
 )
 _require_document_text(
   "docs/README.md"
@@ -62,11 +62,15 @@ _require_document_text(
 )
 _require_document_text(
   "docs/modules/random.md"
-  "SobolSequence"
+  "FillDenseMultivariateNormal"
 )
 _require_document_text(
   "docs/examples/random-qmc.md"
   "GenerateLatinHypercubeJittered"
+)
+_require_document_text(
+  "docs/examples/random-advanced.md"
+  "GenerateSparseStructure"
 )
 _require_document_text(
   "docs/random-crosswalk.md"
@@ -74,11 +78,11 @@ _require_document_text(
 )
 _require_document_text(
   "docs/development/asc-cpp-architecture/decisions/0020-random-contract.md"
-  "Required branch: `feature/14-random-qmc`."
+  "Required branch: `feature/15-random-samplers`."
 )
 _require_document_text(
   "docs/development/asc-cpp-architecture/decisions/0020-random-contract.md"
-  "Dense and Sparse storage integration are also excluded"
+  "Non-goals are a sampler hierarchy, new storage protocol"
 )
 _require_document_text(
   "docs/development/asc-cpp-architecture/mdecpp-disposition.yaml"
@@ -122,7 +126,7 @@ string(REPLACE
   "${_valid_manifest}"
 )
 _expect_failure(changed-source "${_changed_source}"
-                "source_commit differs from the approved Issue 14 value")
+                "source_commit differs from the approved Issue 15 value")
 
 string(REPLACE
   "efb0ddedcb6a11ed3defd85764e352f16b09f13784c15225a1b2dd19dcbc2d6b"
@@ -134,8 +138,8 @@ _expect_failure(changed-artifact "${_changed_artifact}"
                 "source inventory identity")
 
 string(REPLACE
-  "classification: \"clean-room-required\""
   "classification: \"equivalent\""
+  "classification: \"incomplete\""
   _changed_classification
   "${_valid_manifest}"
 )

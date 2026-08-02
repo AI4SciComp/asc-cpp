@@ -211,7 +211,7 @@ capabilities:
       - "caller-owned output and permutation workspace"
       - "no hidden cache, state, allocation, transfer, synchronization, or fallback"
     non_guarantees:
-      - "Dense or Sparse QMC adapter before Issue 15"
+      - "GPU Dense or Sparse QMC implementation"
       - "GPU implementation or CPU/GPU parity"
     provenance:
       source: "Joe and Kuo D(6) direction data through dimension 21201"
@@ -355,13 +355,16 @@ capabilities:
     tests:
       - "rank-zero, zero-extent, layout/stride/padding, and partition invariance"
       - "deterministic rerun, explicit address advancement, and counter overflow"
+      - "QMC adapter equivalence, multivariate-normal known answers and moments"
+      - "unit-sphere norm, moments, bounded rejection, and failure publication"
       - "host placement, failure-before-mutation, and zero operation allocation"
       - "header isolation, multi-TU ODR, package relocation, and isolated consumer"
     guarantees:
       - "caller-provided destination and state"
       - "dimension-zero-fastest logical traversal"
+      - "caller-owned preparation and sampling workspace"
     non_guarantees:
-      - "variable-consumption distributions"
+      - "GPU implementation of advanced samplers"
 
   - capability: "deterministic sparse exact-count generation"
     owner: "random"
@@ -377,11 +380,14 @@ capabilities:
       - "rank-zero, zero-extent, static/dynamic extents, and exact counts"
       - "independent priority oracle, uniqueness, and canonical order"
       - "separate structure/value streams, reproducibility, and offset overflow"
+      - "existing-pattern Coordinate/CSR value fill and generated-zero retention"
+      - "structure-only selection with caller-owned candidate workspace"
       - "allocation failure rollback, exactly-once release, and declared allocation counts"
       - "header isolation, multi-TU ODR, package relocation, and isolated consumer"
     guarantees:
       - "canonical coordinate order"
       - "deterministic pseudorandom exact-count structure"
+      - "structure-only generation without value allocation"
     non_guarantees:
       - "mathematically uniform sampling over coordinate subsets"
       - "Bernoulli density mode in first release"

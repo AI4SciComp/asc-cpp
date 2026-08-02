@@ -35,5 +35,23 @@ int main() {
       return 4;
     }
   }
+  constexpr std::array<asc::extent_t, 2> kPointExtents{2, 2};
+  constexpr std::array<asc::extent_t, 1> kWorkspaceExtents{2};
+  auto point_mapping =
+      asc::DenseLayout<2>::Create(kPointExtents, asc::LayoutRight{});
+  auto workspace_mapping = asc::DenseLayout<1>::Create(kWorkspaceExtents);
+  std::array<double, 4> points{};
+  std::array<double, 2> workspace{};
+  auto point_view = asc::DenseView<double, 2>::Create(
+      points.data(), *point_mapping, asc::MemorySpace::kHost);
+  auto workspace_view = asc::DenseView<double, 1>::Create(
+      workspace.data(), *workspace_mapping, asc::MemorySpace::kHost);
+  if (!point_view.ok() || !workspace_view.ok() ||
+      !asc::FillDenseSobol(asc::ExecutionContext::Serial(), *point_view, 0,
+                           *workspace_view)
+           .ok() ||
+      points != std::array<double, 4>{0.0, 0.0, 0.5, 0.5}) {
+    return 5;
+  }
   return 0;
 }

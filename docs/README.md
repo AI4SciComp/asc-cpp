@@ -1,10 +1,10 @@
 # asc-cpp documentation
 
-The repository is at the unreleased **Quasi-random samplers (Issue 14)
-Feature Gate B** candidate. All six modules, both Random storage
+The repository is at the unreleased **Advanced samplers and storage adapters
+(Issue 15) Feature Gate B** candidate. All six modules, both Random storage
 facets, the provider-free aggregate, and all six approved opt-in CUDA facets
-remain in the same dependency graph. This issue adds only storage-neutral CPU
-QMC helpers and algorithms to `ASC::random`.
+remain in the same dependency graph. This issue adds portable CPU algorithms
+only through the existing Random Dense and Random Sparse facets.
 
 ## Current API documentation
 
@@ -26,6 +26,9 @@ QMC helpers and algorithms to `ASC::random`.
   and storage facets.
 - [Storage-neutral QMC example](examples/random-qmc.md): indexed and
   sequential Sobol plus Latin-hypercube caller-workspace use.
+- [Advanced Random adapter example](examples/random-advanced.md): prepared
+  multivariate-normal Dense sampling and exact-count Sparse structure
+  generation with caller-owned workspace.
 - [Support matrix](support-matrix.md): locally tested and skipped platform,
   compiler, linkage, sanitizer, and provider combinations.
 - [API compatibility](api-compatibility.md): distinct source, ABI, numerical,
@@ -137,10 +140,11 @@ storage-generation guarantees.
 
 Sparse addition/multiplication, BSR/VBR/SELL formats, file parsing, general
 broadcasting, HIP, SYCL, and other providers require later explicit approval.
-Issues 13 and 14 implement their approved CPU engine/distribution and
-storage-neutral QMC rows. Multivariate normal, hypersphere sampling, Dense QMC,
-and new storage adapters remain deferred to Issue 15. Reserved API or provider
-names do not make those features available.
+Issues 13 through 15 implement all approved CPU engine, distribution, QMC,
+advanced sampler, and storage-adapter rows. New Random GPU kernels, a sampler
+hierarchy, compressed random output, density/Bernoulli generation, and any new
+adapter protocol remain deferred. Reserved API or provider names do not make
+those features available.
 
 [adr-0002]: development/asc-cpp-architecture/decisions/0002-package-target-naming.md
 [adr-0003]: development/asc-cpp-architecture/decisions/0003-namespace-and-source-policy.md

@@ -1,6 +1,6 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -13,12 +13,37 @@ parameters, records repetitions and elapsed time, checks zero successful-path
 allocation, and guards correctness with an independently derived checksum or
 fixed-seed moment invariant.
 
-Issue 14 extends that probe with indexed Sobol word evaluation. Future Issue 15
-Random benchmarks must likewise name algorithm/version, explicit state,
-distribution or sampler parameters, shape/layout/sparsity, repetition count,
-allocation/workspace, and a deterministic checksum or invariant. They report
-throughput and memory traffic without a speed pass gate. Issue 13 and Issue 14
-work is CPU-only; no new GPU benchmark or provider claim is approved.
+Issue 14 extends that probe with indexed Sobol word evaluation. Issue 15 adds
+correctness-guarded Dense Sobol mapping and Sparse structure-only selection to
+the existing Random storage benchmark. Each row names algorithm/version,
+explicit state, parameters, shape/layout/sparsity, repetition count,
+allocation/workspace, and a deterministic checksum or invariant. Rows report
+elapsed time without a speed pass gate. Issue 13 through Issue 15 work is
+CPU-only; no new GPU benchmark or provider claim is approved.
+
+## Issue 15 local observation
+
+The Issue 15 benchmark times only the synchronous adapter calls. Caller-owned
+Dense output, point workspace, Sparse candidate workspace, and ordinal output
+are allocated before timing. Correctness checks and independent priority
+sorting run after timing. Both new rows require zero process-visible allocation
+inside the operation and contribute to the aggregate checksum.
+
+The threshold-free observation was collected on Linux/WSL2 6.18, an Intel
+Core i7-11800H with 16 logical CPUs and 15 GiB RAM, GNU C++ 11.4, CMake 4.1.2,
+Release/static, and ASCCMake 0.1.0.
+
+| Operation | Shape/count | Repetitions | Elapsed (ns) | Allocation calls | Correctness guard |
+| --- | --- | ---: | ---: | ---: | --- |
+| Dense Sobol adapter v1 | 2048 samples x 8 dimensions | 10 | 21,425,096 | 0 | scalar `SobolCoordinate`; checksum `3528554356640777091` |
+| Sparse structure-only adapter v1 | 64 x 64, exact count 256 | 10 | 2,291,138 | 0 | independent Philox priority sort; checksum `10016369130947636770`; next offset `8329` |
+
+These are observations for regression comparison, not pass thresholds or
+cross-machine promises. The aggregate benchmark checksum was
+`1928359207440646895`. The Sparse operation uses an explicit
+`logical_size`-element candidate workspace and average-linear selection; the
+combined owner generator retains its earlier correctness-oriented reference
+complexity.
 
 ## Issue 14 local observation
 
