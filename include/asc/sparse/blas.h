@@ -267,6 +267,8 @@ class SparseBlasVectorView {
                     "A sparse BLAS vector is outside its backing span");
     }
     return SparseBlasVectorView(logical_first, size, increment, backing_storage,
+                                // The checked address supports negative stride.
+                                // NOLINTNEXTLINE(performance-no-int-to-ptr)
                                 reinterpret_cast<const void*>(begin),
                                 static_cast<std::size_t>(end - begin));
   }
@@ -759,7 +761,7 @@ Result<Element> SparseDot(const ExecutionContext& context,
                           SparseBlasConjugation conjugation,
                           SparseBlasIndexedVectorView<const Element> sparse,
                           SparseBlasVectorView<const Element> dense) {
-  const Status enum_status =
+  Status enum_status =
       internal_sparse_standard_blas::ValidateConjugation(conjugation);
   if (!enum_status.ok()) {
     return enum_status;
@@ -935,7 +937,7 @@ Status Spmv(const ExecutionContext& context, SparseBlasTranspose transpose,
             Element alpha, CompressedSparseView<const Element, Format> matrix,
             SparseBlasVectorView<const Element> input,
             SparseBlasVectorView<Element> output) {
-  const Status enum_status =
+  Status enum_status =
       internal_sparse_standard_blas::ValidateTranspose(transpose);
   if (!enum_status.ok()) {
     return enum_status;
@@ -997,7 +999,7 @@ Status Spmm(const ExecutionContext& context, SparseBlasTranspose transpose,
             Element alpha, CompressedSparseView<const Element, Format> matrix,
             SparseBlasMatrixView<const Element> input,
             SparseBlasMatrixView<Element> output) {
-  const Status enum_status =
+  Status enum_status =
       internal_sparse_standard_blas::ValidateTranspose(transpose);
   if (!enum_status.ok()) {
     return enum_status;
@@ -1057,7 +1059,7 @@ Status SparseTriangularSolve(
     const ExecutionContext& context, SparseBlasTranspose transpose,
     Element alpha, SparseBlasTriangularView<Element, Format> triangular,
     SparseBlasVectorView<Element> right_hand_side) {
-  const Status enum_status =
+  Status enum_status =
       internal_sparse_standard_blas::ValidateTranspose(transpose);
   if (!enum_status.ok()) {
     return enum_status;
@@ -1116,12 +1118,12 @@ Status SparseTriangularSolveMultiple(
     const ExecutionContext& context, SparseBlasTranspose transpose,
     Element alpha, SparseBlasTriangularView<Element, Format> triangular,
     SparseBlasMatrixView<Element> right_hand_sides) {
-  const Status enum_status =
+  Status enum_status =
       internal_sparse_standard_blas::ValidateTranspose(transpose);
   if (!enum_status.ok()) {
     return enum_status;
   }
-  const Status status = internal_sparse_standard_blas::ValidateSerial(context);
+  Status status = internal_sparse_standard_blas::ValidateSerial(context);
   if (!status.ok()) {
     return status;
   }
@@ -1161,6 +1163,8 @@ Status SparseTriangularSolveMultiple(
         }
         value -= internal_sparse_standard_blas::OpValue(matrix, transpose, row,
                                                         column) *
+                 // The stored matrix column selects a right-hand-side row.
+                 // NOLINTNEXTLINE(readability-suspicious-call-argument)
                  right_hand_sides(column, rhs);
       }
       if (triangular.diagonal() == SparseBlasDiagonal::kNonUnit) {

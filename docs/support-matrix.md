@@ -1,6 +1,6 @@
 # ASCCpp support and evidence matrix
 
-Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 16 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -14,11 +14,43 @@ without widening them. Issue 12 freezes the Random contract; Issue 13 adds
 only the CPU engine/distribution evidence recorded below. Issue 14 adds the
 storage-neutral CPU QMC and licensed direction-data evidence recorded below.
 Issue 15 adds only portable serial-CPU advanced samplers and storage adapters
-through the existing Random Dense/Sparse facets.
+through the existing Random Dense/Sparse facets. Issue 16 independently
+audits the completed inventory and adds no product capability.
 
 The matrix below records the clean post-checkpoint correction reruns. Earlier
 revision-2 counts are historical and are not substituted for these corrected
 results.
+
+## Issue 16 Random completion-audit evidence
+
+The machine audit requires all 33 crosswalk rows to resolve to exactly 22
+equivalent and 11 rejected decisions, verifies accepted public symbols and
+evidence paths, and inventories the registered architecture, header, runtime,
+statistical, allocation, package, downstream, CUDA, and performance checks.
+It also verifies storage-neutral base headers, isolated Dense/Sparse facets,
+and the absence of hidden thread-local state or a deferred sampler hierarchy.
+
+On Linux/WSL2 6.18 with GNU C++ 11.4, CMake 4.1.2, and ASCCMake
+0.1.0, the warnings-as-errors Debug/static complete suite passed 218/218 in
+134.62 seconds. The completion test directly audited 26 Random product files
+and required 58 CPU evidence registrations. The Debug/shared affected
+architecture, Random, package, hardening, and downstream selection passed
+89/89 in 104.89 seconds. AddressSanitizer plus UndefinedBehaviorSanitizer
+passed 22/22 audit and Random tests in 25.25 seconds. Release/static passed the
+same 22/22 selection in 1.50 seconds and both threshold-free benchmark
+executables preserved their correctness checksums.
+
+CUDA 12.9.86 with driver 576.83 on an NVIDIA GeForce RTX 3060 Laptop GPU
+(compute 8.6) passed 28/28 Random CUDA architecture, header, package-consumer,
+runtime, parity, collision, and benchmark checks in 83.76 seconds, with no
+skip. The CUDA completion audit required 84 evidence registrations. The
+Issue 13--15 portable APIs remain CPU-only; their real-context evidence is
+rejection before mutation, transfer, synchronization, allocation, or state
+consumption. Existing Philox/`Uniform01` provider rows executed on the device
+under their separately documented parity contract.
+
+Issue 15 product semantics and its sample-size/threshold justifications below
+remain unchanged.
 
 ## Issue 15 advanced sampler and storage-adapter evidence
 

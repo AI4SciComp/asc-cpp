@@ -1,6 +1,6 @@
-#include <complex>
+#include <complex>  // NOLINT(misc-include-cleaner)
 
-#include "asc/sparse/blas.h"
+#include "asc/sparse/blas.h"  // NOLINT(misc-include-cleaner)
 
 namespace asc {
 

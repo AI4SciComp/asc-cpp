@@ -10,8 +10,8 @@
 namespace asc {
 
 Result<std::uint64_t> AcquireNondeterministicSeed(std::random_device& source) {
-  if (source.min() != 0 ||
-      source.max() != std::numeric_limits<std::uint32_t>::max()) {
+  if (std::random_device::min() != 0 ||
+      std::random_device::max() != std::numeric_limits<std::uint32_t>::max()) {
     return Status(ErrorCode::kUnsupported,
                   "Random device must expose the full uint32 range");
   }

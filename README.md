@@ -1,10 +1,10 @@
 # asc-cpp
 
 `asc-cpp` is being rebuilt as the C++20 numerical foundation for AI4SciComp.
-The current checkout is the unreleased **Advanced samplers and storage adapters
-(Issue 15) Feature Gate B** candidate. It completes the approved portable-CPU
-Random inventory through the existing Random Dense and Random Sparse facets
-without changing targets, dependencies, or providers.
+The current checkout is the unreleased **Random completion audit (Issue 16)
+Feature Gate B** candidate. It independently verifies the approved Random
+inventory without adding an API, algorithm, target, dependency, provider, or
+storage architecture.
 
 ## Available components
 
@@ -133,27 +133,27 @@ generation with caller-owned workspace.
 Use an out-of-source build and supply the released ASCCMake package:
 
 ```sh
-cmake -S . -B build/issue-15-debug \
+cmake -S . -B build/issue-16-debug \
   -DCMAKE_BUILD_TYPE=Debug \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-15-debug --parallel
-ctest --test-dir build/issue-15-debug --output-on-failure
+cmake --build build/issue-16-debug --parallel
+ctest --test-dir build/issue-16-debug --output-on-failure
 ```
 
 Enable the bounded CUDA provider facets explicitly:
 
 ```sh
-cmake -S . -B build/issue-15-cuda \
+cmake -S . -B build/issue-16-cuda \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASC_CPP_ENABLE_CUDA=ON \
   -DCMAKE_CUDA_ARCHITECTURES=86 \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-15-cuda --parallel
-ctest --test-dir build/issue-15-cuda --output-on-failure
+cmake --build build/issue-16-cuda --parallel
+ctest --test-dir build/issue-16-cuda --output-on-failure
 ```
 
 `BUILD_SHARED_LIBS` selects shared or static Core, Utilities, Dense, Sparse,
@@ -178,6 +178,9 @@ Milestone 8 also records the [support matrix](docs/support-matrix.md),
 [performance envelope](docs/performance.md).
 The [BLAS completion audit](docs/blas-completion-audit.md) describes the frozen
 inventory, evidence-link validation, backend contract, and reproducible checks.
+The [Random completion audit](docs/random-completion-audit.md) binds every
+approved or rejected Random row to its provenance, semantics, implementation,
+registered tests, documentation, package consumers, and performance evidence.
 The generated [Random crosswalk](docs/random-crosswalk.md) and
 [Random contract](docs/development/asc-cpp-architecture/decisions/0020-random-contract.md)
 record the Issue 12 design and compatible provenance routes. The crosswalk now

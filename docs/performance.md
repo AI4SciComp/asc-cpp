@@ -1,6 +1,6 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 16 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -20,6 +20,27 @@ explicit state, parameters, shape/layout/sparsity, repetition count,
 allocation/workspace, and a deterministic checksum or invariant. Rows report
 elapsed time without a speed pass gate. Issue 13 through Issue 15 work is
 CPU-only; no new GPU benchmark or provider claim is approved.
+
+Issue 16 adds no benchmark or performance threshold. It audits that both
+Random benchmark executables remain registered, correctness-guarded,
+fixed-state, and allocation-observed; local reruns are completion evidence,
+not a new performance promise.
+
+## Issue 16 local revalidation
+
+The Release/static completion rerun used the same local platform described
+below. The scalar/QMC benchmark preserved aggregate checksum
+`14039962399095420760`; all eight operations reported zero successful-path
+allocation calls. The storage benchmark preserved aggregate checksum
+`1928359207440646895`. Its audited adapter rows observed:
+
+| Operation | Shape/count | Repetitions | Elapsed (ns) | Operation allocations | Correctness guard |
+| --- | --- | ---: | ---: | ---: | --- |
+| Dense Sobol adapter v1 | 2048 samples x 8 dimensions | 10 | 19,588,235 | 0 | scalar `SobolCoordinate`; checksum `3528554356640777091` |
+| Sparse structure-only adapter v1 | 64 x 64, exact count 256 | 10 | 2,070,699 | 0 | independent Philox priority sort; checksum `10016369130947636770`; next offset `8329` |
+
+These single-process observations have no pass threshold and make no
+cross-machine performance claim.
 
 ## Issue 15 local observation
 

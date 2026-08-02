@@ -62,3 +62,7 @@ CUDA context and do not transfer, synchronize, allocate, or fall back.
 Issue 15 maps the same point definitions into caller-owned Dense views through
 the `random_dense` facet; see the [advanced adapter example](random-advanced.md)
 for the explicit context and workspace boundary.
+
+The [Random completion audit](../random-completion-audit.md) verifies the
+direction-data license route, generated-table identity, public APIs, package
+consumers, and registered QMC evidence.

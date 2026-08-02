@@ -128,3 +128,7 @@ workspaces may be used concurrently. Sequence version 1 fixes logical order,
 normal composition, unit-sphere attempts, QMC index mapping, sparse priority
 ordering, and stored-value order; a mapping change requires a new named
 version.
+
+The [Random completion audit](../random-completion-audit.md) indexes the
+known-answer, invariant, statistical, allocation, package, CUDA-boundary, and
+performance evidence behind these examples.

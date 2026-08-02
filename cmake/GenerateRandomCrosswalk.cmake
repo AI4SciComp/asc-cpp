@@ -27,6 +27,25 @@ function(_require_sha256 label value)
   endif()
 endfunction()
 
+function(_require_source_path label value)
+  if(NOT EXISTS "${SOURCE_DIR}/${value}"
+     OR IS_DIRECTORY "${SOURCE_DIR}/${value}")
+    message(FATAL_ERROR "${label} does not exist: ${value}")
+  endif()
+endfunction()
+
+function(_require_registered_path label value registration_file)
+  _require_source_path("${label} registration" "${registration_file}")
+  file(READ "${SOURCE_DIR}/${registration_file}" _registration)
+  get_filename_component(_basename "${value}" NAME)
+  string(FIND "${_registration}" "${_basename}" _registration_position)
+  if(_registration_position EQUAL -1)
+    message(FATAL_ERROR
+      "${label} is not registered by ${registration_file}: ${value}"
+    )
+  endif()
+endfunction()
+
 function(_markdown value output)
   set(_value "${value}")
   string(REPLACE "|" "\\|" _value "${_value}")
@@ -155,13 +174,13 @@ foreach(_upstream IN LISTS _upstream_names)
 endforeach()
 
 set(_frozen_contract_status
-  "issue-15-random-samplers-feature-gate-b-candidate"
+  "issue-16-random-completion-audit-verified-candidate"
 )
 set(_frozen_source_commit
   "f6294e9079262682ce63ae7ff2d8a643e658bf5d"
 )
 set(_frozen_destination_base_commit
-  "499afc7073435d6c5eb51b188cf7bdb722dfa8a6"
+  "0aef277789b6204e580b63da95ca6ed5d5f4829f"
 )
 set(_frozen_allowed_classifications
   "equivalent,incomplete,absent,rejected,clean-room-required,permission-relicensing-required"
@@ -173,7 +192,7 @@ set(_frozen_crosswalk_sha256
   "3a54b6ab7d39cc2a6936c8fa39cccdbea589a5545509f75f0a20d19b6ed66bd4"
 )
 set(_frozen_provenance_identity_sha256
-  "0a08e6b5404fab0367741876960a7ddcc3021f5157c4582efef78c0906adf9b3"
+  "2890bf8fce4a7d45ef4860e2778e174f580f42eb9f3a28f02f5125c2d6e83280"
 )
 
 foreach(_frozen IN ITEMS
@@ -188,20 +207,20 @@ foreach(_frozen IN ITEMS
   if(NOT "${${_declared_variable}}" STREQUAL
          "${${_frozen_variable}}")
     message(FATAL_ERROR
-      "Random contract ${_frozen} differs from the approved Issue 15 value."
+      "Random contract ${_frozen} differs from the approved Issue 16 value."
     )
   endif()
 endforeach()
 if(NOT _expected_crosswalk_sha256 STREQUAL _frozen_crosswalk_sha256)
   message(FATAL_ERROR
-    "Random crosswalk declared identity differs from the frozen Issue 15 "
+    "Random crosswalk declared identity differs from the frozen Issue 16 "
     "value."
   )
 endif()
 if(NOT _expected_provenance_identity_sha256 STREQUAL
        _frozen_provenance_identity_sha256)
   message(FATAL_ERROR
-    "Random provenance metadata identity differs from the frozen Issue 15 "
+    "Random provenance metadata identity differs from the frozen Issue 16 "
     "value."
   )
 endif()
@@ -247,6 +266,16 @@ set(_permission_relicensing_required_count 0)
 set(_rejected_count 0)
 set(_equivalent_count 0)
 set(_absent_count 0)
+
+file(GLOB_RECURSE _random_public_headers LIST_DIRECTORIES FALSE
+  "${SOURCE_DIR}/include/asc/random.h"
+  "${SOURCE_DIR}/include/asc/random/*.h"
+)
+set(_random_public_api_contents)
+foreach(_public_header IN LISTS _random_public_headers)
+  file(READ "${_public_header}" _public_header_contents)
+  string(APPEND _random_public_api_contents "${_public_header_contents}\n")
+endforeach()
 
 macro(_finalize_random_row)
   if(_row_active)
@@ -308,6 +337,81 @@ macro(_finalize_random_row)
           "Random row ${_row_id} current path is outside product roots."
         )
       endif()
+    endif()
+    if(_row_classification STREQUAL "equivalent")
+      if(_row_current_api STREQUAL "" OR _row_current_api STREQUAL "none"
+         OR _row_current_path STREQUAL "")
+        message(FATAL_ERROR
+          "Equivalent Random row ${_row_id} lacks current API evidence."
+        )
+      endif()
+      string(REPLACE "; " ";" _current_apis "${_row_current_api}")
+      foreach(_current_api IN LISTS _current_apis)
+        if(NOT _current_api MATCHES "^asc::")
+          message(FATAL_ERROR
+            "Equivalent Random row ${_row_id} has a non-ASC API: "
+            "${_current_api}"
+          )
+        endif()
+        string(REGEX REPLACE "^.*::" "" _api_symbol "${_current_api}")
+        if(NOT _random_public_api_contents MATCHES
+           "(^|[^A-Za-z0-9_])${_api_symbol}([^A-Za-z0-9_]|$)")
+          message(FATAL_ERROR
+            "Random row ${_row_id} public API is absent: ${_current_api}"
+          )
+        endif()
+      endforeach()
+    endif()
+    if(NOT _row_planned_files STREQUAL "")
+      foreach(_planned_file IN LISTS _row_planned_files)
+        string(STRIP "${_planned_file}" _planned_file)
+        _require_source_path(
+          "Random row ${_row_id} evidence path" "${_planned_file}"
+        )
+        if(_planned_file MATCHES "^include/asc/random(/.*)?\\.h$")
+          _require_registered_path(
+            "Random row ${_row_id} public header"
+            "${_planned_file}"
+            "src/random/CMakeLists.txt"
+          )
+        elseif(_planned_file MATCHES "^src/random/.+\\.cc$")
+          _require_registered_path(
+            "Random row ${_row_id} implementation"
+            "${_planned_file}"
+            "src/random/CMakeLists.txt"
+          )
+        elseif(_planned_file MATCHES
+               "^tests/(random|random_dense|random_sparse)/.+\\.(cc|cmake)$")
+          set(_test_registration
+            "tests/${CMAKE_MATCH_1}/CMakeLists.txt"
+          )
+          _require_registered_path(
+            "Random row ${_row_id} test"
+            "${_planned_file}"
+            "${_test_registration}"
+          )
+        elseif(_planned_file STREQUAL
+               "benchmarks/random/random_benchmark.cc")
+          _require_registered_path(
+            "Random row ${_row_id} benchmark"
+            "${_planned_file}"
+            "tests/random/CMakeLists.txt"
+          )
+        elseif(_planned_file STREQUAL
+               "benchmarks/random_storage/random_storage_benchmark.cc")
+          _require_registered_path(
+            "Random row ${_row_id} benchmark"
+            "${_planned_file}"
+            "tests/random_sparse/CMakeLists.txt"
+          )
+        elseif(_planned_file MATCHES "^tests/consumer/([^/]+)/main\\.cc$")
+          _require_registered_path(
+            "Random row ${_row_id} consumer"
+            "${_planned_file}"
+            "tests/consumer/${CMAKE_MATCH_1}/CMakeLists.txt"
+          )
+        endif()
+      endforeach()
     endif()
     if(NOT _row_child_issue MATCHES "(^|,| and )(13|14|15)(,| and |$)")
       message(FATAL_ERROR
@@ -477,7 +581,7 @@ string(JOIN "\n" _identity ${_identity_rows})
 string(SHA256 _observed_crosswalk_sha256 "${_identity}")
 if(NOT _observed_crosswalk_sha256 STREQUAL _frozen_crosswalk_sha256)
   message(FATAL_ERROR
-    "Random crosswalk identity differs from its frozen Issue 15 identity.\n"
+    "Random crosswalk identity differs from its frozen Issue 16 identity.\n"
     "  expected: ${_frozen_crosswalk_sha256}\n"
     "  observed: ${_observed_crosswalk_sha256}"
   )
@@ -518,7 +622,7 @@ string(SHA256 _observed_provenance_identity_sha256
 if(NOT _observed_provenance_identity_sha256 STREQUAL
        _frozen_provenance_identity_sha256)
   message(FATAL_ERROR
-    "Random provenance metadata identity differs from its frozen Issue 15 "
+    "Random provenance metadata identity differs from its frozen Issue 16 "
     "identity.\n"
     "  expected: ${_frozen_provenance_identity_sha256}\n"
     "  observed: ${_observed_provenance_identity_sha256}"

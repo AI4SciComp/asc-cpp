@@ -193,6 +193,35 @@ capabilities:
       clean_room: true
       record: "docs/development/asc-cpp-m2-independent-foundations/provenance-record.md"
 
+  - capability: "storage-neutral engines and scalar distributions"
+    owner: "random"
+    milestone: 13
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/random/engine.h"
+      - "include/asc/random/distribution.h"
+      - "include/asc/random/generator.h"
+      - "include/asc/random/seed.h"
+    direct_dependencies:
+      - "core"
+    tests:
+      - "authoritative and independently derived engine known-answer vectors"
+      - "state export/import, jump, stream, copy/move, and invalid-state behavior"
+      - "distribution draw counts, bounds, rejection, parameters, and deterministic statistics"
+      - "explicit seed acquisition, allocation-free benchmark, package relocation, and isolated consumer"
+    guarantees:
+      - "explicit fixed-width seed, state, stream, and algorithm version"
+      - "portable integer engine sequences and documented same-math-ABI real transforms"
+      - "no hidden entropy, global state, cache, allocation, transfer, synchronization, or fallback"
+    non_guarantees:
+      - "cryptographic strength"
+      - "standard-library distribution sequence compatibility"
+      - "cross-libm bit identity for Box-Muller transcendental results"
+    provenance:
+      source: "Pinned Vigna/Blackman and PCG specifications plus published distribution mathematics"
+      clean_room: true
+      record: "docs/development/asc-cpp-architecture/provenance-review.md"
+
   - capability: "storage-neutral QMC sequences"
     owner: "random"
     milestone: 14

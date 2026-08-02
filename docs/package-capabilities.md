@@ -1,6 +1,6 @@
 # ASCCpp package capabilities
 
-Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 16 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -17,6 +17,10 @@ third-party notice remain installed as documentation/data artifacts. No
 component, target, dependency, package variable, or CUDA claim is added; the
 exact `random -> core`, `random_dense -> random + dense`, and
 `random_sparse -> random + sparse` closures are unchanged.
+
+Issue 16 adds no package surface. Its completion audit requires build-tree,
+installed, relocated, and isolated consumers for all three Random components
+and checks their evidence registration against the unchanged closures.
 
 ## Minimal consumption
 

@@ -1,12 +1,17 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 16 Feature Gate B candidate
 
 Date: 2026-08-02
 
 Milestone completion, validation, publication, and release are separate
 decisions. This `0.9.0` candidate is neither a release nor a claim of `1.0`
 source or ABI stability.
+
+Issue 16 changes no compatibility dimension. It audits every approved Random
+mapping against the public surface, versioned semantics, implementation path,
+registered evidence, and package consumer recorded by the
+[Random completion report](random-completion-audit.md).
 
 ## Version policy
 

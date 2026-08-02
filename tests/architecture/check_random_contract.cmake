@@ -54,7 +54,7 @@ endfunction()
 
 _require_document_text(
   "README.md"
-  "Advanced samplers and storage adapters"
+  "Random completion audit"
 )
 _require_document_text(
   "docs/README.md"
@@ -71,6 +71,10 @@ _require_document_text(
 _require_document_text(
   "docs/examples/random-advanced.md"
   "GenerateSparseStructure"
+)
+_require_document_text(
+  "docs/random-completion-audit.md"
+  "Required branch: `test/16-random-completion`"
 )
 _require_document_text(
   "docs/random-crosswalk.md"
@@ -126,7 +130,25 @@ string(REPLACE
   "${_valid_manifest}"
 )
 _expect_failure(changed-source "${_changed_source}"
-                "source_commit differs from the approved Issue 15 value")
+                "source_commit differs from the approved Issue 16 value")
+
+string(REPLACE
+  "asc::SplitMix64"
+  "asc::MissingSplitMix64"
+  _changed_api
+  "${_valid_manifest}"
+)
+_expect_failure(changed-api "${_changed_api}"
+                "public API is absent")
+
+string(REPLACE
+  "tests/random/seed_test.cc"
+  "tests/random/missing_seed_test.cc"
+  _changed_evidence_path
+  "${_valid_manifest}"
+)
+_expect_failure(changed-evidence-path "${_changed_evidence_path}"
+                "evidence path does not exist")
 
 string(REPLACE
   "efb0ddedcb6a11ed3defd85764e352f16b09f13784c15225a1b2dd19dcbc2d6b"
@@ -171,7 +193,7 @@ string(REPLACE
   "${_valid_manifest}"
 )
 _expect_failure(changed-separator "${_changed_separator}"
-                "crosswalk identity")
+                "evidence path does not exist")
 
 string(REPLACE
   "crosswalk:"

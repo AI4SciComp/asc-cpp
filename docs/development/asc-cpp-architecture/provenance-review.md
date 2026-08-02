@@ -1,6 +1,6 @@
 # MdeCpp provenance and reuse review
 
-Status: Designer B provenance gate; Issue 14 QMC data route implemented
+Status: Issue 16 Random completion audit resolves all Random provenance routes
 
 Reviewed MdeCpp commit: `f6294e9079262682ce63ae7ff2d8a643e658bf5d`
 
@@ -11,6 +11,12 @@ Issue 13 Random destination baseline:
 
 Issue 14 Random destination baseline:
 `ea2ac5539d20944f6d012cebf1e8ed6d6157a554`
+
+Issue 15 Random destination baseline:
+`499afc7073435d6c5eb51b188cf7bdb722dfa8a6`
+
+Issue 16 Random completion audit baseline:
+`0aef277789b6204e580b63da95ca6ed5d5f4829f`
 
 ## 1. Conclusion
 
@@ -39,6 +45,13 @@ review's unresolved planning recommendations. They pin the approved
 authoritative engine artifacts, select the separately licensed Joe/Kuo
 direction data, and continue to reject every inspected MdeCpp Random
 implementation, test, benchmark, and generated artifact.
+
+The Issue 16 Random completion audit confirms that all 33 inventory decisions
+are resolved: 22 use their recorded original, clean-room, public-domain,
+Apache-compatible, or separately licensed Joe--Kuo route; 11 remain rejected.
+No row requires permission, relicensing, or a new dependency, and no MdeCpp
+code, data, test, benchmark, converter, generated artifact, or prose enters
+the destination.
 
 ## 2. Reproducible evidence boundary
 

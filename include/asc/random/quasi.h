@@ -346,7 +346,7 @@ Status GenerateScrambledHaltonPoint(
     if (!prime.ok()) {
       return prime.status();
     }
-    const Status validation = internal_random_qmc::ValidateDigitPermutation(
+    Status validation = internal_random_qmc::ValidateDigitPermutation(
         *prime, permutations[dimension]);
     if (!validation.ok()) {
       return validation;
@@ -459,7 +459,7 @@ class ASC_RANDOM_EXPORT SobolSequence final {
       return Status(ErrorCode::kEndOfFile,
                     "Sobol sequence exhausted the uint64 index domain");
     }
-    const Status status = GenerateSobolPoint(index_, output);
+    Status status = GenerateSobolPoint(index_, output);
     if (!status.ok()) {
       return status;
     }
