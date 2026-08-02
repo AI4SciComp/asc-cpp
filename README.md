@@ -1,11 +1,10 @@
 # asc-cpp
 
 `asc-cpp` is being rebuilt as the C++20 numerical foundation for
-AI4SciComp. The current checkout is the unreleased **Random engines and
-distributions (Issue 13) Feature Gate B** candidate. It implements the
-approved explicit seed, stateful engine, generic generator, uniform, and
-scalar normal rows without changing targets, dependencies, storage facets, or
-providers.
+AI4SciComp. The current checkout is the unreleased **Quasi-random samplers
+(Issue 14) Feature Gate B** candidate. It adds storage-neutral Latin
+hypercube, Halton, Hammersley, and Sobol APIs to the existing Random component
+without changing targets, dependencies, storage facets, or providers.
 
 ## Available components
 
@@ -44,8 +43,9 @@ The provider-free surface uses only C++20 standard-library facilities:
 - Random provides explicit nondeterministic seed acquisition; SplitMix64,
   PCG32, xoroshiro64*, and xoroshiro128+ value engines; generic value
   composition; unbiased uniform integer, half-open uniform real, and scalar
-  Box-Muller normal distributions; plus the existing pure Philox4x32-10 and
-  exact raw-word `Uniform01` transforms.
+  Box-Muller normal distributions; storage-neutral Latin, Halton, Hammersley,
+  and Joe--Kuo Sobol QMC; plus the existing pure Philox4x32-10 and exact
+  raw-word `Uniform01` transforms.
 - Random Dense fills caller-provided Dense views in logical coordinate order.
 - Random Sparse creates exact-count canonical coordinate arrays from separate
   structure and value address domains.
@@ -62,8 +62,8 @@ The provider-free surface uses only C++20 standard-library facilities:
   canonical structure, and explicit address contracts.
 
 Sparse addition/multiplication, BSR/VBR/SELL, file parsing, general
-broadcasting, time/default seeding, QMC and advanced random samplers, HIP,
-SYCL, and later-roadmap providers are not implemented.
+broadcasting, time/default seeding, advanced random samplers and QMC storage
+adapters, HIP, SYCL, and later-roadmap providers are not implemented.
 
 ## Consuming a component
 
@@ -117,32 +117,36 @@ if (!value.ok()) {
 }
 ```
 
+The [storage-neutral QMC example](docs/examples/random-qmc.md) shows indexed
+and sequential Sobol evaluation plus Latin-hypercube generation with an
+explicit engine and permutation workspace.
+
 ## Building and validating
 
 Use an out-of-source build and supply the released ASCCMake package:
 
 ```sh
-cmake -S . -B build/issue-13-debug \
+cmake -S . -B build/issue-14-debug \
   -DCMAKE_BUILD_TYPE=Debug \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-13-debug --parallel
-ctest --test-dir build/issue-13-debug --output-on-failure
+cmake --build build/issue-14-debug --parallel
+ctest --test-dir build/issue-14-debug --output-on-failure
 ```
 
 Enable the bounded CUDA provider facets explicitly:
 
 ```sh
-cmake -S . -B build/issue-13-cuda \
+cmake -S . -B build/issue-14-cuda \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_TESTING=ON \
   -DASC_CPP_BUILD_TESTING=ON \
   -DASC_CPP_ENABLE_CUDA=ON \
   -DCMAKE_CUDA_ARCHITECTURES=86 \
   -DASCCMake_DIR=/absolute/path/to/asc-cmake/package
-cmake --build build/issue-13-cuda --parallel
-ctest --test-dir build/issue-13-cuda --output-on-failure
+cmake --build build/issue-14-cuda --parallel
+ctest --test-dir build/issue-14-cuda --output-on-failure
 ```
 
 `BUILD_SHARED_LIBS` selects shared or static Core, Utilities, Dense, Sparse,
@@ -170,9 +174,9 @@ inventory, evidence-link validation, backend contract, and reproducible checks.
 The generated [Random crosswalk](docs/random-crosswalk.md) and
 [Random contract](docs/development/asc-cpp-architecture/decisions/0020-random-contract.md)
 record the Issue 12 design and compatible provenance routes. The crosswalk now
-links the nine Issue 13 implementation rows to actual public headers, sources,
-tests, package consumers, and benchmarks. QMC and advanced adapters remain
-planned for Issues 14 and 15.
+links Issue 13 engine/distribution evidence and Issue 14 QMC helper, sampler,
+data, test, package, and benchmark evidence to real paths. Dense QMC and
+advanced adapters remain planned for Issue 15.
 
 This clean restart follows the approved six-module architecture and
 clean-room provenance policy. The Philox implementation is independently

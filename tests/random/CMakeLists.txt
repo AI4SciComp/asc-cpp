@@ -35,6 +35,35 @@ foreach(_source IN ITEMS
 endforeach()
 
 add_executable(
+  asc_random_quasi_test
+  quasi_test.cc
+  "${PROJECT_SOURCE_DIR}/benchmarks/random_storage/allocation_probe.cc"
+)
+target_include_directories(
+  asc_random_quasi_test
+  PRIVATE "${PROJECT_SOURCE_DIR}/benchmarks/random_storage"
+)
+target_link_libraries(asc_random_quasi_test PRIVATE Threads::Threads)
+_asc_random_configure_test(asc_random_quasi_test)
+asc_register_test(
+  NAME asc_cpp.random.quasi_test
+  TARGET asc_random_quasi_test
+  LABELS "allocation;concurrency;milestone-14;performance;random;runtime"
+)
+
+add_test(
+  NAME asc_cpp.random.sobol_artifacts
+  COMMAND
+    "${CMAKE_COMMAND}"
+    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
+    -P "${CMAKE_CURRENT_SOURCE_DIR}/check_sobol_artifacts.cmake"
+)
+set_tests_properties(
+  asc_cpp.random.sobol_artifacts
+  PROPERTIES LABELS "architecture;milestone-14;package;provenance;random"
+)
+
+add_executable(
   asc_random_generator_benchmark
   "${PROJECT_SOURCE_DIR}/benchmarks/random/random_benchmark.cc"
   "${PROJECT_SOURCE_DIR}/benchmarks/random_storage/allocation_probe.cc"
@@ -47,5 +76,5 @@ _asc_random_configure_test(asc_random_generator_benchmark)
 asc_register_test(
   NAME asc_cpp.random.generator_benchmark
   TARGET asc_random_generator_benchmark
-  LABELS "benchmark;milestone-13;performance;random"
+  LABELS "benchmark;milestone-13;milestone-14;performance;random"
 )

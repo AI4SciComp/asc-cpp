@@ -1,6 +1,6 @@
 # Verification strategy
 
-Status: Product evidence through Issue 13 Random engines and distributions
+Status: Product evidence through Issue 14 quasi-random samplers
 
 ## Test ownership
 
@@ -122,6 +122,17 @@ normal samples with mean magnitude at most 0.02 and variance error at most
 observed statistic, and threshold. Known-answer and invariant tests remain
 primary. No new GPU row is verified by configuration, compilation,
 documentation, or an existing-Philox regression.
+
+Issue 14 uses no probabilistic acceptance threshold. It verifies published
+low-index Halton, Hammersley, and Sobol points; exact digit-permutation and
+Latin-stratum invariants; deterministic grid-discrepancy comparison; invalid
+parameters, dimensions, indices, workspaces, aliases, skip/reset/overflow,
+and endpoint repair; all 21201 compiled direction rows against a frozen
+checksum; zero successful-path allocations; deterministic concurrent indexed
+evaluation; and build-tree/install/relocation consumption. The imported data,
+license, offline generator, generated source, runtime table, installed data,
+and notice each have explicit identity evidence. QMC remains CPU-only and no
+new GPU row is verified.
 
 ## GPU evidence levels
 

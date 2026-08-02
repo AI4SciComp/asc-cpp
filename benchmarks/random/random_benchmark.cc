@@ -1,3 +1,4 @@
+#include <array>
 #include <bit>
 #include <chrono>
 #include <cmath>
@@ -10,12 +11,14 @@
 #include "allocation_probe.h"
 #include "asc/random/distribution.h"
 #include "asc/random/engine.h"
+#include "asc/random/quasi.h"
 
 namespace {
 
 constexpr std::size_t kEngineRepetitions = 200000;
 constexpr std::size_t kDistributionRepetitions = 200000;
 constexpr std::size_t kNormalRepetitions = 100000;
+constexpr std::size_t kQmcRepetitions = 100000;
 
 std::uint64_t Mix(std::uint64_t checksum, std::uint64_t value) {
   return (checksum ^ value) * 1099511628211ULL;
@@ -169,6 +172,42 @@ bool BenchmarkNormal(std::uint64_t& aggregate_checksum) {
   return true;
 }
 
+bool BenchmarkSobol(std::uint64_t& aggregate_checksum) {
+  std::array<double, 3> published{};
+  if (!asc::GenerateSobolPoint<double>(4, published).ok() ||
+      published != std::array<double, 3>{0.375, 0.375, 0.625}) {
+    return false;
+  }
+  std::uint64_t checksum = 1469598103934665603ULL;
+  std::size_t allocation_calls = 0;
+  const auto begin = std::chrono::steady_clock::now();
+  {
+    asc_random_storage_benchmark::AllocationProbe probe;
+    for (std::size_t index = 0; index < kQmcRepetitions; ++index) {
+      const auto word = asc::SobolWord(index, 3);
+      if (!word.ok()) {
+        return false;
+      }
+      checksum = Mix(checksum, *word);
+    }
+    allocation_calls = probe.count();
+  }
+  const auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(
+      std::chrono::steady_clock::now() - begin);
+  constexpr std::uint64_t kExpectedChecksum = 0xB9C9B02511675303ULL;
+  if (checksum != kExpectedChecksum ||
+      !asc_test::ProcessAllocationCountMatches(allocation_calls, 0)) {
+    return false;
+  }
+  aggregate_checksum = Mix(aggregate_checksum, checksum);
+  std::cout << "operation=qmc-indexed-word algorithm=Sobol-Joe-Kuo-D6-v1"
+            << " dimension=3 repetitions=" << kQmcRepetitions
+            << " allocation_calls=" << allocation_calls
+            << " elapsed_ns=" << elapsed.count() << " checksum=" << checksum
+            << " correctness=published-point-and-independent-checksum\n";
+  return true;
+}
+
 }  // namespace
 
 int main() {
@@ -198,7 +237,7 @@ int main() {
       !BenchmarkEngine("xoroshiro128plus-v1", asc::Xoroshiro128Plus(0),
                        0x9B8AB4AC4D3E0E4CULL, checksum) ||
       !BenchmarkUniformInteger(checksum) || !BenchmarkUniformReal(checksum) ||
-      !BenchmarkNormal(checksum)) {
+      !BenchmarkNormal(checksum) || !BenchmarkSobol(checksum)) {
     return 1;
   }
   std::cout << "aggregate_checksum=" << checksum << '\n';

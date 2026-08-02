@@ -35,6 +35,7 @@ asc/random/providers/dense_cuda.h|asc_random_dense_cuda
 asc/random/providers/dense_cuda_export.h|asc_random_dense_cuda
 asc/random/providers/sparse_cuda.h|asc_random_sparse_cuda
 asc/random/providers/sparse_cuda_export.h|asc_random_sparse_cuda
+asc/random/quasi.h|asc_random
 asc/random/seed.h|asc_random
 asc/random/sparse.h|asc_random_sparse
 asc/sparse.h|asc_sparse

@@ -156,6 +156,9 @@ Umbrella: `<asc/random.h>`.
   `Uniform01` transforms.
 - `<asc/random/generator.h>`: nonvirtual engine/distribution value composition
   and transparent uniform/normal aliases.
+- `<asc/random/quasi.h>`: caller-span prime/radical-inverse/permutation helpers,
+  Latin hypercube, indexed Halton/Hammersley/Sobol, explicit Sobol direction
+  initialization, and a checked sequential Sobol index value.
 - `<asc/random/seed.h>`: explicit `Result<uint64_t>` acquisition from one
   caller-owned full-width `std::random_device`.
 - `<asc/random/dense.h>`: deterministic logical-order uniform filling of

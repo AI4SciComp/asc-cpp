@@ -1,7 +1,7 @@
 # Milestone and release roadmap
 
 Status: Approved architecture; Milestone 8 reached local Publication
-Checkpoint B; Issue 13 Random generators are at local Feature Gate B
+Checkpoint B; Issue 14 quasi-random samplers are at local Feature Gate B
 
 ## Version policy
 
@@ -40,8 +40,10 @@ evidence, publication approval, and 1.0 readiness remain outstanding.
 Issue 12 freezes the post-Milestone-8 Random inventory, provenance routes, and
 child boundaries. Issue 13 implements only its approved CPU seed, engine,
 generator, and scalar-distribution rows without changing targets or providers.
-Issues 14–15 must independently implement and verify their approved CPU scope;
-Issue 16 remains the completion audit. No child milestone implies release.
+Issue 14 implements its approved storage-neutral CPU QMC scope and licensed
+direction-data route without changing targets or providers. Issue 15 must
+independently implement and verify its approved advanced/storage scope; Issue
+16 remains the completion audit. No child milestone implies release.
 
 ## Provider sequencing
 

@@ -3,10 +3,11 @@
 `ASC::random` provides explicit seed acquisition, four versioned stateful
 engines, generic engine/distribution composition, unbiased uniform integer
 generation, half-open uniform real generation, scalar Box-Muller normal
-generation, reproducible Philox4x32-10 words, and exact raw-word unit
-transforms. Its Dense and Sparse storage-generation facets are separately
-consumable. The base remains a compiled library with one direct ASC
-dependency, `ASC::core`, and no external dependency.
+generation, storage-neutral Latin/Halton/Hammersley/Sobol QMC, reproducible
+Philox4x32-10 words, and exact raw-word unit transforms. Its Dense and Sparse
+storage-generation facets are separately consumable. The base remains a
+compiled library with one direct ASC dependency, `ASC::core`, and no external
+dependency.
 
 ```cmake
 find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random)
@@ -18,9 +19,9 @@ target_link_libraries(my_target PRIVATE ASC::random)
 ```
 
 The umbrella includes `<asc/random/engine.h>`,
-`<asc/random/distribution.h>`, `<asc/random/generator.h>`, and
-`<asc/random/seed.h>`. Base Random does not include Utilities, Expression,
-Dense, Sparse, a provider header, or a storage view.
+`<asc/random/distribution.h>`, `<asc/random/generator.h>`,
+`<asc/random/quasi.h>`, and `<asc/random/seed.h>`. Base Random does not include
+Utilities, Expression, Dense, Sparse, a provider header, or a storage view.
 
 The storage facets are explicit:
 
@@ -40,8 +41,8 @@ depend on it.
 The raw engine is a clean-room implementation independently derived from the
 paper and exact project mapping frozen in the
 [Milestone 2 provenance record][provenance]. No MdeCpp, deleted asc-cpp,
-Random123 implementation, upstream test-vector corpus, generated table, or
-vendored source is an implementation input.
+Random123 implementation, or upstream test-vector corpus is an implementation
+input.
 
 Issue 13 implements rows `RND-001` and `RND-003` through `RND-010` from the
 generated [33-row architecture and provenance crosswalk][random-crosswalk].
@@ -52,6 +53,17 @@ contract. The integer rejection mapping, real transform, value-composition
 API, and Box-Muller implementation are independently authored from the
 accepted [Random contract][random-contract]. No MdeCpp source, test, vector,
 benchmark, data, or prose was copied or mechanically translated.
+
+Issue 14 implements the storage-neutral portions of `RND-011` through
+`RND-014` and `RND-018` through `RND-022`. Prime, radical-inverse,
+permutation, Latin, Halton, Hammersley, Sobol recurrence, tests, and benchmark
+expressions are original work from the frozen mathematical contract. The only
+import is the exact Joe--Kuo D(6) direction-number dataset through dimension
+21201 under its retained BSD-3-Clause license. Its input and license hashes,
+original offline generator, generated output, compiled direction words,
+installed artifacts, and `THIRD_PARTY_NOTICES` are checked independently. No
+Joe--Kuo program is copied, and no MdeCpp/Burkardt source, test, converter, or
+data is copied.
 
 These additions are portable serial CPU operations. They accept no execution
 context or storage, and no CUDA implementation or CPU/GPU bit-parity claim is
@@ -65,6 +77,69 @@ ASCCpp 0.2.x. Milestone 5 extends that sequence contract with exact dense
 logical-coordinate mapping and deterministic sparse structure/value mapping.
 These guarantees are narrower than statistical suitability for a particular
 scientific application and do not imply provider parity.
+
+## Storage-neutral QMC contract
+
+`float` and `double` QMC APIs write caller-owned spans. They own no storage,
+perform no hidden allocation, and use no global or thread-local prime,
+permutation, or direction cache.
+
+- `PrimeAt(d)` enumerates the zero-based prime, with `PrimeAt(0) == 2`, inside
+  the 21201-dimension QMC domain. `RadicalInverse<Real>` applies the frozen
+  least-significant-digit/FMA order to a `uint64_t` index and base at least
+  two. `ScrambledRadicalInverse` additionally validates a complete immutable
+  digit permutation whose zero digit maps to zero.
+- `GenerateLowDiscrepancyPermutation` performs unbiased Fisher--Yates into a
+  writable `uint32_t` span using an explicit canonical engine. No singleton
+  permutation exists.
+- Latin midpoint and jittered generation accept sample and dimension counts,
+  an explicit engine, a `sample_count * dimension_count` permutation
+  workspace, and an equally sized sample-major output. Dimensions shuffle in
+  increasing order; each shuffle visits limits from `n` down to 2. Jitter is
+  then consumed sample-major, dimension zero first. Empty logical output
+  consumes no engine state. Every dimension contains one coordinate in every
+  half-open stratum.
+- Halton coordinate `d` uses the `d`th prime and unsigned indexed radical
+  inverse; scrambling requires explicit per-coordinate digit permutations.
+  Hammersley requires a positive total count and index below it, writes
+  `index / total_count` first, and uses successive prime radical inverses for
+  later coordinates.
+- Sobol computes `g = index ^ (index >> 1)` and XORs the selected 64 direction
+  words. Float returns the high 24 bits times `2^-24`; double returns the high
+  53 bits times `2^-53`. Dimensions are zero-based in `[0, 21201)`. The
+  checked-in compact table is compiled into `ASC::random`; runtime evaluation
+  never opens the installed data file.
+
+`SobolSequence` stores only dimension count, current `uint64_t` index, and an
+exhaustion flag. `Next` equals indexed evaluation at the current index and
+then advances once. `Reset`, `Skip`, and `SkipTo` mutate the explicit index
+without replay; overflow or exhaustion fails before an output write. Indexed
+evaluation and immutable direction-table reads are safe for concurrent use.
+Concurrent mutation of one `SobolSequence`, one Latin engine, or one writable
+workspace is not safe; independent values and disjoint spans may run
+concurrently.
+
+Indexed Halton, Hammersley, and Sobol have no seed, stream, or mutable state.
+Latin reproducibility is defined by QMC sequence version 1 plus engine type,
+engine sequence version/state, scalar type, shape, midpoint/jitter choice, and
+the documented consumption order. The QMC functions are portable serial CPU
+operations only: they accept no execution context, make no CPU/GPU parity
+claim, and never transfer, synchronize, select a provider, or fall back. The
+existing Philox/Uniform01 CUDA contract is unchanged.
+
+Shape, dimension, index, parameter, permutation, workspace, and overlap
+validation completes before the first engine call or destination write.
+Valid arithmetic uses the destination type and repairs a rounded upper
+endpoint toward zero; any other nonfinite or out-of-range result is
+`kNumerical`, with earlier completed output and documented engine consumption
+remaining observable. Prime enumeration uses constant auxiliary storage;
+radical inverse is logarithmic in the index; permutation is linear; and a
+Sobol point reads at most 64 direction words per coordinate.
+
+The raw Joe--Kuo input and license install below
+`share/doc/ASCCpp/random`, while `THIRD_PARTY_NOTICES` installs in
+`share/doc/ASCCpp`. Builds and consumers need neither those runtime files nor
+Python. See the [storage-neutral QMC example][qmc-example].
 
 ## Explicit nondeterministic seed acquisition
 
@@ -668,7 +743,7 @@ is diagnostic rather than a compatibility guarantee.
 
 ## Deliberately absent from the current product
 
-Issue 13 deliberately provides no:
+Issues 13 and 14 deliberately provide no:
 
 - time-based or implicit seed acquisition, default engine, global or
   thread-local engine, or mutable pool;
@@ -678,7 +753,7 @@ Issue 13 deliberately provides no:
 - compressed sparse output, duplicate combination, densification, or hidden
   coordinate conversion;
 - shared fill header or a base Random dependency on Dense or Sparse;
-- QMC, Sobol implementation, or direction data;
+- Dense/Sparse QMC adapter or implicit result owner;
 - multivariate normal or uniform hypersphere sampler;
 - optimized CPU provider, OpenMP, TBB, Eigen, BLAS/LAPACK, oneMKL, or
   third-party dependency;
@@ -702,3 +777,4 @@ remains authoritative for provider-free storage generation.
 [m7-contract]: ../development/asc-cpp-m7-gpu-sparse-random/milestone-contract.md
 [random-contract]: ../development/asc-cpp-architecture/decisions/0020-random-contract.md
 [random-crosswalk]: ../random-crosswalk.md
+[qmc-example]: ../examples/random-qmc.md

@@ -1,6 +1,6 @@
 # ASCCpp support and evidence matrix
 
-Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -11,11 +11,50 @@ commands, counts, failures, and skips; the Issue 9 Feature Gate B report adds
 only the Level 3 evidence recorded below, and the Issue 10 report adds only the
 Sparse BLAS evidence recorded below. Issue 11 audits those recorded boundaries
 without widening them. Issue 12 freezes the Random contract; Issue 13 adds
-only the CPU engine/distribution evidence recorded below.
+only the CPU engine/distribution evidence recorded below. Issue 14 adds the
+storage-neutral CPU QMC and licensed direction-data evidence recorded below.
 
 The matrix below records the clean post-checkpoint correction reruns. Earlier
 revision-2 counts are historical and are not substituted for these corrected
 results.
+
+## Issue 14 quasi-random sampler evidence
+
+Issue 14 implements the storage-neutral CPU portions of crosswalk rows
+`RND-011` through `RND-014` and `RND-018` through `RND-022`: prime and
+radical-inverse helpers, explicit digit permutations, Latin midpoint and
+jittered sampling, Halton, Hammersley, and Sobol through dimension 21201. The
+four sampler rows remain machine-classified `incomplete` because their same
+rows also declare Issue 15 Dense adapters; this milestone does not claim that
+unimplemented adapter scope. The complete 33-row manifest therefore records
+14 equivalent, two clean-room-required, six incomplete, and 11 rejected rows.
+
+On Linux/WSL2 6.18 with GNU C++ 11.4, CMake 4.1.2, and the installed
+ASCCMake 0.1.0 package, the warnings-as-errors Debug/static complete suite
+passed 214/214 in 140.57 seconds. It includes QMC known-answer, invalid-input,
+endpoint, maximum-index, deterministic discrepancy, explicit-state,
+concurrency, and zero-allocation checks; all 21201 compiled Sobol direction
+rows are covered by an independent checksum. It also includes the source,
+build-tree, install, relocation, consumer, public-header, exceptions-disabled,
+documentation, and provenance-artifact checks.
+
+The corresponding Debug/shared build passed 51/51 affected architecture,
+compile, Random, package/consumer, public-surface, and documentation tests. A
+Clang 19 warnings-as-errors Debug/static build passed the two new public-header
+checks, QMC suite, provenance-artifact check, and benchmark (5/5). A GNU 11.4
+AddressSanitizer plus UndefinedBehaviorSanitizer build passed the QMC runtime
+suite. The Release/static indexed Sobol benchmark evaluated 100,000 direction
+words at zero-based dimension 3 in 10,260,550 ns with zero observed allocation
+calls and checksum `0xb9c9b02511675303`; this is a threshold-free local
+observation, not a performance promise.
+
+CUDA 12.9.86 on an NVIDIA GeForce RTX 3060 Laptop GPU (compute 8.6) passed
+the CPU-only QMC test and all five existing Random CUDA runtime/parity/
+benchmark checks, with no skip. That real-device run is regression evidence
+for the pre-existing Philox/`Uniform01` and storage-facet contracts only. The
+Issue 14 APIs accept no execution context and are not marked GPU-verified;
+they perform no transfer, synchronization, provider fallback, or hidden
+allocation.
 
 ## Issue 13 Random engine and distribution evidence
 

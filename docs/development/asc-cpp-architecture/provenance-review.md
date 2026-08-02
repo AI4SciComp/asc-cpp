@@ -1,6 +1,6 @@
 # MdeCpp provenance and reuse review
 
-Status: Designer B provenance gate; Issue 13 engine routes implemented
+Status: Designer B provenance gate; Issue 14 QMC data route implemented
 
 Reviewed MdeCpp commit: `f6294e9079262682ce63ae7ff2d8a643e658bf5d`
 
@@ -8,6 +8,9 @@ Reviewed asc-cpp baseline: `33b261ea33616a6395c4ad3b20646093103344f7`
 
 Issue 13 Random destination baseline:
 `47367b9e79fde8cd633e8e91e2eeb41fb751e1ec`
+
+Issue 14 Random destination baseline:
+`ea2ac5539d20944f6d012cebf1e8ed6d6157a554`
 
 ## 1. Conclusion
 
@@ -325,8 +328,8 @@ For a direct permissive-upstream adaptation, add:
 | `PROV-01` | Clarify MdeCpp's intended SPDX expression and whether relevant rightsholders offer an Apache-compatible grant | Any direct MdeCpp source/test adaptation |
 | `PROV-02` | Approve clean-room behavioral reimplementation as the default path | All six asc-cpp modules |
 | `PROV-03` | **Implemented by Issue 13:** SplitMix64 2015, PCG32 minimal C 0.9 XSH-RR, xoroshiro64* 1.0, and xoroshiro128+ 1.0 retain the Issue 12 URL/SHA identities and independently derived vectors | No blocker for these four rows; later algorithms retain their own routes |
-| `PROV-04` | **Resolved for Random by Issue 12:** Issue 14 must retain the Joe/Kuo license in source and binary distributions and add `THIRD_PARTY_NOTICES` | Other accepted external source/data still needs a component-specific owner decision |
-| `PROV-05` | **Resolved by Issue 12:** independently implement Joe/Kuo Sobol and use only the pinned BSD-style `new-joe-kuo-6.21201` input; reject all MdeCpp Sobol artifacts | Issue 14 must verify input, license, generator, generated, install, and compiled-table identities |
+| `PROV-04` | **Implemented by Issue 14:** the Joe/Kuo license is retained in source/install artifacts and reproduced in `THIRD_PARTY_NOTICES`; no endorsement is claimed | Other accepted external source/data still needs a component-specific owner decision |
+| `PROV-05` | **Implemented by Issue 14:** original Sobol recurrence uses only the pinned BSD-style `new-joe-kuo-6.21201` input; input, license, generator, generated source, install, and every compiled direction row have identity checks | No blocker for the Issue 14 data row; all MdeCpp/Burkardt Sobol artifacts remain rejected |
 | `PROV-06` | Resolve Lebedev dataset lineage in `asc-xde` | Lebedev quadrature |
 | `PROV-07` | Decide whether any MFEM-derived build ideas are needed; otherwise require new asc-cmake implementation | Build system |
 | `PROV-08` | Approve exact optional provider versions and public/private header policy | CUDA/Eigen/MKL/MPI/OpenMP/provider facets |

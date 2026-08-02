@@ -35,6 +35,12 @@ int main() {
     return 5;
   }
 
+  std::array<double, 2> sobol{};
+  if (!asc::GenerateSobolPoint<double>(2, sobol).ok() ||
+      sobol != std::array<double, 2>{0.75, 0.25}) {
+    return 6;
+  }
+
   using SeedFunction =
       asc::Result<std::uint64_t> (*)(std::random_device& source);
   static_assert(std::is_same_v<decltype(&asc::AcquireNondeterministicSeed),

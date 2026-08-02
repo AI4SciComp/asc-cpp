@@ -155,13 +155,13 @@ foreach(_upstream IN LISTS _upstream_names)
 endforeach()
 
 set(_frozen_contract_status
-  "issue-13-random-generators-feature-gate-b-candidate"
+  "issue-14-random-qmc-feature-gate-b-candidate"
 )
 set(_frozen_source_commit
   "f6294e9079262682ce63ae7ff2d8a643e658bf5d"
 )
 set(_frozen_destination_base_commit
-  "47367b9e79fde8cd633e8e91e2eeb41fb751e1ec"
+  "ea2ac5539d20944f6d012cebf1e8ed6d6157a554"
 )
 set(_frozen_allowed_classifications
   "equivalent,incomplete,absent,rejected,clean-room-required,permission-relicensing-required"
@@ -170,10 +170,10 @@ set(_frozen_source_inventory_sha256
   "f47d8ecf5cfbb689fe0643d1bbb8e772138523b68a8055cdb73dc4ae3b1cb6ff"
 )
 set(_frozen_crosswalk_sha256
-  "702880332f603b3b5535668c60631e67ef62239642ddb63ace06dc42706b69f1"
+  "3efde108d423f99a055933ce84010a783986b4592677b890cf84e45984412a4a"
 )
 set(_frozen_provenance_identity_sha256
-  "8150f0245c299a98337aef482eaab48d348eb8efafbb34f9f728b519fc80a1a7"
+  "2c148eff30171257862209ede72c6a2c788d7b1c80e408004870bedacb7b33a9"
 )
 
 foreach(_frozen IN ITEMS
@@ -188,20 +188,20 @@ foreach(_frozen IN ITEMS
   if(NOT "${${_declared_variable}}" STREQUAL
          "${${_frozen_variable}}")
     message(FATAL_ERROR
-      "Random contract ${_frozen} differs from the approved Issue 13 value."
+      "Random contract ${_frozen} differs from the approved Issue 14 value."
     )
   endif()
 endforeach()
 if(NOT _expected_crosswalk_sha256 STREQUAL _frozen_crosswalk_sha256)
   message(FATAL_ERROR
-    "Random crosswalk declared identity differs from the frozen Issue 13 "
+    "Random crosswalk declared identity differs from the frozen Issue 14 "
     "value."
   )
 endif()
 if(NOT _expected_provenance_identity_sha256 STREQUAL
        _frozen_provenance_identity_sha256)
   message(FATAL_ERROR
-    "Random provenance metadata identity differs from the frozen Issue 13 "
+    "Random provenance metadata identity differs from the frozen Issue 14 "
     "value."
   )
 endif()
@@ -477,7 +477,7 @@ string(JOIN "\n" _identity ${_identity_rows})
 string(SHA256 _observed_crosswalk_sha256 "${_identity}")
 if(NOT _observed_crosswalk_sha256 STREQUAL _frozen_crosswalk_sha256)
   message(FATAL_ERROR
-    "Random crosswalk identity differs from its frozen Issue 13 identity.\n"
+    "Random crosswalk identity differs from its frozen Issue 14 identity.\n"
     "  expected: ${_frozen_crosswalk_sha256}\n"
     "  observed: ${_observed_crosswalk_sha256}"
   )
@@ -518,7 +518,7 @@ string(SHA256 _observed_provenance_identity_sha256
 if(NOT _observed_provenance_identity_sha256 STREQUAL
        _frozen_provenance_identity_sha256)
   message(FATAL_ERROR
-    "Random provenance metadata identity differs from its frozen Issue 13 "
+    "Random provenance metadata identity differs from its frozen Issue 14 "
     "identity.\n"
     "  expected: ${_frozen_provenance_identity_sha256}\n"
     "  observed: ${_observed_provenance_identity_sha256}"
