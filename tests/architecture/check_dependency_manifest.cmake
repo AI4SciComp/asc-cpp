@@ -486,6 +486,7 @@ set(_expected_capabilities
   "monotonic timer"
   "storage-neutral pointwise expression protocol"
   "Philox4x32-10 raw-bit and Uniform01 contract"
+  "storage-neutral QMC sequences"
   "dense owner and strided mutable/const views"
   "dense pointwise evaluation and reductions"
   "serial dense BLAS subset"
@@ -535,6 +536,9 @@ macro(_assert_capability_status)
       set(_expected_status parity-tested)
     elseif(_current_milestone EQUAL 7)
       set(_expected_status parity-tested)
+    elseif(_current_capability STREQUAL
+           "storage-neutral QMC sequences")
+      set(_expected_status runtime-tested)
     else()
       set(_expected_status proposed)
     endif()

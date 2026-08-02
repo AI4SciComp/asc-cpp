@@ -1,6 +1,6 @@
 # Downstream integration
 
-Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -9,10 +9,12 @@ CMake package, request the smallest component set, and link only imported
 targets. ASCCpp does not support copying headers/libraries into an application
 or editing generated target files.
 
-Issue 13 installs the stateful engines, scalar distributions, generator
-composition, and explicit random-device wrapper through the existing
-`random` component. QMC algorithms and advanced storage adapters planned for
-Issues 14–15 cannot be consumed until their implementation gates are complete.
+Issues 13 and 14 install the stateful engines, scalar distributions, generator
+composition, explicit random-device wrapper, and storage-neutral QMC through
+the existing `random` component. The licensed Joe--Kuo input and notice remain
+package documentation; QMC execution reads only its compiled table. Advanced
+storage adapters planned for Issue 15 cannot be consumed until that gate is
+complete.
 
 ## Choose the owning component
 
@@ -23,7 +25,7 @@ Issues 14–15 cannot be consumed until their implementation gates are complete.
 | storage-neutral expression protocol only | `expression` / `ASC::expression` |
 | host Dense storage/evaluation/algebra | `dense` / `ASC::dense` |
 | host Sparse storage/evaluation/Sparse BLAS | `sparse` / `ASC::sparse` |
-| explicit seeds, stateful engines, scalar distributions, generators, raw Philox/`Uniform01` | `random` / `ASC::random` |
+| explicit seeds, engines, scalar distributions, QMC, raw Philox/`Uniform01` | `random` / `ASC::random` |
 | host Dense random fill | `random_dense` / `ASC::random_dense` |
 | host Sparse random generation | `random_sparse` / `ASC::random_sparse` |
 | complete provider-free surface | `cpp` / `ASC::cpp` |

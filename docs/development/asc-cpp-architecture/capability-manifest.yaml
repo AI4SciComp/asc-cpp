@@ -193,6 +193,31 @@ capabilities:
       clean_room: true
       record: "docs/development/asc-cpp-m2-independent-foundations/provenance-record.md"
 
+  - capability: "storage-neutral QMC sequences"
+    owner: "random"
+    milestone: 14
+    status: "runtime-tested"
+    public_headers:
+      - "include/asc/random/quasi.h"
+    direct_dependencies:
+      - "core"
+    tests:
+      - "published Latin, Halton, Hammersley, and Sobol points/invariants"
+      - "invalid parameters, dimensions, indices, workspaces, aliases, and endpoints"
+      - "zero allocation and deterministic concurrent indexed evaluation"
+      - "pinned data, license, generated table, install, relocation, and isolated consumer"
+    guarantees:
+      - "portable serial CPU float/double mapping at QMC sequence version 1"
+      - "caller-owned output and permutation workspace"
+      - "no hidden cache, state, allocation, transfer, synchronization, or fallback"
+    non_guarantees:
+      - "Dense or Sparse QMC adapter before Issue 15"
+      - "GPU implementation or CPU/GPU parity"
+    provenance:
+      source: "Joe and Kuo D(6) direction data through dimension 21201"
+      clean_room: true
+      record: "docs/development/asc-cpp-architecture/provenance-review.md"
+
   - capability: "dense owner and strided mutable/const views"
     owner: "dense"
     milestone: 3

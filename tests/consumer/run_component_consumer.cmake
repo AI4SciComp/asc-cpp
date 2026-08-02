@@ -166,6 +166,44 @@ elseif(ACTION STREQUAL "INSTALL_RELOCATE")
   endif()
   _run_success("ASCCpp isolated-consumer installation" ${_install_command})
   file(RENAME "${_original_prefix}" "${_relocated_prefix}")
+  if(COMPONENT STREQUAL "random")
+    set(_installed_sobol_data
+      "${_relocated_prefix}/share/doc/ASCCpp/random/new-joe-kuo-6.21201"
+    )
+    set(_installed_sobol_license
+      "${_relocated_prefix}/share/doc/ASCCpp/random/LICENSE.joe-kuo"
+    )
+    set(_installed_third_party_notices
+      "${_relocated_prefix}/share/doc/ASCCpp/THIRD_PARTY_NOTICES"
+    )
+    foreach(_installed IN ITEMS
+        "${_installed_sobol_data}"
+        "${_installed_sobol_license}"
+        "${_installed_third_party_notices}"
+    )
+      if(NOT EXISTS "${_installed}")
+        message(FATAL_ERROR
+          "Relocated Random package omits required artifact: ${_installed}"
+        )
+      endif()
+    endforeach()
+    file(SHA256 "${_installed_sobol_data}" _installed_sobol_data_sha256)
+    file(SHA256 "${_installed_sobol_license}" _installed_sobol_license_sha256)
+    file(SHA256 "${_installed_third_party_notices}"
+         _installed_third_party_notices_sha256)
+    if(NOT _installed_sobol_data_sha256 STREQUAL
+       "68eedd2a4e3b659b9695e7aff0f8ac68718bcf620730fc3d3a8c65df2a067441")
+      message(FATAL_ERROR "Installed Joe-Kuo data identity differs.")
+    endif()
+    if(NOT _installed_sobol_license_sha256 STREQUAL
+       "9d10226b50eeb34be0ab06bfa3392c7bd1f04bf602f9af4343295d1fd003d0e3")
+      message(FATAL_ERROR "Installed Joe-Kuo license identity differs.")
+    endif()
+    if(NOT _installed_third_party_notices_sha256 STREQUAL
+       "ccf7c082d57890a198916874bc4606e7e8a04621781a45c0e185af3c03c0cff1")
+      message(FATAL_ERROR "Installed third-party notice identity differs.")
+    endif()
+  endif()
   _find_package_directory("${_relocated_prefix}" _package_directory)
   _configure_build_run("${_package_directory}" "relocated install")
 else()

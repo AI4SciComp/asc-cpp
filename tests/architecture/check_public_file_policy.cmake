@@ -36,6 +36,7 @@ set(_expected_public_files
   include/asc/random/engine.h
   include/asc/random/export.h
   include/asc/random/generator.h
+  include/asc/random/quasi.h
   include/asc/random/providers/cuda.h
   include/asc/random/providers/cuda_export.h
   include/asc/random/providers/dense_cuda.h
@@ -79,7 +80,9 @@ set(_expected_compiled_sources
   src/dense/cuda/operations.cc
   src/random/distribution.cc
   src/random/engine.cc
+  src/random/quasi.cc
   src/random/seed.cc
+  src/random/sobol_table_generated.cc
   src/random/cuda/dense.cc
   src/random/cuda/dense_kernels.cu
   src/random/cuda/raw.cc

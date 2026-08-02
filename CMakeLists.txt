@@ -472,8 +472,16 @@ if(ASC_CPP_INSTALL)
     DESTINATION "${_asc_cpp_install_package_dir}"
   )
   install(
-    FILES "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+    FILES
+      "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+      "${CMAKE_CURRENT_SOURCE_DIR}/THIRD_PARTY_NOTICES"
     DESTINATION "${_asc_cpp_install_docdir}"
+  )
+  install(
+    FILES
+      "${CMAKE_CURRENT_SOURCE_DIR}/data/random/LICENSE.joe-kuo"
+      "${CMAKE_CURRENT_SOURCE_DIR}/data/random/new-joe-kuo-6.21201"
+    DESTINATION "${_asc_cpp_install_docdir}/random"
   )
 endif()
 

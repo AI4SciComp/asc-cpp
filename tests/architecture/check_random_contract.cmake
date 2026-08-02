@@ -54,7 +54,7 @@ endfunction()
 
 _require_document_text(
   "README.md"
-  "Random engines and"
+  "Quasi-random samplers"
 )
 _require_document_text(
   "docs/README.md"
@@ -62,7 +62,11 @@ _require_document_text(
 )
 _require_document_text(
   "docs/modules/random.md"
-  "AcquireNondeterministicSeed"
+  "SobolSequence"
+)
+_require_document_text(
+  "docs/examples/random-qmc.md"
+  "GenerateLatinHypercubeJittered"
 )
 _require_document_text(
   "docs/random-crosswalk.md"
@@ -118,7 +122,7 @@ string(REPLACE
   "${_valid_manifest}"
 )
 _expect_failure(changed-source "${_changed_source}"
-                "source_commit differs from the approved Issue 13 value")
+                "source_commit differs from the approved Issue 14 value")
 
 string(REPLACE
   "efb0ddedcb6a11ed3defd85764e352f16b09f13784c15225a1b2dd19dcbc2d6b"

@@ -1,6 +1,6 @@
 # ASCCpp package capabilities
 
-Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -8,10 +8,12 @@ An ASCCpp CMake component is a capability request. It imports the named target
 and its exact transitive `ASC::` closure. It does not enable a provider, add an
 operation, or make every package target available.
 
-Issue 13 adds `asc/random/generator.h` and `asc/random/seed.h` to the existing
-`random` header file set plus compiled seed/engine symbols in the existing
-library. It adds no component, target, dependency, package variable, or CUDA
-claim; the exact `random -> core` closure is unchanged.
+Issues 13 and 14 add `asc/random/generator.h`, `asc/random/seed.h`, and
+`asc/random/quasi.h` to the existing `random` header file set plus compiled
+seed, engine, and QMC symbols in the existing library. The Joe--Kuo dataset,
+license, and third-party notice are installed as documentation/data artifacts.
+No component, target, dependency, package variable, or CUDA claim is added;
+the exact `random -> core` closure is unchanged.
 
 ## Minimal consumption
 

@@ -68,6 +68,7 @@ set(_provider_free_entries
   "random|asc/random/engine.h"
   "random|asc/random/export.h"
   "random|asc/random/generator.h"
+  "random|asc/random/quasi.h"
   "random|asc/random/seed.h"
   "random_dense|asc/random/dense.h"
   "random_sparse|asc/random/sparse.h"
@@ -96,9 +97,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 51)
+if(NOT _all_header_count EQUAL 52)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 51 headers; got "
+    "Independent source-header oracle must contain 52 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -110,7 +111,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 51-header oracle.\n"
+    "Source public-header tree differs from the frozen 52-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

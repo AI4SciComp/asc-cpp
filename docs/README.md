@@ -1,10 +1,10 @@
 # asc-cpp documentation
 
-The repository is at the unreleased **Random engines and distributions
-(Issue 13) Feature Gate B** candidate. All six modules, both Random storage
+The repository is at the unreleased **Quasi-random samplers (Issue 14)
+Feature Gate B** candidate. All six modules, both Random storage
 facets, the provider-free aggregate, and all six approved opt-in CUDA facets
 remain in the same dependency graph. This issue adds only storage-neutral CPU
-seed, engine, generator, and scalar-distribution APIs to `ASC::random`.
+QMC helpers and algorithms to `ASC::random`.
 
 ## Current API documentation
 
@@ -22,7 +22,10 @@ seed, engine, generator, and scalar-distribution APIs to `ASC::random`.
   compute surface, and the optional CUDA facet.
 - [Random module](modules/random.md): explicit seed acquisition, versioned
   stateful engines, generic value composition, uniform and scalar normal
-  distributions, Philox4x32-10 addressing, and storage facets.
+  distributions, Latin/Halton/Hammersley/Sobol QMC, Philox4x32-10 addressing,
+  and storage facets.
+- [Storage-neutral QMC example](examples/random-qmc.md): indexed and
+  sequential Sobol plus Latin-hypercube caller-workspace use.
 - [Support matrix](support-matrix.md): locally tested and skipped platform,
   compiler, linkage, sanitizer, and provider combinations.
 - [API compatibility](api-compatibility.md): distinct source, ABI, numerical,
@@ -134,10 +137,10 @@ storage-generation guarantees.
 
 Sparse addition/multiplication, BSR/VBR/SELL formats, file parsing, general
 broadcasting, HIP, SYCL, and other providers require later explicit approval.
-Issue 13 implements only its approved CPU engine/distribution rows. QMC,
-multivariate normal, hypersphere sampling, and new storage adapters remain
-deferred to Issues 14 and 15. Reserved API or provider names do not make those
-features available.
+Issues 13 and 14 implement their approved CPU engine/distribution and
+storage-neutral QMC rows. Multivariate normal, hypersphere sampling, Dense QMC,
+and new storage adapters remain deferred to Issue 15. Reserved API or provider
+names do not make those features available.
 
 [adr-0002]: development/asc-cpp-architecture/decisions/0002-package-target-naming.md
 [adr-0003]: development/asc-cpp-architecture/decisions/0003-namespace-and-source-policy.md

@@ -6,7 +6,9 @@ target_sources(
   PRIVATE
     distribution.cc
     engine.cc
+    quasi.cc
     seed.cc
+    sobol_table_generated.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -16,6 +18,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/random/engine.h"
       "${PROJECT_SOURCE_DIR}/include/asc/random/export.h"
       "${PROJECT_SOURCE_DIR}/include/asc/random/generator.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/random/quasi.h"
       "${PROJECT_SOURCE_DIR}/include/asc/random/seed.h"
 )
 

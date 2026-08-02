@@ -1,6 +1,6 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -75,7 +75,7 @@ Names in an `internal_` namespace are implementation details even when a
 public template header must declare them or a shared library must export a
 support symbol. They are not downstream extension points.
 
-The complete CUDA-enabled surface has 51 headers. A CUDA-disabled install
+The complete CUDA-enabled surface has 52 headers. A CUDA-disabled install
 contains the exact 39 provider-free headers; provider headers are not installed
 as unusable stubs.
 
@@ -244,8 +244,17 @@ and scalar Box-Muller mappings. Exported state structs carry an explicit
 sequence tag; unknown tags fail rather than reinterpret state. Engine,
 distribution, sampler, storage, and provider mappings remain separate
 compatibility dimensions. No byte-state serialization or GPU implementation is
-added. QMC and advanced adapter APIs remain unavailable until Issues 14 and 15
-are implemented and verified.
+added.
+
+Issue 14 likewise preserves those mappings while adding QMC sequence version
+1. Halton and Hammersley are unsigned indexed mathematical sequences; Sobol
+fixes the Joe--Kuo D(6) table, 64-bit Gray-code mapping, dimension range, and
+24/53-bit conversions. `SobolSequence` is only an explicit index cursor over
+that same mapping. Latin output additionally depends on engine type/version,
+engine state, scalar type, logical shape, midpoint/jitter choice, and frozen
+consumption order. Changing any of these mappings requires a new versioned
+algorithm, not a silent patch. Dense QMC and advanced adapter mappings remain
+unavailable until Issue 15 is implemented and verified.
 
 ## Provider and downstream upgrade policy
 

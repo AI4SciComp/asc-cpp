@@ -1,6 +1,6 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Issue 13 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 14 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -13,12 +13,27 @@ parameters, records repetitions and elapsed time, checks zero successful-path
 allocation, and guards correctness with an independently derived checksum or
 fixed-seed moment invariant.
 
-Future Issue 14–15 Random benchmarks must likewise name algorithm/version,
-explicit state, distribution or sampler parameters, shape/layout/sparsity,
-repetition count, allocation/workspace, and a deterministic checksum or
-invariant. They report throughput and memory traffic without a speed pass
-gate. Issue 13 work is CPU-only; no new GPU benchmark or provider claim is
-approved.
+Issue 14 extends that probe with indexed Sobol word evaluation. Future Issue 15
+Random benchmarks must likewise name algorithm/version, explicit state,
+distribution or sampler parameters, shape/layout/sparsity, repetition count,
+allocation/workspace, and a deterministic checksum or invariant. They report
+throughput and memory traffic without a speed pass gate. Issue 13 and Issue 14
+work is CPU-only; no new GPU benchmark or provider claim is approved.
+
+## Issue 14 local observation
+
+The Issue 14 threshold-free row was run on the same local platform with GNU
+C++ 11.4, CMake 4.1.2, Release/static, and ASCCMake 0.1.0. The timed region
+performed indexed Sobol-Joe-Kuo-D6-v1 word evaluation for zero-based dimension
+3; fixture setup and correctness checking were excluded.
+
+| Operation | Repetitions | Elapsed (ns) | Allocation calls | Correctness observation |
+| --- | ---: | ---: | ---: | --- |
+| indexed Sobol word, zero-based dimension 3 | 100,000 | 10,260,550 | 0 | published point plus independent checksum `0xb9c9b02511675303` |
+
+This single-process total is an implementation observation, not a speed
+threshold or cross-machine comparison. The aggregate benchmark checksum was
+also verified.
 
 ## Issue 13 local observation
 
