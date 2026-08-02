@@ -218,7 +218,20 @@ if(ENABLE_CUDA)
 endif()
 
 foreach(_required_test IN LISTS _required_tests)
-  string(FIND "${_ctest_inventory}" "[=[${_required_test}]=]" _position)
+  # CMake's generated CTest syntax varies by version: test names may be
+  # bracket-quoted, ordinarily quoted, or unquoted. Match the registration
+  # itself instead of depending on one serialization.
+  set(_position -1)
+  foreach(_test_registration IN ITEMS
+      "add_test([=[${_required_test}]=]"
+      "add_test(\"${_required_test}\""
+      "add_test(${_required_test} "
+  )
+    string(FIND "${_ctest_inventory}" "${_test_registration}" _position)
+    if(NOT _position EQUAL -1)
+      break()
+    endif()
+  endforeach()
   if(_position EQUAL -1)
     message(FATAL_ERROR
       "Random completion evidence test is not registered: ${_required_test}"
