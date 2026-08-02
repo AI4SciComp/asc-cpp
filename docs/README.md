@@ -1,10 +1,9 @@
 # asc-cpp documentation
 
-The repository is at the unreleased **Advanced samplers and storage adapters
-(Issue 15) Feature Gate B** candidate. All six modules, both Random storage
-facets, the provider-free aggregate, and all six approved opt-in CUDA facets
-remain in the same dependency graph. This issue adds portable CPU algorithms
-only through the existing Random Dense and Random Sparse facets.
+The repository is at the unreleased **Random completion audit (Issue 16)
+Feature Gate B** candidate. All six modules, both Random storage facets, the
+provider-free aggregate, and all six approved opt-in CUDA facets remain in the
+same dependency graph. This issue adds audit evidence only.
 
 ## Current API documentation
 
@@ -51,6 +50,9 @@ only through the existing Random Dense and Random Sparse facets.
   audit contract and reproduction commands.
 - [Random crosswalk](random-crosswalk.md): generated 33-row MdeCpp inventory,
   classifications, approved routes, destination owners, and child boundaries.
+- [Random completion audit](random-completion-audit.md): independently checked
+  provenance, semantics, implementation paths, registered evidence, package
+  consumers, and performance coverage for every Random row.
 - [Random contract](development/asc-cpp-architecture/decisions/0020-random-contract.md):
   frozen seed, state, stream, reproducibility, QMC, storage-adapter, failure,
   CPU/GPU, testing, packaging, and performance semantics.

@@ -191,7 +191,10 @@ provider, factorization package, or new GPU code. All Issue 15 additions
 reject non-serial contexts before access or mutation.
 
 See the [Random module guide](modules/random.md) and
-[frozen provenance record][random-provenance].
+[frozen provenance record][random-provenance]. The
+[Random completion audit](random-completion-audit.md) verifies the public
+symbols, ownership boundaries, implementation paths, registered evidence, and
+package consumers without adding an API.
 
 ## Aggregate and optional providers
 

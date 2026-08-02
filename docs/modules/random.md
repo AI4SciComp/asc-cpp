@@ -36,6 +36,11 @@ does not include either facet header. `ASC::cpp` is the convenience aggregate
 of all six provider-free modules and both facets; narrower targets never
 depend on it.
 
+Issue 16 independently audits this completed surface. The
+[completion report][random-completion] binds every accepted and rejected row
+to provenance, semantics, implementation, registered tests, documentation,
+package consumers, and benchmark evidence without changing product behavior.
+
 ## Provenance and compatibility
 
 The raw engine is a clean-room implementation independently derived from the
@@ -878,6 +883,7 @@ remains authoritative for provider-free storage generation.
 [provenance]: ../development/asc-cpp-m2-independent-foundations/provenance-record.md
 [m5-contract]: ../development/asc-cpp-m5-random-storage-generation/milestone-contract.md
 [m7-contract]: ../development/asc-cpp-m7-gpu-sparse-random/milestone-contract.md
+[random-completion]: ../random-completion-audit.md
 [random-contract]: ../development/asc-cpp-architecture/decisions/0020-random-contract.md
 [random-crosswalk]: ../random-crosswalk.md
 [qmc-example]: ../examples/random-qmc.md

@@ -74,6 +74,16 @@ add_test(
     -P "${CMAKE_CURRENT_SOURCE_DIR}/check_random_contract.cmake"
 )
 
+add_test(
+  NAME asc_cpp.architecture.random_completion
+  COMMAND
+    "${CMAKE_COMMAND}"
+    "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
+    "-DBINARY_DIR:PATH=${PROJECT_BINARY_DIR}"
+    "-DENABLE_CUDA:BOOL=${ASC_CPP_ENABLE_CUDA}"
+    -P "${CMAKE_CURRENT_SOURCE_DIR}/check_random_completion.cmake"
+)
+
 set_tests_properties(
   asc_cpp.architecture.dependency_manifest
   asc_cpp.architecture.approved_product_targets
@@ -89,6 +99,10 @@ set_tests_properties(
   asc_cpp.architecture.random_contract
   PROPERTIES LABELS
     "architecture;issue-15;milestone-7;milestone-8;milestone-9;milestone-10;milestone-11;milestone-12"
+)
+set_tests_properties(
+  asc_cpp.architecture.random_completion
+  PROPERTIES LABELS "architecture;issue-16;milestone-16;random"
 )
 
 unset(_blas_coverage_manifest)

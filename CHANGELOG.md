@@ -5,6 +5,21 @@ completion and release publication require separate approval.
 
 ## Unreleased
 
+### Random completion audit (Issue 16)
+
+- Independently audited all 33 Random crosswalk decisions: 22 accepted rows
+  have complete implementation and evidence, 11 rows remain explicitly
+  rejected, and no provenance or implementation decision is unresolved.
+- Strengthened the generated crosswalk check to require public API symbols,
+  existing evidence paths, and owning build registrations, with negative
+  fixtures for stale API and path claims.
+- Added the omitted stateful-engine/scalar-distribution capability record and
+  a completion test that inventories CPU, CUDA, package, documentation,
+  consumer, statistical, and correctness-guarded performance evidence.
+
+No product source, public header, API, sequence, target, dependency, provider,
+adapter architecture, storage behavior, or license route changes.
+
 ### Advanced samplers and storage adapters (Issue 15)
 
 - Added allocation-free generic pseudo and Dense Latin/Halton/Hammersley/Sobol

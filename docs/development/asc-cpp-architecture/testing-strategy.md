@@ -1,6 +1,6 @@
 # Verification strategy
 
-Status: Product evidence through Issue 15 advanced Random adapters
+Status: Issue 16 completion audit of the approved Random product evidence
 
 ## Test ownership
 
@@ -145,6 +145,14 @@ at most 0.02. Known answers and exact invariants remain primary. Real-CUDA
 tests verify that these portable-CPU APIs reject a CUDA context without
 mutation, state consumption, transfer, synchronization, or allocation; they
 do not claim a GPU implementation or CPU/GPU parity.
+
+Issue 16 adds a meta-test over the registered evidence rather than duplicating
+the product tests. It requires every accepted crosswalk API and evidence path,
+the full Random architecture/header/runtime/statistical/allocation/package/
+consumer/benchmark set, and, when enabled, all Random CUDA header, runtime,
+collision, benchmark, and provider-consumer checks. Negative crosswalk
+fixtures prove that stale public symbols and missing evidence paths fail the
+audit.
 
 ## GPU evidence levels
 

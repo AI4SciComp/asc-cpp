@@ -1,6 +1,7 @@
 # ADR 0020: Random inventory, provenance, and adapter contract
 
-Status: Accepted for Issue 12 Feature Gate B candidate
+Status: Accepted for Issue 12; implementations completed by Issues 13--15 and
+audited by Issue 16
 
 Date: 2026-08-01
 
@@ -509,6 +510,21 @@ existing Random storage benchmark.
 Non-goals are a sampler hierarchy, new storage protocol, reversed dependency,
 new factorization dependency, hidden workspace, GPU implementation, sparse
 density/Bernoulli mode, compressed-output generation, or a public break.
+
+### Issue 16: Random completion audit
+
+Required branch: `test/16-random-completion`.
+
+Issue 16 independently proves that every approved inventory item has a
+compatible provenance route, documented semantics, an existing implementation
+and owning build registration, reproducible tests, public documentation,
+package consumers, and correctness-guarded performance evidence. It may
+strengthen manifests, generated reports, architecture checks, and audit
+documentation only.
+
+Non-goals are any new Random API, sampler, implementation, data import,
+dependency, backend, adapter protocol, storage behavior, or compatibility
+change.
 
 ## Consequences and stop conditions
 

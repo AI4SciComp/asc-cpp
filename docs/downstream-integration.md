@@ -1,6 +1,6 @@
 # Downstream integration
 
-Status: unreleased `0.9.0` Issue 15 Feature Gate B candidate
+Status: unreleased `0.9.0` Issue 16 Feature Gate B candidate
 
 Date: 2026-08-02
 
@@ -16,6 +16,10 @@ existing `random_dense` and `random_sparse` components. The licensed Joe--Kuo
 input and notice remain package documentation; QMC execution reads only its
 compiled table. No package target, component closure, provider discovery rule,
 or external dependency changes.
+
+Issue 16 introduces no downstream migration. The completion audit verifies
+that the existing build-tree, install/relocation, and asc-xde-shaped consumers
+remain registered evidence for the approved Random surface.
 
 ## Choose the owning component
 

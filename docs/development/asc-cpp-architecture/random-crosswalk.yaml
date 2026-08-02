@@ -1,12 +1,12 @@
 schema_version: 2
-contract_status: "issue-15-random-samplers-feature-gate-b-candidate"
+contract_status: "issue-16-random-completion-audit-verified-candidate"
 evidence_date: "2026-08-02"
 source_repository: "https://github.com/escapetiger/MdeCpp"
 source_commit: "f6294e9079262682ce63ae7ff2d8a643e658bf5d"
 source_license: "GPL-3.0-only repository working assumption"
 source_license_sha256: "230184f60bae2feaf244f10a8bac053c8ff33a183bcc365b4d8b876d2b7f4809"
 destination_repository: "https://github.com/AI4SciComp/asc-cpp"
-destination_base_commit: "499afc7073435d6c5eb51b188cf7bdb722dfa8a6"
+destination_base_commit: "0aef277789b6204e580b63da95ca6ed5d5f4829f"
 destination_license: "Apache-2.0"
 allowed_classifications: "equivalent,incomplete,absent,rejected,clean-room-required,permission-relicensing-required"
 expected_source_artifacts: 20
@@ -19,7 +19,7 @@ expected_rejected: 11
 expected_absent: 0
 source_inventory_sha256: "f47d8ecf5cfbb689fe0643d1bbb8e772138523b68a8055cdb73dc4ae3b1cb6ff"
 crosswalk_sha256: "3a54b6ab7d39cc2a6936c8fa39cccdbea589a5545509f75f0a20d19b6ed66bd4"
-provenance_identity_sha256: "0a08e6b5404fab0367741876960a7ddcc3021f5157c4582efef78c0906adf9b3"
+provenance_identity_sha256: "2890bf8fce4a7d45ef4860e2778e174f580f42eb9f3a28f02f5125c2d6e83280"
 splitmix64_url: "https://prng.di.unimi.it/splitmix64.c"
 splitmix64_sha256: "071795a8e29978a5cbd7015ce8f7d772e7ab4631e574e9102b748fe99105ff3d"
 xoroshiro64star_url: "https://prng.di.unimi.it/xoroshiro64star.c"

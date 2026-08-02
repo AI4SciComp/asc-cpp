@@ -1,7 +1,7 @@
 # Milestone and release roadmap
 
 Status: Approved architecture; Milestone 8 reached local Publication
-Checkpoint B; Issue 15 advanced Random adapters are at local Feature Gate B
+Checkpoint B; Issue 16 Random completion audit is at local Feature Gate B
 
 ## Version policy
 
@@ -44,7 +44,8 @@ Issue 14 implements its approved storage-neutral CPU QMC scope and licensed
 direction-data route without changing targets or providers. Issue 15
 implements and verifies its approved portable-CPU advanced sampler and storage
 adapter scope through the existing Random Dense/Sparse facets. Issue 16
-remains the completion audit. No child milestone implies release.
+independently audits every approved and rejected Random inventory row without
+widening that surface. No child milestone implies release.
 
 ## Provider sequencing
 
