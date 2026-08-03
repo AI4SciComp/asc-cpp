@@ -8,6 +8,7 @@ on:
     - cron: "17 3 * * 1"
 
 permissions:
+  actions: read
   contents: read
   security-events: write
 
@@ -24,7 +25,6 @@ jobs:
       - name: Check out ASCCpp
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          path: asc-cpp
           persist-credentials: false
       - name: Initialize CodeQL
         uses: github/codeql-action/init@a2983b8bed1923f44751c5c43237f479442827b3
@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           build="$RUNNER_TEMP/codeql"
-          cmake -S asc-cpp -B "$build" \
+          cmake -S . -B "$build" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DBUILD_SHARED_LIBS=ON \
             -DBUILD_TESTING=ON \
