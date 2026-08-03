@@ -2,6 +2,8 @@ name: Release draft
 
 on:
   push:
+    branches:
+      - "release/**"
     tags:
       - "v*"
   workflow_dispatch:
@@ -46,12 +48,16 @@ jobs:
         id: identity
         shell: bash
         run: |
-          if [[ "${{ github.event_name }}" == "push" ]]; then
+          if [[ "${{ github.ref_type }}" == "tag" ]]; then
             tag="${{ github.ref_name }}"
             python3 asc-cpp/tools/release/verify_release_state.py \
               --source asc-cpp --tag "$tag" --require-head-tag
           else
-            tag="${{ inputs.tag }}"
+            if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+              tag="${{ inputs.tag }}"
+            else
+              tag="v0.9.0"
+            fi
             test "$(git -C asc-cpp rev-parse HEAD)" = "${{ github.sha }}"
             python3 asc-cpp/tools/release/verify_release_state.py \
               --source asc-cpp --tag "$tag"
@@ -162,7 +168,7 @@ jobs:
           (cd "$assets" && sha256sum ASCCpp-0.9.0* > SHA256SUMS)
           (cd "$assets" && sha256sum --check --strict SHA256SUMS)
       - name: Attest release artifacts
-        if: github.event_name == 'push'
+        if: github.ref_type == 'tag'
         uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a
         with:
           subject-path: ${{ runner.temp }}/release-assets/*
@@ -173,7 +179,7 @@ jobs:
           path: ${{ runner.temp }}/release-assets/*
           if-no-files-found: error
       - name: Create immutable draft prerelease
-        if: github.event_name == 'push'
+        if: github.ref_type == 'tag'
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ steps.identity.outputs.tag }}
@@ -213,7 +219,7 @@ jobs:
           path: verifier
           persist-credentials: false
       - name: Download draft release assets
-        if: github.event_name == 'push'
+        if: github.ref_type == 'tag'
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.ref_name }}
@@ -222,7 +228,7 @@ jobs:
           gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
             --dir "$RUNNER_TEMP/downloaded-assets"
       - name: Download dry-run artifacts
-        if: github.event_name == 'workflow_dispatch'
+        if: github.ref_type != 'tag'
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: release-assets
