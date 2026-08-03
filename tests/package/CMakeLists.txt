@@ -112,7 +112,6 @@ add_test(
     ${_repeated_component_generator_arguments}
     "-DASCCpp_DIR:PATH=${ASC_CPP_BUILD_PACKAGE_DIR}"
     "-DENABLE_CUDA:BOOL=${ASC_CPP_ENABLE_CUDA}"
-    "-DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY:BOOL=ON"
     "-DCMAKE_FIND_USE_PACKAGE_REGISTRY:BOOL=OFF"
     "-DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY:BOOL=OFF"
 )
@@ -128,7 +127,7 @@ set_tests_properties(
   PROPERTIES
     DEPENDS asc_cpp.package.repeated_component_lookup
     FIXTURES_REQUIRED M8RepeatedComponentLookup
-    LABELS "package;hardening;milestone-8"
+    LABELS "package;hardening"
     RUN_SERIAL TRUE
     TIMEOUT 180
 )
@@ -142,7 +141,7 @@ set_tests_properties(
   asc_cpp.package.repeated_component_lookup_clean
   asc_cpp.package.repeated_component_lookup
   PROPERTIES
-    LABELS "package;milestone-7;milestone-8"
+    LABELS "package;cuda-sparse-random;hardening"
     RUN_SERIAL TRUE
     TIMEOUT 600
 )

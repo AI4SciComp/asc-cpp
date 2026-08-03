@@ -1,17 +1,17 @@
 option(
   ASC_CPP_ENABLE_ASC_XDE_REPOSITORY_AUDIT
-  "Audit an explicitly selected real asc-xde checkout during M8 tests"
+  "Audit an explicitly selected real asc-xde checkout during hardening tests"
   OFF
 )
 set(
   ASC_CPP_ASC_XDE_REPOSITORY
   ""
-  CACHE PATH "Explicit read-only asc-xde checkout for the optional M8 audit"
+  CACHE PATH "Explicit read-only asc-xde checkout for the optional hardening audit"
 )
 set(
   ASC_CPP_ASC_XDE_EXPECTED_COMMIT
   ""
-  CACHE STRING "Exact asc-xde commit required by the optional M8 audit"
+  CACHE STRING "Exact asc-xde commit required by the optional hardening audit"
 )
 if(ASC_CPP_ENABLE_ASC_XDE_REPOSITORY_AUDIT)
   if(NOT IS_DIRECTORY "${ASC_CPP_ASC_XDE_REPOSITORY}/.git")
@@ -62,7 +62,7 @@ function(
   set_tests_properties(
     "asc_cpp.downstream.asc_xde.${name}"
     PROPERTIES
-      LABELS "hardening;package;consumer;downstream;milestone-8"
+      LABELS "hardening;package;consumer;downstream"
       RUN_SERIAL TRUE
       TIMEOUT 180
   )

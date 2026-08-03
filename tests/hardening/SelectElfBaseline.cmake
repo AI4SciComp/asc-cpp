@@ -43,7 +43,7 @@ function(asc_cpp_select_elf_baseline)
      OR NOT ENV_STANDARD_LIBRARY_IDENTITY STREQUAL
             "libstdc++:libstdc++.so.6.0.30:sha256=ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128"
      OR NOT ENV_C_LIBRARY_IDENTITY STREQUAL
-            "ldd (Ubuntu GLIBC 2.35-0ubuntu3.13) 2.35"
+            "ldd (Ubuntu GLIBC 2.35-0ubuntu3.14) 2.35"
      OR NOT ENV_SHARED
      OR ENV_MULTI_CONFIG
      OR NOT ENV_READELF_IDENTITY MATCHES

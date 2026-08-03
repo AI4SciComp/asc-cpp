@@ -93,7 +93,7 @@ endif()
 if(NOT ASCCpp_AVAILABLE_COMPONENTS STREQUAL
    "${_expected_available_components}")
   message(FATAL_ERROR
-    "Milestone 8 available components differ from this build: "
+    "release hardening available components differ from this build: "
     "'${ASCCpp_AVAILABLE_COMPONENTS}'."
   )
 endif()

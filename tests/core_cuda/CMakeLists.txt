@@ -33,7 +33,7 @@ foreach(_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.core_cuda.${_name}"
     TARGET "${_target}"
-    LABELS "core_cuda;cuda;gpu;milestone-6;runtime"
+    LABELS "core_cuda;cuda;gpu;cuda-core-dense;runtime"
   )
   set_tests_properties(
     "asc_cpp.core_cuda.${_name}"
@@ -47,7 +47,7 @@ foreach(_source IN ITEMS
     "asc_cpp.core_cuda.${_name}.forced_no_device"
     PROPERTIES
       ENVIRONMENT "ASC_CPP_TEST_FORCE_NO_CUDA_DEVICE=1"
-      LABELS "core_cuda;cuda;gpu;milestone-8;no-device"
+      LABELS "core_cuda;cuda;gpu;hardening;no-device"
       SKIP_RETURN_CODE 77
   )
 endforeach()

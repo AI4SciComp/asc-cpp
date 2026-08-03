@@ -96,7 +96,7 @@ function(_assert_package_files package_directory)
   list(LENGTH _expected_target_exports _expected_target_export_count)
   if(NOT _target_export_count EQUAL _expected_target_export_count)
     message(FATAL_ERROR
-      "Milestone 8 component export count differs from this build: "
+      "release hardening component export count differs from this build: "
       "${_target_exports}"
     )
   endif()
@@ -104,7 +104,7 @@ function(_assert_package_files package_directory)
     get_filename_component(_target_export_name "${_target_export}" NAME)
     if(NOT _target_export_name IN_LIST _expected_target_exports)
       message(FATAL_ERROR
-        "Unexpected Milestone 8 target export: ${_target_export_name}"
+        "Unexpected release hardening target export: ${_target_export_name}"
       )
     endif()
   endforeach()
@@ -165,7 +165,6 @@ function(
     "-DASCCPP_EXPECT_FOUND:BOOL=${expect_found}"
     "-DASCCPP_EXPECT_CORE_TARGET:BOOL=${expect_core_target}"
     "-DASCCPP_EXPECT_CUDA:BOOL=${ENABLE_CUDA}"
-    "-DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY:BOOL=ON"
     "-DCMAKE_FIND_USE_PACKAGE_REGISTRY:BOOL=OFF"
     "-DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY:BOOL=OFF"
   )

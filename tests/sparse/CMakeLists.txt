@@ -26,7 +26,7 @@ foreach(_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.sparse.${_name}"
     TARGET "${_target}"
-    LABELS "sparse;milestone-4;runtime"
+    LABELS "sparse;runtime"
   )
 endforeach()
 
@@ -42,13 +42,13 @@ foreach(_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.sparse.${_name}"
     TARGET "${_target}"
-    LABELS "sparse;milestone-4;runtime"
+    LABELS "sparse;runtime"
   )
 endforeach()
 
 set_property(
   TEST asc_cpp.sparse.standard_blas_test
-  APPEND PROPERTY LABELS milestone-10
+  APPEND PROPERTY LABELS sparse-blas
 )
 
 add_executable(
@@ -65,7 +65,7 @@ _asc_sparse_configure_test(asc_sparse_multi_tu)
 asc_register_test(
   NAME asc_cpp.sparse.multi_tu
   TARGET asc_sparse_multi_tu
-  LABELS "compile;sparse;milestone-4"
+  LABELS "compile;sparse"
 )
 
 foreach(_negative_source IN ITEMS
@@ -111,7 +111,7 @@ _asc_sparse_configure_test(asc_sparse_benchmark)
 asc_register_test(
   NAME asc_cpp.sparse.benchmark
   TARGET asc_sparse_benchmark
-  LABELS "benchmark;sparse;milestone-4;performance"
+  LABELS "benchmark;sparse;performance"
 )
 set_tests_properties(
   asc_cpp.sparse.benchmark
@@ -119,7 +119,7 @@ set_tests_properties(
 )
 set_property(
   TEST asc_cpp.sparse.benchmark
-  APPEND PROPERTY LABELS milestone-10
+  APPEND PROPERTY LABELS sparse-blas
 )
 
 unset(_name)

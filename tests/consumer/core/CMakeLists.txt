@@ -45,7 +45,7 @@ list(SORT _expected_known_components)
 list(SORT _actual_known_components)
 if(NOT _actual_known_components STREQUAL _expected_known_components)
   message(FATAL_ERROR
-    "Known components differ from the Milestone 8 contract: "
+    "Known components differ from the release hardening contract: "
     "'${ASCCpp_KNOWN_COMPONENTS}'."
   )
 endif()
@@ -66,7 +66,7 @@ endif()
 if(NOT ASCCpp_AVAILABLE_COMPONENTS STREQUAL
    "${_expected_available_components}")
   message(FATAL_ERROR
-    "Milestone 8 available components differ from this build: "
+    "release hardening available components differ from this build: "
     "'${ASCCpp_AVAILABLE_COMPONENTS}'."
   )
 endif()

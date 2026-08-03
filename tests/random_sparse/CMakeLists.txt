@@ -27,16 +27,20 @@ foreach(_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.random_sparse.${_name}"
     TARGET "${_target}"
-    LABELS "random;random_sparse;milestone-5;runtime"
+    LABELS "random;random_sparse;random-storage;runtime"
   )
 endforeach()
 set_tests_properties(
   asc_cpp.random_sparse.random_adapter_test
-  PROPERTIES LABELS "random;random_sparse;issue-15;runtime"
+  PROPERTIES LABELS "random;random_sparse;random-adapters;runtime"
 )
 target_link_libraries(
   asc_random_sparse_thread_reproducibility_test
   PRIVATE Threads::Threads
+)
+set_property(
+  TEST asc_cpp.random_sparse.thread_reproducibility_test
+  APPEND PROPERTY LABELS concurrency
 )
 
 add_executable(
@@ -48,7 +52,7 @@ _asc_random_sparse_configure_test(asc_random_sparse_allocation_test)
 asc_register_test(
   NAME asc_cpp.random_sparse.allocation_test
   TARGET asc_random_sparse_allocation_test
-  LABELS "random;random_sparse;allocation;issue-15;milestone-5;runtime"
+  LABELS "random;random_sparse;allocation;random-adapters;random-storage;runtime"
 )
 
 foreach(_negative_source IN ITEMS
@@ -103,7 +107,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.random_storage.benchmark
   TARGET asc_random_storage_benchmark
-  LABELS "benchmark;issue-15;random;milestone-5;performance"
+  LABELS "benchmark;random-adapters;random;random-storage;performance"
 )
 set_tests_properties(
   asc_cpp.random_storage.benchmark

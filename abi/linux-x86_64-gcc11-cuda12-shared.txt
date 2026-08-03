@@ -1,18 +1,18 @@
 format|asc-cpp-elf-abi-digest-v1
-environment|Ubuntu 22.04.5 LTS|x86_64|GCC 11.4.0|NVCC 12.9.86|libstdc++.so.6.0.30 ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128|glibc 2.35-0ubuntu3.13|Release|shared|CUDA enabled
-report-sha256|e12ebeab0395f576f0ae8bdc32fe43f40d0ae19964be2283bff389917d251228
-library|libasc_core.so|defined-dynamic-symbols|146|weak-or-unique|23
-library|libasc_core_cuda.so|defined-dynamic-symbols|20|weak-or-unique|9
-library|libasc_dense.so|defined-dynamic-symbols|20|weak-or-unique|0
-library|libasc_dense_cuda.so|defined-dynamic-symbols|25|weak-or-unique|0
-library|libasc_random.so|defined-dynamic-symbols|6|weak-or-unique|0
-library|libasc_random_cuda.so|defined-dynamic-symbols|1|weak-or-unique|0
-library|libasc_random_dense_cuda.so|defined-dynamic-symbols|1|weak-or-unique|0
-library|libasc_random_sparse_cuda.so|defined-dynamic-symbols|1|weak-or-unique|0
-library|libasc_sparse.so|defined-dynamic-symbols|2|weak-or-unique|0
-library|libasc_sparse_cuda.so|defined-dynamic-symbols|12|weak-or-unique|0
-library|libasc_utilities.so|defined-dynamic-symbols|16|weak-or-unique|7
-observation|ELF64|little-endian|x86-64|unversioned SONAMEs
+environment|Ubuntu 22.04.5 LTS|x86_64|GCC 11.4.0|NVCC 12.9.86|libstdc++.so.6.0.30 ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128|glibc 2.35-0ubuntu3.14|Release|shared|CUDA enabled
+report-sha256|9a411b0034e9fbf843bec0b49132eca87ca7e74b1f9b1f44286b9a428694a600
+library|libasc_core.so.0.9.0|defined-dynamic-symbols|146|weak-or-unique|23
+library|libasc_core_cuda.so.0.9.0|defined-dynamic-symbols|20|weak-or-unique|9
+library|libasc_dense.so.0.9.0|defined-dynamic-symbols|166|weak-or-unique|96
+library|libasc_dense_cuda.so.0.9.0|defined-dynamic-symbols|171|weak-or-unique|96
+library|libasc_random.so.0.9.0|defined-dynamic-symbols|43|weak-or-unique|0
+library|libasc_random_cuda.so.0.9.0|defined-dynamic-symbols|1|weak-or-unique|0
+library|libasc_random_dense_cuda.so.0.9.0|defined-dynamic-symbols|1|weak-or-unique|0
+library|libasc_random_sparse_cuda.so.0.9.0|defined-dynamic-symbols|1|weak-or-unique|0
+library|libasc_sparse.so.0.9.0|defined-dynamic-symbols|2|weak-or-unique|0
+library|libasc_sparse_cuda.so.0.9.0|defined-dynamic-symbols|17|weak-or-unique|0
+library|libasc_utilities.so.0.9.0|defined-dynamic-symbols|16|weak-or-unique|7
+observation|ELF64|little-endian|x86-64|SONAME 0.9
 observation|CUDA provider libraries expose only approved API and public-template support symbols in this Release observation.
 observation|Random CUDA exports the approved MutableMemoryView plus word_count raw-fill signature and no pointer-plus-count overload.
 observation|Runtime dependencies include the approved CUDA Runtime, cuBLAS, and cuSPARSE implementation libraries.

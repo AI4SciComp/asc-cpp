@@ -3,6 +3,12 @@
 
 #include <cstddef>
 
+#if defined(__has_feature)
+#if __has_feature(leak_sanitizer) || __has_feature(thread_sanitizer)
+#define ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR 1
+#endif
+#endif
+
 namespace asc_test {
 
 // A replacement global operator new in a Windows executable does not
@@ -23,7 +29,13 @@ namespace asc_test {
 // MSVC Debug iterator instrumentation allocates container proxy state when the
 // public Status and Result scaffolding constructs standard-library containers.
 // Release and non-MSVC builds enforce exact process-allocation counts.
-#if defined(_MSC_VER) && defined(_DEBUG)
+#if defined(ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR)
+// LeakSanitizer and ThreadSanitizer provide the process-wide allocation
+// operators. Exact allocation counts remain enforced by every regular
+// Debug/Release configuration; sanitizer configurations retain their runtime
+// interceptors and validate the operation's remaining semantics.
+inline constexpr bool kHasExactProcessAllocationObservation = false;
+#elif defined(_MSC_VER) && defined(_DEBUG)
 inline constexpr bool kHasExactProcessAllocationObservation = false;
 #else
 inline constexpr bool kHasExactProcessAllocationObservation = true;
@@ -31,6 +43,11 @@ inline constexpr bool kHasExactProcessAllocationObservation = true;
 
 [[nodiscard]] constexpr bool ProcessAllocationCountMatches(
     std::size_t observed, std::size_t expected) noexcept {
+#if defined(ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR)
+  static_cast<void>(observed);
+  static_cast<void>(expected);
+  return true;
+#else
   if constexpr (kHasExactProcessAllocationObservation) {
     return observed == expected;
   } else {
@@ -39,6 +56,7 @@ inline constexpr bool kHasExactProcessAllocationObservation = true;
     // enforces the exact count.
     return observed >= expected;
   }
+#endif
 }
 
 }  // namespace asc_test

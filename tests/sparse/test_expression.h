@@ -70,16 +70,16 @@ struct ExpressionAdapter<::M4TestExpression<Element, Rank, Effect>> {
       const ExecutionContext& context) {
     if (!expression.access_valid) {
       return Status(ErrorCode::kMemoryAccess,
-                    "Injected M4 expression access failure");
+                    "Injected sparse expression access failure");
     }
     if (context.backend() != Backend::kSerial) {
       return Status(ErrorCode::kUnsupported,
-                    "M4 test expression requires serial execution");
+                    "Sparse test expression requires serial execution");
     }
     if (expression.memory_space != MemorySpace::kHost ||
         !context.CanAccess(expression.memory_space)) {
       return Status(ErrorCode::kMemoryAccess,
-                    "M4 test expression requires host storage");
+                    "Sparse test expression requires host storage");
     }
     return Status::Ok();
   }

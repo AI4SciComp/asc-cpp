@@ -28,22 +28,26 @@ foreach(_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.random_dense.${_name}"
     TARGET "${_target}"
-    LABELS "random;random_dense;milestone-5;runtime"
+    LABELS "random;random_dense;random-storage;runtime"
   )
 endforeach()
 set_tests_properties(
   asc_cpp.random_dense.advanced_sampler_test
   PROPERTIES
-    LABELS "random;random_dense;issue-15;numerical;statistical;runtime"
+    LABELS "random;random_dense;random-adapters;numerical;statistical;runtime"
     TIMEOUT 120
 )
 set_tests_properties(
   asc_cpp.random_dense.qmc_fill_test
-  PROPERTIES LABELS "random;random_dense;issue-15;qmc;runtime"
+  PROPERTIES LABELS "random;random_dense;random-adapters;qmc;runtime"
 )
 target_link_libraries(
   asc_random_dense_thread_partition_test
   PRIVATE Threads::Threads
+)
+set_property(
+  TEST asc_cpp.random_dense.thread_partition_test
+  APPEND PROPERTY LABELS concurrency
 )
 
 add_executable(
@@ -55,7 +59,7 @@ _asc_random_dense_configure_test(asc_random_dense_allocation_test)
 asc_register_test(
   NAME asc_cpp.random_dense.allocation_test
   TARGET asc_random_dense_allocation_test
-  LABELS "random;random_dense;allocation;issue-15;milestone-5;runtime"
+  LABELS "random;random_dense;allocation;random-adapters;random-storage;runtime"
 )
 
 foreach(_negative_source IN ITEMS

@@ -1,7 +1,7 @@
-# Milestone 8 API and ABI observations
+# ASCCpp 0.9.0 API and ABI observations
 
-These files are review baselines for the unreleased ASCCpp `0.9.0` candidate.
-They are not a promise of ABI compatibility between different pre-1.0 minor
+These files are review baselines for ASCCpp `0.9.0`. They are not a promise of
+ABI compatibility between different pre-1.0 minor
 versions, compilers, standard libraries, build modes, CUDA toolkits, or
 platforms.
 
@@ -20,3 +20,6 @@ platforms.
 The tooling never updates these files. A baseline change is an explicit,
 reviewed source change. Header hashes normalize CRLF and lone CR to LF before
 hashing; all other content is exact.
+
+Shared libraries use `VERSION 0.9.0` and `SOVERSION 0.9`. The SONAME boundary
+does not promise compatibility with another pre-1.0 minor; see ADR 0021.

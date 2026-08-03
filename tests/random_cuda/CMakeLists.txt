@@ -15,7 +15,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.random_cuda.runtime
   TARGET asc_random_cuda_test
-  LABELS "cuda;gpu;milestone-7;parity;random_cuda;runtime"
+  LABELS "cuda;gpu;cuda-sparse-random;parity;random_cuda;runtime"
 )
 set_tests_properties(
   asc_cpp.random_cuda.runtime
@@ -48,7 +48,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.random_cuda.benchmark
   TARGET asc_random_cuda_benchmark
-  LABELS "benchmark;cuda;gpu;milestone-7;performance;random_cuda"
+  LABELS "benchmark;cuda;gpu;cuda-sparse-random;performance;random_cuda"
 )
 set_tests_properties(
   asc_cpp.random_cuda.benchmark
