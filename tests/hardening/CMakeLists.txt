@@ -635,24 +635,26 @@ if(BUILD_SHARED_LIBS)
         TIMEOUT 180
     )
   endif()
-  add_test(
-    NAME asc_cpp.hardening.elf_abi
-    COMMAND
-      "${CMAKE_COMMAND}"
-      "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
-      "-DASC_CPP_HARDENING_LIBRARIES:STRING=${_m8_shared_libraries}"
-      "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=${_m8_hardening_report_dir}/elf-abi-$<CONFIG>.txt"
-      "-DASC_CPP_HARDENING_BASELINE:FILEPATH=${_m8_elf_baseline}"
-      -P "${PROJECT_SOURCE_DIR}/tools/hardening/InspectElfAbi.cmake"
-  )
-  set_tests_properties(
-    asc_cpp.hardening.elf_abi
-    PROPERTIES
-      LABELS "hardening;api;abi"
-      RUN_SERIAL TRUE
-      SKIP_REGULAR_EXPRESSION "ASCCpp ELF ABI inspection skipped"
-      TIMEOUT 120
-  )
+  if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    add_test(
+      NAME asc_cpp.hardening.elf_abi
+      COMMAND
+        "${CMAKE_COMMAND}"
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
+        "-DASC_CPP_HARDENING_LIBRARIES:STRING=${_m8_shared_libraries}"
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=${_m8_hardening_report_dir}/elf-abi-$<CONFIG>.txt"
+        "-DASC_CPP_HARDENING_BASELINE:FILEPATH=${_m8_elf_baseline}"
+        -P "${PROJECT_SOURCE_DIR}/tools/hardening/InspectElfAbi.cmake"
+    )
+    set_tests_properties(
+      asc_cpp.hardening.elf_abi
+      PROPERTIES
+        LABELS "hardening;api;abi"
+        RUN_SERIAL TRUE
+        SKIP_REGULAR_EXPRESSION "ASCCpp ELF ABI inspection skipped"
+        TIMEOUT 120
+    )
+  endif()
 endif()
 
 function(_asc_cpp_add_m8_compile_observation name compiler style flags)
