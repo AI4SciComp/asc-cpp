@@ -13,11 +13,11 @@ The approved ASCCMake identity is:
 | version/tag | annotated `v0.1.0` |
 | commit | `8a7dcbad3a97267cce59810aff24de800a3497a7` |
 | source URL | `https://api.github.com/repos/AI4SciComp/asc-cmake/tarball/8a7dcbad3a97267cce59810aff24de800a3497a7` |
-| source SHA-256 | `73299eca4b80b8a5571622636fe12c88f67602eba4e99f24368d5405b9bc0021` |
+| source SHA-256 | `67765391bef06c6c9a1a0c43e934d0db7a9c52876e66e0cf644042eeb0c2a5c9` |
 
-Public publication is blocked until the repository/tag/source URL are
-anonymously accessible and their identities are reverified. No
-`ASC_CMAKE_READ_TOKEN` or other private credential is part of ordinary CI.
+The public repository, annotated tag, commit, and anonymous source archive
+were reverified against these identities. No `ASC_CMAKE_READ_TOKEN` or other
+private credential is part of ordinary CI.
 
 ## Preparing the dependency
 

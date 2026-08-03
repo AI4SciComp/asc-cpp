@@ -43,7 +43,7 @@ _require_text(SECURITY.md "route is enabled and verified")
 _require_text(docs/support-matrix.md "provider-free C++20 reference release")
 _require_text(docs/support-matrix.md "experimental")
 _require_text(docs/installation.md "8a7dcbad3a97267cce59810aff24de800a3497a7")
-_require_text(docs/installation.md "73299eca4b80b8a5571622636fe12c88f67602eba4e99f24368d5405b9bc0021")
+_require_text(docs/installation.md "67765391bef06c6c9a1a0c43e934d0db7a9c52876e66e0cf644042eeb0c2a5c9")
 _require_text(docs/contracts/capability-manifest.yaml
               "status: \"v0.9.0-release-contract\"")
 _require_text(docs/contracts/dependency-manifest.yaml

@@ -113,9 +113,11 @@ build-root-dependent ELF build IDs without changing symbols or execution.
 
 The secret-free ASCCMake acquisition pins commit
 `8a7dcbad3a97267cce59810aff24de800a3497a7` and archive SHA-256
-`73299eca4b80b8a5571622636fe12c88f67602eba4e99f24368d5405b9bc0021`.
-The exact local override passed; anonymous acquisition currently returns HTTP
-404 because the dependency repository is private.
+`67765391bef06c6c9a1a0c43e934d0db7a9c52876e66e0cf644042eeb0c2a5c9`.
+The exact local override and repeated anonymous public acquisition passed.
+The public archive contains the same 100 file payloads as the previously
+audited private archive; GitHub's public packaging has the recorded public
+archive identity above.
 
 The deterministic provider-free installed archives were built in two
 independent external build roots and were byte-identical under the recorded
@@ -145,9 +147,9 @@ regenerate all of them from the exact approved `v0.9.0` commit.
 
 ## Unavailable evidence and publication blockers
 
-- `AI4SciComp/asc-cmake` is private. Its annotated `v0.1.0` tag peels locally
-  to the approved commit, but public immutable acquisition cannot pass until
-  the owner makes it public and re-verifies the anonymous archive checksum.
+- `AI4SciComp/asc-cmake` is public. Its annotated `v0.1.0` tag peels to the
+  approved commit, and three repeated anonymous downloads produced the exact
+  recorded archive checksum.
 - This repository is private. The GitHub APIs returned 403 for branch
   protection/rulesets under the current plan and 404 for the requested
   private-vulnerability-reporting and `release-publication` environment
@@ -173,6 +175,6 @@ known machine-local path. The owner-authorized pre-existing ignored build tree
 and unrelated ignored makefile were removed; raw validation material remains
 external.
 
-Public publication is blocked until the ASCCMake public-immutability check and
-all repository protection, security, hosted-matrix, draft-consumption, and
-later approval gates pass. No exception is requested.
+Public publication remains blocked until all repository protection, security,
+hosted-matrix, draft-consumption, and later approval gates pass. No exception
+is requested.

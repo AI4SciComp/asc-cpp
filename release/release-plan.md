@@ -29,7 +29,7 @@ The release may become public only after all of the following are verified:
 - `AI4SciComp/asc-cmake` is public and its immutable `v0.1.0` tag still peels
   to `8a7dcbad3a97267cce59810aff24de800a3497a7`;
 - the pinned source download still has SHA-256
-  `73299eca4b80b8a5571622636fe12c88f67602eba4e99f24368d5405b9bc0021`;
+  `67765391bef06c6c9a1a0c43e934d0db7a9c52876e66e0cf644042eeb0c2a5c9`;
 - a private vulnerability-reporting route and required branch/tag protection
   are configured and verified; and
 - the `release-publication` GitHub environment requires an approving owner;

@@ -1,8 +1,8 @@
 include_guard(GLOBAL)
 
 # ASCCMake 0.1.0 is a build-only dependency. Prefer an explicitly supplied or
-# installed package. The fallback is immutable and becomes anonymously
-# downloadable when AI4SciComp/asc-cmake is public.
+# installed package. The fallback is immutable and anonymously downloadable
+# from the public AI4SciComp/asc-cmake repository.
 find_package(ASCCMake 0.1.0 EXACT CONFIG QUIET)
 
 if(NOT ASCCMake_FOUND AND ASC_CPP_FETCH_ASCCMAKE)
@@ -14,7 +14,7 @@ if(NOT ASCCMake_FOUND AND ASC_CPP_FETCH_ASCCMAKE)
     URL
       "https://api.github.com/repos/AI4SciComp/asc-cmake/tarball/8a7dcbad3a97267cce59810aff24de800a3497a7"
     URL_HASH
-      "SHA256=73299eca4b80b8a5571622636fe12c88f67602eba4e99f24368d5405b9bc0021"
+      "SHA256=67765391bef06c6c9a1a0c43e934d0db7a9c52876e66e0cf644042eeb0c2a5c9"
     DOWNLOAD_EXTRACT_TIMESTAMP FALSE
     EXCLUDE_FROM_ALL
   )
