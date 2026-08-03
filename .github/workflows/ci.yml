@@ -406,6 +406,24 @@ jobs:
           sudo apt-get install -y doxygen graphviz
           doxygen --version | grep '^1\.9\.8$'
           dot -V
+      - name: Build independent strict documentation evidence
+        shell: bash
+        run: |
+          build="$RUNNER_TEMP/package-docs"
+          cmake \
+            -DASC_CPP_DOCUMENTATION_SOURCE_DIR="$GITHUB_WORKSPACE/asc-cpp" \
+            -DASC_CPP_DOCUMENTATION_BUILD_DIR="$build" \
+            -DASC_CPP_DOCUMENTATION_VERSION=0.9.0 \
+            -DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE="$(command -v doxygen)" \
+            -P asc-cpp/tools/documentation/BuildDoxygen.cmake
+          python3 asc-cpp/tools/documentation/check_doxygen.py \
+            --source asc-cpp \
+            --build "$build" \
+            --xml "$build/docs/doxygen/xml" \
+            --html "$build/docs/doxygen/html" \
+            --tagfile "$build/docs/doxygen/ASCCpp.tag" \
+            --warnings "$build/docs/doxygen/doxygen-warnings.log"
+          python3 asc-cpp/tools/documentation/check_links.py --root asc-cpp
       - name: Build and verify package evidence
         shell: bash
         run: |
@@ -429,6 +447,7 @@ jobs:
           cmake --build "$build" --target asc_cpp_docs_check --parallel 2
           cmake --install "$build"
       - name: Upload documentation evidence
+        if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: ASCCpp-0.9.0-documentation

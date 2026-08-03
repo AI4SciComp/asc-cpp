@@ -5,16 +5,17 @@ set(_asc_cpp_doxygen_output "${PROJECT_BINARY_DIR}/docs/doxygen")
 set(_asc_cpp_doxygen_warning_log
   "${_asc_cpp_doxygen_output}/doxygen-warnings.log"
 )
-set(_asc_cpp_doxyfile "${PROJECT_BINARY_DIR}/docs/Doxyfile")
-configure_file(Doxyfile.in "${_asc_cpp_doxyfile}" @ONLY)
 
 add_custom_target(
   asc_cpp_docs
-  COMMAND "${CMAKE_COMMAND}" -E rm -rf "${_asc_cpp_doxygen_output}"
-  COMMAND "${CMAKE_COMMAND}" -E make_directory "${_asc_cpp_doxygen_output}"
-  COMMAND Doxygen::doxygen "${_asc_cpp_doxyfile}"
-  COMMAND "${CMAKE_COMMAND}" -E rm -f
-          "${_asc_cpp_doxygen_output}/xml/Doxyfile.xml"
+  COMMAND
+    "${CMAKE_COMMAND}"
+    "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=${PROJECT_SOURCE_DIR}"
+    "-DASC_CPP_DOCUMENTATION_BUILD_DIR=${PROJECT_BINARY_DIR}"
+    "-DASC_CPP_DOCUMENTATION_VERSION=${PROJECT_VERSION}"
+    "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=$<TARGET_FILE:Doxygen::doxygen>"
+    -P
+    "${PROJECT_SOURCE_DIR}/tools/documentation/BuildDoxygen.cmake"
   WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
   BYPRODUCTS
     "${_asc_cpp_doxygen_output}/html/index.html"
@@ -46,6 +47,5 @@ add_custom_target(
   VERBATIM
 )
 
-unset(_asc_cpp_doxyfile)
 unset(_asc_cpp_doxygen_output)
 unset(_asc_cpp_doxygen_warning_log)
