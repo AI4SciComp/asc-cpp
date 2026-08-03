@@ -1,6 +1,17 @@
 #ifndef ASC_RANDOM_PROVIDERS_DENSE_CUDA_H_
 #define ASC_RANDOM_PROVIDERS_DENSE_CUDA_H_
 
+/**
+ * @file
+ * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_cuda
+ */
+
 #include <array>
 #include <concepts>
 #include <cstddef>
@@ -21,8 +32,8 @@ namespace asc {
 namespace internal_random_dense_cuda {
 
 enum class ElementKind {
-  kFloat,
-  kDouble,
+  kFloat,   ///< Selects float behavior.
+  kDouble,  ///< Selects double behavior.
 };
 
 struct ViewDescriptor {
@@ -47,13 +58,60 @@ ASC_RANDOM_DENSE_CUDA_EXPORT Result<Generation> FillDenseUniform01Erased(
 
 }  // namespace internal_random_dense_cuda
 
+/**
+ * @brief Owns an experimental CUDA dense random generation result.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element, std::size_t Rank>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 struct CudaDenseUniform01Generation {
+  /**
+   * @brief Stores the completion value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CompletionEvent completion;
+  /**
+   * @brief Stores the next offset value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   RandomOffset next_offset;
 };
 
+/**
+ * @brief Enqueues the experimental CUDA FillDenseUniform01 operation and
+ * returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] stream CUDA stream whose ordering and lifetime are caller
+ * controlled.
+ * @param[in] subsequence Deterministic independent subsequence identifier.
+ * @param[in] offset Deterministic address offset within the selected sequence.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <typename Element, std::size_t Rank>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 [[nodiscard]] Result<CudaDenseUniform01Generation<Element, Rank>>

@@ -1,6 +1,17 @@
 #ifndef ASC_SPARSE_EVALUATE_H_
 #define ASC_SPARSE_EVALUATE_H_
 
+/**
+ * @file
+ * @brief Public Sparse declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_sparse
+ */
+
 #include <array>
 #include <concepts>
 #include <cstddef>
@@ -162,6 +173,24 @@ Status EvaluateStored(const ExecutionContext& context,
 
 }  // namespace internal_sparse_evaluate
 
+/**
+ * @brief Performs the public Evaluate operation defined by the Sparse contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Expression Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] expression The expression value required by this contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse
+ */
 template <ReadableExpression Expression, typename Element, std::size_t Rank>
   requires(!std::is_const_v<Element> &&
            std::same_as<ExpressionValue<Expression>, Element>)
@@ -177,6 +206,24 @@ Status Evaluate(const ExecutionContext& context, const Expression& expression,
       });
 }
 
+/**
+ * @brief Performs the public Evaluate operation defined by the Sparse contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Expression Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] expression The expression value required by this contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse
+ */
 template <ReadableExpression Expression, typename Element,
           SparseCompressedFormat Format>
   requires(!std::is_const_v<Element> &&

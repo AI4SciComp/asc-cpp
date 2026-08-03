@@ -1,0 +1,10 @@
+* @escapetiger
+
+/include/ @escapetiger
+/src/ @escapetiger
+/cmake/ @escapetiger
+/.github/workflows/ @escapetiger
+/docs/contracts/ @escapetiger
+/docs/architecture/decisions/ @escapetiger
+/abi/ @escapetiger
+/release/ @escapetiger

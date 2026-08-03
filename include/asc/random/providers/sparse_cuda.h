@@ -1,6 +1,17 @@
 #ifndef ASC_RANDOM_PROVIDERS_SPARSE_CUDA_H_
 #define ASC_RANDOM_PROVIDERS_SPARSE_CUDA_H_
 
+/**
+ * @file
+ * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_cuda
+ */
+
 #include <array>
 #include <concepts>
 #include <cstddef>
@@ -24,8 +35,8 @@ namespace internal_random_sparse_cuda {
 class Access;
 
 enum class ElementKind {
-  kFloat,
-  kDouble,
+  kFloat,   ///< Selects float behavior.
+  kDouble,  ///< Selects double behavior.
 };
 
 struct GenerationBuffers {
@@ -47,23 +58,125 @@ GenerateSparseUniform01Erased(
 
 }  // namespace internal_random_sparse_cuda
 
+/**
+ * @brief Owns an experimental CUDA coordinate-array generation result.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element, SparseExtents ExtentsType>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 class CudaCoordinateArray {
  public:
+  /**
+   * @brief Constructs a CudaCoordinateArray with the documented ownership and
+   * validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   CudaCoordinateArray(const CudaCoordinateArray&) = delete;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   CudaCoordinateArray& operator=(const CudaCoordinateArray&) = delete;
+  /**
+   * @brief Constructs a CudaCoordinateArray with the documented ownership and
+   * validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   CudaCoordinateArray(CudaCoordinateArray&&) noexcept = default;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   CudaCoordinateArray& operator=(CudaCoordinateArray&&) noexcept = default;
+  /**
+   * @brief Releases owned resources after required completion/lifetime
+   * conditions.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   ~CudaCoordinateArray() = default;
 
+  /**
+   * @brief Reports whether the documented valid condition holds.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] bool valid() const noexcept {
     return coordinates_.valid() && values_.valid();
   }
 
+  /**
+   * @brief Returns the object's extents contract value.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] const ExtentsType& extents() const noexcept { return extents_; }
+  /**
+   * @brief Returns the object's nnz contract value.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] nnz_t nnz() const noexcept { return nonzeros_; }
 
+  /**
+   * @brief Performs the public view operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] Result<CoordinateView<Element, ExtentsType::kRank>> view() {
     if (!valid()) {
       return Status(ErrorCode::kInvalidState,
@@ -75,6 +188,18 @@ class CudaCoordinateArray {
         MemorySpace::kDevice);
   }
 
+  /**
+   * @brief Performs the public view operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] Result<CoordinateView<const Element, ExtentsType::kRank>> view()
       const {
     if (!valid()) {
@@ -88,6 +213,16 @@ class CudaCoordinateArray {
   }
 
  private:
+  /**
+   * @brief Performs the public Access operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   friend class internal_random_sparse_cuda::Access;
 
   CudaCoordinateArray(ExtentsType extents, nnz_t nonzeros, Buffer coordinates,
@@ -129,15 +264,88 @@ class Access {
 
 }  // namespace internal_random_sparse_cuda
 
+/**
+ * @brief Owns an experimental CUDA sparse random generation result.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element, SparseExtents ExtentsType>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 struct CudaSparseUniform01Generation {
+  /**
+   * @brief Stores the array value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CudaCoordinateArray<Element, ExtentsType> array;
+  /**
+   * @brief Stores the completion value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CompletionEvent completion;
+  /**
+   * @brief Stores the next structure offset value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   RandomOffset next_structure_offset;
+  /**
+   * @brief Stores the next value offset value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   RandomOffset next_value_offset;
 };
 
+/**
+ * @brief Enqueues the experimental CUDA GenerateSparseUniform01 operation and
+ * returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam ExtentsType Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] extents Logical extents; every extent must satisfy the documented
+ * bounds.
+ * @param[in] exact_count The exact count value required by this contract.
+ * @param[in] resource Allocator that must outlive storage allocated from it.
+ * @param[in] structure_stream The structure stream value required by this
+ * contract.
+ * @param[in] structure_subsequence The structure subsequence value required by
+ * this contract.
+ * @param[in] structure_offset The structure offset value required by this
+ * contract.
+ * @param[in] value_stream The value stream value required by this contract.
+ * @param[in] value_subsequence The value subsequence value required by this
+ * contract.
+ * @param[in] value_offset The value offset value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <typename Element, SparseExtents ExtentsType>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 [[nodiscard]] Result<CudaSparseUniform01Generation<Element, ExtentsType>>

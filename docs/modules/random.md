@@ -36,7 +36,7 @@ does not include either facet header. `ASC::cpp` is the convenience aggregate
 of all six provider-free modules and both facets; narrower targets never
 depend on it.
 
-Issue 16 independently audits this completed surface. The
+Random release contract independently audits this completed surface. The
 [completion report][random-completion] binds every accepted and rejected row
 to provenance, semantics, implementation, registered tests, documentation,
 package consumers, and benchmark evidence without changing product behavior.
@@ -45,11 +45,11 @@ package consumers, and benchmark evidence without changing product behavior.
 
 The raw engine is a clean-room implementation independently derived from the
 paper and exact project mapping frozen in the
-[Milestone 2 provenance record][provenance]. No MdeCpp, deleted asc-cpp,
+[foundational modules provenance record][provenance]. No MdeCpp, deleted asc-cpp,
 Random123 implementation, or upstream test-vector corpus is an implementation
 input.
 
-Issue 13 implements rows `RND-001` and `RND-003` through `RND-010` from the
+Random engines and distributions implements rows `RND-001` and `RND-003` through `RND-010` from the
 generated [33-row architecture and provenance crosswalk][random-crosswalk].
 SplitMix64 and both xoroshiro engines are original asc-cpp expressions derived
 from the exact pinned public-domain Blackman/Vigna artifacts. PCG32 is an
@@ -59,7 +59,7 @@ API, and Box-Muller implementation are independently authored from the
 accepted [Random contract][random-contract]. No MdeCpp source, test, vector,
 benchmark, data, or prose was copied or mechanically translated.
 
-Issue 14 implements the storage-neutral portions of `RND-011` through
+Quasi-random sequences implements the storage-neutral portions of `RND-011` through
 `RND-014` and `RND-018` through `RND-022`. Prime, radical-inverse,
 permutation, Latin, Halton, Hammersley, Sobol recurrence, tests, and benchmark
 expressions are original work from the frozen mathematical contract. The only
@@ -70,7 +70,7 @@ installed artifacts, and `THIRD_PARTY_NOTICES` are checked independently. No
 Joe--Kuo program is copied, and no MdeCpp/Burkardt source, test, converter, or
 data is copied.
 
-Issue 15 completes `RND-017` through `RND-021` and `RND-026` through
+Random storage adapters completes `RND-017` through `RND-021` and `RND-026` through
 `RND-028`. Generic and QMC Dense fills and all Sparse adapter code are
 original asc-cpp compositions over the approved engine, view, and priority
 contracts. Multivariate normal uses an independently written Cholesky and
@@ -79,8 +79,8 @@ normalized-Gaussian method. The GPL-covered MdeCpp implementations, tests,
 fixtures, literal vectors, benchmarks, data, and prose remain prohibited and
 were not used.
 
-The Issue 13 and 14 base additions are portable serial CPU operations that
-accept no execution context or storage. Issue 15 storage adapters accept an
+The Random engines and distributions and 14 base additions are portable serial CPU operations that
+accept no execution context or storage. Random storage adapters storage adapters accept an
 explicit context and reject every non-serial backend. No new CUDA
 implementation or CPU/GPU bit-parity claim is declared. Existing Philox and
 `Uniform01` CPU/CUDA behavior is unchanged. No added operation hides an
@@ -88,7 +88,7 @@ allocation, transfer, synchronization, provider selection, or fallback.
 
 Philox4x32-10 identity, lane mapping, stream/subsequence/offset mapping, and
 the scalar transform rules are exact pre-1.0 sequence API first published for
-ASCCpp 0.2.x. Milestone 5 extends that sequence contract with exact dense
+ASCCpp 0.2.x. Random storage extends that sequence contract with exact dense
 logical-coordinate mapping and deterministic sparse structure/value mapping.
 These guarantees are narrower than statistical suitability for a particular
 scientific application and do not imply provider parity.
@@ -156,9 +156,9 @@ The raw Joe--Kuo input and license install below
 `share/doc/ASCCpp`. Builds and consumers need neither those runtime files nor
 Python. See the [storage-neutral QMC example][qmc-example].
 
-## Issue 15 advanced adapter contract
+## Random storage adapters advanced adapter contract
 
-Issue 15 adds only free functions to `ASC::random_dense` and
+Random storage adapters adds only free functions to `ASC::random_dense` and
 `ASC::random_sparse`; base `ASC::random` remains storage-neutral. There is no
 sampler hierarchy, virtual dispatch, raw generator owner, new target edge,
 factorization dependency, or storage customization protocol. All destinations
@@ -201,7 +201,7 @@ published as one unit; on failure, earlier samples and engine consumption are
 observable, the failing sample is untouched, and later samples are untouched.
 Each attempt is `O(d)` with only caller workspace.
 
-Every Issue 15 Dense operation is synchronous, serial CPU, and host-only. It
+Every Random storage adapters Dense operation is synchronous, serial CPU, and host-only. It
 does not allocate, pack, transfer, synchronize, or fall back. Context,
 placement, shape, parameter, index/offset, workspace, and alias validation
 precedes random consumption and destination mutation. Stateful engines and
@@ -242,7 +242,7 @@ result domains and no default constructor or hidden state.
 | Engine | Result and state | Explicit construction | Partition support |
 | --- | --- | --- | --- |
 | `SplitMix64` | `uint64_t`; one `uint64_t` state | one `uint64_t` seed | no skip/jump API |
-| `Pcg32` | `uint32_t`; `uint64_t` state plus odd encoded increment | seed with stream zero, or initial state plus stream; only the low 63 stream bits select a sequence | no Issue 13 advance API |
+| `Pcg32` | `uint32_t`; `uint64_t` state plus odd encoded increment | seed with stream zero, or initial state plus stream; only the low 63 stream bits select a sequence | no Random engines and distributions advance API |
 | `Xoroshiro64Star` | `uint32_t`; two nonzero-together `uint32_t` words | one `uint64_t` seed expanded by two SplitMix64 outputs, narrowed to their low words | fixed version-1 `Jump` and `LongJump` |
 | `Xoroshiro128Plus` | `uint64_t`; two nonzero-together `uint64_t` words | one `uint64_t` seed expanded by two complete SplitMix64 outputs | fixed version-1 `Jump` and `LongJump` |
 
@@ -506,7 +506,7 @@ and performs no packing, materialization, transfer, synchronization, provider
 selection, or fallback.
 
 The same facet owns `FillDensePseudo`, prepared multivariate-normal and
-unit-sphere sampling, and all Dense QMC fills described in the Issue 15
+unit-sphere sampling, and all Dense QMC fills described in the Random storage adapters
 contract above. Those APIs preserve the same host-only placement, logical
 layout invariance, explicit-workspace, and no-hidden-allocation boundary.
 
@@ -850,7 +850,7 @@ rather than a compatibility guarantee.
 
 ## Deliberately absent from the current product
 
-Issues 13 through 15 deliberately provide no:
+The Random engines, quasi-random sequences, and storage adapters deliberately provide no:
 
 - time-based or implicit seed acquisition, default engine, global or
   thread-local engine, or mutable pool;
@@ -869,22 +869,24 @@ Issues 13 through 15 deliberately provide no:
   GPU distribution; or
 - HIP, SYCL, or another GPU provider.
 
-Final local Milestone 7 evidence classifies each of `random_cuda`,
+Final local CUDA Sparse and Random evidence classifies each of `random_cuda`,
 `random_dense_cuda`, and `random_sparse_cuda` as **configure-tested**,
 **compile-tested**, **runtime-tested**, and **parity-tested** on the recorded
 RTX 3060 environment. Exact commands, versions, counts, sanitizer/package
-status, and hardware details belong to Publication Checkpoint B. Documentation
-and compilation alone do not establish runtime or parity evidence.
+status, and hardware details are recorded in the
+[release validation report](../../release/release-validation.md).
+Documentation and compilation alone do not establish runtime or parity
+evidence.
 
-The [frozen Milestone 7 contract][m7-contract] is authoritative for the CUDA
-provider surface and deferred work. The [Milestone 5 contract][m5-contract]
+The [frozen CUDA Sparse and Random contract][m7-contract] is authoritative for the CUDA
+provider surface and deferred work. The [Random storage contract][m5-contract]
 remains authoritative for provider-free storage generation.
 
-[provenance]: ../development/asc-cpp-m2-independent-foundations/provenance-record.md
-[m5-contract]: ../development/asc-cpp-m5-random-storage-generation/milestone-contract.md
-[m7-contract]: ../development/asc-cpp-m7-gpu-sparse-random/milestone-contract.md
-[random-completion]: ../random-completion-audit.md
-[random-contract]: ../development/asc-cpp-architecture/decisions/0020-random-contract.md
+[provenance]: ../provenance/mdecpp-review.md
+[m5-contract]: ../architecture/decisions/0020-random-contract.md
+[m7-contract]: ../architecture/decisions/0015-random-reproducibility.md
+[random-completion]: ../../release/release-notes-v0.9.0.md
+[random-contract]: ../architecture/decisions/0020-random-contract.md
 [random-crosswalk]: ../random-crosswalk.md
 [qmc-example]: ../examples/random-qmc.md
 [advanced-example]: ../examples/random-advanced.md

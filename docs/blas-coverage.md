@@ -4,7 +4,7 @@
 
 # BLAS coverage
 
-Contract status: `issue-11-blas-completion-audit-verified-candidate`
+Contract status: `v0.9.0-release-contract`
 
 Evidence date: `2026-08-01`
 

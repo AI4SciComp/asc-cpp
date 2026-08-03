@@ -10,7 +10,7 @@ set(_common
   STANDARD_LIBRARY libstdc++
   STANDARD_LIBRARY_IDENTITY
     "libstdc++:libstdc++.so.6.0.30:sha256=ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128"
-  C_LIBRARY_IDENTITY "ldd (Ubuntu GLIBC 2.35-0ubuntu3.13) 2.35"
+  C_LIBRARY_IDENTITY "ldd (Ubuntu GLIBC 2.35-0ubuntu3.14) 2.35"
   BUILD_TYPE Debug
   SHARED TRUE
   CUDA_ENABLED FALSE

@@ -60,7 +60,7 @@ class TestContext {
   [[nodiscard]] int Finish() const {
     if (failures_ != 0) {
       std::cerr << failures_
-                << " Milestone 7 CUDA verification check(s) "
+                << " CUDA Sparse and Random CUDA verification check(s) "
                    "failed\n";
       return 1;
     }

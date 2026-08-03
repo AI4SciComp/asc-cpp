@@ -18,7 +18,7 @@ if(_m8_binary_inside_source)
   endif()
   if(NOT _m8_temporary_root)
     message(FATAL_ERROR
-      "An out-of-source temporary directory is required for M8 reports."
+      "An out-of-source temporary directory is required for hardening reports."
     )
   endif()
   string(SHA256 _m8_build_hash "${PROJECT_BINARY_DIR}")
@@ -79,17 +79,17 @@ set(_m8_relocated_include
 set(
   ASC_CPP_M8_COPIED_BUILD_PACKAGE
   "${_m8_copied_build_package}"
-  CACHE INTERNAL "M8 copied build-tree package used by downstream tests"
+  CACHE INTERNAL "Copied build-tree package used by downstream tests"
 )
 set(
   ASC_CPP_M8_INSTALL_PACKAGE
   "${_m8_install_package}"
-  CACHE INTERNAL "M8 installed package used by downstream tests"
+  CACHE INTERNAL "Installed package used by downstream tests"
 )
 set(
   ASC_CPP_M8_RELOCATED_PACKAGE
   "${_m8_relocated_package}"
-  CACHE INTERNAL "M8 relocated package used by downstream tests"
+  CACHE INTERNAL "Relocated package used by downstream tests"
 )
 
 add_test(
@@ -112,7 +112,7 @@ set_tests_properties(
   asc_cpp.hardening.clean_copied_build_package
   PROPERTIES
     FIXTURES_SETUP M8CopiedBuildPackageClean
-    LABELS "hardening;package;milestone-8"
+    LABELS "hardening;package"
     RUN_SERIAL TRUE
 )
 set_tests_properties(
@@ -120,7 +120,7 @@ set_tests_properties(
   PROPERTIES
     FIXTURES_REQUIRED M8CopiedBuildPackageClean
     FIXTURES_SETUP M8CopiedBuildPackage
-    LABELS "hardening;package;milestone-8"
+    LABELS "hardening;package"
     RUN_SERIAL TRUE
 )
 
@@ -148,7 +148,7 @@ set_tests_properties(
   asc_cpp.hardening.clean_install_prefix
   PROPERTIES
     FIXTURES_SETUP M8InstallPrefixClean
-    LABELS "hardening;package;milestone-8"
+    LABELS "hardening;package"
     RUN_SERIAL TRUE
 )
 set_tests_properties(
@@ -156,7 +156,7 @@ set_tests_properties(
   PROPERTIES
     FIXTURES_REQUIRED M8InstallPrefixClean
     FIXTURES_SETUP M8InstalledPackage
-    LABELS "hardening;package;milestone-8"
+    LABELS "hardening;package"
     RUN_SERIAL TRUE
     TIMEOUT 180
 )
@@ -182,7 +182,7 @@ set_tests_properties(
   PROPERTIES
     FIXTURES_REQUIRED M8InstalledPackage
     FIXTURES_SETUP M8RelocatedPrefixClean
-    LABELS "hardening;package;relocation;milestone-8"
+    LABELS "hardening;package;relocation"
     RUN_SERIAL TRUE
 )
 set_tests_properties(
@@ -190,7 +190,7 @@ set_tests_properties(
   PROPERTIES
     FIXTURES_REQUIRED "M8InstalledPackage;M8RelocatedPrefixClean"
     FIXTURES_SETUP M8RelocatedPackage
-    LABELS "hardening;package;relocation;milestone-8"
+    LABELS "hardening;package;relocation"
     RUN_SERIAL TRUE
 )
 
@@ -204,7 +204,7 @@ add_test(
 )
 set_tests_properties(
   asc_cpp.hardening.public_surface.source
-  PROPERTIES LABELS "hardening;api;package;milestone-8"
+  PROPERTIES LABELS "hardening;api;package"
 )
 
 function(_asc_cpp_add_m8_package_metadata_test
@@ -227,7 +227,7 @@ function(_asc_cpp_add_m8_package_metadata_test
   set_tests_properties(
     "asc_cpp.hardening.package_metadata.${name}"
     PROPERTIES
-      LABELS "hardening;package;api;consumer;milestone-8"
+      LABELS "hardening;package;api;consumer"
       RUN_SERIAL TRUE
       TIMEOUT 300
   )
@@ -279,7 +279,7 @@ function(_asc_cpp_add_m8_header_manifest_test
   set_tests_properties(
     "asc_cpp.hardening.header_manifest.${name}"
     PROPERTIES
-      LABELS "hardening;package;api;milestone-8"
+      LABELS "hardening;package;api"
       RUN_SERIAL TRUE
       TIMEOUT 180
   )
@@ -326,7 +326,7 @@ set_tests_properties(
   asc_cpp.hardening.public_surface.installed
   PROPERTIES
     FIXTURES_REQUIRED M8RelocatedPackage
-    LABELS "hardening;api;package;relocation;milestone-8"
+    LABELS "hardening;api;package;relocation"
     RUN_SERIAL TRUE
 )
 
@@ -363,7 +363,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.hardening.public_api_surface
   TARGET asc_m8_public_api_surface_test
-  LABELS "hardening;api;runtime;milestone-8"
+  LABELS "hardening;api;runtime"
 )
 
 add_test(
@@ -375,7 +375,7 @@ add_test(
 )
 set_tests_properties(
   asc_cpp.hardening.documentation_consistency
-  PROPERTIES LABELS "hardening;documentation;security;milestone-8"
+  PROPERTIES LABELS "hardening;documentation;security"
 )
 
 add_test(
@@ -414,7 +414,7 @@ if(ASC_CPP_ENABLE_CUDA)
     set_tests_properties(
       asc_cpp.hardening.cuda_host_elf_selector_integration
       PROPERTIES
-        LABELS "hardening;api;abi;cuda;portability;milestone-8"
+        LABELS "hardening;api;abi;cuda;portability"
         RUN_SERIAL TRUE
         TIMEOUT 180
     )
@@ -422,7 +422,7 @@ if(ASC_CPP_ENABLE_CUDA)
 endif()
 set_tests_properties(
   asc_cpp.hardening.elf_baseline_selection
-  PROPERTIES LABELS "hardening;api;abi;portability;milestone-8"
+  PROPERTIES LABELS "hardening;api;abi;portability"
 )
 
 if(BUILD_SHARED_LIBS)
@@ -461,7 +461,7 @@ if(BUILD_SHARED_LIBS)
     set_tests_properties(
       asc_cpp.hardening.representative_shared_symbols
       PROPERTIES
-        LABELS "hardening;api;abi;milestone-8"
+        LABELS "hardening;api;abi"
         RUN_SERIAL TRUE
         TIMEOUT 120
     )
@@ -608,7 +608,7 @@ if(BUILD_SHARED_LIBS)
     set_tests_properties(
       asc_cpp.hardening.cuda_host_elf_selector_unavailable
       PROPERTIES
-        LABELS "hardening;api;abi;cuda;portability;milestone-8"
+        LABELS "hardening;api;abi;cuda;portability"
     )
     add_test(
       NAME asc_cpp.hardening.cuda_host_elf_selector_untrusted_cache_integration
@@ -630,29 +630,31 @@ if(BUILD_SHARED_LIBS)
     set_tests_properties(
       asc_cpp.hardening.cuda_host_elf_selector_untrusted_cache_integration
       PROPERTIES
-        LABELS "hardening;api;abi;cuda;portability;milestone-8"
+        LABELS "hardening;api;abi;cuda;portability"
         RUN_SERIAL TRUE
         TIMEOUT 180
     )
   endif()
-  add_test(
-    NAME asc_cpp.hardening.elf_abi
-    COMMAND
-      "${CMAKE_COMMAND}"
-      "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
-      "-DASC_CPP_HARDENING_LIBRARIES:STRING=${_m8_shared_libraries}"
-      "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=${_m8_hardening_report_dir}/elf-abi-$<CONFIG>.txt"
-      "-DASC_CPP_HARDENING_BASELINE:FILEPATH=${_m8_elf_baseline}"
-      -P "${PROJECT_SOURCE_DIR}/tools/hardening/InspectElfAbi.cmake"
-  )
-  set_tests_properties(
-    asc_cpp.hardening.elf_abi
-    PROPERTIES
-      LABELS "hardening;api;abi;milestone-8"
-      RUN_SERIAL TRUE
-      SKIP_REGULAR_EXPRESSION "ASCCpp ELF ABI inspection skipped"
-      TIMEOUT 120
-  )
+  if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    add_test(
+      NAME asc_cpp.hardening.elf_abi
+      COMMAND
+        "${CMAKE_COMMAND}"
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
+        "-DASC_CPP_HARDENING_LIBRARIES:STRING=${_m8_shared_libraries}"
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=${_m8_hardening_report_dir}/elf-abi-$<CONFIG>.txt"
+        "-DASC_CPP_HARDENING_BASELINE:FILEPATH=${_m8_elf_baseline}"
+        -P "${PROJECT_SOURCE_DIR}/tools/hardening/InspectElfAbi.cmake"
+    )
+    set_tests_properties(
+      asc_cpp.hardening.elf_abi
+      PROPERTIES
+        LABELS "hardening;api;abi"
+        RUN_SERIAL TRUE
+        SKIP_REGULAR_EXPRESSION "ASCCpp ELF ABI inspection skipped"
+        TIMEOUT 120
+    )
+  endif()
 endif()
 
 function(_asc_cpp_add_m8_compile_observation name compiler style flags)
@@ -673,7 +675,7 @@ function(_asc_cpp_add_m8_compile_observation name compiler style flags)
   set_tests_properties(
     "asc_cpp.hardening.compile_object.${name}"
     PROPERTIES
-      LABELS "hardening;performance;compile;milestone-8"
+      LABELS "hardening;performance;compile"
       FIXTURES_REQUIRED M8RelocatedPackage
       RUN_SERIAL TRUE
       TIMEOUT 120
@@ -735,6 +737,32 @@ unset(_m8_gnu_compiler)
 unset(_m8_install_command)
 unset(_m8_install_include)
 unset(_m8_install_includedir)
+
+add_test(
+  NAME asc_cpp.examples.installed_relocated
+  COMMAND
+    "${CMAKE_COMMAND}"
+    "-DASCCPP_PACKAGE_DIR:PATH=${ASC_CPP_M8_RELOCATED_PACKAGE}"
+    "-DEXAMPLES_SOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}/examples"
+    "-DGENERATOR:STRING=${CMAKE_GENERATOR}"
+    "-DGENERATOR_PLATFORM:STRING=${CMAKE_GENERATOR_PLATFORM}"
+    "-DGENERATOR_TOOLSET:STRING=${CMAKE_GENERATOR_TOOLSET}"
+    "-DMAKE_PROGRAM:FILEPATH=${CMAKE_MAKE_PROGRAM}"
+    "-DCXX_COMPILER:FILEPATH=${CMAKE_CXX_COMPILER}"
+    "-DCONFIG:STRING=$<CONFIG>"
+    "-DWORK_DIR:PATH=${ASC_CPP_TEST_WORKSPACE_ROOT}/installed examples"
+    "-DASC_CPP_TEST_WORKSPACE_ROOT:PATH=${ASC_CPP_TEST_WORKSPACE_ROOT}"
+    "-DASC_CPP_TEST_WORKSPACE_GUARD:FILEPATH=${ASC_CPP_TEST_WORKSPACE_GUARD}"
+    -P "${PROJECT_SOURCE_DIR}/tests/package/run_installed_examples.cmake"
+)
+set_tests_properties(
+  asc_cpp.examples.installed_relocated
+  PROPERTIES
+    FIXTURES_REQUIRED M8RelocatedPackage
+    LABELS "documentation;examples;package;relocation"
+    RUN_SERIAL TRUE
+    TIMEOUT 600
+)
 unset(_m8_install_libdir)
 unset(_m8_install_package)
 unset(_m8_install_prefix)

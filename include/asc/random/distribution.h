@@ -1,6 +1,17 @@
 #ifndef ASC_RANDOM_DISTRIBUTION_H_
 #define ASC_RANDOM_DISTRIBUTION_H_
 
+/**
+ * @file
+ * @brief Public Random distribution declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_random_distributions
+ */
+
 #include <cmath>
 #include <concepts>
 #include <cstdint>
@@ -14,21 +25,78 @@
 
 namespace asc {
 
+/**
+ * @brief Performs the public Uniform01 operation defined by the Random
+ * distribution contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @param[in] word The word value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_random_distributions
+ */
 template <typename Real>
 Real Uniform01(std::uint32_t word) noexcept = delete;
 
+/**
+ * @brief Performs the public Uniform01 operation defined by the Random
+ * distribution contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @param[in] word The word value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_random_distributions
+ */
 template <>
 [[nodiscard]] ASC_RANDOM_EXPORT float Uniform01<float>(
     std::uint32_t word) noexcept;
 
+/**
+ * @brief Performs the public Uniform01 operation defined by the Random
+ * distribution contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @param[in] high_word The high word value required by this contract.
+ * @param[in] low_word The low word value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_random_distributions
+ */
 template <typename Real>
 Real Uniform01(std::uint32_t high_word,
                std::uint32_t low_word) noexcept = delete;
 
+/**
+ * @brief Performs the public Uniform01 operation defined by the Random
+ * distribution contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @param[in] high_word The high word value required by this contract.
+ * @param[in] low_word The low word value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_random_distributions
+ */
 template <>
 [[nodiscard]] ASC_RANDOM_EXPORT double Uniform01<double>(
     std::uint32_t high_word, std::uint32_t low_word) noexcept;
 
+/**
+ * @brief Defines the public SupportedRandomInteger concept contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ * @ingroup asc_random_distributions
+ */
 template <typename Integer>
 concept SupportedRandomInteger =
     std::integral<Integer> && !std::same_as<std::remove_cv_t<Integer>, bool> &&
@@ -37,10 +105,24 @@ concept SupportedRandomInteger =
     (std::numeric_limits<std::make_unsigned_t<Integer>>::digits ==
      sizeof(Integer) * 8);
 
+/**
+ * @brief Defines the public SupportedRandomReal concept contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ * @ingroup asc_random_distributions
+ */
 template <typename Real>
 concept SupportedRandomReal =
     std::same_as<Real, float> || std::same_as<Real, double>;
 
+/**
+ * @brief Defines the public CanonicalRandomEngine concept contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ * @ingroup asc_random_distributions
+ */
 template <typename Engine>
 concept CanonicalRandomEngine =
     requires(Engine& engine) {
@@ -109,11 +191,41 @@ template <SupportedRandomInteger Integer>
 
 }  // namespace internal_random_distribution
 
+/**
+ * @brief Maps engine output uniformly to a validated integer interval.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ * @ingroup asc_random_distributions
+ */
 template <SupportedRandomInteger Integer>
 class UniformIntegerDistribution final {
  public:
+  /**
+   * @brief Defines the public result_type type used by this Random distribution
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @ingroup asc_random_distributions
+   */
   using result_type = Integer;
 
+  /**
+   * @brief Validates inputs and creates the requested Random distribution
+   * object.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @param[in] lower Inclusive lower distribution bound.
+   * @param[in] upper Exclusive upper distribution bound unless documented
+   * otherwise.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] static Result<UniformIntegerDistribution> Create(
       Integer lower, Integer upper) {
     if (lower > upper) {
@@ -123,6 +235,20 @@ class UniformIntegerDistribution final {
     return UniformIntegerDistribution(lower, upper);
   }
 
+  /**
+   * @brief Produces the next deterministic value according to the object's
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @tparam Engine Type or non-type argument satisfying the declaration's
+   * constraints.
+   * @param[in] engine The engine value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_random_distributions
+   */
   template <CanonicalRandomEngine Engine>
   [[nodiscard]] Result<Integer> operator()(Engine& engine) const {
     using Unsigned = std::make_unsigned_t<Integer>;
@@ -149,7 +275,29 @@ class UniformIntegerDistribution final {
     }
   }
 
+  /**
+   * @brief Performs the public lower operation defined by the Random
+   * distribution contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] Integer lower() const noexcept { return lower_; }
+  /**
+   * @brief Performs the public upper operation defined by the Random
+   * distribution contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] Integer upper() const noexcept { return upper_; }
 
  private:
@@ -160,11 +308,41 @@ class UniformIntegerDistribution final {
   Integer upper_;
 };
 
+/**
+ * @brief Maps engine output uniformly to a validated half-open real interval.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ * @ingroup asc_random_distributions
+ */
 template <SupportedRandomReal Real>
 class UniformRealDistribution final {
  public:
+  /**
+   * @brief Defines the public result_type type used by this Random distribution
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @ingroup asc_random_distributions
+   */
   using result_type = Real;
 
+  /**
+   * @brief Validates inputs and creates the requested Random distribution
+   * object.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @param[in] lower Inclusive lower distribution bound.
+   * @param[in] upper Exclusive upper distribution bound unless documented
+   * otherwise.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] static Result<UniformRealDistribution> Create(Real lower,
                                                               Real upper) {
     if (!std::isfinite(lower) || !std::isfinite(upper) || !(lower < upper)) {
@@ -179,6 +357,20 @@ class UniformRealDistribution final {
     return UniformRealDistribution(lower, upper, span);
   }
 
+  /**
+   * @brief Produces the next deterministic value according to the object's
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @tparam Engine Type or non-type argument satisfying the declaration's
+   * constraints.
+   * @param[in] engine The engine value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_random_distributions
+   */
   template <CanonicalRandomEngine Engine>
   [[nodiscard]] Result<Real> operator()(Engine& engine) const {
     const Real unit = internal_random_distribution::UnitReal<Real>(engine);
@@ -194,7 +386,29 @@ class UniformRealDistribution final {
     return candidate;
   }
 
+  /**
+   * @brief Performs the public lower operation defined by the Random
+   * distribution contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] Real lower() const noexcept { return lower_; }
+  /**
+   * @brief Performs the public upper operation defined by the Random
+   * distribution contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] Real upper() const noexcept { return upper_; }
 
  private:
@@ -206,11 +420,41 @@ class UniformRealDistribution final {
   Real span_;
 };
 
+/**
+ * @brief Transforms engine words into normal real samples.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ * @ingroup asc_random_distributions
+ */
 template <SupportedRandomReal Real>
 class NormalDistribution final {
  public:
+  /**
+   * @brief Defines the public result_type type used by this Random distribution
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @ingroup asc_random_distributions
+   */
   using result_type = Real;
 
+  /**
+   * @brief Validates inputs and creates the requested Random distribution
+   * object.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @param[in] mean The mean value required by this contract.
+   * @param[in] standard_deviation The standard deviation value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] static Result<NormalDistribution> Create(
       Real mean, Real standard_deviation) {
     if (!std::isfinite(mean) || !std::isfinite(standard_deviation) ||
@@ -222,6 +466,20 @@ class NormalDistribution final {
     return NormalDistribution(mean, standard_deviation);
   }
 
+  /**
+   * @brief Produces the next deterministic value according to the object's
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @tparam Engine Type or non-type argument satisfying the declaration's
+   * constraints.
+   * @param[in] engine The engine value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_random_distributions
+   */
   template <CanonicalRandomEngine Engine>
   [[nodiscard]] Result<Real> operator()(Engine& engine) const {
     const Real first_unit =
@@ -242,7 +500,29 @@ class NormalDistribution final {
     return candidate;
   }
 
+  /**
+   * @brief Performs the public mean operation defined by the Random
+   * distribution contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] Real mean() const noexcept { return mean_; }
+  /**
+   * @brief Performs the public standard_deviation operation defined by the
+   * Random distribution contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_distributions
+   */
   [[nodiscard]] Real standard_deviation() const noexcept {
     return standard_deviation_;
   }

@@ -36,7 +36,7 @@ each unique. Invalid names, duplicate aliases, duplicate destinations, absent
 schema paths, and otherwise inconsistent declarations fail before a parser is
 published.
 
-An option's accepted type comes from its schema destination. Milestone 2
+An option's accepted type comes from its schema destination. foundational modules
 supports these leaf alternatives:
 
 | Schema type | Accepted command-line value |
@@ -130,7 +130,7 @@ duplicate checks, schema validation, defaults, bounds, and unknown-key checks
 all succeed. A failure exposes no partial `Configuration` or partial
 positional list.
 
-This milestone implements:
+This module implements:
 
 ```text
 schema defaults < command line
@@ -217,7 +217,7 @@ mutable state.
 
 ## Deliberately absent
 
-Milestone 2 Utilities does not provide:
+foundational modules Utilities does not provide:
 
 - a local configuration-file syntax or parser;
 - environment-variable or response-file input;
@@ -227,7 +227,7 @@ Milestone 2 Utilities does not provide:
 - tracing, telemetry, profiling orchestration, or logging; or
 - GPU event timing.
 
-The [frozen Milestone 2 contract][contract] is authoritative if a historical
+The [frozen foundational modules contract][contract] is authoritative if a historical
 page appears to imply a broader parser or timer.
 
-[contract]: ../development/asc-cpp-m2-independent-foundations/milestone-contract.md
+[contract]: ../architecture/dependency-policy.md

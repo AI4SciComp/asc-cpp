@@ -57,12 +57,12 @@ if (!latin.ok()) {
 For a fixed engine type/state, scalar type, shape, and sequence version, Latin
 permutations and jitter repeat exactly on a supported CPU math ABI. Indexed
 Halton, Hammersley, and Sobol evaluation has no seed or mutable state. These
-Issue 14 operations are portable serial CPU APIs only; they do not accept a
+Quasi-random sequences operations are portable serial CPU APIs only; they do not accept a
 CUDA context and do not transfer, synchronize, allocate, or fall back.
-Issue 15 maps the same point definitions into caller-owned Dense views through
+Random storage adapters maps the same point definitions into caller-owned Dense views through
 the `random_dense` facet; see the [advanced adapter example](random-advanced.md)
 for the explicit context and workspace boundary.
 
-The [Random completion audit](../random-completion-audit.md) verifies the
+The [Random release contract](../contracts/random-crosswalk.yaml) verifies the
 direction-data license route, generated-table identity, public APIs, package
 consumers, and registered QMC evidence.

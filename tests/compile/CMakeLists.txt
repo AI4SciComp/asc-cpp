@@ -46,7 +46,7 @@ foreach(_header IN LISTS _asc_core_public_headers)
   asc_register_test(
     NAME "asc_cpp.compile.header.${_header_identifier}"
     TARGET "${_target}"
-    LABELS "compile;core;milestone-1"
+    LABELS "compile;core"
   )
 
   if(_asc_core_supports_disabled_exceptions)
@@ -66,7 +66,7 @@ foreach(_header IN LISTS _asc_core_public_headers)
     asc_register_test(
       NAME "asc_cpp.compile.header_no_exceptions.${_header_identifier}"
       TARGET "${_no_exceptions_target}"
-      LABELS "compile;core;milestone-1"
+      LABELS "compile;core"
     )
   endif()
 endforeach()
@@ -95,7 +95,7 @@ foreach(_header IN LISTS _asc_m2_public_headers)
   elseif(_header MATCHES "^asc/random")
     set(_owner_target ASC::random)
   else()
-    message(FATAL_ERROR "Milestone 2 header has no owning target: ${_header}")
+    message(FATAL_ERROR "foundational modules header has no owning target: ${_header}")
   endif()
 
   string(MAKE_C_IDENTIFIER "${_header}" _header_identifier)
@@ -121,7 +121,7 @@ foreach(_header IN LISTS _asc_m2_public_headers)
   asc_register_test(
     NAME "asc_cpp.compile.m2_header.${_header_identifier}"
     TARGET "${_target}"
-    LABELS "compile;milestone-2"
+    LABELS "compile;foundations"
   )
 
   if(_asc_core_supports_disabled_exceptions)
@@ -159,7 +159,7 @@ foreach(_header IN LISTS _asc_m2_public_headers)
     asc_register_test(
       NAME "asc_cpp.compile.m2_header_no_exceptions.${_header_identifier}"
       TARGET "${_no_exceptions_target}"
-      LABELS "compile;milestone-2"
+      LABELS "compile;foundations"
     )
   endif()
 endforeach()
@@ -192,7 +192,7 @@ if(_asc_core_supports_disabled_exceptions)
   asc_register_test(
     NAME asc_cpp.compile.m2_exceptions_disabled
     TARGET asc_m2_exceptions_disabled
-    LABELS "compile;milestone-2"
+    LABELS "compile;foundations"
   )
 endif()
 
@@ -206,7 +206,7 @@ _asc_core_configure_compile_test(asc_core_multi_tu)
 asc_register_test(
   NAME asc_cpp.compile.multi_tu
   TARGET asc_core_multi_tu
-  LABELS "compile;core;milestone-1"
+  LABELS "compile;core"
 )
 
 if(_asc_core_supports_disabled_exceptions)
@@ -219,7 +219,7 @@ if(_asc_core_supports_disabled_exceptions)
   asc_register_test(
     NAME asc_cpp.compile.exceptions_disabled
     TARGET asc_core_exceptions_disabled
-    LABELS "compile;core;milestone-1"
+    LABELS "compile;core"
   )
 endif()
 
@@ -295,7 +295,7 @@ add_test(
 )
 set_tests_properties(
   asc_cpp.compile.dependency_audit
-  PROPERTIES LABELS "architecture;compile;milestone-2"
+  PROPERTIES LABELS "architecture;compile;foundations"
 )
 
 add_test(
@@ -307,7 +307,7 @@ add_test(
 )
 set_tests_properties(
   asc_cpp.compile.m2_dependency_audit
-  PROPERTIES LABELS "architecture;compile;milestone-2"
+  PROPERTIES LABELS "architecture;compile;foundations"
 )
 
 set(_asc_m3_public_headers
@@ -344,7 +344,7 @@ foreach(_header IN LISTS _asc_m3_public_headers)
   asc_register_test(
     NAME "asc_cpp.compile.m3_header.${_header_identifier}"
     TARGET "${_target}"
-    LABELS "compile;dense;milestone-3"
+    LABELS "compile;dense"
   )
 
   if(_asc_core_supports_disabled_exceptions)
@@ -379,7 +379,7 @@ foreach(_header IN LISTS _asc_m3_public_headers)
     asc_register_test(
       NAME "asc_cpp.compile.m3_header_no_exceptions.${_header_identifier}"
       TARGET "${_no_exceptions_target}"
-      LABELS "compile;dense;milestone-3"
+      LABELS "compile;dense"
     )
   endif()
 endforeach()
@@ -412,7 +412,7 @@ foreach(_compile_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.compile.${_compile_name}"
     TARGET "${_target}"
-    LABELS "compile;dense;milestone-3"
+    LABELS "compile;dense"
   )
 endforeach()
 
@@ -438,7 +438,7 @@ if(_asc_core_supports_disabled_exceptions)
   asc_register_test(
     NAME asc_cpp.compile.m3_exceptions_disabled
     TARGET asc_m3_exceptions_disabled
-    LABELS "compile;dense;milestone-3"
+    LABELS "compile;dense"
   )
 endif()
 
@@ -470,7 +470,7 @@ add_test(
 )
 set_tests_properties(
   asc_cpp.compile.m3_dependency_audit
-  PROPERTIES LABELS "architecture;compile;dense;milestone-3"
+  PROPERTIES LABELS "architecture;compile;dense"
 )
 
 set(_asc_m4_public_headers
@@ -512,7 +512,7 @@ foreach(_header IN LISTS _asc_m4_public_headers)
   asc_register_test(
     NAME "asc_cpp.compile.m4_header.${_header_identifier}"
     TARGET "${_target}"
-    LABELS "compile;sparse;milestone-4"
+    LABELS "compile;sparse"
   )
 
   if(_asc_core_supports_disabled_exceptions)
@@ -550,7 +550,7 @@ foreach(_header IN LISTS _asc_m4_public_headers)
     asc_register_test(
       NAME "asc_cpp.compile.m4_header_no_exceptions.${_header_identifier}"
       TARGET "${_no_exceptions_target}"
-      LABELS "compile;sparse;milestone-4"
+      LABELS "compile;sparse"
     )
   endif()
 endforeach()
@@ -587,7 +587,7 @@ foreach(_compile_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.compile.${_compile_name}"
     TARGET "${_target}"
-    LABELS "compile;sparse;milestone-4"
+    LABELS "compile;sparse"
   )
 endforeach()
 
@@ -611,7 +611,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.compile.m4_dense_interop
   TARGET asc_sparse_m4_dense_interop
-  LABELS "compile;dense;sparse;milestone-4"
+  LABELS "compile;dense;sparse"
 )
 
 if(_asc_core_supports_disabled_exceptions)
@@ -639,7 +639,7 @@ if(_asc_core_supports_disabled_exceptions)
   asc_register_test(
     NAME asc_cpp.compile.m4_exceptions_disabled
     TARGET asc_m4_exceptions_disabled
-    LABELS "compile;sparse;milestone-4"
+    LABELS "compile;sparse"
   )
 endif()
 
@@ -671,7 +671,7 @@ add_test(
 )
 set_tests_properties(
   asc_cpp.compile.m4_dependency_audit
-  PROPERTIES LABELS "architecture;compile;sparse;milestone-4"
+  PROPERTIES LABELS "architecture;compile;sparse"
 )
 
 set(_asc_m5_public_headers
@@ -708,7 +708,7 @@ foreach(_header IN LISTS _asc_m5_public_headers)
   asc_register_test(
     NAME "asc_cpp.compile.m5_header.${_header_identifier}"
     TARGET "${_target}"
-    LABELS "compile;random;milestone-5"
+    LABELS "compile;random;random-storage"
   )
 
   if(_asc_core_supports_disabled_exceptions)
@@ -746,7 +746,7 @@ foreach(_header IN LISTS _asc_m5_public_headers)
     asc_register_test(
       NAME "asc_cpp.compile.m5_header_no_exceptions.${_header_identifier}"
       TARGET "${_no_exceptions_target}"
-      LABELS "compile;random;milestone-5"
+      LABELS "compile;random;random-storage"
     )
   endif()
 endforeach()
@@ -778,7 +778,7 @@ foreach(_compile_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.compile.${_compile_name}"
     TARGET "${_target}"
-    LABELS "compile;random;milestone-5"
+    LABELS "compile;random;random-storage"
   )
 endforeach()
 
@@ -807,7 +807,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.compile.m5_multi_tu
   TARGET asc_random_m5_multi_tu
-  LABELS "compile;random;milestone-5"
+  LABELS "compile;random;random-storage"
 )
 
 foreach(_facet IN ITEMS random_dense random_sparse cpp)
@@ -870,7 +870,7 @@ if(ASC_CPP_ENABLE_CUDA)
   asc_register_test(
     NAME asc_cpp.compile.m6_core_cuda_header
     TARGET asc_m6_core_cuda_header
-    LABELS "compile;core_cuda;milestone-6"
+    LABELS "compile;core_cuda;cuda-core-dense"
   )
 
   add_executable(asc_m6_dense_cuda_header m6_dense_cuda_header.cc)
@@ -878,7 +878,7 @@ if(ASC_CPP_ENABLE_CUDA)
   asc_register_test(
     NAME asc_cpp.compile.m6_dense_cuda_header
     TARGET asc_m6_dense_cuda_header
-    LABELS "compile;dense_cuda;milestone-6"
+    LABELS "compile;dense_cuda;cuda-core-dense"
   )
 
   add_executable(
@@ -891,7 +891,7 @@ if(ASC_CPP_ENABLE_CUDA)
   asc_register_test(
     NAME asc_cpp.compile.m6_provider_odr
     TARGET asc_m6_provider_odr
-    LABELS "compile;core_cuda;dense_cuda;milestone-6"
+    LABELS "compile;core_cuda;dense_cuda;cuda-core-dense"
   )
 
   if(_asc_core_supports_disabled_exceptions)
@@ -910,7 +910,7 @@ if(ASC_CPP_ENABLE_CUDA)
     asc_register_test(
       NAME asc_cpp.compile.m6_provider_headers_no_exceptions
       TARGET asc_m6_provider_headers_no_exceptions
-      LABELS "compile;core_cuda;dense_cuda;milestone-6"
+      LABELS "compile;core_cuda;dense_cuda;cuda-core-dense"
     )
   endif()
 
@@ -982,7 +982,7 @@ if(ASC_CPP_ENABLE_CUDA)
     asc_register_test(
       NAME "asc_cpp.compile.m7_header.${_header_identifier}"
       TARGET "${_target}"
-      LABELS "compile;cuda;milestone-7"
+      LABELS "compile;cuda;cuda-sparse-random"
     )
 
     if(_asc_core_supports_disabled_exceptions)
@@ -1009,7 +1009,7 @@ if(ASC_CPP_ENABLE_CUDA)
         NAME
           "asc_cpp.compile.m7_header_no_exceptions.${_header_identifier}"
         TARGET "${_no_exceptions_target}"
-        LABELS "compile;cuda;milestone-7"
+        LABELS "compile;cuda;cuda-sparse-random"
       )
     endif()
   endforeach()
@@ -1043,7 +1043,7 @@ if(ASC_CPP_ENABLE_CUDA)
     asc_register_test(
       NAME "asc_cpp.compile.${_positive_name}"
       TARGET "${_target}"
-      LABELS "compile;cuda;milestone-7"
+      LABELS "compile;cuda;cuda-sparse-random"
     )
   endforeach()
 
@@ -1092,7 +1092,7 @@ if(ASC_CPP_ENABLE_CUDA)
   asc_register_test(
     NAME asc_cpp.compile.m7_provider_odr
     TARGET asc_m7_provider_odr
-    LABELS "compile;cuda;milestone-7"
+    LABELS "compile;cuda;cuda-sparse-random"
   )
 
   get_target_property(_asc_sparse_cuda_links asc_sparse_cuda LINK_LIBRARIES)

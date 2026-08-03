@@ -39,7 +39,7 @@ foreach(_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.dense_cuda.${_name}"
     TARGET "${_target}"
-    LABELS "dense_cuda;cuda;gpu;milestone-6;runtime;parity"
+    LABELS "dense_cuda;cuda;gpu;cuda-core-dense;runtime;parity"
   )
   set_tests_properties(
     "asc_cpp.dense_cuda.${_name}"
@@ -53,7 +53,7 @@ foreach(_source IN ITEMS
     "asc_cpp.dense_cuda.${_name}.forced_no_device"
     PROPERTIES
       ENVIRONMENT "ASC_CPP_TEST_FORCE_NO_CUDA_DEVICE=1"
-      LABELS "dense_cuda;cuda;gpu;milestone-8;no-device"
+      LABELS "dense_cuda;cuda;gpu;hardening;no-device"
       SKIP_RETURN_CODE 77
   )
 endforeach()
@@ -62,14 +62,14 @@ set_property(
   TEST
     asc_cpp.dense_cuda.dense_cuda_blas_level2_test
     asc_cpp.dense_cuda.dense_cuda_blas_level2_test.forced_no_device
-  APPEND PROPERTY LABELS "blas-level2;milestone-8"
+  APPEND PROPERTY LABELS "blas-level2;hardening"
 )
 
 set_property(
   TEST
     asc_cpp.dense_cuda.dense_cuda_blas_level3_test
     asc_cpp.dense_cuda.dense_cuda_blas_level3_test.forced_no_device
-  APPEND PROPERTY LABELS "blas-level3;milestone-9"
+  APPEND PROPERTY LABELS "blas-level3"
 )
 
 target_link_libraries(
@@ -89,7 +89,7 @@ target_link_libraries(
 asc_register_test(
   NAME asc_cpp.dense_cuda.benchmark
   TARGET asc_dense_cuda_benchmark
-  LABELS "benchmark;blas-level3;cuda;dense_cuda;gpu;milestone-6;milestone-9;performance"
+  LABELS "benchmark;blas-level3;cuda;dense_cuda;gpu;cuda-core-dense;performance"
 )
 set_tests_properties(
   asc_cpp.dense_cuda.benchmark
@@ -105,7 +105,7 @@ set_tests_properties(
   asc_cpp.dense_cuda.benchmark.forced_no_device
   PROPERTIES
     ENVIRONMENT "ASC_CPP_TEST_FORCE_NO_CUDA_DEVICE=1"
-    LABELS "benchmark;blas-level3;dense_cuda;cuda;gpu;milestone-8;milestone-9;no-device"
+    LABELS "benchmark;blas-level3;dense_cuda;cuda;gpu;hardening;no-device"
     SKIP_RETURN_CODE 77
     TIMEOUT 120
 )
@@ -122,7 +122,7 @@ add_test(
 set_tests_properties(
   asc_cpp.dense_cuda.benchmark.forced_enumeration_failure
   PROPERTIES
-    LABELS "benchmark;blas-level3;dense_cuda;cuda;gpu;milestone-8;milestone-9;provider-failure"
+    LABELS "benchmark;blas-level3;dense_cuda;cuda;gpu;hardening;provider-failure"
     TIMEOUT 120
 )
 

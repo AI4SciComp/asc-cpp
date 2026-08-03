@@ -23,7 +23,7 @@ _asc_expression_configure_test(asc_expression_expression_test)
 asc_register_test(
   NAME asc_cpp.expression.expression
   TARGET asc_expression_expression_test
-  LABELS "expression;milestone-2;runtime"
+  LABELS "expression;foundations;runtime"
 )
 
 add_executable(
@@ -34,7 +34,7 @@ _asc_expression_configure_test(asc_expression_compile_contracts)
 asc_register_test(
   NAME asc_cpp.expression.compile_contracts
   TARGET asc_expression_compile_contracts
-  LABELS "compile;expression;milestone-2"
+  LABELS "compile;expression;foundations"
 )
 
 add_executable(
@@ -51,7 +51,7 @@ _asc_expression_configure_test(asc_expression_multi_tu)
 asc_register_test(
   NAME asc_cpp.expression.multi_tu
   TARGET asc_expression_multi_tu
-  LABELS "compile;expression;milestone-2"
+  LABELS "compile;expression;foundations"
 )
 
 foreach(_negative_source IN ITEMS

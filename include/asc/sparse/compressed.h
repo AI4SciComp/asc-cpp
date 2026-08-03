@@ -1,6 +1,17 @@
 #ifndef ASC_SPARSE_COMPRESSED_H_
 #define ASC_SPARSE_COMPRESSED_H_
 
+/**
+ * @file
+ * @brief Public Sparse declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_sparse
+ */
+
 #include <algorithm>
 #include <array>
 #include <concepts>
@@ -62,17 +73,73 @@ inline Result<std::size_t> OffsetCount(extent_t outer_extent) {
 
 }  // namespace internal_sparse_compressed
 
+/**
+ * @brief Views canonical non-owning CSR or CSC sparse storage.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ * @ingroup asc_sparse
+ */
 template <SparseViewElement Element, SparseCompressedFormat Format>
 class CompressedSparseView {
  public:
   static_assert(Format == SparseCompressedFormat::kCsr ||
                     Format == SparseCompressedFormat::kCsc,
                 "Compressed sparse format must be CSR or CSC");
+  /**
+   * @brief Defines the public element_type type used by this Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   using element_type = Element;
+  /**
+   * @brief Defines the public value_type type used by this Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   using value_type = std::remove_const_t<Element>;
+  /**
+   * @brief Stores the Format value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   static constexpr SparseCompressedFormat kFormat = Format;
+  /**
+   * @brief Stores the Rank value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   static constexpr std::size_t kRank = 2;
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] outer_offsets The outer offsets value required by this contract.
+   * @param[in] inner_indices The inner indices value required by this contract.
+   * @param[in] values Value storage paired with the documented descriptor.
+   * @param[in] shape Logical extents; every extent must satisfy the documented
+   * bounds.
+   * @param[in] nonzeros The nonzeros value required by this contract.
+   * @param[in] memory_space Placement of every referenced storage byte.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   static Result<CompressedSparseView> Create(const nnz_t* outer_offsets,
                                              const index_t* inner_indices,
                                              Element* values,
@@ -147,6 +214,22 @@ class CompressedSparseView {
     return result;
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] outer_offsets The outer offsets value required by this contract.
+   * @param[in] inner_indices The inner indices value required by this contract.
+   * @param[in] values Value storage paired with the documented descriptor.
+   * @param[in] shape Logical extents; every extent must satisfy the documented
+   * bounds.
+   * @param[in] memory_space Placement of every referenced storage byte.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   static Result<CompressedSparseView> Create(
       std::span<const nnz_t> outer_offsets,
       std::span<const index_t> inner_indices, std::span<Element> values,
@@ -172,10 +255,28 @@ class CompressedSparseView {
                   shape, *nonzeros, memory_space);
   }
 
+  /**
+   * @brief Converts a mutable compressed view to a const-value view.
+   * @tparam OtherElement Mutable source value type.
+   * @param[in] other Source view; descriptor/value lifetimes are not extended.
+   * @ingroup asc_sparse
+   */
   template <typename OtherElement>
     requires(std::is_const_v<Element> &&
              std::same_as<std::remove_const_t<OtherElement>, value_type> &&
              !std::is_const_v<OtherElement>)
+  /**
+   * @brief Constructs a CompressedSparseView with the documented ownership and
+   * validity state.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] other The other value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   // Mutable-to-const views intentionally convert implicitly.
   // NOLINTNEXTLINE(google-explicit-constructor)
   constexpr CompressedSparseView(
@@ -188,48 +289,186 @@ class CompressedSparseView {
         memory_space_(other.memory_space()),
         canonical_structure_trusted_(other.canonical_structure_trusted()) {}
 
+  /**
+   * @brief Returns the object's rank contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] static constexpr rank_t rank() noexcept { return 2; }
 
+  /**
+   * @brief Returns the object's format contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] static constexpr SparseCompressedFormat format() noexcept {
     return Format;
   }
 
+  /**
+   * @brief Returns the object's shape contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr const std::array<extent_t, 2>& shape()
       const noexcept {
     return shape_;
   }
 
+  /**
+   * @brief Returns the object's extents contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr std::span<const extent_t, 2> extents()
       const noexcept {
     return shape_;
   }
 
+  /**
+   * @brief Returns the object's rows contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr extent_t rows() const noexcept { return shape_[0]; }
 
+  /**
+   * @brief Returns the object's columns contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr extent_t columns() const noexcept {
     return shape_[1];
   }
 
+  /**
+   * @brief Returns the object's nnz contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr nnz_t nnz() const noexcept { return nonzeros_; }
 
+  /**
+   * @brief Performs the public outer_offsets operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr const nnz_t* outer_offsets() const noexcept {
     return outer_offsets_;
   }
 
+  /**
+   * @brief Performs the public inner_indices operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr const index_t* inner_indices() const noexcept {
     return inner_indices_;
   }
 
+  /**
+   * @brief Returns the object's values contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr Element* values() const noexcept { return values_; }
 
+  /**
+   * @brief Performs the public memory_space operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr MemorySpace memory_space() const noexcept {
     return memory_space_;
   }
 
+  /**
+   * @brief Reports whether the documented canonical_structure_trusted condition
+   * holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr bool canonical_structure_trusted() const noexcept {
     return canonical_structure_trusted_;
   }
 
+  /**
+   * @brief Performs the public RebindValues operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @tparam ReboundElement Type or non-type argument satisfying the
+   * declaration's constraints.
+   * @param[in] values Value storage paired with the documented descriptor.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   template <SparseViewElement ReboundElement>
     requires std::same_as<std::remove_const_t<ReboundElement>, value_type>
   [[nodiscard]]
@@ -276,6 +515,18 @@ class CompressedSparseView {
         memory_space_, canonical_structure_trusted_);
   }
 
+  /**
+   * @brief Performs the public OuterOffset operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] position The position value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] Result<nnz_t> OuterOffset(extent_t position) const {
     Status access_status = ValidateHostAccess();
     if (!access_status.ok()) {
@@ -290,6 +541,18 @@ class CompressedSparseView {
     return outer_offsets_[static_cast<std::size_t>(position)];
   }
 
+  /**
+   * @brief Performs the public InnerIndex operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] position The position value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] Result<index_t> InnerIndex(nnz_t position) const {
     Status access_status = ValidateHostAccess();
     if (!access_status.ok()) {
@@ -302,6 +565,18 @@ class CompressedSparseView {
     return inner_indices_[static_cast<std::size_t>(position)];
   }
 
+  /**
+   * @brief Performs the public AtStored operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] position The position value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] Result<Element*> AtStored(nnz_t position) const {
     Status access_status = ValidateHostAccess();
     if (!access_status.ok()) {
@@ -314,6 +589,17 @@ class CompressedSparseView {
     return values_ + static_cast<std::size_t>(position);
   }
 
+  /**
+   * @brief Performs the public Lookup operation defined by the Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] coordinate Logical coordinate within every corresponding extent.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] Result<value_type> Lookup(
       std::span<const index_t, 2> coordinate) const {
     Status access_status = ValidateHostAccess();
@@ -348,12 +634,35 @@ class CompressedSparseView {
     return values_[static_cast<std::size_t>(first)];
   }
 
+  /**
+   * @brief Performs the public ValueAlias operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr ExpressionAliasMetadata ValueAlias() const noexcept {
     const std::size_t bytes =
         static_cast<std::size_t>(nonzeros_) * sizeof(value_type);
     return ExpressionAliasMetadata(values_, values_, bytes);
   }
 
+  /**
+   * @brief Performs the public SameDescriptor operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] other The other value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] constexpr bool SameDescriptor(
       const CompressedSparseView& other) const noexcept {
     return outer_offsets_ == other.outer_offsets_ &&
@@ -365,6 +674,15 @@ class CompressedSparseView {
  private:
   template <SparseViewElement, SparseCompressedFormat>
   friend class CompressedSparseView;
+  /**
+   * @brief Performs the public ProviderAccess operation defined by the Sparse
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   friend class internal_sparse_compressed::ProviderAccess;
   template <SparseElement, SparseCompressedFormat>
   friend class CompressedSparseArray;
@@ -453,22 +771,61 @@ class ProviderAccess {
 
 }  // namespace internal_sparse_compressed
 
+/**
+ * @brief Owns canonical CSR or CSC sparse storage.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ * @ingroup asc_sparse
+ */
 template <SparseElement Element, SparseCompressedFormat Format>
 class CompressedSparseArray {
  public:
   static_assert(Format == SparseCompressedFormat::kCsr ||
                     Format == SparseCompressedFormat::kCsc,
                 "Compressed sparse format must be CSR or CSC");
+  /**
+   * @brief Defines the public element_type type used by this Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   using element_type = Element;
+  /**
+   * @brief Stores the Format value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   static constexpr SparseCompressedFormat kFormat = Format;
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] resource Allocator that must outlive storage allocated from it.
+   * @param[in] shape Logical extents; every extent must satisfy the documented
+   * bounds.
+   * @param[in] outer_offsets The outer offsets value required by this contract.
+   * @param[in] inner_indices The inner indices value required by this contract.
+   * @param[in] values Value storage paired with the documented descriptor.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   static Result<CompressedSparseArray> Create(
       MemoryResource& resource, std::span<const extent_t, 2> shape,
       std::span<const nnz_t> outer_offsets,
       std::span<const index_t> inner_indices, std::span<const Element> values) {
     if (resource.space() != MemorySpace::kHost) {
       return Status(ErrorCode::kUnsupported,
-                    "Milestone 4 sparse owners require a host resource");
+                    "Sparse owners require a host resource");
     }
     auto validated = CompressedSparseView<const Element, Format>::Create(
         outer_offsets, inner_indices, values, shape, MemorySpace::kHost);
@@ -522,6 +879,22 @@ class CompressedSparseArray {
         std::move(*value_buffer), copied_shape, *nonzeros);
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] resource Allocator that must outlive storage allocated from it.
+   * @param[in] rows The rows value required by this contract.
+   * @param[in] columns The columns value required by this contract.
+   * @param[in] outer_offsets The outer offsets value required by this contract.
+   * @param[in] inner_indices The inner indices value required by this contract.
+   * @param[in] values Value storage paired with the documented descriptor.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   static Result<CompressedSparseArray> Create(
       MemoryResource& resource, extent_t rows, extent_t columns,
       std::span<const nnz_t> outer_offsets,
@@ -530,27 +903,131 @@ class CompressedSparseArray {
     return Create(resource, shape, outer_offsets, inner_indices, values);
   }
 
+  /**
+   * @brief Constructs a CompressedSparseArray with the documented ownership and
+   * validity state.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   * @ingroup asc_sparse
+   */
   CompressedSparseArray(const CompressedSparseArray&) = delete;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   CompressedSparseArray& operator=(const CompressedSparseArray&) = delete;
+  /**
+   * @brief Constructs a CompressedSparseArray with the documented ownership and
+   * validity state.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   * @ingroup asc_sparse
+   */
   CompressedSparseArray(CompressedSparseArray&&) noexcept = default;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   CompressedSparseArray& operator=(CompressedSparseArray&&) noexcept = default;
+  /**
+   * @brief Releases owned resources after required completion/lifetime
+   * conditions.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   * @ingroup asc_sparse
+   */
   ~CompressedSparseArray() = default;
 
+  /**
+   * @brief Reports whether the documented valid condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] bool valid() const noexcept {
     return resource_ != nullptr && outer_offsets_.valid() &&
            inner_indices_.valid() && values_.valid();
   }
 
+  /**
+   * @brief Returns the object's shape contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] const std::array<extent_t, 2>& shape() const noexcept {
     return shape_;
   }
 
+  /**
+   * @brief Returns the object's rows contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] extent_t rows() const noexcept { return shape_[0]; }
 
+  /**
+   * @brief Returns the object's columns contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] extent_t columns() const noexcept { return shape_[1]; }
 
+  /**
+   * @brief Returns the object's nnz contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] nnz_t nnz() const noexcept { return nonzeros_; }
 
+  /**
+   * @brief Performs the public view operation defined by the Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] Result<CompressedSparseView<Element, Format>> view() {
     if (!valid()) {
       return Status(ErrorCode::kInvalidState,
@@ -563,6 +1040,16 @@ class CompressedSparseArray {
         MemorySpace::kHost, true);
   }
 
+  /**
+   * @brief Performs the public view operation defined by the Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   [[nodiscard]] Result<CompressedSparseView<const Element, Format>> view()
       const {
     if (!valid()) {
@@ -576,6 +1063,22 @@ class CompressedSparseArray {
         MemorySpace::kHost, true);
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @tparam SourceElement Type or non-type argument satisfying the
+   * declaration's constraints.
+   * @param[in] context Execution backend and accessibility/order contract.
+   * @param[in] source Input source, valid and accessible for the operation.
+   * @param[in] destination_resource Allocator for the returned owning
+   * destination.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   template <SparseViewElement SourceElement>
   static Result<CompressedSparseArray> FromCoordinate(
       const ExecutionContext& context, CoordinateView<SourceElement, 2> source,
@@ -627,6 +1130,24 @@ class CompressedSparseArray {
         });
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @tparam SourceElement Type or non-type argument satisfying the
+   * declaration's constraints.
+   * @tparam SourceFormat Type or non-type argument satisfying the declaration's
+   * constraints.
+   * @param[in] context Execution backend and accessibility/order contract.
+   * @param[in] source Input source, valid and accessible for the operation.
+   * @param[in] destination_resource Allocator for the returned owning
+   * destination.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse
+   */
   template <SparseViewElement SourceElement,
             SparseCompressedFormat SourceFormat>
     requires(SourceFormat != Format)
@@ -706,7 +1227,7 @@ class CompressedSparseArray {
       nnz_t nonzeros, Fill&& fill) {
     if (resource.space() != MemorySpace::kHost) {
       return Status(ErrorCode::kUnsupported,
-                    "Milestone 4 sparse conversions require a host resource");
+                    "Sparse conversions require a host resource");
     }
     auto offset_count = internal_sparse_compressed::OffsetCount(
         internal_sparse_compressed::OuterExtent<Format>(shape));
@@ -770,32 +1291,130 @@ class CompressedSparseArray {
   nnz_t nonzeros_;
 };
 
+/**
+ * @brief Defines the public CsrView type used by this Sparse contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @ingroup asc_sparse
+ */
 template <typename Element>
 using CsrView = CompressedSparseView<Element, SparseCompressedFormat::kCsr>;
 
+/**
+ * @brief Defines the public CscView type used by this Sparse contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @ingroup asc_sparse
+ */
 template <typename Element>
 using CscView = CompressedSparseView<Element, SparseCompressedFormat::kCsc>;
 
+/**
+ * @brief Defines the public CsrArray type used by this Sparse contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @ingroup asc_sparse
+ */
 template <SparseElement Element>
 using CsrArray = CompressedSparseArray<Element, SparseCompressedFormat::kCsr>;
 
+/**
+ * @brief Defines the public CscArray type used by this Sparse contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @ingroup asc_sparse
+ */
 template <SparseElement Element>
 using CscArray = CompressedSparseArray<Element, SparseCompressedFormat::kCsc>;
 
+/**
+ * @brief Customizes expression value, shape, access, and alias semantics.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ * @ingroup asc_sparse
+ */
 template <typename Element, SparseCompressedFormat Format>
 struct ExpressionAdapter<CompressedSparseView<Element, Format>> {
+  /**
+   * @brief Defines the public value_type type used by this Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   using value_type = std::remove_const_t<Element>;
+  /**
+   * @brief Stores the rank value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   static constexpr rank_t rank = 2;
+  /**
+   * @brief Stores the sparsity effect value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   static constexpr SparsityEffect sparsity_effect =
       SparsityEffect::kStructurePreserving;
+  /**
+   * @brief Stores the operation value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   static constexpr ExpressionOperation operation =
       ExpressionOperation::kTerminal;
 
+  /**
+   * @brief Returns the object's Shape contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   static constexpr std::array<extent_t, 2> Shape(
       const CompressedSparseView<Element, Format>& view) noexcept {
     return view.shape();
   }
 
+  /**
+   * @brief Performs the public Read operation defined by the Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @param[in] coordinate Logical coordinate within every corresponding extent.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   static value_type Read(const CompressedSparseView<Element, Format>& view,
                          std::span<const index_t, 2> coordinate) {
     auto value = view.Lookup(coordinate);
@@ -804,6 +1423,18 @@ struct ExpressionAdapter<CompressedSparseView<Element, Format>> {
     return *value;
   }
 
+  /**
+   * @brief Reports whether the documented MayAlias condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @param[in] token The token value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   static bool MayAlias(const CompressedSparseView<Element, Format>& view,
                        AliasToken token) noexcept {
     const auto value_alias = view.ValueAlias();
@@ -828,6 +1459,19 @@ struct ExpressionAdapter<CompressedSparseView<Element, Format>> {
                view.inner_indices(), *index_bytes, token.identity());
   }
 
+  /**
+   * @brief Validates the documented shape, access, ownership, and provider
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @param[in] context Execution backend and accessibility/order contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_sparse
+   */
   static Status ValidateAccess(
       const CompressedSparseView<Element, Format>& view,
       const ExecutionContext& context) {
@@ -844,39 +1488,126 @@ struct ExpressionAdapter<CompressedSparseView<Element, Format>> {
   }
 };
 
+/**
+ * @brief Customizes expression memory placement and alias metadata.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ * @ingroup asc_sparse
+ */
 template <typename Element, SparseCompressedFormat Format>
 struct ExpressionPlacementAdapter<CompressedSparseView<Element, Format>> {
+  /**
+   * @brief Returns the object's Space contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   static constexpr MemorySpace Space(
       const CompressedSparseView<Element, Format>& view) noexcept {
     return view.memory_space();
   }
 
+  /**
+   * @brief Performs the public Alias operation defined by the Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   static constexpr ExpressionAliasMetadata Alias(
       const CompressedSparseView<Element, Format>& view) noexcept {
     return view.ValueAlias();
   }
 };
 
+/**
+ * @brief Customizes writable shape, alias, access, and mutation behavior.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ * @ingroup asc_sparse
+ */
 template <typename Element, SparseCompressedFormat Format>
   requires(!std::is_const_v<Element>)
 struct WritableExpressionAdapter<CompressedSparseView<Element, Format>> {
+  /**
+   * @brief Defines the public value_type type used by this Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   using value_type = std::remove_const_t<Element>;
 
+  /**
+   * @brief Returns the object's Shape contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   static constexpr std::array<extent_t, 2> Shape(
       const CompressedSparseView<Element, Format>& view) noexcept {
     return view.shape();
   }
 
+  /**
+   * @brief Performs the public Alias operation defined by the Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   static constexpr ExpressionAliasMetadata Alias(
       const CompressedSparseView<Element, Format>& view) noexcept {
     return view.ValueAlias();
   }
 
+  /**
+   * @brief Reports whether the documented IsUnique condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse
+   */
   static constexpr bool IsUnique(
       const CompressedSparseView<Element, Format>& /*view*/) noexcept {
     return true;
   }
 
+  /**
+   * @brief Performs the public Write operation defined by the Sparse contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @param[in] coordinate Logical coordinate within every corresponding extent.
+   * @param[in] value Value read or written by the operation.
+   * @ingroup asc_sparse
+   */
   static void Write(CompressedSparseView<Element, Format>& view,
                     std::span<const index_t, 2> coordinate, value_type value) {
     const extent_t outer =
@@ -903,6 +1634,19 @@ struct WritableExpressionAdapter<CompressedSparseView<Element, Format>> {
                       "Sparse writable protocol requires a stored coordinate");
   }
 
+  /**
+   * @brief Validates the documented shape, access, ownership, and provider
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @param[in] view The view value required by this contract.
+   * @param[in] context Execution backend and accessibility/order contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_sparse
+   */
   static Status ValidateAccess(
       const CompressedSparseView<Element, Format>& view,
       const ExecutionContext& context) {
@@ -911,6 +1655,23 @@ struct WritableExpressionAdapter<CompressedSparseView<Element, Format>> {
   }
 };
 
+/**
+ * @brief Converts storage while preserving logical values and canonical
+ * invariants.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam SourceElement Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[in] destination_resource Allocator for the returned owning
+ * destination.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <SparseViewElement SourceElement>
 Result<CsrArray<std::remove_const_t<SourceElement>>> ConvertToCsr(
     const ExecutionContext& context, CoordinateView<SourceElement, 2> source,
@@ -920,6 +1681,23 @@ Result<CsrArray<std::remove_const_t<SourceElement>>> ConvertToCsr(
                                            destination_resource);
 }
 
+/**
+ * @brief Converts storage while preserving logical values and canonical
+ * invariants.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam SourceElement Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[in] destination_resource Allocator for the returned owning
+ * destination.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <SparseViewElement SourceElement>
 Result<CscArray<std::remove_const_t<SourceElement>>> ConvertToCsc(
     const ExecutionContext& context, CoordinateView<SourceElement, 2> source,
@@ -929,6 +1707,23 @@ Result<CscArray<std::remove_const_t<SourceElement>>> ConvertToCsc(
                                            destination_resource);
 }
 
+/**
+ * @brief Converts storage while preserving logical values and canonical
+ * invariants.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam SourceElement Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[in] destination_resource Allocator for the returned owning
+ * destination.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <SparseViewElement SourceElement>
 Result<CsrArray<std::remove_const_t<SourceElement>>> ConvertToCsr(
     const ExecutionContext& context, CscView<SourceElement> source,
@@ -938,6 +1733,23 @@ Result<CsrArray<std::remove_const_t<SourceElement>>> ConvertToCsr(
                                            destination_resource);
 }
 
+/**
+ * @brief Converts storage while preserving logical values and canonical
+ * invariants.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam SourceElement Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[in] destination_resource Allocator for the returned owning
+ * destination.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <SparseViewElement SourceElement>
 Result<CscArray<std::remove_const_t<SourceElement>>> ConvertToCsc(
     const ExecutionContext& context, CsrView<SourceElement> source,
@@ -947,6 +1759,25 @@ Result<CscArray<std::remove_const_t<SourceElement>>> ConvertToCsc(
                                            destination_resource);
 }
 
+/**
+ * @brief Converts storage while preserving logical values and canonical
+ * invariants.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[in] destination_resource Allocator for the returned owning
+ * destination.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <SparseViewElement Element, SparseCompressedFormat Format>
 Result<CoordinateArray<std::remove_const_t<Element>,
                        Extents<kDynamicExtent, kDynamicExtent>>>

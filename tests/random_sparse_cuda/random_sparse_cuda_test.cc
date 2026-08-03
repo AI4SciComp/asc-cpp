@@ -144,8 +144,9 @@ class TrackingDeviceResource final : public asc::MemoryResource {
                               std::size_t alignment) override {
     const std::size_t call = attempts_++;
     if (call == failure_call_) {
-      return asc::Status(asc::ErrorCode::kAllocation,
-                         "Injected M7 device allocation failure");
+      return asc::Status(
+          asc::ErrorCode::kAllocation,
+          "Injected Random Sparse CUDA device allocation failure");
     }
     auto result = backing_.Allocate(bytes, alignment);
     if (result.ok() && *result != nullptr) {

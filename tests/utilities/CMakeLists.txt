@@ -23,6 +23,6 @@ foreach(_source IN ITEMS command_line_test.cc timer_test.cc)
   asc_register_test(
     NAME "asc_cpp.utilities.${_name}"
     TARGET "${_target}"
-    LABELS "milestone-2;runtime;utilities"
+    LABELS "foundations;runtime;utilities"
   )
 endforeach()

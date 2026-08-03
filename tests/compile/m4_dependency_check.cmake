@@ -57,7 +57,7 @@ list(SORT _observed_sparse_headers)
 list(SORT _observed_sparse_sources)
 if(NOT _observed_sparse_headers STREQUAL _expected_sparse_headers)
   message(FATAL_ERROR
-    "Milestone 4 Sparse public inventory differs from the contract.\n"
+    "Sparse public inventory differs from the contract.\n"
     "Expected: ${_expected_sparse_headers}\n"
     "Observed: ${_observed_sparse_headers}"
   )
@@ -71,7 +71,7 @@ if(NOT _observed_sparse_sources STREQUAL _expected_sparse_sources)
 endif()
 if(NOT EXISTS "${SOURCE_DIR}/include/asc/expression/writable.h")
   message(FATAL_ERROR
-    "Milestone 4 requires include/asc/expression/writable.h."
+    "Sparse requires include/asc/expression/writable.h."
   )
 endif()
 
@@ -90,7 +90,7 @@ set(
 foreach(_relative_file IN LISTS _audited_files)
   set(_path "${SOURCE_DIR}/${_relative_file}")
   if(NOT EXISTS "${_path}")
-    message(FATAL_ERROR "Missing Milestone 4 audited file: ${_relative_file}")
+    message(FATAL_ERROR "Missing Sparse audited file: ${_relative_file}")
   endif()
   file(STRINGS "${_path}" _includes REGEX "^[ \t]*#[ \t]*include")
   foreach(_include IN LISTS _includes)

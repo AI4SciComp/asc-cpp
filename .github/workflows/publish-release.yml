@@ -1,0 +1,91 @@
+name: Publish verified release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing draft release tag
+        required: true
+        default: v0.9.0
+        type: string
+      confirmation:
+        description: Type publish-v0.9.0 after final owner approval
+        required: true
+        type: string
+
+permissions:
+  attestations: read
+  contents: write
+
+jobs:
+  publish:
+    name: Promote the verified immutable draft
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    environment: release-publication
+    steps:
+      - name: Check authorization inputs
+        shell: bash
+        run: |
+          test "${{ inputs.tag }}" = "v0.9.0"
+          test "${{ inputs.confirmation }}" = "publish-v0.9.0"
+      - name: Check out exact tag
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ inputs.tag }}
+          path: asc-cpp
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reverify release and public dependency identities
+        shell: bash
+        run: |
+          python3 asc-cpp/tools/release/verify_release_state.py \
+            --source asc-cpp --tag "${{ inputs.tag }}" --require-head-tag
+          archive="$RUNNER_TEMP/asc-cmake-8a7dcbad.tar.gz"
+          curl --fail --location --proto '=https' --tlsv1.2 \
+            --output "$archive" \
+            https://api.github.com/repos/AI4SciComp/asc-cmake/tarball/8a7dcbad3a97267cce59810aff24de800a3497a7
+          echo "67765391bef06c6c9a1a0c43e934d0db7a9c52876e66e0cf644042eeb0c2a5c9  $archive" | sha256sum --check --strict
+      - name: Download and independently verify the draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        shell: bash
+        run: |
+          state=$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --json isDraft --jq '.isDraft')
+          test "$state" = "true"
+          assets="$RUNNER_TEMP/draft-assets"
+          mkdir "$assets"
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --dir "$assets"
+          for required in \
+            ASCCpp-0.9.0-source.tar.gz \
+            ASCCpp-0.9.0-linux-x86_64-static.tar.gz \
+            ASCCpp-0.9.0-linux-x86_64-shared.tar.gz \
+            ASCCpp-0.9.0-docs.tar.gz \
+            ASCCpp-0.9.0.tag \
+            ASCCpp-0.9.0.spdx.json \
+            SHA256SUMS; do
+            test -f "$assets/$required"
+            gh attestation verify "$assets/$required" \
+              --repo "$GITHUB_REPOSITORY" \
+              --signer-workflow \
+                "$GITHUB_REPOSITORY/.github/workflows/release.yml" \
+              --source-ref "refs/tags/$RELEASE_TAG" \
+              --source-digest "$(git -C asc-cpp rev-parse HEAD)"
+          done
+          (cd "$assets" && sha256sum --check --strict SHA256SUMS)
+          python3 asc-cpp/tools/release/check_archive.py \
+            "$assets/ASCCpp-0.9.0-source.tar.gz" --kind source
+          python3 asc-cpp/tools/release/check_archive.py \
+            "$assets/ASCCpp-0.9.0-linux-x86_64-static.tar.gz" --kind install
+          python3 asc-cpp/tools/release/check_archive.py \
+            "$assets/ASCCpp-0.9.0-linux-x86_64-shared.tar.gz" --kind install
+      - name: Publish the unchanged draft assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          gh release edit "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --draft=false --prerelease=false --latest

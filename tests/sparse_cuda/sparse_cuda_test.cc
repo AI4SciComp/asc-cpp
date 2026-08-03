@@ -51,7 +51,7 @@ class TrackingDeviceResource final : public asc::MemoryResource {
     const std::size_t call = attempts_++;
     if (call == failure_call_) {
       return asc::Status(asc::ErrorCode::kAllocation,
-                         "Injected M7 clone allocation failure");
+                         "Injected sparse CUDA clone allocation failure");
     }
     auto result = backing_.Allocate(bytes, alignment);
     if (result.ok() && *result != nullptr) {

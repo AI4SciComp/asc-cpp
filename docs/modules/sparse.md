@@ -3,7 +3,7 @@
 `ASC::sparse` is the provider-free sparse-storage and reference-algebra
 component. It is a compiled static or shared library with exactly two direct
 ASC dependencies: `ASC::core` and `ASC::expression`. It has no Dense, Random,
-provider, or third-party dependency. Milestone 7 adds the separately requested
+provider, or third-party dependency. CUDA Sparse and Random adds the separately requested
 `ASC::sparse_cuda` provider without changing that base dependency graph.
 
 ```cmake
@@ -414,7 +414,7 @@ usable compiler, toolkit, runtime, or cuSPARSE is a configuration failure, not
 a silent provider disablement.
 
 The public provider header contains no CUDA or cuSPARSE SDK type. In addition
-to the retained Milestone 7 APIs, it exposes:
+to the retained CUDA Sparse and Random APIs, it exposes:
 
 ```text
 SparseCudaContext
@@ -589,25 +589,25 @@ safe; successful calls never hide a wait or device-wide synchronization.
 
 ## Deliberate omissions
 
-Issue 10 adds no hidden coordinate temporary, Dense dependency, provider
+Sparse BLAS adds no hidden coordinate temporary, Dense dependency, provider
 registry, device CSC/coordinate staging helper, preconditioner, iterative
 solver, factorization, BSR/SELL, arbitrary sparse conversion, general sparse
 device evaluation, mixed dense/sparse expression algebra, native-handle
 adoption, or implicit transfer/workspace. Sparse addition and sparse
 multiplication remain deferred because ADR 0019 does not approve them.
 
-Final local Issue 10 evidence classifies the standardized Sparse BLAS CUDA
+Final local Sparse BLAS evidence classifies the standardized Sparse BLAS CUDA
 rows as **configure-tested**, **compile-tested**, **runtime-tested**, and
 **parity-tested** on the recorded RTX 3060 environment. Trusted device CSC
-success is **skipped** because Milestone 7 has no approved device CSC producer;
+success is **skipped** because CUDA Sparse and Random has no approved device CSC producer;
 CSR evidence is not generalized to unimplemented device CSC execution. Exact
-commands, versions, counts, sanitizer/package status, and hardware details
-belong to Publication Checkpoint B. A documentation or compile-only example is
-not runtime or parity evidence.
+commands, versions, counts, sanitizer/package status, and hardware details are
+recorded in the [release validation report](../../release/release-validation.md).
+A documentation or compile-only example is not runtime or parity evidence.
 
-The [frozen Milestone 7 contract][m7-contract] is authoritative for the
-provider surface and deferred work. The [Milestone 4 contract][m4-contract]
+The [frozen CUDA Sparse and Random contract][m7-contract] is authoritative for the
+provider surface and deferred work. The [Sparse contract][m4-contract]
 remains authoritative for the provider-free CPU surface.
 
-[m4-contract]: ../development/asc-cpp-m4-sparse-cpu/milestone-contract.md
-[m7-contract]: ../development/asc-cpp-m7-gpu-sparse-random/milestone-contract.md
+[m4-contract]: ../architecture/decisions/0012-sparse-semantics.md
+[m7-contract]: ../architecture/decisions/0014-sparse-linalg-providers.md

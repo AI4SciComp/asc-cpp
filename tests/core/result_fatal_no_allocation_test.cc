@@ -3,9 +3,11 @@
 #include <cstdlib>
 #include <new>
 
+#include "../allocation_observation.h"
 #include "asc/core/result.h"
 #include "asc/core/status.h"
 
+#if !defined(ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR)
 namespace {
 
 bool fail_allocation = false;
@@ -26,10 +28,13 @@ void* operator new(std::size_t size) {
 void operator delete(void* memory) noexcept { std::free(memory); }
 
 void operator delete(void* memory, std::size_t) noexcept { std::free(memory); }
+#endif
 
 int main() {
   asc::Result<int> failure(
       asc::Status(asc::ErrorCode::kInvalidState, "no value"));
+#if !defined(ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR)
   fail_allocation = true;
+#endif
   return failure.value();
 }

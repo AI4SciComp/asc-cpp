@@ -30,7 +30,7 @@ foreach(_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.random.${_name}"
     TARGET "${_target}"
-    LABELS "milestone-2;milestone-13;random;runtime"
+    LABELS "foundations;random-engines;random;runtime"
   )
 endforeach()
 
@@ -48,7 +48,7 @@ _asc_random_configure_test(asc_random_quasi_test)
 asc_register_test(
   NAME asc_cpp.random.quasi_test
   TARGET asc_random_quasi_test
-  LABELS "allocation;concurrency;milestone-14;performance;random;runtime"
+  LABELS "allocation;concurrency;qmc;performance;random;runtime"
 )
 
 add_test(
@@ -60,7 +60,7 @@ add_test(
 )
 set_tests_properties(
   asc_cpp.random.sobol_artifacts
-  PROPERTIES LABELS "architecture;milestone-14;package;provenance;random"
+  PROPERTIES LABELS "architecture;qmc;package;provenance;random"
 )
 
 add_executable(
@@ -76,5 +76,5 @@ _asc_random_configure_test(asc_random_generator_benchmark)
 asc_register_test(
   NAME asc_cpp.random.generator_benchmark
   TARGET asc_random_generator_benchmark
-  LABELS "benchmark;milestone-13;milestone-14;performance;random"
+  LABELS "benchmark;random-engines;qmc;performance;random"
 )

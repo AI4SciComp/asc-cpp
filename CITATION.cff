@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use ASCCpp, please cite this software."
+title: "ASCCpp: a portable C++20 scientific-computing foundation"
+type: software
+authors:
+  - name: "AI4SciComp contributors"
+repository-code: "https://github.com/AI4SciComp/asc-cpp"
+url: "https://github.com/AI4SciComp/asc-cpp"
+license: Apache-2.0
+version: 0.9.0
+date-released: 2026-08-03
+preferred-citation:
+  type: software
+  title: "ASCCpp: a portable C++20 scientific-computing foundation"
+  authors:
+    - name: "AI4SciComp contributors"
+  version: 0.9.0
+  date-released: 2026-08-03
+  repository-code: "https://github.com/AI4SciComp/asc-cpp"

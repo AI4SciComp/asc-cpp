@@ -1,0 +1,15 @@
+name: Provider request or report
+description: Discuss a CPU or GPU provider boundary.
+title: "[Provider]: "
+labels: [provider]
+body:
+  - type: textarea
+    attributes:
+      label: Provider environment
+      description: Identify toolkit/runtime, versions, device, architecture, and linkage.
+    validations: {required: true}
+  - type: textarea
+    attributes:
+      label: Completion and ownership contract
+      description: Describe memory accessibility, streams, events, synchronization, workspace, and failure behavior.
+    validations: {required: true}

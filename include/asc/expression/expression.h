@@ -1,6 +1,17 @@
 #ifndef ASC_EXPRESSION_EXPRESSION_H_
 #define ASC_EXPRESSION_EXPRESSION_H_
 
+/**
+ * @file
+ * @brief Public Expression declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_expression
+ */
+
 #include <array>
 #include <concepts>
 #include <cstddef>
@@ -17,11 +28,38 @@
 
 namespace asc {
 
+/**
+ * @brief Identifies storage for conservative expression-alias checks.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ * @ingroup asc_expression
+ */
 class AliasToken {
  public:
+  /**
+   * @brief Constructs a AliasToken with the documented ownership and validity
+   * state.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] identity The identity value required by this contract.
+   * @ingroup asc_expression
+   */
   explicit constexpr AliasToken(const void* identity) noexcept
       : identity_(identity) {}
 
+  /**
+   * @brief Returns the object's identity contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   [[nodiscard]] constexpr const void* identity() const noexcept {
     return identity_;
   }
@@ -30,59 +68,158 @@ class AliasToken {
   const void* identity_;
 };
 
+/**
+ * @brief Selects the public SparsityEffect policy.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ * @ingroup asc_expression
+ */
 // Preserve the established public enum representation.
 // NOLINTNEXTLINE(performance-enum-size)
 enum class SparsityEffect {
-  kStructurePreserving,
-  kStructureFiltering,
-  kStructureUnion,
-  kStructureIntersection,
-  kValueDependent,
-  kDensifying,
-  kDestinationRequired,
+  kStructurePreserving,    ///< Selects structure preserving behavior.
+  kStructureFiltering,     ///< Selects structure filtering behavior.
+  kStructureUnion,         ///< Selects structure union behavior.
+  kStructureIntersection,  ///< Selects structure intersection behavior.
+  kValueDependent,         ///< Selects value dependent behavior.
+  kDensifying,             ///< Selects densifying behavior.
+  kDestinationRequired,    ///< Selects destination required behavior.
 };
 
+/**
+ * @brief Selects the public ExpressionOperation policy.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ * @ingroup asc_expression
+ */
 // Preserve the established public enum representation.
 // NOLINTNEXTLINE(performance-enum-size)
 enum class ExpressionOperation {
-  kExternal,
-  kScalar,
-  kNegate,
-  kAdd,
-  kSubtract,
-  kMultiply,
-  kTerminal,
+  kExternal,  ///< Selects external behavior.
+  kScalar,    ///< Selects scalar behavior.
+  kNegate,    ///< Selects negate behavior.
+  kAdd,       ///< Selects add behavior.
+  kSubtract,  ///< Selects subtract behavior.
+  kMultiply,  ///< Selects multiply behavior.
+  kTerminal,  ///< Selects terminal behavior.
 };
 
 // Specialize this class for an external readable expression. Specializations
 // provide value_type, rank, sparsity_effect, Shape, Read, and MayAlias.
+/**
+ * @brief Customizes expression value, shape, access, and alias semantics.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ * @ingroup asc_expression
+ */
 template <typename T>
 struct ExpressionAdapter;
 
+/**
+ * @brief Customizes expression value, shape, access, and alias semantics.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ * @ingroup asc_expression
+ */
 template <typename T>
   requires std::is_arithmetic_v<T>
 struct ExpressionAdapter<T> {
+  /**
+   * @brief Defines the public value_type type used by this Expression contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   using value_type = T;
+  /**
+   * @brief Stores the rank value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr rank_t rank = 0;
+  /**
+   * @brief Stores the sparsity effect value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr SparsityEffect sparsity_effect =
       SparsityEffect::kValueDependent;
+  /**
+   * @brief Stores the operation value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr ExpressionOperation operation = ExpressionOperation::kScalar;
 
+  /**
+   * @brief Returns the object's Shape contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr std::array<extent_t, 0> Shape(const T& /*value*/) noexcept {
     return {};
   }
 
+  /**
+   * @brief Performs the public Read operation defined by the Expression
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] value Value read or written by the operation.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr T Read(const T& value,
                           std::span<const index_t, 0> /*indices*/) noexcept {
     return value;
   }
 
+  /**
+   * @brief Reports whether the documented MayAlias condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr bool MayAlias(const T& /*value*/,
                                  AliasToken /*token*/) noexcept {
     return false;
   }
 };
 
+/**
+ * @brief Defines the public ReadableExpression concept contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ * @ingroup asc_expression
+ */
 template <typename T>
 concept ReadableExpression =
     requires(const std::remove_cvref_t<T>& expression, AliasToken token) {
@@ -110,25 +247,84 @@ concept ReadableExpression =
             typename ExpressionAdapter<std::remove_cvref_t<T>>::value_type>;
     };
 
+/**
+ * @brief Defines the public ExpressionValue type used by this Expression
+ * contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam T Type or non-type argument satisfying the declaration's constraints.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression T>
 using ExpressionValue =
     typename ExpressionAdapter<std::remove_cvref_t<T>>::value_type;
 
+/**
+ * @brief Stores the ExpressionRank value for this contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam T Type or non-type argument satisfying the declaration's constraints.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression T>
 inline constexpr rank_t kExpressionRank =
     ExpressionAdapter<std::remove_cvref_t<T>>::rank;
 
+/**
+ * @brief Performs the public ExpressionShape operation defined by the
+ * Expression contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam T Type or non-type argument satisfying the declaration's constraints.
+ * @param[in] expression The expression value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression T>
 [[nodiscard]] constexpr auto ExpressionShape(const T& expression) {
   return ExpressionAdapter<std::remove_cvref_t<T>>::Shape(expression);
 }
 
+/**
+ * @brief Performs the public ExpressionRead operation defined by the Expression
+ * contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam T Type or non-type argument satisfying the declaration's constraints.
+ * @param[in] expression The expression value required by this contract.
+ * @param[in] indices The indices value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression T>
 [[nodiscard]] constexpr ExpressionValue<T> ExpressionRead(
     const T& expression, std::span<const index_t, kExpressionRank<T>> indices) {
   return ExpressionAdapter<std::remove_cvref_t<T>>::Read(expression, indices);
 }
 
+/**
+ * @brief Reports whether the documented MayAlias condition holds.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam T Type or non-type argument satisfying the declaration's constraints.
+ * @param[in] expression The expression value required by this contract.
+ * @param[in] token The token value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression T>
 [[nodiscard]] constexpr bool MayAlias(const T& expression, AliasToken token) {
   return ExpressionAdapter<std::remove_cvref_t<T>>::MayAlias(expression, token);
@@ -137,6 +333,20 @@ template <ReadableExpression T>
 // Adapters whose reads depend on an execution context may optionally provide
 // `static Status ValidateAccess(const T&, const ExecutionContext&)`. Adapters
 // without the hook remain context-independent.
+/**
+ * @brief Validates the documented shape, access, ownership, and provider
+ * contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam T Type or non-type argument satisfying the declaration's constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] expression The expression value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression T>
 [[nodiscard]] Status ValidateExpressionAccess(const ExecutionContext& context,
                                               const T& expression) {
@@ -152,12 +362,36 @@ template <ReadableExpression T>
   }
 }
 
+/**
+ * @brief Performs the public ExpressionSparsityEffect operation defined by the
+ * Expression contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam T Type or non-type argument satisfying the declaration's constraints.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression T>
 [[nodiscard]] constexpr SparsityEffect ExpressionSparsityEffect(
     const T& /*expression*/) noexcept {
   return ExpressionAdapter<std::remove_cvref_t<T>>::sparsity_effect;
 }
 
+/**
+ * @brief Performs the public ExpressionOperationCategory operation defined by
+ * the Expression contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam T Type or non-type argument satisfying the declaration's constraints.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression T>
 [[nodiscard]] constexpr ExpressionOperation ExpressionOperationCategory(
     const T& /*expression*/) noexcept {
@@ -322,6 +556,13 @@ auto MakeBinary(Left&& left, Right&& right) {
 
 }  // namespace internal_expression
 
+/**
+ * @brief Defines the public NegateNode struct contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ * @ingroup asc_expression
+ */
 template <typename OperandStorage>
 struct ExpressionAdapter<internal_expression::NegateNode<OperandStorage>> {
  private:
@@ -331,28 +572,109 @@ struct ExpressionAdapter<internal_expression::NegateNode<OperandStorage>> {
           std::declval<const OperandStorage&>()))>;
 
  public:
+  /**
+   * @brief Defines the public value_type type used by this Expression contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   using value_type = internal_expression::NegatedValue<Operand>;
+  /**
+   * @brief Stores the rank value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr rank_t rank = kExpressionRank<Operand>;
+  /**
+   * @brief Stores the sparsity effect value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr SparsityEffect sparsity_effect =
       SparsityEffect::kStructurePreserving;
+  /**
+   * @brief Stores the operation value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr ExpressionOperation operation = ExpressionOperation::kNegate;
 
+  /**
+   * @brief Returns the object's Shape contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] node The node value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr auto Shape(const Node& node) {
     return ExpressionShape(
         internal_expression::StoredExpression(node.operand_storage()));
   }
 
+  /**
+   * @brief Performs the public Read operation defined by the Expression
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] node The node value required by this contract.
+   * @param[in] indices The indices value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr value_type Read(const Node& node,
                                    std::span<const index_t, rank> indices) {
     return -internal_expression::ReadOperand(
         internal_expression::StoredExpression(node.operand_storage()), indices);
   }
 
+  /**
+   * @brief Reports whether the documented MayAlias condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] node The node value required by this contract.
+   * @param[in] token The token value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr bool MayAlias(const Node& node, AliasToken token) {
     return asc::MayAlias(
         internal_expression::StoredExpression(node.operand_storage()), token);
   }
 
+  /**
+   * @brief Validates the documented shape, access, ownership, and provider
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] node The node value required by this contract.
+   * @param[in] context Execution backend and accessibility/order contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_expression
+   */
   static Status ValidateAccess(const Node& node,
                                const ExecutionContext& context) {
     return ValidateExpressionAccess(
@@ -360,6 +682,13 @@ struct ExpressionAdapter<internal_expression::NegateNode<OperandStorage>> {
   }
 };
 
+/**
+ * @brief Defines the public BinaryNode struct contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ * @ingroup asc_expression
+ */
 template <typename LeftStorage, typename RightStorage,
           ExpressionOperation Operation>
 struct ExpressionAdapter<
@@ -377,9 +706,33 @@ struct ExpressionAdapter<
   static constexpr rank_t kRightRank = kExpressionRank<Right>;
 
  public:
+  /**
+   * @brief Defines the public value_type type used by this Expression contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   using value_type =
       internal_expression::BinaryValueType<Operation, Left, Right>;
+  /**
+   * @brief Stores the rank value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr rank_t rank = kLeftRank == 0 ? kRightRank : kLeftRank;
+  /**
+   * @brief Stores the sparsity effect value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr SparsityEffect sparsity_effect = [] {
     if constexpr ((kLeftRank == 0) != (kRightRank == 0)) {
       return SparsityEffect::kValueDependent;
@@ -389,8 +742,27 @@ struct ExpressionAdapter<
       return SparsityEffect::kStructureUnion;
     }
   }();
+  /**
+   * @brief Stores the operation value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @ingroup asc_expression
+   */
   static constexpr ExpressionOperation operation = Operation;
 
+  /**
+   * @brief Returns the object's Shape contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] node The node value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr std::array<extent_t, rank> Shape(const Node& node) {
     if constexpr (rank == 0) {
       return {};
@@ -403,6 +775,19 @@ struct ExpressionAdapter<
     }
   }
 
+  /**
+   * @brief Performs the public Read operation defined by the Expression
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] node The node value required by this contract.
+   * @param[in] indices The indices value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr value_type Read(const Node& node,
                                    std::span<const index_t, rank> indices) {
     const auto& left =
@@ -421,6 +806,18 @@ struct ExpressionAdapter<
     }
   }
 
+  /**
+   * @brief Reports whether the documented MayAlias condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] node The node value required by this contract.
+   * @param[in] token The token value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_expression
+   */
   static constexpr bool MayAlias(const Node& node, AliasToken token) {
     return asc::MayAlias(
                internal_expression::StoredExpression(node.left_storage()),
@@ -430,6 +827,19 @@ struct ExpressionAdapter<
                token);
   }
 
+  /**
+   * @brief Validates the documented shape, access, ownership, and provider
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Expression module contract.
+   *
+   * @param[in] node The node value required by this contract.
+   * @param[in] context Execution backend and accessibility/order contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_expression
+   */
   static Status ValidateAccess(const Node& node,
                                const ExecutionContext& context) {
     Status left_status = ValidateExpressionAccess(
@@ -442,6 +852,20 @@ struct ExpressionAdapter<
   }
 };
 
+/**
+ * @brief Performs the public MakeNegate operation defined by the Expression
+ * contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam Operand Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] operand The operand value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression Operand>
 [[nodiscard]] constexpr auto MakeNegate(Operand&& operand) {
   using Storage = internal_expression::CapturedExpression<Operand&&>;
@@ -449,18 +873,69 @@ template <ReadableExpression Operand>
       internal_expression::CaptureExpression(std::forward<Operand>(operand)));
 }
 
+/**
+ * @brief Performs the public MakeAdd operation defined by the Expression
+ * contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam Left Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Right Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression Left, ReadableExpression Right>
 [[nodiscard]] auto MakeAdd(Left&& left, Right&& right) {
   return internal_expression::MakeBinary<ExpressionOperation::kAdd>(
       std::forward<Left>(left), std::forward<Right>(right));
 }
 
+/**
+ * @brief Performs the public MakeSubtract operation defined by the Expression
+ * contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam Left Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Right Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression Left, ReadableExpression Right>
 [[nodiscard]] auto MakeSubtract(Left&& left, Right&& right) {
   return internal_expression::MakeBinary<ExpressionOperation::kSubtract>(
       std::forward<Left>(left), std::forward<Right>(right));
 }
 
+/**
+ * @brief Performs the public MakeMultiply operation defined by the Expression
+ * contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Expression module contract.
+ *
+ * @tparam Left Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Right Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_expression
+ */
 template <ReadableExpression Left, ReadableExpression Right>
 [[nodiscard]] auto MakeMultiply(Left&& left, Right&& right) {
   return internal_expression::MakeBinary<ExpressionOperation::kMultiply>(

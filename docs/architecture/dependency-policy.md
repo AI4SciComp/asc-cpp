@@ -18,8 +18,8 @@ Architecture: exactly six modules (`core`, `utilities`, `expression`, `dense`,
 `random_dense` and `random_sparse` are facets, not modules.
 `ASC::random_dense` depends directly on `ASC::random` and `ASC::dense`;
 `ASC::random_sparse` depends directly on `ASC::random` and `ASC::sparse`.
-The future `ASC::cpp` aggregate may depend on every provider-free module and
-random storage facet. It must not contain a provider facet.
+The `ASC::cpp` aggregate depends on every provider-free module and Random
+storage facet. It does not contain a provider facet.
 
 ## Hard ceilings
 
@@ -38,21 +38,21 @@ No top-level `array`, `linalg`, or generic backend module may be introduced.
 Dense and sparse own their respective storage, expression evaluation, and
 CPU/GPU linear algebra.
 
-## Milestone 1 enforcement
+## Core enforcement
 
-Milestone 1 exposes only `asc_core` / `ASC::core`. Its direct ASC and external
-dependency sets are empty. The public and compiled file sets are frozen in
-`docs/development/asc-cpp-m1-core/milestone-contract.md`.
+Core exposes only `asc_core` / `ASC::core`. Its direct ASC and external
+dependency sets are empty. The public and compiled file sets are enforced by
+the architecture and public-file policy tests.
 
 The architecture tests:
 
 - compare the live component graph with the dependency manifest;
-- require only the approved Milestone 1 product target;
+- require only the approved Core product target;
 - compare public headers and compiled sources with the frozen file set;
 - reject provider headers and retired module paths;
 - compile every public header independently and with exceptions disabled;
 - verify the build-tree, installed, and relocated `core` package consumer.
 
-Every later milestone must update the manifest, capability evidence, component
-package, dependency audit, and negative consumer tests in the same change that
-adds an approved edge.
+Every later capability change must update the manifest, capability evidence,
+component package, dependency audit, and negative consumer tests in the same
+change that adds an approved edge.

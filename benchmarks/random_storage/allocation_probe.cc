@@ -14,6 +14,7 @@ namespace {
 bool g_enabled = false;
 std::size_t g_count = 0;
 
+#if !defined(ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR)
 void Record() noexcept {
   if (g_enabled) {
     ++g_count;
@@ -64,9 +65,11 @@ void DeallocateAligned(void* pointer) noexcept {
   std::free(pointer);
 #endif
 }
+#endif
 
 }  // namespace
 
+#if !defined(ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR)
 void* operator new(std::size_t size) { return Allocate(size); }
 void* operator new[](std::size_t size) { return Allocate(size); }
 void* operator new(std::size_t size, const std::nothrow_t&) noexcept {
@@ -123,6 +126,7 @@ void operator delete(void* pointer, std::size_t, std::align_val_t) noexcept {
 void operator delete[](void* pointer, std::size_t, std::align_val_t) noexcept {
   DeallocateAligned(pointer);
 }
+#endif
 
 namespace asc_random_storage_benchmark {
 

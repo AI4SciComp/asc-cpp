@@ -1,12 +1,12 @@
 format|asc-cpp-elf-abi-digest-v1
-environment|Ubuntu 22.04.5 LTS|x86_64|GCC 11.4.0|libstdc++.so.6.0.30 ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128|glibc 2.35-0ubuntu3.13|Debug|shared|CUDA disabled
-report-sha256|3ec227fef0cd486db555d7ddec02a08b91d4a993fbd8791b3ce0a9463687332b
-library|libasc_core.so|defined-dynamic-symbols|153|weak-or-unique|30
-library|libasc_dense.so|defined-dynamic-symbols|23|weak-or-unique|3
-library|libasc_random.so|defined-dynamic-symbols|8|weak-or-unique|2
-library|libasc_sparse.so|defined-dynamic-symbols|5|weak-or-unique|3
-library|libasc_utilities.so|defined-dynamic-symbols|41|weak-or-unique|32
-observation|ELF64|little-endian|x86-64|unversioned SONAMEs
+environment|Ubuntu 22.04.5 LTS|x86_64|GCC 11.4.0|libstdc++.so.6.0.30 ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128|glibc 2.35-0ubuntu3.14|Debug|shared|CUDA disabled
+report-sha256|c28bd7c30053d986543a29a3fd33ae945433e9f43777ea45d8ece2e544da14a5
+library|libasc_core.so.0.9.0|defined-dynamic-symbols|153|weak-or-unique|30
+library|libasc_dense.so.0.9.0|defined-dynamic-symbols|169|weak-or-unique|99
+library|libasc_random.so.0.9.0|defined-dynamic-symbols|46|weak-or-unique|3
+library|libasc_sparse.so.0.9.0|defined-dynamic-symbols|6|weak-or-unique|4
+library|libasc_utilities.so.0.9.0|defined-dynamic-symbols|44|weak-or-unique|35
+observation|ELF64|little-endian|x86-64|SONAME 0.9
 observation|Public-template support includes internal_dense_blas and internal_sparse_blas symbols.
 observation|The exported set includes libstdc++ weak/unique template instantiations and is compiler/build-mode specific.
 scope|Observation baseline only; no cross-minor or cross-toolchain ABI promise.

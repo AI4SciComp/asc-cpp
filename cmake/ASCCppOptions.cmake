@@ -14,13 +14,23 @@ endif()
 
 option(
   ASC_CPP_BUILD_TESTING
-  "Build the ASCCpp Milestone 8 hardening and predecessor tests"
+  "Build the ASCCpp verification suite"
   "${_asc_cpp_build_testing_default}"
 )
 option(
   ASC_CPP_INSTALL
-  "Install the ASCCpp Milestone 8 candidate package"
+  "Install the ASCCpp package"
   "${_asc_cpp_install_default}"
+)
+option(
+  ASC_CPP_BUILD_DOCUMENTATION
+  "Build the ASCCpp API documentation"
+  OFF
+)
+option(
+  ASC_CPP_FETCH_ASCCMAKE
+  "Fetch the exact ASCCMake 0.1.0 source when no package is available"
+  "${PROJECT_IS_TOP_LEVEL}"
 )
 option(
   ASC_CPP_ENABLE_CUDA

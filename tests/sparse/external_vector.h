@@ -67,12 +67,12 @@ struct ExpressionAdapter<::M4ExternalVector<Element>> {
                                const ExecutionContext& context) {
     if (context.backend() != Backend::kSerial) {
       return Status(ErrorCode::kUnsupported,
-                    "M4 external vector requires serial execution");
+                    "Sparse external vector requires serial execution");
     }
     if (vector.memory_space != MemorySpace::kHost ||
         !context.CanAccess(vector.memory_space)) {
       return Status(ErrorCode::kMemoryAccess,
-                    "M4 external vector requires host storage");
+                    "Sparse external vector requires host storage");
     }
     return Status::Ok();
   }

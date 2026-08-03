@@ -26,13 +26,7 @@ if(ASC_CPP_INTERNAL_ENABLE_CUDA_RUNTIME_TEST_HOOKS
   )
 endif()
 
-find_package(ASCCMake 0.1.0 EXACT CONFIG REQUIRED)
-if(NOT ASCCMake_VERSION VERSION_EQUAL "0.1.0")
-  message(FATAL_ERROR
-    "Milestone 8 requires ASCCMake 0.1.0 exactly; found "
-    "'${ASCCMake_VERSION}'."
-  )
-endif()
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/AcquireASCCMake.cmake")
 
 if(ASC_CPP_ENABLE_CUDA)
   set(CMAKE_CUDA_RUNTIME_LIBRARY Shared)
@@ -77,6 +71,90 @@ add_subdirectory(src/expression)
 add_subdirectory(src/dense)
 add_subdirectory(src/sparse)
 add_subdirectory(src/random)
+
+set(_asc_cpp_reproducible_source_root "ASCCpp-${PROJECT_VERSION}")
+set(_asc_cpp_reproducible_build_root "ASCCpp-${PROJECT_VERSION}-build")
+string(FIND "${PROJECT_SOURCE_DIR}" " " _asc_cpp_source_space)
+string(FIND "${PROJECT_BINARY_DIR}" " " _asc_cpp_build_space)
+foreach(_asc_cpp_compiled_target IN ITEMS
+    asc_core
+    asc_utilities
+    asc_dense
+    asc_sparse
+    asc_random
+    asc_core_cuda
+    asc_dense_cuda
+    asc_sparse_cuda
+    asc_random_cuda
+    asc_random_dense_cuda
+    asc_random_sparse_cuda
+)
+  if(TARGET "${_asc_cpp_compiled_target}")
+    if(MSVC)
+      target_compile_options(
+        "${_asc_cpp_compiled_target}"
+        PRIVATE
+          "$<$<COMPILE_LANGUAGE:CXX>:/pathmap:${PROJECT_SOURCE_DIR}=${_asc_cpp_reproducible_source_root}>"
+          "$<$<COMPILE_LANGUAGE:CXX>:/pathmap:${PROJECT_BINARY_DIR}=${_asc_cpp_reproducible_build_root}>"
+      )
+    elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+      target_compile_options(
+        "${_asc_cpp_compiled_target}"
+        PRIVATE
+          "$<$<COMPILE_LANGUAGE:CXX>:-ffile-prefix-map=${PROJECT_SOURCE_DIR}=${_asc_cpp_reproducible_source_root}>"
+          "$<$<COMPILE_LANGUAGE:CXX>:-ffile-prefix-map=${PROJECT_BINARY_DIR}=${_asc_cpp_reproducible_build_root}>"
+      )
+    endif()
+    if(CMAKE_CUDA_COMPILER_ID STREQUAL "NVIDIA")
+      if(MSVC)
+        if(_asc_cpp_source_space EQUAL -1)
+          target_compile_options(
+            "${_asc_cpp_compiled_target}"
+            PRIVATE
+              "$<$<COMPILE_LANGUAGE:CUDA>:-Xcompiler=/pathmap:${PROJECT_SOURCE_DIR}=${_asc_cpp_reproducible_source_root}>"
+          )
+        endif()
+        if(_asc_cpp_build_space EQUAL -1)
+          target_compile_options(
+            "${_asc_cpp_compiled_target}"
+            PRIVATE
+              "$<$<COMPILE_LANGUAGE:CUDA>:-Xcompiler=/pathmap:${PROJECT_BINARY_DIR}=${_asc_cpp_reproducible_build_root}>"
+          )
+        endif()
+      else()
+        # NVCC splits a forwarded host option at spaces even when its argv
+        # element is quoted.  Omit only the affected CUDA-language map; CXX
+        # compilation still uses the quoted compiler option above.
+        if(_asc_cpp_source_space EQUAL -1)
+          target_compile_options(
+            "${_asc_cpp_compiled_target}"
+            PRIVATE
+              "$<$<COMPILE_LANGUAGE:CUDA>:-Xcompiler=-ffile-prefix-map=${PROJECT_SOURCE_DIR}=${_asc_cpp_reproducible_source_root}>"
+          )
+        endif()
+        if(_asc_cpp_build_space EQUAL -1)
+          target_compile_options(
+            "${_asc_cpp_compiled_target}"
+            PRIVATE
+              "$<$<COMPILE_LANGUAGE:CUDA>:-Xcompiler=-ffile-prefix-map=${PROJECT_BINARY_DIR}=${_asc_cpp_reproducible_build_root}>"
+          )
+        endif()
+      endif()
+    endif()
+    set_target_properties(
+      "${_asc_cpp_compiled_target}"
+      PROPERTIES
+        BUILD_RPATH_USE_ORIGIN ON
+        VERSION "${PROJECT_VERSION}"
+        SOVERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
+    )
+  endif()
+endforeach()
+unset(_asc_cpp_compiled_target)
+unset(_asc_cpp_build_space)
+unset(_asc_cpp_reproducible_build_root)
+unset(_asc_cpp_reproducible_source_root)
+unset(_asc_cpp_source_space)
 
 add_library(asc_cpp INTERFACE)
 add_library(ASC::cpp ALIAS asc_cpp)
@@ -493,6 +571,10 @@ if(ASC_CPP_BUILD_TESTING)
   endif()
   find_package(Threads REQUIRED)
   add_subdirectory(tests)
+endif()
+
+if(ASC_CPP_BUILD_DOCUMENTATION)
+  add_subdirectory(docs)
 endif()
 
 unset(_asc_cpp_install_bindir)

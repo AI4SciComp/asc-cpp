@@ -2,7 +2,7 @@
 
 `ASC::core` is the provider-free CPU foundation of asc-cpp. It has no direct
 ASC or external dependency, and its public headers use only C++20
-standard-library facilities. Milestone 6 adds the separately requested
+standard-library facilities. CUDA Core and Dense adds the separately requested
 `ASC::core_cuda` provider facet; it does not add CUDA to the base target or
 umbrella.
 
@@ -165,7 +165,7 @@ The fixed-width little-endian helpers encode and decode integer values and IEC
 60559 floating values by their specified bits. They do not dump native object
 layout and therefore do not inherit native byte order or padding. Dense,
 sparse, random-state, logging, and device-transfer formats are not defined in
-Milestone 1.
+Core.
 
 ## Memory spaces and allocation
 
@@ -396,7 +396,7 @@ the same component name and headers. A component-free
 `find_package(ASCCpp 0.9 CONFIG REQUIRED)` request selects the provider-free
 `cpp` aggregate. It does not select `core_cuda` or discover CUDAToolkit.
 
-Milestone 6 Core deliberately excludes:
+CUDA Core and Dense Core deliberately excludes:
 
 - a provider edge from `ASC::core` or `ASC::cpp`;
 - automatic device choice, mutable global policy, provider registries, or a
@@ -410,9 +410,9 @@ Milestone 6 Core deliberately excludes:
   parsers; and
 - compatibility APIs from the deleted implementation.
 
-The [frozen Milestone 6 contract][contract] is authoritative for the CUDA
-facet. The [Milestone 1 contract][core-contract] remains the base Core
+The [frozen CUDA Core and Dense contract][contract] is authoritative for the CUDA
+facet. The [Core contract][core-contract] remains the base Core
 authority.
 
-[contract]: ../development/asc-cpp-m6-gpu-core-dense/milestone-contract.md
-[core-contract]: ../development/asc-cpp-m1-core/milestone-contract.md
+[contract]: ../architecture/decisions/0008-memory-and-execution.md
+[core-contract]: ../architecture/dependency-policy.md

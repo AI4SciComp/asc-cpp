@@ -1,6 +1,17 @@
 #ifndef ASC_DENSE_EVALUATE_H_
 #define ASC_DENSE_EVALUATE_H_
 
+/**
+ * @file
+ * @brief Public Dense declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_dense
+ */
+
 #include <array>
 #include <concepts>
 #include <cstddef>
@@ -120,6 +131,24 @@ Result<Element> AddReductionValue(Element accumulator, Element value) {
 
 }  // namespace internal_dense_evaluate
 
+/**
+ * @brief Performs the public Evaluate operation defined by the Dense contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Expression Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] expression The expression value required by this contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <ReadableExpression Expression, typename Element, std::size_t Rank>
   requires(!std::is_const_v<Element> && DenseElement<Element> &&
            std::same_as<ExpressionValue<Expression>, Element>)
@@ -183,6 +212,20 @@ Status Evaluate(const ExecutionContext& context, const Expression& expression,
   }
 }
 
+/**
+ * @brief Performs the public ReduceSum operation defined by the Dense contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_dense
+ */
 template <typename Element, std::size_t Rank>
   requires DenseElement<std::remove_const_t<Element>>
 Result<std::remove_const_t<Element>> ReduceSum(
@@ -215,6 +258,20 @@ Result<std::remove_const_t<Element>> ReduceSum(
   return result;
 }
 
+/**
+ * @brief Performs the public ReduceMin operation defined by the Dense contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_dense
+ */
 template <typename Element, std::size_t Rank>
   requires DenseElement<std::remove_const_t<Element>>
 Result<std::remove_const_t<Element>> ReduceMin(
@@ -250,6 +307,20 @@ Result<std::remove_const_t<Element>> ReduceMin(
   return result;
 }
 
+/**
+ * @brief Performs the public ReduceMax operation defined by the Dense contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_dense
+ */
 template <typename Element, std::size_t Rank>
   requires DenseElement<std::remove_const_t<Element>>
 Result<std::remove_const_t<Element>> ReduceMax(

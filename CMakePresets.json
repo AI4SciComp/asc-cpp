@@ -9,14 +9,14 @@
     {
       "name": "base",
       "hidden": true,
-      "binaryDir": "${sourceDir}/build/${presetName}",
+      "binaryDir": "${sourceParentDir}/asc-cpp-build/${presetName}",
       "cacheVariables": {
         "ASC_CPP_ENABLE_CUDA": "OFF"
       }
     },
     {
       "name": "dev-debug",
-      "displayName": "Milestone 8 hardening / Debug (CUDA disabled)",
+      "displayName": "Provider-free development / Debug",
       "inherits": "base",
       "cacheVariables": {
         "ASC_CPP_BUILD_TESTING": "OFF",
@@ -28,7 +28,7 @@
     },
     {
       "name": "dev-release",
-      "displayName": "Milestone 8 hardening / Release (CUDA disabled)",
+      "displayName": "Provider-free development / Release",
       "inherits": "base",
       "cacheVariables": {
         "ASC_CPP_BUILD_TESTING": "OFF",
@@ -40,39 +40,41 @@
     },
     {
       "name": "test-debug",
-      "displayName": "Milestone 8 CPU tests / Debug static",
+      "displayName": "Provider-free tests / Debug static",
       "inherits": "base",
       "cacheVariables": {
         "ASC_CPP_BUILD_TESTING": "ON",
         "ASC_CPP_INSTALL": "ON",
         "ASC_CPP_WARNINGS_AS_ERRORS": "ON",
+        "BUILD_SHARED_LIBS": "OFF",
         "BUILD_TESTING": "ON",
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
       "name": "test-release",
-      "displayName": "Milestone 8 CPU tests / Release static",
+      "displayName": "Provider-free tests / Release static",
       "inherits": "base",
       "cacheVariables": {
         "ASC_CPP_BUILD_TESTING": "ON",
         "ASC_CPP_INSTALL": "ON",
         "ASC_CPP_WARNINGS_AS_ERRORS": "ON",
+        "BUILD_SHARED_LIBS": "OFF",
         "BUILD_TESTING": "ON",
         "CMAKE_BUILD_TYPE": "Release"
       }
     },
     {
       "name": "install-test",
-      "displayName": "Milestone 8 relocated component package tests",
+      "displayName": "Installed and relocated package tests",
       "inherits": "test-release",
       "cacheVariables": {
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install-test/prefix with spaces"
+        "CMAKE_INSTALL_PREFIX": "${sourceParentDir}/asc-cpp-build/install-test/prefix with spaces"
       }
     },
     {
       "name": "test-shared",
-      "displayName": "Milestone 8 CPU tests / Debug shared",
+      "displayName": "Provider-free tests / Debug shared",
       "inherits": "test-debug",
       "cacheVariables": {
         "BUILD_SHARED_LIBS": "ON"
@@ -80,7 +82,7 @@
     },
     {
       "name": "test-release-shared",
-      "displayName": "Milestone 8 CPU tests / Release shared",
+      "displayName": "Provider-free tests / Release shared",
       "inherits": "test-release",
       "cacheVariables": {
         "BUILD_SHARED_LIBS": "ON"
@@ -88,7 +90,7 @@
     },
     {
       "name": "test-asan-ubsan",
-      "displayName": "Milestone 8 CPU tests / ASan and UBSan",
+      "displayName": "Provider-free tests / Address and undefined sanitizers",
       "inherits": "test-debug",
       "cacheVariables": {
         "ASC_CPP_ENABLE_ADDRESS_SANITIZER": "ON",
@@ -96,8 +98,45 @@
       }
     },
     {
+      "name": "test-lsan",
+      "displayName": "Provider-free tests / LeakSanitizer",
+      "inherits": "test-debug",
+      "cacheVariables": {
+        "ASC_CPP_ENABLE_LEAK_SANITIZER": "ON"
+      }
+    },
+    {
+      "name": "test-tsan",
+      "displayName": "Provider-free concurrency tests / ThreadSanitizer",
+      "inherits": "test-debug",
+      "cacheVariables": {
+        "ASC_CPP_ENABLE_THREAD_SANITIZER": "ON"
+      }
+    },
+    {
+      "name": "tidy",
+      "displayName": "Full Clang-Tidy analysis",
+      "inherits": "dev-debug",
+      "cacheVariables": {
+        "CMAKE_CXX_CLANG_TIDY": "clang-tidy-18",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "docs",
+      "displayName": "Strict API documentation",
+      "inherits": "base",
+      "cacheVariables": {
+        "ASC_CPP_BUILD_DOCUMENTATION": "ON",
+        "ASC_CPP_BUILD_TESTING": "OFF",
+        "ASC_CPP_INSTALL": "OFF",
+        "BUILD_TESTING": "OFF",
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
       "name": "test-cuda",
-      "displayName": "Milestone 8 CUDA tests / Release static",
+      "displayName": "Experimental CUDA evidence / Release static",
       "inherits": "test-release",
       "cacheVariables": {
         "ASC_CPP_ENABLE_CUDA": "ON",
@@ -106,7 +145,7 @@
     },
     {
       "name": "test-cuda-shared",
-      "displayName": "Milestone 8 CUDA tests / Release shared",
+      "displayName": "Experimental CUDA evidence / Release shared",
       "inherits": "test-cuda",
       "cacheVariables": {
         "BUILD_SHARED_LIBS": "ON"
@@ -114,131 +153,93 @@
     }
   ],
   "buildPresets": [
+    { "name": "dev-debug", "configurePreset": "dev-debug", "configuration": "Debug" },
+    { "name": "dev-release", "configurePreset": "dev-release", "configuration": "Release" },
+    { "name": "test-debug", "configurePreset": "test-debug", "configuration": "Debug" },
+    { "name": "test-release", "configurePreset": "test-release", "configuration": "Release" },
+    { "name": "install-test", "configurePreset": "install-test", "configuration": "Release" },
+    { "name": "test-shared", "configurePreset": "test-shared", "configuration": "Debug" },
+    { "name": "test-release-shared", "configurePreset": "test-release-shared", "configuration": "Release" },
+    { "name": "test-asan-ubsan", "configurePreset": "test-asan-ubsan", "configuration": "Debug" },
+    { "name": "test-lsan", "configurePreset": "test-lsan", "configuration": "Debug" },
+    { "name": "test-tsan", "configurePreset": "test-tsan", "configuration": "Debug" },
+    { "name": "tidy", "configurePreset": "tidy", "configuration": "Debug" },
     {
-      "name": "dev-debug",
-      "configurePreset": "dev-debug",
-      "configuration": "Debug"
+      "name": "docs",
+      "configurePreset": "docs",
+      "configuration": "Release",
+      "targets": ["asc_cpp_docs_check"]
     },
-    {
-      "name": "dev-release",
-      "configurePreset": "dev-release",
-      "configuration": "Release"
-    },
-    {
-      "name": "test-debug",
-      "configurePreset": "test-debug",
-      "configuration": "Debug"
-    },
-    {
-      "name": "test-release",
-      "configurePreset": "test-release",
-      "configuration": "Release"
-    },
-    {
-      "name": "install-test",
-      "configurePreset": "install-test",
-      "configuration": "Release"
-    },
-    {
-      "name": "test-shared",
-      "configurePreset": "test-shared",
-      "configuration": "Debug"
-    },
-    {
-      "name": "test-release-shared",
-      "configurePreset": "test-release-shared",
-      "configuration": "Release"
-    },
-    {
-      "name": "test-asan-ubsan",
-      "configurePreset": "test-asan-ubsan",
-      "configuration": "Debug"
-    },
-    {
-      "name": "test-cuda",
-      "configurePreset": "test-cuda",
-      "configuration": "Release"
-    },
-    {
-      "name": "test-cuda-shared",
-      "configurePreset": "test-cuda-shared",
-      "configuration": "Release"
-    }
+    { "name": "test-cuda", "configurePreset": "test-cuda", "configuration": "Release" },
+    { "name": "test-cuda-shared", "configurePreset": "test-cuda-shared", "configuration": "Release" }
   ],
   "testPresets": [
     {
       "name": "test-debug",
       "configurePreset": "test-debug",
       "configuration": "Debug",
-      "output": {
-        "outputOnFailure": true
-      }
+      "output": { "outputOnFailure": true }
     },
     {
       "name": "test-release",
       "configurePreset": "test-release",
       "configuration": "Release",
-      "output": {
-        "outputOnFailure": true
-      }
+      "output": { "outputOnFailure": true }
     },
     {
       "name": "install-test",
       "configurePreset": "install-test",
       "configuration": "Release",
-      "filter": {
-        "include": {
-          "label": "package"
-        }
-      },
-      "output": {
-        "outputOnFailure": true
-      }
+      "filter": { "include": { "label": "package" } },
+      "output": { "outputOnFailure": true }
     },
     {
       "name": "test-shared",
       "configurePreset": "test-shared",
       "configuration": "Debug",
-      "output": {
-        "outputOnFailure": true
-      }
+      "output": { "outputOnFailure": true }
     },
     {
       "name": "test-release-shared",
       "configurePreset": "test-release-shared",
       "configuration": "Release",
-      "output": {
-        "outputOnFailure": true
-      }
+      "output": { "outputOnFailure": true }
     },
     {
       "name": "test-asan-ubsan",
       "configurePreset": "test-asan-ubsan",
       "configuration": "Debug",
+      "filter": { "exclude": { "label": "package|consumer" } },
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "test-lsan",
+      "configurePreset": "test-lsan",
+      "configuration": "Debug",
+      "filter": { "exclude": { "label": "package|consumer" } },
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "test-tsan",
+      "configurePreset": "test-tsan",
+      "configuration": "Debug",
       "filter": {
-        "exclude": {
-          "label": "package|consumer"
-        }
+        "include": { "label": "concurrency" },
+        "exclude": { "label": "package|consumer|benchmark" }
       },
-      "output": {
-        "outputOnFailure": true
-      }
+      "output": { "outputOnFailure": true }
     },
     {
       "name": "test-cuda",
       "configurePreset": "test-cuda",
       "configuration": "Release",
-      "output": {
-        "outputOnFailure": true
-      }
+      "output": { "outputOnFailure": true }
     },
     {
       "name": "test-cuda-shared",
       "configurePreset": "test-cuda-shared",
       "configuration": "Release",
-      "output": {
-        "outputOnFailure": true
-      }
+      "output": { "outputOnFailure": true }
     }
   ]
 }

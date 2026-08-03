@@ -2,7 +2,7 @@
 #include "asc/sparse.h"
 
 #if defined(__cpp_exceptions) || defined(__EXCEPTIONS) || defined(_CPPUNWIND)
-#error "This Milestone 4 compile contract must disable C++ exceptions."
+#error "This Sparse compile contract must disable C++ exceptions."
 #endif
 
 int main() {

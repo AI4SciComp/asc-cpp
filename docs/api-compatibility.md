@@ -1,17 +1,16 @@
 # ASCCpp API and compatibility policy
 
-Status: unreleased `0.9.0` Issue 16 Feature Gate B candidate
+Status: `0.9.0` release contract
 
-Date: 2026-08-02
+Date: 2026-08-03
 
-Milestone completion, validation, publication, and release are separate
-decisions. This `0.9.0` candidate is neither a release nor a claim of `1.0`
-source or ABI stability.
+Validation, publication, and release are separate decisions. Version `0.9.0`
+does not claim `1.0` source or ABI stability.
 
-Issue 16 changes no compatibility dimension. It audits every approved Random
+Random release contract changes no compatibility dimension. It audits every approved Random
 mapping against the public surface, versioned semantics, implementation path,
-registered evidence, and package consumer recorded by the
-[Random completion report](random-completion-audit.md).
+registered evidence, and package consumers recorded by the
+[Random contract](contracts/random-crosswalk.yaml).
 
 ## Version policy
 
@@ -26,11 +25,11 @@ registered evidence, and package consumer recorded by the
 For an installed `0.9.0` package, non-`EXACT` requests for `0.9` and `0.9.0`
 are compatible. A request newer than the installed patch, a different minor,
 or a different major is incompatible. `EXACT 0.9.0` requires the exact
-candidate version.
+release version.
 
 ## Separate compatibility dimensions
 
-| Dimension | Candidate statement |
+| Dimension | 0.9.0 statement |
 | --- | --- |
 | source | Declared public headers, names, signatures, concepts, constraints, and documented behavior form the reviewed `0.9.x` C++ surface |
 | ABI | Local symbols, layouts, sizes, and alignments are observations only; there is no cross-toolchain or cross-minor ABI promise |
@@ -102,13 +101,13 @@ rules are part of the source contract. Unsupported cases fail constraints or
 return an explicit status; they do not silently convert, transfer, pack,
 allocate, synchronize, or fall back.
 
-Issue 9 adds exact checked-descriptor overloads for all classic Dense BLAS
+Dense BLAS Level 3 adds exact checked-descriptor overloads for all classic Dense BLAS
 Level 3 families and the `DenseBlasSide` enum. The pre-existing ordinary-view
 float/double `Gemm` overloads remain source compatible and keep their original
 bounded layout contract. No alias, forwarding header, compatibility target,
 or runtime fallback is introduced.
 
-Issue 10 extends the existing Sparse `blas.h` surface with checked S/D/C/Z
+Sparse BLAS extends the existing Sparse `blas.h` surface with checked S/D/C/Z
 indexed-vector, CSR/CSC matrix, and triangular descriptors and operations. The
 pre-existing expression-adapted float/double CSR `Spmv(alpha, A, x, beta, y)`
 overload remains source compatible; the standardized accumulating overload is
@@ -116,7 +115,7 @@ selected only by its explicit transpose and descriptor arguments. Existing
 Sparse names are not renamed, and no forwarding header or runtime fallback is
 introduced.
 
-Issue 11 adds no public name or compatibility behavior. Its completion audit
+BLAS completion adds no public name or compatibility behavior. Its completion audit
 rejects retired `linalg` text in product code while retaining the approved
 historical migration prose and negative compatibility checks.
 
@@ -156,9 +155,10 @@ between:
 - CUDA toolkit/host compiler pairs; or
 - operating systems and architectures.
 
-Current local ELF observations have unversioned SONAMEs such as
-`libasc_core.so`; the candidate defines no product `SOVERSION` or cross-minor
-side-by-side ABI contract. A baseline under [`abi/`](../abi) is enforced only
+Compiled shared libraries set `VERSION 0.9.0` and `SOVERSION 0.9`. The
+`0.9` SONAME deliberately limits the compatibility boundary to this pre-1.0
+minor line and makes no cross-minor promise. A baseline under
+[`abi/`](../abi) is enforced only
 when the complete recorded environment selector matches, including operating
 system/distribution and architecture, compiler identity and full version,
 standard library, configuration, linkage, inspection-tool identities, and
@@ -243,7 +243,7 @@ A future incompatible sequence requires a separately versioned algorithm or
 an approved breaking version. Native object layouts are not serialized random
 state.
 
-Issue 13 preserves every existing Random sequence and spelling while adding
+Random engines and distributions preserves every existing Random sequence and spelling while adding
 version-1 SplitMix64, PCG32, xoroshiro64*, xoroshiro128+, uniform integer/real,
 and scalar Box-Muller mappings. Exported state structs carry an explicit
 sequence tag; unknown tags fail rather than reinterpret state. Engine,
@@ -251,7 +251,7 @@ distribution, sampler, storage, and provider mappings remain separate
 compatibility dimensions. No byte-state serialization or GPU implementation is
 added.
 
-Issue 14 likewise preserves those mappings while adding QMC sequence version
+Quasi-random sequences likewise preserves those mappings while adding QMC sequence version
 1. Halton and Hammersley are unsigned indexed mathematical sequences; Sobol
 fixes the Joe--Kuo D(6) table, 64-bit Gray-code mapping, dimension range, and
 24/53-bit conversions. `SobolSequence` is only an explicit index cursor over
@@ -260,7 +260,7 @@ engine state, scalar type, logical shape, midpoint/jitter choice, and frozen
 consumption order. Changing any of these mappings requires a new versioned
 algorithm, not a silent patch.
 
-Issue 15 adds Random Dense sampler mapping version 1 and Random Sparse adapter
+Random storage adapters adds Random Dense sampler mapping version 1 and Random Sparse adapter
 mapping version 1 without changing earlier spellings or sequences. Dense
 pseudo fill fixes dimension-zero-fastest logical traversal. Dense QMC fixes
 shape `[sample,dimension]`, dimension-first point consumption, explicit
@@ -289,6 +289,6 @@ Before changing an ASCCpp pre-1.0 minor, a downstream should:
 5. rerun installed and relocated consumers; and
 6. regenerate ABI/performance observations in the same environment.
 
-See [package capabilities](package-capabilities.md), [downstream
-integration](downstream-integration.md), and [extension
-guidance](extension-guide.md).
+See @ref md_docs_2package-capabilities "package capabilities", @ref
+md_docs_2downstream-integration "downstream integration", and @ref
+md_docs_2extension-guide "extension guidance".

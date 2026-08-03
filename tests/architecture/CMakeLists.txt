@@ -1,11 +1,11 @@
 set(_architecture_script_arguments
   "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
-  "-DDEPENDENCY_MANIFEST:FILEPATH=${PROJECT_SOURCE_DIR}/docs/development/asc-cpp-architecture/dependency-manifest.yaml"
-  "-DCAPABILITY_MANIFEST:FILEPATH=${PROJECT_SOURCE_DIR}/docs/development/asc-cpp-architecture/capability-manifest.yaml"
+  "-DDEPENDENCY_MANIFEST:FILEPATH=${PROJECT_SOURCE_DIR}/docs/contracts/dependency-manifest.yaml"
+  "-DCAPABILITY_MANIFEST:FILEPATH=${PROJECT_SOURCE_DIR}/docs/contracts/capability-manifest.yaml"
   "-DENABLE_CUDA:BOOL=${ASC_CPP_ENABLE_CUDA}"
 )
 set(_blas_coverage_manifest
-  "${PROJECT_SOURCE_DIR}/docs/development/asc-cpp-architecture/blas-coverage.yaml"
+  "${PROJECT_SOURCE_DIR}/docs/contracts/blas-coverage.yaml"
 )
 
 add_test(
@@ -100,16 +100,16 @@ set_tests_properties(
   asc_cpp.architecture.blas_completion
   asc_cpp.architecture.random_contract
   PROPERTIES LABELS
-    "architecture;milestone-7;milestone-8;milestone-9;milestone-10;milestone-11;milestone-12"
+    "architecture;cuda-sparse-random;hardening;blas-level3;sparse-blas;blas-completion;random-contract"
 )
 set_tests_properties(
   asc_cpp.architecture.random_contract
   PROPERTIES LABELS
-    "architecture;issue-15;milestone-7;milestone-8;milestone-9;milestone-10;milestone-11;milestone-12"
+    "architecture;random-adapters;cuda-sparse-random;hardening;blas-level3;sparse-blas;blas-completion;random-contract"
 )
 set_tests_properties(
   asc_cpp.architecture.random_completion
-  PROPERTIES LABELS "architecture;issue-16;milestone-16;random"
+  PROPERTIES LABELS "architecture;random-completion;random"
 )
 
 unset(_blas_coverage_manifest)

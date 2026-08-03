@@ -1,6 +1,17 @@
 #ifndef ASC_DENSE_ARRAY_H_
 #define ASC_DENSE_ARRAY_H_
 
+/**
+ * @file
+ * @brief Public Dense declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_dense
+ */
+
 #include <algorithm>
 #include <concepts>
 #include <cstddef>
@@ -18,13 +29,58 @@
 
 namespace asc {
 
+/**
+ * @brief Owns contiguous dense storage with validated extents and layout.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ * @ingroup asc_dense
+ */
 template <DenseElement Element, DenseExtents ExtentsType>
 class DenseArray {
  public:
+  /**
+   * @brief Defines the public element_type type used by this Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @ingroup asc_dense
+   */
   using element_type = Element;
+  /**
+   * @brief Defines the public extents_type type used by this Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @ingroup asc_dense
+   */
   using extents_type = ExtentsType;
+  /**
+   * @brief Stores the Rank value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @ingroup asc_dense
+   */
   static constexpr std::size_t kRank = ExtentsType::kRank;
 
+  /**
+   * @brief Validates inputs and creates the requested Dense object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] resource Allocator that must outlive storage allocated from it.
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @param[in] layout The layout value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   static Result<DenseArray> Create(MemoryResource& resource,
                                    ExtentsType extents,
                                    LayoutLeft layout = {}) {
@@ -35,6 +91,20 @@ class DenseArray {
     return CreateWithMapping(resource, std::move(extents), *mapping);
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Dense object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] resource Allocator that must outlive storage allocated from it.
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @param[in] layout The layout value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   static Result<DenseArray> Create(MemoryResource& resource,
                                    ExtentsType extents, LayoutRight layout) {
     auto mapping = DenseLayout<kRank>::Create(extents.values(), layout);
@@ -44,6 +114,20 @@ class DenseArray {
     return CreateWithMapping(resource, std::move(extents), *mapping);
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Dense object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @param[in] resource Allocator that must outlive storage allocated from it.
+   * @param[in] layout The layout value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   static Result<DenseArray> CreateUninitialized(const ExtentsType& extents,
                                                 MemoryResource& resource,
                                                 LayoutLeft layout = {}) {
@@ -54,6 +138,20 @@ class DenseArray {
     return CreateUninitializedWithMapping(resource, extents, *mapping);
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Dense object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @param[in] resource Allocator that must outlive storage allocated from it.
+   * @param[in] layout The layout value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   static Result<DenseArray> CreateUninitialized(const ExtentsType& extents,
                                                 MemoryResource& resource,
                                                 LayoutRight layout) {
@@ -64,24 +162,119 @@ class DenseArray {
     return CreateUninitializedWithMapping(resource, extents, *mapping);
   }
 
+  /**
+   * @brief Constructs a DenseArray with the documented ownership and validity
+   * state.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   * @ingroup asc_dense
+   */
   DenseArray(const DenseArray&) = delete;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   DenseArray& operator=(const DenseArray&) = delete;
+  /**
+   * @brief Constructs a DenseArray with the documented ownership and validity
+   * state.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   * @ingroup asc_dense
+   */
   DenseArray(DenseArray&&) noexcept = default;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   DenseArray& operator=(DenseArray&&) noexcept = default;
+  /**
+   * @brief Releases owned resources after required completion/lifetime
+   * conditions.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   * @ingroup asc_dense
+   */
   ~DenseArray() = default;
 
+  /**
+   * @brief Reports whether the documented valid condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] bool valid() const noexcept { return buffer_.valid(); }
 
+  /**
+   * @brief Returns the object's extents contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] const ExtentsType& extents() const noexcept { return extents_; }
 
+  /**
+   * @brief Performs the public mapping operation defined by the Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] const DenseLayout<kRank>& mapping() const noexcept {
     return mapping_;
   }
 
+  /**
+   * @brief Performs the public logical_size operation defined by the Dense
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] extent_t logical_size() const noexcept {
     return mapping_.logical_size();
   }
 
+  /**
+   * @brief Performs the public view operation defined by the Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] Result<DenseView<Element, kRank>> view() {
     if (!valid()) {
       return Status(ErrorCode::kInvalidState,
@@ -95,6 +288,16 @@ class DenseArray {
                                      mapping_, *memory_space);
   }
 
+  /**
+   * @brief Performs the public view operation defined by the Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] Result<DenseView<const Element, kRank>> view() const {
     if (!valid()) {
       return Status(ErrorCode::kInvalidState,
@@ -108,6 +311,19 @@ class DenseArray {
         static_cast<const Element*>(buffer_.data()), mapping_, *memory_space);
   }
 
+  /**
+   * @brief Performs the public Clone operation defined by the Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] destination_resource Allocator for the returned owning
+   * destination.
+   * @param[in] context Execution backend and accessibility/order contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] Result<DenseArray> Clone(
       MemoryResource& destination_resource,
       const ExecutionContext& context) const {
@@ -145,6 +361,19 @@ class DenseArray {
     return std::move(*clone);
   }
 
+  /**
+   * @brief Performs the public DiscardResize operation defined by the Dense
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_dense
+   */
   Status DiscardResize(ExtentsType extents) {
     if (!valid() || resource_ == nullptr) {
       return Status(ErrorCode::kInvalidState,
@@ -156,6 +385,20 @@ class DenseArray {
     return DiscardResize(std::move(extents), LayoutLeft{});
   }
 
+  /**
+   * @brief Performs the public DiscardResize operation defined by the Dense
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @param[in] layout The layout value required by this contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_dense
+   */
   Status DiscardResize(ExtentsType extents, LayoutLeft layout) {
     if (!valid() || resource_ == nullptr) {
       return Status(ErrorCode::kInvalidState,
@@ -169,6 +412,20 @@ class DenseArray {
     return Status::Ok();
   }
 
+  /**
+   * @brief Performs the public DiscardResize operation defined by the Dense
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @param[in] layout The layout value required by this contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_dense
+   */
   Status DiscardResize(ExtentsType extents, LayoutRight layout) {
     if (!valid() || resource_ == nullptr) {
       return Status(ErrorCode::kInvalidState,
@@ -188,7 +445,7 @@ class DenseArray {
                                               DenseLayout<kRank> mapping) {
     if (resource.space() != MemorySpace::kHost) {
       return Status(ErrorCode::kUnsupported,
-                    "Milestone 3 DenseArray supports only host resources");
+                    "DenseArray supports only host resources");
     }
     auto array = CreateUninitializedWithMapping(resource, std::move(extents),
                                                 std::move(mapping));

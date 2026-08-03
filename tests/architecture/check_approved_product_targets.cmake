@@ -60,18 +60,18 @@ foreach(_record IN LISTS _target_records)
   if(_category STREQUAL "known-product")
     list(APPEND _observed_product_targets "${_name}")
     if(NOT _name IN_LIST _approved_targets)
-      message(FATAL_ERROR "Milestone 8 exposes forbidden target '${_name}'.")
+      message(FATAL_ERROR "release hardening exposes forbidden target '${_name}'.")
     endif()
     if(_name MATCHES "(expression|random_dense|random_sparse|cpp)$")
       if(NOT _type STREQUAL "INTERFACE_LIBRARY")
         message(FATAL_ERROR
-          "Milestone 8 interface target has an invalid type: "
+          "release hardening interface target has an invalid type: "
           "${_name} (${_type})."
         )
       endif()
     elseif(NOT _type MATCHES "^(STATIC_LIBRARY|SHARED_LIBRARY)$")
       message(FATAL_ERROR
-        "Milestone 8 compiled target has invalid type: ${_name} (${_type})."
+        "release hardening compiled target has invalid type: ${_name} (${_type})."
       )
     endif()
     if(_imported)
@@ -85,7 +85,7 @@ list(SORT _observed_product_targets)
 list(SORT _approved_targets)
 if(NOT _observed_product_targets STREQUAL _approved_targets)
   message(FATAL_ERROR
-    "Milestone 8 product targets differ from the frozen contract.\n"
+    "release hardening product targets differ from the frozen contract.\n"
     "Expected: ${_approved_targets}\n"
     "Observed: ${_observed_product_targets}"
   )
@@ -120,6 +120,6 @@ if(NOT _project_declaration MATCHES "^project\\( ASCCpp( |\\))"
    OR NOT _project_declaration MATCHES " VERSION 0\\.9\\.0( |\\))"
    OR NOT _project_declaration MATCHES " LANGUAGES CXX( |\\))")
   message(FATAL_ERROR
-    "Milestone 8 must declare project ASCCpp 0.9.0 with LANGUAGES CXX."
+    "release hardening must declare project ASCCpp 0.9.0 with LANGUAGES CXX."
   )
 endif()

@@ -119,7 +119,7 @@ list(SORT _expected_public_files)
 list(SORT _expected_compiled_sources)
 if(NOT _public_files STREQUAL _expected_public_files)
   message(FATAL_ERROR
-    "Milestone 8 public-file set differs from the frozen contract.\n"
+    "release hardening public-file set differs from the frozen contract.\n"
     "Expected: ${_expected_public_files}\n"
     "Actual:   ${_public_files}"
   )

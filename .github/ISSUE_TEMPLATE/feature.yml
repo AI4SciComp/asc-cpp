@@ -1,0 +1,15 @@
+name: Feature request
+description: Propose a scoped capability after the current release.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    attributes:
+      label: Scientific use case
+      description: Explain the user need and why existing APIs are insufficient.
+    validations: {required: true}
+  - type: textarea
+    attributes:
+      label: Proposed scope
+      description: Identify modules, dependencies, API, compatibility, and non-goals.
+    validations: {required: true}

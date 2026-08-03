@@ -524,18 +524,18 @@ _assert_exact_set(
 )
 
 set(_current_capability)
-set(_current_milestone)
+set(_current_development_stage)
 set(_current_status)
 macro(_assert_capability_status)
   if(_current_capability)
-    if(_current_milestone LESS_EQUAL 5
+    if(_current_development_stage LESS_EQUAL 5
        OR _current_capability STREQUAL
           "CUDA resources, copies, streams, and events")
       set(_expected_status runtime-tested)
     elseif(_current_capability STREQUAL
            "CUDA dense evaluation and selected cuBLAS")
       set(_expected_status parity-tested)
-    elseif(_current_milestone EQUAL 7)
+    elseif(_current_development_stage EQUAL 7)
       set(_expected_status parity-tested)
     elseif(_current_capability STREQUAL
            "storage-neutral engines and scalar distributions"
@@ -547,8 +547,8 @@ macro(_assert_capability_status)
     endif()
     if(NOT _current_status STREQUAL _expected_status)
       message(FATAL_ERROR
-        "Capability '${_current_capability}' at milestone "
-        "${_current_milestone} must be '${_expected_status}', found "
+        "Capability '${_current_capability}' at development stage "
+        "${_current_development_stage} must be '${_expected_status}', found "
         "'${_current_status}'."
       )
     endif()
@@ -558,10 +558,11 @@ foreach(_line IN LISTS _capability_lines)
   if(_line MATCHES "^  - capability: \"([^\"]+)\"$")
     _assert_capability_status()
     set(_current_capability "${CMAKE_MATCH_1}")
-    set(_current_milestone)
+    set(_current_development_stage)
     set(_current_status)
-  elseif(_current_capability AND _line MATCHES "^    milestone: ([0-9]+)$")
-    set(_current_milestone "${CMAKE_MATCH_1}")
+  elseif(_current_capability
+         AND _line MATCHES "^    development_stage: ([0-9]+)$")
+    set(_current_development_stage "${CMAKE_MATCH_1}")
   elseif(_current_capability
          AND _line MATCHES "^    status: \"([a-z-]+)\"$")
     set(_current_status "${CMAKE_MATCH_1}")

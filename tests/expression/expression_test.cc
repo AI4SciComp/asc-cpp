@@ -17,14 +17,17 @@ namespace allocation_probe {
 bool enabled = false;
 std::size_t count = 0;
 
+#if !defined(ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR)
 void Record() noexcept {
   if (enabled) {
     ++count;
   }
 }
+#endif
 
 }  // namespace allocation_probe
 
+#if !defined(ASC_TEST_SANITIZER_OWNS_GLOBAL_ALLOCATOR)
 void* operator new(std::size_t size) {
   allocation_probe::Record();
   if (void* pointer = std::malloc(size)) {
@@ -49,6 +52,7 @@ void operator delete(void* pointer, std::size_t) noexcept {
 void operator delete[](void* pointer, std::size_t) noexcept {
   std::free(pointer);
 }
+#endif
 
 namespace {
 

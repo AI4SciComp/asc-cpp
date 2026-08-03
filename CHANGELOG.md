@@ -5,6 +5,49 @@ completion and release publication require separate approval.
 
 ## Unreleased
 
+## [0.9.0] - 2026-08-03
+
+### Added
+
+- Released the six-module C++20 provider-free reference package: Core,
+  Utilities, Expression, Dense, Sparse, and Random, including Random
+  Dense/Sparse storage facets.
+- Added correctness-reference Dense BLAS Levels 1--3, Sparse BLAS,
+  deterministic engines/distributions, Sobol/QMC, strict Doxygen API
+  documentation, and compiled installed-package examples.
+- Added component-isolated build/install/relocation packages, provenance
+  contracts, source/package release automation, checksums, SBOM, and
+  attestation design.
+
+### Changed
+
+- Replaced the former `linalg` public surface with `blas`; see
+  `docs/migration/linalg-to-blas.md`.
+- Moved durable ADRs, contracts, and provenance from development paths to
+  stable release paths and archived temporary checkpoint traces in the
+  annotated snapshot tag.
+- Assigned compiled libraries `VERSION 0.9.0` and `SOVERSION 0.9` without a
+  cross-minor `0.x` ABI promise.
+
+### Fixed
+
+- Made ordinary dependency acquisition and CI independent of private read
+  tokens by pinning the exact ASCCMake commit and source checksum.
+- Replaced development-status labels and package messages with stable
+  capability/release terminology.
+
+### Deprecated
+
+- CUDA package components are retained as experimental and are outside the
+  supported 0.9.0 matrix unless the complete hosted real-NVIDIA gate passes.
+
+### Known limitations
+
+- CPU Dense BLAS and Sparse BLAS are serial correctness references, not
+  performance-optimized providers.
+- Public publication remains blocked until ASCCMake 0.1.0 is publicly
+  immutable and all hosted/security/protection gates are verified.
+
 ### Random completion audit (Issue 16)
 
 - Independently audited all 33 Random crosswalk decisions: 22 accepted rows

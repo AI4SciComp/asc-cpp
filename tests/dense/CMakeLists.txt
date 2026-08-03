@@ -30,18 +30,18 @@ foreach(_source IN ITEMS
   asc_register_test(
     NAME "asc_cpp.dense.${_name}"
     TARGET "${_target}"
-    LABELS "dense;milestone-3;runtime"
+    LABELS "dense;runtime"
   )
 endforeach()
 
 set_property(
   TEST asc_cpp.dense.blas_level2_test
-  APPEND PROPERTY LABELS "blas-level2;milestone-8"
+  APPEND PROPERTY LABELS "blas-level2;hardening"
 )
 
 set_property(
   TEST asc_cpp.dense.blas_level3_test
-  APPEND PROPERTY LABELS "blas-level3;milestone-9"
+  APPEND PROPERTY LABELS "blas-level3"
 )
 
 add_executable(
@@ -58,7 +58,7 @@ _asc_dense_configure_test(asc_dense_multi_tu)
 asc_register_test(
   NAME asc_cpp.dense.multi_tu
   TARGET asc_dense_multi_tu
-  LABELS "compile;dense;milestone-3"
+  LABELS "compile;dense"
 )
 
 foreach(_negative_source IN ITEMS
@@ -98,7 +98,7 @@ _asc_dense_configure_test(asc_dense_benchmark)
 asc_register_test(
   NAME asc_cpp.dense.benchmark
   TARGET asc_dense_benchmark
-  LABELS "benchmark;blas-level3;dense;milestone-3;milestone-9;performance"
+  LABELS "benchmark;blas-level3;dense;performance"
 )
 set_tests_properties(
   asc_cpp.dense.benchmark

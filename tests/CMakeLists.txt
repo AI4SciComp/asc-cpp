@@ -1,5 +1,5 @@
 if(CMAKE_VERSION VERSION_LESS 3.25)
-  message(FATAL_ERROR "Milestone 8 tests require CMake 3.25 or newer.")
+  message(FATAL_ERROR "release hardening tests require CMake 3.25 or newer.")
 endif()
 
 set(
@@ -32,7 +32,7 @@ add_test(
 set_tests_properties(
   asc_cpp.test_workspace.guard
   PROPERTIES
-    LABELS "architecture;security;hardening;milestone-8"
+    LABELS "architecture;security;hardening"
     RUN_SERIAL TRUE
 )
 
@@ -67,6 +67,10 @@ function(_asc_cpp_collect_target_inventory directory output_variable)
     _imported_targets DIRECTORY "${directory}" PROPERTY IMPORTED_TARGETS
   )
   foreach(_target IN LISTS _imported_targets)
+    if(NOT TARGET "${_target}")
+      list(APPEND _records "imported-scoped|${_target}|SCOPED|TRUE")
+      continue()
+    endif()
     get_target_property(_type "${_target}" TYPE)
     get_target_property(_imported "${_target}" IMPORTED)
     list(APPEND _records "imported|${_target}|${_type}|${_imported}")

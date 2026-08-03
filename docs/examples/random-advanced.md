@@ -119,7 +119,7 @@ Use `FillSparseUniform01` or `FillSparsePseudo` to change only values in an
 existing canonical coordinate/CSR/CSC view, or `GenerateSparseUniform01` when
 an explicitly allocated coordinate owner is required.
 
-All Issue 15 adapters require a serial context and host views. A CUDA context
+All Random storage adapters adapters require a serial context and host views. A CUDA context
 returns `kUnsupported` before access, mutation, random consumption,
 allocation, transfer, or synchronization. Engines and generators are mutable
 value state and are not safe for concurrent mutation; independent engine
@@ -129,6 +129,6 @@ normal composition, unit-sphere attempts, QMC index mapping, sparse priority
 ordering, and stored-value order; a mapping change requires a new named
 version.
 
-The [Random completion audit](../random-completion-audit.md) indexes the
+The [Random release contract](../contracts/random-crosswalk.yaml) indexes the
 known-answer, invariant, statistical, allocation, package, CUDA-boundary, and
 performance evidence behind these examples.

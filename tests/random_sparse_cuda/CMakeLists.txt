@@ -21,7 +21,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.random_sparse_cuda.runtime
   TARGET asc_random_sparse_cuda_test
-  LABELS "cuda;gpu;issue-15;milestone-7;parity;random_sparse_cuda;runtime"
+  LABELS "cuda;gpu;random-adapters;cuda-sparse-random;parity;random_sparse_cuda;runtime"
 )
 set_tests_properties(
   asc_cpp.random_sparse_cuda.runtime
@@ -53,7 +53,7 @@ asc_register_test(
   NAME asc_cpp.random_sparse_cuda.priority_ordinal_collision
   TARGET asc_random_sparse_cuda_priority_ordinal_collision_test
   LABELS
-    "cuda;gpu;milestone-7;parity;random_sparse_cuda;runtime;collision"
+    "cuda;gpu;cuda-sparse-random;parity;random_sparse_cuda;runtime;collision"
 )
 set_tests_properties(
   asc_cpp.random_sparse_cuda.priority_ordinal_collision

@@ -5,6 +5,7 @@ foreach(_required_variable IN ITEMS
     BUILD_PACKAGE_DIR
     COMPONENT
     CONSUMER_SOURCE_DIR
+    CXX_COMPILER
     EXECUTABLE_NAME
     EXPECT_LIBRARY_TYPE
     GENERATOR
@@ -83,6 +84,7 @@ function(_configure_build_run package_directory case_name)
     -B "${_consumer_build_directory}"
     ${_generator_args}
     "-DASCCpp_DIR:PATH=${package_directory}"
+    "-DCMAKE_CXX_COMPILER:FILEPATH=${CXX_COMPILER}"
     "-DASCCPP_EXPECT_LIBRARY_TYPE:STRING=${EXPECT_LIBRARY_TYPE}"
     "-DASCCPP_EXPECT_CUDA:BOOL=${ASCCPP_EXPECT_CUDA}"
   )

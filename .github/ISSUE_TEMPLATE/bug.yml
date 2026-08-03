@@ -1,0 +1,19 @@
+name: Bug report
+description: Report incorrect behavior or a regression.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: Provide the smallest complete reproducer and exact commands.
+    validations: {required: true}
+  - type: textarea
+    attributes:
+      label: Environment
+      description: ASCCpp commit/version, OS, architecture, compiler, CMake, linkage, and CUDA details.
+    validations: {required: true}
+  - type: textarea
+    attributes:
+      label: Expected and observed behavior
+    validations: {required: true}

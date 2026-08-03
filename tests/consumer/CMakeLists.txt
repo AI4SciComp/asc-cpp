@@ -61,7 +61,7 @@ set_tests_properties(
   asc_cpp.consumer.core.install_relocate
   asc_cpp.consumer.foundations.subproject
   PROPERTIES
-    LABELS "consumer;core;package;milestone-7;milestone-8"
+    LABELS "consumer;core;package;cuda-sparse-random;hardening"
     RUN_SERIAL TRUE
     TIMEOUT 180
 )
@@ -113,6 +113,7 @@ foreach(_component IN LISTS _asc_cpp_consumer_components)
     "-DCOMPONENT:STRING=${_component}"
     "-DCONFIG:STRING=$<CONFIG>"
     "-DCONSUMER_SOURCE_DIR:PATH=${CMAKE_CURRENT_SOURCE_DIR}/${_component}"
+    "-DCXX_COMPILER:FILEPATH=${CMAKE_CXX_COMPILER}"
     "-DEXECUTABLE_NAME:STRING=${_executable_name}"
     "-DASCCPP_EXPECT_CUDA:BOOL=${ASC_CPP_ENABLE_CUDA}"
     "-DEXPECT_LIBRARY_TYPE:STRING=${_expected_library_type}"
@@ -146,7 +147,7 @@ foreach(_component IN LISTS _asc_cpp_consumer_components)
     "asc_cpp.consumer.${_component}.build_tree"
     "asc_cpp.consumer.${_component}.install_relocate"
     PROPERTIES
-      LABELS "consumer;${_component};package;milestone-7;milestone-8"
+      LABELS "consumer;${_component};package;cuda-sparse-random;hardening"
       RUN_SERIAL TRUE
       TIMEOUT 180
   )

@@ -20,7 +20,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.sparse_cuda.runtime
   TARGET asc_sparse_cuda_test
-  LABELS "cuda;gpu;milestone-7;parity;runtime;sparse_cuda"
+  LABELS "cuda;gpu;cuda-sparse-random;parity;runtime;sparse_cuda"
 )
 set_tests_properties(
   asc_cpp.sparse_cuda.runtime
@@ -41,7 +41,7 @@ endif()
 asc_register_test(
   NAME asc_cpp.sparse_cuda.standard_blas
   TARGET asc_sparse_cuda_standard_blas_test
-  LABELS "cuda;gpu;milestone-10;parity;runtime;sparse_cuda"
+  LABELS "cuda;gpu;sparse-blas;parity;runtime;sparse_cuda"
 )
 set_tests_properties(
   asc_cpp.sparse_cuda.standard_blas
@@ -75,7 +75,7 @@ asc_register_test(
   NAME asc_cpp.sparse_cuda.benchmark
   TARGET asc_sparse_cuda_benchmark
   LABELS
-    "benchmark;cuda;gpu;milestone-7;milestone-10;performance;sparse_cuda"
+    "benchmark;cuda;gpu;cuda-sparse-random;sparse-blas;performance;sparse_cuda"
 )
 set_tests_properties(
   asc_cpp.sparse_cuda.benchmark

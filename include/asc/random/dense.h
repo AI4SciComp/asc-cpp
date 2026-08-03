@@ -1,6 +1,17 @@
 #ifndef ASC_RANDOM_DENSE_H_
 #define ASC_RANDOM_DENSE_H_
 
+/**
+ * @file
+ * @brief Public Dense declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_dense
+ */
+
 #include <algorithm>
 #include <array>
 #include <cmath>
@@ -24,7 +35,23 @@
 
 namespace asc {
 
+/**
+ * @brief Stores the RandomDenseSamplerSequenceVersion1 value for this contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @ingroup asc_dense
+ */
 inline constexpr std::uint32_t kRandomDenseSamplerSequenceVersion1 = 1;
+/**
+ * @brief Stores the UnitSphereMaximumAttemptsVersion1 value for this contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @ingroup asc_dense
+ */
 inline constexpr std::size_t kUnitSphereMaximumAttemptsVersion1 = 64;
 
 namespace internal_random_dense {
@@ -250,6 +277,25 @@ void PublishPoint(DenseView<Real, 2> destination, std::size_t sample,
 
 }  // namespace internal_random_dense
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] stream CUDA stream whose ordering and lifetime are caller
+ * controlled.
+ * @param[in] subsequence Deterministic independent subsequence identifier.
+ * @param[in] offset Deterministic address offset within the selected sequence.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_dense
+ */
 template <typename Element, std::size_t Rank>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 [[nodiscard]] Result<RandomOffset> FillDenseUniform01(
@@ -286,6 +332,22 @@ template <typename Element, std::size_t Rank>
   return *next_offset;
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] generator The generator value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <typename Element, std::size_t Rank, typename Generator>
   requires internal_random_dense::ValueGeneratorFor<Generator, Element>
 Status FillDensePseudo(const ExecutionContext& context,
@@ -310,6 +372,23 @@ Status FillDensePseudo(const ExecutionContext& context,
   return Status::Ok();
 }
 
+/**
+ * @brief Performs the public PrepareDenseMultivariateNormal operation defined
+ * by the Dense contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] mean The mean value required by this contract.
+ * @param[in] covariance The covariance value required by this contract.
+ * @param[in] lower_factor The lower factor value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real>
 Status PrepareDenseMultivariateNormal(
     const ExecutionContext& context,
@@ -423,6 +502,29 @@ Status PrepareDenseMultivariateNormal(
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Engine Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] mean The mean value required by this contract.
+ * @param[in] lower_factor The lower factor value required by this contract.
+ * @param[in] standard_normal The standard normal value required by this
+ * contract.
+ * @param[in] sample_workspace The sample workspace value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real, CanonicalRandomEngine Engine>
 Status FillDenseMultivariateNormal(
     const ExecutionContext& context, DenseView<Real, 2> destination,
@@ -544,6 +646,26 @@ Status FillDenseMultivariateNormal(
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Engine Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] engine The engine value required by this contract.
+ * @param[in] sample_workspace The sample workspace value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real, CanonicalRandomEngine Engine>
 Status FillDenseUnitSphere(const ExecutionContext& context,
                            DenseView<Real, 2> destination, Engine& engine,
@@ -643,6 +765,26 @@ Status FillDenseUnitSphere(const ExecutionContext& context,
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Engine Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] engine The engine value required by this contract.
+ * @param[in] permutation_workspace The permutation workspace value required by
+ * this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real, CanonicalRandomEngine Engine>
 Status FillDenseLatinHypercubeMidpoints(
     const ExecutionContext& context, DenseView<Real, 2> destination,
@@ -679,6 +821,26 @@ Status FillDenseLatinHypercubeMidpoints(
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Engine Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] engine The engine value required by this contract.
+ * @param[in] permutation_workspace The permutation workspace value required by
+ * this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real, CanonicalRandomEngine Engine>
 Status FillDenseLatinHypercubeJittered(
     const ExecutionContext& context, DenseView<Real, 2> destination,
@@ -715,6 +877,24 @@ Status FillDenseLatinHypercubeJittered(
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] initial_index The initial index value required by this contract.
+ * @param[in] point_workspace The point workspace value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real>
 Status FillDenseHalton(const ExecutionContext& context,
                        DenseView<Real, 2> destination,
@@ -751,6 +931,25 @@ Status FillDenseHalton(const ExecutionContext& context,
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] initial_index The initial index value required by this contract.
+ * @param[in] permutations The permutations value required by this contract.
+ * @param[in] point_workspace The point workspace value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real>
 Status FillDenseScrambledHalton(
     const ExecutionContext& context, DenseView<Real, 2> destination,
@@ -811,6 +1010,25 @@ Status FillDenseScrambledHalton(
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] initial_index The initial index value required by this contract.
+ * @param[in] total_count The total count value required by this contract.
+ * @param[in] point_workspace The point workspace value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real>
 Status FillDenseHammersley(const ExecutionContext& context,
                            DenseView<Real, 2> destination,
@@ -874,6 +1092,24 @@ Status FillDenseHammersley(const ExecutionContext& context,
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic Dense values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] initial_index The initial index value required by this contract.
+ * @param[in] point_workspace The point workspace value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense
+ */
 template <SupportedRandomReal Real>
 Status FillDenseSobol(const ExecutionContext& context,
                       DenseView<Real, 2> destination,
