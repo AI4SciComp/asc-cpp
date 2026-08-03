@@ -1,148 +1,110 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.25)
 
 if(NOT DEFINED ASC_CPP_SOURCE_DIR OR "${ASC_CPP_SOURCE_DIR}" STREQUAL "")
   message(FATAL_ERROR "ASC_CPP_SOURCE_DIR is required.")
 endif()
+cmake_path(
+  ABSOLUTE_PATH ASC_CPP_SOURCE_DIR
+  NORMALIZE
+  OUTPUT_VARIABLE ASC_CPP_SOURCE_DIR
+)
 
-set(_security_file "${ASC_CPP_SOURCE_DIR}/SECURITY.md")
-set(_capability_file
-  "${ASC_CPP_SOURCE_DIR}/docs/development/asc-cpp-architecture/capability-manifest.yaml"
+set(_required_files
+  SECURITY.md
+  CITATION.cff
+  docs/README.md
+  docs/installation.md
+  docs/release-process.md
+  docs/support-matrix.md
+  docs/contracts/capability-manifest.yaml
+  docs/contracts/dependency-manifest.yaml
+  release/release-plan.md
+  release/release-notes-v0.9.0.md
+  release/known-limitations-v0.9.0.md
+  release/release-tree-manifest.md
 )
-set(_roadmap_file
-  "${ASC_CPP_SOURCE_DIR}/docs/development/asc-cpp-architecture/release-roadmap.md"
-)
-set(_documentation_index_file "${ASC_CPP_SOURCE_DIR}/docs/README.md")
-foreach(_required_file IN ITEMS
-    "${_security_file}"
-    "${_capability_file}"
-    "${_roadmap_file}"
-    "${_documentation_index_file}")
-  if(NOT EXISTS "${_required_file}")
-    message(FATAL_ERROR "Required policy input does not exist: ${_required_file}")
+foreach(_relative_path IN LISTS _required_files)
+  if(NOT EXISTS "${ASC_CPP_SOURCE_DIR}/${_relative_path}")
+    message(FATAL_ERROR "Required release document is missing: ${_relative_path}")
   endif()
 endforeach()
 
-file(READ "${_security_file}" _security)
-file(READ "${_capability_file}" _capability)
-file(READ "${_roadmap_file}" _roadmap)
-file(READ "${_documentation_index_file}" _documentation_index)
+function(_require_text relative_path expected)
+  file(READ "${ASC_CPP_SOURCE_DIR}/${relative_path}" _contents)
+  string(FIND "${_contents}" "${expected}" _position)
+  if(_position EQUAL -1)
+    message(FATAL_ERROR "${relative_path} omits required text: ${expected}")
+  endif()
+endfunction()
 
-foreach(_security_text IN ITEMS
-    "unreleased `0.9.0` Milestone 8 correction candidate"
-    "Core, Utilities, Expression, Dense, Sparse, and Random"
-    "Core, Dense, Sparse, and Random CUDA facets"
-    "Dense and Sparse Random storage facets"
-    "CMake, test, hardening, ABI, benchmark, and CI tooling"
-    "unsafe path construction, traversal, symlink escape, recursive deletion"
-    "misleading required/optional component availability"
-    "CUDA facets are explicit optional providers")
-  string(FIND "${_security}" "${_security_text}" _security_position)
-  if(_security_position EQUAL -1)
+_require_text(SECURITY.md "| `0.9.x` | Supported after public 0.9.0 publication |")
+_require_text(SECURITY.md "private vulnerability-reporting")
+_require_text(SECURITY.md "route is enabled and verified")
+_require_text(docs/support-matrix.md "provider-free C++20 reference release")
+_require_text(docs/support-matrix.md "experimental")
+_require_text(docs/installation.md "8a7dcbad3a97267cce59810aff24de800a3497a7")
+_require_text(docs/installation.md "73299eca4b80b8a5571622636fe12c88f67602eba4e99f24368d5405b9bc0021")
+_require_text(docs/contracts/capability-manifest.yaml
+              "status: \"v0.9.0-release-contract\"")
+_require_text(docs/contracts/dependency-manifest.yaml
+              "status: \"v0.9.0-release-contract\"")
+_require_text(release/release-plan.md
+              "The release may become public only after all of the following are verified:")
+
+if(EXISTS "${ASC_CPP_SOURCE_DIR}/docs/development")
+  file(GLOB_RECURSE _development_files LIST_DIRECTORIES FALSE
+       "${ASC_CPP_SOURCE_DIR}/docs/development/*")
+  if(_development_files)
     message(FATAL_ERROR
-      "SECURITY.md is missing current Milestone 8 boundary text: "
-      "${_security_text}"
+      "Temporary docs/development material remains in the release tree: "
+      "${_development_files}"
     )
   endif()
-endforeach()
+endif()
 
-foreach(_stale_security_text IN ITEMS
-    "Milestone 1 Core candidate"
-    "All numerical containers, kernels, optimized providers, and GPU backends "
-    "are outside")
-  string(FIND "${_security}" "${_stale_security_text}"
-    _stale_security_position
-  )
-  if(NOT _stale_security_position EQUAL -1)
-    message(FATAL_ERROR
-      "SECURITY.md contains stale scope text: ${_stale_security_text}"
-    )
+set(_removed_release_documents
+  docs/api.md
+  docs/blas-completion-audit.md
+  docs/random-completion-audit.md
+  docs/architecture/disagreement-matrix.md
+  docs/architecture/implementation-plan.md
+  docs/architecture/internal-analysis.md
+  docs/architecture/independent-analysis.md
+  docs/architecture/release-roadmap.md
+)
+foreach(_relative_path IN LISTS _removed_release_documents)
+  if(EXISTS "${ASC_CPP_SOURCE_DIR}/${_relative_path}")
+    message(FATAL_ERROR "Archive-only document was restored: ${_relative_path}")
   endif()
 endforeach()
 
-string(FIND "${_capability}"
-  "status: \"milestone-8-publication-checkpoint-b\""
-  _capability_status_position
-)
-if(_capability_status_position EQUAL -1)
-  message(FATAL_ERROR
-    "The capability manifest is not at Milestone 8 Publication Checkpoint B."
-  )
-endif()
-string(FIND "${_roadmap}"
-  "Milestone 8 reached local Publication"
-  _roadmap_status_position
-)
-if(_roadmap_status_position EQUAL -1)
-  message(FATAL_ERROR
-    "The release roadmap is not at Milestone 8 Publication Checkpoint B."
-  )
-endif()
-
-string(FIND "${_documentation_index}"
-  "## Retained historical documents"
-  _retained_historical_documents_position
-)
-if(NOT _retained_historical_documents_position EQUAL -1)
-  message(FATAL_ERROR
-    "The documentation index still claims deleted historical documents are "
-    "retained."
-  )
-endif()
-
-set(_removed_historical_documents
-  docs/architecture.md
-  docs/build-system.md
-  docs/design/architecture_blueprint_v1.md
-  docs/design/architecture_review_v1.md
-  docs/design/array_design.md
-  docs/design/core_design.md
-  docs/design/linalg_design.md
-  docs/design/random_design.md
-  docs/design/utilities_design.md
-  docs/migration/array.md
-  docs/migration/core.md
-  docs/migration/handoff.md
-  docs/migration/inventory.md
-  docs/migration/linalg.md
-  docs/migration/random.md
-  docs/migration/utilities.md
-  docs/modules/array.md
-  docs/modules/linalg.md
-  docs/optional-backends.md
-  docs/testing.md
-)
-foreach(_removed_document IN LISTS _removed_historical_documents)
-  if(EXISTS "${ASC_CPP_SOURCE_DIR}/${_removed_document}")
-    message(FATAL_ERROR
-      "Deleted historical document was restored: ${_removed_document}"
-    )
-  endif()
-endforeach()
-
-file(GLOB_RECURSE _documentation_files
-  LIST_DIRECTORIES FALSE
+file(GLOB_RECURSE _release_documents LIST_DIRECTORIES FALSE
   "${ASC_CPP_SOURCE_DIR}/docs/*.md"
+  "${ASC_CPP_SOURCE_DIR}/docs/*.dox"
+  "${ASC_CPP_SOURCE_DIR}/release/*.md"
 )
-set(_historical_banner_count 0)
-foreach(_documentation_file IN LISTS _documentation_files)
-  file(READ "${_documentation_file}" _documentation)
-  string(FIND "${_documentation}"
-    "**Superseded historical document.**"
-    _historical_banner_position
-  )
-  if(NOT _historical_banner_position EQUAL -1)
-    math(EXPR _historical_banner_count "${_historical_banner_count} + 1")
-  endif()
+list(REMOVE_ITEM _release_documents
+  "${ASC_CPP_SOURCE_DIR}/release/release-tree-manifest.md"
+)
+foreach(_path IN LISTS _release_documents)
+  file(READ "${_path}" _contents)
+  foreach(_stale_pattern IN ITEMS
+      "[Mm]ilestone [0-9]+"
+      "[Ii]ssue [0-9]+"
+      "[Ff]eature [Gg]ate"
+      "Status:[^\n]*(candidate|unreleased)"
+      "docs/development/")
+    if(_contents MATCHES "${_stale_pattern}")
+      file(RELATIVE_PATH _relative "${ASC_CPP_SOURCE_DIR}" "${_path}")
+      message(FATAL_ERROR
+        "Release-facing document ${_relative} contains stale wording matching "
+        "${_stale_pattern}."
+      )
+    endif()
+  endforeach()
 endforeach()
-
-if(NOT _historical_banner_count EQUAL 0)
-  message(FATAL_ERROR
-    "Superseded historical documents must not be restored; found "
-    "${_historical_banner_count} historical banner(s)."
-  )
-endif()
 
 message(STATUS
-  "Milestone 8 security policy, 20 removed historical documents, and zero "
-  "historical banners are consistent."
+  "Release documents, support boundary, immutable dependency identities, "
+  "and archive-only cleanup are consistent."
 )

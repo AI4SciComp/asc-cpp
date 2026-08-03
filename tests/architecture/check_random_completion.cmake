@@ -24,44 +24,44 @@ function(_require_text relative_path expected)
 endfunction()
 
 _require_text(
-  "docs/development/asc-cpp-architecture/random-crosswalk.yaml"
-  "contract_status: \"issue-16-random-completion-audit-verified-candidate\""
+  "docs/contracts/random-crosswalk.yaml"
+  "contract_status: \"v0.9.0-release-contract\""
 )
 _require_text(
-  "docs/development/asc-cpp-architecture/random-crosswalk.yaml"
+  "docs/contracts/random-crosswalk.yaml"
   "expected_incomplete: 0"
 )
 _require_text(
-  "docs/development/asc-cpp-architecture/random-crosswalk.yaml"
+  "docs/contracts/random-crosswalk.yaml"
   "expected_permission_relicensing_required: 0"
 )
 _require_text(
-  "docs/development/asc-cpp-architecture/random-crosswalk.yaml"
+  "docs/contracts/random-crosswalk.yaml"
   "expected_clean_room_required: 0"
 )
 _require_text(
-  "docs/random-completion-audit.md"
-  "Required branch: `test/16-random-completion`"
+  "docs/provenance/mdecpp-review.md"
+  "all 33 inventory decisions"
 )
 _require_text(
-  "docs/random-completion-audit.md"
-  "22 equivalent and 11 rejected"
+  "docs/provenance/mdecpp-review.md"
+  "11 remain rejected"
 )
 _require_text(
-  "docs/development/asc-cpp-architecture/decisions/0020-random-contract.md"
+  "docs/architecture/decisions/0020-random-contract.md"
   "Seed, state, stream, and version contract"
 )
 _require_text(
-  "docs/development/asc-cpp-architecture/decisions/0020-random-contract.md"
+  "docs/architecture/decisions/0020-random-contract.md"
   "Reproducible statistical verification"
 )
 _require_text(
-  "docs/development/asc-cpp-architecture/decisions/0020-random-contract.md"
+  "docs/architecture/decisions/0020-random-contract.md"
   "thread-local mutable engine, seed"
 )
 _require_text(
-  "docs/development/asc-cpp-architecture/provenance-review.md"
-  "Issue 16 Random completion audit"
+  "release/release-notes-v0.9.0.md"
+  "random generation, storage adapters"
 )
 
 set(_random_base_headers

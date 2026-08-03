@@ -182,7 +182,7 @@ set(_frozen_cuda_toolkit "12.9.1 compiler 12.9.86")
 set(_frozen_cublas_version "12.9.1.4")
 set(_frozen_cusparse_version "12.5.10.65")
 set(_frozen_contract_status
-  "issue-11-blas-completion-audit-verified-candidate"
+  "v0.9.0-release-contract"
 )
 set(_frozen_dense_rows 150)
 set(_frozen_sparse_rows 79)
@@ -207,7 +207,7 @@ set(_frozen_crosswalk_sha256
 
 if(NOT _contract_status STREQUAL _frozen_contract_status)
   message(FATAL_ERROR
-    "BLAS manifest contract_status is '${_contract_status}'; the Issue 11 "
+    "BLAS manifest contract_status is '${_contract_status}'; the BLAS "
     "completion audit freezes '${_frozen_contract_status}'."
   )
 endif()
@@ -223,7 +223,7 @@ foreach(_baseline IN ITEMS
 )
   if(NOT "${_${_baseline}}" STREQUAL "${_frozen_${_baseline}}")
     message(FATAL_ERROR
-      "BLAS manifest ${_baseline} is '${_${_baseline}}'; the Issue 5 "
+      "BLAS manifest ${_baseline} is '${_${_baseline}}'; the BLAS contract "
       "contract freezes '${_frozen_${_baseline}}'."
     )
   endif()
@@ -261,7 +261,7 @@ foreach(_frozen_declaration IN ITEMS
   if(NOT _declared_value STREQUAL _frozen_value)
     message(FATAL_ERROR
       "BLAS manifest ${_frozen_declaration} is '${_declared_value}'; "
-      "the Issue 5 contract freezes '${_frozen_value}'."
+      "the BLAS contract freezes '${_frozen_value}'."
     )
   endif()
 endforeach()
@@ -382,7 +382,7 @@ macro(_finalize_coverage_row)
     if(NOT _row_backend_optimized_cpu STREQUAL "not-applicable")
       message(FATAL_ERROR
         "Coverage row '${_row_official_routine}' claims optimized CPU state "
-        "'${_row_backend_optimized_cpu}', but Issue 5 approves no optimized "
+        "'${_row_backend_optimized_cpu}', but BLAS contract approves no optimized "
         "CPU provider."
       )
     endif()
@@ -869,7 +869,7 @@ string(SHA256 _observed_coverage_evidence_sha256 "${_coverage_evidence}")
 if(NOT _observed_coverage_evidence_sha256
    STREQUAL _frozen_coverage_evidence_sha256)
   message(FATAL_ERROR
-    "BLAS coverage evidence differs from its frozen Issue 11 identity.\n"
+    "BLAS coverage evidence differs from its frozen BLAS completion identity.\n"
     "  expected: ${_frozen_coverage_evidence_sha256}\n"
     "  observed: ${_observed_coverage_evidence_sha256}"
   )

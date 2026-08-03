@@ -7,7 +7,7 @@ foreach(_required IN ITEMS SOURCE_DIR BINARY_DIR)
 endforeach()
 
 set(_manifest
-  "${SOURCE_DIR}/docs/development/asc-cpp-architecture/random-crosswalk.yaml"
+  "${SOURCE_DIR}/docs/contracts/random-crosswalk.yaml"
 )
 set(_report "${SOURCE_DIR}/docs/random-crosswalk.md")
 set(_generator "${SOURCE_DIR}/cmake/GenerateRandomCrosswalk.cmake")
@@ -54,7 +54,7 @@ endfunction()
 
 _require_document_text(
   "README.md"
-  "Random completion audit"
+  "deterministic engines, distributions, seed and QMC"
 )
 _require_document_text(
   "docs/README.md"
@@ -73,24 +73,20 @@ _require_document_text(
   "GenerateSparseStructure"
 )
 _require_document_text(
-  "docs/random-completion-audit.md"
-  "Required branch: `test/16-random-completion`"
+  "release/release-notes-v0.9.0.md"
+  "random generation, storage adapters"
 )
 _require_document_text(
   "docs/random-crosswalk.md"
   "Retain Uniform01; add leading-bit canonical engine extraction"
 )
 _require_document_text(
-  "docs/development/asc-cpp-architecture/decisions/0020-random-contract.md"
-  "Required branch: `feature/15-random-samplers`."
-)
-_require_document_text(
-  "docs/development/asc-cpp-architecture/decisions/0020-random-contract.md"
+  "docs/architecture/decisions/0020-random-contract.md"
   "Non-goals are a sampler hierarchy, new storage protocol"
 )
 _require_document_text(
-  "docs/development/asc-cpp-architecture/mdecpp-disposition.yaml"
-  "Issue 13 implements explicit nondeterministic acquisition"
+  "docs/provenance/mdecpp-disposition.yaml"
+  "Random engines and distributions implement explicit nondeterministic acquisition"
 )
 
 function(_expect_failure name manifest_text expected)
@@ -130,7 +126,7 @@ string(REPLACE
   "${_valid_manifest}"
 )
 _expect_failure(changed-source "${_changed_source}"
-                "source_commit differs from the approved Issue 16 value")
+                "source_commit differs from the approved")
 
 string(REPLACE
   "asc::SplitMix64"

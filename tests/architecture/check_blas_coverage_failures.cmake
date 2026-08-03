@@ -8,7 +8,7 @@ foreach(_required_variable IN ITEMS SOURCE_DIR TEST_BINARY_DIR)
 endforeach()
 
 set(_manifest_path
-  "${SOURCE_DIR}/docs/development/asc-cpp-architecture/blas-coverage.yaml"
+  "${SOURCE_DIR}/docs/contracts/blas-coverage.yaml"
 )
 set(_expected_report "${SOURCE_DIR}/docs/blas-coverage.md")
 set(_validator "${SOURCE_DIR}/cmake/GenerateBlasCoverage.cmake")
@@ -81,7 +81,7 @@ string(REPLACE
 _expect_validation_failure(
   self-declared-count
   _self_declared_count
-  "the Issue 5 contract freezes '150'"
+  "the BLAS contract freezes '150'"
   FALSE
 )
 
@@ -133,7 +133,7 @@ string(REPLACE
 _expect_validation_failure(
   changed-evidence
   _changed_evidence
-  "BLAS coverage evidence differs from its frozen Issue 11 identity"
+  "BLAS coverage evidence differs from its frozen BLAS completion identity"
   FALSE
 )
 

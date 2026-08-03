@@ -19,7 +19,7 @@ foreach(_record IN LISTS _target_records)
   set(_type "${CMAKE_MATCH_3}")
   if(_name MATCHES "^ASC::" OR _name MATCHES "^asc_")
     message(FATAL_ERROR
-      "Milestone 0 must expose no ASC product target: ${_name} (${_type})."
+      "architecture baseline must expose no ASC product target: ${_name} (${_type})."
     )
   endif()
   string(CONCAT _production_type_pattern
@@ -28,7 +28,7 @@ foreach(_record IN LISTS _target_records)
   )
   if(_type MATCHES "${_production_type_pattern}")
     message(FATAL_ERROR
-      "Milestone 0 must declare no executable or library target: "
+      "architecture baseline must declare no executable or library target: "
       "${_name} (${_type})."
     )
   endif()
@@ -63,6 +63,6 @@ if(NOT _project_declaration MATCHES "^project\\( ASCCpp( |\\))"
    OR NOT _project_declaration MATCHES " VERSION 0\\.0\\.0( |\\))"
    OR NOT _project_declaration MATCHES " LANGUAGES NONE( |\\))")
   message(FATAL_ERROR
-    "Milestone 0 must declare project ASCCpp 0.0.0 with LANGUAGES NONE."
+    "architecture baseline must declare project ASCCpp 0.0.0 with LANGUAGES NONE."
   )
 endif()

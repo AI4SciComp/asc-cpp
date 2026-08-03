@@ -50,9 +50,9 @@ foreach(_module IN ITEMS expression random utilities)
   )
   list(APPEND _observed_public_files ${_module_headers})
 endforeach()
-# Later milestones may add explicitly approved files to a Milestone 2 module.
+# Later milestones may add explicitly approved files to a foundational modules module.
 # Their own milestone audit owns those additions; retain this check for the
-# exact Milestone 2 layer.
+# exact foundational modules layer.
 list(REMOVE_ITEM
   _observed_public_files
   include/asc/expression/writable.h
@@ -91,14 +91,14 @@ list(SORT _observed_public_files)
 list(SORT _observed_source_files)
 if(NOT _observed_public_files STREQUAL _expected_public_files)
   message(FATAL_ERROR
-    "Milestone 2 public inventory differs from the frozen contract.\n"
+    "foundational modules public inventory differs from the frozen contract.\n"
     "Expected: ${_expected_public_files}\n"
     "Observed: ${_observed_public_files}"
   )
 endif()
 if(NOT _observed_source_files STREQUAL _expected_source_files)
   message(FATAL_ERROR
-    "Milestone 2 source inventory differs from the frozen contract.\n"
+    "foundational modules source inventory differs from the frozen contract.\n"
     "Expected: ${_expected_source_files}\n"
     "Observed: ${_observed_source_files}"
   )

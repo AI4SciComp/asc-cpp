@@ -1,6 +1,6 @@
 # ASCCpp hardening tools
 
-These CMake-language tools record and check the Milestone 8 public/package
+These CMake-language tools record and check the release hardening public/package
 surface without changing product sources, headers, libraries, or package
 metadata.
 
@@ -28,7 +28,7 @@ source baseline.
 
 `TargetInventory.cmake` defines
 `asc_cpp_hardening_check_target_inventory()`. It must be called after all
-product targets have been created, normally from the M8 hardening-test
+product targets have been created, normally from the release hardening-test
 subdirectory. It checks target kind, export/output name, C++20 propagation,
 static-definition macro, exact direct link set, and public header-file-set
 ownership against the committed baselines.
