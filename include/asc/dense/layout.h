@@ -1,6 +1,17 @@
 #ifndef ASC_DENSE_LAYOUT_H_
 #define ASC_DENSE_LAYOUT_H_
 
+/**
+ * @file
+ * @brief Public Dense declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_dense
+ */
+
 #include <array>
 #include <cstddef>
 #include <limits>
@@ -12,28 +23,83 @@
 
 namespace asc {
 
+/**
+ * @brief Defines the public LayoutLeft struct contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ * @ingroup asc_dense
+ */
 struct LayoutLeft {};
+/**
+ * @brief Defines the public LayoutRight struct contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ * @ingroup asc_dense
+ */
 struct LayoutRight {};
 
+/**
+ * @brief Selects explicit-stride dense layout construction.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ * @ingroup asc_dense
+ */
 template <std::size_t Rank>
 struct LayoutStride {
+  /**
+   * @brief Stores the strides value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @ingroup asc_dense
+   */
   std::array<stride_t, Rank> strides;
 };
 
+/**
+ * @brief Selects the public DenseLayoutKind policy.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ * @ingroup asc_dense
+ */
 // Preserve the established public enum representation.
 // NOLINTNEXTLINE(performance-enum-size)
 enum class DenseLayoutKind {
-  kLeft,
-  kRight,
-  kStride,
+  kLeft,    ///< Selects left behavior.
+  kRight,   ///< Selects right behavior.
+  kStride,  ///< Selects stride behavior.
 };
 
+/**
+ * @brief Maps rank-fixed logical coordinates to dense storage offsets.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Dense module contract.
+ * @ingroup asc_dense
+ */
 template <std::size_t Rank>
 class DenseLayout {
   static_assert(Rank <= std::numeric_limits<rank_t>::max(),
                 "Dense rank does not fit rank_t");
 
  public:
+  /**
+   * @brief Validates inputs and creates the requested Dense object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   static Result<DenseLayout> Create(std::span<const extent_t, Rank> extents,
                                     LayoutLeft /*layout*/ = {}) {
     auto validated = ValidateExtents(extents);
@@ -55,6 +121,18 @@ class DenseLayout {
     return CreateValidated(extents, strides, DenseLayoutKind::kLeft);
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Dense object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   static Result<DenseLayout> Create(std::span<const extent_t, Rank> extents,
                                     LayoutRight /*layout*/) {
     auto validated = ValidateExtents(extents);
@@ -77,6 +155,19 @@ class DenseLayout {
     return CreateValidated(extents, strides, DenseLayoutKind::kRight);
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Dense object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] extents Logical extents; every extent must satisfy the
+   * documented bounds.
+   * @param[in] layout_stride The layout stride value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   static Result<DenseLayout> Create(std::span<const extent_t, Rank> extents,
                                     LayoutStride<Rank> layout_stride) {
     auto validated = ValidateExtents(extents);
@@ -93,34 +184,117 @@ class DenseLayout {
                            DenseLayoutKind::kStride);
   }
 
+  /**
+   * @brief Returns the object's extents contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] constexpr std::span<const extent_t, Rank> extents()
       const noexcept {
     return extents_;
   }
 
+  /**
+   * @brief Performs the public strides operation defined by the Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] constexpr std::span<const stride_t, Rank> strides()
       const noexcept {
     return strides_;
   }
 
+  /**
+   * @brief Performs the public logical_size operation defined by the Dense
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] constexpr extent_t logical_size() const noexcept {
     return logical_size_;
   }
 
+  /**
+   * @brief Performs the public required_span_size operation defined by the
+   * Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] constexpr std::size_t required_span_size() const noexcept {
     return required_span_size_;
   }
 
+  /**
+   * @brief Reports whether the documented is_unique condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] constexpr bool is_unique() const noexcept { return unique_; }
 
+  /**
+   * @brief Reports whether the documented is_exhaustive condition holds.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] constexpr bool is_exhaustive() const noexcept {
     return exhaustive_;
   }
 
+  /**
+   * @brief Performs the public kind operation defined by the Dense contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] constexpr DenseLayoutKind kind() const noexcept {
     return kind_;
   }
 
+  /**
+   * @brief Returns the object's Offset contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Dense module contract.
+   *
+   * @param[in] coordinates Canonical coordinate storage in logical ordering.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense
+   */
   [[nodiscard]] Result<std::size_t> Offset(
       std::span<const index_t, Rank> coordinates) const {
     stride_t offset = 0;

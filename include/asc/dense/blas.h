@@ -1,6 +1,17 @@
 #ifndef ASC_DENSE_BLAS_H_
 #define ASC_DENSE_BLAS_H_
 
+/**
+ * @file
+ * @brief Public Dense BLAS declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_dense_blas
+ */
+
 #include <algorithm>
 #include <complex>
 #include <concepts>
@@ -19,6 +30,14 @@
 
 namespace asc {
 
+/**
+ * @brief Defines the public DenseBlasScalar concept contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_dense_blas
+ */
 template <typename Element>
 concept DenseBlasScalar =
     std::same_as<std::remove_cv_t<Element>, float> ||
@@ -26,25 +45,80 @@ concept DenseBlasScalar =
     std::same_as<std::remove_cv_t<Element>, std::complex<float>> ||
     std::same_as<std::remove_cv_t<Element>, std::complex<double>>;
 
+/**
+ * @brief Defines the public DenseBlasReal concept contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_dense_blas
+ */
 template <typename Element>
 concept DenseBlasReal = std::same_as<std::remove_cv_t<Element>, float> ||
                         std::same_as<std::remove_cv_t<Element>, double>;
 
+/**
+ * @brief Defines the public DenseBlasComplex concept contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_dense_blas
+ */
 template <typename Element>
 concept DenseBlasComplex =
     std::same_as<std::remove_cv_t<Element>, std::complex<float>> ||
     std::same_as<std::remove_cv_t<Element>, std::complex<double>>;
 
+/**
+ * @brief Defines the public DenseBlasRealType type used by this Dense BLAS
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 using DenseBlasRealType = std::conditional_t<
     std::same_as<std::remove_cv_t<Element>, float> ||
         std::same_as<std::remove_cv_t<Element>, std::complex<float>>,
     float, double>;
 
+/**
+ * @brief Views a BLAS vector with a signed increment and backing span.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_dense_blas
+ */
 template <typename Element>
 class DenseBlasVectorView {
  public:
+  /**
+   * @brief Defines the public value_type type used by this Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using value_type = Element;
+  /**
+   * @brief Defines the public element_type type used by this Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using element_type = std::remove_const_t<Element>;
 
   static_assert(
@@ -54,6 +128,22 @@ class DenseBlasVectorView {
           std::same_as<element_type, index_t>,
       "DenseBlasVectorView supports BLAS value and public index types");
 
+  /**
+   * @brief Validates inputs and creates the requested Dense BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] logical_first The logical first value required by this contract.
+   * @param[in] size The size value required by this contract.
+   * @param[in] increment The increment value required by this contract.
+   * @param[in] backing_storage The backing storage value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense_blas
+   */
   static Result<DenseBlasVectorView>
   Create(  // NOLINT(readability-function-size)
       Element* logical_first, extent_t size, stride_t increment,
@@ -148,6 +238,15 @@ class DenseBlasVectorView {
         static_cast<std::size_t>(reachable_end - reachable_begin));
   }
 
+  /**
+   * @brief Performs the public operator DenseBlasVectorView operation defined
+   * by the Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   * @ingroup asc_dense_blas
+   */
   // Mutable-to-const view conversion is intentionally implicit.
   // NOLINTNEXTLINE(google-explicit-constructor)
   operator DenseBlasVectorView<const element_type>() const noexcept
@@ -158,15 +257,85 @@ class DenseBlasVectorView {
         reachable_size_);
   }
 
+  /**
+   * @brief Returns the object's data contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] Element* data() const noexcept { return data_; }
+  /**
+   * @brief Returns the object's size contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t size() const noexcept { return size_; }
+  /**
+   * @brief Performs the public increment operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] stride_t increment() const noexcept { return increment_; }
+  /**
+   * @brief Performs the public memory_space operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] MemorySpace memory_space() const noexcept {
     return backing_storage_.space();
   }
+  /**
+   * @brief Performs the public backing_storage operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] ConstMemoryView backing_storage() const noexcept {
     return backing_storage_;
   }
+  /**
+   * @brief Performs the public reachable_storage operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
     return {reachable_data_, reachable_size_, backing_storage_.space()};
   }
@@ -194,30 +363,75 @@ class DenseBlasVectorView {
   std::size_t reachable_size_;
 };
 
+/**
+ * @brief Selects no-transpose, transpose, or conjugate-transpose behavior.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_dense_blas
+ */
 enum class DenseBlasTranspose : std::uint8_t {
-  kNone,
-  kTranspose,
-  kConjugateTranspose,
+  kNone,                ///< No transformation or optional behavior.
+  kTranspose,           ///< Transpose without conjugation.
+  kConjugateTranspose,  ///< Transpose with complex conjugation.
 };
 
+/**
+ * @brief Selects row-major or column-major BLAS storage.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_dense_blas
+ */
 enum class DenseBlasLayout : std::uint8_t {
-  kColumnMajor,
-  kRowMajor,
+  kColumnMajor,  ///< Column-major matrix storage.
+  kRowMajor,     ///< Row-major matrix storage.
 };
 
+/**
+ * @brief Selects the stored matrix triangle.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_dense_blas
+ */
 enum class DenseBlasTriangle : std::uint8_t {
-  kUpper,
-  kLower,
+  kUpper,  ///< Upper triangular storage or operation.
+  kLower,  ///< Lower triangular storage or operation.
 };
 
+/**
+ * @brief Selects unit or explicit triangular diagonal handling.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_dense_blas
+ */
 enum class DenseBlasDiagonal : std::uint8_t {
-  kNonUnit,
-  kUnit,
+  kNonUnit,  ///< Explicit diagonal values are read.
+  kUnit,     ///< Implicit unit diagonal; stored diagonal values are ignored.
 };
 
+/**
+ * @brief Selects the side on which a matrix operand is applied.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_dense_blas
+ */
 enum class DenseBlasSide : std::uint8_t {
-  kLeft,
-  kRight,
+  kLeft,   ///< Selects left behavior.
+  kRight,  ///< Selects right behavior.
 };
 
 namespace internal_dense_blas {
@@ -282,12 +496,58 @@ inline bool IsValidLayout(DenseBlasLayout layout) noexcept {
 
 }  // namespace internal_dense_blas
 
+/**
+ * @brief Views a BLAS matrix with explicit layout and leading dimension.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 class DenseBlasMatrixView {
  public:
+  /**
+   * @brief Defines the public value_type type used by this Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using value_type = Element;
+  /**
+   * @brief Defines the public element_type type used by this Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using element_type = std::remove_const_t<Element>;
 
+  /**
+   * @brief Validates inputs and creates the requested Dense BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] data The data value required by this contract.
+   * @param[in] rows The rows value required by this contract.
+   * @param[in] columns The columns value required by this contract.
+   * @param[in] layout The layout value required by this contract.
+   * @param[in] leading_dimension The leading dimension value required by this
+   * contract.
+   * @param[in] backing_storage The backing storage value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense_blas
+   */
   static Result<DenseBlasMatrixView> Create(Element* data, extent_t rows,
                                             extent_t columns,
                                             DenseBlasLayout layout,
@@ -329,6 +589,15 @@ class DenseBlasMatrixView {
                                backing_storage, *bounds);
   }
 
+  /**
+   * @brief Performs the public operator DenseBlasMatrixView operation defined
+   * by the Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   * @ingroup asc_dense_blas
+   */
   // Mutable-to-const view conversion is intentionally implicit.
   // NOLINTNEXTLINE(google-explicit-constructor)
   operator DenseBlasMatrixView<const element_type>() const noexcept
@@ -339,19 +608,112 @@ class DenseBlasMatrixView {
                                                    backing_storage_, bounds_);
   }
 
+  /**
+   * @brief Returns the object's data contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] Element* data() const noexcept { return data_; }
+  /**
+   * @brief Returns the object's rows contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t rows() const noexcept { return rows_; }
+  /**
+   * @brief Returns the object's columns contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t columns() const noexcept { return columns_; }
+  /**
+   * @brief Performs the public layout operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] DenseBlasLayout layout() const noexcept { return layout_; }
+  /**
+   * @brief Performs the public leading_dimension operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] stride_t leading_dimension() const noexcept {
     return leading_dimension_;
   }
+  /**
+   * @brief Performs the public memory_space operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] MemorySpace memory_space() const noexcept {
     return backing_storage_.space();
   }
+  /**
+   * @brief Performs the public backing_storage operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] ConstMemoryView backing_storage() const noexcept {
     return backing_storage_;
   }
+  /**
+   * @brief Performs the public reachable_storage operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
     return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
@@ -381,12 +743,62 @@ class DenseBlasMatrixView {
   internal_dense_blas::StorageBounds bounds_;
 };
 
+/**
+ * @brief Views a BLAS general band-matrix encoding.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 class DenseBlasBandMatrixView {
  public:
+  /**
+   * @brief Defines the public value_type type used by this Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using value_type = Element;
+  /**
+   * @brief Defines the public element_type type used by this Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using element_type = std::remove_const_t<Element>;
 
+  /**
+   * @brief Validates inputs and creates the requested Dense BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] data The data value required by this contract.
+   * @param[in] rows The rows value required by this contract.
+   * @param[in] columns The columns value required by this contract.
+   * @param[in] lower_bandwidth The lower bandwidth value required by this
+   * contract.
+   * @param[in] upper_bandwidth The upper bandwidth value required by this
+   * contract.
+   * @param[in] layout The layout value required by this contract.
+   * @param[in] leading_dimension The leading dimension value required by this
+   * contract.
+   * @param[in] backing_storage The backing storage value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense_blas
+   */
   static Result<DenseBlasBandMatrixView> Create(
       Element* data, extent_t rows, extent_t columns, extent_t lower_bandwidth,
       extent_t upper_bandwidth, DenseBlasLayout layout,
@@ -435,6 +847,15 @@ class DenseBlasBandMatrixView {
                                    backing_storage, *bounds);
   }
 
+  /**
+   * @brief Performs the public operator DenseBlasBandMatrixView operation
+   * defined by the Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   * @ingroup asc_dense_blas
+   */
   // Mutable-to-const view conversion is intentionally implicit.
   // NOLINTNEXTLINE(google-explicit-constructor)
   operator DenseBlasBandMatrixView<const element_type>() const noexcept
@@ -445,22 +866,127 @@ class DenseBlasBandMatrixView {
         leading_dimension_, backing_storage_, bounds_);
   }
 
+  /**
+   * @brief Returns the object's data contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] Element* data() const noexcept { return data_; }
+  /**
+   * @brief Returns the object's rows contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t rows() const noexcept { return rows_; }
+  /**
+   * @brief Returns the object's columns contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t columns() const noexcept { return columns_; }
+  /**
+   * @brief Performs the public lower_bandwidth operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t lower_bandwidth() const noexcept {
     return lower_bandwidth_;
   }
+  /**
+   * @brief Performs the public upper_bandwidth operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t upper_bandwidth() const noexcept {
     return upper_bandwidth_;
   }
+  /**
+   * @brief Performs the public layout operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] DenseBlasLayout layout() const noexcept { return layout_; }
+  /**
+   * @brief Performs the public leading_dimension operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] stride_t leading_dimension() const noexcept {
     return leading_dimension_;
   }
+  /**
+   * @brief Performs the public memory_space operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] MemorySpace memory_space() const noexcept {
     return backing_storage_.space();
   }
+  /**
+   * @brief Performs the public reachable_storage operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
     return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
@@ -495,12 +1021,58 @@ class DenseBlasBandMatrixView {
   internal_dense_blas::StorageBounds bounds_;
 };
 
+/**
+ * @brief Views a BLAS triangular band-matrix encoding.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 class DenseBlasTriangularBandView {
  public:
+  /**
+   * @brief Defines the public value_type type used by this Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using value_type = Element;
+  /**
+   * @brief Defines the public element_type type used by this Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using element_type = std::remove_const_t<Element>;
 
+  /**
+   * @brief Validates inputs and creates the requested Dense BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] data The data value required by this contract.
+   * @param[in] order The order value required by this contract.
+   * @param[in] bandwidth The bandwidth value required by this contract.
+   * @param[in] layout The layout value required by this contract.
+   * @param[in] leading_dimension The leading dimension value required by this
+   * contract.
+   * @param[in] backing_storage The backing storage value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense_blas
+   */
   static Result<DenseBlasTriangularBandView> Create(
       Element* data, extent_t order, extent_t bandwidth, DenseBlasLayout layout,
       stride_t leading_dimension, ConstMemoryView backing_storage) {
@@ -533,6 +1105,15 @@ class DenseBlasTriangularBandView {
                                        *bounds);
   }
 
+  /**
+   * @brief Performs the public operator DenseBlasTriangularBandView operation
+   * defined by the Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   * @ingroup asc_dense_blas
+   */
   // Mutable-to-const view conversion is intentionally implicit.
   // NOLINTNEXTLINE(google-explicit-constructor)
   operator DenseBlasTriangularBandView<const element_type>() const noexcept
@@ -543,16 +1124,99 @@ class DenseBlasTriangularBandView {
         backing_storage_, bounds_);
   }
 
+  /**
+   * @brief Returns the object's data contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] Element* data() const noexcept { return data_; }
+  /**
+   * @brief Performs the public order operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t order() const noexcept { return order_; }
+  /**
+   * @brief Performs the public bandwidth operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t bandwidth() const noexcept { return bandwidth_; }
+  /**
+   * @brief Performs the public layout operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] DenseBlasLayout layout() const noexcept { return layout_; }
+  /**
+   * @brief Performs the public leading_dimension operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] stride_t leading_dimension() const noexcept {
     return leading_dimension_;
   }
+  /**
+   * @brief Performs the public memory_space operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] MemorySpace memory_space() const noexcept {
     return backing_storage_.space();
   }
+  /**
+   * @brief Performs the public reachable_storage operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
     return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
@@ -582,12 +1246,55 @@ class DenseBlasTriangularBandView {
   internal_dense_blas::StorageBounds bounds_;
 };
 
+/**
+ * @brief Views a BLAS packed triangular/symmetric matrix encoding.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 class DenseBlasPackedMatrixView {
  public:
+  /**
+   * @brief Defines the public value_type type used by this Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using value_type = Element;
+  /**
+   * @brief Defines the public element_type type used by this Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_dense_blas
+   */
   using element_type = std::remove_const_t<Element>;
 
+  /**
+   * @brief Validates inputs and creates the requested Dense BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] data The data value required by this contract.
+   * @param[in] order The order value required by this contract.
+   * @param[in] layout The layout value required by this contract.
+   * @param[in] backing_storage The backing storage value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_dense_blas
+   */
   static Result<DenseBlasPackedMatrixView> Create(
       Element* data, extent_t order, DenseBlasLayout layout,
       ConstMemoryView backing_storage) {
@@ -614,6 +1321,15 @@ class DenseBlasPackedMatrixView {
                                      *bounds);
   }
 
+  /**
+   * @brief Performs the public operator DenseBlasPackedMatrixView operation
+   * defined by the Dense BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   * @ingroup asc_dense_blas
+   */
   // Mutable-to-const view conversion is intentionally implicit.
   // NOLINTNEXTLINE(google-explicit-constructor)
   operator DenseBlasPackedMatrixView<const element_type>() const noexcept
@@ -623,12 +1339,71 @@ class DenseBlasPackedMatrixView {
         data_, order_, layout_, backing_storage_, bounds_);
   }
 
+  /**
+   * @brief Returns the object's data contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] Element* data() const noexcept { return data_; }
+  /**
+   * @brief Performs the public order operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] extent_t order() const noexcept { return order_; }
+  /**
+   * @brief Performs the public layout operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] DenseBlasLayout layout() const noexcept { return layout_; }
+  /**
+   * @brief Performs the public memory_space operation defined by the Dense BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] MemorySpace memory_space() const noexcept {
     return backing_storage_.space();
   }
+  /**
+   * @brief Performs the public reachable_storage operation defined by the Dense
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Dense BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_dense_blas
+   */
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
     return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
@@ -654,37 +1429,150 @@ class DenseBlasPackedMatrixView {
   internal_dense_blas::StorageBounds bounds_;
 };
 
+/**
+ * @brief Selects the public DenseBlasDotAccumulation policy.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_dense_blas
+ */
 enum class DenseBlasDotAccumulation : std::uint8_t {
-  kDouble,
+  kDouble,  ///< Selects double behavior.
 };
 
+/**
+ * @brief Computes the Rotg operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] a The a value required by this contract.
+ * @param[in] b The b value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rotg(const ExecutionContext& context,
                              DenseBlasVectorView<float> a,
                              DenseBlasVectorView<float> b,
                              DenseBlasVectorView<float> c,
                              DenseBlasVectorView<float> s);
+/**
+ * @brief Computes the Rotg operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] a The a value required by this contract.
+ * @param[in] b The b value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rotg(const ExecutionContext& context,
                              DenseBlasVectorView<double> a,
                              DenseBlasVectorView<double> b,
                              DenseBlasVectorView<double> c,
                              DenseBlasVectorView<double> s);
+/**
+ * @brief Computes the Rotg operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] a The a value required by this contract.
+ * @param[in] b The b value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rotg(const ExecutionContext& context,
                              DenseBlasVectorView<std::complex<float>> a,
                              DenseBlasVectorView<const std::complex<float>> b,
                              DenseBlasVectorView<float> c,
                              DenseBlasVectorView<std::complex<float>> s);
+/**
+ * @brief Computes the Rotg operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] a The a value required by this contract.
+ * @param[in] b The b value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rotg(const ExecutionContext& context,
                              DenseBlasVectorView<std::complex<double>> a,
                              DenseBlasVectorView<const std::complex<double>> b,
                              DenseBlasVectorView<double> c,
                              DenseBlasVectorView<std::complex<double>> s);
 
+/**
+ * @brief Computes the Rotmg operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] d1 The d1 value required by this contract.
+ * @param[in] d2 The d2 value required by this contract.
+ * @param[in] x1 The x1 value required by this contract.
+ * @param[in] y1 The y1 value required by this contract.
+ * @param[in] parameters The parameters value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rotmg(const ExecutionContext& context,
                               DenseBlasVectorView<float> d1,
                               DenseBlasVectorView<float> d2,
                               DenseBlasVectorView<float> x1,
                               DenseBlasVectorView<const float> y1,
                               DenseBlasVectorView<float> parameters);
+/**
+ * @brief Computes the Rotmg operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] d1 The d1 value required by this contract.
+ * @param[in] d2 The d2 value required by this contract.
+ * @param[in] x1 The x1 value required by this contract.
+ * @param[in] y1 The y1 value required by this contract.
+ * @param[in] parameters The parameters value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rotmg(const ExecutionContext& context,
                               DenseBlasVectorView<double> d1,
                               DenseBlasVectorView<double> d2,
@@ -692,174 +1580,894 @@ ASC_DENSE_EXPORT Status Rotmg(const ExecutionContext& context,
                               DenseBlasVectorView<const double> y1,
                               DenseBlasVectorView<double> parameters);
 
+/**
+ * @brief Computes the Rot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rot(const ExecutionContext& context,
                             DenseBlasVectorView<float> x,
                             DenseBlasVectorView<float> y, float c, float s);
+/**
+ * @brief Computes the Rot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rot(const ExecutionContext& context,
                             DenseBlasVectorView<double> x,
                             DenseBlasVectorView<double> y, double c, double s);
+/**
+ * @brief Computes the Rot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rot(const ExecutionContext& context,
                             DenseBlasVectorView<std::complex<float>> x,
                             DenseBlasVectorView<std::complex<float>> y, float c,
                             float s);
+/**
+ * @brief Computes the Rot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rot(const ExecutionContext& context,
                             DenseBlasVectorView<std::complex<double>> x,
                             DenseBlasVectorView<std::complex<double>> y,
                             double c, double s);
 
+/**
+ * @brief Computes the Rotm operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] parameters The parameters value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rotm(const ExecutionContext& context,
                              DenseBlasVectorView<float> x,
                              DenseBlasVectorView<float> y,
                              DenseBlasVectorView<const float> parameters);
+/**
+ * @brief Computes the Rotm operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] parameters The parameters value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Rotm(const ExecutionContext& context,
                              DenseBlasVectorView<double> x,
                              DenseBlasVectorView<double> y,
                              DenseBlasVectorView<const double> parameters);
 
+/**
+ * @brief Computes the Swap operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Swap(const ExecutionContext& context,
                              DenseBlasVectorView<float> x,
                              DenseBlasVectorView<float> y);
+/**
+ * @brief Computes the Swap operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Swap(const ExecutionContext& context,
                              DenseBlasVectorView<double> x,
                              DenseBlasVectorView<double> y);
+/**
+ * @brief Computes the Swap operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Swap(const ExecutionContext& context,
                              DenseBlasVectorView<std::complex<float>> x,
                              DenseBlasVectorView<std::complex<float>> y);
+/**
+ * @brief Computes the Swap operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Swap(const ExecutionContext& context,
                              DenseBlasVectorView<std::complex<double>> x,
                              DenseBlasVectorView<std::complex<double>> y);
 
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Scal(const ExecutionContext& context, float alpha,
                              DenseBlasVectorView<float> destination);
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Scal(const ExecutionContext& context, double alpha,
                              DenseBlasVectorView<double> destination);
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Scal(const ExecutionContext& context, std::complex<float> alpha,
      DenseBlasVectorView<std::complex<float>> destination);
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Scal(const ExecutionContext& context, std::complex<double> alpha,
      DenseBlasVectorView<std::complex<double>> destination);
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Scal(const ExecutionContext& context, float alpha,
      DenseBlasVectorView<std::complex<float>> destination);
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Scal(const ExecutionContext& context, double alpha,
      DenseBlasVectorView<std::complex<double>> destination);
 
+/**
+ * @brief Computes the Copy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Copy(const ExecutionContext& context,
                              DenseBlasVectorView<const float> source,
                              DenseBlasVectorView<float> destination);
+/**
+ * @brief Computes the Copy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Copy(const ExecutionContext& context,
                              DenseBlasVectorView<const double> source,
                              DenseBlasVectorView<double> destination);
+/**
+ * @brief Computes the Copy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Copy(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<float>> source,
      DenseBlasVectorView<std::complex<float>> destination);
+/**
+ * @brief Computes the Copy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Copy(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<double>> source,
      DenseBlasVectorView<std::complex<double>> destination);
 
+/**
+ * @brief Computes the Axpy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Axpy(const ExecutionContext& context, float alpha,
                              DenseBlasVectorView<const float> source,
                              DenseBlasVectorView<float> destination);
+/**
+ * @brief Computes the Axpy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Axpy(const ExecutionContext& context, double alpha,
                              DenseBlasVectorView<const double> source,
                              DenseBlasVectorView<double> destination);
+/**
+ * @brief Computes the Axpy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Axpy(const ExecutionContext& context, std::complex<float> alpha,
      DenseBlasVectorView<const std::complex<float>> source,
      DenseBlasVectorView<std::complex<float>> destination);
+/**
+ * @brief Computes the Axpy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Axpy(const ExecutionContext& context, std::complex<double> alpha,
      DenseBlasVectorView<const std::complex<double>> source,
      DenseBlasVectorView<std::complex<double>> destination);
 
+/**
+ * @brief Computes the Dot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Dot(const ExecutionContext& context,
                             DenseBlasVectorView<const float> left,
                             DenseBlasVectorView<const float> right,
                             DenseBlasVectorView<float> result);
+/**
+ * @brief Computes the Dot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Dot(const ExecutionContext& context,
                             DenseBlasVectorView<const double> left,
                             DenseBlasVectorView<const double> right,
                             DenseBlasVectorView<double> result);
+/**
+ * @brief Computes the Dot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] bias The bias value required by this contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Dot(const ExecutionContext& context, float bias,
                             DenseBlasVectorView<const float> left,
                             DenseBlasVectorView<const float> right,
                             DenseBlasVectorView<float> result);
+/**
+ * @brief Computes the Dot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] accumulation The accumulation value required by this contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Dot(const ExecutionContext& context,
                             DenseBlasDotAccumulation accumulation,
                             DenseBlasVectorView<const float> left,
                             DenseBlasVectorView<const float> right,
                             DenseBlasVectorView<double> result);
 
+/**
+ * @brief Computes the Dotu operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Dotu(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<float>> left,
      DenseBlasVectorView<const std::complex<float>> right,
      DenseBlasVectorView<std::complex<float>> result);
+/**
+ * @brief Computes the Dotu operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Dotu(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<double>> left,
      DenseBlasVectorView<const std::complex<double>> right,
      DenseBlasVectorView<std::complex<double>> result);
+/**
+ * @brief Computes the Dotc operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Dotc(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<float>> left,
      DenseBlasVectorView<const std::complex<float>> right,
      DenseBlasVectorView<std::complex<float>> result);
+/**
+ * @brief Computes the Dotc operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Dotc(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<double>> left,
      DenseBlasVectorView<const std::complex<double>> right,
      DenseBlasVectorView<std::complex<double>> result);
 
+/**
+ * @brief Computes the Nrm2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Nrm2(const ExecutionContext& context,
                              DenseBlasVectorView<const float> operand,
                              DenseBlasVectorView<float> result);
+/**
+ * @brief Computes the Nrm2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Nrm2(const ExecutionContext& context,
                              DenseBlasVectorView<const double> operand,
                              DenseBlasVectorView<double> result);
+/**
+ * @brief Computes the Nrm2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Nrm2(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<float>> operand,
      DenseBlasVectorView<float> result);
+/**
+ * @brief Computes the Nrm2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Nrm2(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<double>> operand,
      DenseBlasVectorView<double> result);
 
+/**
+ * @brief Computes the Asum operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Asum(const ExecutionContext& context,
                              DenseBlasVectorView<const float> operand,
                              DenseBlasVectorView<float> result);
+/**
+ * @brief Computes the Asum operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Asum(const ExecutionContext& context,
                              DenseBlasVectorView<const double> operand,
                              DenseBlasVectorView<double> result);
+/**
+ * @brief Computes the Asum operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Asum(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<float>> operand,
      DenseBlasVectorView<float> result);
+/**
+ * @brief Computes the Asum operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Asum(const ExecutionContext& context,
      DenseBlasVectorView<const std::complex<double>> operand,
      DenseBlasVectorView<double> result);
 
+/**
+ * @brief Performs the public Iamax operation defined by the Dense BLAS
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Iamax(const ExecutionContext& context,
                               DenseBlasVectorView<const float> operand,
                               DenseBlasVectorView<index_t> result);
+/**
+ * @brief Performs the public Iamax operation defined by the Dense BLAS
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Iamax(const ExecutionContext& context,
                               DenseBlasVectorView<const double> operand,
                               DenseBlasVectorView<index_t> result);
+/**
+ * @brief Performs the public Iamax operation defined by the Dense BLAS
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Iamax(const ExecutionContext& context,
       DenseBlasVectorView<const std::complex<float>> operand,
       DenseBlasVectorView<index_t> result);
+/**
+ * @brief Performs the public Iamax operation defined by the Dense BLAS
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status
 Iamax(const ExecutionContext& context,
       DenseBlasVectorView<const std::complex<double>> operand,
       DenseBlasVectorView<index_t> result);
 
+/**
+ * @brief Computes the Gemv operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Gemv(const ExecutionContext& context,
                              DenseBlasTranspose transpose, Element alpha,
@@ -867,6 +2475,27 @@ ASC_DENSE_EXPORT Status Gemv(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> input,
                              Element beta, DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Performs the public Gbmv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Gbmv(const ExecutionContext& context,
                              DenseBlasTranspose transpose, Element alpha,
@@ -874,6 +2503,27 @@ ASC_DENSE_EXPORT Status Gbmv(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> input,
                              Element beta, DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Performs the public Hemv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Hemv(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -881,6 +2531,27 @@ ASC_DENSE_EXPORT Status Hemv(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> input,
                              Element beta, DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Performs the public Hbmv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Hbmv(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -888,6 +2559,27 @@ ASC_DENSE_EXPORT Status Hbmv(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> input,
                              Element beta, DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Performs the public Hpmv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Hpmv(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -895,6 +2587,28 @@ ASC_DENSE_EXPORT Status Hpmv(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> input,
                              Element beta, DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Computes the Symv operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_EXPORT Status Symv(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -902,6 +2616,27 @@ ASC_DENSE_EXPORT Status Symv(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> input,
                              Element beta, DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Performs the public Sbmv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_EXPORT Status Sbmv(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -909,6 +2644,27 @@ ASC_DENSE_EXPORT Status Sbmv(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> input,
                              Element beta, DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Performs the public Spmv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_EXPORT Status Spmv(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -916,6 +2672,26 @@ ASC_DENSE_EXPORT Status Spmv(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> input,
                              Element beta, DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Computes the Trmv operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Trmv(const ExecutionContext& context,
                              DenseBlasTriangle triangle,
@@ -924,6 +2700,25 @@ ASC_DENSE_EXPORT Status Trmv(const ExecutionContext& context,
                              DenseBlasMatrixView<const Element> matrix,
                              DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Performs the public Tbmv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Tbmv(const ExecutionContext& context,
                              DenseBlasTriangle triangle,
@@ -932,6 +2727,25 @@ ASC_DENSE_EXPORT Status Tbmv(const ExecutionContext& context,
                              DenseBlasTriangularBandView<const Element> matrix,
                              DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Performs the public Tpmv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Tpmv(const ExecutionContext& context,
                              DenseBlasTriangle triangle,
@@ -940,6 +2754,25 @@ ASC_DENSE_EXPORT Status Tpmv(const ExecutionContext& context,
                              DenseBlasPackedMatrixView<const Element> matrix,
                              DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Performs the public Trsv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Trsv(const ExecutionContext& context,
                              DenseBlasTriangle triangle,
@@ -948,6 +2781,25 @@ ASC_DENSE_EXPORT Status Trsv(const ExecutionContext& context,
                              DenseBlasMatrixView<const Element> matrix,
                              DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Performs the public Tbsv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Tbsv(const ExecutionContext& context,
                              DenseBlasTriangle triangle,
@@ -956,6 +2808,25 @@ ASC_DENSE_EXPORT Status Tbsv(const ExecutionContext& context,
                              DenseBlasTriangularBandView<const Element> matrix,
                              DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Performs the public Tpsv operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Tpsv(const ExecutionContext& context,
                              DenseBlasTriangle triangle,
@@ -964,24 +2835,100 @@ ASC_DENSE_EXPORT Status Tpsv(const ExecutionContext& context,
                              DenseBlasPackedMatrixView<const Element> matrix,
                              DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Computes the Ger operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_EXPORT Status Ger(const ExecutionContext& context, Element alpha,
                             DenseBlasVectorView<const Element> x,
                             DenseBlasVectorView<const Element> y,
                             DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Geru operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Geru(const ExecutionContext& context, Element alpha,
                              DenseBlasVectorView<const Element> x,
                              DenseBlasVectorView<const Element> y,
                              DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Gerc operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Gerc(const ExecutionContext& context, Element alpha,
                              DenseBlasVectorView<const Element> x,
                              DenseBlasVectorView<const Element> y,
                              DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Her operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Her(const ExecutionContext& context,
                             DenseBlasTriangle triangle,
@@ -989,6 +2936,24 @@ ASC_DENSE_EXPORT Status Her(const ExecutionContext& context,
                             DenseBlasVectorView<const Element> x,
                             DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Performs the public Hpr operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Hpr(const ExecutionContext& context,
                             DenseBlasTriangle triangle,
@@ -996,6 +2961,26 @@ ASC_DENSE_EXPORT Status Hpr(const ExecutionContext& context,
                             DenseBlasVectorView<const Element> x,
                             DenseBlasPackedMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Her2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Her2(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -1003,6 +2988,25 @@ ASC_DENSE_EXPORT Status Her2(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> y,
                              DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Performs the public Hpr2 operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Hpr2(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -1010,18 +3014,76 @@ ASC_DENSE_EXPORT Status Hpr2(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> y,
                              DenseBlasPackedMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Syr operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_EXPORT Status Syr(const ExecutionContext& context,
                             DenseBlasTriangle triangle, Element alpha,
                             DenseBlasVectorView<const Element> x,
                             DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Spr operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_EXPORT Status Spr(const ExecutionContext& context,
                             DenseBlasTriangle triangle, Element alpha,
                             DenseBlasVectorView<const Element> x,
                             DenseBlasPackedMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Syr2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_EXPORT Status Syr2(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -1029,6 +3091,26 @@ ASC_DENSE_EXPORT Status Syr2(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> y,
                              DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Spr2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_EXPORT Status Spr2(const ExecutionContext& context,
                              DenseBlasTriangle triangle, Element alpha,
@@ -1036,6 +3118,30 @@ ASC_DENSE_EXPORT Status Spr2(const ExecutionContext& context,
                              DenseBlasVectorView<const Element> y,
                              DenseBlasPackedMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Gemm operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left_transpose The left transpose value required by this contract.
+ * @param[in] right_transpose The right transpose value required by this
+ * contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Gemm(const ExecutionContext& context,
                              DenseBlasTranspose left_transpose,
@@ -1044,6 +3150,29 @@ ASC_DENSE_EXPORT Status Gemm(const ExecutionContext& context,
                              DenseBlasMatrixView<const Element> right,
                              Element beta, DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Computes the Symm operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] side The side value required by this contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] symmetric The symmetric value required by this contract.
+ * @param[in] other The other value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Symm(const ExecutionContext& context,
                              DenseBlasSide side, DenseBlasTriangle triangle,
@@ -1052,6 +3181,28 @@ ASC_DENSE_EXPORT Status Symm(const ExecutionContext& context,
                              DenseBlasMatrixView<const Element> other,
                              Element beta, DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Performs the public Hemm operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] side The side value required by this contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] hermitian The hermitian value required by this contract.
+ * @param[in] other The other value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Hemm(const ExecutionContext& context,
                              DenseBlasSide side, DenseBlasTriangle triangle,
@@ -1060,6 +3211,28 @@ ASC_DENSE_EXPORT Status Hemm(const ExecutionContext& context,
                              DenseBlasMatrixView<const Element> other,
                              Element beta, DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Computes the Syrk operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Syrk(const ExecutionContext& context,
                              DenseBlasTriangle triangle,
@@ -1067,6 +3240,28 @@ ASC_DENSE_EXPORT Status Syrk(const ExecutionContext& context,
                              DenseBlasMatrixView<const Element> input,
                              Element beta, DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Computes the Herk operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Herk(const ExecutionContext& context,
                              DenseBlasTriangle triangle,
@@ -1076,6 +3271,29 @@ ASC_DENSE_EXPORT Status Herk(const ExecutionContext& context,
                              DenseBlasRealType<Element> beta,
                              DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Computes the Syr2k operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Syr2k(const ExecutionContext& context,
                               DenseBlasTriangle triangle,
@@ -1085,6 +3303,29 @@ ASC_DENSE_EXPORT Status Syr2k(const ExecutionContext& context,
                               Element beta,
                               DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Computes the Her2k operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_EXPORT Status Her2k(const ExecutionContext& context,
                               DenseBlasTriangle triangle,
@@ -1094,6 +3335,28 @@ ASC_DENSE_EXPORT Status Her2k(const ExecutionContext& context,
                               DenseBlasRealType<Element> beta,
                               DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Computes the Trmm operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] side The side value required by this contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] triangular The triangular value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Trmm(const ExecutionContext& context,
                              DenseBlasSide side, DenseBlasTriangle triangle,
@@ -1102,6 +3365,27 @@ ASC_DENSE_EXPORT Status Trmm(const ExecutionContext& context,
                              DenseBlasMatrixView<const Element> triangular,
                              DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Performs the public Trsm operation defined by the Dense BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] side The side value required by this contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] triangular The triangular value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_EXPORT Status Trsm(const ExecutionContext& context,
                              DenseBlasSide side, DenseBlasTriangle triangle,
@@ -1110,70 +3394,408 @@ ASC_DENSE_EXPORT Status Trsm(const ExecutionContext& context,
                              DenseBlasMatrixView<const Element> triangular,
                              DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Computes the Copy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Copy(const ExecutionContext& context,
                              DenseView<const float, 1> source,
                              DenseView<float, 1> destination);
+/**
+ * @brief Computes the Copy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Copy(const ExecutionContext& context,
                              DenseView<const float, 2> source,
                              DenseView<float, 2> destination);
+/**
+ * @brief Computes the Copy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Copy(const ExecutionContext& context,
                              DenseView<const double, 1> source,
                              DenseView<double, 1> destination);
+/**
+ * @brief Computes the Copy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Copy(const ExecutionContext& context,
                              DenseView<const double, 2> source,
                              DenseView<double, 2> destination);
 
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Scal(const ExecutionContext& context, float alpha,
                              DenseView<float, 1> destination);
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Scal(const ExecutionContext& context, float alpha,
                              DenseView<float, 2> destination);
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Scal(const ExecutionContext& context, double alpha,
                              DenseView<double, 1> destination);
+/**
+ * @brief Computes the Scal operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Scal(const ExecutionContext& context, double alpha,
                              DenseView<double, 2> destination);
 
+/**
+ * @brief Computes the Axpy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Axpy(const ExecutionContext& context, float alpha,
                              DenseView<const float, 1> source,
                              DenseView<float, 1> destination);
+/**
+ * @brief Computes the Axpy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Axpy(const ExecutionContext& context, float alpha,
                              DenseView<const float, 2> source,
                              DenseView<float, 2> destination);
+/**
+ * @brief Computes the Axpy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Axpy(const ExecutionContext& context, double alpha,
                              DenseView<const double, 1> source,
                              DenseView<double, 1> destination);
+/**
+ * @brief Computes the Axpy operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Axpy(const ExecutionContext& context, double alpha,
                              DenseView<const double, 2> source,
                              DenseView<double, 2> destination);
 
+/**
+ * @brief Computes the Dot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Result<float> Dot(const ExecutionContext& context,
                                    DenseView<const float, 1> left,
                                    DenseView<const float, 1> right);
+/**
+ * @brief Computes the Dot operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Result<double> Dot(const ExecutionContext& context,
                                     DenseView<const double, 1> left,
                                     DenseView<const double, 1> right);
 
+/**
+ * @brief Computes the Nrm2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Result<float> Nrm2(const ExecutionContext& context,
                                     DenseView<const float, 1> operand);
+/**
+ * @brief Computes the Nrm2 operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Result<double> Nrm2(const ExecutionContext& context,
                                      DenseView<const double, 1> operand);
 
+/**
+ * @brief Computes the Gemv operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Gemv(const ExecutionContext& context,
                              DenseBlasTranspose transpose, float alpha,
                              DenseView<const float, 2> matrix,
                              DenseView<const float, 1> input, float beta,
                              DenseView<float, 1> output);
+/**
+ * @brief Computes the Gemv operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Gemv(const ExecutionContext& context,
                              DenseBlasTranspose transpose, double alpha,
                              DenseView<const double, 2> matrix,
                              DenseView<const double, 1> input, double beta,
                              DenseView<double, 1> output);
 
+/**
+ * @brief Computes the Gemm operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left_transpose The left transpose value required by this contract.
+ * @param[in] right_transpose The right transpose value required by this
+ * contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Gemm(const ExecutionContext& context,
                              DenseBlasTranspose left_transpose,
                              DenseBlasTranspose right_transpose, float alpha,
                              DenseView<const float, 2> left,
                              DenseView<const float, 2> right, float beta,
                              DenseView<float, 2> output);
+/**
+ * @brief Computes the Gemm operation defined by the Dense BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Dense BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left_transpose The left transpose value required by this contract.
+ * @param[in] right_transpose The right transpose value required by this
+ * contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_dense_blas
+ */
 ASC_DENSE_EXPORT Status Gemm(const ExecutionContext& context,
                              DenseBlasTranspose left_transpose,
                              DenseBlasTranspose right_transpose, double alpha,

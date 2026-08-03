@@ -1,6 +1,17 @@
 #ifndef ASC_RANDOM_SPARSE_H_
 #define ASC_RANDOM_SPARSE_H_
 
+/**
+ * @file
+ * @brief Public Sparse declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_sparse
+ */
+
 #include <algorithm>
 #include <array>
 #include <concepts>
@@ -22,21 +33,92 @@
 
 namespace asc {
 
+/**
+ * @brief Stores the RandomSparseAdapterSequenceVersion1 value for this
+ * contract.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @ingroup asc_sparse
+ */
 inline constexpr std::uint32_t kRandomSparseAdapterSequenceVersion1 = 1;
 
+/**
+ * @brief Stores a ranked candidate for sparse structure selection.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ * @ingroup asc_sparse
+ */
 struct SparseRandomStructureCandidate {
+  /**
+   * @brief Stores the priority value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   std::uint64_t priority = 0;
+  /**
+   * @brief Stores the ordinal value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   std::uint64_t ordinal = 0;
 
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   friend bool operator==(const SparseRandomStructureCandidate&,
                          const SparseRandomStructureCandidate&) = default;
 };
 
+/**
+ * @brief Owns a generated sparse array and next deterministic offsets.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ * @ingroup asc_sparse
+ */
 template <typename Element, SparseExtents ExtentsType>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 struct SparseUniform01Generation {
+  /**
+   * @brief Stores the array value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   CoordinateArray<Element, ExtentsType> array;
+  /**
+   * @brief Stores the next structure offset value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   RandomOffset next_structure_offset;
+  /**
+   * @brief Stores the next value offset value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Sparse module contract.
+   *
+   * @ingroup asc_sparse
+   */
   RandomOffset next_value_offset;
 };
 
@@ -187,6 +269,25 @@ std::array<index_t, ExtentsType::kRank> CoordinateFromOrdinal(
 
 }  // namespace internal_random_sparse
 
+/**
+ * @brief Generates deterministic Sparse values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] stream CUDA stream whose ordering and lifetime are caller
+ * controlled.
+ * @param[in] subsequence Deterministic independent subsequence identifier.
+ * @param[in] offset Deterministic address offset within the selected sequence.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <typename Element, std::size_t Rank>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 [[nodiscard]] Result<RandomOffset> FillSparseUniform01(
@@ -196,6 +297,25 @@ template <typename Element, std::size_t Rank>
       context, destination, stream, subsequence, offset);
 }
 
+/**
+ * @brief Generates deterministic Sparse values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] stream CUDA stream whose ordering and lifetime are caller
+ * controlled.
+ * @param[in] subsequence Deterministic independent subsequence identifier.
+ * @param[in] offset Deterministic address offset within the selected sequence.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <typename Element, SparseCompressedFormat Format>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 [[nodiscard]] Result<RandomOffset> FillSparseUniform01(
@@ -206,6 +326,22 @@ template <typename Element, SparseCompressedFormat Format>
       context, destination, stream, subsequence, offset);
 }
 
+/**
+ * @brief Generates deterministic Sparse values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] generator The generator value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse
+ */
 template <typename Element, std::size_t Rank, typename Generator>
   requires internal_random_sparse::ValueGeneratorFor<Generator, Element>
 Status FillSparsePseudo(const ExecutionContext& context,
@@ -215,6 +351,22 @@ Status FillSparsePseudo(const ExecutionContext& context,
                                                            generator);
 }
 
+/**
+ * @brief Generates deterministic Sparse values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @param[in] generator The generator value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse
+ */
 template <typename Element, SparseCompressedFormat Format, typename Generator>
   requires internal_random_sparse::ValueGeneratorFor<Generator, Element>
 Status FillSparsePseudo(const ExecutionContext& context,
@@ -224,6 +376,30 @@ Status FillSparsePseudo(const ExecutionContext& context,
                                                            generator);
 }
 
+/**
+ * @brief Generates deterministic Sparse values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam ExtentsType Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] extents Logical extents; every extent must satisfy the documented
+ * bounds.
+ * @param[in] exact_count The exact count value required by this contract.
+ * @param[in] stream CUDA stream whose ordering and lifetime are caller
+ * controlled.
+ * @param[in] subsequence Deterministic independent subsequence identifier.
+ * @param[in] offset Deterministic address offset within the selected sequence.
+ * @param[in] candidate_workspace The candidate workspace value required by this
+ * contract.
+ * @param[in] output_ordinals The output ordinals value required by this
+ * contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <SparseExtents ExtentsType>
 [[nodiscard]] Result<RandomOffset> GenerateSparseStructure(
     const ExecutionContext& context, ExtentsType extents, nnz_t exact_count,
@@ -320,6 +496,33 @@ template <SparseExtents ExtentsType>
   return *next_offset;
 }
 
+/**
+ * @brief Generates deterministic Sparse values into the requested destination.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Sparse module contract.
+ *
+ * @tparam ExtentsType Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] extents Logical extents; every extent must satisfy the documented
+ * bounds.
+ * @param[in] exact_count The exact count value required by this contract.
+ * @param[in] resource Allocator that must outlive storage allocated from it.
+ * @param[in] structure_stream The structure stream value required by this
+ * contract.
+ * @param[in] structure_subsequence The structure subsequence value required by
+ * this contract.
+ * @param[in] structure_offset The structure offset value required by this
+ * contract.
+ * @param[in] value_stream The value stream value required by this contract.
+ * @param[in] value_subsequence The value subsequence value required by this
+ * contract.
+ * @param[in] value_offset The value offset value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse
+ */
 template <typename Element, SparseExtents ExtentsType>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 [[nodiscard]] Result<SparseUniform01Generation<Element, ExtentsType>>

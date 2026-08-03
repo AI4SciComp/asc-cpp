@@ -1,6 +1,17 @@
 #ifndef ASC_DENSE_PROVIDERS_CUDA_H_
 #define ASC_DENSE_PROVIDERS_CUDA_H_
 
+/**
+ * @file
+ * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_cuda
+ */
+
 #include <array>
 #include <complex>
 #include <concepts>
@@ -28,22 +39,22 @@ class Access;
 class ContextState;
 
 enum class PointwiseOperation {
-  kCopy,
-  kFill,
-  kNegate,
-  kAdd,
-  kSubtract,
-  kMultiply,
+  kCopy,      ///< Selects copy behavior.
+  kFill,      ///< Selects fill behavior.
+  kNegate,    ///< Selects negate behavior.
+  kAdd,       ///< Selects add behavior.
+  kSubtract,  ///< Selects subtract behavior.
+  kMultiply,  ///< Selects multiply behavior.
 };
 
 enum class OperandKind {
-  kView,
-  kScalar,
+  kView,    ///< Selects view behavior.
+  kScalar,  ///< Selects scalar behavior.
 };
 
 enum class ElementKind {
-  kFloat,
-  kDouble,
+  kFloat,   ///< Selects float behavior.
+  kDouble,  ///< Selects double behavior.
 };
 
 struct ViewDescriptor {
@@ -156,21 +167,116 @@ Result<OperandDescriptor> DescribeOperand(const Operand& operand) {
 
 }  // namespace internal_dense_cuda
 
+/**
+ * @brief Owns experimental cuBLAS state bound to an execution context.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
  public:
+  /**
+   * @brief Validates inputs and creates the requested CUDA provider object.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @param[in] execution_context The execution context value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   static Result<DenseCudaContext> Create(ExecutionContext execution_context);
 
+  /**
+   * @brief Constructs a DenseCudaContext with the documented ownership and
+   * validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   DenseCudaContext(const DenseCudaContext&) = delete;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   DenseCudaContext& operator=(const DenseCudaContext&) = delete;
+  /**
+   * @brief Constructs a DenseCudaContext with the documented ownership and
+   * validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @param[in] other The other value required by this contract.
+   * @ingroup asc_cuda
+   */
   DenseCudaContext(DenseCudaContext&& other) noexcept;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @param[in] other The other value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   DenseCudaContext& operator=(DenseCudaContext&& other) noexcept;
+  /**
+   * @brief Releases owned resources after required completion/lifetime
+   * conditions.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   ~DenseCudaContext();
 
+  /**
+   * @brief Performs the public execution_context operation defined by the CUDA
+   * provider contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] const ExecutionContext& execution_context() const noexcept {
     return execution_context_;
   }
 
  private:
+  /**
+   * @brief Performs the public Access operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   friend class internal_dense_cuda::Access;
 
   DenseCudaContext(
@@ -181,6 +287,26 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
   std::unique_ptr<internal_dense_cuda::ContextState> state_;
 };
 
+/**
+ * @brief Enqueues the experimental CUDA Evaluate operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Expression Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] expression The expression value required by this contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <ReadableExpression Expression, typename Element, std::size_t Rank>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 Result<CompletionEvent> CudaEvaluate(DenseCudaContext& context,
@@ -291,202 +417,993 @@ Result<CompletionEvent> CudaEvaluate(DenseCudaContext& context,
   }
 }
 
+/**
+ * @brief Defines the public MatrixOperation type used by this CUDA provider
+ * contract.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @ingroup asc_cuda
+ */
 using MatrixOperation = DenseBlasTranspose;
 
+/**
+ * @brief Enqueues the experimental CUDA Rotg operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] a The a value required by this contract.
+ * @param[in] b The b value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
     DenseCudaContext& context, DenseBlasVectorView<float> a,
     DenseBlasVectorView<float> b, DenseBlasVectorView<float> c,
     DenseBlasVectorView<float> s);
+/**
+ * @brief Enqueues the experimental CUDA Rotg operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] a The a value required by this contract.
+ * @param[in] b The b value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
     DenseCudaContext& context, DenseBlasVectorView<double> a,
     DenseBlasVectorView<double> b, DenseBlasVectorView<double> c,
     DenseBlasVectorView<double> s);
+/**
+ * @brief Enqueues the experimental CUDA Rotg operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] a The a value required by this contract.
+ * @param[in] b The b value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
     DenseCudaContext& context, DenseBlasVectorView<std::complex<float>> a,
     DenseBlasVectorView<const std::complex<float>> b,
     DenseBlasVectorView<float> c, DenseBlasVectorView<std::complex<float>> s);
+/**
+ * @brief Enqueues the experimental CUDA Rotg operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] a The a value required by this contract.
+ * @param[in] b The b value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
     DenseCudaContext& context, DenseBlasVectorView<std::complex<double>> a,
     DenseBlasVectorView<const std::complex<double>> b,
     DenseBlasVectorView<double> c, DenseBlasVectorView<std::complex<double>> s);
 
+/**
+ * @brief Enqueues the experimental CUDA Rotmg operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] d1 The d1 value required by this contract.
+ * @param[in] d2 The d2 value required by this contract.
+ * @param[in] x1 The x1 value required by this contract.
+ * @param[in] y1 The y1 value required by this contract.
+ * @param[in] parameters The parameters value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotmg(
     DenseCudaContext& context, DenseBlasVectorView<float> d1,
     DenseBlasVectorView<float> d2, DenseBlasVectorView<float> x1,
     DenseBlasVectorView<const float> y1, DenseBlasVectorView<float> parameters);
+/**
+ * @brief Enqueues the experimental CUDA Rotmg operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] d1 The d1 value required by this contract.
+ * @param[in] d2 The d2 value required by this contract.
+ * @param[in] x1 The x1 value required by this contract.
+ * @param[in] y1 The y1 value required by this contract.
+ * @param[in] parameters The parameters value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotmg(
     DenseCudaContext& context, DenseBlasVectorView<double> d1,
     DenseBlasVectorView<double> d2, DenseBlasVectorView<double> x1,
     DenseBlasVectorView<const double> y1,
     DenseBlasVectorView<double> parameters);
 
+/**
+ * @brief Enqueues the experimental CUDA Rot operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
     DenseCudaContext& context, DenseBlasVectorView<float> x,
     DenseBlasVectorView<float> y, float c, float s);
+/**
+ * @brief Enqueues the experimental CUDA Rot operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
     DenseCudaContext& context, DenseBlasVectorView<double> x,
     DenseBlasVectorView<double> y, double c, double s);
+/**
+ * @brief Enqueues the experimental CUDA Rot operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
     DenseCudaContext& context, DenseBlasVectorView<std::complex<float>> x,
     DenseBlasVectorView<std::complex<float>> y, float c, float s);
+/**
+ * @brief Enqueues the experimental CUDA Rot operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] c The c value required by this contract.
+ * @param[in] s The s value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
     DenseCudaContext& context, DenseBlasVectorView<std::complex<double>> x,
     DenseBlasVectorView<std::complex<double>> y, double c, double s);
 
+/**
+ * @brief Enqueues the experimental CUDA Rotm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] parameters The parameters value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotm(
     DenseCudaContext& context, DenseBlasVectorView<float> x,
     DenseBlasVectorView<float> y, DenseBlasVectorView<const float> parameters);
+/**
+ * @brief Enqueues the experimental CUDA Rotm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] parameters The parameters value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotm(
     DenseCudaContext& context, DenseBlasVectorView<double> x,
     DenseBlasVectorView<double> y,
     DenseBlasVectorView<const double> parameters);
 
+/**
+ * @brief Enqueues the experimental CUDA Swap operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
     DenseCudaContext& context, DenseBlasVectorView<float> x,
     DenseBlasVectorView<float> y);
+/**
+ * @brief Enqueues the experimental CUDA Swap operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
     DenseCudaContext& context, DenseBlasVectorView<double> x,
     DenseBlasVectorView<double> y);
+/**
+ * @brief Enqueues the experimental CUDA Swap operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
     DenseCudaContext& context, DenseBlasVectorView<std::complex<float>> x,
     DenseBlasVectorView<std::complex<float>> y);
+/**
+ * @brief Enqueues the experimental CUDA Swap operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
     DenseCudaContext& context, DenseBlasVectorView<std::complex<double>> x,
     DenseBlasVectorView<std::complex<double>> y);
 
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, float alpha,
     DenseBlasVectorView<float> destination);
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, double alpha,
     DenseBlasVectorView<double> destination);
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, std::complex<float> alpha,
     DenseBlasVectorView<std::complex<float>> destination);
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, std::complex<double> alpha,
     DenseBlasVectorView<std::complex<double>> destination);
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, float alpha,
     DenseBlasVectorView<std::complex<float>> destination);
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, double alpha,
     DenseBlasVectorView<std::complex<double>> destination);
 
+/**
+ * @brief Enqueues the experimental CUDA Copy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseBlasVectorView<const float> source,
     DenseBlasVectorView<float> destination);
+/**
+ * @brief Enqueues the experimental CUDA Copy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseBlasVectorView<const double> source,
     DenseBlasVectorView<double> destination);
+/**
+ * @brief Enqueues the experimental CUDA Copy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<float>> source,
     DenseBlasVectorView<std::complex<float>> destination);
+/**
+ * @brief Enqueues the experimental CUDA Copy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<double>> source,
     DenseBlasVectorView<std::complex<double>> destination);
 
+/**
+ * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
     DenseCudaContext& context, float alpha,
     DenseBlasVectorView<const float> source,
     DenseBlasVectorView<float> destination);
+/**
+ * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
     DenseCudaContext& context, double alpha,
     DenseBlasVectorView<const double> source,
     DenseBlasVectorView<double> destination);
+/**
+ * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
     DenseCudaContext& context, std::complex<float> alpha,
     DenseBlasVectorView<const std::complex<float>> source,
     DenseBlasVectorView<std::complex<float>> destination);
+/**
+ * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
     DenseCudaContext& context, std::complex<double> alpha,
     DenseBlasVectorView<const std::complex<double>> source,
     DenseBlasVectorView<std::complex<double>> destination);
 
+/**
+ * @brief Enqueues the experimental CUDA Dot operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
     DenseCudaContext& context, DenseBlasVectorView<const float> left,
     DenseBlasVectorView<const float> right, DenseBlasVectorView<float> result);
+/**
+ * @brief Enqueues the experimental CUDA Dot operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
     DenseCudaContext& context, DenseBlasVectorView<const double> left,
     DenseBlasVectorView<const double> right,
     DenseBlasVectorView<double> result);
+/**
+ * @brief Enqueues the experimental CUDA Dot operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] bias The bias value required by this contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
     DenseCudaContext& context, float bias,
     DenseBlasVectorView<const float> left,
     DenseBlasVectorView<const float> right, DenseBlasVectorView<float> result);
+/**
+ * @brief Enqueues the experimental CUDA Dot operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] accumulation The accumulation value required by this contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
     DenseCudaContext& context, DenseBlasDotAccumulation accumulation,
     DenseBlasVectorView<const float> left,
     DenseBlasVectorView<const float> right, DenseBlasVectorView<double> result);
 
+/**
+ * @brief Enqueues the experimental CUDA Dotu operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotu(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<float>> left,
     DenseBlasVectorView<const std::complex<float>> right,
     DenseBlasVectorView<std::complex<float>> result);
+/**
+ * @brief Enqueues the experimental CUDA Dotu operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotu(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<double>> left,
     DenseBlasVectorView<const std::complex<double>> right,
     DenseBlasVectorView<std::complex<double>> result);
+/**
+ * @brief Enqueues the experimental CUDA Dotc operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotc(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<float>> left,
     DenseBlasVectorView<const std::complex<float>> right,
     DenseBlasVectorView<std::complex<float>> result);
+/**
+ * @brief Enqueues the experimental CUDA Dotc operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotc(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<double>> left,
     DenseBlasVectorView<const std::complex<double>> right,
     DenseBlasVectorView<std::complex<double>> result);
 
+/**
+ * @brief Enqueues the experimental CUDA Nrm2 operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
     DenseCudaContext& context, DenseBlasVectorView<const float> operand,
     DenseBlasVectorView<float> result);
+/**
+ * @brief Enqueues the experimental CUDA Nrm2 operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
     DenseCudaContext& context, DenseBlasVectorView<const double> operand,
     DenseBlasVectorView<double> result);
+/**
+ * @brief Enqueues the experimental CUDA Nrm2 operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<float>> operand,
     DenseBlasVectorView<float> result);
+/**
+ * @brief Enqueues the experimental CUDA Nrm2 operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<double>> operand,
     DenseBlasVectorView<double> result);
 
+/**
+ * @brief Enqueues the experimental CUDA Asum operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
     DenseCudaContext& context, DenseBlasVectorView<const float> operand,
     DenseBlasVectorView<float> result);
+/**
+ * @brief Enqueues the experimental CUDA Asum operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
     DenseCudaContext& context, DenseBlasVectorView<const double> operand,
     DenseBlasVectorView<double> result);
+/**
+ * @brief Enqueues the experimental CUDA Asum operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<float>> operand,
     DenseBlasVectorView<float> result);
+/**
+ * @brief Enqueues the experimental CUDA Asum operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<double>> operand,
     DenseBlasVectorView<double> result);
 
+/**
+ * @brief Enqueues the experimental CUDA Iamax operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @param[in] provider_workspace The provider workspace value required by this
+ * contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
     DenseCudaContext& context, DenseBlasVectorView<const float> operand,
     DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
+/**
+ * @brief Enqueues the experimental CUDA Iamax operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @param[in] provider_workspace The provider workspace value required by this
+ * contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
     DenseCudaContext& context, DenseBlasVectorView<const double> operand,
     DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
+/**
+ * @brief Enqueues the experimental CUDA Iamax operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @param[in] provider_workspace The provider workspace value required by this
+ * contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<float>> operand,
     DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
+/**
+ * @brief Enqueues the experimental CUDA Iamax operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operand The operand value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @param[in] provider_workspace The provider workspace value required by this
+ * contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
     DenseCudaContext& context,
     DenseBlasVectorView<const std::complex<double>> operand,
     DenseBlasVectorView<index_t> result, MutableMemoryView provider_workspace);
 
+/**
+ * @brief Enqueues the experimental CUDA Gemv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemv(
     DenseCudaContext& context, DenseBlasTranspose transpose, Element alpha,
@@ -494,6 +1411,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemv(
     DenseBlasVectorView<const Element> input, Element beta,
     DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Gbmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGbmv(
     DenseCudaContext& context, DenseBlasTranspose transpose, Element alpha,
@@ -501,6 +1439,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGbmv(
     DenseBlasVectorView<const Element> input, Element beta,
     DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Hemv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHemv(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
@@ -508,6 +1467,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHemv(
     DenseBlasVectorView<const Element> input, Element beta,
     DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Hbmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHbmv(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
@@ -515,6 +1495,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHbmv(
     DenseBlasVectorView<const Element> input, Element beta,
     DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Hpmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpmv(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
@@ -522,6 +1523,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpmv(
     DenseBlasVectorView<const Element> input, Element beta,
     DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Symv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSymv(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
@@ -529,6 +1551,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSymv(
     DenseBlasVectorView<const Element> input, Element beta,
     DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Sbmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSbmv(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
@@ -536,6 +1579,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSbmv(
     DenseBlasVectorView<const Element> input, Element beta,
     DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Spmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpmv(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
@@ -543,6 +1607,25 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpmv(
     DenseBlasVectorView<const Element> input, Element beta,
     DenseBlasVectorView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Trmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrmv(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -550,6 +1633,25 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrmv(
     DenseBlasMatrixView<const Element> matrix,
     DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Enqueues the experimental CUDA Tbmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTbmv(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -557,6 +1659,25 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTbmv(
     DenseBlasTriangularBandView<const Element> matrix,
     DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Enqueues the experimental CUDA Tpmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTpmv(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -564,6 +1685,25 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTpmv(
     DenseBlasPackedMatrixView<const Element> matrix,
     DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Enqueues the experimental CUDA Trsv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrsv(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -571,6 +1711,25 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrsv(
     DenseBlasMatrixView<const Element> matrix,
     DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Enqueues the experimental CUDA Tbsv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTbsv(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -578,6 +1737,25 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTbsv(
     DenseBlasTriangularBandView<const Element> matrix,
     DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Enqueues the experimental CUDA Tpsv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] vector The vector value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTpsv(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -585,71 +1763,296 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTpsv(
     DenseBlasPackedMatrixView<const Element> matrix,
     DenseBlasVectorView<Element> vector);
 
+/**
+ * @brief Enqueues the experimental CUDA Ger operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGer(
     DenseCudaContext& context, Element alpha,
     DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
     DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Geru operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGeru(
     DenseCudaContext& context, Element alpha,
     DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
     DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Gerc operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGerc(
     DenseCudaContext& context, Element alpha,
     DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
     DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Her operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer(
     DenseCudaContext& context, DenseBlasTriangle triangle,
     DenseBlasRealType<Element> alpha, DenseBlasVectorView<const Element> x,
     DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Hpr operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpr(
     DenseCudaContext& context, DenseBlasTriangle triangle,
     DenseBlasRealType<Element> alpha, DenseBlasVectorView<const Element> x,
     DenseBlasPackedMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Her2 operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer2(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
     DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
     DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Hpr2 operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpr2(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
     DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
     DenseBlasPackedMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Syr operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
     DenseBlasVectorView<const Element> x, DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Spr operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpr(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
     DenseBlasVectorView<const Element> x,
     DenseBlasPackedMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Syr2 operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr2(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
     DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
     DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Spr2 operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] x The x value required by this contract.
+ * @param[in] y The y value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasReal Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpr2(
     DenseCudaContext& context, DenseBlasTriangle triangle, Element alpha,
     DenseBlasVectorView<const Element> x, DenseBlasVectorView<const Element> y,
     DenseBlasPackedMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Gemm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left_transpose The left transpose value required by this contract.
+ * @param[in] right_transpose The right transpose value required by this
+ * contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemm(
     DenseCudaContext& context, DenseBlasTranspose left_transpose,
@@ -658,6 +2061,28 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemm(
     DenseBlasMatrixView<const Element> right, Element beta,
     DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Symm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] side The side value required by this contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] symmetric The symmetric value required by this contract.
+ * @param[in] other The other value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSymm(
     DenseCudaContext& context, DenseBlasSide side, DenseBlasTriangle triangle,
@@ -665,6 +2090,28 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSymm(
     DenseBlasMatrixView<const Element> other, Element beta,
     DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Hemm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] side The side value required by this contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] hermitian The hermitian value required by this contract.
+ * @param[in] other The other value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHemm(
     DenseCudaContext& context, DenseBlasSide side, DenseBlasTriangle triangle,
@@ -672,6 +2119,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHemm(
     DenseBlasMatrixView<const Element> other, Element beta,
     DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Syrk operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyrk(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -679,6 +2147,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyrk(
     DenseBlasMatrixView<const Element> input, Element beta,
     DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Herk operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHerk(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -686,6 +2175,28 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHerk(
     DenseBlasMatrixView<const Element> input, DenseBlasRealType<Element> beta,
     DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Syr2k operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr2k(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -694,6 +2205,28 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr2k(
     DenseBlasMatrixView<const Element> right, Element beta,
     DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Her2k operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasComplex Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer2k(
     DenseCudaContext& context, DenseBlasTriangle triangle,
@@ -702,6 +2235,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer2k(
     DenseBlasMatrixView<const Element> right, DenseBlasRealType<Element> beta,
     DenseBlasMatrixView<Element> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Trmm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] side The side value required by this contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] triangular The triangular value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrmm(
     DenseCudaContext& context, DenseBlasSide side, DenseBlasTriangle triangle,
@@ -709,6 +2263,27 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrmm(
     DenseBlasMatrixView<const Element> triangular,
     DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Trsm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] side The side value required by this contract.
+ * @param[in] triangle The triangle value required by this contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] diagonal The diagonal value required by this contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] triangular The triangular value required by this contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <DenseBlasScalar Element>
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrsm(
     DenseCudaContext& context, DenseBlasSide side, DenseBlasTriangle triangle,
@@ -716,55 +2291,321 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrsm(
     DenseBlasMatrixView<const Element> triangular,
     DenseBlasMatrixView<Element> matrix);
 
+/**
+ * @brief Enqueues the experimental CUDA Copy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseView<const float, 1> source,
     DenseView<float, 1> destination);
+/**
+ * @brief Enqueues the experimental CUDA Copy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseView<const float, 2> source,
     DenseView<float, 2> destination);
+/**
+ * @brief Enqueues the experimental CUDA Copy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseView<const double, 1> source,
     DenseView<double, 1> destination);
+/**
+ * @brief Enqueues the experimental CUDA Copy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
     DenseCudaContext& context, DenseView<const double, 2> source,
     DenseView<double, 2> destination);
 
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, float alpha, DenseView<float, 1> destination);
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, float alpha, DenseView<float, 2> destination);
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, double alpha, DenseView<double, 1> destination);
+/**
+ * @brief Enqueues the experimental CUDA Scal operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
     DenseCudaContext& context, double alpha, DenseView<double, 2> destination);
 
+/**
+ * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
     DenseCudaContext& context, float alpha, DenseView<const float, 1> source,
     DenseView<float, 1> destination);
+/**
+ * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
     DenseCudaContext& context, float alpha, DenseView<const float, 2> source,
     DenseView<float, 2> destination);
+/**
+ * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
     DenseCudaContext& context, double alpha, DenseView<const double, 1> source,
     DenseView<double, 1> destination);
+/**
+ * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
     DenseCudaContext& context, double alpha, DenseView<const double, 2> source,
     DenseView<double, 2> destination);
 
+/**
+ * @brief Enqueues the experimental CUDA Gemv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operation Requested transpose/conjugation or matrix operation
+ * mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemv(
     DenseCudaContext& context, MatrixOperation operation, float alpha,
     DenseView<const float, 2> matrix, DenseView<const float, 1> input,
     float beta, DenseView<float, 1> output);
+/**
+ * @brief Enqueues the experimental CUDA Gemv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] operation Requested transpose/conjugation or matrix operation
+ * mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemv(
     DenseCudaContext& context, MatrixOperation operation, double alpha,
     DenseView<const double, 2> matrix, DenseView<const double, 1> input,
     double beta, DenseView<double, 1> output);
 
+/**
+ * @brief Enqueues the experimental CUDA Gemm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left_operation The left operation value required by this contract.
+ * @param[in] right_operation The right operation value required by this
+ * contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemm(
     DenseCudaContext& context, MatrixOperation left_operation,
     MatrixOperation right_operation, float alpha,
     DenseView<const float, 2> left, DenseView<const float, 2> right, float beta,
     DenseView<float, 2> output);
+/**
+ * @brief Enqueues the experimental CUDA Gemm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] left_operation The left operation value required by this contract.
+ * @param[in] right_operation The right operation value required by this
+ * contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] left The left value required by this contract.
+ * @param[in] right The right value required by this contract.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemm(
     DenseCudaContext& context, MatrixOperation left_operation,
     MatrixOperation right_operation, double alpha,

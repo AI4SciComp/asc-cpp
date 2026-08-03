@@ -1,6 +1,17 @@
 #ifndef ASC_SPARSE_BLAS_H_
 #define ASC_SPARSE_BLAS_H_
 
+/**
+ * @file
+ * @brief Public Sparse BLAS declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_sparse_blas
+ */
+
 #include <algorithm>
 #include <array>
 #include <complex>
@@ -23,6 +34,14 @@
 
 namespace asc {
 
+/**
+ * @brief Defines the public SparseBlasScalar concept contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_sparse_blas
+ */
 template <typename Element>
 concept SparseBlasScalar =
     std::same_as<std::remove_cv_t<Element>, float> ||
@@ -30,35 +49,88 @@ concept SparseBlasScalar =
     std::same_as<std::remove_cv_t<Element>, std::complex<float>> ||
     std::same_as<std::remove_cv_t<Element>, std::complex<double>>;
 
+/**
+ * @brief Defines the public SparseBlasComplex concept contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_sparse_blas
+ */
 template <typename Element>
 concept SparseBlasComplex =
     std::same_as<std::remove_cv_t<Element>, std::complex<float>> ||
     std::same_as<std::remove_cv_t<Element>, std::complex<double>>;
 
+/**
+ * @brief Selects the public SparseBlasConjugation policy.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_sparse_blas
+ */
 enum class SparseBlasConjugation : std::uint8_t {
-  kUnconjugated,
-  kConjugated,
+  kUnconjugated,  ///< Selects unconjugated behavior.
+  kConjugated,    ///< Selects conjugated behavior.
 };
 
+/**
+ * @brief Selects the public SparseBlasTranspose policy.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_sparse_blas
+ */
 enum class SparseBlasTranspose : std::uint8_t {
-  kNone,
-  kTranspose,
-  kConjugateTranspose,
+  kNone,                ///< No transformation or optional behavior.
+  kTranspose,           ///< Transpose without conjugation.
+  kConjugateTranspose,  ///< Transpose with complex conjugation.
 };
 
+/**
+ * @brief Selects the public SparseBlasLayout policy.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_sparse_blas
+ */
 enum class SparseBlasLayout : std::uint8_t {
-  kColumnMajor,
-  kRowMajor,
+  kColumnMajor,  ///< Column-major matrix storage.
+  kRowMajor,     ///< Row-major matrix storage.
 };
 
+/**
+ * @brief Selects the public SparseBlasTriangle policy.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_sparse_blas
+ */
 enum class SparseBlasTriangle : std::uint8_t {
-  kUpper,
-  kLower,
+  kUpper,  ///< Upper triangular storage or operation.
+  kLower,  ///< Lower triangular storage or operation.
 };
 
+/**
+ * @brief Selects the public SparseBlasDiagonal policy.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @ingroup asc_sparse_blas
+ */
 enum class SparseBlasDiagonal : std::uint8_t {
-  kNonUnit,
-  kUnit,
+  kNonUnit,  ///< Explicit diagonal values are read.
+  kUnit,     ///< Implicit unit diagonal; stored diagonal values are ignored.
 };
 
 namespace internal_sparse_standard_blas {
@@ -193,15 +265,59 @@ inline Status ValidateDiagonal(SparseBlasDiagonal diagonal) {
 
 }  // namespace internal_sparse_standard_blas
 
+/**
+ * @brief Views a dense vector operand used by Sparse BLAS.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_sparse_blas
+ */
 template <typename Element>
 class SparseBlasVectorView {
  public:
+  /**
+   * @brief Defines the public value_type type used by this Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_sparse_blas
+   */
   using value_type = Element;
+  /**
+   * @brief Defines the public element_type type used by this Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_sparse_blas
+   */
   using element_type = std::remove_const_t<Element>;
 
   static_assert(SparseBlasScalar<Element>,
                 "SparseBlasVectorView requires a BLAS scalar");
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] logical_first The logical first value required by this contract.
+   * @param[in] size The size value required by this contract.
+   * @param[in] increment The increment value required by this contract.
+   * @param[in] backing_storage The backing storage value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse_blas
+   */
   static Result<SparseBlasVectorView> Create(Element* logical_first,
                                              extent_t size, stride_t increment,
                                              ConstMemoryView backing_storage) {
@@ -273,6 +389,15 @@ class SparseBlasVectorView {
                                 static_cast<std::size_t>(end - begin));
   }
 
+  /**
+   * @brief Performs the public operator SparseBlasVectorView operation defined
+   * by the Sparse BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   * @ingroup asc_sparse_blas
+   */
   // Mutable-to-const views intentionally convert implicitly.
   // NOLINTNEXTLINE(google-explicit-constructor)
   operator SparseBlasVectorView<const element_type>() const noexcept
@@ -283,15 +408,85 @@ class SparseBlasVectorView {
         reachable_size_);
   }
 
+  /**
+   * @brief Returns the object's data contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] Element* data() const noexcept { return data_; }
+  /**
+   * @brief Returns the object's size contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] extent_t size() const noexcept { return size_; }
+  /**
+   * @brief Performs the public increment operation defined by the Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] stride_t increment() const noexcept { return increment_; }
+  /**
+   * @brief Performs the public memory_space operation defined by the Sparse
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] MemorySpace memory_space() const noexcept {
     return backing_storage_.space();
   }
+  /**
+   * @brief Performs the public backing_storage operation defined by the Sparse
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] ConstMemoryView backing_storage() const noexcept {
     return backing_storage_;
   }
+  /**
+   * @brief Performs the public reachable_storage operation defined by the
+   * Sparse BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
     return {reachable_data_, reachable_size_, backing_storage_.space()};
   }
@@ -319,15 +514,60 @@ class SparseBlasVectorView {
   std::size_t reachable_size_;
 };
 
+/**
+ * @brief Views canonical indexed sparse-vector storage.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_sparse_blas
+ */
 template <typename Element>
 class SparseBlasIndexedVectorView {
  public:
+  /**
+   * @brief Defines the public value_type type used by this Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_sparse_blas
+   */
   using value_type = Element;
+  /**
+   * @brief Defines the public element_type type used by this Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_sparse_blas
+   */
   using element_type = std::remove_const_t<Element>;
 
   static_assert(SparseBlasScalar<Element>,
                 "SparseBlasIndexedVectorView requires a BLAS scalar");
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] indices The indices value required by this contract.
+   * @param[in] values Value storage paired with the documented descriptor.
+   * @param[in] nonzeros The nonzeros value required by this contract.
+   * @param[in] dense_extent The dense extent value required by this contract.
+   * @param[in] index_storage The index storage value required by this contract.
+   * @param[in] value_storage The value storage value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse_blas
+   */
   static Result<SparseBlasIndexedVectorView> Create(
       const index_t* indices, Element* values, nnz_t nonzeros,
       extent_t dense_extent, ConstMemoryView index_storage,
@@ -381,6 +621,15 @@ class SparseBlasIndexedVectorView {
                                        index_storage, value_storage, canonical);
   }
 
+  /**
+   * @brief Performs the public operator SparseBlasIndexedVectorView operation
+   * defined by the Sparse BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   * @ingroup asc_sparse_blas
+   */
   // Mutable-to-const views intentionally convert implicitly.
   // NOLINTNEXTLINE(google-explicit-constructor)
   operator SparseBlasIndexedVectorView<const element_type>() const noexcept
@@ -391,19 +640,113 @@ class SparseBlasIndexedVectorView {
         value_storage_, canonical_structure_trusted_);
   }
 
+  /**
+   * @brief Performs the public indices operation defined by the Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] const index_t* indices() const noexcept { return indices_; }
+  /**
+   * @brief Returns the object's values contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] Element* values() const noexcept { return values_; }
+  /**
+   * @brief Returns the object's nnz contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] nnz_t nnz() const noexcept { return nonzeros_; }
+  /**
+   * @brief Performs the public dense_extent operation defined by the Sparse
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] extent_t dense_extent() const noexcept { return dense_extent_; }
+  /**
+   * @brief Performs the public memory_space operation defined by the Sparse
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] MemorySpace memory_space() const noexcept {
     return value_storage_.space();
   }
+  /**
+   * @brief Performs the public index_storage operation defined by the Sparse
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] ConstMemoryView index_storage() const noexcept {
     return index_storage_;
   }
+  /**
+   * @brief Performs the public value_storage operation defined by the Sparse
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] ConstMemoryView value_storage() const noexcept {
     return value_storage_;
   }
+  /**
+   * @brief Reports whether the documented canonical_structure_trusted condition
+   * holds.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] bool canonical_structure_trusted() const noexcept {
     return canonical_structure_trusted_;
   }
@@ -411,6 +754,16 @@ class SparseBlasIndexedVectorView {
  private:
   template <typename>
   friend class SparseBlasIndexedVectorView;
+  /**
+   * @brief Performs the public ProviderAccess operation defined by the Sparse
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_sparse_blas
+   */
   friend class internal_sparse_standard_blas::ProviderAccess;
 
   SparseBlasIndexedVectorView(const index_t* indices, Element* values,
@@ -452,15 +805,62 @@ class ProviderAccess {
 
 }  // namespace internal_sparse_standard_blas
 
+/**
+ * @brief Views a CSR matrix for Sparse BLAS operations.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_sparse_blas
+ */
 template <typename Element>
 class SparseBlasMatrixView {
  public:
+  /**
+   * @brief Defines the public value_type type used by this Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_sparse_blas
+   */
   using value_type = Element;
+  /**
+   * @brief Defines the public element_type type used by this Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @ingroup asc_sparse_blas
+   */
   using element_type = std::remove_const_t<Element>;
 
   static_assert(SparseBlasScalar<Element>,
                 "SparseBlasMatrixView requires a BLAS scalar");
 
+  /**
+   * @brief Validates inputs and creates the requested Sparse BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] data The data value required by this contract.
+   * @param[in] rows The rows value required by this contract.
+   * @param[in] columns The columns value required by this contract.
+   * @param[in] layout The layout value required by this contract.
+   * @param[in] leading_dimension The leading dimension value required by this
+   * contract.
+   * @param[in] backing_storage The backing storage value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse_blas
+   */
   static Result<SparseBlasMatrixView> Create(Element* data, extent_t rows,
                                              extent_t columns,
                                              SparseBlasLayout layout,
@@ -503,6 +903,15 @@ class SparseBlasMatrixView {
                                 backing_storage, *bounds);
   }
 
+  /**
+   * @brief Performs the public operator SparseBlasMatrixView operation defined
+   * by the Sparse BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   * @ingroup asc_sparse_blas
+   */
   // Mutable-to-const views intentionally convert implicitly.
   // NOLINTNEXTLINE(google-explicit-constructor)
   operator SparseBlasMatrixView<const element_type>() const noexcept
@@ -513,19 +922,114 @@ class SparseBlasMatrixView {
                                                     backing_storage_, bounds_);
   }
 
+  /**
+   * @brief Returns the object's data contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] Element* data() const noexcept { return data_; }
+  /**
+   * @brief Returns the object's rows contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] extent_t rows() const noexcept { return rows_; }
+  /**
+   * @brief Returns the object's columns contract value.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] extent_t columns() const noexcept { return columns_; }
+  /**
+   * @brief Performs the public layout operation defined by the Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] SparseBlasLayout layout() const noexcept { return layout_; }
+  /**
+   * @brief Performs the public leading_dimension operation defined by the
+   * Sparse BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] stride_t leading_dimension() const noexcept {
     return leading_dimension_;
   }
+  /**
+   * @brief Performs the public memory_space operation defined by the Sparse
+   * BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] MemorySpace memory_space() const noexcept {
     return backing_storage_.space();
   }
+  /**
+   * @brief Performs the public reachable_storage operation defined by the
+   * Sparse BLAS contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] ConstMemoryView reachable_storage() const noexcept {
     return {bounds_.data, bounds_.size, backing_storage_.space()};
   }
+  /**
+   * @brief Produces the next deterministic value according to the object's
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] row The row value required by this contract.
+   * @param[in] column The column value required by this contract.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] Element& operator()(extent_t row, extent_t column) const {
     const stride_t offset = layout_ == SparseBlasLayout::kColumnMajor
                                 ? column * leading_dimension_ + row
@@ -558,9 +1062,31 @@ class SparseBlasMatrixView {
   internal_sparse_standard_blas::StorageBounds bounds_;
 };
 
+/**
+ * @brief Views a triangular CSR matrix and triangle/diagonal policy.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element, SparseCompressedFormat Format>
 class SparseBlasTriangularView {
  public:
+  /**
+   * @brief Validates inputs and creates the requested Sparse BLAS object.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @param[in] matrix The matrix value required by this contract.
+   * @param[in] triangle The triangle value required by this contract.
+   * @param[in] diagonal The diagonal value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_sparse_blas
+   */
   static Result<SparseBlasTriangularView> Create(
       CompressedSparseView<const Element, Format> matrix,
       SparseBlasTriangle triangle, SparseBlasDiagonal diagonal) {
@@ -633,12 +1159,48 @@ class SparseBlasTriangularView {
     return SparseBlasTriangularView(matrix, triangle, diagonal);
   }
 
+  /**
+   * @brief Performs the public matrix operation defined by the Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] CompressedSparseView<const Element, Format> matrix() const {
     return matrix_;
   }
+  /**
+   * @brief Performs the public triangle operation defined by the Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] SparseBlasTriangle triangle() const noexcept {
     return triangle_;
   }
+  /**
+   * @brief Performs the public diagonal operation defined by the Sparse BLAS
+   * contract.
+   *
+   * The exact layout, stride, aliasing, precision, and failure semantics are
+   * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+   * synchronous and is a correctness reference, not a performance claim.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_sparse_blas
+   */
   [[nodiscard]] SparseBlasDiagonal diagonal() const noexcept {
     return diagonal_;
   }
@@ -756,6 +1318,24 @@ bool MatrixOverlaps(CompressedSparseView<const Element, Format> matrix,
 
 }  // namespace internal_sparse_standard_blas
 
+/**
+ * @brief Computes the SparseDot operation defined by the Sparse BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] conjugation The conjugation value required by this contract.
+ * @param[in] sparse The sparse value required by this contract.
+ * @param[in] dense The dense value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element>
 Result<Element> SparseDot(const ExecutionContext& context,
                           SparseBlasConjugation conjugation,
@@ -792,6 +1372,24 @@ Result<Element> SparseDot(const ExecutionContext& context,
   return result;
 }
 
+/**
+ * @brief Computes the SparseAxpy operation defined by the Sparse BLAS numerical
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] sparse The sparse value required by this contract.
+ * @param[in] dense The dense value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element>
 Status SparseAxpy(const ExecutionContext& context, Element alpha,
                   SparseBlasIndexedVectorView<const Element> sparse,
@@ -828,6 +1426,23 @@ Status SparseAxpy(const ExecutionContext& context, Element alpha,
   return Status::Ok();
 }
 
+/**
+ * @brief Computes the SparseGather operation defined by the Sparse BLAS
+ * numerical contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] dense The dense value required by this contract.
+ * @param[in] sparse The sparse value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element>
 Status SparseGather(const ExecutionContext& context,
                     SparseBlasVectorView<const Element> dense,
@@ -862,6 +1477,23 @@ Status SparseGather(const ExecutionContext& context,
   return Status::Ok();
 }
 
+/**
+ * @brief Computes the SparseGatherZero operation defined by the Sparse BLAS
+ * numerical contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] dense The dense value required by this contract.
+ * @param[in] sparse The sparse value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element>
 Status SparseGatherZero(const ExecutionContext& context,
                         SparseBlasVectorView<Element> dense,
@@ -898,6 +1530,23 @@ Status SparseGatherZero(const ExecutionContext& context,
   return Status::Ok();
 }
 
+/**
+ * @brief Performs the public SparseScatter operation defined by the Sparse BLAS
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] sparse The sparse value required by this contract.
+ * @param[in] dense The dense value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element>
 Status SparseScatter(const ExecutionContext& context,
                      SparseBlasIndexedVectorView<const Element> sparse,
@@ -932,6 +1581,29 @@ Status SparseScatter(const ExecutionContext& context,
   return Status::Ok();
 }
 
+/**
+ * @brief Performs the public Spmv operation defined by the Sparse BLAS
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element, SparseCompressedFormat Format>
 Status Spmv(const ExecutionContext& context, SparseBlasTranspose transpose,
             Element alpha, CompressedSparseView<const Element, Format> matrix,
@@ -994,6 +1666,29 @@ Status Spmv(const ExecutionContext& context, SparseBlasTranspose transpose,
   return Status::Ok();
 }
 
+/**
+ * @brief Performs the public Spmm operation defined by the Sparse BLAS
+ * contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element, SparseCompressedFormat Format>
 Status Spmm(const ExecutionContext& context, SparseBlasTranspose transpose,
             Element alpha, CompressedSparseView<const Element, Format> matrix,
@@ -1054,6 +1749,28 @@ Status Spmm(const ExecutionContext& context, SparseBlasTranspose transpose,
   return Status::Ok();
 }
 
+/**
+ * @brief Performs the public SparseTriangularSolve operation defined by the
+ * Sparse BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] triangular The triangular value required by this contract.
+ * @param[in] right_hand_side The right hand side value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element, SparseCompressedFormat Format>
 Status SparseTriangularSolve(
     const ExecutionContext& context, SparseBlasTranspose transpose,
@@ -1113,6 +1830,28 @@ Status SparseTriangularSolve(
   return Status::Ok();
 }
 
+/**
+ * @brief Performs the public SparseTriangularSolveMultiple operation defined by
+ * the Sparse BLAS contract.
+ *
+ * The exact layout, stride, aliasing, precision, and failure semantics are
+ * defined by the Sparse BLAS module contract. Provider-free CPU execution is
+ * synchronous and is a correctness reference, not a performance claim.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] triangular The triangular value required by this contract.
+ * @param[in] right_hand_sides The right hand sides value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_sparse_blas
+ */
 template <SparseBlasScalar Element, SparseCompressedFormat Format>
 Status SparseTriangularSolveMultiple(
     const ExecutionContext& context, SparseBlasTranspose transpose,

@@ -1,0 +1,56 @@
+/**
+ * @defgroup asc_cpp ASCCpp
+ * @brief Portable C++20 scientific-computing foundation.
+ */
+/** @defgroup asc_core Core
+ *  @ingroup asc_cpp
+ *  @brief Status, contracts, configuration, I/O, types, memory, and execution.
+ */
+/** @defgroup asc_utilities Utilities
+ *  @ingroup asc_cpp
+ *  @brief Command-line parsing and timing utilities.
+ */
+/** @defgroup asc_expression Expression
+ *  @ingroup asc_cpp
+ *  @brief Storage-neutral expression and writable customization contracts.
+ */
+/** @defgroup asc_dense Dense
+ *  @ingroup asc_cpp
+ *  @brief Dense arrays, layouts, views, and evaluation.
+ */
+/** @defgroup asc_dense_blas Dense_BLAS
+ *  @ingroup asc_dense
+ *  @brief Correctness-reference Dense BLAS Levels 1--3.
+ */
+/** @defgroup asc_sparse Sparse
+ *  @ingroup asc_cpp
+ *  @brief Coordinate and compressed sparse storage and evaluation.
+ */
+/** @defgroup asc_sparse_blas Sparse_BLAS
+ *  @ingroup asc_sparse
+ *  @brief Correctness-reference Sparse BLAS operations.
+ */
+/** @defgroup asc_random Random
+ *  @ingroup asc_cpp
+ *  @brief Engines, distributions, QMC, and storage adapters.
+ */
+/** @defgroup asc_random_engines Random_engines
+ *  @ingroup asc_random
+ *  @brief Deterministic pseudorandom engines and address mapping.
+ */
+/** @defgroup asc_random_distributions Random_distributions
+ *  @ingroup asc_random
+ *  @brief Validated distribution transforms and stateful generators.
+ */
+/** @defgroup asc_random_qmc Quasi_random_sequences
+ *  @ingroup asc_random
+ *  @brief Sobol and Halton quasi-random sequence facilities.
+ */
+/** @defgroup asc_random_storage Random_storage_adapters
+ *  @ingroup asc_random
+ *  @brief Dense and Sparse deterministic fill/generation adapters.
+ */
+/** @defgroup asc_cuda CUDA_providers
+ *  @ingroup asc_cpp
+ *  @brief Experimental CUDA context, memory, completion, and operations.
+ */

@@ -1,6 +1,17 @@
 #ifndef ASC_SPARSE_PROVIDERS_CUDA_H_
 #define ASC_SPARSE_PROVIDERS_CUDA_H_
 
+/**
+ * @file
+ * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_cuda
+ */
+
 #include <array>
 #include <complex>
 #include <concepts>
@@ -40,6 +51,21 @@ template <typename Element>
   requires SparseBlasScalar<Element>
 struct CudaTriangularCsrClone;
 
+/**
+ * @brief Enqueues the experimental CUDA CloneIndexedVector operation and
+ * returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[in] resource Allocator that must outlive storage allocated from it.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <typename SourceElement>
   requires SparseBlasScalar<SourceElement>
 Result<CudaIndexedVectorClone<std::remove_const_t<SourceElement>>>
@@ -47,6 +73,23 @@ CudaCloneIndexedVector(SparseCudaContext& context,
                        SparseBlasIndexedVectorView<SourceElement> source,
                        MemoryResource& resource);
 
+/**
+ * @brief Enqueues the experimental CUDA CloneTriangularCsr operation and
+ * returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[in] resource Allocator that must outlive storage allocated from it.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 Result<CudaTriangularCsrClone<Element>> CudaCloneTriangularCsr(
     SparseCudaContext& context,
@@ -59,18 +102,18 @@ class Access;
 class ContextState;
 
 enum class ElementKind {
-  kFloat,
-  kDouble,
-  kComplexFloat,
-  kComplexDouble,
+  kFloat,          ///< Selects float behavior.
+  kDouble,         ///< Selects double behavior.
+  kComplexFloat,   ///< Selects complex float behavior.
+  kComplexDouble,  ///< Selects complex double behavior.
 };
 
 enum class StandardOperation {
-  kDot,
-  kAxpy,
-  kGather,
-  kGatherZero,
-  kScatter,
+  kDot,         ///< Selects dot behavior.
+  kAxpy,        ///< Selects axpy behavior.
+  kGather,      ///< Selects gather behavior.
+  kGatherZero,  ///< Selects gather zero behavior.
+  kScatter,     ///< Selects scatter behavior.
 };
 
 struct ScalarValue {
@@ -79,22 +122,22 @@ struct ScalarValue {
 };
 
 enum class FormatKind {
-  kCoordinate,
-  kCsr,
-  kCsc,
+  kCoordinate,  ///< Selects coordinate behavior.
+  kCsr,         ///< Compressed sparse row storage.
+  kCsc,         ///< Compressed sparse column storage.
 };
 
 enum class PointwiseOperation {
-  kCopy,
-  kNegate,
-  kAdd,
-  kSubtract,
-  kMultiply,
+  kCopy,      ///< Selects copy behavior.
+  kNegate,    ///< Selects negate behavior.
+  kAdd,       ///< Selects add behavior.
+  kSubtract,  ///< Selects subtract behavior.
+  kMultiply,  ///< Selects multiply behavior.
 };
 
 enum class OperandKind {
-  kView,
-  kScalar,
+  kView,    ///< Selects view behavior.
+  kScalar,  ///< Selects scalar behavior.
 };
 
 struct SparseDescriptor {
@@ -445,21 +488,113 @@ Result<PreparedEvaluation> PrepareEvaluation(const Expression& expression) {
 
 }  // namespace internal_sparse_cuda
 
+/**
+ * @brief Owns experimental cuSPARSE state bound to an execution context.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
  public:
+  /**
+   * @brief Validates inputs and creates the requested CUDA provider object.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @param[in] execution_context The execution context value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   static Result<SparseCudaContext> Create(ExecutionContext execution_context);
 
+  /**
+   * @brief Constructs a SparseCudaContext with the documented ownership and
+   * validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   SparseCudaContext(const SparseCudaContext&) = delete;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   SparseCudaContext& operator=(const SparseCudaContext&) = delete;
+  /**
+   * @brief Constructs a SparseCudaContext with the documented ownership and
+   * validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @param[in] other The other value required by this contract.
+   * @ingroup asc_cuda
+   */
   SparseCudaContext(SparseCudaContext&& other) noexcept;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @param[in] other The other value required by this contract.
+   * @return This context after taking ownership from `other`.
+   * @ingroup asc_cuda
+   */
   SparseCudaContext& operator=(SparseCudaContext&& other) noexcept;
+  /**
+   * @brief Releases owned resources after required completion/lifetime
+   * conditions.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   ~SparseCudaContext();
 
+  /**
+   * @brief Performs the public execution_context operation defined by the CUDA
+   * provider contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] const ExecutionContext& execution_context() const noexcept {
     return execution_context_;
   }
 
  private:
+  /**
+   * @brief Performs the public Access operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   friend class internal_sparse_cuda::Access;
 
   SparseCudaContext(
@@ -470,10 +605,32 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
   std::unique_ptr<internal_sparse_cuda::ContextState> state_;
 };
 
+/**
+ * @brief Describes an experimental CUDA-accessible strided vector.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires internal_sparse_cuda::kSupportedElement<Element>
 class CudaStridedVectorView {
  public:
+  /**
+   * @brief Validates inputs and creates the requested CUDA provider object.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @param[in] data The data value required by this contract.
+   * @param[in] extent The extent value required by this contract.
+   * @param[in] stride The stride value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   static Result<CudaStridedVectorView> Create(Element* data, extent_t extent,
                                               stride_t stride) {
     if (extent < 0 || stride <= 0) {
@@ -488,6 +645,17 @@ class CudaStridedVectorView {
     return CudaStridedVectorView(data, extent, stride);
   }
 
+  /**
+   * @brief Constructs a CudaStridedVectorView with the documented ownership and
+   * validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @param[in] other The other value required by this contract.
+   * @ingroup asc_cuda
+   */
   template <typename OtherElement>
     requires(std::is_const_v<Element> &&
              std::same_as<std::remove_const_t<OtherElement>,
@@ -497,9 +665,56 @@ class CudaStridedVectorView {
       CudaStridedVectorView<OtherElement> other) noexcept
       : data_(other.data()), extent_(other.extent()), stride_(other.stride()) {}
 
+  /**
+   * @brief Returns the object's data contract value.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] constexpr Element* data() const noexcept { return data_; }
+  /**
+   * @brief Performs the public extent operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] constexpr extent_t extent() const noexcept { return extent_; }
+  /**
+   * @brief Performs the public stride operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] constexpr stride_t stride() const noexcept { return stride_; }
+  /**
+   * @brief Performs the public memory_space operation defined by the CUDA
+   * provider contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] static constexpr MemorySpace memory_space() noexcept {
     return MemorySpace::kDevice;
   }
@@ -584,23 +799,136 @@ class Access {
 
 }  // namespace internal_sparse_cuda
 
+/**
+ * @brief Owns experimental CUDA CSR storage and its completion state.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires internal_sparse_cuda::kSupportedBlasElement<Element>
 class CudaCsrArray {
  public:
+  /**
+   * @brief Constructs a CudaCsrArray with the documented ownership and validity
+   * state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   CudaCsrArray(const CudaCsrArray&) = delete;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   CudaCsrArray& operator=(const CudaCsrArray&) = delete;
+  /**
+   * @brief Constructs a CudaCsrArray with the documented ownership and validity
+   * state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   CudaCsrArray(CudaCsrArray&&) noexcept = default;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   CudaCsrArray& operator=(CudaCsrArray&&) noexcept = default;
+  /**
+   * @brief Releases owned resources after required completion/lifetime
+   * conditions.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   ~CudaCsrArray() = default;
 
+  /**
+   * @brief Reports whether the documented valid condition holds.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] bool valid() const noexcept {
     return outer_offsets_.valid() && inner_indices_.valid() && values_.valid();
   }
+  /**
+   * @brief Returns the object's rows contract value.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] extent_t rows() const noexcept { return shape_[0]; }
+  /**
+   * @brief Returns the object's columns contract value.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] extent_t columns() const noexcept { return shape_[1]; }
+  /**
+   * @brief Returns the object's nnz contract value.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] nnz_t nnz() const noexcept { return nonzeros_; }
 
+  /**
+   * @brief Performs the public view operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] Result<CsrView<Element>> view() {
     if (!valid()) {
       return Status(ErrorCode::kInvalidState,
@@ -614,6 +942,18 @@ class CudaCsrArray {
         MemorySpace::kDevice);
   }
 
+  /**
+   * @brief Performs the public view operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] Result<CsrView<const Element>> view() const {
     if (!valid()) {
       return Status(ErrorCode::kInvalidState,
@@ -649,13 +989,54 @@ class CudaCsrArray {
   Buffer values_;
 };
 
+/**
+ * @brief Owns an experimental asynchronous CUDA CSR clone result.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires SparseBlasScalar<Element>
 struct CudaCsrClone {
+  /**
+   * @brief Stores the array value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CudaCsrArray<Element> array;
+  /**
+   * @brief Stores the completion value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CompletionEvent completion;
 };
 
+/**
+ * @brief Enqueues the experimental CUDA CloneCsr operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] source Input source, valid and accessible for the operation.
+ * @param[in] resource Allocator that must outlive storage allocated from it.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <typename SourceElement>
   requires internal_sparse_cuda::kSupportedBlasElement<SourceElement>
 [[nodiscard]] Result<CudaCsrClone<std::remove_const_t<SourceElement>>>
@@ -674,21 +1055,101 @@ CudaCloneCsr(SparseCudaContext& context, CsrView<SourceElement> source,
                                .completion = std::move(cloned->completion)};
 }
 
+/**
+ * @brief Owns an experimental CUDA indexed sparse vector.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires SparseBlasScalar<Element>
 class CudaIndexedVectorArray {
  public:
+  /**
+   * @brief Constructs a CudaIndexedVectorArray with the documented ownership
+   * and validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   CudaIndexedVectorArray(const CudaIndexedVectorArray&) = delete;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   CudaIndexedVectorArray& operator=(const CudaIndexedVectorArray&) = delete;
+  /**
+   * @brief Constructs a CudaIndexedVectorArray with the documented ownership
+   * and validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   CudaIndexedVectorArray(CudaIndexedVectorArray&&) noexcept = default;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   CudaIndexedVectorArray& operator=(CudaIndexedVectorArray&&) noexcept =
       default;
+  /**
+   * @brief Releases owned resources after required completion/lifetime
+   * conditions.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   ~CudaIndexedVectorArray() = default;
 
+  /**
+   * @brief Reports whether the documented valid condition holds.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] bool valid() const noexcept {
     return indices_.valid() && values_.valid();
   }
 
+  /**
+   * @brief Performs the public view operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] Result<SparseBlasIndexedVectorView<Element>> view() {
     if (!valid()) {
       return Status(ErrorCode::kInvalidState,
@@ -702,6 +1163,18 @@ class CudaIndexedVectorArray {
             {values_.data(), values_.size(), MemorySpace::kDevice});
   }
 
+  /**
+   * @brief Performs the public view operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] Result<SparseBlasIndexedVectorView<const Element>> view()
       const {
     if (!valid()) {
@@ -738,10 +1211,36 @@ class CudaIndexedVectorArray {
   Buffer values_;
 };
 
+/**
+ * @brief Owns an experimental asynchronous CUDA indexed-vector clone.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires SparseBlasScalar<Element>
 struct CudaIndexedVectorClone {
+  /**
+   * @brief Stores the array value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CudaIndexedVectorArray<Element> array;
+  /**
+   * @brief Stores the completion value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CompletionEvent completion;
 };
 
@@ -764,23 +1263,116 @@ CudaCloneIndexedVector(SparseCudaContext& context,
       .array = std::move(array), .completion = std::move(cloned->completion)};
 }
 
+/**
+ * @brief Owns an experimental CUDA triangular CSR descriptor and storage.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires SparseBlasScalar<Element>
 class CudaTriangularCsrArray {
  public:
+  /**
+   * @brief Constructs a CudaTriangularCsrArray with the documented ownership
+   * and validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   CudaTriangularCsrArray(const CudaTriangularCsrArray&) = delete;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   CudaTriangularCsrArray& operator=(const CudaTriangularCsrArray&) = delete;
+  /**
+   * @brief Constructs a CudaTriangularCsrArray with the documented ownership
+   * and validity state.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   CudaTriangularCsrArray(CudaTriangularCsrArray&&) noexcept = default;
+  /**
+   * @brief Replaces this object's state while preserving ownership invariants.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   CudaTriangularCsrArray& operator=(CudaTriangularCsrArray&&) noexcept =
       default;
+  /**
+   * @brief Releases owned resources after required completion/lifetime
+   * conditions.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   * @ingroup asc_cuda
+   */
   ~CudaTriangularCsrArray() = default;
 
+  /**
+   * @brief Performs the public matrix operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] Result<CsrView<const Element>> matrix() const {
     return array_.view();
   }
+  /**
+   * @brief Performs the public triangle operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] SparseBlasTriangle triangle() const noexcept {
     return triangle_;
   }
+  /**
+   * @brief Performs the public diagonal operation defined by the CUDA provider
+   * contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_cuda
+   */
   [[nodiscard]] SparseBlasDiagonal diagonal() const noexcept {
     return diagonal_;
   }
@@ -802,10 +1394,36 @@ class CudaTriangularCsrArray {
   SparseBlasDiagonal diagonal_;
 };
 
+/**
+ * @brief Owns an asynchronous CUDA triangular-CSR clone result.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires SparseBlasScalar<Element>
 struct CudaTriangularCsrClone {
+  /**
+   * @brief Stores the array value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CudaTriangularCsrArray<Element> array;
+  /**
+   * @brief Stores the completion value for this contract.
+   *
+   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * event, and workspace owners must remain alive until returned completion
+   * has been ordered or waited. Enqueue success does not imply completion.
+   *
+   * @ingroup asc_cuda
+   */
   CompletionEvent completion;
 };
 
@@ -824,6 +1442,25 @@ template <SparseBlasScalar Element>
       .array = std::move(array), .completion = std::move(cloned->completion)};
 }
 
+/**
+ * @brief Enqueues the experimental CUDA SparseDot operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] conjugation The conjugation value required by this contract.
+ * @param[in] sparse The sparse value required by this contract.
+ * @param[in] dense The dense value required by this contract.
+ * @param[out] result The result value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSparseDot(
     SparseCudaContext& context, SparseBlasConjugation conjugation,
@@ -838,6 +1475,24 @@ template <SparseBlasScalar Element>
       internal_sparse_cuda::Describe(result));
 }
 
+/**
+ * @brief Enqueues the experimental CUDA SparseAxpy operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] sparse The sparse value required by this contract.
+ * @param[in] dense The dense value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSparseAxpy(
     SparseCudaContext& context, Element alpha,
@@ -850,6 +1505,23 @@ template <SparseBlasScalar Element>
       internal_sparse_cuda::Describe(dense), {});
 }
 
+/**
+ * @brief Enqueues the experimental CUDA SparseGather operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] dense The dense value required by this contract.
+ * @param[in] sparse The sparse value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSparseGather(
     SparseCudaContext& context, SparseBlasVectorView<const Element> dense,
@@ -862,6 +1534,23 @@ template <SparseBlasScalar Element>
       internal_sparse_cuda::Describe(dense), {});
 }
 
+/**
+ * @brief Enqueues the experimental CUDA SparseGatherZero operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] dense The dense value required by this contract.
+ * @param[in] sparse The sparse value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSparseGatherZero(
     SparseCudaContext& context, SparseBlasVectorView<Element> dense,
@@ -874,6 +1563,23 @@ template <SparseBlasScalar Element>
       internal_sparse_cuda::Describe(dense), {});
 }
 
+/**
+ * @brief Enqueues the experimental CUDA SparseScatter operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] sparse The sparse value required by this contract.
+ * @param[in] dense The dense value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSparseScatter(
     SparseCudaContext& context,
@@ -887,6 +1593,26 @@ template <SparseBlasScalar Element>
       internal_sparse_cuda::Describe(dense), {});
 }
 
+/**
+ * @brief Enqueues the experimental CUDA Spmv operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSpmv(
     SparseCudaContext& context, SparseBlasTranspose transpose, Element alpha,
@@ -899,6 +1625,26 @@ template <SparseBlasScalar Element>
       internal_sparse_cuda::Describe(output));
 }
 
+/**
+ * @brief Enqueues the experimental CUDA Spmm operation and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSpmm(
     SparseCudaContext& context, SparseBlasTranspose transpose, Element alpha,
@@ -911,6 +1657,26 @@ template <SparseBlasScalar Element>
       internal_sparse_cuda::Describe(output));
 }
 
+/**
+ * @brief Enqueues the experimental CUDA SparseTriangularSolve operation and
+ * returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] triangular The triangular value required by this contract.
+ * @param[in] right_hand_side The right hand side value required by this
+ * contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSparseTriangularSolve(
     SparseCudaContext& context, SparseBlasTranspose transpose, Element alpha,
@@ -937,6 +1703,26 @@ template <SparseBlasScalar Element>
       triangular.diagonal(), rhs);
 }
 
+/**
+ * @brief Enqueues the experimental CUDA SparseTriangularSolveMultiple operation
+ * and returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Element Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] transpose Requested transpose/conjugation mode.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] triangular The triangular value required by this contract.
+ * @param[in] right_hand_sides The right hand sides value required by this
+ * contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <SparseBlasScalar Element>
 [[nodiscard]] Result<CompletionEvent> CudaSparseTriangularSolveMultiple(
     SparseCudaContext& context, SparseBlasTranspose transpose, Element alpha,
@@ -952,6 +1738,23 @@ template <SparseBlasScalar Element>
       triangular.diagonal(), internal_sparse_cuda::Describe(right_hand_sides));
 }
 
+/**
+ * @brief Enqueues the experimental CUDA CsrSpmvWorkspaceSize operation and
+ * returns completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires internal_sparse_cuda::kSupportedElement<Element>
 [[nodiscard]] Result<std::size_t> CudaCsrSpmvWorkspaceSize(
@@ -964,6 +1767,27 @@ template <typename Element>
       internal_sparse_cuda::Describe(output));
 }
 
+/**
+ * @brief Enqueues the experimental CUDA CsrSpmv operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] alpha Scaling factor applied to the primary operation.
+ * @param[in] matrix The matrix value required by this contract.
+ * @param[in] input Input operand, valid and accessible for the operation.
+ * @param[in] beta Scaling factor applied to the prior output value.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @param[in,out] workspace Caller-owned workspace with the documented capacity
+ * and lifetime.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <typename Element>
   requires internal_sparse_cuda::kSupportedElement<Element>
 [[nodiscard]] Result<CompletionEvent> CudaCsrSpmv(
@@ -977,6 +1801,26 @@ template <typename Element>
       internal_sparse_cuda::Describe(output), workspace);
 }
 
+/**
+ * @brief Enqueues the experimental CUDA Evaluate operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Expression Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Rank Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] expression The expression value required by this contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <ReadableExpression Expression, typename Element, std::size_t Rank>
   requires(internal_sparse_cuda::kSupportedElement<Element> &&
            !std::is_const_v<Element>)
@@ -999,6 +1843,26 @@ template <ReadableExpression Expression, typename Element, std::size_t Rank>
   }
 }
 
+/**
+ * @brief Enqueues the experimental CUDA Evaluate operation and returns
+ * completion.
+ *
+ * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * event, and workspace owners must remain alive until returned completion
+ * has been ordered or waited. Enqueue success does not imply completion.
+ *
+ * @tparam Expression Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Format Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] context Execution backend and accessibility/order contract.
+ * @param[in] expression The expression value required by this contract.
+ * @param[out] destination Destination storage with the required size and
+ * accessibility.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_cuda
+ */
 template <ReadableExpression Expression, typename Element,
           SparseCompressedFormat Format>
   requires(internal_sparse_cuda::kSupportedElement<Element> &&

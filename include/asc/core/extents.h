@@ -1,6 +1,17 @@
 #ifndef ASC_CORE_EXTENTS_H_
 #define ASC_CORE_EXTENTS_H_
 
+/**
+ * @file
+ * @brief Public Core declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_core
+ */
+
 #include <array>
 #include <concepts>
 #include <cstddef>
@@ -13,10 +24,33 @@
 
 namespace asc {
 
+/**
+ * @brief Stores validated rank-fixed static and dynamic extents.
+ *
+ * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+ * semantics follow the public Core module contract.
+ * @ingroup asc_core
+ */
 template <extent_t... StaticExtents>
 class Extents {
  public:
+  /**
+   * @brief Stores the Rank value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @ingroup asc_core
+   */
   static constexpr std::size_t kRank = sizeof...(StaticExtents);
+  /**
+   * @brief Stores the DynamicRank value for this contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @ingroup asc_core
+   */
   static constexpr std::size_t kDynamicRank =
       ((StaticExtents == kDynamicExtent ? 1U : 0U) + ... + 0U);
 
@@ -26,6 +60,18 @@ class Extents {
   static_assert(kRank <= std::numeric_limits<rank_t>::max(),
                 "Extents rank does not fit rank_t");
 
+  /**
+   * @brief Validates inputs and creates the requested Core object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @param[in] dynamic_extents The dynamic extents value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_core
+   */
   static Result<Extents> Create(std::span<const extent_t> dynamic_extents) {
     if (dynamic_extents.size() != kDynamicRank) {
       return Status(ErrorCode::kShape,
@@ -64,6 +110,20 @@ class Extents {
     return Extents(values, logical_size);
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Core object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @tparam DynamicValues Type or non-type argument satisfying the
+   * declaration's constraints.
+   * @param[in] dynamic_extents The dynamic extents value required by this
+   * contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_core
+   */
   template <CheckedInteger... DynamicValues>
     requires(sizeof...(DynamicValues) == kDynamicRank &&
              (sizeof...(DynamicValues) > 0))
@@ -89,20 +149,64 @@ class Extents {
     return Create(std::span<const extent_t>(values));
   }
 
+  /**
+   * @brief Validates inputs and creates the requested Core object.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_core
+   */
   static Result<Extents> Create()
     requires(kDynamicRank == 0)
   {
     return Create(std::span<const extent_t>());
   }
 
+  /**
+   * @brief Returns the object's rank contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_core
+   */
   [[nodiscard]] static constexpr rank_t rank() noexcept {
     return static_cast<rank_t>(kRank);
   }
 
+  /**
+   * @brief Performs the public dynamic_rank operation defined by the Core
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_core
+   */
   [[nodiscard]] static constexpr rank_t dynamic_rank() noexcept {
     return static_cast<rank_t>(kDynamicRank);
   }
 
+  /**
+   * @brief Performs the public static_extent operation defined by the Core
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @tparam Dimension Type or non-type argument satisfying the declaration's
+   * constraints.
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_core
+   */
   template <std::size_t Dimension>
   [[nodiscard]] static constexpr extent_t static_extent() noexcept {
     static_assert(Dimension < kRank, "Extent dimension is out of range");
@@ -110,6 +214,17 @@ class Extents {
     return kStaticExtents[Dimension];
   }
 
+  /**
+   * @brief Performs the public extent operation defined by the Core contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @param[in] dimension The dimension value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_core
+   */
   [[nodiscard]] Result<extent_t> extent(rank_t dimension) const {
     if (dimension >= kRank) {
       return Status(ErrorCode::kIndex, "Extent dimension is out of range");
@@ -117,10 +232,31 @@ class Extents {
     return values_[dimension];
   }
 
+  /**
+   * @brief Returns the object's values contract value.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_core
+   */
   [[nodiscard]] std::span<const extent_t, kRank> values() const noexcept {
     return values_;
   }
 
+  /**
+   * @brief Performs the public logical_size operation defined by the Core
+   * contract.
+   *
+   * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
+   * semantics follow the public Core module contract.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_core
+   */
   [[nodiscard]] extent_t logical_size() const noexcept { return logical_size_; }
 
  private:

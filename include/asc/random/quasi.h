@@ -1,6 +1,17 @@
 #ifndef ASC_RANDOM_QUASI_H_
 #define ASC_RANDOM_QUASI_H_
 
+/**
+ * @file
+ * @brief Public quasi-random declarations for ASCCpp 0.9.0.
+ *
+ * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Every declaration below is governed by the module, ownership, failure,
+ * memory-placement, numerical, concurrency, and package contracts linked
+ * from the generated API reference.
+ * @ingroup asc_random_qmc
+ */
+
 #include <algorithm>
 #include <array>
 #include <cmath>
@@ -17,13 +28,64 @@
 
 namespace asc {
 
+/**
+ * @brief Stores the SobolDimensionCount value for this contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @ingroup asc_random_qmc
+ */
 inline constexpr std::size_t kSobolDimensionCount = 21201;
+/**
+ * @brief Stores the SobolDirectionWordCount value for this contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @ingroup asc_random_qmc
+ */
 inline constexpr std::size_t kSobolDirectionWordCount = 64;
+/**
+ * @brief Stores the RandomQmcSequenceVersion1 value for this contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @ingroup asc_random_qmc
+ */
 inline constexpr std::uint32_t kRandomQmcSequenceVersion1 = 1;
 
+/**
+ * @brief Performs the public PrimeAt operation defined by the quasi-random
+ * contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @param[in] index The index value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_random_qmc
+ */
 [[nodiscard]] ASC_RANDOM_EXPORT Result<std::uint32_t> PrimeAt(
     std::size_t index);
 
+/**
+ * @brief Performs the public RadicalInverse operation defined by the
+ * quasi-random contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] base The base value required by this contract.
+ * @param[in] index The index value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 [[nodiscard]] Result<Real> RadicalInverse(std::uint32_t base,
                                           std::uint64_t index) {
@@ -128,6 +190,22 @@ template <SupportedRandomReal Real>
 
 }  // namespace internal_random_qmc
 
+/**
+ * @brief Performs the public ScrambledRadicalInverse operation defined by the
+ * quasi-random contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] base The base value required by this contract.
+ * @param[in] index The index value required by this contract.
+ * @param[in] permutation The permutation value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 [[nodiscard]] Result<Real> ScrambledRadicalInverse(
     std::uint32_t base, std::uint64_t index,
@@ -150,6 +228,21 @@ template <SupportedRandomReal Real>
       value, "Scrambled radical inverse produced an invalid result");
 }
 
+/**
+ * @brief Generates deterministic quasi-random values into the requested
+ * destination.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Engine Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] engine The engine value required by this contract.
+ * @param[in] permutation The permutation value required by this contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_random_qmc
+ */
 template <CanonicalRandomEngine Engine>
 Status GenerateLowDiscrepancyPermutation(Engine& engine,
                                          std::span<std::uint32_t> permutation) {
@@ -170,6 +263,29 @@ Status GenerateLowDiscrepancyPermutation(Engine& engine,
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic quasi-random values into the requested
+ * destination.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Engine Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] sample_count The sample count value required by this contract.
+ * @param[in] dimension_count The dimension count value required by this
+ * contract.
+ * @param[in] engine The engine value required by this contract.
+ * @param[in] permutation_workspace The permutation workspace value required by
+ * this contract.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real, CanonicalRandomEngine Engine>
 Status GenerateLatinHypercubeMidpoints(
     std::size_t sample_count, std::size_t dimension_count, Engine& engine,
@@ -227,6 +343,29 @@ Status GenerateLatinHypercubeMidpoints(
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic quasi-random values into the requested
+ * destination.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @tparam Engine Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] sample_count The sample count value required by this contract.
+ * @param[in] dimension_count The dimension count value required by this
+ * contract.
+ * @param[in] engine The engine value required by this contract.
+ * @param[in] permutation_workspace The permutation workspace value required by
+ * this contract.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real, CanonicalRandomEngine Engine>
 Status GenerateLatinHypercubeJittered(
     std::size_t sample_count, std::size_t dimension_count, Engine& engine,
@@ -291,6 +430,21 @@ Status GenerateLatinHypercubeJittered(
   return Status::Ok();
 }
 
+/**
+ * @brief Performs the public HaltonCoordinate operation defined by the
+ * quasi-random contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] index The index value required by this contract.
+ * @param[in] dimension The dimension value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 [[nodiscard]] Result<Real> HaltonCoordinate(std::uint64_t index,
                                             std::size_t dimension) {
@@ -301,6 +455,22 @@ template <SupportedRandomReal Real>
   return RadicalInverse<Real>(*prime, index);
 }
 
+/**
+ * @brief Performs the public ScrambledHaltonCoordinate operation defined by the
+ * quasi-random contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] index The index value required by this contract.
+ * @param[in] dimension The dimension value required by this contract.
+ * @param[in] permutation The permutation value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 [[nodiscard]] Result<Real> ScrambledHaltonCoordinate(
     std::uint64_t index, std::size_t dimension,
@@ -312,6 +482,22 @@ template <SupportedRandomReal Real>
   return ScrambledRadicalInverse<Real>(*prime, index, permutation);
 }
 
+/**
+ * @brief Generates deterministic quasi-random values into the requested
+ * destination.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] index The index value required by this contract.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 Status GenerateHaltonPoint(std::uint64_t index, std::span<Real> output) {
   if (output.size() > kSobolDimensionCount) {
@@ -328,6 +514,23 @@ Status GenerateHaltonPoint(std::uint64_t index, std::span<Real> output) {
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic quasi-random values into the requested
+ * destination.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] index The index value required by this contract.
+ * @param[in] permutations The permutations value required by this contract.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 Status GenerateScrambledHaltonPoint(
     std::uint64_t index,
@@ -367,6 +570,23 @@ Status GenerateScrambledHaltonPoint(
   return Status::Ok();
 }
 
+/**
+ * @brief Generates deterministic quasi-random values into the requested
+ * destination.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] index The index value required by this contract.
+ * @param[in] total_count The total count value required by this contract.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 Status GenerateHammersleyPoint(std::uint64_t index, std::uint64_t total_count,
                                std::span<Real> output) {
@@ -406,15 +626,68 @@ Status GenerateHammersleyPoint(std::uint64_t index, std::uint64_t total_count,
   return Status::Ok();
 }
 
+/**
+ * @brief Performs the public InitializeSobolDirectionNumbers operation defined
+ * by the quasi-random contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @param[in] dimension The dimension value required by this contract.
+ * @param[in] direction_words The direction words value required by this
+ * contract.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_random_qmc
+ */
 ASC_RANDOM_EXPORT Status InitializeSobolDirectionNumbers(
     std::size_t dimension, std::span<std::uint64_t> direction_words);
 
+/**
+ * @brief Performs the public SobolDirectionTableChecksum operation defined by
+ * the quasi-random contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @return The documented value; references and views do not extend owner
+ * lifetime.
+ * @ingroup asc_random_qmc
+ */
 [[nodiscard]] ASC_RANDOM_EXPORT std::uint64_t
 SobolDirectionTableChecksum() noexcept;
 
+/**
+ * @brief Performs the public SobolWord operation defined by the quasi-random
+ * contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @param[in] index The index value required by this contract.
+ * @param[in] dimension The dimension value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_random_qmc
+ */
 [[nodiscard]] ASC_RANDOM_EXPORT Result<std::uint64_t> SobolWord(
     std::uint64_t index, std::size_t dimension);
 
+/**
+ * @brief Performs the public SobolCoordinate operation defined by the
+ * quasi-random contract.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] index The index value required by this contract.
+ * @param[in] dimension The dimension value required by this contract.
+ * @return The value on success, or a non-OK Status describing validation,
+ * access, allocation, provider, or numerical failure.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 [[nodiscard]] Result<Real> SobolCoordinate(std::uint64_t index,
                                            std::size_t dimension) {
@@ -425,6 +698,22 @@ template <SupportedRandomReal Real>
   return internal_random_qmc::SobolUnit<Real>(*word);
 }
 
+/**
+ * @brief Generates deterministic quasi-random values into the requested
+ * destination.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ *
+ * @tparam Real Type or non-type argument satisfying the declaration's
+ * constraints.
+ * @param[in] index The index value required by this contract.
+ * @param[out] output Output operand mutated only as documented by the
+ * operation.
+ * @return OK on success; otherwise a stable failure category with optional
+ * diagnostics.
+ * @ingroup asc_random_qmc
+ */
 template <SupportedRandomReal Real>
 Status GenerateSobolPoint(std::uint64_t index, std::span<Real> output) {
   if (output.size() > kSobolDimensionCount) {
@@ -441,11 +730,46 @@ Status GenerateSobolPoint(std::uint64_t index, std::span<Real> output) {
   return Status::Ok();
 }
 
+/**
+ * @brief Advances a bounded-dimension deterministic Sobol sequence.
+ *
+ * Reproducibility is defined by the documented engine, distribution,
+ * seed/subsequence/offset address mapping, and sequence-version boundary.
+ * @ingroup asc_random_qmc
+ */
 class ASC_RANDOM_EXPORT SobolSequence final {
  public:
+  /**
+   * @brief Validates inputs and creates the requested quasi-random object.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @param[in] dimension_count The dimension count value required by this
+   * contract.
+   * @param[in] initial_index The initial index value required by this contract.
+   * @return The value on success, or a non-OK Status describing validation,
+   * access, allocation, provider, or numerical failure.
+   * @ingroup asc_random_qmc
+   */
   [[nodiscard]] static Result<SobolSequence> Create(
       std::size_t dimension_count, std::uint64_t initial_index = 0);
 
+  /**
+   * @brief Performs the public Next operation defined by the quasi-random
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @tparam Real Type or non-type argument satisfying the declaration's
+   * constraints.
+   * @param[out] output Output operand mutated only as documented by the
+   * operation.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_random_qmc
+   */
   template <SupportedRandomReal Real>
   Status Next(std::span<Real> output) {
     if (output.size() != dimension_count_) {
@@ -471,14 +795,81 @@ class ASC_RANDOM_EXPORT SobolSequence final {
     return Status::Ok();
   }
 
+  /**
+   * @brief Performs the reset state transition defined by this quasi-random
+   * object.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @param[in] index The index value required by this contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_random_qmc
+   */
   Status Reset(std::uint64_t index = 0);
+  /**
+   * @brief Performs the public Skip operation defined by the quasi-random
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @param[in] count The count value required by this contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_random_qmc
+   */
   Status Skip(std::uint64_t count);
+  /**
+   * @brief Performs the public SkipTo operation defined by the quasi-random
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @param[in] index The index value required by this contract.
+   * @return OK on success; otherwise a stable failure category with optional
+   * diagnostics.
+   * @ingroup asc_random_qmc
+   */
   Status SkipTo(std::uint64_t index);
 
+  /**
+   * @brief Returns the object's dimension count contract value.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_qmc
+   */
   [[nodiscard]] std::size_t dimension_count() const noexcept {
     return dimension_count_;
   }
+  /**
+   * @brief Performs the public index operation defined by the quasi-random
+   * contract.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_qmc
+   */
   [[nodiscard]] std::uint64_t index() const noexcept { return index_; }
+  /**
+   * @brief Reports whether the documented exhausted condition holds.
+   *
+   * Reproducibility is defined by the documented engine, distribution,
+   * seed/subsequence/offset address mapping, and sequence-version boundary.
+   *
+   * @return The documented value; references and views do not extend owner
+   * lifetime.
+   * @ingroup asc_random_qmc
+   */
   [[nodiscard]] bool exhausted() const noexcept { return exhausted_; }
 
  private:
