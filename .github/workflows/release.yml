@@ -1,0 +1,270 @@
+name: Release draft
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Prospective version tag to validate without publishing
+        required: true
+        default: v0.9.0
+        type: string
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  release-matrix:
+    name: Required release matrix
+    uses: ./.github/workflows/ci.yml
+
+  security-analysis:
+    name: Required CodeQL analysis
+    uses: ./.github/workflows/codeql.yml
+
+  assemble:
+    name: Assemble immutable release artifacts
+    needs: [release-matrix, security-analysis]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - name: Check out exact commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          path: asc-cpp
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Resolve and verify release identity
+        id: identity
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            tag="${{ github.ref_name }}"
+            python3 asc-cpp/tools/release/verify_release_state.py \
+              --source asc-cpp --tag "$tag" --require-head-tag
+          else
+            tag="${{ inputs.tag }}"
+            test "$(git -C asc-cpp rev-parse HEAD)" = "${{ github.sha }}"
+            python3 asc-cpp/tools/release/verify_release_state.py \
+              --source asc-cpp --tag "$tag"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+      - name: Verify anonymous immutable ASCCMake acquisition
+        shell: bash
+        run: |
+          archive="$RUNNER_TEMP/asc-cmake-8a7dcbad.tar.gz"
+          curl --fail --location --proto '=https' --tlsv1.2 \
+            --output "$archive" \
+            https://api.github.com/repos/AI4SciComp/asc-cmake/tarball/8a7dcbad3a97267cce59810aff24de800a3497a7
+          echo "73299eca4b80b8a5571622636fe12c88f67602eba4e99f24368d5405b9bc0021  $archive" | sha256sum --check --strict
+      - name: Install documentation tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+          doxygen --version | grep '^1\.9\.8$'
+      - name: Build deterministic source and installed archives
+        shell: bash
+        env:
+          # 2026-08-03T00:00:00+08:00, fixed so installed archives do not
+          # depend on the wall-clock time of the eventual release commit.
+          RELEASE_ARCHIVE_EPOCH: "1785686400"
+        run: |
+          assets="$RUNNER_TEMP/release-assets"
+          staging="$RUNNER_TEMP/release-staging"
+          mkdir "$assets" "$staging"
+
+          git -C asc-cpp archive --format=tar --prefix=ASCCpp-0.9.0/ HEAD | \
+            gzip -n > "$assets/ASCCpp-0.9.0-source.tar.gz"
+
+          for linkage in static shared; do
+            if [[ "$linkage" == "shared" ]]; then shared=ON; else shared=OFF; fi
+            build="$RUNNER_TEMP/release-$linkage"
+            root="ASCCpp-0.9.0-linux-x86_64-$linkage"
+            prefix="$staging/$root"
+            cmake -S asc-cpp -B "$build" \
+              -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_INSTALL_PREFIX="$prefix" \
+              -DBUILD_SHARED_LIBS="$shared" \
+              -DBUILD_TESTING=ON \
+              -DASC_CPP_BUILD_TESTING=ON \
+              -DASC_CPP_ENABLE_CUDA=OFF \
+              -DASC_CPP_INSTALL=ON \
+              -DASC_CPP_WARNINGS_AS_ERRORS=ON
+            cmake --build "$build" --parallel 2
+            ctest --test-dir "$build" --parallel 2 --no-tests=error \
+              --label-regex 'package|consumer|relocation|examples' \
+              --output-on-failure --output-junit "$build/ctest.xml"
+            python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
+            cmake --install "$build"
+            tar --sort=name --mtime="@$RELEASE_ARCHIVE_EPOCH" \
+              --owner=0 --group=0 --numeric-owner \
+              --pax-option=delete=atime,delete=ctime \
+              -C "$staging" -cf - "$root" | \
+              gzip -n > "$assets/$root.tar.gz"
+          done
+
+          docs_build="$RUNNER_TEMP/release-docs"
+          cmake -S asc-cpp -B "$docs_build" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_TESTING=OFF \
+            -DASC_CPP_BUILD_TESTING=OFF \
+            -DASC_CPP_BUILD_DOCUMENTATION=ON \
+            -DASC_CPP_ENABLE_CUDA=OFF \
+            -DASC_CPP_INSTALL=OFF
+          cmake --build "$docs_build" --target asc_cpp_docs_check --parallel 2
+          docs_root="$staging/ASCCpp-0.9.0-docs"
+          mkdir "$docs_root"
+          cp -a "$docs_build/docs/doxygen/html" "$docs_root/html"
+          cp -a "$docs_build/docs/doxygen/xml" "$docs_root/xml"
+          cp "$docs_build/docs/doxygen/ASCCpp.tag" "$docs_root/ASCCpp.tag"
+          cp "$docs_build/docs/doxygen/doxygen-warnings.log" \
+            "$docs_root/doxygen-warnings.log"
+          tar --sort=name --mtime="@$RELEASE_ARCHIVE_EPOCH" \
+            --owner=0 --group=0 --numeric-owner \
+            --pax-option=delete=atime,delete=ctime \
+            -C "$staging" -cf - ASCCpp-0.9.0-docs | \
+            gzip -n > "$assets/ASCCpp-0.9.0-docs.tar.gz"
+          cp "$docs_build/docs/doxygen/ASCCpp.tag" \
+            "$assets/ASCCpp-0.9.0.tag"
+      - name: Generate pinned SPDX SBOM
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610
+        with:
+          path: asc-cpp
+          format: spdx-json
+          output-file: ${{ runner.temp }}/release-assets/ASCCpp-0.9.0.spdx.json
+          syft-version: v1.50.0
+          dependency-snapshot: "false"
+          upload-artifact: "false"
+          upload-release-assets: "false"
+      - name: Inspect and checksum artifacts
+        shell: bash
+        run: |
+          assets="$RUNNER_TEMP/release-assets"
+          python3 asc-cpp/tools/release/check_archive.py \
+            "$assets/ASCCpp-0.9.0-source.tar.gz" --kind source \
+            --forbid-bytes "$GITHUB_WORKSPACE" \
+            --forbid-bytes "$RUNNER_TEMP"
+          for linkage in static shared; do
+            python3 asc-cpp/tools/release/check_archive.py \
+              "$assets/ASCCpp-0.9.0-linux-x86_64-$linkage.tar.gz" \
+              --kind install \
+              --forbid-bytes "$GITHUB_WORKSPACE" \
+              --forbid-bytes "$RUNNER_TEMP"
+          done
+          (cd "$assets" && sha256sum ASCCpp-0.9.0* > SHA256SUMS)
+          (cd "$assets" && sha256sum --check --strict SHA256SUMS)
+      - name: Attest release artifacts
+        if: github.event_name == 'push'
+        uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a
+        with:
+          subject-path: ${{ runner.temp }}/release-assets/*
+      - name: Upload assembled artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-assets
+          path: ${{ runner.temp }}/release-assets/*
+          if-no-files-found: error
+      - name: Create immutable draft prerelease
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.identity.outputs.tag }}
+        shell: bash
+        run: |
+          if gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $RELEASE_TAG already exists; refusing to replace it." >&2
+            exit 1
+          fi
+          gh release create "$RELEASE_TAG" "$RUNNER_TEMP"/release-assets/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag --draft --prerelease \
+            --title "ASCCpp 0.9.0" \
+            --notes-file asc-cpp/release/release-notes-v0.9.0.md
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: release-assembly-failure
+          path: |
+            ${{ runner.temp }}/release-*/Testing/**
+            ${{ runner.temp }}/release-*/ctest.xml
+            ${{ runner.temp }}/release-docs/docs/doxygen/doxygen-warnings.log
+          if-no-files-found: warn
+
+  consume-artifacts:
+    name: Independently consume assembled artifacts
+    needs: assemble
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Check out verifier
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: verifier
+          persist-credentials: false
+      - name: Download draft release assets
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          mkdir "$RUNNER_TEMP/downloaded-assets"
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" \
+            --dir "$RUNNER_TEMP/downloaded-assets"
+      - name: Download dry-run artifacts
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: release-assets
+          path: ${{ runner.temp }}/downloaded-assets
+      - name: Verify and consume downloaded files
+        shell: bash
+        run: |
+          assets="$RUNNER_TEMP/downloaded-assets"
+          (cd "$assets" && sha256sum --check --strict SHA256SUMS)
+          python3 verifier/tools/release/check_archive.py \
+            "$assets/ASCCpp-0.9.0-source.tar.gz" --kind source
+          for linkage in static shared; do
+            python3 verifier/tools/release/check_archive.py \
+              "$assets/ASCCpp-0.9.0-linux-x86_64-$linkage.tar.gz" \
+              --kind install
+          done
+
+          mkdir "$RUNNER_TEMP/source" "$RUNNER_TEMP/install"
+          tar -xzf "$assets/ASCCpp-0.9.0-source.tar.gz" \
+            -C "$RUNNER_TEMP/source"
+          source_root="$RUNNER_TEMP/source/ASCCpp-0.9.0"
+          for linkage in static shared; do
+            tar -xzf \
+              "$assets/ASCCpp-0.9.0-linux-x86_64-$linkage.tar.gz" \
+              -C "$RUNNER_TEMP/install"
+            install_root="$RUNNER_TEMP/install/ASCCpp-0.9.0-linux-x86_64-$linkage"
+            build="$RUNNER_TEMP/downloaded-example-build-$linkage"
+            cmake -S "$source_root/examples" -B "$build" \
+              -DASCCpp_DIR="$install_root/lib/cmake/ASCCpp" \
+              -DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF \
+              -DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF
+            cmake --build "$build" --parallel 2
+            ctest --test-dir "$build" --no-tests=error --output-on-failure \
+              --output-junit "$build/ctest.xml"
+            python3 verifier/tools/ci/check_ctest_junit.py "$build/ctest.xml"
+          done
+      - name: Preserve consumption failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: downloaded-artifact-consumption-failure
+          path: |
+            ${{ runner.temp }}/downloaded-example-build-*/Testing/**
+            ${{ runner.temp }}/downloaded-example-build-*/ctest.xml
+          if-no-files-found: warn

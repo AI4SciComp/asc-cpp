@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_call:
   push:
   pull_request:
 
@@ -8,244 +9,444 @@ permissions:
   contents: read
 
 concurrency:
-  group: "${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}"
+  group: "ci-${{ github.event.pull_request.number || github.ref }}"
   cancel-in-progress: true
 
 env:
-  ASC_CMAKE_COMMIT: 8a7dcbad3a97267cce59810aff24de800a3497a7
+  CTEST_OUTPUT_ON_FAILURE: "1"
 
 jobs:
-  linux-gcc-cmake-min:
-    name: Linux / GCC 11 / CMake 3.25 / Debug and Release
+  linux-gcc-minimum:
+    name: Linux / GCC 11 / CMake 3.25 / ${{ matrix.config }}
     runs-on: ubuntu-22.04
-    timeout-minutes: 35
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [Debug, Release]
     steps:
-      - name: Check out asc-cpp
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           path: asc-cpp
           persist-credentials: false
-      - name: Check out exact private asc-cmake release
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with:
-          repository: AI4SciComp/asc-cmake
-          ref: ${{ env.ASC_CMAKE_COMMIT }}
-          token: ${{ secrets.ASC_CMAKE_READ_TOKEN }}
-          path: asc-cmake
-          persist-credentials: false
-      - name: Install CMake 3.25
+      - name: Install exact minimum CMake
+        shell: bash
         run: |
-          python3 -m venv cmake-venv
-          cmake-venv/bin/pip install cmake==3.25.0
-          echo "$PWD/cmake-venv/bin" >> "$GITHUB_PATH"
-      - name: Report tools and verify asc-cmake
+          archive="$RUNNER_TEMP/cmake-3.25.0-linux-x86_64.tar.gz"
+          curl --fail --location --proto '=https' --tlsv1.2 \
+            --output "$archive" \
+            https://github.com/Kitware/CMake/releases/download/v3.25.0/cmake-3.25.0-linux-x86_64.tar.gz
+          echo "ac634d6f0a81d7089adc7be5acff66a6bee3b08615f9a947858ce92a9ef59c8b  $archive" | sha256sum --check --strict
+          mkdir "$RUNNER_TEMP/cmake-3.25.0"
+          tar -xzf "$archive" --strip-components=1 -C "$RUNNER_TEMP/cmake-3.25.0"
+          echo "$RUNNER_TEMP/cmake-3.25.0/bin" >> "$GITHUB_PATH"
+      - name: Report tools
         run: |
-          uname -a
           cmake --version
           ctest --version
-          gcc --version
           g++ --version
-          test "$(git -C asc-cmake rev-parse HEAD)" = "$ASC_CMAKE_COMMIT"
-      - name: Configure asc-cmake build-tree package
+      - name: Configure, build, and test
+        shell: bash
         run: |
-          cmake -S asc-cmake -B build/asc-cmake \
-            -DBUILD_TESTING=OFF \
-            -DASC_CMAKE_BUILD_TESTING=OFF \
-            -DASC_CMAKE_INSTALL=OFF
-      - name: Configure, build, and test Debug
-        run: |
-          cmake -S asc-cpp -B build/gcc-debug \
-            -DCMAKE_BUILD_TYPE=Debug \
+          build="$RUNNER_TEMP/gcc11-${{ matrix.config }}"
+          cmake -S asc-cpp -B "$build" \
+            -DCMAKE_BUILD_TYPE=${{ matrix.config }} \
+            -DBUILD_SHARED_LIBS=OFF \
             -DBUILD_TESTING=ON \
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON \
-            -DASCCMake_DIR="$PWD/build/asc-cmake"
-          cmake --build build/gcc-debug --parallel 2
-          ctest --test-dir build/gcc-debug --output-on-failure
-      - name: Configure, build, and test Release
-        run: |
-          cmake -S asc-cpp -B build/gcc-release \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DBUILD_TESTING=ON \
-            -DASC_CPP_BUILD_TESTING=ON \
-            -DASC_CPP_ENABLE_CUDA=OFF \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON \
-            -DASCCMake_DIR="$PWD/build/asc-cmake"
-          cmake --build build/gcc-release --parallel 2
-          ctest --test-dir build/gcc-release --output-on-failure
+            -DASC_CPP_INSTALL=ON \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON
+          cmake --build "$build" --parallel 2
+          ctest --test-dir "$build" --parallel 2 --no-tests=error \
+            --output-on-failure --output-junit "$build/ctest.xml"
+          python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: gcc11-cmake325-${{ matrix.config }}-failure
+          path: |
+            ${{ runner.temp }}/gcc11-${{ matrix.config }}/Testing/**
+            ${{ runner.temp }}/gcc11-${{ matrix.config }}/ctest.xml
+            ${{ runner.temp }}/gcc11-${{ matrix.config }}/asc-cpp-test-workspaces/**
+          if-no-files-found: warn
 
-  linux-clang-current:
-    name: Linux / Clang 18 / current CMake / Debug
+  linux-gcc-current:
+    name: Linux / GCC 14 / Release / ${{ matrix.linkage }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - linkage: static
+            shared: "OFF"
+          - linkage: shared
+            shared: "ON"
     steps:
-      - name: Check out asc-cpp
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           path: asc-cpp
           persist-credentials: false
-      - name: Check out exact private asc-cmake release
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install GCC 14
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-14 g++-14
+      - name: Configure, build, and test
+        shell: bash
+        env:
+          CC: gcc-14
+          CXX: g++-14
+        run: |
+          build="$RUNNER_TEMP/gcc14-${{ matrix.linkage }}"
+          cmake -S asc-cpp -B "$build" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=${{ matrix.shared }} \
+            -DBUILD_TESTING=ON \
+            -DASC_CPP_BUILD_TESTING=ON \
+            -DASC_CPP_ENABLE_CUDA=OFF \
+            -DASC_CPP_INSTALL=ON \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON
+          cmake --build "$build" --parallel 2
+          ctest --test-dir "$build" --parallel 2 --no-tests=error \
+            --output-on-failure --output-junit "$build/ctest.xml"
+          python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          repository: AI4SciComp/asc-cmake
-          ref: ${{ env.ASC_CMAKE_COMMIT }}
-          token: ${{ secrets.ASC_CMAKE_READ_TOKEN }}
-          path: asc-cmake
+          name: gcc14-release-${{ matrix.linkage }}-failure
+          path: |
+            ${{ runner.temp }}/gcc14-${{ matrix.linkage }}/Testing/**
+            ${{ runner.temp }}/gcc14-${{ matrix.linkage }}/ctest.xml
+            ${{ runner.temp }}/gcc14-${{ matrix.linkage }}/asc-cpp-test-workspaces/**
+          if-no-files-found: warn
+
+  linux-clang-current:
+    name: Linux / Clang 18 / ${{ matrix.config }} / ${{ matrix.linkage }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - config: Debug
+            linkage: static
+            shared: "OFF"
+          - config: Release
+            linkage: static
+            shared: "OFF"
+          - config: Debug
+            linkage: shared
+            shared: "ON"
+          - config: Release
+            linkage: shared
+            shared: "ON"
+    steps:
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: asc-cpp
+          persist-credentials: false
+      - name: Install Clang 18
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-18
+      - name: Configure, build, and test
+        shell: bash
+        env:
+          CC: clang-18
+          CXX: clang++-18
+        run: |
+          build="$RUNNER_TEMP/clang18-${{ matrix.config }}-${{ matrix.linkage }}"
+          cmake -S asc-cpp -B "$build" \
+            -DCMAKE_BUILD_TYPE=${{ matrix.config }} \
+            -DBUILD_SHARED_LIBS=${{ matrix.shared }} \
+            -DBUILD_TESTING=ON \
+            -DASC_CPP_BUILD_TESTING=ON \
+            -DASC_CPP_ENABLE_CUDA=OFF \
+            -DASC_CPP_INSTALL=ON \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON
+          cmake --build "$build" --parallel 2
+          ctest --test-dir "$build" --parallel 2 --no-tests=error \
+            --output-on-failure --output-junit "$build/ctest.xml"
+          python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: clang18-${{ matrix.config }}-${{ matrix.linkage }}-failure
+          path: |
+            ${{ runner.temp }}/clang18-${{ matrix.config }}-${{ matrix.linkage }}/Testing/**
+            ${{ runner.temp }}/clang18-${{ matrix.config }}-${{ matrix.linkage }}/ctest.xml
+            ${{ runner.temp }}/clang18-${{ matrix.config }}-${{ matrix.linkage }}/asc-cpp-test-workspaces/**
+          if-no-files-found: warn
+
+  clang-quality:
+    name: Clang 18 / format and full tidy
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: asc-cpp
           persist-credentials: false
       - name: Install Clang tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang-18 clang-format-18 clang-tidy-18 ninja-build
-      - name: Report tools and verify asc-cmake
-        run: |
-          uname -a
-          cmake --version
-          ctest --version
-          clang-18 --version
-          clang-format-18 --version
-          clang-tidy-18 --version
-          test "$(git -C asc-cmake rev-parse HEAD)" = "$ASC_CMAKE_COMMIT"
-      - name: Validate formatting and analysis policy
-        working-directory: asc-cpp
-        run: |
-          clang-format-18 --style=file --assume-filename=probe.cc \
-            --dump-config >/dev/null
-          clang-tidy-18 --config-file=.clang-tidy --verify-config
+          sudo apt-get install -y clang-18 clang-format-18 clang-tidy-18
       - name: Check formatting
         working-directory: asc-cpp
         run: |
-          files="$(git ls-files '*.h' '*.cc' '*.cu')"
-          if test -n "$files"; then
-            clang-format-18 --dry-run --Werror $files
-          else
-            echo "No C++ source files were found."
-          fi
-      - name: Configure asc-cmake build-tree package
+          git ls-files '*.h' '*.cc' '*.cu' -z | \
+            xargs -0 clang-format-18 --dry-run --Werror
+      - name: Configure and run full tidy
+        shell: bash
+        env:
+          CC: clang-18
+          CXX: clang++-18
         run: |
-          cmake -S asc-cmake -B build/asc-cmake -G Ninja \
-            -DBUILD_TESTING=OFF \
-            -DASC_CMAKE_BUILD_TESTING=OFF \
-            -DASC_CMAKE_INSTALL=OFF
-      - name: Configure, build, and test
-        run: |
-          cmake -S asc-cpp -B build/clang-debug -G Ninja \
+          build="$RUNNER_TEMP/clang18-tidy"
+          cmake -S asc-cpp -B "$build" \
             -DCMAKE_BUILD_TYPE=Debug \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DCMAKE_CXX_CLANG_TIDY=clang-tidy-18 \
+            -DBUILD_TESTING=OFF \
+            -DASC_CPP_BUILD_TESTING=OFF \
+            -DASC_CPP_ENABLE_CUDA=OFF \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON
+          cmake --build "$build" --parallel 2
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: clang18-quality-failure
+          path: |
+            ${{ runner.temp }}/clang18-tidy/compile_commands.json
+            ${{ runner.temp }}/clang18-tidy/Testing/**
+          if-no-files-found: warn
+
+  sanitizers:
+    name: Linux / Clang 18 / ${{ matrix.name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: asan-ubsan
+            options: -DASC_CPP_ENABLE_ADDRESS_SANITIZER=ON -DASC_CPP_ENABLE_UNDEFINED_SANITIZER=ON
+            include_label: .*
+            exclude_label: package|consumer
+          - name: lsan
+            options: -DASC_CPP_ENABLE_LEAK_SANITIZER=ON
+            include_label: .*
+            exclude_label: package|consumer
+          - name: tsan
+            options: -DASC_CPP_ENABLE_THREAD_SANITIZER=ON
+            include_label: concurrency
+            exclude_label: package|consumer|benchmark
+    steps:
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: asc-cpp
+          persist-credentials: false
+      - name: Install Clang 18
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-18
+      - name: Configure, build, and test
+        shell: bash
+        env:
+          CC: clang-18
+          CXX: clang++-18
+        run: |
+          build="$RUNNER_TEMP/${{ matrix.name }}"
+          cmake -S asc-cpp -B "$build" \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DBUILD_SHARED_LIBS=OFF \
             -DBUILD_TESTING=ON \
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_WARNINGS_AS_ERRORS=ON \
-            -DASC_CPP_ENABLE_ADDRESS_SANITIZER=ON \
-            -DASC_CPP_ENABLE_UNDEFINED_SANITIZER=ON \
-            -DASCCMake_DIR="$PWD/build/asc-cmake"
-          cmake --build build/clang-debug --parallel 2
-          ctest --test-dir build/clang-debug --output-on-failure \
-            --label-exclude "package|consumer"
-      - name: Run clang-tidy
-        run: |
-          files="$(find asc-cpp/src/core asc-cpp/src/utilities \
-            asc-cpp/src/dense asc-cpp/src/sparse asc-cpp/src/random \
-            -maxdepth 1 -name '*.cc' -print)"
-          test -n "$files"
-          clang-tidy-18 -p build/clang-debug $files
+            ${{ matrix.options }}
+          cmake --build "$build" --parallel 2
+          ctest --test-dir "$build" --parallel 2 --no-tests=error \
+            --label-regex '${{ matrix.include_label }}' \
+            --label-exclude '${{ matrix.exclude_label }}' \
+            --output-on-failure --output-junit "$build/ctest.xml"
+          python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ${{ matrix.name }}-failure
+          path: |
+            ${{ runner.temp }}/${{ matrix.name }}/Testing/**
+            ${{ runner.temp }}/${{ matrix.name }}/ctest.xml
+          if-no-files-found: warn
 
-  windows-msvc-multiconfig:
-    name: Windows / VS 2022 / Debug and Release
+  windows-msvc:
+    name: Windows / MSVC / ${{ matrix.linkage }} / Debug and Release
     runs-on: windows-2022
-    timeout-minutes: 40
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - linkage: static
+            shared: "OFF"
+          - linkage: shared
+            shared: "ON"
     steps:
-      - name: Check out asc-cpp
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           path: asc-cpp
           persist-credentials: false
-      - name: Check out exact private asc-cmake release
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with:
-          repository: AI4SciComp/asc-cmake
-          ref: ${{ env.ASC_CMAKE_COMMIT }}
-          token: ${{ secrets.ASC_CMAKE_READ_TOKEN }}
-          path: asc-cmake
-          persist-credentials: false
-      - name: Report tools and verify asc-cmake
+      - name: Configure, build, and test both configurations
         shell: pwsh
         run: |
-          [System.Runtime.InteropServices.RuntimeInformation]::OSDescription
-          [System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture
-          cmake --version
-          ctest --version
-          $actual = git -C asc-cmake rev-parse HEAD
-          if ($actual -ne $env:ASC_CMAKE_COMMIT) {
-            throw "Unexpected asc-cmake commit: $actual"
-          }
-      - name: Configure asc-cmake build-tree package
-        shell: pwsh
-        run: |
-          cmake -S asc-cmake -B build/asc-cmake `
-            -DBUILD_TESTING=OFF `
-            -DASC_CMAKE_BUILD_TESTING=OFF `
-            -DASC_CMAKE_INSTALL=OFF
-      - name: Configure ASCCpp multi-config
-        shell: pwsh
-        run: |
-          cmake -S asc-cpp -B build/msvc -G "Visual Studio 17 2022" -A x64 `
-            -DBUILD_SHARED_LIBS=ON `
+          $build = Join-Path $env:RUNNER_TEMP "msvc-${{ matrix.linkage }}"
+          cmake -S asc-cpp -B $build -G "Visual Studio 17 2022" -A x64 `
+            -DBUILD_SHARED_LIBS=${{ matrix.shared }} `
             -DBUILD_TESTING=ON `
             -DASC_CPP_BUILD_TESTING=ON `
             -DASC_CPP_ENABLE_CUDA=OFF `
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON `
-            "-DASCCMake_DIR=$pwd/build/asc-cmake"
-      - name: Build and test Debug
-        shell: pwsh
-        run: |
-          cmake --build build/msvc --config Debug --parallel 2
-          ctest --test-dir build/msvc -C Debug --output-on-failure
-      - name: Build and test Release
-        shell: pwsh
-        run: |
-          cmake --build build/msvc --config Release --parallel 2
-          ctest --test-dir build/msvc -C Release --output-on-failure
+            -DASC_CPP_INSTALL=ON `
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON
+          foreach ($config in @("Debug", "Release")) {
+            cmake --build $build --config $config --parallel 2
+            ctest --test-dir $build -C $config --parallel 2 --no-tests=error `
+              --output-on-failure --output-junit "$build/ctest-$config.xml"
+            python asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest-$config.xml"
+          }
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: msvc-${{ matrix.linkage }}-failure
+          path: |
+            ${{ runner.temp }}/msvc-${{ matrix.linkage }}/Testing/**
+            ${{ runner.temp }}/msvc-${{ matrix.linkage }}/ctest-*.xml
+            ${{ runner.temp }}/msvc-${{ matrix.linkage }}/asc-cpp-test-workspaces/**
+          if-no-files-found: warn
 
   macos-appleclang:
-    name: macOS 15 arm64 / AppleClang / Debug
+    name: macOS / AppleClang / ${{ matrix.config }} / ${{ matrix.linkage }}
     runs-on: macos-15
-    timeout-minutes: 35
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - config: Debug
+            linkage: static
+            shared: "OFF"
+          - config: Release
+            linkage: static
+            shared: "OFF"
+          - config: Debug
+            linkage: shared
+            shared: "ON"
+          - config: Release
+            linkage: shared
+            shared: "ON"
     steps:
-      - name: Check out asc-cpp
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           path: asc-cpp
           persist-credentials: false
-      - name: Check out exact private asc-cmake release
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with:
-          repository: AI4SciComp/asc-cmake
-          ref: ${{ env.ASC_CMAKE_COMMIT }}
-          token: ${{ secrets.ASC_CMAKE_READ_TOKEN }}
-          path: asc-cmake
-          persist-credentials: false
-      - name: Report tools and verify asc-cmake
-        run: |
-          uname -a
-          cmake --version
-          ctest --version
-          c++ --version
-          test "$(git -C asc-cmake rev-parse HEAD)" = "$ASC_CMAKE_COMMIT"
-      - name: Configure asc-cmake build-tree package
-        run: |
-          cmake -S asc-cmake -B build/asc-cmake \
-            -DBUILD_TESTING=OFF \
-            -DASC_CMAKE_BUILD_TESTING=OFF \
-            -DASC_CMAKE_INSTALL=OFF
       - name: Configure, build, and test
+        shell: bash
         run: |
-          cmake -S asc-cpp -B build/appleclang-debug \
-            -DCMAKE_BUILD_TYPE=Debug \
+          build="$RUNNER_TEMP/appleclang-${{ matrix.config }}-${{ matrix.linkage }}"
+          cmake -S asc-cpp -B "$build" \
+            -DCMAKE_BUILD_TYPE=${{ matrix.config }} \
+            -DBUILD_SHARED_LIBS=${{ matrix.shared }} \
             -DBUILD_TESTING=ON \
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON \
-            -DASCCMake_DIR="$PWD/build/asc-cmake"
-          cmake --build build/appleclang-debug --parallel 2
-          ctest --test-dir build/appleclang-debug --output-on-failure
+            -DASC_CPP_INSTALL=ON \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON
+          cmake --build "$build" --parallel 2
+          ctest --test-dir "$build" --parallel 2 --no-tests=error \
+            --output-on-failure --output-junit "$build/ctest.xml"
+          python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: appleclang-${{ matrix.config }}-${{ matrix.linkage }}-failure
+          path: |
+            ${{ runner.temp }}/appleclang-${{ matrix.config }}-${{ matrix.linkage }}/Testing/**
+            ${{ runner.temp }}/appleclang-${{ matrix.config }}-${{ matrix.linkage }}/ctest.xml
+            ${{ runner.temp }}/appleclang-${{ matrix.config }}-${{ matrix.linkage }}/asc-cpp-test-workspaces/**
+          if-no-files-found: warn
+
+  package-docs-examples:
+    name: Package, contracts, examples, and strict Doxygen
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: asc-cpp
+          persist-credentials: false
+      - name: Install documentation tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+          doxygen --version | grep '^1\.9\.8$'
+          dot -V
+      - name: Build and verify package evidence
+        shell: bash
+        run: |
+          build="$RUNNER_TEMP/package-docs"
+          install="$RUNNER_TEMP/ASCCpp install prefix"
+          cmake -S asc-cpp -B "$build" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX="$install" \
+            -DBUILD_SHARED_LIBS=ON \
+            -DBUILD_TESTING=ON \
+            -DASC_CPP_BUILD_TESTING=ON \
+            -DASC_CPP_BUILD_DOCUMENTATION=ON \
+            -DASC_CPP_ENABLE_CUDA=OFF \
+            -DASC_CPP_INSTALL=ON \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON
+          cmake --build "$build" --parallel 2
+          ctest --test-dir "$build" --parallel 2 --no-tests=error \
+            --label-regex 'architecture|contracts|package|consumer|relocation|provenance|documentation|examples' \
+            --output-on-failure --output-junit "$build/ctest.xml"
+          python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
+          cmake --build "$build" --target asc_cpp_docs_check --parallel 2
+          cmake --install "$build"
+      - name: Upload documentation evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ASCCpp-0.9.0-documentation
+          path: |
+            ${{ runner.temp }}/package-docs/docs/doxygen/html/**
+            ${{ runner.temp }}/package-docs/docs/doxygen/xml/**
+            ${{ runner.temp }}/package-docs/docs/doxygen/ASCCpp.tag
+            ${{ runner.temp }}/package-docs/docs/doxygen/doxygen-warnings.log
+            ${{ runner.temp }}/package-docs/ctest.xml
+          if-no-files-found: error
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: package-docs-examples-failure
+          path: |
+            ${{ runner.temp }}/package-docs/Testing/**
+            ${{ runner.temp }}/package-docs/ctest.xml
+            ${{ runner.temp }}/package-docs/asc-cpp-test-workspaces/**
+            ${{ runner.temp }}/package-docs/docs/doxygen/doxygen-warnings.log
+          if-no-files-found: warn
