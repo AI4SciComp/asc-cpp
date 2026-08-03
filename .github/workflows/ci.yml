@@ -26,7 +26,7 @@ jobs:
         config: [Debug, Release]
     steps:
       - name: Check out ASCCpp
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: asc-cpp
           persist-credentials: false
@@ -87,7 +87,7 @@ jobs:
             shared: "ON"
     steps:
       - name: Check out ASCCpp
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: asc-cpp
           persist-credentials: false
@@ -147,7 +147,7 @@ jobs:
             shared: "ON"
     steps:
       - name: Check out ASCCpp
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: asc-cpp
           persist-credentials: false
@@ -191,7 +191,7 @@ jobs:
     timeout-minutes: 45
     steps:
       - name: Check out ASCCpp
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: asc-cpp
           persist-credentials: false
@@ -252,7 +252,7 @@ jobs:
             exclude_label: package|consumer|benchmark
     steps:
       - name: Check out ASCCpp
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: asc-cpp
           persist-credentials: false
@@ -305,7 +305,7 @@ jobs:
             shared: "ON"
     steps:
       - name: Check out ASCCpp
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: asc-cpp
           persist-credentials: false
@@ -359,7 +359,7 @@ jobs:
             shared: "ON"
     steps:
       - name: Check out ASCCpp
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: asc-cpp
           persist-credentials: false
@@ -396,7 +396,7 @@ jobs:
     timeout-minutes: 55
     steps:
       - name: Check out ASCCpp
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           path: asc-cpp
           persist-credentials: false
