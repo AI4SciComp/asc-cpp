@@ -3,11 +3,11 @@
 
 # Random architecture and provenance crosswalk
 
-Contract status: `issue-16-random-completion-audit-verified-candidate`
+Contract status: `v0.9.0-release-contract`
 
 Evidence date: `2026-08-02`
 
-The frozen MdeCpp source is commit `f6294e9079262682ce63ae7ff2d8a643e658bf5d` under the repository GPL-3.0-only working assumption. The destination is Apache-2.0. The 20-artifact source inventory identity is `f47d8ecf5cfbb689fe0643d1bbb8e772138523b68a8055cdb73dc4ae3b1cb6ff`, the 33-row decision identity is `3a54b6ab7d39cc2a6936c8fa39cccdbea589a5545509f75f0a20d19b6ed66bd4`, and the frozen evidence-metadata identity is `2890bf8fce4a7d45ef4860e2778e174f580f42eb9f3a28f02f5125c2d6e83280`. No MdeCpp implementation, test, benchmark, generated data, or prose is approved for copying.
+The frozen MdeCpp source is commit `f6294e9079262682ce63ae7ff2d8a643e658bf5d` under the repository GPL-3.0-only working assumption. The destination is Apache-2.0. The 20-artifact source inventory identity is `f47d8ecf5cfbb689fe0643d1bbb8e772138523b68a8055cdb73dc4ae3b1cb6ff`, the 33-row decision identity is `3a54b6ab7d39cc2a6936c8fa39cccdbea589a5545509f75f0a20d19b6ed66bd4`, and the frozen evidence-metadata identity is `da2ca0d40a5be375b6b730cbd7d654ddbf41cb02176905f72e3bd6a04f1e7f6e`. No MdeCpp implementation, test, benchmark, generated data, or prose is approved for copying.
 
 ## Disposition summary
 

@@ -1,6 +1,6 @@
 # Extending ASCCpp safely
 
-Status: unreleased `0.9.0` Milestone 8 candidate
+Status: `0.9.0` extension contract
 
 Date: 2026-07-28
 

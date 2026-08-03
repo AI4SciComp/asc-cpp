@@ -1,6 +1,6 @@
 # Linalg-to-BLAS migration
 
-Issue 6 applies the approved breaking pre-1.0 owner-scoped rename. It changes
+BLAS rename applies the approved breaking pre-1.0 owner-scoped rename. It changes
 names only; it does not add BLAS operations, backends, targets, components, or
 dependencies.
 

@@ -1,90 +1,169 @@
-# Contributing
+# Contributing to ASCCpp
 
-asc-cpp is currently at Milestone 0, a target-free architecture and repository
-foundation. Contributions must preserve that boundary until a later milestone
-has its own approved contract and branch.
+Changes must preserve C++20, the six-module architecture, public API and
+numerical semantics, package isolation, provenance, and the explicit CPU/CUDA
+support boundary.
 
-## Before making a change
+## Architecture and ownership
 
-Read:
+Allowed direct dependency edges are defined in
+[`docs/contracts/dependency-manifest.yaml`](docs/contracts/dependency-manifest.yaml).
+In summary:
 
-1. the [Stage A architecture blueprint][stage-a];
-2. the [ADRs][adrs];
-3. the [implementation plan][implementation];
-4. the [Milestone 0 contract][m0-contract]; and
-5. the ownership ledger for the active milestone.
+- Core has no ASCCpp dependency.
+- Utilities depends on Core.
+- Expression depends on Core.
+- Dense and Sparse depend on Core and Expression, not on each other.
+- Random depends on Core; its Dense/Sparse adapters add only the corresponding
+  storage module.
+- CUDA facets add the matching CPU facet and explicit CUDA prerequisites.
 
-Keep changes within the assigned write scope. Preserve unrelated and
-uncommitted work. Publication, merge, release, tags, and branch deletion are
-separate owner-authorized actions.
+Changes to dependencies, public APIs, numerical behavior, ABI, provider
+support, or reproducibility require an accepted ADR in
+[`docs/architecture/decisions/`](docs/architecture/decisions/).
 
-## Milestone 0 boundary
+## Style and public API
 
-Do not add:
+- Use C++20 and the repository Google-derived `.clang-format`/`.clang-tidy`.
+- Public headers must be self-contained, include what they use, and compile
+  with exceptions disabled.
+- Use `Status`/`Result` for recoverable failures; do not silently translate
+  contract failures or provider-native errors.
+- Preserve ownership, lifetime, memory-space, allocation, synchronization,
+  aliasing, precision, stride/layout, and reproducibility semantics.
+- Every public declaration requires useful Doxygen documentation: parameters,
+  return/failure behavior, pre/postconditions, ownership/lifetime, concurrency,
+  CPU/GPU availability, and complexity where contractual.
 
-- a file below `include/asc` or `src`;
-- a production, module, facet, provider, compatibility, or fake reference
-  target;
-- an `array`, `linalg`, common backend, or seventh module;
-- provider discovery or CUDA language enablement;
-- an unapproved dependency;
-- copied or mechanically translated MdeCpp source, tests, data, or tables; or
-- implementation from a later milestone.
+## Configure, build, and test
 
-Do not restore intentionally deleted historical production files, tests,
-examples, notices, instructions, `AGENTS.md`, or `generator.md`.
+All presets build outside the source tree. A prepared local `asc-cmake`
+checkout avoids network access:
 
-## Build and package policy
+```bash
+export ASC_CPP_ASCCMAKE_SOURCE=/path/to/asc-cmake
+cmake --preset test-debug \
+  -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE="$ASC_CPP_ASCCMAKE_SOURCE"
+cmake --build --preset test-debug --parallel 2
+ctest --preset test-debug --no-tests=error --output-on-failure
 
-- Require CMake 3.25 or newer.
-- Bind the released `ASCCMake` 0.1.0 API; do not invent or imitate a helper.
-- Keep effects target-local and use standard CMake for the component-aware
-  `ASCCpp` package skeleton.
-- Do not write to the CMake user package registry.
-- Keep top-level testing/install defaults distinct from subproject defaults.
-- Ensure unknown and unavailable components fail without creating an
-  `ASC::*` target.
+cmake --preset test-release \
+  -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE="$ASC_CPP_ASCCMAKE_SOURCE"
+cmake --build --preset test-release --parallel 2
+ctest --preset test-release --no-tests=error --output-on-failure
 
-Later production C++ uses strict C++20, extensions disabled, the current
-Google C++ Style Guide, self-contained `.h` public headers, and `.cc` compiled
-sources. Milestone 0 itself has no production C++ surface.
+cmake --preset test-shared \
+  -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE="$ASC_CPP_ASCCMAKE_SOURCE"
+cmake --build --preset test-shared --parallel 2
+ctest --preset test-shared --no-tests=error --output-on-failure
 
-## Validation
-
-Use fresh external build directories and record the exact CMake, generator,
-host, and released asc-cmake identity. At minimum run Debug and Release
-foundation configurations, their complete CTest suites, installation and
-relocation checks, documentation validation, and:
-
-```sh
-git diff --check
+cmake --preset test-release-shared \
+  -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE="$ASC_CPP_ASCCMAKE_SOURCE"
+cmake --build --preset test-release-shared --parallel 2
+ctest --preset test-release-shared --no-tests=error --output-on-failure
 ```
 
-Never describe an unavailable platform, compiler, sanitizer, or GPU as
-passing. Milestone 0 has no sanitizer, numerical, provider-runtime, GPU
-runtime, parity, or performance claim.
+Unexpected skipped tests are failures. Never delete, weaken, relabel away, or
+suppress a failing test to obtain a green build.
 
-## Documentation
+## Formatting and tidy
 
-Live entry documentation must describe only implemented behavior. Future
-targets and components must be labeled as planned or approved architecture.
+Use the CI-pinned Clang 18 tools:
 
-The 24 bannered documents listed in the implementation plan are retained
-historical bodies. Do not silently modernize them; only the normalized
-superseded-state banner is part of Milestone 0.
+```bash
+git ls-files '*.h' '*.cc' '*.cu' -z | \
+  xargs -0 clang-format-18 --dry-run --Werror
 
-## Provenance and dependencies
+cmake --preset tidy \
+  -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE="$ASC_CPP_ASCCMAKE_SOURCE"
+cmake --build --preset tidy --parallel 2
+clang-tidy-18 -p ../asc-cpp-build/tidy \
+  src/core/*.cc src/utilities/*.cc src/dense/*.cc src/sparse/*.cc src/random/*.cc
+```
 
-asc-cpp remains Apache-2.0. MdeCpp is behavior and defect evidence only.
-External source or data requires a pinned authoritative upstream, license and
-notice review, original/local path mapping, modification record, derivation
-evidence, and explicit approval. See the [provenance review][provenance].
+## Sanitizers
 
-Do not place credentials, tokens, private keys, or machine-specific paths in
-the repository, logs, committed presets, or examples.
+```bash
+for preset in test-asan-ubsan test-lsan test-tsan; do
+  cmake --preset "$preset" \
+    -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE="$ASC_CPP_ASCCMAKE_SOURCE"
+  cmake --build --preset "$preset" --parallel 2
+  ctest --preset "$preset" --no-tests=error --output-on-failure
+done
+```
 
-[adrs]: docs/development/asc-cpp-architecture/decisions
-[implementation]: docs/development/asc-cpp-architecture/implementation-plan.md
-[m0-contract]: docs/development/asc-cpp-m0-foundation/milestone-contract.md
-[provenance]: docs/development/asc-cpp-architecture/provenance-review.md
-[stage-a]: docs/development/asc-cpp-architecture/architecture-blueprint.md
+TSan is intentionally bounded to concurrency-labeled tests. LSan excludes
+recursive package consumers that reinstrument separate build trees.
+
+## Documentation and examples
+
+Install Doxygen 1.9.8 or newer and Graphviz, then run:
+
+```bash
+cmake --preset docs \
+  -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE="$ASC_CPP_ASCCMAKE_SOURCE"
+cmake --build --preset docs --target asc_cpp_docs_check
+```
+
+The target must produce HTML, XML, and `ASCCpp.tag` with zero warnings, no
+missing public symbols, valid links, and no machine paths. Example sources in
+`examples/` are the snippets shown by Doxygen and must compile/run against a
+relocated installed package.
+
+## Package, install, relocation, and isolation
+
+```bash
+cmake --preset install-test \
+  -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE="$ASC_CPP_ASCCMAKE_SOURCE"
+cmake --build --preset install-test --parallel 2
+ctest --preset install-test --no-tests=error --output-on-failure
+```
+
+Run the same package label under static/shared configurations. Consumers may
+link only exported `ASC::*` targets and may not include source directories or
+use the package registry.
+
+## Benchmarks and numerical evidence
+
+Benchmarks are built with the full test configuration and run through CTest:
+
+```bash
+ctest --preset test-release --label-regex 'benchmark|performance' \
+  --no-tests=error --output-on-failure
+```
+
+Every performance claim includes exact hardware, compiler/options, dataset,
+repetitions, raw results, and correctness checks. Reference CPU BLAS is never
+advertised as an optimized provider. Numerical changes require reference
+oracles, error/tolerance rationale, edge cases, allocation/lifetime tests, and
+reproducibility evidence.
+
+## CUDA
+
+CUDA is experimental for 0.9.0. Local CUDA work uses `test-cuda` and
+`test-cuda-shared`, but a support claim requires the complete trusted
+real-NVIDIA matrix, Compute Sanitizer, exact toolkit/driver/device/architecture,
+all six component consumers, parity, lifetime/concurrency, and failure paths.
+CPU compilation cannot substitute for that evidence.
+
+## Provenance
+
+Do not copy from MdeCpp or another project unless an approved disposition,
+compatible license, and traceable provenance record exist. Preserve
+`THIRD_PARTY_NOTICES`, the Joe--Kuo data/license, `docs/provenance/`, and the
+contract generators. Regenerated BLAS/Random/provenance/ABI output must have no
+unexplained diff.
+
+## Issue, branch, ADR, and PR workflow
+
+Start work from `develop` on a focused branch. Release work uses
+`release/<version>`; never work directly on `main`. Link an issue, add an ADR
+when contracts change, keep commits reviewable, complete the PR template, and
+record exact validation. Resolve every review conversation before merge.
+
+## Definition of done
+
+A change is complete only when formatting/tidy, relevant Debug/Release and
+static/shared builds, complete CTest, sanitizers, headers, packages/relocation,
+contracts/provenance, strict Doxygen, installed examples, ABI, links, and
+applicable CUDA evidence pass without unexplained skips or drift.

@@ -1,0 +1,15 @@
+name: Performance report
+description: Report a reproducible performance concern without changing semantics.
+title: "[Performance]: "
+labels: [performance]
+body:
+  - type: textarea
+    attributes:
+      label: Reproducible benchmark
+      description: Include command, dataset, compiler flags, hardware, repetitions, and raw results.
+    validations: {required: true}
+  - type: textarea
+    attributes:
+      label: Correctness checks
+      description: Explain how numerical equivalence and allocation behavior were verified.
+    validations: {required: true}

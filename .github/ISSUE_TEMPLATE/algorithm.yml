@@ -1,0 +1,15 @@
+name: Algorithm proposal
+description: Propose or correct a numerical algorithm.
+title: "[Algorithm]: "
+labels: [algorithm]
+body:
+  - type: textarea
+    attributes:
+      label: Mathematical contract
+      description: Define inputs, outputs, precision, stability, edge cases, and primary references.
+    validations: {required: true}
+  - type: textarea
+    attributes:
+      label: Verification evidence
+      description: Describe reference results, tolerances, properties, and reproducibility tests.
+    validations: {required: true}

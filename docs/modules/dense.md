@@ -3,7 +3,7 @@
 `ASC::dense` is the provider-free CPU foundation for fixed-rank dense storage,
 views, expression evaluation, deterministic reductions, and a portable serial
 BLAS reference path. It is a compiled C++20 library with exactly two
-direct ASC dependencies: `ASC::core` and `ASC::expression`. Milestone 6 adds
+direct ASC dependencies: `ASC::core` and `ASC::expression`. CUDA Core and Dense adds
 the separately requested `ASC::dense_cuda` provider facet without adding a
 provider edge to the base module.
 
@@ -547,10 +547,10 @@ launch a scalar write.
 Level 1 uses no workspace except the explicit caller-owned `CudaIamax`
 workspace. Levels 2 and 3 use no ASC-managed workspace.
 
-Issue 9 evidence labels are independent. `dense_cuda` requires
+Dense BLAS Level 3 evidence labels are independent. `dense_cuda` requires
 **configure-tested**, **compile-tested**, **runtime-tested**, and
 **parity-tested** evidence. Documentation or successful toolkit discovery
-alone establishes none of these labels; the Feature Gate B report records the
+alone establishes none of these labels; the release verification report records the
 exact toolkit, compiler, driver, device, compute capability, architecture
 code, operations, layouts, sizes, tolerances, and every skip.
 
@@ -599,9 +599,9 @@ The current Dense surface provides no:
 - Sparse CUDA, Random CUDA, HIP, or SYCL; or
 - OpenMP, TBB, Eigen, BLAS/LAPACK, or oneMKL integration.
 
-The [frozen Milestone 6 contract][contract] is authoritative for the CUDA
-facet. The [Milestone 3 contract][dense-contract] remains the provider-free
+The [frozen CUDA Core and Dense contract][contract] is authoritative for the CUDA
+facet. The [Dense contract][dense-contract] remains the provider-free
 Dense authority.
 
-[contract]: ../development/asc-cpp-m6-gpu-core-dense/milestone-contract.md
-[dense-contract]: ../development/asc-cpp-m3-dense-cpu/milestone-contract.md
+[contract]: ../architecture/decisions/0013-dense-linalg-providers.md
+[dense-contract]: ../architecture/decisions/0011-dense-semantics.md

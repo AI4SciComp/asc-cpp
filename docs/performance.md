@@ -1,32 +1,32 @@
 # Performance methodology and envelope
 
-Status: unreleased `0.9.0` Issue 16 Feature Gate B candidate
+Status: `0.9.0` measurement contract
 
 Date: 2026-08-02
 
 ASCCpp performance evidence is correctness-checked observational data, not a
 cross-machine timing guarantee. Serial implementations are reference paths;
-CUDA facets are bounded explicit providers. Issue 13 adds a threshold-free
+CUDA facets are bounded explicit providers. Random engines and distributions adds a threshold-free
 CPU probe for all four versioned engines, uniform integer/real transforms, and
 scalar Box-Muller normal generation. Every row uses fixed seed/state and
 parameters, records repetitions and elapsed time, checks zero successful-path
 allocation, and guards correctness with an independently derived checksum or
 fixed-seed moment invariant.
 
-Issue 14 extends that probe with indexed Sobol word evaluation. Issue 15 adds
+Quasi-random sequences extends that probe with indexed Sobol word evaluation. Random storage adapters adds
 correctness-guarded Dense Sobol mapping and Sparse structure-only selection to
 the existing Random storage benchmark. Each row names algorithm/version,
 explicit state, parameters, shape/layout/sparsity, repetition count,
 allocation/workspace, and a deterministic checksum or invariant. Rows report
-elapsed time without a speed pass gate. Issue 13 through Issue 15 work is
+elapsed time without a speed pass gate. Random engines and distributions through Random storage adapters work is
 CPU-only; no new GPU benchmark or provider claim is approved.
 
-Issue 16 adds no benchmark or performance threshold. It audits that both
+Random release contract adds no benchmark or performance threshold. It audits that both
 Random benchmark executables remain registered, correctness-guarded,
 fixed-state, and allocation-observed; local reruns are completion evidence,
 not a new performance promise.
 
-## Issue 16 local revalidation
+## Random release contract local revalidation
 
 The Release/static completion rerun used the same local platform described
 below. The scalar/QMC benchmark preserved aggregate checksum
@@ -42,9 +42,9 @@ allocation calls. The storage benchmark preserved aggregate checksum
 These single-process observations have no pass threshold and make no
 cross-machine performance claim.
 
-## Issue 15 local observation
+## Random storage adapters local observation
 
-The Issue 15 benchmark times only the synchronous adapter calls. Caller-owned
+The Random storage adapters benchmark times only the synchronous adapter calls. Caller-owned
 Dense output, point workspace, Sparse candidate workspace, and ordinal output
 are allocated before timing. Correctness checks and independent priority
 sorting run after timing. Both new rows require zero process-visible allocation
@@ -66,9 +66,9 @@ cross-machine promises. The aggregate benchmark checksum was
 combined owner generator retains its earlier correctness-oriented reference
 complexity.
 
-## Issue 14 local observation
+## Quasi-random sequences local observation
 
-The Issue 14 threshold-free row was run on the same local platform with GNU
+The Quasi-random sequences threshold-free row was run on the same local platform with GNU
 C++ 11.4, CMake 4.1.2, Release/static, and ASCCMake 0.1.0. The timed region
 performed indexed Sobol-Joe-Kuo-D6-v1 word evaluation for zero-based dimension
 3; fixture setup and correctness checking were excluded.
@@ -81,7 +81,7 @@ This single-process total is an implementation observation, not a speed
 threshold or cross-machine comparison. The aggregate benchmark checksum was
 also verified.
 
-## Issue 13 local observation
+## Random engines and distributions local observation
 
 The threshold-free probe was run once on Linux/WSL2 6.18, an Intel
 Core i7-11800H (16 logical CPUs) with 15 GiB RAM, GNU C++ 11.4, CMake 4.1.2,
@@ -162,14 +162,14 @@ timed interval; parity-sensitive probes also use an independent oracle.
 | Sparse CUDA | retained float/double cuSPARSE SpMV and standardized float/double project-kernel SpMV | explicit/zero workspace as declared, numerical parity, and zero operation allocation |
 | Random CUDA | raw words, Dense `Uniform01`, Sparse `Uniform01` | independent bit/structure/value oracles |
 
-The Issue 9 Level 3 GEMM probes record five repeated timing samples and their
+The Dense BLAS Level 3 Level 3 GEMM probes record five repeated timing samples and their
 sample variance in addition to total/per-operation timing, throughput,
 correctness, and allocation evidence. No benchmark-framework dependency or
 cross-machine threshold is introduced.
 
 ## Compile-time and object-size observations
 
-Milestone 8 also compiles three representative translation units from an
+release hardening also compiles three representative translation units from an
 installed header tree:
 
 - [`compile_core.cc`](../benchmarks/hardening/compile_core.cc): Core types and
@@ -230,10 +230,10 @@ itself.
 Absolute thresholds are prohibited across machines or unlike builds. A local
 regression comparison is meaningful only when:
 
-1. candidate and baseline use the same probe, compiler/options, linkage,
+1. current and baseline builds use the same probe, compiler/options, linkage,
    provider/toolkit/driver, hardware policy, and workload;
 2. both pass the same correctness oracle;
-3. repeated samples use a statistic selected before seeing the candidate;
+3. repeated samples use a statistic selected before seeing the current result;
 4. the tolerance is fixed in advance; and
 5. environment/noise changes invalidate the comparison instead of being
    labeled a product regression.
@@ -242,7 +242,8 @@ Report raw measurements, statistic, and tolerance. Sanitizer, Debug, Compute
 Sanitizer, and profiler measurements are correctness evidence, not
 representative performance baselines.
 
-The exact Milestone 8 compile/object/runtime observations and skips belong in
-Publication Checkpoint B. Provider timing requires real-device execution and
-is therefore `runtime-tested`; agreement with an independent oracle may also
-be `parity-tested`. Missing hardware is `skipped`.
+The exact release hardening compile/object/runtime observations and skips are
+recorded in the [release validation report](../release/release-validation.md).
+Provider timing requires real-device execution and is therefore
+`runtime-tested`; agreement with an independent oracle may also be
+`parity-tested`. Missing hardware is `skipped`.

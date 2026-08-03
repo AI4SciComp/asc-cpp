@@ -240,7 +240,7 @@ The public queries are `ExpressionShape`, `ExpressionRead`, `MayAlias`,
 `ExpressionSparsityEffect`, and `ExpressionOperationCategory`.
 `ExpressionOperation` distinguishes `kExternal`, `kScalar`, `kNegate`, `kAdd`,
 `kSubtract`, `kMultiply`, and `kTerminal`. The first six values retain their
-Milestone 2 ordinals. Dense views use `kTerminal` as storage-backed readable
+foundational modules ordinals. Dense views use `kTerminal` as storage-backed readable
 expression terminals.
 
 | Node | Sparsity effect |
@@ -281,7 +281,7 @@ Expression supplies no synchronization for referenced storage.
 
 ## Deliberately absent
 
-Through Milestone 4, Expression defines no:
+Through Sparse, Expression defines no:
 
 - storage owner or materialized result;
 - evaluator, assignment operation, traversal policy, or temporary;
@@ -294,7 +294,7 @@ The writable protocol describes an existing destination but does not create,
 allocate, resize, or own one. Owning storage modules decide traversal, alias
 resolution, temporaries, workspace, execution, and provider selection.
 
-The [frozen Milestone 4 contract][contract] is authoritative if a historical
+The [frozen Sparse contract][contract] is authoritative if a historical
 expression page implies broader evaluation or storage behavior.
 
-[contract]: ../development/asc-cpp-m4-sparse-cpu/milestone-contract.md
+[contract]: ../architecture/decisions/0010-expression-protocol.md

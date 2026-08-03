@@ -1,23 +1,23 @@
 # Downstream integration
 
-Status: unreleased `0.9.0` Issue 16 Feature Gate B candidate
+Status: `0.9.0` release contract
 
-Date: 2026-08-02
+Date: 2026-08-03
 
 Downstreams should consume the installed or explicitly selected build-tree
 CMake package, request the smallest component set, and link only imported
 targets. ASCCpp does not support copying headers/libraries into an application
 or editing generated target files.
 
-Issues 13 and 14 install the stateful engines, scalar distributions, generator
+Random engines and quasi-random sequences install the stateful engines, scalar distributions, generator
 composition, explicit random-device wrapper, and storage-neutral QMC through
-the existing `random` component. Issue 15 installs only updated headers in the
+the existing `random` component. Random storage adapters installs only updated headers in the
 existing `random_dense` and `random_sparse` components. The licensed Joe--Kuo
 input and notice remain package documentation; QMC execution reads only its
 compiled table. No package target, component closure, provider discovery rule,
 or external dependency changes.
 
-Issue 16 introduces no downstream migration. The completion audit verifies
+Random release contract introduces no downstream migration. The completion audit verifies
 that the existing build-tree, install/relocation, and asc-xde-shaped consumers
 remain registered evidence for the approved Random surface.
 
@@ -58,7 +58,7 @@ Configure with an explicit package location and no user package registry:
 cmake -S . -B build \
   -DASCCpp_DIR="/absolute/prefix/lib/cmake/ASCCpp" \
   -DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF \
-  -DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON
+  -DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY=OFF
 cmake --build build --parallel
 ctest --test-dir build --output-on-failure
 ```
@@ -67,7 +67,7 @@ Use quotes for paths containing spaces. A relocatable install must continue to
 work after the complete prefix is copied without retaining source/build
 absolute paths.
 
-## The Milestone 8 asc-xde-shaped trial
+## The release hardening asc-xde-shaped trial
 
 The default downstream trial is wholly owned by asc-cpp and does not discover,
 read, require, or modify a sibling checkout. The
@@ -166,6 +166,6 @@ For each ASCCpp minor update:
 5. revalidate every enabled provider on real hardware; and
 6. regenerate comparable local ABI and performance observations.
 
-See [package capabilities](package-capabilities.md), [API
-compatibility](api-compatibility.md), and [extension
-guidance](extension-guide.md).
+See @ref md_docs_2package-capabilities "package capabilities", @ref
+md_docs_2api-compatibility "API compatibility", and @ref
+md_docs_2extension-guide "extension guidance".
