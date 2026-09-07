@@ -18,6 +18,7 @@ set(_expected_public_files
   include/asc/dense/view.h
   include/asc/dense/print.h
   include/asc/dense/io.h
+  include/asc/dense/matrix_market.h
   include/asc/dense/lapack/types.h
   include/asc/dense/lapack/workspace.h
   include/asc/dense/lapack/report.h
@@ -28,6 +29,7 @@ set(_expected_public_files
 set(_expected_source_files
   src/dense/blas.cc
   src/dense/array_io.cc
+  src/dense/matrix_market.cc
   src/dense/blas_level1.cc
   src/dense/blas_level2.cc
   src/dense/blas_level3.cc

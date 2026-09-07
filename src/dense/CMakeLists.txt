@@ -11,6 +11,7 @@ target_sources(
     blas_level3.cc
     lapack_foundations.cc
     lapack_lu.cc
+    matrix_market.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -21,6 +22,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/dense/export.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/io.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/layout.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/matrix_market.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/blas.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/view.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/print.h"

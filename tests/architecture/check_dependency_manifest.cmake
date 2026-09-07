@@ -483,6 +483,9 @@ endforeach()
 _finalize_capability()
 
 set(_expected_capabilities
+  "bounded Matrix Market lexical and scalar primitives"
+  "Dense Matrix Market array interchange"
+  "Sparse Matrix Market coordinate interchange"
   "incremental Reference-LAPACK LU provider"
   "checked logical metadata and mixed extents"
   "status, result, and release-active contracts"
@@ -548,7 +551,13 @@ macro(_assert_capability_status)
     elseif(_current_capability STREQUAL
            "storage-neutral engines and scalar distributions"
            OR _current_capability STREQUAL
-              "storage-neutral QMC sequences")
+              "storage-neutral QMC sequences"
+           OR _current_capability STREQUAL
+              "bounded Matrix Market lexical and scalar primitives"
+           OR _current_capability STREQUAL
+              "Dense Matrix Market array interchange"
+           OR _current_capability STREQUAL
+              "Sparse Matrix Market coordinate interchange")
       set(_expected_status runtime-tested)
     else()
       set(_expected_status proposed)

@@ -51,6 +51,16 @@ foreach(_source IN LISTS _asc_core_runtime_test_sources)
   )
 endforeach()
 
+add_executable(asc_core_matrix_market_helpers_test
+  "${PROJECT_SOURCE_DIR}/tests/sparse/matrix_market_helpers_test.cc"
+  "${PROJECT_SOURCE_DIR}/tests/sparse/allocation_probe.cc")
+_asc_core_configure_runtime_test(asc_core_matrix_market_helpers_test)
+target_include_directories(asc_core_matrix_market_helpers_test PRIVATE
+  "${PROJECT_SOURCE_DIR}/tests" "${PROJECT_SOURCE_DIR}/tests/sparse")
+asc_register_test(NAME asc_cpp.core.matrix_market_helpers_test
+  TARGET asc_core_matrix_market_helpers_test
+  LABELS core runtime matrix-market allocation)
+
 add_executable(asc_core_contract_failure_test contract_failure_test.cc)
 _asc_core_configure_runtime_test(asc_core_contract_failure_test)
 

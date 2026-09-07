@@ -640,6 +640,16 @@ diagnostics. Diagnostic strings and native codes are not control-flow APIs.
 Submission failure may synchronize already-enqueued work only to make cleanup
 safe; successful calls never hide a wait or device-wide synchronization.
 
+## Matrix Market interchange
+
+`asc/sparse/matrix_market.h` adds rank-two Matrix Market coordinate reading and
+writing for COO, CSR and CSC, with no Dense dependency or densification. Assembly
+uses explicit duplicate, zero and pattern policies and bounded sorting work.
+Values-only reads compare exact canonical coordinates before committing staged
+values. See the [interchange guide](../matrix-market.md),
+[normative profile](../contracts/matrix-market-profile.md) and
+[standalone example](../../examples/sparse_matrix_market/README.md).
+
 ## Deliberate omissions
 
 Sparse BLAS adds no hidden coordinate temporary, Dense dependency, provider

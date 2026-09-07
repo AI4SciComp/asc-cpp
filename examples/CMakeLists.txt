@@ -57,6 +57,8 @@ target_link_libraries(
 
 add_subdirectory(lapack_array_io)
 add_subdirectory(sparse_array_io)
+add_subdirectory(dense_matrix_market)
+add_subdirectory(sparse_matrix_market)
 
 if(ASC_CPP_EXAMPLES_ENABLE_CUDA)
   _asc_cpp_add_example(cuda core_cuda core_cuda)

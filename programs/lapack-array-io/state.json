@@ -14,7 +14,7 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "1739a0bb2d2e7fca2c95632dcf1362dfb2bfc394",
+  "last_implementation_commit": "cef1390453ba804f3478932f249ecd63f3bd0453",
   "worktree_diff_identity": {
     "state": "in_progress",
     "recorded_at": "2026-09-07T07:01:05Z",
@@ -211,11 +211,11 @@
     "P10.matrix_market": {
       "state": "in_progress",
       "owner": "p00_baseline,p00_inventory",
-      "scope": "Shared bounded lexical/scalar helper frozen with scoped tests; required Dense array and Sparse coordinate implementations in separate new files, not registered or credited yet. Cross-representation conversions are optional and not implemented"
+      "scope": "Required Core/Dense-array/Sparse-coordinate paths registered. Frozen74ff2fb full Debug/Release each271/271 and shared Release273/273 pass, zero skips; relocated aggregate9 and separate Dense/Sparse examples1 each pass. Unchanged production candidate01 ASC sanitizer6/6 passed; both Doxygen71/1413 zero warnings. Final mode/evidence and platform gates pending; optional cross-representation conversions not implemented"
     }
   },
-  "active_task": "Commit verified v3 layout checkpoint; P10 integrated candidatea26e0e7 running separately. Native Cholesky frozen, native QR/GESVX final diagnostics, reference Cholesky implementation in progress, all unregistered/excluded from this checkpoint.",
-  "next_action": "Check external p10-matrix-market-01 full Debug/Release/shared and selected ASC sanitizer records, retain/correct any failures, register only frozen Matrix Market files from candidate-files.txt with fresh identity. Then integrate GECON/GERFS/GESVX plus equilibration wide-empty-stride correction and native Cholesky/QR; continue full remaining P04-P11 provider scope and exact contract-bound coverage.",
+  "active_task": "P10 corrected74ff2fb full Debug271/Release271/sharedRelease273 pass, zero skips; actual installed and ELF records inspected, first-candidate four header-oracle failures preserved. Commit only this reviewed checkpoint. GECON/GERFS/GESVX, EQ stride and native Cholesky/QR frozen separately; reference Cholesky/QR and LU helpers active.",
+  "next_action": "Commit staged P10 files and sanitized evidence only, push feature/lapack-array-io and update actual draft47. Next register frozen GECON/GERFS/GESVX and EQ stride correction atomically (CMake/header/ABI/profile/mapping/installed tests); record unmet tiny-input mathematics and fix source-audited GETRI query rounding bounds separately. Then native/provider Cholesky/QR and all remaining P04-P11 advanced/specialized families and exact contract-bound coverage.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -328,8 +328,8 @@
     "implemented_unverified_native": 8,
     "implemented_unverified_reference": 0,
     "registered_partial_reference_operations": 32,
-    "unregistered_expert_operations_with_scoped_tests": 8,
-    "note": "Registered operations and passing full incremental suites are distinct from complete contracts/evidence closure. Thirty-two reference rows remain in_progress; v3 implements both layouts with scoped tests. Frozen GECON/GERFS8 are not registered or credited yet. LP64 GEEQUB subnormal mathematical success and GERFS finite-estimate extreme gates are unmet; no denominator reduction."
+    "unregistered_expert_operations_with_scoped_tests": 12,
+    "note": "Registered operations and passing full incremental suites are distinct from complete contracts/evidence closure. Thirty-two reference rows remain in_progress; v3 implements both layouts with scoped tests. Frozen GECON/GERFS/GESVX12 are not registered or credited yet. LP64 GEEQUB subnormal and GERFS/GESVX finite-condition/estimate extreme mathematical gates are unmet; no denominator reduction."
   },
   "blockers": [
     {

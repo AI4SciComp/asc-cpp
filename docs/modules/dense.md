@@ -670,6 +670,15 @@ memory model. CUDA event dependencies and stream ordering additionally govern
 device storage. A `DenseCudaContext` serializes its mutable provider handle;
 independent contexts may submit independent work without that serialization.
 
+## Matrix Market interchange
+
+`asc/dense/matrix_market.h` adds rank-two Matrix Market array reading and writing
+without a Sparse or provider dependency. Owning reads use an explicit resource;
+view reads use supplied typed staging and commit only after complete validation.
+See the [interchange guide](../matrix-market.md),
+[normative profile](../contracts/matrix-market-profile.md) and
+[standalone example](../../examples/dense_matrix_market/README.md).
+
 ## Deliberately absent
 
 The current Dense surface provides no:
@@ -681,13 +690,13 @@ The current Dense surface provides no:
 - shared ownership, external adoption, or custom deleter;
 - hidden temporary, packing, transfer, synchronization, or fallback;
 - mixed-precision, batched, or tensor operation;
-- factorization, solver, or workspace-bearing algorithm;
+- full Reference-LAPACK routine coverage (the explicit facet is incremental);
 - optimized CPU provider; or
 - CUDA arbitrary external expression evaluation, general broadcasting,
   native handle/stream adoption, or hidden workspace;
 - CUDA arbitrary-stride ordinary-view Gemv or Gemm;
 - Sparse CUDA, Random CUDA, HIP, or SYCL; or
-- OpenMP, TBB, Eigen, BLAS/LAPACK, or oneMKL integration.
+- OpenMP, TBB, Eigen, optimized CPU BLAS, or oneMKL integration.
 
 The [frozen CUDA Core and Dense contract][contract] is authoritative for the CUDA
 facet. The [Dense contract][dense-contract] remains the provider-free

@@ -155,6 +155,14 @@ stored zero policy remains explicit. Writers include each diagonal once and
 only the required lower off-diagonal records. The output byte budget and
 sink/path failure/overwrite rules remain explicit.
 
+With explicit zero preservation, symmetry-compressed Sparse output preserves
+represented values rather than every asymmetric stored-zero pattern. An
+upper-only stored zero produces a lower zero representative; re-expansion may
+therefore add its stored mirror. A skew diagonal zero must be omitted. The
+writer reports synthesized lower representatives and omitted diagonal zeros.
+General output preserves stored entries subject to the explicit zero policy.
+Native ASC archives remain the exact-structure archival format.
+
 The independently derived
 [`hermitian.mtx`](../../tests/array_io/fixtures/hermitian.mtx) represents rows
 `(4,2-2i)` and `(2+2i,11)`. Its lower entry is `2+2i`; conjugation produces

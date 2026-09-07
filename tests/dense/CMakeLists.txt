@@ -29,6 +29,7 @@ foreach(_source IN ITEMS
     print_test.cc
     io_test.cc
     io_fuzz_test.cc
+    matrix_market_test.cc
     resource_failure_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
@@ -48,6 +49,22 @@ target_include_directories(
 target_include_directories(
   asc_dense_lapack_lu_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
 )
+
+add_executable(asc_dense_matrix_market_interop_test
+  matrix_market_interop_test.cc)
+_asc_dense_configure_test(asc_dense_matrix_market_interop_test)
+set(_matrix_market_directory "${CMAKE_CURRENT_BINARY_DIR}/matrix-market-interop")
+file(MAKE_DIRECTORY "${_matrix_market_directory}")
+foreach(_mode IN ITEMS write read)
+  asc_register_test(NAME "asc_cpp.dense.matrix_market_interop.${_mode}"
+    TARGET asc_dense_matrix_market_interop_test
+    ARGUMENTS "${_mode}" "${_matrix_market_directory}"
+    LABELS dense runtime matrix-market)
+endforeach()
+set_tests_properties(asc_cpp.dense.matrix_market_interop.write PROPERTIES
+  FIXTURES_SETUP asc_dense_matrix_market_files)
+set_tests_properties(asc_cpp.dense.matrix_market_interop.read PROPERTIES
+  FIXTURES_REQUIRED asc_dense_matrix_market_files)
 
 set_property(
   TEST asc_cpp.dense.blas_level2_test

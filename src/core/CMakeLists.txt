@@ -10,6 +10,7 @@ target_sources(
     contracts.cc
     execution.cc
     io.cc
+    matrix_market.cc
     memory.cc
     status.cc
   PUBLIC
@@ -25,6 +26,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/core/export.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/extents.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/io.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/core/matrix_market.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/memory.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/result.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/status.h"

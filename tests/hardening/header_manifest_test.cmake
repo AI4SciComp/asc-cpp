@@ -41,6 +41,7 @@ set(_provider_free_entries
   "core|asc/core/export.h"
   "core|asc/core/extents.h"
   "core|asc/core/io.h"
+  "core|asc/core/matrix_market.h"
   "core|asc/core/memory.h"
   "core|asc/core/result.h"
   "core|asc/core/status.h"
@@ -57,6 +58,7 @@ set(_provider_free_entries
   "dense|asc/dense/evaluate.h"
   "dense|asc/dense/export.h"
   "dense|asc/dense/layout.h"
+  "dense|asc/dense/matrix_market.h"
   "dense|asc/dense/blas.h"
   "dense|asc/dense/view.h"
   "dense|asc/dense/print.h"
@@ -75,6 +77,7 @@ set(_provider_free_entries
   "sparse|asc/sparse/blas.h"
   "sparse|asc/sparse/print.h"
   "sparse|asc/sparse/io.h"
+  "sparse|asc/sparse/matrix_market.h"
   "random|asc/random.h"
   "random|asc/random/distribution.h"
   "random|asc/random/engine.h"
@@ -114,9 +117,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 68)
+if(NOT _all_header_count EQUAL 71)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 68 headers; got "
+    "Independent source-header oracle must contain 71 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -128,7 +131,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 68-header oracle.\n"
+    "Source public-header tree differs from the frozen 71-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

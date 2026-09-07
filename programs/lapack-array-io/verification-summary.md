@@ -261,11 +261,30 @@ Core/Dense/Sparse Matrix Market integration is a separate frozen candidate
 `a26e0e7587b56f8838edd4f54d6acbd458e98800`, external
 `p10-matrix-market-01`, archive SHA256
 `e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6`.
-Its Doxygen71 headers/1413 members/zero warnings check passes; full runtime,
-shared, installed and selected sanitizer checks are still running. This is not
-credited to the LU checkpoint. Native Cholesky is separately frozen after
-scoped numerical/sanitizer tests; QR, GESVX and reference Cholesky are active
-independent work, not registered or credited as complete families.
+Its Doxygen71 headers/1413 members/zero warnings and selected ASC-instrumented
+Clang19 ASan/UBSan6/6 checks pass. Full Debug/Release each267 pass4 fail/271;
+shared Release269 pass4 fail/273, zero skips. The four exact header inventories
+omitted the new Core/Dense/Sparse headers; no numerical check failed or was
+disabled. This is not credited to the LU checkpoint.
+
+Corrected Matrix Market tree `74ff2fb12edd81b011bddc2efa44239bcbbad6f6`,
+archive SHA256
+`f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361`,
+passes full provider-free Debug271/271, Release271/271 and shared
+Release273/273, zero skips, in `p10-matrix-market-02`. Production, numerical
+tests and examples are unchanged from candidate01. Both candidates' failed and
+passing raw record/log/JUnit hashes remain indexed. Doxygen again passes71
+headers/1413 members/zero warnings and Markdown passes. Actual relocated
+consumers execute9 aggregate tests plus1 Dense-only and1 Sparse-only test in
+each lane. The shared ELF inspection reports no LAPACK/Fortran dependency or
+Dense-Sparse edge. Its Release baseline path is empty, so this observation is
+not an equivalence check against the retained older Debug ABI baseline.
+See [matrix-market-review.md](matrix-market-review.md) for exact scope.
+
+Native Cholesky/QR and GECON/GERFS/GESVX are separately frozen after scoped
+numerical/sanitizer tests. They remain unregistered here; reference Cholesky/QR
+and LU helpers are active independent work, not completed families. Explicit
+tiny-input numerical limitations still require mathematical-success disposition.
 
 The real incremental draft is [PR #47](https://github.com/AI4SciComp/asc-cpp/pull/47),
 targeting `develop`. Its existence is not owner/license approval or remote CI

@@ -1646,6 +1646,1190 @@
         "dirty_diff_sha256": null,
         "tree": null
       }
+    },
+    {
+      "external_record": "p10-matrix-market-01/build-record-asan/record.json",
+      "record_sha256": "c861ca7a72904fd3b99ef29006bb705bda0eab9d65ba0a265a2b89ecd986d8c9",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-build-record-asan",
+      "started": "2026-09-07T10:44:44.854071+00:00",
+      "completed": "2026-09-07T10:50:55.991475+00:00",
+      "configuration": "matrix-market-asan-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-asan",
+        "--parallel",
+        "2",
+        "--target",
+        "asc_core_matrix_market_helpers_test",
+        "asc_dense_matrix_market_test",
+        "asc_dense_matrix_market_interop_test",
+        "asc_sparse_matrix_market_test",
+        "asc_sparse_matrix_market_fuzz_test"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "15c5aecd41e7bd75630ae4bdb4126bf1fe1cb162d065f858332373220265638e"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/build-record-debug/record.json",
+      "record_sha256": "675604b413a1a7bebba301b552523c3c69db8c0b35f54aa99ec3b54ddf1a69be",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-build-record-debug",
+      "started": "2026-09-07T10:41:42.270842+00:00",
+      "completed": "2026-09-07T10:47:58.081793+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "21ffd7df39574d4b03a55316beebc134bb3bbef36756609bee939252e725f5d4"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/build-record-release/record.json",
+      "record_sha256": "effa2d60ceabd6714f764e5b87e8b715509dce7d2e3bd65154709b6d8ba91734",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-build-record-release",
+      "started": "2026-09-07T10:41:43.698098+00:00",
+      "completed": "2026-09-07T10:50:37.095053+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "d03d09b3bb7d38be95e35cd852b813d4531242ad03069ace88399d0856fd9809"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/build-record-shared/record.json",
+      "record_sha256": "8c2d0bd5ed5d836c5545356e557df4ab004a46c9bf5c26c80b9cb2815c8ed2f6",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-build-record-shared",
+      "started": "2026-09-07T10:44:17.941344+00:00",
+      "completed": "2026-09-07T10:52:41.033715+00:00",
+      "configuration": "matrix-market-shared-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-shared",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "2d0341bad2a463ebd9c880f9b0cc46c32ff49d92328715c737d92191f2ffcbd4"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/configure-asan/record.json",
+      "record_sha256": "88d3ba4f94c5b214d091314208b3299f593b26fc31c567a6d62e5d9a623a968c",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-configure-asan",
+      "started": "2026-09-07T10:43:22.408965+00:00",
+      "completed": "2026-09-07T10:44:44.225266+00:00",
+      "configuration": "matrix-market-asan-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-asan",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_C_COMPILER=/usr/bin/clang-19",
+        "-DASC_CPP_ENABLE_ADDRESS_SANITIZER=ON",
+        "-DASC_CPP_ENABLE_UNDEFINED_SANITIZER=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "6b4e41ad1ad3e4b09b1f01e9e1ede8f445fea92c4b518f8c5ab0dea14d6d9e6b"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/configure-debug/record.json",
+      "record_sha256": "53ea534af8cbbe6b01e9339bda42890367ce07c5712828f6e593076315f552f3",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-configure-debug",
+      "started": "2026-09-07T10:41:03.215988+00:00",
+      "completed": "2026-09-07T10:41:41.957066+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-debug",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "3929acb5e70f9f993663fe8f7c5d92a3f2117999358d52f6287f1826c386d3f1"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/configure-release/record.json",
+      "record_sha256": "ca7380e6f0a479fda35c76d769f50695512dc68dcdd7d7a862ba55d189047b2d",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-configure-release",
+      "started": "2026-09-07T10:41:04.412329+00:00",
+      "completed": "2026-09-07T10:41:43.357726+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-release",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "d329a2d9509a98003041d45080fdd474bd5fde85957511c114cb65975d2625be"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/configure-shared/record.json",
+      "record_sha256": "c6561417ebda08822d8e33878467a99546140eae700e48b3a91bf009b697b4d5",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-configure-shared",
+      "started": "2026-09-07T10:43:21.180890+00:00",
+      "completed": "2026-09-07T10:44:17.482853+00:00",
+      "configuration": "matrix-market-shared-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-shared",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DBUILD_SHARED_LIBS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "0fa1a22b30ceb9ed27f90783f4ccd1af98c7c98cd65d7693713666f7981aa765"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/ctest-asan/record.json",
+      "record_sha256": "e4f8488d395ba66298ee4d03266259e653eae5084358f9acc57cde0baf507591",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-ctest-asan",
+      "started": "2026-09-07T10:50:56.513103+00:00",
+      "completed": "2026-09-07T10:50:56.932584+00:00",
+      "configuration": "matrix-market-asan-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-asan",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "-R",
+        "^asc_cpp[.](core|dense|sparse)[.].*matrix_market",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/ctest-asan/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 6,
+        "failed": 0,
+        "passed": 6,
+        "selected": 6,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "abd5b9b0dcd16e78c7bcfdf13ab53f7d10cfedb007c47225522b1efbec35de55",
+        "ctest.xml": "d45c354619061e5aae4c1cdbfc99364b67339208dea2fbe780f28372361b98b9"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/ctest-debug/record.json",
+      "record_sha256": "d6682564dffc32209c5fffe05aa8cea4d0855bcf99f0db989394021774ce37df",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-ctest-debug",
+      "started": "2026-09-07T10:47:58.767531+00:00",
+      "completed": "2026-09-07T10:54:18.208106+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 271,
+        "failed": 4,
+        "passed": 267,
+        "selected": 271,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "6d34c25cc1a002b6df7830178212abafca5a3bf54eed626b68dcddccb32a2d2f",
+        "ctest.xml": "2b2e7d27268c084a64cc833fed23945d82be0d996fd11ebfbf240de4a14809fc"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/ctest-release/record.json",
+      "record_sha256": "243417d17302b30739288405455152cf6c990eeb64d146980f2a95c4eb59657b",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-ctest-release",
+      "started": "2026-09-07T10:50:37.421398+00:00",
+      "completed": "2026-09-07T10:55:42.312902+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 271,
+        "failed": 4,
+        "passed": 267,
+        "selected": 271,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "b48b29bf960356b99c68077869ee0a926f986db1576104915eb3bcf56757fb26",
+        "ctest.xml": "45d92806906401edff9e338d9a06847840dc1916b8c0e3171aaeb88c74c039a5"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/ctest-shared/record.json",
+      "record_sha256": "a234de5ebdd9cdd6d89b17d5c39a6ae1e08402b8ee77f6b6126a291b2d74ca80",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-ctest-shared",
+      "started": "2026-09-07T10:52:41.408709+00:00",
+      "completed": "2026-09-07T10:56:52.286477+00:00",
+      "configuration": "matrix-market-shared-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-shared",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/ctest-shared/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 273,
+        "failed": 4,
+        "passed": 269,
+        "selected": 273,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "3d62d01d73aa13f15ecc352f2ba131eff70fc428b07bd1e027baa7eb5ef45422",
+        "ctest.xml": "f3c31d8d2ad66d673b71c6c0336fdabf3f951e53ab749cb0c4a6310ae965b771"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/doxygen/record.json",
+      "record_sha256": "98fd5d38b6022ec6f2ff61f9cd909c500435e0cf5b1713e9370d8805af90d249",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-doxygen",
+      "started": "2026-09-07T10:41:05.640873+00:00",
+      "completed": "2026-09-07T10:41:11.293837+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p10-matrix-market-01/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p10-matrix-market-01/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/doxygen-coverage/record.json",
+      "record_sha256": "4f38cc2f262d42031af3b938b95ed63baf6e68c981b3ebbafa2a7762619d2f0f",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-doxygen-coverage",
+      "started": "2026-09-07T10:41:11.617565+00:00",
+      "completed": "2026-09-07T10:41:11.967519+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "1fcb7d464d8bf0388ad5aab382fc0d28c4f679eeb386ca486a48f3bb81cba7f4"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-01/markdown/record.json",
+      "record_sha256": "455d2542c3b84567ecb1194781007da31bb9debd79113807af7393916b634ebe",
+      "implementation_commit": null,
+      "implementation_tree": "a26e0e7587b56f8838edd4f54d6acbd458e98800",
+      "source_archive_sha256": "e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6",
+      "id": "p10-matrix-market-01-markdown",
+      "started": "2026-09-07T10:41:12.268816+00:00",
+      "completed": "2026-09-07T10:41:12.518341+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p10-matrix-market-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "acabad6f198172a41a8a8b726306f5678b8b9c46740887c051482bcd16536cfa"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "a56566ac1aa1205111b9bfdeeff00c9368ba6ba1a218dd51bd146740ccd03479",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/build-record-debug/record.json",
+      "record_sha256": "a61d0bd0570ed3596c34df95f8b924a529086130292ca76c9ae18d3ec06b02db",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-build-record-debug",
+      "started": "2026-09-07T11:00:00.851719+00:00",
+      "completed": "2026-09-07T11:05:09.403880+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "0427e5550581780f097d0e20feed50ff63a1991478ad6835809371192516f317"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/build-record-release/record.json",
+      "record_sha256": "f850984a1078f6d1c682b02e02f895251bed314bd3fe1898cf30e6b690475510",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-build-record-release",
+      "started": "2026-09-07T11:00:02.389608+00:00",
+      "completed": "2026-09-07T11:07:24.210171+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "b24663dc14eecce1b2eaeae0113beeae614ef8a9c0f3489f2955bf207c2ea05d"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/build-record-shared/record.json",
+      "record_sha256": "a59a3628082d562baf852a78d4c1f5f72546fd20a65e8dc1ed1200eebb2734ba",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-build-record-shared",
+      "started": "2026-09-07T11:00:04.789782+00:00",
+      "completed": "2026-09-07T11:07:25.870534+00:00",
+      "configuration": "matrix-market-shared-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-shared",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "8f4d55ed10308d75e376f22f73906c00c4548dab3c615c5dfe8c1e11245376ef"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/configure-debug/record.json",
+      "record_sha256": "6140b1e1f68f34f6353382bd4f5294603d0f05a67f687a50e7a5eda06f23da7d",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-configure-debug",
+      "started": "2026-09-07T10:59:31.918808+00:00",
+      "completed": "2026-09-07T11:00:00.599832+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-debug",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "5b5d67e86f80c00184d1bcedbc448b668e17281fd67240bee7a54492473e13a1"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/configure-release/record.json",
+      "record_sha256": "1ab2d0b39a357b33a151020424684c30b8359ad4c74f1754f33605056f797581",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-configure-release",
+      "started": "2026-09-07T10:59:33.110421+00:00",
+      "completed": "2026-09-07T11:00:02.128663+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-release",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "20af98baabe224bde39eddc560ef0777cee640bc59ec47589e28fa86796da315"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/configure-shared/record.json",
+      "record_sha256": "64b21f2ea17645d89b7674359bd92e633bd02b1682bad7e495631ed159eff48e",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-configure-shared",
+      "started": "2026-09-07T10:59:34.289233+00:00",
+      "completed": "2026-09-07T11:00:04.532337+00:00",
+      "configuration": "matrix-market-shared-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-shared",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DBUILD_SHARED_LIBS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "a78cf6f1a92bd70fc004b5bc0e7bf2e0c82de8b4e1d4436b9428c9419057edae"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/ctest-debug/record.json",
+      "record_sha256": "398c3635634f783b0284f0ea627817c18792a6370a8f251b1065c91d3f252268",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-ctest-debug",
+      "started": "2026-09-07T11:05:09.788253+00:00",
+      "completed": "2026-09-07T11:10:31.098024+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 271,
+        "failed": 0,
+        "passed": 271,
+        "selected": 271,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "b4bc1b450ae8cd330798ddaa5d9f86a82787aa5306482766c73c56e648a17dc9",
+        "ctest.xml": "a971fac72a9a6d060ef05bacc8edea105d46cd842d798c5c0d1f53779701c0db"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/ctest-release/record.json",
+      "record_sha256": "0b60e78685f08bbfb863426ad4aeb27cb987376d12d2f329df0c9cc407e61866",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-ctest-release",
+      "started": "2026-09-07T11:07:24.525949+00:00",
+      "completed": "2026-09-07T11:11:53.200889+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 271,
+        "failed": 0,
+        "passed": 271,
+        "selected": 271,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "406491b69dfda2b18411ef043f1775c6a8b927d1444dd90dda8405a7fcefdf7b",
+        "ctest.xml": "b0db4e8b6493eb301df5a283acb8c96e5ded40dccd26470cd72e6913eb8cbbe8"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/ctest-shared/record.json",
+      "record_sha256": "036c52239c8ac67ceeae35d533fb7c6caf3bf0377b5c50724b2a39bcf8489e1c",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-ctest-shared",
+      "started": "2026-09-07T11:07:26.153151+00:00",
+      "completed": "2026-09-07T11:11:55.291254+00:00",
+      "configuration": "matrix-market-shared-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-shared",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/ctest-shared/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 273,
+        "failed": 0,
+        "passed": 273,
+        "selected": 273,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "9efb085ea1518a930bce232f856a25f06a38de758c1c6fe1acba1f2ec1d9fdae",
+        "ctest.xml": "fe2c55607fb533386627ac720bbd1754ae552ffa4dd5494e2a0339b2c38826f3"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/doxygen/record.json",
+      "record_sha256": "bfaa9900d98289bf0b450cded617174b6e438ec8d88997e3eca2d2b841d01b89",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-doxygen",
+      "started": "2026-09-07T10:59:35.513132+00:00",
+      "completed": "2026-09-07T10:59:39.422388+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p10-matrix-market-02/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p10-matrix-market-02/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/doxygen-coverage/record.json",
+      "record_sha256": "41fb313936e92a55a005cee319eb6da637daee062d41d74e8f053cc84f6bdc3d",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-doxygen-coverage",
+      "started": "2026-09-07T10:59:39.640664+00:00",
+      "completed": "2026-09-07T10:59:39.900154+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/source",
+        "--build",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "1fcb7d464d8bf0388ad5aab382fc0d28c4f679eeb386ca486a48f3bb81cba7f4"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p10-matrix-market-02/markdown/record.json",
+      "record_sha256": "58310954b229162b6a276c72f3166d902549479c76616a1eb37bdde4740558d7",
+      "implementation_commit": null,
+      "implementation_tree": "74ff2fb12edd81b011bddc2efa44239bcbbad6f6",
+      "source_archive_sha256": "f8e1e1d4cacbaff08e5e2e97d6903440532a8f2f421541855d6c51cd9e684361",
+      "id": "p10-matrix-market-02-markdown",
+      "started": "2026-09-07T10:59:40.114624+00:00",
+      "completed": "2026-09-07T10:59:40.328137+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p10-matrix-market-02/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "acabad6f198172a41a8a8b726306f5678b8b9c46740887c051482bcd16536cfa"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "f6b79a1334eca88f93b8752dae072bb2c08abd888f78738e1fcbb98f4ff8be01",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
     }
   ]
 }

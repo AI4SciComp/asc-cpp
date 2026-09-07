@@ -8,6 +8,7 @@ set(_asc_core_public_headers
   asc/core/export.h
   asc/core/extents.h
   asc/core/io.h
+  asc/core/matrix_market.h
   asc/core/memory.h
   asc/core/result.h
   asc/core/status.h
@@ -322,6 +323,7 @@ set(_asc_m3_public_headers
   asc/dense/view.h
   asc/dense/print.h
   asc/dense/io.h
+  asc/dense/matrix_market.h
   asc/dense/lapack/types.h
   asc/dense/lapack/workspace.h
   asc/dense/lapack/report.h
@@ -493,6 +495,7 @@ set(_asc_m4_public_headers
   asc/sparse/blas.h
   asc/sparse/print.h
   asc/sparse/io.h
+  asc/sparse/matrix_market.h
 )
 
 foreach(_header IN LISTS _asc_m4_public_headers)

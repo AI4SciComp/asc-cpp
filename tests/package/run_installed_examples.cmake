@@ -73,3 +73,30 @@ _run(
   "${CMAKE_CTEST_COMMAND}" --test-dir "${_build_dir}" -C "${CONFIG}"
   --no-tests=error --output-on-failure
 )
+
+# Configure each codec independently: the aggregate examples intentionally load
+# both storage components and cannot prove that a single consumer stays isolated.
+foreach(_example IN ITEMS dense_matrix_market sparse_matrix_market)
+  set(_standalone_build "${WORK_DIR}/${_example} standalone")
+  _run(
+    "${_example} standalone configure"
+    "${CMAKE_COMMAND}"
+    -S "${EXAMPLES_SOURCE_DIR}/${_example}"
+    -B "${_standalone_build}"
+    ${_generator_arguments}
+    "-DASCCpp_DIR:PATH=${ASCCPP_PACKAGE_DIR}"
+    "-DCMAKE_CXX_COMPILER:FILEPATH=${CXX_COMPILER}"
+    "-DBUILD_TESTING:BOOL=ON"
+    "-DCMAKE_FIND_USE_PACKAGE_REGISTRY:BOOL=OFF"
+    "-DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY:BOOL=OFF"
+  )
+  _run(
+    "${_example} standalone build"
+    "${CMAKE_COMMAND}" --build "${_standalone_build}" --config "${CONFIG}"
+  )
+  _run(
+    "${_example} standalone runtime"
+    "${CMAKE_CTEST_COMMAND}" --test-dir "${_standalone_build}" -C "${CONFIG}"
+    --no-tests=error --output-on-failure
+  )
+endforeach()

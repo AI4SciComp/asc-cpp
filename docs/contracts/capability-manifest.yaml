@@ -12,6 +12,67 @@ evidence_labels:
   - "blocked"
 
 capabilities:
+  - capability: "bounded Matrix Market lexical and scalar primitives"
+    owner: "core"
+    development_stage: 10
+    status: "runtime-tested"
+    evidence_scope: "unreleased P10; exact helper04 scoped Debug/Release/ASC sanitizer and strict checks pass; integrated a26e0e7 full verification in progress"
+    public_headers:
+      - "include/asc/core/matrix_market.h"
+    direct_dependencies: []
+    tests:
+      - "bounded banners, comments, CRLF, exact field counts and EOF"
+      - "all12 destination scalar paths, finite decimal parsing and exact integer conversion"
+      - "short/failing streams, limits and observed allocation-free parsing/formatting"
+    guarantees:
+      - "no Dense/Sparse/provider dependency or implicit precision conversion"
+    non_guarantees:
+      - "general arbitrary-rank Matrix Market objects"
+
+  - capability: "Dense Matrix Market array interchange"
+    owner: "dense"
+    development_stage: 10
+    status: "runtime-tested"
+    evidence_scope: "unreleased P10; frozen Dense05 scoped numerical/format/rollback tests pass; a26e0e7 integrated runtime/shared/install gates in progress"
+    public_headers:
+      - "include/asc/dense/matrix_market.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "all10 valid array field/symmetry classes and invalid combinations"
+      - "independent Hermitian values, both layouts, staged rollback and1024 mutation cases"
+      - "explicit resources, malformed/short streams, failure propagation and allocation probes"
+      - "separate external SciPy bidirectional development checks, not a runtime dependency"
+    guarantees:
+      - "rank-two array interchange with explicit resource, scratch and staging"
+      - "finite values, checked type conversion and complete structured-write validation"
+    non_guarantees:
+      - "coordinate-to-Dense conversion, automatic provider/codec selection or hidden transfers"
+      - "atomic file replacement or crash durability"
+
+  - capability: "Sparse Matrix Market coordinate interchange"
+    owner: "sparse"
+    development_stage: 10
+    status: "runtime-tested"
+    evidence_scope: "unreleased P10; frozen Sparse05 scoped258 cases and12294 mutation cases pass; a26e0e7 integrated runtime/shared/install gates in progress"
+    public_headers:
+      - "include/asc/sparse/matrix_market.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "COO/CSR/CSC, all12 valid coordinate field/symmetry classes, explicit pattern units"
+      - "stable checked duplicate sums, zero policies, lower-half expansion and exact structure matching"
+      - "resource/sort budgets, malformed input, source failures, staged rollback and allocation probes"
+    guarantees:
+      - "bounded explicit assembly without Dense dependency or densification"
+      - "whole represented-matrix checks before structured stream output"
+    non_guarantees:
+      - "array-to-Sparse conversion or implicit memory transfer"
+      - "linear-time insertion sorting or exact asymmetric stored-zero structure after symmetry compression"
+      - "atomic file replacement or crash durability"
+
   - capability: "incremental Reference-LAPACK LU provider"
     owner: "dense"
     facet: "dense_lapack"
