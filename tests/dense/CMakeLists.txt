@@ -58,6 +58,29 @@ target_include_directories(
   asc_dense_lapack_qr_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
 )
 
+foreach(_source IN ITEMS
+    native_mode_acceptance_test.cc
+    native_alias_acceptance_test.cc)
+  get_filename_component(_name "${_source}" NAME_WE)
+  set(_target "asc_dense_${_name}")
+  add_executable("${_target}" "${_source}" allocation_probe.cc)
+  _asc_dense_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}/tests")
+  asc_register_test(
+    NAME "asc_cpp.dense.${_name}"
+    TARGET "${_target}"
+    LABELS "dense;runtime;native-lapack")
+endforeach()
+
+find_package(Threads REQUIRED)
+add_executable(asc_dense_native_concurrency_test native_concurrency_test.cc)
+_asc_dense_configure_test(asc_dense_native_concurrency_test)
+target_link_libraries(asc_dense_native_concurrency_test PRIVATE Threads::Threads)
+asc_register_test(
+  NAME asc_cpp.dense.native_concurrency_test
+  TARGET asc_dense_native_concurrency_test
+  LABELS "dense;runtime;native-lapack;concurrency")
+
 add_executable(asc_dense_matrix_market_interop_test
   matrix_market_interop_test.cc)
 _asc_dense_configure_test(asc_dense_matrix_market_interop_test)

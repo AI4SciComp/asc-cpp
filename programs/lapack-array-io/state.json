@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "38e085650505e7f0f8ee9740911970a1a1bc24e6",
+  "last_implementation_commit": "1b20ae67aa6b030257d11832ceb4cde2fc956bde",
   "worktree_diff_identity": {
-    "state": "pivot_output_correction_imported_current_verification_pending",
-    "parent_commit": "38e085650505e7f0f8ee9740911970a1a1bc24e6",
-    "note": "Exact six-file pivot02 correction, four additive tests and mapping hashes updated; unrelated work preserved."
+    "state": "native_additive_acceptance_imported_current_checks_pending",
+    "parent_commit": "1b20ae67aa6b030257d11832ceb4cde2fc956bde",
+    "note": "Four new private test/support files, three test registrations and partial development evidence. Native production/frozen contracts unchanged."
   },
   "packages": {
     "P00": {
@@ -359,10 +359,17 @@
       "owner": "integration",
       "scope": "Three full-width output buffers corrected; current six26/26 with all53CPU TUs rebuilt per lane and exact mode/native-return audit pass. Eight historical strict checks source-bound, format/coverage/public surface pass; full routine/mode/platform gates remain separate.",
       "review": "programs/lapack-array-io/lu-output-pivot-review.md"
+    },
+    "P04.P05.P06.native20_acceptance": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Four additive files and three tests integrated; current four6/6 native lanes, clean relocated installed3/3eachDebug/Release/shared and fresh3strict/format4/coverage/surface pass. Exact modes/source/object/isolation audit completed. Native20 implemented_unverified;40partial class slots and requiredWindows/macOS remain open.",
+      "review": "programs/lapack-array-io/native20-acceptance-review.md",
+      "partial_overlay": "programs/lapack-array-io/native20-partial-acceptance.json"
     }
   },
-  "active_task": "P04/P05/P06 native20 additive acceptance test integration, then reviewed P05 GB20 integration; P02 and remaining LU INFO work continue externally.",
-  "next_action": "Import the four reviewed native test files from native-mode-evidence-a0a1e15-01/native-test-handoff.tar, register three tests and preserve native20-overlay-02.json as partial evidence; freeze and execute current native composed checks.",
+  "active_task": "P02 additive printing acceptance root review/integration; continue P05 GB20 public/source/test review for integration.",
+  "next_action": "Read p02-display-acceptance-v12-01/handoff-01.json, frozen array-display-v1, exact three candidate03 files and oracle correction; independently audit evidence and import/register additive printing tests. GB20 immutable handoff remains pending remaining header/wrapper/test review and independent installed consumer.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -592,16 +599,16 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "38e085650505e7f0f8ee9740911970a1a1bc24e6",
-    "implementation_tree": "3bdf77d1415c91d5ef0195fd7ba3982f718fa361",
-    "source_archive_sha256": "2e5d79606358192f05ef6985bc4f256df7ca88a98708bc4ab078f49b5bb1df28",
+    "base_commit": "1b20ae67aa6b030257d11832ceb4cde2fc956bde",
+    "implementation_tree": "6c51559b3e82e3c843deff91356272ea019c8f91",
+    "source_archive_sha256": "db6a458c428cfe8fc684597a2107e69662a437cd415631ca75bff45ae0ebf48b",
     "coverage_mapping_sha256": "74dd426bf6b2cf14bff70e151ef84bcbfa73403659714b1458cb967530d2ca63",
-    "scope": "Six current26/26 LP64/trueILP64 Debug/Release/ASC-only ASan lanes pass. All53CPU production TUs rebuilt each lane, exact pivot and both INFO mode sets pass. Historical8strict checks compose through identical actual compiler-read TU/header/configuration inputs; no full suite or foreign sanitizer claim.",
-    "state": "completed_current_pivot_info_scoped",
-    "candidate": "p04-lu-output-pivot-integration-01",
+    "scope": "Current four6/6 provider-free Debug/Release/shared/Clang ASan lanes; all19 native Core/Dense CPU TUs rebuilt each lane. Clean install replay three3/3 relocated consumers with isolation and exact mode profiles. Original install/log path collision retained separately. Current3strict,format4,coverage/surface pass. Native20 remain implemented_unverified;40partial classes and required platforms remain open.",
+    "state": "completed_current_native_acceptance_scoped",
+    "candidate": "native-mode-integration-01",
     "pending": [],
-    "completion_audit": "p04-lu-output-pivot-integration-01/completion-audit-01/audit.json",
-    "completion_audit_sha256": "dd759232887f9ed737e9177cf837b4570a8b97b12eecd6087ac6b91ed63cdd6e"
+    "completion_audit": "native-mode-integration-01/completion-audit-01/audit.json",
+    "completion_audit_sha256": "d20afec7355917c3a4df5961eaf54467ef8523388e64a57bf466071ec8d51005"
   },
   "last_completed_verification": {
     "base_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67",
@@ -694,6 +701,18 @@
       "pending": [],
       "completion_audit": "p04-lu-expert-info-integration-01/completion-audit-01/audit.json",
       "completion_audit_sha256": "e6da4a3267fad30efe4ab36e19bdaabf64eff43da37e2f67fb2b4f4527e50dee"
+    },
+    {
+      "base_commit": "38e085650505e7f0f8ee9740911970a1a1bc24e6",
+      "implementation_tree": "3bdf77d1415c91d5ef0195fd7ba3982f718fa361",
+      "source_archive_sha256": "2e5d79606358192f05ef6985bc4f256df7ca88a98708bc4ab078f49b5bb1df28",
+      "coverage_mapping_sha256": "74dd426bf6b2cf14bff70e151ef84bcbfa73403659714b1458cb967530d2ca63",
+      "scope": "Six current26/26 LP64/trueILP64 Debug/Release/ASC-only ASan lanes pass. All53CPU production TUs rebuilt each lane, exact pivot and both INFO mode sets pass. Historical8strict checks compose through identical actual compiler-read TU/header/configuration inputs; no full suite or foreign sanitizer claim.",
+      "state": "completed_current_pivot_info_scoped",
+      "candidate": "p04-lu-output-pivot-integration-01",
+      "pending": [],
+      "completion_audit": "p04-lu-output-pivot-integration-01/completion-audit-01/audit.json",
+      "completion_audit_sha256": "dd759232887f9ed737e9177cf837b4570a8b97b12eecd6087ac6b91ed63cdd6e"
     }
   ]
 }
