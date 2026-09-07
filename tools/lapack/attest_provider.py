@@ -158,7 +158,9 @@ def source_identity(source: pathlib.Path, inventory: dict) -> dict:
     return specification
 
 
-def installed_files(prefix: pathlib.Path) -> list[dict[str, str]]:
+def installed_files(
+    prefix: pathlib.Path, integer_bits: int = 32
+) -> list[dict[str, str]]:
     """Hash installed regular files; retain relative names for relocation."""
     records = []
     for path in sorted(prefix.rglob("*")):
@@ -176,6 +178,8 @@ def installed_files(prefix: pathlib.Path) -> list[dict[str, str]]:
         "Incomplete LAPACKE header installation",
     )
     for stem in ("blas", "lapack", "lapacke"):
+        if integer_bits == 64:
+            stem += "64"
         coverage.require(
             any(
                 pathlib.PurePosixPath(name).name
@@ -255,7 +259,7 @@ def attest(args: argparse.Namespace) -> dict:
             )
             for language in ("C", "Fortran")
         },
-        "installed_files": installed_files(prefix),
+        "installed_files": installed_files(prefix, args.integer_bits),
         "upstream_tests": {
             "counts": test_counts(args.junit),
             "junit_sha256": coverage.file_hash(args.junit),

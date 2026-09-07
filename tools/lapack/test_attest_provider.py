@@ -174,6 +174,26 @@ class AttestationTest(unittest.TestCase):
             with self.assertRaisesRegex(coverage.ValidationError, "escapes"):
                 attestation.installed_files(prefix)
 
+    def test_distinct_ilp64_library_names(self):
+        """The pinned global index64 build has distinct, unsuffixed-API libraries."""
+        with tempfile.TemporaryDirectory() as directory:
+            prefix = pathlib.Path(directory)
+            (prefix / "include").mkdir()
+            (prefix / "lib").mkdir()
+            for name in ("lapack.h", "lapacke.h"):
+                (prefix / "include" / name).write_text(
+                    "synthetic", encoding="utf-8"
+                )
+            for name in ("blas64", "lapack64", "lapacke64"):
+                (prefix / "lib" / f"lib{name}.a").write_text(
+                    "synthetic", encoding="utf-8"
+                )
+            self.assertEqual(len(attestation.installed_files(prefix, 64)), 5)
+            with self.assertRaisesRegex(
+                coverage.ValidationError, "Missing installed"
+            ):
+                attestation.installed_files(prefix, 32)
+
 
 if __name__ == "__main__":
     unittest.main()

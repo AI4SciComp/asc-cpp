@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "scope": "Sanitized checkpoint summaries. Raw external records/logs remain authoritative; these are not LAPACK routine coverage records.",
+  "evidence_root": "../asc-cpp-evidence/lapack-array-io",
+  "records": [
+    {
+      "external_record": "p00-54bf645/program-ctest/record.json",
+      "record_sha256": "17ef7e658125027cb6aa703454025f2708ef4b8cab23d8f5dd45ba798e46a280",
+      "implementation_commit": "54bf645c60698424a00ce45f78ef311c926ecdd4",
+      "source_archive_sha256": "354ae03f701b867412716d54854da3f9409c5b7191425f3ff65b38e995865719",
+      "id": "p00-54bf645-program-ctest",
+      "started": "2026-09-07T05:55:43.756064+00:00",
+      "completed": "2026-09-07T05:55:46.025117+00:00",
+      "configuration": "p00-gcc11-debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p00-54bf645/build",
+        "-R",
+        "^asc_cpp[.]program[.]",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p00-54bf645/program-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "8bc48f62bbacb6952737f5e7060553bdaa84398deb50d6fe6f24ef65a2641092",
+        "ctest.xml": "0f3b8eb4bcc8c159401e98b91bc5581ef8e49a746904901e578d5fe178c5a15f"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "1e14b78f7559f33d4ad509c27dcf732744bdd3d29100619ee74897b71f573aac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "1e14b78f7559f33d4ad509c27dcf732744bdd3d29100619ee74897b71f573aac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p01-p02-832edcc/ctest-debug/record.json",
+      "record_sha256": "71c70039fb03e1d0c291f4ebe424abf556b284cdd1a14aa2008439e718b8feb7",
+      "implementation_commit": null,
+      "source_archive_sha256": "13c7b55ca5b66c3589feea34a75851db80010fc454fb7c6a057552625b3fc4a6",
+      "id": "p01-p02-ctest-debug",
+      "started": "2026-09-07T06:01:16.334485+00:00",
+      "completed": "2026-09-07T06:05:04.401743+00:00",
+      "configuration": "gcc11-debug-static",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p01-p02-832edcc/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p01-p02-832edcc/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 244,
+        "failed": 0,
+        "passed": 244,
+        "selected": 244,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "4ae6c46abbabe9cabafb8b640de9e15464287f37bf3e4a4293238bf89e7c0fd1",
+        "ctest.xml": "9eebf793018a1504f2c1f22e4864ee4a7fddd749aee3bc1e1d8583da262b28d8"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "35b2855ff53550763071344765ce9529825db018de623d1384e359e66be91e94",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "35b2855ff53550763071344765ce9529825db018de623d1384e359e66be91e94",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p01-p02-832edcc/ctest-release/record.json",
+      "record_sha256": "75bf080a811735dce41cda7e6d706f2acf48d882583421ce353e50fbc5192b34",
+      "implementation_commit": null,
+      "source_archive_sha256": "13c7b55ca5b66c3589feea34a75851db80010fc454fb7c6a057552625b3fc4a6",
+      "id": "p01-p02-ctest-release",
+      "started": "2026-09-07T06:01:55.695708+00:00",
+      "completed": "2026-09-07T06:05:28.792524+00:00",
+      "configuration": "gcc11-release-static",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p01-p02-832edcc/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p01-p02-832edcc/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 244,
+        "failed": 0,
+        "passed": 244,
+        "selected": 244,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "1523f8beaffcf55bacd616661e63042c7ba97d2b0dcc549ed279f629eeead2c9",
+        "ctest.xml": "16444a9ee277e6c34abec61320b9d3563c1f1fa68bb68a1f78591a9700bf046a"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "35b2855ff53550763071344765ce9529825db018de623d1384e359e66be91e94",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "35b2855ff53550763071344765ce9529825db018de623d1384e359e66be91e94",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p01-p02-bab2720/docs-check/record.json",
+      "record_sha256": "f22f56f9356109705048d085eeaedcca08271544d756e810a0cdee735e51c18a",
+      "implementation_commit": "a797316baffc223bb58acbf3ec6d7539e168b0d9",
+      "source_archive_sha256": "236dfc44e0b81cc0d128883ba0f68ce665205ac2d510adf93e99f57ffa543dc8",
+      "id": "p01-p02-docs-check",
+      "started": "2026-09-07T06:05:05.138283+00:00",
+      "completed": "2026-09-07T06:05:10.898011+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p01-p02-bab2720/build-docs",
+        "--target",
+        "asc_cpp_docs_check"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "7c49a40c6fc0744ceea56ed7c914bb39fa7a8e13ee9b89e0ebd5950fba45115f"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "7a3bb08a7df2b83578d85b53785a6573738b758186c3f8e14145b8b566ac601e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "7a3bb08a7df2b83578d85b53785a6573738b758186c3f8e14145b8b566ac601e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    }
+  ]
+}

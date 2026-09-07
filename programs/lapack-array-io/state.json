@@ -14,7 +14,7 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": null,
+  "last_implementation_commit": "a797316baffc223bb58acbf3ec6d7539e168b0d9",
   "worktree_diff_identity": {
     "state": "in_progress",
     "note": "External evidence index records per-command tracked diff and untracked inputs; this state file is excluded from its own hash."
@@ -38,7 +38,7 @@
       ]
     },
     "P03": {
-      "state": "not_started",
+      "state": "in_progress",
       "dependencies": [
         "P00",
         "P01"
@@ -130,15 +130,15 @@
       "owner": "p00_baseline"
     },
     "P01.workspace_report_pivots": {
-      "state": "implemented_integration_pending",
+      "state": "implemented_tested",
       "owner": "p00_inventory"
     },
     "P01.structured_descriptors": {
-      "state": "not_started",
+      "state": "bounded_slice_implemented_tested_remaining_representations_pending",
       "owner": "p00_inventory"
     },
     "P02.printing": {
-      "state": "implemented_unverified",
+      "state": "implemented_snapshot_verified_remaining_platform_examples_pending",
       "owner": "p00_array_contracts"
     },
     "P04.native_lu": {
@@ -146,12 +146,24 @@
       "owner": "p00_baseline"
     },
     "P04.external_lp64_dependency": {
-      "state": "built_upstream_tests_passed_attestation_pending",
+      "state": "attested_upstream_tests_passed_ASC_ABI_pending",
       "owner": "integration"
+    },
+    "P04.external_ilp64_dependency": {
+      "state": "built_upstream_tests_passed_ASC_ABI_pending",
+      "owner": "integration"
+    },
+    "P03.dense_io": {
+      "state": "implemented_initial_tests_passed_not_frozen",
+      "owner": "p00_array_contracts"
+    },
+    "P04.reference_lu": {
+      "state": "implemented_unverified_unregistered",
+      "owner": "p00_inventory"
     }
   },
-  "active_task": "P01-P02 integration and P04 native LU",
-  "next_action": "Finish public-header inventory and documentation integration, freeze combined source and run full provider-free tests; complete P01 structured descriptors and native LU; start P03 production codecs and P04 provider facet without shrinking later packages.",
+  "active_task": "P03 production codecs and P04 native/reference LU + provider packaging",
+  "next_action": "Integrate final tested native LU; complete optional Dense-owned provider facet, exact dependency/ABI guards and installed consumers; finish Dense/Sparse production codecs and then continue all P05-P11 routines/modes/gates.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -164,7 +176,31 @@
     "version": "3.12.1",
     "expected_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "build_identity": null,
-    "integer_abis_verified": []
+    "integer_abis_verified": [],
+    "dependency_builds": [
+      {
+        "integer_bits": 32,
+        "identity_sha256": "7334974ceff5d71da38f7df94ffb10803d136b15bd7fa32e6cc1d49e465b210c",
+        "record": "provider-lp64-attestation-01.json",
+        "upstream_ctest": {
+          "passed": 111,
+          "failed": 0,
+          "skipped": 0
+        },
+        "asc_abi_verified": false
+      },
+      {
+        "integer_bits": 64,
+        "identity_sha256": "8460d29a665eb2aedc0c6d081026280b966d44015227bc47a69b362ca6f5da97",
+        "record": "provider-ilp64-attestation-01.json",
+        "upstream_ctest": {
+          "passed": 111,
+          "failed": 0,
+          "skipped": 0
+        },
+        "asc_abi_verified": false
+      }
+    ]
   },
   "toolchain": {
     "observed": "Linux x86_64; GCC 11.4.0; CMake 4.1.2",
@@ -180,13 +216,20 @@
     "root": "../asc-cpp-evidence/lapack-array-io",
     "indexes": [
       "baseline-46412183/index.json",
-      "p01-scalar-02/index.json"
+      "p01-scalar-02/index.json",
+      "p00-54bf645/program-ctest/record.json",
+      "p01-p02-832edcc/ctest-debug/record.json",
+      "p01-p02-832edcc/ctest-release/record.json",
+      "p01-p02-bab2720/docs-check/record.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
       "Scalar snapshot Debug 27/27 and Release 27/27 passed, zero skips",
       "Scalar snapshot ASan+UBSan 3/3 passed, zero skips",
-      "External reference LP64 upstream CTest 111/111 passed, zero skips; no ASC routine evidence"
+      "External reference LP64 upstream CTest 111/111 passed, zero skips; no ASC routine evidence",
+      "P00 committed archive program tools 4/4 CTests passed; embedded suites53+16+11 tests",
+      "P01/P02 tree832edcc11bd1d29f5cce7a93d3989c1b308669de Debug/Release each244/244 passed, zero skips",
+      "Comment-only documentation correction treebab2720c9069e613428a827fe5d9c52234a7fd65 strict Doxygen60/60 headers,1199 documented members,zero warnings;73 Markdown links files checked"
     ]
   },
   "counts": {
