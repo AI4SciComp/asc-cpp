@@ -184,6 +184,21 @@ space, tab, LF or CRLF trailing whitespace. A second frame, bare CR or other
 trailing byte is invalid. Trailing-file validation is part of the transaction.
 A streaming read stops at its own frame; it does not test the next frame.
 Failure reports retain consumed-byte count, section and a bounded diagnostic.
+New array stream adapters preserve a failing `ByteSource`/`ByteSink`'s
+`ErrorCode` and `native_code`, but discard owning message/provider strings
+before existing helpers could copy them. Bounded section/progress and
+transaction results remain available; unbounded callback text is not retained.
+This closes diagnostic-copy allocation at these new borrowed stream
+boundaries, not allocation inside user callbacks or existing owner-resource
+creation/`File` paths. Existing Core `WriteAll`, `Status`, `Result` and `File`
+behavior is unchanged.
+For a nonseekable `ByteSource`, whole-file EOF validation requires one spare
+byte of `max_input_bytes` budget before each probe, including the final probe
+that returns zero bytes. An exhausted cap fails before the source is called:
+otherwise a trailing byte could be consumed beyond the limit without a way to
+put it back. Zero-byte EOF probes do not increment consumed-byte progress.
+Thus a complete framed read can succeed at the exact cap, while a whole-file
+read needs at least one spare byte after its permitted trailing whitespace.
 
 New-owner loading validates type/rank/static extents before values allocation;
 candidate resources are released on any error, and no partial owner is
@@ -209,11 +224,12 @@ are no implicit transfers, expression evaluations or synchronizations.
 
 Writes use an explicit caller sink and bounded scratch, retry short writes
 through `WriteAll`, and fail on zero progress. The sink may retain a prefix on
-failure; there is no sink transaction. Proposed API spelling is
-`ReadDenseArray`, `WriteDenseArray`, `ReadSparseArray`, `WriteSparseArray`,
-with `Binary` suffixes for the binary forms and explicit `Into` variants for
-staging. Spelling becomes public only when declared and installed; this
-document freezes semantics rather than inventing installed declarations.
+failure; there is no sink transaction. The production headers use explicit
+`WriteDenseArrayText`/`WriteDenseArrayBinary` and
+`WriteSparseArrayText`/`WriteSparseArrayBinary`. Prepared readers feed
+`ReadDenseArray`/`ReadSparseArray` or staged `Into` operations. Source wrappers
+have explicit `Text`/`Binary` suffixes; path conveniences use `Load`/`Save`.
+Only declarations in installed owning-component headers are supported API.
 
 Path wrappers compose the existing Core `File`. `File::OpenWrite` opens `wb`
 and truncates; a writer must require explicit destructive overwrite intent.

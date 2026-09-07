@@ -140,21 +140,33 @@ if(DEFINED ASC_CPP_HARDENING_INSTALLED_INCLUDE_DIR)
     _installed_headers
   )
   set(_expected_cpu_headers)
+  set(_expected_cuda_headers)
+  set(_expected_lapack_headers)
   string(REPLACE "\n" ";" _expected_header_lines "${_expected_headers}")
   foreach(_header_line IN LISTS _expected_header_lines)
     if(NOT _header_line STREQUAL ""
        AND NOT _header_line MATCHES "  asc/.+/providers/")
       string(APPEND _expected_cpu_headers "${_header_line}\n")
+      string(APPEND _expected_cuda_headers "${_header_line}\n")
+      string(APPEND _expected_lapack_headers "${_header_line}\n")
+    elseif(_header_line MATCHES "  asc/dense/providers/lapack")
+      string(APPEND _expected_lapack_headers "${_header_line}\n")
+    elseif(NOT _header_line STREQUAL "")
+      string(APPEND _expected_cuda_headers "${_header_line}\n")
     endif()
   endforeach()
   if(_installed_headers STREQUAL _expected_headers)
     set(_installed_status "checked-full")
   elseif(_installed_headers STREQUAL _expected_cpu_headers)
     set(_installed_status "checked-cpu")
+  elseif(_installed_headers STREQUAL _expected_cuda_headers)
+    set(_installed_status "checked-cpu-and-cuda")
+  elseif(_installed_headers STREQUAL _expected_lapack_headers)
+    set(_installed_status "checked-cpu-and-lapack")
   else()
     message(FATAL_ERROR
-      "The installed public-header surface differs from both the full and "
-      "CUDA-disabled projections of '${_asc_cpp_header_baseline}'."
+      "The installed public-header surface differs from the exact provider "
+      "projections of '${_asc_cpp_header_baseline}'."
     )
   endif()
 else()

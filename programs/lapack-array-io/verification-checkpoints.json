@@ -179,6 +179,417 @@
         "dirty_diff_sha256": null,
         "tree": null
       }
+    },
+    {
+      "external_record": "p03-p04-97f806d/ctest-debug/record.json",
+      "record_sha256": "303d9ac0ab8f083fadfdb15917b0fbf913d6ba15cec15ddd06e5da212fcde21c",
+      "implementation_commit": null,
+      "implementation_tree": "97f806d9e0d51684d022b9154b458e54d45c8892",
+      "source_archive_sha256": "1d2e51da68566a7bccd79df9e46f8485076d00ba294ddd46dbc7a9d77b5b8018",
+      "id": "p03-p04-97f806d-ctest-debug",
+      "started": "2026-09-07T07:38:24.003582+00:00",
+      "completed": "2026-09-07T07:42:56.658039+00:00",
+      "configuration": "Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p03-p04-97f806d/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p03-p04-97f806d/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 259,
+        "failed": 0,
+        "passed": 259,
+        "selected": 259,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "797557218e7d60c89e1643377894aae7b490bc60179cd5294e5382ad61807719",
+        "ctest.xml": "ca194fcce6f8e6e2d1b59cd90dac9f0d17d2eedf0a7b87f12d808a03b4ea3e0b"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "6d8b3700e79938e6f3e3c55a207bbc8ae2fc87a638e4d30bfe20f3d554c5b013",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "6d8b3700e79938e6f3e3c55a207bbc8ae2fc87a638e4d30bfe20f3d554c5b013",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Historical coherent slice; later metadata binding and hostile-size arithmetic corrections require their own reruns."
+    },
+    {
+      "external_record": "p03-p04-97f806d/ctest-release/record.json",
+      "record_sha256": "96775c6c69362d39e17aa7b9c968075de7d1bfe2239effe66851ac6df9789f2f",
+      "implementation_commit": null,
+      "implementation_tree": "97f806d9e0d51684d022b9154b458e54d45c8892",
+      "source_archive_sha256": "1d2e51da68566a7bccd79df9e46f8485076d00ba294ddd46dbc7a9d77b5b8018",
+      "id": "p03-p04-97f806d-ctest-release",
+      "started": "2026-09-07T07:40:14.911244+00:00",
+      "completed": "2026-09-07T07:44:02.133691+00:00",
+      "configuration": "Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p03-p04-97f806d/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p03-p04-97f806d/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 259,
+        "failed": 0,
+        "passed": 259,
+        "selected": 259,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "806b70220d9d8f21680111664fdb402d2b963bf4e75074a15e2ef048cae3339e",
+        "ctest.xml": "96f29f791fcc4186c04929707b37004e9d6a30bc0d045f732834a9998d265252"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "6d8b3700e79938e6f3e3c55a207bbc8ae2fc87a638e4d30bfe20f3d554c5b013",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "6d8b3700e79938e6f3e3c55a207bbc8ae2fc87a638e4d30bfe20f3d554c5b013",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Historical coherent slice; later metadata binding and hostile-size arithmetic corrections require their own reruns."
+    },
+    {
+      "external_record": "p03-p04-docs-80be6bb/doxygen-coverage/record.json",
+      "record_sha256": "f33e4f1cf7160e25d46b6e80754c7e66232a612690064c8cdf18aa124cf589fb",
+      "implementation_commit": null,
+      "implementation_tree": "80be6bb886b503594e4faf461be7c54d26546a51",
+      "source_archive_sha256": "d582ec415def2a23b610ece1284540d2f3ea05c2d282bede7694b078235d0a27",
+      "id": "p03-p04-docs-80be6bb-doxygen-coverage",
+      "started": "2026-09-07T07:39:45.135507+00:00",
+      "completed": "2026-09-07T07:39:45.537997+00:00",
+      "configuration": "strict-doxygen",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/source",
+        "--build",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/docs-build",
+        "--xml",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/docs-build/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/docs-build/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/docs-build/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/docs-build/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "21a3164e318b8008842119670d08c053ec20d34b99c31761d85a2cab21ccec1c"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5cf146e8a22afab023ae9986a53140a0768da6f90feeb5acbb96a0fc12757378",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5cf146e8a22afab023ae9986a53140a0768da6f90feeb5acbb96a0fc12757378",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Historical coherent slice; later metadata binding and hostile-size arithmetic corrections require their own reruns."
+    },
+    {
+      "external_record": "p03-p04-docs-80be6bb/markdown-links/record.json",
+      "record_sha256": "fa1af957995474a46a656802931f7eb157bbd1dfc08f3da884fccbcbbc5e69e1",
+      "implementation_commit": null,
+      "implementation_tree": "80be6bb886b503594e4faf461be7c54d26546a51",
+      "source_archive_sha256": "d582ec415def2a23b610ece1284540d2f3ea05c2d282bede7694b078235d0a27",
+      "id": "p03-p04-docs-80be6bb-markdown-links",
+      "started": "2026-09-07T07:39:45.872573+00:00",
+      "completed": "2026-09-07T07:39:46.142075+00:00",
+      "configuration": "strict-docs",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p03-p04-docs-80be6bb/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "7b7a2b4047ebbe23e50f9309edcc48d1b30ef7e2c85959c9a0dfcd4038a595d9"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5cf146e8a22afab023ae9986a53140a0768da6f90feeb5acbb96a0fc12757378",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5cf146e8a22afab023ae9986a53140a0768da6f90feeb5acbb96a0fc12757378",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Historical coherent slice; later metadata binding and hostile-size arithmetic corrections require their own reruns."
+    },
+    {
+      "external_record": "p03-p04-d3675f3/ctest-debug/record.json",
+      "record_sha256": "96ce988fc24f7d00c9c1ae25438683f3304d0df3cf7dc0cab1d951c0107cd6e4",
+      "implementation_commit": null,
+      "implementation_tree": "d3675f3ecf53ee91cb54747e6379afdc42ed3538",
+      "source_archive_sha256": "ce75f381e24019458a9c04468b6cc07ae3afb458af6dea2e0212f5a40a2db08e",
+      "id": "p03-p04-d3675f3-ctest-debug",
+      "started": "2026-09-07T08:07:44.900286+00:00",
+      "completed": "2026-09-07T08:11:53.003486+00:00",
+      "configuration": "Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 259,
+        "failed": 0,
+        "passed": 259,
+        "selected": 259,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "fdd8dde7fe56c0108f9b4af26a17787576992706644ba0f7132dff49af229d0a",
+        "ctest.xml": "57b0b79413d2758c67c7868c344257eb99099a876944e991d906c7a4d6ca8778"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Corrected coherent P03 array I/O and native LU slice; provider-free full regression only. No full LAPACK profile credit."
+    },
+    {
+      "external_record": "p03-p04-d3675f3/ctest-release/record.json",
+      "record_sha256": "b95d4746951d7710a041d50488441bf220eba25926baf9cf9de85ac16f09253c",
+      "implementation_commit": null,
+      "implementation_tree": "d3675f3ecf53ee91cb54747e6379afdc42ed3538",
+      "source_archive_sha256": "ce75f381e24019458a9c04468b6cc07ae3afb458af6dea2e0212f5a40a2db08e",
+      "id": "p03-p04-d3675f3-ctest-release",
+      "started": "2026-09-07T08:09:20.091756+00:00",
+      "completed": "2026-09-07T08:13:00.145414+00:00",
+      "configuration": "Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 259,
+        "failed": 0,
+        "passed": 259,
+        "selected": 259,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "0bd070ffbcbf29900ec9efc0ff2e4c55e81cb6c6a3abd10863cf48579a17426e",
+        "ctest.xml": "4c577e491114933aaadecee55a3291e6b66b46bea9e0b644d328f7499a4ca133"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Corrected coherent P03 array I/O and native LU slice; provider-free full regression only. No full LAPACK profile credit."
+    },
+    {
+      "external_record": "p03-p04-d3675f3/ctest-asan/record.json",
+      "record_sha256": "b2ad316c90d22fecf18e90f7559d6c04939dc99af8269b737cefda43b7f02c42",
+      "implementation_commit": null,
+      "implementation_tree": "d3675f3ecf53ee91cb54747e6379afdc42ed3538",
+      "source_archive_sha256": "ce75f381e24019458a9c04468b6cc07ae3afb458af6dea2e0212f5a40a2db08e",
+      "id": "p03-p04-d3675f3-ctest-asan",
+      "started": "2026-09-07T08:12:02.471617+00:00",
+      "completed": "2026-09-07T08:12:07.975748+00:00",
+      "configuration": "Clang19-ASan-UBSan",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/build-asan",
+        "--output-on-failure",
+        "-R",
+        "^asc_cpp[.](core[.]memory_execution_test|dense[.](lapack_lu|complex_array|io|io_fuzz|resource_failure)_test|sparse[.](io|io_fuzz|io_shapes)_test|random_sparse[.](sparse_generation|thread_reproducibility)_test)$",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/ctest-asan/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 11,
+        "failed": 0,
+        "passed": 11,
+        "selected": 11,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "df5cebdde396690c30f3fedf16929bf318018c1bb89094dd4583fd572b6e14e8",
+        "ctest.xml": "cf20957f477b1ce410ad2c12ed05715e738a0ef797609ce165945d3bf33bd22c"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Selected actual native-LU, owner/resource, parser and RandomSparse regressions, not a full CTest or LAPACK-provider sanitizer claim"
+    },
+    {
+      "external_record": "p03-p04-d3675f3/doxygen-coverage/record.json",
+      "record_sha256": "760c10e806a301ed8ce64095a6f794c4096576564b1fe022350c9320b1c850a4",
+      "implementation_commit": null,
+      "id": "p03-p04-d3675f3-doxygen-coverage",
+      "started": "2026-09-07T08:03:16.354003+00:00",
+      "completed": "2026-09-07T08:03:16.796892+00:00",
+      "configuration": "strict-doxygen",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/source",
+        "--build",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/docs-build",
+        "--xml",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/docs-build/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/docs-build/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/docs-build/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/docs-build/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "21a3164e318b8008842119670d08c053ec20d34b99c31761d85a2cab21ccec1c"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p03-p04-d3675f3/markdown-links/record.json",
+      "record_sha256": "d86a4a2ec69d3a9a891aad4e7648ec57bb90d24786dabcc48bd282d73701b517",
+      "implementation_commit": null,
+      "id": "p03-p04-d3675f3-markdown-links",
+      "started": "2026-09-07T08:03:17.121138+00:00",
+      "completed": "2026-09-07T08:03:17.375971+00:00",
+      "configuration": "strict-docs",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "7b7a2b4047ebbe23e50f9309edcc48d1b30ef7e2c85959c9a0dfcd4038a595d9"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "861c4eeb9a96bb169c5ed79c011270115eee0025571645901fe45e981262d4e4",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
     }
   ]
 }

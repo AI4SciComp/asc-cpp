@@ -19,10 +19,19 @@ import struct
 import sys
 import zlib
 
-
 _SCALARS = (
-    "i8", "u8", "i16", "u16", "i32", "u32", "i64", "u64",
-    "f32", "f64", "c64", "c128",
+    "i8",
+    "u8",
+    "i16",
+    "u16",
+    "i32",
+    "u32",
+    "i64",
+    "u64",
+    "f32",
+    "f64",
+    "c64",
+    "c128",
 )
 _KINDS = ("dense", "coo", "csr", "csc")
 _MAGIC = b"ASCARRB\n"
@@ -40,11 +49,12 @@ class FormatError(ValueError):
 
 
 @dataclasses.dataclass(frozen=True)
-class Limits:
+class Limits:  # pylint: disable=too-many-instance-attributes
     """Reference-fixture input and decoded representation budgets.
 
     This Python oracle allocates bounded complete frames. It does not model
     C++ caller resources, staging aliases, scratch or allocation accounting.
+    Independent wire budgets intentionally remain separately named fields.
     """
 
     max_input_bytes: int = 67_108_864
@@ -86,13 +96,19 @@ def _width(scalar: str) -> int:
 def _limits(limits: Limits) -> None:
     for field in dataclasses.fields(limits):
         value = getattr(limits, field.name)
-        if type(value) is not int or value < 0 or value > _MAX_INDEX:
+        if not _integer(value) or value < 0 or value > _MAX_INDEX:
             raise FormatError(f"invalid limit: {field.name}")
 
 
+def _integer(value: object) -> bool:
+    # Preserve strict fixture validation: bool and int subclasses with
+    # user-defined arithmetic are not plain metadata integers.
+    return type(value) is int  # pylint: disable=unidiomatic-typecheck
+
+
 def _number(token: str, maximum: int, limits: Limits) -> int:
-    if (len(token) > limits.max_token_bytes or not _UNSIGNED.fullmatch(token)
-            or len(token.lstrip("0")) > len(str(maximum))):
+    if (len(token) > limits.max_token_bytes or not _UNSIGNED.fullmatch(token) or
+            len(token.lstrip("0")) > len(str(maximum))):
         raise FormatError("invalid or overlong unsigned integer")
     result = int(token)
     if result > maximum:
@@ -101,7 +117,11 @@ def _number(token: str, maximum: int, limits: Limits) -> int:
 
 
 def _metadata(
-    kind: str, scalar: str, shape: tuple[int, ...], count: int, limits: Limits,
+    kind: str,
+    scalar: str,
+    shape: tuple[int, ...],
+    count: int,
+    limits: Limits,
 ) -> int:
     if kind not in _KINDS:
         raise FormatError("unknown kind")
@@ -109,32 +129,72 @@ def _metadata(
     if len(shape) > limits.max_rank or len(shape) > (1 << 32) - 1:
         raise FormatError("rank exceeds limit")
     for extent in shape:
-        if (type(extent) is not int or extent < 0
-                or extent > min(_MAX_INDEX, limits.max_extent)):
+        if (not _integer(extent) or extent < 0 or
+                extent > min(_MAX_INDEX, limits.max_extent)):
             raise FormatError("extent exceeds limit")
     logical = 0 if 0 in shape else math.prod(shape)
     if logical > min(_MAX_INDEX, limits.max_logical_elements):
         raise FormatError("logical size exceeds limit")
-    if type(count) is not int or count < 0 or count > logical:
+    if not _integer(count) or count < 0 or count > logical:
         raise FormatError("count is incompatible with shape")
-    if kind == "dense":
-        if count != logical:
-            raise FormatError("dense count differs from logical size")
-        structure_count = 0
-    elif count > limits.max_stored_elements:
-        raise FormatError("stored count exceeds limit")
-    elif kind == "coo":
-        structure_count = count * len(shape)
-    else:
-        if len(shape) != 2:
-            raise FormatError("compressed kind requires rank two")
-        outer = shape[0 if kind == "csr" else 1]
-        structure_count = outer + 1 + count
+    structure_count = _structure_count(kind, shape, count, logical, limits)
     if 8 * structure_count > limits.max_structure_bytes:
         raise FormatError("structure exceeds decoded budget")
     if 8 * structure_count + width * count > limits.max_decoded_bytes:
         raise FormatError("frame exceeds decoded budget")
     return structure_count
+
+
+def _structure_count(
+    kind: str,
+    shape: tuple[int, ...],
+    count: int,
+    logical: int,
+    limits: Limits,
+) -> int:
+    if kind == "dense":
+        if count != logical:
+            raise FormatError("dense count differs from logical size")
+        return 0
+    if count > limits.max_stored_elements:
+        raise FormatError("stored count exceeds limit")
+    if kind == "coo":
+        return count * len(shape)
+    if len(shape) != 2:
+        raise FormatError("compressed kind requires rank two")
+    return shape[0 if kind == "csr" else 1] + 1 + count
+
+
+def _validate_coo(frame: Frame) -> None:
+    rank = len(frame.shape)
+    previous = None
+    for position in range(len(frame.values)):
+        coordinate = frame.structure[position * rank:(position + 1) * rank]
+        if any(index >= extent
+               for index, extent in zip(coordinate, frame.shape)):
+            raise FormatError("coordinate outside shape")
+        if previous is not None and coordinate <= previous:
+            raise FormatError("noncanonical or duplicate COO coordinate")
+        previous = coordinate
+
+
+def _validate_compressed(frame: Frame) -> None:
+    outer_dimension = 0 if frame.kind == "csr" else 1
+    outer = frame.shape[outer_dimension]
+    inner = frame.shape[1 - outer_dimension]
+    offsets = frame.structure[:outer + 1]
+    indices = frame.structure[outer + 1:]
+    count = len(frame.values)
+    if offsets[0] != 0 or offsets[-1] != count:
+        raise FormatError("offset endpoints invalid")
+    for begin, end in zip(offsets, offsets[1:]):
+        if not 0 <= begin <= end <= count:
+            raise FormatError("offset monotonicity invalid")
+        segment = indices[begin:end]
+        if any(index >= inner for index in segment):
+            raise FormatError("inner index outside shape")
+        if any(left >= right for left, right in zip(segment, segment[1:])):
+            raise FormatError("noncanonical compressed segment")
 
 
 def validate_frame(frame: Frame, limits: Limits = Limits()) -> None:
@@ -150,57 +210,44 @@ def validate_frame(frame: Frame, limits: Limits = Limits()) -> None:
     _limits(limits)
     count = len(frame.values)
     structure_count = _metadata(
-        frame.kind, frame.scalar, frame.shape, count, limits,
+        frame.kind,
+        frame.scalar,
+        frame.shape,
+        count,
+        limits,
     )
     if len(frame.structure) != structure_count:
         raise FormatError("structure count mismatch")
     if any(len(value) != _width(frame.scalar) for value in frame.values):
         raise FormatError("scalar byte width mismatch")
-    if any(type(value) is not int or not 0 <= value <= _MAX_INDEX
+    if any(not _integer(value) or not 0 <= value <= _MAX_INDEX
            for value in frame.structure):
         raise FormatError("structure integer outside ASC range")
     if frame.kind == "coo":
-        rank = len(frame.shape)
-        previous = None
-        for position in range(count):
-            coordinate = frame.structure[position * rank:(position + 1) * rank]
-            if any(index >= extent
-                   for index, extent in zip(coordinate, frame.shape)):
-                raise FormatError("coordinate outside shape")
-            if previous is not None and coordinate <= previous:
-                raise FormatError("noncanonical or duplicate COO coordinate")
-            previous = coordinate
+        _validate_coo(frame)
     elif frame.kind in ("csr", "csc"):
-        outer_dimension = 0 if frame.kind == "csr" else 1
-        outer = frame.shape[outer_dimension]
-        inner = frame.shape[1 - outer_dimension]
-        offsets = frame.structure[:outer + 1]
-        indices = frame.structure[outer + 1:]
-        if offsets[0] != 0 or offsets[-1] != count:
-            raise FormatError("offset endpoints invalid")
-        for begin, end in zip(offsets, offsets[1:]):
-            if not 0 <= begin <= end <= count:
-                raise FormatError("offset monotonicity invalid")
-            segment = indices[begin:end]
-            if any(index >= inner for index in segment):
-                raise FormatError("inner index outside shape")
-            if any(left >= right for left, right in zip(segment, segment[1:])):
-                raise FormatError("noncanonical compressed segment")
+        _validate_compressed(frame)
 
 
 def _round_ratio(numerator: int, denominator: int) -> int:
     quotient, remainder = divmod(numerator, denominator)
-    return quotient + int(2 * remainder > denominator or (
-        2 * remainder == denominator and quotient % 2 == 1))
+    return quotient + int(2 * remainder > denominator or
+                          (2 * remainder == denominator and quotient % 2 == 1))
 
 
 def _real_bytes(token: str, bits: int) -> bytes:
-    precision, exponent_bits, bias = (24, 8, 127) if bits == 32 else (53, 11, 1023)
+    precision, exponent_bits, bias = (24, 8, 127) if bits == 32 else (53, 11,
+                                                                      1023)
     sign = int(token.startswith("-")) << (bits - 1)
     all_exponents = ((1 << exponent_bits) - 1) << (precision - 1)
     if token in ("inf", "-inf", "nan"):
         payload = (1 << (precision - 2)) if token == "nan" else 0
         return (sign | all_exponents | payload).to_bytes(bits // 8, "little")
+    return (sign | _finite_bits(token, precision, bias)).to_bytes(
+        bits // 8, "little")
+
+
+def _finite_bits(token: str, precision: int, bias: int) -> int:
     if not _REAL.fullmatch(token):
         raise FormatError("invalid real token")
     try:
@@ -208,15 +255,11 @@ def _real_bytes(token: str, bits: int) -> bytes:
     except decimal.InvalidOperation as error:
         raise FormatError("invalid decimal") from error
     if value.is_zero():
-        return sign.to_bytes(bits // 8, "little")
+        return 0
     if not -400 <= value.adjusted() <= 400:
         raise FormatError("real token overflows or underflows")
     numerator, denominator = value.copy_abs().as_integer_ratio()
-    exponent = numerator.bit_length() - denominator.bit_length()
-    if exponent >= 0:
-        exponent -= int(numerator < denominator << exponent)
-    else:
-        exponent -= int(numerator << -exponent < denominator)
+    exponent = _ratio_exponent(numerator, denominator)
     minimum = 1 - bias
     scale = precision - 1 - max(exponent, minimum)
     if scale >= 0:
@@ -235,7 +278,14 @@ def _real_bytes(token: str, bits: int) -> bytes:
     else:
         encoded = ((max(exponent, minimum) + bias) << (precision - 1))
         encoded |= significand - (1 << (precision - 1))
-    return (sign | encoded).to_bytes(bits // 8, "little")
+    return encoded
+
+
+def _ratio_exponent(numerator: int, denominator: int) -> int:
+    exponent = numerator.bit_length() - denominator.bit_length()
+    if exponent >= 0:
+        return exponent - int(numerator < denominator << exponent)
+    return exponent - int(numerator << -exponent < denominator)
 
 
 def scalar_bytes(token: str, scalar: str, limits: Limits = Limits()) -> bytes:
@@ -256,9 +306,8 @@ def scalar_bytes(token: str, scalar: str, limits: Limits = Limits()) -> bytes:
     if len(token) > limits.max_token_bytes:
         raise FormatError("overlong scalar token")
     if scalar[0] in "iu":
-        if not _INTEGER.fullmatch(token) or (
-            scalar[0] == "u" and token.startswith("-")
-        ):
+        if not _INTEGER.fullmatch(token) or (scalar[0] == "u" and
+                                             token.startswith("-")):
             raise FormatError("invalid integer token")
         try:
             return int(token).to_bytes(width, "little", signed=scalar[0] == "i")
@@ -286,8 +335,102 @@ def _scalar_text(value: bytes, scalar: str) -> str:
     return format(number, ".9g" if scalar == "f32" else ".17g")
 
 
+class _TextCursor:
+    """A bounded whole-fixture cursor, not a production streaming parser."""
+
+    def __init__(self, data: bytes, limits: Limits):
+        self.data = data
+        self.limits = limits
+        self.position = 0
+
+    def line(self) -> str:
+        """Returns exactly one ASCII record with its required EOL removed."""
+        end = self.data.find(b"\n", self.position, self.limits.max_input_bytes)
+        if end < 0:
+            raise FormatError("missing line ending or input byte limit")
+        raw = self.data[self.position:end]
+        self.position = end + 1
+        if raw.endswith(b"\r"):
+            raw = raw[:-1]
+        if any(byte < 32 or byte > 126 for byte in raw):
+            raise FormatError("non-ASCII or control byte within frame")
+        return raw.decode("ascii")
+
+    def field(self, name: str) -> str:
+        """Returns the payload of an exact named SP-separated header record."""
+        raw = self.line()
+        if not raw.startswith(name + " "):
+            raise FormatError(f"expected {name} field")
+        return raw[len(name) + 1:]
+
+
+def _text_metadata(
+        cursor: _TextCursor) -> tuple[str, str, tuple[int, ...], int]:
+    limits = cursor.limits
+    if cursor.line() != "ASCARRAY 1":
+        raise FormatError("bad text magic or version")
+    kind = cursor.field("kind")
+    scalar = cursor.field("scalar")
+    rank = _number(cursor.field("rank"), min(limits.max_rank, (1 << 32) - 1),
+                   limits)
+    raw_shape = cursor.line()
+    if raw_shape != "shape" and not raw_shape.startswith("shape "):
+        raise FormatError("expected shape field")
+    tokens = [] if raw_shape == "shape" else raw_shape[6:].split(" ")
+    if len(tokens) != rank:
+        raise FormatError("rank/shape mismatch")
+    shape = tuple(_number(token, limits.max_extent, limits) for token in tokens)
+    if cursor.field("order") != ("dim0" if kind == "dense" else kind):
+        raise FormatError("kind/order mismatch")
+    count = _number(cursor.field("count"), _MAX_INDEX, limits)
+    if cursor.position > limits.max_header_bytes:
+        raise FormatError("header byte limit")
+    _metadata(kind, scalar, shape, count, limits)
+    return kind, scalar, shape, count
+
+
+def _text_structure(
+    cursor: _TextCursor,
+    kind: str,
+    shape: tuple[int, ...],
+    count: int,
+) -> tuple[int, ...]:
+    limits = cursor.limits
+    structure = []
+    if kind == "dense":
+        if cursor.line() != "data":
+            raise FormatError("expected data section")
+    elif kind == "coo":
+        if cursor.line() != "coordinates":
+            raise FormatError("expected coordinates section")
+        for _ in range(count):
+            raw = cursor.line()
+            if not raw.startswith("(") or not raw.endswith(")"):
+                raise FormatError("invalid coordinate delimiters")
+            parts = [] if raw == "()" else raw[1:-1].split(",")
+            if len(parts) != len(shape):
+                raise FormatError("coordinate rank mismatch")
+            structure.extend(
+                _number(part, _MAX_INDEX, limits) for part in parts)
+    else:
+        if cursor.line() != "offsets":
+            raise FormatError("expected offsets section")
+        outer = shape[0 if kind == "csr" else 1]
+        structure.extend(
+            _number(cursor.line(), _MAX_INDEX, limits)
+            for _ in range(outer + 1))
+        if cursor.line() != "indices":
+            raise FormatError("expected indices section")
+        structure.extend(
+            _number(cursor.line(), _MAX_INDEX, limits) for _ in range(count))
+    if kind != "dense" and cursor.line() != "values":
+        raise FormatError("expected values section")
+    return tuple(structure)
+
+
 def decode_text_frame(
-    data: bytes, limits: Limits = Limits(),
+        data: bytes,
+        limits: Limits = Limits(),
 ) -> tuple[Frame, int]:
     """Decodes one bounded text frame and returns its exact consumed-byte count.
 
@@ -299,82 +442,20 @@ def decode_text_frame(
       FormatError: The first frame is malformed, truncated or exceeds limits.
     """
     _limits(limits)
-    position = 0
-
-    def line() -> str:
-        nonlocal position
-        end = data.find(b"\n", position, limits.max_input_bytes)
-        if end < 0:
-            raise FormatError("missing line ending or input byte limit")
-        raw = data[position:end]
-        position = end + 1
-        if raw.endswith(b"\r"):
-            raw = raw[:-1]
-        if any(byte < 32 or byte > 126 for byte in raw):
-            raise FormatError("non-ASCII or control byte within frame")
-        return raw.decode("ascii")
-
-    def field(name: str) -> str:
-        raw = line()
-        if not raw.startswith(name + " "):
-            raise FormatError(f"expected {name} field")
-        return raw[len(name) + 1:]
-
-    if line() != "ASCARRAY 1":
-        raise FormatError("bad text magic or version")
-    kind = field("kind")
-    scalar = field("scalar")
-    rank = _number(field("rank"), min(limits.max_rank, (1 << 32) - 1), limits)
-    raw_shape = line()
-    if raw_shape != "shape" and not raw_shape.startswith("shape "):
-        raise FormatError("expected shape field")
-    tokens = [] if raw_shape == "shape" else raw_shape[6:].split(" ")
-    if len(tokens) != rank:
-        raise FormatError("rank/shape mismatch")
-    shape = tuple(_number(token, limits.max_extent, limits) for token in tokens)
-    if field("order") != ("dim0" if kind == "dense" else kind):
-        raise FormatError("kind/order mismatch")
-    count = _number(field("count"), _MAX_INDEX, limits)
-    if position > limits.max_header_bytes:
-        raise FormatError("header byte limit")
-    _metadata(kind, scalar, shape, count, limits)
-    structure = []
-    if kind == "dense":
-        if line() != "data":
-            raise FormatError("expected data section")
-    elif kind == "coo":
-        if line() != "coordinates":
-            raise FormatError("expected coordinates section")
-        for _ in range(count):
-            raw = line()
-            if not raw.startswith("(") or not raw.endswith(")"):
-                raise FormatError("invalid coordinate delimiters")
-            parts = [] if raw == "()" else raw[1:-1].split(",")
-            if len(parts) != rank:
-                raise FormatError("coordinate rank mismatch")
-            structure.extend(_number(part, _MAX_INDEX, limits) for part in parts)
-    else:
-        if line() != "offsets":
-            raise FormatError("expected offsets section")
-        outer = shape[0 if kind == "csr" else 1]
-        structure.extend(_number(line(), _MAX_INDEX, limits)
-                         for _ in range(outer + 1))
-        if line() != "indices":
-            raise FormatError("expected indices section")
-        structure.extend(_number(line(), _MAX_INDEX, limits)
-                         for _ in range(count))
-    if kind != "dense" and line() != "values":
-        raise FormatError("expected values section")
-    values = tuple(scalar_bytes(line(), scalar, limits) for _ in range(count))
-    if line() != "end":
+    cursor = _TextCursor(data, limits)
+    kind, scalar, shape, count = _text_metadata(cursor)
+    structure = _text_structure(cursor, kind, shape, count)
+    values = tuple(
+        scalar_bytes(cursor.line(), scalar, limits) for _ in range(count))
+    if cursor.line() != "end":
         raise FormatError("expected end record")
-    frame = Frame(kind, scalar, shape, tuple(structure), values)
+    frame = Frame(kind, scalar, shape, structure, values)
     validate_frame(frame, limits)
-    return frame, position
+    return frame, cursor.position
 
 
 def decode_text(data: bytes, limits: Limits = Limits()) -> Frame:
-    """Decodes a single-object text file, rejecting non-whitespace trailing data.
+    """Decodes one text file, rejecting non-whitespace trailing data.
 
     Raises:
       FormatError: Frame, input byte budget or trailing-file policy fails.
@@ -397,10 +478,12 @@ def encode_text(frame: Frame, limits: Limits = Limits()) -> bytes:
     validate_frame(frame, limits)
     count = len(frame.values)
     shape = "".join(f" {extent}" for extent in frame.shape)
-    lines = ["ASCARRAY 1", f"kind {frame.kind}", f"scalar {frame.scalar}",
-             f"rank {len(frame.shape)}", f"shape{shape}",
-             f"order {'dim0' if frame.kind == 'dense' else frame.kind}",
-             f"count {count}"]
+    lines = [
+        "ASCARRAY 1", f"kind {frame.kind}", f"scalar {frame.scalar}",
+        f"rank {len(frame.shape)}", f"shape{shape}",
+        f"order {'dim0' if frame.kind == 'dense' else frame.kind}",
+        f"count {count}"
+    ]
     if len(("\n".join(lines) + "\n").encode("ascii")) > limits.max_header_bytes:
         raise FormatError("header byte limit")
     if frame.kind == "dense":
@@ -431,8 +514,48 @@ def encode_text(frame: Frame, limits: Limits = Limits()) -> bytes:
     return result
 
 
+@dataclasses.dataclass(frozen=True)
+class _BinaryMetadata:
+    """Validated fixed envelope plus bounded rank/shape for fixture decoding."""
+
+    kind: str
+    scalar: str
+    shape: tuple[int, ...]
+    count: int
+    structure_count: int
+    payload_bytes: int
+    header_bytes: int
+
+
+def _binary_metadata(data: bytes, limits: Limits) -> _BinaryMetadata:
+    if len(data) < 56 or data[:8] != _MAGIC:
+        raise FormatError("truncated header or bad binary magic")
+    fields = struct.unpack_from("<HHBBHIIQQQQ", data, 8)
+    kind_code, scalar_code, rank = fields[2], fields[3], fields[5]
+    count, structure_count, payload_bytes, header_bytes = fields[7:]
+    if fields[:2] != (1, 0) or fields[4] or fields[6]:
+        raise FormatError("unsupported version, flags or reserved field")
+    if kind_code not in range(1, 5) or scalar_code not in range(1, 13):
+        raise FormatError("unsupported binary header field")
+    if rank > limits.max_rank or header_bytes != 56 + 8 * rank:
+        raise FormatError("rank/header length mismatch")
+    if header_bytes > limits.max_header_bytes or len(data) < header_bytes:
+        raise FormatError("header budget or truncated extents")
+    shape = tuple(
+        struct.unpack_from("<Q", data, 56 + 8 * i)[0] for i in range(rank))
+    kind, scalar = _KINDS[kind_code - 1], _SCALARS[scalar_code - 1]
+    expected = _metadata(kind, scalar, shape, count, limits)
+    if structure_count != expected:
+        raise FormatError("binary structure count mismatch")
+    if payload_bytes != 8 * structure_count + _width(scalar) * count:
+        raise FormatError("binary payload length mismatch")
+    return _BinaryMetadata(kind, scalar, shape, count, structure_count,
+                           payload_bytes, header_bytes)
+
+
 def decode_binary_frame(
-    data: bytes, limits: Limits = Limits(),
+        data: bytes,
+        limits: Limits = Limits(),
 ) -> tuple[Frame, int]:
     """Decodes one binary frame, validating length, structure and CRC-32.
 
@@ -443,39 +566,20 @@ def decode_binary_frame(
       FormatError: Header, size, structure, checksum or input limits fail.
     """
     _limits(limits)
-    if len(data) < 56 or data[:8] != _MAGIC:
-        raise FormatError("truncated header or bad binary magic")
-    fields = struct.unpack_from("<HHBBHIIQQQQ", data, 8)
-    major, minor, kind_code, scalar_code, flags, rank, reserved = fields[:7]
-    count, structure_count, payload_bytes, header_bytes = fields[7:]
-    if (major != 1 or minor != 0 or flags or reserved
-            or kind_code not in range(1, 5)
-            or scalar_code not in range(1, 13)):
-        raise FormatError("unsupported binary header field")
-    if rank > limits.max_rank or header_bytes != 56 + 8 * rank:
-        raise FormatError("rank/header length mismatch")
-    if header_bytes > limits.max_header_bytes or len(data) < header_bytes:
-        raise FormatError("header budget or truncated extents")
-    shape = tuple(struct.unpack_from("<Q", data, 56 + 8 * i)[0]
-                  for i in range(rank))
-    kind, scalar = _KINDS[kind_code - 1], _SCALARS[scalar_code - 1]
-    expected = _metadata(kind, scalar, shape, count, limits)
-    if structure_count != expected:
-        raise FormatError("binary structure count mismatch")
-    if payload_bytes != 8 * structure_count + _width(scalar) * count:
-        raise FormatError("binary payload length mismatch")
-    end = header_bytes + payload_bytes
+    header = _binary_metadata(data, limits)
+    end = header.header_bytes + header.payload_bytes
     if end + 4 > limits.max_input_bytes or len(data) < end + 4:
         raise FormatError("frame byte limit or truncated payload/checksum")
     if zlib.crc32(data[:end]) != struct.unpack_from("<I", data, end)[0]:
         raise FormatError("checksum mismatch")
-    structure = tuple(struct.unpack_from("<Q", data, header_bytes + 8 * i)[0]
-                      for i in range(structure_count))
-    start = header_bytes + 8 * structure_count
-    width = _width(scalar)
+    structure = tuple(
+        struct.unpack_from("<Q", data, header.header_bytes + 8 * i)[0]
+        for i in range(header.structure_count))
+    start = header.header_bytes + 8 * header.structure_count
+    width = _width(header.scalar)
     values = tuple(data[start + width * i:start + width * (i + 1)]
-                   for i in range(count))
-    frame = Frame(kind, scalar, shape, structure, values)
+                   for i in range(header.count))
+    frame = Frame(header.kind, header.scalar, header.shape, structure, values)
     validate_frame(frame, limits)
     return frame, end + 4
 
@@ -500,18 +604,28 @@ def encode_binary(frame: Frame, limits: Limits = Limits()) -> bytes:
     """
     validate_frame(frame, limits)
     header_bytes = 56 + 8 * len(frame.shape)
-    payload_bytes = (8 * len(frame.structure)
-                     + _width(frame.scalar) * len(frame.values))
+    payload_bytes = (8 * len(frame.structure) +
+                     _width(frame.scalar) * len(frame.values))
     if header_bytes > limits.max_header_bytes:
         raise FormatError("header byte limit")
     if header_bytes + payload_bytes + 4 > limits.max_input_bytes:
         raise FormatError("output byte limit")
     result = bytearray(_MAGIC)
-    result.extend(struct.pack(
-        "<HHBBHIIQQQQ", 1, 0, _KINDS.index(frame.kind) + 1,
-        _SCALARS.index(frame.scalar) + 1, 0, len(frame.shape), 0,
-        len(frame.values), len(frame.structure), payload_bytes, header_bytes,
-    ))
+    result.extend(
+        struct.pack(
+            "<HHBBHIIQQQQ",
+            1,
+            0,
+            _KINDS.index(frame.kind) + 1,
+            _SCALARS.index(frame.scalar) + 1,
+            0,
+            len(frame.shape),
+            0,
+            len(frame.values),
+            len(frame.structure),
+            payload_bytes,
+            header_bytes,
+        ))
     for extent in frame.shape:
         result.extend(struct.pack("<Q", extent))
     for integer in frame.structure:
@@ -523,7 +637,7 @@ def encode_binary(frame: Frame, limits: Limits = Limits()) -> bytes:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Validates a fixture selected by an explicit format, without autodetection.
+    """Validates a fixture with an explicit format, without autodetection.
 
     Returns:
       Zero for a valid fixture or one for a file/format failure. Argument
@@ -540,7 +654,8 @@ def main(argv: list[str] | None = None) -> int:
             raise FormatError("fixture exceeds input byte limit")
         if args.format == "binary-hex":
             data = bytes.fromhex(data.decode("ascii"))
-        frame = decode_text(data) if args.format == "text" else decode_binary(data)
+        frame = decode_text(data) if args.format == "text" else decode_binary(
+            data)
     except (OSError, ValueError, UnicodeError) as error:
         print(f"invalid fixture: {error}", file=sys.stderr)
         return 1

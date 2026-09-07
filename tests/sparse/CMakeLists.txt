@@ -35,6 +35,9 @@ foreach(_source IN ITEMS
     blas_test.cc
     standard_blas_test.cc
     print_test.cc
+    io_test.cc
+    io_fuzz_test.cc
+    io_shapes_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_sparse_${_name}")
@@ -46,6 +49,16 @@ foreach(_source IN ITEMS
     LABELS "sparse;runtime"
   )
 endforeach()
+
+target_include_directories(
+  asc_sparse_io_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_sparse_io_fuzz_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_sparse_io_shapes_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
 
 set_property(
   TEST asc_cpp.sparse.standard_blas_test

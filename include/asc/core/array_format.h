@@ -7,6 +7,10 @@
  *
  * Core defines tokens and budgets only. Dense and Sparse separately own
  * shape, traversal, schema and storage interpretation. No provider is needed.
+ * New array printers retain a failing ByteSink's ErrorCode and native_code,
+ * but discard its owning message/provider strings to avoid diagnostic-copy
+ * allocation. Reported accepted-byte progress remains available. Caller sink
+ * implementation behavior is outside the printer's allocation guarantee.
  * @ingroup asc_core
  */
 

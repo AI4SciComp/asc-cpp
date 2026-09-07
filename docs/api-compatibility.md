@@ -51,16 +51,17 @@ is installed by that file set.
 
 | Component | Public header set |
 | --- | --- |
-| `core` | `asc/core.h`; `asc/core/{array_format,configuration,contracts,execution,export,extents,io,memory,result,status,types}.h` |
+| `core` | `asc/core.h`; `asc/core/{array_format,array_io,configuration,contracts,execution,export,extents,io,memory,result,status,types}.h` |
 | `utilities` | `asc/utilities.h`; `asc/utilities/{command_line,export,timer}.h` |
 | `expression` | `asc/expression.h`; `asc/expression/{expression,writable}.h` |
-| `dense` | `asc/dense.h`; `asc/dense/{array,blas,evaluate,export,layout,print,view}.h`; `asc/dense/lapack/{factor_view,report,structured_view,types,workspace}.h` |
-| `sparse` | `asc/sparse.h`; `asc/sparse/{blas,compressed,coordinate,evaluate,export,print}.h` |
-| `random` | `asc/random.h`; `asc/random/{distribution,engine,export,generator,seed}.h` |
+| `dense` | `asc/dense.h`; `asc/dense/{array,blas,evaluate,export,io,layout,print,view}.h`; `asc/dense/lapack/{factor_view,lu,report,structured_view,types,workspace}.h` |
+| `sparse` | `asc/sparse.h`; `asc/sparse/{blas,compressed,coordinate,evaluate,export,io,print}.h` |
+| `random` | `asc/random.h`; `asc/random/{distribution,engine,export,generator,quasi,seed}.h` |
 | `random_dense` | `asc/random/dense.h` |
 | `random_sparse` | `asc/random/sparse.h` |
 | `core_cuda` | `asc/core/providers/{cuda,cuda_export}.h` |
 | `dense_cuda` | `asc/dense/providers/{cuda,cuda_export}.h` |
+| `dense_lapack` | `asc/dense/providers/{lapack,lapack_export}.h` |
 | `sparse_cuda` | `asc/sparse/providers/{cuda,cuda_export}.h` |
 | `random_cuda` | `asc/random/providers/{cuda,cuda_export}.h` |
 | `random_dense_cuda` | `asc/random/providers/{dense_cuda,dense_cuda_export}.h` |
@@ -79,8 +80,8 @@ Names in an `internal_` namespace are implementation details even when a
 public template header must declare them or a shared library must export a
 support symbol. They are not downstream extension points.
 
-The original release baseline contained 52 headers (39 provider-free). This
-development surface has 60 headers, including 47 provider-free headers in a
+The original release baseline contained 52 headers (40 provider-free). This
+development surface has 66 headers, including 52 provider-free headers in a
 CUDA-disabled install. Provider headers are not installed as unusable stubs.
 LAPACK foundations alone do not imply an available external provider or a
 completed numerical routine.

@@ -114,3 +114,11 @@ rolled back generically. A borrowed file/stdout-handle adapter, if introduced,
 is Core-owned and never closes the borrowed handle. Optional formatting into
 an owned string is not required and cannot hide unchecked allocation in a
 no-exceptions build. `operator<<` is not part of the required API.
+
+At the new array-printer stream boundary, a failing caller `ByteSink` retains
+its `ErrorCode` and `native_code`, but its owning message/provider strings are
+discarded. Copying arbitrary callback diagnostics would introduce hidden
+allocations; the report retains the bounded accepted-byte progress instead.
+The caller's callback may itself allocate; the printer does not promise to
+control that implementation. This policy does not modify existing Core
+`Status`, `Result`, `WriteAll` or `File` semantics.

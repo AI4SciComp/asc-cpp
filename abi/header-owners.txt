@@ -1,5 +1,6 @@
 asc/core.h|asc_core
 asc/core/array_format.h|asc_core
+asc/core/array_io.h|asc_core
 asc/core/configuration.h|asc_core
 asc/core/contracts.h|asc_core
 asc/core/execution.h|asc_core
@@ -17,9 +18,12 @@ asc/dense/array.h|asc_dense
 asc/dense/blas.h|asc_dense
 asc/dense/evaluate.h|asc_dense
 asc/dense/export.h|asc_dense
+asc/dense/io.h|asc_dense
 asc/dense/layout.h|asc_dense
 asc/dense/providers/cuda.h|asc_dense_cuda
 asc/dense/providers/cuda_export.h|asc_dense_cuda
+asc/dense/providers/lapack.h|asc_dense_lapack
+asc/dense/providers/lapack_export.h|asc_dense_lapack
 asc/dense/view.h|asc_dense
 asc/dense/print.h|asc_dense
 asc/dense/lapack/types.h|asc_dense
@@ -27,6 +31,7 @@ asc/dense/lapack/workspace.h|asc_dense
 asc/dense/lapack/report.h|asc_dense
 asc/dense/lapack/factor_view.h|asc_dense
 asc/dense/lapack/structured_view.h|asc_dense
+asc/dense/lapack/lu.h|asc_dense
 asc/expression.h|asc_expression
 asc/expression/expression.h|asc_expression
 asc/expression/writable.h|asc_expression
@@ -52,6 +57,7 @@ asc/sparse/compressed.h|asc_sparse
 asc/sparse/coordinate.h|asc_sparse
 asc/sparse/evaluate.h|asc_sparse
 asc/sparse/export.h|asc_sparse
+asc/sparse/io.h|asc_sparse
 asc/sparse/providers/cuda.h|asc_sparse_cuda
 asc/sparse/providers/cuda_export.h|asc_sparse_cuda
 asc/utilities.h|asc_utilities

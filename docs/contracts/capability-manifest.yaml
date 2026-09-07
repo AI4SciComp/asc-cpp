@@ -12,6 +12,26 @@ evidence_labels:
   - "blocked"
 
 capabilities:
+  - capability: "incremental Reference-LAPACK column-major LU provider"
+    owner: "dense"
+    facet: "dense_lapack"
+    development_stage: 4
+    status: "runtime-tested"
+    evidence_scope: "unreleased; pinned GNU LP64 and true ILP64; explicit static subset, relocated C++-only consumers, exact source-snapshot evidence in program ledger"
+    public_headers:
+      - "include/asc/dense/providers/lapack.h"
+      - "include/asc/dense/providers/lapack_export.h"
+    direct_dependencies:
+      - "dense"
+    tests:
+      - "actual S/D/C/Z GETRF reconstruction and GETRS N/T/C residuals"
+      - "raw INFO, ABI, explicit integer workspace and preflight failures"
+    guarantees:
+      - "explicit provider selection; provider-free aggregate remains independent"
+    non_guarantees:
+      - "full Reference-LAPACK profile"
+      - "row-major packing, shared providers or unaudited toolchains"
+
   - capability: "checked logical metadata and mixed extents"
     owner: "core"
     development_stage: 1

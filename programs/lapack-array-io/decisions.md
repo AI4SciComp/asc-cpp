@@ -59,3 +59,75 @@ external evidence indexes. The externally prepared LP64 reference library's
 wrapper. All 2113 required numerical rows remain unimplemented in ASC until
 their checked bindings and actual ASC execution evidence exist. Optional XBLAS
 and true ILP64 remain required gates, regardless of the first LP64 success.
+
+## D007: successful requests are distinct from live allocations
+
+`max_allocations` counts every successful MemoryResource request, including
+zero-byte requests made by the existing owner factories. Actual null empty
+storage does not imply a live allocation or a required Deallocate call.
+Sparse test-resource bookkeeping must distinguish these quantities rather
+than changing Core/owner behavior to satisfy an empty-case assertion. Resource
+failure, total-request, temporary/final-storage and leak checks remain required.
+
+## D008: strict input budgets and unseekable EOF
+
+Whole-file validation needs one spare byte of input budget for its EOF probe:
+ByteSource provides no nonconsuming peek, so reading at an exhausted cap could
+consume a forbidden trailing byte. A framed read may finish at its exact cap.
+The text/binary contracts state this explicitly and boundary tests cover it;
+the wire grammar and checksums do not change. File conveniences require
+explicit truncation intent and checked close, not a durability promise.
+
+## D009: bound newly introduced stream diagnostics
+
+The new array display and persistence boundaries retain a source/sink error's
+stable ErrorCode and native integer code, but do not copy its unbounded owning
+message/provider strings. Bounded phase and byte/value progress remain in the
+array reports. This policy is needed to prevent hidden heap allocations when
+a custom source/sink moves a prebuilt long failure into a borrowed-stream call.
+It is not a change to existing Core Status, Result, WriteAll or File behavior.
+Implementation and adversarial allocation tests are required before closure.
+
+Resource-factory diagnostics follow a distinct preserving route: unsupported
+internal Result access moves an already-failed Status through Buffer and Dense/
+Sparse owner factories. Public Status/Result accessors and error contents remain
+unchanged. Tests move prebuilt long message/provider strings into allocation
+failures, including zero-byte requests, and check both retained diagnostics and
+zero hidden allocations. The first integrated Dense test exposed a second copy
+in the initialized factory; its correction passed the three-test resource
+subset. Final frozen-tree regression remains required. This does not claim
+every existing Core validation diagnostic is allocation-free.
+
+## D010: preserve the full denominator through partial implementations
+
+Eight native LU contracts now have actual implementations and scoped passing
+snapshot evidence. They remain implemented-unverified in the strict ledger
+until contract-bound mode/evidence records close. The corresponding reference
+rows remain in-progress while row-major and final evidence integration are pending.
+No required upstream row is excluded to improve these counts. A development
+subset must reject a requested incomplete full profile, not advertise it.
+
+## D011: bound hostile size diagnostics without changing Core contracts
+
+The new array parser paths use internal nonnegative AddSize/MultiplySize/
+CastSize helpers that return code-only overflow. Calling public Core Checked*
+and then dropping its message is too late to prevent its error allocation.
+Dense owner reads also preflight the existing layout's actual forward/reverse
+stride representability, including empty shapes. Core Extents already handles
+zero extents in a full preliminary scan and is not changed. Sparse preserves
+valid large empty COO shapes rather than imposing a false prefix-product rule.
+Small real hostile headers, not invalid huge backing spans, exercise failures.
+
+## D012: bind installed metadata and distinguish evidence terminology
+
+A trusted generated ASC config now binds the exact provider metadata SHA256.
+This detects stale/mixed metadata; it does not authenticate a package against
+an attacker who changes both config and metadata. Negative required lookups
+must fail at lookup and have a positive required control. An unrelated later
+test failure is not proof that the lookup rejected the provider.
+
+Coverage summaries distinguish not-started, in-progress, blocked and
+implemented-unverified routes. Unverified does not mean no tests ran: scoped
+passing artifacts can exist without complete mode/evidence closure. Neither
+renaming counters nor recording those artifacts changes the 2113-row denominator
+or awards verified coverage.

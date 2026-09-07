@@ -14,10 +14,12 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "a797316baffc223bb58acbf3ec6d7539e168b0d9",
+  "last_implementation_commit": "066d355f75cb4c77652466af0110d2c1c662c834",
   "worktree_diff_identity": {
     "state": "in_progress",
-    "note": "External evidence index records per-command tracked diff and untracked inputs; this state file is excluded from its own hash."
+    "recorded_at": "2026-09-07T07:01:05Z",
+    "tracked_diff_sha256": "c4e47d0c7a2e9b38aa4e4188056fb3974a70ce9772fb693d281d0f3aa53a91c6",
+    "note": "Snapshot of tracked diff excluding this state file. Other owners are still editing; untracked files are not represented by this digest. Frozen per-command source/artifact identities are required for verification."
   },
   "packages": {
     "P00": {
@@ -84,7 +86,7 @@
       ]
     },
     "P10": {
-      "state": "not_started",
+      "state": "in_progress",
       "dependencies": [
         "P03"
       ]
@@ -110,73 +112,127 @@
       "owner": "p00_baseline"
     },
     "P00.inventory": {
-      "state": "verified_source_extraction_mapping_pending",
-      "owner": "p00_inventory"
+      "state": "in_progress",
+      "owner": "p00_inventory",
+      "scope": "verified_source_extraction_mapping_pending"
     },
     "P00.formats": {
-      "state": "frozen_independent_fixture_tests_passed",
-      "owner": "p00_array_contracts"
+      "state": "in_progress",
+      "owner": "p00_array_contracts",
+      "scope": "frozen_independent_fixture_tests_passed"
     },
     "P00.coverage_validator": {
-      "state": "implemented_unit_tests_passed_integration_pending",
-      "owner": "integration"
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "implemented_unit_tests_passed_integration_pending"
     },
     "P00.decisions": {
-      "state": "recorded",
-      "owner": "integration"
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "recorded"
     },
     "P01.complex_storage": {
-      "state": "verified_snapshot_integration_pending",
-      "owner": "p00_baseline"
+      "state": "in_progress",
+      "owner": "p00_baseline",
+      "scope": "verified_snapshot_integration_pending"
     },
     "P01.workspace_report_pivots": {
-      "state": "implemented_tested",
-      "owner": "p00_inventory"
+      "state": "in_progress",
+      "owner": "p00_inventory",
+      "scope": "implemented_tested"
     },
     "P01.structured_descriptors": {
-      "state": "bounded_slice_implemented_tested_remaining_representations_pending",
-      "owner": "p00_inventory"
+      "state": "in_progress",
+      "owner": "p00_inventory",
+      "scope": "bounded_slice_implemented_tested_remaining_representations_pending"
     },
     "P02.printing": {
-      "state": "implemented_snapshot_verified_remaining_platform_examples_pending",
-      "owner": "p00_array_contracts"
+      "state": "in_progress",
+      "owner": "p00_array_contracts",
+      "scope": "implemented_snapshot_verified_remaining_platform_examples_pending"
     },
     "P04.native_lu": {
-      "state": "in_progress",
-      "owner": "p00_baseline"
+      "state": "implemented_unverified",
+      "owner": "integration",
+      "scope": "Eight native contracts self-reviewed; scoped snapshot and installed tests passed, exact contract-bound mode/evidence closure pending",
+      "evidence_index": "p04-native-lu-04/index.json"
     },
     "P04.external_lp64_dependency": {
-      "state": "attested_upstream_tests_passed_ASC_ABI_pending",
-      "owner": "integration"
+      "state": "verified",
+      "owner": "integration",
+      "scope": "Exact external provider build and upstream tests only; not full ASC routine coverage"
     },
     "P04.external_ilp64_dependency": {
-      "state": "built_upstream_tests_passed_ASC_ABI_pending",
-      "owner": "integration"
+      "state": "verified",
+      "owner": "integration",
+      "scope": "Exact true global ILP64 external build and upstream tests only; not full ASC routine coverage"
     },
     "P03.dense_io": {
-      "state": "implemented_initial_tests_passed_not_frozen",
-      "owner": "p00_array_contracts"
+      "state": "in_progress",
+      "owner": "p00_array_contracts",
+      "scope": "All wire scalars, 8194 mutation cases, bounded stream/resource/hostile-size errors and installed example pass scoped tests; corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
     },
     "P04.reference_lu": {
-      "state": "implemented_unverified_unregistered",
-      "owner": "p00_inventory"
+      "state": "in_progress",
+      "owner": "p00_inventory",
+      "scope": "Eight column-major S/D/C/Z operations pass LP64/trueILP64 scoped numerical, allocation and installed tests; remaining layouts, LU family and final evidence integration required"
+    },
+    "P03.sparse_io": {
+      "state": "in_progress",
+      "owner": "p00_baseline",
+      "scope": "COO/CSR/CSC, all wire scalars, 24582 mutation cases, 208 shape/special cases; snapshot13 Debug/Release/ASan/shared each10/10 and relocated static/shared examples each1/1 pass. Corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
+    },
+    "P04.provider_component": {
+      "state": "in_progress",
+      "owner": "p00_inventory",
+      "scope": "Frozen optional Dense facet; corrected metadata digest binding and true required-provider rejection/control pass LP64 and true ILP64 each20 selected tests. Coherent provider-free d3675f3 regression passed; shared/full profiles remain rejected"
+    },
+    "P03.borrowed_stream_diagnostics": {
+      "state": "in_progress",
+      "owner": "p00_array_contracts",
+      "scope": "Bounded ErrorCode/native_code propagation without owning source/sink message/provider string copies; adversarial long-string tests pass scoped checks"
+    },
+    "P03.owner_resource_diagnostics": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Private failed-Result moves preserve public diagnostics and avoid hidden string copies in Buffer/Dense/Sparse factories; corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
+    },
+    "P04.lu_expert_family": {
+      "state": "in_progress",
+      "owner": "p00_array_contracts",
+      "scope": "16 actual S/D/C/Z GETRF2/GETF2/GETRI/GESV typed functions pass frozen LP64/ILP64 numerical/allocation, partial-instrumentation ASan/UBSan and Clang18 checks; not yet registered/installed/mapped. GEEQU/GEEQUB with explicit row-major packing in progress, condition/refinement/driver family and helpers remain required",
+      "review": "programs/lapack-array-io/lu-expert-review.md"
+    },
+    "P03.hostile_size_diagnostics": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Internal nonnegative size arithmetic and Dense owner-layout preflight preserve public Core arithmetic/Extents/Layout semantics. Five Dense malicious-header/layout cases plus direct helper limits tested with zero hidden allocations; corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
+    },
+    "P10.matrix_market": {
+      "state": "in_progress",
+      "owner": "p00_baseline,p00_inventory",
+      "scope": "Shared bounded lexical/scalar helper frozen with scoped tests; required Dense array and Sparse coordinate implementations in separate new files, not registered or credited yet. Cross-representation conversions are optional and not implemented"
     }
   },
-  "active_task": "P03 production codecs and P04 native/reference LU + provider packaging",
-  "next_action": "Integrate final tested native LU; complete optional Dense-owned provider facet, exact dependency/ABI guards and installed consumers; finish Dense/Sparse production codecs and then continue all P05-P11 routines/modes/gates.",
+  "active_task": "Commit corrected coherent P03/native LU/column-major provider slice after successful full regression; integrate next LU families and workspace correction, implement P10 in separate files.",
+  "next_action": "Commit/push indexed d3675f3 implementation plus documentation-only evidence updates, leaving new unregistered LU/Matrix Market/audit files and three next-slice workspace files unstaged. Then register tested expert/equilibration functions, update contracts/evidence, complete row-major GETRF/GETRS and P01 role-specific layout workspace bound; continue complete remaining P04 and all P05-P11.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
   },
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
+    "coverage_mapping_sha256": "f585547dc0e4a3b53f3102ce8d05969923af274dea3c91979d1bfe6e706c6c62"
   },
   "provider": {
     "version": "3.12.1",
     "expected_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "build_identity": null,
-    "integer_abis_verified": [],
+    "integer_abis_verified": [
+      32,
+      64
+    ],
     "dependency_builds": [
       {
         "integer_bits": 32,
@@ -187,7 +243,7 @@
           "failed": 0,
           "skipped": 0
         },
-        "asc_abi_verified": false
+        "asc_abi_verified": true
       },
       {
         "integer_bits": 64,
@@ -198,9 +254,10 @@
           "failed": 0,
           "skipped": 0
         },
-        "asc_abi_verified": false
+        "asc_abi_verified": true
       }
-    ]
+    ],
+    "abi_verification_scope": "Column-major GETRF/GETRS Linux x86_64 GCC/GFortran11.4.0, libstdc++20230528 only. Standalone and installed facets tested under LP64/trueILP64; final corrected combined snapshot, row-major and complete routine profile remain unverified."
   },
   "toolchain": {
     "observed": "Linux x86_64; GCC 11.4.0; CMake 4.1.2",
@@ -220,7 +277,15 @@
       "p00-54bf645/program-ctest/record.json",
       "p01-p02-832edcc/ctest-debug/record.json",
       "p01-p02-832edcc/ctest-release/record.json",
-      "p01-p02-bab2720/docs-check/record.json"
+      "p01-p02-bab2720/docs-check/record.json",
+      "p04-native-lu-04/index.json",
+      "provider-lu-lp64-01/source-identities.sha256",
+      "provider-lu-ilp64-01/abi-probe.log",
+      "p03-p04-97f806d/ctest-debug/record.json",
+      "p03-p04-97f806d/ctest-release/record.json",
+      "p03-p04-docs-80be6bb/doxygen-coverage/record.json",
+      "p04-metadata-binding-01/logs/test-lp64.log",
+      "p04-metadata-binding-01/logs/test-ilp64.log"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -229,18 +294,35 @@
       "External reference LP64 upstream CTest 111/111 passed, zero skips; no ASC routine evidence",
       "P00 committed archive program tools 4/4 CTests passed; embedded suites53+16+11 tests",
       "P01/P02 tree832edcc11bd1d29f5cce7a93d3989c1b308669de Debug/Release each244/244 passed, zero skips",
-      "Comment-only documentation correction treebab2720c9069e613428a827fe5d9c52234a7fd65 strict Doxygen60/60 headers,1199 documented members,zero warnings;73 Markdown links files checked"
+      "Comment-only documentation correction treebab2720c9069e613428a827fe5d9c52234a7fd65 strict Doxygen60/60 headers,1199 documented members,zero warnings;73 Markdown links files checked",
+      "Native LU scoped Debug/Release/shared/ASanUBSan each6/6 pass, installedstatic/shared each1/1;240 numerical case records perLUtest",
+      "Standalone LP64/ILP64 provider probes and perABI40 reconstructions+36 solves pass; bounded allocation audit in provider-abi-review.md",
+      "Prebuilt provider attestation verifier14tests passed at066d355; canonical tampering, binary/source drift, relocation and wrongABI tested",
+      "Historical coherent tree97f806d full provider-free Debug and Release each259/259 passed, zero skips; later hostile-size and metadata corrections require fresh combined evidence",
+      "Documentation tree80be6bb strict Doxygen66/66 headers and1300 public members, zero warnings;77 exported Markdown files. Only unsupported private friends hidden",
+      "Hostile-header test against frozen old Dense failed4 allocation assertions; bounded arithmetic/layout corrections pass3/3 enlarged Dense I/O/resource tests; mistaken zero-test regex run retained as failure",
+      "Corrected LP64/trueILP64 metadata-binding suites each20/20 passed, including genuine required-positive/negative controls. Original flawed required-negative oracle not credited",
+      "Coverage validator29 tests and strict80-column Pylint pass; output separates not_started/in_progress/blocked/implemented_unverified from actual verified state",
+      "Corrected coherent tree d3675f3ecf53ee91cb54747e6379afdc42ed3538 full provider-free Debug259/259 and Release259/259, Clang19 ASan/UBSan selected11/11, strict Doxygen66 headers/1300 members/zero warnings and77 Markdown files pass; zero skips",
+      "Sparse snapshot13 Debug/Release/ClangASanUBSan/shared each10/10 and relocated static/shared Sparse-only examples each1/1 pass; strict Clang18 and GCC11/Clang19 no-exception headers pass"
     ]
   },
   "counts": {
     "required_denominator": 2113,
-    "specification_mapped": 0,
+    "specification_mapped": 8,
     "callable_reference": 0,
     "verified_reference": 0,
-    "callable_native": 0,
+    "callable_native": 8,
     "verified_native": 0,
-    "unimplemented": 2113,
-    "implemented_untested": 0
+    "reference_not_started_in_ledger": 2105,
+    "reference_in_progress_in_ledger": 8,
+    "reference_blocked_in_ledger": 0,
+    "incomplete_reference_contracts": 2113,
+    "implemented_unverified_native": 8,
+    "implemented_unverified_reference": 0,
+    "registered_partial_reference_operations": 8,
+    "unregistered_expert_operations_with_scoped_tests": 16,
+    "note": "Ledger completeness is distinct from actual partial implementations and scoped tests. Implemented-unverified does not mean no tests ran. Eight column-major reference routes and16 unregistered expert functions do not close full row/mode/installed contracts; no denominator reduction."
   },
   "blockers": [],
   "external_approvals": [
@@ -252,10 +334,12 @@
     }
   ],
   "independent_work": [
-    "P00 baseline",
-    "P00 source inventory",
-    "P00 format contracts",
-    "P00 coverage tooling",
-    "Original ASC implementation within approved program"
-  ]
+    "Integrate separately tested P01 layout-conversion workspace count correction; all foreign-work roles retain ABI bounds",
+    "Complete remaining P04 LU-family bindings including all actual S/D/C/Z modes",
+    "Close P02/P03 machine-readable coverage and remaining platform evidence without attributing older tests to newer code",
+    "Native Cholesky/HouseholderQR and complete provider P05-P09 after prerequisites",
+    "Complete required Dense array and Sparse coordinate Matrix Market P10; no implicit cross-representation conversion",
+    "Full P11 platform/docs/provenance/profile evidence; no scope reduction"
+  ],
+  "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47"
 }

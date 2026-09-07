@@ -256,6 +256,50 @@ traversal is linear in destination NNZ apart from source reads. The current
 compressed coordinate reconstruction additionally scans outer offsets for
 each stored entry.
 
+## Native archives and values-only reads
+
+Include `<asc/sparse/io.h>` for explicit ASC text/binary archives of canonical
+COO, CSR and CSC owners or views. Writers retain the exact storage kind,
+immutable structure and all stored values, including explicit zeros. They
+do not sort, merge duplicates, densify, select a provider or link Dense.
+The wire scalar must match the requested owner/view scalar exactly.
+
+`SparseArrayReader::PrepareText`/`PrepareBinary` consume one bounded header
+and retain its cursor with caller metadata, scratch and report. Keep these
+borrowed objects live and unchanged until the one-use reader finishes. The
+new-owner `ReadSparseArray` overloads use an explicit resource for bounded
+staging and final storage, publishing only after canonical structure, complete
+values, trailer/checksum and requested EOF validation. Source wrappers take an
+explicit owner type, for example `ReadSparseArrayText<CsrArray<double>>`.
+
+`ReadSparseArrayTextInto`/`ReadSparseArrayBinaryInto` are values-only operations
+on existing finalized views. They compare every input offset/index with the
+target's immutable pattern, stage values in disjoint caller storage, and commit
+only after the complete frame is valid. A different valid pattern is still a
+mismatch; every target value and structure byte stays unchanged on failure.
+Aliases with metadata/scratch are rejected before the source header is read.
+Failures consume source prefixes without promising rewind or resynchronization.
+
+The shared `ArrayIoLimits` bounds input/output, rank/shape, structure, values,
+staging, cumulative resource bytes and successful allocation requests. Existing
+COO factories issue two final requests and compressed factories issue three,
+including zero-byte requests; live null storage and request counts are
+different quantities. Only actual nonempty staging buffers allocate. Reported
+progress and transaction state survive failure. Borrowed source/sink errors
+retain ErrorCode and native code without copying unbounded diagnostic strings.
+
+Path `SaveSparseArrayText`/`SaveSparseArrayBinary` calls require explicit
+`ArrayFileOverwrite::kTruncate`; corresponding `Load` calls validate whole-file
+EOF and checked close. These File conveniences retain their own handle/path
+allocation behavior and do not promise atomic replacement or crash durability.
+The EOF probe needs spare input budget on a nonseekable source.
+
+The [Sparse-only installed example](../../examples/sparse_array_io/README.md)
+previews stored values, round-trips all three kinds in both native formats,
+and rejects a corrupt CRC without changing its existing destination. See the
+[text](../contracts/array-text-v1.md) and [binary](../contracts/array-binary-v1.md)
+wire contracts. Matrix Market remains a separate required interchange package.
+
 ## Standardized Sparse BLAS
 
 The allocation-free serial reference surface implements every applicable

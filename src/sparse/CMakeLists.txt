@@ -4,6 +4,7 @@ add_library(ASC::sparse ALIAS asc_sparse)
 target_sources(
   asc_sparse
   PRIVATE
+    array_io.cc
     reference_blas.cc
     standard_blas.cc
   PUBLIC
@@ -15,6 +16,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/coordinate.h"
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/evaluate.h"
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/export.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/sparse/io.h"
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/blas.h"
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/print.h"
 )

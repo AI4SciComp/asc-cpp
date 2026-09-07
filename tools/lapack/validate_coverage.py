@@ -84,7 +84,7 @@ def file_hash(path: pathlib.Path) -> str:
 
 
 def record_hash(record: dict[str, Any]) -> str:
-    """Identify a complete upstream record without duplicating it in mappings."""
+    """Identify an upstream record without duplicating it in mappings."""
     serialized = json.dumps(
         record,
         sort_keys=True,
@@ -279,7 +279,7 @@ def check_evidence(
 
 
 def check_contract(row: dict[str, Any], source_root: pathlib.Path) -> None:
-    """Require reviewable typed callable contracts before implementation claims."""
+    """Require typed callable contracts before implementation claims."""
     contract = row.get("contract", {})
     for field in (
         "asc_operation",
@@ -320,7 +320,7 @@ def check_contract(row: dict[str, Any], source_root: pathlib.Path) -> None:
 
 
 def _check_source_mapping(source: dict, row: dict) -> bool:
-    """Check immutable requirements; return whether the full profile needs it."""
+    """Check immutable requirements and whether the full profile needs them."""
     identifier = row["id"]
     required = PROFILE in source.get("required_profiles", [])
     require(
@@ -351,7 +351,7 @@ def _check_source_mapping(source: dict, row: dict) -> bool:
 
 
 def _verify_route(row: dict, route: str, context: dict) -> None:
-    """Require every reviewed mode/test class to have real matching execution."""
+    """Require matching real execution for every reviewed mode/test class."""
     identifier = row["id"]
     evidence_ids = row["implementations"][route].get("evidence_ids", [])
     require(bool(evidence_ids), f"{identifier}/{route}: false verified claim")
@@ -374,7 +374,8 @@ def _verify_route(row: dict, route: str, context: dict) -> None:
             ):
                 require(
                     case.get("execution_kind") == "real",
-                    f"{identifier}/{route}: injected evidence cannot close a mode",
+                    f"{identifier}/{route}: "
+                    "injected evidence cannot close a mode",
                 )
                 covered.add((case.get("mode_id"), case.get("test_class")))
     for mode in row["contract"]["mode_cases"]:
@@ -386,7 +387,7 @@ def _verify_route(row: dict, route: str, context: dict) -> None:
 
 
 def _check_route(row: dict, route: str, context: dict) -> str:
-    """Validate one independently selected native or reference implementation."""
+    """Validate an independently selected native or reference implementation."""
     identifier = row["id"]
     implementation = row.get("implementations", {}).get(route, {})
     state = implementation.get("state")
@@ -428,14 +429,18 @@ def _count_route(
         "verified",
     )
     totals["verified_" + counter] += state == "verified"
+    totals["implemented_unverified_" + counter] += (
+        state == "implemented_unverified"
+    )
     if counter == "reference" and required:
         totals["blocked_reference"] += state == "blocked"
-        totals["unimplemented_reference"] += state in (
+        totals["not_started_reference"] += state == "not_started"
+        totals["in_progress_reference"] += state == "in_progress"
+        totals["incomplete_reference"] += state in (
             "not_started",
             "in_progress",
             "blocked",
         )
-        totals["untested_reference"] += state == "implemented_unverified"
 
 
 @dataclasses.dataclass
@@ -457,7 +462,7 @@ def validate(
       inventory: Immutable source-derived requirements.
       mapping: One ASC contract and independent route states per source row.
       evidence: Executed records bound to one expected implementation identity.
-      options: Explicit artifact roots, closure requirement and previous mapping.
+      options: Artifact roots, closure requirement and previous mapping.
 
     Returns:
       Counts separating pending contracts, callable routes and verified routes.
@@ -511,8 +516,11 @@ def validate(
             "callable_native",
             "verified_native",
             "blocked_reference",
-            "unimplemented_reference",
-            "untested_reference",
+            "not_started_reference",
+            "in_progress_reference",
+            "incomplete_reference",
+            "implemented_unverified_reference",
+            "implemented_unverified_native",
         ),
         0,
     )
@@ -546,7 +554,7 @@ def validate(
 
 
 def main() -> int:
-    """Validate local input files and print a concise machine-readable summary."""
+    """Validate local inputs and print a machine-readable summary."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--inventory", type=pathlib.Path, required=True)
     parser.add_argument("--mapping", type=pathlib.Path, required=True)

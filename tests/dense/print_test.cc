@@ -9,7 +9,9 @@
 // Required declaration for placement new[] into the mmap-backed test span.
 #include <new>  // IWYU pragma: keep
 #include <span>
+#include <string>
 #include <string_view>
+#include <utility>
 
 #include "../allocation_observation.h"
 #include "allocation_probe.h"
@@ -42,6 +44,9 @@ class Sink final : public asc::ByteSink {
       return std::size_t{0};
     }
     if (size_ == fail_after) {
+      if (!error.ok()) {
+        return std::move(error);
+      }
       return asc::Status(asc::ErrorCode::kIo);
     }
     const std::size_t count = std::min(
@@ -55,6 +60,7 @@ class Sink final : public asc::ByteSink {
   std::size_t max_chunk = std::numeric_limits<std::size_t>::max();
   std::size_t fail_after = std::numeric_limits<std::size_t>::max();
   bool zero_progress = false;
+  asc::Status error;
 
  private:
   std::array<char, 32768> data_{};
@@ -403,6 +409,31 @@ void TestHugeLegalPreview(TestContext& test) {
 #endif
 }
 
+void TestMovedLongSinkError(TestContext& test) {
+  double value = 4;
+  auto view = View(&value, std::array<asc::extent_t, 0>{});
+  std::array<std::byte, 1024> scratch{};
+  asc::ArrayPrintReport report;
+  Sink sink;
+  sink.fail_after = 7;
+  sink.error = asc::Status(asc::ErrorCode::kIo, std::string(8192, 'x'),
+                           std::string(4096, 'p'), 1729);
+  asc::Status status;
+  std::size_t allocations = 0;
+  {
+    asc_dense_test::AllocationProbe probe;
+    status = asc::PrintArray(*view, sink, {}, scratch, report);
+    allocations = probe.count();
+  }
+  ASC_DENSE_TEST_CHECK(test,
+                       asc_test::ProcessAllocationCountMatches(allocations, 0));
+  ASC_DENSE_TEST_EQ(test, status.code(), asc::ErrorCode::kIo);
+  ASC_DENSE_TEST_EQ(test, status.native_code(), std::int64_t{1729});
+  ASC_DENSE_TEST_CHECK(test,
+                       status.message().empty() && status.provider().empty());
+  ASC_DENSE_TEST_EQ(test, report.output_bytes, std::size_t{7});
+}
+
 }  // namespace
 
 int main() {
@@ -414,5 +445,6 @@ int main() {
   TestPreviewsAndBudgets(test);
   TestFailuresPlacementAndAllocation(test);
   TestHugeLegalPreview(test);
+  TestMovedLongSinkError(test);
   return test.Finish();
 }

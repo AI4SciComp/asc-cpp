@@ -1,7 +1,8 @@
 # Verification summary
 
-No ASC LAPACK numerical routine or C++ array persistence capability is
-verified at this checkpoint. The separate verified foundation slices are:
+The complete program is not verified. The following exact checkpoints are
+kept distinct from newer uncommitted integration work and from full-profile
+routine/mode closure. No package-wide success is inferred from a scoped run.
 
 | Slice | Actual evidence | Scope limit |
 | --- | --- | --- |
@@ -10,13 +11,15 @@ verified at this checkpoint. The separate verified foundation slices are:
 | Source inventory | 17 extraction tests and exact offline regeneration pass | 3551 qualified identities; 2113 required; reviewed ASC semantic mappings still pending |
 | Coverage validator | 28 independent synthetic tests pass | Rejects missing rows and unsupported verification claims; not numerical evidence |
 | Independent ASC format codec | 16 Python fixture tests pass | Normative/fixture oracle only, not production C++ parser, bounded-memory or rollback proof |
-| External reference LP64 dependency | Release static, all four precisions, 111/111 upstream CTests passed with zero skips | No ASC wrapper evidence; XBLAS disabled; true ILP64 not tested |
+| External reference dependencies | LP64 and true global ILP64 Release static, all four precisions; each 111/111 upstream CTests passed with zero skips | These upstream tests do not verify ASC wrappers; XBLAS disabled |
 
 External indexes: `baseline-46412183/index.json` and
 `p01-scalar-02/index.json` beneath `../asc-cpp-evidence/lapack-array-io`.
-Upstream logs are under `logs/lapack-lp64-*`; final dependency attestation is
-pending. Native LU, checked foundations and bounded printers are under active
-implementation/integration, not completed package claims.
+Upstream logs are under `logs/lapack-{lp64,ilp64}-*`; their exact dependency
+attestations are recorded below. Checked foundations and bounded printers are
+committed. Native LU, production codecs and the provider facet have newer
+implementation and test evidence, with integration and remaining scope tracked
+separately below.
 
 ## Integrated foundation/display checkpoints
 
@@ -43,13 +46,162 @@ Both LP64 and true global ILP64 reference dependencies now pass 111/111
 upstream CTests. Their source is the same exact pinned commit. Build identities:
 LP64 `7334974ceff5d71da38f7df94ffb10803d136b15bd7fa32e6cc1d49e465b210c`;
 ILP64 `8460d29a665eb2aedc0c6d081026280b966d44015227bc47a69b362ca6f5da97`.
-XBLAS is disabled in both; ASC ABI, foreign allocations, runtime/link-map,
-provider component and routine/mode gates remain separate and pending.
+XBLAS is disabled in both. Standalone ASC LU ABI and bounded static-object
+allocation checks now exist; installed facet, broader runtime/link-map and
+complete routine/mode gates remain separate.
 
-All **2113** required numerical rows currently remain unimplemented in the
-coverage ledger, with zero reference/native callable or verified rows. No
-advanced/specialized family, optional dependency or legal mode is removed from
-the full-profile requirement.
+## Native and reference LU snapshots
+
+`p04-native-lu-04/index.json` (SHA256
+`f6aa8471106d6deca91e82a3e3ddbcffa9388ef410e26faa4846c39444cef3f2`)
+indexes the native S/D/C/Z GETRF/GETRS source snapshot and actual tests:
+Debug static, Release static/shared and Clang19 ASan/UBSan each passed their
+six-test scoped selection, with zero skips. Relocated installed Dense-only
+static/shared consumers each passed and called all eight native exports.
+The LU test emitted 240 successful numerical case records per run, alongside
+executed validation/singularity assertions. These are reconstruction/residual
+cases, not 240 upstream routines. The source header/implementation/test hashes
+remain unchanged at this integration checkpoint.
+
+`provider-lu-lp64-01` and `provider-lu-ilp64-01` contain actual standalone
+C/C++/Fortran probes, cold-process scalar tests, instrumented ASC provider
+tests and source identities. Each ABI passed 40 reconstruction and 36 solve
+residual cases, including 67-by-67 blocked GETRF, plus singular/failure tests.
+The [ABI review](provider-abi-review.md) identifies exact provider inputs and
+the bounded allocation/sanitizer scope. Test injections are not numerical
+convergence evidence. Row-major packing and installed facet integration are
+not established by these standalone results.
+
+The working mapping now self-reviews eight native operation contracts and
+marks them **implemented-unverified** pending exact contract-bound evidence
+closure. The eight reference rows remain **in-progress**, since their
+column-major slice does not complete the required layout contract. All
+**2113** required reference rows still require complete implementation and
+verification; no advanced/specialized family, dependency or mode is removed.
+
+## Production array I/O integration
+
+Dense text/binary production tests include all 12 wire scalars, integer aliases,
+independent fixtures, rank/layout/strided views, malformed input, every-byte
+truncation and corruption for tiny frames, injected stream failures, staged
+rollback, explicit path truncation and checked EOF limits. A deterministic
+bounded mutation driver executes 8192 mutations plus two valid seeds; it is
+not coverage-guided fuzzing. Standalone normal and ASC-I/O-instrumented
+ASan/UBSan runs pass; the upstream libraries are not part of this parser lane.
+
+Integrator diagnostic `logs/p03-integration-ctest-01.{log,xml}` passed native
+LU, Dense I/O and Dense mutation tests but failed the still-changing Sparse
+test's empty-storage live-allocation oracle. The resource test double was
+counting null zero-byte successes as live allocations despite Core releasing
+no storage for those requests. Successful request budgets and actual live
+storage are now tracked separately in that test; complete integrated reruns
+remain required. Failed logs are retained, not converted into passes.
+
+Strict Doxygen diagnostic `docs-p03-diagnostic-01` found two split `@ingroup`
+commands and five missing Sparse getter return tags. These were corrected;
+no documentation check is relaxed. Integrator header review also added the
+direct `<concepts>` include used by Core scalar parsing. Earlier passing
+source identities are not silently attributed to those later edits.
+
+The P00 independent Python codec retains all 16 original tests after a
+behavior-preserving style refactor; strict Pylint now passes. A generated
+Python bytecode cache was moved recoverably outside source to
+`source-python-cache-01` rather than committed.
+
+Adversarial long externally supplied Status messages exposed hidden allocations
+in copying error propagation. New borrowed array-stream boundaries retain only
+ErrorCode/native code and bounded report progress; owner allocation failures
+move their original owning diagnostics through private Result access, preserving
+all public accessor behavior and message contents. Prepared 8192-byte messages
+and 4096-byte provider names are tested without allocating their fixtures inside
+the probe. The first resource subset failed 15 assertions in the initialized
+Dense factory, revealing an additional copy; after its correction,
+`logs/p03-resource-ctest-02.{log,xml}` passed 3/3 tests, zero skips. The strict
+Clang 18 resource/example check also passed (`p03-resource-example-tidy-02.log`).
+Frozen full regressions remain required; this does not certify every unrelated
+existing Core validation diagnostic as allocation-free.
+
+The [provider integration review](provider-integration-review.md) records actual
+LP64/true-ILP64 registered, installed, source/build-hidden, minimum-CMake and
+instrumented ASC tests for the column-major eight-operation slice. These are
+separate frozen snapshots, not evidence for row-major or the remaining LU family.
+
+## Combined regression and subsequent adversarial corrections
+
+Staged tree `97f806d9e0d51684d022b9154b458e54d45c8892`, archive SHA256
+`1d2e51da68566a7bccd79df9e46f8485076d00ba294ddd46dbc7a9d77b5b8018`,
+passed the full provider-free Debug and Release suites: **259/259 each, zero
+skips**. Records are `p03-p04-97f806d/ctest-{debug,release}/record.json`.
+The increase from 244 is eight normal/no-exception checks for four new headers
+and seven actual native-LU/array-I/O/resource test executables. Existing BLAS,
+Random, component-consumer, metadata and hardening tests remain present.
+
+Strict Doxygen then exposed three unsupported private friend declarations in
+XML as apparent public compounds despite the configured friend-hiding option.
+Only those private declarations were placed in an internal documentation
+section; no public documentation check was relaxed. Tree
+`80be6bb886b503594e4faf461be7c54d26546a51`, archive SHA256
+`d582ec415def2a23b610ece1284540d2f3ea05c2d282bede7694b078235d0a27`,
+passes 66/66 headers, 1300 documented public members, zero warnings and 77
+exported Markdown files. These records are in `p03-p04-docs-80be6bb`.
+
+The combined suites did not expose all hostile-size diagnostic paths. A new
+64-byte Dense binary header whose payload fits u64 but whose full frame
+overflows, plus three empty-shape owner-layout cases, produced four allocation
+assertion failures against the frozen old implementation
+(`logs/p03-overflow-old-test-01.log`). New internal nonnegative size arithmetic
+and Dense owner-layout preflight reject these before public Core operations
+construct owning diagnostics. The public Core Checked*/Extents/Layout behavior
+is unchanged. Dense I/O, 8194 deterministic mutation cases and the enlarged
+resource/overflow test now pass the actual three-test diagnostic subset
+(`logs/p03-overflow-ctest-02.{log,xml}`); strict Clang18 checks pass. An earlier
+mistyped CTest selection found zero tests and failed; it is not credited.
+Sparse's independent overflow tests and huge-empty COO preservation checks are
+being rerun on their corrected frozen fixture. A bad test-limit setup in its
+previous snapshot is retained as a failure, not skipped.
+
+Package review also found an unbound installed metadata record and a flawed
+required-provider rejection oracle. The corrected exact metadata digest is
+bound in the trusted generated config, and a successful required-provider
+control prevents rejection tests from failing for the wrong reason. The new
+LP64 and true-ILP64 snapshots each pass 20 selected tests (ten provider tests,
+four metadata closures and six fixture actions), including 28 package cases.
+See the integration review for exact identities, raw paths and trust boundary.
+The earlier required-negative cases are not credited independently.
+
+## Corrected coherent implementation checkpoint
+
+Tree `d3675f3ecf53ee91cb54747e6379afdc42ed3538`, archive SHA256
+`ce75f381e24019458a9c04468b6cc07ae3afb458af6dea2e0212f5a40a2db08e`,
+includes the arithmetic, metadata and tooling corrections above. Its full
+provider-free Debug and Release suites each pass **259/259**, zero skips.
+Clang19 ASan/UBSan passes all **11 selected tests**, with ASC Core, Dense,
+Sparse and Random rebuilt with instrumentation; system libraries are not
+instrumented. Strict Doxygen passes **66 headers and 1300 public members**,
+zero warnings; Markdown validation covers 77 exported files. Raw command,
+JUnit and unchanged-source records reside in `p03-p04-d3675f3`; their hashes
+are retained in the sanitized checkpoint index. This is not a full-provider
+or whole-suite sanitizer claim. New unregistered LU/Matrix Market sources and
+the next layout-workspace correction are deliberately outside this snapshot.
+
+Sparse's separate final snapshot13 additionally passes Debug, Release,
+Clang19 ASan/UBSan and shared-library selections each10/10, plus relocated
+static/shared Sparse-only examples each1/1. It executes all72 scalar/storage/
+wire combinations, 208 shape/special cases, 24582 mutation/seed cases and the
+corrected overflow/large-empty owner tests. Its source archive SHA256 is
+`63a394d4f777ad9b80bd1a0d4f96cc95c692550798cd61b84423becb25ebbcff`;
+`p03-sparse-13/verification-summary.md` SHA256 is
+`ae3218f983c3f98ff23bf240bd4fa68ba19f1b8f885f3b1653cf2c06b734adf7`.
+Strict Clang18 and GCC11/Clang19 normal/no-exception header checks also pass.
+Earlier failed fixture and implementation diagnostics remain preserved.
+
+The sanitized checkpoint index preserves each older record's actual scope
+rather than attributing its pass to later edits. Complete contract-bound
+LAPACK evidence still credits zero verified reference routines.
+
+The real incremental draft is [PR #47](https://github.com/AI4SciComp/asc-cpp/pull/47),
+targeting `develop`. Its existence is not owner/license approval or remote CI
+success. Newer uncommitted work is not represented as pushed implementation.
 
 Required gates remain the complete P00–P11 runbook, including native and
 reference numerical reconstruction/failure tests; LP64 and true ILP64 provider

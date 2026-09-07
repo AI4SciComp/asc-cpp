@@ -4,6 +4,9 @@
 /**
  * @file
  * @brief Bounded host previews of finalized Sparse coordinates and values.
+ *
+ * ByteSink failures preserve ErrorCode/native_code, not owning diagnostic
+ * strings; see the bounded stream policy in asc/core/array_format.h.
  * @ingroup asc_sparse
  */
 

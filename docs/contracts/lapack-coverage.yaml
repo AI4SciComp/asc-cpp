@@ -6146,20 +6146,153 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "state": "reviewed",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "docs/contracts/lapack-general-lu.md"
+        },
+        "asc_operation": "asc::Getrf",
+        "scalar_signature": {
+          "matrix": "c64",
+          "rhs": "not_applicable",
+          "pivots": "asc::index_t (signed 64-bit), one-based sequential swaps",
+          "native_integer_abi": 64,
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "descriptors": [
+          "DenseBlasMatrixView<T>: checked full reachable span, padded row/column layout",
+          "DenseBlasVectorView<index_t>: exact min(m,n), increment one"
+        ],
+        "workspace": {
+          "native": "zero numerical scratch; caller-owned operands/pivots/report",
+          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        },
+        "mutation": {
+          "validation": "all numeric operands unchanged",
+          "success": "A packed L/U and all raw pivots defined",
+          "numerical_failure": "complete elimination; documented partial factors; no successful factor view"
+        },
+        "aliasing": "reachable A/pivots disjoint; solve RHS disjoint from factor and pivots; no hidden packing",
+        "pivots": "LU family signed one-based sequential swaps; forward swaps produce P_seq*A=L*U, not final permutation",
+        "numerical_outcomes": [
+          "success",
+          "exact-zero singularity; first zero-based diagnostic_index",
+          "nonfinite arithmetic is not conditioning/finiteness certification"
+        ],
+        "native_info": {
+          "called_provider": false,
+          "foreign_info": "absent",
+          "structural_failure": "kNotRun/kUnchanged",
+          "singular": "kNumerical/kSingular",
+          "successful": "kSuccess/kComplete"
+        },
+        "documentation": "docs/contracts/lapack-general-lu.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrf.f",
+              "sha256": "a69b5f00f5e162a396e32adb248286c5813c10528704348f922394627148f090",
+              "declaration": "SUBROUTINE CGETRF( M, N, A, LDA, IPIV, INFO )",
+              "argument_contracts_sha256": "01785715fba62116a9eb7647bf2c644af57ec0a94ec1dcf44887a33283fb386d"
+            },
+            "required_test_classes": [
+              "validation",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrf.f",
+              "sha256": "a69b5f00f5e162a396e32adb248286c5813c10528704348f922394627148f090",
+              "declaration": "SUBROUTINE CGETRF( M, N, A, LDA, IPIV, INFO )",
+              "argument_contracts_sha256": "01785715fba62116a9eb7647bf2c644af57ec0a94ec1dcf44887a33283fb386d"
+            },
+            "required_test_classes": [
+              "validation",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          }
+        ]
       },
       "id": "lapack.cgetrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/lu.h",
+          "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
+        },
+        {
+          "path": "src/dense/lapack_lu.cc",
+          "sha256": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162"
+        },
+        {
+          "path": "tests/dense/lapack_lu_test.cc",
+          "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
+        },
+        {
+          "path": "docs/contracts/lapack-general-lu.md",
+          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/factor_view.h",
+          "sha256": "87a3f072ce7603c197469e4a7b0cd1e0c4f052fe384c1c6d37ce497579851af0"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+        },
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "src/dense/blas_level3.cc",
+          "sha256": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9"
+        }
+      ],
       "implementations": {
         "native": {
+          "state": "implemented_unverified",
           "evidence_ids": [],
-          "state": "not_started"
+          "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
         }
       },
       "required_profiles": [
@@ -6221,20 +6354,407 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "state": "reviewed",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "docs/contracts/lapack-general-lu.md"
+        },
+        "asc_operation": "asc::Getrs",
+        "scalar_signature": {
+          "matrix": "c64",
+          "rhs": "c64",
+          "pivots": "asc::index_t (signed 64-bit), one-based sequential swaps",
+          "native_integer_abi": 64,
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "descriptors": [
+          "LapackLuFactorView<T>: successful borrowed square factor, native identity required by context overload",
+          "DenseBlasMatrixView<T>: n rows, nonnegative RHS count, independent row/column layout"
+        ],
+        "workspace": {
+          "native": "zero numerical scratch; caller-owned operands/pivots/report",
+          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        },
+        "mutation": {
+          "validation": "all numeric operands unchanged",
+          "success": "B overwritten with X; factors and pivots unchanged",
+          "numerical_failure": "zero diagonal rejected before RHS mutation"
+        },
+        "aliasing": "reachable A/pivots disjoint; solve RHS disjoint from factor and pivots; no hidden packing",
+        "pivots": "LU family signed one-based sequential swaps; forward swaps produce P_seq*A=L*U, not final permutation",
+        "numerical_outcomes": [
+          "success for N/T/C; real C equals T",
+          "defensive exact-zero rejection",
+          "nonfinite arithmetic is not conditioning/finiteness certification"
+        ],
+        "native_info": {
+          "called_provider": false,
+          "foreign_info": "absent",
+          "structural_failure": "kNotRun/kUnchanged",
+          "singular": "kNumerical/kSingular",
+          "successful": "kSuccess/kComplete"
+        },
+        "documentation": "docs/contracts/lapack-general-lu.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major.N",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.row_major.T",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.row_major.C",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.N",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.T",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.C",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.N",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.T",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.C",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.N",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.T",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.C",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/cgetrs.f",
+              "sha256": "b9cc618f4cce40dda87fe7a2b56e8e5d7bd1a5303929196d63edb463bf687dc4",
+              "declaration": "SUBROUTINE CGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "276228cc2e97745708c7dda7ac4b40153c1b996359ffd05ba3be2810a570beb7"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          }
+        ]
       },
       "id": "lapack.cgetrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/lu.h",
+          "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
+        },
+        {
+          "path": "src/dense/lapack_lu.cc",
+          "sha256": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162"
+        },
+        {
+          "path": "tests/dense/lapack_lu_test.cc",
+          "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
+        },
+        {
+          "path": "docs/contracts/lapack-general-lu.md",
+          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/factor_view.h",
+          "sha256": "87a3f072ce7603c197469e4a7b0cd1e0c4f052fe384c1c6d37ce497579851af0"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+        },
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "src/dense/blas_level3.cc",
+          "sha256": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9"
+        }
+      ],
       "implementations": {
         "native": {
+          "state": "implemented_unverified",
           "evidence_ids": [],
-          "state": "not_started"
+          "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
         }
       },
       "required_profiles": [
@@ -27340,20 +27860,153 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "state": "reviewed",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "docs/contracts/lapack-general-lu.md"
+        },
+        "asc_operation": "asc::Getrf",
+        "scalar_signature": {
+          "matrix": "f64",
+          "rhs": "not_applicable",
+          "pivots": "asc::index_t (signed 64-bit), one-based sequential swaps",
+          "native_integer_abi": 64,
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "descriptors": [
+          "DenseBlasMatrixView<T>: checked full reachable span, padded row/column layout",
+          "DenseBlasVectorView<index_t>: exact min(m,n), increment one"
+        ],
+        "workspace": {
+          "native": "zero numerical scratch; caller-owned operands/pivots/report",
+          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        },
+        "mutation": {
+          "validation": "all numeric operands unchanged",
+          "success": "A packed L/U and all raw pivots defined",
+          "numerical_failure": "complete elimination; documented partial factors; no successful factor view"
+        },
+        "aliasing": "reachable A/pivots disjoint; solve RHS disjoint from factor and pivots; no hidden packing",
+        "pivots": "LU family signed one-based sequential swaps; forward swaps produce P_seq*A=L*U, not final permutation",
+        "numerical_outcomes": [
+          "success",
+          "exact-zero singularity; first zero-based diagnostic_index",
+          "nonfinite arithmetic is not conditioning/finiteness certification"
+        ],
+        "native_info": {
+          "called_provider": false,
+          "foreign_info": "absent",
+          "structural_failure": "kNotRun/kUnchanged",
+          "singular": "kNumerical/kSingular",
+          "successful": "kSuccess/kComplete"
+        },
+        "documentation": "docs/contracts/lapack-general-lu.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrf.f",
+              "sha256": "5f3d37bbfc3c509708fc3c45bf62e55cfab73ea945de522e208c651175945ebc",
+              "declaration": "SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )",
+              "argument_contracts_sha256": "755180839bc5ce37075be4dc3a671b6be76b677c208d5b5fb1e15857ac52de79"
+            },
+            "required_test_classes": [
+              "validation",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrf.f",
+              "sha256": "5f3d37bbfc3c509708fc3c45bf62e55cfab73ea945de522e208c651175945ebc",
+              "declaration": "SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )",
+              "argument_contracts_sha256": "755180839bc5ce37075be4dc3a671b6be76b677c208d5b5fb1e15857ac52de79"
+            },
+            "required_test_classes": [
+              "validation",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          }
+        ]
       },
       "id": "lapack.dgetrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/lu.h",
+          "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
+        },
+        {
+          "path": "src/dense/lapack_lu.cc",
+          "sha256": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162"
+        },
+        {
+          "path": "tests/dense/lapack_lu_test.cc",
+          "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
+        },
+        {
+          "path": "docs/contracts/lapack-general-lu.md",
+          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/factor_view.h",
+          "sha256": "87a3f072ce7603c197469e4a7b0cd1e0c4f052fe384c1c6d37ce497579851af0"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+        },
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "src/dense/blas_level3.cc",
+          "sha256": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9"
+        }
+      ],
       "implementations": {
         "native": {
+          "state": "implemented_unverified",
           "evidence_ids": [],
-          "state": "not_started"
+          "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
         }
       },
       "required_profiles": [
@@ -27415,20 +28068,407 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "state": "reviewed",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "docs/contracts/lapack-general-lu.md"
+        },
+        "asc_operation": "asc::Getrs",
+        "scalar_signature": {
+          "matrix": "f64",
+          "rhs": "f64",
+          "pivots": "asc::index_t (signed 64-bit), one-based sequential swaps",
+          "native_integer_abi": 64,
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "descriptors": [
+          "LapackLuFactorView<T>: successful borrowed square factor, native identity required by context overload",
+          "DenseBlasMatrixView<T>: n rows, nonnegative RHS count, independent row/column layout"
+        ],
+        "workspace": {
+          "native": "zero numerical scratch; caller-owned operands/pivots/report",
+          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        },
+        "mutation": {
+          "validation": "all numeric operands unchanged",
+          "success": "B overwritten with X; factors and pivots unchanged",
+          "numerical_failure": "zero diagonal rejected before RHS mutation"
+        },
+        "aliasing": "reachable A/pivots disjoint; solve RHS disjoint from factor and pivots; no hidden packing",
+        "pivots": "LU family signed one-based sequential swaps; forward swaps produce P_seq*A=L*U, not final permutation",
+        "numerical_outcomes": [
+          "success for N/T/C; real C equals T",
+          "defensive exact-zero rejection",
+          "nonfinite arithmetic is not conditioning/finiteness certification"
+        ],
+        "native_info": {
+          "called_provider": false,
+          "foreign_info": "absent",
+          "structural_failure": "kNotRun/kUnchanged",
+          "singular": "kNumerical/kSingular",
+          "successful": "kSuccess/kComplete"
+        },
+        "documentation": "docs/contracts/lapack-general-lu.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major.N",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.row_major.T",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.row_major.C",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.N",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.T",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.C",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.N",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.T",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.C",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.N",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.T",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.C",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/dgetrs.f",
+              "sha256": "171e13264833ac7ce9007015cb721eaba71d78400af45dd59db72635a5762318",
+              "declaration": "SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "6f8bace48d5cdfc4882eb59d60e98c2582ac7edb22ec8bce370fce65ad26b7c5"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          }
+        ]
       },
       "id": "lapack.dgetrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/lu.h",
+          "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
+        },
+        {
+          "path": "src/dense/lapack_lu.cc",
+          "sha256": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162"
+        },
+        {
+          "path": "tests/dense/lapack_lu_test.cc",
+          "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
+        },
+        {
+          "path": "docs/contracts/lapack-general-lu.md",
+          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/factor_view.h",
+          "sha256": "87a3f072ce7603c197469e4a7b0cd1e0c4f052fe384c1c6d37ce497579851af0"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+        },
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "src/dense/blas_level3.cc",
+          "sha256": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9"
+        }
+      ],
       "implementations": {
         "native": {
+          "state": "implemented_unverified",
           "evidence_ids": [],
-          "state": "not_started"
+          "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
         }
       },
       "required_profiles": [
@@ -49757,20 +50797,153 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "state": "reviewed",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "docs/contracts/lapack-general-lu.md"
+        },
+        "asc_operation": "asc::Getrf",
+        "scalar_signature": {
+          "matrix": "f32",
+          "rhs": "not_applicable",
+          "pivots": "asc::index_t (signed 64-bit), one-based sequential swaps",
+          "native_integer_abi": 64,
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "descriptors": [
+          "DenseBlasMatrixView<T>: checked full reachable span, padded row/column layout",
+          "DenseBlasVectorView<index_t>: exact min(m,n), increment one"
+        ],
+        "workspace": {
+          "native": "zero numerical scratch; caller-owned operands/pivots/report",
+          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        },
+        "mutation": {
+          "validation": "all numeric operands unchanged",
+          "success": "A packed L/U and all raw pivots defined",
+          "numerical_failure": "complete elimination; documented partial factors; no successful factor view"
+        },
+        "aliasing": "reachable A/pivots disjoint; solve RHS disjoint from factor and pivots; no hidden packing",
+        "pivots": "LU family signed one-based sequential swaps; forward swaps produce P_seq*A=L*U, not final permutation",
+        "numerical_outcomes": [
+          "success",
+          "exact-zero singularity; first zero-based diagnostic_index",
+          "nonfinite arithmetic is not conditioning/finiteness certification"
+        ],
+        "native_info": {
+          "called_provider": false,
+          "foreign_info": "absent",
+          "structural_failure": "kNotRun/kUnchanged",
+          "singular": "kNumerical/kSingular",
+          "successful": "kSuccess/kComplete"
+        },
+        "documentation": "docs/contracts/lapack-general-lu.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrf.f",
+              "sha256": "1c58fb5f214f0c5878a0cff376ceb1990b4cbcf685aee7b74f828e6030c51e0a",
+              "declaration": "SUBROUTINE SGETRF( M, N, A, LDA, IPIV, INFO )",
+              "argument_contracts_sha256": "f099449fa6dfc85b1371cd138aa500e46a67f4d934b3f0f9887ea7f94f8f9087"
+            },
+            "required_test_classes": [
+              "validation",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrf.f",
+              "sha256": "1c58fb5f214f0c5878a0cff376ceb1990b4cbcf685aee7b74f828e6030c51e0a",
+              "declaration": "SUBROUTINE SGETRF( M, N, A, LDA, IPIV, INFO )",
+              "argument_contracts_sha256": "f099449fa6dfc85b1371cd138aa500e46a67f4d934b3f0f9887ea7f94f8f9087"
+            },
+            "required_test_classes": [
+              "validation",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          }
+        ]
       },
       "id": "lapack.sgetrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/lu.h",
+          "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
+        },
+        {
+          "path": "src/dense/lapack_lu.cc",
+          "sha256": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162"
+        },
+        {
+          "path": "tests/dense/lapack_lu_test.cc",
+          "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
+        },
+        {
+          "path": "docs/contracts/lapack-general-lu.md",
+          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/factor_view.h",
+          "sha256": "87a3f072ce7603c197469e4a7b0cd1e0c4f052fe384c1c6d37ce497579851af0"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+        },
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "src/dense/blas_level3.cc",
+          "sha256": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9"
+        }
+      ],
       "implementations": {
         "native": {
+          "state": "implemented_unverified",
           "evidence_ids": [],
-          "state": "not_started"
+          "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
         }
       },
       "required_profiles": [
@@ -49832,20 +51005,407 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "state": "reviewed",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "docs/contracts/lapack-general-lu.md"
+        },
+        "asc_operation": "asc::Getrs",
+        "scalar_signature": {
+          "matrix": "f32",
+          "rhs": "f32",
+          "pivots": "asc::index_t (signed 64-bit), one-based sequential swaps",
+          "native_integer_abi": 64,
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "descriptors": [
+          "LapackLuFactorView<T>: successful borrowed square factor, native identity required by context overload",
+          "DenseBlasMatrixView<T>: n rows, nonnegative RHS count, independent row/column layout"
+        ],
+        "workspace": {
+          "native": "zero numerical scratch; caller-owned operands/pivots/report",
+          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        },
+        "mutation": {
+          "validation": "all numeric operands unchanged",
+          "success": "B overwritten with X; factors and pivots unchanged",
+          "numerical_failure": "zero diagonal rejected before RHS mutation"
+        },
+        "aliasing": "reachable A/pivots disjoint; solve RHS disjoint from factor and pivots; no hidden packing",
+        "pivots": "LU family signed one-based sequential swaps; forward swaps produce P_seq*A=L*U, not final permutation",
+        "numerical_outcomes": [
+          "success for N/T/C; real C equals T",
+          "defensive exact-zero rejection",
+          "nonfinite arithmetic is not conditioning/finiteness certification"
+        ],
+        "native_info": {
+          "called_provider": false,
+          "foreign_info": "absent",
+          "structural_failure": "kNotRun/kUnchanged",
+          "singular": "kNumerical/kSingular",
+          "successful": "kSuccess/kComplete"
+        },
+        "documentation": "docs/contracts/lapack-general-lu.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major.N",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.row_major.T",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.row_major.C",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.N",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.T",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.C",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.N",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.T",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.C",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.N",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.T",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.C",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/sgetrs.f",
+              "sha256": "030fe5e38a5527a04b7b927cc3abeb1a8800be956c982a6d7b595fd945906880",
+              "declaration": "SUBROUTINE SGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "766239d9b811fc911aabe79cf22d0fb8b0db20c67672620516fee5ff685d094a"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          }
+        ]
       },
       "id": "lapack.sgetrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/lu.h",
+          "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
+        },
+        {
+          "path": "src/dense/lapack_lu.cc",
+          "sha256": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162"
+        },
+        {
+          "path": "tests/dense/lapack_lu_test.cc",
+          "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
+        },
+        {
+          "path": "docs/contracts/lapack-general-lu.md",
+          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/factor_view.h",
+          "sha256": "87a3f072ce7603c197469e4a7b0cd1e0c4f052fe384c1c6d37ce497579851af0"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+        },
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "src/dense/blas_level3.cc",
+          "sha256": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9"
+        }
+      ],
       "implementations": {
         "native": {
+          "state": "implemented_unverified",
           "evidence_ids": [],
-          "state": "not_started"
+          "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
         }
       },
       "required_profiles": [
@@ -70951,20 +72511,153 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "state": "reviewed",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "docs/contracts/lapack-general-lu.md"
+        },
+        "asc_operation": "asc::Getrf",
+        "scalar_signature": {
+          "matrix": "c128",
+          "rhs": "not_applicable",
+          "pivots": "asc::index_t (signed 64-bit), one-based sequential swaps",
+          "native_integer_abi": 64,
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "descriptors": [
+          "DenseBlasMatrixView<T>: checked full reachable span, padded row/column layout",
+          "DenseBlasVectorView<index_t>: exact min(m,n), increment one"
+        ],
+        "workspace": {
+          "native": "zero numerical scratch; caller-owned operands/pivots/report",
+          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        },
+        "mutation": {
+          "validation": "all numeric operands unchanged",
+          "success": "A packed L/U and all raw pivots defined",
+          "numerical_failure": "complete elimination; documented partial factors; no successful factor view"
+        },
+        "aliasing": "reachable A/pivots disjoint; solve RHS disjoint from factor and pivots; no hidden packing",
+        "pivots": "LU family signed one-based sequential swaps; forward swaps produce P_seq*A=L*U, not final permutation",
+        "numerical_outcomes": [
+          "success",
+          "exact-zero singularity; first zero-based diagnostic_index",
+          "nonfinite arithmetic is not conditioning/finiteness certification"
+        ],
+        "native_info": {
+          "called_provider": false,
+          "foreign_info": "absent",
+          "structural_failure": "kNotRun/kUnchanged",
+          "singular": "kNumerical/kSingular",
+          "successful": "kSuccess/kComplete"
+        },
+        "documentation": "docs/contracts/lapack-general-lu.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrf.f",
+              "sha256": "73959b03fc534a1983b93ca3895732993342f6b699f0be5cdfc62fa606b399df",
+              "declaration": "SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )",
+              "argument_contracts_sha256": "ca0beea93861686e764ce0524cab6a536ccb607938c7f403224df8144d83dc77"
+            },
+            "required_test_classes": [
+              "validation",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrf.f",
+              "sha256": "73959b03fc534a1983b93ca3895732993342f6b699f0be5cdfc62fa606b399df",
+              "declaration": "SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )",
+              "argument_contracts_sha256": "ca0beea93861686e764ce0524cab6a536ccb607938c7f403224df8144d83dc77"
+            },
+            "required_test_classes": [
+              "validation",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          }
+        ]
       },
       "id": "lapack.zgetrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/lu.h",
+          "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
+        },
+        {
+          "path": "src/dense/lapack_lu.cc",
+          "sha256": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162"
+        },
+        {
+          "path": "tests/dense/lapack_lu_test.cc",
+          "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
+        },
+        {
+          "path": "docs/contracts/lapack-general-lu.md",
+          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/factor_view.h",
+          "sha256": "87a3f072ce7603c197469e4a7b0cd1e0c4f052fe384c1c6d37ce497579851af0"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+        },
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "src/dense/blas_level3.cc",
+          "sha256": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9"
+        }
+      ],
       "implementations": {
         "native": {
+          "state": "implemented_unverified",
           "evidence_ids": [],
-          "state": "not_started"
+          "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
         }
       },
       "required_profiles": [
@@ -71026,20 +72719,407 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "state": "reviewed",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "docs/contracts/lapack-general-lu.md"
+        },
+        "asc_operation": "asc::Getrs",
+        "scalar_signature": {
+          "matrix": "c128",
+          "rhs": "c128",
+          "pivots": "asc::index_t (signed 64-bit), one-based sequential swaps",
+          "native_integer_abi": 64,
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "descriptors": [
+          "LapackLuFactorView<T>: successful borrowed square factor, native identity required by context overload",
+          "DenseBlasMatrixView<T>: n rows, nonnegative RHS count, independent row/column layout"
+        ],
+        "workspace": {
+          "native": "zero numerical scratch; caller-owned operands/pivots/report",
+          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        },
+        "mutation": {
+          "validation": "all numeric operands unchanged",
+          "success": "B overwritten with X; factors and pivots unchanged",
+          "numerical_failure": "zero diagonal rejected before RHS mutation"
+        },
+        "aliasing": "reachable A/pivots disjoint; solve RHS disjoint from factor and pivots; no hidden packing",
+        "pivots": "LU family signed one-based sequential swaps; forward swaps produce P_seq*A=L*U, not final permutation",
+        "numerical_outcomes": [
+          "success for N/T/C; real C equals T",
+          "defensive exact-zero rejection",
+          "nonfinite arithmetic is not conditioning/finiteness certification"
+        ],
+        "native_info": {
+          "called_provider": false,
+          "foreign_info": "absent",
+          "structural_failure": "kNotRun/kUnchanged",
+          "singular": "kNumerical/kSingular",
+          "successful": "kSuccess/kComplete"
+        },
+        "documentation": "docs/contracts/lapack-general-lu.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major.N",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.row_major.T",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.row_major.C",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.N",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.T",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "row_major.column_major.C",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.N",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.T",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.row_major.C",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.N",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "N"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.T",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "T"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          },
+          {
+            "id": "column_major.column_major.C",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major",
+              "transpose": "C"
+            },
+            "source_evidence": {
+              "path": "SRC/zgetrs.f",
+              "sha256": "23a7c34905ea50797b59d06917dedb5591e958fea186e38bda9ed50111132f15",
+              "declaration": "SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "argument_contracts_sha256": "71828e4c095c3b0426c6c0708db2c82971f0140508b823c3e0223454f6c5b716"
+            },
+            "required_test_classes": [
+              "validation",
+              "residual",
+              "factor_reuse",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "scaling",
+              "padding_aliasing",
+              "allocation",
+              "installed_consumer"
+            ]
+          }
+        ]
       },
       "id": "lapack.zgetrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/lu.h",
+          "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
+        },
+        {
+          "path": "src/dense/lapack_lu.cc",
+          "sha256": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162"
+        },
+        {
+          "path": "tests/dense/lapack_lu_test.cc",
+          "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
+        },
+        {
+          "path": "docs/contracts/lapack-general-lu.md",
+          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/factor_view.h",
+          "sha256": "87a3f072ce7603c197469e4a7b0cd1e0c4f052fe384c1c6d37ce497579851af0"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+        },
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "src/dense/blas_level3.cc",
+          "sha256": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9"
+        }
+      ],
       "implementations": {
         "native": {
+          "state": "implemented_unverified",
           "evidence_ids": [],
-          "state": "not_started"
+          "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
         }
       },
       "required_profiles": [

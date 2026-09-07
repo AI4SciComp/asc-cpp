@@ -37,6 +37,23 @@ option(
   "Build all implemented ASCCpp CUDA provider facets"
   OFF
 )
+option(ASC_CPP_ENABLE_LAPACK
+  "Build the explicit incremental Dense-owned Reference-LAPACK facet" OFF)
+set(ASC_CPP_LAPACK_ROOT "" CACHE PATH "Explicit prepared Reference-LAPACK prefix")
+set(ASC_CPP_LAPACK_ATTESTATION "" CACHE FILEPATH
+  "Exact external Reference-LAPACK build attestation")
+set(ASC_CPP_LAPACK_INTEGER_BITS "32" CACHE STRING
+  "Reference provider integer ABI: 32 (LP64) or 64 (true ILP64)")
+set_property(CACHE ASC_CPP_LAPACK_INTEGER_BITS PROPERTY STRINGS 32 64)
+set(ASC_CPP_LAPACK_RUNTIME_LIBRARIES "" CACHE STRING
+  "Explicit absolute paths to the attested GNU Fortran and quadmath runtimes")
+set(ASC_CPP_LAPACK_EVIDENCE_ROOT "" CACHE PATH
+  "External verification artifacts for the strict full-profile gate")
+option(ASC_CPP_LAPACK_REQUIRE_FULL_PROFILE
+  "Require all frozen upstream rows and modes to be implemented and verified" OFF)
+if(ASC_CPP_LAPACK_REQUIRE_FULL_PROFILE AND NOT ASC_CPP_ENABLE_LAPACK)
+  message(FATAL_ERROR "The full LAPACK profile requires ASC_CPP_ENABLE_LAPACK=ON.")
+endif()
 option(
   ASC_CPP_WARNINGS_AS_ERRORS
   "Treat warnings from ASCCpp-owned targets as errors"

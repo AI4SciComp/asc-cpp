@@ -18,6 +18,7 @@
 #include <concepts>
 #include <cstddef>
 #include <cstdint>
+#include <new>
 #include <span>
 #include <type_traits>
 #include <utility>
@@ -811,6 +812,11 @@ class CoordinateBuilder;
 /**
  * @brief Owns canonical sparse coordinate/value storage.
  *
+ * Host complex value buffers explicitly start typed element lifetimes by
+ * default construction (zero initialization) before copying the supplied
+ * values. No extra resource requests are introduced; arithmetic initialization
+ * and host-only placement are unchanged.
+ *
  * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
  * semantics follow the public Sparse module contract.
  * @ingroup asc_sparse
@@ -861,6 +867,9 @@ class CoordinateArray {
    * access, allocation, provider, or numerical failure.
    * @ingroup asc_sparse
    */
+  // Complex storage is default constructed (zeroed) to start typed lifetimes
+  // before copying; arithmetic initialization and allocation counts are
+  // unchanged.
   static Result<CoordinateArray> Create(MemoryResource& resource,
                                         ExtentsType extents,
                                         std::span<const index_t> coordinates,
@@ -902,12 +911,22 @@ class CoordinateArray {
     auto coordinate_buffer =
         Buffer::Allocate(resource, *coordinate_bytes, alignof(index_t));
     if (!coordinate_buffer.ok()) {
-      return coordinate_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(coordinate_buffer));
     }
     auto value_buffer =
         Buffer::Allocate(resource, *value_bytes, alignof(Element));
     if (!value_buffer.ok()) {
-      return value_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(value_buffer));
+    }
+    if constexpr (std::same_as<Element, std::complex<float>> ||
+                  std::same_as<Element, std::complex<double>>) {
+      if (!values.empty()) {
+        // Begin the complex array/element lifetimes in caller-resource storage.
+        // Default construction produces zeros, immediately replaced by copies.
+        ::new (value_buffer->data()) Element[values.size()];
+      }
     }
     if (!coordinates.empty()) {
       std::copy(coordinates.begin(), coordinates.end(),
@@ -1108,7 +1127,10 @@ class CoordinateBuilder {
    * @param[in] resource Allocator that must outlive storage allocated from it.
    * @param[in] extents Logical extents; every extent must satisfy the
    * documented bounds.
-   * @param[in] capacity The capacity value required by this contract.
+   * @param[in] capacity The capacity value required by this contract. Complex
+   * capacity elements are explicitly default constructed to start their typed
+   * lifetimes; Add replaces their initial zeros. Arithmetic capacity remains
+   * uninitialized and no extra allocation or placement support is introduced.
    * @return The value on success, or a non-OK Status describing validation,
    * access, allocation, provider, or numerical failure.
    * @ingroup asc_sparse
@@ -1143,12 +1165,23 @@ class CoordinateBuilder {
     auto coordinate_buffer =
         Buffer::Allocate(resource, *coordinate_bytes, alignof(index_t));
     if (!coordinate_buffer.ok()) {
-      return coordinate_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(coordinate_buffer));
     }
     auto value_buffer =
         Buffer::Allocate(resource, *value_bytes, alignof(Element));
     if (!value_buffer.ok()) {
-      return value_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(value_buffer));
+    }
+    if constexpr (std::same_as<Element, std::complex<float>> ||
+                  std::same_as<Element, std::complex<double>>) {
+      if (capacity != 0) {
+        // Typed default construction starts all capacity-element lifetimes;
+        // subsequent Add calls replace the initialized complex zeros.
+        ::new (value_buffer->data())
+            Element[static_cast<std::size_t>(capacity)];
+      }
     }
     return CoordinateBuilder(&resource, std::move(*coordinate_buffer),
                              std::move(*value_buffer), std::move(extents),

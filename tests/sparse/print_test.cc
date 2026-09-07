@@ -7,6 +7,7 @@
 #include <cstdint>
 #include <limits>
 #include <span>
+#include <string>
 #include <string_view>
 #include <utility>
 
@@ -37,6 +38,9 @@ class Sink final : public asc::ByteSink {
       return std::size_t{0};
     }
     if (size_ == fail_after) {
+      if (!error.ok()) {
+        return std::move(error);
+      }
       return asc::Status(asc::ErrorCode::kIo);
     }
     const std::size_t count = std::min(
@@ -50,6 +54,7 @@ class Sink final : public asc::ByteSink {
   std::size_t max_chunk = std::numeric_limits<std::size_t>::max();
   std::size_t fail_after = std::numeric_limits<std::size_t>::max();
   bool zero_progress = false;
+  asc::Status error;
 
  private:
   std::array<char, 32768> data_{};
@@ -271,6 +276,33 @@ void TestEmptyAndCoordinateOwner(TestContext& test) {
                      "coo scalar=i32 shape=(2) stored=1\n(1) = 7\n");
 }
 
+void TestMovedLongSinkError(TestContext& test) {
+  double value = 4;
+  auto view = asc::CoordinateView<double, 0>::Create(
+      nullptr, &value, std::array<asc::extent_t, 0>{}, 1,
+      asc::MemorySpace::kHost);
+  std::array<std::byte, 1024> scratch{};
+  asc::ArrayPrintReport report;
+  Sink sink;
+  sink.fail_after = 7;
+  sink.error = asc::Status(asc::ErrorCode::kIo, std::string(8192, 'x'),
+                           std::string(4096, 'p'), 1729);
+  asc::Status status;
+  std::size_t allocations = 0;
+  {
+    asc_sparse_test::AllocationProbe probe;
+    status = asc::PrintArray(*view, sink, {}, scratch, report);
+    allocations = probe.count();
+  }
+  ASC_SPARSE_TEST_CHECK(
+      test, asc_test::ProcessAllocationCountMatches(allocations, 0));
+  ASC_SPARSE_TEST_EQ(test, status.code(), asc::ErrorCode::kIo);
+  ASC_SPARSE_TEST_EQ(test, status.native_code(), std::int64_t{1729});
+  ASC_SPARSE_TEST_CHECK(test,
+                        status.message().empty() && status.provider().empty());
+  ASC_SPARSE_TEST_EQ(test, report.output_bytes, std::size_t{7});
+}
+
 }  // namespace
 
 int main() {
@@ -288,5 +320,6 @@ int main() {
   TestFailureProgressAndLimits(test);
   TestValidationAndScratch(test);
   TestEmptyAndCoordinateOwner(test);
+  TestMovedLongSinkError(test);
   return test.Finish();
 }

@@ -34,6 +34,7 @@ endif()
 set(_provider_free_entries
   "core|asc/core.h"
   "core|asc/core/array_format.h"
+  "core|asc/core/array_io.h"
   "core|asc/core/configuration.h"
   "core|asc/core/contracts.h"
   "core|asc/core/execution.h"
@@ -59,11 +60,13 @@ set(_provider_free_entries
   "dense|asc/dense/blas.h"
   "dense|asc/dense/view.h"
   "dense|asc/dense/print.h"
+  "dense|asc/dense/io.h"
   "dense|asc/dense/lapack/types.h"
   "dense|asc/dense/lapack/workspace.h"
   "dense|asc/dense/lapack/report.h"
   "dense|asc/dense/lapack/factor_view.h"
   "dense|asc/dense/lapack/structured_view.h"
+  "dense|asc/dense/lapack/lu.h"
   "sparse|asc/sparse.h"
   "sparse|asc/sparse/compressed.h"
   "sparse|asc/sparse/coordinate.h"
@@ -71,6 +74,7 @@ set(_provider_free_entries
   "sparse|asc/sparse/export.h"
   "sparse|asc/sparse/blas.h"
   "sparse|asc/sparse/print.h"
+  "sparse|asc/sparse/io.h"
   "random|asc/random.h"
   "random|asc/random/distribution.h"
   "random|asc/random/engine.h"
@@ -96,7 +100,10 @@ set(_cuda_entries
   "random_sparse_cuda|asc/random/providers/sparse_cuda_export.h"
 )
 
-set(_all_entries ${_provider_free_entries} ${_cuda_entries})
+set(_lapack_entries
+  "dense_lapack|asc/dense/providers/lapack.h"
+  "dense_lapack|asc/dense/providers/lapack_export.h")
+set(_all_entries ${_provider_free_entries} ${_cuda_entries} ${_lapack_entries})
 set(_all_headers)
 foreach(_entry IN LISTS _all_entries)
   string(REGEX REPLACE "^[^|]+\\|" "" _header "${_entry}")
@@ -105,9 +112,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 60)
+if(NOT _all_header_count EQUAL 66)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 60 headers; got "
+    "Independent source-header oracle must contain 66 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -119,7 +126,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 60-header oracle.\n"
+    "Source public-header tree differs from the frozen 66-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )
@@ -129,6 +136,10 @@ set(_enabled_entries ${_provider_free_entries})
 set(_enabled_components
   core utilities expression dense sparse random random_dense random_sparse
 )
+if(EXPECT_LAPACK)
+  list(APPEND _enabled_entries ${_lapack_entries})
+  list(APPEND _enabled_components dense_lapack)
+endif()
 if(EXPECT_CUDA)
   list(APPEND _enabled_entries ${_cuda_entries})
   list(APPEND _enabled_components
@@ -147,6 +158,8 @@ set(_probe_template [=[
 cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8HeaderManifestProbe LANGUAGES NONE)
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY FALSE)
+string(REPLACE "|" ";" ASC_CPP_LAPACK_RUNTIME_LIBRARIES
+  "${ASC_TEST_LAPACK_RUNTIMES}")
 find_package(
   ASCCpp 0.9 CONFIG REQUIRED
   COMPONENTS @COMPONENT_ARGUMENTS@
@@ -203,6 +216,8 @@ set(_configure_command
   -G "${TEST_GENERATOR}"
   "-DASCCpp_DIR=${ASCCPP_PACKAGE_DIR}"
   -DCMAKE_FIND_USE_PACKAGE_REGISTRY=FALSE
+  "-DASC_CPP_LAPACK_ROOT:PATH=${LAPACK_ROOT}"
+  "-DASC_TEST_LAPACK_RUNTIMES:STRING=${LAPACK_RUNTIMES}"
 )
 if(DEFINED CMAKE_PREFIX_PATH_ARGUMENT
    AND NOT "${CMAKE_PREFIX_PATH_ARGUMENT}" STREQUAL "")

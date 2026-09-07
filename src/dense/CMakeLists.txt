@@ -4,11 +4,13 @@ add_library(ASC::dense ALIAS asc_dense)
 target_sources(
   asc_dense
   PRIVATE
+    array_io.cc
     blas.cc
     blas_level1.cc
     blas_level2.cc
     blas_level3.cc
     lapack_foundations.cc
+    lapack_lu.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -17,6 +19,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/dense/array.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/evaluate.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/export.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/io.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/layout.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/blas.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/view.h"
@@ -26,6 +29,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/report.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/factor_view.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/structured_view.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/lu.h"
 )
 
 set_target_properties(
@@ -59,6 +63,10 @@ if(ASC_CPP_SANITIZER_ARGUMENTS)
     TARGET asc_dense
     ${ASC_CPP_SANITIZER_ARGUMENTS}
   )
+endif()
+
+if(ASC_CPP_ENABLE_LAPACK)
+  add_subdirectory(lapack)
 endif()
 
 if(ASC_CPP_ENABLE_CUDA)

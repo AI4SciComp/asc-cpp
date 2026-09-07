@@ -23,7 +23,12 @@ Full-profile configuration must fail on missing required entries.
 
 Component manifests, actual CMake targets, install/export closures, header
 owners and their validators must change together when this facet is added.
-These planned names do not assert that a target exists yet.
+The target now implements an explicitly gated static column-major GETRF/GETRS
+subset for all four scalar types. Its implemented profile is named
+`incremental-getrf-getrs-column-major`; it does not assert full Reference-LAPACK
+coverage. The provider prefix is prepared separately and is not redistributed
+by ASC installation. Broader ABI, shared-library and full-profile gates remain
+required. See [the provider build contract](../../lapack-provider.md).
 
 Verification includes provider-free configurations with LAPACK discovery
 disabled, requested-unavailable component rejection, C++-only installed

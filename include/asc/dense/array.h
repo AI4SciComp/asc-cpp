@@ -485,7 +485,7 @@ class DenseArray {
     auto array = CreateUninitializedWithMapping(resource, std::move(extents),
                                                 std::move(mapping));
     if (!array.ok()) {
-      return array.status();
+      return internal_core_result::StatusAccess::TakeFailure(std::move(array));
     }
     if (array->mapping_.logical_size() != 0) {
       std::fill_n(static_cast<Element*>(array->buffer_.data()),
@@ -531,7 +531,7 @@ class DenseArray {
     }
     auto buffer = Buffer::Allocate(resource, *bytes, alignof(Element));
     if (!buffer.ok()) {
-      return buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(std::move(buffer));
     }
     if constexpr (!std::is_arithmetic_v<Element>) {
       if (mapping.required_span_size() != 0) {

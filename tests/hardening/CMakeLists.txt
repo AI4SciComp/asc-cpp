@@ -209,6 +209,8 @@ set_tests_properties(
 
 function(_asc_cpp_add_m8_package_metadata_test
     name package_directory fixture)
+  string(REPLACE ";" "|" _lapack_runtime_arguments
+    "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   add_test(
     NAME "asc_cpp.hardening.package_metadata.${name}"
     COMMAND
@@ -218,6 +220,9 @@ function(_asc_cpp_add_m8_package_metadata_test
       "-DASC_CPP_TEST_WORKSPACE_ROOT:PATH=${ASC_CPP_TEST_WORKSPACE_ROOT}"
       "-DASC_CPP_TEST_WORKSPACE_GUARD:FILEPATH=${ASC_CPP_TEST_WORKSPACE_GUARD}"
       "-DEXPECT_CUDA:BOOL=${ASC_CPP_ENABLE_CUDA}"
+      "-DEXPECT_LAPACK:BOOL=${ASC_CPP_ENABLE_LAPACK}"
+      "-DLAPACK_ROOT:PATH=${ASC_CPP_LAPACK_ROOT}"
+      "-DLAPACK_RUNTIMES:STRING=${_lapack_runtime_arguments}"
       "-DEXPECT_SHARED:BOOL=${BUILD_SHARED_LIBS}"
       "-DTEST_GENERATOR:STRING=${CMAKE_GENERATOR}"
       "-DCXX_COMPILER:FILEPATH=${CMAKE_CXX_COMPILER}"
@@ -256,10 +261,15 @@ _asc_cpp_add_m8_package_metadata_test(
 
 function(_asc_cpp_add_m8_header_manifest_test
     name package_directory install_include fixture)
+  string(REPLACE ";" "|" _lapack_runtime_arguments
+    "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   set(_command
     "${CMAKE_COMMAND}"
     "-DASCCPP_PACKAGE_DIR:PATH=${package_directory}"
     "-DSOURCE_INCLUDE_DIR:PATH=${PROJECT_SOURCE_DIR}/include"
+    "-DEXPECT_LAPACK:BOOL=${ASC_CPP_ENABLE_LAPACK}"
+    "-DLAPACK_ROOT:PATH=${ASC_CPP_LAPACK_ROOT}"
+    "-DLAPACK_RUNTIMES:STRING=${_lapack_runtime_arguments}"
     "-DWORK_DIR:PATH=${ASC_CPP_TEST_WORKSPACE_ROOT}/hardening ${name} headers"
     "-DASC_CPP_TEST_WORKSPACE_ROOT:PATH=${ASC_CPP_TEST_WORKSPACE_ROOT}"
     "-DASC_CPP_TEST_WORKSPACE_GUARD:FILEPATH=${ASC_CPP_TEST_WORKSPACE_GUARD}"

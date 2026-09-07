@@ -4,6 +4,9 @@
 /**
  * @file
  * @brief Bounded logical-value previews of host Dense owners and views.
+ *
+ * ByteSink failures preserve ErrorCode/native_code, not owning diagnostic
+ * strings; see the bounded stream policy in asc/core/array_format.h.
  * @ingroup asc_dense
  */
 

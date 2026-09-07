@@ -17,18 +17,22 @@ set(_expected_public_files
   include/asc/dense/blas.h
   include/asc/dense/view.h
   include/asc/dense/print.h
+  include/asc/dense/io.h
   include/asc/dense/lapack/types.h
   include/asc/dense/lapack/workspace.h
   include/asc/dense/lapack/report.h
   include/asc/dense/lapack/factor_view.h
   include/asc/dense/lapack/structured_view.h
+  include/asc/dense/lapack/lu.h
 )
 set(_expected_source_files
   src/dense/blas.cc
+  src/dense/array_io.cc
   src/dense/blas_level1.cc
   src/dense/blas_level2.cc
   src/dense/blas_level3.cc
   src/dense/lapack_foundations.cc
+  src/dense/lapack_lu.cc
 )
 
 set(_observed_public_files)
@@ -42,12 +46,14 @@ file(
   "${SOURCE_DIR}/include/asc/dense/*"
 )
 list(APPEND _observed_public_files ${_dense_headers})
-# The separately audited Dense CUDA provider facet is not part of this
+# The separately audited Dense CUDA and reference LAPACK facets are not part of this
 # provider-free Dense dependency check.
 list(REMOVE_ITEM
   _observed_public_files
   include/asc/dense/providers/cuda.h
   include/asc/dense/providers/cuda_export.h
+  include/asc/dense/providers/lapack.h
+  include/asc/dense/providers/lapack_export.h
 )
 
 file(
@@ -60,7 +66,7 @@ list(REMOVE_ITEM _observed_source_files src/dense/CMakeLists.txt)
 list(FILTER
   _observed_source_files
   EXCLUDE
-  REGEX "^src/dense/cuda/"
+  REGEX "^src/dense/(cuda|lapack)/"
 )
 
 list(SORT _expected_public_files)
@@ -94,6 +100,7 @@ set(_asc_lapack_contract_headers
   asc/dense/lapack/report.h
   asc/dense/lapack/factor_view.h
   asc/dense/lapack/structured_view.h
+  asc/dense/lapack/lu.h
 )
 foreach(_relative_file IN LISTS _all_files)
   set(_path "${SOURCE_DIR}/${_relative_file}")

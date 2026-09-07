@@ -25,7 +25,11 @@ foreach(_source IN ITEMS
     blas_level3_test.cc
     lapack_foundations_test.cc
     lapack_structured_view_test.cc
+    lapack_lu_test.cc
     print_test.cc
+    io_test.cc
+    io_fuzz_test.cc
+    resource_failure_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_dense_${_name}")
@@ -40,6 +44,9 @@ endforeach()
 
 target_include_directories(
   asc_dense_complex_array_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_lapack_lu_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
 )
 
 set_property(

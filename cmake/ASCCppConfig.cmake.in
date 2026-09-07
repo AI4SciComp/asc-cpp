@@ -4,6 +4,8 @@ set(ASCCpp_VERSION "@PROJECT_VERSION@")
 set(ASCCpp_KNOWN_COMPONENTS "@ASC_CPP_KNOWN_COMPONENTS@")
 set(ASCCpp_AVAILABLE_COMPONENTS "@ASC_CPP_AVAILABLE_COMPONENTS@")
 set(ASCCpp_FOUND TRUE)
+set(ASCCpp_LAPACK_PROFILE "@ASC_CPP_LAPACK_PROFILE@")
+set(ASCCpp_LAPACK_PROVIDER_ID "@ASC_CPP_LAPACK_BUILD_ID@")
 
 set(_ASCCpp_COMPONENT_core_DEPENDENCIES
   "@ASC_CPP_COMPONENT_core_DEPENDENCIES@"
@@ -35,6 +37,8 @@ set(_ASCCpp_COMPONENT_cpp_DEPENDENCIES
 set(_ASCCpp_COMPONENT_core_cuda_DEPENDENCIES
   "@ASC_CPP_COMPONENT_core_cuda_DEPENDENCIES@"
 )
+set(_ASCCpp_COMPONENT_dense_lapack_DEPENDENCIES
+  "@ASC_CPP_COMPONENT_dense_lapack_DEPENDENCIES@")
 set(_ASCCpp_COMPONENT_dense_cuda_DEPENDENCIES
   "@ASC_CPP_COMPONENT_dense_cuda_DEPENDENCIES@"
 )
@@ -80,6 +84,8 @@ set(_ASCCpp_COMPONENT_cpp_EXPORT_NAME
 set(_ASCCpp_COMPONENT_core_cuda_EXPORT_NAME
   "@ASC_CPP_COMPONENT_core_cuda_EXPORT_NAME@"
 )
+set(_ASCCpp_COMPONENT_dense_lapack_EXPORT_NAME
+  "@ASC_CPP_COMPONENT_dense_lapack_EXPORT_NAME@")
 set(_ASCCpp_COMPONENT_dense_cuda_EXPORT_NAME
   "@ASC_CPP_COMPONENT_dense_cuda_EXPORT_NAME@"
 )
@@ -123,6 +129,23 @@ list(JOIN _ASCCpp_not_found_messages " " ASCCpp_NOT_FOUND_MESSAGE)
 check_required_components(ASCCpp)
 
 if(ASCCpp_FOUND)
+  if("dense_lapack" IN_LIST ASCCpp_FIND_COMPONENTS
+     AND ASCCpp_dense_lapack_FOUND)
+    if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/ASCCppLapackDependency.cmake")
+      include("${CMAKE_CURRENT_LIST_DIR}/ASCCppLapackDependency.cmake")
+      asc_internal_lapack_dependencies(
+        "${CMAKE_CURRENT_LIST_DIR}/ASCCppLapackProvider.json"
+        "${ASC_CPP_LAPACK_ROOT}" "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}"
+        _ASCCpp_lapack_error "${ASCCpp_LAPACK_PROVIDER_ID}"
+        "@ASC_CPP_LAPACK_METADATA_SHA256@")
+    else()
+      set(_ASCCpp_lapack_error "Reference provider dependency loader is missing.")
+    endif()
+    if(_ASCCpp_lapack_error)
+      set(ASCCpp_dense_lapack_FOUND FALSE)
+      set(ASCCpp_NOT_FOUND_MESSAGE "${_ASCCpp_lapack_error}")
+    endif()
+  endif()
   set(_ASCCpp_cuda_components
     core_cuda
     dense_cuda
@@ -220,3 +243,4 @@ unset(_ASCCpp_not_found_messages)
 unset(_ASCCpp_pending_components)
 unset(_ASCCpp_requested_cuda_components)
 unset(_ASCCpp_required_exports)
+unset(_ASCCpp_lapack_error)

@@ -73,7 +73,7 @@ class CoverageFixture(unittest.TestCase):
         )
 
     def claim_verified(self):
-        """Construct an internally consistent synthetic claim for adversarial edits."""
+        """Construct a consistent synthetic claim for adversarial edits."""
         row = self.mapping["routines"][0]
         row["contract"] = {
             "state": "reviewed",
@@ -171,7 +171,9 @@ class MappingTest(CoverageFixture):
         """An incremental ledger cannot imply full-profile closure."""
         result = self.validate()
         self.assertEqual(result["required"], 1)
-        self.assertEqual(result["unimplemented_reference"], 1)
+        self.assertEqual(result["not_started_reference"], 1)
+        self.assertEqual(result["incomplete_reference"], 1)
+        self.assertEqual(result["in_progress_reference"], 0)
         self.assertFalse(result["profile_complete"])
         with self.assertRaisesRegex(coverage.ValidationError, "incomplete"):
             self.validate(require_full=True)
@@ -181,6 +183,19 @@ class MappingTest(CoverageFixture):
         self.mapping["routines"] = []
         with self.assertRaises(coverage.ValidationError):
             self.validate()
+
+    def test_unverified_does_not_mean_no_tests_ran(self):
+        """A passing artifact without route closure remains unverified."""
+        self.claim_verified()
+        route = self.mapping["routines"][0]["implementations"]["reference_cpu"]
+        route["state"] = "implemented_unverified"
+        route["evidence_ids"] = []
+        result = self.validate()
+        self.assertEqual(result["implemented_unverified_reference"], 1)
+        self.assertEqual(result["callable_reference"], 1)
+        self.assertEqual(result["verified_reference"], 0)
+        self.assertEqual(result["incomplete_reference"], 0)
+        self.assertFalse(result["profile_complete"])
 
     def test_duplicate_identifier(self):
         """Duplicate source identities are rejected rather than overwritten."""

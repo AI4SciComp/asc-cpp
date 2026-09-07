@@ -7,6 +7,7 @@ endif()
 set(_expected_public_files
   include/asc/core.h
   include/asc/core/array_format.h
+  include/asc/core/array_io.h
   include/asc/core/configuration.h
   include/asc/core/contracts.h
   include/asc/core/execution.h
@@ -27,13 +28,17 @@ set(_expected_public_files
   include/asc/dense/blas.h
   include/asc/dense/providers/cuda.h
   include/asc/dense/providers/cuda_export.h
+  include/asc/dense/providers/lapack.h
+  include/asc/dense/providers/lapack_export.h
   include/asc/dense/view.h
   include/asc/dense/print.h
+  include/asc/dense/io.h
   include/asc/dense/lapack/types.h
   include/asc/dense/lapack/workspace.h
   include/asc/dense/lapack/report.h
   include/asc/dense/lapack/factor_view.h
   include/asc/dense/lapack/structured_view.h
+  include/asc/dense/lapack/lu.h
   include/asc/expression.h
   include/asc/expression/expression.h
   include/asc/expression/writable.h
@@ -59,6 +64,7 @@ set(_expected_public_files
   include/asc/sparse/export.h
   include/asc/sparse/blas.h
   include/asc/sparse/print.h
+  include/asc/sparse/io.h
   include/asc/sparse/providers/cuda.h
   include/asc/sparse/providers/cuda_export.h
   include/asc/utilities.h
@@ -68,6 +74,7 @@ set(_expected_public_files
 )
 set(_expected_compiled_sources
   src/core/array_format.cc
+  src/core/array_io.cc
   src/core/configuration.cc
   src/core/contracts.cc
   src/core/execution.cc
@@ -76,10 +83,13 @@ set(_expected_compiled_sources
   src/core/status.cc
   src/core/cuda/runtime.cc
   src/dense/blas.cc
+  src/dense/array_io.cc
   src/dense/blas_level1.cc
   src/dense/blas_level2.cc
   src/dense/blas_level3.cc
   src/dense/lapack_foundations.cc
+  src/dense/lapack_lu.cc
+  src/dense/lapack/reference_lu.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/blas_level2.cc
@@ -100,6 +110,7 @@ set(_expected_compiled_sources
   src/random/cuda/sparse.cc
   src/random/cuda/sparse_kernels.cu
   src/sparse/reference_blas.cc
+  src/sparse/array_io.cc
   src/sparse/standard_blas.cc
   src/sparse/cuda/context.cc
   src/sparse/cuda/kernels.cu
@@ -157,7 +168,7 @@ foreach(_file IN LISTS _public_files)
     message(FATAL_ERROR "Forbidden detail namespace spelling: ${_file}")
   endif()
   if(_contents MATCHES
-     "#[ \t]*include[ \t]*[<\"](cuda|hip|sycl|CL|mkl|cublas|cusparse|rocblas|rocsparse)[/\\.>]")
+     "#[ \t]*include[ \t]*[<\"](cuda|hip|sycl|CL|mkl|cublas|cusparse|rocblas|rocsparse|lapack[a-z0-9_]*)[/\\.>]")
     message(FATAL_ERROR "Provider SDK include leaked into ${_file}.")
   endif()
 endforeach()

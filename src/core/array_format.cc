@@ -22,7 +22,8 @@ class CountingSink final : public ByteSink {
   Result<std::size_t> WriteSome(std::span<const std::byte> bytes) override {
     auto written = sink_.WriteSome(bytes);
     if (!written.ok()) {
-      return written.status();
+      return Status(written.status().code(), {}, {},
+                    written.status().native_code());
     }
     if (*written > bytes.size() || (!bytes.empty() && *written == 0)) {
       return Status(ErrorCode::kIo);

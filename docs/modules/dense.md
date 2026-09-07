@@ -151,6 +151,56 @@ family; these are representations, not factorization implementations.
 Indefinite variant-specific factor arrays, blocked reflectors and rectangular
 bidiagonal storage remain pending with their associated routine contracts.
 
+Include `<asc/dense/lapack/lu.h>` for native `Getrf` and `Getrs` overloads
+taking an explicit serial `ExecutionContext`. They support all four LAPACK
+real/complex scalar types, rectangular partial-pivot factors, reusable square
+solves with multiple RHS and N/T/C operations, and both physical layouts.
+Callers provide the matrix, one-based signed 64-bit pivots, RHS and report;
+the native route uses no scratch allocation or external provider. Exact-zero
+singularity is a numerical failure with inspectable partial factors, not a
+successful reusable factor. See the [general LU contract](../contracts/lapack-general-lu.md)
+for reconstruction, provenance, aliasing, mutation and evidence boundaries.
+
+## Native text and binary archives
+
+Include `<asc/dense/io.h>` explicitly for ASC text/binary read and write APIs.
+`WriteDenseArrayText` and `WriteDenseArrayBinary` traverse logical values in
+dimension-zero-fastest order, independent of physical layout and padding.
+Wire scalar identity is exact; these formats never implicitly narrow, promote
+real data to complex, or evaluate an expression. They are distinct from a
+bounded `PrintArray` preview.
+
+`DenseArrayReader::PrepareText`/`PrepareBinary` validate one header using
+caller metadata and scratch. A prepared reader retains the current source
+position and is consumed once. It borrows the source, metadata, scratch and
+report: keep those objects live and unchanged until completion. Failure does
+not rewind or resynchronize the source. `ReadDenseArray<T, ExtentsType>`
+creates a new owner through an explicit resource and left/right layout;
+`ReadDenseArrayInto` uses explicit disjoint typed staging and commits to the
+existing view only after full payload/trailer validation. Source-wrapper
+`ReadDenseArrayTextInto`/`ReadDenseArrayBinaryInto` also reject destination
+aliases before header parsing.
+
+`ArrayIoLimits` bounds bytes, metadata, extents/products, decoded/staging
+storage, allocation requests and scratch. Zero is a real zero limit. One
+empty-owner resource request still counts. Whole-file EOF checks require
+spare input budget for the nonseekable probe; framed reads need not consume
+the next frame. `ArrayIoReport` retains actual progress and commit state.
+
+`LoadDenseArrayText`/`LoadDenseArrayBinary` compose checked Core File reads;
+`SaveDenseArrayText`/`SaveDenseArrayBinary` require explicit
+`ArrayFileOverwrite::kTruncate` and checked write/flush/close. They do not
+promise atomic replacement or durability. Borrowed stream codecs allocate no
+hidden parser buffers, while path/File and caller stream conveniences retain
+their own documented allocation behavior. Source/sink ErrorCode and native
+code survive without copying unbounded diagnostic strings.
+
+See the [text](../contracts/array-text-v1.md) and
+[binary](../contracts/array-binary-v1.md) contracts and the
+[installed read–solve–archive example](../../examples/lapack_array_io/README.md).
+Array I/O has no LAPACK dependency; Matrix Market is a separate required
+interchange package and is not supplied by these native format APIs.
+
 Discard-resize uses the owner's resource and is transactional: allocation or
 validation failure leaves the array and every existing view unchanged;
 success discards prior values and invalidates every prior view.

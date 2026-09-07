@@ -113,10 +113,17 @@ require explicit reset at a known boundary, with no implicit resynchronizing
 scan. A path read requires exact EOF immediately after its checksum; binary
 has no ignorable trailing whitespace. These differ from text path reads.
 
+EOF validation on a nonseekable source requires the one-spare-input-byte probe
+budget specified in the text contract. Framed reads at their exact cap remain
+valid. The probe does not count a zero-byte EOF response as consumed input.
+
 All default Dense `Into` and Sparse values-only loads use the text
 transaction guarantee, including checksum and path-EOF validation before
 the nonfailing commit. File writes require explicit overwrite intent and
 checked close as documented there.
+The same bounded stream diagnostic policy applies: preserve callback
+`ErrorCode`/`native_code` and report progress, not owning message/provider
+strings. Existing Core and owner-resource failure semantics remain separate.
 
 The hand-derived fixture
 [`dense-i16.hex`](../../tests/array_io/fixtures/dense-i16.hex) encodes Dense

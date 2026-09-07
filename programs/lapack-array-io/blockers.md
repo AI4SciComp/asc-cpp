@@ -3,7 +3,7 @@
 No unavoidable local implementation blocker has been established. GCC11
 Fortran and repository-pinned Clang18 formatting/tidy tools were prepared
 externally without privileged installation. Baseline Debug/Release and the
-external reference LP64 upstream tests passed. Missing platform/provider
+external reference LP64 and true-ILP64 upstream tests passed. Missing platform/provider
 verification remains a required gate, not a pass or a reason to stop
 independent work.
 
