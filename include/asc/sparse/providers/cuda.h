@@ -101,6 +101,8 @@ namespace internal_sparse_cuda {
 class Access;
 class ContextState;
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class ElementKind {
   kFloat,          ///< Selects float behavior.
   kDouble,         ///< Selects double behavior.
@@ -108,6 +110,8 @@ enum class ElementKind {
   kComplexDouble,  ///< Selects complex double behavior.
 };
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class StandardOperation {
   kDot,         ///< Selects dot behavior.
   kAxpy,        ///< Selects axpy behavior.
@@ -121,12 +125,16 @@ struct ScalarValue {
   double imaginary = 0.0;
 };
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class FormatKind {
   kCoordinate,  ///< Selects coordinate behavior.
   kCsr,         ///< Compressed sparse row storage.
   kCsc,         ///< Compressed sparse column storage.
 };
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class PointwiseOperation {
   kCopy,      ///< Selects copy behavior.
   kNegate,    ///< Selects negate behavior.
@@ -135,6 +143,8 @@ enum class PointwiseOperation {
   kMultiply,  ///< Selects multiply behavior.
 };
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class OperandKind {
   kView,    ///< Selects view behavior.
   kScalar,  ///< Selects scalar behavior.
@@ -383,6 +393,9 @@ struct PreparedEvaluation {
 };
 
 template <typename Value, ReadableExpression Expression>
+// Compile-time expression dispatch stays together so every supported form
+// produces the same erased descriptor contract.
+// NOLINTNEXTLINE(readability-function-size)
 Result<PreparedEvaluation> PrepareEvaluation(const Expression& expression) {
   constexpr ExpressionOperation kExpressionOperation = kOperation<Expression>;
   PreparedEvaluation prepared;
@@ -661,6 +674,9 @@ class CudaStridedVectorView {
              std::same_as<std::remove_const_t<OtherElement>,
                           std::remove_const_t<Element>> &&
              !std::is_const_v<OtherElement>)
+  // Mutable-to-const view conversion intentionally mirrors pointer and span
+  // qualification conversion semantics.
+  // NOLINTNEXTLINE(google-explicit-constructor)
   constexpr CudaStridedVectorView(
       CudaStridedVectorView<OtherElement> other) noexcept
       : data_(other.data()), extent_(other.extent()), stride_(other.stride()) {}

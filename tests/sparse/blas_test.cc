@@ -4,11 +4,12 @@
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
+#include <cstdlib>
 #include <cstring>
 #include <limits>
 #include <span>
-#include <type_traits>
 
+#include "../allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
@@ -72,7 +73,8 @@ struct ExpressionAdapter<::M4ByteBackedWritableVector<Element>> {
 template <typename Element>
 struct ExpressionPlacementAdapter<::M4ByteBackedWritableVector<Element>> {
   static constexpr MemorySpace Space(
-      const ::M4ByteBackedWritableVector<Element>&) noexcept {
+      const ::M4ByteBackedWritableVector<Element>& vector) noexcept {
+    static_cast<void>(vector);
     return MemorySpace::kHost;
   }
 
@@ -100,7 +102,8 @@ struct WritableExpressionAdapter<::M4ByteBackedWritableVector<Element>> {
   }
 
   static constexpr bool IsUnique(
-      const ::M4ByteBackedWritableVector<Element>&) noexcept {
+      const ::M4ByteBackedWritableVector<Element>& vector) noexcept {
+    static_cast<void>(vector);
     return true;
   }
 
@@ -219,12 +222,12 @@ void TestNumericalOracle(TestContext& test) {
 }
 
 void TestDeterministicRowOrder(TestContext& test) {
-  constexpr std::array<asc::extent_t, 2> shape{1, 3};
-  constexpr std::array<asc::nnz_t, 2> offsets{0, 3};
-  constexpr std::array<asc::index_t, 3> indices{0, 1, 2};
+  constexpr std::array<asc::extent_t, 2> kShape{1, 3};
+  constexpr std::array<asc::nnz_t, 2> kOffsets{0, 3};
+  constexpr std::array<asc::index_t, 3> kIndices{0, 1, 2};
   std::array<float, 3> matrix_values{1.0e20F, 1.0F, -1.0e20F};
   auto matrix = asc::CsrView<const float>::Create(
-      offsets.data(), indices.data(), matrix_values.data(), shape, 3,
+      kOffsets.data(), kIndices.data(), matrix_values.data(), kShape, 3,
       asc::MemorySpace::kHost);
   ASC_SPARSE_TEST_CHECK(test, matrix.ok());
   if (!matrix.ok()) {
@@ -296,6 +299,8 @@ void TestEmptyAndDegenerateMatrices(TestContext& test) {
 }
 
 template <typename Real>
+// All rejected operations verify the same destination rollback invariant.
+// NOLINTNEXTLINE(readability-function-size)
 void TestTransactionalFailures(TestContext& test) {
   std::array<Real, 5> matrix_values{Real{2}, Real{-1}, Real{4}, Real{5},
                                     Real{3}};

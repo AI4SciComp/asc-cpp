@@ -1,4 +1,5 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <array>
 #include <cstddef>
@@ -9,7 +10,7 @@
 
 namespace {
 
-constexpr std::uint64_t kCollidingPriority = UINT64_C(0x5a5a5a5a5a5a5a5a);
+constexpr std::uint64_t kCollidingPriority = std::uint64_t{0x5a5a5a5a5a5a5a5a};
 constexpr std::size_t kCount = 4;
 
 __global__ void SortCollidingOrdinals(std::uint64_t* ordinals) {

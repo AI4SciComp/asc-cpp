@@ -1,5 +1,7 @@
 #include <cuda_runtime_api.h>
 #include <cusparse.h>
+#include <driver_types.h>
+#include <library_types.h>
 
 #include <algorithm>
 #include <complex>
@@ -11,8 +13,13 @@
 
 #include "../../core/cuda/cuda_internal.h"
 #include "../../core/execution_internal.h"
-#include "asc/core/contracts.h"
+#include "asc/core/execution.h"
+#include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
+#include "asc/sparse/blas.h"
 #include "asc/sparse/providers/cuda.h"
 #include "context_internal.h"
 #include "kernels_internal.h"
@@ -131,6 +138,9 @@ struct SparseBytes {
 bool Overlap(const void* left, std::size_t left_bytes, const void* right,
              std::size_t right_bytes);
 
+// Sparse metadata validation is one ordered pass so all operations report the
+// same first malformed field.
+// NOLINTNEXTLINE(readability-function-size)
 Result<SparseBytes> ValidateSparseMetadata(const SparseDescriptor& descriptor) {
   if (descriptor.rank != 0 && descriptor.extents == nullptr) {
     return Status(ErrorCode::kInvalidArgument,
@@ -413,6 +423,11 @@ cudaDataType DataType(ElementKind kind) {
 
 class SpmvDescriptors {
  public:
+  SpmvDescriptors() = default;
+  SpmvDescriptors(const SpmvDescriptors&) = delete;
+  SpmvDescriptors& operator=(const SpmvDescriptors&) = delete;
+  SpmvDescriptors(SpmvDescriptors&&) = delete;
+  SpmvDescriptors& operator=(SpmvDescriptors&&) = delete;
   ~SpmvDescriptors() {
     if (input_ != nullptr) {
       static_cast<void>(cusparseDestroyDnVec(input_));
@@ -693,6 +708,9 @@ const void* ReachableData(const MatrixDescriptor& matrix) {
 
 }  // namespace
 
+// The clone transaction keeps allocation, transfer, and completion cleanup in
+// one scope so ownership rollback is unambiguous.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CloneBuffers> CloneCsrErased(SparseCudaContext& context,
                                     SparseDescriptor source,
                                     MemoryResource& resource) {
@@ -908,6 +926,9 @@ Result<std::size_t> CsrSpmvWorkspaceSizeErased(SparseCudaContext& context,
   return QuerySpmvWorkspace(*state, matrix, input, output);
 }
 
+// SpMV validation, descriptor lifetime, workspace, and enqueueing form one
+// provider transaction with a single completion path.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> CsrSpmvErased(SparseCudaContext& context, double alpha,
                                       SparseDescriptor matrix,
                                       VectorDescriptor input, double beta,
@@ -1119,6 +1140,9 @@ Result<CompletionEvent> EvaluateErased(SparseCudaContext& context,
   return completion;
 }
 
+// The erased Level 1 dispatch keeps validation and provider cleanup together
+// for consistent failure and completion semantics.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> StandardLevel1Erased(SparseCudaContext& context,
                                              StandardOperation operation,
                                              SparseBlasConjugation conjugation,

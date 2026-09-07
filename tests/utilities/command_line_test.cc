@@ -1,14 +1,19 @@
 #include "asc/utilities/command_line.h"
 
 #include <array>
+#include <cstddef>
 #include <cstdint>
 #include <limits>
+#include <optional>
 #include <span>
 #include <string>
 #include <string_view>
 #include <utility>
 #include <vector>
 
+#include "asc/core/configuration.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "test_support.h"
 
 namespace {
@@ -22,7 +27,7 @@ using asc_utilities_test::TestContext;
 ConfigurationValue Utf8(std::string value) {
   auto result = ConfigurationValue::Utf8String(std::move(value));
   if (!result.ok()) {
-    return ConfigurationValue();
+    return {};
   }
   return std::move(*result);
 }
@@ -234,14 +239,25 @@ void CheckBasicParsing(TestContext& context) {
       context,
       *parsed->configuration.Find("/group/value")->get().AsSignedInteger(), 9);
 
-  ASC_UTILITIES_TEST_EQ(context, parsed->configuration.Origin("/name")->kind,
+  const auto name_origin = parsed->configuration.Origin("/name");
+  const auto count_origin = parsed->configuration.Origin("/count");
+  ASC_UTILITIES_TEST_CHECK(context, name_origin.ok());
+  ASC_UTILITIES_TEST_CHECK(context, count_origin.ok());
+  if (!name_origin.ok() || !count_origin.ok()) {
+    return;
+  }
+  ASC_UTILITIES_TEST_EQ(context, name_origin->kind,
                         asc::ConfigurationOriginKind::kCommandLine);
-  ASC_UTILITIES_TEST_EQ(context,
-                        *parsed->configuration.Origin("/name")->location,
-                        std::string("1"));
-  ASC_UTILITIES_TEST_EQ(context,
-                        *parsed->configuration.Origin("/count")->location,
-                        std::string("2"));
+  const auto& name_location = name_origin->location;
+  ASC_UTILITIES_TEST_CHECK(context, name_location.has_value());
+  if (name_location.has_value()) {
+    ASC_UTILITIES_TEST_EQ(context, *name_location, std::string("1"));
+  }
+  const auto& count_location = count_origin->location;
+  ASC_UTILITIES_TEST_CHECK(context, count_location.has_value());
+  if (count_location.has_value()) {
+    ASC_UTILITIES_TEST_EQ(context, *count_location, std::string("2"));
+  }
   ASC_UTILITIES_TEST_EQ(context, parsed->configuration.Origin("/flag")->kind,
                         asc::ConfigurationOriginKind::kDefault);
 

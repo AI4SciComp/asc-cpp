@@ -1,6 +1,10 @@
 #include <type_traits>
 
-#include "asc/dense.h"
+#include "asc/core/extents.h"
+#include "asc/core/types.h"
+#include "asc/dense.h"  // NOLINT(misc-include-cleaner): umbrella-header probe
+#include "asc/dense/array.h"
+#include "asc/dense/view.h"
 
 using MatrixExtents = asc::Extents<asc::kDynamicExtent, asc::kDynamicExtent>;
 

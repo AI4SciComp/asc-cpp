@@ -1,10 +1,10 @@
 #include <array>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
 #include <memory>
 #include <span>
-#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -13,6 +13,9 @@
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/dense/layout.h"
 #include "asc/dense/view.h"
 #include "asc/random/dense.h"
@@ -86,8 +89,9 @@ void CheckLogical(const std::vector<Element>& physical,
 template <typename Element, typename Layout>
 void CheckRankTwo(Fixture& fixture, Layout layout, TestContext& test) {
   constexpr std::array<asc::extent_t, 2> kExtents = {3, 5};
-  constexpr asc::RandomStream kStream = UINT64_C(0x0123456789abcdef);
-  constexpr asc::RandomSubsequence kSubsequence = UINT64_C(0xfedcba9876543210);
+  constexpr asc::RandomStream kStream = std::uint64_t{0x0123456789abcdef};
+  constexpr asc::RandomSubsequence kSubsequence =
+      std::uint64_t{0xfedcba9876543210};
   constexpr asc::RandomOffset kOffset = 11;
   auto mapping = asc::DenseLayout<2>::Create(kExtents, layout);
   ASC_M7_CUDA_CHECK(test, mapping.ok());
@@ -218,6 +222,8 @@ void CheckRankZeroAndEmpty(Fixture& fixture, TestContext& test) {
   }
 }
 
+// Partition and invalid-descriptor cases share the same sequence oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckPartitionAndFailures(Fixture& fixture, TestContext& test) {
   constexpr std::size_t kFirst = 257;
   constexpr std::size_t kSecond = 773;
@@ -310,6 +316,8 @@ void CheckPartitionAndFailures(Fixture& fixture, TestContext& test) {
   ASC_M7_CUDA_CHECK(test, !overflow.ok());
 }
 
+// Irregular partitions share a single whole-generation reference sequence.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckIrregularDoublePartitions(Fixture& fixture, TestContext& test) {
   constexpr std::size_t kFirst = 17;
   constexpr std::size_t kSecond = 1;
@@ -450,7 +458,7 @@ void CheckAdvancedCpuOnlyRejection(Fixture& fixture, TestContext& test) {
   if (!output_view.ok() || !workspace_view.ok() || !permutation_view.ok()) {
     return;
   }
-  auto CheckUnsupported = [&test](const asc::Status& status) {
+  auto check_unsupported = [&test](const asc::Status& status) {
     ASC_M7_CUDA_CHECK(test, !status.ok());
     ASC_M7_CUDA_EQ(test, status.code(), asc::ErrorCode::kUnsupported);
   };
@@ -459,30 +467,30 @@ void CheckAdvancedCpuOnlyRejection(Fixture& fixture, TestContext& test) {
   asc::UniformGenerator<asc::Pcg32, double> pseudo_generator(asc::Pcg32(23, 29),
                                                              *uniform);
   const auto pseudo_state = pseudo_generator.engine().ExportState();
-  CheckUnsupported(
+  check_unsupported(
       asc::FillDensePseudo(fixture.execution, *output_view, pseudo_generator));
   ASC_M7_CUDA_EQ(test, pseudo_generator.engine().ExportState(), pseudo_state);
 
   asc::DenseView<const double, 1> mean = *workspace_view;
   asc::DenseView<const double, 2> factor = *output_view;
-  CheckUnsupported(asc::PrepareDenseMultivariateNormal(fixture.execution, mean,
-                                                       factor, *output_view));
+  check_unsupported(asc::PrepareDenseMultivariateNormal(fixture.execution, mean,
+                                                        factor, *output_view));
   auto normal = asc::NormalDistribution<double>::Create(0.0, 1.0);
   asc::NormalGenerator<asc::Pcg32, double> normal_generator(asc::Pcg32(37, 41),
                                                             *normal);
   const auto normal_state = normal_generator.engine().ExportState();
-  CheckUnsupported(asc::FillDenseMultivariateNormal(
+  check_unsupported(asc::FillDenseMultivariateNormal(
       fixture.execution, *output_view, mean, factor, normal_generator,
       *workspace_view));
   ASC_M7_CUDA_EQ(test, normal_generator.engine().ExportState(), normal_state);
 
   asc::Pcg32 engine(43, 47);
   const auto initial_state = engine.ExportState();
-  CheckUnsupported(asc::FillDenseUnitSphere(fixture.execution, *output_view,
-                                            engine, *workspace_view));
-  CheckUnsupported(asc::FillDenseLatinHypercubeMidpoints(
+  check_unsupported(asc::FillDenseUnitSphere(fixture.execution, *output_view,
+                                             engine, *workspace_view));
+  check_unsupported(asc::FillDenseLatinHypercubeMidpoints(
       fixture.execution, *output_view, engine, *permutation_view));
-  CheckUnsupported(asc::FillDenseLatinHypercubeJittered(
+  check_unsupported(asc::FillDenseLatinHypercubeJittered(
       fixture.execution, *output_view, engine, *permutation_view));
   ASC_M7_CUDA_EQ(test, engine.ExportState(), initial_state);
 
@@ -490,13 +498,13 @@ void CheckAdvancedCpuOnlyRejection(Fixture& fixture, TestContext& test) {
   constexpr std::array<std::uint32_t, 3> kBaseThree{0, 1, 2};
   const std::array<std::span<const std::uint32_t>, 2> permutations{kBaseTwo,
                                                                    kBaseThree};
-  CheckUnsupported(asc::FillDenseHalton(fixture.execution, *output_view, 0,
-                                        *workspace_view));
-  CheckUnsupported(asc::FillDenseScrambledHalton(
+  check_unsupported(asc::FillDenseHalton(fixture.execution, *output_view, 0,
+                                         *workspace_view));
+  check_unsupported(asc::FillDenseScrambledHalton(
       fixture.execution, *output_view, 0, permutations, *workspace_view));
-  CheckUnsupported(asc::FillDenseHammersley(fixture.execution, *output_view, 0,
-                                            2, *workspace_view));
-  CheckUnsupported(
+  check_unsupported(asc::FillDenseHammersley(fixture.execution, *output_view, 0,
+                                             2, *workspace_view));
+  check_unsupported(
       asc::FillDenseSobol(fixture.execution, *output_view, 0, *workspace_view));
 
   ASC_M7_CUDA_EQ(test, output, (std::array<double, 4>{17.0, 17.0, 17.0, 17.0}));

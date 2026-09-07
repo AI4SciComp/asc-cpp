@@ -6,6 +6,7 @@
 #include <type_traits>
 
 #include "asc/core/extents.h"
+#include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "test_support.h"
 
@@ -80,10 +81,10 @@ void CheckArithmetic(asc_core_test::TestContext& context) {
                                        std::int64_t{-1})
                       .ok());
 
-  for (int left = std::numeric_limits<std::int8_t>::min();
-       left <= std::numeric_limits<std::int8_t>::max(); ++left) {
-    for (int right = std::numeric_limits<std::int8_t>::min();
-         right <= std::numeric_limits<std::int8_t>::max(); ++right) {
+  constexpr int kInt8Minimum = -128;
+  constexpr int kInt8Maximum = 127;
+  for (int left = kInt8Minimum; left <= kInt8Maximum; ++left) {
+    for (int right = kInt8Minimum; right <= kInt8Maximum; ++right) {
       const auto checked_sum = asc::CheckedAdd(static_cast<std::int8_t>(left),
                                                static_cast<std::int8_t>(right));
       const int reference_sum = left + right;

@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <array>
 #include <cmath>
 #include <complex>
@@ -184,6 +185,8 @@ Element MaybeConjugate(Element value) {
 }
 
 template <typename Element>
+// Exercise every layout and transpose combination against the same oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void TestGeneralMatrixVector(TestContext& test) {
   const auto context = asc::ExecutionContext::Serial();
   for (asc::DenseBlasLayout layout :
@@ -460,7 +463,7 @@ void FillLowerTriangular(asc::DenseBlasMatrixView<Element> full,
 }
 
 template <typename Element>
-void TestTriangular(TestContext& test) {
+void TestTriangular(TestContext& test) {  // NOLINT(readability-function-size)
   const auto context = asc::ExecutionContext::Serial();
   std::array<Element, 12> full_storage{};
   std::array<Element, 6> band_storage{};
@@ -583,7 +586,7 @@ void TestTriangular(TestContext& test) {
 }
 
 template <typename Element>
-void TestRankUpdates(TestContext& test) {
+void TestRankUpdates(TestContext& test) {  // NOLINT(readability-function-size)
   const auto context = asc::ExecutionContext::Serial();
   std::array<Element, 2> x_storage{Element{1}, Element{2}};
   std::array<Element, 2> y_storage{Element{3}, Element{-1}};
@@ -763,6 +766,8 @@ void TestAlphaBetaEdges(TestContext& test) {
   }
 }
 
+// Validation and rollback checks intentionally share their fixture state.
+// NOLINTNEXTLINE(readability-function-size)
 void TestInvalidEmptyAndEdges(TestContext& test) {
   std::array<float, 4> storage{};
   auto too_small = asc::DenseBlasMatrixView<float>::Create(
@@ -808,20 +813,25 @@ void TestInvalidEmptyAndEdges(TestContext& test) {
                              short_input, 0.0F, output);
   ASC_DENSE_TEST_CHECK(test, !bad_shape.ok());
   ASC_DENSE_TEST_EQ(test, vector_storage, before);
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_diagonal = static_cast<asc::DenseBlasDiagonal>(255);
   auto bad_diagonal = asc::Trmv(
       context, asc::DenseBlasTriangle::kUpper, asc::DenseBlasTranspose::kNone,
-      static_cast<asc::DenseBlasDiagonal>(255),
-      asc::DenseBlasMatrixView<const float>(matrix), output);
+      invalid_diagonal, asc::DenseBlasMatrixView<const float>(matrix), output);
   ASC_DENSE_TEST_CHECK(test, !bad_diagonal.ok());
   ASC_DENSE_TEST_EQ(test, vector_storage, before);
-  auto bad_triangle = asc::Symv(
-      context, static_cast<asc::DenseBlasTriangle>(255), 1.0F,
-      asc::DenseBlasMatrixView<const float>(matrix), input, 0.0F, output);
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_triangle = static_cast<asc::DenseBlasTriangle>(255);
+  auto bad_triangle = asc::Symv(context, invalid_triangle, 1.0F,
+                                asc::DenseBlasMatrixView<const float>(matrix),
+                                input, 0.0F, output);
   ASC_DENSE_TEST_CHECK(test, !bad_triangle.ok());
   ASC_DENSE_TEST_EQ(test, vector_storage, before);
-  auto invalid = asc::Gemv(context, static_cast<asc::DenseBlasTranspose>(255),
-                           1.0F, asc::DenseBlasMatrixView<const float>(matrix),
-                           input, 0.0F, output);
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_transpose = static_cast<asc::DenseBlasTranspose>(255);
+  auto invalid = asc::Gemv(context, invalid_transpose, 1.0F,
+                           asc::DenseBlasMatrixView<const float>(matrix), input,
+                           0.0F, output);
   ASC_DENSE_TEST_CHECK(test, !invalid.ok());
   ASC_DENSE_TEST_EQ(test, vector_storage, before);
   auto overlap = asc::Gemv(context, asc::DenseBlasTranspose::kNone, 1.0F,

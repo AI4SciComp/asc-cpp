@@ -71,6 +71,8 @@ std::span<const asc::index_t, Rank> Indices(
   return std::span<const asc::index_t, Rank>(values);
 }
 
+// Finalization and resulting view invariants must be checked together.
+// NOLINTNEXTLINE(readability-function-size)
 void TestCanonicalFinalizationAndView(TestContext& test) {
   asc_sparse_test::TrackingMemoryResource resource;
   auto extents = Shape2::Create(3, 4);
@@ -220,6 +222,8 @@ void TestCanonicalFinalizationAndView(TestContext& test) {
   CheckError(test, view->Lookup(Indices(kOutside)), asc::ErrorCode::kIndex);
 }
 
+// Policy failures all validate the same transactional finalization contract.
+// NOLINTNEXTLINE(readability-function-size)
 void TestFinalizationRollbackAndPolicies(TestContext& test) {
   auto extents = Shape2::Create(3, 4);
   ASC_SPARSE_TEST_CHECK(test, extents.ok());
@@ -300,10 +304,15 @@ void TestFinalizationRollbackAndPolicies(TestContext& test) {
     constexpr std::array<asc::index_t, 2> kCoordinate{0, 0};
     ASC_SPARSE_TEST_CHECK(
         test, invalid_duplicate->Add(Indices(kCoordinate), 1.0).ok());
-    auto invalid = std::move(*invalid_duplicate)
-                       .Finalize(asc::ExecutionContext::Serial(),
-                                 static_cast<asc::DuplicatePolicy>(255),
-                                 asc::ExplicitZeroPolicy::kKeep);
+    // The invalid enumerator is the input under test.
+    // NOLINTBEGIN(clang-analyzer-optin.core.EnumCastOutOfRange)
+    const auto invalid_duplicate_policy =
+        static_cast<asc::DuplicatePolicy>(255);
+    // NOLINTEND(clang-analyzer-optin.core.EnumCastOutOfRange)
+    auto invalid =
+        std::move(*invalid_duplicate)
+            .Finalize(asc::ExecutionContext::Serial(), invalid_duplicate_policy,
+                      asc::ExplicitZeroPolicy::kKeep);
     CheckError(test, invalid, asc::ErrorCode::kInvalidArgument);
     ASC_SPARSE_TEST_CHECK(test, invalid_duplicate->valid());
     ASC_SPARSE_TEST_EQ(test, invalid_duplicate->size(), asc::nnz_t{1});
@@ -316,10 +325,12 @@ void TestFinalizationRollbackAndPolicies(TestContext& test) {
     constexpr std::array<asc::index_t, 2> kCoordinate{0, 0};
     ASC_SPARSE_TEST_CHECK(test,
                           invalid_zero->Add(Indices(kCoordinate), 1.0).ok());
-    auto invalid = std::move(*invalid_zero)
-                       .Finalize(asc::ExecutionContext::Serial(),
-                                 asc::DuplicatePolicy::kSum,
-                                 static_cast<asc::ExplicitZeroPolicy>(255));
+    // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+    const auto invalid_zero_policy = static_cast<asc::ExplicitZeroPolicy>(255);
+    auto invalid =
+        std::move(*invalid_zero)
+            .Finalize(asc::ExecutionContext::Serial(),
+                      asc::DuplicatePolicy::kSum, invalid_zero_policy);
     CheckError(test, invalid, asc::ErrorCode::kInvalidArgument);
     ASC_SPARSE_TEST_CHECK(test, invalid_zero->valid());
     ASC_SPARSE_TEST_EQ(test, invalid_zero->size(), asc::nnz_t{1});
@@ -355,6 +366,8 @@ void TestFinalizationRollbackAndPolicies(TestContext& test) {
   }
 }
 
+// Rank and boundary-shape cases share the same canonicalization invariants.
+// NOLINTNEXTLINE(readability-function-size)
 void TestRanksAndBoundaryShapes(TestContext& test) {
   asc::HostMemoryResource resource;
 

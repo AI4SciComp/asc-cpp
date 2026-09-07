@@ -1,10 +1,16 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <algorithm>
 #include <cstddef>
 #include <cstdint>
+#include <span>
 
 #include "../../core/cuda/cuda_internal.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
+#include "asc/random/engine.h"
+#include "asc/random/providers/sparse_cuda.h"
 #include "sparse_kernels_internal.h"
 
 namespace asc::internal_random_sparse_cuda {
@@ -28,10 +34,10 @@ __device__ std::uint32_t HighWord(std::uint64_t value) {
 __device__ PhiloxBlock GenerateBlock(RandomStream random_stream,
                                      RandomSubsequence subsequence,
                                      std::uint64_t block) {
-  constexpr std::uint64_t kFirstMultiplier = UINT64_C(0xD2511F53);
-  constexpr std::uint64_t kSecondMultiplier = UINT64_C(0xCD9E8D57);
-  constexpr std::uint32_t kFirstWeyl = UINT32_C(0x9E3779B9);
-  constexpr std::uint32_t kSecondWeyl = UINT32_C(0xBB67AE85);
+  constexpr std::uint64_t kFirstMultiplier = std::uint64_t{0xD2511F53};
+  constexpr std::uint64_t kSecondMultiplier = std::uint64_t{0xCD9E8D57};
+  constexpr std::uint32_t kFirstWeyl = std::uint32_t{0x9E3779B9};
+  constexpr std::uint32_t kSecondWeyl = std::uint32_t{0xBB67AE85};
   PhiloxBlock counter{{LowWord(block), HighWord(block), LowWord(subsequence),
                        HighWord(subsequence)}};
   std::uint32_t key[2] = {LowWord(random_stream), HighWord(random_stream)};
@@ -92,11 +98,15 @@ __global__ void SelectCanonicalOrdinals(SparseDescriptor destination,
           Priority(structure_stream, structure_subsequence,
                    structure_offset + 2U * ordinal);
       if (has_previous &&
+          // Selection compares the previous pair before the candidate.
+          // NOLINTNEXTLINE(readability-suspicious-call-argument)
           !PriorityOrdinalLess(previous_priority, previous_ordinal, priority,
                                ordinal)) {
         continue;
       }
       if (!found ||
+          // Candidate and current-best pairs are intentionally ordered.
+          // NOLINTNEXTLINE(readability-suspicious-call-argument)
           PriorityOrdinalLess(priority, ordinal, best_priority, best_ordinal)) {
         found = true;
         best_priority = priority;
@@ -198,7 +208,7 @@ Status LaunchSparseUniform01(void* stream, SparseDescriptor destination,
   if (destination.exact_count == 0) {
     return Status::Ok();
   }
-  const auto cuda_stream = static_cast<cudaStream_t>(stream);
+  auto* const cuda_stream = static_cast<cudaStream_t>(stream);
   bool submitted = false;
   static_cast<void>(cudaGetLastError());
   if (destination.rank != 0) {

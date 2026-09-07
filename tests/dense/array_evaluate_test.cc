@@ -8,6 +8,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "../allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
@@ -55,8 +56,10 @@ struct ExpressionAdapter<m3_test_types::InstrumentedExpression> {
         coordinates[0] + expression.shape[0] * coordinates[1])];
   }
 
-  static bool MayAlias(const m3_test_types::InstrumentedExpression&,
-                       AliasToken) noexcept {
+  static bool MayAlias(const m3_test_types::InstrumentedExpression& expression,
+                       AliasToken token) noexcept {
+    static_cast<void>(expression);
+    static_cast<void>(token);
     return false;
   }
 };
@@ -124,6 +127,8 @@ asc::DenseView<Element, Rank> MakeView(
   return *view;
 }
 
+// Keep lifecycle transitions and allocation accounting in one scenario.
+// NOLINTNEXTLINE(readability-function-size)
 void TestOwnerLifecycle(TestContext& test) {
   asc_dense_test::CountingMemoryResource resource;
   auto extents = DynamicMatrixExtents::Create(2, 3);

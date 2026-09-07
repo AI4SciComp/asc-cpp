@@ -3,13 +3,12 @@
 #include <cstdint>
 #include <iostream>
 #include <span>
-#include <type_traits>
-#include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
-#include "asc/dense/layout.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/dense/providers/cuda.h"
 #include "asc/dense/view.h"
 #include "asc/expression/expression.h"
@@ -41,13 +40,15 @@ struct ExpressionAdapter<m6_verifier::ExternalExpression> {
     return expression.shape;
   }
 
-  static constexpr float Read(const m6_verifier::ExternalExpression&,
-                              std::span<const index_t, 1>) noexcept {
+  static constexpr float Read(
+      const m6_verifier::ExternalExpression& /*expression*/,
+      std::span<const index_t, 1> /*coordinate*/) noexcept {
     return 0.0F;
   }
 
-  static constexpr bool MayAlias(const m6_verifier::ExternalExpression&,
-                                 AliasToken) noexcept {
+  static constexpr bool MayAlias(
+      const m6_verifier::ExternalExpression& /*expression*/,
+      AliasToken /*token*/) noexcept {
     return false;
   }
 };
@@ -162,6 +163,8 @@ void TestAllTerminalRanks(asc_dense_cuda_test::TestContext& test,
                               dense_context);
 }
 
+// Pointwise variants share storage and an independent element-wise oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void TestScalarAndOneLevelOperations(
     asc_dense_cuda_test::TestContext& test,
     asc_dense_cuda_test::CountingResource& pinned_resource,
@@ -299,6 +302,8 @@ void TestScalarAndOneLevelOperations(
   }
 }
 
+// Padded and negative cases share a descriptor fixture and sentinels.
+// NOLINTNEXTLINE(readability-function-size)
 void TestPaddedLayoutAndNegatives(asc_dense_cuda_test::TestContext& test,
                                   asc::MemoryResource& pinned_resource,
                                   asc::MemoryResource& device_resource,

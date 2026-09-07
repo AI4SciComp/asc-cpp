@@ -19,8 +19,8 @@ void CheckExplicitAcquisition(asc_random_test::TestContext& context) {
   std::random_device source;
   const auto seed = asc::AcquireNondeterministicSeed(source);
   const bool full_width =
-      source.min() == 0 &&
-      source.max() == std::numeric_limits<std::uint32_t>::max();
+      std::random_device::min() == 0 &&
+      std::random_device::max() == std::numeric_limits<std::uint32_t>::max();
   if (!full_width) {
     ASC_RANDOM_TEST_EQ(context, seed.status().code(),
                        asc::ErrorCode::kUnsupported);

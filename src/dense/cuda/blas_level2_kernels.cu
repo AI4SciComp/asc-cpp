@@ -1,4 +1,5 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <cstdint>
 
@@ -247,6 +248,8 @@ __global__ void ConjugateTriangularKernel(Level2MatrixDescriptor matrix,
       for (std::int64_t column = begin; column < end; ++column) {
         result = Add(
             result,
+            // Conjugate-transpose access intentionally reverses row/column.
+            // NOLINTNEXTLINE(readability-suspicious-call-argument)
             Multiply(Conjugate(TriangularAt<Real>(matrix, column, row, unit)),
                      VectorAt<Real>(vector, column)));
       }
@@ -263,6 +266,8 @@ __global__ void ConjugateTriangularKernel(Level2MatrixDescriptor matrix,
     for (std::int64_t column = begin; column < end; ++column) {
       result = Subtract(
           result,
+          // Conjugate-transpose access intentionally reverses row/column.
+          // NOLINTNEXTLINE(readability-suspicious-call-argument)
           Multiply(Conjugate(TriangularAt<Real>(matrix, column, row, unit)),
                    VectorAt<Real>(vector, column)));
     }

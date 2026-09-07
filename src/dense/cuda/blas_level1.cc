@@ -1,9 +1,10 @@
 #include <cuComplex.h>
 #include <cublas_v2.h>
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
-#include <algorithm>
 #include <complex>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
@@ -19,6 +20,7 @@
 #include "asc/core/result.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
+#include "asc/dense/blas.h"
 #include "asc/dense/providers/cuda.h"
 #include "blas_level1_kernels_internal.h"
 #include "context_internal.h"
@@ -45,6 +47,7 @@ struct PreparedContext {
   PreparedContext& operator=(const PreparedContext&) = delete;
   PreparedContext(PreparedContext&&) noexcept = default;
   PreparedContext& operator=(PreparedContext&&) = delete;
+  ~PreparedContext() = default;
 
   ContextState* state;
   void* stream;
@@ -278,8 +281,8 @@ auto PositiveProviderPointer(Vector<Element> vector) {
   if (vector.increment() >= 0 || vector.size() <= 1) {
     return vector.data();
   }
-  return reinterpret_cast<Element*>(
-      const_cast<void*>(vector.reachable_storage().data()));
+  return const_cast<Element*>(
+      static_cast<const Element*>(vector.reachable_storage().data()));
 }
 
 template <typename Element>
@@ -287,8 +290,8 @@ Element* SignedProviderPointer(Vector<Element> vector) {
   if (vector.increment() >= 0 || vector.size() <= 1) {
     return vector.data();
   }
-  return reinterpret_cast<Element*>(
-      const_cast<void*>(vector.reachable_storage().data()));
+  return const_cast<Element*>(
+      static_cast<const Element*>(vector.reachable_storage().data()));
 }
 
 template <typename Element>
@@ -460,13 +463,13 @@ cublasStatus_t ProviderDot(cublasHandle_t handle, extent_t size,
   }
 }
 
-template <typename Element, bool kConjugate>
+template <typename Element, bool Conjugate>
 cublasStatus_t ProviderComplexDot(cublasHandle_t handle, extent_t size,
                                   const Element* left, stride_t left_increment,
                                   const Element* right,
                                   stride_t right_increment, Element* result) {
   if constexpr (std::same_as<Element, std::complex<float>>) {
-    if constexpr (kConjugate) {
+    if constexpr (Conjugate) {
       return cublasCdotc_64(handle, size, ProviderPointer(left), left_increment,
                             ProviderPointer(right), right_increment,
                             ProviderPointer(result));
@@ -476,7 +479,7 @@ cublasStatus_t ProviderComplexDot(cublasHandle_t handle, extent_t size,
                             ProviderPointer(result));
     }
   } else {
-    if constexpr (kConjugate) {
+    if constexpr (Conjugate) {
       return cublasZdotc_64(handle, size, ProviderPointer(left), left_increment,
                             ProviderPointer(right), right_increment,
                             ProviderPointer(result));
@@ -919,7 +922,7 @@ Result<CompletionEvent> DsdotImpl(DenseCudaContext& context,
                   right.data(), right.increment(), result.data()));
 }
 
-template <typename Element, bool kConjugate>
+template <typename Element, bool Conjugate>
 Result<CompletionEvent> ComplexDotImpl(DenseCudaContext& context,
                                        Vector<const Element> left,
                                        Vector<const Element> right,
@@ -940,7 +943,7 @@ Result<CompletionEvent> ComplexDotImpl(DenseCudaContext& context,
   }
   return DevicePointerCall(
       context, *prepared, "cuBLAS could not enqueue complex CudaDot", [&] {
-        return ProviderComplexDot<Element, kConjugate>(
+        return ProviderComplexDot<Element, Conjugate>(
             prepared->state->handle(), left.size(), SignedProviderPointer(left),
             ProviderIncrement(left), SignedProviderPointer(right),
             ProviderIncrement(right), result.data());

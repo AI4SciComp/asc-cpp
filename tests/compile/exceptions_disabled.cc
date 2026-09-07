@@ -1,4 +1,5 @@
-#include "asc/core.h"
+#include "asc/core.h"  // NOLINT(misc-include-cleaner): umbrella-header probe
+#include "asc/core/types.h"
 
 #if defined(__cpp_exceptions) || defined(__EXCEPTIONS) || defined(_CPPUNWIND)
 #error "This compile contract must disable C++ exceptions."

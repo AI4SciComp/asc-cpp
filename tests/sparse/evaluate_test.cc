@@ -3,12 +3,13 @@
 #include <array>
 #include <cstddef>
 #include <span>
-#include <type_traits>
 
+#include "../allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
+#include "asc/core/result.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/expression/expression.h"
@@ -72,6 +73,8 @@ void CheckValues(TestContext& test, View view,
   }
 }
 
+// Coordinate and compressed destinations share one expression oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void TestCoordinateAndCompressedEvaluation(TestContext& test) {
   asc::HostMemoryResource source_resource;
   asc::HostMemoryResource coordinate_resource;
@@ -184,6 +187,8 @@ void CheckEffectRejected(TestContext& test,
   CheckValues(test, destination, before);
 }
 
+// Every rejected evaluation checks the same rollback invariant.
+// NOLINTNEXTLINE(readability-function-size)
 void TestTransactionalRejections(TestContext& test) {
   asc::HostMemoryResource resource;
   auto destination_owner = MakeCoordinate(resource, kInitialValues);

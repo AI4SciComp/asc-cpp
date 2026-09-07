@@ -1,3 +1,4 @@
+#include "asc/core/memory.h"
 #include "m5_random_facets_odr.h"
 
 bool CheckM5OdrSparse() {

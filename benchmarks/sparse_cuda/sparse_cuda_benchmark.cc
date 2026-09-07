@@ -1,23 +1,25 @@
 #include <cuda_runtime_api.h>
 #include <cusparse.h>
+#include <driver_types.h>
 
 #include <algorithm>
 #include <array>
 #include <bit>
 #include <chrono>
 #include <cmath>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
-#include <iomanip>
 #include <iostream>
 #include <limits>
-#include <span>
-#include <string_view>
-#include <type_traits>
 #include <vector>
 
+#include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/types.h"
+#include "asc/sparse/blas.h"
 #include "asc/sparse/compressed.h"
 #include "asc/sparse/providers/cuda.h"
 
@@ -99,6 +101,9 @@ bool NearlyEqual(Element actual, Element expected) {
 }
 
 template <typename Element>
+// Each precision runs one end-to-end benchmark and oracle with shared
+// allocation accounting and provider state.
+// NOLINTNEXTLINE(readability-function-size)
 bool Run(asc::SparseCudaContext& context, asc::MemoryResource& raw_resource) {
   CountingResource resource(raw_resource);
   constexpr asc::nnz_t kNonzeros = kDimension * kEntriesPerRow;

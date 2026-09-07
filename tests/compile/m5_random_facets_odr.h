@@ -7,10 +7,12 @@
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
+#include "asc/core/result.h"
 #include "asc/core/types.h"
 #include "asc/dense/layout.h"
 #include "asc/dense/view.h"
 #include "asc/random/dense.h"
+#include "asc/random/engine.h"
 #include "asc/random/sparse.h"
 
 inline asc::Result<asc::RandomOffset> FillM5OdrDense(

@@ -6,13 +6,16 @@
 #include <iostream>
 #include <string_view>
 
+#include "../../tests/allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/expression/expression.h"
-#include "asc/sparse.h"
+#include "asc/sparse/blas.h"
+#include "asc/sparse/compressed.h"
+#include "asc/sparse/evaluate.h"
 #include "external_vector.h"
 
 namespace {
@@ -62,6 +65,9 @@ void PrintResult(std::string_view operation, std::size_t iterations,
 
 }  // namespace
 
+// This benchmark keeps setup, timed operations, and independent oracles
+// together so its reported measurements cannot silently drift from validation.
+// NOLINTNEXTLINE(readability-function-size)
 int main() {
   constexpr std::size_t kEvaluateIterations = 64;
   constexpr std::size_t kSpmvIterations = 256;
@@ -234,10 +240,14 @@ int main() {
   for (std::size_t position = 0; position < matrix_input.size(); ++position) {
     matrix_input[position] = 0.125 * static_cast<double>(1 + position % 11);
   }
+  // A is kRows by kColumns, so the dense right operand has kColumns rows.
+  // NOLINTNEXTLINE(readability-suspicious-call-argument)
   auto dense_matrix = asc::SparseBlasMatrixView<const double>::Create(
       matrix_input.data(), kColumns, kRightHandSides,
       asc::SparseBlasLayout::kRowMajor, kRightHandSides,
       {matrix_input.data(), sizeof(matrix_input), asc::MemorySpace::kHost});
+  // The product has kRows rows and kRightHandSides columns.
+  // NOLINTNEXTLINE(readability-suspicious-call-argument)
   auto product_matrix = asc::SparseBlasMatrixView<double>::Create(
       matrix_output.data(), kRows, kRightHandSides,
       asc::SparseBlasLayout::kRowMajor, kRightHandSides,

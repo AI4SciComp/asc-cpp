@@ -401,6 +401,8 @@ Status FillSparsePseudo(const ExecutionContext& context,
  * @ingroup asc_sparse
  */
 template <SparseExtents ExtentsType>
+// Keep validation, selection, and publication order in one transaction.
+// NOLINTNEXTLINE(readability-function-size)
 [[nodiscard]] Result<RandomOffset> GenerateSparseStructure(
     const ExecutionContext& context, ExtentsType extents, nnz_t exact_count,
     RandomStream stream, RandomSubsequence subsequence, RandomOffset offset,
@@ -526,6 +528,8 @@ template <SparseExtents ExtentsType>
 template <typename Element, SparseExtents ExtentsType>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
 [[nodiscard]] Result<SparseUniform01Generation<Element, ExtentsType>>
+// Keep validation, allocation, selection, and publication order together.
+// NOLINTNEXTLINE(readability-function-size)
 GenerateSparseUniform01(const ExecutionContext& context, ExtentsType extents,
                         nnz_t exact_count, MemoryResource& resource,
                         RandomStream structure_stream,
@@ -610,12 +614,17 @@ GenerateSparseUniform01(const ExecutionContext& context, ExtentsType extents,
       const std::uint64_t priority = internal_random_sparse::Priority(
           structure_stream, structure_subsequence, priority_offset);
       if (has_previous &&
+          // Compare the previous pair with the current candidate pair.
+          // NOLINTNEXTLINE(readability-suspicious-call-argument)
           !internal_random_sparse::PriorityOrdinalLess(
               previous_priority, previous_ordinal, priority, ordinal)) {
         continue;
       }
-      if (!found || internal_random_sparse::PriorityOrdinalLess(
-                        priority, ordinal, best_priority, best_ordinal)) {
+      if (!found ||
+          // Compare the current candidate pair with the best pair.
+          // NOLINTNEXTLINE(readability-suspicious-call-argument)
+          internal_random_sparse::PriorityOrdinalLess(
+              priority, ordinal, best_priority, best_ordinal)) {
         found = true;
         best_priority = priority;
         best_ordinal = ordinal;

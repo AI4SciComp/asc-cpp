@@ -1,13 +1,20 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <cstddef>
 #include <cstdint>
+#include <span>
 #include <utility>
 
 #include "../../core/cuda/cuda_internal.h"
 #include "../../core/execution_internal.h"
-#include "asc/core/contracts.h"
+#include "asc/core/execution.h"
+#include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
+#include "asc/random/engine.h"
 #include "asc/random/providers/sparse_cuda.h"
 #include "sparse_kernels_internal.h"
 
@@ -58,6 +65,9 @@ Status ValidateAllocation(const Buffer& buffer, std::int32_t device,
 
 }  // namespace
 
+// Sparse generation performs dependent size checks, allocations, launches,
+// and completion recording as one provider transaction.
+// NOLINTNEXTLINE(readability-function-size)
 Result<GenerationBuffers> GenerateSparseUniform01Erased(
     const ExecutionContext& context, std::span<const extent_t> extents,
     extent_t logical_size, nnz_t exact_count, ElementKind element_kind,
@@ -93,14 +103,15 @@ Result<GenerationBuffers> GenerateSparseUniform01Erased(
   }
   std::uint64_t structure_words = 0;
   if (exact_count != 0) {
-    auto checked = CheckedMultiply<std::uint64_t>(*logical_count, UINT64_C(2));
+    auto checked =
+        CheckedMultiply<std::uint64_t>(*logical_count, std::uint64_t{2});
     if (!checked.ok()) {
       return checked.status();
     }
     structure_words = *checked;
   }
   const std::uint64_t value_words_per_element =
-      element_kind == ElementKind::kFloat ? UINT64_C(1) : UINT64_C(2);
+      element_kind == ElementKind::kFloat ? std::uint64_t{1} : std::uint64_t{2};
   auto value_words =
       CheckedMultiply<std::uint64_t>(*selected_count, value_words_per_element);
   if (!value_words.ok()) {

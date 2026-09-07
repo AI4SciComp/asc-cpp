@@ -1,9 +1,15 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <algorithm>
+#include <complex>
 #include <cstdint>
 
 #include "../../core/cuda/cuda_internal.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
+#include "asc/sparse/blas.h"
+#include "asc/sparse/providers/cuda.h"
 #include "kernels_internal.h"
 
 namespace asc::internal_sparse_cuda {
@@ -127,7 +133,8 @@ template <typename Element>
 __global__ void SparsePointwiseKernel(int operation, OperandDescriptor left,
                                       OperandDescriptor right,
                                       SparseDescriptor destination) {
-  auto* output = static_cast<Element*>(const_cast<void*>(destination.values));
+  auto* output =
+      const_cast<Element*>(static_cast<const Element*>(destination.values));
   const std::uint64_t first =
       static_cast<std::uint64_t>(blockIdx.x) * blockDim.x + threadIdx.x;
   const std::uint64_t step = static_cast<std::uint64_t>(gridDim.x) * blockDim.x;
@@ -159,14 +166,14 @@ __global__ void SparsePointwiseKernel(int operation, OperandDescriptor left,
 
 template <typename Element>
 __device__ Element& DenseVectorAt(VectorDescriptor vector, extent_t index) {
-  auto* data = static_cast<Element*>(const_cast<void*>(vector.data));
+  auto* data = const_cast<Element*>(static_cast<const Element*>(vector.data));
   return data[index * vector.stride];
 }
 
 template <typename Element>
 __device__ Element& DenseMatrixAt(MatrixDescriptor matrix, extent_t row,
                                   extent_t column) {
-  auto* data = static_cast<Element*>(const_cast<void*>(matrix.data));
+  auto* data = const_cast<Element*>(static_cast<const Element*>(matrix.data));
   const stride_t offset = matrix.layout == SparseBlasLayout::kColumnMajor
                               ? column * matrix.leading_dimension + row
                               : row * matrix.leading_dimension + column;
@@ -206,7 +213,8 @@ __global__ void StandardLevel1Kernel(int operation,
                                      VectorDescriptor result) {
   using Arithmetic = DeviceArithmetic<Element>;
   const auto* indices = sparse.indices;
-  auto* values = static_cast<Element*>(const_cast<void*>(sparse.values));
+  auto* values =
+      const_cast<Element*>(static_cast<const Element*>(sparse.values));
   if (static_cast<StandardOperation>(operation) == StandardOperation::kDot) {
     if (blockIdx.x != 0 || threadIdx.x != 0) {
       return;
@@ -317,8 +325,10 @@ __global__ void StandardSpmmKernel(SparseBlasTranspose transpose,
       static_cast<std::uint64_t>(blockIdx.x) * blockDim.x + threadIdx.x;
   const std::uint64_t step = static_cast<std::uint64_t>(gridDim.x) * blockDim.x;
   for (std::uint64_t linear = first; linear < count; linear += step) {
-    const extent_t row = linear / static_cast<std::uint64_t>(output.columns);
-    const extent_t rhs = linear % static_cast<std::uint64_t>(output.columns);
+    const extent_t row = static_cast<extent_t>(
+        linear / static_cast<std::uint64_t>(output.columns));
+    const extent_t rhs = static_cast<extent_t>(
+        linear % static_cast<std::uint64_t>(output.columns));
     Element sum = Arithmetic::Zero();
     if (transpose == SparseBlasTranspose::kNone) {
       const auto* offsets = static_cast<const nnz_t*>(matrix.structure_first);
@@ -379,6 +389,8 @@ __global__ void StandardTriangularSolveKernel(
         value = Arithmetic::Subtract(
             value, Arithmetic::Multiply(
                        CsrOpValue<Element>(matrix, transpose, row, column),
+                       // The matrix column selects the RHS row here.
+                       // NOLINTNEXTLINE(readability-suspicious-call-argument)
                        DenseMatrixAt<Element>(right_hand_sides, column, rhs)));
       }
       if (diagonal == SparseBlasDiagonal::kNonUnit) {
@@ -415,7 +427,8 @@ Status LaunchSpmvTyped(void* stream, double alpha, SparseDescriptor matrix,
           static_cast<const Element*>(matrix.values), matrix.extents[0],
           static_cast<const Element*>(input.data), input.stride,
           static_cast<Element>(beta),
-          static_cast<Element*>(const_cast<void*>(output.data)), output.stride);
+          const_cast<Element*>(static_cast<const Element*>(output.data)),
+          output.stride);
   return LaunchStatus("CUDA could not launch the strided CSR SpMV kernel");
 }
 
@@ -517,7 +530,8 @@ Status LaunchStandardSpmv(void* stream, SparseBlasTranspose transpose,
     return Status::Ok();
   }
   return DispatchStandard(matrix.element_kind, [&]<typename Element>() {
-    static_cast<void>(cudaGetLastError());
+    // The API header is direct; the CUDA generic-lambda parse loses provenance.
+    static_cast<void>(cudaGetLastError());  // NOLINT(misc-include-cleaner)
     StandardSpmvKernel<Element><<<BlockCount(output.extent), kThreadsPerBlock,
                                   0, static_cast<cudaStream_t>(stream)>>>(
         transpose, alpha, matrix, input, output);

@@ -1,3 +1,3 @@
-#include "asc/dense/blas.h"
+#include "asc/dense/blas.h"  // NOLINT(misc-include-cleaner): header probe
 
 int main() { return 0; }

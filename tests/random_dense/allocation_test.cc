@@ -1,9 +1,14 @@
 #include <array>
+#include <cstddef>
+#include <cstdint>
 #include <span>
 
+#include "../allocation_observation.h"
 #include "../dense/allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/dense/layout.h"
 #include "asc/dense/view.h"
@@ -13,7 +18,7 @@
 #include "asc/random/generator.h"
 #include "test_support.h"
 
-int main() {
+int main() {  // NOLINT(readability-function-size)
   asc_random_dense_test::TestContext test;
   constexpr std::array<asc::extent_t, 2> kExtents{16, 16};
   auto mapping = asc::DenseLayout<2>::Create(

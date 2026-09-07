@@ -143,7 +143,7 @@ Status EvaluateStored(const ExecutionContext& context,
     if (!value.ok()) {
       return value.status();
     }
-    if (MayAlias(expression, AliasToken(static_cast<const void*>(*value)))) {
+    if (MayAlias(expression, AliasToken(*value))) {
       return Status(ErrorCode::kInvalidArgument,
                     "Sparse evaluation rejects destination overlap");
     }

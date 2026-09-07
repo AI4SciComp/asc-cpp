@@ -110,8 +110,7 @@ Status ValidateNoAlias(const Expression& expression,
         if (!destination_element.ok()) {
           return destination_element.status();
         }
-        if (MayAlias(expression, AliasToken(static_cast<const void*>(
-                                     *destination_element)))) {
+        if (MayAlias(expression, AliasToken(*destination_element))) {
           return Status(
               ErrorCode::kInvalidArgument,
               "Dense evaluation rejects possible destination overlap");

@@ -1,10 +1,13 @@
 #include <cuComplex.h>
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
+#include <cmath>
 #include <complex>
-#include <type_traits>
 
 #include "../../core/cuda/cuda_internal.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "blas_level1_kernels_internal.h"
 
 namespace asc::internal_dense_cuda {

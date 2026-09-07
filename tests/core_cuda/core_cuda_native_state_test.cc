@@ -1,11 +1,12 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <cstddef>
-#include <cstdint>
 #include <limits>
 
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/status.h"
 #include "test_support.h"
 
 int main() {

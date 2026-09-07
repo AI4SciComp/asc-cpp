@@ -4,7 +4,6 @@
 #include <cstddef>
 #include <cstdlib>
 #include <limits>
-#include <type_traits>
 
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
@@ -166,6 +165,8 @@ void TestVectorUpdates(TestContext& test) {
 }
 
 template <typename Real>
+// The rotation identities are most useful when validated together.
+// NOLINTNEXTLINE(readability-function-size)
 void TestRealRotations(TestContext& test) {
   const asc::ExecutionContext context = asc::ExecutionContext::Serial();
   std::array<Real, 1> a_storage{Real{3}};
@@ -494,11 +495,16 @@ void TestFailuresAndEmpty(TestContext& test) {
     ASC_DENSE_TEST_CHECK(test, asc::Iamax(context, const_empty, index).ok());
     ASC_DENSE_TEST_EQ(test, index_storage[0], asc::index_t{-1});
   }
-  CheckError(test,
-             asc::Dot(context, static_cast<asc::DenseBlasDotAccumulation>(99),
-                      Vector<const float>(source), Vector<const float>(source),
-                      double_scalar),
-             asc::ErrorCode::kInvalidArgument);
+  // The invalid enumerator is the input under test.
+  // NOLINTBEGIN(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_accumulation =
+      static_cast<asc::DenseBlasDotAccumulation>(99);
+  // NOLINTEND(clang-analyzer-optin.core.EnumCastOutOfRange)
+  CheckError(
+      test,
+      asc::Dot(context, invalid_accumulation, Vector<const float>(source),
+               Vector<const float>(source), double_scalar),
+      asc::ErrorCode::kInvalidArgument);
 }
 
 }  // namespace

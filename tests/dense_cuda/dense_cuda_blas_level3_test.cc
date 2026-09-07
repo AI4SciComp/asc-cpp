@@ -6,13 +6,14 @@
 #include <cstdlib>
 #include <iostream>
 #include <limits>
-#include <type_traits>
 #include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
 #include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/dense/blas.h"
 #include "asc/dense/providers/cuda.h"
 #include "counting_resource.h"
@@ -51,11 +52,11 @@ asc::Result<BufferPair> AllocatePair(asc::MemoryResource& pinned,
 }
 
 asc::ConstMemoryView Storage(asc::Buffer& buffer, asc::MemorySpace space) {
-  return asc::ConstMemoryView(buffer.data(), buffer.size(), space);
+  return {buffer.data(), buffer.size(), space};
 }
 
 template <typename Element>
-Element Value(Real<Element> real, Real<Element> imaginary = Real<Element>{0}) {
+Element Value(Real<Element> real, Real<Element> imaginary = {0}) {
   if constexpr (asc::DenseBlasComplex<Element>) {
     return Element{real, imaginary};
   }
@@ -164,6 +165,8 @@ void CheckOutput(TestContext& test, asc::DenseCudaContext& context,
 }
 
 template <typename Element>
+// Layout and transpose rows share buffers and the same independent oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void TestLevel3Rows(TestContext& test, asc::MemoryResource& pinned,
                     asc_dense_cuda_test::CountingResource& device,
                     asc::DenseCudaContext& context) {
@@ -398,6 +401,8 @@ void TestLevel3Rows(TestContext& test, asc::MemoryResource& pinned,
   }
 }
 
+// Edge and validation cases share a known-good provider baseline.
+// NOLINTNEXTLINE(readability-function-size)
 void TestValidationAndEdges(TestContext& test, asc::MemoryResource& pinned,
                             asc_dense_cuda_test::CountingResource& device,
                             asc::DenseCudaContext& context) {

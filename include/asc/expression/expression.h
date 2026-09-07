@@ -867,6 +867,8 @@ struct ExpressionAdapter<
  * @ingroup asc_expression
  */
 template <ReadableExpression Operand>
+// Public API spelling is fixed by the Expression module contract.
+// NOLINTNEXTLINE(readability-identifier-naming)
 [[nodiscard]] constexpr auto MakeNegate(Operand&& operand) {
   using Storage = internal_expression::CapturedExpression<Operand&&>;
   return internal_expression::NegateNode<Storage>(
@@ -891,6 +893,8 @@ template <ReadableExpression Operand>
  * @ingroup asc_expression
  */
 template <ReadableExpression Left, ReadableExpression Right>
+// Public API spelling is fixed by the Expression module contract.
+// NOLINTNEXTLINE(readability-identifier-naming)
 [[nodiscard]] auto MakeAdd(Left&& left, Right&& right) {
   return internal_expression::MakeBinary<ExpressionOperation::kAdd>(
       std::forward<Left>(left), std::forward<Right>(right));
@@ -914,6 +918,8 @@ template <ReadableExpression Left, ReadableExpression Right>
  * @ingroup asc_expression
  */
 template <ReadableExpression Left, ReadableExpression Right>
+// Public API spelling is fixed by the Expression module contract.
+// NOLINTNEXTLINE(readability-identifier-naming)
 [[nodiscard]] auto MakeSubtract(Left&& left, Right&& right) {
   return internal_expression::MakeBinary<ExpressionOperation::kSubtract>(
       std::forward<Left>(left), std::forward<Right>(right));
@@ -937,6 +943,8 @@ template <ReadableExpression Left, ReadableExpression Right>
  * @ingroup asc_expression
  */
 template <ReadableExpression Left, ReadableExpression Right>
+// Public API spelling is fixed by the Expression module contract.
+// NOLINTNEXTLINE(readability-identifier-naming)
 [[nodiscard]] auto MakeMultiply(Left&& left, Right&& right) {
   return internal_expression::MakeBinary<ExpressionOperation::kMultiply>(
       std::forward<Left>(left), std::forward<Right>(right));

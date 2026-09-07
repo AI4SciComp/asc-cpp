@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <cstdint>
 #include <iterator>
 #include <memory>
@@ -13,10 +14,15 @@ namespace {
 
 struct ThrowingMoveConstruction {
   ThrowingMoveConstruction() = default;
+  ~ThrowingMoveConstruction() = default;
   ThrowingMoveConstruction(const ThrowingMoveConstruction&) = delete;
   ThrowingMoveConstruction& operator=(const ThrowingMoveConstruction&) = delete;
-  ThrowingMoveConstruction(ThrowingMoveConstruction&&) noexcept(false) {}
-  ThrowingMoveConstruction& operator=(ThrowingMoveConstruction&&) noexcept {
+  ThrowingMoveConstruction(ThrowingMoveConstruction&& other) noexcept(false) {
+    static_cast<void>(other);
+  }
+  ThrowingMoveConstruction& operator=(
+      ThrowingMoveConstruction&& other) noexcept {
+    static_cast<void>(other);
     return *this;
   }
 };

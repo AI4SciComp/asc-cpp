@@ -11,8 +11,10 @@
 #include <thread>
 #include <type_traits>
 
+#include "../allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/status.h"
+#include "asc/random/distribution.h"
 #include "asc/random/engine.h"
 #include "test_support.h"
 
@@ -93,6 +95,8 @@ void CheckPrimeAndRadicalInverse(asc_random_test::TestContext& context) {
       asc::ErrorCode::kShape);
 }
 
+// Permutation and Latin-hypercube invariants share engine-state checks.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckPermutationAndLatin(asc_random_test::TestContext& context) {
   CountingEngine permutation_engine;
   std::array<std::uint32_t, 8> permutation{};
@@ -215,6 +219,8 @@ void CheckPermutationAndLatin(asc_random_test::TestContext& context) {
   ASC_RANDOM_TEST_EQ(context, invalid_engine.calls, std::size_t{0});
 }
 
+// Both low-discrepancy sequences share boundary and allocation checks.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckHaltonAndHammersley(asc_random_test::TestContext& context) {
   constexpr std::array<std::array<double, 2>, 5> kHalton = {
       {{0.0, 0.0},
@@ -323,6 +329,8 @@ std::uint64_t RuntimeSobolChecksum() {
   return checksum;
 }
 
+// Direction-number validation and sequence checks form one Sobol scenario.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckSobol(asc_random_test::TestContext& context) {
   std::array<std::uint64_t, asc::kSobolDirectionWordCount> directions{};
   ASC_RANDOM_TEST_CHECK(

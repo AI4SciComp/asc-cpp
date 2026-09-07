@@ -11,6 +11,7 @@
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
 #include "asc/core/status.h"
 #include "asc/random/engine.h"
 #include "asc/random/providers/cuda.h"
@@ -61,14 +62,15 @@ void CheckWords(std::span<const std::uint32_t> words, asc::RandomStream stream,
 }
 
 void CheckGeneration(Fixture& fixture, TestContext& test) {
-  constexpr asc::RandomStream kStream = UINT64_C(0xfedcba9876543210);
-  constexpr asc::RandomSubsequence kSubsequence = UINT64_C(0x0123456789abcdef);
-  constexpr asc::RandomOffset kOffset = (UINT64_C(1) << 34U) + 3U;
+  constexpr asc::RandomStream kStream = std::uint64_t{0xfedcba9876543210};
+  constexpr asc::RandomSubsequence kSubsequence =
+      std::uint64_t{0x0123456789abcdef};
+  constexpr asc::RandomOffset kOffset = (std::uint64_t{1} << 34U) + 3U;
 
   for (const std::size_t count :
        {std::size_t{1}, std::size_t{3}, std::size_t{4}, std::size_t{5},
         std::size_t{1031}}) {
-    std::vector<std::uint32_t> sentinel(count, UINT32_C(0xa5a5a5a5));
+    std::vector<std::uint32_t> sentinel(count, std::uint32_t{0xa5a5a5a5});
     auto device = asc_random_cuda_test::Upload<std::uint32_t>(
         sentinel, *fixture.resource, fixture.execution);
     ASC_M7_CUDA_CHECK(test, device.ok());
@@ -112,8 +114,8 @@ void CheckFailures(Fixture& fixture, TestContext& test) {
   }
 
   constexpr std::array<std::uint32_t, 4> kSentinel = {
-      UINT32_C(0xc001cafe), UINT32_C(0xc001cafe), UINT32_C(0xc001cafe),
-      UINT32_C(0xc001cafe)};
+      std::uint32_t{0xc001cafe}, std::uint32_t{0xc001cafe},
+      std::uint32_t{0xc001cafe}, std::uint32_t{0xc001cafe}};
   auto device = asc_random_cuda_test::Upload<std::uint32_t>(
       kSentinel, *fixture.resource, fixture.execution);
   ASC_M7_CUDA_CHECK(test, device.ok());
@@ -175,6 +177,8 @@ void CheckFailures(Fixture& fixture, TestContext& test) {
   }
 }
 
+// Partition shapes and independent contexts share one whole-sequence oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckPartitionsAndContexts(Fixture& fixture, TestContext& test) {
   constexpr std::size_t kFirstCount = 127;
   constexpr std::size_t kSecondCount = 1;
@@ -182,8 +186,9 @@ void CheckPartitionsAndContexts(Fixture& fixture, TestContext& test) {
   constexpr std::size_t kFourthCount = 513;
   constexpr std::size_t kCount =
       kFirstCount + kSecondCount + kThirdCount + kFourthCount;
-  constexpr asc::RandomStream kStream = UINT64_C(0x1111222233334444);
-  constexpr asc::RandomSubsequence kSubsequence = UINT64_C(0xaaaabbbbccccdddd);
+  constexpr asc::RandomStream kStream = std::uint64_t{0x1111222233334444};
+  constexpr asc::RandomSubsequence kSubsequence =
+      std::uint64_t{0xaaaabbbbccccdddd};
   constexpr asc::RandomOffset kOffset = 7;
 
   std::vector<std::uint32_t> zeros(kCount, 0);

@@ -24,6 +24,9 @@ inline Result<std::size_t> ViewBytes(const ViewDescriptor& view) {
                          ElementBytes(view.element_kind));
 }
 
+// Descriptor validation is intentionally linear so callers see one stable
+// precedence for metadata failures.
+// NOLINTNEXTLINE(readability-function-size)
 inline Status ValidateViewMetadata(const ViewDescriptor& view,
                                    ElementKind expected_kind,
                                    std::size_t maximum_rank) {

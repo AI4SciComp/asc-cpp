@@ -34,6 +34,8 @@ namespace internal_random_sparse_cuda {
 
 class Access;
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class ElementKind {
   kFloat,   ///< Selects float behavior.
   kDouble,  ///< Selects double behavior.

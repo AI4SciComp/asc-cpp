@@ -1,10 +1,10 @@
 #include <array>
 #include <cstddef>
-#include <cstdint>
 #include <limits>
 #include <span>
 #include <type_traits>
 
+#include "../allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/memory.h"
 #include "asc/core/status.h"
@@ -112,6 +112,8 @@ void TestRankZeroAndContiguousLayouts(TestContext& test) {
 }
 
 template <std::size_t Rank>
+// Keep the complete layout/view invariant matrix in one scenario.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckSmallContiguousShape(TestContext& test,
                                const std::array<asc::extent_t, Rank>& shape) {
   auto left = asc::DenseLayout<Rank>::Create(
@@ -409,7 +411,7 @@ void TestViewCreationAndAccess(TestContext& test) {
   }
 }
 
-void TestSubviews(TestContext& test) {
+void TestSubviews(TestContext& test) {  // NOLINT(readability-function-size)
   const std::array<asc::extent_t, 2> shape{3, 4};
   auto mapping =
       asc::DenseLayout<2>::Create(std::span<const asc::extent_t, 2>(shape),

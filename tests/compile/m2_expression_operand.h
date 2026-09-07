@@ -5,6 +5,7 @@
 #include <cstddef>
 #include <span>
 
+#include "asc/core/types.h"
 #include "asc/expression/expression.h"
 
 struct M2ExternalVector {
@@ -21,7 +22,8 @@ struct ExpressionAdapter<::M2ExternalVector> {
   static constexpr SparsityEffect sparsity_effect =
       SparsityEffect::kStructurePreserving;
 
-  static constexpr std::array<extent_t, 1> Shape(const ::M2ExternalVector&) {
+  static constexpr std::array<extent_t, 1> Shape(
+      const ::M2ExternalVector& /*expression*/) {
     return {2};
   }
 

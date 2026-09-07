@@ -1,12 +1,13 @@
 #include <array>
 #include <cstddef>
 #include <cstdint>
-#include <span>
 #include <type_traits>
 #include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "test_support.h"
 
 namespace {
@@ -23,7 +24,7 @@ static_assert(std::is_nothrow_move_assignable_v<asc::CompletionEvent>);
 
 class CountingResource final : public asc::MemoryResource {
  public:
-  enum class Behavior {
+  enum class Behavior : std::uint8_t {
     kDelegate,
     kFailure,
     kNull,
@@ -97,12 +98,18 @@ class MisalignedResource final : public asc::MemoryResource {
     return asc::MemorySpace::kHost;
   }
 
-  asc::Result<void*> Allocate(std::size_t, std::size_t) override {
+  asc::Result<void*> Allocate(std::size_t bytes,
+                              std::size_t alignment) override {
+    static_cast<void>(bytes);
+    static_cast<void>(alignment);
     ++allocate_calls_;
     return static_cast<void*>(storage_ + 1);
   }
 
-  void Deallocate(void* pointer, std::size_t, std::size_t) noexcept override {
+  void Deallocate(void* pointer, std::size_t bytes,
+                  std::size_t alignment) noexcept override {
+    static_cast<void>(bytes);
+    static_cast<void>(alignment);
     ++deallocate_calls_;
     deallocated_pointer_ = pointer;
   }
@@ -250,6 +257,7 @@ void CheckContexts(asc_core_test::TestContext& context) {
       asc::Backend::kSycl, asc::Device{asc::Backend::kSycl, 0});
   ASC_TEST_EQ(context, sycl.status().code(), asc::ErrorCode::kUnsupported);
 
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
   const auto invalid_backend = static_cast<asc::Backend>(255);
   ASC_TEST_EQ(context,
               asc::ExecutionContext::Create(invalid_backend,
@@ -257,13 +265,15 @@ void CheckContexts(asc_core_test::TestContext& context) {
                   .status()
                   .code(),
               asc::ErrorCode::kInvalidArgument);
-  ASC_TEST_EQ(context,
-              asc::ExecutionContext::Create(asc::Backend::kSerial,
-                                            asc::Device::Serial(),
-                                            static_cast<asc::Determinism>(255))
-                  .status()
-                  .code(),
-              asc::ErrorCode::kInvalidArgument);
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_determinism = static_cast<asc::Determinism>(255);
+  ASC_TEST_EQ(
+      context,
+      asc::ExecutionContext::Create(asc::Backend::kSerial,
+                                    asc::Device::Serial(), invalid_determinism)
+          .status()
+          .code(),
+      asc::ErrorCode::kInvalidArgument);
 }
 
 void CheckCopiesAndEvents(asc_core_test::TestContext& context) {

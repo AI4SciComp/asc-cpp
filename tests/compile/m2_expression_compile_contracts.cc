@@ -1,6 +1,7 @@
 #include <array>
 #include <span>
 
+#include "asc/core/types.h"
 #include "asc/expression/expression.h"
 
 namespace {
@@ -20,11 +21,15 @@ struct ExpressionAdapter<::IncompleteAdapter> {
   static constexpr SparsityEffect sparsity_effect =
       SparsityEffect::kStructurePreserving;
 
-  static std::array<extent_t, 1> Shape(const ::IncompleteAdapter&) {
+  static std::array<extent_t, 1> Shape(
+      const ::IncompleteAdapter& /*expression*/) {
     return {1};
   }
 
-  static bool MayAlias(const ::IncompleteAdapter&, AliasToken) { return false; }
+  static bool MayAlias(const ::IncompleteAdapter& /*expression*/,
+                       AliasToken /*token*/) {
+    return false;
+  }
 };
 
 }  // namespace asc

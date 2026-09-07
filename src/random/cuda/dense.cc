@@ -1,12 +1,19 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <cstddef>
 #include <cstdint>
+#include <utility>
 
 #include "../../core/cuda/cuda_internal.h"
 #include "../../core/execution_internal.h"
-#include "asc/core/contracts.h"
+#include "asc/core/execution.h"
+#include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
+#include "asc/random/engine.h"
 #include "asc/random/providers/dense_cuda.h"
 #include "dense_kernels_internal.h"
 
@@ -35,6 +42,9 @@ std::size_t ElementBytes(ElementKind kind) {
   return kind == ElementKind::kFloat ? sizeof(float) : sizeof(double);
 }
 
+// Validation remains a single ordered pass so descriptor failures have stable
+// precedence across all ranks.
+// NOLINTNEXTLINE(readability-function-size)
 Status ValidateDescriptor(const ViewDescriptor& descriptor) {
   if (descriptor.rank > 8) {
     return Status(ErrorCode::kUnsupported,

@@ -1,14 +1,21 @@
 #include <cublas_v2.h>
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
-#include <algorithm>
+#include <concepts>
 #include <cstddef>
-#include <type_traits>
+#include <cstdint>
 
 #include "../../core/cuda/cuda_internal.h"
 #include "../../core/execution_internal.h"
+#include "asc/core/execution.h"
+#include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/dense/providers/cuda.h"
+#include "asc/dense/view.h"
 #include "context_internal.h"
 #include "kernels_internal.h"
 #include "validation_internal.h"
@@ -72,7 +79,7 @@ Status ValidateOperand(const OperandDescriptor& operand,
 }
 
 Result<CompletionEvent> Finish(DenseCudaContext& context, void* stream,
-                               Status launch_status) {
+                               const Status& launch_status) {
   if (!launch_status.ok()) {
     DrainStream(stream);
     return launch_status;
@@ -209,6 +216,9 @@ Result<CompletionEvent> AxpyImpl(DenseCudaContext& context, Element alpha,
 }
 
 template <typename Element>
+// The matrix-vector validation and enqueue transaction stays together to
+// preserve a single completion and error path.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> GemvImpl(DenseCudaContext& context,
                                  MatrixOperation operation, Element alpha,
                                  DenseView<const Element, 2> matrix,
@@ -326,6 +336,9 @@ Result<CompletionEvent> GemvImpl(DenseCudaContext& context,
 }
 
 template <typename Element>
+// The matrix-matrix validation and enqueue transaction stays together to
+// preserve a single completion and error path.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> GemmImpl(DenseCudaContext& context,
                                  MatrixOperation left_operation,
                                  MatrixOperation right_operation, Element alpha,
@@ -461,6 +474,9 @@ Result<CompletionEvent> GemmImpl(DenseCudaContext& context,
 
 }  // namespace
 
+// Erased expression dispatch validates every descriptor before selecting the
+// kernel, keeping the provider boundary one atomic transaction.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> CudaEvaluateErased(DenseCudaContext& context,
                                            PointwiseOperation operation,
                                            OperandDescriptor left,

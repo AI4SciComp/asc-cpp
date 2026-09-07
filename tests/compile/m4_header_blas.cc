@@ -1,3 +1,3 @@
-#include "asc/sparse/blas.h"
+#include "asc/sparse/blas.h"  // NOLINT(misc-include-cleaner): header probe
 
 int main() { return 0; }

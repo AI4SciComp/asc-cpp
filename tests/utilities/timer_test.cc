@@ -4,8 +4,10 @@
 #include <cstddef>
 #include <limits>
 #include <type_traits>
+#include <utility>
 
 #include "../../src/utilities/timer_internal.h"
+#include "asc/core/status.h"
 #include "test_support.h"
 
 namespace {

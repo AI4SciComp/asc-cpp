@@ -4,7 +4,7 @@
 #include <memory>
 #include <utility>
 
-#include "../../src/core/cuda/runtime_test_internal.h"
+#include "../../src/core/cuda/runtime_test_internal.h"  // NOLINT(misc-include-cleaner): CUDA fault-injection hooks.
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
@@ -23,6 +23,9 @@ void FillPattern(BytePattern& values) {
 
 }  // namespace
 
+// This end-to-end runtime test intentionally shares resources and injected
+// fault state across the full lifecycle.
+// NOLINTNEXTLINE(readability-function-size)
 int main() {
   if (asc_core_cuda_test::ForceNoCudaDevice()) {
     return asc_core_cuda_test::kSkipReturnCode;

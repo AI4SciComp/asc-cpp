@@ -2,8 +2,10 @@
 #include <span>
 #include <utility>
 
+#include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
+#include "asc/core/types.h"
 #include "asc/sparse/coordinate.h"
 #include "m4_multi_tu.h"
 

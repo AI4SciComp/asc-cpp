@@ -4,10 +4,13 @@
 
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/types.h"
 #include "asc/dense/providers/cuda.h"
 #include "device_test_helpers.h"
 #include "test_support.h"
 
+// Both provider states and outstanding work span the move-assignment sequence.
+// NOLINTNEXTLINE(readability-function-size)
 int main() {
   if (asc_dense_cuda_test::ForceNoCudaDevice()) {
     return asc_dense_cuda_test::kSkipReturnCode;

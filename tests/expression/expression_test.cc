@@ -10,6 +10,8 @@
 #include <utility>
 
 #include "../allocation_observation.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "test_support.h"
 
 namespace allocation_probe {
@@ -46,10 +48,12 @@ void* operator new[](std::size_t size) {
 
 void operator delete(void* pointer) noexcept { std::free(pointer); }
 void operator delete[](void* pointer) noexcept { std::free(pointer); }
-void operator delete(void* pointer, std::size_t) noexcept {
+void operator delete(void* pointer, std::size_t size) noexcept {
+  static_cast<void>(size);
   std::free(pointer);
 }
-void operator delete[](void* pointer, std::size_t) noexcept {
+void operator delete[](void* pointer, std::size_t size) noexcept {
+  static_cast<void>(size);
   std::free(pointer);
 }
 #endif
@@ -78,6 +82,7 @@ class OwningVector {
   OwningVector& operator=(const OwningVector&) = delete;
   OwningVector(OwningVector&&) noexcept = default;
   OwningVector& operator=(OwningVector&&) noexcept = default;
+  ~OwningVector() = default;
 
   [[nodiscard]] const std::array<double, 3>& values() const noexcept {
     return values_;
@@ -151,14 +156,21 @@ struct ExpressionAdapter<::OwningVector> {
   static constexpr SparsityEffect sparsity_effect =
       SparsityEffect::kStructurePreserving;
 
-  static std::array<extent_t, 1> Shape(const ::OwningVector&) { return {3}; }
+  static std::array<extent_t, 1> Shape(const ::OwningVector& expression) {
+    static_cast<void>(expression);
+    return {3};
+  }
 
   static double Read(const ::OwningVector& expression,
                      std::span<const index_t, 1> indices) {
     return expression.values()[static_cast<std::size_t>(indices[0])];
   }
 
-  static bool MayAlias(const ::OwningVector&, AliasToken) { return false; }
+  static bool MayAlias(const ::OwningVector& expression, AliasToken token) {
+    static_cast<void>(expression);
+    static_cast<void>(token);
+    return false;
+  }
 };
 
 template <>
@@ -168,11 +180,16 @@ struct ExpressionAdapter<::IncompleteExpression> {
   static constexpr SparsityEffect sparsity_effect =
       SparsityEffect::kStructurePreserving;
 
-  static std::array<extent_t, 1> Shape(const ::IncompleteExpression&) {
+  static std::array<extent_t, 1> Shape(
+      const ::IncompleteExpression& expression) {
+    static_cast<void>(expression);
     return {1};
   }
 
-  static bool MayAlias(const ::IncompleteExpression&, AliasToken) {
+  static bool MayAlias(const ::IncompleteExpression& expression,
+                       AliasToken token) {
+    static_cast<void>(expression);
+    static_cast<void>(token);
     return false;
   }
 };
@@ -215,7 +232,7 @@ static_assert(std::is_same_v<RvalueStorage, ExternalVector>);
 
 std::span<const asc::index_t, 1> Index(
     const std::array<asc::index_t, 1>& index) {
-  return std::span<const asc::index_t, 1>(index);
+  return {index};
 }
 
 void CheckExternalProtocolAndOperations(
@@ -350,6 +367,7 @@ void CheckCaptureAndLifetime(asc_expression_test::TestContext& context) {
   double scalar = 3.0;
   auto scalar_node = asc::MakeNegate(scalar);
   scalar = 9.0;
+  ASC_EXPRESSION_TEST_EQ(context, scalar, 9.0);
   ASC_EXPRESSION_TEST_EQ(
       context,
       asc::ExpressionRead(scalar_node, std::span<const asc::index_t, 0>()),
@@ -360,9 +378,8 @@ void CheckCaptureAndLifetime(asc_expression_test::TestContext& context) {
   ASC_EXPRESSION_TEST_EQ(context,
                          asc::ExpressionRead(lvalue_node, Index(kIndex)), -7.0);
 
-  ExternalVector view{first_values, 3, nullptr, nullptr, nullptr};
-  auto copied_view_node = asc::MakeNegate(std::move(view));
-  view.values = second_values;
+  auto copied_view_node = asc::MakeNegate(
+      ExternalVector{first_values, 3, nullptr, nullptr, nullptr});
   first_values[0] = 11.0;
   ASC_EXPRESSION_TEST_EQ(
       context, asc::ExpressionRead(copied_view_node, Index(kIndex)), -11.0);

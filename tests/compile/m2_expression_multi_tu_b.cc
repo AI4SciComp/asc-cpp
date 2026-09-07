@@ -1,6 +1,8 @@
 #include <array>
 #include <span>
 
+#include "asc/core/types.h"
+#include "asc/expression/expression.h"
 #include "m2_expression_operand.h"
 
 double M2ExpressionFromSecondTranslationUnit() {

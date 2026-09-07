@@ -1,12 +1,11 @@
 #include <algorithm>
 #include <array>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
 #include <span>
 #include <tuple>
-#include <type_traits>
-#include <utility>
 #include <vector>
 
 #include "asc/core/execution.h"
@@ -35,7 +34,7 @@ struct PriorityOrdinal {
 };
 
 void CheckForcedPriorityCollision(TestContext& test) {
-  constexpr std::uint64_t kCollidingPriority = UINT64_C(0x5a5a5a5a5a5a5a5a);
+  constexpr std::uint64_t kCollidingPriority{0x5a5a5a5a5a5a5a5aULL};
   std::array<PriorityOrdinal, 4> candidates{{
       {kCollidingPriority, 7},
       {kCollidingPriority, 1},
