@@ -206,6 +206,56 @@ def compiler_identity(executable: str, cwd: pathlib.Path) -> dict[str, str]:
     }
 
 
+def verify_attestation(args: argparse.Namespace) -> dict:
+    """Recheck a prebuilt prefix and its canonical source/build attestation."""
+    document = coverage.read_json(args.attestation)
+    payload = document["payload"]
+    canonical = json.dumps(
+        payload, sort_keys=True, separators=(",", ":")
+    ).encode()
+    coverage.require(
+        hashlib.sha256(canonical).hexdigest() == document["identity_sha256"],
+        "Attestation payload identity mismatch",
+    )
+    inventory = coverage.read_json(args.inventory)
+    lock = coverage.read_json(args.provider_lock)
+    coverage.require(
+        payload["schema_version"] == 1, "Unknown attestation schema"
+    )
+    coverage.require(
+        payload["specification"]
+        == inventory["specification"]
+        == lock["specification"],
+        "Attestation source specification mismatch",
+    )
+    coverage.require(
+        payload["specification"]["commit"] == coverage.PINNED_COMMIT,
+        "Unapproved attestation source commit",
+    )
+    coverage.require(
+        payload["inventory_sha256"] == coverage.file_hash(args.inventory),
+        "Attestation inventory identity mismatch",
+    )
+    coverage.require(
+        payload["provider_lock_sha256"]
+        == coverage.file_hash(args.provider_lock),
+        "Attestation source lock identity mismatch",
+    )
+    coverage.require(
+        payload["integer_bits"] == args.integer_bits,
+        "Attestation integer ABI mismatch",
+    )
+    validate_options(payload["options"], args.integer_bits)
+    coverage.check_counts(payload["upstream_tests"]["counts"])
+    prefix = args.prefix.resolve(strict=True)
+    coverage.require(
+        installed_files(prefix, args.integer_bits)
+        == payload["installed_files"],
+        "Installed prefix differs from the attested file inventory",
+    )
+    return document
+
+
 def attest(args: argparse.Namespace) -> dict:
     """Validate source/build/install relationship and assemble an exact record."""
     inventory = coverage.read_json(args.inventory)
@@ -297,12 +347,32 @@ def main() -> int:
         "test-log",
         "output",
     ):
-        parser.add_argument(f"--{name}", type=pathlib.Path, required=True)
+        parser.add_argument(f"--{name}", type=pathlib.Path)
+    parser.add_argument(
+        "--attestation",
+        type=pathlib.Path,
+        help="Verify an existing record instead of creating one",
+    )
     parser.add_argument(
         "--integer-bits", type=int, choices=(32, 64), required=True
     )
     args = parser.parse_args()
     try:
+        shared = ("prefix", "inventory", "provider_lock")
+        creation = ("source", "build", "junit", "test_log", "output")
+        for name in shared + (() if args.attestation else creation):
+            coverage.require(
+                getattr(args, name) is not None,
+                f"Required argument --{name.replace('_', '-')}",
+            )
+        if args.attestation:
+            coverage.require(
+                all(getattr(args, name) is None for name in creation),
+                "Verification does not accept creation arguments",
+            )
+            document = verify_attestation(args)
+            print(document["identity_sha256"])
+            return 0
         source_root = pathlib.Path(__file__).resolve().parents[2]
         try:
             args.output.resolve().relative_to(source_root)

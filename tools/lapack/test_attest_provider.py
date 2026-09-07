@@ -6,7 +6,12 @@
 # validator's own required-option table; changing it cannot weaken both sides.
 # pylint: disable=duplicate-code
 
+import argparse
+import contextlib
+import hashlib
+import json
 import pathlib
+import shutil
 import tempfile
 import unittest
 
@@ -193,6 +198,121 @@ class AttestationTest(unittest.TestCase):
                 coverage.ValidationError, "Missing installed"
             ):
                 attestation.installed_files(prefix, 32)
+
+
+@contextlib.contextmanager
+def synthetic_attestation():
+    """Yield a tiny synthetic identity record, never an actual ABI claim."""
+    with tempfile.TemporaryDirectory() as directory:
+        root = pathlib.Path(directory)
+        prefix = root / "prefix"
+        (prefix / "include").mkdir(parents=True)
+        (prefix / "lib").mkdir()
+        for name in (
+            "include/lapack.h",
+            "include/lapacke.h",
+            "lib/libblas.a",
+            "lib/liblapack.a",
+            "lib/liblapacke.a",
+        ):
+            (prefix / name).write_text(
+                "Synthetic identity fixture.", encoding="utf-8"
+            )
+        specification = {"commit": coverage.PINNED_COMMIT}
+        inventory = root / "inventory.json"
+        lock = root / "lock.json"
+        for path in (inventory, lock):
+            path.write_text(
+                json.dumps({"specification": specification}), encoding="utf-8"
+            )
+        payload = {
+            "schema_version": 1,
+            "specification": specification,
+            "inventory_sha256": coverage.file_hash(inventory),
+            "provider_lock_sha256": coverage.file_hash(lock),
+            "integer_bits": 32,
+            "options": reference_options(),
+            "upstream_tests": {
+                "counts": {
+                    "selected": 1,
+                    "executed": 1,
+                    "passed": 1,
+                    "failed": 0,
+                    "skipped": 0,
+                }
+            },
+            "installed_files": attestation.installed_files(prefix),
+        }
+        digest = hashlib.sha256(
+            json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+        record = root / "record.json"
+        record.write_text(
+            json.dumps({"payload": payload, "identity_sha256": digest}),
+            encoding="utf-8",
+        )
+        yield argparse.Namespace(
+            attestation=record,
+            prefix=prefix,
+            inventory=inventory,
+            provider_lock=lock,
+            integer_bits=32,
+        )
+
+
+class VerificationTest(unittest.TestCase):
+    """Reproducibility validation never trusts labels or a different prefix."""
+
+    def test_valid_and_relocated_record(self):
+        """Byte-identical relocation preserves the dependency identity."""
+        with synthetic_attestation() as args:
+            original = attestation.verify_attestation(args)
+            destination = args.prefix.parent / "relocated prefix"
+            shutil.copytree(args.prefix, destination)
+            args.prefix = destination
+            self.assertEqual(attestation.verify_attestation(args), original)
+
+    def test_canonical_payload_hash(self):
+        """An unchanged label cannot hide modified payload fields."""
+        with synthetic_attestation() as args:
+            document = coverage.read_json(args.attestation)
+            document["payload"]["integer_bits"] = 64
+            args.attestation.write_text(json.dumps(document), encoding="utf-8")
+            with self.assertRaisesRegex(
+                coverage.ValidationError, "payload identity"
+            ):
+                attestation.verify_attestation(args)
+
+    def test_changed_provider_binary(self):
+        """Replacing a library invalidates a previously attested prefix."""
+        with synthetic_attestation() as args:
+            (args.prefix / "lib/liblapack.a").write_text(
+                "changed", encoding="utf-8"
+            )
+            with self.assertRaisesRegex(
+                coverage.ValidationError, "file inventory"
+            ):
+                attestation.verify_attestation(args)
+
+    def test_changed_lock_or_inventory(self):
+        """A source-contract change requires new dependency attestation."""
+        for field in ("inventory", "provider_lock"):
+            with self.subTest(field=field), synthetic_attestation() as args:
+                with getattr(args, field).open("a", encoding="utf-8") as stream:
+                    stream.write("\n")
+                with self.assertRaisesRegex(
+                    coverage.ValidationError, "identity mismatch"
+                ):
+                    attestation.verify_attestation(args)
+
+    def test_wrong_requested_width(self):
+        """A real LP64 record cannot be selected through an ILP64 request."""
+        with synthetic_attestation() as args:
+            args.integer_bits = 64
+            with self.assertRaisesRegex(
+                coverage.ValidationError, "integer ABI"
+            ):
+                attestation.verify_attestation(args)
 
 
 if __name__ == "__main__":
