@@ -49404,6 +49404,3850 @@
         "tree": null
       },
       "metadata": {}
+    },
+    {
+      "id": "profiles-audit",
+      "started": "2026-09-07T21:26:12.014195+00:00",
+      "completed": "2026-09-07T21:26:12.307406+00:00",
+      "configuration": "root-independent-mode-audit",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-info-output-02/audit_profiles.py",
+        "$EVIDENCE_ROOT/p04-lu-info-root-review-01/profile-audit.json"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8c8c8c603b1b788802badf0c90d40bc162c44798f1b0969657356f69823eccae"
+      },
+      "test_counts": null,
+      "external_record": "p04-lu-info-root-review-01/profiles-audit/record.json",
+      "record_sha256": "64621c851c870bdf4904cc7872f3d99881ad3c71334b4fdfec87376a848472b3",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "wrapper-types-ilp64",
+      "started": "2026-09-07T21:26:09.783526+00:00",
+      "completed": "2026-09-07T21:26:11.080310+00:00",
+      "configuration": "ilp64-eight-pinned-wrapper-prototypes",
+      "command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fsyntax-only",
+        "-I",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include",
+        "$EVIDENCE_ROOT/p04-lu-info-root-review-01/wrapper-type-check.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p04-lu-info-root-review-01/wrapper-types-ilp64/record.json",
+      "record_sha256": "df4d7dc3916a3b7606ad9b49c9619aeba9ef2b3b505cbcd4460ba35533db2412",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "wrapper-types-lp64",
+      "started": "2026-09-07T21:26:07.083258+00:00",
+      "completed": "2026-09-07T21:26:08.900031+00:00",
+      "configuration": "lp64-eight-pinned-wrapper-prototypes",
+      "command": [
+        "/usr/bin/c++",
+        "-std=c++20",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fsyntax-only",
+        "-I",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include",
+        "$EVIDENCE_ROOT/p04-lu-info-root-review-01/wrapper-type-check.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p04-lu-info-root-review-01/wrapper-types-lp64/record.json",
+      "record_sha256": "5012ed460fe12641fa8a1927726355d11fd390089f44ae53c3666a1018733faf",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "root-lu-info-ilp64-fixed-asan",
+      "started": "2026-09-07T21:37:54.149257+00:00",
+      "completed": "2026-09-07T21:37:54.589970+00:00",
+      "configuration": "ilp64-fixed-asan",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/ilp64-fixed-asan",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/ilp64-fixed-asan/ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ad364900979a9799fd3b8185c9e161cad854452bbfdea048af9993222ed40164",
+        "ctest.xml": "29e172298f59e0f8a1e8ee8769e4bb86ec71bdc4dbd0198a20fc56a903cf109c"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p04-lu-info-root-runtime-01/ilp64-fixed-asan/ctest/record.json",
+      "record_sha256": "45f960eeb39b0cb1865d34d055269363583e33a5fffd931b35c1734b461f7401",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "root-lu-info-ilp64-fixed-release",
+      "started": "2026-09-07T21:37:54.142835+00:00",
+      "completed": "2026-09-07T21:37:54.262172+00:00",
+      "configuration": "ilp64-fixed-release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/ilp64-fixed-release",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/ilp64-fixed-release/ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "30e66a759e7747a4439012746bc7aaf60f18835186c336afb359bc094e5d82c0",
+        "ctest.xml": "b9a6d92abd861a0eb22026e7df5dba2317352f97ce13be1b26078cd10194e3f6"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p04-lu-info-root-runtime-01/ilp64-fixed-release/ctest/record.json",
+      "record_sha256": "580c35160a7a8e2c99ca27f750ba938d4835a0b72e05be6095f946e1dfbe3ee3",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "root-lu-info-ilp64-old-release",
+      "started": "2026-09-07T21:37:54.353919+00:00",
+      "completed": "2026-09-07T21:37:54.608114+00:00",
+      "configuration": "ilp64-old-release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/ilp64-old-release",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/ilp64-old-release/ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "5597b65f06c113a791847709bedfd47db6731fcb19a363cf9f8f6f4e5aee0002",
+        "ctest.xml": "88b419ae845d8be98b9b5295a0df6a31817d9eae50fe0c3bd4e13ba45943b78c"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 4,
+        "passed": 0,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p04-lu-info-root-runtime-01/ilp64-old-release/ctest/record.json",
+      "record_sha256": "70c9ea1405d8e6383652842279b36875e57ae65f7f534169f4fae4e8568fdc18",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "3bb71bd7fd9c67dc3f23cd8041c161b3cbd12d0905500c6775176148a129a9c9",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "3bb71bd7fd9c67dc3f23cd8041c161b3cbd12d0905500c6775176148a129a9c9",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "root-lu-info-lp64-fixed-asan",
+      "started": "2026-09-07T21:37:54.150042+00:00",
+      "completed": "2026-09-07T21:37:54.632189+00:00",
+      "configuration": "lp64-fixed-asan",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/lp64-fixed-asan",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/lp64-fixed-asan/ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d2390f67848aa54fee66dd4df119cb17f109b05e8c0d84a74f3e8de645f83663",
+        "ctest.xml": "07ba6ec5cec2cc2e73266fe3291150a3638a86c6adb3f61e8afe2298c0f8afff"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p04-lu-info-root-runtime-01/lp64-fixed-asan/ctest/record.json",
+      "record_sha256": "8da6494fd1fbbb43b72841e58a2670f1e4d9d88f83c8163e6d3f57d22e246bef",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "root-lu-info-lp64-fixed-release",
+      "started": "2026-09-07T21:37:54.148416+00:00",
+      "completed": "2026-09-07T21:37:54.272425+00:00",
+      "configuration": "lp64-fixed-release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/lp64-fixed-release",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/lp64-fixed-release/ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bd8b2485911086851de31700730b6c8f240c8f5766a04ce0f02f75cea75cc1b7",
+        "ctest.xml": "6dc78ce660776e0c7758312d619baa63a1fc10a73855705d4082cd2e4b0336cd"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p04-lu-info-root-runtime-01/lp64-fixed-release/ctest/record.json",
+      "record_sha256": "1621785dc231f91f7ebc22a36c8b066268841238127e079fa4405a9e4f3bdb92",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0247ac2a97f86018f80a5b1b68489edb22dd6456ba3592d1c00364d3d6a4d26",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "root-lu-info-lp64-old-release",
+      "started": "2026-09-07T21:37:54.351268+00:00",
+      "completed": "2026-09-07T21:37:54.520057+00:00",
+      "configuration": "lp64-old-release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/lp64-old-release",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-info-root-runtime-01/lp64-old-release/ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "60459fe6ddf6cd62123f563d720c09eac2a114c44b2ce3501e4ac5c5f3fe93ec",
+        "ctest.xml": "8bdf2751f3468cf1d8a71cb0ecb350496eebc255235c85097366a219720d506b"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 4,
+        "passed": 0,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p04-lu-info-root-runtime-01/lp64-old-release/ctest/record.json",
+      "record_sha256": "06c7cd69c0ff0b06f5de1345fee4365521a07949590022754fd3467ef2d3ecd0",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "3bb71bd7fd9c67dc3f23cd8041c161b3cbd12d0905500c6775176148a129a9c9",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "3bb71bd7fd9c67dc3f23cd8041c161b3cbd12d0905500c6775176148a129a9c9",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": null,
+      "implementation_commit": null
+    },
+    {
+      "id": "build-record-asan-ilp64-01",
+      "started": "2026-09-07T21:24:10.263685+00:00",
+      "completed": "2026-09-07T21:28:57.736568+00:00",
+      "configuration": "Clang19-ASan-UBSan-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-asan-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4ce7fb68d1227a8ddedf1de530f3ec5aadfb3afbde6ed1bc0dc5fb0f81b48c0d"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/build-record-asan-ilp64-01/record.json",
+      "record_sha256": "59e7f05dedf60f90f07191783e807e2d60758ea8f4653578f8850d6191e105ed",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "build-record-asan-lp64-01",
+      "started": "2026-09-07T21:24:13.197365+00:00",
+      "completed": "2026-09-07T21:29:01.696796+00:00",
+      "configuration": "Clang19-ASan-UBSan-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-asan-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "55d289bb7485748e85ba05b898a92109246652b9d78d908f6eefbd4b58f7de9f"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/build-record-asan-lp64-01/record.json",
+      "record_sha256": "a070ae416f1c36abfdfe4c5f2e855040970e50794a6943ae4975e1fc20143f42",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "build-record-debug",
+      "started": "2026-09-07T21:22:57.261680+00:00",
+      "completed": "2026-09-07T21:34:17.988121+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ef137c74b692fb855869e8587c3d0e21a22988a8f710bbaca54eea46f8987ecb"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/build-record-debug/record.json",
+      "record_sha256": "f4297fe968bf940e111c585fa12e28ab292717ebd06650154cbcdc1155f34fd7",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "build-record-release",
+      "started": "2026-09-07T21:22:56.409961+00:00",
+      "completed": "2026-09-07T21:40:30.880656+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a1291629e4c7cb81ffb09c07fe5ff04e6fbaf3f8e270c30fa949257664fff9e0"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/build-record-release/record.json",
+      "record_sha256": "b9a77ea8e50e0c79f523e759f8a74a7535d24de342802c1f46daa8859608e6b8",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "build-record-shared",
+      "started": "2026-09-07T21:22:57.189139+00:00",
+      "completed": "2026-09-07T21:40:33.025260+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-shared",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2ffb92e8838d5e89d41c980ca332281fe7a0d3c8b6754ca8619ff7b6a51017e3"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/build-record-shared/record.json",
+      "record_sha256": "ea79fcce0a36c1cb43bbb130bf2854f5f78e6bd62579433e5673664f94d545d0",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "configure-asan-ilp64-01",
+      "started": "2026-09-07T21:23:54.518071+00:00",
+      "completed": "2026-09-07T21:24:08.900545+00:00",
+      "configuration": "Clang19-ASan-UBSan-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-asan-ilp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a04fa261a361530aba641092c2adfeee4be28fd56f5b330b0320241d4a9ac7a2"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/configure-asan-ilp64-01/record.json",
+      "record_sha256": "16e5e6ab9003e3b5002a55d9b30727f8a50858a696891854c16d4b59cf047de5",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "configure-asan-lp64-01",
+      "started": "2026-09-07T21:23:54.431990+00:00",
+      "completed": "2026-09-07T21:24:11.810087+00:00",
+      "configuration": "Clang19-ASan-UBSan-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-asan-lp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bded888f69b942963e81f0133197407644bd5818596c6bbadd9f19d0c5fb6899"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/configure-asan-lp64-01/record.json",
+      "record_sha256": "aa32967cfe217cb4fc5ccaa5cb6a2fba63845f2a1118732045f8024900a10340",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "configure-debug",
+      "started": "2026-09-07T21:21:49.177971+00:00",
+      "completed": "2026-09-07T21:22:56.581431+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-debug",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ef405042ab4ce857680e38bbf0555dc6a97e140ba398548da8208442f4affcbb"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/configure-debug/record.json",
+      "record_sha256": "98fb63941f4a500f8dcfaf4486dc43f15325ee16cb4194916fdbd9797e2b3a95",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "configure-ilp64",
+      "started": "2026-09-07T21:21:49.142825+00:00",
+      "completed": "2026-09-07T21:23:04.947876+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "72b1b5a195e19aaa1dba76a21e8f6b179805714843f155734727c8d82194325d"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/configure-ilp64/record.json",
+      "record_sha256": "098e22308afc9d636c4a77a9be9541a2c9c4e2d038fe67ed2a9feeb1b6342202",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "configure-lp64",
+      "started": "2026-09-07T21:21:49.093792+00:00",
+      "completed": "2026-09-07T21:23:05.068093+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "45878744ed4987306e2fd348357f963405650f1bdb08bb87952b2e8843ab3c6f"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/configure-lp64/record.json",
+      "record_sha256": "8f0b63986eea922940fc31edc5e67d2683d6b4028d3084f7f7ad6f7d14e6922a",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "configure-release",
+      "started": "2026-09-07T21:21:49.232958+00:00",
+      "completed": "2026-09-07T21:22:55.758861+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-release",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ab90eddbb3b3329b63d8f4c5fcaf3314b6fe20d2106d9af3968f02e3f0c9a87f"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/configure-release/record.json",
+      "record_sha256": "a9c381e37bb2d2beef1c24970485eaee0fcce210c4a4bea972825507953252eb",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "configure-shared",
+      "started": "2026-09-07T21:21:49.238944+00:00",
+      "completed": "2026-09-07T21:22:56.493456+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-shared",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4e80a7ae40d82ea2d9f9a2ae59c70ef48878344ae764eca89d7be3752f225fa9"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/configure-shared/record.json",
+      "record_sha256": "4d3dddadb381e36b27be74fa98e23564444077cdf2b9e9b5e19de4adda2ea4c8",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "coverage-current",
+      "started": "2026-09-07T21:21:51.852605+00:00",
+      "completed": "2026-09-07T21:21:53.653644+00:00",
+      "configuration": "V12-current-coverage-current",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "--evidence-root",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "46c65fa879c6f1dd3ca1949c78dcefd3fac98ed5f21391fe9e424e9e11a73439"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/coverage-current/record.json",
+      "record_sha256": "fe31b47db85a52c08bc94ed726eb1f78246bab8410098f3c6930c1a28c366b9b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "ctest-asan-ilp64-01",
+      "started": "2026-09-07T21:28:58.656879+00:00",
+      "completed": "2026-09-07T21:40:07.059086+00:00",
+      "configuration": "Clang19-ASan-UBSan-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-asan-ilp64",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/ctest-asan-ilp64-01/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "d676cac4e36caccd144892643efa198a1f0629ef09d70bbdd8df8c234363489c",
+        "ctest.xml": "eba6e4ede39790a794b605ccc78d7311b9dbb93665b8437daddcfbc957c2715b"
+      },
+      "test_counts": {
+        "executed": 90,
+        "failed": 10,
+        "passed": 80,
+        "selected": 90,
+        "skipped": 0
+      },
+      "external_record": "p05-band-expert-integration-v12-01/ctest-asan-ilp64-01/record.json",
+      "record_sha256": "2b23c40dfdf49f9c2d7603dda52482501d8e023f935fa7bdb8b08296b4950a54",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "ctest-asan-lp64-01",
+      "started": "2026-09-07T21:29:02.853653+00:00",
+      "completed": "2026-09-07T21:40:13.042940+00:00",
+      "configuration": "Clang19-ASan-UBSan-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-asan-lp64",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/ctest-asan-lp64-01/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "e1febe577fe8b8334c00a98c4a32dd49925cf6e7f7291286a5826514d5af4ea7",
+        "ctest.xml": "cd2def12fc6ce6807b9e6dfced9a5213c73170d6ee2084027032cff615c17936"
+      },
+      "test_counts": {
+        "executed": 90,
+        "failed": 10,
+        "passed": 80,
+        "selected": 90,
+        "skipped": 0
+      },
+      "external_record": "p05-band-expert-integration-v12-01/ctest-asan-lp64-01/record.json",
+      "record_sha256": "795e26657ccbd702d63a02ee41d7d4ba6ad5ae871646d24bd5bc73fae610448d",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "doxygen",
+      "started": "2026-09-07T21:21:50.493296+00:00",
+      "completed": "2026-09-07T21:22:05.961235+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/doxygen/record.json",
+      "record_sha256": "8d63bf420772e173ea86adbe154fe2dc01657db85691fbd0379b1cf9692b6de3",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "doxygen-coverage",
+      "started": "2026-09-07T21:22:06.655134+00:00",
+      "completed": "2026-09-07T21:22:07.547650+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "--build",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3db221123b6706050f9cef9001cdef49ffb9061aee963f57b03dd40b77bd0295"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/doxygen-coverage/record.json",
+      "record_sha256": "acf0a7ad6be314822723b3e9d037ca00f82278a8bbbd025ac05492679d723172",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "format-current",
+      "started": "2026-09-07T21:21:55.531601+00:00",
+      "completed": "2026-09-07T21:21:57.132402+00:00",
+      "configuration": "V12-current-format-current",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include/asc/dense/providers/lapack_cholesky_band_condition.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include/asc/dense/providers/lapack_cholesky_band_driver.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include/asc/dense/providers/lapack_cholesky_band_equilibration.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include/asc/dense/providers/lapack_cholesky_band_expert.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include/asc/dense/providers/lapack_cholesky_band_refinement.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/internal_band_driver_layout.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/internal_band_driver_limits.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/internal_band_estimation_limits.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/internal_band_expert.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/internal_band_expert_limits.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/internal_band_refinement_limits.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_condition.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_driver.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_equilibration.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_expert.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_refinement.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_fault_support.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_fault_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_fidelity_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_math_gate_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_native_test_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_validation_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_driver_equilibration_fidelity_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_driver_equilibration_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_driver_equilibration_validation_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_driver_limits_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_estimation_limits_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_estimation_test_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_alias_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_driver_fault_support.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_driver_fault_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_edges_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_fault_support.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_fault_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_fault_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_fidelity_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_limits_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_math_gate_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_native_test_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_scaling_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_test_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_expert_validation_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_edges_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_fault_support.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_fault_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_fidelity_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_limits_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_math_gate_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_native_test_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_test_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_refinement_validation_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_unwritten_info_support.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_unwritten_info_support.h",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_unwritten_info_test.cc",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/installed_lu/band_expert_main.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/format-current/record.json",
+      "record_sha256": "f27af5cd43c5af8b030161c5865a0299999bf18ac7db9bc83e8806d3c43176a3",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "markdown",
+      "started": "2026-09-07T21:22:08.223425+00:00",
+      "completed": "2026-09-07T21:22:08.685616+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/markdown/record.json",
+      "record_sha256": "8d1978e7368e7f51e0dcda5566c8c53776a9ddf0b09e77a2425f9cc3230f8441",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "public-surface-current",
+      "started": "2026-09-07T21:21:54.529977+00:00",
+      "completed": "2026-09-07T21:21:54.613159+00:00",
+      "configuration": "V12-current-public-surface-current",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "91af388b444d86914d686ac63bd8ec32da54014e56ce2face918bd4ac82b673e"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/public-surface-current/record.json",
+      "record_sha256": "0c761ae1e78be1318b07149b134f9b93be12631bd2d8aca642fbe67556281d72",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-src-dense-lapack-reference_cholesky_band_condition.cc",
+      "started": "2026-09-07T21:23:54.314156+00:00",
+      "completed": "2026-09-07T21:25:05.156267+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_condition.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f95999ea723b76c550cd4474c4bbb3ed6d4495db1775372b3c086f0c0ff83741"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-src-dense-lapack-reference_cholesky_band_condition.cc/record.json",
+      "record_sha256": "2ba2796e8524664532f831fc0888dc2452294ab25e830ffd0f2b30368991eee4",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-src-dense-lapack-reference_cholesky_band_driver.cc",
+      "started": "2026-09-07T21:25:06.254027+00:00",
+      "completed": "2026-09-07T21:26:22.280255+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_driver.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "78f3c2c251012c2f469cf318e8ffc149ecc93454a4dbe8251eb27b319b0d71d5"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-src-dense-lapack-reference_cholesky_band_driver.cc/record.json",
+      "record_sha256": "5341ee2edcba12f7a11d75722044abd627eff12ec035397a98dc047481886a2f",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-src-dense-lapack-reference_cholesky_band_equilibration.cc",
+      "started": "2026-09-07T21:26:23.499718+00:00",
+      "completed": "2026-09-07T21:27:31.524227+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_equilibration.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "64e7ccb7a3d9b9f145deead43565cc1bc9925aae043ba403d2e11c458f31653b"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-src-dense-lapack-reference_cholesky_band_equilibration.cc/record.json",
+      "record_sha256": "2a11db565c047600de4c231d9a1683864d41371eda21c1437152c28227167a59",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-src-dense-lapack-reference_cholesky_band_expert.cc",
+      "started": "2026-09-07T21:27:32.601215+00:00",
+      "completed": "2026-09-07T21:32:02.852252+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_expert.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f59e927d43976645d8c48d87a2a9330e07576bf127ba0fa99aa6ea25df30c49a"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-src-dense-lapack-reference_cholesky_band_expert.cc/record.json",
+      "record_sha256": "0b6eed1a0b0ec231a72d2cbbd572735da11b03e593c9f8dcace32e9fe197b582",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-src-dense-lapack-reference_cholesky_band_refinement.cc",
+      "started": "2026-09-07T21:32:03.894423+00:00",
+      "completed": "2026-09-07T21:34:20.892475+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_refinement.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ab3756d4e79743de8f58846b90a882e288cabf02fbcb00cf105ffe541f52be36"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-src-dense-lapack-reference_cholesky_band_refinement.cc/record.json",
+      "record_sha256": "413f4c6ba0152edf19a7dcb1abaf93ac91a9f48fb435aaee6e53ad94ddbb6e9e",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-band_condition_fault_support.cc",
+      "started": "2026-09-07T21:34:22.188628+00:00",
+      "completed": "2026-09-07T21:34:51.415379+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_fault_support.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "443b30cdaa4c88eba3ccc4e5457bcb7aa26e4470ababf771c2a0d6155a1ee740"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-tests-dense_lapack-band_condition_fault_support.cc/record.json",
+      "record_sha256": "e84eaf41946c06b375ca6c2690dadfe3b40eab826e9b2d953918b7a23b59476f",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-band_condition_fidelity_test.cc",
+      "started": "2026-09-07T21:34:52.622608+00:00",
+      "completed": "2026-09-07T21:35:43.335271+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_fidelity_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "33de99399d4db6cbac3d5a673c2affaebca4e54a0cc1dc11c3cca2122584940a"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-tests-dense_lapack-band_condition_fidelity_test.cc/record.json",
+      "record_sha256": "630f3fec3a71b748f4fc56e2c0fd6380642e1b6b923089e58b3ee360d9feca65",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-band_condition_math_gate_test.cc",
+      "started": "2026-09-07T21:35:44.527211+00:00",
+      "completed": "2026-09-07T21:36:47.204563+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_math_gate_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9f7bea4fe45e2d1b7d2e74b2d4b6ed9fc69105c38cc2e7b40b832713701fe401"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-tests-dense_lapack-band_condition_math_gate_test.cc/record.json",
+      "record_sha256": "4c748e371fe07c74b3c2e236100528f34f8392fa8ae58aafdbf31ed18de4bc21",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-band_condition_test.cc",
+      "started": "2026-09-07T21:36:48.907795+00:00",
+      "completed": "2026-09-07T21:39:40.844334+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a9e8d93f62317d3c63f7c5b32677633dd230638d67768c0defc0ffcad3e16a89"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-ilp64-tests-dense_lapack-band_condition_test.cc/record.json",
+      "record_sha256": "60483656a7dc5085312b9b22b4ca96d29fb16ce03a9ea895986d06ebb473f90b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-src-dense-lapack-reference_cholesky_band_condition.cc",
+      "started": "2026-09-07T21:23:54.264478+00:00",
+      "completed": "2026-09-07T21:25:01.916249+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_condition.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ec152350897e8a353d56d5cd391b3776907d46f31d7690694ca6f12100437eee"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-src-dense-lapack-reference_cholesky_band_condition.cc/record.json",
+      "record_sha256": "a29057d9bbc3cda03525aed206923fd74dcae7412c69ae292140e10046d230b4",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-src-dense-lapack-reference_cholesky_band_driver.cc",
+      "started": "2026-09-07T21:25:02.790737+00:00",
+      "completed": "2026-09-07T21:26:18.909811+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_driver.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "708fc272328988001f304b08ccf9a5602007cf7d3a9692d7f865569ab6fdacfb"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-src-dense-lapack-reference_cholesky_band_driver.cc/record.json",
+      "record_sha256": "d94acf0035f7eaf2a7863c92f5c4e53791b5016c108da32bdf31bd06e1728dc1",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-src-dense-lapack-reference_cholesky_band_equilibration.cc",
+      "started": "2026-09-07T21:26:19.769442+00:00",
+      "completed": "2026-09-07T21:27:25.128205+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_equilibration.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8a19a08a4f376a60d0da1b85d0d0a62c129cf042e2b161939fbc1fd7966d9f0c"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-src-dense-lapack-reference_cholesky_band_equilibration.cc/record.json",
+      "record_sha256": "dcaa1b5ebf13dbfae85d3611c30145d1604a08a799d5d393b90978a30a7379e5",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-src-dense-lapack-reference_cholesky_band_expert.cc",
+      "started": "2026-09-07T21:27:26.117522+00:00",
+      "completed": "2026-09-07T21:32:05.716071+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_expert.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ee0fc1c471583918042cb613b196b66e0730d9c0633d30d4928caab4cf2ad2fc"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-src-dense-lapack-reference_cholesky_band_expert.cc/record.json",
+      "record_sha256": "1b71be1905651318a19f0503cfef5db904ca2be089d48e5655b8e81ab5b035e0",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-src-dense-lapack-reference_cholesky_band_refinement.cc",
+      "started": "2026-09-07T21:32:06.841547+00:00",
+      "completed": "2026-09-07T21:34:18.691159+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack/reference_cholesky_band_refinement.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b84b9cf76693a07a3ed2af867fea3c22de67ea48e8ca743d9427b8b049e9b3f7"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-src-dense-lapack-reference_cholesky_band_refinement.cc/record.json",
+      "record_sha256": "35ee751fa68ecdaabe4f33c5f516781f7c8873c8f8e0267b4a1052a9eff0e3f9",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-band_condition_fault_support.cc",
+      "started": "2026-09-07T21:34:19.797249+00:00",
+      "completed": "2026-09-07T21:34:45.692170+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_fault_support.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "443b30cdaa4c88eba3ccc4e5457bcb7aa26e4470ababf771c2a0d6155a1ee740"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-tests-dense_lapack-band_condition_fault_support.cc/record.json",
+      "record_sha256": "acaea1363c83bbbd1da64e0e41f269f33e3a298f5d0b83440b5fab085d289922",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-band_condition_fidelity_test.cc",
+      "started": "2026-09-07T21:34:46.829544+00:00",
+      "completed": "2026-09-07T21:35:26.700133+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_fidelity_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "33de99399d4db6cbac3d5a673c2affaebca4e54a0cc1dc11c3cca2122584940a"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-tests-dense_lapack-band_condition_fidelity_test.cc/record.json",
+      "record_sha256": "ce85df74569e0fe4a3c302b1979058d7b2bce42d4fca360c61137963734f287e",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-band_condition_math_gate_test.cc",
+      "started": "2026-09-07T21:35:27.774305+00:00",
+      "completed": "2026-09-07T21:36:15.056156+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_math_gate_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9f7bea4fe45e2d1b7d2e74b2d4b6ed9fc69105c38cc2e7b40b832713701fe401"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-tests-dense_lapack-band_condition_math_gate_test.cc/record.json",
+      "record_sha256": "80ca7c9c031ccd29e88eb6886b1f3cf7d97c5f28ab9a3ebec9519c4541a4a654",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-band_condition_test.cc",
+      "started": "2026-09-07T21:36:16.645347+00:00",
+      "completed": "2026-09-07T21:39:24.348127+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a9e8d93f62317d3c63f7c5b32677633dd230638d67768c0defc0ffcad3e16a89"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-tests-dense_lapack-band_condition_test.cc/record.json",
+      "record_sha256": "50c33cb23d0cee302d0f0912c723b7a398aa2c6d4f4d7c3d83db8685d99405d1",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-band_condition_validation_test.cc",
+      "started": "2026-09-07T21:39:25.345931+00:00",
+      "completed": "2026-09-07T21:40:49.572572+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/tests/dense_lapack/band_condition_validation_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-band-expert-integration-v12-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4d9d6261c5b665495c92277bacca7741cdd8b190812a11e0de51d999210cce54"
+      },
+      "test_counts": null,
+      "external_record": "p05-band-expert-integration-v12-01/strict-lp64-tests-dense_lapack-band_condition_validation_test.cc/record.json",
+      "record_sha256": "9f2cc3fd215631982e2b4f6131fd95326a150312900c2e285ee9270cff49fc31",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "781c9b61c19c938ab36514c9fc8beebf898fd774e2e0742ac480fe056d7b6446",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e2af76dff56bb08f4f5d349b6cbddcd972a697575a90867a877ad5ed62f85afb",
+      "implementation_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67"
+    },
+    {
+      "id": "build-record-ilp64",
+      "started": "2026-09-07T21:05:30.941222+00:00",
+      "completed": "2026-09-07T21:25:19.165514+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "0763d8081aa38f41f57bc4dd5bc5a66b35fb36a7de55b180900c9b0a58506b2d"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/build-record-ilp64/record.json",
+      "record_sha256": "0bb341b52d3258bfebd63d0ff6c4e6084ea536bc4ea56ffc093cb1dd0f3f6a95",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "build-record-lp64",
+      "started": "2026-09-07T21:05:32.341093+00:00",
+      "completed": "2026-09-07T21:25:10.760919+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d4763751dec8df8d1beecbb4e6494f24718dfe80df52feb4512e9e063b88a604"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/build-record-lp64/record.json",
+      "record_sha256": "2daa1717f9e48178ec78acaeabc6f034ba69de0a8e45913d266a55fdd1e1e376",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "build-record-release",
+      "started": "2026-09-07T21:05:25.900560+00:00",
+      "completed": "2026-09-07T21:16:46.114802+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5ed942cd5e185dc778ddf8a575654f746ca142f00896339b2e12384e68403de0"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/build-record-release/record.json",
+      "record_sha256": "524761152078680a18ea45bd4e6f437a42af822a853eb36206a13ee98264b248",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "build-record-shared",
+      "started": "2026-09-07T21:05:24.919045+00:00",
+      "completed": "2026-09-07T21:16:39.070200+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-shared",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bc925213a9f1ae48437a06293c9c9b4784cc458afa609c7692ecf32ac3ceebd1"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/build-record-shared/record.json",
+      "record_sha256": "856a981da5629515da7f3b6a8c2f6872990941d7641b082f1a95090fb71f775d",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "ctest-debug",
+      "started": "2026-09-07T21:13:26.859212+00:00",
+      "completed": "2026-09-07T21:20:50.659828+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-debug",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "200b36b393b0d1b4e4c1ff4c620d63791edeeff10d2385edc10e6f03341656c2",
+        "ctest.xml": "ebc04467f7c338d02ae82343bdae09f3bb847fe18e40d16627bd5c57ad0b4ad8"
+      },
+      "test_counts": {
+        "executed": 277,
+        "failed": 0,
+        "passed": 277,
+        "selected": 277,
+        "skipped": 0
+      },
+      "external_record": "p05-tridiagonal-integration-v11-01/ctest-debug/record.json",
+      "record_sha256": "a2754ae94e4795c44d547cceb974275f1450ce7d0e8dd8b3ff1c063dabfc7ba7",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "ctest-release",
+      "started": "2026-09-07T21:16:46.835305+00:00",
+      "completed": "2026-09-07T21:24:56.592038+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-release",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ae394324ad6837afd5cfbe0c9ad64dd4b51e44b824b1027b99f8057159131f1c",
+        "ctest.xml": "d14f4c3be80d268d4d726f800c65e2254b605eebfe4f3b4d09904c0cad0e3aaf"
+      },
+      "test_counts": {
+        "executed": 277,
+        "failed": 0,
+        "passed": 277,
+        "selected": 277,
+        "skipped": 0
+      },
+      "external_record": "p05-tridiagonal-integration-v11-01/ctest-release/record.json",
+      "record_sha256": "06f76bfca329966fb72e3fd0f5dd7b740029555724f4f7eed6129473a8b8da05",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "ctest-shared",
+      "started": "2026-09-07T21:16:40.018855+00:00",
+      "completed": "2026-09-07T21:24:39.287719+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-shared",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/ctest-shared/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "fb9b65d9bf239d108f255b9e26d6203a7f6d837913054b0fe14ffeccee9c7e3a",
+        "ctest.xml": "56a818f5a66acb79f225c88017a6b77339038053c11ec9018536a3c379941ba6"
+      },
+      "test_counts": {
+        "executed": 279,
+        "failed": 0,
+        "passed": 279,
+        "selected": 279,
+        "skipped": 0
+      },
+      "external_record": "p05-tridiagonal-integration-v11-01/ctest-shared/record.json",
+      "record_sha256": "78cdf1895632322a2c723ae8dcf98219759ad14d93f4d50f39bd7650b683529e",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-src-dense-lapack-reference_sylvester.cc",
+      "started": "2026-09-07T21:27:57.586670+00:00",
+      "completed": "2026-09-07T21:29:12.372231+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack/reference_sylvester.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ec152350897e8a353d56d5cd391b3776907d46f31d7690694ca6f12100437eee"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-src-dense-lapack-reference_sylvester.cc/record.json",
+      "record_sha256": "e03538403c03d431812b340a86a00212c7d875ea0430c80ec6c4258ed0be1b51",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-src-dense-lapack-reference_tridiagonal_expert_driver.cc",
+      "started": "2026-09-07T21:11:20.759438+00:00",
+      "completed": "2026-09-07T21:14:27.290831+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "914b4d9262f6007af73112611aa901c33f34b32a341144bf0adbe26cb24f7d1b"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-src-dense-lapack-reference_tridiagonal_expert_driver.cc/record.json",
+      "record_sha256": "6aa2780a55340267984c278878dcc39da8847f9d80b513e252eb0937b49698b9",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-src-dense-lapack-reference_tridiagonal_refinement.cc",
+      "started": "2026-09-07T21:14:27.962401+00:00",
+      "completed": "2026-09-07T21:15:50.050469+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack/reference_tridiagonal_refinement.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "085084d2986a2beb45f63d6ddb0a255a0f632d27ffa30df0c5ca1ac90734cf48"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-src-dense-lapack-reference_tridiagonal_refinement.cc/record.json",
+      "record_sha256": "aa99e5748f70749b942ce9dbca6bedacbb66cb8530cafc2e22435c2be271c970",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-installed_lu-tridiagonal_main.cc",
+      "started": "2026-09-07T21:24:45.122663+00:00",
+      "completed": "2026-09-07T21:27:56.484239+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "dca2a0a38ea998e0944a8e57b64810a0acc38a54cbc14eb099b4b44fe32ab500"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-installed_lu-tridiagonal_main.cc/record.json",
+      "record_sha256": "50de6b688e161f83907d0d49e04b7819e6eb868e0053a47a3c7a2179474f25eb",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-sylvester_contract_test.cc",
+      "started": "2026-09-07T21:29:28.085545+00:00",
+      "completed": "2026-09-07T21:37:12.161698+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/sylvester_contract_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d365d6e4dce813c869db4a3da162a1232de3c5c60daeff27e1361e0cbe729f18"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-sylvester_contract_test.cc/record.json",
+      "record_sha256": "c4ee55145adfb7273a4096df1d13d21a0f684cdb572806769355065a7a911b1d",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-sylvester_faults.cc",
+      "started": "2026-09-07T21:29:13.373784+00:00",
+      "completed": "2026-09-07T21:29:26.976173+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/sylvester_faults.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ab7613bd2392501d204a635d86fbffa7aa8037ce7a7b2177868b9eb15e37aa9a"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-sylvester_faults.cc/record.json",
+      "record_sha256": "7d373dbd00900fc9276d9982fe5368333f30428777222722c3f944c0b33c4353",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-tridiagonal_counts_test.cc",
+      "started": "2026-09-07T21:15:50.691473+00:00",
+      "completed": "2026-09-07T21:16:06.658957+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_counts_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "fd57f18da1c10dbb011c6a55a6b3ed84c8316483299fb69da0c3f5b03c764cca"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-tridiagonal_counts_test.cc/record.json",
+      "record_sha256": "24d80c85d649f9059394793d61d00c5b4962b29d5a633bc98d1287723e365cca",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-tridiagonal_expert_test.cc",
+      "started": "2026-09-07T21:16:07.384515+00:00",
+      "completed": "2026-09-07T21:17:36.572084+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_expert_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "cd40ed1bef38c2afdfd6f708a9ac15da15b863922c0dd7f492547d18a07e7c40"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-tridiagonal_expert_test.cc/record.json",
+      "record_sha256": "d3722df81d97130d1072b0d6b63596b77dbcbeca8a59922746452c61f2ac9313",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-tridiagonal_extreme_math_test.cc",
+      "started": "2026-09-07T21:17:37.101248+00:00",
+      "completed": "2026-09-07T21:18:21.886052+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6d3879978b9e141fda61f7c96aff182b8ec7b13083d9ec783ef81beeead42d58"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-tridiagonal_extreme_math_test.cc/record.json",
+      "record_sha256": "626630d7714bd1346697aa11c65bd5303bb71cdebcac5cb02fb7ae91169b98ab",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-tridiagonal_fault_test.cc",
+      "started": "2026-09-07T21:18:22.387427+00:00",
+      "completed": "2026-09-07T21:22:14.868358+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_fault_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8dee1db320e0ef338fb1f83f16a860d1d336d9dd758cdedadd073e9ba3d56769"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-tridiagonal_fault_test.cc/record.json",
+      "record_sha256": "780cbf03098c1bf966b66dd7d6321601d11e3158b38521e8dd7da789ed99b2e5",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-tridiagonal_faults.cc",
+      "started": "2026-09-07T21:22:15.574318+00:00",
+      "completed": "2026-09-07T21:22:34.100606+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_faults.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3b328dc1dc37cf398ca3197d33382f7a7e7c16ea21b410108e5f7eb3695a20b1"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-tridiagonal_faults.cc/record.json",
+      "record_sha256": "2797fe387e9bfa4d5822b8005f90246ad5e42e2d731c94d27bef4f08c18ea3fe",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-ilp64-tests-dense_lapack-tridiagonal_test.cc",
+      "started": "2026-09-07T21:22:34.795714+00:00",
+      "completed": "2026-09-07T21:24:43.863454+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "50cf97a0088f6910587659e77b3e52140f277c1e593b9109ffb0ef6073bb2a94"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-ilp64-tests-dense_lapack-tridiagonal_test.cc/record.json",
+      "record_sha256": "e7d1fa3317da478d64156d56c18280ea8668ce288bc2fc62702b84aa9da09139",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-src-dense-lapack-reference_sylvester.cc",
+      "started": "2026-09-07T21:27:55.003827+00:00",
+      "completed": "2026-09-07T21:29:08.753858+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack/reference_sylvester.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "783b2f1de8dbe82909e03612bb9fc53705650354da8d795e4823c6e874e94e02"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-src-dense-lapack-reference_sylvester.cc/record.json",
+      "record_sha256": "dbe8f537b63886f030effe0ac141fa4125aae7154852055a47218f4653671537",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-src-dense-lapack-reference_tridiagonal_expert_driver.cc",
+      "started": "2026-09-07T21:11:30.896716+00:00",
+      "completed": "2026-09-07T21:14:34.070431+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "878354e7dec6ea6437ca4a1db41813ca6f36f1c989d3790d121a4157eaa47b14"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-src-dense-lapack-reference_tridiagonal_expert_driver.cc/record.json",
+      "record_sha256": "8610f7433237b7126cf759a0a6a9590a6e19f481604985101f68c380767a30d7",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-src-dense-lapack-reference_tridiagonal_refinement.cc",
+      "started": "2026-09-07T21:14:34.612141+00:00",
+      "completed": "2026-09-07T21:15:56.222941+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack/reference_tridiagonal_refinement.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8f60d27e37ecb30ccdc1e5d5fb4f3a49b5ee790b37fe444a4bffba87aa0f6d36"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-src-dense-lapack-reference_tridiagonal_refinement.cc/record.json",
+      "record_sha256": "6a97fec8e37a58ef3df5a3a0384d68fbc7a74523aefaed073f84a357767c058a",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-installed_lu-tridiagonal_main.cc",
+      "started": "2026-09-07T21:24:54.285855+00:00",
+      "completed": "2026-09-07T21:27:54.036183+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "dca2a0a38ea998e0944a8e57b64810a0acc38a54cbc14eb099b4b44fe32ab500"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-installed_lu-tridiagonal_main.cc/record.json",
+      "record_sha256": "98f8e5fd18ab150ad13d221a2568be574fc6d12b3c241a9242cd99eb89111748",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-sylvester_contract_test.cc",
+      "started": "2026-09-07T21:29:22.520220+00:00",
+      "completed": "2026-09-07T21:37:39.379615+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/sylvester_contract_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d365d6e4dce813c869db4a3da162a1232de3c5c60daeff27e1361e0cbe729f18"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-sylvester_contract_test.cc/record.json",
+      "record_sha256": "e021d3fdcb2c0a41a4573051727a204b3c9edab8af6ac8ea22d65ed528207c46",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-sylvester_faults.cc",
+      "started": "2026-09-07T21:29:09.741993+00:00",
+      "completed": "2026-09-07T21:29:21.680884+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/sylvester_faults.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ab7613bd2392501d204a635d86fbffa7aa8037ce7a7b2177868b9eb15e37aa9a"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-sylvester_faults.cc/record.json",
+      "record_sha256": "e18d561c2b7a388e7c23065774e1ad3e33b28aabb9366b662504313dff19fc57",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-tridiagonal_counts_test.cc",
+      "started": "2026-09-07T21:15:56.820813+00:00",
+      "completed": "2026-09-07T21:16:13.999112+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_counts_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "fd57f18da1c10dbb011c6a55a6b3ed84c8316483299fb69da0c3f5b03c764cca"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-tridiagonal_counts_test.cc/record.json",
+      "record_sha256": "f4d43ed8e1d1008dade79e2fdcce655826bae64c63e42168a3388a19f3e0314e",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-tridiagonal_expert_test.cc",
+      "started": "2026-09-07T21:16:14.734827+00:00",
+      "completed": "2026-09-07T21:17:43.200660+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_expert_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "cd40ed1bef38c2afdfd6f708a9ac15da15b863922c0dd7f492547d18a07e7c40"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-tridiagonal_expert_test.cc/record.json",
+      "record_sha256": "f32f234a21f2ccd75bb00a7c1322da24997a34de597592a9acff75bfb5abf5e8",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-tridiagonal_extreme_math_test.cc",
+      "started": "2026-09-07T21:17:43.650041+00:00",
+      "completed": "2026-09-07T21:18:28.250311+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6d3879978b9e141fda61f7c96aff182b8ec7b13083d9ec783ef81beeead42d58"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-tridiagonal_extreme_math_test.cc/record.json",
+      "record_sha256": "5dee89616b2bd29ec5a223b695c332f8cc2655ab5ed14a70724451dc46f0d43d",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-tridiagonal_fault_test.cc",
+      "started": "2026-09-07T21:18:28.735199+00:00",
+      "completed": "2026-09-07T21:22:22.649974+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_fault_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8dee1db320e0ef338fb1f83f16a860d1d336d9dd758cdedadd073e9ba3d56769"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-tridiagonal_fault_test.cc/record.json",
+      "record_sha256": "ab1b403eb4136f1c71a9a7d1a1c009415862c9895ab502887c3e438c46a18e24",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-tridiagonal_faults.cc",
+      "started": "2026-09-07T21:22:23.274967+00:00",
+      "completed": "2026-09-07T21:22:42.304774+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_faults.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a66e9f97408ff11d0b8e3c9d3d8dd4b60b13c4e79effb1a2d82e825eadb79ee7"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-tridiagonal_faults.cc/record.json",
+      "record_sha256": "be5c4874174d70d23e2e377c0cdb468ec48a4dbe513db531d1277c596e3d787a",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
+    },
+    {
+      "id": "strict-lp64-tests-dense_lapack-tridiagonal_test.cc",
+      "started": "2026-09-07T21:22:42.985963+00:00",
+      "completed": "2026-09-07T21:24:53.288860+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/tests/dense_lapack/tridiagonal_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(tridiagonal.*|sylvester.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-tridiagonal-integration-v11-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "50cf97a0088f6910587659e77b3e52140f277c1e593b9109ffb0ef6073bb2a94"
+      },
+      "test_counts": null,
+      "external_record": "p05-tridiagonal-integration-v11-01/strict-lp64-tests-dense_lapack-tridiagonal_test.cc/record.json",
+      "record_sha256": "7f7f0ee796795539b14289ca72d0e05f0b448f6d9a01b6e632d2297ccad1f834",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "306d6f0902a8bc14743717a60a48e4d81f853e273948c431abc49dabc30be3cb",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_archive_sha256": "e8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a",
+      "implementation_commit": "c92c9e843143b17260983698d7c49ca1110b8dce"
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v11` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v12` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 230 partial scalar routines.
-The other 1,883 required
+routes below bring the development mapping to 250 partial scalar routines.
+The other 1,863 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -382,3 +382,24 @@ Required extreme-scale GTCON/GTRFS/GTSVX mathematical tests remain failing:
 for the representable singleton at min-normal/8, the pinned provider reports
 zero reciprocal condition or infinite error estimates. Those tests remain
 ordinary failures and the corresponding required modes remain incomplete.
+
+
+The five `lapack_cholesky_band_*` expert headers add actual S/D/C/Z `Pbsv`,
+`Pbequ`, `Pbcon`, `Pbrfs` and `Pbsvx`. Each consumes the selected positive-
+definite band directly, with explicit caller packing for independently chosen
+band and RHS/solution layouts. PBSVX exposes factorization, equilibration and
+factored modes separately. For a reused equilibrated factor, the caller supplies
+its already-scaled A and scale metadata according to the factored declaration;
+there is no implicit equilibration or alternate-provider fallback.
+
+These declarations preserve directly bound native outputs and report their
+validity separately. Packed factor/solution outputs are published only after
+an admissible native INFO. Unwritten INFO retains a full-width invalid sentinel
+and produces a provider error. Queries, descriptors, plans, scratch capacities,
+aliases and host placement are checked before provider execution.
+
+Required band-expert mathematical gates remain incomplete: complex lower
+scaled PBCON can return an incorrect condition estimate; tiny PBRFS/PBSVX can
+return infinite error estimates or zero condition; the pinned PBSVX
+multiply order can overflow during explicit equilibration. Ten ordinary test
+failures retain those required modes in the coverage backlog.

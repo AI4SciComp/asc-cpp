@@ -36,6 +36,11 @@ asc/dense/providers/cuda_export.h|asc_dense_cuda
 asc/dense/providers/lapack.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_band.h|asc_dense_lapack
+asc/dense/providers/lapack_cholesky_band_condition.h|asc_dense_lapack
+asc/dense/providers/lapack_cholesky_band_driver.h|asc_dense_lapack
+asc/dense/providers/lapack_cholesky_band_equilibration.h|asc_dense_lapack
+asc/dense/providers/lapack_cholesky_band_expert.h|asc_dense_lapack
+asc/dense/providers/lapack_cholesky_band_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_equilibration.h|asc_dense_lapack

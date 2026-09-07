@@ -86,6 +86,11 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_tridiagonal_condition.h
   include/asc/dense/providers/lapack_tridiagonal_driver.h
   include/asc/dense/providers/lapack_tridiagonal_refinement.h
+  include/asc/dense/providers/lapack_cholesky_band_condition.h
+  include/asc/dense/providers/lapack_cholesky_band_driver.h
+  include/asc/dense/providers/lapack_cholesky_band_equilibration.h
+  include/asc/dense/providers/lapack_cholesky_band_expert.h
+  include/asc/dense/providers/lapack_cholesky_band_refinement.h
 )
 
 file(

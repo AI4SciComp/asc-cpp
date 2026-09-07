@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v11 with230 partial scalar routes. V10 composed full and corrected header gates, installed14 and affected sanitizer16 eachABI passed as recorded. Later Sylvester INFO correction passed six scoped16-test lanes. New GT24 combined integration is pending, with four required extreme mathematical failures retained. Full2113 routine/mode coverage remains pending"
+    evidence_scope: "unreleased incremental-lapack-v12 with250 partial scalar routes. V11 GT24 current sanitizer46/50 eachABI retains4required mathfail; full and strict checks pending. New Band20 independently reviewed final source88test lanes retain10required mathfail; current combined integration pending. Full2113 routine/mode coverage remains incomplete"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -128,6 +128,11 @@ capabilities:
       - "include/asc/dense/providers/lapack_tridiagonal_condition.h"
       - "include/asc/dense/providers/lapack_tridiagonal_driver.h"
       - "include/asc/dense/providers/lapack_tridiagonal_refinement.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_condition.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_driver.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_equilibration.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_expert.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_refinement.h"
     direct_dependencies:
       - "dense"
     tests:

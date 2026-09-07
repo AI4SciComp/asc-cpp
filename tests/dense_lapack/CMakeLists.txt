@@ -526,6 +526,62 @@ foreach(_suite IN ITEMS tridiagonal tridiagonal_expert tridiagonal_fault
   endif()
 endforeach()
 
+function(_asc_dense_lapack_add_band_expert_test suite)
+  set(_target "asc_dense_lapack_${suite}_test")
+  add_executable("${_target}" "${suite}_test.cc" allocation_audit.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+  target_link_options("${_target}" PRIVATE
+    "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+  foreach(_scalar IN ITEMS s d c z)
+    asc_register_test(NAME "asc_cpp.dense_lapack.${suite}.${_scalar}"
+      TARGET "${_target}" ARGUMENTS "${_scalar}"
+      LABELS dense_lapack lapack runtime numerical validation allocation
+      TIMEOUT 300)
+  endforeach()
+endfunction()
+function(_asc_dense_lapack_add_band_expert_fault suite support)
+  set(_target "asc_dense_lapack_${suite}_test")
+  target_sources("${_target}" PRIVATE "${support}.cc")
+  foreach(_routine IN LISTS ARGN)
+    foreach(_scalar IN ITEMS s d c z)
+      target_link_options("${_target}" PRIVATE
+        "-Wl,--wrap=${_scalar}${_routine}_")
+    endforeach()
+  endforeach()
+endfunction()
+foreach(_suite IN ITEMS band_driver_equilibration
+    band_driver_equilibration_fidelity band_driver_equilibration_validation
+    band_condition band_condition_validation band_condition_fidelity
+    band_condition_math_gate band_refinement band_refinement_edges
+    band_refinement_fidelity band_refinement_math_gate band_refinement_validation
+    band_expert band_expert_scaling band_expert_math_gate band_expert_fidelity
+    band_expert_edges band_expert_validation band_expert_fault band_expert_alias
+    band_unwritten_info)
+  _asc_dense_lapack_add_band_expert_test("${_suite}")
+endforeach()
+_asc_dense_lapack_add_band_expert_fault(band_driver_equilibration_validation
+  band_expert_fault_support pbsv pbequ)
+_asc_dense_lapack_add_band_expert_fault(band_condition_validation
+  band_condition_fault_support pbcon)
+_asc_dense_lapack_add_band_expert_fault(band_refinement_validation
+  band_refinement_fault_support pbrfs)
+foreach(_suite IN ITEMS band_expert_validation band_expert_fault band_expert_alias)
+  _asc_dense_lapack_add_band_expert_fault("${_suite}"
+    band_expert_driver_fault_support pbsvx)
+endforeach()
+_asc_dense_lapack_add_band_expert_fault(band_unwritten_info
+  band_unwritten_info_support pbsv pbequ pbcon pbrfs pbsvx)
+foreach(_kind IN ITEMS expert estimation refinement driver)
+  set(_target "asc_dense_lapack_band_${_kind}_limits_test")
+  add_executable("${_target}" "band_${_kind}_limits_test.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  asc_register_test(NAME "asc_cpp.dense_lapack.band_${_kind}_integer_limits"
+    TARGET "${_target}" LABELS dense_lapack lapack validation TIMEOUT 300)
+endforeach()
+
 if(ASC_CPP_INSTALL)
   string(REPLACE ";" "|" _lapack_runtimes "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   add_test(NAME asc_cpp.dense_lapack.package_integration
@@ -577,7 +633,12 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_indefinite_condition.h lapack_indefinite_driver.h
     lapack_indefinite_refinement.h lapack_svd_least_squares.h
     lapack_lu_band.h
-    lapack_tridiagonal.h lapack_tridiagonal_condition.h lapack_tridiagonal_driver.h lapack_tridiagonal_refinement.h)
+    lapack_tridiagonal.h lapack_tridiagonal_condition.h lapack_tridiagonal_driver.h lapack_tridiagonal_refinement.h
+    lapack_cholesky_band_condition.h
+    lapack_cholesky_band_driver.h
+    lapack_cholesky_band_equilibration.h
+    lapack_cholesky_band_expert.h
+    lapack_cholesky_band_refinement.h)
   string(MAKE_C_IDENTIFIER "${_header}" _id)
   foreach(_mode IN ITEMS normal no_exceptions)
     set(_target "asc_dense_lapack_header_${_id}_${_mode}")
