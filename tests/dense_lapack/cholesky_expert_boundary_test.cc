@@ -18,6 +18,7 @@
 #include "asc/dense/providers/lapack_cholesky_refinement.h"
 #include "cholesky_expert_test_support.h"
 #include "cholesky_test_support.h"
+#include "installed_lu/normal_return_guard.h"
 
 namespace {
 using asc_cholesky_expert_test::CheckSuccess;
@@ -349,6 +350,7 @@ void All(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   TestContext test;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));

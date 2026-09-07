@@ -13,6 +13,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_cholesky_band.h"
 #include "factorization_support.h"
+#include "normal_return_guard.h"
 
 namespace {
 using namespace installed_internal;  // NOLINT(google-build-using-namespace)
@@ -254,6 +255,7 @@ bool Run(const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));
   if (!Run<float>(provider) || !Run<double>(provider) ||

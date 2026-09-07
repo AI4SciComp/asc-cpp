@@ -25,6 +25,7 @@
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
 #include "fault_injection.h"
+#include "installed_lu/normal_return_guard.h"
 
 namespace {
 using asc_dense_test::TestContext;
@@ -581,6 +582,7 @@ void ProviderDefects(TestContext& test,
 }  // namespace
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   if (argc != 2) {
     return 2;
   }

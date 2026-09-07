@@ -2,6 +2,7 @@
 #include <cmath>
 #include <complex>
 #include <cstddef>
+#include <cstring>
 #include <limits>
 #include <string_view>
 #include <utility>
@@ -17,6 +18,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_indefinite.h"
 #include "indefinite_test_support.h"
+#include "installed_lu/normal_return_guard.h"
 
 namespace {
 using asc_indefinite_test::Factor;
@@ -214,6 +216,69 @@ void WorkspaceCases(TestContext& test,
           if (bad == 10) {
             ASC_DENSE_TEST_EQ(test, f.report.native_info.value_or(-999), 73);
           }
+          ASC_DENSE_TEST_EQ(test, f.a, old_a);
+          ASC_DENSE_TEST_EQ(test, f.pivots, old_pivots);
+          ASC_DENSE_TEST_EQ(test, f.scratch.scalar, old_scalar);
+          ASC_DENSE_TEST_EQ(test, f.scratch.packed, old_packed);
+          ASC_DENSE_TEST_EQ(test, f.scratch.pivot, old_pivot_bytes);
+        }
+      }
+    }
+  }
+}
+
+template <typename T>
+void MetadataAliases(TestContext& test,
+                     const asc::ReferenceLapackProvider& provider,
+                     bool hermitian) {
+  for (const auto triangle : {kUpper, kLower}) {
+    for (const auto layout : {kColumn, kRow}) {
+      for (const bool blocked : {false, true}) {
+        for (const bool alias_plan : {false, true}) {
+          Fixture<T> f(hermitian, triangle, layout);
+          auto plan = Take(f.Query(provider, blocked));
+          auto workspace = f.scratch.Workspace(plan);
+          const auto old_a = f.a;
+          const auto old_pivots = f.pivots;
+          const auto old_scalar = f.scratch.scalar;
+          const auto old_packed = f.scratch.packed;
+          const auto old_pivot_bytes = f.scratch.pivot;
+          const auto bytes = workspace.regions[kPivot].size();
+          ASC_DENSE_TEST_CHECK(test, bytes <= sizeof(plan));
+          ASC_DENSE_TEST_CHECK(test, bytes <= sizeof(workspace));
+          // Both aliases use live metadata storage and the exact planned
+          // capacity. Neither aliases the report, and neither may be written.
+          workspace.regions[kPivot] = {alias_plan
+                                           ? static_cast<void*>(&plan)
+                                           : static_cast<void*>(&workspace),
+                                       bytes, kHost};
+          f.report.native_info = 73;
+          f.report.called_provider = true;
+          f.report.routine.fill('r');
+          std::array<std::byte, sizeof(f.report)> report_before{};
+          std::array<std::byte, sizeof(plan)> plan_before{};
+          std::array<std::byte, sizeof(workspace)> workspace_before{};
+          std::memcpy(report_before.data(), &f.report, sizeof(f.report));
+          std::memcpy(plan_before.data(), &plan, sizeof(plan));
+          std::memcpy(workspace_before.data(), &workspace, sizeof(workspace));
+          const auto status = WithoutAllocation(test, [&] {
+            return Factor(provider, triangle, hermitian, blocked,
+                          f.MatrixView(), f.PivotView(), plan, workspace,
+                          f.report);
+          });
+          ASC_DENSE_TEST_EQ(test, status.code(),
+                            asc::ErrorCode::kInvalidArgument);
+          // Compare snapshots of the same objects, including padding: this
+          // checks that rejection wrote no bytes, not semantic equality.
+          std::array<std::byte, sizeof(f.report)> report_after{};
+          std::array<std::byte, sizeof(plan)> plan_after{};
+          std::array<std::byte, sizeof(workspace)> workspace_after{};
+          std::memcpy(report_after.data(), &f.report, sizeof(f.report));
+          std::memcpy(plan_after.data(), &plan, sizeof(plan));
+          std::memcpy(workspace_after.data(), &workspace, sizeof(workspace));
+          ASC_DENSE_TEST_EQ(test, report_before, report_after);
+          ASC_DENSE_TEST_EQ(test, plan_before, plan_after);
+          ASC_DENSE_TEST_EQ(test, workspace_before, workspace_after);
           ASC_DENSE_TEST_EQ(test, f.a, old_a);
           ASC_DENSE_TEST_EQ(test, f.pivots, old_pivots);
           ASC_DENSE_TEST_EQ(test, f.scratch.scalar, old_scalar);
@@ -468,6 +533,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider,
          bool hermitian) {
   Singular<T>(test, provider, hermitian);
   WorkspaceCases<T>(test, provider, hermitian);
+  MetadataAliases<T>(test, provider, hermitian);
   PivotCases<T>(test, provider, hermitian);
   WideStride<T>(test, provider, hermitian);
   Placement<T>(test, provider, hermitian);
@@ -476,6 +542,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider,
 }  // namespace
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   if (argc != 2) {
     return 2;
   }

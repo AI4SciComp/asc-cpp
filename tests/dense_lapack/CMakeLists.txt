@@ -11,6 +11,17 @@ function(_asc_dense_lapack_configure_test target)
   endif()
 endfunction()
 
+add_executable(asc_dense_lapack_normal_return_probe normal_return_probe.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_normal_return_probe)
+target_include_directories(asc_dense_lapack_normal_return_probe PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+add_test(NAME asc_cpp.dense_lapack.normal_return_guard
+  COMMAND "${CMAKE_COMMAND}"
+    "-DPROBE:FILEPATH=$<TARGET_FILE:asc_dense_lapack_normal_return_probe>"
+    -P "${CMAKE_CURRENT_SOURCE_DIR}/normal_return_guard_test.cmake")
+set_tests_properties(asc_cpp.dense_lapack.normal_return_guard PROPERTIES
+  LABELS "dense_lapack;lapack;runtime;validation" TIMEOUT 40)
+
 add_executable(asc_dense_lapack_reference_lu_test
   reference_lu_test.cc allocation_audit.cc fault_injection.cc
   "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
@@ -341,6 +352,89 @@ asc_register_test(NAME asc_cpp.dense_lapack.sylvester_abi
   TARGET asc_dense_lapack_sylvester_abi_probe
   LABELS dense_lapack lapack runtime abi TIMEOUT 120)
 
+foreach(_suite IN ITEMS indefinite_condition indefinite_driver
+    indefinite_refinement indefinite_expert_driver indefinite_expert_fault)
+  set(_target "asc_dense_lapack_${_suite}_test")
+  add_executable("${_target}" "${_suite}_test.cc" allocation_audit.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+  target_link_options("${_target}" PRIVATE
+    "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+  if(_suite STREQUAL "indefinite_expert_fault")
+    target_sources("${_target}" PRIVATE indefinite_expert_faults.cc)
+    foreach(_scalar IN ITEMS s d c z)
+      foreach(_routine IN ITEMS sycon syrfs sysv sysvx)
+        target_link_options("${_target}" PRIVATE
+          "-Wl,--wrap=${_scalar}${_routine}_")
+      endforeach()
+    endforeach()
+    foreach(_scalar IN ITEMS c z)
+      foreach(_routine IN ITEMS hecon herfs hesv hesvx)
+        target_link_options("${_target}" PRIVATE
+          "-Wl,--wrap=${_scalar}${_routine}_")
+      endforeach()
+    endforeach()
+  endif()
+  foreach(_scalar IN ITEMS s d c z ch zh)
+    asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}.${_scalar}"
+      TARGET "${_target}" ARGUMENTS "${_scalar}"
+      LABELS dense_lapack lapack runtime numerical validation allocation
+      TIMEOUT 120)
+  endforeach()
+endforeach()
+add_executable(asc_dense_lapack_indefinite_expert_counts_test
+  indefinite_expert_counts_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_expert_counts_test)
+asc_register_test(NAME asc_cpp.dense_lapack.indefinite_expert_counts
+  TARGET asc_dense_lapack_indefinite_expert_counts_test
+  LABELS dense_lapack lapack validation TIMEOUT 120)
+add_executable(asc_dense_lapack_indefinite_expert_abi_probe
+  indefinite_expert_abi_probe.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_expert_abi_probe)
+target_include_directories(asc_dense_lapack_indefinite_expert_abi_probe PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+asc_register_test(NAME asc_cpp.dense_lapack.indefinite_expert_abi
+  TARGET asc_dense_lapack_indefinite_expert_abi_probe
+  LABELS dense_lapack lapack runtime abi TIMEOUT 120)
+
+foreach(_suite IN ITEMS reference_svd_least_squares svd_least_squares_contract
+    svd_least_squares_fault svd_least_squares_counts)
+  set(_target "asc_dense_lapack_${_suite}_test")
+  add_executable("${_target}" "${_suite}_test.cc"
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${PROJECT_SOURCE_DIR}" "${PROJECT_SOURCE_DIR}/src/dense/lapack"
+    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+  if(_suite STREQUAL "svd_least_squares_counts")
+    asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}"
+      TARGET "${_target}" LABELS dense_lapack lapack validation allocation
+      TIMEOUT 300)
+  else()
+    target_sources("${_target}" PRIVATE svd_least_squares_faults.cc)
+    foreach(_scalar IN ITEMS s d c z)
+      foreach(_routine IN ITEMS gelss gelsd)
+        target_link_options("${_target}" PRIVATE
+          "-Wl,--wrap=${_scalar}${_routine}_")
+      endforeach()
+      asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}.${_scalar}"
+        TARGET "${_target}" ARGUMENTS "${_scalar}"
+        LABELS dense_lapack lapack runtime numerical validation allocation
+        TIMEOUT 300)
+      if(_suite STREQUAL "reference_svd_least_squares")
+        foreach(_routine IN ITEMS gelss gelsd)
+          asc_register_test(
+            NAME "asc_cpp.dense_lapack.svd_least_squares_cold.${_routine}.${_scalar}"
+            TARGET "${_target}" ARGUMENTS "${_scalar}" "${_routine}"
+            LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 300)
+        endforeach()
+      endif()
+    endforeach()
+  endif()
+endforeach()
+
 if(ASC_CPP_INSTALL)
   string(REPLACE ";" "|" _lapack_runtimes "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   add_test(NAME asc_cpp.dense_lapack.package_integration
@@ -388,7 +482,9 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_cholesky_equilibration.h
     lapack_cholesky_refinement.h
     lapack_least_squares.h lapack_cholesky_band.h lapack_indefinite.h
-    lapack_rank_revealing.h lapack_sylvester.h)
+    lapack_rank_revealing.h lapack_sylvester.h
+    lapack_indefinite_condition.h lapack_indefinite_driver.h
+    lapack_indefinite_refinement.h lapack_svd_least_squares.h)
   string(MAKE_C_IDENTIFIER "${_header}" _id)
   foreach(_mode IN ITEMS normal no_exceptions)
     set(_target "asc_dense_lapack_header_${_id}_${_mode}")

@@ -12,6 +12,7 @@
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_sylvester.h"
+#include "installed_lu/normal_return_guard.h"
 #include "sylvester_faults.h"
 #include "sylvester_test_support.h"
 
@@ -177,6 +178,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   if (argc != 2) {
     return 2;
   }

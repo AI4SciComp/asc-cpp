@@ -17,6 +17,7 @@
 #include "asc/dense/lapack/types.h"
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_rank_revealing.h"
+#include "installed_lu/normal_return_guard.h"
 #include "rank_revealing_test_support.h"
 
 namespace {
@@ -408,6 +409,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider,
 }  // namespace
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   TestContext test;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));

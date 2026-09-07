@@ -42,6 +42,9 @@ asc/dense/providers/lapack_cholesky_equilibration.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_export.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite.h|asc_dense_lapack
+asc/dense/providers/lapack_indefinite_condition.h|asc_dense_lapack
+asc/dense/providers/lapack_indefinite_driver.h|asc_dense_lapack
+asc/dense/providers/lapack_indefinite_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_least_squares.h|asc_dense_lapack
 asc/dense/providers/lapack_lu.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_condition.h|asc_dense_lapack
@@ -51,6 +54,7 @@ asc/dense/providers/lapack_lu_helpers.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_qr.h|asc_dense_lapack
 asc/dense/providers/lapack_rank_revealing.h|asc_dense_lapack
+asc/dense/providers/lapack_svd_least_squares.h|asc_dense_lapack
 asc/dense/providers/lapack_sylvester.h|asc_dense_lapack
 asc/dense/view.h|asc_dense
 asc/expression.h|asc_expression

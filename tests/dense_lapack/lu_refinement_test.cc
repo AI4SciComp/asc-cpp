@@ -21,6 +21,7 @@
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu_refinement.h"
+#include "installed_lu/normal_return_guard.h"
 #include "lu_refinement_faults.h"
 #include "lu_refinement_test_support.h"
 
@@ -536,6 +537,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 }  // namespace asc_refinement_test
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   if (argc != 2) {
     return 2;
   }

@@ -19,6 +19,7 @@
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_cholesky.h"
+#include "installed_lu/normal_return_guard.h"
 
 namespace {
 using asc_dense_test::TestContext;
@@ -125,6 +126,7 @@ void SingletonStrides(TestContext& test,
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   TestContext test;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));

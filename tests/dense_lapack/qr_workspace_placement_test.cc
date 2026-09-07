@@ -10,6 +10,7 @@
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_qr.h"
+#include "installed_lu/normal_return_guard.h"
 #include "qr_faults.h"
 #include "qr_test_support.h"
 
@@ -137,6 +138,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   TestContext test;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));

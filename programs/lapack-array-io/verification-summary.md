@@ -16,15 +16,21 @@ scoped results do not convert the old full-suite source into corrected full
 evidence; the required upstream mathematical mode remains incomplete.
 See the [Sylvester review](sylvester-review.md) and indexed external records.
 
-Current uncommitted V8 adds only four ordinary TRSYL routes to committed V7:
-166 reference in-progress, 1947 not started, 2113 required/incomplete, zero
-fully verified and 20 native implemented-unverified. Mapping SHA256
-`4624f30ad09935193806b0ff97b21393d17ce9a4a3bcf4d3a8c3ab4c6916f57b`
-passes incremental validation. The 88-header, eleven-installed-consumer
-candidate is frozen as tree `37be13252b938e8761842ca6060d31bfb03cf9b6`,
-archive `108cf13f670440bc25fab56f88b835d9d28b3ff9198671e25db74a6c56f88d69`
-at external `p08-integration-v8-01`. Five full build/test lanes and strict
-documentation checks are running; no combined result is claimed yet.
+V8 and its corrected Sylvester admission are committed locally as
+`455c235f8a0c20e4994a035a6b64b81e9950a453`. The pre-correction full candidate
+was tree `37be13252b938e8761842ca6060d31bfb03cf9b6`, archive
+`108cf13f670440bc25fab56f88b835d9d28b3ff9198671e25db74a6c56f88d69`.
+Its completed results above remain distinct from corrected-source evidence.
+
+Current V9 imports 24 classic indefinite expert and eight GELSS/GELSD routes,
+four public headers and two public consumers. The mapping has 198 partial
+reference rows, 1915 not started, all 2113 required/incomplete, zero fully
+verified and 20 native implemented-unverified. Candidate01 full provider suites each pass488/492; provider-free Debug/Release
+273/277 andshared275/279, with the same four registration failures and zero
+skips. Both ABI sanitizer suites pass70/70; strict18/22 TUs pass per ABI.
+Registration/test-style corrections and a test-only Fortran STOP return guard
+are being prepared for candidate02; no full V9 pass is claimed.
+See the [V9 integration review](factorizations-v9-review.md).
 
 The [Sylvester review](sylvester-review.md) distinguishes the earlier scoped
 13/13 tests per actual ABI in Release, all-ASC-C++ ASan/UBSan and dynamic-libc
@@ -456,3 +462,13 @@ validator passes this partial accounting. Native/provider Cholesky/QR,
 original LU INTEGER guards and LU helpers remain separately frozen and
 excluded from this v4 snapshot. Provider-specific workspace/context admission
 is a newly explicit required gate, not an excuse to stop independent work.
+
+
+## V9 current composed checkpoint
+
+V9 full02 actual LP64/ILP64 each493/493, provider-free Debug277/277 Release277/277 shared279/279, zero skips; installed13 eachABI audited in full raw logs. All-ASC-C++ ASan71 eachABI passes, foreign archives/runtimes unsanitized. All23 strict02 TUs passed except probe corrected03; current preflight strict05 passes bothABIs. Current05 six scoped lanes each8/8; control03 six lanes each1/1; docs04 92headers/1827members zero warnings. Current05 all82 changed C++ format, coverage and public-header contract checks pass. Full02 is not relabeled full05; exact source deltas and command artifacts preserved. Full normalized modes/platforms/shared-provider/required mathematical failures remain open.
+
+Exact identities, retained failures and source composition are recorded in
+[factorizations-v9-review.md](factorizations-v9-review.md). Next implementation
+is the independently reviewed eight general-band LU routes; no remote write
+is authorized for this resumed session.

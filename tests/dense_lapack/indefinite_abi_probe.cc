@@ -26,6 +26,7 @@
 #include "../../src/dense/lapack/internal_indefinite.h"
 #include "../../src/dense/lapack/internal_indefinite_prototypes.h"
 #include "asc/dense/blas.h"
+#include "installed_lu/normal_return_guard.h"
 #include "lapack_build_config.h"
 
 #if defined(ASC_INDEFINITE_EMITTED_PROTOTYPES)
@@ -118,6 +119,7 @@ bool Probe(bool hermitian) {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   if (!Probe<float>(false) || !Probe<double>(false) ||
       !Probe<std::complex<float>>(false) ||
       !Probe<std::complex<double>>(false) ||

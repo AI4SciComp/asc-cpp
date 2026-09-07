@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
+  "last_implementation_commit": "455c235f8a0c20e4994a035a6b64b81e9950a453",
   "worktree_diff_identity": {
-    "state": "uncommitted_v8_implementation",
-    "parent_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
-    "note": "Preserved stagedV8 plus finite-diagonal admission correction. Exact corrected product tree2affa1a/archive9196bac verified with scoped tests; next coherent import remains separate. Original dirty release checkout untouched."
+    "state": "uncommitted_v9_implementation",
+    "parent_commit": "455c235f8a0c20e4994a035a6b64b81e9950a453",
+    "note": "Current V9 product equals frozen05 outside export-ignored programs; candidate05 only fixes test representation comparison with memcpy snapshots, preserving exact byte checks. No numerical production change after candidate01. All listed V9 composed checks completed; local commit pending, no remote writes."
   },
   "packages": {
     "P00": {
@@ -282,19 +282,19 @@
       "state": "in_progress",
       "owner": "p00_array_contracts",
       "worktree": "../asc-cpp-p05-band-expert",
-      "scope": "Separate exact20 PBSV/PBCON/PBRFS/PBSVX/PBEQU candidate rows confirmed against inventory; frozen14 band dependencies preserved, actual implementation/source audit ongoing, not root registered."
+      "scope": "Separate exact20 PBSV/PBCON/PBRFS/PBSVX/PBEQU candidate rows confirmed against inventory; frozen14 band dependencies preserved, actual implementation/source audit ongoing, not root registered. Root consumer04 passes256workflows/2048calls/256staleplanrejections eachABI and strict; independent54-file review/fresh84test lanes ongoing. Preserved local exact20source-extraction file proved truncated/non-JSON; replacement extraction must bind actual pinnedinventory/source without overwritingoldartifact."
     },
     "P05.indefinite_expert_implementation": {
       "state": "in_progress",
       "owner": "p00_inventory",
       "worktree": "../asc-cpp-p05-indefinite-expert",
-      "scope": "Owner frozen24 routes implemented; six actual ABI/configuration lanes32/32 each,192 totalzero skips; exact owner sources and final handoff not yet root reviewed/imported. Separate approved private-header comment overlay closes inherited ILP64 strict finding without changing original14 dependencies. Frozen factor-origin factory remains unchanged; SYSVX/HESVX report alone cannot distinguish FACT=N/F provenance."
+      "scope": "Imported exact19 code files and historical owner review plus four additive independent acceptance-test overlays and new public consumer. Owner192 tests audited; overlay bothABI12 and direct public consumer192 workflows/960 calls/192 rejects perABI pass. Registered24 partial routes. Root V9 combined/installed/strict/sanitizer and full normalized evidence pending. Existing factor-origin factory unchanged; VX report does not distinguish N/F provenance. Current V9 composed full/installed/strict/sanitizer command gates now pass as precisely bound in factorizations-v9-review.md; no normalized routine/mode verification inferred."
     },
     "P06.svd_least_squares_implementation": {
       "state": "in_progress",
       "owner": "p00_baseline",
       "worktree": "../asc-cpp-p06-svd-least-squares",
-      "scope": "Owner frozen8 routes implemented; Debug/Release/ClangASan/Linuxlibc each21/21 eachABI,zero skips; final ledger/query handoff complete; root full review read but all code not yet reviewed/imported. Source gates GELSD nonzeroA zeroRHS, wide real minimum, single tree bound and nonfinite admission plus GELSS wide A right-vector output remain explicit; no full mode credit."
+      "scope": "Imported exact10 frozen owner code files, historical owner review and independent public consumer. Eight21-test ABI/configuration lanes and closure/source identities independently audited; direct consumer192 profiles eachABI passed. Registered8 partial routes. Root V9 combined/installed/strict/sanitizer and normalized mode evidence pending; all known source/math failures remain required. Current root test-only correction ledger21e1036531d9dd3f6b822b8d25196c776cd59f89d56f7ee123e2195cb58d1ed8: all8directdiagnosticlanes21/21each,10strictchecks pass,132assertions/90loopheaders/1896profiles retained. This is not full/installed acceptance. Current V9 composed full/installed/strict/sanitizer command gates now pass as precisely bound in factorizations-v9-review.md; no normalized routine/mode verification inferred."
     },
     "P08.ordinary_sylvester": {
       "state": "in_progress",
@@ -318,11 +318,16 @@
       "worktree": "../asc-cpp-p05-tridiagonal",
       "branch": "feature/lapack-p05-tridiagonal",
       "base_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
-      "scope": "Exact24 GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX rows; immutable existing tridiagonal descriptors and distinct nominal GT pivot/factor types approved, no shared enum/factory edit. Root read real GTSV NRHS0 unconditional first-RHS backsolve source: approve explicit initialized caller n-scalar surrogate with actualNRHS0 retained and public emptyB untouched, pending full source/ABI/failure proof. Implementation/source audit underway; no coverage credit. First LP64 runtime exposed incompatible native pivot entry size in kPivotConversion; D022 corrects root direction to separate live native pivot/estimator segments in kInteger, unchanged shared foundation. Retained initial trueILP648/8 is not evidence of corrected candidate."
+      "scope": "Preserved final p05-tridiagonal-04 handoff:24 actual routes,20 C++ files,86 executed records; all8 Debug/Release/ASan/libc ABI lanes execute29tests with25pass4requiredmathfail0skip. Strict11TUs pass. Direct source probes reproduce GTCON/GTRFS/GTSVX subnormal mathematical discrepancies. Root independent full code review, normal-return guard, installed consumer and integration remain open; no mapped/verified credit. Root consumer02 passes144workflows/1152calls/144staleplanrejections eachABI; four strict nodiscard findings corrected inconsumer03, testing. Root source review found output-pivot initialization and metadata-report wording concerns for independent GB-owner follow-up; no integration/coverage credit. Root current consumer03 bothABI1/1 and strict pass. Independent external correction reproduces and fixes unwritten INFO/output pivots and isolated ILP64 partial-width pivot false acceptance; current eight33testlanes each29pass4requiredmathfail0skip, unchanged original GT04. Final strict/patch audit pending."
+    },
+    "P05.general_band_lu": {
+      "state": "in_progress",
+      "owner": "indefinite_review",
+      "scope": "Exact12 code files plus review recovered; root read complete public/private/production/tests/consumer and final owner review. All8routes retain nominal family, full-width INFO/pivot sentinels, source-specific blocked/cursor guards; owner90scopedtests pass without full ASC sanitizer claim. Root source/closure evidence audit, shared normal-return protection and atomic V10 integration next."
     }
   },
-  "active_task": "V8 Sylvester correction implemented: finite coefficient overflow rejected before numerical/workspace mutation; independent review and fixed bothABI15/15 + all-ASC-C++ASan15/15 + strict2TUs/ABI + Doxygen88/1751 pass. Unchanged new regression fails4/4 on old LP64 adapter; required upstream math mode remains incomplete. Next integration is preserved indefiniteexpert24 + SVD-LS8, with additive expert test patch and independent public consumers.",
-  "next_action": "Verify/import the19 indefiniteexpert handoff files plus four additive test overlays and ten SVD-LS handoff files. Register32 actual routes, optional headers/sources/tests/installed consumers and atomic manifests as next profile. Freeze a fresh source and run full bothABI/provider-free/installed and affectedASan/strict validation. Do not overwrite any V8 source or failed records.",
+  "active_task": "P05.general_band_lu: root review completed all12 C++ files; audit source/compiled dependency evidence, add common return guard to five foreign mains, integrate eight routes atomically in V10. Continue corrected GT24/Band20 independent slices.",
+  "next_action": "After recording local V9 commit identity, import exact p05-general-band-01-7tvlpl1r/handoff 12 C++ files and reviewed program record without overwriting any destination; add installed_lu/normal_return_guard.h include/first local to five foreign mains; update source allowlists, public header consumers, installed consumer, incremental profile and all eight coverage rows together. Freeze V10, then run fresh actual LP64/ILP64 full/installed/strict/all-ASC sanitizer evidence. GT sentinel review and band final handoff remain parallel independent work.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -330,7 +335,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "fff22a92e7db7f3d249e6a666d64b81cda7db67f246a43ab089d5a2556823d5b"
+    "coverage_mapping_sha256": "68607f71dc107e2d013b85a27d1a2b3ec3e89f0bcc6469374c9c542c996be400"
   },
   "provider": {
     "version": "3.12.1",
@@ -441,7 +446,8 @@
       "Frozen tree6bcfa768af2f6a923d49f50fc9c89821cc90360e incremental-lu-v2 full LP64/trueILP64 each281/281 and provider-free Debug/Release each259/259 pass, zero skips; production unchanged from retained candidate01 failures. Style-corrected installed consumer each1/1 passes both relocated ABI packages",
       "Corrected v4 treeeebeb3a3632e66f9d07d77dc3f522cb88dc404f1 full LP64/trueILP64 each315/315 and provider-free Debug/Release each271/271 pass, zero skips; relocated installedLU2/2 eachABI, Doxygen74/1457/0 warnings and partial inventory validator pass. Failed candidate01 records retained. Native/providerCholesky/QR/helpers, originalLUcountfix and placementcorrection excluded.",
       "V6 tree98f341bc6f4c2f655cae9a503ecbda5b266f3e32 full LP64/trueILP64 each365/365, provider-free Debug/Release each277/shared279, installed7 eachABI, affected all-ASC-C++ Clang19 ASan19 eachABI, strict19TUs eachABI, format32files, Doxygen84/1654/0warnings pass;zero skips. Product committed/pushed31e93935 identical outside program annotations; source/provider archive identities in factorizations-v6-review.md.",
-      "V7-03 treea7aa1b35798b6e7062be22990895360232fb4ef4 fullLP64/trueILP64 each415/415, provider-freeDebug/Release277 each/shared279, installed10 eachABI, affected all-ASC-C++ASan46 eachABI, strict26 eachABI, format46 and Doxygen87/1742/zero warnings pass;zero skips.777 product files outside programs match exact frozen archive. No full routine/mode/native verification or owner/license approval implied."
+      "V7-03 treea7aa1b35798b6e7062be22990895360232fb4ef4 fullLP64/trueILP64 each415/415, provider-freeDebug/Release277 each/shared279, installed10 eachABI, affected all-ASC-C++ASan46 eachABI, strict26 eachABI, format46 and Doxygen87/1742/zero warnings pass;zero skips.777 product files outside programs match exact frozen archive. No full routine/mode/native verification or owner/license approval implied.",
+      "V9 full02 actual LP64/ILP64 each493/493, provider-free Debug277/277 Release277/277 shared279/279, zero skips; installed13 eachABI audited in full raw logs. All-ASC-C++ ASan71 eachABI passes, foreign archives/runtimes unsanitized. All23 strict02 TUs passed except probe corrected03; current preflight strict05 passes bothABIs. Current05 six scoped lanes each8/8; control03 six lanes each1/1; docs04 92headers/1827members zero warnings. Current05 all82 changed C++ format, coverage and public-header contract checks pass. Full02 is not relabeled full05; exact source deltas and command artifacts preserved. Full normalized modes/platforms/shared-provider/required mathematical failures remain open."
     ]
   },
   "counts": {
@@ -451,15 +457,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1947,
-    "reference_in_progress_in_ledger": 166,
+    "reference_not_started_in_ledger": 1915,
+    "reference_in_progress_in_ledger": 198,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 166,
+    "registered_partial_reference_operations": 198,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113 required unchanged;20native implemented_unverified,166reference in_progress,zero fully verified. UncorrectedV8 full431 eachABI/installed11; corrected Sylvester bothABI15/ASan15 scoped only."
+    "note": "2113 required unchanged;20 native implemented_unverified,198 reference in_progress,zero fully verified. Listed V9 composed command gates passed; full normalized modes, remaining routines, required upstream mathematical failures and platform/provider gates remain required."
   },
   "blockers": [
     {
@@ -551,40 +557,41 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "state": "completed_scoped_correction",
-    "candidate": "p08-sylvester-overflow-01",
-    "tree": "2affa1ab28f0be368cc42ca96ed5179aa104237f",
-    "archive_sha256": "9196bac1eab0dfa5ee41ba1d1ece02f495a8d6e6b249c17ec526eca9d833a6e4",
-    "mapping_sha256": "fff22a92e7db7f3d249e6a666d64b81cda7db67f246a43ab089d5a2556823d5b",
-    "scope": "BothABI15 fixed/all-ASC-C++ASan15, strict2TUs, Doxygen88/1751 pass. Uncorrected V8 full bothABI431, installed11 each, Release277/shared279; Debug276/277 timeout with unchanged retry1/1. No corrected full combined result or full mathematical-mode completion inferred."
+    "state": "listed_v9_composed_checks_complete",
+    "candidate": "p05-p06-integration-v9-05",
+    "mapping_sha256": "68607f71dc107e2d013b85a27d1a2b3ec3e89f0bcc6469374c9c542c996be400",
+    "tree": "57ccbe0e85aa368e16f5105da1464ae9da60fbd1",
+    "archive_sha256": "e28293aacb2ecfc192810d4a4fd0b15e94a68e12fe0c05c5099ef7552423cef6",
+    "scope": "V9 full02 actual LP64/ILP64 each493/493, provider-free Debug277/277 Release277/277 shared279/279, zero skips; installed13 eachABI audited in full raw logs. All-ASC-C++ ASan71 eachABI passes, foreign archives/runtimes unsanitized. All23 strict02 TUs passed except probe corrected03; current preflight strict05 passes bothABIs. Current05 six scoped lanes each8/8; control03 six lanes each1/1; docs04 92headers/1827members zero warnings. Current05 all82 changed C++ format, coverage and public-header contract checks pass. Full02 is not relabeled full05; exact source deltas and command artifacts preserved. Full normalized modes/platforms/shared-provider/required mathematical failures remain open."
   },
   "last_completed_verification": {
-    "candidate": "p05-p06-factorizations-v7-03",
-    "implementation_tree": "a7aa1b35798b6e7062be22990895360232fb4ef4",
-    "source_archive_sha256": "07d4991e7fae66b51696e769f64cc7676c5dbed4e05ed49f945b9869d80ee052",
-    "coverage_mapping_sha256": "80e087f4826466894f7d623121c7c45f279bbcbcb938b2c8544aecaeea503259",
+    "candidate": "p05-p06-integration-v9-05",
+    "implementation_tree": "57ccbe0e85aa368e16f5105da1464ae9da60fbd1",
+    "source_archive_sha256": "e28293aacb2ecfc192810d4a4fd0b15e94a68e12fe0c05c5099ef7552423cef6",
+    "coverage_mapping_sha256": "68607f71dc107e2d013b85a27d1a2b3ec3e89f0bcc6469374c9c542c996be400",
     "completed": [
-      "ctest-lp64",
-      "ctest-ilp64",
-      "ctest-debug",
-      "ctest-release",
-      "ctest-shared",
-      "ctest-asan-lp64-02",
-      "ctest-asan-ilp64-02",
-      "doxygen",
-      "doxygen-coverage",
-      "markdown",
-      "format-integrated",
-      "strict-all26-lp64",
-      "strict-all26-ilp64",
-      "installed-all10-lp64",
-      "installed-all10-ilp64"
+      "full02-lp64-493",
+      "full02-ilp64-493",
+      "full02-debug-277",
+      "full02-release-277",
+      "full02-shared-279",
+      "installed02-13-eachABI",
+      "all-ASC-ASan02-71-eachABI",
+      "strict02-22-of23-eachABI",
+      "strict03-probe-eachABI",
+      "strict05-preflight-eachABI",
+      "scoped03-controls-six1testlanes",
+      "scoped05-preflight-six8testlanes",
+      "docs04-92headers-1827members",
+      "format05-82Cpp",
+      "coverage05",
+      "public-surface05"
     ],
     "pending": [],
-    "sanitizer_scope": "46/46 per ABI; all CPU Core/Dense/reference C++ instrumented, foreign archives/runtimes not instrumented",
-    "review": "programs/lapack-array-io/factorizations-v7-review.md",
-    "scope_limit": "Completed listed command lanes only; exact routine/mode full-profile closure, approvals, platforms, failed mathematical gates and all remaining implementations remain required.",
-    "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755"
+    "scope_limit": "V9 full02 actual LP64/ILP64 each493/493, provider-free Debug277/277 Release277/277 shared279/279, zero skips; installed13 eachABI audited in full raw logs. All-ASC-C++ ASan71 eachABI passes, foreign archives/runtimes unsanitized. All23 strict02 TUs passed except probe corrected03; current preflight strict05 passes bothABIs. Current05 six scoped lanes each8/8; control03 six lanes each1/1; docs04 92headers/1827members zero warnings. Current05 all82 changed C++ format, coverage and public-header contract checks pass. Full02 is not relabeled full05; exact source deltas and command artifacts preserved. Full normalized modes/platforms/shared-provider/required mathematical failures remain open.",
+    "review": "programs/lapack-array-io/factorizations-v9-review.md",
+    "completion_audit": "p05-p06-integration-v9-05/completion-audit-02/audit.json",
+    "completion_audit_sha256": "cc83db7b1678cabcde6c40a4b05e577c41b0798c0dd8253e9c475d446305459f"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -602,5 +609,11 @@
     "upstream_heads_unchanged": true,
     "source_lock_hashes_match": true,
     "provider_prefix_revalidation": "resume-20260908-01/provider-{lp64,ilp64}/record.json"
+  },
+  "normal_return_guard": {
+    "state": "implemented_current_controls_and_full02_passed",
+    "evidence": "normal-return-guard-01",
+    "scope": "59 foreign-calling test/consumer mains plus new probe use automatic local guard; configuration ABI probe included, pure count/header tests excluded. Actual pinned DGETRF STOP and std::exit(0) exit93 with guard, normal return0; unguarded process STOP exits0 before unreachable return3, and unguarded regression fails1/1 perABI. No production handler override. Fresh full suite required. Final03probe adds direct lapacke_config include and narrowly documented concurrency-mt-unsafe exception for intentional single-threaded std::exit; bothABIstrict and Debug/Release/ASan controls pass. Full02 each493/493 and13installed pass with guard; exact current03 controls all6lanespass.",
+    "current_evidence": "p05-p06-integration-v9-03"
   }
 }

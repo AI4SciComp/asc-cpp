@@ -17,6 +17,7 @@
 #include "asc/dense/providers/lapack_cholesky_band.h"
 #include "band_cholesky_native_test_support.h"
 #include "band_cholesky_test_support.h"
+#include "installed_lu/normal_return_guard.h"
 
 namespace {
 using namespace asc_band_test;  // NOLINT(google-build-using-namespace)
@@ -256,6 +257,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   if (argc != 2) {
     return 2;
   }

@@ -7,6 +7,7 @@
 #include <type_traits>
 
 #include "asc/dense/blas.h"
+#include "installed_lu/normal_return_guard.h"
 #include "lapack_build_config.h"
 #define HAVE_LAPACK_CONFIG_H
 #define LAPACK_COMPLEX_CPP
@@ -180,6 +181,7 @@ bool Run() {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   static_assert(sizeof(lapack_int) * 8 == ASC_LAPACK_INTEGER_BITS);
   if (!Run<float>() || !Run<double>() || !Run<std::complex<float>>() ||
       !Run<std::complex<double>>()) {

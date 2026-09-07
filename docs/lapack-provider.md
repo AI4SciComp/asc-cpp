@@ -2,15 +2,16 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v8` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v9` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
 through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
-additional Cholesky, QR, least-squares, LU helper and Sylvester routes below
-bring the development mapping to 166 partial scalar routines. The other 1,947 required
+additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
+routes below bring the development mapping to 198 partial scalar routines.
+The other 1,915 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -125,8 +126,9 @@ outside program records. It passed full LP64/true-ILP64 415-test suites, provide
 Each installed provider package executed ten consumers. Its affected
 Clang19 ASan/UBSan suites passed 46 tests per ABI with Core/Dense/reference
 C++ instrumented; Fortran/BLAS archives and dynamic runtimes were not.
-Those results do not verify the newer ordinary Sylvester integration, which
-requires fresh combined-tree and installed checks.
+Those historical results do not verify V9. The corrected Sylvester admission
+and new indefinite expert/SVD least-squares routes require fresh combined-tree
+and installed checks.
 
 ## Positive-definite band factorization and solves
 
@@ -296,3 +298,52 @@ factor-once/two-RHS reuse, residual checking, INFO reporting, printing,
 save/reload and failed staged-read rollback. The numerical and allocation
 evidence scope, including the limits of static linker instrumentation, is
 recorded in the program's private-ABI review and durable verification ledger.
+
+## Classic indefinite expert systems
+
+`lapack_indefinite_condition.h`, `lapack_indefinite_refinement.h` and
+`lapack_indefinite_driver.h` expose S/D/C/Z `Sycon`, `Syrfs`, `Sysv` and
+`Sysvx`, plus complex `Hecon`, `Herfs`, `Hesv` and `Hesvx`. Symmetric complex
+routines retain transpose symmetry; Hermitian routines retain conjugate
+symmetry. Each route consumes the selected triangle and classic paired raw
+pivots. A, AF, B and X layouts are independent.
+
+`Sysv`/`Hesv` publish selected factors/pivots and overwrite B. Refinement
+preserves original A, factors, pivots and B while improving caller X. Expert
+N drivers output AF/pivots; explicitly named factored F drivers preserve them.
+Both expert modes preserve A/B and return X, real FERR/BERR and RCOND.
+INFO=n+1 reports an accuracy warning. A raw factor's provenance remains the
+caller's responsibility; a driver report does not certify a TRF factor view
+or distinguish N from F by its routine name.
+
+Formula queries bind modes and metadata without allocating or foreign entry.
+Real condition/refinement paths reserve separate live native-width pivot and
+estimator segments within integer workspace. Original Hermitian input ignores
+imaginary diagonals; meaningful factor components are consumed as stored.
+Singular-factor and malformed-return publication follows each documented
+route rather than a common success assumption. Zero-RHS drivers still perform
+the source-defined factorization/condition work.
+
+## SVD least squares
+
+`lapack_svd_least_squares.h` exposes S/D/C/Z `Gelss` and `Gelsd` with explicit
+minimum/preferred workspace. B must hold max(m,n) rows, including the solution
+capacity. The caller receives rank, underlying-real singular values and the
+actual overwritten A/B outputs. Separate queries and execution bind scalar,
+provider ABI, layouts, dimensions, strides and rank threshold.
+
+The pinned source has required modes whose mathematical or return-safety
+gates remain incomplete. Nonzero-A GELSD with zero RHS reaches a terminating
+upstream error handler and is rejected before mutation; safe all-zero A and
+empty shapes retain their distinct paths. Nonzero single-real/complex GELSD
+with min(m,n)>=212992 is rejected because the source's compressed divide-tree
+storage can be too small. Meaningful nonfinite A is also checked before
+unsafe source entry. The corrected wide-real minimum accounts for the actual
+source workspace accesses. GELSS's wide high-workspace path leaves LQ data
+in A despite the upstream right-vector output description; ASC publishes that
+actual raw output and does not certify it as right singular vectors.
+
+These eight routes have scoped solution, singular-value, residual-optimality
+and minimum-norm tests. They do not close those source failures or the full
+routine/mode contract. All remaining LAPACK families and optional-upstream
+dependencies remain required for the full reference profile.

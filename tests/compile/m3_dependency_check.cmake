@@ -77,6 +77,10 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_indefinite.h
   include/asc/dense/providers/lapack_rank_revealing.h
   include/asc/dense/providers/lapack_sylvester.h
+  include/asc/dense/providers/lapack_indefinite_condition.h
+  include/asc/dense/providers/lapack_indefinite_driver.h
+  include/asc/dense/providers/lapack_indefinite_refinement.h
+  include/asc/dense/providers/lapack_svd_least_squares.h
 )
 
 file(

@@ -23,6 +23,7 @@
 #include "asc/dense/providers/lapack_lu_condition.h"
 #include "asc/dense/providers/lapack_lu_driver.h"
 #include "asc/dense/providers/lapack_lu_refinement.h"
+#include "normal_return_guard.h"
 
 namespace {
 constexpr auto kHost = asc::MemorySpace::kHost;
@@ -425,6 +426,7 @@ bool AllModes(const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));
   return AllModes<float>(provider) && AllModes<double>(provider) &&

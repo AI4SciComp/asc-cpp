@@ -23,6 +23,7 @@
 #include "asc/dense/providers/lapack_cholesky.h"
 #include "cholesky_faults.h"
 #include "cholesky_test_support.h"
+#include "installed_lu/normal_return_guard.h"
 #include "src/dense/lapack/internal_cholesky_limits.h"
 
 namespace {
@@ -779,6 +780,7 @@ void ProviderDefects(TestContext& test,
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   TestContext test;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));

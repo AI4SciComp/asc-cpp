@@ -13,6 +13,7 @@
 #include "asc/dense/lapack/report.h"
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
+#include "installed_lu/normal_return_guard.h"
 #include "provider_operand_placement_test.h"
 #include "provider_placement_routes.h"
 #include "provider_placement_support.h"
@@ -212,6 +213,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   if (argc != 2) {
     return 2;
   }

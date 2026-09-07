@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <type_traits>
 
+#include "installed_lu/normal_return_guard.h"
 #include "lapack_build_config.h"
 
 #define HAVE_LAPACK_CONFIG_H
@@ -61,6 +62,7 @@ bool CheckLibrary() {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   static_assert(sizeof(lapack_int) * 8 == ASC_LAPACK_INTEGER_BITS);
   static_assert(std::is_same_v<lapack_complex_float, std::complex<float>>);
   static_assert(std::is_same_v<lapack_complex_double, std::complex<double>>);

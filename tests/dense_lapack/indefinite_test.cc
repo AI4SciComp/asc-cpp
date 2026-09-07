@@ -17,6 +17,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_indefinite.h"
 #include "indefinite_test_support.h"
+#include "installed_lu/normal_return_guard.h"
 
 namespace {
 using asc_indefinite_test::Adjoint;
@@ -415,6 +416,7 @@ void Numerics(TestContext& test, const asc::ReferenceLapackProvider& provider,
 }  // namespace
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   if (argc != 2) {
     return 2;
   }

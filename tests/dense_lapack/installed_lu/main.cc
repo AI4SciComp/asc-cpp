@@ -18,6 +18,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu.h"
 #include "asc/dense/providers/lapack_lu_equilibration.h"
+#include "normal_return_guard.h"
 
 namespace {
 constexpr auto kHost = asc::MemorySpace::kHost;
@@ -195,6 +196,7 @@ bool Exercise(const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));
   return Exercise<float>(provider) && Exercise<double>(provider) &&

@@ -45,8 +45,8 @@
  * source INTEGER arithmetic are revalidated before any numerical write.
  * All mutable operands and scratch are disjoint from immutable inputs and live
  * metadata. Structural failures preserve numerical buffers with INFO absent
- * and called_provider=false. Unsafe aliases to the report itself leave even
- * that report untouched; otherwise it is reset before preflight.
+ * and called_provider=false. Any call-metadata alias rejection preserves the
+ * report; otherwise it is reset before the remaining preflight checks.
  *
  * Factorization INFO>0 retains completed raw selected factors and checked raw
  * pivots, but never certifies a reusable successful factor. The pinned source

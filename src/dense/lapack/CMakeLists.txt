@@ -13,6 +13,11 @@ target_sources(asc_dense_lapack PRIVATE
   reference_indefinite.cc
   reference_rank_revealing.cc
   reference_sylvester.cc
+  reference_indefinite_condition.cc
+  reference_indefinite_driver.cc
+  reference_indefinite_expert_driver.cc
+  reference_indefinite_refinement.cc
+  reference_svd_least_squares.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
   FILES
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack.h"
@@ -33,7 +38,11 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_band.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_rank_revealing.h"
-    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_sylvester.h")
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_sylvester.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_condition.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_driver.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_refinement.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_svd_least_squares.h")
 target_include_directories(asc_dense_lapack PRIVATE
   "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
 set_target_properties(asc_dense_lapack PROPERTIES

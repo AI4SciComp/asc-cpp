@@ -6,6 +6,7 @@
 #include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/dense/blas.h"
+#include "installed_lu/normal_return_guard.h"
 
 namespace {
 using asc_dense_test::TestContext;
@@ -123,6 +124,7 @@ void Run(TestContext& test, asc::extent_t maximum) {
 }  // namespace
 
 int main() {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   TestContext test;
   Run(test, std::numeric_limits<std::int32_t>::max());
   Run(test, std::numeric_limits<std::int64_t>::max());

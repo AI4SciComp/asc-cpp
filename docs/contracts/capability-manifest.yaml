@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v8 with166 partial scalar routes. Committed v7 b1b78d7 matches frozen a7aa1b3: full LP64/trueILP64 each415 and installed10 each passed. New ordinary TRSYL integration remains pending; scoped math, ABI, strict, all-ASC-C++ sanitizer and allocation checks are distinct. Full2113 routine/mode coverage and mathematical gates remain pending"
+    evidence_scope: "unreleased incremental-lapack-v9 with198 partial scalar routes. Prior uncorrected V8 full LP64/trueILP64 each431 and installed11 each passed; corrected Sylvester scoped bothABI15 and all-ASC-C++ sanitizer15 passed. New indefinite expert24 and SVD least-squares8 combined integration is pending. Full2113 routine/mode coverage and mathematical gates remain pending"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -119,6 +119,10 @@ capabilities:
       - "include/asc/dense/providers/lapack_indefinite.h"
       - "include/asc/dense/providers/lapack_rank_revealing.h"
       - "include/asc/dense/providers/lapack_sylvester.h"
+      - "include/asc/dense/providers/lapack_indefinite_condition.h"
+      - "include/asc/dense/providers/lapack_indefinite_driver.h"
+      - "include/asc/dense/providers/lapack_indefinite_refinement.h"
+      - "include/asc/dense/providers/lapack_svd_least_squares.h"
     direct_dependencies:
       - "dense"
     tests:

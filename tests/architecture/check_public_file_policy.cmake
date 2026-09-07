@@ -48,6 +48,10 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_indefinite.h
   include/asc/dense/providers/lapack_rank_revealing.h
   include/asc/dense/providers/lapack_sylvester.h
+  include/asc/dense/providers/lapack_indefinite_condition.h
+  include/asc/dense/providers/lapack_indefinite_driver.h
+  include/asc/dense/providers/lapack_indefinite_refinement.h
+  include/asc/dense/providers/lapack_svd_least_squares.h
   include/asc/dense/view.h
   include/asc/dense/print.h
   include/asc/dense/io.h
@@ -133,6 +137,11 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_indefinite.cc
   src/dense/lapack/reference_rank_revealing.cc
   src/dense/lapack/reference_sylvester.cc
+  src/dense/lapack/reference_indefinite_condition.cc
+  src/dense/lapack/reference_indefinite_driver.cc
+  src/dense/lapack/reference_indefinite_expert_driver.cc
+  src/dense/lapack/reference_indefinite_refinement.cc
+  src/dense/lapack/reference_svd_least_squares.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/blas_level2.cc

@@ -21,6 +21,7 @@
 #include "asc/dense/providers/lapack_lu_driver.h"
 #include "asc/dense/providers/lapack_lu_equilibration.h"
 #include "asc/dense/providers/lapack_lu_helpers.h"
+#include "installed_lu/normal_return_guard.h"
 #include "lu_helpers_failure_test.h"
 #include "lu_helpers_scaling_test.h"
 #include "lu_helpers_test_support.h"
@@ -382,6 +383,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 }  // namespace
 
 int main(int argc, char** argv) {
+  const asc_lapack_test::NormalReturnGuard return_guard;
   TestContext test;
   if (argc != 2) {
     std::fputs("Expected one scalar selector: s, d, c, z\n", stderr);
