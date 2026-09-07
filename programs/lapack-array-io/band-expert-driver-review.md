@@ -339,3 +339,10 @@ V12 candidate01 frozen tree `b7cdafb950310ea7f5fa320ba911c55c1438e933`, archive 
 V12 implementation checkpoint: exact frozen product matches live root; format58Cpp/coverage/publicsurface/Markdown and Doxygen102headers1969members0warnings pass. Full5lanes/ASan90perABI/strict36TUsperABI still running. Original ten Band and four GT ordinary required math failures retained. Root GETRF/GETRS independent six4-test replay confirms old4/4fail bothABI, fixedRelease/ASan4/4pass each; separate correction not imported yet.
 
 External `p05-band-expert-integration-v12-01/implementation-checkpoint-01/audit.json` SHA256 `ead2db495ac6f3c6aab84d3dc97f43cf62b6c8fa1abdef2829db45fc89be07a4` records current completed command hashes. No full-suite success is inferred from a pending process.
+
+
+## V12 completed integration evidence
+
+V12 exact frozen current-at-c8ae2f2 product: full LP64/trueILP64 each634/648, exactly10required Band plus4GT mathfail,0skips. Providerfree Debug277/277 Release277/277 shared279/279; installed16eachABI pass including256Bandworkflows/2048calls/256stale rejects. All-ASC-C++ ASan each80/90 with10Bandmathfail,0skips; foreign archives unsanitized. All72strict checks, Doxygen102headers1969members0warnings,format58Cpp/coverage/publicsurface/Markdown pass. Complete original command/source/rawlog audit retained. Later originalLU and expertINFO fixes are separate snapshots and are not verified by these older source results. No full routine/mode/platform/shared-provider/XBLAS/provenance or mathematical gate closure claim.
+
+Completion audit `p05-band-expert-integration-v12-01/completion-audit-01/audit.json` SHA256 `11503bf22178a23b627b9e4e0349a4dab3b00e66fb3a6b178600f827ddb7af45` independently verifies99 actual command records, 914 frozen source files, complete installed/full/sanitizer logs and actual Band INFO profile counts. Required reference denominator remains2113 with250in_progress/1863not_started; native20 remain separately implemented_unverified and fullyverified0.

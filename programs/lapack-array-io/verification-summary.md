@@ -500,3 +500,17 @@ Completion audit `p05-tridiagonal-integration-v11-01/completion-audit-01/audit.j
 Current frozen tree5dd66163 six18/18 lanes pass (all-ASC Debug,Release,ASan bothABI),0skips; all53CPUCore/Dense/provider TUs rebuilt. Exact112/168 unique profiles per scalar, all actual native INFO0. Format4/coverage/publicsurface pass. Six historical strict records remain valid through byte-identical actual compiler-read TU/headers/generated ABI config. Foreign archives unsanitized. No full-suite or pivot short-write completion claim.
 
 Frozen tree `5dd66163f10e34fdd72e19da35c79370575775cb`, archive SHA256 `46d0f26a92f04dddfae0d383d966854b9b1df2199ab8d15ed56a341ce7e1b018`, mapping `ae514d2343cd688ab8f3880e1dd7e8b0c2e72decd73555e44f835c42d7cd6451`. Audit `p04-lu-info-integration-01/completion-audit-01/audit.json` SHA256 `b5dcd01f46262406469cf9581db80ddfdcb638fb6281fa3e6e4d6304712ff39f` binds21 actual commands, all six compiled source closures and complete emitted mode sets. Existing V12 full runs are older INFO bytes and are never relabeled as these tests.
+
+
+## V12 completed integration evidence
+
+V12 exact frozen current-at-c8ae2f2 product: full LP64/trueILP64 each634/648, exactly10required Band plus4GT mathfail,0skips. Providerfree Debug277/277 Release277/277 shared279/279; installed16eachABI pass including256Bandworkflows/2048calls/256stale rejects. All-ASC-C++ ASan each80/90 with10Bandmathfail,0skips; foreign archives unsanitized. All72strict checks, Doxygen102headers1969members0warnings,format58Cpp/coverage/publicsurface/Markdown pass. Complete original command/source/rawlog audit retained. Later originalLU and expertINFO fixes are separate snapshots and are not verified by these older source results. No full routine/mode/platform/shared-provider/XBLAS/provenance or mathematical gate closure claim.
+
+Completion audit `p05-band-expert-integration-v12-01/completion-audit-01/audit.json` SHA256 `11503bf22178a23b627b9e4e0349a4dab3b00e66fb3a6b178600f827ddb7af45` independently verifies99 actual command records, 914 frozen source files, complete installed/full/sanitizer logs and actual Band INFO profile counts. Required reference denominator remains2113 with250in_progress/1863not_started; native20 remain separately implemented_unverified and fullyverified0.
+
+
+## Current composed integration completed
+
+Current originalLU8+expert16 INFO integration: six22/22 Debug/Release/ASC-only ASan lanes pass,0skips. All53CPUCore/Dense/provider TUs rebuilt eachlane; exact312/468expert modes/scalar and preserved112/168originalINFO profiles pass. Format5/coverage/publicsurface pass. Historical6strict records apply through byte-identical actual compiler-read changedTU/headers/generatedABIconfig; no freshstrict or fullproject claim. Foreign archives/runtimes unsanitized; output-pivot correction and full mathematical/mode/platform gates remain separate.
+
+Frozen tree `e8d719945740a6640fa963a37c68b73c64b9f0ae`, archive SHA256 `7f75537dafded1f9ae2b8e002e50f41285abed84c6ae73dac126d99acda10211`, mapping `d566272179926c1ae9c67dabccc0cfd37acca14b021cd31b4c471c868d64c4da`. Completion audit `p04-lu-expert-info-integration-01/completion-audit-01/audit.json` SHA256 `e6da4a3267fad30efe4ab36e19bdaabf64eff43da37e2f67fb2b4f4527e50dee` verifies21 executed records,921 exact source files, every compiled CPU source and actual returned/native mode profiles. Root product files match the frozen source.

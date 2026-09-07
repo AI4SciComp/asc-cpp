@@ -54,6 +54,8 @@ static_assert(std::is_same_v<lapack_complex_double, std::complex<double>>);
 
 enum class FactorAlgorithm : std::uint8_t { kRecursive, kUnblocked };
 
+// An untouched INFO must not manufacture success. Full-width MIN also keeps
+// a short zero write invalid on the audited little-endian provider ABI.
 template <typename T>
 struct Native;
 
@@ -68,7 +70,7 @@ struct Native<float> {
   static lapack_int Factor(FactorAlgorithm algorithm, lapack_int m,
                            lapack_int n, float* a, lapack_int lda,
                            lapack_int* pivots) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     if (algorithm == FactorAlgorithm::kRecursive) {
       LAPACK_sgetrf2(&m, &n, a, &lda, pivots, &info);
     } else {
@@ -79,14 +81,14 @@ struct Native<float> {
   static lapack_int Inverse(lapack_int n, float* a, lapack_int lda,
                             const lapack_int* pivots, float* work,
                             lapack_int lwork) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_sgetri(&n, a, &lda, pivots, work, &lwork, &info);
     return info;
   }
   static lapack_int Driver(lapack_int n, lapack_int nrhs, float* a,
                            lapack_int lda, lapack_int* pivots, float* b,
                            lapack_int ldb) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_sgesv(&n, &nrhs, a, &lda, pivots, b, &ldb, &info);
     return info;
   }
@@ -103,7 +105,7 @@ struct Native<double> {
   static lapack_int Factor(FactorAlgorithm algorithm, lapack_int m,
                            lapack_int n, double* a, lapack_int lda,
                            lapack_int* pivots) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     if (algorithm == FactorAlgorithm::kRecursive) {
       LAPACK_dgetrf2(&m, &n, a, &lda, pivots, &info);
     } else {
@@ -114,14 +116,14 @@ struct Native<double> {
   static lapack_int Inverse(lapack_int n, double* a, lapack_int lda,
                             const lapack_int* pivots, double* work,
                             lapack_int lwork) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_dgetri(&n, a, &lda, pivots, work, &lwork, &info);
     return info;
   }
   static lapack_int Driver(lapack_int n, lapack_int nrhs, double* a,
                            lapack_int lda, lapack_int* pivots, double* b,
                            lapack_int ldb) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_dgesv(&n, &nrhs, a, &lda, pivots, b, &ldb, &info);
     return info;
   }
@@ -138,7 +140,7 @@ struct Native<std::complex<float>> {
   static lapack_int Factor(FactorAlgorithm algorithm, lapack_int m,
                            lapack_int n, std::complex<float>* a, lapack_int lda,
                            lapack_int* pivots) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     if (algorithm == FactorAlgorithm::kRecursive) {
       LAPACK_cgetrf2(&m, &n, a, &lda, pivots, &info);
     } else {
@@ -149,7 +151,7 @@ struct Native<std::complex<float>> {
   static lapack_int Inverse(lapack_int n, std::complex<float>* a,
                             lapack_int lda, const lapack_int* pivots,
                             std::complex<float>* work, lapack_int lwork) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_cgetri(&n, a, &lda, pivots, work, &lwork, &info);
     return info;
   }
@@ -157,7 +159,7 @@ struct Native<std::complex<float>> {
                            std::complex<float>* a, lapack_int lda,
                            lapack_int* pivots, std::complex<float>* b,
                            lapack_int ldb) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_cgesv(&n, &nrhs, a, &lda, pivots, b, &ldb, &info);
     return info;
   }
@@ -174,7 +176,7 @@ struct Native<std::complex<double>> {
   static lapack_int Factor(FactorAlgorithm algorithm, lapack_int m,
                            lapack_int n, std::complex<double>* a,
                            lapack_int lda, lapack_int* pivots) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     if (algorithm == FactorAlgorithm::kRecursive) {
       LAPACK_zgetrf2(&m, &n, a, &lda, pivots, &info);
     } else {
@@ -185,7 +187,7 @@ struct Native<std::complex<double>> {
   static lapack_int Inverse(lapack_int n, std::complex<double>* a,
                             lapack_int lda, const lapack_int* pivots,
                             std::complex<double>* work, lapack_int lwork) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_zgetri(&n, a, &lda, pivots, work, &lwork, &info);
     return info;
   }
@@ -193,7 +195,7 @@ struct Native<std::complex<double>> {
                            std::complex<double>* a, lapack_int lda,
                            lapack_int* pivots, std::complex<double>* b,
                            lapack_int ldb) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_zgesv(&n, &nrhs, a, &lda, pivots, b, &ldb, &info);
     return info;
   }
