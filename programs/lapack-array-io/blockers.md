@@ -196,3 +196,109 @@ for all scalar types, free/mixed/all-fixed flags, actual call counters, padded
 zero-row backing, minimum-work rejection and original ASC LD=INT64_MAX.
 Fresh candidate02 verification and root review remain required. Candidate01's
 eight 16/16 diagnostic lanes are explicitly pre-correction evidence only.
+
+## GELSD-ZERO-RHS — unsafe nested argument-error termination
+
+Pinned S/D/C/Z GELSD admits NRHS=0 but enters LALSD, whose actual argument
+check rejects NRHS<1, for nonzero A with nonempty dimensions. Root read the
+independent probe and return gate and inspected the pinned DGELSD/DLALSD
+call/validation sites. All eight real scalar/ABI probes for A=diag(1,2),
+M=N=2, NRHS=0, genuine backing and actual queried workspaces fail the gate.
+The provider process exits zero via Fortran STOP after printing the LALSD
+argument4 error; it does not emit the normal-return marker. Zero process exit
+alone is not successful execution. The subprocess wrapper records exit1 and
+no CTest count. Safe zero-A/zero-size and GELSS NRHS=0 controls are distinct.
+
+Evidence is external `p06-svd-ls-source-probes-01/logs/gelsd-zero-rhs-<abi>-<s|d|c|z>`.
+Probe SHA256 is
+`c11fd7486147df8999d847cf57160b6a41f36a9c6c303c6eba38d0e3b4189d11`;
+the read-only subprocess gate is
+`764f3bd3426d651c884377f2ed3c92107cc3b8edb304a20628944be9ce2d425f`.
+Checked ASC execution must reject unsafe admission before mutation and must
+not silently substitute another routine. Safe source exceptions need explicit
+proof. The incomplete mode remains required; independent modes continue.
+
+## GELSS-WIDE-RIGHT-VECTORS — documented output mathematical gate unmet
+
+For A=[[1,0,1],[0,2,0]], B=[2,6] and actual preferred workspace, all eight
+scalar/ABI GELSS probes return INFO0, rank2 and the expected minimum-norm
+solution approximately [1,3,1]. The returned first two rows of A are not
+orthonormal: the independent row-Gram error is about3.22065, exceeding the
+scalar-derived tolerance. The source documentation promises rowwise right
+singular vectors, but wide path2a retains its LQ representation in A and
+computes the intermediate L right vectors in WORK. Root read the full probe,
+checked all eight exit1 records, and inspected those pinned source paths.
+
+The same probe source/hash above produces external
+`p06-svd-ls-source-probes-01/logs/wide-vectors-<abi>-<s|d|c|z>` failures.
+These failed output-vector gates are not relabeled as successful because the
+solution is correct. Preserve actual raw outputs and report the limitation;
+do not fabricate V^H, change workspace to force a different algorithm, patch
+the provider or remove this required output mode from the full scope.
+
+## PBCON-LOWER-COMPLEX-SCALED — condition-estimate mathematical gate
+
+Root read the full isolated condition review and actual direct probe, checked
+both ABI outputs and the exact CLATBS/ZLATBS versus real source branches.
+For L=t*[[1,0],[1,1]], A=t^2*[[1,1],[1,2]], the inverse is
+t^-2*[[2,-1],[-1,1]]; the exact reciprocal one-norm condition is1/9.
+With C t=2^-60 or Z t=2^-510, finite positive ANORM and nonzero factors,
+lower CPBCON/ZPBCON return0.25 with INFO0 in both actual ABIs. Upper, real
+and unscaled controls return approximately1/9. Complex lower LATBS's manual
+T/C branch omits a dot product of length one (`JLEN.GT.1`); the real branch
+uses `JLEN.GT.0`. No triangle substitution or provider patch is authorized.
+
+Direct source `p05-band-expert-agxp4Sxi/condition-scaled-probe-01.cc` SHA256
+`0fe5442277cddb940d23fba4b6e4b1520b88b4dcf129178db49d01c5e027e8d6`;
+both direct ABI run logs SHA256
+`a184be5dee144396aa981077ad5b6c44d0a6ad2753f7942e224f36e908b54be5`.
+Isolated condition candidate01 preserves real failing required math tests:
+each ABI x Debug/Release/scoped-ASan selection17 executed,15 pass,2 fail,
+zero skips, CTest8. Source archive
+`fe952d168cbd6ef4a503fdb39cc7e83f4c9b1594c06b3967dca0e8e7080e95d0`.
+Root has not yet imported/reviewed all twelve candidate implementation files;
+this is source-gate review, not integration or a green suite. Independent
+PBRFS/PBSVX work continues. Full required mode closure needs an explicitly
+approved disposition and passing unchanged mathematical tests.
+
+## GELSD-WIDE-MINIMUM — nested workspace argument termination
+
+Root read the complete actual `minimum_probe.cc`, all sixteen ABI/scalar
+minimum/safe command outputs and pinned SGELSD branch/offset calculations.
+For M=1,N=1000,NRHS=1, real source MINWRK=739 passes outer validation
+but falls through to full bidiagonalization with insufficient GEBRD workspace.
+All S/D x both-ABI minimum subprocess gates fail: GEBRD argument10 error,
+Fortran process exit0, absent normal-return marker. Actual preferred1002
+selects a safe branch and all four scalar types x both ABIs return the known
+minimum-norm solution0.002; complex source minimum already equals1002.
+
+External `p06-svd-ls-source-probes-02/source/minimum_probe.cc` SHA256
+`9312992958e7cf342038ecb8de25e07c5b040eebf1124cab79f9a3e9df35b77a`
+includes the frozen source01 direct-call helper. The checked minimum must
+cover either fallback3*M+N or the complete source path2a admission threshold,
+without changing the actual preferred query or silently replacing the driver.
+The raw source minimum and safe ASC minimum remain distinct evidence.
+
+## GELSD-SINGLE-TREE — oversized bottom singular subproblem
+
+Both actual SLASDT ABIs at N=212992,SMLSIZ=25 return LVL13,ND8191 and
+largest bottom rows26, while DLASDT controls return LVL14 and largest13.
+Root read the entire direct Fortran tree probe and exhaustive proof, actual
+logs and pinned LASDT/LALSD/LASDA slices. Single-REAL logarithm rounding
+produces too few levels. SLALSD/CLALSD reserve U with25 columns and VT
+with26; SLASDA's bottom SLASET/LASDQ calls need26 and27 respectively,
+crossing simultaneously live workspace slices. This is an actual tree-storage
+gate and source-derived driver safety finding, not a claimed full-driver
+residual or sanitizer failure.
+
+External `p06-svd-ls-levels-probe-01/source/tree_probe.f90` SHA256
+`2028475121d5545424e3e1ffeead1c4d5a6a9577f69cc913c07e82ddd7a66d11`.
+The separate proof evaluates every212966 possible nontrivial subproblem
+26..212991 using the exact source single-REAL formula, and238 actual pinned
+SLASDT calls around all fourteen relevant transitions; both ABI proofs pass
+with zero failures and retain the first unsafe boundary. This supports an
+execution-only conservative S/C GELSD bound for nonzero A, not D/Z or
+GELSS. Query and proven all-zero-A/empty source quick returns remain distinct.
+Input-dependent splitting means checking only the full size's logarithm is
+insufficient. Larger required sizes remain unsupported/incomplete pending
+approved provider disposition; there is no silent alternate algorithm.

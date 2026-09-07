@@ -115,6 +115,89 @@ void TestPositiveDefiniteBand(TestContext& test) {
                  .ok());
 }
 
+template <typename T>
+void TestPositiveBandLayouts(TestContext& test) {
+  std::array<T, 40> values{};
+  const asc::ConstMemoryView backing(values.data(), sizeof(values),
+                                     asc::MemorySpace::kHost);
+  for (auto layout :
+       {asc::DenseBlasLayout::kColumnMajor, asc::DenseBlasLayout::kRowMajor}) {
+    const bool column = layout == asc::DenseBlasLayout::kColumnMajor;
+    for (auto triangle :
+         {asc::DenseBlasTriangle::kUpper, asc::DenseBlasTriangle::kLower}) {
+      for (asc::extent_t bandwidth : {0, 2, 5, 6}) {
+        auto band = asc::LapackPositiveDefiniteBandView<T>::Create(
+            values.data(), 5, bandwidth, triangle, layout, 8, backing);
+        ASC_DENSE_TEST_CHECK(test, band.ok());
+        if (!band.ok()) {
+          continue;
+        }
+        ASC_DENSE_TEST_EQ(test, band->order(), 5);
+        ASC_DENSE_TEST_EQ(test, band->bandwidth(), bandwidth);
+        ASC_DENSE_TEST_EQ(test, band->layout(), layout);
+        ASC_DENSE_TEST_EQ(test, band->triangle(), triangle);
+        ASC_DENSE_TEST_EQ(test, band->storage().rows(), column ? 8 : 5);
+        ASC_DENSE_TEST_EQ(test, band->storage().columns(), column ? 5 : 8);
+        ASC_DENSE_TEST_EQ(test, band->storage().reachable_storage().size(),
+                          sizeof(values));
+        const bool upper = triangle == asc::DenseBlasTriangle::kUpper;
+        ASC_DENSE_TEST_EQ(test, band->diagonal_row(),
+                          upper == column ? bandwidth : 0);
+        ASC_DENSE_TEST_CHECK(
+            test, !asc::LapackPositiveDefiniteBandView<T>::Create(
+                       values.data(), 5, bandwidth, triangle, layout, 8,
+                       {values.data(), sizeof(values) - sizeof(T),
+                        asc::MemorySpace::kHost})
+                       .ok());
+      }
+      auto empty = asc::LapackPositiveDefiniteBandView<T>::Create(
+          nullptr, 0, 5, triangle, layout, 6,
+          {nullptr, 0, asc::MemorySpace::kHost});
+      ASC_DENSE_TEST_CHECK(test, empty.ok());
+      ASC_DENSE_TEST_EQ(test, empty->order(), 0);
+      ASC_DENSE_TEST_EQ(test, empty->storage().reachable_storage().size(), 0U);
+      ASC_DENSE_TEST_CHECK(
+          test, asc::LapackPositiveDefiniteBandView<T>::Create(
+                    values.data(), 1, 6, triangle, layout, 8, backing)
+                    .ok());
+    }
+  }
+}
+
+void TestPositiveBandInvalid(TestContext& test) {
+  std::array<double, 4> values{};
+  const asc::ConstMemoryView backing(values.data(), sizeof(values),
+                                     asc::MemorySpace::kHost);
+  const auto upper = asc::DenseBlasTriangle::kUpper;
+  const auto row = asc::DenseBlasLayout::kRowMajor;
+  const auto maximum = std::numeric_limits<asc::extent_t>::max();
+  for (auto layout : {asc::DenseBlasLayout::kColumnMajor, row}) {
+    ASC_DENSE_TEST_CHECK(
+        test, !asc::LapackPositiveDefiniteBandView<double>::Create(
+                   values.data(), 1, maximum, upper, layout, maximum, backing)
+                   .ok());
+    ASC_DENSE_TEST_CHECK(
+        test, !asc::LapackPositiveDefiniteBandView<double>::Create(
+                   values.data(), maximum, 0, upper, layout, 2, backing)
+                   .ok());
+    ASC_DENSE_TEST_CHECK(test,
+                         !asc::LapackPositiveDefiniteBandView<double>::Create(
+                              values.data(), 1, 2, upper, layout, 2, backing)
+                              .ok());
+    ASC_DENSE_TEST_CHECK(test,
+                         !asc::LapackPositiveDefiniteBandView<double>::Create(
+                              nullptr, 1, 0, upper, layout, 1,
+                              {nullptr, 0, asc::MemorySpace::kHost})
+                              .ok());
+  }
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid = static_cast<asc::DenseBlasLayout>(9);
+  ASC_DENSE_TEST_CHECK(test,
+                       !asc::LapackPositiveDefiniteBandView<double>::Create(
+                            values.data(), 1, 0, upper, invalid, 1, backing)
+                            .ok());
+}
+
 void TestTridiagonalStorage(TestContext& test) {
   std::array<double, 4> diagonal{1, 2, 3, 4};
   std::array<double, 3> lower{5, 6, 7};
@@ -293,6 +376,12 @@ void TestNoAllocation(TestContext& test) {
     asc_dense_test::AllocationProbe probe;
     ASC_DENSE_TEST_CHECK(
         test, asc::LapackTridiagonalView<double>::Create(dl, d, du).ok());
+    ASC_DENSE_TEST_CHECK(
+        test, asc::LapackPositiveDefiniteBandView<double>::Create(
+                  diagonal.data(), 3, 0, asc::DenseBlasTriangle::kUpper,
+                  asc::DenseBlasLayout::kRowMajor, 1,
+                  {diagonal.data(), sizeof(diagonal), asc::MemorySpace::kHost})
+                  .ok());
     count = probe.count();
   }
   ASC_DENSE_TEST_CHECK(test, asc_test::ProcessAllocationCountMatches(count, 0));
@@ -304,6 +393,11 @@ int main() {
   TestContext test;
   TestFactorBandCapacity(test);
   TestPositiveDefiniteBand(test);
+  TestPositiveBandLayouts<float>(test);
+  TestPositiveBandLayouts<double>(test);
+  TestPositiveBandLayouts<std::complex<float>>(test);
+  TestPositiveBandLayouts<std::complex<double>>(test);
+  TestPositiveBandInvalid(test);
   TestTridiagonalStorage(test);
   TestMixedDiagonalAndBidiagonal(test);
   TestRfpShapesAndModes(test);

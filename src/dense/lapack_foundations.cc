@@ -253,7 +253,8 @@ Result<RawLapackPivotView> RawLapackPivotView::Create(const index_t* values,
                                                       extent_t size,
                                                       LapackFactorFamily family,
                                                       ConstMemoryView backing) {
-  if (family > LapackFactorFamily::kAasen || !IsCpu(backing.space())) {
+  if (family > LapackFactorFamily::kColumnPivotedQr ||
+      !IsCpu(backing.space())) {
     return Status(ErrorCode::kInvalidArgument);
   }
   const auto bytes = RequiredBytes(size, sizeof(index_t));
@@ -319,6 +320,72 @@ Status ConvertLuPivotsToZeroBasedSwaps(RawLapackPivotView pivots, extent_t rows,
   }
   for (std::size_t index = 0; index < destination.size(); ++index) {
     destination[index] = pivots.values()[index] - 1;
+  }
+  return Status::Ok();
+}
+
+Status ValidateColumnPermutation(RawLapackPivotView permutation,
+                                 std::span<std::byte> validation_scratch) {
+  if (permutation.family() != LapackFactorFamily::kColumnPivotedQr) {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  const auto values = permutation.values();
+  if (validation_scratch.size() < values.size()) {
+    return Status(ErrorCode::kShape);
+  }
+  const ConstMemoryView scratch(validation_scratch.data(),
+                                validation_scratch.size(), MemorySpace::kHost);
+  Status validity = ValidateSpan(scratch);
+  if (!validity.ok()) {
+    return validity;
+  }
+  if (Overlaps(scratch, permutation.reachable_storage())) {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  for (const index_t value : values) {
+    if (value < 1 || static_cast<std::uint64_t>(value) > values.size()) {
+      return Status(ErrorCode::kIndex);
+    }
+  }
+  std::fill_n(validation_scratch.begin(), values.size(), std::byte{});
+  for (const index_t value : values) {
+    auto& seen = validation_scratch[static_cast<std::size_t>(value - 1)];
+    if (seen != std::byte{}) {
+      return Status(ErrorCode::kIndex);
+    }
+    seen = std::byte{1};
+  }
+  return Status::Ok();
+}
+
+Status ConvertColumnPermutationToZeroBased(
+    RawLapackPivotView permutation, std::span<index_t> destination,
+    std::span<std::byte> validation_scratch) {
+  if (destination.size() != permutation.values().size()) {
+    return Status(ErrorCode::kShape);
+  }
+  const ConstMemoryView output(destination.data(), destination.size_bytes(),
+                               MemorySpace::kHost);
+  const ConstMemoryView scratch(validation_scratch.data(),
+                                validation_scratch.size(), MemorySpace::kHost);
+  Status validity = ValidateSpan(output);
+  if (!validity.ok()) {
+    return validity;
+  }
+  validity = ValidateSpan(scratch);
+  if (!validity.ok()) {
+    return validity;
+  }
+  if (Overlaps(output, permutation.reachable_storage()) ||
+      Overlaps(output, scratch)) {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  validity = ValidateColumnPermutation(permutation, validation_scratch);
+  if (!validity.ok()) {
+    return validity;
+  }
+  for (std::size_t i = 0; i < destination.size(); ++i) {
+    destination[i] = permutation.values()[i] - 1;
   }
   return Status::Ok();
 }

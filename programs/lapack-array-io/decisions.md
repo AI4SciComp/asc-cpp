@@ -1,5 +1,31 @@
 # Program decisions
 
+## V7 registration and exact foreign primitive check
+
+Band12, classic indefinite18 and rank8 are integrated as distinct required
+reference routes. All remain in-progress. Additive final-column permutation
+APIs preserve prior factor enum values and LU behavior; no unpivoted-QR or
+generic LDL provenance is fabricated. The root reviewed complete frozen slice
+code/tests and added independent public consumers before combined verification.
+
+The initial integrated test registration omitted the existing allocator-audit
+support TU and linker wrappers for band/indefinite tests. Candidate01's failed
+links are retained; candidate02 restores those dependencies without altering
+test bodies. An expanded private-header strict lane also found the exact GNU
+ILP64 primitive assertion uses `long`. Retain this compiler-emitted type check
+with a documented, single-line `google-runtime-int` exception at the private
+interoperability boundary. Do not replace it with a width-only check, weaken
+ABI probes, or expose primitive foreign integers in supported headers. This
+source amendment requires its own exact-identity strict/integration records;
+the earlier owner freeze remains immutable.
+
+While integration runs, the root's isolated `feature/lapack-p08-sylvester`
+worktree begins the dependency-satisfied P08 ordinary Sylvester slice using
+existing P01/P04 provider and workspace contracts. It owns only new optional
+Sylvester header/adapter/count/test files and its review. No P07 or remaining
+P04–P09 requirement is removed, no shared manifest is edited from that
+worktree, and no new operation is credited before implementation and tests.
+
 ## V6 integration and reflector count correction
 
 Root imported the separately frozen Cholesky-expert20 and least-squares12

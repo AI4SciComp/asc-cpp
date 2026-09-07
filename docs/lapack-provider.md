@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-factorizations-v6` facet implements checked `Getrf`, `Getrs`,
+The `incremental-factorizations-v7` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,7 +10,7 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares and LU helper routes below bring the
-development mapping to 124 partial scalar routines. The other 1,989 required
+development mapping to 162 partial scalar routines. The other 1,951 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -119,12 +119,58 @@ The original LU routes retain unused zero-byte workspace compatibility.
 The provider-free [native Cholesky/QR contract](contracts/lapack-native-cholesky-qr.md)
 is separate and does not credit the reference Q experts to native coverage.
 
-The prior v5 product tree `f021fb84e345c355affe65d8c06119c14a18e594`
-passed full LP64/true-ILP64 344-test suites, provider-free Debug/Release
+The prior v6 product tree `98f341bc6f4c2f655cae9a503ecbda5b266f3e32`
+passed full LP64/true-ILP64 365-test suites, provider-free Debug/Release
 277-test suites and shared provider-free Release 279 tests, with zero skips.
-Each installed provider package executed five consumers. Those results do not
-verify this newer v6 source. New reflector terminal-cursor guards and the
-expert/least-squares integration and installed consumers require fresh checks.
+Each installed provider package executed seven consumers. Its affected
+Clang19 ASan/UBSan suites passed 19 tests per ABI with Core/Dense/reference
+C++ instrumented; Fortran/BLAS archives and dynamic runtimes were not.
+Those results do not verify the newer band, indefinite and rank-revealing
+integration, which requires fresh combined-tree and installed checks.
+
+## Positive-definite band factorization and solves
+
+`lapack_cholesky_band.h` exposes actual S/D/C/Z `Pbtrf`, `Pbtf2` and
+`Pbtrs` with explicit positive-definite band descriptors. Both triangles and
+layouts preserve band-sized caller packing, unused corners and padding; no
+dense expansion occurs. Complex original imaginary diagonals are not read.
+On positive factorization INFO, row-major publication updates only the
+imaginary diagonal components actually normalized by the source's completed
+factor/update path, leaving untouched trailing components unwritten. Raw
+PBTRS factor coefficients are not normalized as original Hermitian input.
+There is no native band coverage claim or complete structured-family claim.
+
+## Classic symmetric and Hermitian indefinite factors
+
+`lapack_indefinite.h` separately exposes classic S/D/C/Z SYTRF/SYTF2/SYTRS
+and C/Z HETRF/HETF2/HETRS. The optional provider-specific borrowed factor
+retains symmetric versus Hermitian operation, triangle, actual originating
+routine and checked signed paired pivots; it is not an LU swap list or a
+generic LDL certificate. Original Hermitian factor inputs use explicit n*n
+selected-component packing in either layout, while raw factor coefficients
+retain their defined complex values. Positive factorization INFO preserves
+completed factors/pivots but does not certify a successful reusable factor.
+This new eighteen-route integration is distinct from v6's passed tests and
+requires current-tree numerical, installed and component checks.
+
+## Rank-revealing QR and least squares
+
+`lapack_rank_revealing.h` exposes S/D/C/Z GEQP3 and GELSY, with separate
+fixed-column input flags and checked one-based final column permutations.
+The provider-free permutation validators/converter reject LU and block-pivot
+encodings. GEQP3 reports a column-pivoted factor family, not an unpivoted QR
+certificate. GELSY preserves every finite RCOND value and returns the source's
+leading-block rank decision, not a singularity or original-matrix rank proof.
+
+Actual foreign queries and checked source-specific execution minima account
+for nested workspace validation and INTEGER cursors. All packing, scalar,
+underlying-real, foreign-integer and ASC64 conversion storage is caller-owned.
+Zero-row GEQP3 still enters the provider with a backed n-scalar surrogate;
+GELSY reads only B's m input rows and publishes only its n solution rows.
+The known forced-zero-column GELSY failure remains a required mathematical
+gate: INFO=0 and faithful rank-zero output do not establish optimal residuals
+or minimum norm. Other QR/orthogonal, least-squares and SVD families remain
+required; these eight routes do not close P06.
 
 ## Cholesky expert drivers and least squares
 

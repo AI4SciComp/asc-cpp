@@ -30,10 +30,44 @@ exact normalized mode closure remains open. GELSY's forced-zero-column
 minimum-norm failure and prior tiny-input math limitations remain explicit in
 [blockers.md](blockers.md); none is hidden by provider-fidelity tests.
 
-The v5 checkpoint is pushed as `9ffb62c183b22a1232790a01c0940a5d731630c2` to
-the actual [draft pull request47](https://github.com/AI4SciComp/asc-cpp/pull/47).
-Its product bytes equal the frozen tested tree outside durable program records.
-The draft does not include newer uncommitted v6 work yet.
+The v6 checkpoint is committed and pushed as
+`31e93935f8db4ac685c2224abf7860a058040117` to the actual
+[draft pull request47](https://github.com/AI4SciComp/asc-cpp/pull/47).
+Its product bytes equal the frozen v6 candidate02 tree outside durable program
+records. The draft describes that checkpoint, not newer uncommitted v7 work.
+
+Current v7 integration adds twelve band Cholesky, eighteen classic indefinite
+and eight rank-revealing reference routes:162 reference rows are in-progress,
+1951 are not started, all2113 remain incomplete, and zero are fully verified.
+The87-header
+inventory and mapping SHA256
+`80e087f4826466894f7d623121c7c45f279bbcbcb938b2c8544aecaeea503259`
+pass incremental validation. Root-authored band, indefinite and rank public
+consumers pass direct LP64/trueILP64 diagnostics and strict Clang18 checks;
+candidate02 full LP64/trueILP64 passes415/415 each with zero skips. Root completed
+full rank review/import and the31-record source/log audit. Final candidate03
+contains the later private ABI assertion style amendment and independently
+passes full LP64/trueILP64 each415/415, provider-free Debug/Release each277/277
+and shared279/279, all zero skips. Root read both actual nested installed logs:
+ten consumers execute and pass per ABI. Affected all-ASC-C++ ASan46/46 each,
+strict26 translation units per ABI, format46 changed C++ files and
+Doxygen87/1742/zero warnings pass. Foreign archives/runtimes are not sanitized.
+All failed candidate01 builds/strict and candidate03 premature auxiliary
+attempts remain retained; no earlier pass is attributed to newer source. See the
+[v7 integration review](factorizations-v7-review.md).
+Retained PBCON lower-complex scaled condition, GELSD zero-RHS/wide-minimum
+process-safety and single-precision tree-storage, and GELSS wide-path returned
+right-vector gates are listed in [blockers.md](blockers.md).
+
+Root-owned P08 ordinary TRSYL4 is implemented separately and not in those162
+registered rows. A scoped direct snapshot passes4240 nonempty numerical cases
+per actual ABI, including real Schur blocks, complex conjugation, explicit
+scaling and warning outcomes with allocation audits. Initial9-test contract
+selections fail4 each; corrected snapshot `p08-sylvester-contracts-g73W72tm`
+passes9/9 and strict5 translation units per ABI. A fresh13-test alias snapshot
+is running under `p08-sylvester-alias-MX9v4Gek`; no pass is assumed. This is neither
+installed nor full-P08/normalized-mode proof. TRSYL3/TGSYL, all remaining
+spectral and specialized operations, and full P11 remain required.
 
 The first v6 frozen archive accidentally omitted the five new public headers
 because the explicit staging command did not include their directory. Both

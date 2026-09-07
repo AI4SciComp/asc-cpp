@@ -35,11 +35,13 @@ asc/dense/providers/cuda.h|asc_dense_cuda
 asc/dense/providers/cuda_export.h|asc_dense_cuda
 asc/dense/providers/lapack.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky.h|asc_dense_lapack
+asc/dense/providers/lapack_cholesky_band.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_equilibration.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_export.h|asc_dense_lapack
+asc/dense/providers/lapack_indefinite.h|asc_dense_lapack
 asc/dense/providers/lapack_least_squares.h|asc_dense_lapack
 asc/dense/providers/lapack_lu.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_condition.h|asc_dense_lapack
@@ -48,6 +50,7 @@ asc/dense/providers/lapack_lu_equilibration.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_helpers.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_qr.h|asc_dense_lapack
+asc/dense/providers/lapack_rank_revealing.h|asc_dense_lapack
 asc/dense/view.h|asc_dense
 asc/expression.h|asc_expression
 asc/expression/expression.h|asc_expression

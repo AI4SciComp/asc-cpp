@@ -165,11 +165,17 @@ class LapackLuBandView {
   extent_t upper_;
 };
 
-/** @brief Selected-triangle positive-definite/Hermitian column-major band.
+/** @brief Selected-triangle positive-definite/Hermitian band storage.
  *
- * Upper storage has its diagonal at physical row bandwidth; lower storage at
- * row zero. The opposite triangle and padding are not mathematical input.
- * Complex coefficients denote Hermitian storage, never complex symmetry.
+ * With zero-based indices, column-major upper A(i,j) is stored at
+ * data[bandwidth+i-j+j*ld], and lower A(i,j) at data[i-j+j*ld]. Row-major
+ * upper A(i,j) is stored at data[i*ld+j-i], and lower A(i,j) at
+ * data[i*ld+bandwidth+j-i]. Only selected entries with abs(i-j)<=bandwidth
+ * and 0<=i,j<order are mathematical input. Full ld*order backing, including
+ * padding and unused corner entries, is required but is not implicitly read.
+ * Bandwidth may exceed order; there is no dense expansion. Complex
+ * coefficients denote Hermitian storage, never complex symmetry. Descriptors
+ * borrow live scalar objects and do not extend storage lifetimes.
  */
 template <DenseBlasScalar Element>
 class LapackPositiveDefiniteBandView {
@@ -187,9 +193,31 @@ class LapackPositiveDefiniteBandView {
       Element* data, extent_t order, extent_t bandwidth,
       DenseBlasTriangle triangle, stride_t leading_dimension,
       ConstMemoryView backing) {
+    return Create(data, order, bandwidth, triangle,
+                  DenseBlasLayout::kColumnMajor, leading_dimension, backing);
+  }
+  /** @brief Validates an explicitly laid-out selected-triangle band table.
+   * @param data Borrowed live scalar objects; null is allowed for order zero.
+   * @param order Nonnegative logical matrix order, independent of layout.
+   * @param bandwidth Nonnegative stored off-diagonal count, including >=order.
+   * @param triangle Upper or lower Hermitian/symmetric interpretation.
+   * @param layout Column-major LAPACK or row-major band encoding above.
+   * @param leading_dimension Physical column/row stride, at least bandwidth+1.
+   * @param backing CPU span covering every element of the full ld*order table.
+   * @return Descriptor or shape/overflow/storage failure without accessing
+   * coefficients, allocating on success, transferring or densifying.
+   * @note O(1) validation. Concurrent descriptors may share immutable storage;
+   * callers must exclude overlapping mutation and retain borrowed lifetimes.
+   */
+  static Result<LapackPositiveDefiniteBandView> Create(
+      Element* data, extent_t order, extent_t bandwidth,
+      DenseBlasTriangle triangle, DenseBlasLayout layout,
+      stride_t leading_dimension, ConstMemoryView backing) {
     if (order < 0 || bandwidth < 0 ||
         !internal_dense_lapack::IsTriangle(triangle) ||
-        !internal_dense_lapack::IsHost(backing.space())) {
+        !internal_dense_lapack::IsHost(backing.space()) ||
+        (layout != DenseBlasLayout::kColumnMajor &&
+         layout != DenseBlasLayout::kRowMajor)) {
       return Status(ErrorCode::kInvalidArgument);
     }
     const auto stored_rows = CheckedAdd<extent_t>(bandwidth, 1);
@@ -199,9 +227,11 @@ class LapackPositiveDefiniteBandView {
     if (leading_dimension < *stored_rows) {
       return Status(ErrorCode::kShape);
     }
+    const bool column_major = layout == DenseBlasLayout::kColumnMajor;
     auto storage = DenseBlasMatrixView<Element>::Create(
-        data, leading_dimension, order, DenseBlasLayout::kColumnMajor,
-        leading_dimension, backing);
+        data, column_major ? leading_dimension : order,
+        column_major ? order : leading_dimension, layout, leading_dimension,
+        backing);
     if (!storage.ok()) {
       return storage.status();
     }
@@ -210,7 +240,16 @@ class LapackPositiveDefiniteBandView {
   /** @brief Returns the nonnegative logical matrix order.
    * @return The nonnegative logical matrix order.
    */
-  [[nodiscard]] extent_t order() const noexcept { return storage_.columns(); }
+  [[nodiscard]] extent_t order() const noexcept {
+    return layout() == DenseBlasLayout::kColumnMajor ? storage_.columns()
+                                                     : storage_.rows();
+  }
+  /** @brief Returns the explicitly selected physical band layout.
+   * @return Column-major LAPACK or row-major encoding from the class contract.
+   */
+  [[nodiscard]] DenseBlasLayout layout() const noexcept {
+    return storage_.layout();
+  }
   /** @brief Returns the number of stored off-diagonals.
    * @return The number of stored off-diagonals.
    */
@@ -221,14 +260,18 @@ class LapackPositiveDefiniteBandView {
   [[nodiscard]] DenseBlasTriangle triangle() const noexcept {
     return triangle_;
   }
-  /** @brief Returns diagonal row bandwidth for upper, zero for lower storage.
-   * @return Diagonal row bandwidth for upper, zero for lower storage.
+  /** @brief Returns the diagonal offset within each physical column or row.
+   * @return Column-major: bandwidth for upper and zero for lower. Row-major:
+   * zero for upper and bandwidth for lower; this is then a column offset.
    */
   [[nodiscard]] extent_t diagonal_row() const noexcept {
-    return triangle_ == DenseBlasTriangle::kUpper ? bandwidth_ : 0;
+    const bool upper = triangle_ == DenseBlasTriangle::kUpper;
+    const bool column_major = layout() == DenseBlasLayout::kColumnMajor;
+    return upper == column_major ? bandwidth_ : 0;
   }
   /** @brief Returns the borrowed physical table, without interpreting padding.
-   * @return The borrowed physical table, without interpreting padding.
+   * @return Column-major ld-by-order or row-major order-by-ld physical table.
+   * This is band storage, not an order-by-order dense mathematical matrix.
    */
   [[nodiscard]] DenseBlasMatrixView<Element> storage() const noexcept {
     return storage_;

@@ -90,6 +90,34 @@ ASC_DENSE_EXPORT Status ValidateLuPivots(RawLapackPivotView pivots,
 ASC_DENSE_EXPORT Status ConvertLuPivotsToZeroBasedSwaps(
     RawLapackPivotView pivots, extent_t rows, std::span<index_t> destination);
 
+/** @brief Validates a GEQP3/GELSY final one-based column permutation.
+ * @param permutation Borrowed kColumnPivotedQr entries, exactly one each of
+ * [1,n]. Column j of A*P is original column permutation[j]-1, with A*P=Q*R
+ * for GEQP3. These entries are not a sequential swap list or fixed flags.
+ * @param validation_scratch Caller-owned CPU bytes, at least n, disjoint from
+ * the entire input. The first n bytes may be overwritten even on failure;
+ * the remaining supplied scratch bytes stay unchanged.
+ * @return OK, invalid family/alias/capacity, or invalid/repeated index.
+ * CPU-only, O(n), allocation-free and reentrant with disjoint live scratch.
+ * Input entries stay unchanged; structural checks precede scratch writes.
+ */
+ASC_DENSE_EXPORT Status ValidateColumnPermutation(
+    RawLapackPivotView permutation, std::span<std::byte> validation_scratch);
+
+/** @brief Converts final column pivots into a zero-based final permutation.
+ * @param permutation Borrowed GEQP3/GELSY kColumnPivotedQr raw encoding.
+ * @param destination Caller-owned CPU index entries, exactly the input size.
+ * Output j identifies the original column used at permuted position j.
+ * @param validation_scratch Caller-owned CPU bytes, at least input size;
+ * may be overwritten by validation. All three supplied spans are disjoint.
+ * @return OK or validation failure. Every failure leaves destination and
+ * input unchanged; scratch has the ValidateColumnPermutation contract.
+ * CPU-only, O(n), allocation-free; no LU/block encoding is accepted.
+ */
+ASC_DENSE_EXPORT Status ConvertColumnPermutationToZeroBased(
+    RawLapackPivotView permutation, std::span<index_t> destination,
+    std::span<std::byte> validation_scratch);
+
 /** @brief Borrows a successful LU factor and its validated pivot provenance.
  *
  * Uses the existing full-matrix BLAS descriptor without packing or allocation.

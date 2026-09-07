@@ -371,6 +371,78 @@ void TestPivotsAndFactors(TestContext& test) {
       !asc::LapackLuFactorView<double>::Create(*matrix, *pivots, report).ok());
 }
 
+void TestColumnPermutations(TestContext& test) {
+  std::array<asc::index_t, 4> entries{3, 1, 4, 2};
+  const auto raw = asc::RawLapackPivotView::Create(
+      entries.data(), 4, asc::LapackFactorFamily::kColumnPivotedQr,
+      {entries.data(), sizeof(entries), asc::MemorySpace::kHost});
+  ASC_DENSE_TEST_CHECK(test, raw.ok());
+  if (!raw.ok()) {
+    return;
+  }
+  std::array<asc::index_t, 4> output{-9, -9, -9, -9};
+  std::array<std::byte, 6> scratch{};
+  scratch.fill(std::byte{7});
+  asc_dense_test::AllocationProbe probe;
+  ASC_DENSE_TEST_CHECK(test,
+                       asc::ValidateColumnPermutation(*raw, scratch).ok());
+  ASC_DENSE_TEST_CHECK(
+      test,
+      asc::ConvertColumnPermutationToZeroBased(*raw, output, scratch).ok());
+  ASC_DENSE_TEST_EQ(test, output, (std::array<asc::index_t, 4>{2, 0, 3, 1}));
+  ASC_DENSE_TEST_EQ(test, scratch[4], std::byte{7});
+  ASC_DENSE_TEST_EQ(test, scratch[5], std::byte{7});
+  ASC_DENSE_TEST_CHECK(test, !asc::ValidateLuPivots(*raw, 4).ok());
+  ASC_DENSE_TEST_CHECK(
+      test, !asc::ConvertLuPivotsToZeroBasedSwaps(*raw, 4, output).ok());
+  output.fill(-9);
+  for (const asc::index_t invalid :
+       {asc::index_t{0}, asc::index_t{5}, asc::index_t{3}}) {
+    entries[2] = invalid;
+    ASC_DENSE_TEST_CHECK(
+        test,
+        !asc::ConvertColumnPermutationToZeroBased(*raw, output, scratch).ok());
+    ASC_DENSE_TEST_EQ(test, output,
+                      (std::array<asc::index_t, 4>{-9, -9, -9, -9}));
+  }
+  entries[2] = 4;
+  ASC_DENSE_TEST_CHECK(test, !asc::ConvertColumnPermutationToZeroBased(
+                                  *raw, output, std::span(scratch).first(3))
+                                  .ok());
+  ASC_DENSE_TEST_CHECK(
+      test,
+      !asc::ConvertColumnPermutationToZeroBased(*raw, entries, scratch).ok());
+  ASC_DENSE_TEST_CHECK(
+      test, !asc::ConvertColumnPermutationToZeroBased(
+                 *raw, output, std::as_writable_bytes(std::span(entries)))
+                 .ok());
+  ASC_DENSE_TEST_CHECK(
+      test, !asc::ConvertColumnPermutationToZeroBased(
+                 *raw, output, std::as_writable_bytes(std::span(output)))
+                 .ok());
+  ASC_DENSE_TEST_EQ(test, output,
+                    (std::array<asc::index_t, 4>{-9, -9, -9, -9}));
+  for (const auto family :
+       {asc::LapackFactorFamily::kLuPartialPivot,
+        asc::LapackFactorFamily::kBunchKaufman, asc::LapackFactorFamily::kRook,
+        asc::LapackFactorFamily::kAasen}) {
+    const auto other = asc::RawLapackPivotView::Create(
+        entries.data(), 4, family,
+        {entries.data(), sizeof(entries), asc::MemorySpace::kHost});
+    ASC_DENSE_TEST_CHECK(test, other.ok());
+    ASC_DENSE_TEST_CHECK(test,
+                         !asc::ValidateColumnPermutation(*other, scratch).ok());
+  }
+  const auto empty = asc::RawLapackPivotView::Create(
+      nullptr, 0, asc::LapackFactorFamily::kColumnPivotedQr,
+      {nullptr, 0, asc::MemorySpace::kHost});
+  ASC_DENSE_TEST_CHECK(test, empty.ok());
+  ASC_DENSE_TEST_CHECK(
+      test, asc::ConvertColumnPermutationToZeroBased(*empty, {}, {}).ok());
+  ASC_DENSE_TEST_CHECK(
+      test, asc_test::ProcessAllocationCountMatches(probe.count(), 0));
+}
+
 }  // namespace
 
 int main() {
@@ -383,5 +455,6 @@ int main() {
   TestWorkspaceIntegerAbi(test);
   TestLayoutWorkspaceSizeDomain(test);
   TestPivotsAndFactors(test);
+  TestColumnPermutations(test);
   return test.Finish();
 }

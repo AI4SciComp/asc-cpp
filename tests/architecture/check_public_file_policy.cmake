@@ -44,6 +44,9 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_cholesky_equilibration.h
   include/asc/dense/providers/lapack_cholesky_refinement.h
   include/asc/dense/providers/lapack_least_squares.h
+  include/asc/dense/providers/lapack_cholesky_band.h
+  include/asc/dense/providers/lapack_indefinite.h
+  include/asc/dense/providers/lapack_rank_revealing.h
   include/asc/dense/view.h
   include/asc/dense/print.h
   include/asc/dense/io.h
@@ -125,6 +128,9 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_cholesky_equilibration.cc
   src/dense/lapack/reference_cholesky_refinement.cc
   src/dense/lapack/reference_least_squares.cc
+  src/dense/lapack/reference_cholesky_band.cc
+  src/dense/lapack/reference_indefinite.cc
+  src/dense/lapack/reference_rank_revealing.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/blas_level2.cc

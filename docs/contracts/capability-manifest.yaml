@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-factorizations-v6 with124 partial scalar routes. Prior v5 f021fb8 full LP64/trueILP64 each344 and installed5 each passed; new expert/least-squares and reflector-cursor corrected source integration pending. Frozen owner diagnostics and root direct consumers are separate. Full2113 routine/mode coverage and mathematical gates remain pending"
+    evidence_scope: "unreleased incremental-factorizations-v7 with162 partial scalar routes. Prior v6 98f341b full LP64/trueILP64 each365 and installed7 each passed; new band, classic indefinite and rank-revealing integration remains pending. Frozen owner diagnostics and root direct consumers are separate. Full2113 routine/mode coverage and mathematical gates remain pending"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -115,6 +115,9 @@ capabilities:
       - "include/asc/dense/providers/lapack_cholesky_equilibration.h"
       - "include/asc/dense/providers/lapack_cholesky_refinement.h"
       - "include/asc/dense/providers/lapack_least_squares.h"
+      - "include/asc/dense/providers/lapack_cholesky_band.h"
+      - "include/asc/dense/providers/lapack_indefinite.h"
+      - "include/asc/dense/providers/lapack_rank_revealing.h"
     direct_dependencies:
       - "dense"
     tests:
@@ -130,6 +133,8 @@ capabilities:
       - "source-specific foreign integer/query bounds and per-role/per-operand context rejection controls"
       - "POCON/PORFS/POSVX/POEQU/POEQUB selected-triangle condition/refinement/equilibration and explicit FACT=N/E/F"
       - "actual GELS/GELST/GETSLS residual optimality, nullspace minimum norm and distinct B publication"
+      - "actual PBTRF/PBTF2 selected band reconstruction, partial diagonal publication and PBTRS residuals without densification"
+      - "classic SYTRF/SYTF2/SYTRS and HETRF/HETF2/HETRS block reconstruction, paired pivots, independent RHS layouts and failure validity"
     guarantees:
       - "explicit provider selection; provider-free aggregate remains independent"
     non_guarantees:

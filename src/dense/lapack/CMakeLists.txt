@@ -9,6 +9,9 @@ target_sources(asc_dense_lapack PRIVATE
   reference_cholesky_equilibration.cc
   reference_cholesky_refinement.cc
   reference_least_squares.cc
+  reference_cholesky_band.cc
+  reference_indefinite.cc
+  reference_rank_revealing.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
   FILES
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack.h"
@@ -25,7 +28,10 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_driver.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_equilibration.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_refinement.h"
-    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_least_squares.h")
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_least_squares.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_band.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_rank_revealing.h")
 target_include_directories(asc_dense_lapack PRIVATE
   "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
 set_target_properties(asc_dense_lapack PROPERTIES

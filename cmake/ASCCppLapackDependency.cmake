@@ -28,7 +28,7 @@ function(asc_internal_lapack_dependencies
   string(JSON _profile ERROR_VARIABLE _profile_error GET "${_metadata}" profile)
   if(_schema_error OR NOT _schema STREQUAL "1"
      OR _bits_error OR NOT _bits MATCHES "^(32|64)$"
-     OR _profile_error OR NOT _profile STREQUAL "incremental-factorizations-v6")
+     OR _profile_error OR NOT _profile STREQUAL "incremental-factorizations-v7")
     set("${error_variable}" "Unsupported reference provider schema, ABI or capability profile." PARENT_SCOPE)
     return()
   endif()

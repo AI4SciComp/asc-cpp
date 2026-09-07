@@ -73,6 +73,9 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_cholesky_equilibration.h
   include/asc/dense/providers/lapack_cholesky_refinement.h
   include/asc/dense/providers/lapack_least_squares.h
+  include/asc/dense/providers/lapack_cholesky_band.h
+  include/asc/dense/providers/lapack_indefinite.h
+  include/asc/dense/providers/lapack_rank_revealing.h
 )
 
 file(

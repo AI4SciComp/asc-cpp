@@ -135,7 +135,8 @@ enum class LapackFactorFamily : std::uint8_t {
   kHouseholderQr,   ///< GEQRF packed reflectors and tau.
   kBunchKaufman,    ///< Signed paired block pivots, not an LU swap sequence.
   kRook,            ///< Rook-specific signed block-pivot conventions.
-  kAasen            ///< Aasen-specific factor/pivot metadata.
+  kAasen,           ///< Aasen-specific factor/pivot metadata.
+  kColumnPivotedQr  ///< GEQP3/GELSY one-based final column permutation.
 };
 
 }  // namespace asc
