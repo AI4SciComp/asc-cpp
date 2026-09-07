@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "bb4ce940a677fe95b0db0bd696565a6691286110",
+  "last_implementation_commit": "38e085650505e7f0f8ee9740911970a1a1bc24e6",
   "worktree_diff_identity": {
-    "state": "ready_expert_info_correction_commit",
-    "parent_commit": "bb4ce940a677fe95b0db0bd696565a6691286110",
-    "note": "Exact INFO03 five-file patch imported,4newtest registrations and16sourcehash consumers updated. Current composed integration pending."
+    "state": "pivot_output_correction_imported_current_verification_pending",
+    "parent_commit": "38e085650505e7f0f8ee9740911970a1a1bc24e6",
+    "note": "Exact six-file pivot02 correction, four additive tests and mapping hashes updated; unrelated work preserved."
   },
   "packages": {
     "P00": {
@@ -353,10 +353,16 @@
       "review": "programs/lapack-array-io/lu-expert-info-review.md",
       "integration_audit": "p04-lu-expert-info-integration-01/completion-audit-01/audit.json",
       "integration_audit_sha256": "e6da4a3267fad30efe4ab36e19bdaabf64eff43da37e2f67fb2b4f4527e50dee"
+    },
+    "P04.lu_output_pivots": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Three full-width output buffers corrected; current six26/26 with all53CPU TUs rebuilt per lane and exact mode/native-return audit pass. Eight historical strict checks source-bound, format/coverage/public surface pass; full routine/mode/platform gates remain separate.",
+      "review": "programs/lapack-array-io/lu-output-pivot-review.md"
     }
   },
-  "active_task": "P04 current expert INFO correction checkpoint; next independently reviewed native acceptance and reproduced LU output-pivot correction",
-  "next_action": "Commit exact tested expert INFO slice; finish root review of final native consumer/concurrency/alias overlay when handed off and execute current integration. Review p04-lu-output-pivot-02 after completed handoff, preserving INFO02/03 dependencies and original/fixed LP64/ILP64 evidence; import only exact three-site pivot correction plus additive tests after review. General-band expert20 final source/acceptance continues independently; do not import superseded final-source-01.",
+  "active_task": "P04/P05/P06 native20 additive acceptance test integration, then reviewed P05 GB20 integration; P02 and remaining LU INFO work continue externally.",
+  "next_action": "Import the four reviewed native test files from native-mode-evidence-a0a1e15-01/native-test-handoff.tar, register three tests and preserve native20-overlay-02.json as partial evidence; freeze and execute current native composed checks.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -586,16 +592,16 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "bb4ce940a677fe95b0db0bd696565a6691286110",
-    "implementation_tree": "e8d719945740a6640fa963a37c68b73c64b9f0ae",
-    "source_archive_sha256": "7f75537dafded1f9ae2b8e002e50f41285abed84c6ae73dac126d99acda10211",
-    "coverage_mapping_sha256": "d566272179926c1ae9c67dabccc0cfd37acca14b021cd31b4c471c868d64c4da",
-    "scope": "Current originalLU8+expert16 INFO integration: six22/22 Debug/Release/ASC-only ASan lanes pass,0skips. All53CPUCore/Dense/provider TUs rebuilt eachlane; exact312/468expert modes/scalar and preserved112/168originalINFO profiles pass. Format5/coverage/publicsurface pass. Historical6strict records apply through byte-identical actual compiler-read changedTU/headers/generatedABIconfig; no freshstrict or fullproject claim. Foreign archives/runtimes unsanitized; output-pivot correction and full mathematical/mode/platform gates remain separate.",
-    "state": "completed_current_expert_info_scoped",
-    "candidate": "p04-lu-expert-info-integration-01",
+    "base_commit": "38e085650505e7f0f8ee9740911970a1a1bc24e6",
+    "implementation_tree": "3bdf77d1415c91d5ef0195fd7ba3982f718fa361",
+    "source_archive_sha256": "2e5d79606358192f05ef6985bc4f256df7ca88a98708bc4ab078f49b5bb1df28",
+    "coverage_mapping_sha256": "74dd426bf6b2cf14bff70e151ef84bcbfa73403659714b1458cb967530d2ca63",
+    "scope": "Six current26/26 LP64/trueILP64 Debug/Release/ASC-only ASan lanes pass. All53CPU production TUs rebuilt each lane, exact pivot and both INFO mode sets pass. Historical8strict checks compose through identical actual compiler-read TU/header/configuration inputs; no full suite or foreign sanitizer claim.",
+    "state": "completed_current_pivot_info_scoped",
+    "candidate": "p04-lu-output-pivot-integration-01",
     "pending": [],
-    "completion_audit": "p04-lu-expert-info-integration-01/completion-audit-01/audit.json",
-    "completion_audit_sha256": "e6da4a3267fad30efe4ab36e19bdaabf64eff43da37e2f67fb2b4f4527e50dee"
+    "completion_audit": "p04-lu-output-pivot-integration-01/completion-audit-01/audit.json",
+    "completion_audit_sha256": "dd759232887f9ed737e9177cf837b4570a8b97b12eecd6087ac6b91ed63cdd6e"
   },
   "last_completed_verification": {
     "base_commit": "c98f5284c05e07011f8e6606effe8ad1b428fe67",
@@ -676,6 +682,18 @@
       ],
       "package_replay_audit": "p05-tridiagonal-package-replay-01/completion-audit-01/audit.json",
       "package_replay_audit_sha256": "edc8207a94608dbcb868281eb8f8ee99ab859378835b7fbabd289def08216d22"
+    },
+    {
+      "base_commit": "bb4ce940a677fe95b0db0bd696565a6691286110",
+      "implementation_tree": "e8d719945740a6640fa963a37c68b73c64b9f0ae",
+      "source_archive_sha256": "7f75537dafded1f9ae2b8e002e50f41285abed84c6ae73dac126d99acda10211",
+      "coverage_mapping_sha256": "d566272179926c1ae9c67dabccc0cfd37acca14b021cd31b4c471c868d64c4da",
+      "scope": "Current originalLU8+expert16 INFO integration: six22/22 Debug/Release/ASC-only ASan lanes pass,0skips. All53CPUCore/Dense/provider TUs rebuilt eachlane; exact312/468expert modes/scalar and preserved112/168originalINFO profiles pass. Format5/coverage/publicsurface pass. Historical6strict records apply through byte-identical actual compiler-read changedTU/headers/generatedABIconfig; no freshstrict or fullproject claim. Foreign archives/runtimes unsanitized; output-pivot correction and full mathematical/mode/platform gates remain separate.",
+      "state": "completed_current_expert_info_scoped",
+      "candidate": "p04-lu-expert-info-integration-01",
+      "pending": [],
+      "completion_audit": "p04-lu-expert-info-integration-01/completion-audit-01/audit.json",
+      "completion_audit_sha256": "e6da4a3267fad30efe4ab36e19bdaabf64eff43da37e2f67fb2b4f4527e50dee"
     }
   ]
 }

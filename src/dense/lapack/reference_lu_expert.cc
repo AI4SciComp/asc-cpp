@@ -399,7 +399,10 @@ Status Factor(const ReferenceLapackProvider& provider,
     return Complete(report);
   }
   auto* converted = ::new (workspace.regions[kInteger].data())
-      lapack_int[static_cast<std::size_t>(pivots.size())]{};
+      lapack_int[static_cast<std::size_t>(pivots.size())];
+  // Full-width invalid seeds expose omitted or short native pivot writes.
+  std::fill_n(converted, static_cast<std::size_t>(pivots.size()),
+              std::numeric_limits<lapack_int>::min());
   auto* cursor = static_cast<T*>(
       workspace.regions[internal_lapack_layout::kRegion].data());
   auto* packed = internal_lapack_layout::Pack(matrix, cursor);
@@ -493,7 +496,10 @@ Status Driver(const ReferenceLapackProvider& provider,
     return Complete(report);
   }
   auto* converted = ::new (workspace.regions[kInteger].data())
-      lapack_int[static_cast<std::size_t>(pivots.size())]{};
+      lapack_int[static_cast<std::size_t>(pivots.size())];
+  // Full-width invalid seeds expose omitted or short native pivot writes.
+  std::fill_n(converted, static_cast<std::size_t>(pivots.size()),
+              std::numeric_limits<lapack_int>::min());
   auto* cursor = static_cast<T*>(
       workspace.regions[internal_lapack_layout::kRegion].data());
   auto* packed_a = internal_lapack_layout::Pack(matrix, cursor);

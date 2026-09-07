@@ -415,7 +415,10 @@ Status Factor(const ReferenceLapackProvider& provider,
   // The standard nonallocating placement array form has zero array overhead
   // (CWG 2382). This starts a real ABI-integer array lifetime in caller bytes.
   auto* converted = ::new (workspace.regions[kPivotRegion].data())
-      lapack_int[static_cast<std::size_t>(pivots.size())]{};
+      lapack_int[static_cast<std::size_t>(pivots.size())];
+  // Full-width invalid seeds expose omitted or short native pivot writes.
+  std::fill_n(converted, static_cast<std::size_t>(pivots.size()),
+              std::numeric_limits<lapack_int>::min());
   auto* cursor = static_cast<T*>(
       workspace.regions[internal_lapack_layout::kRegion].data());
   auto* packed = internal_lapack_layout::Pack(matrix, cursor);

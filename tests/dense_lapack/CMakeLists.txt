@@ -68,6 +68,23 @@ foreach(_scalar IN ITEMS s d c z)
     TIMEOUT 120)
 endforeach()
 
+add_executable(asc_dense_lapack_lu_pivot_test
+  lu_pivot_test.cc lu_pivot_faults.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_pivot_test)
+target_include_directories(asc_dense_lapack_lu_pivot_test PRIVATE
+  "${PROJECT_SOURCE_DIR}" "${ASC_CPP_LAPACK_CONFIG_DIR}"
+  "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_lu_pivot_test PRIVATE
+  "-Wl,--wrap=sgetrf_,--wrap=sgetrf2_,--wrap=sgetf2_,--wrap=sgesv_,--wrap=dgetrf_,--wrap=dgetrf2_,--wrap=dgetf2_,--wrap=dgesv_,--wrap=cgetrf_,--wrap=cgetrf2_,--wrap=cgetf2_,--wrap=cgesv_,--wrap=zgetrf_,--wrap=zgetrf2_,--wrap=zgetf2_,--wrap=zgesv_"
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.lu_pivot.${_scalar}"
+    TARGET asc_dense_lapack_lu_pivot_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack runtime numerical validation allocation
+    TIMEOUT 120)
+endforeach()
+
 add_executable(asc_dense_lapack_lu_layout_test
   lu_layout_test.cc allocation_audit.cc fault_injection.cc lu_expert_faults.cc
   "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
