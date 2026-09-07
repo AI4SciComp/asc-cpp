@@ -85,14 +85,20 @@ header or gain ownership of referenced storage.
 
 `DenseArray<Element, ExtentsType>` is a move-only owner backed by a Core
 `Buffer` allocated from an explicit `MemoryResource`. It supports non-cv
-arithmetic elements other than `bool`; they are trivially copyable and
+arithmetic elements other than `bool`, plus `std::complex<float>` and
+`std::complex<double>`; accepted elements remain trivially copyable and
 trivially destructible. Existing `Create` remains host-only and
-value-initializes every element.
+value-initializes every element. Complex storage starts typed array and element
+lifetimes using C++20 non-allocating placement array construction.
 
-`CreateUninitialized(extents, resource, layout)` accepts every valid Core
-memory space and allocates the exact unique, exhaustive owner span without
-touching its elements. Use it when a provider operation or an explicit copy
-will initialize storage. Reading an uninitialized element is a caller error.
+For arithmetic elements, `CreateUninitialized(extents, resource, layout)`
+accepts every valid Core memory space and allocates the exact unique,
+exhaustive owner span without touching its elements. Use it when a provider
+operation or an explicit copy will initialize storage. Reading an
+uninitialized arithmetic element is a caller error. Complex owners support
+host/pinned-host storage only: their typed default construction initializes
+complex values to zero even in this named factory. Device/managed complex
+creation is rejected before allocation or host access.
 Layout-left and layout-right owners are available; arbitrary-stride and padded
 mappings remain view-only.
 
@@ -106,10 +112,44 @@ array's eventual deallocation. Every view is also non-owning and becomes
 invalid when its storage is released.
 
 A named deep clone takes an explicit destination resource and execution
-context. It allocates an uninitialized destination, enqueues `CopyBytes`,
+context. For arithmetic elements it allocates an uninitialized destination, enqueues `CopyBytes`,
 waits for that event, and publishes the new owner only after successful
 completion. Clone is therefore synchronous even for CUDA. It performs no
 implicit fallback or extra staging.
+
+Complex cloning requires the existing serial host execution contract and
+host/pinned-host resources, copying typed live elements without a transfer.
+`ReduceSum` supports complex algebra; ordered `ReduceMin` and `ReduceMax`
+remain constrained to arithmetic elements. Exact scalar matching still
+rejects implicit real/complex or complex precision conversions.
+
+## Bounded value display and LAPACK foundations
+
+Include `<asc/dense/print.h>` explicitly for `PrintArray`. It writes a bounded
+logical-value preview of an owner or view to a supplied Core `ByteSink`, using
+caller-owned scratch, options and progress report. It does not evaluate lazy
+expressions, allocate a formatting buffer, transfer device values or select a
+provider. Rank-zero, empty and higher-rank output and truncation are defined
+by the [display contract](../contracts/array-display-v1.md). This display is
+not a serialization format.
+
+The narrow `<asc/dense/lapack/{types,workspace,report,factor_view,structured_view}.h>` headers
+define provider-neutral copied identities, caller workspace plans, mandatory
+failure-surviving reports, and family-tagged raw pivots/factors. They reuse
+the checked Dense BLAS full-matrix descriptor. A raw singular factor cannot
+be promoted into a successful reusable factor view. These foundations alone
+provide no external LAPACK dispatch or numerical capability; the
+[source inventory](../contracts/lapack-upstream-inventory.json) and
+[coverage ledger](../contracts/lapack-coverage.yaml) retain required,
+implemented and verified states separately.
+
+Distinct LU-factor band, positive-definite band, tridiagonal, square
+bidiagonal and RFP storage descriptors expose their actual packed arrays and
+validate full reachable backing spans without densifying. Successful LU,
+Cholesky and Householder QR views borrow factors and retain their originating
+family; these are representations, not factorization implementations.
+Indefinite variant-specific factor arrays, blocked reflectors and rectangular
+bidiagonal storage remain pending with their associated routine contracts.
 
 Discard-resize uses the owner's resource and is transactional: allocation or
 validation failure leaves the array and every existing view unchanged;

@@ -16,6 +16,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/evaluate.h"
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/export.h"
       "${PROJECT_SOURCE_DIR}/include/asc/sparse/blas.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/sparse/print.h"
 )
 
 set_target_properties(

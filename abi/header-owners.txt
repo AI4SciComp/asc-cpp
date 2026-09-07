@@ -1,4 +1,5 @@
 asc/core.h|asc_core
+asc/core/array_format.h|asc_core
 asc/core/configuration.h|asc_core
 asc/core/contracts.h|asc_core
 asc/core/execution.h|asc_core
@@ -20,6 +21,12 @@ asc/dense/layout.h|asc_dense
 asc/dense/providers/cuda.h|asc_dense_cuda
 asc/dense/providers/cuda_export.h|asc_dense_cuda
 asc/dense/view.h|asc_dense
+asc/dense/print.h|asc_dense
+asc/dense/lapack/types.h|asc_dense
+asc/dense/lapack/workspace.h|asc_dense
+asc/dense/lapack/report.h|asc_dense
+asc/dense/lapack/factor_view.h|asc_dense
+asc/dense/lapack/structured_view.h|asc_dense
 asc/expression.h|asc_expression
 asc/expression/expression.h|asc_expression
 asc/expression/writable.h|asc_expression
@@ -40,6 +47,7 @@ asc/random/seed.h|asc_random
 asc/random/sparse.h|asc_random_sparse
 asc/sparse.h|asc_sparse
 asc/sparse/blas.h|asc_sparse
+asc/sparse/print.h|asc_sparse
 asc/sparse/compressed.h|asc_sparse
 asc/sparse/coordinate.h|asc_sparse
 asc/sparse/evaluate.h|asc_sparse

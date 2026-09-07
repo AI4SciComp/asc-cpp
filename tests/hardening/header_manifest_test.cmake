@@ -33,6 +33,7 @@ endif()
 
 set(_provider_free_entries
   "core|asc/core.h"
+  "core|asc/core/array_format.h"
   "core|asc/core/configuration.h"
   "core|asc/core/contracts.h"
   "core|asc/core/execution.h"
@@ -57,12 +58,19 @@ set(_provider_free_entries
   "dense|asc/dense/layout.h"
   "dense|asc/dense/blas.h"
   "dense|asc/dense/view.h"
+  "dense|asc/dense/print.h"
+  "dense|asc/dense/lapack/types.h"
+  "dense|asc/dense/lapack/workspace.h"
+  "dense|asc/dense/lapack/report.h"
+  "dense|asc/dense/lapack/factor_view.h"
+  "dense|asc/dense/lapack/structured_view.h"
   "sparse|asc/sparse.h"
   "sparse|asc/sparse/compressed.h"
   "sparse|asc/sparse/coordinate.h"
   "sparse|asc/sparse/evaluate.h"
   "sparse|asc/sparse/export.h"
   "sparse|asc/sparse/blas.h"
+  "sparse|asc/sparse/print.h"
   "random|asc/random.h"
   "random|asc/random/distribution.h"
   "random|asc/random/engine.h"
@@ -97,9 +105,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 52)
+if(NOT _all_header_count EQUAL 60)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 52 headers; got "
+    "Independent source-header oracle must contain 60 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -111,7 +119,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 52-header oracle.\n"
+    "Source public-header tree differs from the frozen 60-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

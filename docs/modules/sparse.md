@@ -20,6 +20,15 @@ APIs. The narrow `<asc/sparse/blas.h>` header declares the standardized
 operations and the retained pre-standardization `Spmv` overload, and
 `<asc/sparse/export.h>` supplies the compiled-library visibility macro.
 
+Include `<asc/sparse/print.h>` explicitly for bounded `PrintArray` previews of
+coordinate and CSR/CSC owners/views. A supplied Core `ByteSink`, scratch span,
+options and progress report make output and temporary storage explicit. The
+printer traverses stored entries, preserving explicit zeros and without Dense
+conversion or value densification. Only host value storage is supported;
+there is no implicit transfer or synchronization. See the
+[display contract](../contracts/array-display-v1.md). Display output is not a
+round-trip persistence representation.
+
 ## Common vocabulary
 
 `SparseElement<T>` accepts an unqualified, non-Boolean arithmetic type or

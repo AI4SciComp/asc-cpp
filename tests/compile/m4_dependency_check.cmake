@@ -15,6 +15,7 @@ set(_expected_sparse_headers
   include/asc/sparse/evaluate.h
   include/asc/sparse/export.h
   include/asc/sparse/blas.h
+  include/asc/sparse/print.h
 )
 set(_expected_sparse_sources
   src/sparse/reference_blas.cc

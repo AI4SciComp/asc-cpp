@@ -8,6 +8,7 @@ target_sources(
     blas_level1.cc
     blas_level2.cc
     blas_level3.cc
+    lapack_foundations.cc
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -19,6 +20,12 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/dense/layout.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/blas.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/view.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/print.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/types.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/workspace.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/report.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/factor_view.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/structured_view.h"
 )
 
 set_target_properties(

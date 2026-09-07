@@ -34,6 +34,7 @@ foreach(_source IN ITEMS
     evaluate_test.cc
     blas_test.cc
     standard_blas_test.cc
+    print_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_sparse_${_name}")

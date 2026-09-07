@@ -16,12 +16,19 @@ set(_expected_public_files
   include/asc/dense/layout.h
   include/asc/dense/blas.h
   include/asc/dense/view.h
+  include/asc/dense/print.h
+  include/asc/dense/lapack/types.h
+  include/asc/dense/lapack/workspace.h
+  include/asc/dense/lapack/report.h
+  include/asc/dense/lapack/factor_view.h
+  include/asc/dense/lapack/structured_view.h
 )
 set(_expected_source_files
   src/dense/blas.cc
   src/dense/blas_level1.cc
   src/dense/blas_level2.cc
   src/dense/blas_level3.cc
+  src/dense/lapack_foundations.cc
 )
 
 set(_observed_public_files)
@@ -79,6 +86,15 @@ set(_provider_pattern
   "(^|/)(cuda|cublas|cusolver|cusparse|curand|hip|rocm|sycl|mkl|blas|lapack)(/|\\.|_)"
 )
 set(_all_files ${_observed_public_files} ${_observed_source_files})
+# These exact ASC-owned headers are provider-neutral contracts, not foreign
+# SDK headers. Keep the foreign include guard active for every other path.
+set(_asc_lapack_contract_headers
+  asc/dense/lapack/types.h
+  asc/dense/lapack/workspace.h
+  asc/dense/lapack/report.h
+  asc/dense/lapack/factor_view.h
+  asc/dense/lapack/structured_view.h
+)
 foreach(_relative_file IN LISTS _all_files)
   set(_path "${SOURCE_DIR}/${_relative_file}")
   file(STRINGS "${_path}" _includes REGEX "^[ \t]*#[ \t]*include")
@@ -99,6 +115,7 @@ foreach(_relative_file IN LISTS _all_files)
       endif()
       string(TOLOWER "${_included_path}" _included_path_lower)
       if(NOT _included_path_lower STREQUAL "asc/dense/blas.h"
+         AND NOT _included_path_lower IN_LIST _asc_lapack_contract_headers
          AND _included_path_lower MATCHES "${_provider_pattern}")
         message(FATAL_ERROR
           "Provider SDK include leaked into ${_relative_file}: "

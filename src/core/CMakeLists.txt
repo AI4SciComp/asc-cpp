@@ -4,6 +4,7 @@ add_library(ASC::core ALIAS asc_core)
 target_sources(
   asc_core
   PRIVATE
+    array_format.cc
     configuration.cc
     contracts.cc
     execution.cc
@@ -15,6 +16,7 @@ target_sources(
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
     FILES
       "${PROJECT_SOURCE_DIR}/include/asc/core.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/core/array_format.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/configuration.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/contracts.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/execution.h"

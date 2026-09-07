@@ -6,6 +6,7 @@ endif()
 
 set(_expected_public_files
   include/asc/core.h
+  include/asc/core/array_format.h
   include/asc/core/configuration.h
   include/asc/core/contracts.h
   include/asc/core/execution.h
@@ -27,6 +28,12 @@ set(_expected_public_files
   include/asc/dense/providers/cuda.h
   include/asc/dense/providers/cuda_export.h
   include/asc/dense/view.h
+  include/asc/dense/print.h
+  include/asc/dense/lapack/types.h
+  include/asc/dense/lapack/workspace.h
+  include/asc/dense/lapack/report.h
+  include/asc/dense/lapack/factor_view.h
+  include/asc/dense/lapack/structured_view.h
   include/asc/expression.h
   include/asc/expression/expression.h
   include/asc/expression/writable.h
@@ -51,6 +58,7 @@ set(_expected_public_files
   include/asc/sparse/evaluate.h
   include/asc/sparse/export.h
   include/asc/sparse/blas.h
+  include/asc/sparse/print.h
   include/asc/sparse/providers/cuda.h
   include/asc/sparse/providers/cuda_export.h
   include/asc/utilities.h
@@ -59,6 +67,7 @@ set(_expected_public_files
   include/asc/utilities/timer.h
 )
 set(_expected_compiled_sources
+  src/core/array_format.cc
   src/core/configuration.cc
   src/core/contracts.cc
   src/core/execution.cc
@@ -70,6 +79,7 @@ set(_expected_compiled_sources
   src/dense/blas_level1.cc
   src/dense/blas_level2.cc
   src/dense/blas_level3.cc
+  src/dense/lapack_foundations.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/blas_level2.cc

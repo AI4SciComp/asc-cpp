@@ -17,8 +17,11 @@ target_link_libraries(my_target PRIVATE ASC::core)
 #include <asc/core.h>
 ```
 
-The umbrella exposes the same declarations as the ten narrow headers under
-`<asc/core/>`. All public declarations are directly in `namespace asc`.
+The umbrella exposes the original ten narrow headers under `<asc/core/>`.
+The additional `<asc/core/array_format.h>` is included explicitly; it supplies
+storage-neutral scalar identities and bounded display options/reports shared
+by Dense and Sparse. Core owns neither module's shape traversal or storage
+schema. All public declarations are directly in `namespace asc`.
 
 ## Errors, results, and contracts
 

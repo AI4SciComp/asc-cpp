@@ -1,5 +1,6 @@
 set(_asc_core_public_headers
   asc/core.h
+  asc/core/array_format.h
   asc/core/configuration.h
   asc/core/contracts.h
   asc/core/execution.h
@@ -318,6 +319,12 @@ set(_asc_m3_public_headers
   asc/dense/layout.h
   asc/dense/blas.h
   asc/dense/view.h
+  asc/dense/print.h
+  asc/dense/lapack/types.h
+  asc/dense/lapack/workspace.h
+  asc/dense/lapack/report.h
+  asc/dense/lapack/factor_view.h
+  asc/dense/lapack/structured_view.h
 )
 
 foreach(_header IN LISTS _asc_m3_public_headers)
@@ -481,6 +488,7 @@ set(_asc_m4_public_headers
   asc/sparse/evaluate.h
   asc/sparse/export.h
   asc/sparse/blas.h
+  asc/sparse/print.h
 )
 
 foreach(_header IN LISTS _asc_m4_public_headers)

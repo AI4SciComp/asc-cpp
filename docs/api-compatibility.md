@@ -37,7 +37,7 @@ release version.
 | numerical | Named traversal and validation rules are contractual; floating rounding, contraction, NaN, infinity, signed zero, and provider behavior remain within documented bounds |
 | random-bit | Philox4x32-10, `Uniform01`, four named stateful engine versions, distribution draw mappings, and storage-address mappings are exact where documented; Box-Muller transcendental results are scoped to one supported math ABI |
 | provider | A claim applies only to an explicit provider target, operation subset, environment, and recorded evidence label |
-| file/schema | Core supplies scalar little-endian helpers; no Dense, Sparse, random-state, checkpoint, or application file schema is defined |
+| file/schema | Core supplies scalar little-endian helpers; Dense/Sparse ASC text and binary v1 contracts are frozen for development, but production persistence is not yet implemented; no random-state, checkpoint, or application schema is defined |
 | package | Version metadata, known/available components, target closures, and C++20 propagation are CMake package contracts |
 
 One dimension never implies another. Exact random bits do not promise binary
@@ -51,11 +51,11 @@ is installed by that file set.
 
 | Component | Public header set |
 | --- | --- |
-| `core` | `asc/core.h`; `asc/core/{configuration,contracts,execution,export,extents,io,memory,result,status,types}.h` |
+| `core` | `asc/core.h`; `asc/core/{array_format,configuration,contracts,execution,export,extents,io,memory,result,status,types}.h` |
 | `utilities` | `asc/utilities.h`; `asc/utilities/{command_line,export,timer}.h` |
 | `expression` | `asc/expression.h`; `asc/expression/{expression,writable}.h` |
-| `dense` | `asc/dense.h`; `asc/dense/{array,blas,evaluate,export,layout,view}.h` |
-| `sparse` | `asc/sparse.h`; `asc/sparse/{blas,compressed,coordinate,evaluate,export}.h` |
+| `dense` | `asc/dense.h`; `asc/dense/{array,blas,evaluate,export,layout,print,view}.h`; `asc/dense/lapack/{factor_view,report,structured_view,types,workspace}.h` |
+| `sparse` | `asc/sparse.h`; `asc/sparse/{blas,compressed,coordinate,evaluate,export,print}.h` |
 | `random` | `asc/random.h`; `asc/random/{distribution,engine,export,generator,seed}.h` |
 | `random_dense` | `asc/random/dense.h` |
 | `random_sparse` | `asc/random/sparse.h` |
@@ -79,9 +79,11 @@ Names in an `internal_` namespace are implementation details even when a
 public template header must declare them or a shared library must export a
 support symbol. They are not downstream extension points.
 
-The complete CUDA-enabled surface has 52 headers. A CUDA-disabled install
-contains the exact 39 provider-free headers; provider headers are not installed
-as unusable stubs.
+The original release baseline contained 52 headers (39 provider-free). This
+development surface has 60 headers, including 47 provider-free headers in a
+CUDA-disabled install. Provider headers are not installed as unusable stubs.
+LAPACK foundations alone do not imply an available external provider or a
+completed numerical routine.
 
 ## Source contract
 
