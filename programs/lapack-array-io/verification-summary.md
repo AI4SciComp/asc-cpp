@@ -4,6 +4,38 @@ The complete program is not verified. The following exact checkpoints are
 kept distinct from newer uncommitted integration work and from full-profile
 routine/mode closure. No package-wide success is inferred from a scoped run.
 
+Resumed V8 now has actual full LP64/true-ILP64431 each, installed11 each,
+provider-free Release277/shared279, zero skips. Debug276/277 includes a
+retained consumer timeout; unchanged targeted retry1/1 passes. Independent
+review found a previously untested finite diagonal-overflow mathematical
+failure in all four TRSYL scalars/both ABIs. Corrected tree `2affa1a` rejects
+that admission before mutation and passes bothABI15/15 scoped and all-ASC-C++
+ASan/UBSan15/15, strict2TUs eachABI, Doxygen88headers/1751members/zero warnings.
+The four new contract tests fail unchanged on old LP64. These corrected
+scoped results do not convert the old full-suite source into corrected full
+evidence; the required upstream mathematical mode remains incomplete.
+See the [Sylvester review](sylvester-review.md) and indexed external records.
+
+Current uncommitted V8 adds only four ordinary TRSYL routes to committed V7:
+166 reference in-progress, 1947 not started, 2113 required/incomplete, zero
+fully verified and 20 native implemented-unverified. Mapping SHA256
+`4624f30ad09935193806b0ff97b21393d17ce9a4a3bcf4d3a8c3ab4c6916f57b`
+passes incremental validation. The 88-header, eleven-installed-consumer
+candidate is frozen as tree `37be13252b938e8761842ca6060d31bfb03cf9b6`,
+archive `108cf13f670440bc25fab56f88b835d9d28b3ff9198671e25db74a6c56f88d69`
+at external `p08-integration-v8-01`. Five full build/test lanes and strict
+documentation checks are running; no combined result is claimed yet.
+
+The [Sylvester review](sylvester-review.md) distinguishes the earlier scoped
+13/13 tests per actual ABI in Release, all-ASC-C++ ASan/UBSan and dynamic-libc
+lanes, zero skips; 4240 actual numerical cases per ABI; strict six TUs;
+85-header/1663-member Doxygen; separate standalone headers, 60 guarded direct
+ABI calls and 416 public-consumer solves plus four warnings per ABI. Runtime
+leaf closure and allocation positive controls passed. The direct consumer was
+not an installed-package test. Every earlier compile/oracle/runner failure is
+retained. New expert/SVD/structured handoffs are excluded from this snapshot;
+their available evidence and required failed gates do not become V8 coverage.
+
 Latest v5 command checkpoint: frozen tree
 `f021fb84e345c355affe65d8c06119c14a18e594`, archive SHA256
 `af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155`.
@@ -34,7 +66,7 @@ The v6 checkpoint is committed and pushed as
 `31e93935f8db4ac685c2224abf7860a058040117` to the actual
 [draft pull request47](https://github.com/AI4SciComp/asc-cpp/pull/47).
 Its product bytes equal the frozen v6 candidate02 tree outside durable program
-records. The draft describes that checkpoint, not newer uncommitted v7 work.
+records. That historical draft checkpoint has been superseded by V7 below.
 
 Current v7 integration adds twelve band Cholesky, eighteen classic indefinite
 and eight rank-revealing reference routes:162 reference rows are in-progress,
@@ -55,6 +87,11 @@ Doxygen87/1742/zero warnings pass. Foreign archives/runtimes are not sanitized.
 All failed candidate01 builds/strict and candidate03 premature auxiliary
 attempts remain retained; no earlier pass is attributed to newer source. See the
 [v7 integration review](factorizations-v7-review.md).
+V7 is committed/pushed as `b1b78d789fb8f5366f13f86c411832df842b2755`;
+the same draft47 now describes that exact product. The app connector returned
+403 for the body edit; the already-configured authorized GitHub CLI completed
+the scoped update, recorded externally at `pr47-v7-update-cli-01/record.json`.
+No permission, reviewer, merge or release setting was changed.
 Retained PBCON lower-complex scaled condition, GELSD zero-RHS/wide-minimum
 process-safety and single-precision tree-storage, and GELSS wide-path returned
 right-vector gates are listed in [blockers.md](blockers.md).
@@ -64,8 +101,14 @@ registered rows. A scoped direct snapshot passes4240 nonempty numerical cases
 per actual ABI, including real Schur blocks, complex conjugation, explicit
 scaling and warning outcomes with allocation audits. Initial9-test contract
 selections fail4 each; corrected snapshot `p08-sylvester-contracts-g73W72tm`
-passes9/9 and strict5 translation units per ABI. A fresh13-test alias snapshot
-is running under `p08-sylvester-alias-MX9v4Gek`; no pass is assumed. This is neither
+passes9/9 and strict5 translation units per ABI. The later13-test alias snapshot
+`p08-sylvester-alias-MX9v4Gek` passes Release, all-ASC-C++ ASan and dynamic
+libc lanes13/13 per ABI,zero skips, plus strict02 six translation units each.
+Each libc lane has13 actual positive-control messages. Its initial strict
+runner erroneously submitted a literal plus-sign filename; that extra failed
+command is retained separately from the six successful real source checks.
+Root's new public-only consumer passes1/1 per ABI with416 independent solves
+and four actual warning calls in `p08-sylvester-consumer-llyXs68F`. This is neither
 installed nor full-P08/normalized-mode proof. TRSYL3/TGSYL, all remaining
 spectral and specialized operations, and full P11 remain required.
 

@@ -51,6 +51,7 @@ asc/dense/providers/lapack_lu_helpers.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_qr.h|asc_dense_lapack
 asc/dense/providers/lapack_rank_revealing.h|asc_dense_lapack
+asc/dense/providers/lapack_sylvester.h|asc_dense_lapack
 asc/dense/view.h|asc_dense
 asc/expression.h|asc_expression
 asc/expression/expression.h|asc_expression

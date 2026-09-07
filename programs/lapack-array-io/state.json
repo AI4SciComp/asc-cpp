@@ -14,12 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "31e93935f8db4ac685c2224abf7860a058040117",
+  "last_implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
   "worktree_diff_identity": {
-    "state": "in_progress",
-    "recorded_at": "2026-09-07T16:49:50.186Z",
-    "tracked_diff_sha256": "8248c46bcd1445ad044864240163f5bef1c7f839ada7ae6f0888dd6c795e0834",
-    "note": "Pre-state-write diff identity, not a recursive hash of itself. All777 tracked product files outside programs equal exact V7-03 archive; later durable annotations differ. Original dirty release checkout unchanged."
+    "state": "uncommitted_v8_implementation",
+    "parent_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
+    "note": "Preserved stagedV8 plus finite-diagonal admission correction. Exact corrected product tree2affa1a/archive9196bac verified with scoped tests; next coherent import remains separate. Original dirty release checkout untouched."
   },
   "packages": {
     "P00": {
@@ -65,7 +64,7 @@
       ]
     },
     "P07": {
-      "state": "not_started",
+      "state": "in_progress",
       "dependencies": [
         "P06"
       ]
@@ -295,7 +294,7 @@
       "state": "in_progress",
       "owner": "p00_baseline",
       "worktree": "../asc-cpp-p06-svd-least-squares",
-      "scope": "Owner frozen8 routes implemented; Debug/Release/ClangASan/Linuxlibc each21/21 eachABI,zero skips; final ledger/query handoff pending, not yet root reviewed/imported. Source gates GELSD nonzeroA zeroRHS, wide real minimum, single tree bound and nonfinite admission plus GELSS wide A right-vector output remain explicit; no full mode credit."
+      "scope": "Owner frozen8 routes implemented; Debug/Release/ClangASan/Linuxlibc each21/21 eachABI,zero skips; final ledger/query handoff complete; root full review read but all code not yet reviewed/imported. Source gates GELSD nonzeroA zeroRHS, wide real minimum, single tree bound and nonfinite admission plus GELSS wide A right-vector output remain explicit; no full mode credit."
     },
     "P08.ordinary_sylvester": {
       "state": "in_progress",
@@ -303,11 +302,27 @@
       "worktree": "../asc-cpp-p08-sylvester",
       "branch": "feature/lapack-p08-sylvester",
       "base_commit": "31e93935f8db4ac685c2224abf7860a058040117",
-      "scope": "Four typed TRSYL routes in separate worktree, not registered/installed. Corrected g73 snapshot archive90a2ab2a2e1fa665591fbf1baec7fdeec01da7b986e32b7e603a9e4af4e5298f passes9/9 runtime and5 strict TUs perABI;4240 nonempty math cases perABI. New alias snapshot p08-sylvester-alias-MX9v4Gek archive6d913a7393b40e3194444c594ae12d5fb6a5360275933dea724dae532f470cdd running13 tests/6 strictTUs perABI. Closure graph44 checkedobjects perABI has only cabs/cabsf/memset leaves; manual runtime/source closure, sanitizer, ABI/installed and normalized modes remain pending."
+      "scope": "Root imported exact12 code/test files plus final self-review from source-manifest cfd1e480505d55590f2aaa0f373fb832d4c22db216db8d81b07834622431dd93, full isolated archive94849a35b2cafad9f7890a14f58d56085c83ae1e2affd101bb1f375bf514a1c5. Earlier alias/consumer/ABI product hashes preserved. Atomic root optional registrations and four partial rows now complete; fresh combined/installed tests pending. Actual scoped13 perABI Release/ASan/libc, strict6TUs+consumer+ABI,85headers/1663Doxy,60directABIcalls and416public solves+4warnings passed. Source45full44checkedobjects/runtime closure recorded. TRSYL3/TGSYL/fullP08/normalized modes remain required. V8 registered and oldsource full bothABI431/installed11 passed; finite-diagonal wrong-success found independently. Correction tree2affa1a passes bothABI15/ASan15/strict2/Doxy88; exact full corrected integration and upstream finite-large math remain required."
+    },
+    "P07.standard_svd": {
+      "state": "in_progress",
+      "owner": "p00_baseline",
+      "worktree": "../asc-cpp-p07-svd",
+      "branch": "feature/lapack-p07-svd",
+      "base_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
+      "scope": "Exact8 GESVD/GESDD implementation ongoing. Query-only5/5 perABI includes4scalar processes each6156actualqueries and pure counts; not execution/math. Root reviewed nonfinite source02 and norm01 all112 actual outcomes; D021 preserves actual GESDD NaN-only -4, rejects unsafe nonfinite GESVD and Inf; explicit finite complex overflowing-modulus gate approved. Source-specific LASQ/LASD0 integer/work minima audits continue; no fullP07 claim."
+    },
+    "P05.general_tridiagonal": {
+      "state": "in_progress",
+      "owner": "p00_inventory",
+      "worktree": "../asc-cpp-p05-tridiagonal",
+      "branch": "feature/lapack-p05-tridiagonal",
+      "base_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
+      "scope": "Exact24 GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX rows; immutable existing tridiagonal descriptors and distinct nominal GT pivot/factor types approved, no shared enum/factory edit. Root read real GTSV NRHS0 unconditional first-RHS backsolve source: approve explicit initialized caller n-scalar surrogate with actualNRHS0 retained and public emptyB untouched, pending full source/ABI/failure proof. Implementation/source audit underway; no coverage credit. First LP64 runtime exposed incompatible native pivot entry size in kPivotConversion; D022 corrects root direction to separate live native pivot/estimator segments in kInteger, unchanged shared foundation. Retained initial trueILP648/8 is not evidence of corrected candidate."
     }
   },
-  "active_task": "V7 exact integration gates passed on tree a7aa1b35798b6e7062be22990895360232fb4ef4: full provider415 each, base Debug/Release277 each/shared279, installed10 eachABI, affected ASC-C++ ASan46 eachABI, strict26 eachABI, format46, Doxygen87/1742/zero. Coherent reviewable commit/push pending. Expert20/24 and SVDleast-squares8 remain separately owned/unregistered, with explicit source/math gates. Root P08 TRSYL4 corrected9-test and strict5-TU snapshots pass each ABI; deeper alias snapshot now running. Full2113 scope remains incomplete.",
-  "next_action": "Finish final durable-record/link/diff check, stage only known programs records, commit V7 on feature/lapack-array-io, push non-force to same feature branch and update actual draft47 (develop). Do not attribute later expert or Sylvester source to V7. Read complete frozen indefinite24/SVD-LS8/band-expert handoffs before import, root-run combined verification and continue all required unblocked P04-P11. Collect existing p08-sylvester-alias-MX9v4Gek runtime/strict records; finish source/runtime closure, ABI, sanitizer, installed consumer and public registration for TRSYL4; then remaining TRSYL3/TGSYL and spectral scope.",
+  "active_task": "V8 Sylvester correction implemented: finite coefficient overflow rejected before numerical/workspace mutation; independent review and fixed bothABI15/15 + all-ASC-C++ASan15/15 + strict2TUs/ABI + Doxygen88/1751 pass. Unchanged new regression fails4/4 on old LP64 adapter; required upstream math mode remains incomplete. Next integration is preserved indefiniteexpert24 + SVD-LS8, with additive expert test patch and independent public consumers.",
+  "next_action": "Verify/import the19 indefiniteexpert handoff files plus four additive test overlays and ten SVD-LS handoff files. Register32 actual routes, optional headers/sources/tests/installed consumers and atomic manifests as next profile. Freeze a fresh source and run full bothABI/provider-free/installed and affectedASan/strict validation. Do not overwrite any V8 source or failed records.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -315,7 +330,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "80e087f4826466894f7d623121c7c45f279bbcbcb938b2c8544aecaeea503259"
+    "coverage_mapping_sha256": "fff22a92e7db7f3d249e6a666d64b81cda7db67f246a43ab089d5a2556823d5b"
   },
   "provider": {
     "version": "3.12.1",
@@ -436,15 +451,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1951,
-    "reference_in_progress_in_ledger": 162,
+    "reference_not_started_in_ledger": 1947,
+    "reference_in_progress_in_ledger": 166,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 162,
+    "registered_partial_reference_operations": 166,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113 required unchanged;20 native implemented_unverified and162 reference in_progress,zero fully verified. Exact V7-03 listed integration gates pass; full normalized routine/mode and source mathematical closure remains incomplete."
+    "note": "2113 required unchanged;20native implemented_unverified,166reference in_progress,zero fully verified. UncorrectedV8 full431 eachABI/installed11; corrected Sylvester bothABI15/ASan15 scoped only."
   },
   "blockers": [
     {
@@ -511,6 +526,11 @@
       "id": "GELSD-SINGLE-TREE",
       "record": "programs/lapack-array-io/blockers.md",
       "scope": "Root read direct source/probe and actual real-ABI evidence; required source/math mode gate incomplete. Independent implementation continues without provider patch, denominator reduction or approval waiver."
+    },
+    {
+      "id": "TRSYL-FINITE-DIAGONAL-OVERFLOW",
+      "record": "programs/lapack-array-io/blockers.md",
+      "scope": "Pinned all4/bothABI scalar finite-large mathematical gate fails. Checked adapter pre-entry rejection passes scoped tests; required solution mode remains incomplete. Independent implementation continues."
     }
   ],
   "external_approvals": [
@@ -531,22 +551,12 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "state": "listed_v7_03_gates_passed_commit_pending",
-    "candidate": "p05-p06-factorizations-v7-03",
-    "implementation_tree": "a7aa1b35798b6e7062be22990895360232fb4ef4",
-    "source_archive_sha256": "07d4991e7fae66b51696e769f64cc7676c5dbed4e05ed49f945b9869d80ee052",
-    "review": "programs/lapack-array-io/factorizations-v7-review.md",
-    "completed": {
-      "full_provider": "LP64/trueILP64 each415/415",
-      "provider_free": "Debug277/277,Release277/277,shared279/279",
-      "installed": "10/10 per ABI; root explicitly read and hashed nested logs",
-      "sanitizer": "46/46 per ABI; all CPU Core/Dense/reference C++ instrumented, foreign archives/runtimes not instrumented",
-      "strict": "26 translation units per ABI",
-      "format": "46 changed C++ files",
-      "documentation": "Doxygen87 supported headers1742 public memberszero warnings;Markdown pass"
-    },
-    "skips": 0,
-    "retained_failures": "V7-01 provider/ASan allocation-audit registration link failures and ILP64 strict three primitive-header findings; V7-03 premature auxiliary header prerequisite failures:ASan build2 eachABI/strict21pass5fail eachABI. No test or assertion weakened."
+    "state": "completed_scoped_correction",
+    "candidate": "p08-sylvester-overflow-01",
+    "tree": "2affa1ab28f0be368cc42ca96ed5179aa104237f",
+    "archive_sha256": "9196bac1eab0dfa5ee41ba1d1ece02f495a8d6e6b249c17ec526eca9d833a6e4",
+    "mapping_sha256": "fff22a92e7db7f3d249e6a666d64b81cda7db67f246a43ab089d5a2556823d5b",
+    "scope": "BothABI15 fixed/all-ASC-C++ASan15, strict2TUs, Doxygen88/1751 pass. Uncorrected V8 full bothABI431, installed11 each, Release277/shared279; Debug276/277 timeout with unchanged retry1/1. No corrected full combined result or full mathematical-mode completion inferred."
   },
   "last_completed_verification": {
     "candidate": "p05-p06-factorizations-v7-03",
@@ -573,6 +583,24 @@
     "pending": [],
     "sanitizer_scope": "46/46 per ABI; all CPU Core/Dense/reference C++ instrumented, foreign archives/runtimes not instrumented",
     "review": "programs/lapack-array-io/factorizations-v7-review.md",
-    "scope_limit": "Completed listed command lanes only; exact routine/mode full-profile closure, approvals, platforms, failed mathematical gates and all remaining implementations remain required."
+    "scope_limit": "Completed listed command lanes only; exact routine/mode full-profile closure, approvals, platforms, failed mathematical gates and all remaining implementations remain required.",
+    "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755"
+  },
+  "remote_checkpoint": {
+    "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
+    "push": "non-force origin feature/lapack-array-io succeeded",
+    "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
+    "draft": true,
+    "base": "develop",
+    "body_update": "App connector denied403; existing authorized GitHub CLI PATCH succeeded without permission changes",
+    "evidence": "pr47-v7-update-cli-01/record.json"
+  },
+  "session_recovery": {
+    "evidence": "resume-20260908-01/recovery.json",
+    "sha256": "3cd0bc4cccc23722f1b50b17462316c5598c701253dfab996233c243eb843cbb",
+    "product_match": "p08-integration-v8-01/source",
+    "upstream_heads_unchanged": true,
+    "source_lock_hashes_match": true,
+    "provider_prefix_revalidation": "resume-20260908-01/provider-{lp64,ilp64}/record.json"
   }
 }

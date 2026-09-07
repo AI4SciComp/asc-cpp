@@ -1,5 +1,27 @@
 # Program decisions
 
+## Resumed V8 identity audit, 2026-09-08
+
+The preserved integration HEAD remains `b1b78d7`; all product files match
+frozen V8 tree `37be13252b938e8761842ca6060d31bfb03cf9b6`. Read-only remote
+inspection still finds `main`/`develop` at `46412183` and the feature head at
+`b1b78d7`. No branch, index or existing implementation was reset or replaced.
+Recovery diffs, worktrees and source identities are retained externally in
+`resume-20260908-01/recovery.json`. Provider-prefix verification rechecks the
+actual installed files against both original attestation identities.
+
+Both live Google guides were retrieved again at 2026-09-07 18:08 UTC
+(2026-09-08 local). C++ HTML SHA-256 is
+`f681e8c1b71ed5f2420555a28b7e7120f46914cfa126e9d8ec5e6e9851512caf`;
+Python HTML SHA-256 is
+`9b02fa0d1aa05bfc8a4b5a95d3594665124f7a0414c82a69359f4a0b2f65e1c0`.
+D003's compatibility exceptions remain scoped and unchanged.
+
+Runbook section 2.5 supplies the parallel-owner direction for independent
+Sylvester, indefinite-expert and SVD least-squares reviews. Review evidence
+is separate from integrator execution. Expert acceptance gaps receive
+additive tests; existing assertions and frozen failures remain preserved.
+
 ## V7 registration and exact foreign primitive check
 
 Band12, classic indefinite18 and rank8 are integrated as distinct required
@@ -266,3 +288,39 @@ query arithmetic/rounding and N+1 before entry. N=0 alone has a local return.
 The isolated pre-correction candidate remains immutable and unregistered;
 fresh actual-call evidence is required. This is an integration design decision,
 not repository-owner or license approval.
+
+## D021: preserve a documented numerical negative INFO separately
+
+The exact four GESDD sources return INFO=-4 when their pre-scaling max norm
+is NaN. This is a documented numerical-input outcome, not a generic checked
+adapter argument defect. Root source/probe review approves an actual NaN-only
+foreign call after ordinary structural/workspace validation, preserving raw
+INFO=-4 as kNumerical/kPartialResult with unchanged numerical destinations
+and no translated native_argument. Do not fabricate the diagnostic locally
+or copy output-only staged S/U/VT on this return. Workspace scratch effects
+are distinct from numerical destination rollback. Guarded all-job/layout and
+real/imaginary-NaN tests are required before integration.
+
+Actual Inf probes have unsafe non-return/STOP paths. Reject any meaningful
+Inf component before mutation for both standard SVD drivers; GESVD rejects
+NaNs as well. Empty and query paths retain their exact source behavior and
+must not read nonexistent or output-only input. Finite complex components
+with an overflowing source magnitude still require an explicit probe and
+safe admission analysis. This is a checked-interface implementation decision,
+not an upstream patch, owner approval, or closure of any required mode.
+
+## D022: keep native pivot work in native INTEGER units
+
+The initial GT slice direction incorrectly placed provider-width pivot entries
+in kPivotConversion. Actual frozen ValidateAbiRegion requires that role's
+entry size to be sizeof(index_t); the first LP64 execution correctly rejected
+the incompatible plan with kConfiguration. Preserve that failed attempt and
+do not alter the shared foundation to accommodate it.
+
+The local correction follows existing LU experts: kInteger contains n live
+native pivot integers, followed where needed by a separately bounded n-entry
+native estimator segment. Validate the total and guard their live boundary.
+kPivotConversion remains ASC64 conversion staging when actually required;
+it is not reinterpreted as packed LP64 integers or silently rounded byte
+slots. This corrects root's earlier implementation direction and preserves
+the established public workspace and object-lifetime contracts.

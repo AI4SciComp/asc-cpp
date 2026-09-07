@@ -1,5 +1,29 @@
 # Program blockers and required external decisions
 
+## TRSYL-FINITE-DIAGONAL-OVERFLOW — required mathematical gate unmet
+
+Independent review reproduced a silent wrong finite solution in all four
+scalars and both actual ABIs. For m=n=1, N/N/plus and
+A=B=C=0.75*the underlying real maximum, exact X is 0.5. Pinned TRSYL
+forms the overflowing diagonal sum before guarded division, returns X=0,
+scale=1 and INFO=0, and frozen V8 incorrectly reports ASC success. The
+normalized scaled residual is one. A=B=C=4 controls return X=0.5.
+
+All probe, command, source/archive/binary hashes and raw output are external
+at `p08-sylvester-extreme-review-v4_uhob1`. Both mathematical run commands
+exit one; the initial ILP64 archive-name compile failure is retained separately.
+Root read the complete independent probe and both ABI outputs. No provider
+patch, hidden scaling, alternate driver or denominator change is authorized.
+
+The checked adapter now rejects finite diagonal coefficient sums beyond the
+scalar component range before packing or foreign entry. Query stays
+numerical-input-free. Rejection returns kNumerical/kNotRun/kUnchanged,
+preserving C, scale and scratch, with absent INFO. This closes the demonstrated
+silent-success admission bug only after its fresh tests pass. The required
+large finite solution mode remains incomplete; it is not credited as a solved
+equation. Other intermediate overflow and arbitrary nonfinite behavior remain
+separate requirements. Independent expert and array work can continue.
+
 No unavoidable local implementation blocker has been established. GCC11
 Fortran and repository-pinned Clang18 formatting/tidy tools were prepared
 externally without privileged installation. Baseline Debug/Release and the
@@ -302,3 +326,84 @@ GELSS. Query and proven all-zero-A/empty source quick returns remain distinct.
 Input-dependent splitting means checking only the full size's logarithm is
 insufficient. Larger required sizes remain unsupported/incomplete pending
 approved provider disposition; there is no silent alternate algorithm.
+
+## GELSD-NONFINITE — actual source termination, not a normal return
+
+Root read the complete nonfinite probe, its previously reviewed direct-call
+dependency and all 64 raw outcomes in `p06-svd-ls-nonfinite-probe-01`.
+For a genuinely backed 3x2 system with one NaN or Inf entry in A, all four
+GELSD scalars in both ABIs terminate through LASCL argument4 and Fortran STOP:
+16 subprocess gates exit1 despite the foreign process exiting0. The other
+48 GELSS/GELSD A/B nonfinite probes return, but that does not establish
+mathematical success: even INFO0 may accompany NaN singular values or X.
+Probe SHA256
+`5a568b7dc62be66ffb7635740209b177e258989faa8216afe40cc240470078d5`.
+The candidate's meaningful-input admission must be checked before mutation;
+output-only B tail/S and proven zero/empty quick returns remain distinct.
+Root full candidate implementation review and integration are still pending.
+
+## PBRFS-TINY-ESTIMATE and PBSVX-TINY — required numerical gates unmet
+
+Root read both complete direct probes and their two actual-ABI logs, plus
+the pinned DPBRFS weighted inverse-estimate and DLAQSB/ZLAQHB evaluation
+branches. With n=1, kd=0, t=2^-70 for S/C or 2^-520 for D/Z,
+A=B=t^2, AF=t and X=1, PBRFS returns INFO0 and X1 but FERR=Inf.
+The SAFE1/SAFE2 guarded BERR is finite and near one, not required to be
+O(epsilon) on this subnormal denominator. A finite weighted mathematical
+estimate remains possible; fidelity to the raw Inf is not its verification.
+
+PBSVX FACT=N/F on the same scalar system returns X1, RCOND0, FERR=Inf and
+INFO=n+1, although the exact scale-invariant reciprocal condition is one.
+FACT=E produces finite S=1/t but the source's left-associated S*S*A
+overflows its intermediate product: exact scaled A is one, actual A/AF are
+Inf, X is zero, FERR/BERR are NaN, EQUED=Y and INFO=n+1. All four scalars
+and both actual ABIs reproduce these results. No reassociation, hidden
+equilibration fallback, source patch or weakened mathematical test is approved.
+
+External `p05-band-expert-agxp4Sxi/refinement-tiny-probe-01.cc` SHA256
+`4b318c50e8df94b0f56c56909c87c1d889c29a495d22c3020050028ee8f018e5`;
+each ABI run log SHA256
+`9778a0b3d3412841030dba290f615b5ca3bdf17aafa9ecec68dff3a9cc2409f4`.
+`expert-tiny-probe-01.cc` SHA256
+`0220f286e827b1580f9ded14c14be329f7cb6289e6121adc5b25be99ce8d9901`;
+each ABI run log SHA256
+`11916c0d7eb17b8902cf691005a1ba6c37c8e0bc50409e1ea0366da1e0458636`.
+These are direct source diagnostics, not claims that the unregistered band
+expert implementation has passed its still-failing required math suites.
+
+## STANDARD-SVD-NONFINITE — bounded timeout and actual STOP evidence
+
+Root reviewed all four GESDD NaN max-norm return branches, the complete
+32x32 bidiagonal probe and return gate, and all 64 outcomes in
+`p07-svd-nonfinite-02`. All eight GESVD full-vector Inf subprocesses exceed
+the explicit ten-second limit; that observation is not proof of infinite
+execution. All eight GESDD full-vector Inf subprocesses print LASCL argument4
+and terminate through Fortran STOP without a normal-return marker. Both
+classes retain exit1 gate records. The other 48 processes return; INFO0 with
+NaN singular values is not numerical success.
+
+Source probe SHA256
+`4c756eb9a126a1cb2652d45c4bc17192a15541fbec882b45f1a000ab28b818c5`;
+return gate SHA256
+`9c537b2868f1e29079698d6342c5be664f7e04a419e5b5807d1461640227238e`.
+All four exact GESDD sources have an explicit NaN-only INFO=-4 return before
+numerical mutation; preserve that separate source behavior as recorded in
+D021. Meaningful Inf admission is rejected before numerical mutation;
+GESVD also rejects NaNs. Whether complex finite components can overflow the
+source magnitude calculation is an additional requested probe, not yet a
+confirmed finding or closed finite-input gate. Independent finite-mode work
+continues; no full P07 or arbitrary-input safety claim is made.
+
+Follow-up `p07-svd-norm-01` is now root-reviewed: complete probe SHA256
+`1b333b259a544372a4cd45a13e7ed75ac29c53c4f2feaaa6559e7a20be68b4de`
+and all 48 actual outcomes. All 16 C/Z x driver x N/A x ABI cases with
+A(1,1)=(max,max) have finite components but infinite modulus and return
+INFO0 with NaN singular values. This is a representational/output failure,
+not non-return: its largest singular magnitude exceeds the output type range.
+Half-max controls return finite S but are not independent accuracy proofs.
+Four complex GESVD values-only imaginary-NaN cases additionally terminate
+via LASCL STOP; GESDD imaginary-NaN returns the actual documented -4.
+Root approves a checked pre-entry numerical rejection of finite complex
+entries with nonfinite modulus, with unchanged numerical destinations and
+absent INFO, bound to the audited runtime. No hidden rescaling or substitute
+driver is introduced. Full finite-input numerical verification remains required.

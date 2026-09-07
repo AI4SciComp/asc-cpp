@@ -2,15 +2,15 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-factorizations-v7` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v8` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
 through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
-additional Cholesky, QR, least-squares and LU helper routes below bring the
-development mapping to 162 partial scalar routines. The other 1,951 required
+additional Cholesky, QR, least-squares, LU helper and Sylvester routes below
+bring the development mapping to 166 partial scalar routines. The other 1,947 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -119,14 +119,14 @@ The original LU routes retain unused zero-byte workspace compatibility.
 The provider-free [native Cholesky/QR contract](contracts/lapack-native-cholesky-qr.md)
 is separate and does not credit the reference Q experts to native coverage.
 
-The prior v6 product tree `98f341bc6f4c2f655cae9a503ecbda5b266f3e32`
-passed full LP64/true-ILP64 365-test suites, provider-free Debug/Release
+The committed v7 product matches tree `a7aa1b35798b6e7062be22990895360232fb4ef4`
+outside program records. It passed full LP64/true-ILP64 415-test suites, provider-free Debug/Release
 277-test suites and shared provider-free Release 279 tests, with zero skips.
-Each installed provider package executed seven consumers. Its affected
-Clang19 ASan/UBSan suites passed 19 tests per ABI with Core/Dense/reference
+Each installed provider package executed ten consumers. Its affected
+Clang19 ASan/UBSan suites passed 46 tests per ABI with Core/Dense/reference
 C++ instrumented; Fortran/BLAS archives and dynamic runtimes were not.
-Those results do not verify the newer band, indefinite and rank-revealing
-integration, which requires fresh combined-tree and installed checks.
+Those results do not verify the newer ordinary Sylvester integration, which
+requires fresh combined-tree and installed checks.
 
 ## Positive-definite band factorization and solves
 
@@ -150,8 +150,8 @@ generic LDL certificate. Original Hermitian factor inputs use explicit n*n
 selected-component packing in either layout, while raw factor coefficients
 retain their defined complex values. Positive factorization INFO preserves
 completed factors/pivots but does not certify a successful reusable factor.
-This new eighteen-route integration is distinct from v6's passed tests and
-requires current-tree numerical, installed and component checks.
+These eighteen routes have passed the recorded v7 numerical and installed
+checks; full normalized routine/mode coverage remains incomplete.
 
 ## Rank-revealing QR and least squares
 
@@ -202,6 +202,35 @@ Actual query calls are nonmutating and separated from execution; GETSLS uses
 its distinct minimum and preferred queries. Counts also bound nested integer
 arithmetic, floating workspace metadata and strided BLAS terminal cursors.
 These checked routes do not promise rank-revealing or constrained least squares.
+
+## Scaled ordinary Sylvester equations
+
+`lapack_sylvester.h` exposes actual S/D/C/Z `Trsyl` and formula-only workspace
+queries. Inputs must already be upper Schur forms; no Schur reduction is
+selected implicitly. The equation is `op(A) X + sign X op(B) = scale C`,
+with real N/T/C or complex N/C, both signs and independent A/B/C layouts.
+Real nonzero subdiagonals must define nonoverlapping canonical 2x2 blocks.
+
+Both A/B layouts use explicit caller-owned full-square packing, filling
+ignored lower entries with zero because the source's max norm reads full
+matrices. Row-major C needs a separate caller buffer; column-major C is
+direct. Scale is never divided out. INFO=1 preserves X and scale with an
+accuracy warning, without certifying the unperturbed equation. Invalid INFO
+or scale withholds packed C and scale, marking direct C unusable. Empty
+execution sets scale to one without a foreign call or fabricated INFO.
+
+Finite diagonal coefficient sums outside the scalar component range are
+rejected before packing or foreign entry, with `kNumerical`, unchanged
+numerical buffers/workspace and absent INFO. The pinned provider can otherwise
+return an incorrect finite solution with INFO=0 even for a well-conditioned
+scalar equation. The required finite-large mathematical mode remains
+incomplete; this check neither rescales inputs nor substitutes another driver.
+
+Scoped real-provider mathematical, guarded ABI, allocation, sanitizer,
+strict/header and documentation checks have passed separately. Combined
+current-tree and installed-package checks remain pending. TRSYL3, generalized
+TGSYL, all other spectral families and complete per-mode evidence remain
+required; this four-route slice does not close P08.
 
 ## Building the explicit subset
 

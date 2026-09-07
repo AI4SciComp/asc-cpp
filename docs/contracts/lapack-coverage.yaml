@@ -24075,15 +24075,90 @@
         "state": "pending"
       },
       "id": "lapack.ctrsyl",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_sylvester.h",
+          "sha256": "d0d908feb9292c7ab442a65bc22383e73b78f7d028ea2d1d0f86f993080e010e"
+        },
+        {
+          "path": "src/dense/lapack/internal_sylvester_counts.h",
+          "sha256": "4c56c457c7273e3a9d8fa881e6da6c927c39afac4a2b991f4891a932c7c177b8"
+        },
+        {
+          "path": "src/dense/lapack/reference_sylvester.cc",
+          "sha256": "5d58967cdee4abf7219cbb454a2f93143115df5684ae1e4238392ed006ceb680"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/sylvester_main.cc",
+          "sha256": "8994b5b848052eae920822a9211f90fd485fcdad71f824050f25456e83fec86b"
+        },
+        {
+          "path": "tests/dense_lapack/reference_sylvester_test.cc",
+          "sha256": "07ec15dc878fed052b51ceefcf87096cd20b4f18d4c00febdc3eed2d333fe32d"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_abi_probe.cc",
+          "sha256": "a438abd4e4b5932f1118f4fb6c2e06cb8bb437215d2d72481ce4e6c299206db5"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_alias_test.cc",
+          "sha256": "e947d8fde072514e371bb75e193fcd049894396ebf1dcb7e54530be57eacafdd"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_contract_test.cc",
+          "sha256": "c88a98274df9adeab2147a82932d8cd3c016c73d763d02e8324befc3101364ed"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_counts_test.cc",
+          "sha256": "bc1b83e7cd2af34600bd139b9ec7563699de09f8be9b2979c39ff4546c42dbe1"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_faults.cc",
+          "sha256": "f17971b925b1de1c80d34e86c1f18f014f47de2f27684240a38bb795d1625f6f"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_faults.h",
+          "sha256": "090ae453412dbada0655856c9afe8f58eebe6cec353b2000c2e10a992fdaac45"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_test_support.h",
+          "sha256": "d7f3fe4cd7f155d6cdd52d637b658a2659b5985f55c5b64369838f8dbd948a64"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/sylvester-review.md",
+          "partial_scope": "Actual ordinary TRSYL route with typed sign and scalar-specific operations, canonical real Schur block checks, explicit caller A/B/C packing, exact scale/warning publication and source-conditioned integer bounds. Frozen scoped Release/all-ASC-C++ sanitizer/dynamic-libc each ABI13/13 pass; direct ABI60 calls and public-only consumer416 math plus4 warning calls each ABI pass. Root self-review only; current combined/installed and complete normalized mode evidence pending. Meaningful nonfinite-input behavior not exhaustive. TRSYL3/TGSYL and full P08 remain required. Independent review confirmed finite diagonal overflow wrong-success in frozen V8; checked pre-entry numerical rejection added with unchanged outputs, pending fresh corrected-source tests. Required finite-large mathematical mode remains incomplete (TRSYL-FINITE-DIAGONAL-OVERFLOW)."
         }
       },
       "required_profiles": [
@@ -50488,15 +50563,90 @@
         "state": "pending"
       },
       "id": "lapack.dtrsyl",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_sylvester.h",
+          "sha256": "d0d908feb9292c7ab442a65bc22383e73b78f7d028ea2d1d0f86f993080e010e"
+        },
+        {
+          "path": "src/dense/lapack/internal_sylvester_counts.h",
+          "sha256": "4c56c457c7273e3a9d8fa881e6da6c927c39afac4a2b991f4891a932c7c177b8"
+        },
+        {
+          "path": "src/dense/lapack/reference_sylvester.cc",
+          "sha256": "5d58967cdee4abf7219cbb454a2f93143115df5684ae1e4238392ed006ceb680"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/sylvester_main.cc",
+          "sha256": "8994b5b848052eae920822a9211f90fd485fcdad71f824050f25456e83fec86b"
+        },
+        {
+          "path": "tests/dense_lapack/reference_sylvester_test.cc",
+          "sha256": "07ec15dc878fed052b51ceefcf87096cd20b4f18d4c00febdc3eed2d333fe32d"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_abi_probe.cc",
+          "sha256": "a438abd4e4b5932f1118f4fb6c2e06cb8bb437215d2d72481ce4e6c299206db5"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_alias_test.cc",
+          "sha256": "e947d8fde072514e371bb75e193fcd049894396ebf1dcb7e54530be57eacafdd"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_contract_test.cc",
+          "sha256": "c88a98274df9adeab2147a82932d8cd3c016c73d763d02e8324befc3101364ed"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_counts_test.cc",
+          "sha256": "bc1b83e7cd2af34600bd139b9ec7563699de09f8be9b2979c39ff4546c42dbe1"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_faults.cc",
+          "sha256": "f17971b925b1de1c80d34e86c1f18f014f47de2f27684240a38bb795d1625f6f"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_faults.h",
+          "sha256": "090ae453412dbada0655856c9afe8f58eebe6cec353b2000c2e10a992fdaac45"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_test_support.h",
+          "sha256": "d7f3fe4cd7f155d6cdd52d637b658a2659b5985f55c5b64369838f8dbd948a64"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/sylvester-review.md",
+          "partial_scope": "Actual ordinary TRSYL route with typed sign and scalar-specific operations, canonical real Schur block checks, explicit caller A/B/C packing, exact scale/warning publication and source-conditioned integer bounds. Frozen scoped Release/all-ASC-C++ sanitizer/dynamic-libc each ABI13/13 pass; direct ABI60 calls and public-only consumer416 math plus4 warning calls each ABI pass. Root self-review only; current combined/installed and complete normalized mode evidence pending. Meaningful nonfinite-input behavior not exhaustive. TRSYL3/TGSYL and full P08 remain required. Independent review confirmed finite diagonal overflow wrong-success in frozen V8; checked pre-entry numerical rejection added with unchanged outputs, pending fresh corrected-source tests. Required finite-large mathematical mode remains incomplete (TRSYL-FINITE-DIAGONAL-OVERFLOW)."
         }
       },
       "required_profiles": [
@@ -76861,15 +77011,90 @@
         "state": "pending"
       },
       "id": "lapack.strsyl",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_sylvester.h",
+          "sha256": "d0d908feb9292c7ab442a65bc22383e73b78f7d028ea2d1d0f86f993080e010e"
+        },
+        {
+          "path": "src/dense/lapack/internal_sylvester_counts.h",
+          "sha256": "4c56c457c7273e3a9d8fa881e6da6c927c39afac4a2b991f4891a932c7c177b8"
+        },
+        {
+          "path": "src/dense/lapack/reference_sylvester.cc",
+          "sha256": "5d58967cdee4abf7219cbb454a2f93143115df5684ae1e4238392ed006ceb680"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/sylvester_main.cc",
+          "sha256": "8994b5b848052eae920822a9211f90fd485fcdad71f824050f25456e83fec86b"
+        },
+        {
+          "path": "tests/dense_lapack/reference_sylvester_test.cc",
+          "sha256": "07ec15dc878fed052b51ceefcf87096cd20b4f18d4c00febdc3eed2d333fe32d"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_abi_probe.cc",
+          "sha256": "a438abd4e4b5932f1118f4fb6c2e06cb8bb437215d2d72481ce4e6c299206db5"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_alias_test.cc",
+          "sha256": "e947d8fde072514e371bb75e193fcd049894396ebf1dcb7e54530be57eacafdd"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_contract_test.cc",
+          "sha256": "c88a98274df9adeab2147a82932d8cd3c016c73d763d02e8324befc3101364ed"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_counts_test.cc",
+          "sha256": "bc1b83e7cd2af34600bd139b9ec7563699de09f8be9b2979c39ff4546c42dbe1"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_faults.cc",
+          "sha256": "f17971b925b1de1c80d34e86c1f18f014f47de2f27684240a38bb795d1625f6f"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_faults.h",
+          "sha256": "090ae453412dbada0655856c9afe8f58eebe6cec353b2000c2e10a992fdaac45"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_test_support.h",
+          "sha256": "d7f3fe4cd7f155d6cdd52d637b658a2659b5985f55c5b64369838f8dbd948a64"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/sylvester-review.md",
+          "partial_scope": "Actual ordinary TRSYL route with typed sign and scalar-specific operations, canonical real Schur block checks, explicit caller A/B/C packing, exact scale/warning publication and source-conditioned integer bounds. Frozen scoped Release/all-ASC-C++ sanitizer/dynamic-libc each ABI13/13 pass; direct ABI60 calls and public-only consumer416 math plus4 warning calls each ABI pass. Root self-review only; current combined/installed and complete normalized mode evidence pending. Meaningful nonfinite-input behavior not exhaustive. TRSYL3/TGSYL and full P08 remain required. Independent review confirmed finite diagonal overflow wrong-success in frozen V8; checked pre-entry numerical rejection added with unchanged outputs, pending fresh corrected-source tests. Required finite-large mathematical mode remains incomplete (TRSYL-FINITE-DIAGONAL-OVERFLOW)."
         }
       },
       "required_profiles": [
@@ -101198,15 +101423,90 @@
         "state": "pending"
       },
       "id": "lapack.ztrsyl",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_sylvester.h",
+          "sha256": "d0d908feb9292c7ab442a65bc22383e73b78f7d028ea2d1d0f86f993080e010e"
+        },
+        {
+          "path": "src/dense/lapack/internal_sylvester_counts.h",
+          "sha256": "4c56c457c7273e3a9d8fa881e6da6c927c39afac4a2b991f4891a932c7c177b8"
+        },
+        {
+          "path": "src/dense/lapack/reference_sylvester.cc",
+          "sha256": "5d58967cdee4abf7219cbb454a2f93143115df5684ae1e4238392ed006ceb680"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/sylvester_main.cc",
+          "sha256": "8994b5b848052eae920822a9211f90fd485fcdad71f824050f25456e83fec86b"
+        },
+        {
+          "path": "tests/dense_lapack/reference_sylvester_test.cc",
+          "sha256": "07ec15dc878fed052b51ceefcf87096cd20b4f18d4c00febdc3eed2d333fe32d"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_abi_probe.cc",
+          "sha256": "a438abd4e4b5932f1118f4fb6c2e06cb8bb437215d2d72481ce4e6c299206db5"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_alias_test.cc",
+          "sha256": "e947d8fde072514e371bb75e193fcd049894396ebf1dcb7e54530be57eacafdd"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_contract_test.cc",
+          "sha256": "c88a98274df9adeab2147a82932d8cd3c016c73d763d02e8324befc3101364ed"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_counts_test.cc",
+          "sha256": "bc1b83e7cd2af34600bd139b9ec7563699de09f8be9b2979c39ff4546c42dbe1"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_faults.cc",
+          "sha256": "f17971b925b1de1c80d34e86c1f18f014f47de2f27684240a38bb795d1625f6f"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_faults.h",
+          "sha256": "090ae453412dbada0655856c9afe8f58eebe6cec353b2000c2e10a992fdaac45"
+        },
+        {
+          "path": "tests/dense_lapack/sylvester_test_support.h",
+          "sha256": "d7f3fe4cd7f155d6cdd52d637b658a2659b5985f55c5b64369838f8dbd948a64"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/sylvester-review.md",
+          "partial_scope": "Actual ordinary TRSYL route with typed sign and scalar-specific operations, canonical real Schur block checks, explicit caller A/B/C packing, exact scale/warning publication and source-conditioned integer bounds. Frozen scoped Release/all-ASC-C++ sanitizer/dynamic-libc each ABI13/13 pass; direct ABI60 calls and public-only consumer416 math plus4 warning calls each ABI pass. Root self-review only; current combined/installed and complete normalized mode evidence pending. Meaningful nonfinite-input behavior not exhaustive. TRSYL3/TGSYL and full P08 remain required. Independent review confirmed finite diagonal overflow wrong-success in frozen V8; checked pre-entry numerical rejection added with unchanged outputs, pending fresh corrected-source tests. Required finite-large mathematical mode remains incomplete (TRSYL-FINITE-DIAGONAL-OVERFLOW)."
         }
       },
       "required_profiles": [

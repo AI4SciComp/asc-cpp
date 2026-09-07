@@ -1,5 +1,10 @@
 # V7 integration review (listed integration gates passed)
 
+Committed and non-force pushed as
+`b1b78d789fb8f5366f13f86c411832df842b2755`; actual draft47 targets develop
+and describes this checkpoint. Product content is identical to candidate03
+below; later program annotations are not changes to numerical code.
+
 Candidate01 is frozen as tree `cdc2628229316deac47eed7fed0c18df150d1672`,
 archive `e3e4a62b684927b294c23600da930f8ca98cd499e6f6eff45f222c863f536ad8`.
 Its Doxygen check passes87/87 headers,1742 documented public members and zero
