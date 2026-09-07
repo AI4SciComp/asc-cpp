@@ -16,7 +16,8 @@ enum class Fault : std::uint8_t {
   kInfiniteScale,
   kZeroScale,
   kNonfiniteResult,
-  kPerturbed
+  kPerturbed,
+  kUnwrittenInfo
 };
 void SetFault(Fault fault);
 std::size_t ForeignCalls();

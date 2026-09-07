@@ -26,7 +26,7 @@ bool Inject(T* c, Real* scale, lapack_int* info, std::size_t length_a,
             std::size_t length_b) {
   ++g_calls;
   g_lengths_valid = g_lengths_valid && length_a == 1 && length_b == 1;
-  if (g_fault == Fault::kNone) {
+  if (g_fault == Fault::kNone || g_fault == Fault::kUnwrittenInfo) {
     return false;
   }
   c[0] = T{719};
@@ -63,6 +63,7 @@ bool Inject(T* c, Real* scale, lapack_int* info, std::size_t length_a,
     case Fault::kPerturbed:
       *info = 1;
       break;
+    case Fault::kUnwrittenInfo:
     case Fault::kNone:
       break;
   }
@@ -96,6 +97,10 @@ void __wrap_strsyl_(const char* operation_a, const char* operation_b,
                     const lapack_int* ldc, float* scale, lapack_int* info,
                     std::size_t length_a, std::size_t length_b) {
   if (!Inject(c, scale, info, length_a, length_b)) {
+    lapack_int withheld_info = 0;
+    if (g_fault == Fault::kUnwrittenInfo) {
+      info = &withheld_info;
+    }
     __real_strsyl_(operation_a, operation_b, sign, m, n, a, lda, b, ldb, c, ldc,
                    scale, info, length_a, length_b);
   }
@@ -113,6 +118,10 @@ void __wrap_dtrsyl_(const char* operation_a, const char* operation_b,
                     const lapack_int* ldc, double* scale, lapack_int* info,
                     std::size_t length_a, std::size_t length_b) {
   if (!Inject(c, scale, info, length_a, length_b)) {
+    lapack_int withheld_info = 0;
+    if (g_fault == Fault::kUnwrittenInfo) {
+      info = &withheld_info;
+    }
     __real_dtrsyl_(operation_a, operation_b, sign, m, n, a, lda, b, ldb, c, ldc,
                    scale, info, length_a, length_b);
   }
@@ -132,6 +141,10 @@ void __wrap_ctrsyl_(const char* operation_a, const char* operation_b,
                     const lapack_int* ldc, float* scale, lapack_int* info,
                     std::size_t length_a, std::size_t length_b) {
   if (!Inject(c, scale, info, length_a, length_b)) {
+    lapack_int withheld_info = 0;
+    if (g_fault == Fault::kUnwrittenInfo) {
+      info = &withheld_info;
+    }
     __real_ctrsyl_(operation_a, operation_b, sign, m, n, a, lda, b, ldb, c, ldc,
                    scale, info, length_a, length_b);
   }
@@ -151,6 +164,10 @@ void __wrap_ztrsyl_(const char* operation_a, const char* operation_b,
                     const lapack_int* ldc, double* scale, lapack_int* info,
                     std::size_t length_a, std::size_t length_b) {
   if (!Inject(c, scale, info, length_a, length_b)) {
+    lapack_int withheld_info = 0;
+    if (g_fault == Fault::kUnwrittenInfo) {
+      info = &withheld_info;
+    }
     __real_ztrsyl_(operation_a, operation_b, sign, m, n, a, lda, b, ldb, c, ldc,
                    scale, info, length_a, length_b);
   }

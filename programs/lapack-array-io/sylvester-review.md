@@ -236,3 +236,12 @@ still required. Meaningful nonfinite-input behavior has not been exhaustively
 verified; the implemented postflight warning policy must not be described
 as a universal correctness claim. Only four ordinary TRSYL routes are
 implemented here; TRSYL3/TGSYL and all other P08 families remain required.
+
+
+## Root native INFO-output correction
+
+Four TRSYL native INFO locals now start at full-width MIN. Actual-call test-only INFO destination omission reproduces old wrong success4/4 tests perABI:104 invalid success/status/scale/publication profiles,312 changed packed cells. Corrected source passes Debug/Release/all-ASC-C++ ASan each16/16 perABI and strict3TUs eachABI, format4 and root coverage validation. All prior assertions and finite-diagonal overflow gate remain; no upstream patch. Scoped bases are exact V9-02 Release and V10-01 instrumented ASC archives; foreign unsanitized, no new full-suite/installed claim. Six link-map relinks are byte-identical to executed contract-test binaries and pull only the corrected Sylvester member.
+
+The correction is exactly four initializer changes and additive test fault/mode sweeps. All four actual pinned source routines assign INFO on entry; omission is explicitly injected evidence. All valid operation pairs, signs and layouts have104 ordinary positive controls and104 withheld-output cases per ABI. MIN is retained without signed-minimum negation or an invented native argument; row-major C and scale are not published, direct column-major C retains actual provider mutation and is reported unusable.
+
+External source identities and31 command records are audited in `p08-sylvester-info-output-01/completion-audit-01/audit.json`, SHA256 `6a019819be0883bd4026d0dda9e7630875919c99ed2aef98abcd6bbf5f8bd7fb`. The four production/test files were imported byte-for-byte, and all four mapping rows refresh their artifact hashes atomically. Subsequent root coverage-import command also passes. The V10 full suite is not evidence of this later numerical-source correction. Current combined revalidation follows with GT integration.

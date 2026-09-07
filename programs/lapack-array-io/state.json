@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "a0a1e156041015636534627098e1e025e90e2ac3",
+  "last_implementation_commit": "f2489ab9a41249e3837720b34770486efd0b2f79",
   "worktree_diff_identity": {
-    "state": "uncommitted_v10_general_band",
-    "parent_commit": "a0a1e156041015636534627098e1e025e90e2ac3",
-    "note": "V10 product matches frozen02 exactly outside programs; composed gates complete. Awaiting local checkpoint commit; no remote action."
+    "state": "uncommitted_sylvester_info_correction",
+    "parent_commit": "f2489ab9a41249e3837720b34770486efd0b2f79",
+    "note": "Four imported files + affected coverage hashes and program annotations; scoped checks completed, current combined next."
   },
   "packages": {
     "P00": {
@@ -302,7 +302,7 @@
       "worktree": "../asc-cpp-p08-sylvester",
       "branch": "feature/lapack-p08-sylvester",
       "base_commit": "31e93935f8db4ac685c2224abf7860a058040117",
-      "scope": "Root imported exact12 code/test files plus final self-review from source-manifest cfd1e480505d55590f2aaa0f373fb832d4c22db216db8d81b07834622431dd93, full isolated archive94849a35b2cafad9f7890a14f58d56085c83ae1e2affd101bb1f375bf514a1c5. Earlier alias/consumer/ABI product hashes preserved. Atomic root optional registrations and four partial rows now complete; fresh combined/installed tests pending. Actual scoped13 perABI Release/ASan/libc, strict6TUs+consumer+ABI,85headers/1663Doxy,60directABIcalls and416public solves+4warnings passed. Source45full44checkedobjects/runtime closure recorded. TRSYL3/TGSYL/fullP08/normalized modes remain required. V8 registered and oldsource full bothABI431/installed11 passed; finite-diagonal wrong-success found independently. Correction tree2affa1a passes bothABI15/ASan15/strict2/Doxy88; exact full corrected integration and upstream finite-large math remain required."
+      "scope": "Root imported exact12 code/test files plus final self-review from source-manifest cfd1e480505d55590f2aaa0f373fb832d4c22db216db8d81b07834622431dd93, full isolated archive94849a35b2cafad9f7890a14f58d56085c83ae1e2affd101bb1f375bf514a1c5. Earlier alias/consumer/ABI product hashes preserved. Atomic root optional registrations and four partial rows now complete; fresh combined/installed tests pending. Actual scoped13 perABI Release/ASan/libc, strict6TUs+consumer+ABI,85headers/1663Doxy,60directABIcalls and416public solves+4warnings passed. Source45full44checkedobjects/runtime closure recorded. TRSYL3/TGSYL/fullP08/normalized modes remain required. V8 registered and oldsource full bothABI431/installed11 passed; finite-diagonal wrong-success found independently. Correction tree2affa1a passes bothABI15/ASan15/strict2/Doxy88; exact full corrected integration and upstream finite-large math remain required. Four TRSYL native INFO locals now start at full-width MIN. Actual-call test-only INFO destination omission reproduces old wrong success4/4 tests perABI:104 invalid success/status/scale/publication profiles,312 changed packed cells. Corrected source passes Debug/Release/all-ASC-C++ ASan each16/16 perABI and strict3TUs eachABI, format4 and root coverage validation. All prior assertions and finite-diagonal overflow gate remain; no upstream patch. Scoped bases are exact V9-02 Release and V10-01 instrumented ASC archives; foreign unsanitized, no new full-suite/installed claim. Six link-map relinks are byte-identical to executed contract-test binaries and pull only the corrected Sylvester member."
     },
     "P07.standard_svd": {
       "state": "in_progress",
@@ -328,12 +328,12 @@
     "P04.provider_info_output_validation": {
       "state": "in_progress",
       "owner": "integration",
-      "scope": "GT24 independently demonstrates/fixes32falsepivot+56falseINFOsuccesses acrossABIs; newGB8 fullwidthsentinels alreadyimplemented. Band20 nextreproduction/fix delegated. Read-only source audit finds103zero-initialized nativeINFOlocals across22existing productionTUs; those are review candidates, not claimed executed defects. Preserve old test evidence identities; systematic per-family fault-mode closure required. Root Sylvester actual withheld-INFO old code4/4fail eachABI, corrected six16-test lanes pass0skip, strict final pending; four-file external correction not imported yet. Band20 independent omission correction passes scoped controls, final replay ongoing; original LU bounded audit delegated separately.",
+      "scope": "GT24 independently demonstrates/fixes32falsepivot+56falseINFOsuccesses acrossABIs; newGB8 fullwidthsentinels alreadyimplemented. Band20 nextreproduction/fix delegated. Read-only source audit finds103zero-initialized nativeINFOlocals across22existing productionTUs; those are review candidates, not claimed executed defects. Preserve old test evidence identities; systematic per-family fault-mode closure required. Root Sylvester actual withheld-INFO old code4/4fail eachABI, corrected six16-test lanes pass0skip, strict final pending; four-file external correction not imported yet. Band20 independent omission correction passes scoped controls, final replay ongoing; original LU bounded audit delegated separately. Root Sylvester4 correction imported and scoped gates complete; all22file/103local catalog entries outside completed four remain candidates until individually closed. Original PB band factor/solve info=0 remains explicitly unmodified. GT24 and Band20 separate correction evidence not full integrated acceptance.",
       "evidence": "provider-info-initialization-audit-01/audit.json"
     }
   },
-  "active_task": "P08.Sylvester INFO-output correction: finish linkage/source audit, import four files, refresh affected registration evidence; then preserved GT24 integration.",
-  "next_action": "Audit E/p08-sylvester-info-output-01 source-identities.json, six fixed16-test lanes, both old4-test failures, strict3TUs/ABI and exact archive linkage; import four fixed files only after completed audit. Then import corrected GT24 original20+13patch and public-consumer04, register all required normal failing math tests.",
+  "active_task": "P05.general_tridiagonal: import preserved corrected24 routes and independent public consumer, register required tests and freeze V11 combined evidence.",
+  "next_action": "Import exactly20 GT files from p05-tridiagonal-sentinel-01-vskus1c2/source-fixed after manifest check, original owner review and separate correction review; import public-consumer04 tridiagonal_main.cc. Register24 inventory rows,4headers,33 ordinary tests including4 required extreme failures,8header checks and installed consumer. Freeze/run current combined bothABI full and affected sanitizer/strict/docs.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -580,7 +580,8 @@
     "review": "programs/lapack-array-io/lu-band-review.md",
     "completion_audit": "p05-general-band-integration-v10-02/completion-audit-01/audit.json",
     "completion_audit_sha256": "04f30966f894ed1e045a0906786e92e4d2a8649780c1f625c6d61397c7e5e5a2",
-    "pending": []
+    "pending": [],
+    "implementation_commit": "f2489ab9a41249e3837720b34770486efd0b2f79"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",

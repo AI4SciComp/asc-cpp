@@ -548,6 +548,78 @@ void Faults(TestContext& test, const asc::ReferenceLapackProvider& provider,
 }
 
 template <typename T>
+void UnwrittenInfoCase(TestContext& test,
+                       const asc::ReferenceLapackProvider& provider,
+                       Layout layout, Operation operation_a,
+                       Operation operation_b, Sign sign, bool withheld) {
+  using Real = asc::DenseBlasRealType<T>;
+  Fixture<T> f(layout);
+  const auto plan = Take(asc::QueryTrsylWorkspace(
+      provider, operation_a, operation_b, sign, f.a.const_view(),
+      f.b.const_view(), f.c.view(), f.report));
+  Scratch<T> scratch(plan);
+  const auto a_before = f.a.bytes();
+  const auto b_before = f.b.bytes();
+  const auto c_before = f.c.bytes();
+  const auto calls = ForeignCalls();
+  SetFault(withheld ? Fault::kUnwrittenInfo : Fault::kNone);
+  const auto status = WithoutAllocation(test, [&] {
+    return asc::Trsyl(provider, operation_a, operation_b, sign,
+                      f.a.const_view(), f.b.const_view(), f.c.view(), f.scale,
+                      plan, scratch.workspace, f.report);
+  });
+  SetFault(Fault::kNone);
+  ASC_DENSE_TEST_EQ(test, ForeignCalls(), calls + 1);
+  ASC_DENSE_TEST_CHECK(test, f.report.called_provider);
+  ASC_DENSE_TEST_EQ(test, status.code(),
+                    withheld ? asc::ErrorCode::kProvider : asc::ErrorCode::kOk);
+  ASC_DENSE_TEST_EQ(test, f.report.native_info,
+                    withheld ? ProviderIntegerMinimum() : 0);
+  ASC_DENSE_TEST_CHECK(test, !f.report.native_argument.has_value());
+  ASC_DENSE_TEST_EQ(test, f.report.output_validity,
+                    withheld ? asc::LapackOutputValidity::kUnusable
+                             : asc::LapackOutputValidity::kComplete);
+  ASC_DENSE_TEST_EQ(test, f.scale, withheld ? -73 : 1);
+  if (withheld && layout == Layout::kRowMajor) {
+    f.c.CheckSame(test, c_before);
+  } else {
+    const T expected{Real{2} / (sign == Sign::kPlus ? Real{10} : Real{-4})};
+    for (extent_t i = 0; i < 3; ++i) {
+      for (extent_t j = 0; j < 2; ++j) {
+        ASC_DENSE_TEST_CHECK(test,
+                             std::abs(f.c(i, j) - expected) <=
+                                 4 * std::numeric_limits<Real>::epsilon());
+      }
+    }
+  }
+  f.a.CheckSame(test, a_before);
+  f.b.CheckSame(test, b_before);
+  f.c.CheckPadding(test, c_before);
+  scratch.CheckGuards(test);
+}
+
+template <typename T>
+void UnwrittenInfo(TestContext& test,
+                   const asc::ReferenceLapackProvider& provider,
+                   Layout layout) {
+  for (const auto a : {Operation::kNone, Operation::kTranspose,
+                       Operation::kConjugateTranspose}) {
+    for (const auto b : {Operation::kNone, Operation::kTranspose,
+                         Operation::kConjugateTranspose}) {
+      if (asc::DenseBlasComplex<T> &&
+          (a == Operation::kTranspose || b == Operation::kTranspose)) {
+        continue;
+      }
+      for (const auto sign : {Sign::kPlus, Sign::kMinus}) {
+        for (const bool withheld : {false, true}) {
+          UnwrittenInfoCase<T>(test, provider, layout, a, b, sign, withheld);
+        }
+      }
+    }
+  }
+}
+
+template <typename T>
 void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
   for (const auto layout : {Layout::kColumnMajor, Layout::kRowMajor}) {
     Preflight<T>(test, provider, layout);
@@ -555,6 +627,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
     LargeFiniteControls<T>(test, provider, layout);
     Empty<T>(test, provider, layout);
     Faults<T>(test, provider, layout);
+    UnwrittenInfo<T>(test, provider, layout);
   }
   WideUnusedStride<T>(test, provider);
   ASC_DENSE_TEST_CHECK(test, CharacterLengthsValid());

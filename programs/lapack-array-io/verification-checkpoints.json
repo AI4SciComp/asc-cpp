@@ -45403,6 +45403,1866 @@
         "sentinel_patch_sha256": "7995df010e289ce6b534f140bcb14c0ca95d4972065cbd7a369a600921c0a1f4",
         "sentinel_verified_artifact_count": 404
       }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/build-record-ilp64-fixed-asan/record.json",
+      "record_sha256": "744121f771a23d91c2d4a2ede75871da24f86bc7d28370494b2c7e21bd3b52b5",
+      "id": "build-record-ilp64-fixed-asan",
+      "started": "2026-09-07T20:51:05.990579+00:00",
+      "completed": "2026-09-07T20:51:26.190719+00:00",
+      "configuration": "ilp64-fixed-asan",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-asan",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "f197f5f435420c4eb3ad4c43ab57fc9cd4121cae2465d83d1dd65859692e1dd7"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/build-record-ilp64-fixed-debug/record.json",
+      "record_sha256": "c76a109f79667d01b264eb2d70a7e255128964a70388fe2c9165d2410cf5162c",
+      "id": "build-record-ilp64-fixed-debug",
+      "started": "2026-09-07T20:51:05.135482+00:00",
+      "completed": "2026-09-07T20:51:22.254163+00:00",
+      "configuration": "ilp64-fixed-debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "b6093e75005c39fe801c9409517df256a2b4653e07e93360d2034caff0242a7b"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/build-record-ilp64-fixed-release/record.json",
+      "record_sha256": "23cd995d39d72b729e3e568f4f3359851254a408f7d071825ce13a3b539b8b44",
+      "id": "build-record-ilp64-fixed-release",
+      "started": "2026-09-07T20:41:55.038871+00:00",
+      "completed": "2026-09-07T20:42:23.446127+00:00",
+      "configuration": "ilp64-fixed-release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "dc28c601860719d8d26c9b49c57ee41b63edc1f0c61977c7c583b950823881a8"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/build-record-ilp64-old-release/record.json",
+      "record_sha256": "df548a670610fd486fc07d017dd39952a5bb7edb2a71bd68fceaca3693d12e45",
+      "id": "build-record-ilp64-old-release",
+      "started": "2026-09-07T20:41:54.819350+00:00",
+      "completed": "2026-09-07T20:42:23.123298+00:00",
+      "configuration": "ilp64-old-release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-old-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "098415ed8d5b72e4166ee702af194a1c1def0ac2c46bbe30ab05afee6ac00c02"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "old Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/build-record-lp64-fixed-asan/record.json",
+      "record_sha256": "11278c2c4e17dd4ab5bbc7716c051751b33184115a274b01c97b447ea4d070b6",
+      "id": "build-record-lp64-fixed-asan",
+      "started": "2026-09-07T20:51:05.986704+00:00",
+      "completed": "2026-09-07T20:51:26.233847+00:00",
+      "configuration": "lp64-fixed-asan",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-asan",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "3967ca5b372505e8f053258561e9f50f51799314728c0f0ff6e6268cde241978"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/build-record-lp64-fixed-debug/record.json",
+      "record_sha256": "1183f72752a76871b33909cc4dd4879628c1bc62f19d34e09212df58767ba8ad",
+      "id": "build-record-lp64-fixed-debug",
+      "started": "2026-09-07T20:51:05.325792+00:00",
+      "completed": "2026-09-07T20:51:22.533952+00:00",
+      "configuration": "lp64-fixed-debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "47961ae9ec8bb75f224c0a66baf93017d486e9707669f082846591d81fef9f70"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/build-record-lp64-fixed-release/record.json",
+      "record_sha256": "64d881713ed4e951cb58e73dd02043ec86708c0f477101e4e97adddc1f412e90",
+      "id": "build-record-lp64-fixed-release",
+      "started": "2026-09-07T20:41:54.802115+00:00",
+      "completed": "2026-09-07T20:42:23.213630+00:00",
+      "configuration": "lp64-fixed-release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "52c11077912cffd32aeabb0f0100cb1978f63ea02feedd05dea4fdadc68ee264"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/build-record-lp64-old-release/record.json",
+      "record_sha256": "5dad7a796999b849077b241daeae03e298781e7135328355422a9eee13af1ca5",
+      "id": "build-record-lp64-old-release",
+      "started": "2026-09-07T20:41:54.840802+00:00",
+      "completed": "2026-09-07T20:42:22.977848+00:00",
+      "configuration": "lp64-old-release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-old-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "bd80dd4a1cfbaaa9fc690947d3b3500ef57d36eac7d3f7ae3be3405c22e768cf"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "old Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/configure-ilp64-fixed-asan/record.json",
+      "record_sha256": "71e98e4b9ea040e413fa26efaea56eaf9093a14a95ac3028a2e6ab98f48bb09c",
+      "id": "configure-ilp64-fixed-asan",
+      "started": "2026-09-07T20:51:03.900297+00:00",
+      "completed": "2026-09-07T20:51:05.689102+00:00",
+      "configuration": "ilp64-fixed-asan",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/harness",
+        "-B",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-asan",
+        "-DABI=ilp64",
+        "-DVARIANT=fixed",
+        "-DSANITIZE=ON",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "fd8742c5b4f06e966714218328aa93fb72099f095fdcc70e16fbe074ea33166a"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/configure-ilp64-fixed-debug/record.json",
+      "record_sha256": "323bf96999ed48bc3967c44bfb6893810a58ae89ffccbd35cd78a007dea87c63",
+      "id": "configure-ilp64-fixed-debug",
+      "started": "2026-09-07T20:51:03.872834+00:00",
+      "completed": "2026-09-07T20:51:04.816969+00:00",
+      "configuration": "ilp64-fixed-debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/harness",
+        "-B",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-debug",
+        "-DABI=ilp64",
+        "-DVARIANT=fixed",
+        "-DSANITIZE=OFF",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/c++"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "9df53b570ef4c7d0c45985081638fd48ede69a75d23d641e15b3c9fae8ebd87d"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/configure-ilp64-fixed-release/record.json",
+      "record_sha256": "0fb490e3c90ce0cd83b2c710f9d989832e9df8587f97daa1c5894d0f37f9977a",
+      "id": "configure-ilp64-fixed-release",
+      "started": "2026-09-07T20:41:53.138698+00:00",
+      "completed": "2026-09-07T20:41:54.606314+00:00",
+      "configuration": "ilp64-fixed-release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/harness",
+        "-B",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-release",
+        "-DABI=ilp64",
+        "-DVARIANT=fixed",
+        "-DSANITIZE=OFF",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/c++"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "5e44d393b8a1cf198755b4f33f520d87ca41e65fc69057d618e883d45261cf18"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/configure-ilp64-old-release/record.json",
+      "record_sha256": "e2e68a1a9126c7ed03aedb9ed0c2f9a2e75d1feba5f464b704b1ca956b726b61",
+      "id": "configure-ilp64-old-release",
+      "started": "2026-09-07T20:41:53.081761+00:00",
+      "completed": "2026-09-07T20:41:54.358310+00:00",
+      "configuration": "ilp64-old-release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/harness",
+        "-B",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-old-release",
+        "-DABI=ilp64",
+        "-DVARIANT=old",
+        "-DSANITIZE=OFF",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/c++"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "77d531a4df237b000328ca494a170587d8fe5db514732469f7d4c55a45ab649c"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "old Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/configure-lp64-fixed-asan/record.json",
+      "record_sha256": "b14f8984e4d712aaf5c96e9021e92c7eacaaefa6e89d6898913ef85fd95f8a7e",
+      "id": "configure-lp64-fixed-asan",
+      "started": "2026-09-07T20:51:03.873398+00:00",
+      "completed": "2026-09-07T20:51:05.644351+00:00",
+      "configuration": "lp64-fixed-asan",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/harness",
+        "-B",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-asan",
+        "-DABI=lp64",
+        "-DVARIANT=fixed",
+        "-DSANITIZE=ON",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "bea41e65ce6c15806dd2db975bda785c7f6aa0b294ddc5f78222d6d2e9e77541"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/configure-lp64-fixed-debug/record.json",
+      "record_sha256": "1b01f0aac6176e74743abcf11f657a040cf4db5e5d8829118ca0e567501fdc2c",
+      "id": "configure-lp64-fixed-debug",
+      "started": "2026-09-07T20:51:03.844773+00:00",
+      "completed": "2026-09-07T20:51:05.011480+00:00",
+      "configuration": "lp64-fixed-debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/harness",
+        "-B",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-debug",
+        "-DABI=lp64",
+        "-DVARIANT=fixed",
+        "-DSANITIZE=OFF",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/c++"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "095bd7813cd6ca5afb3ece8c74201f0a4e6c0f46498c864b90bd9c735ce21373"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/configure-lp64-fixed-release/record.json",
+      "record_sha256": "b8e97c78a36fbdbd91980d401dbed0b20d798689b61c6cdfb1fa6034682f7d9a",
+      "id": "configure-lp64-fixed-release",
+      "started": "2026-09-07T20:41:53.071958+00:00",
+      "completed": "2026-09-07T20:41:54.354487+00:00",
+      "configuration": "lp64-fixed-release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/harness",
+        "-B",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-release",
+        "-DABI=lp64",
+        "-DVARIANT=fixed",
+        "-DSANITIZE=OFF",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/c++"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "d1b4dd48409d00e68a8b37660c49be4609e3e7f17a4296e3fb916e13b849f712"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/configure-lp64-old-release/record.json",
+      "record_sha256": "663ebbb17eade8528b67b788aab511043900fcb642132aaef4608aeb8d9f42c9",
+      "id": "configure-lp64-old-release",
+      "started": "2026-09-07T20:41:53.067539+00:00",
+      "completed": "2026-09-07T20:41:54.369664+00:00",
+      "configuration": "lp64-old-release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/harness",
+        "-B",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-old-release",
+        "-DABI=lp64",
+        "-DVARIANT=old",
+        "-DSANITIZE=OFF",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/c++"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "18621a4f84b077fe1786af0bbeb67ad576613251852e8a83da013593a700ef73"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "old Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/coverage-root-import/record.json",
+      "record_sha256": "0b4f523cff8d8b4fe6d9039813f1284e173ff9c78383f8f332a8c37a9e93c846",
+      "id": "coverage-root-import",
+      "started": "2026-09-07T20:59:08.713307+00:00",
+      "completed": "2026-09-07T20:59:09.336118+00:00",
+      "configuration": "root-Sylvester-INFO-import",
+      "command": [
+        "python",
+        "-B",
+        "/home/yicai/AI4SciComp/asc-cpp-lapack-array-io/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "/home/yicai/AI4SciComp/asc-cpp-lapack-array-io/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "/home/yicai/AI4SciComp/asc-cpp-lapack-array-io/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "/home/yicai/AI4SciComp/asc-cpp-lapack-array-io/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "/home/yicai/AI4SciComp/asc-cpp-lapack-array-io/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "/home/yicai/AI4SciComp/asc-cpp-lapack-array-io",
+        "--evidence-root",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "414fb94a23b64a7e82066f4fdff3685524f85ec68d1f3f9580bb50b85f787e48"
+      },
+      "source_before": {
+        "commit": "f2489ab9a41249e3837720b34770486efd0b2f79",
+        "content_sha256": "3e3a68ce7d162d642b425ee03f71571d114d59134ad34faed28093c6f207337c",
+        "dirty_diff_sha256": "79b47c1c822b947342a81587a0989af379766fdd7ea5a86d712240b55043c21e",
+        "tree": "28fee83943e291fc3cb5c25157d69e65c3a339f4"
+      },
+      "source_after": {
+        "commit": "f2489ab9a41249e3837720b34770486efd0b2f79",
+        "content_sha256": "3e3a68ce7d162d642b425ee03f71571d114d59134ad34faed28093c6f207337c",
+        "dirty_diff_sha256": "79b47c1c822b947342a81587a0989af379766fdd7ea5a86d712240b55043c21e",
+        "tree": "28fee83943e291fc3cb5c25157d69e65c3a339f4"
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/ctest-ilp64-fixed-asan/record.json",
+      "record_sha256": "fe311bba1ecabe8a496240d517495fa223df69c579b60462689769bd3cef14cf",
+      "id": "ctest-ilp64-fixed-asan",
+      "started": "2026-09-07T20:51:26.524096+00:00",
+      "completed": "2026-09-07T20:51:28.063410+00:00",
+      "configuration": "ilp64-fixed-asan",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-asan",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/ctest-ilp64-fixed-asan/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 16,
+        "failed": 0,
+        "passed": 16,
+        "selected": 16,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "8925d80b3135988300da455170edcf5d0d25f17f44a11c9bf5f00ca9a4419d64",
+        "ctest.xml": "60e5c290378131bf5449737b1046652d776843c4fc9db8f2c5399eacbff16cab"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/ctest-ilp64-fixed-debug/record.json",
+      "record_sha256": "d92bd1bb37fbfc69363a87b9352daa4ea4e367b77b5ee8bf971939294262185c",
+      "id": "ctest-ilp64-fixed-debug",
+      "started": "2026-09-07T20:51:22.764447+00:00",
+      "completed": "2026-09-07T20:51:23.261577+00:00",
+      "configuration": "ilp64-fixed-debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-debug",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/ctest-ilp64-fixed-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 16,
+        "failed": 0,
+        "passed": 16,
+        "selected": 16,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "dd86afc3074cf10fe9518577fb92e94f6d8f0fbafec8656a84040d4ea87730ee",
+        "ctest.xml": "10dc89b07ee27c81883ff9d6c30ba799a59bff60504fffa12ab95c590af3ee52"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/ctest-ilp64-fixed-release/record.json",
+      "record_sha256": "81c609c46709b91c6a604d8957365a4bff14fa14d0c42dfe270e36b377179484",
+      "id": "ctest-ilp64-fixed-release",
+      "started": "2026-09-07T20:42:23.802885+00:00",
+      "completed": "2026-09-07T20:42:23.906267+00:00",
+      "configuration": "ilp64-fixed-release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-fixed-release",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/ctest-ilp64-fixed-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 16,
+        "failed": 0,
+        "passed": 16,
+        "selected": 16,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "20859ba3763231fa9b2f3cadf30201a02b3944b2f2c8ff17d4ac14971a594818",
+        "ctest.xml": "202b50325771566ff8523c1a3d5a170cbde05dffb01a8979ea3a8fef8481e819"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/ctest-ilp64-old-release/record.json",
+      "record_sha256": "57fadb292539581cd0f098f315918bf5202b4507be9d92561edc8a7c1cccf4c0",
+      "id": "ctest-ilp64-old-release",
+      "started": "2026-09-07T20:42:23.512340+00:00",
+      "completed": "2026-09-07T20:42:23.553600+00:00",
+      "configuration": "ilp64-old-release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-ilp64-old-release",
+        "--output-on-failure",
+        "-R",
+        "sylvester_contract",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/ctest-ilp64-old-release/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 4,
+        "failed": 4,
+        "passed": 0,
+        "selected": 4,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "977f03370ba2f1dd97f1c324e22aa1d187e3e8cf45589ae27ffa430626a36fa9",
+        "ctest.xml": "75aa4fd2cf440e31ede36a9425412abd24494a4400f3acb5339462cad39a11d8"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "old Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/ctest-lp64-fixed-asan/record.json",
+      "record_sha256": "f88a966103c0e0bc465e2fa15212233f350d862f6c80b9c28c53c5146471d878",
+      "id": "ctest-lp64-fixed-asan",
+      "started": "2026-09-07T20:51:26.619818+00:00",
+      "completed": "2026-09-07T20:51:28.067010+00:00",
+      "configuration": "lp64-fixed-asan",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-asan",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/ctest-lp64-fixed-asan/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 16,
+        "failed": 0,
+        "passed": 16,
+        "selected": 16,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "71ebd35b2a5c4af5d29dfa7d9a69d5b368bdafc7824f467ef7fd822685520127",
+        "ctest.xml": "d71b118c06e3ac0270f2540bdc0772dd362957408ed8233cf108d831a562a456"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/ctest-lp64-fixed-debug/record.json",
+      "record_sha256": "7c4173584de1c6429faeef8f1789ec5768af111f99e58fd77d4b3a9d1bf28fa3",
+      "id": "ctest-lp64-fixed-debug",
+      "started": "2026-09-07T20:51:23.051316+00:00",
+      "completed": "2026-09-07T20:51:23.565508+00:00",
+      "configuration": "lp64-fixed-debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-debug",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/ctest-lp64-fixed-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 16,
+        "failed": 0,
+        "passed": 16,
+        "selected": 16,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "4a06e27a2ec41aba75ae6e3924391a13a2e2d1284de032dfbd7f6f7d9edf8128",
+        "ctest.xml": "9cfc74cf117fa700c6e48566928ad4a4298474ce829065886c65328fb381d807"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/ctest-lp64-fixed-release/record.json",
+      "record_sha256": "cefdf6490e5ed4e577f4a978519872ca141cf3cb6b4e644510d0993d8630c309",
+      "id": "ctest-lp64-fixed-release",
+      "started": "2026-09-07T20:42:23.597059+00:00",
+      "completed": "2026-09-07T20:42:23.699172+00:00",
+      "configuration": "lp64-fixed-release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-fixed-release",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/ctest-lp64-fixed-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 16,
+        "failed": 0,
+        "passed": 16,
+        "selected": 16,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "d2399d3dbabc95ff3d43e88620024280f92d952cb9b2ee5577aea2b3f6d74c98",
+        "ctest.xml": "ecfeb5aa17af64ef000f99b124b5adff660a95b013604ec9c3f71105ff4d6bba"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/ctest-lp64-old-release/record.json",
+      "record_sha256": "5c0df33db75cf67b547d9e2d9d4b9eadd252e5b2bf1ad3544e5a543d3080a5b1",
+      "id": "ctest-lp64-old-release",
+      "started": "2026-09-07T20:42:23.347352+00:00",
+      "completed": "2026-09-07T20:42:23.389012+00:00",
+      "configuration": "lp64-old-release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/build-lp64-old-release",
+        "--output-on-failure",
+        "-R",
+        "sylvester_contract",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/ctest-lp64-old-release/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 4,
+        "failed": 4,
+        "passed": 0,
+        "selected": 4,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "1d058b84fdd68c8de2c559b04d73e2aef8697bdf551da957aba681aae560aaba",
+        "ctest.xml": "fed66eb992982ef79f6d7d71ce22de52cdb294722dc5d37591dc02a0baf0ee18"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "98f1b6e4e86a3c85157e009182c680229c731c62ec254ec0d8c847c0e17bddef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "old Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/format-fixed/record.json",
+      "record_sha256": "2abae65a1fd9e6c296c4d8d2a39479abdc499f1581c4d48d4fced0b4e3d2fffd",
+      "id": "format-fixed",
+      "started": "2026-09-07T20:52:03.892578+00:00",
+      "completed": "2026-09-07T20:52:03.992528+00:00",
+      "configuration": "Clang18-format-four-changed-files",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack/reference_sylvester.cc",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/tests/dense_lapack/sylvester_faults.h",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/tests/dense_lapack/sylvester_faults.cc",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/tests/dense_lapack/sylvester_contract_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/strict-ilp64-src-dense-lapack-reference_sylvester.cc/record.json",
+      "record_sha256": "b44d791f2edb1ceefbcbdc2669b57f6707f2057664c1db1c713174c920185248",
+      "id": "strict-ilp64-src-dense-lapack-reference_sylvester.cc",
+      "started": "2026-09-07T20:52:26.301911+00:00",
+      "completed": "2026-09-07T20:52:54.480919+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack/reference_sylvester.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/sylvester.*|.*/tests/dense_lapack/installed_lu/normal_return_guard)\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "ec152350897e8a353d56d5cd391b3776907d46f31d7690694ca6f12100437eee"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/strict-ilp64-tests-dense_lapack-sylvester_contract_test.cc/record.json",
+      "record_sha256": "b2e59e02122f2d64a8c41ca364fc7f4436f0eff2664ab63fc2b6876c0e9669c4",
+      "id": "strict-ilp64-tests-dense_lapack-sylvester_contract_test.cc",
+      "started": "2026-09-07T20:52:59.889798+00:00",
+      "completed": "2026-09-07T20:55:17.023963+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/tests/dense_lapack/sylvester_contract_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/sylvester.*|.*/tests/dense_lapack/installed_lu/normal_return_guard)\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "d365d6e4dce813c869db4a3da162a1232de3c5c60daeff27e1361e0cbe729f18"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/strict-ilp64-tests-dense_lapack-sylvester_faults.cc/record.json",
+      "record_sha256": "2996e3024da7821fe48a8cc0f5e305e759fd09789f3d4b308609e0254a323236",
+      "id": "strict-ilp64-tests-dense_lapack-sylvester_faults.cc",
+      "started": "2026-09-07T20:52:54.769202+00:00",
+      "completed": "2026-09-07T20:52:59.602981+00:00",
+      "configuration": "Clang18-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/tests/dense_lapack/sylvester_faults.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/sylvester.*|.*/tests/dense_lapack/installed_lu/normal_return_guard)\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "ab7613bd2392501d204a635d86fbffa7aa8037ce7a7b2177868b9eb15e37aa9a"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/strict-lp64-src-dense-lapack-reference_sylvester.cc/record.json",
+      "record_sha256": "e74372f36c1d81d46ff8fcf0043f412ede1ceec7874a21b6565a2b72a30ea505",
+      "id": "strict-lp64-src-dense-lapack-reference_sylvester.cc",
+      "started": "2026-09-07T20:52:26.266858+00:00",
+      "completed": "2026-09-07T20:52:54.177594+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack/reference_sylvester.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/sylvester.*|.*/tests/dense_lapack/installed_lu/normal_return_guard)\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "783b2f1de8dbe82909e03612bb9fc53705650354da8d795e4823c6e874e94e02"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/strict-lp64-tests-dense_lapack-sylvester_contract_test.cc/record.json",
+      "record_sha256": "644258ce8e85c81cb0b6621fd57cf01b3301f9af444891c82a3bb4a8463d0486",
+      "id": "strict-lp64-tests-dense_lapack-sylvester_contract_test.cc",
+      "started": "2026-09-07T20:52:59.338566+00:00",
+      "completed": "2026-09-07T20:55:17.632894+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/tests/dense_lapack/sylvester_contract_test.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/sylvester.*|.*/tests/dense_lapack/installed_lu/normal_return_guard)\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "d365d6e4dce813c869db4a3da162a1232de3c5c60daeff27e1361e0cbe729f18"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
+    },
+    {
+      "external_record": "p08-sylvester-info-output-01/strict-lp64-tests-dense_lapack-sylvester_faults.cc/record.json",
+      "record_sha256": "345c8e7cc65a47aa8c6a9f6ac12b5facee6b65294a65ba937dbcde6543a38866",
+      "id": "strict-lp64-tests-dense_lapack-sylvester_faults.cc",
+      "started": "2026-09-07T20:52:54.433123+00:00",
+      "completed": "2026-09-07T20:52:59.071652+00:00",
+      "configuration": "Clang18-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/tests/dense_lapack/sylvester_faults.cc",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/sylvester.*|.*/tests/dense_lapack/installed_lu/normal_return_guard)\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p08-sylvester-info-output-01/source-fixed/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "ab7613bd2392501d204a635d86fbffa7aa8037ce7a7b2177868b9eb15e37aa9a"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "e7e4c5cee460b65ca5dea3ba0a45b92c0a47f526bf9861001536163165afd936",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "metadata": {
+        "bound_base_files": {
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-ilp64/libaffected.a": "141f24f5663f2e90c1a627b64915d089c945f1576c7c2db9afd75effae7e692e",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-asan-lp64/libaffected.a": "aaef1374fb6fbe311bfd7d693833f323b98d160881830f92618d6ca637b61dca",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-ilp64/dense-lapack-config/lapack_build_config.h": "63f1a1909e6eaff05f3f394daa59114d1bd06252063ff9526d35ebcd60792947",
+          "$EVIDENCE_ROOT/p05-general-band-integration-v10-01/build-lp64/dense-lapack-config/lapack_build_config.h": "f27de542df624ca4d01facb0a7407440db11f49f7567630e7eb78352849fc05f",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/lapack/libasc_dense_lapack.a": "4b2c3ef4d3f0d49bde1b8c4d93bd521021baeaae480ce3fbc50f8c9ee0823257",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-ilp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/core/libasc_core.a": "19be4f3ddde1fcbe32aeacf7a8ed66743f820e599503b2a0c23642c946ba4531",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/lapack/libasc_dense_lapack.a": "e191a16266f4fe4ad1b2d430a82b456a270ed39066133e9c2ab29ce27d4c168d",
+          "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-lp64/src/dense/libasc_dense.a": "0922790d3e5760176286abd58acb41da3d44cbbebae2750c429266d8b58957b6"
+        },
+        "harness_sha256": "e2314174d9a1012597a0f3bdbecb3bec84a7740204154d44745aeff73ad4565e",
+        "scope": "fixed Sylvester native INFO-output fault contract; 208 additive profiles per ABI plus all unchanged tests. Old source must fail new expectations; fixed source preserves invalid MIN reports. Direct scoped Debug/Release tests use exactV9-02 Releasebase, sanitizer uses fullyinstrumentedV10base; rebuilt Sylvesterobject supplies same public functions before archive pull. No full-program/installed/foreign-instrumentation claim.",
+        "source_identities_sha256": "28c8739799d61310b6fd760e216250805a3bb09f4449041832699a63aa1ff8d6"
+      }
     }
   ]
 }

@@ -58,7 +58,7 @@ struct Native<float> {
                            lapack_int m, lapack_int n, const float* a,
                            const float* b, float* c, lapack_int ldc,
                            float& scale) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_strsyl(&operation_a, &operation_b, &sign, &m, &n, a, &m, b, &n, c,
                   &ldc, &scale, &info);
     return info;
@@ -73,7 +73,7 @@ struct Native<double> {
                            lapack_int m, lapack_int n, const double* a,
                            const double* b, double* c, lapack_int ldc,
                            double& scale) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_dtrsyl(&operation_a, &operation_b, &sign, &m, &n, a, &m, b, &n, c,
                   &ldc, &scale, &info);
     return info;
@@ -89,7 +89,7 @@ struct Native<std::complex<float>> {
                            const std::complex<float>* a,
                            const std::complex<float>* b, std::complex<float>* c,
                            lapack_int ldc, float& scale) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_ctrsyl(&operation_a, &operation_b, &sign, &m, &n, a, &m, b, &n, c,
                   &ldc, &scale, &info);
     return info;
@@ -106,7 +106,7 @@ struct Native<std::complex<double>> {
                            const std::complex<double>* b,
                            std::complex<double>* c, lapack_int ldc,
                            double& scale) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_ztrsyl(&operation_a, &operation_b, &sign, &m, &n, a, &m, b, &n, c,
                   &ldc, &scale, &info);
     return info;
