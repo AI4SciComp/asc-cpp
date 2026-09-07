@@ -83,6 +83,23 @@ _run(example-build TRUE "${CMAKE_COMMAND}" --build "${WORK_DIR}/example build"
 _run(example-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
   "${WORK_DIR}/example build" -C "${CONFIG}" --output-on-failure --no-tests=error)
 
+file(COPY "${SOURCE_DIR}/tests/dense_lapack/installed_lu/"
+  DESTINATION "${WORK_DIR}/installed LU families")
+_run(lu-families-configure TRUE "${CMAKE_COMMAND}"
+  -S "${WORK_DIR}/installed LU families" -B "${WORK_DIR}/LU families build"
+  "-DASCCpp_DIR=${_package}" "-DCMAKE_CXX_COMPILER=${CXX_COMPILER}"
+  "-DASC_CPP_LAPACK_ROOT=${LAPACK_ROOT}" "-DTEST_RUNTIMES=${LAPACK_RUNTIMES}"
+  -DCMAKE_DISABLE_FIND_PACKAGE_CUDAToolkit=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_Python3=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_LAPACK=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_BLAS=TRUE
+  -DCMAKE_FIND_USE_PACKAGE_REGISTRY=FALSE)
+_run(lu-families-build TRUE "${CMAKE_COMMAND}" --build
+  "${WORK_DIR}/LU families build" --config "${CONFIG}")
+_run(lu-families-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
+  "${WORK_DIR}/LU families build" -C "${CONFIG}"
+  --output-on-failure --no-tests=error)
+
 set(_probe [=[
 cmake_minimum_required(VERSION 3.25)
 project(ASCCppProviderIsolation LANGUAGES CXX)

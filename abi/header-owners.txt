@@ -24,6 +24,8 @@ asc/dense/providers/cuda.h|asc_dense_cuda
 asc/dense/providers/cuda_export.h|asc_dense_cuda
 asc/dense/providers/lapack.h|asc_dense_lapack
 asc/dense/providers/lapack_export.h|asc_dense_lapack
+asc/dense/providers/lapack_lu.h|asc_dense_lapack
+asc/dense/providers/lapack_lu_equilibration.h|asc_dense_lapack
 asc/dense/view.h|asc_dense
 asc/dense/print.h|asc_dense
 asc/dense/lapack/types.h|asc_dense

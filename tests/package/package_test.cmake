@@ -66,6 +66,9 @@ function(_assert_package_files package_directory)
     ASCCppRandomSparseTargets.cmake
     ASCCppCppTargets.cmake
   )
+  if(ENABLE_LAPACK)
+    list(APPEND _expected_target_exports ASCCppDenseLapackTargets.cmake)
+  endif()
   if(ENABLE_CUDA)
     list(APPEND
       _expected_target_exports

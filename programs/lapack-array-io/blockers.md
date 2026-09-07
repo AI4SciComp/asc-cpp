@@ -20,3 +20,20 @@ Unblocked: exact external dependency preparation, source-derived inventory,
 independent ASC implementation, local tests, native algorithms and array I/O.
 Closure: actual approval of the concrete recorded materials by the responsible
 owner/reviewer. No such approval is claimed here.
+
+## LP64-GEEQUB-SUBNORMAL — unmet mathematical-success gate
+
+The exact pinned LP64 S/D/C/Z GEEQUB route returns INFO=1 and zero computed
+row scales for a tested nonzero subnormal matrix. Direct calls outside ASC
+reproduce it; the true ILP64 route succeeds on the same fixture. The reviewed
+power-helper evaluation order explains the ABI-dependent intermediate
+overflow. Exact code/provider/runtime/source identities, preserved failing
+mathematical logs and passing fidelity tests are in
+[lu-equilibration-review.md](lu-equilibration-review.md).
+
+The adapter preserves the raw numerical failure and documented partial
+outputs, not a false singularity certificate. Fidelity/error-report tests do
+not close mathematical success. No upstream patch or new provider identity
+has been silently approved. A conforming disposition and fresh verification
+remain required for this gate. All other ordinary LU, native algorithms,
+Matrix Market and later independent family work continue.

@@ -2,10 +2,28 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The facet currently implements checked column-major `Getrf` and `Getrs` for
-`float`, `double` and their complex counterparts, including N/T/C solve modes.
-Row-major conversion, the remaining required LAPACK routines and shared-facet
-isolation are not implemented by this slice. Native coverage is separate.
+The `incremental-lu-v2` facet implements checked column-major `Getrf`, `Getrs`,
+`Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
+counterparts, including N/T/C reusable solve modes. `Geequ` and `Geequb`
+also support row-major input through explicit caller-owned packing. All other
+required LAPACK routines, remaining layout routes and shared-facet isolation
+remain incomplete. Native coverage is separate; registration and scoped tests
+do not close the full routine/mode/evidence manifest.
+
+The extra LU operations are declared in `asc/dense/providers/lapack_lu.h`;
+equilibration is in `asc/dense/providers/lapack_lu_equilibration.h`. GETRI uses
+an actual nonmutating workspace query on the supplied raw LU/pivots, with
+explicit integer conversion storage. Execution consumes the checked plan
+without querying again. Singular GETRI preserves its input; singular GESV
+preserves completed raw LU/pivots and leaves the RHS unchanged.
+
+Known provider limitation: pinned GNU LP64 GEEQUB can produce a zero computed
+radix scale from nonzero subnormal input. ASC preserves exact INFO, returns
+`ErrorCode::kNumerical` with `LapackOutcome::kPartialResult`, and does not
+certify singular input or successful equilibration. The same fixture succeeds
+in the separately verified true ILP64 provider; the LP64 mathematical-success
+gate remains unmet. GEEQUB's pinned AMAX is radix-quantized, unlike GEEQU's
+original maximum. Public declarations document exact partial-output validity.
 
 ## Building the explicit subset
 

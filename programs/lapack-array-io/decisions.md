@@ -131,3 +131,13 @@ implemented-unverified routes. Unverified does not mean no tests ran: scoped
 passing artifacts can exist without complete mode/evidence closure. Neither
 renaming counters nor recording those artifacts changes the 2113-row denominator
 or awards verified coverage.
+
+## D013: layout scratch uses the ASC size domain
+
+`kLayoutConversion` counts describe caller-owned packing, not foreign LWORK.
+Only that role is exempt from the provider integer maximum. Logical sizes,
+checked byte products, alignment, capacities and disjointness remain checked;
+all foreign-work roles retain their ABI bounds. A pure-capacity regression
+above INT32_MAX failed against the prior implementation and now passes without
+fabricating a huge live backing allocation. Each wrapper still checks its
+own provider dimensions and intermediate formulas before foreign entry.

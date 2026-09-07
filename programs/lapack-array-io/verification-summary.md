@@ -199,6 +199,41 @@ The sanitized checkpoint index preserves each older record's actual scope
 rather than attributing its pass to later edits. Complete contract-bound
 LAPACK evidence still credits zero verified reference routines.
 
+## Expanded LU integration in progress
+
+The next `incremental-lu-v2` candidate registers 24 additional actual S/D/C/Z
+GETRF2, GETF2, GETRI, GESV, GEEQU and GEEQUB operations, and corrects the
+ASC-sized layout-workspace role. GEEQU/GEEQUB support both layouts; other
+registered routes in this candidate remain column-major. Thirty-two reference
+rows are in progress, zero fully verified; the complete denominator stays2113.
+Scoped source/ABI/numerical/allocation reviews remain distinct from final
+installed and normalized contract evidence. LP64 GEEQUB subnormal mathematical
+success remains unmet despite accurate tested reporting of its upstream failure.
+
+First integrated tree `cc07b3abdc0873e04c15ebf676690c78f331993a`, archive
+SHA256 `9603251bccaf3ca1e657414d5d0e6bb18799391e671a0c569c8a5ca4b4f5a8e1`,
+builds completely and passes strict Doxygen68/68 headers,1351 public members,
+zero warnings. Its full LP64 and true ILP64 runs each execute281 tests with
+277 passing and4 failing; provider-free Debug executes259 with258 passing
+and1 failing, zero skips in every run. Failures are the stale exact capability
+name oracle, omitted optional export in two package inventories, and a bad
+empty-memory-view construction in the newly added installed consumer. No
+test is disabled. Raw records reside in `p04-lu-v2-01`.
+
+The three corrected test files are frozen as tree
+`6bcfa768af2f6a923d49f50fc9c89821cc90360e`, archive SHA256
+`6a63cdf502a25b0e7291eb3b2c2b36471b15ee2c4627d8d1d4208d5e84f11dd5`.
+Fresh full LP64 and true-ILP64 runs each pass **281/281**, and provider-free
+Debug and Release each pass **259/259**, all with zero skips, in
+`p04-lu-v2-02`; production bytes are unchanged from the first candidate.
+The new installed consumer then received style-only decomposition/direct-include
+corrections; strict Clang18 passes (`installed-consumer-tidy-03.log`). Its exact
+corrected source independently passes1/1 actual installed CTest for each ABI
+against the relocated02 packages in `p04-installed-lu-style-01`. This change
+does not alter library code or weaken numerical assertions. Raw failures and
+passing record/log/JUnit hashes are preserved in the checkpoint index.
+Later row-major LU and Matrix Market work remains outside both snapshots.
+
 The real incremental draft is [PR #47](https://github.com/AI4SciComp/asc-cpp/pull/47),
 targeting `develop`. Its existence is not owner/license approval or remote CI
 success. Newer uncommitted work is not represented as pushed implementation.

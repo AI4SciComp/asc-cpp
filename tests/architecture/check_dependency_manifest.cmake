@@ -483,7 +483,7 @@ endforeach()
 _finalize_capability()
 
 set(_expected_capabilities
-  "incremental Reference-LAPACK column-major LU provider"
+  "incremental Reference-LAPACK LU provider"
   "checked logical metadata and mixed extents"
   "status, result, and release-active contracts"
   "storage-independent configuration model"

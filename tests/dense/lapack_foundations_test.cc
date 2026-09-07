@@ -279,6 +279,45 @@ void TestWorkspaceIntegerAbi(TestContext& test) {
       asc::ErrorCode::kOverflow);
 }
 
+void TestLayoutWorkspaceSizeDomain(TestContext& test) {
+  asc::LapackProviderIdentity provider;
+  provider.kind = asc::LapackProviderKind::kReference;
+  provider.integer_abi = asc::LapackIntegerAbi::kLp64;
+  provider.logical_bytes = 4;
+  provider.source_sha256[0] = std::byte{1};
+  provider.build_sha256[0] = std::byte{2};
+  const auto identity =
+      MakeIdentity("dgeequ", asc::LapackScalarKind::kF64, 3, 0, provider);
+  const auto layout =
+      static_cast<std::size_t>(asc::LapackWorkspaceKind::kLayoutConversion);
+  asc::LapackWorkspacePlan plan{.identity = identity};
+  // Synthetic capacity metadata only. Zero mandatory entries require no huge
+  // allocation or invented backing span; this is not a foreign numerical call.
+  plan.regions[layout] = {.minimum_entries = 0,
+                          .preferred_entries = 0x80000000LL,
+                          .entry_bytes = 1,
+                          .alignment = 1};
+  const asc::LapackWorkspace workspace;
+  const asc_dense_test::AllocationProbe probe;
+  const auto optional =
+      asc::ValidateLapackWorkspace(plan, identity, workspace, {});
+  plan.regions[layout].minimum_entries = 0x80000000LL;
+  const auto missing =
+      asc::ValidateLapackWorkspace(plan, identity, workspace, {});
+  plan.regions[layout].minimum_entries = 0;
+  plan.regions[layout].preferred_entries =
+      std::numeric_limits<asc::extent_t>::max();
+  plan.regions[layout].entry_bytes = 16;
+  const auto byte_overflow =
+      asc::ValidateLapackWorkspace(plan, identity, workspace, {});
+  const auto allocations = probe.count();
+  ASC_DENSE_TEST_CHECK(test, optional.ok());
+  ASC_DENSE_TEST_EQ(test, missing.code(), asc::ErrorCode::kInvalidArgument);
+  ASC_DENSE_TEST_EQ(test, byte_overflow.code(), asc::ErrorCode::kOverflow);
+  ASC_DENSE_TEST_CHECK(test,
+                       asc_test::ProcessAllocationCountMatches(allocations, 0));
+}
+
 void TestPivotsAndFactors(TestContext& test) {
   std::array<asc::index_t, 3> entries{3, 3, 3};
   auto pivots = asc::RawLapackPivotView::Create(
@@ -342,6 +381,7 @@ int main() {
   TestWorkspace(test);
   TestReportsAndAllocations(test);
   TestWorkspaceIntegerAbi(test);
+  TestLayoutWorkspaceSizeDomain(test);
   TestPivotsAndFactors(test);
   return test.Finish();
 }

@@ -62,14 +62,18 @@ Result<std::size_t> RequiredBytes(extent_t entries, std::size_t entry_bytes) {
 }
 
 Status ValidateRegion(const LapackWorkspaceRequirement& requirement,
-                      ConstMemoryView storage, LapackIntegerAbi abi) {
+                      ConstMemoryView storage, LapackIntegerAbi abi,
+                      LapackWorkspaceKind kind) {
   if (requirement.minimum_entries < 0 ||
       requirement.preferred_entries < requirement.minimum_entries ||
       requirement.alignment == 0 ||
       (requirement.alignment & (requirement.alignment - 1)) != 0) {
     return Status(ErrorCode::kInvalidArgument);
   }
-  if (abi == LapackIntegerAbi::kLp64 &&
+  // Pack/unpack storage is addressed by ASC, not passed as an ABI-sized
+  // LWORK/IWORK count. Its dimensions are independently checked by the wrapper.
+  if (kind != LapackWorkspaceKind::kLayoutConversion &&
+      abi == LapackIntegerAbi::kLp64 &&
       requirement.preferred_entries >
           std::numeric_limits<std::int32_t>::max()) {
     return Status(ErrorCode::kOverflow);
@@ -209,7 +213,8 @@ Status ValidateLapackWorkspace(
   for (std::size_t index = 0; index < workspace.regions.size(); ++index) {
     const ConstMemoryView region = workspace.regions[index];
     Status validity = ValidateRegion(plan.regions[index], region,
-                                     plan.identity.provider().integer_abi);
+                                     plan.identity.provider().integer_abi,
+                                     static_cast<LapackWorkspaceKind>(index));
     if (!validity.ok()) {
       return validity;
     }

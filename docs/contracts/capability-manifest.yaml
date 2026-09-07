@@ -12,25 +12,30 @@ evidence_labels:
   - "blocked"
 
 capabilities:
-  - capability: "incremental Reference-LAPACK column-major LU provider"
+  - capability: "incremental Reference-LAPACK LU provider"
     owner: "dense"
     facet: "dense_lapack"
     development_stage: 4
     status: "runtime-tested"
-    evidence_scope: "unreleased; pinned GNU LP64 and true ILP64; explicit static subset, relocated C++-only consumers, exact source-snapshot evidence in program ledger"
+    evidence_scope: "unreleased incremental-lu-v2; pinned GNU LP64 and true ILP64; original eight relocated C++-only consumers, new expert/equilibration scoped snapshots; expanded installed integration pending"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
+      - "include/asc/dense/providers/lapack_lu.h"
+      - "include/asc/dense/providers/lapack_lu_equilibration.h"
     direct_dependencies:
       - "dense"
     tests:
       - "actual S/D/C/Z GETRF reconstruction and GETRS N/T/C residuals"
       - "raw INFO, ABI, explicit integer workspace and preflight failures"
+      - "actual GETRF2/GETF2 reconstruction, GETRI two-sided inverse residual and GESV driver residual"
+      - "GEEQU/GEEQUB both-layout equations and partial outputs; LP64 subnormal GEEQUB success gate unmet"
     guarantees:
       - "explicit provider selection; provider-free aggregate remains independent"
     non_guarantees:
       - "full Reference-LAPACK profile"
-      - "row-major packing, shared providers or unaudited toolchains"
+      - "row-major LU routes other than GEEQU/GEEQUB, shared providers or unaudited toolchains"
+      - "successful GEEQUB equilibration for the recorded nonzero LP64 subnormal fixture"
 
   - capability: "checked logical metadata and mixed extents"
     owner: "core"

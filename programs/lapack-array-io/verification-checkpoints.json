@@ -590,6 +590,286 @@
         "dirty_diff_sha256": null,
         "tree": null
       }
+    },
+    {
+      "external_record": "p04-lu-v2-02/ctest-debug/record.json",
+      "record_sha256": "336be74d78e5c55fdc296cb93bc2065d1b68abff5a1a05da0057de8668d80d84",
+      "implementation_commit": null,
+      "id": "p04-lu-v2-02-ctest-debug",
+      "started": "2026-09-07T09:43:48.024082+00:00",
+      "completed": "2026-09-07T09:51:16.568730+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v2-02/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v2-02/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 259,
+        "failed": 0,
+        "passed": 259,
+        "selected": 259,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "174ecd7448d62f681d472b6e58e5974358bed197937b16a88fa8a8b38913925b",
+        "ctest.xml": "ec618c04b0acf96f199654674f17d3b32ec698f555da6f03bee5c4f66adf976f"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "84818277beb86d2666ab9a51c3cefeae043bd2a75aae807c81d5161fd9dc9e10",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "84818277beb86d2666ab9a51c3cefeae043bd2a75aae807c81d5161fd9dc9e10",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Exact frozen incremental-lu-v2 full suite, not full LAPACK profile; later layout and Matrix Market code excluded"
+    },
+    {
+      "external_record": "p04-lu-v2-02/ctest-release/record.json",
+      "record_sha256": "b215d0cfca321b9f595ab216c9fb11395975057d797c1d94b5a9b77f2841d2e7",
+      "implementation_commit": null,
+      "id": "p04-lu-v2-02-ctest-release",
+      "started": "2026-09-07T09:46:36.382400+00:00",
+      "completed": "2026-09-07T09:53:01.478951+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v2-02/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v2-02/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 259,
+        "failed": 0,
+        "passed": 259,
+        "selected": 259,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "1e9804d0c21496df88fabcd5077225c6fb7a542816766e6d0a0018ae7e8cba05",
+        "ctest.xml": "9a9da67023536c658ef19db464e43271546e7ae5e711882dad8d1b0c04182d59"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "84818277beb86d2666ab9a51c3cefeae043bd2a75aae807c81d5161fd9dc9e10",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "84818277beb86d2666ab9a51c3cefeae043bd2a75aae807c81d5161fd9dc9e10",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Exact frozen incremental-lu-v2 full suite, not full LAPACK profile; later layout and Matrix Market code excluded"
+    },
+    {
+      "external_record": "p04-lu-v2-02/ctest-lp64/record.json",
+      "record_sha256": "c704fc42212491ff0379ce146a3079b6d52167c20ff2416666682dc3015206db",
+      "implementation_commit": null,
+      "id": "p04-lu-v2-02-ctest-lp64",
+      "started": "2026-09-07T09:47:16.273877+00:00",
+      "completed": "2026-09-07T09:55:27.103896+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v2-02/build-lp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v2-02/ctest-lp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 281,
+        "failed": 0,
+        "passed": 281,
+        "selected": 281,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "c4615404637cba065dab973d100ecc911a30a6a18335249629cd3234d17e0517",
+        "ctest.xml": "5ad812a99afe4b52255655db3de15c5d4d17de660eb43e8b8cacd2aeecab2422"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "84818277beb86d2666ab9a51c3cefeae043bd2a75aae807c81d5161fd9dc9e10",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "84818277beb86d2666ab9a51c3cefeae043bd2a75aae807c81d5161fd9dc9e10",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Exact frozen incremental-lu-v2 full suite, not full LAPACK profile; later layout and Matrix Market code excluded"
+    },
+    {
+      "external_record": "p04-lu-v2-02/ctest-ilp64/record.json",
+      "record_sha256": "0ea766b8ba4cc281c91bc3e53353fb1f3036eafc8407a8637a9779e14973ab25",
+      "implementation_commit": null,
+      "id": "p04-lu-v2-02-ctest-ilp64",
+      "started": "2026-09-07T09:47:17.187365+00:00",
+      "completed": "2026-09-07T09:55:28.323104+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v2-02/build-ilp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v2-02/ctest-ilp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 281,
+        "failed": 0,
+        "passed": 281,
+        "selected": 281,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "d8366aa2e73fdfc0d52b26c9c43d0d266bf8a1bffbc35c3afce79c7f8b93304f",
+        "ctest.xml": "d1880583f5b9ecdf6fb74743b8658539e7e2c841d464176b2f59a1647d3300c0"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "84818277beb86d2666ab9a51c3cefeae043bd2a75aae807c81d5161fd9dc9e10",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "84818277beb86d2666ab9a51c3cefeae043bd2a75aae807c81d5161fd9dc9e10",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Exact frozen incremental-lu-v2 full suite, not full LAPACK profile; later layout and Matrix Market code excluded"
+    },
+    {
+      "external_record": "p04-installed-lu-style-01/test-lp64/record.json",
+      "record_sha256": "6c1260a2cd5e7095ca06c0449e7b703b18bb899fc58e2d08fd65d0e61270c6b5",
+      "implementation_commit": null,
+      "id": "p04-installed-lu-style-01-test-lp64",
+      "started": "2026-09-07T09:54:57.998098+00:00",
+      "completed": "2026-09-07T09:54:58.037810+00:00",
+      "configuration": "lp64-installed-style-correction",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-installed-lu-style-01/build-lp64",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-installed-lu-style-01/test-lp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "5c215b21b35335ac403b8ff1d329c4944ed6bf6758f186398419d040741c596e",
+        "ctest.xml": "ed15f2a9c8e744e10f5c10caf737fb5f14955de01110b24fda5e18c772db2b29"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "02744920006dda44fb62383361e730092b2b82a5f51964b00d3b1059f5168e9f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "02744920006dda44fb62383361e730092b2b82a5f51964b00d3b1059f5168e9f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Style-only corrected installed consumer, all 24 additional operations and all four scalars, against relocated exact incremental-lu-v2 artifacts"
+    },
+    {
+      "external_record": "p04-installed-lu-style-01/test-ilp64/record.json",
+      "record_sha256": "d7100907748cd1f943666dd926e6f2173f74fc1adce2bd9d2228f639cbc4eee9",
+      "implementation_commit": null,
+      "id": "p04-installed-lu-style-01-test-ilp64",
+      "started": "2026-09-07T09:54:59.225399+00:00",
+      "completed": "2026-09-07T09:54:59.264236+00:00",
+      "configuration": "ilp64-installed-style-correction",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-installed-lu-style-01/build-ilp64",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-installed-lu-style-01/test-ilp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "ac5c38538c8358efb58ce98e2edb6b3b2dca56d988544c871590cf41ba2a442a",
+        "ctest.xml": "cefcffbfd87527609ef00fc8d8df3855def3bf949c1a00e6b228530e35c5ea95"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "02744920006dda44fb62383361e730092b2b82a5f51964b00d3b1059f5168e9f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "02744920006dda44fb62383361e730092b2b82a5f51964b00d3b1059f5168e9f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "scope": "Style-only corrected installed consumer, all 24 additional operations and all four scalars, against relocated exact incremental-lu-v2 artifacts"
     }
   ]
 }

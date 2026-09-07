@@ -35,7 +35,13 @@ enum class LapackWorkspaceKind : std::uint8_t {
 };
 
 /** @brief One role's minimum/preferred entry counts and required byte
- * alignment. */
+ * alignment.
+ *
+ * Layout-conversion entries are ASC-sized storage counts, not foreign LWORK
+ * values; their byte products must still fit size_t. Other roles retain the
+ * selected provider integer bound. Wrappers separately check the dimensions,
+ * counts and intermediate formulas actually used by each foreign routine.
+ */
 struct LapackWorkspaceRequirement {
   extent_t minimum_entries =
       0;  ///< Mandatory entries; zero permits null storage.

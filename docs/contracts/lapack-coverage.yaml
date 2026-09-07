@@ -4194,12 +4194,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Geequ",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgeequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_equilibration.cc",
+          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_test.cc",
+          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_faults.cc",
+          "sha256": "ae70a26391206330a1fe8bc385722d0b9f5d1d2111bb17087b0f26ddef52fe9a"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -4207,7 +4232,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual both-layout LP64/true ILP64 scoped tests; integrated installed and normalized contract/evidence closure pending. LP64 GEEQUB nonzero-subnormal mathematical-success gate unmet."
         }
       },
       "required_profiles": [
@@ -4219,12 +4245,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Geequb",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgeequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_equilibration.cc",
+          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_test.cc",
+          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_faults.cc",
+          "sha256": "ae70a26391206330a1fe8bc385722d0b9f5d1d2111bb17087b0f26ddef52fe9a"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -4232,7 +4283,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual both-layout LP64/true ILP64 scoped tests; integrated installed and normalized contract/evidence closure pending. LP64 GEEQUB nonzero-subnormal mathematical-success gate unmet."
         }
       },
       "required_profiles": [
@@ -5553,12 +5605,37 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gesv",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgesv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -5566,7 +5643,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6121,12 +6199,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getf2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgetf2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -6134,7 +6237,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6272,7 +6376,7 @@
         },
         {
           "path": "src/dense/lapack_foundations.cc",
-          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
         },
         {
           "path": "include/asc/dense/blas.h",
@@ -6304,12 +6408,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getrf2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgetrf2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -6317,7 +6446,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6329,12 +6459,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgetri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -6342,7 +6497,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6734,7 +6890,7 @@
         },
         {
           "path": "src/dense/lapack_foundations.cc",
-          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
         },
         {
           "path": "include/asc/dense/blas.h",
@@ -25724,12 +25880,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Geequ",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgeequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_equilibration.cc",
+          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_test.cc",
+          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_faults.cc",
+          "sha256": "ae70a26391206330a1fe8bc385722d0b9f5d1d2111bb17087b0f26ddef52fe9a"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -25737,7 +25918,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual both-layout LP64/true ILP64 scoped tests; integrated installed and normalized contract/evidence closure pending. LP64 GEEQUB nonzero-subnormal mathematical-success gate unmet."
         }
       },
       "required_profiles": [
@@ -25749,12 +25931,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Geequb",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgeequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_equilibration.cc",
+          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_test.cc",
+          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_faults.cc",
+          "sha256": "ae70a26391206330a1fe8bc385722d0b9f5d1d2111bb17087b0f26ddef52fe9a"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -25762,7 +25969,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual both-layout LP64/true ILP64 scoped tests; integrated installed and normalized contract/evidence closure pending. LP64 GEEQUB nonzero-subnormal mathematical-success gate unmet."
         }
       },
       "required_profiles": [
@@ -27060,12 +27268,37 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gesv",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgesv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -27073,7 +27306,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -27835,12 +28069,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getf2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgetf2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -27848,7 +28107,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -27986,7 +28246,7 @@
         },
         {
           "path": "src/dense/lapack_foundations.cc",
-          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
         },
         {
           "path": "include/asc/dense/blas.h",
@@ -28018,12 +28278,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getrf2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgetrf2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -28031,7 +28316,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -28043,12 +28329,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgetri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -28056,7 +28367,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -28448,7 +28760,7 @@
         },
         {
           "path": "src/dense/lapack_foundations.cc",
-          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
         },
         {
           "path": "include/asc/dense/blas.h",
@@ -48684,12 +48996,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Geequ",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgeequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_equilibration.cc",
+          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_test.cc",
+          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_faults.cc",
+          "sha256": "ae70a26391206330a1fe8bc385722d0b9f5d1d2111bb17087b0f26ddef52fe9a"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -48697,7 +49034,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual both-layout LP64/true ILP64 scoped tests; integrated installed and normalized contract/evidence closure pending. LP64 GEEQUB nonzero-subnormal mathematical-success gate unmet."
         }
       },
       "required_profiles": [
@@ -48709,12 +49047,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Geequb",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgeequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_equilibration.cc",
+          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_test.cc",
+          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_faults.cc",
+          "sha256": "ae70a26391206330a1fe8bc385722d0b9f5d1d2111bb17087b0f26ddef52fe9a"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -48722,7 +49085,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual both-layout LP64/true ILP64 scoped tests; integrated installed and normalized contract/evidence closure pending. LP64 GEEQUB nonzero-subnormal mathematical-success gate unmet."
         }
       },
       "required_profiles": [
@@ -50020,12 +50384,37 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gesv",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgesv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -50033,7 +50422,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -50772,12 +51162,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getf2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgetf2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -50785,7 +51200,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -50923,7 +51339,7 @@
         },
         {
           "path": "src/dense/lapack_foundations.cc",
-          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
         },
         {
           "path": "include/asc/dense/blas.h",
@@ -50955,12 +51371,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getrf2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgetrf2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -50968,7 +51409,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -50980,12 +51422,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgetri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -50993,7 +51460,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -51385,7 +51853,7 @@
         },
         {
           "path": "src/dense/lapack_foundations.cc",
-          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
         },
         {
           "path": "include/asc/dense/blas.h",
@@ -70536,12 +71004,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Geequ",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgeequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_equilibration.cc",
+          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_test.cc",
+          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_faults.cc",
+          "sha256": "ae70a26391206330a1fe8bc385722d0b9f5d1d2111bb17087b0f26ddef52fe9a"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -70549,7 +71042,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual both-layout LP64/true ILP64 scoped tests; integrated installed and normalized contract/evidence closure pending. LP64 GEEQUB nonzero-subnormal mathematical-success gate unmet."
         }
       },
       "required_profiles": [
@@ -70561,12 +71055,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Geequb",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgeequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_equilibration.cc",
+          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_test.cc",
+          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_faults.cc",
+          "sha256": "ae70a26391206330a1fe8bc385722d0b9f5d1d2111bb17087b0f26ddef52fe9a"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -70574,7 +71093,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual both-layout LP64/true ILP64 scoped tests; integrated installed and normalized contract/evidence closure pending. LP64 GEEQUB nonzero-subnormal mathematical-success gate unmet."
         }
       },
       "required_profiles": [
@@ -71895,12 +72415,37 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gesv",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgesv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -71908,7 +72453,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -72486,12 +73032,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getf2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgetf2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -72499,7 +73070,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -72637,7 +73209,7 @@
         },
         {
           "path": "src/dense/lapack_foundations.cc",
-          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
         },
         {
           "path": "include/asc/dense/blas.h",
@@ -72669,12 +73241,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getrf2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgetrf2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -72682,7 +73279,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -72694,12 +73292,37 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Getri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgetri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu.h",
+          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_expert.cc",
+          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_test.cc",
+          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        },
+        {
+          "path": "tests/dense_lapack/lu_expert_faults.cc",
+          "sha256": "e794a5c3efbe16308da675747d19b81a06cd21f3d3fb93c6e5e479eada11033b"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -72707,7 +73330,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -73099,7 +73723,7 @@
         },
         {
           "path": "src/dense/lapack_foundations.cc",
-          "sha256": "e64483c746d4d6da5110899d6eeb7f70126bb9870106c0c79cdc780546cbf33e"
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
         },
         {
           "path": "include/asc/dense/blas.h",
