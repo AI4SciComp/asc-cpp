@@ -14,7 +14,7 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "cef1390453ba804f3478932f249ecd63f3bd0453",
+  "last_implementation_commit": "dde439dacc1b377b7064717daabbf7b572106b21",
   "worktree_diff_identity": {
     "state": "in_progress",
     "recorded_at": "2026-09-07T07:01:05Z",
@@ -200,7 +200,7 @@
     "P04.lu_expert_family": {
       "state": "in_progress",
       "owner": "p00_array_contracts",
-      "scope": "24 additional S/D/C/Z GETRF2/GETF2/GETRI/GESV/GEEQU/GEEQUB functions registered with32 total reference rows in progress. Corrected frozen v2 full LP64/trueILP64 each281/281 and provider-free Debug/Release each259/259 pass, zero skips; style-corrected installed consumer each1/1. Condition/refinement/driver family, remaining layouts, helpers and exact contract-bound evidence required",
+      "scope": "Registered44 partial reference operations; corrected v4 treeeebeb3a full bothABI315/315 and baseline Debug/Release271/271 pass, installed2/2 eachABI; twelve new GECON/GERFS/GESVX scalar rows in_progress, exact normalized contracts/evidence remain required.",
       "review": "programs/lapack-array-io/lu-expert-review.md"
     },
     "P03.hostile_size_diagnostics": {
@@ -214,8 +214,8 @@
       "scope": "Required Core/Dense-array/Sparse-coordinate paths registered. Frozen74ff2fb full Debug/Release each271/271 and shared Release273/273 pass, zero skips; relocated aggregate9 and separate Dense/Sparse examples1 each pass. Unchanged production candidate01 ASC sanitizer6/6 passed; both Doxygen71/1413 zero warnings. Final mode/evidence and platform gates pending; optional cross-representation conversions not implemented"
     }
   },
-  "active_task": "P10 corrected74ff2fb full Debug271/Release271/sharedRelease273 pass, zero skips; actual installed and ELF records inspected, first-candidate four header-oracle failures preserved. Commit only this reviewed checkpoint. GECON/GERFS/GESVX, EQ stride and native Cholesky/QR frozen separately; reference Cholesky/QR and LU helpers active.",
-  "next_action": "Commit staged P10 files and sanitized evidence only, push feature/lapack-array-io and update actual draft47. Next register frozen GECON/GERFS/GESVX and EQ stride correction atomically (CMake/header/ABI/profile/mapping/installed tests); record unmet tiny-input mathematics and fix source-audited GETRI query rounding bounds separately. Then native/provider Cholesky/QR and all remaining P04-P11 advanced/specialized families and exact contract-bound coverage.",
+  "active_task": "Corrected v4 treeeebeb3a full LP64/trueILP64 each315/315 and provider-free Debug/Release each271/271 pass, zero skips; both installed LU consumers2/2 eachABI, strict Doxygen74/1457/zero warnings and partial validator pass. Committing/pushing this exact product checkpoint. Native Cholesky/QR integration is separately unstaged; original LU counts, reference Cholesky/QR and helpers frozen. Placement/P05expert/P06least-squares work is isolated in separate linked worktrees.",
+  "next_action": "Commit only staged v4 product bytes plus these evidence records, verify non-program tree matches eebeb3a, push feature/lapack-array-io and update draft47. Then integrate frozen original LU INTEGER guards, native/provider Cholesky/QR and helpers with atomic contracts/registrations/new public-only installed examples; apply separately audited placement corrections and run fresh full/installed/sanitizer gates. Continue all remaining P04-P11 advanced/specialized families and exact ledger closure.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -223,7 +223,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "f6f3bc4a058fe57b7ffda03f6f98f30a442a16e551b6d60f1aefcd0d05de642a"
+    "coverage_mapping_sha256": "955af4f0258eefa156d5e2434277724e8570fb7c6d729409a92b40a01be9fb77"
   },
   "provider": {
     "version": "3.12.1",
@@ -257,7 +257,7 @@
         "asc_abi_verified": true
       }
     ],
-    "abi_verification_scope": "32 partial registered S/D/C/Z LU operations on Linux x86_64 GCC/GFortran11.4.0, libstdc++20230528 only. Frozen incremental-lu-v2 full LP64/trueILP64 suites and relocated installed consumers pass. GEEQU/GEEQUB both layouts; other registered routes column-major. Complete routine profile remains unverified."
+    "abi_verification_scope": "44 partial registered S/D/C/Z ordinary/expert/advanced LU operations, both layouts including independent four-operand driver layouts, Linux x86_64 GCC/GFortran11.4/libstdc++20230528/static only. Corrected v4 eebeb3a full LP64/trueILP64315/315 and installed2/2 eachABI pass. Full normalized mode/contract evidence and mathematical/placement gates remain unclosed; no full-profile claim."
   },
   "toolchain": {
     "observed": "Linux x86_64; GCC 11.4.0; CMake 4.1.2",
@@ -291,7 +291,15 @@
       "p04-lu-v2-02/ctest-lp64/record.json",
       "p04-lu-v2-02/ctest-ilp64/record.json",
       "p04-installed-lu-style-01/test-lp64/record.json",
-      "p04-installed-lu-style-01/test-ilp64/record.json"
+      "p04-installed-lu-style-01/test-ilp64/record.json",
+      "p04-lu-v4-01/ctest-lp64/record.json",
+      "p04-lu-v4-01/ctest-ilp64/record.json",
+      "p04-lu-v4-01/ctest-debug/record.json",
+      "p04-lu-v4-01/ctest-release/record.json",
+      "p04-lu-v4-02/ctest-lp64/record.json",
+      "p04-lu-v4-02/ctest-ilp64/record.json",
+      "p04-lu-v4-02/ctest-debug/record.json",
+      "p04-lu-v4-02/ctest-release/record.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -311,7 +319,8 @@
       "Coverage validator29 tests and strict80-column Pylint pass; output separates not_started/in_progress/blocked/implemented_unverified from actual verified state",
       "Corrected coherent tree d3675f3ecf53ee91cb54747e6379afdc42ed3538 full provider-free Debug259/259 and Release259/259, Clang19 ASan/UBSan selected11/11, strict Doxygen66 headers/1300 members/zero warnings and77 Markdown files pass; zero skips",
       "Sparse snapshot13 Debug/Release/ClangASanUBSan/shared each10/10 and relocated static/shared Sparse-only examples each1/1 pass; strict Clang18 and GCC11/Clang19 no-exception headers pass",
-      "Frozen tree6bcfa768af2f6a923d49f50fc9c89821cc90360e incremental-lu-v2 full LP64/trueILP64 each281/281 and provider-free Debug/Release each259/259 pass, zero skips; production unchanged from retained candidate01 failures. Style-corrected installed consumer each1/1 passes both relocated ABI packages"
+      "Frozen tree6bcfa768af2f6a923d49f50fc9c89821cc90360e incremental-lu-v2 full LP64/trueILP64 each281/281 and provider-free Debug/Release each259/259 pass, zero skips; production unchanged from retained candidate01 failures. Style-corrected installed consumer each1/1 passes both relocated ABI packages",
+      "Corrected v4 treeeebeb3a3632e66f9d07d77dc3f522cb88dc404f1 full LP64/trueILP64 each315/315 and provider-free Debug/Release each271/271 pass, zero skips; relocated installedLU2/2 eachABI, Doxygen74/1457/0 warnings and partial inventory validator pass. Failed candidate01 records retained. Native/providerCholesky/QR/helpers, originalLUcountfix and placementcorrection excluded."
     ]
   },
   "counts": {
@@ -321,21 +330,41 @@
     "verified_reference": 0,
     "callable_native": 8,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 2081,
-    "reference_in_progress_in_ledger": 32,
+    "reference_not_started_in_ledger": 2069,
+    "reference_in_progress_in_ledger": 44,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 8,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 32,
-    "unregistered_expert_operations_with_scoped_tests": 12,
-    "note": "Registered operations and passing full incremental suites are distinct from complete contracts/evidence closure. Thirty-two reference rows remain in_progress; v3 implements both layouts with scoped tests. Frozen GECON/GERFS/GESVX12 are not registered or credited yet. LP64 GEEQUB subnormal and GERFS/GESVX finite-condition/estimate extreme mathematical gates are unmet; no denominator reduction."
+    "registered_partial_reference_operations": 44,
+    "unregistered_expert_operations_with_scoped_tests": 0,
+    "note": "Registered44 partial operations remain in_progress, zero fully verified native/reference. Corrected v4 full bothABI315 and baseline271 suites pass under exact eebeb3a identity, after retained candidate01 failures. Tiny-input math, original LU integer correction integration and provider workspace/context admission gates remain explicit; denominator2113 unchanged."
   },
   "blockers": [
     {
       "id": "LP64-GEEQUB-SUBNORMAL",
       "scope": "Unmet mathematical-success gate only; does not block independent work",
       "record": "programs/lapack-array-io/lu-equilibration-review.md"
+    },
+    {
+      "id": "GERFS-TINY-ESTIMATE",
+      "scope": "Unmet finite-estimate mathematical-success gate, not a blocker for independent work",
+      "record": "programs/lapack-array-io/lu-refinement-review.md"
+    },
+    {
+      "id": "GESVX-TINY-CONDITION",
+      "scope": "Unmet unscaled finite-condition/estimate mathematical gate; explicit FACT=E is separate, never fallback",
+      "record": "programs/lapack-array-io/lu-driver-review.md"
+    },
+    {
+      "id": "LU-INTEGER-ARITHMETIC",
+      "scope": "Source-audited query/vector/loop bounds in progress; current v4 uses committed original LU bytes, excluding concurrent correction",
+      "record": "programs/lapack-array-io/blockers.md"
+    },
+    {
+      "id": "PROVIDER-WORKSPACE-CONTEXT",
+      "scope": "Adapter-specific workspace/context admission audit and regression required; independent implementation continues",
+      "record": "programs/lapack-array-io/blockers.md"
     }
   ],
   "external_approvals": [
@@ -351,8 +380,8 @@
     "Complete remaining P04 LU-family bindings including all actual S/D/C/Z modes",
     "Close P02/P03 machine-readable coverage and remaining platform evidence without attributing older tests to newer code",
     "Native Cholesky/HouseholderQR and complete provider P05-P09 after prerequisites",
-    "Complete required Dense array and Sparse coordinate Matrix Market P10; no implicit cross-representation conversion",
-    "Full P11 platform/docs/provenance/profile evidence; no scope reduction"
+    "Full P11 platform/docs/provenance/profile evidence; no scope reduction",
+    "Close P10 final exact mode/evidence ledger and required platforms; required native Matrix Market paths already pass integrated tests"
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47"
 }

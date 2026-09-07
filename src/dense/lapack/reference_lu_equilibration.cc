@@ -145,6 +145,13 @@ bool Overlap(ConstMemoryView first, ConstMemoryView second) {
 }
 
 template <typename T>
+extent_t ForeignLeadingDimension(DenseBlasMatrixView<const T> matrix) {
+  return std::max<extent_t>(1, matrix.layout() == DenseBlasLayout::kColumnMajor
+                                   ? matrix.leading_dimension()
+                                   : matrix.rows());
+}
+
+template <typename T>
 Status Validate(
     const ReferenceLapackProvider& provider,
     DenseBlasMatrixView<const T> matrix,
@@ -159,7 +166,7 @@ Status Validate(
     }
   }
   for (extent_t value :
-       {matrix.rows(), matrix.columns(), matrix.leading_dimension()}) {
+       {matrix.rows(), matrix.columns(), ForeignLeadingDimension(matrix)}) {
     if (value > std::numeric_limits<lapack_int>::max()) {
       return Status(ErrorCode::kOverflow);
     }
@@ -215,10 +222,12 @@ Result<LapackWorkspacePlan> Query(
   }
   const auto key = LapackPlanIdentity::Create(
       radix ? Native<T>::kRadix : Native<T>::kOrdinary, Native<T>::kScalar,
-      std::array{matrix.rows(), matrix.columns(), matrix.leading_dimension(),
-                 rows.size(), columns.size()},
-      std::array<std::int64_t, 3>{static_cast<std::int64_t>(matrix.layout()),
-                                  rows.increment(), columns.increment()},
+      std::array{matrix.rows(), matrix.columns(),
+                 ForeignLeadingDimension(matrix), rows.size(), columns.size()},
+      // The ASC row stride is not the packed provider's foreign LDA.
+      std::array<std::int64_t, 4>{static_cast<std::int64_t>(matrix.layout()),
+                                  rows.increment(), columns.increment(),
+                                  matrix.leading_dimension()},
       provider.identity());
   if (!key.ok()) {
     return key.status();
@@ -330,14 +339,12 @@ Status Equilibrate(
     return Status::Ok();
   }
   const auto* packed = PackedMatrix(matrix, workspace);
-  const auto ld = matrix.layout() == DenseBlasLayout::kColumnMajor
-                      ? matrix.leading_dimension()
-                      : matrix.rows();
   report.called_provider = true;
   const lapack_int info = Native<T>::Execute(
       radix, static_cast<lapack_int>(matrix.rows()),
       static_cast<lapack_int>(matrix.columns()), packed,
-      static_cast<lapack_int>(ld), rows.data(), columns.data(), statistics);
+      static_cast<lapack_int>(ForeignLeadingDimension(matrix)), rows.data(),
+      columns.data(), statistics);
   return InterpretInfo(info, matrix.rows(), matrix.columns(), radix, report);
 }
 }  // namespace

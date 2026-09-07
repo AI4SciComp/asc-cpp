@@ -149,3 +149,76 @@ component tests for this new header/source, full-profile regression and the
 unmet LP64 numerical case. Next implementation remains GECON, GERFS and GESVX,
 then required helpers and remaining ordinary-LU layout routes. It is not a
 claim that P04 or later packages are complete.
+
+## Separate ASC-stride / foreign-LDA correction
+
+After the original equilibration slice was frozen, ordinary-LU integration
+identified a role error also present here: the formula query treated an ASC
+row-major leading stride as a foreign INTEGER LDA. For a packed row-major
+matrix the actual provider LDA is max(1,m), not the original row stride.
+The eight pinned source routines require LDA >= max(1,m); their quick return
+sets ROWCND=COLCND=1 and AMAX=0 without reading or writing R/C. Those argument
+and quick-return sections were reinspected for this correction.
+
+This is not a replacement equilibration algorithm. Nonempty execution still
+calls actual S/D/C/Z GEEQU/GEEQUB, directly for column-major and on explicitly
+caller-packed original A for row-major. Empty execution retains the existing
+local source-defined quick return. The new private leading-dimension helper
+is shared by validation, plan identity and foreign execution. Identity
+dimensions bind actual foreign LDA; options additionally bind the original
+ASC leading stride. Row strides above INT32_MAX are therefore legal under
+LP64 when their real views are valid, but a changed original stride still
+invalidates the plan. A genuinely foreign column-major LDA above INT32_MAX
+remains rejected under LP64. Shape, m+n INFO, byte-product, capacity,
+alignment and alias checks are unchanged.
+
+New tests use real null-backed empty shapes 0-by-0, 0-by-2 and 3-by-0 with
+original stride INT32_MAX+1, not fictitious huge backing spans. Both layouts,
+all four scalar types and both routines exercise query nonmutation and zero
+allocation, exact successful empty outputs without native INFO/provider
+entry, unchanged R/C, and stale original-stride rejection without mutation.
+LP64 oversized column-major leading dimensions retain their overflow error;
+true ILP64 permits them. The new tests against unchanged production source
+`a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b` fail six
+LP64 row-major assertions in
+`logs/p04-lu-equilibration-stride-lp64-optimized-test-s-old-01.log`.
+Immutable `lu-equilibration-stride-old-79lN2A7d` preserves that old-source/new-
+test regression snapshot and executable.
+
+The corrected candidate is separately frozen in
+`lu-equilibration-stride-68Q9JMsI`, using the original frozen dependencies,
+not the integrator's concurrently changing original-LU layout sources:
+
+- Source SHA256:
+  `7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2`.
+- Numerical test SHA256:
+  `2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba`.
+- Public header remains
+  `d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416`;
+  fault injection sources and all GESVX driver files remain unchanged.
+
+Both-ABI optimized builds and all four scalar processes exited zero in
+`logs/p04-lu-equilibration-stride-{lp64,ilp64}-optimized-compile-01.log` and
+`logs/p04-lu-equilibration-stride-{lp64,ilp64}-optimized-test-{s,d,c,z}-01.log`.
+Both ASan/UBSan builds and all four scalar processes also exited zero in
+`logs/p04-lu-equilibration-stride-{lp64,ilp64}-asan-compile-01.log` and
+`logs/p04-lu-equilibration-stride-{lp64,ilp64}-asan-test-{s,d,c,z}-01.log`.
+The instrumented adapters/foundation/tests still link uninstrumented baseline
+Core/Dense, Fortran/BLAS and runtime libraries; this is not full-provider
+sanitizer coverage. No tests were skipped or disabled.
+
+Clang 18 format, self-contained C++20 header, complete source/test/fault tidy,
+and strict Doxygen HTML/XML checks each exited zero in
+`logs/p04-lu-equilibration-stride-{format,header,tidy,doxygen}-01.log`.
+The reproduction entry points are `build-lu-equilibration-stride.sh` (snapshot,
+ABI, unique log revision, optional `asan`) and
+`check-lu-equilibration-stride.sh` (snapshot, unique log revision). Raw provider
+source, ABI, numerical dependencies and the previously audited call closure
+are unchanged by this metadata correction.
+
+Next required integration is the integrator's separate advanced-LU checkpoint,
+atomically registering GECON/GERFS/GESVX together with these two corrected
+equilibration source/test files, then rerunning installed/component and full
+profile gates. Their local verification is recorded separately, not attributed
+to the earlier ordinary-LU/P10 checkpoints. This bounded correction does not
+satisfy the distinct LP64 GEEQUB subnormal mathematical-success gate above.

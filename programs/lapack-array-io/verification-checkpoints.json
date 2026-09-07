@@ -2830,6 +2830,1332 @@
         "dirty_diff_sha256": null,
         "tree": null
       }
+    },
+    {
+      "external_record": "p04-lu-v4-01/build-record-debug/record.json",
+      "record_sha256": "3877e1cf8684e4ddfd6c6d84f6e419085492b6fcc9cbb79e20f71288d2a7fbbe",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-build-record-debug",
+      "started": "2026-09-07T11:27:34.975779+00:00",
+      "completed": "2026-09-07T11:32:19.152116+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "8fafe805dbbd82753d19aa80f57208ae5f66ee99a8b3e843cd6868958fffca02"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/build-record-ilp64/record.json",
+      "record_sha256": "01cb0a9aad25f8adb3aee47f5f7625b410ab9a933e7346b7ee1e7591add9b98c",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-build-record-ilp64",
+      "started": "2026-09-07T11:27:40.169729+00:00",
+      "completed": "2026-09-07T11:36:51.131930+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "dcba8dca2ea621ac954a5937f2b2eb1712cd3d88a5641b99b58bc785396daeeb"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/build-record-lp64/record.json",
+      "record_sha256": "0e580ba6e58058051a7b62deab43f33a7df028ea074d5e598cc1ceeec994fced",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-build-record-lp64",
+      "started": "2026-09-07T11:27:37.735199+00:00",
+      "completed": "2026-09-07T11:36:47.290795+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "8ef0d311f09f8e303ed8bcd42b95cb9568325ec9d8fa376e411b27f07af8ae13"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/build-record-release/record.json",
+      "record_sha256": "e1375924315033f92c0f47f77806786827bce41c9f64361a740a9d41970b260f",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-build-record-release",
+      "started": "2026-09-07T11:27:37.517639+00:00",
+      "completed": "2026-09-07T11:35:34.561839+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "6f0bfcca39666c1e91f24349bfc4066524e5f37a422bcec81e6bce0b490c04d6"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/configure-debug/record.json",
+      "record_sha256": "8fd5e4d5cf9ae1e534df61a401a747ff0f933bc1d29ae22f30682f3e9487c663",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-configure-debug",
+      "started": "2026-09-07T11:27:01.551503+00:00",
+      "completed": "2026-09-07T11:27:34.356158+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-debug",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "0ab6b6ed92c81abefed535dcea80ce50d45e7aa8aa259d64598cf7d75d5a528f"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/configure-ilp64/record.json",
+      "record_sha256": "628c3efe0db033f9ddb03a2d2f50ead223d100498e72bd5d30321e3d7b53ee3d",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-configure-ilp64",
+      "started": "2026-09-07T11:27:00.331093+00:00",
+      "completed": "2026-09-07T11:27:39.828530+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e42ac94aff6ed726014e332d924a58d9855d0413dd6b3ee6b5ff3bf2347da18b"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/configure-lp64/record.json",
+      "record_sha256": "2bb68dafe2659f2a934a83e91df164591db30f8c97395db30a817ade33589754",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-configure-lp64",
+      "started": "2026-09-07T11:26:59.075093+00:00",
+      "completed": "2026-09-07T11:27:37.343906+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "7365d3b400e4e2065f4002baf22c4afb2baccced8096bf752d1dec0387e48bf2"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/configure-release/record.json",
+      "record_sha256": "2ea96f7fa4c9ee68812d2f3bd9852c4e8ee86492a69e389100c49c5b5a5c4b2c",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-configure-release",
+      "started": "2026-09-07T11:27:02.779745+00:00",
+      "completed": "2026-09-07T11:27:37.095858+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-release",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "2594f84cbcfff09e21d196e3a5e81b346c735f988b9431d6b6f7b4a3e0e74f3e"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/ctest-debug/record.json",
+      "record_sha256": "69fd2b668297125e6a1d1d33d90a2917975e02b84d2d516538608509789258eb",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-ctest-debug",
+      "started": "2026-09-07T11:32:19.464344+00:00",
+      "completed": "2026-09-07T11:39:26.402718+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 271,
+        "failed": 2,
+        "passed": 269,
+        "selected": 271,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "b808cf5e4834663f1c169d60646980b87245510a4fb6b0e2eaf351291ef7bcc4",
+        "ctest.xml": "2fa4e196bdb5db6a55b9f67213e41f851f3fde5288fa43a53158f95a263b1f51"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/ctest-ilp64/record.json",
+      "record_sha256": "128bce05e6b1f9558eba4c42fce5b8a99b8573bf1158bec73f5bed3c6586b38a",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-ctest-ilp64",
+      "started": "2026-09-07T11:36:51.517349+00:00",
+      "completed": "2026-09-07T11:42:26.008534+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-ilp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/ctest-ilp64/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 315,
+        "failed": 3,
+        "passed": 312,
+        "selected": 315,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "bf84d38332bfdbd7324025ff5bb89349f54dae46c433ea95ae926fed30ac221b",
+        "ctest.xml": "38a88a6e852fb642b55650c4f9469d86cf377023ee9928668cb498e91ef7bd22"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/ctest-lp64/record.json",
+      "record_sha256": "222707c2634af976da5e593d2a6de45821575798ec42b1847d85957c4a61b10b",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-ctest-lp64",
+      "started": "2026-09-07T11:36:47.669596+00:00",
+      "completed": "2026-09-07T11:42:23.017642+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-lp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/ctest-lp64/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 315,
+        "failed": 3,
+        "passed": 312,
+        "selected": 315,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "43394da64b9d0c6f01a3374f130ad1e37638b0626aaf1dfde4ed706b15152c09",
+        "ctest.xml": "83f3704eaeeca9afa05428d94516cb7abe518fbb859e0c513e17fc8d41922675"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/ctest-release/record.json",
+      "record_sha256": "4f958ce2af6cd5b5499f3830b33317b5309eddc0ebf211ebd3580dbd883af08e",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-ctest-release",
+      "started": "2026-09-07T11:35:35.026267+00:00",
+      "completed": "2026-09-07T11:41:12.206529+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 271,
+        "failed": 2,
+        "passed": 269,
+        "selected": 271,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "38edcd6a14d7fa668545578f37b8e6dba51275d3bab7d2126dbd7e01f3db6d11",
+        "ctest.xml": "2f949223b265344b0ab21662b397e3fa823e1611812c7c8940cb4b2f4e787eb0"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/doxygen/record.json",
+      "record_sha256": "7ed57a0a8e5d23079d1f9eccfa327e440dd8927156ce346ee14067dcef3bab17",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-doxygen",
+      "started": "2026-09-07T11:27:30.649896+00:00",
+      "completed": "2026-09-07T11:27:37.342265+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p04-lu-v4-01/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p04-lu-v4-01/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/doxygen-coverage/record.json",
+      "record_sha256": "332e26a50adbd8e349c715513ee7f91b1072053d5e0da16bc252f1d3ae71a270",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-doxygen-coverage",
+      "started": "2026-09-07T11:27:37.725219+00:00",
+      "completed": "2026-09-07T11:27:38.166441+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "bd9607c7c1cb4267aaa03ea5240f8b406562acf0a7b035d71f1df13fb984f429"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-01/markdown/record.json",
+      "record_sha256": "b2b40aef01044580a129900a2257ac5187540ff932e8397a995c48b4a7baec67",
+      "implementation_commit": null,
+      "implementation_tree": "6146d7572dcc19f49e4764ce2f298c10d7484b5d",
+      "source_archive_sha256": "3dfc3c97c5ea1dbfe40eca363df95609e1b3251eaddea77daa557dfc8fa0a4a8",
+      "id": "p04-lu-v4-01-markdown",
+      "started": "2026-09-07T11:27:38.576647+00:00",
+      "completed": "2026-09-07T11:27:38.908691+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p04-lu-v4-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "acabad6f198172a41a8a8b726306f5678b8b9c46740887c051482bcd16536cfa"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "0fbdde4ba7b46f6de74de4a8385d54f7656de44c7bfaa61f0f8e801f4dd70cfe",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/build-record-debug/record.json",
+      "record_sha256": "187e41fdfc4de2e6a55d1ca5f195d9afc1e3d19e93403bf59723ae28170dde85",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-build-record-debug",
+      "started": "2026-09-07T12:03:59.831083+00:00",
+      "completed": "2026-09-07T12:08:43.664208+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "50d625be2dded815a50c9f7f17a3a28ee3a39c988e0f7afe8ac333ceb6edd6ed"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/build-record-ilp64/record.json",
+      "record_sha256": "4d7201d6d359716d94791f7da9d8735804463c0ccf2b67678e68c4bc84f7debe",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-build-record-ilp64",
+      "started": "2026-09-07T12:04:04.410006+00:00",
+      "completed": "2026-09-07T12:11:57.198072+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "fa0b5b5e787335af73fa6a5286f6fb66e871b898935d5098da267cd2e1ce14b2"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/build-record-lp64/record.json",
+      "record_sha256": "fb1126c2c76b3c1a4c1cea99864ba97f9c88a3829c863120b770db87c7d65e9e",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-build-record-lp64",
+      "started": "2026-09-07T12:04:02.905833+00:00",
+      "completed": "2026-09-07T12:11:57.074229+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "98f6304be21381a5daab43b4066c3279649864cc63d60a23fb7e72a59365c0dd"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/build-record-release/record.json",
+      "record_sha256": "39479513b02d77ceea8865b8e89f3713a41d12df8f476fead61acb648b540eeb",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-build-record-release",
+      "started": "2026-09-07T12:04:00.300644+00:00",
+      "completed": "2026-09-07T12:11:02.079772+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "38aa142cd39baaac9d05ca859bd62df83a87a87cbcb2eff7a98c355585fa7321"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/configure-debug/record.json",
+      "record_sha256": "0eefc921a20b784f4b760ad94b55ee98f953aca5cfcdf50d613cabe285cf6ebd",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-configure-debug",
+      "started": "2026-09-07T12:03:07.128332+00:00",
+      "completed": "2026-09-07T12:03:59.490105+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-debug",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "2f694d93fcf10e605fbb07284f87a22ba7d4e52f54958f1deeb01915a62ba80d"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/configure-ilp64/record.json",
+      "record_sha256": "7d0f4095c764b7a3606307445cd97a70a471f2765e7da0eaad816bc14d0d45c1",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-configure-ilp64",
+      "started": "2026-09-07T12:03:05.907520+00:00",
+      "completed": "2026-09-07T12:04:03.904036+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "8a28278a119f5ade7dfd6e31d8c25b344c251408e4b6796cc0337462845e7070"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/configure-lp64/record.json",
+      "record_sha256": "9e182094f3eb8c75eaefc31ce910ee81f24db773198a075df34b71d405be857a",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-configure-lp64",
+      "started": "2026-09-07T12:03:04.576825+00:00",
+      "completed": "2026-09-07T12:04:02.579726+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "86b7d4e9394181440e14c9b29f27adffd407d5aebaf1e2e83f27a629c6a116da"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/configure-release/record.json",
+      "record_sha256": "ae3d12cf4925dca6778144c5ddd642e51e82cd2109adc5be9331ee2f7bbb6399",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-configure-release",
+      "started": "2026-09-07T12:03:08.386916+00:00",
+      "completed": "2026-09-07T12:03:59.990617+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-release",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "615d994676d77fe27cd7c6fda3586a72051ea16d46d0366789cdc4c353ffadbe"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/ctest-debug/record.json",
+      "record_sha256": "746cc661c2af055f98e3045c77b2f32726fe19471e69241ddf547630f854e738",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-ctest-debug",
+      "started": "2026-09-07T12:08:44.072412+00:00",
+      "completed": "2026-09-07T12:13:55.132041+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 271,
+        "failed": 0,
+        "passed": 271,
+        "selected": 271,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "fa314bbb162310c8dc591e3e74099e5279d411dd78529d8c40654113a93f4753",
+        "ctest.xml": "5a868d4e26c59a16f3f0844a7be8bc75526acb17e57665b4fc3af510ddb2d5c2"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/ctest-ilp64/record.json",
+      "record_sha256": "3911ee623b24cdae60f014ec0c6818f6cef2348f17f9c974591ea19e67c8a7e6",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-ctest-ilp64",
+      "started": "2026-09-07T12:11:57.484111+00:00",
+      "completed": "2026-09-07T12:17:05.522716+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-ilp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/ctest-ilp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 315,
+        "failed": 0,
+        "passed": 315,
+        "selected": 315,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "6990ee616bd1239f8f9728f497d9241597fd2a77019b99fbd9ee62fe24d0ad1a",
+        "ctest.xml": "8c3b211235fe3b6d186c34aa50f7d9323de3afd1a0248fc3699285bd3955c5d3"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/ctest-lp64/record.json",
+      "record_sha256": "3b996662a6683f7500d9ecd5283f680655a750469fce1161d6c67031c13348cf",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-ctest-lp64",
+      "started": "2026-09-07T12:11:57.380016+00:00",
+      "completed": "2026-09-07T12:17:04.679621+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-lp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/ctest-lp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 315,
+        "failed": 0,
+        "passed": 315,
+        "selected": 315,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "c2d7edfea97fb2e03aa31fd86ba2c2d3804bf3500160f134ab1f7a7a105bc37c",
+        "ctest.xml": "71310d21b14d0383278ba2261c35cd63897f81b91bdf2fb3e7c0f777f0f6d851"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/ctest-release/record.json",
+      "record_sha256": "b7d05b29bca03a76439ab2c44737e547f8d4a69f0603781901b47613424bf4c7",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-ctest-release",
+      "started": "2026-09-07T12:11:02.446458+00:00",
+      "completed": "2026-09-07T12:15:16.610379+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 271,
+        "failed": 0,
+        "passed": 271,
+        "selected": 271,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "0703aaf437be102599da329df653c3b5f5e255c1070e60e1a2fc38c85e9003b2",
+        "ctest.xml": "11b3c68920e2fd25c721d753dc4f297049a38d27ed236dc8aa90df0b3d914851"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/doxygen/record.json",
+      "record_sha256": "599729ff13b0517b3939fe76bfa55f365be9464ce36b55cb34479be19a6c7eab",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-doxygen",
+      "started": "2026-09-07T12:03:09.699668+00:00",
+      "completed": "2026-09-07T12:03:19.512014+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p04-lu-v4-02/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p04-lu-v4-02/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/doxygen-coverage/record.json",
+      "record_sha256": "09ccd3f0cafba8129c31514b98ac190fb1756b379fb1fa5e7a55b515eb36465e",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-doxygen-coverage",
+      "started": "2026-09-07T12:03:20.051751+00:00",
+      "completed": "2026-09-07T12:03:20.564056+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "bd9607c7c1cb4267aaa03ea5240f8b406562acf0a7b035d71f1df13fb984f429"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v4-02/markdown/record.json",
+      "record_sha256": "371565cef0e388bc751a39a82be490d279c1f1d70e6c8716961c17c0fd197f29",
+      "implementation_commit": null,
+      "implementation_tree": "eebeb3a3632e66f9d07d77dc3f522cb88dc404f1",
+      "source_archive_sha256": "3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc",
+      "id": "p04-lu-v4-02-markdown",
+      "started": "2026-09-07T12:03:20.973800+00:00",
+      "completed": "2026-09-07T12:03:21.317576+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p04-lu-v4-02/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "acabad6f198172a41a8a8b726306f5678b8b9c46740887c051482bcd16536cfa"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b80dc2dd3288114258b038ba33ac47c915974382c91af90a8f00d386ecfaf44b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
     }
   ]
 }

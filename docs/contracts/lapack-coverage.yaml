@@ -4119,12 +4119,45 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gecon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgecon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_condition.cc",
+          "sha256": "9bcfaca3a712db83e0647c9cc183231b040db24eac286b78aa164c95af811212"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_test.cc",
+          "sha256": "fa01d707fa76fdb6cf43370a9d1dde3f94b7fe3c653c651f697d53042298cfd7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_faults.h",
+          "sha256": "05a6362c8e6db902aac9652c9e172b2e3839ff33163b99ddd9cfc5d72cfc36bf"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_faults.cc",
+          "sha256": "06bac12d3a20a95abfdd2cfac27f9a1c74240d331aa1d7bbfd8fe98466c43e77"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -4132,7 +4165,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -4206,11 +4240,11 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+          "sha256": "7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
-          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+          "sha256": "2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_faults.cc",
@@ -4257,11 +4291,11 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+          "sha256": "7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
-          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+          "sha256": "2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_faults.cc",
@@ -5409,12 +5443,49 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gerfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgerfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_refinement.h",
+          "sha256": "c38c5b7a41a6fd3016a31234cd219b767a61f5cc58af324c5eab0490eca68826"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_refinement.cc",
+          "sha256": "df9b2b62d0ff0b2e72c6388062084605a65754a9c5bb7f838f1c43b0d1c1010a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_test.cc",
+          "sha256": "150784bcec74d161255b79d9cf3b966b1c911aa25b9c2ab8958eed321ae295b5"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_faults.h",
+          "sha256": "b1cbf9db073b3a86b3cb080dbb1470c6533ffa9274a0b1e38efd30e1106a80e0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_faults.cc",
+          "sha256": "4418072bbc0fed1a7c37119d494423dd890999a8542694cdaa87d4c47bc996e1"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_test_support.h",
+          "sha256": "b771b2e9c4a77bef804a3eb35313d89947d828730afa1992d6ca419954f6ea6c"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -5422,7 +5493,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -5764,12 +5836,49 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gesvx",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgesvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_driver.h",
+          "sha256": "c9faaeb03b49fa0408d331901cccb7ffdeb9dc3eb06c39217d90dbc9ad922f3d"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_driver.cc",
+          "sha256": "a0daaf90e677dccde805af4e7f7e37564d174c5ce72c87c385f8804d017cb43b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_test.cc",
+          "sha256": "ddbefc0f5ac9cda5212bbf446b40606bd191fbae0861151aebefbd6d9d210265"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_faults.h",
+          "sha256": "b07c664d6e30141a08b612d63c80270b26e65b41cda5bb3967ca2bfe58836b95"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_faults.cc",
+          "sha256": "251c31534d1b4103179288bd8cc376fd4076aa067d8d67cd9e2c1137a4ececc3"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_test_support.h",
+          "sha256": "970633379a438b1d61b1c784ebbe185197a616bcab5d1d31f803a23bf08120ba"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -5777,7 +5886,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -25877,12 +25987,45 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gecon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgecon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_condition.cc",
+          "sha256": "9bcfaca3a712db83e0647c9cc183231b040db24eac286b78aa164c95af811212"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_test.cc",
+          "sha256": "fa01d707fa76fdb6cf43370a9d1dde3f94b7fe3c653c651f697d53042298cfd7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_faults.h",
+          "sha256": "05a6362c8e6db902aac9652c9e172b2e3839ff33163b99ddd9cfc5d72cfc36bf"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_faults.cc",
+          "sha256": "06bac12d3a20a95abfdd2cfac27f9a1c74240d331aa1d7bbfd8fe98466c43e77"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -25890,7 +26033,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -25964,11 +26108,11 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+          "sha256": "7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
-          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+          "sha256": "2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_faults.cc",
@@ -26015,11 +26159,11 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+          "sha256": "7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
-          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+          "sha256": "2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_faults.cc",
@@ -27167,12 +27311,49 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gerfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgerfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_refinement.h",
+          "sha256": "c38c5b7a41a6fd3016a31234cd219b767a61f5cc58af324c5eab0490eca68826"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_refinement.cc",
+          "sha256": "df9b2b62d0ff0b2e72c6388062084605a65754a9c5bb7f838f1c43b0d1c1010a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_test.cc",
+          "sha256": "150784bcec74d161255b79d9cf3b966b1c911aa25b9c2ab8958eed321ae295b5"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_faults.h",
+          "sha256": "b1cbf9db073b3a86b3cb080dbb1470c6533ffa9274a0b1e38efd30e1106a80e0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_faults.cc",
+          "sha256": "4418072bbc0fed1a7c37119d494423dd890999a8542694cdaa87d4c47bc996e1"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_test_support.h",
+          "sha256": "b771b2e9c4a77bef804a3eb35313d89947d828730afa1992d6ca419954f6ea6c"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -27180,7 +27361,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -27499,12 +27681,49 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gesvx",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgesvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_driver.h",
+          "sha256": "c9faaeb03b49fa0408d331901cccb7ffdeb9dc3eb06c39217d90dbc9ad922f3d"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_driver.cc",
+          "sha256": "a0daaf90e677dccde805af4e7f7e37564d174c5ce72c87c385f8804d017cb43b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_test.cc",
+          "sha256": "ddbefc0f5ac9cda5212bbf446b40606bd191fbae0861151aebefbd6d9d210265"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_faults.h",
+          "sha256": "b07c664d6e30141a08b612d63c80270b26e65b41cda5bb3967ca2bfe58836b95"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_faults.cc",
+          "sha256": "251c31534d1b4103179288bd8cc376fd4076aa067d8d67cd9e2c1137a4ececc3"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_test_support.h",
+          "sha256": "970633379a438b1d61b1c784ebbe185197a616bcab5d1d31f803a23bf08120ba"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -27512,7 +27731,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -49065,12 +49285,45 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gecon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgecon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_condition.cc",
+          "sha256": "9bcfaca3a712db83e0647c9cc183231b040db24eac286b78aa164c95af811212"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_test.cc",
+          "sha256": "fa01d707fa76fdb6cf43370a9d1dde3f94b7fe3c653c651f697d53042298cfd7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_faults.h",
+          "sha256": "05a6362c8e6db902aac9652c9e172b2e3839ff33163b99ddd9cfc5d72cfc36bf"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_faults.cc",
+          "sha256": "06bac12d3a20a95abfdd2cfac27f9a1c74240d331aa1d7bbfd8fe98466c43e77"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -49078,7 +49331,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -49152,11 +49406,11 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+          "sha256": "7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
-          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+          "sha256": "2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_faults.cc",
@@ -49203,11 +49457,11 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+          "sha256": "7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
-          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+          "sha256": "2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_faults.cc",
@@ -50355,12 +50609,49 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gerfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgerfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_refinement.h",
+          "sha256": "c38c5b7a41a6fd3016a31234cd219b767a61f5cc58af324c5eab0490eca68826"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_refinement.cc",
+          "sha256": "df9b2b62d0ff0b2e72c6388062084605a65754a9c5bb7f838f1c43b0d1c1010a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_test.cc",
+          "sha256": "150784bcec74d161255b79d9cf3b966b1c911aa25b9c2ab8958eed321ae295b5"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_faults.h",
+          "sha256": "b1cbf9db073b3a86b3cb080dbb1470c6533ffa9274a0b1e38efd30e1106a80e0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_faults.cc",
+          "sha256": "4418072bbc0fed1a7c37119d494423dd890999a8542694cdaa87d4c47bc996e1"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_test_support.h",
+          "sha256": "b771b2e9c4a77bef804a3eb35313d89947d828730afa1992d6ca419954f6ea6c"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -50368,7 +50659,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -50687,12 +50979,49 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gesvx",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgesvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_driver.h",
+          "sha256": "c9faaeb03b49fa0408d331901cccb7ffdeb9dc3eb06c39217d90dbc9ad922f3d"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_driver.cc",
+          "sha256": "a0daaf90e677dccde805af4e7f7e37564d174c5ce72c87c385f8804d017cb43b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_test.cc",
+          "sha256": "ddbefc0f5ac9cda5212bbf446b40606bd191fbae0861151aebefbd6d9d210265"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_faults.h",
+          "sha256": "b07c664d6e30141a08b612d63c80270b26e65b41cda5bb3967ca2bfe58836b95"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_faults.cc",
+          "sha256": "251c31534d1b4103179288bd8cc376fd4076aa067d8d67cd9e2c1137a4ececc3"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_test_support.h",
+          "sha256": "970633379a438b1d61b1c784ebbe185197a616bcab5d1d31f803a23bf08120ba"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -50700,7 +51029,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -71145,12 +71475,45 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gecon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgecon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_condition.cc",
+          "sha256": "9bcfaca3a712db83e0647c9cc183231b040db24eac286b78aa164c95af811212"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_test.cc",
+          "sha256": "fa01d707fa76fdb6cf43370a9d1dde3f94b7fe3c653c651f697d53042298cfd7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_faults.h",
+          "sha256": "05a6362c8e6db902aac9652c9e172b2e3839ff33163b99ddd9cfc5d72cfc36bf"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_faults.cc",
+          "sha256": "06bac12d3a20a95abfdd2cfac27f9a1c74240d331aa1d7bbfd8fe98466c43e77"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -71158,7 +71521,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -71232,11 +71596,11 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+          "sha256": "7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
-          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+          "sha256": "2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_faults.cc",
@@ -71283,11 +71647,11 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "a2ca41503531bc104888ef33d88278314969d4c28dd4236c8708511548e5fd8b"
+          "sha256": "7b21e989423fa4d09874e96c11fd4aee3c81d1f47ca9a937d0f66f27d6e776c2"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
-          "sha256": "e79d25c100f5ad1837c92a218309205c7b5cd2ff7441279fd2f87967996ecb09"
+          "sha256": "2f4530ef6cf3c1d75b13e074797905054db607e51bc6487271f86aa8435cc7ba"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_faults.cc",
@@ -72435,12 +72799,49 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gerfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgerfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_refinement.h",
+          "sha256": "c38c5b7a41a6fd3016a31234cd219b767a61f5cc58af324c5eab0490eca68826"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_refinement.cc",
+          "sha256": "df9b2b62d0ff0b2e72c6388062084605a65754a9c5bb7f838f1c43b0d1c1010a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_test.cc",
+          "sha256": "150784bcec74d161255b79d9cf3b966b1c911aa25b9c2ab8958eed321ae295b5"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_faults.h",
+          "sha256": "b1cbf9db073b3a86b3cb080dbb1470c6533ffa9274a0b1e38efd30e1106a80e0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_faults.cc",
+          "sha256": "4418072bbc0fed1a7c37119d494423dd890999a8542694cdaa87d4c47bc996e1"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_test_support.h",
+          "sha256": "b771b2e9c4a77bef804a3eb35313d89947d828730afa1992d6ca419954f6ea6c"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -72448,7 +72849,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [
@@ -72790,12 +73192,49 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gesvx",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgesvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack_lu_driver.h",
+          "sha256": "c9faaeb03b49fa0408d331901cccb7ffdeb9dc3eb06c39217d90dbc9ad922f3d"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_driver.cc",
+          "sha256": "a0daaf90e677dccde805af4e7f7e37564d174c5ce72c87c385f8804d017cb43b"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_test.cc",
+          "sha256": "ddbefc0f5ac9cda5212bbf446b40606bd191fbae0861151aebefbd6d9d210265"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_faults.h",
+          "sha256": "b07c664d6e30141a08b612d63c80270b26e65b41cda5bb3967ca2bfe58836b95"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_faults.cc",
+          "sha256": "251c31534d1b4103179288bd8cc376fd4076aa067d8d67cd9e2c1137a4ececc3"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/advanced_main.cc",
+          "sha256": "722a38e5958f54d02619084ff6e6c644c0b4e961cb0a8563248983611d631c02"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_test_support.h",
+          "sha256": "970633379a438b1d61b1c784ebbe185197a616bcab5d1d31f803a23bf08120ba"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -72803,7 +73242,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual all-four-scalar both-layout LP64/true ILP64 scoped tests; formula workspace, caller packing and raw INFO behavior reviewed. Integrated installed and normalized mode/evidence closure pending. Tiny unscaled finite-condition/estimate mathematical gates remain unmet where applicable."
         }
       },
       "required_profiles": [

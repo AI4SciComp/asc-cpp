@@ -16,7 +16,7 @@ capabilities:
     owner: "core"
     development_stage: 10
     status: "runtime-tested"
-    evidence_scope: "unreleased P10; exact helper04 scoped Debug/Release/ASC sanitizer and strict checks pass; integrated a26e0e7 full verification in progress"
+    evidence_scope: "unreleased P10; frozen74ff2fb full provider-free Debug/Release271 each and shared Release273 pass, zero skips; unchanged candidate01 ASC sanitizer6 and Doxygen71/1413 pass; final platform/mode evidence remains required"
     public_headers:
       - "include/asc/core/matrix_market.h"
     direct_dependencies: []
@@ -33,7 +33,7 @@ capabilities:
     owner: "dense"
     development_stage: 10
     status: "runtime-tested"
-    evidence_scope: "unreleased P10; frozen Dense05 scoped numerical/format/rollback tests pass; a26e0e7 integrated runtime/shared/install gates in progress"
+    evidence_scope: "unreleased P10; frozen74ff2fb full Debug/Release271 each and shared Release273 pass, zero skips, including separately installed Dense-only example; Dense05 scoped numerical/format/rollback and external interoperability evidence remains distinct"
     public_headers:
       - "include/asc/dense/matrix_market.h"
     direct_dependencies:
@@ -55,7 +55,7 @@ capabilities:
     owner: "sparse"
     development_stage: 10
     status: "runtime-tested"
-    evidence_scope: "unreleased P10; frozen Sparse05 scoped258 cases and12294 mutation cases pass; a26e0e7 integrated runtime/shared/install gates in progress"
+    evidence_scope: "unreleased P10; frozen74ff2fb full Debug/Release271 each and shared Release273 pass, zero skips, including separately installed Sparse-only example; Sparse05 scoped258 cases and12294 mutations remain distinct"
     public_headers:
       - "include/asc/sparse/matrix_market.h"
     direct_dependencies:
@@ -78,12 +78,15 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 4
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lu-v3; frozen8c53d8d full LP64/trueILP64 each285 tests with zero skips, including installed both-layout consumers; final routine/mode contract-bound coverage remains pending"
+    evidence_scope: "unreleased incremental-lu-v4 integration; frozen12-operation GECON/GERFS/GESVX scoped both-ABI tests pass, not yet full integrated verification. Prior32-operation frozen8c53d8d full LP64/trueILP64 each285 tests passed; final routine/mode coverage and mathematical gates remain pending"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
       - "include/asc/dense/providers/lapack_lu.h"
       - "include/asc/dense/providers/lapack_lu_equilibration.h"
+      - "include/asc/dense/providers/lapack_lu_condition.h"
+      - "include/asc/dense/providers/lapack_lu_refinement.h"
+      - "include/asc/dense/providers/lapack_lu_driver.h"
     direct_dependencies:
       - "dense"
     tests:
@@ -91,12 +94,15 @@ capabilities:
       - "raw INFO, ABI, explicit integer workspace and preflight failures"
       - "actual GETRF2/GETF2 reconstruction, GETRI two-sided inverse residual and GESV driver residual"
       - "GEEQU/GEEQUB both-layout equations and partial outputs; LP64 subnormal GEEQUB success gate unmet"
+      - "GECON one/infinity norm estimates; GERFS N/T/C residual/refinement and FERR/BERR quality"
+      - "GESVX explicit FACT=N/E/F, all16 A/AF/B/X layouts, scaling and singular/accuracy outputs"
     guarantees:
       - "explicit provider selection; provider-free aggregate remains independent"
     non_guarantees:
       - "full Reference-LAPACK profile"
       - "shared providers or unaudited toolchains"
       - "successful GEEQUB equilibration for the recorded nonzero LP64 subnormal fixture"
+      - "finite GERFS/GESVX error estimates or scale-invariant condition success on recorded tiny unscaled fixtures"
 
   - capability: "checked logical metadata and mixed extents"
     owner: "core"

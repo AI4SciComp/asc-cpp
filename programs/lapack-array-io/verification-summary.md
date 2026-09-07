@@ -297,3 +297,24 @@ transfer or densification evidence; BLAS/Random regressions; installed component
 isolation; strict full-profile closure; platform, sanitizer, docs/style and
 provenance evidence. Zero tests, missing tools and unexpected skips are failures
 or missing evidence, never passes.
+
+## Advanced LU v4 available integration gates passed
+
+The [v4 review](lu-v4-integration-review.md) records candidate01 tree6146d75
+and its unchanged44 partial-reference/zero-verified ledger. Full LP64 and true
+ILP64 each execute315 tests (312 pass,3 fail); provider-free Debug and Release
+each execute271 (269 pass,2 fail), all zero skips. Strict Doxygen74/1457/zero
+warnings and Markdown pass. The failures are an unsorted exact header baseline
+and a condition-independent installed refinement oracle, both corrected with
+retained evidence. Corrected consumer diagnostic07 passes both actual ABIs
+and strict Clang18 analysis. Corrected treeeebeb3a, archive SHA256
+`3b39468e3e13c0dbe66685c595fcdb167613f6529dcf67053a61691661a9f9cc`,
+passes fresh full LP64/trueILP64 each315/315 and provider-free Debug/Release
+each271/271, zero skips; installed advanced/original LU consumers each2/2
+perABI and strict Doxygen74/1457/zero warnings/Markdown pass. Mapping SHA256
+is `955af4f0258eefa156d5e2434277724e8570fb7c6d729409a92b40a01be9fb77`;
+all44 reference rows remain in_progress, zero fully verified. The exact
+validator passes this partial accounting. Native/provider Cholesky/QR,
+original LU INTEGER guards and LU helpers remain separately frozen and
+excluded from this v4 snapshot. Provider-specific workspace/context admission
+is a newly explicit required gate, not an excuse to stop independent work.

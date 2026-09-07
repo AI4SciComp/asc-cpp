@@ -3,6 +3,7 @@
 #include <cmath>
 #include <complex>
 #include <cstddef>
+#include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <limits>
@@ -410,6 +411,85 @@ void EmptyCases(TestContext& test,
   }
 }
 
+template <typename T>
+void EmptyStrideCase(TestContext& test,
+                     const asc::ReferenceLapackProvider& provider,
+                     std::array<int, 2> shape, asc::DenseBlasLayout layout,
+                     bool radix) {
+  using Real = asc::DenseBlasRealType<T>;
+  const asc::extent_t stride =
+      static_cast<asc::extent_t>(std::numeric_limits<std::int32_t>::max()) + 1;
+  const auto matrix = Take(asc::DenseBlasMatrixView<const T>::Create(
+      nullptr, shape[0], shape[1], layout, stride, {nullptr, 0, kHost}));
+  std::array<Real, 5> rows{-3, -3, -3, -3, -3};
+  std::array<Real, 4> columns{-5, -5, -5, -5};
+  asc::LapackEquilibrationStatistics<Real> statistics{-31, -37, -41};
+  const auto query = WithoutAllocation(test, [&] {
+    return radix ? asc::QueryGeequbWorkspace(
+                       provider, matrix, Vector(rows, shape[0]),
+                       Vector(columns, shape[1]), statistics)
+                 : asc::QueryGeequWorkspace(
+                       provider, matrix, Vector(rows, shape[0]),
+                       Vector(columns, shape[1]), statistics);
+  });
+  const bool supported = layout == kRow || provider.identity().integer_abi !=
+                                               asc::LapackIntegerAbi::kLp64;
+  ASC_DENSE_TEST_EQ(test, query.ok(), supported);
+  ASC_DENSE_TEST_EQ(test, statistics.row_condition, Real{-31});
+  ASC_DENSE_TEST_EQ(test, statistics.column_condition, Real{-37});
+  ASC_DENSE_TEST_EQ(test, statistics.absolute_maximum, Real{-41});
+  ASC_DENSE_TEST_EQ(test, rows, (std::array<Real, 5>{-3, -3, -3, -3, -3}));
+  ASC_DENSE_TEST_EQ(test, columns, (std::array<Real, 4>{-5, -5, -5, -5}));
+  if (!query.ok()) {
+    ASC_DENSE_TEST_EQ(test, query.status().code(), asc::ErrorCode::kOverflow);
+    return;
+  }
+  asc::LapackReport report;
+  const auto execute = [&](asc::DenseBlasMatrixView<const T> view) {
+    return WithoutAllocation(test, [&] {
+      return radix ? asc::Geequb(provider, view, Vector(rows, shape[0]),
+                                 Vector(columns, shape[1]), statistics, *query,
+                                 {}, report)
+                   : asc::Geequ(provider, view, Vector(rows, shape[0]),
+                                Vector(columns, shape[1]), statistics, *query,
+                                {}, report);
+    });
+  };
+  ASC_DENSE_TEST_CHECK(test, execute(matrix).ok());
+  ASC_DENSE_TEST_CHECK(test, !report.called_provider && !report.native_info);
+  ASC_DENSE_TEST_EQ(test, report.output_validity,
+                    asc::LapackOutputValidity::kComplete);
+  ASC_DENSE_TEST_EQ(test, statistics.row_condition, Real{1});
+  ASC_DENSE_TEST_EQ(test, statistics.column_condition, Real{1});
+  ASC_DENSE_TEST_EQ(test, statistics.absolute_maximum, Real{0});
+  const auto changed = Take(asc::DenseBlasMatrixView<const T>::Create(
+      nullptr, shape[0], shape[1], layout, stride + 1, {nullptr, 0, kHost}));
+  statistics = {-31, -37, -41};
+  ASC_DENSE_TEST_EQ(test, execute(changed).code(),
+                    asc::ErrorCode::kInvalidState);
+  ASC_DENSE_TEST_CHECK(test, !report.called_provider && !report.native_info);
+  ASC_DENSE_TEST_EQ(test, report.output_validity,
+                    asc::LapackOutputValidity::kUnchanged);
+  ASC_DENSE_TEST_EQ(test, statistics.row_condition, Real{-31});
+  ASC_DENSE_TEST_EQ(test, statistics.column_condition, Real{-37});
+  ASC_DENSE_TEST_EQ(test, statistics.absolute_maximum, Real{-41});
+  ASC_DENSE_TEST_EQ(test, rows, (std::array<Real, 5>{-3, -3, -3, -3, -3}));
+  ASC_DENSE_TEST_EQ(test, columns, (std::array<Real, 4>{-5, -5, -5, -5}));
+}
+
+template <typename T>
+void EmptyLargeStride(TestContext& test,
+                      const asc::ReferenceLapackProvider& provider) {
+  for (const auto shape :
+       {std::array{0, 0}, std::array{0, 2}, std::array{3, 0}}) {
+    for (const auto layout : {kColumn, kRow}) {
+      for (bool radix : {false, true}) {
+        EmptyStrideCase<T>(test, provider, shape, layout, radix);
+      }
+    }
+  }
+}
+
 void WorkspaceRejections(TestContext& test,
                          const asc::ReferenceLapackProvider& provider) {
   Sample<double> sample(kRow, 0);
@@ -467,6 +547,7 @@ void Numerics(TestContext& test, const asc::ReferenceLapackProvider& provider) {
   PinnedSubnormalBehavior<T>(test, provider);
   ZeroRowsAndColumns<T>(test, provider);
   EmptyCases<T>(test, provider);
+  EmptyLargeStride<T>(test, provider);
   std::puts(
       "GEEQU/GEEQUB: column/row-major, independent reciprocal/radix scales, "
       "quantized AMAX, zero rows/columns and partial validity, empty, "

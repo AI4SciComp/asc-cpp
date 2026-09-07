@@ -33,6 +33,9 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_export.h
   include/asc/dense/providers/lapack_lu.h
   include/asc/dense/providers/lapack_lu_equilibration.h
+  include/asc/dense/providers/lapack_lu_condition.h
+  include/asc/dense/providers/lapack_lu_refinement.h
+  include/asc/dense/providers/lapack_lu_driver.h
   include/asc/dense/view.h
   include/asc/dense/print.h
   include/asc/dense/io.h
@@ -99,6 +102,9 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_lu.cc
   src/dense/lapack/reference_lu_expert.cc
   src/dense/lapack/reference_lu_equilibration.cc
+  src/dense/lapack/reference_lu_condition.cc
+  src/dense/lapack/reference_lu_refinement.cc
+  src/dense/lapack/reference_lu_driver.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/blas_level2.cc

@@ -40,21 +40,28 @@ foreach(_scalar IN ITEMS s d c z)
     LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
 endforeach()
 
-foreach(_family IN ITEMS expert equilibration)
+foreach(_family IN ITEMS expert equilibration condition refinement driver)
   set(_target "asc_dense_lapack_lu_${_family}_test")
   add_executable("${_target}"
     "lu_${_family}_test.cc" "lu_${_family}_faults.cc" allocation_audit.cc
     "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
   _asc_dense_lapack_configure_test("${_target}")
   target_include_directories("${_target}" PRIVATE
-    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+    "${PROJECT_SOURCE_DIR}" "${ASC_CPP_LAPACK_CONFIG_DIR}"
+    "${ASC_CPP_LAPACK_ROOT}/include")
   target_link_options("${_target}" PRIVATE
     "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
   if(_family STREQUAL "expert")
     target_link_options("${_target}" PRIVATE
       "-Wl,--wrap=dgetrf2_,--wrap=dgetf2_,--wrap=dgetri_,--wrap=dgesv_")
-  else()
+  elseif(_family STREQUAL "equilibration")
     target_link_options("${_target}" PRIVATE "-Wl,--wrap=dgeequ_,--wrap=dgeequb_")
+  elseif(_family STREQUAL "condition")
+    target_link_options("${_target}" PRIVATE "-Wl,--wrap=dgecon_")
+  elseif(_family STREQUAL "refinement")
+    target_link_options("${_target}" PRIVATE "-Wl,--wrap=dgerfs_")
+  else()
+    target_link_options("${_target}" PRIVATE "-Wl,--wrap=dgesvx_")
   endif()
   foreach(_scalar IN ITEMS s d c z)
     asc_register_test(NAME "asc_cpp.dense_lapack.lu_${_family}.${_scalar}"
@@ -103,7 +110,8 @@ set_tests_properties(asc_cpp.dense_lapack.configuration_gates PROPERTIES
   RUN_SERIAL TRUE TIMEOUT 240)
 
 foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
-    lapack_lu_equilibration.h)
+    lapack_lu_equilibration.h lapack_lu_condition.h lapack_lu_refinement.h
+    lapack_lu_driver.h)
   string(MAKE_C_IDENTIFIER "${_header}" _id)
   foreach(_mode IN ITEMS normal no_exceptions)
     set(_target "asc_dense_lapack_header_${_id}_${_mode}")

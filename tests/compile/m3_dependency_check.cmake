@@ -58,6 +58,9 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_export.h
   include/asc/dense/providers/lapack_lu.h
   include/asc/dense/providers/lapack_lu_equilibration.h
+  include/asc/dense/providers/lapack_lu_condition.h
+  include/asc/dense/providers/lapack_lu_refinement.h
+  include/asc/dense/providers/lapack_lu_driver.h
 )
 
 file(

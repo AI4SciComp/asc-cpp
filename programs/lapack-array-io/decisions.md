@@ -156,3 +156,45 @@ Only documented outputs are unpacked after validated foreign INFO/pivots.
 Singular factors remain inspectable; singular GESV leaves B unchanged, singular
 GETRI leaves its factors unchanged, and provider defects do not publish packed
 undefined results. The scalar, layout and integer regions stay disjoint.
+
+## D015: distinguish finite-input estimate fidelity from mathematical success
+
+GECON/GERFS/GESVX preserve exact source semantics, raw INFO and documented
+diagnostics. Unscaled tiny finite systems expose independently reproduced
+nonfinite FERR and zero RCOND even when the scale-invariant mathematical
+quantities are finite. Those are retained unmet mathematical gates, not removed
+fixtures or successes awarded to faithful error reports. Explicit GESVX FACT=E
+can change the numerical path and succeeds on the recorded scalar fixture;
+ASC never chooses it implicitly for FACT=N/F. No local provider patch, new
+source identity, license/notice approval or full-family completion is implied.
+
+## D016: queries also require exact foreign-intermediate bounds
+
+A valid caller descriptor and ABI-sized N are not sufficient for a safe foreign
+workspace query. Bounds include the pinned integer formula, floating conversion
+and any intermediate return-helper conversion before entry. The independently
+computed raw preferred count remains a lower bound even when the returned
+floating value rounds downward. Extreme tests operate on private pure count
+helpers; they must not forge huge nonempty backing allocations. Source-conditioned
+vector and blocked-loop terminal arithmetic receives the same review.
+
+## D017: test refinement against conditioning and the stored system
+
+Retain failed fixed-forward-error assertions and reproduce questionable results
+with both an independent mathematical oracle and separately labeled direct
+provider calls. The advanced installed LU consumer now checks exact dyadic
+stored-system right-hand sides, widened backward residuals, finite diagnostics
+and actual forward errors against FERR. A second well-conditioned fixture
+retains the original tight forward assertion. Neither increasing a tolerance
+to match one result nor dropping ill-conditioned fixtures is an acceptable fix.
+See [lu-v4-integration-review.md](lu-v4-integration-review.md) for the concrete
+condition8193 counterexample and retained raw evidence.
+
+## D018: neutral workspace validity is not provider placement admission
+
+Each explicitly selected provider context must admit every nonempty supplied
+workspace region as well as operands before mutation or foreign execution.
+The generic workspace validator keeps its broader documented policy. New
+helper context tests exposed a missing adapter-specific check; the correction
+and its regression must be propagated by an audited follow-up, not inferred
+from generic host/pinned-host validation.

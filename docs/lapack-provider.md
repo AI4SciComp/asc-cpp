@@ -2,11 +2,13 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lu-v3` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lu-v4` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
-through explicit caller-owned packing. All other
+through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
+FACT=N/E/F drivers add condition estimation, refinement and expert solves for
+the same four scalars, with independently selected A/AF/B/X layouts. All other
 required LAPACK routines and shared-facet isolation
 remain incomplete. Native coverage is separate; registration and scoped tests
 do not close the full routine/mode/evidence manifest.
@@ -34,6 +36,51 @@ certify singular input or successful equilibration. The same fixture succeeds
 in the separately verified true ILP64 provider; the LP64 mathematical-success
 gate remains unmet. GEEQUB's pinned AMAX is radix-quantized, unlike GEEQU's
 original maximum. Public declarations document exact partial-output validity.
+
+## Condition estimation, refinement and expert drivers
+
+The dedicated provider headers `lapack_lu_condition.h`,
+`lapack_lu_refinement.h` and `lapack_lu_driver.h` expose these distinct checked
+routes; none changes the native or default provider-free API.
+
+`Gecon` takes immutable raw square LU and a caller-supplied finite original
+one/infinity norm. It does not need pivots. Complex matrix norms use Euclidean
+scalar modulus. `Gerfs` takes immutable original A, matching raw LU/pivots,
+original B and a separate mutable initial X. It supports N/T/C and returns
+underlying-real FERR/BERR. A supplied factor's original/scaled provenance is a
+caller obligation; these interfaces do not invent a successful factor view.
+
+`Gesvx` selects FACT=N and preserves original A/B. `GesvxEquilibrated` selects
+FACT=E with explicitly mutable A/B and R/C/EQUED outputs. `GesvxFactored`
+selects FACT=F with immutable already-scaled A/factors/pivots/used scales and
+explicitly mutable original B. X always describes the original system;
+RCOND describes the equilibrated matrix. Statistics also retain reciprocal
+pivot growth. Unused supplied scales are not read. Output-only AF/X are not
+read during row-major packing.
+
+These workspace queries evaluate checked formulas without foreign calls.
+Regions distinguish scalar, underlying-real, foreign-width integer and
+ASC-sized layout capacities. The integer region contains foreign pivots and
+any IWORK; it is not the ASC-index-width pivot-conversion role. All operands
+and live regions must be disjoint. There is no implicit allocation, transfer,
+precision conversion or provider fallback.
+
+Raw GESVX INFO=1..n preserves completed singular factors/scaling and the
+source-defined diagnostics, leaving X/FERR/BERR unchanged. INFO=n+1 is an
+accuracy warning with a completed solution. Nonfinite error/statistic outputs
+are retained with numerical warnings; negative outputs are provider defects.
+Arbitrary nonfinite inputs or unrepresentable solutions have no finite-X
+promise. GERFS similarly preserves nonfinite estimates with an accuracy warning
+even when upstream INFO=0; it checks exact-zero U before refinement.
+
+Required mathematical limitations remain explicit: tiny finite unscaled scalar
+systems can overflow GERFS's intermediate inverse application and produce
+nonfinite FERR; GESVX FACT=N/F can additionally return RCOND=0 despite exact
+condition one. Both ABIs reproduce these limitations. Explicit FACT=E succeeds
+on that recorded fixture, but is never substituted implicitly. Passing fidelity
+tests do not close finite-condition/error mathematical gates. Full normalized
+mode/evidence closure and the source-audited original-LU integer-arithmetic
+follow-up remain required; this development profile is not full capability.
 
 ## Building the explicit subset
 
