@@ -4770,15 +4770,90 @@
         "state": "pending"
       },
       "id": "lapack.cgels",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -4845,15 +4920,90 @@
         "state": "pending"
       },
       "id": "lapack.cgelst",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -5292,11 +5442,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -5308,7 +5458,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -5546,11 +5696,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -5562,7 +5712,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -7645,15 +7795,90 @@
         "state": "pending"
       },
       "id": "lapack.cgetsls",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -16413,15 +16638,118 @@
         "state": "pending"
       },
       "id": "lapack.cpocon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -16438,15 +16766,118 @@
         "state": "pending"
       },
       "id": "lapack.cpoequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -16463,15 +16894,118 @@
         "state": "pending"
       },
       "id": "lapack.cpoequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -16488,15 +17022,118 @@
         "state": "pending"
       },
       "id": "lapack.cporfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -16646,15 +17283,118 @@
         "state": "pending"
       },
       "id": "lapack.cposvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -23120,11 +23860,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -23136,7 +23876,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -23612,11 +24352,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -23628,7 +24368,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -28405,15 +29145,90 @@
         "state": "pending"
       },
       "id": "lapack.dgels",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -28480,15 +29295,90 @@
         "state": "pending"
       },
       "id": "lapack.dgelst",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -28927,11 +29817,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -28943,7 +29833,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -29181,11 +30071,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -29197,7 +30087,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -31464,15 +32354,90 @@
         "state": "pending"
       },
       "id": "lapack.dgetsls",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -38879,11 +39844,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -38895,7 +39860,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -39371,11 +40336,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -39387,7 +40352,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -40000,15 +40965,118 @@
         "state": "pending"
       },
       "id": "lapack.dpocon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -40025,15 +41093,118 @@
         "state": "pending"
       },
       "id": "lapack.dpoequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -40050,15 +41221,118 @@
         "state": "pending"
       },
       "id": "lapack.dpoequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -40075,15 +41349,118 @@
         "state": "pending"
       },
       "id": "lapack.dporfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -40233,15 +41610,118 @@
         "state": "pending"
       },
       "id": "lapack.dposvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -53470,15 +54950,90 @@
         "state": "pending"
       },
       "id": "lapack.sgels",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -53545,15 +55100,90 @@
         "state": "pending"
       },
       "id": "lapack.sgelst",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -53992,11 +55622,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -54008,7 +55638,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -54246,11 +55876,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -54262,7 +55892,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -56506,15 +58136,90 @@
         "state": "pending"
       },
       "id": "lapack.sgetsls",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -63896,11 +65601,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -63912,7 +65617,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -64388,11 +66093,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -64404,7 +66109,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -65017,15 +66722,118 @@
         "state": "pending"
       },
       "id": "lapack.spocon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -65042,15 +66850,118 @@
         "state": "pending"
       },
       "id": "lapack.spoequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -65067,15 +66978,118 @@
         "state": "pending"
       },
       "id": "lapack.spoequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -65092,15 +67106,118 @@
         "state": "pending"
       },
       "id": "lapack.sporfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -65250,15 +67367,118 @@
         "state": "pending"
       },
       "id": "lapack.sposvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -77427,15 +79647,90 @@
         "state": "pending"
       },
       "id": "lapack.zgels",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -77502,15 +79797,90 @@
         "state": "pending"
       },
       "id": "lapack.zgelst",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -77949,11 +80319,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -77965,7 +80335,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -78203,11 +80573,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -78219,7 +80589,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -80325,15 +82695,90 @@
         "state": "pending"
       },
       "id": "lapack.zgetsls",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_least_squares.h",
+          "sha256": "865f5b6ac1bbe5100cb475a94cfd8a85fe568eaf441c9d28cf496479e582feaa"
+        },
+        {
+          "path": "src/dense/lapack/reference_least_squares.cc",
+          "sha256": "d92fb8d858328dd552a7e7fcebbf4a1e39960c7c87cb2cfa4fde680daf926831"
+        },
+        {
+          "path": "src/dense/lapack/internal_least_squares_counts.h",
+          "sha256": "a8553e17c867dd751df9769d9fa25978166fd935b414a2c815dedd9b681a89da"
+        },
+        {
+          "path": "tests/dense_lapack/reference_least_squares_test.cc",
+          "sha256": "b0e2c3433849a5512b13a3611b1fad81d9104dae464ed0b8416528d006e25f49"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_contract_test.cc",
+          "sha256": "4625ef06b86b2df8a8bbedb23a8279464d2db01960f825e51d0a997da3daecbb"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_workspace_test.cc",
+          "sha256": "a49f203ff0519fb0ed0f7420b14afa9ebdd62a9b84f511fda4f833d02daef90f"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_counts_test.cc",
+          "sha256": "a4f21e9d645fbbbe3bd23067405ceee4b0b37bfad4c8e5d498d7ae0c3a64cb0a"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.cc",
+          "sha256": "a7f386e22a0ba835b534043ad6cb4da649d310696262a0299b34a4fde8ac90c3"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_faults.h",
+          "sha256": "07d1c063b145b89b6f39b5e1cbb6d799241350a23a3083efcd0163be230562dd"
+        },
+        {
+          "path": "tests/dense_lapack/least_squares_test_support.h",
+          "sha256": "1160d2e7cc0c09334f97a0c45af808f0fb12f76055621f7c1b577f964efb1c93"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/least_squares_main.cc",
+          "sha256": "39568defccf18737ca8be6f262d43b8159594087c406e252faf6ddc7c37e354d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/least-squares-review.md"
         }
       },
       "required_profiles": [
@@ -88978,15 +91423,118 @@
         "state": "pending"
       },
       "id": "lapack.zpocon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -89003,15 +91551,118 @@
         "state": "pending"
       },
       "id": "lapack.zpoequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -89028,15 +91679,118 @@
         "state": "pending"
       },
       "id": "lapack.zpoequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -89053,15 +91807,118 @@
         "state": "pending"
       },
       "id": "lapack.zporfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -89211,15 +92068,118 @@
         "state": "pending"
       },
       "id": "lapack.zposvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "f88ddfbf7825792cb96bf5d76a2d5deaa44ca54e0dab4e2d3f7b9668d368b4c9"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "df1d29ca7dd14307e0c0e834bfcc24d786a6a1e6157a9d048cf0210a47b468e2"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_condition.h",
+          "sha256": "a0ef6a7ab8b3da722e9e73aa8eea2adf2185953975ba2474b60609683ec9bb3f"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_refinement.h",
+          "sha256": "8d48a2d1e6cb6a0d961037c17ed29ee1ecbeba33ad06a4290395d84a1549562b"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_driver.h",
+          "sha256": "ebaf7fb435a6687a04a6e5cba9486c4d44a48e0408102f9df5a7c1707bb16bfa"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_equilibration.h",
+          "sha256": "e7bee6ffe57142916ef410713cde4968ff85c64a83f1a33aeb187001d7e145bb"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_condition.cc",
+          "sha256": "b199dc23699d9922374df6694491b98fd4a8d815139415552ed7adb574851b2a"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_refinement.cc",
+          "sha256": "ba35459a3daeb8cb173764d1d90214897c6c1c079fa3d88143930c73968fb062"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_driver.cc",
+          "sha256": "3264291148380ffa1e677eed1cb34dd1d75c1cf9836b8d21ca3adb576f1e6a41"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_equilibration.cc",
+          "sha256": "ae79355ee2ac003a8df1b48c218fc807cc5f0b2b159de9db4ba2089ab1a7bf33"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_diagonal_test.cc",
+          "sha256": "a94602231d9e553460ac2fd031ddab773f9a4abb65ed8bc636f26cb59b3e2e4d"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_solve_test.cc",
+          "sha256": "ce07726e41389b6c7eee29e4a596b138a30f46de621579e7feb8297f99eae640"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_defensive_test.cc",
+          "sha256": "c490cc578d43cc95056ab9a29f11b4eb2cc37d821cc774ad33b77e2ef134790a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_boundary_test.cc",
+          "sha256": "4cdbab22b4fc43da61560c0c859f3e585a9c1f01ade0cdd6ef6b77bb8eb8cb1f"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.cc",
+          "sha256": "54072f3340339231b7eacffaa8e77e5255ce0969ceee2be141d670aaa17fec5a"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_faults.h",
+          "sha256": "96cfa60d45fccb63fd6a5c9c894c251f49a6564824abf02b43dea18780bde9b9"
+        },
+        {
+          "path": "tests/dense_lapack/cholesky_expert_test_support.h",
+          "sha256": "c406ead5162a0886c6cd3bd9f46c6c63f557bbd8821dda4c98bf7dccb30b979a"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/cholesky_expert_main.cc",
+          "sha256": "32f0d601ee13f6ad872a53d14f41f5791f9e6ef282f4c6a659977a1ff99f040b"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual typed algorithms implemented and frozen per-family ABI/numerical/failure diagnostics passed; root integrations, installed consumers and source-specific reflector-cursor amendments require new verification. Exact normalized complete contracts/modes/evidence remain pending; no full-family or mathematical-failure waiver.",
+          "review": "programs/lapack-array-io/cholesky-expert-review.md"
         }
       },
       "required_profiles": [
@@ -95614,11 +98574,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -95630,7 +98590,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",
@@ -96106,11 +99066,11 @@
         },
         {
           "path": "src/dense/lapack/reference_qr.cc",
-          "sha256": "42c767133298843fc188b04861717b01c06762fa0db3ef9a5b550d33151e3b03"
+          "sha256": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008"
         },
         {
           "path": "src/dense/lapack/internal_qr_counts.h",
-          "sha256": "b6467730381499d825ea286c0f5e535da325b4678e6535bb349e022c4b698b5e"
+          "sha256": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -96122,7 +99082,7 @@
         },
         {
           "path": "tests/dense_lapack/qr_counts_test.cc",
-          "sha256": "19215b82fc32ac52373b0c0bb147e19b3af2090604304a7f19f1dc3d6f04db15"
+          "sha256": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61"
         },
         {
           "path": "tests/dense_lapack/qr_test_support.h",

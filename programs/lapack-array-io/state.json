@@ -14,12 +14,12 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "3d5909d6c26ba2d274749106bda448e2280b8330",
+  "last_implementation_commit": "9ffb62c183b22a1232790a01c0940a5d731630c2",
   "worktree_diff_identity": {
     "state": "in_progress",
-    "recorded_at": "2026-09-07T13:00:15.797Z",
-    "tracked_diff_sha256": "14f9f22f163e052d0246b4ee246fafb31094ba993113039418d2583eacf3b3ff",
-    "note": "Root-owned integration only; agents have isolated linked worktrees. This tracked-diff digest excludes this state file and untracked files; frozen Git tree/archive and per-command source identities remain authoritative."
+    "recorded_at": "2026-09-07T14:09:32.930Z",
+    "tracked_diff_sha256": "caafcb143923b05ae892aaf137da0a78dd9ce85062aefc58f989cefcf506ea86",
+    "note": "Root integration worktree only; original dirty release checkout remains unchanged. This tracked digest excludes state and untracked files; frozen Git tree/archive and command metadata are authoritative."
   },
   "packages": {
     "P00": {
@@ -216,25 +216,25 @@
     "P05.native_cholesky": {
       "state": "implemented_unverified",
       "owner": "integration",
-      "scope": "Frozen4-scalar native POTRF/POTRS diagnostics pass; registered8 native contracts, provider-free installed example and full v5 integration pending",
+      "scope": "Eight native POTRF/POTRS contracts implemented; v5 full provider-free Debug/Release277 and shared279, aggregate10 and standalone Dense-only1 passed. Native scoped ASan5 passed unchanged numerical bytes. Exact normalized mode evidence remains pending.",
       "review": "programs/lapack-array-io/native-cholesky-review.md"
     },
     "P06.native_qr": {
       "state": "implemented_unverified",
       "owner": "integration",
-      "scope": "Frozen4-scalar native GEQRF plus separate Q conveniences diagnostics pass; registered4 native contracts; full v5 integration/installed and mode evidence pending",
+      "scope": "Four native GEQRF contracts plus separate Q conveniences implemented; v5 full provider-free Debug/Release277/shared279 and installed aggregate10/standalone1 passed. Native scoped ASan5 passed unchanged numerical bytes; no native ORG/UNG/ORM/UNM credit and exact mode evidence pending.",
       "review": "programs/lapack-array-io/native-qr-review.md"
     },
     "P05.reference_cholesky": {
       "state": "in_progress",
       "owner": "integration",
-      "scope": "Registered24 actual reference scalar routes, frozen numerical and root stride diagnostics pass both ABIs; new combined/installed and exact contract/mode evidence pending",
+      "scope": "Registered24 actual routes; full v5 bothABI344/installed5 passed. Root v6 adds expert20 distinct routes; full current integration and exact normalized modes remain separate.",
       "review": "programs/lapack-array-io/reference-cholesky-review.md"
     },
     "P06.reference_qr": {
       "state": "in_progress",
       "owner": "integration",
-      "scope": "Registered16 actual GEQRF/GEQR2/ORG-UNG-ORM-UNM scalar routes; frozen both-ABI numerical/count/placement diagnostics pass; combined/installed/mode evidence pending",
+      "scope": "Registered16 actual routes; source-specific LARF1F/LARFB cursor amendment passes pure both-limit regression and v6 Clang19 bothABI19-test affected suites. Full v6/installed and normalized mode closure pending; v5 pass is older numerical source. Exact corrected v6 source now passes bothABI full365/installed7/scoped all-ASC-C++ ASan19/strict19 and provider-free full baselines; normalized mode evidence remains pending.",
       "review": "programs/lapack-array-io/reference-qr-review.md"
     },
     "P04.lu_helpers": {
@@ -246,26 +246,26 @@
     "P04.provider_placement": {
       "state": "in_progress",
       "owner": "integration",
-      "scope": "Imported7 adapters and4 pivot guard corrections; exact candidate02 six lanes35/35 each passes. Root preserved prior CPU predicate in two writable pivot guards; final combined amended-source verification pending",
+      "scope": "Original seven-adapter/four-pivot correction and root retained CPU predicate passed full v5 bothABI344/installed5. New v6 source remains separate; neutral public workspace policy unchanged.",
       "review": "programs/lapack-array-io/provider-placement-review.md"
     },
     "P05.expert_implementation": {
       "state": "in_progress",
       "owner": "p00_inventory",
       "worktree": "../asc-cpp-p05-expert",
-      "scope": "Frozen20 actual POCON/PORFS/POSVX/POEQU/POEQUB routes: six trueABI Debug/scopedASan/Release-libc lanes4/4 each, strict/header/Doxy passed. Root read all17 files and imported them unregistered/unstaged for v6; not counted in v5. Frozen owner worktree preserved."
+      "scope": "Root-reviewed frozen20 actual POCON/PORFS/POSVX/POEQU/POEQUB rows now registered in v6. Owner six4-test lanes and root direct installed-style bothABI attempt03 pass; full current integration/relocated installed and normalized modes pending. Exact corrected v6 source now passes bothABI full365/installed7/scoped all-ASC-C++ ASan19/strict19 and provider-free full baselines; normalized mode evidence remains pending."
     },
     "P05.band_implementation": {
       "state": "in_progress",
       "owner": "p00_array_contracts",
       "worktree": "../asc-cpp-p05-band",
-      "scope": "Separate12 actual PBTRF/PBTF2/PBTRS rows; additive existing positive-definite-band descriptor row layout with original API preserved; not yet imported or counted"
+      "scope": "Root fully reviewed old frozen14 files and found whole-complex ignored input diagonal read. Separate corrected dependency six14-test lanes pass; old frozen controls bothABIs fail0/2 complex tests with40 assertions each. Strict/final handoff and root delta review pending. Root public-only consumer direct old-source bothABI math and strictClang18 pass attempt02, first strict3 findings retained; no root registration or amended-source consumer credit. Amended dependency final handoff now has bothABI strict/format/no-exception/header checks and Doxygen80/1599 zero warnings; root eight-file delta review/consumer rerun and integration pending."
     },
     "P06.least_squares_implementation": {
       "state": "in_progress",
       "owner": "p00_baseline",
       "worktree": "../asc-cpp-p06-least-squares",
-      "scope": "Frozen12 actual GELS/GELST/GETSLS rows: all8 ABI/config main6/6 and separate workspace1/1 lanes passed. Root read all10 files and imported unregistered/unstaged for v6. New public-only consumer direct diagnostics in progress; not counted in v5."
+      "scope": "Root-reviewed frozen12 actual GELS/GELST/GETSLS rows now registered in v6; two count files root amended for reflector cursors. Owner old-source main6 and separate workspace1 lanes are not amended-source proof. New pure regression/strict and direct public consumer attempt03 pass; full and sanitizer/installed gates pending. Exact corrected v6 source now passes bothABI full365/installed7/scoped all-ASC-C++ ASan19/strict19 and provider-free full baselines; normalized mode evidence remains pending."
     },
     "P05.indefinite_implementation": {
       "state": "in_progress",
@@ -277,11 +277,17 @@
       "state": "in_progress",
       "owner": "p00_baseline",
       "worktree": "../asc-cpp-p06-rank-revealing",
-      "scope": "Independent8 actual GEQP3/GELSY rows; approved append-only column-permutation foundation regions isolated, source-derived nested workspace/count checks and fixed-zero-column mathematical limitation, no root registration yet"
+      "scope": "Owner candidate01 eight GEQP3/GELSY routes passed eight16-test lanes and strict, but root identified nontrivial empty-GEQP3 local emulation. Root approved actual call with n live caller staging slots/canonical LDA1/minimum n/actual query1 and nested count guards. Correction implemented separately, fresh candidate02 and root adapter/tests review pending; no root import/registration."
+    },
+    "P05.band_expert_implementation": {
+      "state": "in_progress",
+      "owner": "p00_array_contracts",
+      "worktree": "../asc-cpp-p05-band-expert",
+      "scope": "Separate exact20 PBSV/PBCON/PBRFS/PBSVX/PBEQU candidate rows confirmed against inventory; frozen14 band dependencies preserved, actual implementation/source audit ongoing, not root registered."
     }
   },
-  "active_task": "Frozen v5 candidate04 full LP64/trueILP64 each344/344, Debug/Release each277/277, shared279/279 pass, zero skips; installed5/5 eachABI, Doxygen79/1573/zero warnings. Candidate02 failed records retained. Root also imported29 reviewed expert/least-squares files UNSTAGED for v6 and added two consumers passing bothABI direct diagnostics/strict attempt02. Newly discovered LARF1F/LARFB cursor gap has uncommitted QR/LS guards/pure tests requiring separate verification; v5 full pass is not this gate's closure. Band, indefinite and rank-revealing agents have isolated worktrees.",
-  "next_action": "Commit only frozen v5 STAGED product plus explicit program annotations; product must match f021fb84e345c355affe65d8c06119c14a18e594 outside programs. Do not git add -A: unregistered v6 imports and unstaged reference_qr.cc/internal_qr_counts.h/qr_counts_test.cc corrections coexist. Then apply external register-v6-structure.cjs and32-row mapping, update exact headers/profile/contracts, freeze and test row-cursor corrections including old-source control and affected bothABI lanes, then full v6 integration/installed/docs. Continue all P04-P11 advanced/specialized scope and normalized mode/evidence ledger; no complete-program claim.",
+  "active_task": "V6 exact tree98f341bc6f4c2f655cae9a503ecbda5b266f3e32/archive2b5d8ee5018998b86d5498ac949cf70bae359ca3cb723e9392a0b1d80021c06c passes full bothABI365 each, provider-free Debug/Release277 each/shared279, installed7 eachABI, Clang19 affected ASan19 eachABI, strict19 TUs eachABI, format32 files and Doxygen84/1654/zero warnings; zero CTest skips. Preparing reviewable commit of byte-identical product plus durable annotations. Candidate01 omitted-header failures and old sanitizer harness link failures remain retained. Corrected band8-file dependency freeze ready for root delta review and consumer rerun; indefinite final04 and corrected rank02 isolated verification/review continue. No full-program completion or verified routine promotion.",
+  "next_action": "Finish completed-record indexing with index-v6-records.cjs; validate coverage and program Markdown/JSON; stage only v6 product plus program records, leaving untracked cholesky_band_main.cc out; confirm product equals tree98f341bc6f4c2f655cae9a503ecbda5b266f3e32 outside programs, commit and push feature/lapack-array-io and update actual draft47. Then review band-imaginary-IAVa56W7 eight-file delta, rerun public consumer against that amended source, finish indefinite/rank source/test review and add installed consumers before next atomic registration. Continue full P04-P11 advanced/specialized scope; all2113 required remain.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -289,7 +295,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "a58be7ec2d1ec1a4a5c9545abf976d5a1e90a58e366aea2fe17d7bd1c9eb651a"
+    "coverage_mapping_sha256": "a9c265020bc5c6d6b7bd07901a90b7719634dba6bc5ba3f5dce3459bafe9ceca"
   },
   "provider": {
     "version": "3.12.1",
@@ -323,7 +329,7 @@
         "asc_abi_verified": true
       }
     ],
-    "abi_verification_scope": "Prior committed v4 exact eebeb3a full LP64/trueILP64 each315/315, installed2/2 eachABI. v5 adds48 actual partial routes and source corrections with frozen per-family diagnostics; combined/installed v5 pending. Linux x86_64 GCC/GFortran11.4/libstdc++20230528/static only. Full mode/contract evidence, numerical gates and shared/platform gates remain unclosed."
+    "abi_verification_scope": "V5 f021fb8 full LP64/trueILP64 each344/344 with installed5 each and zero skips, product identical outside programs to pushed9ffb62c. New v6 routes and row-cursor amendments require new integrated verification. Linux x86_64 GCC/GFortran11.4/libstdc++20230528 static only. Mathematical, normalized mode, shared/platform and owner-license gates remain."
   },
   "toolchain": {
     "observed": "Linux x86_64; GCC 11.4.0; CMake 4.1.2",
@@ -396,15 +402,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 2021,
-    "reference_in_progress_in_ledger": 92,
+    "reference_not_started_in_ledger": 1989,
+    "reference_in_progress_in_ledger": 124,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 92,
+    "registered_partial_reference_operations": 124,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "Required denominator2113 unchanged.20 native implemented_unverified;92 partial reference in_progress, zero fully verified native/reference. v5 family diagnostics and direct consumer runs are separate from pending combined/installed and normalized exact mode evidence. Tiny-input math and owner/platform/full-profile gates remain explicit."
+    "note": "2113 required unchanged;20 native implemented_unverified and124 reference in_progress,zero fully verified. Fresh v6 source/installed verification and normalized exact modes/evidence pending. V5 actual command passes remain separately identified."
   },
   "blockers": [
     {
@@ -424,18 +430,28 @@
     },
     {
       "id": "LU-INTEGER-ARITHMETIC",
-      "scope": "Source-audited correction and old-code controls pass both ABIs in frozen diagnostics; imported v5 combined/installed verification pending",
+      "scope": "Original correction passed full v5 bothABI344/installed5 each; new reflector gap distinct and exact normalized mode evidence remains pending.",
       "record": "programs/lapack-array-io/blockers.md"
     },
     {
       "id": "PROVIDER-WORKSPACE-CONTEXT",
-      "scope": "Seven-adapter workspace and four pivot admission corrections pass frozen six35-test lanes; root defensive CPU-predicate amendment and combined/installed verification pending",
+      "scope": "Original correction passed full v5 bothABI344/installed5 each; new reflector gap distinct and exact normalized mode evidence remains pending.",
       "record": "programs/lapack-array-io/blockers.md"
     },
     {
       "id": "LAQGE-TINY-MATH",
       "scope": "Unmet finite scaled-output mathematical gate for exact pinned both-scale evaluation; fidelity is separate, independent implementation continues",
       "record": "programs/lapack-array-io/lu-helpers-review.md"
+    },
+    {
+      "id": "BAND-IGNORED-DIAGONAL",
+      "scope": "Root pre-integration review found ignored imaginary diagonal copy; real-only packing/prefix component publication amendment and exact-source controls underway, oldband frozen evidence separate.",
+      "record": "programs/lapack-array-io/blockers.md"
+    },
+    {
+      "id": "GEQP3-EMPTY-EXECUTION",
+      "scope": "Root pre-integration review found local zero-row permutation emulation; actual provider call and caller n-scalar staging correction approved and implemented, fresh candidate02/root review required.",
+      "record": "programs/lapack-array-io/blockers.md"
     }
   ],
   "external_approvals": [
@@ -454,5 +470,30 @@
     "Full P11 platform/docs/provenance/profile evidence; no scope reduction",
     "Close P10 final exact mode/evidence ledger and required platforms; required native Matrix Market paths already pass integrated tests"
   ],
-  "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47"
+  "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
+  "active_verification": {
+    "candidate": "p05-p06-factorizations-v6-02",
+    "implementation_tree": "98f341bc6f4c2f655cae9a503ecbda5b266f3e32",
+    "source_archive_sha256": "2b5d8ee5018998b86d5498ac949cf70bae359ca3cb723e9392a0b1d80021c06c",
+    "coverage_mapping_sha256": "a9c265020bc5c6d6b7bd07901a90b7719634dba6bc5ba3f5dce3459bafe9ceca",
+    "completed": [
+      "doxygen",
+      "doxygen-coverage",
+      "markdown",
+      "ctest-asan-lp64-02",
+      "ctest-asan-ilp64-02",
+      "ctest-debug",
+      "ctest-release",
+      "ctest-shared",
+      "ctest-lp64",
+      "ctest-ilp64",
+      "strict-all19-lp64",
+      "strict-all19-ilp64",
+      "format-integrated"
+    ],
+    "pending": [],
+    "sanitizer_scope": "All Core/Dense/reference C++ TUs and19 selected tests instrumented with Clang19; Fortran/BLAS archives and dynamic runtimes not instrumented. Exact CMakeCache/compile commands and record configuration override common metadata compiler field, which describes the GNU full integration lane.",
+    "review": "programs/lapack-array-io/factorizations-v6-review.md",
+    "scope_limit": "Completed listed command lanes only; exact routine/mode full-profile closure, approvals, platform gates and remaining implementations are not complete."
+  }
 }

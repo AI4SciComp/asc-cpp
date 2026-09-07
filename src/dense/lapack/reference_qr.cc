@@ -344,7 +344,7 @@ Status AddPacking(DenseBlasMatrixView<T> matrix, LapackWorkspacePlan& plan) {
 template <typename T>
 Result<LapackWorkspacePlan> Plan(const ReferenceLapackProvider& provider,
                                  const Call<T>& call, extent_t preferred) {
-  const Status valid = ValidateOperands(provider, call);
+  Status valid = ValidateOperands(provider, call);
   if (!valid.ok()) {
     return valid;
   }
@@ -353,6 +353,13 @@ Result<LapackWorkspacePlan> Plan(const ReferenceLapackProvider& provider,
       call.tau.size(), call.side == DenseBlasSide::kLeft, kIntegerLimit);
   if (!counts.ok()) {
     return counts.status();
+  }
+  valid = internal_lapack_qr::RowCursorBounds(
+      call.operation, call.matrix.rows(), call.matrix.columns(),
+      call.tau.size(), call.side == DenseBlasSide::kLeft, DenseBlasComplex<T>,
+      internal_lapack_layout::LeadingDimension(call.matrix), kIntegerLimit);
+  if (!valid.ok()) {
+    return valid;
   }
   const auto guarded =
       call.operation == Operation::kGeqr2

@@ -1,5 +1,23 @@
 # Program decisions
 
+## V6 integration and reflector count correction
+
+Root imported the separately frozen Cholesky-expert20 and least-squares12
+actual source routes, then added public-only multi-scalar/multi-layout consumers.
+All32 rows remain in_progress: declarations and owner diagnostics alone do not
+establish complete capability. Optional headers, sources, component ownership,
+installed profile and manifest consumers are updated together as v6; native
+scope and the2113 denominator remain unchanged.
+
+A source audit found the terminal strided BLAS cursor gap in existing QR and
+new least squares. The correction binds effective foreign strides and actual
+source branches, not unused ASC strides. The frozen old least-squares helper
+fails an unchanged pure query regression; corrected arithmetic and count tests
+pass. Fresh full-source verification remains mandatory. See
+[the cursor review](reflector-cursor-review.md). No provider patch, fallback,
+algorithm reassociation or weakening of numerical tests is authorized by this
+implementation decision. Owner/license approval remains pending.
+
 ## D001: preserve the dirty release worktree
 
 Observed original HEAD `31587a41ab8c949101480910df59266f1c6384fd` on
@@ -210,3 +228,15 @@ exports and scoped evidence add partial reference rows, never inferred native
 coverage or full-profile closure. Installed consumers must actually execute
 the newly added routines through public headers and relocated component
 metadata; compile-only declarations and older product results are not enough.
+
+## D020: preserve actual zero-row provider execution when it has effects
+
+GEQP3 with M=0 and N>0 still rearranges fixed-column metadata and can enter
+nested QR routines. Local permutation emulation is not accepted as actual
+provider capability. Use caller-owned N live scalar staging entries with
+effective LDA=1; retain the original ASC stride in the plan key. Keep the raw
+outer query result one distinct from safe execution minimum N, and check nested
+query arithmetic/rounding and N+1 before entry. N=0 alone has a local return.
+The isolated pre-correction candidate remains immutable and unregistered;
+fresh actual-call evidence is required. This is an integration design decision,
+not repository-owner or license approval.

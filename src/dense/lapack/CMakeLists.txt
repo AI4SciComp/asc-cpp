@@ -4,6 +4,11 @@ target_sources(asc_dense_lapack PRIVATE
   reference_lu.cc reference_lu_expert.cc reference_lu_equilibration.cc
   reference_lu_condition.cc reference_lu_refinement.cc reference_lu_driver.cc
   reference_lu_helpers.cc reference_cholesky.cc reference_qr.cc
+  reference_cholesky_condition.cc
+  reference_cholesky_driver.cc
+  reference_cholesky_equilibration.cc
+  reference_cholesky_refinement.cc
+  reference_least_squares.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
   FILES
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack.h"
@@ -15,7 +20,12 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_driver.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_helpers.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky.h"
-    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_qr.h")
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_qr.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_condition.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_driver.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_equilibration.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_refinement.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_least_squares.h")
 target_include_directories(asc_dense_lapack PRIVATE
   "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
 set_target_properties(asc_dense_lapack PROPERTIES

@@ -18,13 +18,52 @@ warnings are retained, not relabeled. See
 [the v5 review](factorizations-v5-review.md) and the
 [checkpoint index](verification-checkpoints.json).
 
-Newer uncommitted v6 work is excluded from those results:20 Cholesky expert
-and12 least-squares rows are imported but not yet centrally registered, with
-two new public-only consumers. A newly confirmed LARF1F/LARFB INTEGER cursor
-gap in reference QR/least-squares is being corrected and tested separately.
-It is an open gate despite passing ordinary v5 runs. GELSY's forced-zero-column
+The newer v6 checkpoint is excluded from those v5 results:20 Cholesky expert
+and12 least-squares rows are now centrally registered as in_progress, with
+two new public-only consumers. Mapping124 partial reference/20 unverified
+native/2113 required passes incremental validation; zero fully verified rows.
+The LARF1F/LARFB INTEGER cursor guards pass new integer-only tests/strict lint;
+the frozen old least-squares regression fails and the corrected source passes.
+Direct public consumer attempt03 passes both ABIs. Corrected-source full,
+sanitizer and relocated installed command checks now pass as recorded below;
+exact normalized mode closure remains open. GELSY's forced-zero-column
 minimum-norm failure and prior tiny-input math limitations remain explicit in
 [blockers.md](blockers.md); none is hidden by provider-fidelity tests.
+
+The v5 checkpoint is pushed as `9ffb62c183b22a1232790a01c0940a5d731630c2` to
+the actual [draft pull request47](https://github.com/AI4SciComp/asc-cpp/pull/47).
+Its product bytes equal the frozen tested tree outside durable program records.
+The draft does not include newer uncommitted v6 work yet.
+
+The first v6 frozen archive accidentally omitted the five new public headers
+because the explicit staging command did not include their directory. Both
+provider configure runs correctly fail; no provider tests ran. Its source tree
+`9b48e5fa9a89ae022e22ed94f1eef28eea76f6fe`, archive
+`033cf3a410765e359dfb5a36d7e03ae9c7ad177294491912e1a9ef8dd3f90097`,
+records and completed provider-free regressions are retained. Debug/Release
+each269/277 and shared271/279 pass, with eight failures each and zero skips.
+Its Doxygen pass
+does not verify the omitted headers. Candidate02 includes the original reviewed
+header bytes and reruns all lanes; no implementation/test predicate changes
+are justified by this staging error.
+
+Corrected v6 candidate02 is frozen as tree
+`98f341bc6f4c2f655cae9a503ecbda5b266f3e32`, archive
+`2b5d8ee5018998b86d5498ac949cf70bae359ca3cb723e9392a0b1d80021c06c`.
+Its Doxygen checks pass84/84 headers,1654 public members, zero warnings;
+Markdown passes. Both actual-ABI affected Clang19 ASan/UBSan suites pass19/19,
+zero skips, including new expert/least-squares and corrected QR/count tests.
+All CPU Core/Dense/registered-reference C++ sources and selected tests are
+instrumented; Fortran/BLAS archives and dynamic runtimes are not. First harness
+link failures omitted QR-placement's required fault-support TU; repaired
+external harness02 changes no product bytes or test predicates. Original logs
+and harness text/hash remain retained. All five GNU configure/build lanes pass;
+full LP64/trueILP64 each365/365, provider-free Debug/Release each277/277 and
+shared279/279 pass, zero skips. Both relocated provider packages execute7/7
+public-only consumers. All19 affected strict TUs per ABI pass. Exact record
+and installed-log hashes and remaining scope are in
+[the v6 integration review](factorizations-v6-review.md). This is not full
+routine/mode verification or owner/license approval.
 
 | Slice | Actual evidence | Scope limit |
 | --- | --- | --- |

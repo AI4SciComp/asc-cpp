@@ -140,6 +140,54 @@ foreach(_test IN ITEMS reference_qr qr_workspace_placement)
   endif()
 endforeach()
 
+foreach(_suite IN ITEMS diagonal solve defensive boundary)
+  set(_target "asc_dense_lapack_cholesky_expert_${_suite}_test")
+  add_executable("${_target}" "cholesky_expert_${_suite}_test.cc"
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}")
+  if(_suite STREQUAL "defensive")
+    target_sources("${_target}" PRIVATE cholesky_expert_faults.cc)
+    target_include_directories("${_target}" PRIVATE
+      "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+    foreach(_symbol IN ITEMS dpocon dporfs dposvx dpoequ dpoequb)
+      target_link_options("${_target}" PRIVATE "-Wl,--wrap=${_symbol}_")
+    endforeach()
+  endif()
+  asc_register_test(NAME "asc_cpp.dense_lapack.cholesky_expert.${_suite}"
+    TARGET "${_target}" LABELS dense_lapack lapack runtime numerical allocation
+    TIMEOUT 120)
+endforeach()
+
+foreach(_suite IN ITEMS reference_least_squares least_squares_contract
+    least_squares_workspace least_squares_counts)
+  set(_target "asc_dense_lapack_${_suite}_test")
+  add_executable("${_target}" "${_suite}_test.cc"
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}")
+  if(NOT _suite STREQUAL "least_squares_counts")
+    target_sources("${_target}" PRIVATE least_squares_faults.cc)
+    target_include_directories("${_target}" PRIVATE
+      "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+    foreach(_symbol IN ITEMS sgels dgels cgels zgels sgelst dgelst cgelst zgelst
+        sgetsls dgetsls cgetsls zgetsls)
+      target_link_options("${_target}" PRIVATE "-Wl,--wrap=${_symbol}_")
+    endforeach()
+  endif()
+  if(_suite STREQUAL "reference_least_squares")
+    foreach(_scalar IN ITEMS s d c z)
+      asc_register_test(NAME "asc_cpp.dense_lapack.reference_least_squares.${_scalar}"
+        TARGET "${_target}" ARGUMENTS "${_scalar}"
+        LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+    endforeach()
+  else()
+    asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}"
+      TARGET "${_target}" LABELS dense_lapack lapack runtime validation allocation
+      TIMEOUT 120)
+  endif()
+endforeach()
+
 if(ASC_CPP_INSTALL)
   string(REPLACE ";" "|" _lapack_runtimes "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   add_test(NAME asc_cpp.dense_lapack.package_integration
@@ -181,7 +229,12 @@ set_tests_properties(asc_cpp.dense_lapack.configuration_gates PROPERTIES
 
 foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_lu_equilibration.h lapack_lu_condition.h lapack_lu_refinement.h
-    lapack_lu_driver.h lapack_lu_helpers.h lapack_cholesky.h lapack_qr.h)
+    lapack_lu_driver.h lapack_lu_helpers.h lapack_cholesky.h lapack_qr.h
+    lapack_cholesky_condition.h
+    lapack_cholesky_driver.h
+    lapack_cholesky_equilibration.h
+    lapack_cholesky_refinement.h
+    lapack_least_squares.h)
   string(MAKE_C_IDENTIFIER "${_header}" _id)
   foreach(_mode IN ITEMS normal no_exceptions)
     set(_target "asc_dense_lapack_header_${_id}_${_mode}")

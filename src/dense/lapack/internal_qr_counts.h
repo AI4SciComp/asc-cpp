@@ -114,6 +114,39 @@ inline Result<Counts> QueryCounts(Operation operation, extent_t rows,
   return Counts{minimum, *preferred};
 }
 
+// LARF1F/LARFB pass rows of the transformed matrix to AXPY/SCAL/COPY.
+// Their final INTEGER cursor is 1 + length*LDC, not the last live address.
+// The first unblocked update has the largest tail, N-1; this also dominates
+// blocked trailing updates. Original ASC row strides must not be passed here.
+inline Status RowCursorBounds(Operation operation, extent_t rows,
+                              extent_t columns, extent_t reflectors, bool left,
+                              bool complex, extent_t leading, extent_t limit) {
+  if (!SupportedLimit(limit)) {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  if (rows < 0 || columns < 0 || reflectors < 0 ||
+      leading < std::max<extent_t>(1, rows) || leading > limit) {
+    return Status(ErrorCode::kOverflow);
+  }
+  if (rows == 0 || columns == 0 || reflectors == 0) {
+    return Status::Ok();
+  }
+  extent_t tail = 0;
+  if (operation == Operation::kApply) {
+    tail = left ? columns : 0;
+  } else if (operation == Operation::kGenerate) {
+    tail = columns - 1;
+  } else if (operation == Operation::kGeqrf || operation == Operation::kGeqr2) {
+    // Real LARFG of an order-one vector necessarily produces TAU=0.
+    // Complex LARFG may instead produce a nontrivial phase reflector.
+    tail = complex || rows > 1 ? columns - 1 : 0;
+  } else {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  const auto cursor = MultiplyAdd(tail, leading, 1, limit);
+  return cursor.ok() ? Status::Ok() : cursor.status();
+}
+
 // Validate the pinned query's floating arithmetic before foreign execution.
 // S/C calls SROUNDUP_LWORK, which converts REAL(LWORK) back to its INTEGER
 // before deciding whether to multiply upward. Both conversions must fit.

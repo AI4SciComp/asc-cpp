@@ -2,15 +2,16 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-factorizations-v5` facet implements checked `Getrf`, `Getrs`,
+The `incremental-factorizations-v6` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
 through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
-additional Cholesky, QR and LU helper routes below bring the development
-mapping to 92 partial scalar routines. The other 2,021 required LAPACK routines
+additional Cholesky, QR, least-squares and LU helper routes below bring the
+development mapping to 124 partial scalar routines. The other 1,989 required
+LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
@@ -118,11 +119,43 @@ The original LU routes retain unused zero-byte workspace compatibility.
 The provider-free [native Cholesky/QR contract](contracts/lapack-native-cholesky-qr.md)
 is separate and does not credit the reference Q experts to native coverage.
 
-The prior v4 product tree `eebeb3a3632e66f9d07d77dc3f522cb88dc404f1`
-passed full LP64/true-ILP64 315-test suites and provider-free Debug/Release
-271-test suites with zero skips. Those results do not verify this newer v5
-source. Frozen native/provider diagnostics are recorded separately; the
-combined v5 and new installed consumers remain integration gates.
+The prior v5 product tree `f021fb84e345c355affe65d8c06119c14a18e594`
+passed full LP64/true-ILP64 344-test suites, provider-free Debug/Release
+277-test suites and shared provider-free Release 279 tests, with zero skips.
+Each installed provider package executed five consumers. Those results do not
+verify this newer v6 source. New reflector terminal-cursor guards and the
+expert/least-squares integration and installed consumers require fresh checks.
+
+## Cholesky expert drivers and least squares
+
+`lapack_cholesky_condition.h`, `lapack_cholesky_refinement.h`,
+`lapack_cholesky_driver.h` and `lapack_cholesky_equilibration.h` expose actual
+S/D/C/Z `Pocon`, `Porfs`, explicit POSVX FACT=N/E/F, `Poequ` and `Poequb`.
+They preserve selected-triangle semantics and independently selected operand
+layouts. Complex original matrices ignore imaginary diagonals; supplied raw
+factor coefficients are not normalized. POSVX N/E uses explicit selected-entry
+packing even for column-major complex A so ignored components are not read.
+Only an actual EQUED=Y publishes equilibrated A/B. FACT=F keeps already-scaled
+A/AF and used scales immutable, while X solves the original system.
+
+Caller regions separate scalar, underlying-real, provider-width integer and
+layout storage. Condition estimates use the supplied original one norm;
+refinement retains original A/B and a separate mutable X. Negative/invalid
+foreign diagnostics are provider defects; positive INFO and nonfinite error
+estimates retain documented partial outputs or accuracy warnings. An expert
+driver's completed raw AF does not invent a successful reusable factor view.
+
+`lapack_least_squares.h` exposes each actual S/D/C/Z `Gels`, `Gelst` and
+`Getsls`, not one substituted algorithm. Real N/T and complex N/C cover tall
+least squares and wide minimum norm under each routine's full-rank assumption.
+B must provide max(m,n)-by-nrhs capacity, with explicit packing of input rows
+only. GELS/GELST publish their documented residual coordinates; GETSLS publishes
+only solution rows and leaves other B rows unchanged. Positive INFO preserves
+the documented partial factor/RHS state without a rank or factor certificate.
+Actual query calls are nonmutating and separated from execution; GETSLS uses
+its distinct minimum and preferred queries. Counts also bound nested integer
+arithmetic, floating workspace metadata and strided BLAS terminal cursors.
+These checked routes do not promise rank-revealing or constrained least squares.
 
 ## Building the explicit subset
 

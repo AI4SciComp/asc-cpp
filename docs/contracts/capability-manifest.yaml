@@ -77,7 +77,7 @@ capabilities:
     owner: "dense"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased P05/P06 frozen native diagnostics, all four scalars, Debug/Release/scoped sanitizer and allocation controls passed; v5 combined/installed and exact normalized mode-evidence closure pending, no full-native claim"
+    evidence_scope: "unreleased native P05/P06; v5 f021fb8 full provider-free Debug/Release each277 and shared279 pass, installed aggregate10 plus standalone Dense-only1. Native scoped ASan5 passes on identical numerical bytes; exact normalized mode-evidence closure pending, no full-native claim"
     public_headers:
       - "include/asc/dense/lapack/cholesky.h"
       - "include/asc/dense/lapack/qr.h"
@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-factorizations-v5 with92 partial scalar routes; frozen per-family both-ABI numerical/placement tests passed but new combined/installed verification is pending. Prior v4 eebeb3a full LP64/trueILP64 each315 passed, not evidence for newer source. Full2113 routine/mode coverage and mathematical gates remain pending"
+    evidence_scope: "unreleased incremental-factorizations-v6 with124 partial scalar routes. Prior v5 f021fb8 full LP64/trueILP64 each344 and installed5 each passed; new expert/least-squares and reflector-cursor corrected source integration pending. Frozen owner diagnostics and root direct consumers are separate. Full2113 routine/mode coverage and mathematical gates remain pending"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -110,6 +110,11 @@ capabilities:
       - "include/asc/dense/providers/lapack_lu_helpers.h"
       - "include/asc/dense/providers/lapack_cholesky.h"
       - "include/asc/dense/providers/lapack_qr.h"
+      - "include/asc/dense/providers/lapack_cholesky_condition.h"
+      - "include/asc/dense/providers/lapack_cholesky_driver.h"
+      - "include/asc/dense/providers/lapack_cholesky_equilibration.h"
+      - "include/asc/dense/providers/lapack_cholesky_refinement.h"
+      - "include/asc/dense/providers/lapack_least_squares.h"
     direct_dependencies:
       - "dense"
     tests:
@@ -123,6 +128,8 @@ capabilities:
       - "GEQRF/GEQR2 and ORG/UNG/ORM/UNM QR reconstruction, orthogonality and independent application oracles"
       - "LASWP selected sequential swaps and LAQGE explicit N/R/C/B scaling with absent INFO"
       - "source-specific foreign integer/query bounds and per-role/per-operand context rejection controls"
+      - "POCON/PORFS/POSVX/POEQU/POEQUB selected-triangle condition/refinement/equilibration and explicit FACT=N/E/F"
+      - "actual GELS/GELST/GETSLS residual optimality, nullspace minimum norm and distinct B publication"
     guarantees:
       - "explicit provider selection; provider-free aggregate remains independent"
     non_guarantees:

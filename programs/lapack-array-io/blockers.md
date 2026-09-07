@@ -64,7 +64,7 @@ EQUED=R, RCOND=1 and finite estimates; it is a different requested mode, never
 an implicit fallback. See [lu-driver-review.md](lu-driver-review.md).
 Faithful status/partial-output tests do not satisfy the unmet mathematics gate.
 
-## LU-INTEGER-ARITHMETIC — corrected, combined verification pending
+## LU-INTEGER-ARITHMETIC — corrected, v5 combined verification passed
 
 The pinned S/C GETRI query calls SROUNDUP_LWORK before its query return. A
 checked integer N*64 can still round to the signed ABI limit plus one, or reach
@@ -76,10 +76,11 @@ vector-cursor/blocked-loop bounds, not merely ASC address/size validation.
 Pure private integer tests, not fabricated huge live arrays, are the regression
 mechanism. The correction and old-code controls are frozen and tested for both
 real ABIs in [lu-integer-review.md](lu-integer-review.md), then imported into
-v5. V4 evidence excludes them. Fresh combined/installed verification is still
-required; this is not an unavoidable execution boundary.
+v5. V4 evidence excludes them. The final v5 f021fb8 product passed full
+LP64/true ILP64 each344 and installed5 each with zero skips. The distinct
+new reflector-cursor gap below remains open; these results do not close it.
 
-## PROVIDER-WORKSPACE-CONTEXT — corrected, combined verification pending
+## PROVIDER-WORKSPACE-CONTEXT — corrected, v5 combined verification passed
 
 The generic public workspace validator intentionally permits host/pinned-host
 storage. The explicit Serial reference provider context currently admits only
@@ -91,9 +92,11 @@ pivot admission sites are now corrected and imported into v5. Exact candidate
 old workspace and operand controls fail for both ABIs. See
 [provider-placement-review.md](provider-placement-review.md). Root retains the
 prior explicit Host/Pinned pivot predicate as well as the new context check;
-that defensive amendment requires the new combined source run. QR/helpers have
+that defensive amendment passed the final v5 f021fb8 combined source run:
+LP64/true ILP64 each344 and installed5 each, zero skips. QR/helpers have
 separate placement controls. Neutral public workspace policy and unused
-zero-byte compatibility remain unchanged. Final integrated closure is pending.
+zero-byte compatibility remain unchanged. Exact normalized per-mode evidence
+is separate from these completed command-level checks.
 
 ## LAQGE-TINY-MATH — unmet finite scaled-output mathematical gate
 
@@ -128,6 +131,16 @@ records. Earlier bootstrap fidelity-only zero exits are separate, not
 optimality evidence. Other modes and independent required families continue;
 no full GELSY correctness is claimed.
 
+The new separate `p06-rank-revealing-fixed-zero-02` probe extends this gate to
+S/D/C/Z on both real provider ABIs, with explicit RCOND=0.0001. It is not the
+same threshold/source as the earlier D-only 1e-12 probe. Root read the complete
+new source, SHA256
+`f4b5d3e2877ad9b09d755a87c153f5a31c9a905b97e3b28a9e28b48ab2e36084`.
+All eight commands genuinely exit1: raw INFO0/rank0/X0, residual squared1,
+nonzero normal residual; independent X=[0,1] gives zero residual and minimum
+norm. Source/provider/binary identities and failed outputs remain external in
+`logs/test-{lp64,ilp64}-{s,d,c,z}/record.json`; no CTest pass credit is assigned.
+
 ## REFLECTOR-ROW-CURSOR — newly identified QR/least-squares preflight gap
 
 The exact 3.12.1 LARF1F and LARFB sources pass a matrix row to strided BLAS.
@@ -140,3 +153,46 @@ close this extreme-count gate. Add source-conditioned pure integer regressions
 and explicit effective-foreign-stride guards, preserve legitimate original
 ASC-only wide strides, and rerun affected exact-source lanes. No fabricated
 large live span or integer-width typedef simulation is an acceptable test.
+
+Root has now added those guards. Integer-only tests for both actual limits
+pass, and the same independent least-squares query regression fails on the
+frozen old helper and passes on the correction. Both count test TUs pass
+strict Clang18. Full corrected-source provider/installed/sanitizer lanes
+remain required. See [reflector-cursor-review.md](reflector-cursor-review.md).
+
+## BAND-IGNORED-DIAGONAL — identified before root integration
+
+Root reviewed all fourteen frozen band code/test files and found that row-major
+factor packing copies whole complex input diagonals. Although NaN fixtures
+show no mathematical effect, this reads ignored imaginary components. Strict
+no-ignored-read semantics require real-only packing and component-wise partial
+publication. PBTF2's prior CHER and blocked PBTRF's prior HERK can normalize
+trailing diagonals beyond the failed pivot; simply retaining or clearing all
+trailing imaginary parts would violate exact raw output semantics.
+
+The exact source proof agrees between root and the isolated owner. An amended
+dependency freeze with prefix-limited imaginary publication and direct-source
+failure tests is being prepared in the new band-expert worktree. The original
+band freeze remains unchanged. Root's new public-only band consumer is not
+registered or included in v6; no band row is credited yet. This local fix does
+not block independent expert, indefinite or rank work.
+
+## GEQP3-EMPTY-EXECUTION — actual provider call required before integration
+
+Root review found that isolated rank candidate01 locally emulates the JPVT
+permutation for M=0, N>0. Its passing fidelity checks are not evidence of an
+actual GEQP3 execution. That frozen candidate remains unchanged and is not
+registered in the root coverage mapping. The approved correction executes the
+real provider with canonical foreign LDA=1 and N live caller scalar staging
+slots: zero-length SWAP calls still form addresses A(1,J). The original ASC
+stride remains in the plan key. The actual outer query returns one, whereas
+fixed-column execution needs at least N workspace elements for nested ORMQR
+validation. Preflight also checks N+1 and the nested N*32+4160 query arithmetic
+and scalar rounding before its empty quick return. N=0 alone may return
+locally. No hidden allocation or dummy out-of-bounds address is permitted.
+
+The isolated owner has implemented this correction and direct-source tests
+for all scalar types, free/mixed/all-fixed flags, actual call counters, padded
+zero-row backing, minimum-work rejection and original ASC LD=INT64_MAX.
+Fresh candidate02 verification and root review remain required. Candidate01's
+eight 16/16 diagnostic lanes are explicitly pre-correction evidence only.

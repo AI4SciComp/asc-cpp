@@ -81,6 +81,66 @@ void IntegerCounts(TestContext& test) {
   }
 }
 
+void RowCursors(TestContext& test) {
+  using asc::internal_lapack_qr::RowCursorBounds;
+  for (const auto limit : {k32, k64}) {
+    for (const bool complex : {false, true}) {
+      for (const auto operation :
+           {Operation::kGeqrf, Operation::kGeqr2, Operation::kGenerate}) {
+        const asc::extent_t reflectors =
+            operation == Operation::kGenerate ? 1 : 2;
+        ASC_DENSE_TEST_CHECK(
+            test, RowCursorBounds(operation, 2, 2, reflectors, true, complex,
+                                  limit - 1, limit)
+                      .ok());
+        ASC_DENSE_TEST_EQ(test,
+                          RowCursorBounds(operation, 2, 2, reflectors, true,
+                                          complex, limit, limit)
+                              .code(),
+                          asc::ErrorCode::kOverflow);
+      }
+      ASC_DENSE_TEST_CHECK(
+          test, RowCursorBounds(Operation::kApply, 2, 3, 1, true, complex,
+                                (limit - 1) / 3, limit)
+                    .ok());
+      ASC_DENSE_TEST_EQ(test,
+                        RowCursorBounds(Operation::kApply, 2, 3, 1, true,
+                                        complex, (limit - 1) / 3 + 1, limit)
+                            .code(),
+                        asc::ErrorCode::kOverflow);
+      ASC_DENSE_TEST_CHECK(test, RowCursorBounds(Operation::kApply, 2, 3, 1,
+                                                 false, complex, limit, limit)
+                                     .ok());
+      ASC_DENSE_TEST_CHECK(test, RowCursorBounds(Operation::kApply, 1, 1, 0,
+                                                 true, complex, limit, limit)
+                                     .ok());
+      ASC_DENSE_TEST_CHECK(test, RowCursorBounds(Operation::kGeqrf, 1, 1, 1,
+                                                 true, complex, limit, limit)
+                                     .ok());
+    }
+    // Real order-one LARFG is the source-proven TAU=0 exception. A complex
+    // phase reflector can still scale the trailing row with increment LDA.
+    ASC_DENSE_TEST_CHECK(test, RowCursorBounds(Operation::kGeqr2, 1, 2, 1, true,
+                                               false, limit, limit)
+                                   .ok());
+    ASC_DENSE_TEST_EQ(
+        test,
+        RowCursorBounds(Operation::kGeqr2, 1, 2, 1, true, true, limit, limit)
+            .code(),
+        asc::ErrorCode::kOverflow);
+    // The worst N-1 unblocked cursor also bounds blocked LARFB tails.
+    ASC_DENSE_TEST_CHECK(
+        test, RowCursorBounds(Operation::kGeqrf, 129, 129, 129, true, false,
+                              (limit - 1) / 128, limit)
+                  .ok());
+    ASC_DENSE_TEST_EQ(test,
+                      RowCursorBounds(Operation::kGeqrf, 129, 129, 129, true,
+                                      false, (limit - 1) / 128 + 1, limit)
+                          .code(),
+                      asc::ErrorCode::kOverflow);
+  }
+}
+
 void FloatQueryCounts(TestContext& test) {
   // Independent exact integers surrounding IEEE binary32 mantissa and signed
   // integer boundaries. No huge array or conversion result serves as oracle.
@@ -173,6 +233,7 @@ int main() {
   {
     const asc_dense_test::AllocationProbe probe;
     IntegerCounts(test);
+    RowCursors(test);
     FloatQueryCounts(test);
     DoubleQueryCounts(test);
     PackingCounts(test);
