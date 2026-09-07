@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v10` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v11` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 206 partial scalar routines.
-The other 1,907 required
+routes below bring the development mapping to 230 partial scalar routines.
+The other 1,883 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -360,3 +360,25 @@ The adapter checks pinned-source integer intermediates and detects unwritten
 or invalid native INFO/pivot outputs before publishing converted pivots or
 packed RHS results. These eight routes remain in progress until their full
 normalized mode and evidence requirements are closed.
+
+
+The general-tridiagonal headers `lapack_tridiagonal.h`,
+`lapack_tridiagonal_condition.h`, `lapack_tridiagonal_refinement.h` and
+`lapack_tridiagonal_driver.h` expose actual S/D/C/Z `Gttrf`, `Gttrs`, `Gtsv`,
+`Gtcon`, `Gtrfs` and explicit FACT=N/F `Gtsvx` routes. Tridiagonal LU retains
+its second superdiagonal and adjacent-swap pivot encoding. GTSV destructive
+output is separate from reusable GTTRF factors. Reused factors and raw expert
+pivots have nominal types, checked again during execution.
+
+Plans include caller-owned native pivot and estimator integers in disjoint
+parts of `kInteger`, plus explicitly requested RHS/solution packing. The
+pinned real GTSV zero-RHS path accesses a first RHS internally: the plan
+provides and initializes its scalar scratch while passing actual NRHS=0.
+No hidden allocation, implicit densification or alternate solve is involved.
+Native INFO and output pivots start with full-width invalid sentinels, so
+missing or partial native writes cannot become success or reusable factors.
+
+Required extreme-scale GTCON/GTRFS/GTSVX mathematical tests remain failing:
+for the representable singleton at min-normal/8, the pinned provider reports
+zero reciprocal condition or infinite error estimates. Those tests remain
+ordinary failures and the corresponding required modes remain incomplete.

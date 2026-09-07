@@ -9090,15 +9090,138 @@
         "state": "pending"
       },
       "id": "lapack.cgtcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -9115,15 +9238,138 @@
         "state": "pending"
       },
       "id": "lapack.cgtrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -9140,15 +9386,138 @@
         "state": "pending"
       },
       "id": "lapack.cgtsv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -9165,15 +9534,138 @@
         "state": "pending"
       },
       "id": "lapack.cgtsvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -9259,15 +9751,138 @@
         "state": "pending"
       },
       "id": "lapack.cgttrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -9284,15 +9899,138 @@
         "state": "pending"
       },
       "id": "lapack.cgttrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -36205,15 +36943,138 @@
         "state": "pending"
       },
       "id": "lapack.dgtcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -36230,15 +37091,138 @@
         "state": "pending"
       },
       "id": "lapack.dgtrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -36255,15 +37239,138 @@
         "state": "pending"
       },
       "id": "lapack.dgtsv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -36280,15 +37387,138 @@
         "state": "pending"
       },
       "id": "lapack.dgtsvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -36374,15 +37604,138 @@
         "state": "pending"
       },
       "id": "lapack.dgttrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -36399,15 +37752,138 @@
         "state": "pending"
       },
       "id": "lapack.dgttrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -63766,15 +65242,138 @@
         "state": "pending"
       },
       "id": "lapack.sgtcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -63791,15 +65390,138 @@
         "state": "pending"
       },
       "id": "lapack.sgtrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -63816,15 +65538,138 @@
         "state": "pending"
       },
       "id": "lapack.sgtsv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -63841,15 +65686,138 @@
         "state": "pending"
       },
       "id": "lapack.sgtsvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -63935,15 +65903,138 @@
         "state": "pending"
       },
       "id": "lapack.sgttrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -63960,15 +66051,138 @@
         "state": "pending"
       },
       "id": "lapack.sgttrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -90104,15 +92318,138 @@
         "state": "pending"
       },
       "id": "lapack.zgtcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -90129,15 +92466,138 @@
         "state": "pending"
       },
       "id": "lapack.zgtrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -90154,15 +92614,138 @@
         "state": "pending"
       },
       "id": "lapack.zgtsv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -90179,15 +92762,138 @@
         "state": "pending"
       },
       "id": "lapack.zgtsvx",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -90273,15 +92979,138 @@
         "state": "pending"
       },
       "id": "lapack.zgttrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [
@@ -90298,15 +93127,138 @@
         "state": "pending"
       },
       "id": "lapack.zgttrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal.h",
+          "sha256": "267025f7c185ffd33d897308162d274514493f926265af70af9fa6806d797108"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_condition.h",
+          "sha256": "976323edddaa1347e6764d3989e7e862a57ebcf69e0757c2ef182b6fdae5bd66"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_driver.h",
+          "sha256": "5256ac1792b66101c40ca2117d1a3d5c38bdca0c3ed68f7de9c09fdb59a58fbb"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_tridiagonal_refinement.h",
+          "sha256": "2720b4de5ff1195637bc39cde02498d60eccd3955e23cb173cf6a49f1cc7e0f9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_expert.h",
+          "sha256": "66b7160b5f7bb3cf322172fadda59af10b36917515f8c36b9ea9c076a8ef29fa"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal.cc",
+          "sha256": "0836e73eed1ff0fea21d8cfbd9f1b70f0d507382b48f710727385ff96935daad"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_condition.cc",
+          "sha256": "661f4faa40fbeab0e45ca7bf10211440518861e2f7d58aa6f7df615237400614"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_driver.cc",
+          "sha256": "f72a8e03b99181c143e3c45bc3bdb6013719af8ca5fc8077ff5a9fa94d6ddda4"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_expert_driver.cc",
+          "sha256": "7b60341c2e96086fdc799a87545c946f64eceed08a6d0368916fba465c39e1c9"
+        },
+        {
+          "path": "src/dense/lapack/reference_tridiagonal_refinement.cc",
+          "sha256": "dd8c6d74268cec362d50652ebc045e4823f7b2e80c3b3bd54bfdf336ee9dac1d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/tridiagonal_main.cc",
+          "sha256": "9379b9395ba69f32f6e6e5768ea4a9d14137862c6eed9fd97fcaaea1e4aebf65"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_counts_test.cc",
+          "sha256": "8c044faf5f6cc9667a46efc9f8d65f8ff2df2874b3d46107770544b0a0dda08f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_expert_test.cc",
+          "sha256": "cded3d0961950e9c718293ddd38756fed47428e57f8f6a701c3a558c0f0dd51f"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_extreme_math_test.cc",
+          "sha256": "aa042257a60b3fa3726952faeaf565fc009cabe0f02407cc7ba6b929eb43bfdf"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_fault_test.cc",
+          "sha256": "ea3d8e33b43dc7af1c9f815fe0fd5c2e035b2137641a15d6b801ec0733cb5425"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.cc",
+          "sha256": "c1cfff63a9535abe15221be912f9c45b50248698d1d86f5c881f5f94a2c40c8a"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_faults.h",
+          "sha256": "34de053e472f6623e19c67c1c9b77c6303b4559b04c1aa94398e3b058cfefb75"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test.cc",
+          "sha256": "81f9d14196939e195fa3723048df7dad3502cf1819e2c0bcfa768c576a27a832"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
           "state": "not_started"
         },
         "reference_cpu": {
+          "state": "in_progress",
           "evidence_ids": [],
-          "state": "not_started"
+          "review": "programs/lapack-array-io/tridiagonal-review.md",
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
         }
       },
       "required_profiles": [

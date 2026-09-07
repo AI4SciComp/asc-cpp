@@ -57,6 +57,10 @@ asc/dense/providers/lapack_qr.h|asc_dense_lapack
 asc/dense/providers/lapack_rank_revealing.h|asc_dense_lapack
 asc/dense/providers/lapack_svd_least_squares.h|asc_dense_lapack
 asc/dense/providers/lapack_sylvester.h|asc_dense_lapack
+asc/dense/providers/lapack_tridiagonal.h|asc_dense_lapack
+asc/dense/providers/lapack_tridiagonal_condition.h|asc_dense_lapack
+asc/dense/providers/lapack_tridiagonal_driver.h|asc_dense_lapack
+asc/dense/providers/lapack_tridiagonal_refinement.h|asc_dense_lapack
 asc/dense/view.h|asc_dense
 asc/expression.h|asc_expression
 asc/expression/expression.h|asc_expression

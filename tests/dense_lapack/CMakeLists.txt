@@ -473,6 +473,59 @@ asc_register_test(NAME asc_cpp.dense_lapack.lu_band_abi
   TARGET asc_dense_lapack_lu_band_abi_probe
   LABELS dense_lapack lapack runtime abi TIMEOUT 120)
 
+foreach(_suite IN ITEMS tridiagonal tridiagonal_expert tridiagonal_fault
+    tridiagonal_extreme_math tridiagonal_counts)
+  set(_target "asc_dense_lapack_${_suite}_test")
+  add_executable("${_target}" "${_suite}_test.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+  if(_suite MATCHES "^(tridiagonal|tridiagonal_expert|tridiagonal_fault)$")
+    target_sources("${_target}" PRIVATE allocation_audit.cc
+      "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+    target_link_options("${_target}" PRIVATE
+      "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+  endif()
+  if(_suite STREQUAL "tridiagonal_fault")
+    target_sources("${_target}" PRIVATE tridiagonal_faults.cc)
+    foreach(_scalar IN ITEMS s d c z)
+      foreach(_routine IN ITEMS gttrf gttrs gtsv gtcon gtrfs gtsvx)
+        target_link_options("${_target}" PRIVATE
+          "-Wl,--wrap=${_scalar}${_routine}_")
+      endforeach()
+    endforeach()
+  endif()
+  if(_suite STREQUAL "tridiagonal_counts")
+    asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}"
+      TARGET "${_target}" LABELS dense_lapack lapack validation TIMEOUT 120)
+  else()
+    foreach(_scalar IN ITEMS s d c z)
+      if(_suite STREQUAL "tridiagonal")
+        set(_operations factor driver)
+      elseif(_suite STREQUAL "tridiagonal_expert")
+        set(_operations condition refine expert)
+      else()
+        set(_operations "")
+        asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}.${_scalar}"
+          TARGET "${_target}" ARGUMENTS "${_scalar}"
+          LABELS dense_lapack lapack runtime numerical validation TIMEOUT 180)
+      endif()
+      foreach(_operation IN LISTS _operations)
+        asc_register_test(
+          NAME "asc_cpp.dense_lapack.tridiagonal_${_operation}.${_scalar}"
+          TARGET "${_target}" ARGUMENTS "${_scalar}" "${_operation}"
+          LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 180)
+      endforeach()
+      if(_suite STREQUAL "tridiagonal_fault")
+        asc_register_test(
+          NAME "asc_cpp.dense_lapack.tridiagonal_boundary.${_scalar}"
+          TARGET "${_target}" ARGUMENTS "${_scalar}" boundary
+          LABELS dense_lapack lapack runtime validation allocation TIMEOUT 180)
+      endif()
+    endforeach()
+  endif()
+endforeach()
+
 if(ASC_CPP_INSTALL)
   string(REPLACE ";" "|" _lapack_runtimes "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   add_test(NAME asc_cpp.dense_lapack.package_integration
@@ -523,7 +576,8 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_rank_revealing.h lapack_sylvester.h
     lapack_indefinite_condition.h lapack_indefinite_driver.h
     lapack_indefinite_refinement.h lapack_svd_least_squares.h
-    lapack_lu_band.h)
+    lapack_lu_band.h
+    lapack_tridiagonal.h lapack_tridiagonal_condition.h lapack_tridiagonal_driver.h lapack_tridiagonal_refinement.h)
   string(MAKE_C_IDENTIFIER "${_header}" _id)
   foreach(_mode IN ITEMS normal no_exceptions)
     set(_target "asc_dense_lapack_header_${_id}_${_mode}")
