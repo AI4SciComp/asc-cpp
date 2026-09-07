@@ -22,6 +22,8 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu.h"
 #include "internal_layout.h"
+#include "internal_lu_counts.h"
+#include "internal_workspace_context.h"
 #include "lapack_build_config.h"
 
 // Audited GNU boundary; authoritative pinned declarations, not LAPACKE
@@ -46,8 +48,6 @@ constexpr std::size_t kInteger =
     static_cast<std::size_t>(LapackWorkspaceKind::kInteger);
 constexpr std::size_t kScalar =
     static_cast<std::size_t>(LapackWorkspaceKind::kScalar);
-// Pinned SRC/ilaenv.f, ISPEC=1, C2='GE', C3='TRI', both real/complex.
-constexpr extent_t kGetriBlockSize = 64;
 static_assert(sizeof(lapack_int) * 8 == ASC_LAPACK_INTEGER_BITS);
 static_assert(std::is_same_v<lapack_complex_float, std::complex<float>>);
 static_assert(std::is_same_v<lapack_complex_double, std::complex<double>>);
@@ -269,7 +269,8 @@ LapackWorkspacePlan PivotPlan(LapackPlanIdentity identity, extent_t count) {
   return plan;
 }
 
-Status ValidatePlan(const LapackWorkspacePlan& expected,
+Status ValidatePlan(const ReferenceLapackProvider& provider,
+                    const LapackWorkspacePlan& expected,
                     const LapackWorkspacePlan& supplied,
                     const LapackWorkspace& workspace,
                     std::span<const ConstMemoryView> operands) {
@@ -285,8 +286,8 @@ Status ValidatePlan(const LapackWorkspacePlan& expected,
       return Status(ErrorCode::kInvalidState);
     }
   }
-  return ValidateLapackWorkspace(supplied, expected.identity, workspace,
-                                 operands);
+  return internal_lapack_workspace::Validate(
+      provider, supplied, expected.identity, workspace, operands);
 }
 
 template <typename T>
@@ -294,11 +295,31 @@ Result<LapackWorkspacePlan> QueryFactor(const ReferenceLapackProvider& provider,
                                         DenseBlasMatrixView<T> matrix,
                                         DenseBlasVectorView<index_t> pivots,
                                         FactorAlgorithm algorithm) {
-  // The existing GETRF query performs the same descriptor/pivot/alias checks,
-  // with checked formulas only, no foreign execution or numerical mutation.
-  auto checked = QueryGetrfWorkspace(provider, matrix, pivots);
-  if (!checked.ok()) {
-    return checked.status();
+  Status status = ValidateMatrix(provider, matrix);
+  if (!status.ok()) {
+    return status;
+  }
+  status = internal_lapack_lu::CheckFactor(
+      algorithm == FactorAlgorithm::kRecursive
+          ? internal_lapack_lu::FactorRoute::kRecursive
+          : internal_lapack_lu::FactorRoute::kUnblocked,
+      matrix.rows(), matrix.columns(),
+      internal_lapack_layout::LeadingDimension(matrix),
+      std::numeric_limits<lapack_int>::max());
+  if (!status.ok()) {
+    return status;
+  }
+  if (pivots.size() != std::min(matrix.rows(), matrix.columns())) {
+    return Status(ErrorCode::kShape);
+  }
+  if ((pivots.memory_space() != MemorySpace::kHost &&
+       pivots.memory_space() != MemorySpace::kPinnedHost) ||
+      !provider.context().CanAccess(pivots.memory_space())) {
+    return Status(ErrorCode::kMemoryAccess);
+  }
+  if (pivots.increment() != 1 ||
+      Overlap(matrix.reachable_storage(), pivots.reachable_storage())) {
+    return Status(ErrorCode::kInvalidArgument);
   }
   const auto key = LapackPlanIdentity::Create(
       algorithm == FactorAlgorithm::kRecursive ? Native<T>::kRecursive
@@ -314,8 +335,11 @@ Result<LapackWorkspacePlan> QueryFactor(const ReferenceLapackProvider& provider,
   if (!key.ok()) {
     return key.status();
   }
-  auto plan = *checked;
-  plan.identity = *key;
+  auto plan = PivotPlan(*key, pivots.size());
+  status = internal_lapack_layout::AddPacking(matrix, plan);
+  if (!status.ok()) {
+    return status;
+  }
   return plan;
 }
 
@@ -363,7 +387,7 @@ Status Factor(const ReferenceLapackProvider& provider,
     return expected.status();
   }
   Status status = ValidatePlan(
-      *expected, plan, workspace,
+      provider, *expected, plan, workspace,
       std::array{matrix.reachable_storage(), pivots.reachable_storage()});
   if (!status.ok()) {
     return status;
@@ -405,12 +429,17 @@ Result<LapackWorkspacePlan> QueryDriver(const ReferenceLapackProvider& provider,
   if (!checked.ok()) {
     return checked.status();
   }
-  const Status status = ValidateMatrix(provider, rhs);
+  Status status = ValidateMatrix(provider, rhs);
   if (!status.ok()) {
     return status;
   }
   if (matrix.rows() != matrix.columns() || rhs.rows() != matrix.rows()) {
     return Status(ErrorCode::kShape);
+  }
+  status = internal_lapack_lu::CheckSolve(
+      matrix.rows(), rhs.columns(), std::numeric_limits<lapack_int>::max());
+  if (!status.ok()) {
+    return status;
   }
   if (Overlap(matrix.reachable_storage(), rhs.reachable_storage()) ||
       Overlap(pivots.reachable_storage(), rhs.reachable_storage())) {
@@ -451,7 +480,7 @@ Status Driver(const ReferenceLapackProvider& provider,
     return expected.status();
   }
   Status status = ValidatePlan(
-      *expected, plan, workspace,
+      provider, *expected, plan, workspace,
       std::array{matrix.reachable_storage(), pivots.reachable_storage(),
                  rhs.reachable_storage()});
   if (!status.ok()) {
@@ -504,14 +533,17 @@ Status ValidateInverse(const ReferenceLapackProvider& provider,
       pivots.values().size() != static_cast<std::size_t>(factors.rows())) {
     return Status(ErrorCode::kShape);
   }
-  // GETRI computes N*NB before its query return. Prevent foreign overflow,
-  // including in a query; do not infer a safe query just from N fitting.
-  if (factors.rows() >
-      std::numeric_limits<lapack_int>::max() / kGetriBlockSize) {
-    return Status(ErrorCode::kOverflow);
+  using Real = decltype(std::real(T{}));
+  const auto preferred = internal_lapack_lu::InversePreferred<Real>(
+      factors.rows(), std::numeric_limits<lapack_int>::max());
+  if (!preferred.ok()) {
+    return preferred.status();
   }
   if (Overlap(factors.reachable_storage(), pivots.reachable_storage())) {
     return Status(ErrorCode::kInvalidArgument);
+  }
+  if (!provider.context().CanAccess(pivots.reachable_storage().space())) {
+    return Status(ErrorCode::kMemoryAccess);
   }
   return ValidateLuPivots(pivots, factors.rows());
 }
@@ -565,8 +597,8 @@ Result<LapackWorkspacePlan> QueryInverse(
   if (!checked.ok()) {
     return checked.status();
   }
-  const Status status = ValidateLapackWorkspace(
-      *checked, checked->identity, query_workspace,
+  const Status status = internal_lapack_workspace::Validate(
+      provider, *checked, checked->identity, query_workspace,
       std::array{factors.reachable_storage(), pivots.reachable_storage()});
   if (!status.ok()) {
     return status;
@@ -601,7 +633,14 @@ Result<LapackWorkspacePlan> QueryInverse(
     report.outcome = LapackOutcome::kPartialResult;
     return Status(ErrorCode::kProvider);
   }
-  return InversePlan(provider, factors, pivots, *preferred, false);
+  using Real = decltype(std::real(T{}));
+  const auto source_preferred = internal_lapack_lu::InversePreferred<Real>(
+      factors.rows(), std::numeric_limits<lapack_int>::max());
+  if (!source_preferred.ok()) {
+    return source_preferred.status();
+  }
+  return InversePlan(provider, factors, pivots,
+                     std::max(*preferred, *source_preferred), false);
 }
 
 template <typename T>
@@ -617,7 +656,7 @@ Status Inverse(const ReferenceLapackProvider& provider,
     return expected.status();
   }
   Status status = ValidatePlan(
-      *expected, plan, workspace,
+      provider, *expected, plan, workspace,
       std::array{factors.reachable_storage(), pivots.reachable_storage()});
   if (!status.ok()) {
     return status;

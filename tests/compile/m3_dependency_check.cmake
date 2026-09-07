@@ -25,6 +25,8 @@ set(_expected_public_files
   include/asc/dense/lapack/factor_view.h
   include/asc/dense/lapack/structured_view.h
   include/asc/dense/lapack/lu.h
+  include/asc/dense/lapack/cholesky.h
+  include/asc/dense/lapack/qr.h
 )
 set(_expected_source_files
   src/dense/blas.cc
@@ -35,6 +37,8 @@ set(_expected_source_files
   src/dense/blas_level3.cc
   src/dense/lapack_foundations.cc
   src/dense/lapack_lu.cc
+  src/dense/lapack_cholesky.cc
+  src/dense/lapack_qr.cc
 )
 
 set(_observed_public_files)
@@ -61,6 +65,9 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_lu_condition.h
   include/asc/dense/providers/lapack_lu_refinement.h
   include/asc/dense/providers/lapack_lu_driver.h
+  include/asc/dense/providers/lapack_lu_helpers.h
+  include/asc/dense/providers/lapack_cholesky.h
+  include/asc/dense/providers/lapack_qr.h
 )
 
 file(
@@ -108,6 +115,8 @@ set(_asc_lapack_contract_headers
   asc/dense/lapack/factor_view.h
   asc/dense/lapack/structured_view.h
   asc/dense/lapack/lu.h
+  asc/dense/lapack/cholesky.h
+  asc/dense/lapack/qr.h
 )
 foreach(_relative_file IN LISTS _all_files)
   set(_path "${SOURCE_DIR}/${_relative_file}")

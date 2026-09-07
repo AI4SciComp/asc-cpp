@@ -22,6 +22,8 @@
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
 #include "internal_layout.h"
+#include "internal_lu_counts.h"
+#include "internal_workspace_context.h"
 #include "lapack_build_config.h"
 
 // Private authoritative C/Fortran declarations. No provider types escape.
@@ -222,11 +224,19 @@ Result<LapackWorkspacePlan> QueryFactor(const ReferenceLapackProvider& provider,
   if (!status.ok()) {
     return status;
   }
+  status = internal_lapack_lu::CheckFactor(
+      internal_lapack_lu::FactorRoute::kBlocked, matrix.rows(),
+      matrix.columns(), internal_lapack_layout::LeadingDimension(matrix),
+      std::numeric_limits<lapack_int>::max());
+  if (!status.ok()) {
+    return status;
+  }
   if (pivots.size() != std::min(matrix.rows(), matrix.columns())) {
     return Status(ErrorCode::kShape);
   }
-  if (pivots.memory_space() != MemorySpace::kHost &&
-      pivots.memory_space() != MemorySpace::kPinnedHost) {
+  if ((pivots.memory_space() != MemorySpace::kHost &&
+       pivots.memory_space() != MemorySpace::kPinnedHost) ||
+      !provider.context().CanAccess(pivots.memory_space())) {
     return Status(ErrorCode::kMemoryAccess);
   }
   if (pivots.increment() != 1 ||
@@ -278,6 +288,15 @@ Result<LapackWorkspacePlan> QuerySolve(const ReferenceLapackProvider& provider,
   if (matrix.rows() != matrix.columns() || rhs.rows() != matrix.rows()) {
     return Status(ErrorCode::kShape);
   }
+  status = internal_lapack_lu::CheckSolve(
+      matrix.rows(), rhs.columns(), std::numeric_limits<lapack_int>::max());
+  if (!status.ok()) {
+    return status;
+  }
+  if (!provider.context().CanAccess(
+          factor.pivots().reachable_storage().space())) {
+    return Status(ErrorCode::kMemoryAccess);
+  }
   status = ValidateLuPivots(factor.pivots(), matrix.rows());
   if (!status.ok()) {
     return status;
@@ -313,7 +332,8 @@ Result<LapackWorkspacePlan> QuerySolve(const ReferenceLapackProvider& provider,
   return plan;
 }
 
-Status ValidatePlan(const LapackWorkspacePlan& expected,
+Status ValidatePlan(const ReferenceLapackProvider& provider,
+                    const LapackWorkspacePlan& expected,
                     const LapackWorkspacePlan& supplied,
                     const LapackWorkspace& workspace,
                     std::span<const ConstMemoryView> operands) {
@@ -329,8 +349,8 @@ Status ValidatePlan(const LapackWorkspacePlan& expected,
       return Status(ErrorCode::kInvalidState);
     }
   }
-  return ValidateLapackWorkspace(supplied, expected.identity, workspace,
-                                 operands);
+  return internal_lapack_workspace::Validate(
+      provider, supplied, expected.identity, workspace, operands);
 }
 
 template <typename T>
@@ -378,7 +398,7 @@ Status Factor(const ReferenceLapackProvider& provider,
     return expected.status();
   }
   Status status = ValidatePlan(
-      *expected, plan, workspace,
+      provider, *expected, plan, workspace,
       std::array{matrix.reachable_storage(), pivots.reachable_storage()});
   if (!status.ok()) {
     return status;
@@ -437,7 +457,7 @@ Status Solve(const ReferenceLapackProvider& provider,
   }
   const auto matrix = factor.factors();
   Status status = ValidatePlan(
-      *expected, plan, workspace,
+      provider, *expected, plan, workspace,
       std::array{matrix.reachable_storage(),
                  factor.pivots().reachable_storage(), rhs.reachable_storage()});
   if (!status.ok()) {

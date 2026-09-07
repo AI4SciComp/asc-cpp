@@ -14,12 +14,12 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "dde439dacc1b377b7064717daabbf7b572106b21",
+  "last_implementation_commit": "3d5909d6c26ba2d274749106bda448e2280b8330",
   "worktree_diff_identity": {
     "state": "in_progress",
-    "recorded_at": "2026-09-07T07:01:05Z",
-    "tracked_diff_sha256": "c4e47d0c7a2e9b38aa4e4188056fb3974a70ce9772fb693d281d0f3aa53a91c6",
-    "note": "Snapshot of tracked diff excluding this state file. Other owners are still editing; untracked files are not represented by this digest. Frozen per-command source/artifact identities are required for verification."
+    "recorded_at": "2026-09-07T13:00:15.797Z",
+    "tracked_diff_sha256": "14f9f22f163e052d0246b4ee246fafb31094ba993113039418d2583eacf3b3ff",
+    "note": "Root-owned integration only; agents have isolated linked worktrees. This tracked-diff digest excludes this state file and untracked files; frozen Git tree/archive and per-command source identities remain authoritative."
   },
   "packages": {
     "P00": {
@@ -212,10 +212,76 @@
       "state": "in_progress",
       "owner": "p00_baseline,p00_inventory",
       "scope": "Required Core/Dense-array/Sparse-coordinate paths registered. Frozen74ff2fb full Debug/Release each271/271 and shared Release273/273 pass, zero skips; relocated aggregate9 and separate Dense/Sparse examples1 each pass. Unchanged production candidate01 ASC sanitizer6/6 passed; both Doxygen71/1413 zero warnings. Final mode/evidence and platform gates pending; optional cross-representation conversions not implemented"
+    },
+    "P05.native_cholesky": {
+      "state": "implemented_unverified",
+      "owner": "integration",
+      "scope": "Frozen4-scalar native POTRF/POTRS diagnostics pass; registered8 native contracts, provider-free installed example and full v5 integration pending",
+      "review": "programs/lapack-array-io/native-cholesky-review.md"
+    },
+    "P06.native_qr": {
+      "state": "implemented_unverified",
+      "owner": "integration",
+      "scope": "Frozen4-scalar native GEQRF plus separate Q conveniences diagnostics pass; registered4 native contracts; full v5 integration/installed and mode evidence pending",
+      "review": "programs/lapack-array-io/native-qr-review.md"
+    },
+    "P05.reference_cholesky": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Registered24 actual reference scalar routes, frozen numerical and root stride diagnostics pass both ABIs; new combined/installed and exact contract/mode evidence pending",
+      "review": "programs/lapack-array-io/reference-cholesky-review.md"
+    },
+    "P06.reference_qr": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Registered16 actual GEQRF/GEQR2/ORG-UNG-ORM-UNM scalar routes; frozen both-ABI numerical/count/placement diagnostics pass; combined/installed/mode evidence pending",
+      "review": "programs/lapack-array-io/reference-qr-review.md"
+    },
+    "P04.lu_helpers": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Registered8 actual LASWP/LAQGE rows; both-ABI numerical/failure/placement/direct ABI/allocation-closure diagnostics pass, finite tiny both-scale mathematical gate remains unmet",
+      "review": "programs/lapack-array-io/lu-helpers-review.md"
+    },
+    "P04.provider_placement": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Imported7 adapters and4 pivot guard corrections; exact candidate02 six lanes35/35 each passes. Root preserved prior CPU predicate in two writable pivot guards; final combined amended-source verification pending",
+      "review": "programs/lapack-array-io/provider-placement-review.md"
+    },
+    "P05.expert_implementation": {
+      "state": "in_progress",
+      "owner": "p00_inventory",
+      "worktree": "../asc-cpp-p05-expert",
+      "scope": "Frozen20 actual POCON/PORFS/POSVX/POEQU/POEQUB routes: six trueABI Debug/scopedASan/Release-libc lanes4/4 each, strict/header/Doxy passed. Root read all17 files and imported them unregistered/unstaged for v6; not counted in v5. Frozen owner worktree preserved."
+    },
+    "P05.band_implementation": {
+      "state": "in_progress",
+      "owner": "p00_array_contracts",
+      "worktree": "../asc-cpp-p05-band",
+      "scope": "Separate12 actual PBTRF/PBTF2/PBTRS rows; additive existing positive-definite-band descriptor row layout with original API preserved; not yet imported or counted"
+    },
+    "P06.least_squares_implementation": {
+      "state": "in_progress",
+      "owner": "p00_baseline",
+      "worktree": "../asc-cpp-p06-least-squares",
+      "scope": "Frozen12 actual GELS/GELST/GETSLS rows: all8 ABI/config main6/6 and separate workspace1/1 lanes passed. Root read all10 files and imported unregistered/unstaged for v6. New public-only consumer direct diagnostics in progress; not counted in v5."
+    },
+    "P05.indefinite_implementation": {
+      "state": "in_progress",
+      "owner": "p00_inventory",
+      "worktree": "../asc-cpp-p05-indefinite",
+      "scope": "Independent18 actual SYTRF/SYTF2/SYTRS all4 and HETRF/HETF2/HETRS complex2; exact block pivots and optional provider-specific factor descriptor, no root shared edits or registration yet"
+    },
+    "P06.rank_revealing_implementation": {
+      "state": "in_progress",
+      "owner": "p00_baseline",
+      "worktree": "../asc-cpp-p06-rank-revealing",
+      "scope": "Independent8 actual GEQP3/GELSY rows; approved append-only column-permutation foundation regions isolated, source-derived nested workspace/count checks and fixed-zero-column mathematical limitation, no root registration yet"
     }
   },
-  "active_task": "Corrected v4 treeeebeb3a full LP64/trueILP64 each315/315 and provider-free Debug/Release each271/271 pass, zero skips; both installed LU consumers2/2 eachABI, strict Doxygen74/1457/zero warnings and partial validator pass. Committing/pushing this exact product checkpoint. Native Cholesky/QR integration is separately unstaged; original LU counts, reference Cholesky/QR and helpers frozen. Placement/P05expert/P06least-squares work is isolated in separate linked worktrees.",
-  "next_action": "Commit only staged v4 product bytes plus these evidence records, verify non-program tree matches eebeb3a, push feature/lapack-array-io and update draft47. Then integrate frozen original LU INTEGER guards, native/provider Cholesky/QR and helpers with atomic contracts/registrations/new public-only installed examples; apply separately audited placement corrections and run fresh full/installed/sanitizer gates. Continue all remaining P04-P11 advanced/specialized families and exact ledger closure.",
+  "active_task": "Frozen v5 candidate04 full LP64/trueILP64 each344/344, Debug/Release each277/277, shared279/279 pass, zero skips; installed5/5 eachABI, Doxygen79/1573/zero warnings. Candidate02 failed records retained. Root also imported29 reviewed expert/least-squares files UNSTAGED for v6 and added two consumers passing bothABI direct diagnostics/strict attempt02. Newly discovered LARF1F/LARFB cursor gap has uncommitted QR/LS guards/pure tests requiring separate verification; v5 full pass is not this gate's closure. Band, indefinite and rank-revealing agents have isolated worktrees.",
+  "next_action": "Commit only frozen v5 STAGED product plus explicit program annotations; product must match f021fb84e345c355affe65d8c06119c14a18e594 outside programs. Do not git add -A: unregistered v6 imports and unstaged reference_qr.cc/internal_qr_counts.h/qr_counts_test.cc corrections coexist. Then apply external register-v6-structure.cjs and32-row mapping, update exact headers/profile/contracts, freeze and test row-cursor corrections including old-source control and affected bothABI lanes, then full v6 integration/installed/docs. Continue all P04-P11 advanced/specialized scope and normalized mode/evidence ledger; no complete-program claim.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -223,7 +289,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "955af4f0258eefa156d5e2434277724e8570fb7c6d729409a92b40a01be9fb77"
+    "coverage_mapping_sha256": "a58be7ec2d1ec1a4a5c9545abf976d5a1e90a58e366aea2fe17d7bd1c9eb651a"
   },
   "provider": {
     "version": "3.12.1",
@@ -257,7 +323,7 @@
         "asc_abi_verified": true
       }
     ],
-    "abi_verification_scope": "44 partial registered S/D/C/Z ordinary/expert/advanced LU operations, both layouts including independent four-operand driver layouts, Linux x86_64 GCC/GFortran11.4/libstdc++20230528/static only. Corrected v4 eebeb3a full LP64/trueILP64315/315 and installed2/2 eachABI pass. Full normalized mode/contract evidence and mathematical/placement gates remain unclosed; no full-profile claim."
+    "abi_verification_scope": "Prior committed v4 exact eebeb3a full LP64/trueILP64 each315/315, installed2/2 eachABI. v5 adds48 actual partial routes and source corrections with frozen per-family diagnostics; combined/installed v5 pending. Linux x86_64 GCC/GFortran11.4/libstdc++20230528/static only. Full mode/contract evidence, numerical gates and shared/platform gates remain unclosed."
   },
   "toolchain": {
     "observed": "Linux x86_64; GCC 11.4.0; CMake 4.1.2",
@@ -325,20 +391,20 @@
   },
   "counts": {
     "required_denominator": 2113,
-    "specification_mapped": 8,
+    "specification_mapped": 20,
     "callable_reference": 0,
     "verified_reference": 0,
-    "callable_native": 8,
+    "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 2069,
-    "reference_in_progress_in_ledger": 44,
+    "reference_not_started_in_ledger": 2021,
+    "reference_in_progress_in_ledger": 92,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
-    "implemented_unverified_native": 8,
+    "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 44,
+    "registered_partial_reference_operations": 92,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "Registered44 partial operations remain in_progress, zero fully verified native/reference. Corrected v4 full bothABI315 and baseline271 suites pass under exact eebeb3a identity, after retained candidate01 failures. Tiny-input math, original LU integer correction integration and provider workspace/context admission gates remain explicit; denominator2113 unchanged."
+    "note": "Required denominator2113 unchanged.20 native implemented_unverified;92 partial reference in_progress, zero fully verified native/reference. v5 family diagnostics and direct consumer runs are separate from pending combined/installed and normalized exact mode evidence. Tiny-input math and owner/platform/full-profile gates remain explicit."
   },
   "blockers": [
     {
@@ -358,13 +424,18 @@
     },
     {
       "id": "LU-INTEGER-ARITHMETIC",
-      "scope": "Source-audited query/vector/loop bounds in progress; current v4 uses committed original LU bytes, excluding concurrent correction",
+      "scope": "Source-audited correction and old-code controls pass both ABIs in frozen diagnostics; imported v5 combined/installed verification pending",
       "record": "programs/lapack-array-io/blockers.md"
     },
     {
       "id": "PROVIDER-WORKSPACE-CONTEXT",
-      "scope": "Adapter-specific workspace/context admission audit and regression required; independent implementation continues",
+      "scope": "Seven-adapter workspace and four pivot admission corrections pass frozen six35-test lanes; root defensive CPU-predicate amendment and combined/installed verification pending",
       "record": "programs/lapack-array-io/blockers.md"
+    },
+    {
+      "id": "LAQGE-TINY-MATH",
+      "scope": "Unmet finite scaled-output mathematical gate for exact pinned both-scale evaluation; fidelity is separate, independent implementation continues",
+      "record": "programs/lapack-array-io/lu-helpers-review.md"
     }
   ],
   "external_approvals": [

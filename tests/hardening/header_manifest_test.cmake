@@ -69,6 +69,8 @@ set(_provider_free_entries
   "dense|asc/dense/lapack/factor_view.h"
   "dense|asc/dense/lapack/structured_view.h"
   "dense|asc/dense/lapack/lu.h"
+  "dense|asc/dense/lapack/cholesky.h"
+  "dense|asc/dense/lapack/qr.h"
   "sparse|asc/sparse.h"
   "sparse|asc/sparse/compressed.h"
   "sparse|asc/sparse/coordinate.h"
@@ -110,7 +112,10 @@ set(_lapack_entries
   "dense_lapack|asc/dense/providers/lapack_lu_equilibration.h"
   "dense_lapack|asc/dense/providers/lapack_lu_condition.h"
   "dense_lapack|asc/dense/providers/lapack_lu_refinement.h"
-  "dense_lapack|asc/dense/providers/lapack_lu_driver.h")
+  "dense_lapack|asc/dense/providers/lapack_lu_driver.h"
+  "dense_lapack|asc/dense/providers/lapack_lu_helpers.h"
+  "dense_lapack|asc/dense/providers/lapack_cholesky.h"
+  "dense_lapack|asc/dense/providers/lapack_qr.h")
 set(_all_entries ${_provider_free_entries} ${_cuda_entries} ${_lapack_entries})
 set(_all_headers)
 foreach(_entry IN LISTS _all_entries)
@@ -120,9 +125,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 74)
+if(NOT _all_header_count EQUAL 79)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 74 headers; got "
+    "Independent source-header oracle must contain 79 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -134,7 +139,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 74-header oracle.\n"
+    "Source public-header tree differs from the frozen 79-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

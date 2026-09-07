@@ -4156,6 +4156,1924 @@
         "dirty_diff_sha256": null,
         "tree": null
       }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/configure-lp64/record.json",
+      "record_sha256": "d3c5bb6baac27ff5b4383789702ae6e5764ff77add2a7e6b5b8f314178fd81f9",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-configure-lp64",
+      "started": "2026-09-07T13:01:42.944648+00:00",
+      "completed": "2026-09-07T13:02:57.312909+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "d291cfa24e70e53ac6bfff1c2217025ef73f064c83854ff3ae0854cb55984ee0"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/configure-ilp64/record.json",
+      "record_sha256": "abd9a1022966f4353d8d304decd4a652a1cbd2586a1f0bf4c20c4e0e05f1cd09",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-configure-ilp64",
+      "started": "2026-09-07T13:01:43.179581+00:00",
+      "completed": "2026-09-07T13:02:58.028656+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "73fe1f494af4f793b61cc133406d6e780ff80c9893a0445378a78796b9d4631e"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/configure-debug/record.json",
+      "record_sha256": "ee59902dda9987d1eb7995b0257ab6e2664549d8e460c85ef7c0cbf51f0bceee",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-configure-debug",
+      "started": "2026-09-07T13:01:43.509249+00:00",
+      "completed": "2026-09-07T13:02:47.894823+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-debug",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "2cdc9445a7ce44dd67fb814c69f3eab7f3aa2d8a371ebdd1f8572c987b6bd2ce"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/configure-release/record.json",
+      "record_sha256": "d963bcbf462896b872da3d8b290512e4a2d7d04f4a29818a1b9ee049c1434fa6",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-configure-release",
+      "started": "2026-09-07T13:01:43.804539+00:00",
+      "completed": "2026-09-07T13:02:47.402405+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-release",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "6982d9741bfd6d9ac66ddb0ef073cd918f89bfc8c2245d8603823d03c54571ad"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/configure-shared/record.json",
+      "record_sha256": "79cbcf1f2dfe67fb1878fde8ad554c3a9850b48a3a97caf1faf89fcc07bb3761",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-configure-shared",
+      "started": "2026-09-07T13:01:44.119198+00:00",
+      "completed": "2026-09-07T13:02:48.367181+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-shared",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "9959b6793c147d0d9076d41e2f1f25a9aa37aa053184779fbf074b98d693d8b1"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/doxygen/record.json",
+      "record_sha256": "e7e8cefd3ed71aa5565de457b194ef560ad92d25f94176ee0144d5239b6490bf",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-doxygen",
+      "started": "2026-09-07T13:01:45.852776+00:00",
+      "completed": "2026-09-07T13:01:55.920440+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "0cd288259af7bf84f9741bab82854be48ebb61b4d730c5ab912ca419c590716c"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/build-record-release/record.json",
+      "record_sha256": "daebb500a78f7e20db842867566f3fbe4d210cdd1d6a790be72479ff8dd6af49",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-build-record-release",
+      "started": "2026-09-07T13:02:47.961093+00:00",
+      "completed": "2026-09-07T13:14:35.649698+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "a5585d22f8b84f111c36027b9ee96300f3cc9c4185317503531406a1b13311c2"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/build-record-debug/record.json",
+      "record_sha256": "a081a01730e6ca26b7b56f0394cb975e7cabffc79517daff2a82ff6c1b358ce7",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-build-record-debug",
+      "started": "2026-09-07T13:02:48.488228+00:00",
+      "completed": "2026-09-07T13:10:26.803434+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "2feaa67511074e1d84aedf794c13bfbd82ac888d5e35db1a5644ffb58a9397ed"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/build-record-shared/record.json",
+      "record_sha256": "751251b10133202c1f7791d17aa36897884a3e8f91ec40edfd33dcefde5855a9",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-build-record-shared",
+      "started": "2026-09-07T13:02:48.991143+00:00",
+      "completed": "2026-09-07T13:14:40.222234+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-shared",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "c2cd1b9a2d85e776f99f127b9b81dba230a1e4cc01415635cad8ca9116133afe"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/build-record-lp64/record.json",
+      "record_sha256": "5b08d4ad44ecaee6cb958f29be9fd5b767320bca7199e7de28321d88f2713bbf",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-build-record-lp64",
+      "started": "2026-09-07T13:02:58.097171+00:00",
+      "completed": "2026-09-07T13:17:00.713781+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "7848eb0eeee301db91460458c6fc28c5360534767c04cb05cba332ed6a3c63d8"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/build-record-ilp64/record.json",
+      "record_sha256": "e6216b878c385c1884e7663d9d87d8aa1866d34c0ed803f2625cb6ea74635e86",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-build-record-ilp64",
+      "started": "2026-09-07T13:02:58.912454+00:00",
+      "completed": "2026-09-07T13:17:03.755234+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "84655fca553221bbca97d335a3a73454b0d03e7e97192615113d0a4b02bed514"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/configure-native-asan/record.json",
+      "record_sha256": "43e88fe312bbb4b25577e619f8e22c4b8acc254c800bd105d8e03117d25cc2f4",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-configure-native-asan",
+      "started": "2026-09-07T13:05:12.762624+00:00",
+      "completed": "2026-09-07T13:06:56.754775+00:00",
+      "configuration": "native-Clang19-Debug-ASan-UBSan",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-native-asan",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_ADDRESS_SANITIZER=ON",
+        "-DASC_CPP_ENABLE_UNDEFINED_SANITIZER=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "df5419224fff993d95350332c76fb357af4d8ce53f1654f11d70a677a1d770ec"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/build-record-native-asan/record.json",
+      "record_sha256": "552387dde0d7dec281a525da956f4de59edb6cb91dfd4bef9b38c12fc86d70d4",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-build-record-native-asan",
+      "started": "2026-09-07T13:06:57.540029+00:00",
+      "completed": "2026-09-07T13:08:15.185198+00:00",
+      "configuration": "native-Clang19-Debug-ASan-UBSan",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-native-asan",
+        "--parallel",
+        "2",
+        "--target",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "ea02dda432233430e6237366b2c42bb4a14c4d7d246539c92e6dd50ce9b867b3"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/ctest-native-asan/record.json",
+      "record_sha256": "e58eecfbf0abc52b96a11e25f19aa47fdb43753a91d5c8f539121e156c6bf317",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-ctest-native-asan",
+      "started": "2026-09-07T13:08:15.790186+00:00",
+      "completed": "2026-09-07T13:08:16.717736+00:00",
+      "configuration": "native-Clang19-Debug-ASan-UBSan",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-native-asan",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "-R",
+        "^asc_cpp[.]dense[.]lapack_(foundations|structured_view|lu|cholesky|qr)_test$",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/ctest-native-asan/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 5,
+        "failed": 0,
+        "passed": 5,
+        "selected": 5,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "21d01fe01682fb38ccedf0fb5ba9bb766e5ecdefb4cf88f1270d9d20e03cc919",
+        "ctest.xml": "a70685324463e6d5f2ba43ae813836756ab4f425733f97f421ed783599f111c8"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-docs-03/doxygen/record.json",
+      "record_sha256": "65aa505ce5ab1420b580fe4a3fa30ac290feea2137232456d62c7390e419a08b",
+      "implementation_commit": null,
+      "implementation_tree": "ace0cf3c11c95fb3384c1627b7e1217a0de5fb31",
+      "source_archive_sha256": "7bf52da3685f1d7e5e9cf726d5ff4cf307ed0f5b8e5c2e84ba42ecb18df63228",
+      "id": "p05-p06-factorizations-v5-docs-03-doxygen",
+      "started": "2026-09-07T13:08:26.423548+00:00",
+      "completed": "2026-09-07T13:08:37.868308+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "6e9a25d45b4bc4f31e653a98fc916d1b21f5626f0c75764f10743f2dea24092d",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "6e9a25d45b4bc4f31e653a98fc916d1b21f5626f0c75764f10743f2dea24092d",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-docs-03/doxygen-coverage/record.json",
+      "record_sha256": "c4d13132ff8ff5a73f04e9ba5a3225f75b03e86e9dd4b8dd723ed08fd811f157",
+      "implementation_commit": null,
+      "implementation_tree": "ace0cf3c11c95fb3384c1627b7e1217a0de5fb31",
+      "source_archive_sha256": "7bf52da3685f1d7e5e9cf726d5ff4cf307ed0f5b8e5c2e84ba42ecb18df63228",
+      "id": "p05-p06-factorizations-v5-docs-03-doxygen-coverage",
+      "started": "2026-09-07T13:08:38.446607+00:00",
+      "completed": "2026-09-07T13:08:39.089168+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/source",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "be2d46e3a380dd016fd6b93f174aa803a0ced47102b5f786cbcb50e7a085727a"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "6e9a25d45b4bc4f31e653a98fc916d1b21f5626f0c75764f10743f2dea24092d",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "6e9a25d45b4bc4f31e653a98fc916d1b21f5626f0c75764f10743f2dea24092d",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-docs-03/markdown/record.json",
+      "record_sha256": "d116704b84ebb01d9d959427c3755b3c69797113b66a5cf587aa1662eda68ca5",
+      "implementation_commit": null,
+      "implementation_tree": "ace0cf3c11c95fb3384c1627b7e1217a0de5fb31",
+      "source_archive_sha256": "7bf52da3685f1d7e5e9cf726d5ff4cf307ed0f5b8e5c2e84ba42ecb18df63228",
+      "id": "p05-p06-factorizations-v5-docs-03-markdown",
+      "started": "2026-09-07T13:08:39.716404+00:00",
+      "completed": "2026-09-07T13:08:40.229561+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-docs-03/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "6e9a25d45b4bc4f31e653a98fc916d1b21f5626f0c75764f10743f2dea24092d",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "6e9a25d45b4bc4f31e653a98fc916d1b21f5626f0c75764f10743f2dea24092d",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/format-all-changed/record.json",
+      "record_sha256": "46861ccde5ff771abca3a2c4a6f721aa5532eeb676ae14d46b75b3849c244727",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-format-all-changed",
+      "started": "2026-09-07T13:11:32.969364+00:00",
+      "completed": "2026-09-07T13:11:35.136796+00:00",
+      "configuration": "strict-Clang18",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/examples/dense_factorizations/main.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/include/asc/dense/lapack/cholesky.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/include/asc/dense/lapack/qr.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/include/asc/dense/providers/lapack_cholesky.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/include/asc/dense/providers/lapack_lu_helpers.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/include/asc/dense/providers/lapack_qr.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/internal_cholesky_limits.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/internal_lu_counts.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/internal_lu_helpers.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/internal_qr_counts.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/internal_workspace_context.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_cholesky.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu_condition.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu_driver.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu_equilibration.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu_expert.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu_helpers.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu_refinement.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_qr.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack_cholesky.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack_qr.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense/lapack_cholesky_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense/lapack_qr_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/cholesky_faults.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/cholesky_faults.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/cholesky_stride_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/cholesky_test_support.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/installed_lu/cholesky_main.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/installed_lu/factorization_support.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/installed_lu/helpers_main.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/installed_lu/qr_main.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/lu_counts_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/lu_expert_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/lu_helpers_failure_test.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/lu_helpers_faults.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/lu_helpers_faults.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/lu_helpers_scaling_test.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/lu_helpers_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/lu_helpers_test_support.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/provider_operand_placement_test.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/provider_placement_routes.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/provider_placement_support.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/provider_placement_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/qr_counts_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/qr_faults.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/qr_faults.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/qr_test_support.h",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/qr_workspace_placement_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/reference_cholesky_test.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/tests/dense_lapack/reference_qr_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/ctest-debug/record.json",
+      "record_sha256": "f15b8db8b55c34924db2de58a2b21108c3de48a10ae4c13be095797c6c74ddbe",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-ctest-debug",
+      "started": "2026-09-07T13:10:27.358472+00:00",
+      "completed": "2026-09-07T13:19:17.835864+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 277,
+        "failed": 1,
+        "passed": 276,
+        "selected": 277,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "51574afb4bdc35e87071c09824b56bd5b61b18bda1389385bab0d483d0aa4231",
+        "ctest.xml": "ce993c2449126b733cb888a0ad89dfa932126bfe9a769a635ea15396c6786bbb"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/tidy-root-pivot-amendment/record.json",
+      "record_sha256": "f6be6b759c05ee51cb9736b92a5eb38992bc6dc00be7c3c2584b6bf785102917",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-tidy-root-pivot-amendment",
+      "started": "2026-09-07T13:11:35.705616+00:00",
+      "completed": "2026-09-07T13:17:46.513356+00:00",
+      "configuration": "strict-Clang18",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu.cc",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/src/dense/lapack/reference_lu_expert.cc",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "08d04592b64a466217e51f82ba8c60ece00b239fcb2e3453407f1f3aa23d3b2e"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/ctest-release/record.json",
+      "record_sha256": "a626915f073968d54b88cec80f0cb217ca7b5a807f11533928d72537a9bd33bc",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-ctest-release",
+      "started": "2026-09-07T13:14:36.267095+00:00",
+      "completed": "2026-09-07T13:21:14.229553+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 277,
+        "failed": 1,
+        "passed": 276,
+        "selected": 277,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "a2a5ca3f6e33a9241b37a2f78db82c7de425b9ba654d6ea26e751fd1aef14745",
+        "ctest.xml": "28b76e6e9ca9c7ac4359903d1ba4491dcc8a6daad78842b23057c21de632c573"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/ctest-shared/record.json",
+      "record_sha256": "20880d521fcd11512ee089aa3ea878b653b234b9de2ddc97a3b34280c999c50b",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-ctest-shared",
+      "started": "2026-09-07T13:14:40.807412+00:00",
+      "completed": "2026-09-07T13:21:19.912465+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-shared",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/ctest-shared/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 279,
+        "failed": 1,
+        "passed": 278,
+        "selected": 279,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "59714d17719eb9afb155903aa7b2ad7aaba234c67ab212a62c5d3ae1ae421207",
+        "ctest.xml": "b2fe98208a25398babf71268c462830b88a8156b4182aadeaadcc0b7e2687604"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/ctest-lp64/record.json",
+      "record_sha256": "e58235746cdc7f8957bbde506e03120b55770e51ba2d64dbf9f1599f69a78529",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-ctest-lp64",
+      "started": "2026-09-07T13:17:01.150181+00:00",
+      "completed": "2026-09-07T13:24:33.790757+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-lp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/ctest-lp64/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 344,
+        "failed": 1,
+        "passed": 343,
+        "selected": 344,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "18e753345e3d05f3dcf0902bf965a8942325551411f3db6b77babcfbcf9a08b9",
+        "ctest.xml": "b608990b591b18fcdc95eb2c67faf0a0d43a192ea7a63143929851421cf718e9"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-02/ctest-ilp64/record.json",
+      "record_sha256": "3118c1f618e8833b68d04dcc95d7f8207e2491356bff83c1a3fa81333e2258d1",
+      "implementation_commit": null,
+      "implementation_tree": "a97f793c140b514717a8c9438b4f84ac2c56f81e",
+      "source_archive_sha256": "dd4469842a0ab9cb846e237b5e0dabf304e1c7b7054855133a81a823fe48a496",
+      "id": "p05-p06-factorizations-v5-02-ctest-ilp64",
+      "started": "2026-09-07T13:17:04.157152+00:00",
+      "completed": "2026-09-07T13:24:35.108236+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/build-ilp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-02/ctest-ilp64/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "test_counts": {
+        "executed": 344,
+        "failed": 1,
+        "passed": 343,
+        "selected": 344,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "46bcc5aee7375e4e0a8e7f8b4bc8cbf87a30e897185cf814e92b69f6a02dad1b",
+        "ctest.xml": "255f351678abad3771d8506954a2eecb76c27067caed168d4ef394adc9342ca4"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ce17894f7590a80479773db603bd871af8099e8098b72a4341eb6f156826061e",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/configure-lp64/record.json",
+      "record_sha256": "295b38a993b2166b76e7d73e4a2288273a510a27842d58eb39afa27a43c7506a",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-configure-lp64",
+      "started": "2026-09-07T13:28:27.742105+00:00",
+      "completed": "2026-09-07T13:29:08.304130+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "613eab009a99ac9a48e69f1a2dfe658ac69102b64755e0bddf0cb31077ee9df2"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/configure-ilp64/record.json",
+      "record_sha256": "500b486dd47d2adb4d8a0877a28036cd7fa9718308cb3f03248608f4f4a427e6",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-configure-ilp64",
+      "started": "2026-09-07T13:28:29.025473+00:00",
+      "completed": "2026-09-07T13:29:10.134059+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "60790d6d360eed61dc410f0c2c9d7c459d59014568f17ab3e231ab6d7b2b9815"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/configure-debug/record.json",
+      "record_sha256": "1a48f575d9016e74c02889deb1c9f9809f7635f340fae3631beefa4665c54063",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-configure-debug",
+      "started": "2026-09-07T13:28:30.434220+00:00",
+      "completed": "2026-09-07T13:29:07.154005+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-debug",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "c4e8b67dafa86a65d51dceac191570380858f5cf4f0167aea16e208ef107bfa0"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/configure-release/record.json",
+      "record_sha256": "3ed890b03dde6a83ef3c633f66876629f453fe1edd6c477fedc83b81c391e084",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-configure-release",
+      "started": "2026-09-07T13:28:31.682706+00:00",
+      "completed": "2026-09-07T13:29:09.588159+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-release",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "a3878af2b22a5fca6dd5e55bc927a4b6c25acb8781888e67c6d4bf8579a574bd"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/configure-shared/record.json",
+      "record_sha256": "7060ab1b46d6a17d8c1293d4d79e24eb9035dc5f5697dab7e308af04faaef8e8",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-configure-shared",
+      "started": "2026-09-07T13:28:33.152931+00:00",
+      "completed": "2026-09-07T13:29:11.267889+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-shared",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "59829f4172d465283268bb97ce86ed3f54dddb5b592457b97575245f31511f7f"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/doxygen/record.json",
+      "record_sha256": "5154617ae3d57792d446789f6ba0da3495c02417bc8fae5b49429f95bd1027ef",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-doxygen",
+      "started": "2026-09-07T13:28:34.939209+00:00",
+      "completed": "2026-09-07T13:28:42.442264+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/doxygen-coverage/record.json",
+      "record_sha256": "2e6db7eba3c43fb8778b96c4566ffaeabb67a4c3ae2141700e509b674855f2ac",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-doxygen-coverage",
+      "started": "2026-09-07T13:28:42.804242+00:00",
+      "completed": "2026-09-07T13:28:43.187625+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "be2d46e3a380dd016fd6b93f174aa803a0ced47102b5f786cbcb50e7a085727a"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/markdown/record.json",
+      "record_sha256": "12600a466ca49c16db29605d3e2d24253b7433f3e76991dece1694e3b2a79688",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-markdown",
+      "started": "2026-09-07T13:28:43.498527+00:00",
+      "completed": "2026-09-07T13:28:43.731974+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/build-record-debug/record.json",
+      "record_sha256": "9e93f495e2d14472a6c3936d6731d85afa53e49a02520d67af74c041a07b5042",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-build-record-debug",
+      "started": "2026-09-07T13:29:07.475756+00:00",
+      "completed": "2026-09-07T13:35:29.226551+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-debug",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "4d53ecd7805f77978c2bcb65d4d013cb478e5b7cd1e93d5cc007f70dc65397ce"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/build-record-lp64/record.json",
+      "record_sha256": "7b244e95928753238057110dffa640591219493bfaac1adc335e7152e1761676",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-build-record-lp64",
+      "started": "2026-09-07T13:29:08.630782+00:00",
+      "completed": "2026-09-07T13:41:11.973831+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "7c5ec27fb3071db81562bfe5edb3047258aa6311732c1dabcf4d55e7a1992a81"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/build-record-release/record.json",
+      "record_sha256": "9fdcfe82ba8d2b99c61b062331e1571e602f192dc0a35fa60a35fc5f3910da42",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-build-record-release",
+      "started": "2026-09-07T13:29:09.934250+00:00",
+      "completed": "2026-09-07T13:39:03.612840+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-release",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "46931ab81e30ca2408bf776f4f6c9b000ef84f9198edffe7a41bc23aa50f7adc"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/build-record-ilp64/record.json",
+      "record_sha256": "6c84e44de966319dd2d40deccced42de80bc1a01454f9e54a179b2e5fe9e2723",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-build-record-ilp64",
+      "started": "2026-09-07T13:29:10.489279+00:00",
+      "completed": "2026-09-07T13:41:13.316832+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "6d7e19b7cc628c1b5c0aba02e4e8aa5a114e8a82527de047e690999e4eea5b7b"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/build-record-shared/record.json",
+      "record_sha256": "85f68bc2bf05ee199a0fd73fb32874552ca4444501176c2f5c3862da410af37e",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-build-record-shared",
+      "started": "2026-09-07T13:29:11.688579+00:00",
+      "completed": "2026-09-07T13:39:14.092671+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-shared",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "29fa92eaf1a63442fa757f7b3ecb125432e4a90228b86576f813e30af3552e9b"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/ctest-debug/record.json",
+      "record_sha256": "82a08c11b06ad329ac0756ee6a1e507c52bf068691d0a1b18d14806b32a173c9",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-ctest-debug",
+      "started": "2026-09-07T13:35:29.849858+00:00",
+      "completed": "2026-09-07T13:43:00.051309+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 277,
+        "failed": 0,
+        "passed": 277,
+        "selected": 277,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "eea6e9a0565d7c98cb023906ae88805580187a09d1264b3cf9173fc48a9b003a",
+        "ctest.xml": "c20852c6fe57baa95545244f5d1c3b7cc6129bd5241795738117f01213210160"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/ctest-release/record.json",
+      "record_sha256": "e974163e0b3ee626e5c2b9ce599421b3231b4c7821fb161e7dfee130729a3c03",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-ctest-release",
+      "started": "2026-09-07T13:39:04.426596+00:00",
+      "completed": "2026-09-07T13:44:30.005172+00:00",
+      "configuration": "release-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-release",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/ctest-release/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 277,
+        "failed": 0,
+        "passed": 277,
+        "selected": 277,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "9f73fea9df933bb4094dfd427acf51306dbee2f54cd88a30f49cd28603e06f4a",
+        "ctest.xml": "fcf4031cfac16a2d334782864f478a89e6eef8c7fc37bba5d16247efebace525"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/ctest-shared/record.json",
+      "record_sha256": "58caf10c6bc91663ef4098d01b5cc3288ee140400695cc2643427645193f5b87",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-ctest-shared",
+      "started": "2026-09-07T13:39:14.811772+00:00",
+      "completed": "2026-09-07T13:44:35.969838+00:00",
+      "configuration": "shared-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-shared",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/ctest-shared/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 279,
+        "failed": 0,
+        "passed": 279,
+        "selected": 279,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "ab77a1cdb44be11eab916dc92ac292ef5a81f7a358265a593d15249a2b01906c",
+        "ctest.xml": "b5f9feb05dad16fae71c0eecca1fb060e3fb1fbdad1e7d61cf4833ebd67e8786"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/ctest-lp64/record.json",
+      "record_sha256": "fc0126eda4424620bdc577e03a3e187c39a55bc7e32cf86dc77b50e334ed10fd",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-ctest-lp64",
+      "started": "2026-09-07T13:41:12.381190+00:00",
+      "completed": "2026-09-07T13:47:27.674894+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-lp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/ctest-lp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 344,
+        "failed": 0,
+        "passed": 344,
+        "selected": 344,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "11e45447f422a3abef10ad4f67ad95b1d24358594754cb1b569110ec56f58ad7",
+        "ctest.xml": "912a1805d519d41461ab01945259c0c2e6f1bb40328f70966099addf73a1942b"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p05-p06-factorizations-v5-04/ctest-ilp64/record.json",
+      "record_sha256": "6f1f2ad43da3642e9f74b61c9b23ec783fa00ae9a756e607b70ba843d8807c0b",
+      "implementation_commit": null,
+      "implementation_tree": "f021fb84e345c355affe65d8c06119c14a18e594",
+      "source_archive_sha256": "af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155",
+      "id": "p05-p06-factorizations-v5-04-ctest-ilp64",
+      "started": "2026-09-07T13:41:13.702217+00:00",
+      "completed": "2026-09-07T13:47:28.871615+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/build-ilp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-p06-factorizations-v5-04/ctest-ilp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 344,
+        "failed": 0,
+        "passed": 344,
+        "selected": 344,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "a8bc618739cf1ff0d5c1fffef41b81545fa1b7bb7270af3903939ba876844ee3",
+        "ctest.xml": "0236ac07231124912cd39badc66a7472503fc68802183edf04c1cc90a7aa5e7a"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "b7cf7644519eb2e6b00e89503b9eeaa88f859e24f1b595d0cc1c827707116cd1",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
     }
   ]
 }

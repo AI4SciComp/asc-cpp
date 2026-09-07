@@ -2,15 +2,17 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lu-v4` facet implements checked `Getrf`, `Getrs`,
+The `incremental-factorizations-v5` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
 through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
-the same four scalars, with independently selected A/AF/B/X layouts. All other
-required LAPACK routines and shared-facet isolation
-remain incomplete. Native coverage is separate; registration and scoped tests
+the same four scalars, with independently selected A/AF/B/X layouts. The
+additional Cholesky, QR and LU helper routes below bring the development
+mapping to 92 partial scalar routines. The other 2,021 required LAPACK routines
+and shared-facet isolation remain incomplete. Native coverage is separate;
+registration and scoped tests
 do not close the full routine/mode/evidence manifest.
 
 The extra LU operations are declared in `asc/dense/providers/lapack_lu.h`;
@@ -79,8 +81,48 @@ nonfinite FERR; GESVX FACT=N/F can additionally return RCOND=0 despite exact
 condition one. Both ABIs reproduce these limitations. Explicit FACT=E succeeds
 on that recorded fixture, but is never substituted implicitly. Passing fidelity
 tests do not close finite-condition/error mathematical gates. Full normalized
-mode/evidence closure and the source-audited original-LU integer-arithmetic
-follow-up remain required; this development profile is not full capability.
+mode/evidence closure remains required; this development profile is not full
+capability. Original LU now checks source-specific foreign loop/cursor
+arithmetic and floating workspace-query conversions before foreign entry.
+
+## Cholesky, QR and LU helpers
+
+`lapack_cholesky.h` exposes S/D/C/Z `Potrf`, `Potrf2`, `Potf2`, `Potrs`,
+`Potri` and `Posv`. Only the selected upper/lower triangle is packed or
+published, with independent A/B layouts and explicit caller storage. Complex
+Hermitian factorization ignores imaginary input diagonals; triangular solves
+and inverse consume actual factor components. Failed leading minors preserve
+documented partial factors, never a successful factor certificate. `Potri`
+returns the selected triangle of the inverse, not a reusable factor.
+
+`lapack_qr.h` exposes S/D/C/Z `Geqrf`/`Geqr2`, real `Orgqr`/`Ormqr` and
+complex `Ungqr`/`Unmqr`. The generation/application experts accept raw partial
+reflectors, not just complete factors. They support both layouts, left/right
+application, real N/T and complex N/C. Actual foreign workspace queries are
+distinguished from GEQR2's formula-only query. Caller-owned scalar WORK and
+layout storage are separate; output-only upper entries/extra Q columns are
+not read while packing reflector tails.
+
+`lapack_lu_helpers.h` exposes S/D/C/Z `Laswp` and `Laqge`. LASWP uses raw
+one-based sequential swaps, with explicit slot spacing and forward/reverse
+application. LAQGE consumes explicit scales/statistics and reports the actual
+N/R/C/B branch. Neither underlying routine has INFO, so an actual call never
+fabricates one. The source's C*R*A order can overflow for a finite tiny input
+whose exact scaled result is one. The adapter preserves those raw outputs
+with a numerical accuracy warning; this fidelity is not mathematical success.
+
+All nonempty workspace regions must be admitted by the explicit provider
+context in addition to neutral capacity/alignment validation. The Serial
+context admits host storage, not an implicit pinned/device/managed transfer.
+The original LU routes retain unused zero-byte workspace compatibility.
+The provider-free [native Cholesky/QR contract](contracts/lapack-native-cholesky-qr.md)
+is separate and does not credit the reference Q experts to native coverage.
+
+The prior v4 product tree `eebeb3a3632e66f9d07d77dc3f522cb88dc404f1`
+passed full LP64/true-ILP64 315-test suites and provider-free Debug/Release
+271-test suites with zero skips. Those results do not verify this newer v5
+source. Frozen native/provider diagnostics are recorded separately; the
+combined v5 and new installed consumers remain integration gates.
 
 ## Building the explicit subset
 

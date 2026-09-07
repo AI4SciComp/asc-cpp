@@ -192,7 +192,9 @@ DIRECTORY_GRAPH        = NO
 DIR_GRAPH_MAX_DEPTH    = 1
 DOT_IMAGE_FORMAT       = svg
 INTERACTIVE_SVG        = NO
-DOT_GRAPH_MAX_NODES    = 50
+# Include every node in the growing public-header dependency graphs; warnings
+# remain errors. The v5 result/status graphs already require 52/53 nodes.
+DOT_GRAPH_MAX_NODES    = 256
 MAX_DOT_GRAPH_DEPTH    = 0
 DOT_MULTI_TARGETS      = NO
 GENERATE_LEGEND        = YES

@@ -4,6 +4,28 @@ The complete program is not verified. The following exact checkpoints are
 kept distinct from newer uncommitted integration work and from full-profile
 routine/mode closure. No package-wide success is inferred from a scoped run.
 
+Latest v5 command checkpoint: frozen tree
+`f021fb84e345c355affe65d8c06119c14a18e594`, archive SHA256
+`af1a759135aea53d8b9fed7c999cd876198674c69bbc5abb2d66e7a82f658155`.
+Full LP64/trueILP64 each344/344, provider-free Debug/Release each277/277 and
+provider-free shared Release279/279 pass with zero skips. Both relocated
+provider packages pass5/5 public-only consumers; Doxygen79/79 headers and1573
+public members passes with zero warnings. Exact mapping SHA256 is
+`a58be7ec2d1ec1a4a5c9545abf976d5a1e90a58e366aea2fe17d7bd1c9eb651a`:
+20 native implemented-unverified,92 reference in-progress,2113 required and
+zero fully verified rows. Earlier failed candidate02 full runs and Doxygen
+warnings are retained, not relabeled. See
+[the v5 review](factorizations-v5-review.md) and the
+[checkpoint index](verification-checkpoints.json).
+
+Newer uncommitted v6 work is excluded from those results:20 Cholesky expert
+and12 least-squares rows are imported but not yet centrally registered, with
+two new public-only consumers. A newly confirmed LARF1F/LARFB INTEGER cursor
+gap in reference QR/least-squares is being corrected and tested separately.
+It is an open gate despite passing ordinary v5 runs. GELSY's forced-zero-column
+minimum-norm failure and prior tiny-input math limitations remain explicit in
+[blockers.md](blockers.md); none is hidden by provider-fidelity tests.
+
 | Slice | Actual evidence | Scope limit |
 | --- | --- | --- |
 | Frozen provider-free baseline | Debug and Release each 219/219 passed, zero skips | Commit `46412183b2ae86101b2361c52376a8db8efff264` only |

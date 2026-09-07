@@ -18,6 +18,7 @@
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu_equilibration.h"
+#include "internal_workspace_context.h"
 #include "lapack_build_config.h"
 
 #define HAVE_LAPACK_CONFIG_H
@@ -239,7 +240,8 @@ Result<LapackWorkspacePlan> Query(
   return plan;
 }
 
-Status ValidatePlan(const LapackWorkspacePlan& expected,
+Status ValidatePlan(const ReferenceLapackProvider& provider,
+                    const LapackWorkspacePlan& expected,
                     const LapackWorkspacePlan& supplied,
                     const LapackWorkspace& workspace,
                     std::span<const ConstMemoryView> operands) {
@@ -255,8 +257,8 @@ Status ValidatePlan(const LapackWorkspacePlan& expected,
       return Status(ErrorCode::kInvalidState);
     }
   }
-  return ValidateLapackWorkspace(supplied, expected.identity, workspace,
-                                 operands);
+  return internal_lapack_workspace::Validate(
+      provider, supplied, expected.identity, workspace, operands);
 }
 
 template <typename T>
@@ -324,7 +326,7 @@ Status Equilibrate(
     return expected.status();
   }
   Status status = ValidatePlan(
-      *expected, plan, workspace,
+      provider, *expected, plan, workspace,
       std::array{matrix.reachable_storage(), rows.reachable_storage(),
                  columns.reachable_storage(),
                  ConstMemoryView(&statistics, sizeof(statistics),

@@ -10,7 +10,9 @@ target_sources(
     blas_level2.cc
     blas_level3.cc
     lapack_foundations.cc
+    lapack_cholesky.cc
     lapack_lu.cc
+    lapack_qr.cc
     matrix_market.cc
   PUBLIC
     FILE_SET HEADERS
@@ -32,6 +34,8 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/factor_view.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/structured_view.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/lu.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/cholesky.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/qr.h"
 )
 
 set_target_properties(

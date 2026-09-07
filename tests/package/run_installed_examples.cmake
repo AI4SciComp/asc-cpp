@@ -74,9 +74,9 @@ _run(
   --no-tests=error --output-on-failure
 )
 
-# Configure each codec independently: the aggregate examples intentionally load
-# both storage components and cannot prove that a single consumer stays isolated.
-foreach(_example IN ITEMS dense_matrix_market sparse_matrix_market)
+# Configure consumers independently: aggregate examples intentionally load both
+# storage components and cannot prove that a single consumer stays isolated.
+foreach(_example IN ITEMS dense_matrix_market sparse_matrix_market dense_factorizations)
   set(_standalone_build "${WORK_DIR}/${_example} standalone")
   _run(
     "${_example} standalone configure"

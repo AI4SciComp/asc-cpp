@@ -40,7 +40,7 @@ foreach(_scalar IN ITEMS s d c z)
     LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
 endforeach()
 
-foreach(_family IN ITEMS expert equilibration condition refinement driver)
+foreach(_family IN ITEMS expert equilibration condition refinement driver helpers)
   set(_target "asc_dense_lapack_lu_${_family}_test")
   add_executable("${_target}"
     "lu_${_family}_test.cc" "lu_${_family}_faults.cc" allocation_audit.cc
@@ -60,14 +60,84 @@ foreach(_family IN ITEMS expert equilibration condition refinement driver)
     target_link_options("${_target}" PRIVATE "-Wl,--wrap=dgecon_")
   elseif(_family STREQUAL "refinement")
     target_link_options("${_target}" PRIVATE "-Wl,--wrap=dgerfs_")
-  else()
+  elseif(_family STREQUAL "driver")
     target_link_options("${_target}" PRIVATE "-Wl,--wrap=dgesvx_")
+  else()
+    target_link_options("${_target}" PRIVATE "-Wl,--wrap=dlaswp_,--wrap=dlaqge_")
   endif()
   foreach(_scalar IN ITEMS s d c z)
     asc_register_test(NAME "asc_cpp.dense_lapack.lu_${_family}.${_scalar}"
       TARGET "${_target}" ARGUMENTS "${_scalar}"
       LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
   endforeach()
+endforeach()
+
+add_executable(asc_dense_lapack_provider_placement_test
+  provider_placement_test.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_provider_placement_test)
+target_include_directories(asc_dense_lapack_provider_placement_test PRIVATE
+  "${PROJECT_SOURCE_DIR}")
+target_link_options(asc_dense_lapack_provider_placement_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.provider_placement.${_scalar}"
+    TARGET asc_dense_lapack_provider_placement_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+endforeach()
+
+foreach(_family IN ITEMS lu qr)
+  set(_target "asc_dense_lapack_${_family}_counts_test")
+  add_executable("${_target}" "${_family}_counts_test.cc"
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}")
+  asc_register_test(NAME "asc_cpp.dense_lapack.${_family}_counts"
+    TARGET "${_target}" LABELS dense_lapack lapack runtime validation allocation)
+endforeach()
+
+add_executable(asc_dense_lapack_reference_cholesky_test
+  reference_cholesky_test.cc cholesky_faults.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_reference_cholesky_test)
+target_include_directories(asc_dense_lapack_reference_cholesky_test PRIVATE
+  "${PROJECT_SOURCE_DIR}" "${ASC_CPP_LAPACK_CONFIG_DIR}"
+  "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_reference_cholesky_test PRIVATE
+  "-Wl,--wrap=dpotrf_,--wrap=dpotrf2_,--wrap=dpotf2_,--wrap=dpotrs_,--wrap=dpotri_,--wrap=dposv_")
+asc_register_test(NAME asc_cpp.dense_lapack.reference_cholesky
+  TARGET asc_dense_lapack_reference_cholesky_test
+  LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+
+add_executable(asc_dense_lapack_cholesky_stride_test cholesky_stride_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_cholesky_stride_test)
+asc_register_test(NAME asc_cpp.dense_lapack.cholesky_stride
+  TARGET asc_dense_lapack_cholesky_stride_test
+  LABELS dense_lapack lapack runtime validation numerical)
+
+foreach(_test IN ITEMS reference_qr qr_workspace_placement)
+  set(_target "asc_dense_lapack_${_test}_test")
+  add_executable("${_target}" "${_test}_test.cc" qr_faults.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${PROJECT_SOURCE_DIR}" "${ASC_CPP_LAPACK_CONFIG_DIR}"
+    "${ASC_CPP_LAPACK_ROOT}/include")
+  foreach(_symbol IN ITEMS
+      sgeqrf dgeqrf cgeqrf zgeqrf sgeqr2 dgeqr2 cgeqr2 zgeqr2
+      sorgqr dorgqr cungqr zungqr sormqr dormqr cunmqr zunmqr)
+    target_link_options("${_target}" PRIVATE "-Wl,--wrap=${_symbol}_")
+  endforeach()
+  if(_test STREQUAL "reference_qr")
+    foreach(_scalar IN ITEMS s d c z)
+      asc_register_test(NAME "asc_cpp.dense_lapack.reference_qr.${_scalar}"
+        TARGET "${_target}" ARGUMENTS "${_scalar}"
+        LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+    endforeach()
+  else()
+    asc_register_test(NAME asc_cpp.dense_lapack.qr_workspace_placement
+      TARGET "${_target}" LABELS dense_lapack lapack runtime validation allocation)
+  endif()
 endforeach()
 
 if(ASC_CPP_INSTALL)
@@ -111,7 +181,7 @@ set_tests_properties(asc_cpp.dense_lapack.configuration_gates PROPERTIES
 
 foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_lu_equilibration.h lapack_lu_condition.h lapack_lu_refinement.h
-    lapack_lu_driver.h)
+    lapack_lu_driver.h lapack_lu_helpers.h lapack_cholesky.h lapack_qr.h)
   string(MAKE_C_IDENTIFIER "${_header}" _id)
   foreach(_mode IN ITEMS normal no_exceptions)
     set(_target "asc_dense_lapack_header_${_id}_${_mode}")

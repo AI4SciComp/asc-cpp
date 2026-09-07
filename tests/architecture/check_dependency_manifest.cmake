@@ -486,7 +486,8 @@ set(_expected_capabilities
   "bounded Matrix Market lexical and scalar primitives"
   "Dense Matrix Market array interchange"
   "Sparse Matrix Market coordinate interchange"
-  "incremental Reference-LAPACK LU provider"
+  "incremental Reference-LAPACK factorizations provider"
+  "native Cholesky and Householder QR"
   "checked logical metadata and mixed extents"
   "status, result, and release-active contracts"
   "storage-independent configuration model"
@@ -550,6 +551,10 @@ macro(_assert_capability_status)
       set(_expected_status parity-tested)
     elseif(_current_capability STREQUAL
            "storage-neutral engines and scalar distributions"
+           OR _current_capability STREQUAL
+              "incremental Reference-LAPACK factorizations provider"
+           OR _current_capability STREQUAL
+              "native Cholesky and Householder QR"
            OR _current_capability STREQUAL
               "storage-neutral QMC sequences"
            OR _current_capability STREQUAL

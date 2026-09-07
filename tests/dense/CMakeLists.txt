@@ -26,6 +26,8 @@ foreach(_source IN ITEMS
     lapack_foundations_test.cc
     lapack_structured_view_test.cc
     lapack_lu_test.cc
+    lapack_cholesky_test.cc
+    lapack_qr_test.cc
     print_test.cc
     io_test.cc
     io_fuzz_test.cc
@@ -48,6 +50,12 @@ target_include_directories(
 )
 target_include_directories(
   asc_dense_lapack_lu_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_lapack_cholesky_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_lapack_qr_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
 )
 
 add_executable(asc_dense_matrix_market_interop_test

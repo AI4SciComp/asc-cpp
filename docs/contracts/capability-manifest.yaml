@@ -73,12 +73,32 @@ capabilities:
       - "linear-time insertion sorting or exact asymmetric stored-zero structure after symmetry compression"
       - "atomic file replacement or crash durability"
 
-  - capability: "incremental Reference-LAPACK LU provider"
+  - capability: "native Cholesky and Householder QR"
+    owner: "dense"
+    development_stage: 6
+    status: "runtime-tested"
+    evidence_scope: "unreleased P05/P06 frozen native diagnostics, all four scalars, Debug/Release/scoped sanitizer and allocation controls passed; v5 combined/installed and exact normalized mode-evidence closure pending, no full-native claim"
+    public_headers:
+      - "include/asc/dense/lapack/cholesky.h"
+      - "include/asc/dense/lapack/qr.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "Cholesky selected-triangle reconstruction, factor reuse, independent RHS layouts and first/last failed pivots"
+      - "QR rectangular/scaled/rank-deficient reconstruction, orthogonality, reflector conventions and Q formation/application"
+      - "explicit scratch, host admission, metadata alias, padding and zero-allocation controls"
+    guarantees:
+      - "provider-free native POTRF/POTRS/GEQRF; no foreign INFO or fallback"
+    non_guarantees:
+      - "rank or conditioning certificate, reference-equivalent ORG/UNG/ORM/UNM expert coverage"
+
+  - capability: "incremental Reference-LAPACK factorizations provider"
     owner: "dense"
     facet: "dense_lapack"
-    development_stage: 4
+    development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lu-v4 integration; frozen12-operation GECON/GERFS/GESVX scoped both-ABI tests pass, not yet full integrated verification. Prior32-operation frozen8c53d8d full LP64/trueILP64 each285 tests passed; final routine/mode coverage and mathematical gates remain pending"
+    evidence_scope: "unreleased incremental-factorizations-v5 with92 partial scalar routes; frozen per-family both-ABI numerical/placement tests passed but new combined/installed verification is pending. Prior v4 eebeb3a full LP64/trueILP64 each315 passed, not evidence for newer source. Full2113 routine/mode coverage and mathematical gates remain pending"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -87,6 +107,9 @@ capabilities:
       - "include/asc/dense/providers/lapack_lu_condition.h"
       - "include/asc/dense/providers/lapack_lu_refinement.h"
       - "include/asc/dense/providers/lapack_lu_driver.h"
+      - "include/asc/dense/providers/lapack_lu_helpers.h"
+      - "include/asc/dense/providers/lapack_cholesky.h"
+      - "include/asc/dense/providers/lapack_qr.h"
     direct_dependencies:
       - "dense"
     tests:
@@ -96,6 +119,10 @@ capabilities:
       - "GEEQU/GEEQUB both-layout equations and partial outputs; LP64 subnormal GEEQUB success gate unmet"
       - "GECON one/infinity norm estimates; GERFS N/T/C residual/refinement and FERR/BERR quality"
       - "GESVX explicit FACT=N/E/F, all16 A/AF/B/X layouts, scaling and singular/accuracy outputs"
+      - "POTRF/POTRF2/POTF2/POTRS/POTRI/POSV selected-triangle equations, failure publication and original ASC strides"
+      - "GEQRF/GEQR2 and ORG/UNG/ORM/UNM QR reconstruction, orthogonality and independent application oracles"
+      - "LASWP selected sequential swaps and LAQGE explicit N/R/C/B scaling with absent INFO"
+      - "source-specific foreign integer/query bounds and per-role/per-operand context rejection controls"
     guarantees:
       - "explicit provider selection; provider-free aggregate remains independent"
     non_guarantees:
@@ -103,6 +130,7 @@ capabilities:
       - "shared providers or unaudited toolchains"
       - "successful GEEQUB equilibration for the recorded nonzero LP64 subnormal fixture"
       - "finite GERFS/GESVX error estimates or scale-invariant condition success on recorded tiny unscaled fixtures"
+      - "finite LAQGE both-scale outputs on the recorded intermediate-overflow fixture"
 
   - capability: "checked logical metadata and mixed extents"
     owner: "core"

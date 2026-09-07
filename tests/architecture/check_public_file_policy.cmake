@@ -36,6 +36,9 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_lu_condition.h
   include/asc/dense/providers/lapack_lu_refinement.h
   include/asc/dense/providers/lapack_lu_driver.h
+  include/asc/dense/providers/lapack_lu_helpers.h
+  include/asc/dense/providers/lapack_cholesky.h
+  include/asc/dense/providers/lapack_qr.h
   include/asc/dense/view.h
   include/asc/dense/print.h
   include/asc/dense/io.h
@@ -46,6 +49,8 @@ set(_expected_public_files
   include/asc/dense/lapack/factor_view.h
   include/asc/dense/lapack/structured_view.h
   include/asc/dense/lapack/lu.h
+  include/asc/dense/lapack/cholesky.h
+  include/asc/dense/lapack/qr.h
   include/asc/expression.h
   include/asc/expression/expression.h
   include/asc/expression/writable.h
@@ -99,12 +104,17 @@ set(_expected_compiled_sources
   src/dense/blas_level3.cc
   src/dense/lapack_foundations.cc
   src/dense/lapack_lu.cc
+  src/dense/lapack_cholesky.cc
+  src/dense/lapack_qr.cc
   src/dense/lapack/reference_lu.cc
   src/dense/lapack/reference_lu_expert.cc
   src/dense/lapack/reference_lu_equilibration.cc
   src/dense/lapack/reference_lu_condition.cc
   src/dense/lapack/reference_lu_refinement.cc
   src/dense/lapack/reference_lu_driver.cc
+  src/dense/lapack/reference_lu_helpers.cc
+  src/dense/lapack/reference_cholesky.cc
+  src/dense/lapack/reference_qr.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/blas_level2.cc

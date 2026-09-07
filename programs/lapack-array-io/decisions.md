@@ -198,3 +198,15 @@ The generic workspace validator keeps its broader documented policy. New
 helper context tests exposed a missing adapter-specific check; the correction
 and its regression must be propagated by an audited follow-up, not inferred
 from generic host/pinned-host validation.
+
+## D019: native Q conveniences do not replace exact reference experts
+
+Native GEQRF provides separately named whole-factor Q formation/application.
+Only its four exact factorization rows receive native implementation state.
+Reference ORGQR/UNGQR/ORMQR/UNMQR are distinct actual foreign routines with
+raw partial-reflector inputs, complete valid shape/side/transpose contracts,
+actual workspace queries and independent mathematical tests. Their typed
+exports and scoped evidence add partial reference rows, never inferred native
+coverage or full-profile closure. Installed consumers must actually execute
+the newly added routines through public headers and relocated component
+metadata; compile-only declarations and older product results are not enough.

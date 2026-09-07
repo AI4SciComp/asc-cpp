@@ -3,6 +3,7 @@
 #include <cmath>
 #include <complex>
 #include <cstddef>
+#include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <limits>
@@ -767,7 +768,49 @@ void ProviderDefects(TestContext& test,
 }
 
 template <typename T>
+void ForeignCursorPreflight(TestContext& test,
+                            const asc::ReferenceLapackProvider& provider) {
+  const asc::extent_t limit =
+      provider.identity().integer_abi == asc::LapackIntegerAbi::kLp64
+          ? std::numeric_limits<std::int32_t>::max()
+          : std::numeric_limits<std::int64_t>::max();
+  // These are genuinely backed two-element, one-column matrices. The huge
+  // unused column stride consumes no storage, yet GETF2's possible row swap
+  // increments its provider-INTEGER vector cursor by LDA even for N=1.
+  std::array<T, 2> values{Value<T>(1), Value<T>(2)};
+  const auto original = values;
+  std::array<asc::index_t, 1> pivot_values{-1};
+  const auto matrix = Matrix(values, 2, 1, limit);
+  const auto pivots = Pivots(pivot_values, 1);
+  const auto rejected = WithoutAllocation(
+      test, [&] { return asc::QueryGetf2Workspace(provider, matrix, pivots); });
+  ASC_DENSE_TEST_EQ(test, rejected.status().code(), asc::ErrorCode::kOverflow);
+  const auto safe_plan = Take(asc::QueryGetf2Workspace(
+      provider, Matrix(values, 2, 1, limit - 1), pivots));
+  asc::LapackReport report;
+  const auto status = WithoutAllocation(test, [&] {
+    return asc::Getf2(provider, matrix, pivots, safe_plan, {}, report);
+  });
+  ASC_DENSE_TEST_EQ(test, status.code(), asc::ErrorCode::kOverflow);
+  ASC_DENSE_TEST_CHECK(test, !report.called_provider);
+  ASC_DENSE_TEST_CHECK(test, !report.native_info.has_value());
+  ASC_DENSE_TEST_CHECK(test, values == original);
+  ASC_DENSE_TEST_EQ(test, pivot_values[0], -1);
+  // Recursive/blocked GETRF use scalar swaps for this one-column case.
+  // Do not impose GETF2's vector-stride restriction on those distinct paths.
+  ASC_DENSE_TEST_CHECK(
+      test, asc::QueryGetrf2Workspace(provider, matrix, pivots).ok());
+  ASC_DENSE_TEST_CHECK(test,
+                       asc::QueryGetrfWorkspace(provider, matrix, pivots).ok());
+  ASC_DENSE_TEST_CHECK(
+      test, asc::QueryGetf2Workspace(provider, Matrix(values, 2, 1, limit - 1),
+                                     pivots)
+                .ok());
+}
+
+template <typename T>
 void Numerics(TestContext& test, const asc::ReferenceLapackProvider& provider) {
+  ForeignCursorPreflight<T>(test, provider);
   FactorCases<T>(test, provider);
   InverseCases<T>(test, provider);
   DriverCases<T>(test, provider);
