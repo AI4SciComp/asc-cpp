@@ -38,6 +38,8 @@ namespace internal_dense_cuda {
 class Access;
 class ContextState;
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class PointwiseOperation {
   kCopy,      ///< Selects copy behavior.
   kFill,      ///< Selects fill behavior.
@@ -47,11 +49,15 @@ enum class PointwiseOperation {
   kMultiply,  ///< Selects multiply behavior.
 };
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class OperandKind {
   kView,    ///< Selects view behavior.
   kScalar,  ///< Selects scalar behavior.
 };
 
+// Preserve the established int-sized erased CUDA descriptor ABI.
+// NOLINTNEXTLINE(performance-enum-size)
 enum class ElementKind {
   kFloat,   ///< Selects float behavior.
   kDouble,  ///< Selects double behavior.
@@ -116,8 +122,7 @@ ViewDescriptor Describe(DenseView<Element, Rank> view) {
   descriptor.logical_size = view.logical_size();
   descriptor.required_span_size = view.mapping().required_span_size();
   descriptor.layout_kind = view.mapping().kind();
-  for (std::size_t dimension = 0; dimension < Rank && dimension < 8;
-       ++dimension) {
+  for (std::size_t dimension = 0; dimension < Rank; ++dimension) {
     descriptor.extents[dimension] = view.extents()[dimension];
     descriptor.strides[dimension] = view.strides()[dimension];
   }
@@ -309,6 +314,8 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
  */
 template <ReadableExpression Expression, typename Element, std::size_t Rank>
   requires(std::same_as<Element, float> || std::same_as<Element, double>)
+// Keep expression validation and erased-descriptor publication together.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> CudaEvaluate(DenseCudaContext& context,
                                      const Expression& expression,
                                      DenseView<Element, Rank> destination) {

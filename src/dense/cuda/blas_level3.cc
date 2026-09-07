@@ -1,8 +1,10 @@
 #include <cuComplex.h>
 #include <cublas_v2.h>
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <complex>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
@@ -42,6 +44,7 @@ struct PreparedContext {
   PreparedContext& operator=(const PreparedContext&) = delete;
   PreparedContext(PreparedContext&&) noexcept = default;
   PreparedContext& operator=(PreparedContext&&) = delete;
+  ~PreparedContext() = default;
 
   ContextState* state;
   void* stream;

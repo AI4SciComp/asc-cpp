@@ -5,11 +5,12 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
-#include <span>
+#include <numbers>
 #include <string_view>
 #include <vector>
 
 #include "asc/core/execution.h"
+#include "asc/core/memory.h"
 #include "asc/core/result.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
@@ -78,7 +79,7 @@ class WordSequenceEngine {
   }
   [[nodiscard]] result_type operator()() noexcept {
     ++calls_;
-    return calls_ == 1 ? 0U : UINT32_C(0x80000000);
+    return calls_ == 1 ? 0U : std::uint32_t{0x80000000U};
   }
   [[nodiscard]] std::size_t calls() const noexcept { return calls_; }
 
@@ -202,7 +203,7 @@ void CheckPreparationAndKnownAnswer(TestContext& test) {
   CheckNear(test, factor_data[0], 2.0, 1.0e-15, "factor(0,0)");
   CheckNear(test, factor_data[1], 0.0, 0.0, "factor(0,1)");
   CheckNear(test, factor_data[2], 1.0, 1.0e-15, "factor(1,0)");
-  CheckNear(test, factor_data[3], std::sqrt(2.0), 1.0e-15, "factor(1,1)");
+  CheckNear(test, factor_data[3], std::numbers::sqrt2, 1.0e-15, "factor(1,1)");
 
   constexpr std::array<asc::extent_t, 2> kOutputExtents{1, 2};
   constexpr std::array<asc::extent_t, 1> kWorkspaceExtents{2};
@@ -283,7 +284,7 @@ void CheckMultivariateStatistics(TestContext& test) {
       asc::LayoutLeft{});
   auto normal = asc::NormalDistribution<double>::Create(0.0, 1.0);
   asc::NormalGenerator<asc::Pcg32, double> generator(
-      asc::Pcg32(UINT64_C(0x243f6a8885a308d3), 17), *normal);
+      asc::Pcg32(std::uint64_t{0x243f6a8885a308d3ULL}, 17), *normal);
   const auto sampled = asc::FillDenseMultivariateNormal(
       asc::ExecutionContext::Serial(), *output_view, mean_view, factor_view,
       generator, *workspace_view);
@@ -333,7 +334,8 @@ void CheckSphereStatistics(std::size_t dimension, TestContext& test) {
       workspace.data(),
       std::array<asc::extent_t, 1>{static_cast<asc::extent_t>(dimension)},
       asc::LayoutLeft{});
-  asc::Pcg32 engine(UINT64_C(0x13198a2e03707344) + dimension, 29);
+  asc::Pcg32 engine(
+      0x13198A2E03707344ULL + static_cast<std::uint64_t>(dimension), 29);
   const auto sampled = asc::FillDenseUnitSphere(
       asc::ExecutionContext::Serial(), *output_view, engine, *workspace_view);
   ASC_RANDOM_DENSE_TEST_CHECK(test, sampled.ok());
@@ -361,7 +363,8 @@ void CheckSphereStatistics(std::size_t dimension, TestContext& test) {
     CheckNear(test, means[row], 0.0, 0.015, "unit-sphere mean");
     for (std::size_t column = 0; column < dimension; ++column) {
       moments[row * dimension + column] /= static_cast<double>(kSampleCount);
-      const double expected = row == column ? 1.0 / dimension : 0.0;
+      const double expected =
+          row == column ? 1.0 / static_cast<double>(dimension) : 0.0;
       const double tolerance = row == column ? 0.02 : 0.015;
       CheckNear(test, moments[row * dimension + column], expected, tolerance,
                 "unit-sphere moment");
@@ -405,6 +408,8 @@ void CheckSphereFailureAndDimensionOne(TestContext& test) {
   ASC_RANDOM_DENSE_TEST_EQ(test, output[1], 37.0);
 }
 
+// All advanced parameter failures verify a common transactional contract.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckAdvancedParameters(TestContext& test) {
   constexpr std::array<asc::extent_t, 1> kVectorExtents{2};
   constexpr std::array<asc::extent_t, 2> kMatrixExtents{2, 2};

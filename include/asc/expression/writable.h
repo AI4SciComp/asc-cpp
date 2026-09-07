@@ -301,6 +301,8 @@ template <WritableExpression T>
  * @ingroup asc_expression
  */
 template <WritableExpression T>
+// Public API spelling is fixed by the Expression module contract.
+// NOLINTNEXTLINE(readability-identifier-naming)
 constexpr void WriteExpression(
     T& expression, std::span<const index_t, kExpressionRank<T>> indices,
     ExpressionValue<T> value) {

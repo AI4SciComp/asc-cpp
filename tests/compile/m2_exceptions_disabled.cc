@@ -1,9 +1,14 @@
 #include <cstdint>
 #include <span>
 
-#include "asc/expression.h"
-#include "asc/random.h"
-#include "asc/utilities.h"
+#include "asc/core/types.h"
+#include "asc/expression.h"  // NOLINT(misc-include-cleaner): umbrella probe
+#include "asc/expression/expression.h"
+#include "asc/random.h"  // NOLINT(misc-include-cleaner): umbrella probe
+#include "asc/random/distribution.h"
+#include "asc/random/engine.h"
+#include "asc/utilities.h"  // NOLINT(misc-include-cleaner): umbrella probe
+#include "asc/utilities/timer.h"
 
 int main() {
   asc::Timer timer;

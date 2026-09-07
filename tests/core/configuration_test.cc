@@ -9,6 +9,7 @@
 #include <utility>
 
 #include "asc/core/contracts.h"
+#include "asc/core/status.h"
 #include "test_support.h"
 
 namespace {
@@ -165,11 +166,22 @@ void CheckSuccessfulValidation(asc_core_test::TestContext& context) {
               std::string("first"));
 
   const auto explicit_origin = configuration->Origin("/name");
+  ASC_TEST_CHECK(context, explicit_origin.ok());
+  if (!explicit_origin.ok()) {
+    return;
+  }
   ASC_TEST_EQ(context, explicit_origin->kind,
               asc::ConfigurationOriginKind::kProgrammatic);
-  ASC_TEST_EQ(context, *explicit_origin->source_label,
-              std::string("unit-test"));
-  ASC_TEST_EQ(context, *explicit_origin->location, std::string("line:19"));
+  const auto& source_label = explicit_origin->source_label;
+  ASC_TEST_CHECK(context, source_label.has_value());
+  if (source_label.has_value()) {
+    ASC_TEST_EQ(context, *source_label, std::string("unit-test"));
+  }
+  const auto& location = explicit_origin->location;
+  ASC_TEST_CHECK(context, location.has_value());
+  if (location.has_value()) {
+    ASC_TEST_EQ(context, *location, std::string("line:19"));
+  }
   ASC_TEST_EQ(context, configuration->Origin("/threads")->kind,
               asc::ConfigurationOriginKind::kDefault);
 
@@ -227,6 +239,10 @@ void CheckValidationFailures(asc_core_test::TestContext& context) {
                               ->second.AsObject()
                               ->get()
                               .contains("wrong"));
+}
+
+void CheckSchemaFailures(asc_core_test::TestContext& context) {
+  auto schema = MakeSchema(context);
 
   ASC_TEST_CHECK(context, !schema.SetSignedBounds(0, 1).ok());
   ASC_TEST_CHECK(context, !schema.SetSizeBounds(9, 1).ok());
@@ -234,8 +250,16 @@ void CheckValidationFailures(asc_core_test::TestContext& context) {
   asc::ConfigurationSchema bounded(ValueType::kSignedInteger);
   ASC_TEST_CHECK(context, bounded.SetSignedBounds(0, 10).ok());
   ASC_TEST_CHECK(context, !bounded.SetSignedBounds(9, 1).ok());
-  ASC_TEST_EQ(context, *bounded.signed_minimum(), 0);
-  ASC_TEST_EQ(context, *bounded.signed_maximum(), 10);
+  const auto signed_minimum = bounded.signed_minimum();
+  ASC_TEST_CHECK(context, signed_minimum.has_value());
+  if (signed_minimum.has_value()) {
+    ASC_TEST_EQ(context, *signed_minimum, 0);
+  }
+  const auto signed_maximum = bounded.signed_maximum();
+  ASC_TEST_CHECK(context, signed_maximum.has_value());
+  if (signed_maximum.has_value()) {
+    ASC_TEST_EQ(context, *signed_maximum, 10);
+  }
 
   asc::ConfigurationSchema duplicate_root(ValueType::kObject);
   ASC_TEST_CHECK(
@@ -301,14 +325,30 @@ void CheckOriginsAndEffectiveBounds(asc_core_test::TestContext& context) {
       schema, MakeValidInput(), origins,
       asc::ConfigurationOrigin::Programmatic("fallback"));
   ASC_TEST_CHECK(context, configuration.ok());
-  ASC_TEST_EQ(context, configuration->Origin("/name")->kind,
+  if (!configuration.ok()) {
+    return;
+  }
+  const auto name_origin = configuration->Origin("/name");
+  const auto nested_origin = configuration->Origin("/nested/a~1b~0c");
+  ASC_TEST_CHECK(context, name_origin.ok());
+  ASC_TEST_CHECK(context, nested_origin.ok());
+  if (!name_origin.ok() || !nested_origin.ok()) {
+    return;
+  }
+  ASC_TEST_EQ(context, name_origin->kind,
               asc::ConfigurationOriginKind::kCommandLine);
-  ASC_TEST_EQ(context, configuration->Origin("/nested/a~1b~0c")->kind,
+  ASC_TEST_EQ(context, nested_origin->kind,
               asc::ConfigurationOriginKind::kCommandLine);
-  ASC_TEST_EQ(context, *configuration->Origin("/name")->source_label,
-              std::string("argv"));
-  ASC_TEST_EQ(context, *configuration->Origin("/nested/a~1b~0c")->location,
-              std::string("2"));
+  const auto& source_label = name_origin->source_label;
+  ASC_TEST_CHECK(context, source_label.has_value());
+  if (source_label.has_value()) {
+    ASC_TEST_EQ(context, *source_label, std::string("argv"));
+  }
+  const auto& location = nested_origin->location;
+  ASC_TEST_CHECK(context, location.has_value());
+  if (location.has_value()) {
+    ASC_TEST_EQ(context, *location, std::string("2"));
+  }
   ASC_TEST_EQ(context, configuration->Origin("/count")->kind,
               asc::ConfigurationOriginKind::kProgrammatic);
   ASC_TEST_EQ(context, configuration->Origin("/threads")->kind,
@@ -330,6 +370,7 @@ int main() {
   CheckUtf8(context);
   CheckSuccessfulValidation(context);
   CheckValidationFailures(context);
+  CheckSchemaFailures(context);
   CheckOriginsAndEffectiveBounds(context);
   return context.Finish();
 }

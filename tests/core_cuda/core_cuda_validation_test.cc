@@ -6,8 +6,11 @@
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/status.h"
 #include "test_support.h"
 
+// Validation cases share one enumerated device baseline and test context.
+// NOLINTNEXTLINE(readability-function-size)
 int main() {
   if (asc_core_cuda_test::ForceNoCudaDevice()) {
     return asc_core_cuda_test::kSkipReturnCode;

@@ -1,13 +1,19 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <cstddef>
 #include <cstdint>
+#include <utility>
 
 #include "../../core/cuda/cuda_internal.h"
 #include "../../core/execution_internal.h"
-#include "asc/core/contracts.h"
+#include "asc/core/execution.h"
+#include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "asc/core/types.h"
+#include "asc/random/engine.h"
 #include "asc/random/providers/cuda.h"
 #include "raw_kernels_internal.h"
 

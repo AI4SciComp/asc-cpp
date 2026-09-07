@@ -209,7 +209,10 @@ void CheckValueSemantics(asc_random_test::TestContext& context) {
   ASC_RANDOM_TEST_EQ(context, original(), copied());
   ASC_RANDOM_TEST_EQ(context, original(), copied());
 
+  // Moving these trivially copyable value types is contractually copy-like.
+  // NOLINTNEXTLINE(performance-move-const-arg)
   asc::Xoroshiro128Plus moved = std::move(copied);
+  // NOLINTNEXTLINE(bugprone-use-after-move,clang-analyzer-cplusplus.Move)
   asc::Xoroshiro128Plus copied_after_move = copied;
   ASC_RANDOM_TEST_EQ(context, moved(), copied_after_move());
 }

@@ -1,6 +1,12 @@
 #include <concepts>
 #include <type_traits>
 
+#include "asc/core/execution.h"
+#include "asc/core/extents.h"
+#include "asc/core/memory.h"
+#include "asc/core/result.h"
+#include "asc/core/types.h"
+#include "asc/random/engine.h"
 #include "asc/random/sparse.h"
 
 namespace {

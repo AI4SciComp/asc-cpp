@@ -1,3 +1,5 @@
+#include <cstdint>
+
 #include "m6_provider_odr.h"
 
 int main() {

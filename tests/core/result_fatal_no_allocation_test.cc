@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <new>
 
-#include "../allocation_observation.h"
+#include "../allocation_observation.h"  // NOLINT(misc-include-cleaner)
 #include "asc/core/result.h"
 #include "asc/core/status.h"
 
@@ -27,7 +27,10 @@ void* operator new(std::size_t size) {
 
 void operator delete(void* memory) noexcept { std::free(memory); }
 
-void operator delete(void* memory, std::size_t) noexcept { std::free(memory); }
+void operator delete(void* memory, std::size_t size) noexcept {
+  static_cast<void>(size);
+  std::free(memory);
+}
 #endif
 
 int main() {

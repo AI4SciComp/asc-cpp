@@ -1,19 +1,24 @@
 #include <array>
 #include <cmath>
-#include <concepts>
-#include <cstddef>
-#include <cstdint>
 #include <iostream>
 #include <span>
 #include <type_traits>
-#include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
-#include "asc/dense.h"
+#include "asc/core/types.h"
+#include "asc/dense/array.h"
+#include "asc/dense/blas.h"
+#include "asc/dense/evaluate.h"
+#include "asc/dense/view.h"
+#include "asc/expression/expression.h"
 
 #if defined(ASC_M8_VERIFY_CUDA)
+#include <concepts>
+#include <cstdint>
+
+#include "asc/core/result.h"
 #include "asc/random/providers/cuda.h"
 #endif
 
@@ -56,6 +61,8 @@ bool NearlyEqual(double left, double right) {
 
 }  // namespace
 
+// This executable exercises the supported cross-module API in one scenario.
+// NOLINTNEXTLINE(readability-function-size)
 int main() {
   auto extents = GridExtents::Create(2, 3);
   if (!extents.ok()) {

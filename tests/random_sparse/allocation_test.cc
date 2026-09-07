@@ -3,11 +3,13 @@
 #include <cstdint>
 #include <span>
 
+#include "../allocation_observation.h"
 #include "../dense/allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/result.h"
 #include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/random/distribution.h"
 #include "asc/random/engine.h"
 #include "asc/random/generator.h"

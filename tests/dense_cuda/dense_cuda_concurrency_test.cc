@@ -10,11 +10,16 @@
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
+#include "asc/dense/blas.h"
 #include "asc/dense/providers/cuda.h"
 #include "counting_resource.h"
 #include "device_test_helpers.h"
 #include "test_support.h"
 
+// Contexts, barriers, and result buffers span the complete two-thread test.
+// NOLINTNEXTLINE(readability-function-size)
 int main() {
   if (asc_dense_cuda_test::ForceNoCudaDevice()) {
     return asc_dense_cuda_test::kSkipReturnCode;

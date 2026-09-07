@@ -390,6 +390,8 @@ Status FillDensePseudo(const ExecutionContext& context,
  * @ingroup asc_dense
  */
 template <SupportedRandomReal Real>
+// Keep validation and mutation order visible for the transactional contract.
+// NOLINTNEXTLINE(readability-function-size)
 Status PrepareDenseMultivariateNormal(
     const ExecutionContext& context,
     DenseView<const std::type_identity_t<Real>, 1> mean,
@@ -526,6 +528,8 @@ Status PrepareDenseMultivariateNormal(
  * @ingroup asc_dense
  */
 template <SupportedRandomReal Real, CanonicalRandomEngine Engine>
+// Keep validation, consumption, and publication order in one transaction.
+// NOLINTNEXTLINE(readability-function-size)
 Status FillDenseMultivariateNormal(
     const ExecutionContext& context, DenseView<Real, 2> destination,
     DenseView<const std::type_identity_t<Real>, 1> mean,
@@ -667,6 +671,8 @@ Status FillDenseMultivariateNormal(
  * @ingroup asc_dense
  */
 template <SupportedRandomReal Real, CanonicalRandomEngine Engine>
+// Keep validation, bounded retry, and publication order in one transaction.
+// NOLINTNEXTLINE(readability-function-size)
 Status FillDenseUnitSphere(const ExecutionContext& context,
                            DenseView<Real, 2> destination, Engine& engine,
                            DenseView<Real, 1> sample_workspace) {

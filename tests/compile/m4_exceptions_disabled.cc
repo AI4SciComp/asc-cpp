@@ -1,5 +1,6 @@
-#include "asc/expression/writable.h"
-#include "asc/sparse.h"
+#include "asc/core/types.h"
+#include "asc/expression/writable.h"  // NOLINT(misc-include-cleaner): probe
+#include "asc/sparse.h"  // NOLINT(misc-include-cleaner): umbrella-header probe
 
 #if defined(__cpp_exceptions) || defined(__EXCEPTIONS) || defined(_CPPUNWIND)
 #error "This Sparse compile contract must disable C++ exceptions."

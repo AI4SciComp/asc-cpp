@@ -17,6 +17,8 @@
 #include <utility>
 #include <vector>
 
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "test_support.h"
 
 namespace {

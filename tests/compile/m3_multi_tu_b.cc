@@ -1,9 +1,11 @@
+#include <cstddef>
 #include <type_traits>
 #include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/status.h"
 #include "asc/dense/evaluate.h"
+#include "asc/dense/view.h"
 #include "m3_multi_tu.h"
 
 std::size_t M3DenseEvaluationRank() {

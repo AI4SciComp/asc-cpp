@@ -1,5 +1,5 @@
 #include <cublas_v2.h>
-#include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <cstdint>
 #include <memory>
@@ -7,6 +7,9 @@
 
 #include "../../core/cuda/cuda_internal.h"
 #include "../../core/execution_internal.h"
+#include "asc/core/execution.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "asc/dense/providers/cuda.h"
 #include "context_internal.h"
 

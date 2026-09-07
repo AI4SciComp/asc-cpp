@@ -1,8 +1,8 @@
 #include <array>
-#include <cstdint>
+#include <concepts>
+#include <cstddef>
 #include <span>
 #include <thread>
-#include <type_traits>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
@@ -10,11 +10,14 @@
 #include "asc/dense/layout.h"
 #include "asc/dense/view.h"
 #include "asc/random/dense.h"
+#include "asc/random/engine.h"
 #include "test_support.h"
 
 namespace {
 
 template <typename Element>
+// Parallel partitions must be compared with the matching serial sequence.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckParallelPartitions(asc_random_dense_test::TestContext& test) {
   constexpr std::size_t kFirst = 31;
   constexpr std::size_t kMiddle = 97;

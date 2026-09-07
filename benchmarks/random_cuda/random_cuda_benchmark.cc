@@ -1,4 +1,5 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <algorithm>
 #include <array>
@@ -6,7 +7,6 @@
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
-#include <iomanip>
 #include <iostream>
 #include <span>
 #include <string_view>
@@ -14,11 +14,15 @@
 #include <vector>
 
 #include "../../tests/random_cuda/philox_oracle.h"
+#include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/types.h"
 #include "asc/dense/layout.h"
 #include "asc/dense/view.h"
+#include "asc/random/engine.h"
 #include "asc/random/providers/cuda.h"
 #include "asc/random/providers/dense_cuda.h"
 #include "asc/random/providers/sparse_cuda.h"
@@ -161,7 +165,7 @@ bool BenchmarkRaw(const asc::ExecutionContext& execution,
 bool BenchmarkDense(const asc::ExecutionContext& execution,
                     asc::MemoryResource& resource) {
   constexpr std::array<asc::extent_t, 2> kExtents = {1024, 1024};
-  constexpr std::size_t kElements = 1024U * 1024U;
+  constexpr std::size_t kElements = std::size_t{1024} * 1024U;
   constexpr std::size_t kBytes = kElements * sizeof(float);
   auto mapping = asc::DenseLayout<2>::Create(
       std::span<const asc::extent_t, 2>(kExtents), asc::LayoutLeft{});
@@ -207,6 +211,9 @@ struct Candidate {
   std::uint64_t ordinal;
 };
 
+// The sparse benchmark keeps generation and its independent oracle together
+// so setup and accounting cannot leak into the measured operation.
+// NOLINTNEXTLINE(readability-function-size)
 bool BenchmarkSparse(const asc::ExecutionContext& execution,
                      CountingResource& resource) {
   using Shape = asc::Extents<asc::kDynamicExtent, asc::kDynamicExtent>;

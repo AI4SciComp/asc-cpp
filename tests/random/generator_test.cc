@@ -4,6 +4,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "asc/core/status.h"
 #include "asc/random/distribution.h"
 #include "asc/random/engine.h"
 #include "test_support.h"
@@ -43,7 +44,10 @@ void CheckComposition(asc_random_test::TestContext& context) {
     ASC_RANDOM_TEST_CHECK(context, *first >= -17 && *first <= 31);
   }
 
+  // Moving these trivially copyable value types is contractually copy-like.
+  // NOLINTNEXTLINE(performance-move-const-arg)
   IntegerGenerator moved = std::move(copied);
+  // NOLINTNEXTLINE(bugprone-use-after-move,clang-analyzer-cplusplus.Move)
   IntegerGenerator copied_after_move = copied;
   ASC_RANDOM_TEST_EQ(context, *moved(), *copied_after_move());
   ASC_RANDOM_TEST_EQ(context, integer_generator.distribution().lower(), -17);

@@ -1,11 +1,11 @@
 #include <array>
-#include <cstddef>
 #include <iostream>
 #include <span>
 
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/types.h"
 #include "asc/dense/array.h"
 #include "asc/dense/providers/cuda.h"
 #include "test_support.h"

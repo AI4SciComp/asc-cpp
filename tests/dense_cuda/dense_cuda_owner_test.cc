@@ -1,16 +1,19 @@
 #include <algorithm>
 #include <array>
 #include <cstddef>
-#include <cstdint>
-#include <new>
 #include <span>
 
-#include "../../src/core/cuda/runtime_test_internal.h"
+// CUDA fault-injection hooks are active only in the corresponding test build.
+#include "../../src/core/cuda/runtime_test_internal.h"  // NOLINT(misc-include-cleaner)
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/dense/array.h"
 #include "asc/dense/layout.h"
+#include "asc/dense/view.h"
 #include "test_support.h"
 
 namespace {
@@ -118,6 +121,8 @@ void TestUninitializedAndValueInitialized(
   }
 }
 
+// Memory-space variants and clone failure paths share resource accounting.
+// NOLINTNEXTLINE(readability-function-size)
 void TestMemorySpacesAndClone(asc_dense_cuda_test::TestContext& test) {
   using MatrixExtents = asc::Extents<asc::kDynamicExtent, asc::kDynamicExtent>;
   auto extents = MatrixExtents::Create(5, 7);

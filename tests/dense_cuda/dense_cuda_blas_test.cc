@@ -4,13 +4,14 @@
 #include <cstddef>
 #include <cstdint>
 #include <limits>
-#include <span>
-#include <type_traits>
 
-#include "../../src/core/cuda/runtime_test_internal.h"
+// CUDA fault-injection hooks are active only in the corresponding test build.
+#include "../../src/core/cuda/runtime_test_internal.h"  // NOLINT(misc-include-cleaner)
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/dense/providers/cuda.h"
 #include "asc/dense/view.h"
 #include "counting_resource.h"
@@ -25,6 +26,8 @@ using asc_dense_cuda_test::MakeRightView;
 using asc_dense_cuda_test::MakeView;
 
 template <typename T>
+// Level 1 operations share storage, fixtures, and allocation checkpoints.
+// NOLINTNEXTLINE(readability-function-size)
 void TestCopyScalAxpyRankOne(
     asc_dense_cuda_test::TestContext& test,
     asc_dense_cuda_test::CountingResource& pinned_resource,
@@ -207,6 +210,8 @@ void TestRankTwoRightLayout(asc_dense_cuda_test::TestContext& test,
 }
 
 template <typename T>
+// Matrix-vector variants share storage and independent reference results.
+// NOLINTNEXTLINE(readability-function-size)
 void TestGemv(asc_dense_cuda_test::TestContext& test,
               asc::MemoryResource& pinned_resource,
               asc::MemoryResource& device_resource,
@@ -315,6 +320,8 @@ void TestGemv(asc_dense_cuda_test::TestContext& test,
 }
 
 template <typename T>
+// Matrix-matrix variants share storage and independent reference results.
+// NOLINTNEXTLINE(readability-function-size)
 void TestGemm(asc_dense_cuda_test::TestContext& test,
               asc::MemoryResource& pinned_resource,
               asc::MemoryResource& device_resource,
@@ -535,6 +542,8 @@ void TestPostEnqueueEventFailures(asc_dense_cuda_test::TestContext& test,
 }
 #endif
 
+// Validation cases share known-good operands and allocation checkpoints.
+// NOLINTNEXTLINE(readability-function-size)
 void TestValidation(asc_dense_cuda_test::TestContext& test,
                     asc::MemoryResource& device_resource,
                     asc::DenseCudaContext& context) {
@@ -559,6 +568,8 @@ void TestValidation(asc_dense_cuda_test::TestContext& test,
                std::array<asc::stride_t, 2>{1, 2}, asc::MemorySpace::kDevice);
   asc::DenseView<const float, 2> right_const = right_layout;
   asc::DenseView<const float, 2> column_const = column_major;
+  // The asymmetric arguments deliberately exercise layout validation.
+  // NOLINTNEXTLINE(readability-suspicious-call-argument)
   auto unsupported_layout = asc::CudaGemm(
       context, asc::MatrixOperation::kNone, asc::MatrixOperation::kNone, 1.0F,
       right_const, column_const, 0.0F, column_major);
@@ -632,6 +643,8 @@ void TestValidation(asc_dense_cuda_test::TestContext& test,
   }
 }
 
+// Width-boundary cases share oversized metadata and valid storage sentinels.
+// NOLINTNEXTLINE(readability-function-size)
 void TestProviderWidthValidation(
     asc_dense_cuda_test::TestContext& test,
     asc_dense_cuda_test::CountingResource& device_resource,

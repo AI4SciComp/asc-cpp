@@ -1,7 +1,11 @@
 #include <array>
 
+#include "asc/core/execution.h"
 #include "asc/core/memory.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/sparse/blas.h"
+#include "asc/sparse/compressed.h"
 #include "m4_multi_tu.h"
 
 double M4SpmvFromSecondTranslationUnit() {

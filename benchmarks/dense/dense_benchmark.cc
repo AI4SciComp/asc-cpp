@@ -9,13 +9,17 @@
 #include <string_view>
 #include <vector>
 
+#include "../../tests/allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
-#include "asc/dense.h"
+#include "asc/dense/array.h"
+#include "asc/dense/blas.h"
+#include "asc/dense/evaluate.h"
+#include "asc/dense/view.h"
 #include "asc/expression/expression.h"
 
 namespace {
@@ -145,6 +149,9 @@ void PrintResult(std::string_view operation, std::size_t rows,
 
 }  // namespace
 
+// This benchmark keeps setup, timed operations, and independent oracles
+// together so its reported measurements cannot silently drift from validation.
+// NOLINTNEXTLINE(readability-function-size)
 int main() {
   constexpr asc::extent_t kExtent = 32;
   constexpr asc::extent_t kLevel2Extent = 128;

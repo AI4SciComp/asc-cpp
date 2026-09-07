@@ -1,3 +1,6 @@
+#include <cstdint>
+
+#include "asc/core/providers/cuda.h"
 #include "m6_provider_odr.h"
 
 std::int32_t M6CudaOdrLeft() {

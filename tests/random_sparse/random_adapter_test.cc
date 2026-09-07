@@ -138,6 +138,8 @@ void CheckCompressedValueFill(TestContext& test) {
       std::equal(kIndices.begin(), kIndices.end(), view->inner_indices()));
 }
 
+// Structure-only generation and its address oracle form one scenario.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckStructureOnly(TestContext& test) {
   using Shape = asc::Extents<asc::kDynamicExtent, asc::kDynamicExtent>;
   auto shape = Shape::Create(4, 5);

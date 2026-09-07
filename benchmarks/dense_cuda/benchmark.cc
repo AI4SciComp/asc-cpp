@@ -1,5 +1,6 @@
 #include <cublas_v2.h>
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <algorithm>
 #include <array>
@@ -16,6 +17,10 @@
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
+#include "asc/dense/blas.h"
 #include "asc/dense/layout.h"
 #include "asc/dense/providers/cuda.h"
 #include "asc/dense/view.h"
@@ -232,6 +237,9 @@ void Report(std::string_view name, std::int64_t elapsed_ns,
 
 }  // namespace
 
+// This executable deliberately runs the complete benchmark matrix in one
+// process so all rows share identical device and reporting state.
+// NOLINTNEXTLINE(readability-function-size)
 int main() {
   constexpr std::size_t kWarmup = 3;
   constexpr std::size_t kRepetitions = 12;
@@ -243,12 +251,16 @@ int main() {
   constexpr std::size_t kMatrixElements = kGemvDimension * kGemvDimension;
   constexpr std::size_t kMatrixBytes = kMatrixElements * sizeof(float);
 
+  // Benchmark-control variables are read before any worker threads exist.
   const char* force_no_device =
+      // NOLINTNEXTLINE(concurrency-mt-unsafe)
       std::getenv("ASC_CPP_TEST_FORCE_NO_CUDA_DEVICE");
   if (force_no_device != nullptr && std::string_view(force_no_device) == "1") {
     return 77;
   }
+  // Benchmark-control variables are read before any worker threads exist.
   const char* force_enumeration_failure =
+      // NOLINTNEXTLINE(concurrency-mt-unsafe)
       std::getenv("ASC_CPP_TEST_FORCE_CUDA_ENUMERATION_FAILURE");
   asc::Result<std::int32_t> count =
       force_enumeration_failure != nullptr &&

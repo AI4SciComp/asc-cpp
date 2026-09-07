@@ -1,17 +1,18 @@
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <complex>
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
-#include <type_traits>
 #include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
 #include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/dense/blas.h"
 #include "asc/dense/providers/cuda.h"
@@ -51,11 +52,11 @@ asc::Result<BufferPair> AllocatePair(asc::MemoryResource& pinned,
 }
 
 asc::ConstMemoryView Storage(asc::Buffer& buffer, asc::MemorySpace space) {
-  return asc::ConstMemoryView(buffer.data(), buffer.size(), space);
+  return {buffer.data(), buffer.size(), space};
 }
 
 template <typename Element>
-Element Value(Real<Element> real, Real<Element> imaginary = Real<Element>{0}) {
+Element Value(Real<Element> real, Real<Element> imaginary = {0}) {
   if constexpr (asc::DenseBlasComplex<Element>) {
     return Element{real, imaginary};
   } else {
@@ -231,6 +232,8 @@ void CheckNear(TestContext& test, Element actual, Element expected) {
 }
 
 template <typename Element>
+// General matrix layouts and transposes share fixtures and oracle data.
+// NOLINTNEXTLINE(readability-function-size)
 void TestGeneralMatrixVector(TestContext& test, asc::MemoryResource& pinned,
                              asc::MemoryResource& device,
                              asc::DenseCudaContext& context) {
@@ -428,6 +431,8 @@ void FillStructured(asc::DenseBlasMatrixView<Element> full,
 }
 
 template <typename Element>
+// Structured matrix forms share buffers and layout-specific oracle checks.
+// NOLINTNEXTLINE(readability-function-size)
 void TestStructuredMatrixVector(TestContext& test, asc::MemoryResource& pinned,
                                 asc::MemoryResource& device,
                                 asc::DenseCudaContext& context) {
@@ -601,6 +606,8 @@ void CheckTriangularRoundTrip(TestContext& test, BufferPair& vector,
 }
 
 template <typename Element>
+// Multiply and solve variants share one triangular fixture and oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void TestTriangular(TestContext& test, asc::MemoryResource& pinned,
                     asc::MemoryResource& device,
                     asc::DenseCudaContext& context) {
@@ -803,6 +810,8 @@ void TestTriangular(TestContext& test, asc::MemoryResource& pinned,
 }
 
 template <typename Element>
+// Rank-update variants share one fixture and allocation assertions.
+// NOLINTNEXTLINE(readability-function-size)
 void TestRankUpdates(TestContext& test, asc::MemoryResource& pinned,
                      asc::MemoryResource& device,
                      asc::DenseCudaContext& context) {
@@ -1020,6 +1029,8 @@ void TestAlphaBetaEdges(TestContext& test, asc::MemoryResource& pinned,
   }
 }
 
+// Validation cases share a known-good descriptor and allocation checkpoints.
+// NOLINTNEXTLINE(readability-function-size)
 void TestValidationAndNoAllocation(
     TestContext& test, asc_dense_cuda_test::CountingResource& pinned,
     asc_dense_cuda_test::CountingResource& device,

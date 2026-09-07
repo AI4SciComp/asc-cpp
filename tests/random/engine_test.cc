@@ -1,10 +1,12 @@
 #include "asc/random/engine.h"
 
 #include <array>
+#include <cstddef>
 #include <cstdint>
 #include <limits>
 #include <type_traits>
 
+#include "asc/core/status.h"
 #include "test_support.h"
 
 namespace {

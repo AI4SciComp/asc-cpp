@@ -1,5 +1,6 @@
 #include <type_traits>
 
+#include "asc/core/extents.h"
 #include "asc/random/providers/sparse_cuda.h"
 
 using Shape = asc::Extents<2, 3>;

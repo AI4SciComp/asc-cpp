@@ -57,6 +57,8 @@ class Generator final {
    *
    * @ingroup asc_random_distributions
    */
+  // Match the established standard random-generator vocabulary.
+  // NOLINTBEGIN(readability-identifier-naming)
   using engine_type = Engine;
   /**
    * @brief Defines the public distribution_type type used by this Random
@@ -67,7 +69,9 @@ class Generator final {
    *
    * @ingroup asc_random_distributions
    */
+  // Match the established standard random-generator vocabulary.
   using distribution_type = Distribution;
+  // NOLINTEND(readability-identifier-naming)
   /**
    * @brief Defines the public result_type type used by this Random distribution
    * contract.

@@ -12,11 +12,15 @@
 
 #include "../random_cuda/test_support.h"
 #include "asc/core/execution.h"
+#include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
 #include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/expression/expression.h"
 #include "asc/sparse/compressed.h"
+#include "asc/sparse/coordinate.h"
 #include "asc/sparse/providers/cuda.h"
 
 namespace {
@@ -236,6 +240,8 @@ void CheckCloneAllocations(Fixture& fixture, TestContext& test) {
 }
 
 template <typename Element>
+// Strided input/output cases share cloned matrix state and reference results.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckStridedSpmv(Fixture& fixture, TestContext& test) {
   constexpr std::array<asc::extent_t, 2> kShape = {4, 5};
   constexpr std::array<asc::nnz_t, 5> kOffsets = {0, 2, 3, 6, 8};
@@ -508,6 +514,8 @@ void CheckWorkspaceOverlap(Fixture& fixture, TestContext& test) {
 }
 
 template <typename Element>
+// Expression forms share cloned sparse operands and unchanged-output checks.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckEvaluator(Fixture& fixture, TestContext& test) {
   constexpr std::array<asc::extent_t, 2> kShape = {2, 3};
   constexpr std::array<asc::nnz_t, 3> kOffsets = {0, 2, 3};
@@ -746,6 +754,8 @@ void CheckEvaluator(Fixture& fixture, TestContext& test) {
 }
 
 template <typename Element>
+// Coordinate expression forms share cloned operands and shape sentinels.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckCoordinateEvaluator(Fixture& fixture, TestContext& test) {
   using Shape = asc::Extents<2, 3>;
   auto extents = Shape::Create();
@@ -901,6 +911,8 @@ void CheckCoordinateRankLimit(Fixture& fixture, TestContext& test) {
   }
 }
 
+// Independent-context ordering checks share device buffers and expected data.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckIndependentContexts(Fixture& fixture, TestContext& test) {
   auto second = MakeFixture();
   ASC_M7_CUDA_CHECK(test, second.ok());
@@ -1007,6 +1019,8 @@ void CheckIndependentContexts(Fixture& fixture, TestContext& test) {
   }
 }
 
+// Failure cases share resource accounting and known-good operand baselines.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckFailures(Fixture& fixture, TestContext& test) {
   const auto serial =
       asc::SparseCudaContext::Create(asc::ExecutionContext::Serial());

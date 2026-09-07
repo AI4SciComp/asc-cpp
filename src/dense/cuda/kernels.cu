@@ -1,10 +1,13 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <algorithm>
 #include <cstddef>
 #include <cstdint>
 
 #include "../../core/cuda/cuda_internal.h"
+#include "asc/core/status.h"
+#include "asc/dense/providers/cuda.h"
 #include "kernels_internal.h"
 
 namespace asc::internal_dense_cuda {
@@ -79,7 +82,8 @@ __device__ Element ReadOperand(KernelOperand operand,
 template <typename Element>
 __global__ void PointwiseKernel(int operation, KernelOperand left,
                                 KernelOperand right, KernelView destination) {
-  auto* output = static_cast<Element*>(const_cast<void*>(destination.data));
+  auto* output =
+      const_cast<Element*>(static_cast<const Element*>(destination.data));
   const std::uint64_t first =
       static_cast<std::uint64_t>(blockIdx.x) * blockDim.x + threadIdx.x;
   const std::uint64_t step = static_cast<std::uint64_t>(gridDim.x) * blockDim.x;
@@ -111,7 +115,8 @@ __global__ void PointwiseKernel(int operation, KernelOperand left,
 
 template <typename Element>
 __global__ void ScalKernel(Element alpha, KernelView destination) {
-  auto* output = static_cast<Element*>(const_cast<void*>(destination.data));
+  auto* output =
+      const_cast<Element*>(static_cast<const Element*>(destination.data));
   const std::uint64_t first =
       static_cast<std::uint64_t>(blockIdx.x) * blockDim.x + threadIdx.x;
   const std::uint64_t step = static_cast<std::uint64_t>(gridDim.x) * blockDim.x;
@@ -126,7 +131,8 @@ template <typename Element>
 __global__ void AxpyKernel(Element alpha, KernelView source,
                            KernelView destination) {
   const auto* input = static_cast<const Element*>(source.data);
-  auto* output = static_cast<Element*>(const_cast<void*>(destination.data));
+  auto* output =
+      const_cast<Element*>(static_cast<const Element*>(destination.data));
   const std::uint64_t first =
       static_cast<std::uint64_t>(blockIdx.x) * blockDim.x + threadIdx.x;
   const std::uint64_t step = static_cast<std::uint64_t>(gridDim.x) * blockDim.x;

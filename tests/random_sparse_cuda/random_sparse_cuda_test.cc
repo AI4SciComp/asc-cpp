@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <array>
-#include <bit>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
@@ -17,8 +17,11 @@
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
 #include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/random/distribution.h"
+#include "asc/random/engine.h"
 #include "asc/random/generator.h"
 #include "asc/random/providers/sparse_cuda.h"
 #include "asc/random/sparse.h"
@@ -27,13 +30,14 @@
 
 namespace {
 
-constexpr asc::RandomStream kStructureStream = UINT64_C(0x1029384756abcdef);
+constexpr asc::RandomStream kStructureStream =
+    std::uint64_t{0x1029384756abcdef};
 constexpr asc::RandomSubsequence kStructureSubsequence =
-    UINT64_C(0xfedcba6547382910);
+    std::uint64_t{0xfedcba6547382910};
 constexpr asc::RandomOffset kStructureOffset = 13;
-constexpr asc::RandomStream kValueStream = UINT64_C(0x5555aaaaffff0000);
+constexpr asc::RandomStream kValueStream = std::uint64_t{0x5555aaaaffff0000};
 constexpr asc::RandomSubsequence kValueSubsequence =
-    UINT64_C(0x0000ffffaaaa5555);
+    std::uint64_t{0x0000ffffaaaa5555};
 constexpr asc::RandomOffset kValueOffset = 29;
 
 using asc_random_cuda_test::TestContext;
@@ -138,7 +142,9 @@ class TrackingDeviceResource final : public asc::MemoryResource {
   explicit TrackingDeviceResource(asc::MemoryResource& backing)
       : backing_(backing) {}
 
-  asc::MemorySpace space() const noexcept override { return backing_.space(); }
+  [[nodiscard]] asc::MemorySpace space() const noexcept override {
+    return backing_.space();
+  }
 
   asc::Result<void*> Allocate(std::size_t bytes,
                               std::size_t alignment) override {
@@ -165,9 +171,11 @@ class TrackingDeviceResource final : public asc::MemoryResource {
   }
 
   void FailOnCall(std::size_t call) noexcept { failure_call_ = call; }
-  std::size_t attempts() const noexcept { return attempts_; }
-  std::size_t live() const noexcept { return live_; }
-  std::size_t deallocations() const noexcept { return deallocations_; }
+  [[nodiscard]] std::size_t attempts() const noexcept { return attempts_; }
+  [[nodiscard]] std::size_t live() const noexcept { return live_; }
+  [[nodiscard]] std::size_t deallocations() const noexcept {
+    return deallocations_;
+  }
 
  private:
   asc::MemoryResource& backing_;
@@ -178,6 +186,9 @@ class TrackingDeviceResource final : public asc::MemoryResource {
 };
 
 template <typename Element, asc::SparseExtents ExtentsType>
+// Generation, ownership, and independent coordinate/value oracles share one
+// fixture for each shape.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckCase(Fixture& fixture, const ExtentsType& extents, asc::nnz_t count,
                TestContext& test) {
   using Generation = asc::CudaSparseUniform01Generation<Element, ExtentsType>;
@@ -370,6 +381,8 @@ void CheckIndependentContexts(Fixture& fixture, TestContext& test) {
   }
 }
 
+// Failure cases share resource accounting and unchanged-output sentinels.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckFailures(Fixture& fixture, TestContext& test) {
   using Shape = asc::Extents<asc::kDynamicExtent, asc::kDynamicExtent>;
   auto extents = Shape::Create(3, 4);

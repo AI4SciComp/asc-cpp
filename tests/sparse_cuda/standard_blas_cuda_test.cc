@@ -1,19 +1,23 @@
 #include <array>
 #include <cmath>
 #include <complex>
+#include <concepts>
 #include <cstddef>
 #include <limits>
 #include <memory>
 #include <span>
-#include <type_traits>
-#include <vector>
+#include <utility>
 
 #include "../random_cuda/test_support.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/sparse/blas.h"
 #include "asc/sparse/compressed.h"
+#include "asc/sparse/coordinate.h"
 #include "asc/sparse/providers/cuda.h"
 
 namespace {
@@ -90,6 +94,8 @@ asc::Result<asc::SparseBlasVectorView<const Element>> ConstDeviceVector(
 }
 
 template <typename Element>
+// Level 1 sparse operations share cloned operands and reference results.
+// NOLINTNEXTLINE(readability-function-size)
 void TestLevelOne(Fixture& fixture, TestContext& test) {
   constexpr std::array<asc::index_t, 2> kIndices{0, 2};
   std::array<Element, 2> sparse_values{Make<Element>(1.0, 2.0),
@@ -144,9 +150,13 @@ void TestLevelOne(Fixture& fixture, TestContext& test) {
       CheckNear(test, (*actual)[0], expected);
     }
   }
-  auto invalid_conjugation = asc::CudaSparseDot(
-      fixture.provider, static_cast<asc::SparseBlasConjugation>(255),
-      const_sparse, *dense, *result);
+  using Conjugation = asc::SparseBlasConjugation;
+  // Deliberately invalid to test provider validation.
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_conjugation_value = static_cast<Conjugation>(255);
+  auto invalid_conjugation =
+      asc::CudaSparseDot(fixture.provider, invalid_conjugation_value,
+                         const_sparse, *dense, *result);
   ASC_M7_CUDA_CHECK(test, !invalid_conjugation.ok());
   if (!invalid_conjugation.ok()) {
     ASC_M7_CUDA_EQ(test, invalid_conjugation.status().code(),
@@ -321,6 +331,8 @@ void TestLevelOne(Fixture& fixture, TestContext& test) {
 }
 
 template <typename Element>
+// Level 2/3 operations share cloned matrices, vectors, and reference results.
+// NOLINTNEXTLINE(readability-function-size)
 void TestLevelTwoAndThree(Fixture& fixture, TestContext& test) {
   constexpr std::array<asc::extent_t, 2> kShape{2, 2};
   constexpr std::array<asc::nnz_t, 3> kOffsets{0, 1, 3};
@@ -377,9 +389,13 @@ void TestLevelTwoAndThree(Fixture& fixture, TestContext& test) {
                   values[1] * input_values[0] + values[2] * input_values[1]);
       }
     }
-    auto invalid_transpose = asc::CudaSpmv(
-        fixture.provider, static_cast<asc::SparseBlasTranspose>(255),
-        Make<Element>(1.0), matrix, *input, *output);
+    using Transpose = asc::SparseBlasTranspose;
+    // Deliberately invalid to test provider validation.
+    // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+    const auto invalid_transpose_value = static_cast<Transpose>(255);
+    auto invalid_transpose =
+        asc::CudaSpmv(fixture.provider, invalid_transpose_value,
+                      Make<Element>(1.0), matrix, *input, *output);
     ASC_M7_CUDA_CHECK(test, !invalid_transpose.ok());
     if (!invalid_transpose.ok()) {
       ASC_M7_CUDA_EQ(test, invalid_transpose.status().code(),

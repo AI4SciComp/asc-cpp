@@ -390,9 +390,11 @@ void TestGemvFailures(TestContext& test) {
   auto output = MakeView<Real, 1>(output_storage.data(), output_shape, {1});
   const auto before = output_storage;
 
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_transpose = static_cast<asc::DenseBlasTranspose>(255);
   CheckStatusError(test,
-                   asc::Gemv(context, static_cast<asc::DenseBlasTranspose>(255),
-                             Real{1}, matrix, input, Real{0}, output),
+                   asc::Gemv(context, invalid_transpose, Real{1}, matrix, input,
+                             Real{0}, output),
                    asc::ErrorCode::kInvalidArgument);
   ASC_DENSE_TEST_EQ(test, output_storage, before);
 
@@ -639,11 +641,13 @@ void TestGemmZeroInnerAndFailures(TestContext& test) {
   auto independent_output =
       MakeView<Real, 2>(independent_output_storage.data(), square, {1, 2});
   const auto before = independent_output_storage;
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_transpose = static_cast<asc::DenseBlasTranspose>(255);
   CheckStatusError(
       test,
-      asc::Gemm(context, static_cast<asc::DenseBlasTranspose>(255),
-                asc::DenseBlasTranspose::kNone, Real{1}, square_left,
-                square_right, Real{0}, independent_output),
+      asc::Gemm(context, invalid_transpose, asc::DenseBlasTranspose::kNone,
+                Real{1}, square_left, square_right, Real{0},
+                independent_output),
       asc::ErrorCode::kInvalidArgument);
   ASC_DENSE_TEST_EQ(test, independent_output_storage, before);
 

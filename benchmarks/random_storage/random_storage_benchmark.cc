@@ -9,6 +9,7 @@
 #include <utility>
 #include <vector>
 
+#include "../../tests/allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
@@ -19,6 +20,8 @@
 #include "asc/dense/layout.h"
 #include "asc/dense/view.h"
 #include "asc/random/dense.h"
+#include "asc/random/engine.h"
+#include "asc/random/quasi.h"
 #include "asc/random/sparse.h"
 #include "philox_oracle.h"
 
@@ -71,8 +74,8 @@ class CountingResource final : public asc::MemoryResource {
   std::size_t live_allocations_ = 0;
 };
 
-std::uint64_t Mix(std::uint64_t checksum, std::uint64_t value) {
-  return (checksum ^ value) * 1099511628211ULL;
+std::uint64_t Mix(std::uint64_t state, std::uint64_t value) {
+  return (state ^ value) * 1099511628211ULL;
 }
 
 std::uint64_t PriorityOracle(asc::RandomStream stream,
@@ -159,6 +162,8 @@ bool BenchmarkDense(Layout layout, const char* layout_name,
   return asc_test::ProcessAllocationCountMatches(allocation_calls, 0);
 }
 
+// Keep each benchmark scenario and its independent oracle in one function.
+// NOLINTNEXTLINE(readability-function-size)
 bool BenchmarkSparse(std::uint64_t& aggregate_checksum) {
   using Shape = asc::Extents<asc::kDynamicExtent, asc::kDynamicExtent>;
   constexpr std::size_t kRepetitions = 10;
@@ -207,9 +212,10 @@ bool BenchmarkSparse(std::uint64_t& aggregate_checksum) {
       std::chrono::steady_clock::now() - begin);
   std::uint64_t expected_checksum = 1469598103934665603ULL;
   for (std::size_t repetition = 0; repetition < kRepetitions; ++repetition) {
+    constexpr std::uint64_t kLogicalSize = 64ULL * 64ULL;
     std::vector<std::pair<std::uint64_t, std::uint64_t>> candidates;
-    candidates.reserve(64U * 64U);
-    for (std::uint64_t ordinal = 0; ordinal < 64U * 64U; ++ordinal) {
+    candidates.reserve(static_cast<std::size_t>(kLogicalSize));
+    for (std::uint64_t ordinal = 0; ordinal < kLogicalSize; ++ordinal) {
       candidates.emplace_back(
           PriorityOracle(101, static_cast<asc::RandomSubsequence>(repetition),
                          103 + 2U * ordinal),
@@ -260,6 +266,8 @@ bool BenchmarkSparse(std::uint64_t& aggregate_checksum) {
                  kExpectedResourceAllocations));
 }
 
+// Keep each benchmark scenario and its independent oracle in one function.
+// NOLINTNEXTLINE(readability-function-size)
 bool BenchmarkAdvancedAdapters(std::uint64_t& aggregate_checksum) {
   constexpr std::size_t kSamples = 2048;
   constexpr std::size_t kDimensions = 8;

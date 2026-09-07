@@ -7,7 +7,9 @@
 #include <cstddef>
 #include <cstdint>
 #include <limits>
+#include <numbers>
 
+#include "asc/core/status.h"
 #include "test_support.h"
 
 namespace {
@@ -57,8 +59,8 @@ static_assert(!HasTwoWordUniform<long double>);
 static_assert(noexcept(asc::Uniform01<float>(0)));
 static_assert(noexcept(asc::Uniform01<double>(0, 0)));
 
-constexpr float kFloatPi = 0x1.921fb6p+1F;
-constexpr double kDoublePi = 0x1.921fb54442d18p+1;
+constexpr float kFloatPi = std::numbers::pi_v<float>;
+constexpr double kDoublePi = std::numbers::pi;
 static_assert(std::bit_cast<std::uint32_t>(kFloatPi) == 0x40490FDBU);
 static_assert(std::bit_cast<std::uint64_t>(kDoublePi) == 0x400921FB54442D18ULL);
 

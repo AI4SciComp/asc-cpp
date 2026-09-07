@@ -1,10 +1,11 @@
 #include <array>
 #include <thread>
-#include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/result.h"
+#include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/random/sparse.h"
 #include "test_support.h"
 

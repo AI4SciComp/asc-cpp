@@ -1,9 +1,10 @@
 #include <cuComplex.h>
 #include <cublas_v2.h>
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <complex>
-#include <cstddef>
+#include <concepts>
 #include <cstdint>
 #include <limits>
 #include <mutex>
@@ -45,6 +46,7 @@ struct PreparedContext {
   PreparedContext& operator=(const PreparedContext&) = delete;
   PreparedContext(PreparedContext&&) noexcept = default;
   PreparedContext& operator=(PreparedContext&&) = delete;
+  ~PreparedContext() = default;
 
   ContextState* state;
   void* stream;
@@ -198,8 +200,8 @@ Element* SignedProviderPointer(Vector<Element> vector) {
   if (vector.increment() >= 0 || vector.size() <= 1) {
     return vector.data();
   }
-  return reinterpret_cast<Element*>(
-      const_cast<void*>(vector.reachable_storage().data()));
+  return const_cast<Element*>(
+      static_cast<const Element*>(vector.reachable_storage().data()));
 }
 
 template <typename Element>
@@ -403,6 +405,8 @@ cublasStatus_t ProviderGbmv(cublasHandle_t handle, cublasOperation_t operation,
 }
 
 template <typename Element, typename Matrix>
+// All general matrix layouts share validation and completion ordering here.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> GeneralMv(DenseCudaContext& context,
                                   DenseBlasTranspose transpose, Element alpha,
                                   Matrix matrix, Vector<const Element> input,
@@ -630,6 +634,9 @@ cublasStatus_t ProviderHpmv(cublasHandle_t handle, cublasFillMode_t triangle,
 }
 
 template <typename Element, typename Matrix>
+// Structured layouts share one provider transaction so their failure
+// precedence remains identical.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> StructuredMv(DenseCudaContext& context,
                                      DenseBlasTriangle triangle, Element alpha,
                                      Matrix matrix, Vector<const Element> input,
@@ -875,6 +882,9 @@ cublasStatus_t ProviderTpsv(cublasHandle_t handle, cublasFillMode_t triangle,
 }
 
 template <typename Element, typename Matrix>
+// Triangular variants share validation and completion handling to prevent
+// provider-contract drift between layouts.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> Triangular(DenseCudaContext& context,
                                    DenseBlasTriangle triangle,
                                    DenseBlasTranspose transpose,
@@ -1199,8 +1209,11 @@ cublasStatus_t ProviderSpr2(cublasHandle_t handle, cublasFillMode_t triangle,
   }
 }
 
-template <bool kRankTwo, bool kHermitian, typename Element, typename Matrix,
+template <bool RankTwo, bool Hermitian, typename Element, typename Matrix,
           typename Alpha>
+// Rank-one/two and symmetric/Hermitian paths intentionally share validation
+// and completion handling.
+// NOLINTNEXTLINE(readability-function-size)
 Result<CompletionEvent> StructuredRankUpdate(
     DenseCudaContext& context, DenseBlasTriangle triangle, Alpha alpha,
     Vector<const Element> x, Vector<const Element> y, Matrix matrix) {
@@ -1232,13 +1245,12 @@ Result<CompletionEvent> StructuredRankUpdate(
                     "A CUDA structured update matrix must be square");
     }
   }
-  if (x.size() != order || (kRankTwo && y.size() != order)) {
+  if (x.size() != order || (RankTwo && y.size() != order)) {
     return Status(ErrorCode::kShape,
                   "A CUDA structured update vector has the wrong length");
   }
   if (Overlap(x.reachable_storage(), matrix.reachable_storage()) ||
-      (kRankTwo &&
-       Overlap(y.reachable_storage(), matrix.reachable_storage()))) {
+      (RankTwo && Overlap(y.reachable_storage(), matrix.reachable_storage()))) {
     return Status(ErrorCode::kInvalidArgument,
                   "A CUDA structured update overlaps an input vector");
   }
@@ -1246,7 +1258,7 @@ Result<CompletionEvent> StructuredRankUpdate(
     return RecordOrDrain(context, *prepared);
   }
   if constexpr (DenseBlasComplex<Element>) {
-    if (kHermitian && matrix.layout() == DenseBlasLayout::kRowMajor) {
+    if (Hermitian && matrix.layout() == DenseBlasLayout::kRowMajor) {
       Level2MatrixDescriptor descriptor =
           Describe(matrix, triangle == DenseBlasTriangle::kUpper);
       Level2ComplexScalar project_alpha;
@@ -1258,15 +1270,15 @@ Result<CompletionEvent> StructuredRankUpdate(
       return Finish(context, *prepared,
                     LaunchLevel2HermitianUpdate(
                         prepared->stream, ElementKind<Element>(), project_alpha,
-                        Describe(x), kRankTwo ? Describe(y) : Describe(x),
-                        descriptor, kRankTwo));
+                        Describe(x), RankTwo ? Describe(y) : Describe(x),
+                        descriptor, RankTwo));
     }
   }
   const cublasFillMode_t provider_triangle =
       ProviderTriangle(triangle, matrix.layout());
   cublasStatus_t provider_status = CUBLAS_STATUS_NOT_SUPPORTED;
   if constexpr (DenseBlasComplex<Element>) {
-    if constexpr (kRankTwo) {
+    if constexpr (RankTwo) {
       if constexpr (requires { matrix.leading_dimension(); }) {
         provider_status =
             ProviderHer2(prepared->state->handle(), provider_triangle, order,
@@ -1292,7 +1304,7 @@ Result<CompletionEvent> StructuredRankUpdate(
       }
     }
   } else {
-    if constexpr (kRankTwo) {
+    if constexpr (RankTwo) {
       if constexpr (requires { matrix.leading_dimension(); }) {
         provider_status =
             ProviderSyr2(prepared->state->handle(), provider_triangle, order,

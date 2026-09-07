@@ -6,8 +6,8 @@
 #include <cstdint>
 #include <iostream>
 #include <string_view>
-#include <utility>
 
+#include "../../tests/allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/random/distribution.h"
 #include "asc/random/engine.h"
@@ -20,8 +20,8 @@ constexpr std::size_t kDistributionRepetitions = 200000;
 constexpr std::size_t kNormalRepetitions = 100000;
 constexpr std::size_t kQmcRepetitions = 100000;
 
-std::uint64_t Mix(std::uint64_t checksum, std::uint64_t value) {
-  return (checksum ^ value) * 1099511628211ULL;
+std::uint64_t Mix(std::uint64_t state, std::uint64_t value) {
+  return (state ^ value) * 1099511628211ULL;
 }
 
 template <typename Engine>

@@ -3,11 +3,11 @@
 #include <limits>
 #include <span>
 #include <type_traits>
-#include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
+#include "asc/core/result.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
 #include "asc/expression/expression.h"
@@ -82,6 +82,8 @@ void CheckCompressed(
   }
 }
 
+// Metadata and access checks jointly define one compressed-view scenario.
+// NOLINTNEXTLINE(readability-function-size)
 void TestViewsAndMetadata(TestContext& test) {
   auto csr = asc::CsrView<const double>::Create(
       kCsrOffsets, kCsrIndices, kCsrValues, kShape, asc::MemorySpace::kHost);
@@ -173,6 +175,8 @@ void TestViewsAndMetadata(TestContext& test) {
   CheckError(test, csr->Lookup(kOutside), asc::ErrorCode::kIndex);
 }
 
+// The malformed cases share one canonical source fixture and error oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void TestMalformedCompressedMetadata(TestContext& test) {
   std::array<double, 5> values = kCsrValues;
   constexpr std::array<asc::nnz_t, 3> kShortOffsets{0, 2, 5};
@@ -302,6 +306,8 @@ MakeCoordinateOracle(asc::MemoryResource& resource) {
       resource, *extents, kCoordinateIndices, kCsrValues);
 }
 
+// Verify every conversion direction against the same matrix fixture.
+// NOLINTNEXTLINE(readability-function-size)
 void TestAllConversions(TestContext& test) {
   asc::HostMemoryResource source_resource;
   asc::HostMemoryResource destination_resource;
@@ -426,6 +432,8 @@ void CheckEmptyOwner(TestContext& test, asc::extent_t rows,
   }
 }
 
+// Empty and explicit-zero cases form one round-trip invariant matrix.
+// NOLINTNEXTLINE(readability-function-size)
 void TestEmptyAndExplicitZeroRoundTrips(TestContext& test) {
   CheckEmptyOwner<asc::SparseCompressedFormat::kCsr>(test, 0, 4, 1);
   CheckEmptyOwner<asc::SparseCompressedFormat::kCsc>(test, 0, 4, 5);

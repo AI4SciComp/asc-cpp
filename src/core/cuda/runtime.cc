@@ -1,4 +1,5 @@
 #include <cuda_runtime_api.h>
+#include <driver_types.h>
 
 #include <cstddef>
 #include <cstdint>
@@ -10,9 +11,13 @@
 #endif
 
 #include "../execution_internal.h"
+#include "asc/core/execution.h"
+#include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "cuda_internal.h"
-#include "runtime_test_internal.h"
+#include "runtime_test_internal.h"  // NOLINT(misc-include-cleaner): test hooks
 
 namespace asc {
 namespace internal_core_cuda {
@@ -161,6 +166,10 @@ class CudaCompletionState final
   CudaCompletionState(std::shared_ptr<const CudaExecutionState> execution,
                       cudaEvent_t event) noexcept
       : execution_(std::move(execution)), event_(event) {}
+  CudaCompletionState(const CudaCompletionState&) = delete;
+  CudaCompletionState& operator=(const CudaCompletionState&) = delete;
+  CudaCompletionState(CudaCompletionState&&) = delete;
+  CudaCompletionState& operator=(CudaCompletionState&&) = delete;
   ~CudaCompletionState() override;
 
   [[nodiscard]] Result<bool> Query() const override;
@@ -177,6 +186,10 @@ class CudaExecutionState final
  public:
   CudaExecutionState(std::int32_t device, cudaStream_t stream) noexcept
       : device_(device), stream_(stream) {}
+  CudaExecutionState(const CudaExecutionState&) = delete;
+  CudaExecutionState& operator=(const CudaExecutionState&) = delete;
+  CudaExecutionState(CudaExecutionState&&) = delete;
+  CudaExecutionState& operator=(CudaExecutionState&&) = delete;
 
   ~CudaExecutionState() override {
     auto guard = DeviceGuard::Create(device_);

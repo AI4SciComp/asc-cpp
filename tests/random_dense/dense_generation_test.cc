@@ -1,10 +1,9 @@
 #include <array>
-#include <bit>
+#include <concepts>
 #include <cstddef>
 #include <cstdint>
 #include <limits>
 #include <span>
-#include <type_traits>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
@@ -245,6 +244,8 @@ void CheckPartitionAndRerun(TestContext& test) {
 }
 
 template <typename Element>
+// Partition order and exact-address reproducibility are one invariant.
+// NOLINTNEXTLINE(readability-function-size)
 void CheckIrregularReorderedPartitions(TestContext& test) {
   constexpr asc::extent_t kLogicalSize = 11;
   constexpr asc::RandomStream kStream = 211;

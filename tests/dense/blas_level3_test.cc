@@ -4,13 +4,12 @@
 #include <cstddef>
 #include <cstdlib>
 #include <limits>
-#include <span>
-#include <type_traits>
 
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/dense/blas.h"
 #include "test_support.h"
 
@@ -77,6 +76,8 @@ Element OpAt(asc::DenseBlasMatrixView<const Element> matrix,
   if (transpose == asc::DenseBlasTranspose::kNone) {
     return At(matrix, row, column);
   }
+  // This is the intentional transpose case.
+  // NOLINTNEXTLINE(readability-suspicious-call-argument)
   const Element value = At(matrix, column, row);
   return transpose == asc::DenseBlasTranspose::kConjugateTranspose
              ? Conjugate(value)
@@ -190,7 +191,10 @@ Element StructuredAt(asc::DenseBlasMatrixView<const Element> matrix,
                           ? row <= column
                           : row >= column;
   const Element value =
-      stored ? At(matrix, row, column) : At(matrix, column, row);
+      stored ? At(matrix, row, column)
+             // This reads the reflected triangle.
+             // NOLINTNEXTLINE(readability-suspicious-call-argument)
+             : At(matrix, column, row);
   return !stored && hermitian ? Conjugate(value) : value;
 }
 
@@ -274,7 +278,7 @@ void TestStructured(TestContext& test) {
 }
 
 template <typename Element>
-void TestRankK(TestContext& test) {
+void TestRankK(TestContext& test) {  // NOLINT(readability-function-size)
   const auto context = asc::ExecutionContext::Serial();
   for (asc::DenseBlasLayout layout :
        {asc::DenseBlasLayout::kColumnMajor, asc::DenseBlasLayout::kRowMajor}) {
@@ -333,10 +337,14 @@ void TestRankK(TestContext& test) {
           for (asc::index_t inner = 0; inner < 2; ++inner) {
             sum += OpAt(asc::DenseBlasMatrixView<const Element>(left),
                         effective_transpose, row, inner) *
+                       // The row indices are intentionally exchanged here.
+                       // NOLINTNEXTLINE(readability-suspicious-call-argument)
                        OpAt(asc::DenseBlasMatrixView<const Element>(right),
                             effective_transpose, column, inner) +
                    OpAt(asc::DenseBlasMatrixView<const Element>(right),
                         effective_transpose, row, inner) *
+                       // The row indices are intentionally exchanged here.
+                       // NOLINTNEXTLINE(readability-suspicious-call-argument)
                        OpAt(asc::DenseBlasMatrixView<const Element>(left),
                             effective_transpose, column, inner);
           }
@@ -552,6 +560,8 @@ void TestScalarEdges(TestContext& test) {
   }
 }
 
+// Validation and rollback checks intentionally share their fixture state.
+// NOLINTNEXTLINE(readability-function-size)
 void TestValidationAndEdges(TestContext& test) {
   const auto context = asc::ExecutionContext::Serial();
   std::array<float, 32> a_storage{};

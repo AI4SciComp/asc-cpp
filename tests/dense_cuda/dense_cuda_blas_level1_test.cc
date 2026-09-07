@@ -1,18 +1,18 @@
-#include <array>
 #include <cmath>
 #include <complex>
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
-#include <type_traits>
 #include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/providers/cuda.h"
 #include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "asc/core/types.h"
+#include "asc/dense/blas.h"
 #include "asc/dense/providers/cuda.h"
 #include "counting_resource.h"
 #include "device_test_helpers.h"
@@ -143,6 +143,8 @@ void TestUpdates(TestContext& test,
 }
 
 template <typename Real>
+// Rotation variants share buffers and an oracle table in this fixture.
+// NOLINTNEXTLINE(readability-function-size)
 void TestRealRotations(TestContext& test, asc::MemoryResource& pinned,
                        asc::MemoryResource& device,
                        asc::DenseCudaContext& context) {
@@ -492,6 +494,8 @@ void TestMixedDots(TestContext& test, asc::MemoryResource& pinned,
 }
 
 template <typename Real>
+// Complex reduction variants share buffers and edge-case expectations.
+// NOLINTNEXTLINE(readability-function-size)
 void TestComplexReductions(TestContext& test, asc::MemoryResource& pinned,
                            asc::MemoryResource& device,
                            asc::DenseCudaContext& context) {
@@ -623,6 +627,8 @@ void TestExtremeNrm2(TestContext& test, asc::MemoryResource& pinned,
   CheckNear(test, Data<Real>(result->host)[0], std::hypot(large, large));
 }
 
+// Invalid descriptors share a known-good baseline and allocation checkpoints.
+// NOLINTNEXTLINE(readability-function-size)
 void TestEmptyAndValidation(TestContext& test, asc::MemoryResource& pinned,
                             asc::MemoryResource& device,
                             asc::DenseCudaContext& context) {
@@ -650,9 +656,12 @@ void TestEmptyAndValidation(TestContext& test, asc::MemoryResource& pinned,
                                   asc::MemorySpace::kDevice);
   auto double_scalar = MakeVector<double>(double_result->device, 0, 1, 1,
                                           asc::MemorySpace::kDevice);
-  auto invalid_dot =
-      asc::CudaDot(context, static_cast<asc::DenseBlasDotAccumulation>(99),
-                   const_empty, const_empty, double_scalar);
+  using Accumulation = asc::DenseBlasDotAccumulation;
+  // Deliberately invalid to test boundary validation.
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_accumulation = static_cast<Accumulation>(99);
+  auto invalid_dot = asc::CudaDot(context, invalid_accumulation, const_empty,
+                                  const_empty, double_scalar);
   ASC_DENSE_CUDA_CHECK(test, !invalid_dot.ok());
   if (!invalid_dot.ok()) {
     ASC_DENSE_CUDA_EQ(test, invalid_dot.status().code(),

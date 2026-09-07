@@ -1,16 +1,20 @@
 #include <array>
 #include <cmath>
 #include <complex>
+#include <concepts>
 #include <cstddef>
 #include <limits>
 #include <span>
 
+#include "../allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/sparse/blas.h"
 #include "asc/sparse/compressed.h"
+#include "asc/sparse/coordinate.h"
 #include "test_support.h"
 
 namespace {
@@ -67,7 +71,7 @@ Element Conjugate(Element value) {
 }
 
 template <typename Element>
-void TestLevelOne(TestContext& test) {
+void TestLevelOne(TestContext& test) {  // NOLINT(readability-function-size)
   constexpr std::array<asc::index_t, 2> kIndices{0, 2};
   std::array<Element, 2> sparse_values{Make<Element>(1.0, 2.0),
                                        Make<Element>(-2.0, 1.0)};
@@ -174,6 +178,8 @@ void TestLevelOne(TestContext& test) {
 }
 
 template <typename Element>
+// Level-two and level-three operations share one sparse matrix oracle.
+// NOLINTNEXTLINE(readability-function-size)
 void TestLevelTwoAndThree(TestContext& test) {
   constexpr std::array<asc::extent_t, 2> kShape{2, 2};
   constexpr std::array<asc::nnz_t, 3> kOffsets{0, 1, 3};
@@ -433,6 +439,8 @@ void TestLevelTwoAndThree(TestContext& test) {
   }
 }
 
+// Validation and rollback checks intentionally share their fixture state.
+// NOLINTNEXTLINE(readability-function-size)
 void TestInvalidAndEdgeCases(TestContext& test) {
   constexpr std::array<asc::index_t, 2> kUnsorted{2, 1};
   std::array<double, 2> values{1.0, 2.0};
@@ -454,9 +462,12 @@ void TestInvalidAndEdgeCases(TestContext& test) {
       one_dense_value.data(), 1, 1, Storage(one_dense_value));
   ASC_SPARSE_TEST_CHECK(test, one_sparse.ok() && one_dense.ok());
   if (one_sparse.ok() && one_dense.ok()) {
-    auto invalid_conjugation = asc::SparseDot(
-        asc::ExecutionContext::Serial(),
-        static_cast<asc::SparseBlasConjugation>(255), *one_sparse, *one_dense);
+    const auto invalid_conjugation_value =
+        static_cast<asc::SparseBlasConjugation>(
+            255);  // NOLINT(clang-analyzer-optin.core.EnumCastOutOfRange)
+    auto invalid_conjugation =
+        asc::SparseDot(asc::ExecutionContext::Serial(),
+                       invalid_conjugation_value, *one_sparse, *one_dense);
     ASC_SPARSE_TEST_CHECK(test, !invalid_conjugation.ok());
     if (!invalid_conjugation.ok()) {
       ASC_SPARSE_TEST_EQ(test, invalid_conjugation.status().code(),
@@ -473,17 +484,24 @@ void TestInvalidAndEdgeCases(TestContext& test) {
       asc::MemorySpace::kHost);
   ASC_SPARSE_TEST_CHECK(test, singular.ok());
   if (singular.ok()) {
+    // The invalid enumerator is the input under test.
+    // NOLINTBEGIN(clang-analyzer-optin.core.EnumCastOutOfRange)
+    const auto invalid_triangle_value =
+        static_cast<asc::SparseBlasTriangle>(255);
+    // NOLINTEND(clang-analyzer-optin.core.EnumCastOutOfRange)
     auto invalid_triangle =
         asc::SparseBlasTriangularView<double,
                                       asc::SparseCompressedFormat::kCsr>::
-            Create(*singular, static_cast<asc::SparseBlasTriangle>(255),
+            Create(*singular, invalid_triangle_value,
                    asc::SparseBlasDiagonal::kUnit);
     ASC_SPARSE_TEST_CHECK(test, !invalid_triangle.ok());
+    const auto invalid_diagonal_value = static_cast<asc::SparseBlasDiagonal>(
+        255);  // NOLINT(clang-analyzer-optin.core.EnumCastOutOfRange)
     auto invalid_diagonal =
         asc::SparseBlasTriangularView<double,
                                       asc::SparseCompressedFormat::kCsr>::
             Create(*singular, asc::SparseBlasTriangle::kLower,
-                   static_cast<asc::SparseBlasDiagonal>(255));
+                   invalid_diagonal_value);
     ASC_SPARSE_TEST_CHECK(test, !invalid_diagonal.ok());
 
     auto triangular =
@@ -501,10 +519,12 @@ void TestInvalidAndEdgeCases(TestContext& test) {
         output_values.data(), 2, 1, Storage(output_values));
     ASC_SPARSE_TEST_CHECK(test, input.ok() && output.ok());
     if (input.ok() && output.ok()) {
+      const auto invalid_transpose_value =
+          static_cast<asc::SparseBlasTranspose>(
+              255);  // NOLINT(clang-analyzer-optin.core.EnumCastOutOfRange)
       const asc::Status invalid_transpose =
-          asc::Spmv(asc::ExecutionContext::Serial(),
-                    static_cast<asc::SparseBlasTranspose>(255), 1.0, *singular,
-                    *input, *output);
+          asc::Spmv(asc::ExecutionContext::Serial(), invalid_transpose_value,
+                    1.0, *singular, *input, *output);
       ASC_SPARSE_TEST_CHECK(test, !invalid_transpose.ok());
       ASC_SPARSE_TEST_EQ(test, invalid_transpose.code(),
                          asc::ErrorCode::kInvalidArgument);

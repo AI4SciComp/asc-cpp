@@ -18,6 +18,8 @@ class ContextState {
       : device_(device), handle_(handle) {}
   ContextState(const ContextState&) = delete;
   ContextState& operator=(const ContextState&) = delete;
+  ContextState(ContextState&&) = delete;
+  ContextState& operator=(ContextState&&) = delete;
   ~ContextState();
 
   [[nodiscard]] std::int32_t device() const noexcept { return device_; }

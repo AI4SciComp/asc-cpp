@@ -48,7 +48,7 @@ struct ExpressionAdapter<::M4CompileVector<Element>> {
 template <typename Element>
 struct ExpressionPlacementAdapter<::M4CompileVector<Element>> {
   static constexpr MemorySpace Space(
-      const ::M4CompileVector<Element>&) noexcept {
+      const ::M4CompileVector<Element>& /*vector*/) noexcept {
     return MemorySpace::kHost;
   }
 
@@ -76,7 +76,8 @@ struct WritableExpressionAdapter<::M4CompileVector<Element>> {
         vector);
   }
 
-  static constexpr bool IsUnique(const ::M4CompileVector<Element>&) noexcept {
+  static constexpr bool IsUnique(
+      const ::M4CompileVector<Element>& /*vector*/) noexcept {
     return true;
   }
 

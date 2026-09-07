@@ -13,6 +13,8 @@ namespace asc_core_cuda_test {
 inline constexpr int kSkipReturnCode = 77;
 
 inline bool ForceNoCudaDevice() noexcept {
+  // Tests read this harness variable before starting any worker threads.
+  // NOLINTNEXTLINE(concurrency-mt-unsafe)
   const char* value = std::getenv("ASC_CPP_TEST_FORCE_NO_CUDA_DEVICE");
   return value != nullptr && std::string_view(value) == "1";
 }

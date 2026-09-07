@@ -1,4 +1,7 @@
+#include <cstddef>
+
 #include "asc/core/extents.h"
+#include "asc/core/types.h"
 #include "asc/dense/array.h"
 #include "m3_multi_tu.h"
 
