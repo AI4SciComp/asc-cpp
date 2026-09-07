@@ -2,11 +2,12 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lu-v2` facet implements checked column-major `Getrf`, `Getrs`,
+The `incremental-lu-v3` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
-counterparts, including N/T/C reusable solve modes. `Geequ` and `Geequb`
-also support row-major input through explicit caller-owned packing. All other
-required LAPACK routines, remaining layout routes and shared-facet isolation
+counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
+support both layouts, including independently selected factor/RHS layouts,
+through explicit caller-owned packing. All other
+required LAPACK routines and shared-facet isolation
 remain incomplete. Native coverage is separate; registration and scoped tests
 do not close the full routine/mode/evidence manifest.
 
@@ -16,6 +17,15 @@ an actual nonmutating workspace query on the supplied raw LU/pivots, with
 explicit integer conversion storage. Execution consumes the checked plan
 without querying again. Singular GETRI preserves its input; singular GESV
 preserves completed raw LU/pivots and leaves the RHS unchanged.
+
+Row-major conversion uses the plan's `kLayoutConversion` region containing
+live scalar objects, disjoint from every operand and other workspace. Its
+count is ASC-sized, not foreign LWORK. Each matrix contributes rows*columns;
+all products and simultaneous byte totals are checked. Packing preserves the
+original mathematical orientation, and only defined outputs are unpacked.
+Padding, const factors and failed structural-validation destinations remain
+unchanged. Actual foreign leading dimensions are ABI-bounded; original ASC
+strides remain part of plan identity without unnecessary foreign narrowing.
 
 Known provider limitation: pinned GNU LP64 GEEQUB can produce a zero computed
 radix scale from nonzero subnormal input. ASC preserves exact INFO, returns

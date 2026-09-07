@@ -870,6 +870,782 @@
         "tree": null
       },
       "scope": "Style-only corrected installed consumer, all 24 additional operations and all four scalars, against relocated exact incremental-lu-v2 artifacts"
+    },
+    {
+      "external_record": "p04-lu-v3-01/build-record-lp64/record.json",
+      "record_sha256": "31a49e8af46128b860e6f18d25e9d75d19577ca9474f31daed4c165382f56243",
+      "implementation_commit": null,
+      "implementation_tree": "a7578fc435c86b0377b6d05ddb53083317422f47",
+      "source_archive_sha256": "8014bbdfd67e91f32ba077b9b8f2b63301fee9d360fc47ca344d38693c70bda5",
+      "id": "p04-lu-v3-01-build-record-lp64",
+      "started": "2026-09-07T10:16:49.576266+00:00",
+      "completed": "2026-09-07T10:23:38.667057+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/build-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 2,
+      "evidence_exit_code": 2,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "11be8d3e32084967f75661a4b9c28be659c768c897daa108da970d8d5be292e0"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-01/build-record-ilp64/record.json",
+      "record_sha256": "3f1ed73e94483af6c636269ac9bff054e8546a53fdb7b62f329effec0c4204de",
+      "implementation_commit": null,
+      "implementation_tree": "a7578fc435c86b0377b6d05ddb53083317422f47",
+      "source_archive_sha256": "8014bbdfd67e91f32ba077b9b8f2b63301fee9d360fc47ca344d38693c70bda5",
+      "id": "p04-lu-v3-01-build-record-ilp64",
+      "started": "2026-09-07T10:16:50.435310+00:00",
+      "completed": "2026-09-07T10:23:39.818291+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/build-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 2,
+      "evidence_exit_code": 2,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "64e5c762bf460b4825394ac1b2c274b1920ae0b062da5f18b0d83dedb8353fde"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-01/ctest-debug/record.json",
+      "record_sha256": "3c51d5c75538bfb1e25f31525f427ea269fafbfe3c33f9af2e2b781530d52567",
+      "implementation_commit": null,
+      "implementation_tree": "a7578fc435c86b0377b6d05ddb53083317422f47",
+      "source_archive_sha256": "8014bbdfd67e91f32ba077b9b8f2b63301fee9d360fc47ca344d38693c70bda5",
+      "id": "p04-lu-v3-01-ctest-debug",
+      "started": "2026-09-07T10:21:27.351058+00:00",
+      "completed": "2026-09-07T10:25:30.552911+00:00",
+      "configuration": "debug-Debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/build-debug",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/ctest-debug/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 259,
+        "failed": 0,
+        "passed": 259,
+        "selected": 259,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "e69cdd0e64d2c9bdaa81cee99a5d104ea2f9c7aa827355170b0d748d40c3c30f",
+        "ctest.xml": "29193cb103a625d61f2d80be75c8938c8f776a2e5ab35b22b9379132c9f4d55c"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-01/asan-compile-lp64/record.json",
+      "record_sha256": "0f25c60ca37389c63772f1c6414b60baafb5a67600fd94ed4448f6c4ac7f0311",
+      "implementation_commit": null,
+      "implementation_tree": "a7578fc435c86b0377b6d05ddb53083317422f47",
+      "source_archive_sha256": "8014bbdfd67e91f32ba077b9b8f2b63301fee9d360fc47ca344d38693c70bda5",
+      "id": "p04-lu-v3-01-asan-compile-lp64",
+      "started": "2026-09-07T10:17:39.701131+00:00",
+      "completed": "2026-09-07T10:18:18.064126+00:00",
+      "configuration": "layout-lp64-clang19-asan-ubsan",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I$EVIDENCE_ROOT/p04-lu-v3-01/source/include",
+        "-I$EVIDENCE_ROOT/p04-lu-v3-01/source",
+        "-I$EVIDENCE_ROOT/p04-lu-v2-01/build-lp64/dense-lapack-config",
+        "-I$EVIDENCE_ROOT/installs/lapack-lp64-static/include",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/src/dense/lapack/reference_lu.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/src/dense/lapack/reference_lu_expert.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense_lapack/lu_layout_test.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense_lapack/fault_injection.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense_lapack/lu_expert_faults.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense_lapack/allocation_audit.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense/allocation_probe.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/src/dense/lapack_foundations.cc",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/build-asan/src/dense/libasc_dense.a",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/build-asan/src/core/libasc_core.a",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/lib/liblapack.a",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/lib/libblas.a",
+        "/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0",
+        "/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-lm",
+        "-pthread",
+        "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free,--wrap=dgetrf_,--wrap=dgetrf2_,--wrap=dgetf2_,--wrap=dgetri_,--wrap=dgesv_",
+        "-o",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/test-asan-lp64"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "1327fe5491252cdeaa1e21fef8336af2be90942b389b61b1f52f4a30b95939c0"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-01/asan-compile-ilp64/record.json",
+      "record_sha256": "b7eb457e67807d06536566459d009bd8bb7ab040667e36ddd83849539ef3e830",
+      "implementation_commit": null,
+      "implementation_tree": "a7578fc435c86b0377b6d05ddb53083317422f47",
+      "source_archive_sha256": "8014bbdfd67e91f32ba077b9b8f2b63301fee9d360fc47ca344d38693c70bda5",
+      "id": "p04-lu-v3-01-asan-compile-ilp64",
+      "started": "2026-09-07T10:17:40.944782+00:00",
+      "completed": "2026-09-07T10:18:19.633560+00:00",
+      "configuration": "layout-ilp64-clang19-asan-ubsan",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I$EVIDENCE_ROOT/p04-lu-v3-01/source/include",
+        "-I$EVIDENCE_ROOT/p04-lu-v3-01/source",
+        "-I$EVIDENCE_ROOT/p04-lu-v2-01/build-ilp64/dense-lapack-config",
+        "-I$EVIDENCE_ROOT/installs/lapack-ilp64-static/include",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/src/dense/lapack/reference_lu.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/src/dense/lapack/reference_lu_expert.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense_lapack/lu_layout_test.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense_lapack/fault_injection.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense_lapack/lu_expert_faults.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense_lapack/allocation_audit.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/tests/dense/allocation_probe.cc",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/source/src/dense/lapack_foundations.cc",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/build-asan/src/dense/libasc_dense.a",
+        "$EVIDENCE_ROOT/p03-p04-d3675f3/build-asan/src/core/libasc_core.a",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/lib/liblapack64.a",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/lib/libblas64.a",
+        "/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0",
+        "/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-lm",
+        "-pthread",
+        "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free,--wrap=dgetrf_,--wrap=dgetrf2_,--wrap=dgetf2_,--wrap=dgetri_,--wrap=dgesv_",
+        "-o",
+        "$EVIDENCE_ROOT/p04-lu-v3-01/test-asan-ilp64"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "abdfd565b2d44e7067dde85a5e89906f02dbdf2e66cef2811fa1dee862b08ab5"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-01/asan-run-02-lp64-d/record.json",
+      "record_sha256": "806e19a763a8f0e98004b68d15134efe8ba5fb87f6b9196d8c1257b289545519",
+      "implementation_commit": null,
+      "implementation_tree": "a7578fc435c86b0377b6d05ddb53083317422f47",
+      "source_archive_sha256": "8014bbdfd67e91f32ba077b9b8f2b63301fee9d360fc47ca344d38693c70bda5",
+      "id": "p04-lu-v3-01-asan-run-02-lp64-d",
+      "started": "2026-09-07T10:19:29.789057+00:00",
+      "completed": "2026-09-07T10:19:30.065142+00:00",
+      "configuration": "layout-lp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-01/test-asan-02-lp64",
+        "d"
+      ],
+      "command_exit_code": -6,
+      "evidence_exit_code": -6,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "1195bfc23c34198ebd3f65f6c762808a769b126a0b46bf80e6a7265d8e697e0c"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-01/asan-run-02-ilp64-d/record.json",
+      "record_sha256": "95dca5cf0fcc6115c079a28fc7559feb8103dee621462bd058fae886d5e08db2",
+      "implementation_commit": null,
+      "implementation_tree": "a7578fc435c86b0377b6d05ddb53083317422f47",
+      "source_archive_sha256": "8014bbdfd67e91f32ba077b9b8f2b63301fee9d360fc47ca344d38693c70bda5",
+      "id": "p04-lu-v3-01-asan-run-02-ilp64-d",
+      "started": "2026-09-07T10:19:30.526494+00:00",
+      "completed": "2026-09-07T10:19:30.809714+00:00",
+      "configuration": "layout-ilp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-01/test-asan-02-ilp64",
+        "d"
+      ],
+      "command_exit_code": -6,
+      "evidence_exit_code": -6,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "1195bfc23c34198ebd3f65f6c762808a769b126a0b46bf80e6a7265d8e697e0c"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ae98c63a5ad08233ff5f944eb89bcf04f827ea48fb08be7e3c5c1f1dd4866f75",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/ctest-lp64/record.json",
+      "record_sha256": "a48cfbda22d49f314ef8444d3e29416aeb566a42c5084f66148c5718e0bce0cf",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-ctest-lp64",
+      "started": "2026-09-07T10:38:19.383677+00:00",
+      "completed": "2026-09-07T10:45:49.842055+00:00",
+      "configuration": "lp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/build-lp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/ctest-lp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 285,
+        "failed": 0,
+        "passed": 285,
+        "selected": 285,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "f7a2359ea4c47c5a97c6bd2acd470689ea42acf4bd18bc1dee24badb5e859236",
+        "ctest.xml": "52c62c002ac1ee08cf04f89df3fdf9f388491eee7ea4bc1a5f617b536da5d247"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/ctest-ilp64/record.json",
+      "record_sha256": "39bc90b3a8b343c5f6d045588c14d68b01c5abe563288d65ec65882df05be69c",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-ctest-ilp64",
+      "started": "2026-09-07T10:38:19.167275+00:00",
+      "completed": "2026-09-07T10:45:47.884298+00:00",
+      "configuration": "ilp64-Release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/build-ilp64",
+        "--output-on-failure",
+        "--parallel",
+        "2",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/ctest-ilp64/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": {
+        "executed": 285,
+        "failed": 0,
+        "passed": 285,
+        "selected": 285,
+        "skipped": 0
+      },
+      "artifacts": {
+        "command.log": "f85cc75e8d4b0d8198f580ead52c95e775f8f62d0d2261ce3f4f3a0c419451a5",
+        "ctest.xml": "71457f88310b70d5fb76858a8783666d0d07dc2702c3ca8f1f136b19c28ab333"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/doxygen-coverage/record.json",
+      "record_sha256": "553cd3d9d0bc5c75d56e163029f3806bd29c0ee0767174362807d2d041f2c043",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-doxygen-coverage",
+      "started": "2026-09-07T10:36:52.279141+00:00",
+      "completed": "2026-09-07T10:36:52.787061+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/source",
+        "--build",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "54ff72a4d234e46b97d0736a05584d5cfae0a40d2d1709f3063638caecf87215"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/markdown/record.json",
+      "record_sha256": "0565d0e2360acbe611d82a74e8cd2de68776ed5cb56b38004acc10e74dd67404",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-markdown",
+      "started": "2026-09-07T10:36:53.272708+00:00",
+      "completed": "2026-09-07T10:36:53.654681+00:00",
+      "configuration": "strict-doxygen-1.9.8",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p04-lu-v3-02/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "7b7a2b4047ebbe23e50f9309edcc48d1b30ef7e2c85959c9a0dfcd4038a595d9"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/asan-run-02-lp64-s/record.json",
+      "record_sha256": "2e7c8fc30fc32b2d3098b2ef58af6eb9ba408b470563c04fc8144cb596274eba",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-asan-run-02-lp64-s",
+      "started": "2026-09-07T10:31:33.391398+00:00",
+      "completed": "2026-09-07T10:31:33.661695+00:00",
+      "configuration": "layout-lp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-02/test-asan-02-lp64",
+        "s"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/asan-run-02-lp64-d/record.json",
+      "record_sha256": "f15f281fae91795c7c3b2c68d6120d60ea5371619953057864a62475a14b78d0",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-asan-run-02-lp64-d",
+      "started": "2026-09-07T10:31:34.135374+00:00",
+      "completed": "2026-09-07T10:31:34.421065+00:00",
+      "configuration": "layout-lp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-02/test-asan-02-lp64",
+        "d"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/asan-run-02-lp64-c/record.json",
+      "record_sha256": "d825c4d8988edd7401694e2db87a191e9c91b67cf7c366695d8fdec7290bc438",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-asan-run-02-lp64-c",
+      "started": "2026-09-07T10:31:34.883581+00:00",
+      "completed": "2026-09-07T10:31:35.215308+00:00",
+      "configuration": "layout-lp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-02/test-asan-02-lp64",
+        "c"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/asan-run-02-lp64-z/record.json",
+      "record_sha256": "95bb55d1b27eb5f4f99d3ecd2642076416177589cf2e4c156047006537c44047",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-asan-run-02-lp64-z",
+      "started": "2026-09-07T10:31:35.703374+00:00",
+      "completed": "2026-09-07T10:31:36.130123+00:00",
+      "configuration": "layout-lp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-02/test-asan-02-lp64",
+        "z"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/asan-run-02-ilp64-s/record.json",
+      "record_sha256": "9a1fd78e169aa5c4ba017376093b9f469eac419f77b1c4ad18865aae732ed580",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-asan-run-02-ilp64-s",
+      "started": "2026-09-07T10:31:35.843008+00:00",
+      "completed": "2026-09-07T10:31:36.165442+00:00",
+      "configuration": "layout-ilp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-02/test-asan-02-ilp64",
+        "s"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/asan-run-02-ilp64-d/record.json",
+      "record_sha256": "9abea935a3aba60f7dc453e6301eacf58611e9862393a5f8b6c6017d8afe2245",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-asan-run-02-ilp64-d",
+      "started": "2026-09-07T10:31:36.647408+00:00",
+      "completed": "2026-09-07T10:31:36.905089+00:00",
+      "configuration": "layout-ilp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-02/test-asan-02-ilp64",
+        "d"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/asan-run-02-ilp64-c/record.json",
+      "record_sha256": "ab44bcb0878e86da9c18c2c8be9a9ee727ae97c20751fd401e74c0fc67af75ed",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-asan-run-02-ilp64-c",
+      "started": "2026-09-07T10:31:37.362550+00:00",
+      "completed": "2026-09-07T10:31:37.655394+00:00",
+      "configuration": "layout-ilp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-02/test-asan-02-ilp64",
+        "c"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "external_record": "p04-lu-v3-02/asan-run-02-ilp64-z/record.json",
+      "record_sha256": "6e5d0ce4f47dd4c9d552dd5eb62fd94a01472ae932be07c481754c43df279c01",
+      "implementation_commit": null,
+      "implementation_tree": "8c53d8d41893191b090a4e2847b8894b5b6a8e62",
+      "source_archive_sha256": "893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c",
+      "id": "p04-lu-v3-02-asan-run-02-ilp64-z",
+      "started": "2026-09-07T10:31:38.061645+00:00",
+      "completed": "2026-09-07T10:31:38.373305+00:00",
+      "configuration": "layout-ilp64-clang19-asan-ubsan",
+      "command": [
+        "$EVIDENCE_ROOT/p04-lu-v3-02/test-asan-02-ilp64",
+        "z"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "test_counts": null,
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "5f42ed657fe5d95ace6ab334fe4cdbe45dd1620335b77047949814fa5e632493",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
     }
   ]
 }

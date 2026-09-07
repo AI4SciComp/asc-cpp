@@ -17,7 +17,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 4
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lu-v2; pinned GNU LP64 and true ILP64; original eight relocated C++-only consumers, new expert/equilibration scoped snapshots; expanded installed integration pending"
+    evidence_scope: "unreleased incremental-lu-v3; frozen8c53d8d full LP64/trueILP64 each285 tests with zero skips, including installed both-layout consumers; final routine/mode contract-bound coverage remains pending"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -34,7 +34,7 @@ capabilities:
       - "explicit provider selection; provider-free aggregate remains independent"
     non_guarantees:
       - "full Reference-LAPACK profile"
-      - "row-major LU routes other than GEEQU/GEEQUB, shared providers or unaudited toolchains"
+      - "shared providers or unaudited toolchains"
       - "successful GEEQUB equilibration for the recorded nonzero LP64 subnormal fixture"
 
   - capability: "checked logical metadata and mixed extents"

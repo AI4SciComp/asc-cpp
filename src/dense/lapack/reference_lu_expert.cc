@@ -21,6 +21,7 @@
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu.h"
+#include "internal_layout.h"
 #include "lapack_build_config.h"
 
 // Audited GNU boundary; authoritative pinned declarations, not LAPACKE
@@ -213,11 +214,8 @@ Status ValidateMatrix(const ReferenceLapackProvider& provider,
       !provider.context().CanAccess(matrix.memory_space())) {
     return Status(ErrorCode::kMemoryAccess);
   }
-  if (matrix.layout() != DenseBlasLayout::kColumnMajor) {
-    return Status(ErrorCode::kUnsupported);
-  }
-  for (extent_t value :
-       {matrix.rows(), matrix.columns(), matrix.leading_dimension()}) {
+  for (extent_t value : {matrix.rows(), matrix.columns(),
+                         internal_lapack_layout::LeadingDimension(matrix)}) {
     if (value > std::numeric_limits<lapack_int>::max()) {
       return Status(ErrorCode::kOverflow);
     }
@@ -306,15 +304,19 @@ Result<LapackWorkspacePlan> QueryFactor(const ReferenceLapackProvider& provider,
       algorithm == FactorAlgorithm::kRecursive ? Native<T>::kRecursive
                                                : Native<T>::kUnblocked,
       Native<T>::kKind,
-      std::array{matrix.rows(), matrix.columns(), matrix.leading_dimension(),
+      std::array{matrix.rows(), matrix.columns(),
+                 internal_lapack_layout::LeadingDimension(matrix),
                  pivots.size()},
-      std::array<std::int64_t, 2>{static_cast<std::int64_t>(matrix.layout()),
-                                  pivots.increment()},
+      std::array<std::int64_t, 3>{static_cast<std::int64_t>(matrix.layout()),
+                                  pivots.increment(),
+                                  matrix.leading_dimension()},
       provider.identity());
   if (!key.ok()) {
     return key.status();
   }
-  return PivotPlan(*key, pivots.size());
+  auto plan = *checked;
+  plan.identity = *key;
+  return plan;
 }
 
 Status PublishPivots(std::span<const lapack_int> converted, extent_t rows,
@@ -372,11 +374,15 @@ Status Factor(const ReferenceLapackProvider& provider,
   }
   auto* converted = ::new (workspace.regions[kInteger].data())
       lapack_int[static_cast<std::size_t>(pivots.size())]{};
+  auto* cursor = static_cast<T*>(
+      workspace.regions[internal_lapack_layout::kRegion].data());
+  auto* packed = internal_lapack_layout::Pack(matrix, cursor);
   report.called_provider = true;
   const lapack_int info = Native<T>::Factor(
       algorithm, static_cast<lapack_int>(matrix.rows()),
-      static_cast<lapack_int>(matrix.columns()), matrix.data(),
-      static_cast<lapack_int>(matrix.leading_dimension()), converted);
+      static_cast<lapack_int>(matrix.columns()), packed,
+      static_cast<lapack_int>(internal_lapack_layout::LeadingDimension(matrix)),
+      converted);
   status = InterpretInfo(info, pivots.size(), false, report);
   if (info < 0 || info > pivots.size()) {
     return status;
@@ -384,6 +390,9 @@ Status Factor(const ReferenceLapackProvider& provider,
   const Status published =
       PublishPivots({converted, static_cast<std::size_t>(pivots.size())},
                     matrix.rows(), pivots, report);
+  if (published.ok()) {
+    internal_lapack_layout::Unpack(packed, matrix);
+  }
   return published.ok() ? status : published;
 }
 
@@ -409,16 +418,25 @@ Result<LapackWorkspacePlan> QueryDriver(const ReferenceLapackProvider& provider,
   }
   const auto key = LapackPlanIdentity::Create(
       Native<T>::kDriver, Native<T>::kKind,
-      std::array{matrix.rows(), matrix.leading_dimension(), rhs.columns(),
-                 rhs.leading_dimension(), pivots.size()},
-      std::array<std::int64_t, 3>{static_cast<std::int64_t>(matrix.layout()),
-                                  static_cast<std::int64_t>(rhs.layout()),
-                                  pivots.increment()},
+      std::array{matrix.rows(),
+                 internal_lapack_layout::LeadingDimension(matrix),
+                 rhs.columns(), internal_lapack_layout::LeadingDimension(rhs),
+                 pivots.size()},
+      std::array<std::int64_t, 5>{
+          static_cast<std::int64_t>(matrix.layout()),
+          static_cast<std::int64_t>(rhs.layout()), pivots.increment(),
+          matrix.leading_dimension(), rhs.leading_dimension()},
       provider.identity());
   if (!key.ok()) {
     return key.status();
   }
-  return PivotPlan(*key, pivots.size());
+  auto plan = *checked;
+  plan.identity = *key;
+  const Status packing_status = internal_lapack_layout::AddPacking(rhs, plan);
+  if (!packing_status.ok()) {
+    return packing_status;
+  }
+  return plan;
 }
 
 template <typename T>
@@ -445,15 +463,19 @@ Status Driver(const ReferenceLapackProvider& provider,
   }
   auto* converted = ::new (workspace.regions[kInteger].data())
       lapack_int[static_cast<std::size_t>(pivots.size())]{};
+  auto* cursor = static_cast<T*>(
+      workspace.regions[internal_lapack_layout::kRegion].data());
+  auto* packed_a = internal_lapack_layout::Pack(matrix, cursor);
+  auto* packed_b = internal_lapack_layout::Pack(rhs, cursor);
   // GESV factors A even with NRHS=0; only GETRS has that quick return.
   report.called_provider = true;
   const lapack_int info = Native<T>::Driver(
       static_cast<lapack_int>(matrix.rows()),
-      static_cast<lapack_int>(rhs.columns()), matrix.data(),
-      static_cast<lapack_int>(matrix.leading_dimension()), converted,
-      rhs.data(),
-      static_cast<lapack_int>(
-          std::max({extent_t{1}, rhs.rows(), rhs.leading_dimension()})));
+      static_cast<lapack_int>(rhs.columns()), packed_a,
+      static_cast<lapack_int>(internal_lapack_layout::LeadingDimension(matrix)),
+      converted, packed_b,
+      static_cast<lapack_int>(std::max<extent_t>(
+          1, internal_lapack_layout::LeadingDimension(rhs))));
   status = InterpretInfo(info, matrix.rows(), false, report);
   if (info < 0 || info > matrix.rows()) {
     return status;
@@ -461,6 +483,12 @@ Status Driver(const ReferenceLapackProvider& provider,
   const Status published =
       PublishPivots({converted, static_cast<std::size_t>(pivots.size())},
                     matrix.rows(), pivots, report);
+  if (published.ok()) {
+    internal_lapack_layout::Unpack(packed_a, matrix);
+    if (info == 0) {
+      internal_lapack_layout::Unpack(packed_b, rhs);
+    }
+  }
   return published.ok() ? status : published;
 }
 
@@ -504,11 +532,13 @@ Result<LapackWorkspacePlan> InversePlan(const ReferenceLapackProvider& provider,
   }
   const auto key = LapackPlanIdentity::Create(
       query ? Native<T>::kQueryInverse : Native<T>::kInverse, Native<T>::kKind,
-      std::array{factors.rows(), factors.leading_dimension(),
+      std::array{factors.rows(),
+                 internal_lapack_layout::LeadingDimension(factors),
                  static_cast<extent_t>(pivots.values().size())},
-      std::array<std::int64_t, 4>{static_cast<std::int64_t>(factors.layout()),
+      std::array<std::int64_t, 5>{static_cast<std::int64_t>(factors.layout()),
                                   static_cast<std::int64_t>(pivots.family()),
-                                  minimum, preferred},
+                                  minimum, preferred,
+                                  factors.leading_dimension()},
       provider.identity());
   if (!key.ok()) {
     return key.status();
@@ -516,6 +546,11 @@ Result<LapackWorkspacePlan> InversePlan(const ReferenceLapackProvider& provider,
   auto plan = PivotPlan(*key, factors.rows());
   if (!query) {
     plan.regions[kScalar] = {minimum, preferred, sizeof(T), alignof(T)};
+    const Status packing_status =
+        internal_lapack_layout::AddPacking(factors, plan);
+    if (!packing_status.ok()) {
+      return packing_status;
+    }
   }
   return plan;
 }
@@ -541,8 +576,8 @@ Result<LapackWorkspacePlan> QueryInverse(
   report.called_provider = true;
   const lapack_int info = Native<T>::Inverse(
       static_cast<lapack_int>(factors.rows()), factors.data(),
-      static_cast<lapack_int>(
-          std::max<extent_t>(1, factors.leading_dimension())),
+      static_cast<lapack_int>(std::max<extent_t>(
+          1, internal_lapack_layout::LeadingDimension(factors))),
       converted, &query_value, -1);
   const Status interpreted = InterpretInfo(info, 0, true, report);
   report.output_validity = LapackOutputValidity::kUnchanged;
@@ -595,13 +630,21 @@ Status Inverse(const ReferenceLapackProvider& provider,
   const auto lwork = static_cast<lapack_int>(std::min(
       capacity,
       static_cast<std::size_t>(plan.regions[kScalar].preferred_entries)));
+  auto* cursor = static_cast<T*>(
+      workspace.regions[internal_lapack_layout::kRegion].data());
+  auto* packed = internal_lapack_layout::Pack(factors, cursor);
   report.called_provider = true;
-  return InterpretInfo(
+  status = InterpretInfo(
       Native<T>::Inverse(
-          static_cast<lapack_int>(factors.rows()), factors.data(),
-          static_cast<lapack_int>(factors.leading_dimension()), converted,
-          static_cast<T*>(workspace.regions[kScalar].data()), lwork),
+          static_cast<lapack_int>(factors.rows()), packed,
+          static_cast<lapack_int>(
+              internal_lapack_layout::LeadingDimension(factors)),
+          converted, static_cast<T*>(workspace.regions[kScalar].data()), lwork),
       factors.rows(), true, report);
+  if (status.ok()) {
+    internal_lapack_layout::Unpack(packed, factors);
+  }
+  return status;
 }
 }  // namespace
 

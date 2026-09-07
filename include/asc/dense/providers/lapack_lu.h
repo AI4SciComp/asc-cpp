@@ -5,8 +5,13 @@
  * @brief Explicit reference recursive/unblocked LU, inversion and solve driver.
  *
  * These optional Dense-owned symbols require the checked Reference-LAPACK
- * facet. All matrices are column-major host/pinned-host with explicit leading
- * dimensions; row-major returns kUnsupported without mutation. There is no
+ * facet. Matrices are row-major or column-major host/pinned-host with explicit
+ * leading dimensions. Row-major execution packs the original orientation in
+ * caller-owned live kLayoutConversion scalar objects: m*n for factorizations,
+ * n*n for inversion, and the sum of row-major A/B element counts for GESV.
+ * Layouts of A and B are independent. Only defined outputs are unpacked,
+ * preserving padding; no undefined provider result or malformed pivot vector
+ * is published. There is no
  * allocation, transfer, hidden packing, fallback or synchronization.
  * Independent disjoint calls are reentrant. Input/output/workspace lifetimes
  * cover the call.
@@ -15,7 +20,8 @@
  * GETRI additionally uses live scalar objects in kScalar: minimum max(1,n);
  * preferred comes from an actual LWORK=-1 query. The query uses caller-owned
  * kInteger capacity for n converted pivots and one private, live scalar WORK
- * object. It reads no factor entries, changes no A/pivots, and reports the name
+ * object. It reads no factor entries, needs no layout packing even for a
+ * row-major factor, changes no A/pivots, and reports the name
  * suffixed ".query"; conversion scratch may change. Query preflight checks
  * scratch ownership, alignment, capacity and overlap before calling. The pinned
  * ILAENV block size 64 makes n*64 a checked provider-integer bound before both
@@ -57,7 +63,7 @@ namespace asc {
 
 /** @brief Queries single real GETRF2 without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Rectangular column-major host matrix, unchanged.
+ * @param matrix Rectangular row/column-major host matrix, unchanged.
  * @param pivots Contiguous min(m,n) one-based output, unchanged by query.
  * @return Checked exact conversion capacities or structural failure.
  */
@@ -82,7 +88,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getrf2(const ReferenceLapackProvider& provider,
 
 /** @brief Queries single real GETF2 without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Rectangular column-major host matrix, unchanged.
+ * @param matrix Rectangular row/column-major host matrix, unchanged.
  * @param pivots Contiguous min(m,n) one-based output, unchanged by query.
  * @return Checked exact conversion capacities or structural failure.
  */
@@ -107,7 +113,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getf2(const ReferenceLapackProvider& provider,
 
 /** @brief Queries single real GETRI by a real nonmutating LWORK=-1 call.
  * @param provider Explicit checked reference provider.
- * @param factors Full live square column-major packed LU; unchanged.
+ * @param factors Full live square row/column-major packed LU; unchanged.
  * @param pivots Valid immutable raw one-based LU pivots, size n; unchanged.
  * @param query_workspace Caller conversion storage with n kInteger entries.
  * @param report Mandatory query diagnostics; success leaves outputs unchanged.
@@ -135,7 +141,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getri(const ReferenceLapackProvider& provider,
                                      LapackReport& report);
 /** @brief Queries single real GESV capacities without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Square column-major A, unchanged by query.
+ * @param matrix Square row/column-major A, unchanged by query.
  * @param pivots Contiguous n-entry output, unchanged by query.
  * @param rhs Column-major n-by-nrhs B, disjoint and unchanged by query.
  * @return Checked exact conversion plan or structural failure.
@@ -163,7 +169,7 @@ ASC_DENSE_LAPACK_EXPORT Status Gesv(const ReferenceLapackProvider& provider,
 
 /** @brief Queries double real GETRF2 without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Rectangular column-major host matrix, unchanged.
+ * @param matrix Rectangular row/column-major host matrix, unchanged.
  * @param pivots Contiguous min(m,n) one-based output, unchanged by query.
  * @return Checked exact conversion capacities or structural failure.
  */
@@ -188,7 +194,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getrf2(const ReferenceLapackProvider& provider,
 
 /** @brief Queries double real GETF2 without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Rectangular column-major host matrix, unchanged.
+ * @param matrix Rectangular row/column-major host matrix, unchanged.
  * @param pivots Contiguous min(m,n) one-based output, unchanged by query.
  * @return Checked exact conversion capacities or structural failure.
  */
@@ -213,7 +219,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getf2(const ReferenceLapackProvider& provider,
 
 /** @brief Queries double real GETRI by a real nonmutating LWORK=-1 call.
  * @param provider Explicit checked reference provider.
- * @param factors Full live square column-major packed LU; unchanged.
+ * @param factors Full live square row/column-major packed LU; unchanged.
  * @param pivots Valid immutable raw one-based LU pivots, size n; unchanged.
  * @param query_workspace Caller conversion storage with n kInteger entries.
  * @param report Mandatory query diagnostics; success leaves outputs unchanged.
@@ -241,7 +247,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getri(const ReferenceLapackProvider& provider,
                                      LapackReport& report);
 /** @brief Queries double real GESV capacities without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Square column-major A, unchanged by query.
+ * @param matrix Square row/column-major A, unchanged by query.
  * @param pivots Contiguous n-entry output, unchanged by query.
  * @param rhs Column-major n-by-nrhs B, disjoint and unchanged by query.
  * @return Checked exact conversion plan or structural failure.
@@ -269,7 +275,7 @@ ASC_DENSE_LAPACK_EXPORT Status Gesv(const ReferenceLapackProvider& provider,
 
 /** @brief Queries single complex GETRF2 without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Rectangular column-major host matrix, unchanged.
+ * @param matrix Rectangular row/column-major host matrix, unchanged.
  * @param pivots Contiguous min(m,n) one-based output, unchanged by query.
  * @return Checked exact conversion capacities or structural failure.
  */
@@ -294,7 +300,7 @@ Getrf2(const ReferenceLapackProvider& provider,
 
 /** @brief Queries single complex GETF2 without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Rectangular column-major host matrix, unchanged.
+ * @param matrix Rectangular row/column-major host matrix, unchanged.
  * @param pivots Contiguous min(m,n) one-based output, unchanged by query.
  * @return Checked exact conversion capacities or structural failure.
  */
@@ -319,7 +325,7 @@ Getf2(const ReferenceLapackProvider& provider,
 
 /** @brief Queries single complex GETRI by a real nonmutating LWORK=-1 call.
  * @param provider Explicit checked reference provider.
- * @param factors Full live square column-major packed LU; unchanged.
+ * @param factors Full live square row/column-major packed LU; unchanged.
  * @param pivots Valid immutable raw one-based LU pivots, size n; unchanged.
  * @param query_workspace Caller conversion storage with n kInteger entries.
  * @param report Mandatory query diagnostics; success leaves outputs unchanged.
@@ -346,7 +352,7 @@ Getri(const ReferenceLapackProvider& provider,
       const LapackWorkspace& workspace, LapackReport& report);
 /** @brief Queries single complex GESV capacities without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Square column-major A, unchanged by query.
+ * @param matrix Square row/column-major A, unchanged by query.
  * @param pivots Contiguous n-entry output, unchanged by query.
  * @param rhs Column-major n-by-nrhs B, disjoint and unchanged by query.
  * @return Checked exact conversion plan or structural failure.
@@ -376,7 +382,7 @@ Gesv(const ReferenceLapackProvider& provider,
 
 /** @brief Queries double complex GETRF2 without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Rectangular column-major host matrix, unchanged.
+ * @param matrix Rectangular row/column-major host matrix, unchanged.
  * @param pivots Contiguous min(m,n) one-based output, unchanged by query.
  * @return Checked exact conversion capacities or structural failure.
  */
@@ -401,7 +407,7 @@ Getrf2(const ReferenceLapackProvider& provider,
 
 /** @brief Queries double complex GETF2 without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Rectangular column-major host matrix, unchanged.
+ * @param matrix Rectangular row/column-major host matrix, unchanged.
  * @param pivots Contiguous min(m,n) one-based output, unchanged by query.
  * @return Checked exact conversion capacities or structural failure.
  */
@@ -426,7 +432,7 @@ Getf2(const ReferenceLapackProvider& provider,
 
 /** @brief Queries double complex GETRI by a real nonmutating LWORK=-1 call.
  * @param provider Explicit checked reference provider.
- * @param factors Full live square column-major packed LU; unchanged.
+ * @param factors Full live square row/column-major packed LU; unchanged.
  * @param pivots Valid immutable raw one-based LU pivots, size n; unchanged.
  * @param query_workspace Caller conversion storage with n kInteger entries.
  * @param report Mandatory query diagnostics; success leaves outputs unchanged.
@@ -454,7 +460,7 @@ Getri(const ReferenceLapackProvider& provider,
       const LapackWorkspace& workspace, LapackReport& report);
 /** @brief Queries double complex GESV capacities without a foreign call.
  * @param provider Explicit checked reference provider.
- * @param matrix Square column-major A, unchanged by query.
+ * @param matrix Square row/column-major A, unchanged by query.
  * @param pivots Contiguous n-entry output, unchanged by query.
  * @param rhs Column-major n-by-nrhs B, disjoint and unchanged by query.
  * @return Checked exact conversion plan or structural failure.

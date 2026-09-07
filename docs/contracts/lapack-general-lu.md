@@ -95,8 +95,11 @@ verification summary identifies the actual frozen snapshots and selections;
 ledger verification additionally requires matching machine-readable evidence.
 
 The explicitly enabled reference-provider overloads are a separate route.
-Their current checked column-major slice does not close this contract's
-row-major cases. Reference workspace, ABI/INFO and integer-conversion behavior
-must receive their own evidence. `getrf2`, `getf2`, `getri`, `gesv`, `gesvx`,
+They now implement both matrix layouts through explicit caller packing;
+factor and RHS layouts may differ. Reference workspace, ABI/INFO and
+integer-conversion behavior receive separate tests, and final contract-bound
+evidence remains required. Only actual foreign dimensions are narrowed;
+original ASC strides are bound separately in the query identity. `getrf2`,
+`getf2`, `getri`, `gesv`, `gesvx`,
 `gecon`, `gerfs`, `geequ`, `geequb` and the remaining required helpers remain
 separate inventory rows; these eight mappings do not implement them.

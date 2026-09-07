@@ -14,7 +14,7 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "3a3221f12d57b784c5528af7b2279b9d83497be0",
+  "last_implementation_commit": "1739a0bb2d2e7fca2c95632dcf1362dfb2bfc394",
   "worktree_diff_identity": {
     "state": "in_progress",
     "recorded_at": "2026-09-07T07:01:05Z",
@@ -53,13 +53,13 @@
       ]
     },
     "P05": {
-      "state": "not_started",
+      "state": "in_progress",
       "dependencies": [
         "P04"
       ]
     },
     "P06": {
-      "state": "not_started",
+      "state": "in_progress",
       "dependencies": [
         "P04"
       ]
@@ -175,7 +175,7 @@
     "P04.reference_lu": {
       "state": "in_progress",
       "owner": "p00_inventory",
-      "scope": "Eight column-major S/D/C/Z operations pass LP64/trueILP64 scoped numerical, allocation and installed tests; remaining layouts, LU family and final evidence integration required"
+      "scope": "Registered32-operation v3 frozen8c53d8d passed full LP64/trueILP64 each285 tests including both-layout installed consumers, zero skips; all4 layout scalar processes pass both-ABI ASC sanitizer checks. Final normalized contracts/evidence pending"
     },
     "P03.sparse_io": {
       "state": "in_progress",
@@ -214,8 +214,8 @@
       "scope": "Shared bounded lexical/scalar helper frozen with scoped tests; required Dense array and Sparse coordinate implementations in separate new files, not registered or credited yet. Cross-representation conversions are optional and not implemented"
     }
   },
-  "active_task": "Commit verified incremental-lu-v2 checkpoint; extend all LU layouts and integrate GECON. Required P10 implementations remain separate until frozen integration.",
-  "next_action": "Inspect p04-layout-03 both-ABI compile/numerical records, finish layout failures/style/sanitizers and original test regressions; register GECON and frozen Dense/Sparse Matrix Market atomically. Continue GERFS/GESVX/helpers and all P05-P11; normalized exact contracts/evidence remain required.",
+  "active_task": "Commit verified v3 layout checkpoint; P10 integrated candidatea26e0e7 running separately. Native Cholesky frozen, native QR/GESVX final diagnostics, reference Cholesky implementation in progress, all unregistered/excluded from this checkpoint.",
+  "next_action": "Check external p10-matrix-market-01 full Debug/Release/shared and selected ASC sanitizer records, retain/correct any failures, register only frozen Matrix Market files from candidate-files.txt with fresh identity. Then integrate GECON/GERFS/GESVX plus equilibration wide-empty-stride correction and native Cholesky/QR; continue full remaining P04-P11 provider scope and exact contract-bound coverage.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -223,7 +223,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "74fd156e47143e3cd47f884e522bf93dd190ca7ac18a2f89abeee732147b3a14"
+    "coverage_mapping_sha256": "f6f3bc4a058fe57b7ffda03f6f98f30a442a16e551b6d60f1aefcd0d05de642a"
   },
   "provider": {
     "version": "3.12.1",
@@ -328,8 +328,8 @@
     "implemented_unverified_native": 8,
     "implemented_unverified_reference": 0,
     "registered_partial_reference_operations": 32,
-    "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "Registered operations and passing full incremental suites are distinct from full contracts and exact evidence closure. Thirty-two reference routes remain in_progress; GEEQU/GEEQUB support both layouts, other registered routes remain column-major. LP64 GEEQUB subnormal mathematical success is unmet; no denominator reduction."
+    "unregistered_expert_operations_with_scoped_tests": 8,
+    "note": "Registered operations and passing full incremental suites are distinct from complete contracts/evidence closure. Thirty-two reference rows remain in_progress; v3 implements both layouts with scoped tests. Frozen GECON/GERFS8 are not registered or credited yet. LP64 GEEQUB subnormal mathematical success and GERFS finite-estimate extreme gates are unmet; no denominator reduction."
   },
   "blockers": [
     {

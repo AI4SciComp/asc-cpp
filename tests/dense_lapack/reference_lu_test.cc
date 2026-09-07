@@ -413,11 +413,23 @@ void WorkspaceRejections(TestContext& test,
   tampered.identity = Take(asc::LapackPlanIdentity::Create(
       "dgetrf", asc::LapackScalarKind::kF64, {}, {}, identity));
   reject(tampered, scratch.workspace());
-  ASC_DENSE_TEST_CHECK(
-      test,
-      !asc::QueryGetrfWorkspace(
-           provider, Matrix(a, 2, 2, 4, asc::DenseBlasLayout::kRowMajor), pivot)
-           .ok());
+  const auto before_a = a;
+  const auto before_p = pivots;
+  const auto row_major = Matrix(a, 2, 2, 4, asc::DenseBlasLayout::kRowMajor);
+  const auto row_plan =
+      Take(asc::QueryGetrfWorkspace(provider, row_major, pivot));
+  ASC_DENSE_TEST_EQ(test,
+                    row_plan
+                        .regions[static_cast<std::size_t>(
+                            asc::LapackWorkspaceKind::kLayoutConversion)]
+                        .minimum_entries,
+                    4);
+  ASC_DENSE_TEST_CHECK(test, !asc::Getrf(provider, row_major, pivot, row_plan,
+                                         scratch.workspace(), report)
+                                  .ok());
+  ASC_DENSE_TEST_CHECK(test, !report.called_provider && !report.native_info);
+  ASC_DENSE_TEST_EQ(test, a, before_a);
+  ASC_DENSE_TEST_EQ(test, pivots, before_p);
   ASC_DENSE_TEST_CHECK(
       test,
       !asc::QueryGetrfWorkspace(provider, matrix, Pivots(pivots, 1)).ok());

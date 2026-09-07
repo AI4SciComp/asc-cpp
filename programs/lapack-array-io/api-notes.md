@@ -10,7 +10,8 @@ Provider interfaces use explicit Dense-owned overloads, typed arguments, ASC
 64-bit dimensions and caller-owned conversion/workspace storage. Reports remain
 accessible after numerical failure. Base Dense has no foreign symbol dependency.
 `ASC::dense_lapack` is optional, absent from `ASC::cpp` and common umbrellas.
-The first checked provider profile is explicitly incomplete and column-major;
+The current checked provider profile remains incomplete but supports both
+layouts for its registered LU and equilibration routes;
 neither its upstream dependency tests nor its ABI probes imply full coverage.
 
 Storage-neutral codecs belong to Core; Dense and Sparse each own their array

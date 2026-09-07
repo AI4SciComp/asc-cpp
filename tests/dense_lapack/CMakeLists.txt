@@ -25,6 +25,21 @@ foreach(_scalar IN ITEMS s d c z)
     LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
 endforeach()
 
+add_executable(asc_dense_lapack_lu_layout_test
+  lu_layout_test.cc allocation_audit.cc fault_injection.cc lu_expert_faults.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_layout_test)
+target_include_directories(asc_dense_lapack_lu_layout_test PRIVATE
+  "${PROJECT_SOURCE_DIR}" "${ASC_CPP_LAPACK_CONFIG_DIR}"
+  "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_lu_layout_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free,--wrap=dgetrf_,--wrap=dgetrf2_,--wrap=dgetf2_,--wrap=dgetri_,--wrap=dgesv_")
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.lu_layout.${_scalar}"
+    TARGET asc_dense_lapack_lu_layout_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+endforeach()
+
 foreach(_family IN ITEMS expert equilibration)
   set(_target "asc_dense_lapack_lu_${_family}_test")
   add_executable("${_target}"

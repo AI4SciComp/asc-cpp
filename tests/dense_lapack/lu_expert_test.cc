@@ -566,12 +566,19 @@ void Preflight(TestContext& test,
   pivots = before_pivots;
   const auto row_major =
       Matrix(values, 2, 2, 4, asc::DenseBlasLayout::kRowMajor);
+  const auto row_plan = Take(asc::QueryGetriWorkspace(
+      provider, row_major, raw, scratch.Workspace(), report));
+  ASC_DENSE_TEST_CHECK(test, report.called_provider && report.native_info == 0);
   ASC_DENSE_TEST_EQ(test,
-                    asc::QueryGetriWorkspace(provider, row_major, raw,
-                                             scratch.Workspace(), report)
-                        .status()
-                        .code(),
-                    asc::ErrorCode::kUnsupported);
+                    row_plan
+                        .regions[static_cast<std::size_t>(
+                            asc::LapackWorkspaceKind::kLayoutConversion)]
+                        .minimum_entries,
+                    4);
+  ASC_DENSE_TEST_CHECK(test, !asc::Getri(provider, row_major, raw, row_plan,
+                                         scratch.Workspace(2), report)
+                                  .ok());
+  ASC_DENSE_TEST_CHECK(test, !report.called_provider && !report.native_info);
   const auto stale = Matrix(values, 2, 2, 5);
   ASC_DENSE_TEST_EQ(
       test,
@@ -648,18 +655,17 @@ void DriverDescriptorRejections(TestContext& test,
   const auto rhs = Matrix(b, 2, 1, 4);
   const auto pivots = Pivots(p, 2);
   const auto row_major = Matrix(a, 2, 2, 4, asc::DenseBlasLayout::kRowMajor);
-  ASC_DENSE_TEST_EQ(
-      test,
-      asc::QueryGetrf2Workspace(provider, row_major, pivots).status().code(),
-      asc::ErrorCode::kUnsupported);
-  ASC_DENSE_TEST_EQ(
-      test,
-      asc::QueryGetf2Workspace(provider, row_major, pivots).status().code(),
-      asc::ErrorCode::kUnsupported);
-  ASC_DENSE_TEST_EQ(
-      test,
-      asc::QueryGesvWorkspace(provider, row_major, pivots, rhs).status().code(),
-      asc::ErrorCode::kUnsupported);
+  for (const auto& row_plan :
+       {Take(asc::QueryGetrf2Workspace(provider, row_major, pivots)),
+        Take(asc::QueryGetf2Workspace(provider, row_major, pivots)),
+        Take(asc::QueryGesvWorkspace(provider, row_major, pivots, rhs))}) {
+    ASC_DENSE_TEST_EQ(test,
+                      row_plan
+                          .regions[static_cast<std::size_t>(
+                              asc::LapackWorkspaceKind::kLayoutConversion)]
+                          .minimum_entries,
+                      4);
+  }
   ASC_DENSE_TEST_EQ(
       test,
       asc::QueryGesvWorkspace(provider, matrix, pivots, matrix).status().code(),

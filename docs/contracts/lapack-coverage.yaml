@@ -5609,19 +5609,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.cgesv",
-      "implementation_artifacts": [
+    "id": "lapack.cgesv",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -5644,7 +5652,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6203,19 +6211,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.cgetf2",
-      "implementation_artifacts": [
+    "id": "lapack.cgetf2",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -6238,7 +6254,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6273,7 +6289,7 @@
         ],
         "workspace": {
           "native": "zero numerical scratch; caller-owned operands/pivots/report",
-          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        "reference": "explicit typed plan/workspace; row-major caller-owned kLayoutConversion plus ABI-integer pivot storage, all simultaneous bytes checked"
         },
         "mutation": {
           "validation": "all numeric operands unchanged",
@@ -6344,8 +6360,28 @@
           }
         ]
       },
-      "id": "lapack.cgetrf",
-      "implementation_artifacts": [
+    "id": "lapack.cgetrf",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
+      {
+        "path": "include/asc/dense/providers/lapack.h",
+        "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+      },
+      {
+        "path": "src/dense/lapack/reference_lu.cc",
+        "sha256": "03f8ed2d3d8093488182c89e0f563b6c84de618da123c5a990d8140f378828c3"
+      },
+      {
+      "path": "tests/dense_lapack/reference_lu_test.cc",
+      "sha256": "829c2df6557e48c97e5bb2a36d8e661cebb9a08732f5bc81da65723c680ed32e"
+      },
         {
           "path": "include/asc/dense/lapack/lu.h",
           "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
@@ -6359,8 +6395,8 @@
           "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
         },
         {
-          "path": "docs/contracts/lapack-general-lu.md",
-          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        "path": "docs/contracts/lapack-general-lu.md",
+        "sha256": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603"
         },
         {
           "path": "include/asc/dense/lapack/types.h",
@@ -6396,7 +6432,7 @@
         "reference_cpu": {
           "state": "in_progress",
           "evidence_ids": [],
-          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6412,19 +6448,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.cgetrf2",
-      "implementation_artifacts": [
+    "id": "lapack.cgetrf2",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -6447,7 +6491,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6463,19 +6507,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.cgetri",
-      "implementation_artifacts": [
+    "id": "lapack.cgetri",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -6498,7 +6550,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -6533,7 +6585,7 @@
         ],
         "workspace": {
           "native": "zero numerical scratch; caller-owned operands/pivots/report",
-          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        "reference": "explicit typed plan/workspace; row-major caller-owned kLayoutConversion plus ABI-integer pivot storage, all simultaneous bytes checked"
         },
         "mutation": {
           "validation": "all numeric operands unchanged",
@@ -6858,8 +6910,28 @@
           }
         ]
       },
-      "id": "lapack.cgetrs",
-      "implementation_artifacts": [
+    "id": "lapack.cgetrs",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
+      {
+        "path": "include/asc/dense/providers/lapack.h",
+        "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+      },
+      {
+        "path": "src/dense/lapack/reference_lu.cc",
+        "sha256": "03f8ed2d3d8093488182c89e0f563b6c84de618da123c5a990d8140f378828c3"
+      },
+      {
+      "path": "tests/dense_lapack/reference_lu_test.cc",
+      "sha256": "829c2df6557e48c97e5bb2a36d8e661cebb9a08732f5bc81da65723c680ed32e"
+      },
         {
           "path": "include/asc/dense/lapack/lu.h",
           "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
@@ -6873,8 +6945,8 @@
           "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
         },
         {
-          "path": "docs/contracts/lapack-general-lu.md",
-          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        "path": "docs/contracts/lapack-general-lu.md",
+        "sha256": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603"
         },
         {
           "path": "include/asc/dense/lapack/types.h",
@@ -6910,7 +6982,7 @@
         "reference_cpu": {
           "state": "in_progress",
           "evidence_ids": [],
-          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -27272,19 +27344,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.dgesv",
-      "implementation_artifacts": [
+    "id": "lapack.dgesv",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -27307,7 +27387,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -28073,19 +28153,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.dgetf2",
-      "implementation_artifacts": [
+    "id": "lapack.dgetf2",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -28108,7 +28196,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -28143,7 +28231,7 @@
         ],
         "workspace": {
           "native": "zero numerical scratch; caller-owned operands/pivots/report",
-          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        "reference": "explicit typed plan/workspace; row-major caller-owned kLayoutConversion plus ABI-integer pivot storage, all simultaneous bytes checked"
         },
         "mutation": {
           "validation": "all numeric operands unchanged",
@@ -28214,8 +28302,28 @@
           }
         ]
       },
-      "id": "lapack.dgetrf",
-      "implementation_artifacts": [
+    "id": "lapack.dgetrf",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
+      {
+        "path": "include/asc/dense/providers/lapack.h",
+        "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+      },
+      {
+        "path": "src/dense/lapack/reference_lu.cc",
+        "sha256": "03f8ed2d3d8093488182c89e0f563b6c84de618da123c5a990d8140f378828c3"
+      },
+      {
+      "path": "tests/dense_lapack/reference_lu_test.cc",
+      "sha256": "829c2df6557e48c97e5bb2a36d8e661cebb9a08732f5bc81da65723c680ed32e"
+      },
         {
           "path": "include/asc/dense/lapack/lu.h",
           "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
@@ -28229,8 +28337,8 @@
           "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
         },
         {
-          "path": "docs/contracts/lapack-general-lu.md",
-          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        "path": "docs/contracts/lapack-general-lu.md",
+        "sha256": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603"
         },
         {
           "path": "include/asc/dense/lapack/types.h",
@@ -28266,7 +28374,7 @@
         "reference_cpu": {
           "state": "in_progress",
           "evidence_ids": [],
-          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -28282,19 +28390,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.dgetrf2",
-      "implementation_artifacts": [
+    "id": "lapack.dgetrf2",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -28317,7 +28433,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -28333,19 +28449,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.dgetri",
-      "implementation_artifacts": [
+    "id": "lapack.dgetri",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -28368,7 +28492,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -28403,7 +28527,7 @@
         ],
         "workspace": {
           "native": "zero numerical scratch; caller-owned operands/pivots/report",
-          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        "reference": "explicit typed plan/workspace; row-major caller-owned kLayoutConversion plus ABI-integer pivot storage, all simultaneous bytes checked"
         },
         "mutation": {
           "validation": "all numeric operands unchanged",
@@ -28728,8 +28852,28 @@
           }
         ]
       },
-      "id": "lapack.dgetrs",
-      "implementation_artifacts": [
+    "id": "lapack.dgetrs",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
+      {
+        "path": "include/asc/dense/providers/lapack.h",
+        "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+      },
+      {
+        "path": "src/dense/lapack/reference_lu.cc",
+        "sha256": "03f8ed2d3d8093488182c89e0f563b6c84de618da123c5a990d8140f378828c3"
+      },
+      {
+      "path": "tests/dense_lapack/reference_lu_test.cc",
+      "sha256": "829c2df6557e48c97e5bb2a36d8e661cebb9a08732f5bc81da65723c680ed32e"
+      },
         {
           "path": "include/asc/dense/lapack/lu.h",
           "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
@@ -28743,8 +28887,8 @@
           "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
         },
         {
-          "path": "docs/contracts/lapack-general-lu.md",
-          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        "path": "docs/contracts/lapack-general-lu.md",
+        "sha256": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603"
         },
         {
           "path": "include/asc/dense/lapack/types.h",
@@ -28780,7 +28924,7 @@
         "reference_cpu": {
           "state": "in_progress",
           "evidence_ids": [],
-          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -50388,19 +50532,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.sgesv",
-      "implementation_artifacts": [
+    "id": "lapack.sgesv",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -50423,7 +50575,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -51166,19 +51318,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.sgetf2",
-      "implementation_artifacts": [
+    "id": "lapack.sgetf2",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -51201,7 +51361,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -51236,7 +51396,7 @@
         ],
         "workspace": {
           "native": "zero numerical scratch; caller-owned operands/pivots/report",
-          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        "reference": "explicit typed plan/workspace; row-major caller-owned kLayoutConversion plus ABI-integer pivot storage, all simultaneous bytes checked"
         },
         "mutation": {
           "validation": "all numeric operands unchanged",
@@ -51307,8 +51467,28 @@
           }
         ]
       },
-      "id": "lapack.sgetrf",
-      "implementation_artifacts": [
+    "id": "lapack.sgetrf",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
+      {
+        "path": "include/asc/dense/providers/lapack.h",
+        "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+      },
+      {
+        "path": "src/dense/lapack/reference_lu.cc",
+        "sha256": "03f8ed2d3d8093488182c89e0f563b6c84de618da123c5a990d8140f378828c3"
+      },
+      {
+      "path": "tests/dense_lapack/reference_lu_test.cc",
+      "sha256": "829c2df6557e48c97e5bb2a36d8e661cebb9a08732f5bc81da65723c680ed32e"
+      },
         {
           "path": "include/asc/dense/lapack/lu.h",
           "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
@@ -51322,8 +51502,8 @@
           "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
         },
         {
-          "path": "docs/contracts/lapack-general-lu.md",
-          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        "path": "docs/contracts/lapack-general-lu.md",
+        "sha256": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603"
         },
         {
           "path": "include/asc/dense/lapack/types.h",
@@ -51359,7 +51539,7 @@
         "reference_cpu": {
           "state": "in_progress",
           "evidence_ids": [],
-          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -51375,19 +51555,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.sgetrf2",
-      "implementation_artifacts": [
+    "id": "lapack.sgetrf2",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -51410,7 +51598,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -51426,19 +51614,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.sgetri",
-      "implementation_artifacts": [
+    "id": "lapack.sgetri",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -51461,7 +51657,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -51496,7 +51692,7 @@
         ],
         "workspace": {
           "native": "zero numerical scratch; caller-owned operands/pivots/report",
-          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        "reference": "explicit typed plan/workspace; row-major caller-owned kLayoutConversion plus ABI-integer pivot storage, all simultaneous bytes checked"
         },
         "mutation": {
           "validation": "all numeric operands unchanged",
@@ -51821,8 +52017,28 @@
           }
         ]
       },
-      "id": "lapack.sgetrs",
-      "implementation_artifacts": [
+    "id": "lapack.sgetrs",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
+      {
+        "path": "include/asc/dense/providers/lapack.h",
+        "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+      },
+      {
+        "path": "src/dense/lapack/reference_lu.cc",
+        "sha256": "03f8ed2d3d8093488182c89e0f563b6c84de618da123c5a990d8140f378828c3"
+      },
+      {
+      "path": "tests/dense_lapack/reference_lu_test.cc",
+      "sha256": "829c2df6557e48c97e5bb2a36d8e661cebb9a08732f5bc81da65723c680ed32e"
+      },
         {
           "path": "include/asc/dense/lapack/lu.h",
           "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
@@ -51836,8 +52052,8 @@
           "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
         },
         {
-          "path": "docs/contracts/lapack-general-lu.md",
-          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        "path": "docs/contracts/lapack-general-lu.md",
+        "sha256": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603"
         },
         {
           "path": "include/asc/dense/lapack/types.h",
@@ -51873,7 +52089,7 @@
         "reference_cpu": {
           "state": "in_progress",
           "evidence_ids": [],
-          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -72419,19 +72635,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.zgesv",
-      "implementation_artifacts": [
+    "id": "lapack.zgesv",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -72454,7 +72678,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -73036,19 +73260,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.zgetf2",
-      "implementation_artifacts": [
+    "id": "lapack.zgetf2",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -73071,7 +73303,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -73106,7 +73338,7 @@
         ],
         "workspace": {
           "native": "zero numerical scratch; caller-owned operands/pivots/report",
-          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        "reference": "explicit typed plan/workspace; row-major caller-owned kLayoutConversion plus ABI-integer pivot storage, all simultaneous bytes checked"
         },
         "mutation": {
           "validation": "all numeric operands unchanged",
@@ -73177,8 +73409,28 @@
           }
         ]
       },
-      "id": "lapack.zgetrf",
-      "implementation_artifacts": [
+    "id": "lapack.zgetrf",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
+      {
+        "path": "include/asc/dense/providers/lapack.h",
+        "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+      },
+      {
+        "path": "src/dense/lapack/reference_lu.cc",
+        "sha256": "03f8ed2d3d8093488182c89e0f563b6c84de618da123c5a990d8140f378828c3"
+      },
+      {
+      "path": "tests/dense_lapack/reference_lu_test.cc",
+      "sha256": "829c2df6557e48c97e5bb2a36d8e661cebb9a08732f5bc81da65723c680ed32e"
+      },
         {
           "path": "include/asc/dense/lapack/lu.h",
           "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
@@ -73192,8 +73444,8 @@
           "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
         },
         {
-          "path": "docs/contracts/lapack-general-lu.md",
-          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        "path": "docs/contracts/lapack-general-lu.md",
+        "sha256": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603"
         },
         {
           "path": "include/asc/dense/lapack/types.h",
@@ -73229,7 +73481,7 @@
         "reference_cpu": {
           "state": "in_progress",
           "evidence_ids": [],
-          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -73245,19 +73497,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.zgetrf2",
-      "implementation_artifacts": [
+    "id": "lapack.zgetrf2",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -73280,7 +73540,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -73296,19 +73556,27 @@
         "mode_cases": [],
         "state": "pending"
       },
-      "id": "lapack.zgetri",
-      "implementation_artifacts": [
+    "id": "lapack.zgetri",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
         {
-          "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "07b95892b4ccf5b17fa9fa32686a018975b5ad583c5eeaae2df0773d7e416812"
+        "path": "include/asc/dense/providers/lapack_lu.h",
+        "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
         },
         {
-          "path": "src/dense/lapack/reference_lu_expert.cc",
-          "sha256": "7e7e581682538da99364192d998e3f9d1d0a9fa5f472a061b6364864622074f6"
+        "path": "src/dense/lapack/reference_lu_expert.cc",
+        "sha256": "a9807ba1c2487b56811e4e87b6d8b2616e1a6b14c7ad5dd44af9fe0575b070d1"
         },
         {
-          "path": "tests/dense_lapack/lu_expert_test.cc",
-          "sha256": "3b3b1a651201e94ad058686002212b24a1ed5ed1ec639edd8ab71d33d8144edd"
+        "path": "tests/dense_lapack/lu_expert_test.cc",
+        "sha256": "00122617c562c981dffc12c8715a67f9667824607bf03ba59077d9aa4c28e7f5"
         },
         {
           "path": "tests/dense_lapack/lu_expert_faults.cc",
@@ -73331,7 +73599,7 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual column-major LP64/true ILP64 scoped tests; row-major, integrated installed and normalized contract/evidence closure pending."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [
@@ -73366,7 +73634,7 @@
         ],
         "workspace": {
           "native": "zero numerical scratch; caller-owned operands/pivots/report",
-          "reference": "explicit typed plan/workspace; column-major checked subset implemented separately; row-major packing pending"
+        "reference": "explicit typed plan/workspace; row-major caller-owned kLayoutConversion plus ABI-integer pivot storage, all simultaneous bytes checked"
         },
         "mutation": {
           "validation": "all numeric operands unchanged",
@@ -73691,8 +73959,28 @@
           }
         ]
       },
-      "id": "lapack.zgetrs",
-      "implementation_artifacts": [
+    "id": "lapack.zgetrs",
+    "implementation_artifacts": [
+      {
+        "path": "src/dense/lapack/internal_layout.h",
+        "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+      },
+      {
+      "path": "tests/dense_lapack/lu_layout_test.cc",
+      "sha256": "273a46798842cf9393246e4409d8f1012fcdc0e90beb77aabb09b2ae8874eb73"
+      },
+      {
+        "path": "include/asc/dense/providers/lapack.h",
+        "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+      },
+      {
+        "path": "src/dense/lapack/reference_lu.cc",
+        "sha256": "03f8ed2d3d8093488182c89e0f563b6c84de618da123c5a990d8140f378828c3"
+      },
+      {
+      "path": "tests/dense_lapack/reference_lu_test.cc",
+      "sha256": "829c2df6557e48c97e5bb2a36d8e661cebb9a08732f5bc81da65723c680ed32e"
+      },
         {
           "path": "include/asc/dense/lapack/lu.h",
           "sha256": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2"
@@ -73706,8 +73994,8 @@
           "sha256": "28c92ef946072d11cb333547542d30b7a571c3b44e8bf95b37d063a8fa9202d0"
         },
         {
-          "path": "docs/contracts/lapack-general-lu.md",
-          "sha256": "7598bb2a46d9829dc6b41a7049c1873b8c5ed84bf2c1723f0ab738ff16c65941"
+        "path": "docs/contracts/lapack-general-lu.md",
+        "sha256": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603"
         },
         {
           "path": "include/asc/dense/lapack/types.h",
@@ -73743,7 +74031,7 @@
         "reference_cpu": {
           "state": "in_progress",
           "evidence_ids": [],
-          "partial_scope": "S/D/C/Z column-major provider slice tested standalone for LP64 and true ILP64; installed integration and row-major modes remain required."
+      "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending."
         }
       },
       "required_profiles": [

@@ -234,6 +234,39 @@ does not alter library code or weaken numerical assertions. Raw failures and
 passing record/log/JUnit hashes are preserved in the checkpoint index.
 Later row-major LU and Matrix Market work remains outside both snapshots.
 
+## Both-layout LU checkpoint
+
+The frozen incremental-lu-v3 source tree
+`8c53d8d41893191b090a4e2847b8894b5b6a8e62`, archive SHA256
+`893f7c56b49ddc656465ffa49b9b14dec6d472e5d8ea7d368454a787b450cb6c`,
+passes full LP64 and true ILP64 suites each **285/285**, zero skips. Installed
+mixed-layout consumers, original BLAS/Random regressions and component isolation
+are included. All four new layout scalar processes pass Clang19 ASan/UBSan in
+both ABIs with ASC adapters/foundations and instrumented baseline Core/Dense;
+foreign libraries are not instrumented. Strict Doxygen passes68 headers,
+1351 members and zero warnings. The unchanged production in candidate01 also
+passes the full provider-free Debug259/259 suite.
+
+Candidate01's two provider build failures (missing test-local snapshots) and
+double-scalar sanitizer abort (invalid empty leading dimension) are retained.
+Candidate02 corrects only these tests, without disabling checks or weakening
+assertions. Detailed semantics, packing/INFO publication rules, exact artifact
+hashes and scoped test limits are in [lu-layout-review.md](lu-layout-review.md).
+The mapping still records32 reference operations in progress and zero fully
+verified routines out of the unchanged2113 required denominator. Equilibration's
+wide-empty original row-stride edge is a separate follow-up; this layout change
+covers the original24 GETRF/GETRF2/GETF2/GETRS/GETRI/GESV routes.
+
+Core/Dense/Sparse Matrix Market integration is a separate frozen candidate
+`a26e0e7587b56f8838edd4f54d6acbd458e98800`, external
+`p10-matrix-market-01`, archive SHA256
+`e865f24fa6c2b6316a3581f33b6a369abdb74a5e200bd98e78a972355a7dffb6`.
+Its Doxygen71 headers/1413 members/zero warnings check passes; full runtime,
+shared, installed and selected sanitizer checks are still running. This is not
+credited to the LU checkpoint. Native Cholesky is separately frozen after
+scoped numerical/sanitizer tests; QR, GESVX and reference Cholesky are active
+independent work, not registered or credited as complete families.
+
 The real incremental draft is [PR #47](https://github.com/AI4SciComp/asc-cpp/pull/47),
 targeting `develop`. Its existence is not owner/license approval or remote CI
 success. Newer uncommitted work is not represented as pushed implementation.

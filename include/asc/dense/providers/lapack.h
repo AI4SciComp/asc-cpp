@@ -7,8 +7,13 @@
  *
  * Only the separately linked Dense-owned provider facet supplies these symbols.
  * Public declarations contain no foreign headers or integer/complex ABI types.
- * This initial slice supports host/pinned-host column-major descriptors only;
- * row-major operations return kUnsupported without touching numerical buffers.
+ * Both padded row-major and column-major host/pinned-host descriptors are
+ * supported. Row-major operands use live caller-owned scalar objects in the
+ * kLayoutConversion region: m*n for GETRF; sum of the row-major factor and
+ * RHS element counts for GETRS. Matrices keep their original orientation;
+ * packing is not a solve on the transpose. Only defined outputs are unpacked,
+ * preserving padding. Foreign failures mark unusable outputs without publishing
+ * invalid pivots or unpacking an undefined row-major result.
  * All calls are synchronous and require serial CPU execution. Independent calls
  * with disjoint buffers/reports are reentrant. No allocation, transfer,
  * synchronization, hidden packing or global error-handler change is performed.
@@ -90,7 +95,7 @@ class ReferenceLapackProvider {
 
 /** @brief Queries single real GETRF conversion capacities without mutation.
  * @param provider Explicit compiled reference provider.
- * @param matrix Checked column-major host matrix to be factored.
+ * @param matrix Checked row/column-major host matrix to be factored.
  * @param pivots Checked contiguous one-based output, size min(m,n).
  * @return Exact minimum/preferred plan or structural failure; no foreign call.
  */
@@ -101,7 +106,7 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrfWorkspace(
  * @param provider Explicit same-build reference provider.
  * @param transpose Selects A, transpose(A) or conjugate-transpose(A).
  * @param factor Borrowed successful square LU and immutable raw pivots.
- * @param rhs Checked column-major host n-by-nrhs B/X, disjoint from factor.
+ * @param rhs Checked row/column-major host n-by-nrhs B/X, disjoint from factor.
  * @return Exact minimum/preferred plan or structural failure; no foreign call.
  */
 ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrsWorkspace(
@@ -144,7 +149,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getrs(const ReferenceLapackProvider& provider,
 
 /** @brief Queries double real GETRF conversion capacities without mutation.
  * @param provider Explicit compiled reference provider.
- * @param matrix Checked column-major host matrix to be factored.
+ * @param matrix Checked row/column-major host matrix to be factored.
  * @param pivots Checked contiguous one-based output, size min(m,n).
  * @return Exact minimum/preferred plan or structural failure; no foreign call.
  */
@@ -155,7 +160,7 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrfWorkspace(
  * @param provider Explicit same-build reference provider.
  * @param transpose Selects A, transpose(A) or conjugate-transpose(A).
  * @param factor Borrowed successful square LU and immutable raw pivots.
- * @param rhs Checked column-major host n-by-nrhs B/X, disjoint from factor.
+ * @param rhs Checked row/column-major host n-by-nrhs B/X, disjoint from factor.
  * @return Exact minimum/preferred plan or structural failure; no foreign call.
  */
 ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrsWorkspace(
@@ -198,7 +203,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getrs(const ReferenceLapackProvider& provider,
 
 /** @brief Queries single complex GETRF conversion capacities without mutation.
  * @param provider Explicit compiled reference provider.
- * @param matrix Checked column-major host matrix to be factored.
+ * @param matrix Checked row/column-major host matrix to be factored.
  * @param pivots Checked contiguous one-based output, size min(m,n).
  * @return Exact minimum/preferred plan or structural failure; no foreign call.
  */
@@ -210,7 +215,7 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrfWorkspace(
  * @param provider Explicit same-build reference provider.
  * @param transpose Selects A, transpose(A) or conjugate-transpose(A).
  * @param factor Borrowed successful square LU and immutable raw pivots.
- * @param rhs Checked column-major host n-by-nrhs B/X, disjoint from factor.
+ * @param rhs Checked row/column-major host n-by-nrhs B/X, disjoint from factor.
  * @return Exact minimum/preferred plan or structural failure; no foreign call.
  */
 ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrsWorkspace(
@@ -252,7 +257,7 @@ Getrs(const ReferenceLapackProvider& provider, DenseBlasTranspose transpose,
 
 /** @brief Queries double complex GETRF conversion capacities without mutation.
  * @param provider Explicit compiled reference provider.
- * @param matrix Checked column-major host matrix to be factored.
+ * @param matrix Checked row/column-major host matrix to be factored.
  * @param pivots Checked contiguous one-based output, size min(m,n).
  * @return Exact minimum/preferred plan or structural failure; no foreign call.
  */
@@ -264,7 +269,7 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrfWorkspace(
  * @param provider Explicit same-build reference provider.
  * @param transpose Selects A, transpose(A) or conjugate-transpose(A).
  * @param factor Borrowed successful square LU and immutable raw pivots.
- * @param rhs Checked column-major host n-by-nrhs B/X, disjoint from factor.
+ * @param rhs Checked row/column-major host n-by-nrhs B/X, disjoint from factor.
  * @return Exact minimum/preferred plan or structural failure; no foreign call.
  */
 ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrsWorkspace(

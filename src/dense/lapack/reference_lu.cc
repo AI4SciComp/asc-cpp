@@ -21,6 +21,7 @@
 #include "asc/dense/lapack/types.h"
 #include "asc/dense/lapack/workspace.h"
 #include "asc/dense/providers/lapack.h"
+#include "internal_layout.h"
 #include "lapack_build_config.h"
 
 // Private authoritative C/Fortran declarations. No provider types escape.
@@ -197,11 +198,8 @@ Status ValidateMatrix(const ReferenceLapackProvider& provider,
   if (!provider.context().CanAccess(matrix.memory_space())) {
     return Status(ErrorCode::kMemoryAccess);
   }
-  if (matrix.layout() != DenseBlasLayout::kColumnMajor) {
-    return Status(ErrorCode::kUnsupported);
-  }
-  for (extent_t value :
-       {matrix.rows(), matrix.columns(), matrix.leading_dimension()}) {
+  for (extent_t value : {matrix.rows(), matrix.columns(),
+                         internal_lapack_layout::LeadingDimension(matrix)}) {
     if (value > std::numeric_limits<lapack_int>::max()) {
       return Status(ErrorCode::kOverflow);
     }
@@ -237,15 +235,22 @@ Result<LapackWorkspacePlan> QueryFactor(const ReferenceLapackProvider& provider,
   }
   const auto key = LapackPlanIdentity::Create(
       Native<T>::kGetrf, Native<T>::kScalar,
-      std::array{matrix.rows(), matrix.columns(), matrix.leading_dimension(),
+      std::array{matrix.rows(), matrix.columns(),
+                 internal_lapack_layout::LeadingDimension(matrix),
                  pivots.size()},
-      std::array<std::int64_t, 2>{static_cast<std::int64_t>(matrix.layout()),
-                                  pivots.increment()},
+      std::array<std::int64_t, 3>{static_cast<std::int64_t>(matrix.layout()),
+                                  pivots.increment(),
+                                  matrix.leading_dimension()},
       provider.identity());
   if (!key.ok()) {
     return key.status();
   }
-  return PivotPlan(*key, pivots.size());
+  auto plan = PivotPlan(*key, pivots.size());
+  status = internal_lapack_layout::AddPacking(matrix, plan);
+  if (!status.ok()) {
+    return status;
+  }
+  return plan;
 }
 
 template <typename T>
@@ -283,17 +288,29 @@ Result<LapackWorkspacePlan> QuerySolve(const ReferenceLapackProvider& provider,
   }
   const auto key = LapackPlanIdentity::Create(
       Native<T>::kGetrs, Native<T>::kScalar,
-      std::array{matrix.rows(), matrix.columns(), matrix.leading_dimension(),
-                 rhs.rows(), rhs.columns(), rhs.leading_dimension(),
+      std::array{matrix.rows(), matrix.columns(),
+                 internal_lapack_layout::LeadingDimension(matrix), rhs.rows(),
+                 rhs.columns(), internal_lapack_layout::LeadingDimension(rhs),
                  static_cast<extent_t>(factor.pivots().values().size())},
-      std::array<std::int64_t, 3>{static_cast<std::int64_t>(transpose),
+      std::array<std::int64_t, 5>{static_cast<std::int64_t>(transpose),
                                   static_cast<std::int64_t>(matrix.layout()),
-                                  static_cast<std::int64_t>(rhs.layout())},
+                                  static_cast<std::int64_t>(rhs.layout()),
+                                  matrix.leading_dimension(),
+                                  rhs.leading_dimension()},
       provider.identity());
   if (!key.ok()) {
     return key.status();
   }
-  return PivotPlan(*key, matrix.rows());
+  auto plan = PivotPlan(*key, matrix.rows());
+  status = internal_lapack_layout::AddPacking(matrix, plan);
+  if (!status.ok()) {
+    return status;
+  }
+  status = internal_lapack_layout::AddPacking(rhs, plan);
+  if (!status.ok()) {
+    return status;
+  }
+  return plan;
 }
 
 Status ValidatePlan(const LapackWorkspacePlan& expected,
@@ -376,11 +393,15 @@ Status Factor(const ReferenceLapackProvider& provider,
   // (CWG 2382). This starts a real ABI-integer array lifetime in caller bytes.
   auto* converted = ::new (workspace.regions[kPivotRegion].data())
       lapack_int[static_cast<std::size_t>(pivots.size())]{};
+  auto* cursor = static_cast<T*>(
+      workspace.regions[internal_lapack_layout::kRegion].data());
+  auto* packed = internal_lapack_layout::Pack(matrix, cursor);
   report.called_provider = true;
   const lapack_int info = Native<T>::Factor(
       static_cast<lapack_int>(matrix.rows()),
-      static_cast<lapack_int>(matrix.columns()), matrix.data(),
-      static_cast<lapack_int>(matrix.leading_dimension()), converted);
+      static_cast<lapack_int>(matrix.columns()), packed,
+      static_cast<lapack_int>(internal_lapack_layout::LeadingDimension(matrix)),
+      converted);
   status = InterpretInfo(info, false, report);
   if (info < 0) {
     return status;
@@ -400,6 +421,7 @@ Status Factor(const ReferenceLapackProvider& provider,
   for (extent_t i = 0; i < pivots.size(); ++i) {
     pivots.data()[i] = converted[i];
   }
+  internal_lapack_layout::Unpack(packed, matrix);
   return status;
 }
 
@@ -445,14 +467,24 @@ Status Solve(const ReferenceLapackProvider& provider,
   if (transpose == DenseBlasTranspose::kConjugateTranspose) {
     trans = 'C';
   }
+  auto* cursor = static_cast<T*>(
+      workspace.regions[internal_lapack_layout::kRegion].data());
+  const auto* packed_a = internal_lapack_layout::Pack(matrix, cursor);
+  auto* packed_b = internal_lapack_layout::Pack(rhs, cursor);
   report.called_provider = true;
-  return InterpretInfo(
+  status = InterpretInfo(
       Native<T>::Solve(trans, static_cast<lapack_int>(matrix.rows()),
-                       static_cast<lapack_int>(rhs.columns()), matrix.data(),
-                       static_cast<lapack_int>(matrix.leading_dimension()),
-                       converted, rhs.data(),
-                       static_cast<lapack_int>(rhs.leading_dimension())),
+                       static_cast<lapack_int>(rhs.columns()), packed_a,
+                       static_cast<lapack_int>(
+                           internal_lapack_layout::LeadingDimension(matrix)),
+                       converted, packed_b,
+                       static_cast<lapack_int>(
+                           internal_lapack_layout::LeadingDimension(rhs))),
       true, report);
+  if (status.ok()) {
+    internal_lapack_layout::Unpack(packed_b, rhs);
+  }
+  return status;
 }
 
 }  // namespace

@@ -141,3 +141,18 @@ all foreign-work roles retain their ABI bounds. A pure-capacity regression
 above INT32_MAX failed against the prior implementation and now passes without
 fabricating a huge live backing allocation. Each wrapper still checks its
 own provider dimensions and intermediate formulas before foreign entry.
+
+## D014: bind foreign leading dimensions and ASC strides separately
+
+Row-major LU packing preserves mathematical orientation and passes a packed
+leading dimension of max(1,rows). Query identities bind that ABI-bounded value
+as a dimension and the original ASC stride as an option. This preserves plan
+freshness without incorrectly narrowing an unused source stride. A real empty
+LP64 descriptor with stride INT32_MAX+1 exposed the prior rejection; the same
+test passes after this correction. Oversized actual foreign dimensions remain
+errors. All simultaneous region products/totals are checked before dispatch.
+
+Only documented outputs are unpacked after validated foreign INFO/pivots.
+Singular factors remain inspectable; singular GESV leaves B unchanged, singular
+GETRI leaves its factors unchanged, and provider defects do not publish packed
+undefined results. The scalar, layout and integer regions stay disjoint.

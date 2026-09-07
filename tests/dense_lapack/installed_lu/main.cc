@@ -55,20 +55,29 @@ bool CalledSuccessfully(const asc::LapackReport& report) {
 }
 
 template <typename T>
-bool ExerciseLu(const asc::ReferenceLapackProvider& provider) {
-  std::array<T, 4> values{T{0}, T{4}, T{2}, T{6}};
+bool ExerciseLu(const asc::ReferenceLapackProvider& provider,
+                asc::DenseBlasLayout layout, asc::DenseBlasLayout rhs_layout) {
+  const bool column = layout == kColumn;
+  const bool rhs_column = rhs_layout == kColumn;
+  const auto initial = column ? std::array<T, 4>{T{0}, T{4}, T{2}, T{6}}
+                              : std::array<T, 4>{T{0}, T{2}, T{4}, T{6}};
+  auto values = initial;
   std::array<asc::index_t, 2> pivot_values{};
-  auto matrix = Matrix(values);
+  auto matrix = Matrix(values, layout);
   auto pivots = Vector(pivot_values);
   alignas(std::max_align_t) std::array<std::byte, 32> integers{};
   std::array<T, 128> scalar_work{};
+  std::array<T, 8> packing{};
   asc::LapackWorkspace workspace;
   workspace
       .regions[static_cast<std::size_t>(asc::LapackWorkspaceKind::kInteger)] = {
       integers.data(), integers.size(), kHost};
+  workspace.regions[static_cast<std::size_t>(
+      asc::LapackWorkspaceKind::kLayoutConversion)] = {packing.data(),
+                                                       sizeof(packing), kHost};
   asc::LapackReport report;
   for (int algorithm = 0; algorithm < 2; ++algorithm) {
-    values = {T{0}, T{4}, T{2}, T{6}};
+    values = initial;
     const auto plan = algorithm == 0
                           ? asc::QueryGetrf2Workspace(provider, matrix, pivots)
                           : asc::QueryGetf2Workspace(provider, matrix, pivots);
@@ -80,8 +89,9 @@ bool ExerciseLu(const asc::ReferenceLapackProvider& provider) {
             ? asc::Getrf2(provider, matrix, pivots, *plan, workspace, report)
             : asc::Getf2(provider, matrix, pivots, *plan, workspace, report);
     if (!status.ok() || !CalledSuccessfully(report) || pivot_values[0] != 2 ||
-        pivot_values[1] != 2 || !Near(values[0], 4) || !Near(values[1], 0) ||
-        !Near(values[2], 6) || !Near(values[3], 2)) {
+        pivot_values[1] != 2 || !Near(values[0], 4) ||
+        !Near(values[1], column ? 0 : 6) || !Near(values[2], column ? 6 : 0) ||
+        !Near(values[3], 2)) {
       return false;
     }
   }
@@ -99,15 +109,17 @@ bool ExerciseLu(const asc::ReferenceLapackProvider& provider) {
   if (!asc::Getri(provider, matrix, raw, *inverse_plan, workspace, report)
            .ok() ||
       !CalledSuccessfully(report) || !Near(values[0], -0.75) ||
-      !Near(values[1], 0.5) || !Near(values[2], 0.25) || !Near(values[3], 0)) {
+      !Near(values[1], column ? 0.5 : 0.25) ||
+      !Near(values[2], column ? 0.25 : 0.5) || !Near(values[3], 0)) {
     return false;
   }
   workspace
       .regions[static_cast<std::size_t>(asc::LapackWorkspaceKind::kScalar)] = {
       nullptr, 0, kHost};
-  values = {T{0}, T{4}, T{2}, T{6}};
-  std::array<T, 4> rhs_values{T{6}, T{22}, T{8}, T{32}};
-  auto rhs = Matrix(rhs_values);
+  values = initial;
+  auto rhs_values = rhs_column ? std::array<T, 4>{T{6}, T{22}, T{8}, T{32}}
+                               : std::array<T, 4>{T{6}, T{8}, T{22}, T{32}};
+  auto rhs = Matrix(rhs_values, rhs_layout);
   const auto driver_plan =
       asc::QueryGesvWorkspace(provider, matrix, pivots, rhs);
   return driver_plan.ok() &&
@@ -115,8 +127,8 @@ bool ExerciseLu(const asc::ReferenceLapackProvider& provider) {
                    report)
              .ok() &&
          CalledSuccessfully(report) && Near(rhs_values[0], 1) &&
-         Near(rhs_values[1], 3) && Near(rhs_values[2], 2) &&
-         Near(rhs_values[3], 4);
+         Near(rhs_values[1], rhs_column ? 3 : 2) &&
+         Near(rhs_values[2], rhs_column ? 2 : 3) && Near(rhs_values[3], 4);
 }
 
 template <typename T>
@@ -171,7 +183,14 @@ bool ExerciseEquilibration(const asc::ReferenceLapackProvider& provider) {
 
 template <typename T>
 bool Exercise(const asc::ReferenceLapackProvider& provider) {
-  return ExerciseLu<T>(provider) && ExerciseEquilibration<T>(provider);
+  for (auto layout : {kColumn, asc::DenseBlasLayout::kRowMajor}) {
+    for (auto rhs_layout : {kColumn, asc::DenseBlasLayout::kRowMajor}) {
+      if (!ExerciseLu<T>(provider, layout, rhs_layout)) {
+        return false;
+      }
+    }
+  }
+  return ExerciseEquilibration<T>(provider);
 }
 }  // namespace
 
