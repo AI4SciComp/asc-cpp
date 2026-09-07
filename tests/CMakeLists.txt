@@ -146,6 +146,7 @@ cmake_language(
 )
 
 add_subdirectory(architecture)
+add_subdirectory(lapack_program)
 add_subdirectory(compile)
 add_subdirectory(core)
 add_subdirectory(utilities)

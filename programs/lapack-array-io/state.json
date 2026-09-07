@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "program": "ASC-CPP-LAPACK-IO",
+  "runbook": {
+    "version": "1.0",
+    "path": "programs/lapack-array-io/runbook.md",
+    "sha256": "51c1cdf7e864bb38b849d7c5280fe34e92ff278da2653e6ee3c97c1cfb2923ae"
+  },
+  "repository": "AI4SciComp/asc-cpp",
+  "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
+  "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
+  "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+  "current_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+  "active_worktree": "../asc-cpp-lapack-array-io",
+  "active_branch": "feature/lapack-array-io",
+  "integration_target": "develop",
+  "last_implementation_commit": null,
+  "worktree_diff_identity": {
+    "state": "in_progress",
+    "note": "External evidence index records per-command tracked diff and untracked inputs; this state file is excluded from its own hash."
+  },
+  "packages": {
+    "P00": {
+      "state": "in_progress",
+      "dependencies": []
+    },
+    "P01": {
+      "state": "in_progress",
+      "dependencies": [
+        "P00"
+      ]
+    },
+    "P02": {
+      "state": "in_progress",
+      "dependencies": [
+        "P00",
+        "P01"
+      ]
+    },
+    "P03": {
+      "state": "not_started",
+      "dependencies": [
+        "P00",
+        "P01"
+      ]
+    },
+    "P04": {
+      "state": "in_progress",
+      "dependencies": [
+        "P01"
+      ]
+    },
+    "P05": {
+      "state": "not_started",
+      "dependencies": [
+        "P04"
+      ]
+    },
+    "P06": {
+      "state": "not_started",
+      "dependencies": [
+        "P04"
+      ]
+    },
+    "P07": {
+      "state": "not_started",
+      "dependencies": [
+        "P06"
+      ]
+    },
+    "P08": {
+      "state": "not_started",
+      "dependencies": [
+        "P04"
+      ]
+    },
+    "P09": {
+      "state": "not_started",
+      "dependencies": [
+        "P05",
+        "P06",
+        "P07",
+        "P08"
+      ]
+    },
+    "P10": {
+      "state": "not_started",
+      "dependencies": [
+        "P03"
+      ]
+    },
+    "P11": {
+      "state": "not_started",
+      "dependencies": [
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10"
+      ]
+    }
+  },
+  "subtasks": {
+    "P00.baseline": {
+      "state": "verified",
+      "owner": "p00_baseline"
+    },
+    "P00.inventory": {
+      "state": "verified_source_extraction_mapping_pending",
+      "owner": "p00_inventory"
+    },
+    "P00.formats": {
+      "state": "frozen_independent_fixture_tests_passed",
+      "owner": "p00_array_contracts"
+    },
+    "P00.coverage_validator": {
+      "state": "implemented_unit_tests_passed_integration_pending",
+      "owner": "integration"
+    },
+    "P00.decisions": {
+      "state": "recorded",
+      "owner": "integration"
+    },
+    "P01.complex_storage": {
+      "state": "verified_snapshot_integration_pending",
+      "owner": "p00_baseline"
+    },
+    "P01.workspace_report_pivots": {
+      "state": "implemented_integration_pending",
+      "owner": "p00_inventory"
+    },
+    "P01.structured_descriptors": {
+      "state": "not_started",
+      "owner": "p00_inventory"
+    },
+    "P02.printing": {
+      "state": "implemented_unverified",
+      "owner": "p00_array_contracts"
+    },
+    "P04.native_lu": {
+      "state": "in_progress",
+      "owner": "p00_baseline"
+    },
+    "P04.external_lp64_dependency": {
+      "state": "built_upstream_tests_passed_attestation_pending",
+      "owner": "integration"
+    }
+  },
+  "active_task": "P01-P02 integration and P04 native LU",
+  "next_action": "Finish public-header inventory and documentation integration, freeze combined source and run full provider-free tests; complete P01 structured descriptors and native LU; start P03 production codecs and P04 provider facet without shrinking later packages.",
+  "source_hashes": {
+    "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
+    "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
+  },
+  "manifest_hashes": {
+    "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+  },
+  "provider": {
+    "version": "3.12.1",
+    "expected_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
+    "build_identity": null,
+    "integer_abis_verified": []
+  },
+  "toolchain": {
+    "observed": "Linux x86_64; GCC 11.4.0; CMake 4.1.2",
+    "verified_configurations": [
+      "baseline GCC11 Debug static provider-free",
+      "baseline GCC11 Release static provider-free",
+      "P01 scalar snapshot GCC11 Debug and Release",
+      "P01 scalar snapshot GCC11 ASan+UBSan targeted",
+      "P01 scalar GCC11/Clang19 no-exceptions syntax"
+    ]
+  },
+  "evidence": {
+    "root": "../asc-cpp-evidence/lapack-array-io",
+    "indexes": [
+      "baseline-46412183/index.json",
+      "p01-scalar-02/index.json"
+    ],
+    "outcomes": [
+      "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
+      "Scalar snapshot Debug 27/27 and Release 27/27 passed, zero skips",
+      "Scalar snapshot ASan+UBSan 3/3 passed, zero skips",
+      "External reference LP64 upstream CTest 111/111 passed, zero skips; no ASC routine evidence"
+    ]
+  },
+  "counts": {
+    "required_denominator": 2113,
+    "specification_mapped": 0,
+    "callable_reference": 0,
+    "verified_reference": 0,
+    "callable_native": 0,
+    "verified_native": 0,
+    "unimplemented": 2113,
+    "implemented_untested": 0
+  },
+  "blockers": [],
+  "external_approvals": [
+    {
+      "id": "LAPACK-REDISTRIBUTION",
+      "state": "pending",
+      "scope": "Any new imported source or distributed provider notice inventory; local external source preparation and clean-room ASC work can proceed.",
+      "authority": "docs/architecture/decisions/0017-third-party-provenance.md and docs/provenance/mdecpp-review.md"
+    }
+  ],
+  "independent_work": [
+    "P00 baseline",
+    "P00 source inventory",
+    "P00 format contracts",
+    "P00 coverage tooling",
+    "Original ASC implementation within approved program"
+  ]
+}

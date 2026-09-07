@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "program": "ASC-CPP-LAPACK-IO",
+  "expected_identity": {},
+  "records": [],
+  "note": "No executed ASC LAPACK routine or array I/O capability is claimed. Tool and upstream provider tests are recorded separately outside the source tree."
+}
