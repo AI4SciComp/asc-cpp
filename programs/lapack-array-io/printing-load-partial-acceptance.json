@@ -1,0 +1,43 @@
+{
+  "status": "P02 remains in progress; bounded compiler-observed read evidence added",
+  "base_overlay": "acceptance-overlay-01.json",
+  "base_overlay_sha256": "d036b6408825c09319efbed1b8e66d7610e9fa92daaeebfbda8fd21bffdd9efe",
+  "compiler": "actual Clang19 C++20/O1, trace-pc and trace-loads; observer compiled separately without coverage",
+  "observed_modes": [
+    {
+      "scope": "Dense strided rank2 edge preview across all twelve wire scalar types",
+      "selected_values": 6,
+      "result": "each selected backing byte observed once; every omitted and padding backing byte observed zero times"
+    },
+    {
+      "scope": "Dense zero max_elements across all twelve wire scalar types",
+      "result": "all value backing bytes observed zero times"
+    },
+    {
+      "scope": "COO rank1 odd edge preview across all twelve wire scalar types",
+      "selected_values": 3,
+      "result": "first two and last stored value bytes observed once; omitted bytes zero times"
+    },
+    {
+      "scope": "CSR and CSC double, three stored entries across 65536 outer coordinates",
+      "value_bytes": 24,
+      "value_byte_count_each": 1,
+      "observed_offset_bytes_each_format": 392,
+      "backing_offset_bytes": 524296,
+      "asserted_bound_bytes": 480
+    }
+  ],
+  "controls": {
+    "instrumented_repeated_volatile_int_load": "every byte of exactly one int observed twice; all other bytes zero",
+    "same_source_without_instrumentation": "executable returned1 because observation assertions failed; both old and final controls retained"
+  },
+  "limitations": [
+    "These are compiler-observed load instructions for the exact recorded Clang19/O1 source, not hardware counts or a benchmark. Core and standard-library objects are not rebuilt with coverage; owning printer templates and their direct scalar loads are instrumented.",
+    "Other ranks/layouts/precision/placement/error/empty/owner and preview cross-products are not automatically promoted.",
+    "Sparse compressed read-count evidence is double only; twelve-scalar evidence is Dense and COO.",
+    "Windows/MSVC, macOS/AppleClang and root composed acceptance remain open."
+  ],
+  "native_credit_added": 0,
+  "reference_credit_added": 0,
+  "reference_required": 2113
+}

@@ -1,0 +1,217 @@
+{
+  "schema": "external-p02-reviewed-acceptance-overlay-v1",
+  "contract": "docs/contracts/array-display-v1.md",
+  "contract_sha256": "91b560f696b94246f231298a62a106c1ad6e646fabfee44363c8c110b9f3bbc8",
+  "status": "P02 remains in progress",
+  "overall_verified": false,
+  "reference_required_routines": 2113,
+  "reference_coverage_credit_added": 0,
+  "native_coverage_credit_added": 0,
+  "entries": [
+    {
+      "id": "dense.rank4.layouts_and_slice_order",
+      "status": "executed_linux_focused",
+      "source": "candidate03/dense/print_acceptance_test.cc",
+      "source_sha256": "09d980251800ff67634508606c09421a71e0300a39a161ff39b48264cd34839a",
+      "function": "Slices",
+      "scope": "Two physical layouts; independent 16-value literal output; dimension-two-fastest rank-four slices; every byte-budget boundary through complete output; every failing sink byte boundary and complete-token counts.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.dense_acceptance",
+      "test_name_diagnostic": "display.dense_acceptance"
+    },
+    {
+      "id": "dense.combined_preview",
+      "status": "executed_linux_focused",
+      "source": "candidate03/dense/print_acceptance_test.cc",
+      "source_sha256": "09d980251800ff67634508606c09421a71e0300a39a161ff39b48264cd34839a",
+      "function": "CombinedPreview",
+      "scope": "Independent row/column/slice caps, odd edge selection, prefix selection, global max_elements, literal ellipsis placement.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.dense_acceptance",
+      "test_name_diagnostic": "display.dense_acceptance"
+    },
+    {
+      "id": "dense.zero_preview_limits",
+      "status": "executed_linux_focused",
+      "source": "candidate03/dense/print_acceptance_test.cc",
+      "source_sha256": "09d980251800ff67634508606c09421a71e0300a39a161ff39b48264cd34839a",
+      "function": "ZeroLimits",
+      "scope": "Each of max_elements/max_rows/max_columns/max_slices zero independently; successful balanced truncated output and zero displayed values.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.dense_acceptance",
+      "test_name_diagnostic": "display.dense_acceptance"
+    },
+    {
+      "id": "dense.complex_failure_progress",
+      "status": "executed_linux_focused",
+      "source": "candidate03/dense/print_acceptance_test.cc",
+      "source_sha256": "09d980251800ff67634508606c09421a71e0300a39a161ff39b48264cd34839a",
+      "function": "ComplexProgressAndInvalidSink",
+      "scope": "Each failing byte boundary within whole complex tokens; invalid oversized and zero sink progress; no accepted byte/token and no observed allocation.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.dense_acceptance",
+      "test_name_diagnostic": "display.dense_acceptance"
+    },
+    {
+      "id": "sparse.scalar_kind_limits",
+      "status": "executed_linux_focused",
+      "source": "candidate03/sparse/print_acceptance_test.cc",
+      "source_sha256": "ed53adb950fbabf2b29718f1eb90a87bb0d905e0381f278d32a20c499541ab67",
+      "function": "EveryScalar",
+      "scope": "All twelve wire scalar types across const COO/CSR/CSC; byte-sized integers numeric, large integer extrema, signed zero, complex nonfinites; row/column/slice limits zero remain irrelevant; exact report and allocation counts.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.sparse_acceptance",
+      "test_name_diagnostic": "display.sparse_acceptance"
+    },
+    {
+      "id": "sparse.compressed_progress",
+      "status": "executed_linux_focused",
+      "source": "candidate03/sparse/print_acceptance_test.cc",
+      "source_sha256": "ed53adb950fbabf2b29718f1eb90a87bb0d905e0381f278d32a20c499541ab67",
+      "function": "Progress",
+      "scope": "CSR/CSC canonical coordinate order through empty outer intervals; every byte-budget and sink-failure boundary; fully accepted value counts.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.sparse_acceptance",
+      "test_name_diagnostic": "display.sparse_acceptance"
+    },
+    {
+      "id": "sparse.scratch_aliases",
+      "status": "executed_linux_focused",
+      "source": "candidate03/sparse/print_acceptance_test.cc",
+      "source_sha256": "ed53adb950fbabf2b29718f1eb90a87bb0d905e0381f278d32a20c499541ab67",
+      "function": "RejectScratch",
+      "scope": "Eleven valid-backed alias cases: COO coordinates/values/view object; CSR and CSC offsets/indices/values/view objects. InvalidArgument before output, all bytes preserved, full report reset, no allocation.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.sparse_acceptance",
+      "test_name_diagnostic": "display.sparse_acceptance"
+    },
+    {
+      "id": "sparse.preview_and_sinks",
+      "status": "executed_linux_focused",
+      "source": "candidate03/sparse/print_acceptance_test.cc",
+      "source_sha256": "ed53adb950fbabf2b29718f1eb90a87bb0d905e0381f278d32a20c499541ab67",
+      "function": "PreviewAndInvalidSink",
+      "scope": "Odd edge and prefix stored-entry previews; exact output and truncation; zero and oversized sink progress.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.sparse_acceptance",
+      "test_name_diagnostic": "display.sparse_acceptance"
+    },
+    {
+      "id": "sparse.distant_outer_coordinates",
+      "status": "executed_linux_focused",
+      "source": "candidate03/sparse/print_acceptance_test.cc",
+      "source_sha256": "ed53adb950fbabf2b29718f1eb90a87bb0d905e0381f278d32a20c499541ab67",
+      "function": "LongEmptyOuterRange",
+      "scope": "One million valid live offsets for CSR/CSC; exact distant coordinates. This proves correctness of lookup on that input, not asymptotic cost or exact read count.",
+      "records": [
+        "logs/ctest-debug-03/record.json",
+        "logs/ctest-release-03/record.json",
+        "logs/ctest-shared-03/record.json",
+        "logs/ctest-asan-03/record.json",
+        "logs/ctest-libc-03/record.json"
+      ],
+      "test_name_installed": "display.sparse_acceptance",
+      "test_name_diagnostic": "display.sparse_acceptance"
+    }
+  ],
+  "remaining_requirements": [
+    {
+      "id": "element_read_counts",
+      "required": true,
+      "status": "open",
+      "details": "Actual logical value-read counts and omitted/padding reads are not observed by current tests; Dense legal mmap preview and Sparse million-offset correctness do not substitute for instrumentation. Next independent bounded diagnostic investigates compiler load callbacks with positive controls."
+    },
+    {
+      "id": "cost_bounds",
+      "required": true,
+      "status": "partially_supported",
+      "details": "Code review confirms Dense selected-index traversal and Sparse upper_bound offset lookup. No executed observation yet bounds omitted-value reads or compressed structural read counts; no performance claims."
+    },
+    {
+      "id": "precision_and_locale_modes",
+      "required": true,
+      "status": "partial",
+      "details": "Original tests execute default general and fixed/scientific precision2 on complex<double>; scalar scalar limits, signed zero/nonfinite cases, invalid precision0/33 and invalid enum, oversized fixed32 token are executed. Comprehensive precision1/32, custom non-C locale, all real/complex types and modes remain unexecuted in this overlay."
+    },
+    {
+      "id": "empty_and_owner_scratch_modes",
+      "required": true,
+      "status": "partial",
+      "details": "Original tests execute Dense empty rank3 with metadata and empty CSR with metadata, Dense owner, COO owner and CSR/CSC owners. Metadata-suppressed empty shape/kind variants, Dense owner/view object scratch and Sparse owner object scratch aliases remain explicit test gaps; no contract waiver."
+    },
+    {
+      "id": "budget_rank0_and_boundary_cross_product",
+      "required": true,
+      "status": "partial",
+      "details": "Dense rank1 with metadata and rank4 without metadata, Sparse COO with metadata and CSR/CSC without metadata execute complete budget sweeps; rank0 byte-budget sweep and full metadata/layout/limit cross product remain open."
+    },
+    {
+      "id": "windows_msvc",
+      "required": true,
+      "status": "open",
+      "details": "No real Windows MSVC Debug/Release/shared execution is available here; Linux is not a substitute."
+    },
+    {
+      "id": "macos_appleclang",
+      "required": true,
+      "status": "open",
+      "details": "No real macOS AppleClang execution is available here."
+    },
+    {
+      "id": "root_composed_replay",
+      "required": true,
+      "status": "open",
+      "details": "External installed/direct-link acceptance has not been imported or executed as a composed root change."
+    }
+  ],
+  "existing_evidence": "historical-print-records-01.json; dependency-bridge-{debug,release,shared}-01.json; original exact-source sanitizer/libc tests",
+  "installed_examples": "installed-print-examples-01.json preserves raw V12 example output identity; these are historical commands, not new commit-wide replays."
+}

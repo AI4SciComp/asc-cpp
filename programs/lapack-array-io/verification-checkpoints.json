@@ -66435,6 +66435,4081 @@
         "dirty_diff_sha256": null,
         "tree": null
       }
+    },
+    {
+      "id": "printing-build-asan-dense_acceptance-03",
+      "started": "2026-09-07T22:39:12.997370+00:00",
+      "completed": "2026-09-07T22:39:17.056030+00:00",
+      "configuration": "build-asan-dense_acceptance-03",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-g",
+        "-O1",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03/dense_acceptance.d",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/dense/print_acceptance_test.cc",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense/allocation_probe.cc",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-asan-lp64/libaffected.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03/dense_acceptance"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-asan-dense_acceptance-03/record.json",
+      "record_sha256": "ca50118cf5ea71d1a4fb774ac6f8e42c1e0a27d85be509ed0bc21622cc7ba607",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-asan-dense_original-03",
+      "started": "2026-09-07T22:39:01.688807+00:00",
+      "completed": "2026-09-07T22:39:12.769068+00:00",
+      "configuration": "build-asan-dense_original-03",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-g",
+        "-O1",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03/dense_original.d",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense/print_test.cc",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense/allocation_probe.cc",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-asan-lp64/libaffected.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03/dense_original"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-asan-dense_original-03/record.json",
+      "record_sha256": "37550df7fa0a29cbbc00e1ba4ee9f2f38a2d819d8c2c674fee82a400e4d906da",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-asan-sparse_acceptance-03",
+      "started": "2026-09-07T22:39:25.469017+00:00",
+      "completed": "2026-09-07T22:39:46.065849+00:00",
+      "configuration": "build-asan-sparse_acceptance-03",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-g",
+        "-O1",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03/sparse_acceptance.d",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/sparse/print_acceptance_test.cc",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse/allocation_probe.cc",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-asan-lp64/libaffected.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03/sparse_acceptance"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-asan-sparse_acceptance-03/record.json",
+      "record_sha256": "3166e2d4d0ca1487ab658fbdf9d5a94489201ba6487e2bc43a61598772c65860",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-asan-sparse_original-03",
+      "started": "2026-09-07T22:39:17.281383+00:00",
+      "completed": "2026-09-07T22:39:25.240963+00:00",
+      "configuration": "build-asan-sparse_original-03",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-g",
+        "-O1",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03/sparse_original.d",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse/print_test.cc",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse/allocation_probe.cc",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-asan-lp64/libaffected.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03/sparse_original"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-asan-sparse_original-03/record.json",
+      "record_sha256": "a715d1de083c77e200a11412f8c25e1b982b74d11226ddf8b209dbc5a8869403",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-debug-01",
+      "started": "2026-09-07T22:33:57.365441+00:00",
+      "completed": "2026-09-07T22:33:58.708199+00:00",
+      "configuration": "build-debug-01",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-01",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 2,
+      "evidence_exit_code": 2,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "96aad227773b42e4ffd722989a282da7b90646bc677231b1769cd9c1011faa69"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-debug-01/record.json",
+      "record_sha256": "23c3ff3474984a65f34ac66f59663958677621e43bc61076c0d95f5d18aa4de7",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-debug-02",
+      "started": "2026-09-07T22:34:51.514381+00:00",
+      "completed": "2026-09-07T22:34:56.955000+00:00",
+      "configuration": "build-debug-02",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-02",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bb6fd02c7dafd3a5b674433b0365515413ab91428992695fe352f76021aeb073"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-debug-02/record.json",
+      "record_sha256": "de5c67fb2d231248e57d9d3588fbb82f4a5baa6ef82678ba114e4cb9b7b3b815",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-debug-03",
+      "started": "2026-09-07T22:35:59.171205+00:00",
+      "completed": "2026-09-07T22:36:04.510979+00:00",
+      "configuration": "build-debug-03",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-03",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bb6fd02c7dafd3a5b674433b0365515413ab91428992695fe352f76021aeb073"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-debug-03/record.json",
+      "record_sha256": "7da9612887a5c041e44ea5bd51a949698dbe4b171e3db4d50a00643fc11df2aa",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-libc-dense_acceptance-03",
+      "started": "2026-09-07T22:39:55.362930+00:00",
+      "completed": "2026-09-07T22:39:59.296155+00:00",
+      "configuration": "build-libc-dense_acceptance-03",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++20",
+        "-g",
+        "-O1",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03/dense_acceptance.d",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/dense/print_acceptance_test.cc",
+        "$EVIDENCE_ROOT/p10-dense-05/libc_allocation_probe.cc",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03/dense_acceptance"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-libc-dense_acceptance-03/record.json",
+      "record_sha256": "74a34c0384f8b6490baa8a6ffe1eca12008fb0c4759f46d27536442c4efaa001",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-libc-dense_original-03",
+      "started": "2026-09-07T22:39:46.942212+00:00",
+      "completed": "2026-09-07T22:39:55.065491+00:00",
+      "configuration": "build-libc-dense_original-03",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++20",
+        "-g",
+        "-O1",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03/dense_original.d",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense/print_test.cc",
+        "$EVIDENCE_ROOT/p10-dense-05/libc_allocation_probe.cc",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03/dense_original"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-libc-dense_original-03/record.json",
+      "record_sha256": "88f0a916deb1f925db4ac5fe4ed88d920d6c75bcc61a4a92ebede7ce95e5d179",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-libc-sparse_acceptance-03",
+      "started": "2026-09-07T22:40:06.089570+00:00",
+      "completed": "2026-09-07T22:40:20.994229+00:00",
+      "configuration": "build-libc-sparse_acceptance-03",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++20",
+        "-g",
+        "-O1",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03/sparse_acceptance.d",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/sparse/print_acceptance_test.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostics/sparse_libc_allocation_probe.cc",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03/sparse_acceptance"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-libc-sparse_acceptance-03/record.json",
+      "record_sha256": "8b73c3e12a0ca3e8d5e4c04ae975d63e78b457cadde58c48e8a86f10c3387304",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-libc-sparse_original-03",
+      "started": "2026-09-07T22:39:59.611038+00:00",
+      "completed": "2026-09-07T22:40:05.807125+00:00",
+      "configuration": "build-libc-sparse_original-03",
+      "command": [
+        "/usr/bin/g++",
+        "-std=c++20",
+        "-g",
+        "-O1",
+        "-fno-exceptions",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03/sparse_original.d",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse/print_test.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostics/sparse_libc_allocation_probe.cc",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03/sparse_original"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-libc-sparse_original-03/record.json",
+      "record_sha256": "3de9b123eadfa2019e680dcaef7b8382b48a503e52e8cd1d52fe3fbaaf1c6bb0",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-release-03",
+      "started": "2026-09-07T22:37:56.710699+00:00",
+      "completed": "2026-09-07T22:38:09.499690+00:00",
+      "configuration": "build-release-03",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-release-03",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bb6fd02c7dafd3a5b674433b0365515413ab91428992695fe352f76021aeb073"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-release-03/record.json",
+      "record_sha256": "e92923ff2435bf4678af74e9e7946964ec9ae902dc1d853dc7e420d0e0153ba8",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-shared-03",
+      "started": "2026-09-07T22:38:11.120314+00:00",
+      "completed": "2026-09-07T22:38:23.909998+00:00",
+      "configuration": "build-shared-03",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-shared-03",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bb6fd02c7dafd3a5b674433b0365515413ab91428992695fe352f76021aeb073"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-shared-03/record.json",
+      "record_sha256": "76621719121802790eebadb2253b149e91e2ac4536981a3c54e105b204f23dd5",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-configure-debug-01",
+      "started": "2026-09-07T22:33:55.762954+00:00",
+      "completed": "2026-09-07T22:33:57.029200+00:00",
+      "configuration": "configure-debug-01",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate01",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-01",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-debug/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d6c74d49327374ca99734d25cb48327d1fd15afcd4df9cd65d1ab9fac1eb170"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/configure-debug-01/record.json",
+      "record_sha256": "268daec98330354b0f0c6cc7bb962f2a7a2f059adf4a550114f58d610296e12e",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-configure-debug-02",
+      "started": "2026-09-07T22:34:50.431172+00:00",
+      "completed": "2026-09-07T22:34:51.276670+00:00",
+      "configuration": "configure-debug-02",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate02",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-02",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-debug/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c321772cd3eeaeb5d12c4dbede6a17723cf9faaf514ed8b66ef2f04dbabe0cb0"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/configure-debug-02/record.json",
+      "record_sha256": "5997f201fa935473dbdc5ccc160161ef8cd97cf367ed0f717a31e29de30339c4",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-configure-debug-03",
+      "started": "2026-09-07T22:35:58.095782+00:00",
+      "completed": "2026-09-07T22:35:58.942296+00:00",
+      "configuration": "configure-debug-03",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-03",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-debug/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d5666195e3e933c806b15a0ef29eaa5e564bf680990febde4a8173638c939e58"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/configure-debug-03/record.json",
+      "record_sha256": "1bbf92d914e8497131401a7e43685f2813edf7bac111875cec2d51e0d299a423",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-configure-release-03",
+      "started": "2026-09-07T22:37:55.654712+00:00",
+      "completed": "2026-09-07T22:37:56.481247+00:00",
+      "configuration": "configure-release-03",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-release-03",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "01faa8ca83b2785c2772cc3b6a39f14a47d6dd1bf91bc9f2d222f3d74f35ca7c"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/configure-release-03/record.json",
+      "record_sha256": "7974611dc9f1c26ad67a9eccb95b31bdf5faf12863c6c190ce94611226547ebd",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-configure-shared-03",
+      "started": "2026-09-07T22:38:10.063976+00:00",
+      "completed": "2026-09-07T22:38:10.891765+00:00",
+      "configuration": "configure-shared-03",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-shared-03",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-shared/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "73bc3dc9d026b486c897e6f71f052e91f624e762cfb23188800b83161697942e"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/configure-shared-03/record.json",
+      "record_sha256": "c490b270bc47bcc1ab3c9d17f0e186a0434dc42f8aca15970e42517733825c6e",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-ctest-asan-03",
+      "started": "2026-09-07T22:39:46.380157+00:00",
+      "completed": "2026-09-07T22:39:46.536478+00:00",
+      "configuration": "ctest-asan-03",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-asan-03",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/ctest-asan-03/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1ec73afbeb190dafbc2a29fcf766f98e321963838e10cea710878a301a641ae8",
+        "ctest.xml": "cf1a26f431da78504087864298b68a76fc17cd0b8dc267500420e89c5760a445"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/ctest-asan-03/record.json",
+      "record_sha256": "7547a40acf523e5879d047b629a9061d8b8d861bb3c6a1a156eb5f2e3ddc969b",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-ctest-debug-02",
+      "started": "2026-09-07T22:34:57.183730+00:00",
+      "completed": "2026-09-07T22:34:57.261456+00:00",
+      "configuration": "ctest-debug-02",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-02",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/ctest-debug-02/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "97d053710d1c43b0f9c6a035d2061d040702057b50d888c261afee9fc53ba7d0",
+        "ctest.xml": "0aff2ce70a3aaba057484f8b3fc06758ae1ecdc795acab219b5f1689ba417988"
+      },
+      "test_counts": {
+        "executed": 2,
+        "failed": 1,
+        "passed": 1,
+        "selected": 2,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/ctest-debug-02/record.json",
+      "record_sha256": "fb1a011981a2330726fc10fd5c8daa39e30bfeebbd5eb2ac90591b6e35dc6782",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-ctest-debug-03",
+      "started": "2026-09-07T22:36:04.733848+00:00",
+      "completed": "2026-09-07T22:36:04.805137+00:00",
+      "configuration": "ctest-debug-03",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-03",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/ctest-debug-03/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "21fb6913bc1e775f2f7c8ec418499378a77ab3620471b31cc6aa3d65869d66f8",
+        "ctest.xml": "dd861b2f1274df8a35881595fdc09bf1b45719fb076d4b387ed96f33a1ae35af"
+      },
+      "test_counts": {
+        "executed": 2,
+        "failed": 0,
+        "passed": 2,
+        "selected": 2,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/ctest-debug-03/record.json",
+      "record_sha256": "033320feda0e5394419839904742a948d4d7c5629a9c104fb3d26709a2ac501b",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-ctest-libc-03",
+      "started": "2026-09-07T22:40:21.302945+00:00",
+      "completed": "2026-09-07T22:40:21.346734+00:00",
+      "configuration": "ctest-libc-03",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/diagnostic-libc-03",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/ctest-libc-03/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4f1e7161068f553494cfe1a850c706e9e0e4a2b777c6672c5586239575271a66",
+        "ctest.xml": "9b764ff15eb7db62a715185112092f4da67c48c44e610fe7f86911f1ef7857b4"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/ctest-libc-03/record.json",
+      "record_sha256": "96f0425640b3186f07697a848d0978ec941ecbfe8cc21d42277e5d3e78180422",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-ctest-release-03",
+      "started": "2026-09-07T22:38:09.770400+00:00",
+      "completed": "2026-09-07T22:38:09.800290+00:00",
+      "configuration": "ctest-release-03",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-release-03",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/ctest-release-03/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "0671368cab381a0a45ae3ea8bb09e2bf7cc7f021c24134affd61d637245b5bec",
+        "ctest.xml": "606b77eaac8bd15c727f08f563ef0a4a0ca5d07d9c3b7dcd9574ff9dda20f57a"
+      },
+      "test_counts": {
+        "executed": 2,
+        "failed": 0,
+        "passed": 2,
+        "selected": 2,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/ctest-release-03/record.json",
+      "record_sha256": "8a4746e91079f3a55847da40aad75baac99d9eddd76f98fb51b9e45979b1d667",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-ctest-shared-03",
+      "started": "2026-09-07T22:38:24.132650+00:00",
+      "completed": "2026-09-07T22:38:24.156915+00:00",
+      "configuration": "ctest-shared-03",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-shared-03",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/ctest-shared-03/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6e093ea79413cf3039365c0ac6afc5ca4730a61be9a9f88558fc2625b1c7a0f9",
+        "ctest.xml": "4fab570b8a9cb4f933c7348ba9370bac89f2ea41962a71b528b5041611ba87b8"
+      },
+      "test_counts": {
+        "executed": 2,
+        "failed": 0,
+        "passed": 2,
+        "selected": 2,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/ctest-shared-03/record.json",
+      "record_sha256": "439da78401f2f1d24939b36b7e6d6b08b7fd36597a6ef6f20581f32dc46da596",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-format-candidate03",
+      "started": "2026-09-07T22:40:54.317631+00:00",
+      "completed": "2026-09-07T22:40:54.385369+00:00",
+      "configuration": "format-candidate03",
+      "command": [
+        "/usr/bin/clang-format-19",
+        "--dry-run",
+        "--Werror",
+        "--style=file:$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-format",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/array_display_test_support.h",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/dense/print_acceptance_test.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/sparse/print_acceptance_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/format-candidate03/record.json",
+      "record_sha256": "c6bc881f41aeba16ea39d86304e859212c32f6bd25abbc22b7a600d82af8a5c7",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-strict-dense-03",
+      "started": "2026-09-07T22:36:35.527652+00:00",
+      "completed": "2026-09-07T22:36:49.774309+00:00",
+      "configuration": "strict-dense-03",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/dense/print_acceptance_test.cc",
+        "-p",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-03",
+        "--header-filter=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/.*",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bfc3a6b7a8d8d2eed8b0c32bb177c9a543ab312a32900218cd5c8bfaf2ce2c27"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/strict-dense-03/record.json",
+      "record_sha256": "559310c7eea8bd100ce39aeaa367c7699e9b79a33580548190c2df05b1e7b5ce",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-strict-original-dense-03",
+      "started": "2026-09-07T22:40:54.686050+00:00",
+      "completed": "2026-09-07T22:41:30.805412+00:00",
+      "configuration": "strict-original-dense-03",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense/print_test.cc",
+        "--header-filter=^$",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/dense"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6ffddacb1fe4a799b5e6ce2e0ee29545baf761f4b2c2980ff7728ece3056c57d"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/strict-original-dense-03/record.json",
+      "record_sha256": "99cee1926138fa9b2d8fe77d3b1776ef0c33e0d1264a8824fec6ffadfa2300ce",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-strict-original-sparse-03",
+      "started": "2026-09-07T22:41:31.106560+00:00",
+      "completed": "2026-09-07T22:41:50.011549+00:00",
+      "configuration": "strict-original-sparse-03",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse/print_test.cc",
+        "--header-filter=^$",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/tests/sparse"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7738d9545bfeb37e91541aebfbca1c62945b5fc7a9bd232e4bb9fab99133d24f"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/strict-original-sparse-03/record.json",
+      "record_sha256": "7615775225a6673f2198512d2731e27a81aa30e56a144a6a9c9c633951694a03",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-strict-sparse-03",
+      "started": "2026-09-07T22:36:50.007809+00:00",
+      "completed": "2026-09-07T22:37:23.239136+00:00",
+      "configuration": "strict-sparse-03",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/sparse/print_acceptance_test.cc",
+        "-p",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-debug-03",
+        "--header-filter=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/candidate03/.*",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "35ab758fca5a04b26d1fa9912b85a615058d4525596ccc55291ed601dc549f14"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/strict-sparse-03/record.json",
+      "record_sha256": "9ba2e9c070fe88483d7b4978d327be5514a9d3dd4978598bb904471bb4ef95df",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-read-instrumented-01",
+      "started": "2026-09-07T22:48:18.044859+00:00",
+      "completed": "2026-09-07T22:48:25.694141+00:00",
+      "configuration": "build-read-instrumented-01",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-fsanitize-coverage=trace-pc,trace-loads",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/main.d",
+        "-c",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/main.cc",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/main.o"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-read-instrumented-01/record.json",
+      "record_sha256": "1f8423e284af87eb305e0c6a67214a1867b108366f2f7be03ea822a49d9f34ee",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-read-negative-01",
+      "started": "2026-09-07T22:49:45.638635+00:00",
+      "completed": "2026-09-07T22:49:52.579800+00:00",
+      "configuration": "build-read-negative-01",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/main.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/observation.o",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/negative"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-read-negative-01/record.json",
+      "record_sha256": "e63238ef3c755e488635fadcbff759c0cb317b86db5c069a4e745c3f01b2863c",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-build-read-observer-01",
+      "started": "2026-09-07T22:48:17.337458+00:00",
+      "completed": "2026-09-07T22:48:17.820655+00:00",
+      "configuration": "build-read-observer-01",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-c",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/observation.cc",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/observation.o"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/build-read-observer-01/record.json",
+      "record_sha256": "e1697fe66bcc507a0119dc54c188c8cf2922c8e9f80dd3e8b162311866f34542",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-ctest-read-observation-01",
+      "started": "2026-09-07T22:48:26.288340+00:00",
+      "completed": "2026-09-07T22:48:26.304567+00:00",
+      "configuration": "ctest-read-observation-01",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/ctest-read-observation-01/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6975d0705fdd449d368557163add3f69f6de3aa05f295ef775d4cb8b5b3ac3f0",
+        "ctest.xml": "19aee3123df4bfb63590160b8f2131068d4ba7731ded5da77e8ea0de8037f9d8"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/ctest-read-observation-01/record.json",
+      "record_sha256": "978dd0e46409095bcbe8e88470b6ceac6bfd5d6be750e6837f2ad5ffb2dbfd97",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-format-read-observation-01",
+      "started": "2026-09-07T22:49:45.387726+00:00",
+      "completed": "2026-09-07T22:49:45.418980+00:00",
+      "configuration": "format-read-observation-01",
+      "command": [
+        "/usr/bin/clang-format-19",
+        "--dry-run",
+        "--Werror",
+        "--style=file:$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-format",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/main.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/observation.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/observation.h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/format-read-observation-01/record.json",
+      "record_sha256": "d18435a4ab3c660d874168aa05c82fa4b2fececf87e3ed164821a6bc8217e68d",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-link-read-observation-01",
+      "started": "2026-09-07T22:48:25.913336+00:00",
+      "completed": "2026-09-07T22:48:26.065244+00:00",
+      "configuration": "link-read-observation-01",
+      "command": [
+        "/usr/bin/clang++-19",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/main.o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/observation.o",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/observe"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/link-read-observation-01/record.json",
+      "record_sha256": "5e748e4f5206a3acea2e2cd0ce77f213753828829c0064d5381a7d1415a510bd",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-ctest",
+      "started": "2026-09-07T22:51:41.774528+00:00",
+      "completed": "2026-09-07T22:51:41.797155+00:00",
+      "configuration": "read-final02-ctest",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/read-final02-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b28a52157b95c730a5b6dceec68c9763e40ed3afb647db84a998a436a697b2d8",
+        "ctest.xml": "2353af398671a811f040fa1543d6be26b39117dd7d5fc069014bc5bc20962432"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-ctest/record.json",
+      "record_sha256": "7ae502a27f1a960ee950debc6aab1e9bc0eda78f93c69d6e16f8e51a680d3476",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-format",
+      "started": "2026-09-07T22:51:22.164813+00:00",
+      "completed": "2026-09-07T22:51:22.200734+00:00",
+      "configuration": "read-final02-format",
+      "command": [
+        "/usr/bin/clang-format-19",
+        "--dry-run",
+        "--Werror",
+        "--style=file:$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-format",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/main.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/observation.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/observation.h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-format/record.json",
+      "record_sha256": "64f9829cfecfa47529283ee2f0fe49bc94e9a4ea3d6b98dd2c7742d01efe350b",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-instrumented",
+      "started": "2026-09-07T22:51:23.322391+00:00",
+      "completed": "2026-09-07T22:51:32.503741+00:00",
+      "configuration": "read-final02-instrumented",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-fsanitize-coverage=trace-pc,trace-loads",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/main.d",
+        "-c",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/main.cc",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/main.o"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-instrumented/record.json",
+      "record_sha256": "65b2dcce1694f10bb0e01e0193c03d046db3a1edd544cbf443ad265264a2460a",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-link",
+      "started": "2026-09-07T22:51:32.749543+00:00",
+      "completed": "2026-09-07T22:51:32.924211+00:00",
+      "configuration": "read-final02-link",
+      "command": [
+        "/usr/bin/clang++-19",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/main.o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/observation.o",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/observe"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-link/record.json",
+      "record_sha256": "f83d5972fb58cb680300514f20bc1eff6fdf9e774756b61779afb196c102d80d",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-negative-build",
+      "started": "2026-09-07T22:51:33.204009+00:00",
+      "completed": "2026-09-07T22:51:41.502317+00:00",
+      "configuration": "read-final02-negative-build",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/main.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/observation.o",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/negative"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-negative-build/record.json",
+      "record_sha256": "3f9f2fafa5fd46633505105390996a66278ed9365636006784f5405b092c6693",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-negative-run",
+      "started": "2026-09-07T22:51:42.068973+00:00",
+      "completed": "2026-09-07T22:51:42.078779+00:00",
+      "configuration": "read-final02-negative-run",
+      "command": [
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/negative"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9468c02d3c8ece3399826927ecccf3debd41469a33e685d4559c93bcdac35886"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-negative-run/record.json",
+      "record_sha256": "2b27d8d25c3f35aeb63a1f1b28f0ae99a14f1f6fc764d5d63de09d12b83554b7",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-observer",
+      "started": "2026-09-07T22:51:22.475834+00:00",
+      "completed": "2026-09-07T22:51:23.040028+00:00",
+      "configuration": "read-final02-observer",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-c",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/observation.cc",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-final02/observation.o"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-observer/record.json",
+      "record_sha256": "0c7e3a9941b6d4339682492583f52f467c718f58f851f7983914096c5a7ede27",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-strict-main",
+      "started": "2026-09-07T22:50:58.957361+00:00",
+      "completed": "2026-09-07T22:51:16.773330+00:00",
+      "configuration": "read-final02-strict-main",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/main.cc",
+        "--header-filter=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/.*",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5869b906b723471089d2a00229850fad2bfcc81d5a4d8e052e14aced0a7b9bd8"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-strict-main/record.json",
+      "record_sha256": "3aecf0b251754e80c2243a2693b4ef0363eadfff1fdd3edc2bba8dc79a7c9b82",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-final02-strict-observation",
+      "started": "2026-09-07T22:51:17.045359+00:00",
+      "completed": "2026-09-07T22:51:21.901545+00:00",
+      "configuration": "read-final02-strict-observation",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/observation.cc",
+        "--header-filter=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/.*",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "0565b7f53ed2886ffdab8524ad34117e090d81ca5e0a65aad8c24e23dec48fce"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-final02-strict-observation/record.json",
+      "record_sha256": "a67a3a974715668874e2f5c2e80396d90a73ed7dac6f42dc8458e69b33428f66",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-run-read-negative-01",
+      "started": "2026-09-07T22:49:52.804615+00:00",
+      "completed": "2026-09-07T22:49:52.814774+00:00",
+      "configuration": "run-read-negative-01",
+      "command": [
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-observation01/negative"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ff1cf6e6e5f5ab5b1427f861d7edb8aa8ebd86bc0eca142aa0dbcf3b6c1a5536"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/run-read-negative-01/record.json",
+      "record_sha256": "a7940f63cd762f5a6a0ad3c9ec0ceaab547d60a211bd1c0187d10c032df1af42",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-strict-read-main-01",
+      "started": "2026-09-07T22:49:26.248098+00:00",
+      "completed": "2026-09-07T22:49:40.944353+00:00",
+      "configuration": "strict-read-main-01",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/main.cc",
+        "--header-filter=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/.*",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "278c219d92b3256dad45d5763ccad255505791338caa01220b0a59c50d2aa4de"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/strict-read-main-01/record.json",
+      "record_sha256": "8cfbc22b18fffbb39bd1003cffad9d24de4c502235212c33f1317d96e42d2d79",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-strict-read-observation-01",
+      "started": "2026-09-07T22:49:41.164665+00:00",
+      "completed": "2026-09-07T22:49:45.164227+00:00",
+      "configuration": "strict-read-observation-01",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/observation.cc",
+        "--header-filter=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation01/.*",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "af21937c0f39daec722acf74176025ebc9f67e73d9aa65a9f45d45ceb567c783"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/strict-read-observation-01/record.json",
+      "record_sha256": "f53925cbcc1eb78911e5152eab5ce10d41573f668d522a1f4f66e194b8d755a2",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-format",
+      "started": "2026-09-07T23:05:05.056315+00:00",
+      "completed": "2026-09-07T23:05:05.122141+00:00",
+      "configuration": "policy",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/tests/array_display_test_support.h",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/tests/dense/print_acceptance_test.cc",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/tests/sparse/print_acceptance_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/policy/format/record.json",
+      "record_sha256": "1c62bee1310deaf59fbe55c5e807da9d49648953debd8270061b078870431abd",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-strict-sparse",
+      "started": "2026-09-07T23:04:16.840767+00:00",
+      "completed": "2026-09-07T23:05:04.725410+00:00",
+      "configuration": "policy",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/tests/sparse/print_acceptance_test.cc",
+        "-p=$EVIDENCE_ROOT/p02-display-integration-01/build-release",
+        "--warnings-as-errors=*",
+        "--header-filter=.*/tests/array_display_test_support[.]h$"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e125d007238a4102fa9d890afbab1b90329c47b124d0574b5cb0224c0a7fd1c4"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/policy/strict-sparse/record.json",
+      "record_sha256": "ab0026c84cce9cd334d509b1981fb1a059378f21890a5479ddb613edf0d75e1c",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-strict-dense",
+      "started": "2026-09-07T23:03:53.590711+00:00",
+      "completed": "2026-09-07T23:04:16.532832+00:00",
+      "configuration": "policy",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/tests/dense/print_acceptance_test.cc",
+        "-p=$EVIDENCE_ROOT/p02-display-integration-01/build-release",
+        "--warnings-as-errors=*",
+        "--header-filter=.*/tests/array_display_test_support[.]h$"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e746311da1e774c8bb2e5badc46e6f3552e56a776ac3bbc0d0480f494ba318ae"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/policy/strict-dense/record.json",
+      "record_sha256": "4416b62055d4950975ce2e928cc9212ab140a0ae7b796c976c63b57fd348f46d",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-coverage",
+      "started": "2026-09-07T23:05:05.426898+00:00",
+      "completed": "2026-09-07T23:05:06.121600+00:00",
+      "configuration": "policy",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source",
+        "--evidence-root",
+        "$EVIDENCE_ROOT"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "46c65fa879c6f1dd3ca1949c78dcefd3fac98ed5f21391fe9e424e9e11a73439"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/policy/coverage/record.json",
+      "record_sha256": "ce2d7e04257c6578c8d5e18c7c5a435a9355d8e140c009518872065a97777244",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-surface",
+      "started": "2026-09-07T23:05:06.437423+00:00",
+      "completed": "2026-09-07T23:05:06.483301+00:00",
+      "configuration": "policy",
+      "command": [
+        "cmake",
+        "-DASC_CPP_SOURCE_DIR=$EVIDENCE_ROOT/p02-display-integration-01/source",
+        "-DASC_CPP_PUBLIC_SURFACE_OUTPUT=$EVIDENCE_ROOT/p02-display-integration-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "91af388b444d86914d686ac63bd8ec32da54014e56ce2face918bd4ac82b673e"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/policy/surface/record.json",
+      "record_sha256": "e24a297411c7e91e981f3d9199478cf4305de1be09f0768f16be2bc2ff56800e",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-installed-sparse-configure",
+      "started": "2026-09-07T23:04:49.184841+00:00",
+      "completed": "2026-09-07T23:04:50.619819+00:00",
+      "configuration": "release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/consumer-sparse",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/relocated prefix",
+        "-DPRINT_MODULE=sparse"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5f2db852d2e8a0fd08b23130ec48ab9b902473cf1401aa2c1ddcdcf576e90399"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/release/installed-sparse-configure/record.json",
+      "record_sha256": "29d39f917809727ccfa09ea8e102c7bd979dcfb7bddc906e4d6065a55b624750",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-ctest",
+      "started": "2026-09-07T23:04:40.864705+00:00",
+      "completed": "2026-09-07T23:04:40.910399+00:00",
+      "configuration": "release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-release",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "-R",
+        "^asc_cpp[.](dense|sparse)[.]print(_acceptance)?_test$",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/release/ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9247a78215e055dabb91e48f5ad9df050b1dc834200513decc9b4491b87b58c7",
+        "ctest.xml": "2ec628dfb25004d4e0dfd93adc09d876f5a3adc4273d10b65cbd543d8fd01c17"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/release/ctest/record.json",
+      "record_sha256": "7ef781d7c2dfe8c397706cf4ca52579dc52d68247ac538dba39c6995d5e70a8f",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-installed-dense-configure",
+      "started": "2026-09-07T23:04:41.577878+00:00",
+      "completed": "2026-09-07T23:04:42.807041+00:00",
+      "configuration": "release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/consumer-dense",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/relocated prefix",
+        "-DPRINT_MODULE=dense"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5df243ace5169f39710386ade338cd98341e8bb064d039f46a2805c5ed56b8ea"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/release/installed-dense-configure/record.json",
+      "record_sha256": "989eb186698d88db4344b3c8dadd6ffedfe93fd5b1f444f0836f2d3008bdd389",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-installed-sparse-build",
+      "started": "2026-09-07T23:04:50.978704+00:00",
+      "completed": "2026-09-07T23:05:07.670640+00:00",
+      "configuration": "release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/consumer-sparse",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9ac42ba7d9d46f5d2b8ac54372ed77c9bdbc8d8a30791dadfe956feeb6404893"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/release/installed-sparse-build/record.json",
+      "record_sha256": "521c09ffbda4ecd5a92bda16f02e76d29efa8fa4f36be56c3122edd490d82b39",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-installed-dense-ctest",
+      "started": "2026-09-07T23:04:48.718089+00:00",
+      "completed": "2026-09-07T23:04:48.744026+00:00",
+      "configuration": "release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/consumer-dense",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/release/installed-dense-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e7db9817997d133997033d2316ad8860f4461b071e25e16e6a6ba2fe01a2e7ee",
+        "ctest.xml": "a4dd79e3bdeb52dc59ad1465028b1a8c617ccebaf0f99dce134cb3ba46273c3c"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/release/installed-dense-ctest/record.json",
+      "record_sha256": "c48dce2977bdd17af1b53c5e99cd2ce3d26454e7d9df0e9481a95bf1dd8683a6",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-build",
+      "started": "2026-09-07T23:02:46.603197+00:00",
+      "completed": "2026-09-07T23:04:40.543144+00:00",
+      "configuration": "release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-release",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_dense_print_test",
+        "asc_dense_print_acceptance_test",
+        "asc_sparse_print_test",
+        "asc_sparse_print_acceptance_test",
+        "asc_utilities",
+        "asc_random"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "83316978a0ff625df6852e25c68247e7868d0681b1fb10be583889d06fe5898f"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/release/build/record.json",
+      "record_sha256": "f547b663c4acfbbcb8150c3316ffcbb344ebdd618c533ed05eee97dbb6a798e9",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-installed-sparse-ctest",
+      "started": "2026-09-07T23:05:08.011759+00:00",
+      "completed": "2026-09-07T23:05:08.041860+00:00",
+      "configuration": "release",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/consumer-sparse",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/release/installed-sparse-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7b47ba1aa39856289500eb0c24814db88dcf64129818336fbce6dada7fa883ef",
+        "ctest.xml": "792e0f712e42b60b1ca60bb2f493a87b3a449ac01aff993494eaa9835bcfc669"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/release/installed-sparse-ctest/record.json",
+      "record_sha256": "7d5f1a6b5ec0d27507035dce5b8be26562fa59cc7cbec96035030e1d1648317b",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-install",
+      "started": "2026-09-07T23:04:41.228797+00:00",
+      "completed": "2026-09-07T23:04:41.259744+00:00",
+      "configuration": "release",
+      "command": [
+        "cmake",
+        "--install",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-release",
+        "--prefix",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/prefix"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "50bb587f185dda5ad6c81975cc0cb92921187848cb8a5255892ce95671836814"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/release/install/record.json",
+      "record_sha256": "c606705c68f563fe0b4b65976303186cbe3904104c26d7bb2af008f606ba3b73",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-configure",
+      "started": "2026-09-07T23:02:14.881707+00:00",
+      "completed": "2026-09-07T23:02:46.191845+00:00",
+      "configuration": "release",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-release",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8acc5b03797aabeb6e6ec3773602c2788f306594f0e71fc091e69f45071c46aa"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/release/configure/record.json",
+      "record_sha256": "cfa53027145dd6e70e09accf91e9889bc12bbdb3e737a3717ddfa33467a31739",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-release-installed-dense-build",
+      "started": "2026-09-07T23:04:43.207739+00:00",
+      "completed": "2026-09-07T23:04:48.322510+00:00",
+      "configuration": "release",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/release/consumer-dense",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d5d263bae4e28f27c324c09af191b45b212a6e6f847fb20d8221a265f55bd68"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/release/installed-dense-build/record.json",
+      "record_sha256": "30155f835e9c46318097045e1f606cc278a64cc078ab6c50ac19b0cfb033f841",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-installed-sparse-configure",
+      "started": "2026-09-07T23:04:03.194390+00:00",
+      "completed": "2026-09-07T23:04:04.830165+00:00",
+      "configuration": "debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/consumer-sparse",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/relocated prefix",
+        "-DPRINT_MODULE=sparse"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "91d3fe75d9b3c6a1ba3433b2cd9c2627fc26c667bdd3811832e3806f69729ead"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/debug/installed-sparse-configure/record.json",
+      "record_sha256": "ddca6d74b6a75bed303c1cc31747e9f8b6db1d7750fd19ec4079307b060f0608",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-ctest",
+      "started": "2026-09-07T23:03:55.504962+00:00",
+      "completed": "2026-09-07T23:03:55.664071+00:00",
+      "configuration": "debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-debug",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "-R",
+        "^asc_cpp[.](dense|sparse)[.]print(_acceptance)?_test$",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/debug/ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a9260524070dcfa069c5d816fa7b5fe168e5b17860799591ca466d8b5c473039",
+        "ctest.xml": "a3ef6f98dc4487aec2d2f08219c00686476a8984898397808626ffa8a4626d67"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/debug/ctest/record.json",
+      "record_sha256": "9561bc6148f8fe571fe124dff6b1c6d6931b493efd337c906c69a930cf7653d6",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-installed-dense-configure",
+      "started": "2026-09-07T23:03:56.664124+00:00",
+      "completed": "2026-09-07T23:03:58.351134+00:00",
+      "configuration": "debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/consumer-dense",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/relocated prefix",
+        "-DPRINT_MODULE=dense"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d9ce37b3c818b1f9906c91ab542afa6a79b6b3b2bf1e72c86258e9ae80b50cbf"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/debug/installed-dense-configure/record.json",
+      "record_sha256": "97d7c1057eb8f020c529a0ec76f1438de2da6f041d94f92e2fd8df292d553ee6",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-installed-sparse-build",
+      "started": "2026-09-07T23:04:05.272658+00:00",
+      "completed": "2026-09-07T23:04:11.933062+00:00",
+      "configuration": "debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/consumer-sparse",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9ac42ba7d9d46f5d2b8ac54372ed77c9bdbc8d8a30791dadfe956feeb6404893"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/debug/installed-sparse-build/record.json",
+      "record_sha256": "aa86d5c666f9bd9bfa82faf37e1e8888a675d2f4ce2fbe63cc34b1eb6f408adb",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-installed-dense-ctest",
+      "started": "2026-09-07T23:04:02.630195+00:00",
+      "completed": "2026-09-07T23:04:02.732229+00:00",
+      "configuration": "debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/consumer-dense",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/debug/installed-dense-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b56074c641ca857b15b1d8d74247d23df95a3d8e1d257f745fc027807bc77e0f",
+        "ctest.xml": "b8dac58210f30e191917a622a4dde23c9b3665c217ac53cf7346bf9927c5e2dc"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/debug/installed-dense-ctest/record.json",
+      "record_sha256": "dc49f3eac68cc392d6653fae39223a1ca9ff25b952252ad4f6a75d97af7f26ce",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-build",
+      "started": "2026-09-07T23:02:46.753178+00:00",
+      "completed": "2026-09-07T23:03:55.043839+00:00",
+      "configuration": "debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-debug",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_dense_print_test",
+        "asc_dense_print_acceptance_test",
+        "asc_sparse_print_test",
+        "asc_sparse_print_acceptance_test",
+        "asc_utilities",
+        "asc_random"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "83316978a0ff625df6852e25c68247e7868d0681b1fb10be583889d06fe5898f"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/debug/build/record.json",
+      "record_sha256": "037c3ee223038a96c9fa5bbe7d5eedcfc0e7ee23c974da84e7e828a4f010b232",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-installed-sparse-ctest",
+      "started": "2026-09-07T23:04:12.314416+00:00",
+      "completed": "2026-09-07T23:04:12.371439+00:00",
+      "configuration": "debug",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/consumer-sparse",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/debug/installed-sparse-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a818353e0bd41881a1c033ff8bd228122db189421afe296efc37efd15cdf6c47",
+        "ctest.xml": "13c43c24c498bc3d61282a821c489a9d0aabf8e8fe16420de7ecbe4c02bf6d25"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/debug/installed-sparse-ctest/record.json",
+      "record_sha256": "8853050eb9767905c04d13cfaa4d8142cbb7b2271eae3724780e265ac43a335c",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-install",
+      "started": "2026-09-07T23:03:56.097121+00:00",
+      "completed": "2026-09-07T23:03:56.174767+00:00",
+      "configuration": "debug",
+      "command": [
+        "cmake",
+        "--install",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-debug",
+        "--prefix",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/prefix"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "801fccfb62be733522e49c83d09101fd280a2dbfa2d9e7d862fc531a8988d2c6"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/debug/install/record.json",
+      "record_sha256": "94a4cbcb9f3b13a10689ff7cf56136e6b76165dd0b3b2bb254284299dac6e885",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-configure",
+      "started": "2026-09-07T23:02:14.839905+00:00",
+      "completed": "2026-09-07T23:02:46.377371+00:00",
+      "configuration": "debug",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-debug",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "551a5c96b64ea8e1e0ab1cf0f8c3a2da1c141286c5416de81f3cb75945987558"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/debug/configure/record.json",
+      "record_sha256": "8b3ae0ccdc1a6bcdf1cd7d91f9be4ad5581316cf74bce910e0e0156fe3db7dfd",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-debug-installed-dense-build",
+      "started": "2026-09-07T23:03:58.784156+00:00",
+      "completed": "2026-09-07T23:04:02.142794+00:00",
+      "configuration": "debug",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/debug/consumer-dense",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d5d263bae4e28f27c324c09af191b45b212a6e6f847fb20d8221a265f55bd68"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/debug/installed-dense-build/record.json",
+      "record_sha256": "30d4930e9f861a443d793385298ebf980369cce3aa3b40918140ac9eb5f56838",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-asan-ctest",
+      "started": "2026-09-07T23:04:09.479515+00:00",
+      "completed": "2026-09-07T23:04:09.847740+00:00",
+      "configuration": "asan",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-asan",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "-R",
+        "^asc_cpp[.](dense|sparse)[.]print(_acceptance)?_test$",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/asan/ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b49e0e058b0f41095a123793ba7875e66b6dd79e1e29b0bc1c3f057d00c3b416",
+        "ctest.xml": "c951b2dd6c392a8858021471a300ced87073740b6986238bfc0c81b5a7c622b9"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/asan/ctest/record.json",
+      "record_sha256": "9fb8bd459162327ae89631107b3b52516276f5c591c419742c0e7ce20362e5e2",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-asan-build",
+      "started": "2026-09-07T23:02:59.775663+00:00",
+      "completed": "2026-09-07T23:04:09.094186+00:00",
+      "configuration": "asan",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-asan",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_dense_print_test",
+        "asc_dense_print_acceptance_test",
+        "asc_sparse_print_test",
+        "asc_sparse_print_acceptance_test"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b17e8e895823865062244f15169d6191a5ae28958e5046bcab95655f1317fab4"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/asan/build/record.json",
+      "record_sha256": "38796bc31d649e45a80a0d584a1d2faa618004f296ae74d88fe149e619c04b4d",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-asan-configure",
+      "started": "2026-09-07T23:02:14.936434+00:00",
+      "completed": "2026-09-07T23:02:59.360147+00:00",
+      "configuration": "asan",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-asan",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DASC_CPP_ENABLE_ADDRESS_SANITIZER=ON",
+        "-DASC_CPP_ENABLE_UNDEFINED_SANITIZER=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "73b5c6b59ba8608768cc436afe8fe60741e66a16f9b35a32e74cfe514447a543"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/asan/configure/record.json",
+      "record_sha256": "b71d516c770369d97205e51ad0945cdcde7f8e049b8a67a5bee9c94c7fd48c24",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-installed-sparse-configure",
+      "started": "2026-09-07T23:04:51.872229+00:00",
+      "completed": "2026-09-07T23:04:53.421849+00:00",
+      "configuration": "shared",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/consumer-sparse",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/relocated prefix",
+        "-DPRINT_MODULE=sparse"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "04923f4d0bce470aef6d723a188e00610a5664db29100ba8beb58767b49ac35a"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/shared/installed-sparse-configure/record.json",
+      "record_sha256": "52df236f5f680c9eba8c5000b93e6f3ee1f89e34427824b01b765a327924bfb9",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-ctest",
+      "started": "2026-09-07T23:04:43.142125+00:00",
+      "completed": "2026-09-07T23:04:43.201283+00:00",
+      "configuration": "shared",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-shared",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "-R",
+        "^asc_cpp[.](dense|sparse)[.]print(_acceptance)?_test$",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/shared/ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "97f364551230f5ea69bbc4c561cb6fbabae96d25f8147b1faaf853826ac34720",
+        "ctest.xml": "abb55c1d9223a1563ec2880fa3f8af35b404597995a1379491261a520f1cb6b2"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 0,
+        "passed": 4,
+        "selected": 4,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/shared/ctest/record.json",
+      "record_sha256": "7d3ab40df85860e7b959d2bbc3981542d76a4ad37aab80f6e076be565ebf5f4f",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-installed-dense-configure",
+      "started": "2026-09-07T23:04:44.032342+00:00",
+      "completed": "2026-09-07T23:04:45.964582+00:00",
+      "configuration": "shared",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/consumer-dense",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_PREFIX_PATH=$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/relocated prefix",
+        "-DPRINT_MODULE=dense"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4ea067d5c87a6134d2d62280effde0b8220cd295cb6541bd9b4ad13d35d847e3"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/shared/installed-dense-configure/record.json",
+      "record_sha256": "11ea75e6699198b7029a56e3e8023f800db9a09972a6fa823e6e848e9c2e48da",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-installed-sparse-build",
+      "started": "2026-09-07T23:04:53.841823+00:00",
+      "completed": "2026-09-07T23:05:09.777611+00:00",
+      "configuration": "shared",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/consumer-sparse",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9ac42ba7d9d46f5d2b8ac54372ed77c9bdbc8d8a30791dadfe956feeb6404893"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/shared/installed-sparse-build/record.json",
+      "record_sha256": "3418ced43bb3a405279a6191200c8bc861edfe389283173c5e918d89882b862e",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-installed-dense-ctest",
+      "started": "2026-09-07T23:04:51.469729+00:00",
+      "completed": "2026-09-07T23:04:51.491470+00:00",
+      "configuration": "shared",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/consumer-dense",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/shared/installed-dense-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b3648174eecbdd3b2f640bf7eeeb17c73a46472aa7b75791e649feefe6a77592",
+        "ctest.xml": "7e88395f391866cd29eda9253a04e9828c998ddfae158fb4eb431032b330c927"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/shared/installed-dense-ctest/record.json",
+      "record_sha256": "f4cf1e0f0dd066ed7a324702d60886dcbdb0192c71891a952424a24534af5ff8",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-build",
+      "started": "2026-09-07T23:02:47.796193+00:00",
+      "completed": "2026-09-07T23:04:42.763889+00:00",
+      "configuration": "shared",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-shared",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_dense_print_test",
+        "asc_dense_print_acceptance_test",
+        "asc_sparse_print_test",
+        "asc_sparse_print_acceptance_test",
+        "asc_utilities",
+        "asc_random"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "48127567d226feb08da2970e2f7e0758d00e8b1bc17be1076713f415f28eb909"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/shared/build/record.json",
+      "record_sha256": "d905d7e8c20989d05b7c0e1a28ddf0e8c11275729f2c48e3119b54b70237a174",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-installed-sparse-ctest",
+      "started": "2026-09-07T23:05:10.051278+00:00",
+      "completed": "2026-09-07T23:05:10.074742+00:00",
+      "configuration": "shared",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/consumer-sparse",
+        "--verbose",
+        "--test-output-size-passed",
+        "10000000",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-integration-01/logs/shared/installed-sparse-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "19e36156d02fc028b6a6676c2c42c4f98557664f0c12807be3ec45b4132f17e1",
+        "ctest.xml": "bc56e3c96d53b3d2f5b40a879f2378ac5efc2b11a825db9eac95c53996a6404b"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-integration-01/logs/shared/installed-sparse-ctest/record.json",
+      "record_sha256": "ef58f3973cfa04dbf0e1d206ceaa47869d2d65f44aebb61409b25acea9fb4aaa",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-install",
+      "started": "2026-09-07T23:04:43.633120+00:00",
+      "completed": "2026-09-07T23:04:43.675651+00:00",
+      "configuration": "shared",
+      "command": [
+        "cmake",
+        "--install",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-shared",
+        "--prefix",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/prefix"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "0500e7c28768365c6d668e59559aa82b354617f359b4773b360638de67a8a21e"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/shared/install/record.json",
+      "record_sha256": "08ef334ae6b51ba5c19425e535971f054364fe0d99dbc16817e0dbdcff28d5cb",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-configure",
+      "started": "2026-09-07T23:02:14.898271+00:00",
+      "completed": "2026-09-07T23:02:47.385832+00:00",
+      "configuration": "shared",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p02-display-integration-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p02-display-integration-01/build-shared",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5b35434b11561cc0d98899b7db3bf2afda4cfda699e4a227f086cee46f641f24"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/shared/configure/record.json",
+      "record_sha256": "f9531ccf39b2055451285072b9ece5d0be6630183db6b681eb78e49741e3cbea",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-printing-current-shared-installed-dense-build",
+      "started": "2026-09-07T23:04:46.460506+00:00",
+      "completed": "2026-09-07T23:04:51.040870+00:00",
+      "configuration": "shared",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p02-display-integration-01/installed-work/shared/consumer-dense",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d5d263bae4e28f27c324c09af191b45b212a6e6f847fb20d8221a265f55bd68"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-integration-01/logs/shared/installed-dense-build/record.json",
+      "record_sha256": "f8e13669f032861cd74581eacb9a73579b029f12df0ebf95c4af2e9dcd696185",
+      "source_archive_sha256": "44cf3fc6cad8f66b73b0455dfb59c00675d1f4deea68ad6480ff8f248363a573",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "ee543176389fc03eae9318397e8cfeaff4db04dc762107fc3448422822c1067c",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-negative-run",
+      "started": "2026-09-07T23:04:30.607764+00:00",
+      "completed": "2026-09-07T23:04:30.619199+00:00",
+      "configuration": "read-root-replay-01-negative-run",
+      "command": [
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/negative"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9468c02d3c8ece3399826927ecccf3debd41469a33e685d4559c93bcdac35886"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-negative-run/record.json",
+      "record_sha256": "a85207a3366da433d7475c89ef130994126d911e535136d67b5a55e991a06161",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-instrumented",
+      "started": "2026-09-07T23:04:04.445537+00:00",
+      "completed": "2026-09-07T23:04:18.031459+00:00",
+      "configuration": "read-root-replay-01-instrumented",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-fsanitize-coverage=trace-pc,trace-loads",
+        "-MMD",
+        "-MF",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/main.d",
+        "-c",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/main.cc",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/main.o"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-instrumented/record.json",
+      "record_sha256": "f95a7700cabcc33f4a4a0367ac58d45881da526ae95223f6b99f731206da3579",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-link",
+      "started": "2026-09-07T23:04:18.352034+00:00",
+      "completed": "2026-09-07T23:04:18.570775+00:00",
+      "configuration": "read-root-replay-01-link",
+      "command": [
+        "/usr/bin/clang++-19",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/main.o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/observation.o",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/observe"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-link/record.json",
+      "record_sha256": "9497e905a4a033c5e2aef3d8b939cbef32f2f1e780ed8061e55c4654acf4eddd",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-strict-main",
+      "started": "2026-09-07T23:03:23.996979+00:00",
+      "completed": "2026-09-07T23:03:53.141960+00:00",
+      "configuration": "read-root-replay-01-strict-main",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/main.cc",
+        "--header-filter=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/.*",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5869b906b723471089d2a00229850fad2bfcc81d5a4d8e052e14aced0a7b9bd8"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-strict-main/record.json",
+      "record_sha256": "955dab0561b3e3865fae3bbf6bec17759d9b49b98fbf3c90803714f4b2027d49",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-ctest",
+      "started": "2026-09-07T23:04:30.197319+00:00",
+      "completed": "2026-09-07T23:04:30.221592+00:00",
+      "configuration": "read-root-replay-01-ctest",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01",
+        "--output-on-failure",
+        "--test-output-size-passed",
+        "1000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/logs/read-root-replay-01-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "578eff38e848f19bfb372bba8e4d7684ee586e843fca75042448f23f16387189",
+        "ctest.xml": "0886cdb0992eccc70add0243487520722c4df64a642d5a42528398a804bda942"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-ctest/record.json",
+      "record_sha256": "2e0e5cea1e5466f974dd58be865171e249663de135491bec827cd19c5854c73e",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-negative-build",
+      "started": "2026-09-07T23:04:18.928431+00:00",
+      "completed": "2026-09-07T23:04:29.853744+00:00",
+      "configuration": "read-root-replay-01-negative-build",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/main.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/observation.o",
+        "$EVIDENCE_ROOT/p05-p06-integration-v9-02/build-release/asc-cpp-test-workspaces/consumer sparse install relocate/relocated prefix with spaces/lib/libasc_core.a",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/negative"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-negative-build/record.json",
+      "record_sha256": "a830320f5acb226581726a208a35ce768803ec6cae9d46b3aba621f13723e656",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-strict-observation",
+      "started": "2026-09-07T23:03:53.572628+00:00",
+      "completed": "2026-09-07T23:04:02.055471+00:00",
+      "configuration": "read-root-replay-01-strict-observation",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/observation.cc",
+        "--header-filter=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/.*",
+        "--config-file=$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "0565b7f53ed2886ffdab8524ad34117e090d81ca5e0a65aad8c24e23dec48fce"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-strict-observation/record.json",
+      "record_sha256": "4d4d827e168c7f1480ca867543aa26b32597bf6bc03545b63da5f2e397413111",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-format",
+      "started": "2026-09-07T23:04:02.483379+00:00",
+      "completed": "2026-09-07T23:04:02.528516+00:00",
+      "configuration": "read-root-replay-01-format",
+      "command": [
+        "/usr/bin/clang-format-19",
+        "--dry-run",
+        "--Werror",
+        "--style=file:$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/.clang-format",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/main.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/observation.cc",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/observation.h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-format/record.json",
+      "record_sha256": "8207bc9daec29c1ab84e6a4632f73317922db0373920e6c65579c6af821da2a8",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
+    },
+    {
+      "id": "printing-read-root-replay-01-observer",
+      "started": "2026-09-07T23:04:03.009781+00:00",
+      "completed": "2026-09-07T23:04:04.011217+00:00",
+      "configuration": "read-root-replay-01-observer",
+      "command": [
+        "/usr/bin/clang++-19",
+        "-std=c++20",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fno-exceptions",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_SPARSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/source/include",
+        "-c",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/read-observation02/observation.cc",
+        "-o",
+        "$EVIDENCE_ROOT/p02-display-acceptance-v12-01/build-read-root-replay-01/observation.o"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "external_record": "p02-display-acceptance-v12-01/logs/read-root-replay-01-observer/record.json",
+      "record_sha256": "694b2f0494d6bed1f9e4db77d589ec3bb5bfbdbfc2c238f2abb17fca695c52c5",
+      "source_archive_sha256": "43bd9edb7355c98b7a6306fff39ffed6aec93fdc5c082880a8bd8d225c44dc7b",
+      "source_before": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "af52b667cdbdbad918a8b8dc8d12887e7fe7a0e1913e519d763e89655594a09a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      }
     }
   ]
 }

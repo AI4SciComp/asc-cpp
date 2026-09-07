@@ -35,6 +35,7 @@ foreach(_source IN ITEMS
     blas_test.cc
     standard_blas_test.cc
     print_test.cc
+    print_acceptance_test.cc
     io_test.cc
     io_fuzz_test.cc
     io_shapes_test.cc
@@ -54,6 +55,9 @@ endforeach()
 
 target_include_directories(
   asc_sparse_io_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_sparse_print_acceptance_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
 )
 target_include_directories(
   asc_sparse_io_fuzz_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
