@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v9` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v10` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 198 partial scalar routines.
-The other 1,915 required
+routes below bring the development mapping to 206 partial scalar routines.
+The other 1,907 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -347,3 +347,16 @@ These eight routes have scoped solution, singular-value, residual-optimality
 and minimum-norm tests. They do not close those source failures or the full
 routine/mode contract. All remaining LAPACK families and optional-upstream
 dependencies remain required for the full reference profile.
+
+
+The general-band LU routes `Gbtrf` and `Gbtrs` support all four scalars.
+`LapackLuBandView` uses column-major `2*KL+KU+1` factor storage, with
+`KL+KU` as the zero-based diagonal row. `ReferenceLuBandFactorView` validates
+an actual successful matching GBTRF report and the complete one-based band
+pivot encoding. It is a separate factor family; rectangular factors can be
+inspected, while reusable N/T/C solves require square factors. RHS layouts
+are independently selected using explicit caller-owned packing when needed.
+The adapter checks pinned-source integer intermediates and detects unwritten
+or invalid native INFO/pivot outputs before publishing converted pivots or
+packed RHS results. These eight routes remain in progress until their full
+normalized mode and evidence requirements are closed.

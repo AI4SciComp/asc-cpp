@@ -407,3 +407,21 @@ Root approves a checked pre-entry numerical rejection of finite complex
 entries with nonfinite modulus, with unchanged numerical destinations and
 absent INFO, bound to the audited runtime. No hidden rescaling or substitute
 driver is introduced. Full finite-input numerical verification remains required.
+
+
+## Native INFO output validation audit
+
+Actual GT24 fault controls demonstrated false successful reports when the
+pinned native call wrote INFO only into a wrapper-local destination. The
+reviewed correction seeds all24 INFO locals and both pivot producers with
+native MIN; all added checks pass while four mathematical failures remain.
+The independent current public consumer04 passes both actual ABIs.
+
+GB8 already prepares full-width invalid native INFO/pivots. Root's subsequent
+read-only `provider-info-initialization-audit-01/audit.json` identifies103
+zero-initialized INFO locals across22 integrated translation units for further
+per-family review; these counts identify source candidates, not executed proof
+that every listed routine has a defect. Band20's five corresponding call
+sites are now undergoing bounded independent reproduction/correction before
+import. No existing source is reset, and prior full numerical suites do not
+establish this missing error-contract mode. Other implementation continues.

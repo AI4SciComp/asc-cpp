@@ -47,6 +47,7 @@ asc/dense/providers/lapack_indefinite_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_least_squares.h|asc_dense_lapack
 asc/dense/providers/lapack_lu.h|asc_dense_lapack
+asc/dense/providers/lapack_lu_band.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_equilibration.h|asc_dense_lapack

@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "455c235f8a0c20e4994a035a6b64b81e9950a453",
+  "last_implementation_commit": "a0a1e156041015636534627098e1e025e90e2ac3",
   "worktree_diff_identity": {
-    "state": "uncommitted_v9_implementation",
-    "parent_commit": "455c235f8a0c20e4994a035a6b64b81e9950a453",
-    "note": "Current V9 product equals frozen05 outside export-ignored programs; candidate05 only fixes test representation comparison with memcpy snapshots, preserving exact byte checks. No numerical production change after candidate01. All listed V9 composed checks completed; local commit pending, no remote writes."
+    "state": "uncommitted_v10_general_band",
+    "parent_commit": "a0a1e156041015636534627098e1e025e90e2ac3",
+    "note": "V10 product matches frozen02 exactly outside programs; composed gates complete. Awaiting local checkpoint commit; no remote action."
   },
   "packages": {
     "P00": {
@@ -282,7 +282,7 @@
       "state": "in_progress",
       "owner": "p00_array_contracts",
       "worktree": "../asc-cpp-p05-band-expert",
-      "scope": "Separate exact20 PBSV/PBCON/PBRFS/PBSVX/PBEQU candidate rows confirmed against inventory; frozen14 band dependencies preserved, actual implementation/source audit ongoing, not root registered. Root consumer04 passes256workflows/2048calls/256staleplanrejections eachABI and strict; independent54-file review/fresh84test lanes ongoing. Preserved local exact20source-extraction file proved truncated/non-JSON; replacement extraction must bind actual pinnedinventory/source without overwritingoldartifact."
+      "scope": "Separate exact20 PBSV/PBCON/PBRFS/PBSVX/PBEQU candidate rows confirmed against inventory; frozen14 band dependencies preserved, actual implementation/source audit ongoing, not root registered. Root consumer04 passes256workflows/2048calls/256staleplanrejections eachABI and strict; independent54-file review/fresh84test lanes ongoing. Preserved local exact20source-extraction file proved truncated/non-JSON; replacement extraction must bind actual pinnedinventory/source without overwritingoldartifact. Independent finalcandidate03 ledgerc40ad74610a799ef9fe7cfb33040b89fcc854d5450cf0917489c70c2ccf81c56 completed188commands, all8full84lanes retain10mathfail, fresh8edge4lanespass,66strict/header/docs pass. Root subsequent source review found all5INFOlocals zero-initialized; independent withheld-native-INFO reproduction/correction now in progress in separate external overlay beforeimport. Existing54candidate03 remains unchanged."
     },
     "P05.indefinite_expert_implementation": {
       "state": "in_progress",
@@ -310,7 +310,7 @@
       "worktree": "../asc-cpp-p07-svd",
       "branch": "feature/lapack-p07-svd",
       "base_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
-      "scope": "Exact8 GESVD/GESDD implementation ongoing. Query-only5/5 perABI includes4scalar processes each6156actualqueries and pure counts; not execution/math. Root reviewed nonfinite source02 and norm01 all112 actual outcomes; D021 preserves actual GESDD NaN-only -4, rejects unsafe nonfinite GESVD and Inf; explicit finite complex overflowing-modulus gate approved. Source-specific LASQ/LASD0 integer/work minima audits continue; no fullP07 claim."
+      "scope": "Exact8 GESVD/GESDD implementation ongoing. Query-only5/5 perABI includes4scalar processes each6156actualqueries and pure counts; not execution/math. Root reviewed nonfinite source02 and norm01 all112 actual outcomes; D021 preserves actual GESDD NaN-only -4, rejects unsafe nonfinite GESVD and Inf; explicit finite complex overflowing-modulus gate approved. Source-specific LASQ/LASD0 integer/work minima audits continue; no fullP07 claim. Latest source-only qd handoff b1eb8fc82ab3e4605c6cb3f341be0b2a068513c6de75a5ea04929fd6192d989a records8/8bothABI and finite controls. Conditional restoration nonprogress proved; general reduction/accepted-qd finiteness and natural exhaustion remain open. No product change or unexecuted diagnostic claim."
     },
     "P05.general_tridiagonal": {
       "state": "in_progress",
@@ -318,16 +318,22 @@
       "worktree": "../asc-cpp-p05-tridiagonal",
       "branch": "feature/lapack-p05-tridiagonal",
       "base_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
-      "scope": "Preserved final p05-tridiagonal-04 handoff:24 actual routes,20 C++ files,86 executed records; all8 Debug/Release/ASan/libc ABI lanes execute29tests with25pass4requiredmathfail0skip. Strict11TUs pass. Direct source probes reproduce GTCON/GTRFS/GTSVX subnormal mathematical discrepancies. Root independent full code review, normal-return guard, installed consumer and integration remain open; no mapped/verified credit. Root consumer02 passes144workflows/1152calls/144staleplanrejections eachABI; four strict nodiscard findings corrected inconsumer03, testing. Root source review found output-pivot initialization and metadata-report wording concerns for independent GB-owner follow-up; no integration/coverage credit. Root current consumer03 bothABI1/1 and strict pass. Independent external correction reproduces and fixes unwritten INFO/output pivots and isolated ILP64 partial-width pivot false acceptance; current eight33testlanes each29pass4requiredmathfail0skip, unchanged original GT04. Final strict/patch audit pending."
+      "scope": "Preserved final p05-tridiagonal-04 handoff:24 actual routes,20 C++ files,86 executed records; all8 Debug/Release/ASan/libc ABI lanes execute29tests with25pass4requiredmathfail0skip. Strict11TUs pass. Direct source probes reproduce GTCON/GTRFS/GTSVX subnormal mathematical discrepancies. Root independent full code review, normal-return guard, installed consumer and integration remain open; no mapped/verified credit. Root consumer02 passes144workflows/1152calls/144staleplanrejections eachABI; four strict nodiscard findings corrected inconsumer03, testing. Root source review found output-pivot initialization and metadata-report wording concerns for independent GB-owner follow-up; no integration/coverage credit. Root current consumer03 bothABI1/1 and strict pass. Independent external correction reproduces and fixes unwritten INFO/output pivots and isolated ILP64 partial-width pivot false acceptance; current eight33testlanes each29pass4requiredmathfail0skip, unchanged original GT04. Final strict/patch audit pending. Root read full935line correction patch and finalreview, verifiedall404artifacts and eightJUnit failures, applied13files only in newpublicconsumer04. CorrectedGT consumer04 nowpasses144workflows/1152calls/144rejects andstrict on bothactualABIs; rootimport pending."
     },
     "P05.general_band_lu": {
       "state": "in_progress",
       "owner": "indefinite_review",
-      "scope": "Exact12 code files plus review recovered; root read complete public/private/production/tests/consumer and final owner review. All8routes retain nominal family, full-width INFO/pivot sentinels, source-specific blocked/cursor guards; owner90scopedtests pass without full ASC sanitizer claim. Root source/closure evidence audit, shared normal-return protection and atomic V10 integration next."
+      "scope": "V10 composed checkpoint: full01 LP64/ILP64 each505/509, provider-free Debug273/277 Release273/277 shared275/279; exact same four stale header-count failures and zero skips. Only test oracle count92->93 changes in02; five fresh header lanes each4/4 pass. Full01 original records remain failures, no full02 claim. Installed14 eachABI, all-ASC-C++ ASan16 eachABI, strict8TUs eachABI, Doxygen93headers/1848members/zero warnings, format12/coverage/publicsurface pass. Fresh verbose unchanged01 numerical replay eachABI4/4 passes and records21factor+234solve profiles per scalar. Foreign archives/runtimes unsanitized. Normalized mode, platforms, shared provider, XBLAS and mathematical/provenance gates remain required."
+    },
+    "P04.provider_info_output_validation": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "GT24 independently demonstrates/fixes32falsepivot+56falseINFOsuccesses acrossABIs; newGB8 fullwidthsentinels alreadyimplemented. Band20 nextreproduction/fix delegated. Read-only source audit finds103zero-initialized nativeINFOlocals across22existing productionTUs; those are review candidates, not claimed executed defects. Preserve old test evidence identities; systematic per-family fault-mode closure required. Root Sylvester actual withheld-INFO old code4/4fail eachABI, corrected six16-test lanes pass0skip, strict final pending; four-file external correction not imported yet. Band20 independent omission correction passes scoped controls, final replay ongoing; original LU bounded audit delegated separately.",
+      "evidence": "provider-info-initialization-audit-01/audit.json"
     }
   },
-  "active_task": "P05.general_band_lu: root review completed all12 C++ files; audit source/compiled dependency evidence, add common return guard to five foreign mains, integrate eight routes atomically in V10. Continue corrected GT24/Band20 independent slices.",
-  "next_action": "After recording local V9 commit identity, import exact p05-general-band-01-7tvlpl1r/handoff 12 C++ files and reviewed program record without overwriting any destination; add installed_lu/normal_return_guard.h include/first local to five foreign mains; update source allowlists, public header consumers, installed consumer, incremental profile and all eight coverage rows together. Freeze V10, then run fresh actual LP64/ILP64 full/installed/strict/all-ASC sanitizer evidence. GT sentinel review and band final handoff remain parallel independent work.",
+  "active_task": "P08.Sylvester INFO-output correction: finish linkage/source audit, import four files, refresh affected registration evidence; then preserved GT24 integration.",
+  "next_action": "Audit E/p08-sylvester-info-output-01 source-identities.json, six fixed16-test lanes, both old4-test failures, strict3TUs/ABI and exact archive linkage; import four fixed files only after completed audit. Then import corrected GT24 original20+13patch and public-consumer04, register all required normal failing math tests.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -457,15 +463,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1915,
-    "reference_in_progress_in_ledger": 198,
+    "reference_not_started_in_ledger": 1907,
+    "reference_in_progress_in_ledger": 206,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 198,
+    "registered_partial_reference_operations": 206,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113 required unchanged;20 native implemented_unverified,198 reference in_progress,zero fully verified. Listed V9 composed command gates passed; full normalized modes, remaining routines, required upstream mathematical failures and platform/provider gates remain required."
+    "note": "2113 required;206 reference in_progress/1907 not_started;20 native implemented_unverified;zero fully verified. V10 composed command gates completed as recorded, normalized full acceptance open."
   },
   "blockers": [
     {
@@ -557,41 +563,24 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "state": "listed_v9_composed_checks_complete",
-    "candidate": "p05-p06-integration-v9-05",
-    "mapping_sha256": "68607f71dc107e2d013b85a27d1a2b3ec3e89f0bcc6469374c9c542c996be400",
-    "tree": "57ccbe0e85aa368e16f5105da1464ae9da60fbd1",
-    "archive_sha256": "e28293aacb2ecfc192810d4a4fd0b15e94a68e12fe0c05c5099ef7552423cef6",
-    "scope": "V9 full02 actual LP64/ILP64 each493/493, provider-free Debug277/277 Release277/277 shared279/279, zero skips; installed13 eachABI audited in full raw logs. All-ASC-C++ ASan71 eachABI passes, foreign archives/runtimes unsanitized. All23 strict02 TUs passed except probe corrected03; current preflight strict05 passes bothABIs. Current05 six scoped lanes each8/8; control03 six lanes each1/1; docs04 92headers/1827members zero warnings. Current05 all82 changed C++ format, coverage and public-header contract checks pass. Full02 is not relabeled full05; exact source deltas and command artifacts preserved. Full normalized modes/platforms/shared-provider/required mathematical failures remain open."
+    "state": "completed_composed_v10",
+    "candidate": "p05-general-band-integration-v10-02",
+    "implementation_tree": "21eaea428cf9819e807f01882db542533995e244",
+    "source_archive_sha256": "6dc344700ae8c940326ef79f0faa5e9731bb31520632a8190d011c454a7935e2",
+    "coverage_mapping_sha256": "87a733e7df7789d15d7a890770d5ea85cadf1fed8132fa0a2051c6655f1d8e82",
+    "scope": "V10 composed checkpoint: full01 LP64/ILP64 each505/509, provider-free Debug273/277 Release273/277 shared275/279; exact same four stale header-count failures and zero skips. Only test oracle count92->93 changes in02; five fresh header lanes each4/4 pass. Full01 original records remain failures, no full02 claim. Installed14 eachABI, all-ASC-C++ ASan16 eachABI, strict8TUs eachABI, Doxygen93headers/1848members/zero warnings, format12/coverage/publicsurface pass. Fresh verbose unchanged01 numerical replay eachABI4/4 passes and records21factor+234solve profiles per scalar. Foreign archives/runtimes unsanitized. Normalized mode, platforms, shared provider, XBLAS and mathematical/provenance gates remain required."
   },
   "last_completed_verification": {
-    "candidate": "p05-p06-integration-v9-05",
-    "implementation_tree": "57ccbe0e85aa368e16f5105da1464ae9da60fbd1",
-    "source_archive_sha256": "e28293aacb2ecfc192810d4a4fd0b15e94a68e12fe0c05c5099ef7552423cef6",
-    "coverage_mapping_sha256": "68607f71dc107e2d013b85a27d1a2b3ec3e89f0bcc6469374c9c542c996be400",
-    "completed": [
-      "full02-lp64-493",
-      "full02-ilp64-493",
-      "full02-debug-277",
-      "full02-release-277",
-      "full02-shared-279",
-      "installed02-13-eachABI",
-      "all-ASC-ASan02-71-eachABI",
-      "strict02-22-of23-eachABI",
-      "strict03-probe-eachABI",
-      "strict05-preflight-eachABI",
-      "scoped03-controls-six1testlanes",
-      "scoped05-preflight-six8testlanes",
-      "docs04-92headers-1827members",
-      "format05-82Cpp",
-      "coverage05",
-      "public-surface05"
-    ],
-    "pending": [],
-    "scope_limit": "V9 full02 actual LP64/ILP64 each493/493, provider-free Debug277/277 Release277/277 shared279/279, zero skips; installed13 eachABI audited in full raw logs. All-ASC-C++ ASan71 eachABI passes, foreign archives/runtimes unsanitized. All23 strict02 TUs passed except probe corrected03; current preflight strict05 passes bothABIs. Current05 six scoped lanes each8/8; control03 six lanes each1/1; docs04 92headers/1827members zero warnings. Current05 all82 changed C++ format, coverage and public-header contract checks pass. Full02 is not relabeled full05; exact source deltas and command artifacts preserved. Full normalized modes/platforms/shared-provider/required mathematical failures remain open.",
-    "review": "programs/lapack-array-io/factorizations-v9-review.md",
-    "completion_audit": "p05-p06-integration-v9-05/completion-audit-02/audit.json",
-    "completion_audit_sha256": "cc83db7b1678cabcde6c40a4b05e577c41b0798c0dd8253e9c475d446305459f"
+    "state": "completed_composed_v10",
+    "candidate": "p05-general-band-integration-v10-02",
+    "implementation_tree": "21eaea428cf9819e807f01882db542533995e244",
+    "source_archive_sha256": "6dc344700ae8c940326ef79f0faa5e9731bb31520632a8190d011c454a7935e2",
+    "coverage_mapping_sha256": "87a733e7df7789d15d7a890770d5ea85cadf1fed8132fa0a2051c6655f1d8e82",
+    "scope": "V10 composed checkpoint: full01 LP64/ILP64 each505/509, provider-free Debug273/277 Release273/277 shared275/279; exact same four stale header-count failures and zero skips. Only test oracle count92->93 changes in02; five fresh header lanes each4/4 pass. Full01 original records remain failures, no full02 claim. Installed14 eachABI, all-ASC-C++ ASan16 eachABI, strict8TUs eachABI, Doxygen93headers/1848members/zero warnings, format12/coverage/publicsurface pass. Fresh verbose unchanged01 numerical replay eachABI4/4 passes and records21factor+234solve profiles per scalar. Foreign archives/runtimes unsanitized. Normalized mode, platforms, shared provider, XBLAS and mathematical/provenance gates remain required.",
+    "review": "programs/lapack-array-io/lu-band-review.md",
+    "completion_audit": "p05-general-band-integration-v10-02/completion-audit-01/audit.json",
+    "completion_audit_sha256": "04f30966f894ed1e045a0906786e92e4d2a8649780c1f625c6d61397c7e5e5a2",
+    "pending": []
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",

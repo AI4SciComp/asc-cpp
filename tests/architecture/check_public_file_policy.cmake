@@ -52,6 +52,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_indefinite_driver.h
   include/asc/dense/providers/lapack_indefinite_refinement.h
   include/asc/dense/providers/lapack_svd_least_squares.h
+  include/asc/dense/providers/lapack_lu_band.h
   include/asc/dense/view.h
   include/asc/dense/print.h
   include/asc/dense/io.h
@@ -142,6 +143,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_indefinite_expert_driver.cc
   src/dense/lapack/reference_indefinite_refinement.cc
   src/dense/lapack/reference_svd_least_squares.cc
+  src/dense/lapack/reference_lu_band.cc
   src/dense/cuda/blas_level1.cc
   src/dense/cuda/blas_level1_kernels.cu
   src/dense/cuda/blas_level2.cc

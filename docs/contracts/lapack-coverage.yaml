@@ -3974,7 +3974,100 @@
         "state": "pending"
       },
       "id": "lapack.cgbtrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band.h",
+          "sha256": "38df5e1fd53719595ab8ddaf9e659998a4e198b3efe2be82cdfe8ff5355895a0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite_counts.h",
+          "sha256": "b0bc72c3971ecb93329222da25685f4661d78e0a442918d1b085ba17d4e790a9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_limits.h",
+          "sha256": "932bb655ea307880e807d301f28f4b14b49648f691cd1fa57b7e651aa0ef94ca"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band.cc",
+          "sha256": "dddfcb6248c2fb4511e677fd954e4eff7854c03109966e11ec918424c5429f43"
+        },
+        {
+          "path": "tests/dense_lapack/band_cholesky_test_support.h",
+          "sha256": "cf41fb4ecec8705d7055544f7812f959f2e807b7112c668624c967faf5bdf4da"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_main.cc",
+          "sha256": "98bf6245d3fb31aae3e76709d175a46cf8c578f3d6e8d7113b4498df9fdd1dd6"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_abi_probe.cc",
+          "sha256": "d5713cc2608f2b14659eedb76b8f304c6d6cf75a3f50d1150a2258ea20ce25c7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_boundary_test.cc",
+          "sha256": "18d79b1788a415d34ef2bf7a3b41abe56036e5399ab577f8eb74aa6be18845e3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_fault_test.cc",
+          "sha256": "542f0383b1d91849397db799d17c126f5233e7283c66703684de7114e5e64a42"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.cc",
+          "sha256": "e8574776357399397966a23f7f60fd1c89b3e9ce9b1b67fc929230ee36f87f54"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.h",
+          "sha256": "3582e70e3d795596a9a949961da7d9b8c88561dd4444a893171e91b3b453259a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_limits_test.cc",
+          "sha256": "92cb7c5a84c032b0f91870779da6a4cabf182049a740ee8375be584bdaf7bb55"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test.cc",
+          "sha256": "f7ac40f6402c2f4ef98beebc3db962e30eb3e9a26ac04c120f5874d441b6e6e6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test_support.h",
+          "sha256": "40b6fb295b70917df2f72ec241f6b94bcaa4fad241995027b1bc4144500684ff"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -3982,7 +4075,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual GBTRF/GBTRS routes with nominal band factor provenance, native-width sentinel pivots/INFO, rectangular reconstruction, square N/T/C solves and independent RHS layouts. Exact owner90 scoped tests and eight-source ABI/closure audit passed; root read all12 C++ files and added common test-only return guards. Current V10 full/installed/all-ASC sanitizer and normalized routine/mode evidence pending.",
+          "review": "programs/lapack-array-io/lu-band-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -3999,7 +4094,100 @@
         "state": "pending"
       },
       "id": "lapack.cgbtrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band.h",
+          "sha256": "38df5e1fd53719595ab8ddaf9e659998a4e198b3efe2be82cdfe8ff5355895a0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite_counts.h",
+          "sha256": "b0bc72c3971ecb93329222da25685f4661d78e0a442918d1b085ba17d4e790a9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_limits.h",
+          "sha256": "932bb655ea307880e807d301f28f4b14b49648f691cd1fa57b7e651aa0ef94ca"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band.cc",
+          "sha256": "dddfcb6248c2fb4511e677fd954e4eff7854c03109966e11ec918424c5429f43"
+        },
+        {
+          "path": "tests/dense_lapack/band_cholesky_test_support.h",
+          "sha256": "cf41fb4ecec8705d7055544f7812f959f2e807b7112c668624c967faf5bdf4da"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_main.cc",
+          "sha256": "98bf6245d3fb31aae3e76709d175a46cf8c578f3d6e8d7113b4498df9fdd1dd6"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_abi_probe.cc",
+          "sha256": "d5713cc2608f2b14659eedb76b8f304c6d6cf75a3f50d1150a2258ea20ce25c7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_boundary_test.cc",
+          "sha256": "18d79b1788a415d34ef2bf7a3b41abe56036e5399ab577f8eb74aa6be18845e3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_fault_test.cc",
+          "sha256": "542f0383b1d91849397db799d17c126f5233e7283c66703684de7114e5e64a42"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.cc",
+          "sha256": "e8574776357399397966a23f7f60fd1c89b3e9ce9b1b67fc929230ee36f87f54"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.h",
+          "sha256": "3582e70e3d795596a9a949961da7d9b8c88561dd4444a893171e91b3b453259a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_limits_test.cc",
+          "sha256": "92cb7c5a84c032b0f91870779da6a4cabf182049a740ee8375be584bdaf7bb55"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test.cc",
+          "sha256": "f7ac40f6402c2f4ef98beebc3db962e30eb3e9a26ac04c120f5874d441b6e6e6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test_support.h",
+          "sha256": "40b6fb295b70917df2f72ec241f6b94bcaa4fad241995027b1bc4144500684ff"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -4007,7 +4195,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual GBTRF/GBTRS routes with nominal band factor provenance, native-width sentinel pivots/INFO, rectangular reconstruction, square N/T/C solves and independent RHS layouts. Exact owner90 scoped tests and eight-source ABI/closure audit passed; root read all12 C++ files and added common test-only return guards. Current V10 full/installed/all-ASC sanitizer and normalized routine/mode evidence pending.",
+          "review": "programs/lapack-array-io/lu-band-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -11130,7 +11320,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -11400,7 +11590,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -11770,7 +11960,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -23350,7 +23540,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -23520,7 +23710,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -23890,7 +24080,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -30715,7 +30905,100 @@
         "state": "pending"
       },
       "id": "lapack.dgbtrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band.h",
+          "sha256": "38df5e1fd53719595ab8ddaf9e659998a4e198b3efe2be82cdfe8ff5355895a0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite_counts.h",
+          "sha256": "b0bc72c3971ecb93329222da25685f4661d78e0a442918d1b085ba17d4e790a9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_limits.h",
+          "sha256": "932bb655ea307880e807d301f28f4b14b49648f691cd1fa57b7e651aa0ef94ca"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band.cc",
+          "sha256": "dddfcb6248c2fb4511e677fd954e4eff7854c03109966e11ec918424c5429f43"
+        },
+        {
+          "path": "tests/dense_lapack/band_cholesky_test_support.h",
+          "sha256": "cf41fb4ecec8705d7055544f7812f959f2e807b7112c668624c967faf5bdf4da"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_main.cc",
+          "sha256": "98bf6245d3fb31aae3e76709d175a46cf8c578f3d6e8d7113b4498df9fdd1dd6"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_abi_probe.cc",
+          "sha256": "d5713cc2608f2b14659eedb76b8f304c6d6cf75a3f50d1150a2258ea20ce25c7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_boundary_test.cc",
+          "sha256": "18d79b1788a415d34ef2bf7a3b41abe56036e5399ab577f8eb74aa6be18845e3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_fault_test.cc",
+          "sha256": "542f0383b1d91849397db799d17c126f5233e7283c66703684de7114e5e64a42"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.cc",
+          "sha256": "e8574776357399397966a23f7f60fd1c89b3e9ce9b1b67fc929230ee36f87f54"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.h",
+          "sha256": "3582e70e3d795596a9a949961da7d9b8c88561dd4444a893171e91b3b453259a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_limits_test.cc",
+          "sha256": "92cb7c5a84c032b0f91870779da6a4cabf182049a740ee8375be584bdaf7bb55"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test.cc",
+          "sha256": "f7ac40f6402c2f4ef98beebc3db962e30eb3e9a26ac04c120f5874d441b6e6e6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test_support.h",
+          "sha256": "40b6fb295b70917df2f72ec241f6b94bcaa4fad241995027b1bc4144500684ff"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -30723,7 +31006,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual GBTRF/GBTRS routes with nominal band factor provenance, native-width sentinel pivots/INFO, rectangular reconstruction, square N/T/C solves and independent RHS layouts. Exact owner90 scoped tests and eight-source ABI/closure audit passed; root read all12 C++ files and added common test-only return guards. Current V10 full/installed/all-ASC sanitizer and normalized routine/mode evidence pending.",
+          "review": "programs/lapack-array-io/lu-band-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -30740,7 +31025,100 @@
         "state": "pending"
       },
       "id": "lapack.dgbtrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band.h",
+          "sha256": "38df5e1fd53719595ab8ddaf9e659998a4e198b3efe2be82cdfe8ff5355895a0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite_counts.h",
+          "sha256": "b0bc72c3971ecb93329222da25685f4661d78e0a442918d1b085ba17d4e790a9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_limits.h",
+          "sha256": "932bb655ea307880e807d301f28f4b14b49648f691cd1fa57b7e651aa0ef94ca"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band.cc",
+          "sha256": "dddfcb6248c2fb4511e677fd954e4eff7854c03109966e11ec918424c5429f43"
+        },
+        {
+          "path": "tests/dense_lapack/band_cholesky_test_support.h",
+          "sha256": "cf41fb4ecec8705d7055544f7812f959f2e807b7112c668624c967faf5bdf4da"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_main.cc",
+          "sha256": "98bf6245d3fb31aae3e76709d175a46cf8c578f3d6e8d7113b4498df9fdd1dd6"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_abi_probe.cc",
+          "sha256": "d5713cc2608f2b14659eedb76b8f304c6d6cf75a3f50d1150a2258ea20ce25c7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_boundary_test.cc",
+          "sha256": "18d79b1788a415d34ef2bf7a3b41abe56036e5399ab577f8eb74aa6be18845e3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_fault_test.cc",
+          "sha256": "542f0383b1d91849397db799d17c126f5233e7283c66703684de7114e5e64a42"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.cc",
+          "sha256": "e8574776357399397966a23f7f60fd1c89b3e9ce9b1b67fc929230ee36f87f54"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.h",
+          "sha256": "3582e70e3d795596a9a949961da7d9b8c88561dd4444a893171e91b3b453259a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_limits_test.cc",
+          "sha256": "92cb7c5a84c032b0f91870779da6a4cabf182049a740ee8375be584bdaf7bb55"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test.cc",
+          "sha256": "f7ac40f6402c2f4ef98beebc3db962e30eb3e9a26ac04c120f5874d441b6e6e6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test_support.h",
+          "sha256": "40b6fb295b70917df2f72ec241f6b94bcaa4fad241995027b1bc4144500684ff"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -30748,7 +31126,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual GBTRF/GBTRS routes with nominal band factor provenance, native-width sentinel pivots/INFO, rectangular reconstruction, square N/T/C solves and independent RHS layouts. Exact owner90 scoped tests and eight-source ABI/closure audit passed; root read all12 C++ files and added common test-only return guards. Current V10 full/installed/all-ASC sanitizer and normalized routine/mode evidence pending.",
+          "review": "programs/lapack-array-io/lu-band-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -50571,7 +50951,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -50841,7 +51221,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -51211,7 +51591,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -58109,7 +58489,100 @@
         "state": "pending"
       },
       "id": "lapack.sgbtrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band.h",
+          "sha256": "38df5e1fd53719595ab8ddaf9e659998a4e198b3efe2be82cdfe8ff5355895a0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite_counts.h",
+          "sha256": "b0bc72c3971ecb93329222da25685f4661d78e0a442918d1b085ba17d4e790a9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_limits.h",
+          "sha256": "932bb655ea307880e807d301f28f4b14b49648f691cd1fa57b7e651aa0ef94ca"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band.cc",
+          "sha256": "dddfcb6248c2fb4511e677fd954e4eff7854c03109966e11ec918424c5429f43"
+        },
+        {
+          "path": "tests/dense_lapack/band_cholesky_test_support.h",
+          "sha256": "cf41fb4ecec8705d7055544f7812f959f2e807b7112c668624c967faf5bdf4da"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_main.cc",
+          "sha256": "98bf6245d3fb31aae3e76709d175a46cf8c578f3d6e8d7113b4498df9fdd1dd6"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_abi_probe.cc",
+          "sha256": "d5713cc2608f2b14659eedb76b8f304c6d6cf75a3f50d1150a2258ea20ce25c7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_boundary_test.cc",
+          "sha256": "18d79b1788a415d34ef2bf7a3b41abe56036e5399ab577f8eb74aa6be18845e3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_fault_test.cc",
+          "sha256": "542f0383b1d91849397db799d17c126f5233e7283c66703684de7114e5e64a42"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.cc",
+          "sha256": "e8574776357399397966a23f7f60fd1c89b3e9ce9b1b67fc929230ee36f87f54"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.h",
+          "sha256": "3582e70e3d795596a9a949961da7d9b8c88561dd4444a893171e91b3b453259a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_limits_test.cc",
+          "sha256": "92cb7c5a84c032b0f91870779da6a4cabf182049a740ee8375be584bdaf7bb55"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test.cc",
+          "sha256": "f7ac40f6402c2f4ef98beebc3db962e30eb3e9a26ac04c120f5874d441b6e6e6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test_support.h",
+          "sha256": "40b6fb295b70917df2f72ec241f6b94bcaa4fad241995027b1bc4144500684ff"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -58117,7 +58590,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual GBTRF/GBTRS routes with nominal band factor provenance, native-width sentinel pivots/INFO, rectangular reconstruction, square N/T/C solves and independent RHS layouts. Exact owner90 scoped tests and eight-source ABI/closure audit passed; root read all12 C++ files and added common test-only return guards. Current V10 full/installed/all-ASC sanitizer and normalized routine/mode evidence pending.",
+          "review": "programs/lapack-array-io/lu-band-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -58134,7 +58609,100 @@
         "state": "pending"
       },
       "id": "lapack.sgbtrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band.h",
+          "sha256": "38df5e1fd53719595ab8ddaf9e659998a4e198b3efe2be82cdfe8ff5355895a0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite_counts.h",
+          "sha256": "b0bc72c3971ecb93329222da25685f4661d78e0a442918d1b085ba17d4e790a9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_limits.h",
+          "sha256": "932bb655ea307880e807d301f28f4b14b49648f691cd1fa57b7e651aa0ef94ca"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band.cc",
+          "sha256": "dddfcb6248c2fb4511e677fd954e4eff7854c03109966e11ec918424c5429f43"
+        },
+        {
+          "path": "tests/dense_lapack/band_cholesky_test_support.h",
+          "sha256": "cf41fb4ecec8705d7055544f7812f959f2e807b7112c668624c967faf5bdf4da"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_main.cc",
+          "sha256": "98bf6245d3fb31aae3e76709d175a46cf8c578f3d6e8d7113b4498df9fdd1dd6"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_abi_probe.cc",
+          "sha256": "d5713cc2608f2b14659eedb76b8f304c6d6cf75a3f50d1150a2258ea20ce25c7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_boundary_test.cc",
+          "sha256": "18d79b1788a415d34ef2bf7a3b41abe56036e5399ab577f8eb74aa6be18845e3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_fault_test.cc",
+          "sha256": "542f0383b1d91849397db799d17c126f5233e7283c66703684de7114e5e64a42"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.cc",
+          "sha256": "e8574776357399397966a23f7f60fd1c89b3e9ce9b1b67fc929230ee36f87f54"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.h",
+          "sha256": "3582e70e3d795596a9a949961da7d9b8c88561dd4444a893171e91b3b453259a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_limits_test.cc",
+          "sha256": "92cb7c5a84c032b0f91870779da6a4cabf182049a740ee8375be584bdaf7bb55"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test.cc",
+          "sha256": "f7ac40f6402c2f4ef98beebc3db962e30eb3e9a26ac04c120f5874d441b6e6e6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test_support.h",
+          "sha256": "40b6fb295b70917df2f72ec241f6b94bcaa4fad241995027b1bc4144500684ff"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -58142,7 +58710,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual GBTRF/GBTRS routes with nominal band factor provenance, native-width sentinel pivots/INFO, rectangular reconstruction, square N/T/C solves and independent RHS layouts. Exact owner90 scoped tests and eight-source ABI/closure audit passed; root read all12 C++ files and added common test-only return guards. Current V10 full/installed/all-ASC sanitizer and normalized routine/mode evidence pending.",
+          "review": "programs/lapack-array-io/lu-band-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -77775,7 +78345,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -78045,7 +78615,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -78415,7 +78985,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -84395,7 +84965,100 @@
         "state": "pending"
       },
       "id": "lapack.zgbtrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band.h",
+          "sha256": "38df5e1fd53719595ab8ddaf9e659998a4e198b3efe2be82cdfe8ff5355895a0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite_counts.h",
+          "sha256": "b0bc72c3971ecb93329222da25685f4661d78e0a442918d1b085ba17d4e790a9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_limits.h",
+          "sha256": "932bb655ea307880e807d301f28f4b14b49648f691cd1fa57b7e651aa0ef94ca"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band.cc",
+          "sha256": "dddfcb6248c2fb4511e677fd954e4eff7854c03109966e11ec918424c5429f43"
+        },
+        {
+          "path": "tests/dense_lapack/band_cholesky_test_support.h",
+          "sha256": "cf41fb4ecec8705d7055544f7812f959f2e807b7112c668624c967faf5bdf4da"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_main.cc",
+          "sha256": "98bf6245d3fb31aae3e76709d175a46cf8c578f3d6e8d7113b4498df9fdd1dd6"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_abi_probe.cc",
+          "sha256": "d5713cc2608f2b14659eedb76b8f304c6d6cf75a3f50d1150a2258ea20ce25c7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_boundary_test.cc",
+          "sha256": "18d79b1788a415d34ef2bf7a3b41abe56036e5399ab577f8eb74aa6be18845e3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_fault_test.cc",
+          "sha256": "542f0383b1d91849397db799d17c126f5233e7283c66703684de7114e5e64a42"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.cc",
+          "sha256": "e8574776357399397966a23f7f60fd1c89b3e9ce9b1b67fc929230ee36f87f54"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.h",
+          "sha256": "3582e70e3d795596a9a949961da7d9b8c88561dd4444a893171e91b3b453259a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_limits_test.cc",
+          "sha256": "92cb7c5a84c032b0f91870779da6a4cabf182049a740ee8375be584bdaf7bb55"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test.cc",
+          "sha256": "f7ac40f6402c2f4ef98beebc3db962e30eb3e9a26ac04c120f5874d441b6e6e6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test_support.h",
+          "sha256": "40b6fb295b70917df2f72ec241f6b94bcaa4fad241995027b1bc4144500684ff"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -84403,7 +85066,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual GBTRF/GBTRS routes with nominal band factor provenance, native-width sentinel pivots/INFO, rectangular reconstruction, square N/T/C solves and independent RHS layouts. Exact owner90 scoped tests and eight-source ABI/closure audit passed; root read all12 C++ files and added common test-only return guards. Current V10 full/installed/all-ASC sanitizer and normalized routine/mode evidence pending.",
+          "review": "programs/lapack-array-io/lu-band-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -84420,7 +85085,100 @@
         "state": "pending"
       },
       "id": "lapack.zgbtrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band.h",
+          "sha256": "38df5e1fd53719595ab8ddaf9e659998a4e198b3efe2be82cdfe8ff5355895a0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite_counts.h",
+          "sha256": "b0bc72c3971ecb93329222da25685f4661d78e0a442918d1b085ba17d4e790a9"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_limits.h",
+          "sha256": "932bb655ea307880e807d301f28f4b14b49648f691cd1fa57b7e651aa0ef94ca"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band.cc",
+          "sha256": "dddfcb6248c2fb4511e677fd954e4eff7854c03109966e11ec918424c5429f43"
+        },
+        {
+          "path": "tests/dense_lapack/band_cholesky_test_support.h",
+          "sha256": "cf41fb4ecec8705d7055544f7812f959f2e807b7112c668624c967faf5bdf4da"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_main.cc",
+          "sha256": "98bf6245d3fb31aae3e76709d175a46cf8c578f3d6e8d7113b4498df9fdd1dd6"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_abi_probe.cc",
+          "sha256": "d5713cc2608f2b14659eedb76b8f304c6d6cf75a3f50d1150a2258ea20ce25c7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_boundary_test.cc",
+          "sha256": "18d79b1788a415d34ef2bf7a3b41abe56036e5399ab577f8eb74aa6be18845e3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_fault_test.cc",
+          "sha256": "542f0383b1d91849397db799d17c126f5233e7283c66703684de7114e5e64a42"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.cc",
+          "sha256": "e8574776357399397966a23f7f60fd1c89b3e9ce9b1b67fc929230ee36f87f54"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_faults.h",
+          "sha256": "3582e70e3d795596a9a949961da7d9b8c88561dd4444a893171e91b3b453259a"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_limits_test.cc",
+          "sha256": "92cb7c5a84c032b0f91870779da6a4cabf182049a740ee8375be584bdaf7bb55"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test.cc",
+          "sha256": "f7ac40f6402c2f4ef98beebc3db962e30eb3e9a26ac04c120f5874d441b6e6e6"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_test_support.h",
+          "sha256": "40b6fb295b70917df2f72ec241f6b94bcaa4fad241995027b1bc4144500684ff"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -84428,7 +85186,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual GBTRF/GBTRS routes with nominal band factor provenance, native-width sentinel pivots/INFO, rectangular reconstruction, square N/T/C solves and independent RHS layouts. Exact owner90 scoped tests and eight-source ABI/closure audit passed; root read all12 C++ files and added common test-only return guards. Current V10 full/installed/all-ASC sanitizer and normalized routine/mode evidence pending.",
+          "review": "programs/lapack-array-io/lu-band-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -91482,7 +92242,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -91752,7 +92512,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -92122,7 +92882,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -103631,7 +104391,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -103801,7 +104561,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",
@@ -104171,7 +104931,7 @@
         },
         {
           "path": "tests/dense_lapack/indefinite_preflight_test.cc",
-          "sha256": "cbd0f172898c19ea508af4fe26ab8f62264385521d3faa812d5f6e3c1b10800a"
+          "sha256": "1bb64b78ea350a948e8a8d68f3298fa1949a1b368c5d3692049ed23285821d88"
         },
         {
           "path": "tests/dense_lapack/indefinite_counts_test.cc",

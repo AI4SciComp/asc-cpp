@@ -81,6 +81,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_indefinite_driver.h
   include/asc/dense/providers/lapack_indefinite_refinement.h
   include/asc/dense/providers/lapack_svd_least_squares.h
+  include/asc/dense/providers/lapack_lu_band.h
 )
 
 file(

@@ -435,6 +435,44 @@ foreach(_suite IN ITEMS reference_svd_least_squares svd_least_squares_contract
   endif()
 endforeach()
 
+foreach(_suite IN ITEMS lu_band lu_band_fault lu_band_boundary)
+  set(_target "asc_dense_lapack_${_suite}_test")
+  add_executable("${_target}" "${_suite}_test.cc" allocation_audit.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+  target_link_options("${_target}" PRIVATE
+    "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+  if(NOT _suite STREQUAL "lu_band")
+    target_sources("${_target}" PRIVATE lu_band_faults.cc)
+    foreach(_scalar IN ITEMS s d c z)
+      foreach(_routine IN ITEMS gbtrf gbtrs)
+        target_link_options("${_target}" PRIVATE
+          "-Wl,--wrap=${_scalar}${_routine}_")
+      endforeach()
+    endforeach()
+  endif()
+  foreach(_scalar IN ITEMS s d c z)
+    asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}.${_scalar}"
+      TARGET "${_target}" ARGUMENTS "${_scalar}"
+      LABELS dense_lapack lapack runtime numerical validation allocation
+      TIMEOUT 180)
+  endforeach()
+endforeach()
+add_executable(asc_dense_lapack_lu_band_limits_test lu_band_limits_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_band_limits_test)
+asc_register_test(NAME asc_cpp.dense_lapack.lu_band_limits
+  TARGET asc_dense_lapack_lu_band_limits_test
+  LABELS dense_lapack lapack validation TIMEOUT 120)
+add_executable(asc_dense_lapack_lu_band_abi_probe lu_band_abi_probe.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_band_abi_probe)
+target_include_directories(asc_dense_lapack_lu_band_abi_probe PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+asc_register_test(NAME asc_cpp.dense_lapack.lu_band_abi
+  TARGET asc_dense_lapack_lu_band_abi_probe
+  LABELS dense_lapack lapack runtime abi TIMEOUT 120)
+
 if(ASC_CPP_INSTALL)
   string(REPLACE ";" "|" _lapack_runtimes "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   add_test(NAME asc_cpp.dense_lapack.package_integration
@@ -484,7 +522,8 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_least_squares.h lapack_cholesky_band.h lapack_indefinite.h
     lapack_rank_revealing.h lapack_sylvester.h
     lapack_indefinite_condition.h lapack_indefinite_driver.h
-    lapack_indefinite_refinement.h lapack_svd_least_squares.h)
+    lapack_indefinite_refinement.h lapack_svd_least_squares.h
+    lapack_lu_band.h)
   string(MAKE_C_IDENTIFIER "${_header}" _id)
   foreach(_mode IN ITEMS normal no_exceptions)
     set(_target "asc_dense_lapack_header_${_id}_${_mode}")

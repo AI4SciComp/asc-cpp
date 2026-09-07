@@ -472,3 +472,10 @@ Exact identities, retained failures and source composition are recorded in
 [factorizations-v9-review.md](factorizations-v9-review.md). Next implementation
 is the independently reviewed eight general-band LU routes; no remote write
 is authorized for this resumed session.
+
+
+## V10 general-band composed checkpoint
+
+V10 composed checkpoint: full01 LP64/ILP64 each505/509, provider-free Debug273/277 Release273/277 shared275/279; exact same four stale header-count failures and zero skips. Only test oracle count92->93 changes in02; five fresh header lanes each4/4 pass. Full01 original records remain failures, no full02 claim. Installed14 eachABI, all-ASC-C++ ASan16 eachABI, strict8TUs eachABI, Doxygen93headers/1848members/zero warnings, format12/coverage/publicsurface pass. Fresh verbose unchanged01 numerical replay eachABI4/4 passes and records21factor+234solve profiles per scalar. Foreign archives/runtimes unsanitized. Normalized mode, platforms, shared provider, XBLAS and mathematical/provenance gates remain required.
+
+See `lu-band-review.md` for source identities and the audited55 command records.
