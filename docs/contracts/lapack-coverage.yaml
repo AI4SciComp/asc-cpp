@@ -7618,7 +7618,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu.cc",
-          "sha256": "411000fb94916ff9b50d8756e1373ec32c822babfa58f64b391fd6077ea920ab"
+          "sha256": "69a6b7a2e9f4f6d6483164e60d8be630f3db79acf07328effad6881697484272"
         },
         {
           "path": "tests/dense_lapack/reference_lu_test.cc",
@@ -8264,7 +8264,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu.cc",
-          "sha256": "411000fb94916ff9b50d8756e1373ec32c822babfa58f64b391fd6077ea920ab"
+          "sha256": "69a6b7a2e9f4f6d6483164e60d8be630f3db79acf07328effad6881697484272"
         },
         {
           "path": "tests/dense_lapack/reference_lu_test.cc",
@@ -9218,10 +9218,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -9366,10 +9366,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -9514,10 +9514,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -9662,10 +9662,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -9879,10 +9879,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -10027,10 +10027,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -18662,10 +18662,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -18974,10 +18974,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -19286,10 +19286,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -19623,10 +19623,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -19935,10 +19935,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -36906,7 +36906,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu.cc",
-          "sha256": "411000fb94916ff9b50d8756e1373ec32c822babfa58f64b391fd6077ea920ab"
+          "sha256": "69a6b7a2e9f4f6d6483164e60d8be630f3db79acf07328effad6881697484272"
         },
         {
           "path": "tests/dense_lapack/reference_lu_test.cc",
@@ -37552,7 +37552,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu.cc",
-          "sha256": "411000fb94916ff9b50d8756e1373ec32c822babfa58f64b391fd6077ea920ab"
+          "sha256": "69a6b7a2e9f4f6d6483164e60d8be630f3db79acf07328effad6881697484272"
         },
         {
           "path": "tests/dense_lapack/reference_lu_test.cc",
@@ -38506,10 +38506,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -38654,10 +38654,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -38802,10 +38802,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -38950,10 +38950,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -39167,10 +39167,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -39315,10 +39315,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -46949,10 +46949,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -47261,10 +47261,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -47573,10 +47573,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -47910,10 +47910,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -48222,10 +48222,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -66640,7 +66640,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu.cc",
-          "sha256": "411000fb94916ff9b50d8756e1373ec32c822babfa58f64b391fd6077ea920ab"
+          "sha256": "69a6b7a2e9f4f6d6483164e60d8be630f3db79acf07328effad6881697484272"
         },
         {
           "path": "tests/dense_lapack/reference_lu_test.cc",
@@ -67286,7 +67286,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu.cc",
-          "sha256": "411000fb94916ff9b50d8756e1373ec32c822babfa58f64b391fd6077ea920ab"
+          "sha256": "69a6b7a2e9f4f6d6483164e60d8be630f3db79acf07328effad6881697484272"
         },
         {
           "path": "tests/dense_lapack/reference_lu_test.cc",
@@ -68240,10 +68240,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -68388,10 +68388,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -68536,10 +68536,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -68684,10 +68684,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -68901,10 +68901,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -69049,10 +69049,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -76658,10 +76658,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -76970,10 +76970,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -77282,10 +77282,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -77619,10 +77619,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -77931,10 +77931,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -95151,7 +95151,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu.cc",
-          "sha256": "411000fb94916ff9b50d8756e1373ec32c822babfa58f64b391fd6077ea920ab"
+          "sha256": "69a6b7a2e9f4f6d6483164e60d8be630f3db79acf07328effad6881697484272"
         },
         {
           "path": "tests/dense_lapack/reference_lu_test.cc",
@@ -95797,7 +95797,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu.cc",
-          "sha256": "411000fb94916ff9b50d8756e1373ec32c822babfa58f64b391fd6077ea920ab"
+          "sha256": "69a6b7a2e9f4f6d6483164e60d8be630f3db79acf07328effad6881697484272"
         },
         {
           "path": "tests/dense_lapack/reference_lu_test.cc",
@@ -96751,10 +96751,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -96899,10 +96899,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -97047,10 +97047,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -97195,10 +97195,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -97412,10 +97412,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -97560,10 +97560,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing.",
           "review": "programs/lapack-array-io/tridiagonal-review.md",
-          "partial_scope": "Actual GTTRF/GTTRS/GTSV/GTCON/GTRFS/GTSVX24 through pinned LP64/trueILP64, native-width MIN INFO/output pivots, nominal GT factor/pivot encoding, independent RHS/solution layouts and explicit zero-RHS scratch. Corrected owner eight33-test lanes retain four required extreme mathematical failures each; independent public consumer04 bothABI144workflows/1152calls/144rejects passes. Root imports exact20 corrected files and consumer with normal-return guard; V11 combined/installed/all-ASC sanitizer and normalized mode evidence pending. Tiny finite GTCON/GTRFS/GTSVX mathematical modes remain required and ordinarily failing."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -106080,10 +106080,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -106392,10 +106392,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -106704,10 +106704,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -107041,10 +107041,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -107353,10 +107353,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
-          "state": "in_progress",
           "evidence_ids": [],
+          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures.",
           "review": "programs/lapack-array-io/band-expert-driver-review.md",
-          "partial_scope": "Actual20 pinned PBSV/PBEQU/PBCON/PBRFS/PBSVX scalar routes, selected band storage and explicit independent layouts, N/E/F expert equilibration and provider-width MIN INFO output admission. Independently reviewed57final files and caller consumer05; root artifact audit verifies3119 original artifacts/63corrective records/640compiler dependencies/37external hashes. Corrected owner eight88-test lanes each78pass10requiredmathfail0skip; direct public consumer05 bothABI256workflows/2048calls/256rejects passes. V12current combined/installed/all-ASC sanitizer and normalized mode evidence pending. Required complex-lower scaled condition and all-scalar tiny-estimate/equilibration-overflow mathematical gates remain ordinary failures."
+          "state": "in_progress"
         }
       },
       "required_profiles": [

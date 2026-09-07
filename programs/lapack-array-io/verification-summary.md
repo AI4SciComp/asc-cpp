@@ -486,3 +486,17 @@ See `lu-band-review.md` for source identities and the audited55 command records.
 V12 implementation checkpoint: exact frozen product matches live root; format58Cpp/coverage/publicsurface/Markdown and Doxygen102headers1969members0warnings pass. Full5lanes/ASan90perABI/strict36TUsperABI still running. Original ten Band and four GT ordinary required math failures retained. Root GETRF/GETRS independent six4-test replay confirms old4/4fail bothABI, fixedRelease/ASan4/4pass each; separate correction not imported yet.
 
 External `p05-band-expert-integration-v12-01/implementation-checkpoint-01/audit.json` SHA256 `ead2db495ac6f3c6aab84d3dc97f43cf62b6c8fa1abdef2829db45fc89be07a4` records current completed command hashes. No full-suite success is inferred from a pending process.
+
+
+## V11 completed full command evidence
+
+Full LP64/ILP64 each545/550, exactly4required GT extreme mathfail plus package integration300s timeout,0skips. Installed15 subtests passed bothABI before timeout; later isolation/control cases unfinished. Providerfree Debug277/277 Release277/277 shared279/279. ASC-only ASan each46/50 with4mathfail. All30strict checks, Doxygen97headers1911members0warnings,format25Cpp/coverage/publicsurface/Markdown pass. No full success or normalized mode claim. Unchanged300s package replay prepared in fresh separate workspaces, waits for compiler load to fall.
+
+Completion audit `p05-tridiagonal-integration-v11-01/completion-audit-01/audit.json` SHA256 `2b357813249acd33b7ac4487a7ebaca4c80ad16b08ca5075438cf0a266eede03` binds every command artifact and856 source files to frozen tree142997ad4a4bffdf612d0a0171e9da7391a05206, and preserves complete full/sanitizer/installed logs without invoking CTest again. The fresh replay will have separate records; original full failures are permanent evidence.
+
+
+## Current root integration completed
+
+Current frozen tree5dd66163 six18/18 lanes pass (all-ASC Debug,Release,ASan bothABI),0skips; all53CPUCore/Dense/provider TUs rebuilt. Exact112/168 unique profiles per scalar, all actual native INFO0. Format4/coverage/publicsurface pass. Six historical strict records remain valid through byte-identical actual compiler-read TU/headers/generated ABI config. Foreign archives unsanitized. No full-suite or pivot short-write completion claim.
+
+Frozen tree `5dd66163f10e34fdd72e19da35c79370575775cb`, archive SHA256 `46d0f26a92f04dddfae0d383d966854b9b1df2199ab8d15ed56a341ce7e1b018`, mapping `ae514d2343cd688ab8f3880e1dd7e8b0c2e72decd73555e44f835c42d7cd6451`. Audit `p04-lu-info-integration-01/completion-audit-01/audit.json` SHA256 `b5dcd01f46262406469cf9581db80ddfdcb638fb6281fa3e6e4d6304712ff39f` binds21 actual commands, all six compiled source closures and complete emitted mode sets. Existing V12 full runs are older INFO bytes and are never relabeled as these tests.

@@ -36,6 +36,22 @@ foreach(_scalar IN ITEMS s d c z)
     LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
 endforeach()
 
+add_executable(asc_dense_lapack_lu_info_test
+  lu_info_test.cc lu_info_faults.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_info_test)
+target_include_directories(asc_dense_lapack_lu_info_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_lu_info_test PRIVATE
+  "-Wl,--wrap=sgetrf_,--wrap=dgetrf_,--wrap=cgetrf_,--wrap=zgetrf_,--wrap=sgetrs_,--wrap=dgetrs_,--wrap=cgetrs_,--wrap=zgetrs_"
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.lu_info.${_scalar}"
+    TARGET asc_dense_lapack_lu_info_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack runtime numerical validation allocation
+    TIMEOUT 120)
+endforeach()
+
 add_executable(asc_dense_lapack_lu_layout_test
   lu_layout_test.cc allocation_audit.cc fault_injection.cc lu_expert_faults.cc
   "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")

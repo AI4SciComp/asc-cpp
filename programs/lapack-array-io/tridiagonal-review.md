@@ -144,3 +144,10 @@ All24 rows are in_progress, not verified; profile incremental-lapack-v11 has230p
 Frozen V11 tree142997ad4a4bffdf612d0a0171e9da7391a05206 archivee8ca3aa367f36ef3086edc8bf6f0adfd3c3feaba9915bd3242f19f8d26a44b0a mapping7a87e2cc08c7cb647e261c1566d5f447831d10c3c2a709bbdc6ca5f7eb59aaca. Current all-ASC-C++ ASan bothABIs each46/50: exactly4required GT extreme mathfail,zero skips; all new source,public consumers,Sylvester correction and STOP controls execute. Doxygen97headers1911members0warnings,format25Cpp,coverage/publicsurface/Markdown pass. Full5lanes and strict15TUs/ABI are running against immutable01; no final integration/full-suite pass claim.
 
 Local implementation checkpoint may precede completion of the immutable full/strict jobs. Their recorded source remains authoritative; later Band20 changes are a separate candidate and cannot inherit a full V11 pass. No required mathematical failure is accepted as success.
+
+
+## V11 completed full command evidence
+
+Full LP64/ILP64 each545/550, exactly4required GT extreme mathfail plus package integration300s timeout,0skips. Installed15 subtests passed bothABI before timeout; later isolation/control cases unfinished. Providerfree Debug277/277 Release277/277 shared279/279. ASC-only ASan each46/50 with4mathfail. All30strict checks, Doxygen97headers1911members0warnings,format25Cpp/coverage/publicsurface/Markdown pass. No full success or normalized mode claim. Unchanged300s package replay prepared in fresh separate workspaces, waits for compiler load to fall.
+
+Completion audit `p05-tridiagonal-integration-v11-01/completion-audit-01/audit.json` SHA256 `2b357813249acd33b7ac4487a7ebaca4c80ad16b08ca5075438cf0a266eede03` binds every command artifact and856 source files to frozen tree142997ad4a4bffdf612d0a0171e9da7391a05206, and preserves complete full/sanitizer/installed logs without invoking CTest again. The fresh replay will have separate records; original full failures are permanent evidence.

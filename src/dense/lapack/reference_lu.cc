@@ -102,6 +102,9 @@ LapackProviderIdentity BuildIdentity() {
   return identity;
 }
 
+// An untouched or partially written INFO must not manufacture success.
+// Full-width MIN retains an impossible sign bit after a short zero write on
+// the audited little-endian provider ABI.
 template <typename T>
 struct Native;
 template <>
@@ -111,14 +114,14 @@ struct Native<float> {
   static constexpr std::string_view kGetrs = "sgetrs";
   static lapack_int Factor(lapack_int m, lapack_int n, float* a, lapack_int lda,
                            lapack_int* pivots) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_sgetrf(&m, &n, a, &lda, pivots, &info);
     return info;
   }
   static lapack_int Solve(char trans, lapack_int n, lapack_int nrhs,
                           const float* a, lapack_int lda,
                           const lapack_int* pivots, float* b, lapack_int ldb) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_sgetrs(&trans, &n, &nrhs, a, &lda, pivots, b, &ldb, &info);
     return info;
   }
@@ -130,14 +133,14 @@ struct Native<double> {
   static constexpr std::string_view kGetrs = "dgetrs";
   static lapack_int Factor(lapack_int m, lapack_int n, double* a,
                            lapack_int lda, lapack_int* pivots) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_dgetrf(&m, &n, a, &lda, pivots, &info);
     return info;
   }
   static lapack_int Solve(char trans, lapack_int n, lapack_int nrhs,
                           const double* a, lapack_int lda,
                           const lapack_int* pivots, double* b, lapack_int ldb) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_dgetrs(&trans, &n, &nrhs, a, &lda, pivots, b, &ldb, &info);
     return info;
   }
@@ -149,7 +152,7 @@ struct Native<std::complex<float>> {
   static constexpr std::string_view kGetrs = "cgetrs";
   static lapack_int Factor(lapack_int m, lapack_int n, std::complex<float>* a,
                            lapack_int lda, lapack_int* pivots) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_cgetrf(&m, &n, a, &lda, pivots, &info);
     return info;
   }
@@ -157,7 +160,7 @@ struct Native<std::complex<float>> {
                           const std::complex<float>* a, lapack_int lda,
                           const lapack_int* pivots, std::complex<float>* b,
                           lapack_int ldb) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_cgetrs(&trans, &n, &nrhs, a, &lda, pivots, b, &ldb, &info);
     return info;
   }
@@ -169,7 +172,7 @@ struct Native<std::complex<double>> {
   static constexpr std::string_view kGetrs = "zgetrs";
   static lapack_int Factor(lapack_int m, lapack_int n, std::complex<double>* a,
                            lapack_int lda, lapack_int* pivots) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_zgetrf(&m, &n, a, &lda, pivots, &info);
     return info;
   }
@@ -177,7 +180,7 @@ struct Native<std::complex<double>> {
                           const std::complex<double>* a, lapack_int lda,
                           const lapack_int* pivots, std::complex<double>* b,
                           lapack_int ldb) {
-    lapack_int info = 0;
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_zgetrs(&trans, &n, &nrhs, a, &lda, pivots, b, &ldb, &info);
     return info;
   }
