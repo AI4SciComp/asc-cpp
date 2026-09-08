@@ -38,6 +38,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_triangular.cc
   reference_triangular_expert.cc reference_packed_triangular.cc
   reference_packed_triangular_expert.cc reference_triangular_band.cc
+  reference_triangular_band_expert.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
   FILES
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack.h"
@@ -85,6 +86,8 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_error_bounds.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_packed.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_band.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_band_condition.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_band_error_bounds.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_packed_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_packed_error_bounds.h")
 target_include_directories(asc_dense_lapack PRIVATE

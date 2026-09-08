@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v19` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v20` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 314 partial scalar routines.
-The other 1,799 required
+routes below bring the development mapping to 322 partial scalar routines.
+The other 1,791 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -33,9 +33,34 @@ sanitizer suites7/7 and four relocated23-family packages. Provider-free static
 and shared descriptor/header/package suites pass16/16 each. Zero skips. The
 117-header documentation and six static checks pass. These checks retain
 prior unchanged full-suite evidence explicitly; they are not a new full-suite
-pass or complete routine/mode verification. The band
-condition/error-estimate routines `Tbcon`/`Tbrfs`, complete routine/mode evidence
-and platform gates remain required work. Native LAPACK coverage is separate.
+pass or complete routine/mode verification. Complete routine/mode evidence and platform gates remain required. Native LAPACK coverage is separate.
+
+`lapack_triangular_band_condition.h` and
+`lapack_triangular_band_error_bounds.h` add S/D/C/Z `Tbcon` and `Tbrfs` using
+the checked triangular band descriptor. `Tbcon` estimates reciprocal condition
+in the one/infinity norm. `Tbrfs` reports FERR/BERR for supplied X without
+refining or modifying it. A/B/X layouts are independent; row conversion uses
+explicit caller workspace and stays banded. Unit diagonals and unused corners
+remain unread. Queries inspect metadata only and bind all strides, shapes,
+flags, source integer bounds and provider identity.
+
+The candidate's public/failure/count/signature tests pass in both ABIs under
+Release, Debug and ASC-only sanitizers. Its eight required mathematical gates
+fail for finite tiny/maximum inputs: zero/NaN condition estimates and infinite
+forward error estimates. Direct pinned calls reproduce them. The pinned complex
+LATBS dependency also omits a one-element lower-band dot product on its slow
+transpose/conjugate path; direct finite equation tests fail. These remain
+required mathematical gaps. Negative or unwritten INFO and negative estimates
+are defects; nonfinite estimates remain visible warnings. Full v20 Release suites
+on both ABIs each execute 880 tests: 810 pass and 70 required mathematical gates
+fail, with zero skips. Affected Debug suites each pass 60 of 68 and ASC-only
+sanitizers pass 11 of 19, retaining eight mathematical failures each. All 65
+primary Core/Dense/provider translation units compile freshly in each lane.
+Four relocated packages pass all 24 families; six static checks and strict
+Doxygen cover 119 headers and 2,148 public members without warnings. Fresh
+provider-free static/shared suites pass 16/16 each. The foreign libraries remain
+unsanitized. Complete modes, stronger memory acceptance and platform gates
+remain open. No native capability is added.
 
 The general-band expert headers `lapack_general_band.h` and
 `lapack_lu_band_{equilibration,condition,refinement,driver,expert}.h`

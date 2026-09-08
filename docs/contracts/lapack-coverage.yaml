@@ -27412,12 +27412,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tbcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctbcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/triangular_band_view.h",
+          "sha256": "d642f366b6b996c0744afe063a48c40b012a604a7a2784596649acfbb18b9005"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_condition.h",
+          "sha256": "1285df9d0e1e15b531e39f4f457291237de2cf9a81f9ada211848f887755daec"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_error_bounds.h",
+          "sha256": "616c77c957086d6036b3c7d0d61fa2b54aad58b8da3bbf8ecd4eb04f950a18e7"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band.h",
+          "sha256": "340cf2575ca04b40129a7c360a966999b72e55601537a3275b70c784a0190566"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band_expert_counts.h",
+          "sha256": "e555de4361503712268618406f72f674792de6cd022b0f1afd4649405112ecef"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_band_expert.cc",
+          "sha256": "29455af080d95e71404143e1c7f4239ffb091bb9ee80d6ad85e97d4ffe78c9be"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_band_expert_main.cc",
+          "sha256": "57065f041e116a9e663beb9dbb75e9669a7704bff20aaea010c70aba19f45a0f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_fault_test.cc",
+          "sha256": "5bda7a12b84c6b0ac0d57db474500d66ca473b48511f9c96c97edbfe471c954f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.cc",
+          "sha256": "bdbcfdeec729bc54e57d3f469cb7a250ef056b414ea427c3677d52c6d8cef57e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.h",
+          "sha256": "56804ab97617fc2e66f704a291bf2e21d1113b8492d4017435c171f301aa9127"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_math_test.cc",
+          "sha256": "0735fda16b46e563218a861097aba685d81ad34da6075d12025a051b2ada921b"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_pinned_signatures_test.cc",
+          "sha256": "e8cc591d01a07160a5de518d205515219b8b427a633571c9a8af9ea3c5942a06"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+          "sha256": "3ca9a0670a5aa8c125b27eb10756fb17125cd1c3b08fc07d20613f4cdec01658"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -27425,7 +27530,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/triangular-band-expert-review.md",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -27460,12 +27567,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tbrfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctbrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/triangular_band_view.h",
+          "sha256": "d642f366b6b996c0744afe063a48c40b012a604a7a2784596649acfbb18b9005"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_condition.h",
+          "sha256": "1285df9d0e1e15b531e39f4f457291237de2cf9a81f9ada211848f887755daec"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_error_bounds.h",
+          "sha256": "616c77c957086d6036b3c7d0d61fa2b54aad58b8da3bbf8ecd4eb04f950a18e7"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band.h",
+          "sha256": "340cf2575ca04b40129a7c360a966999b72e55601537a3275b70c784a0190566"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band_expert_counts.h",
+          "sha256": "e555de4361503712268618406f72f674792de6cd022b0f1afd4649405112ecef"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_band_expert.cc",
+          "sha256": "29455af080d95e71404143e1c7f4239ffb091bb9ee80d6ad85e97d4ffe78c9be"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_band_expert_main.cc",
+          "sha256": "57065f041e116a9e663beb9dbb75e9669a7704bff20aaea010c70aba19f45a0f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_fault_test.cc",
+          "sha256": "5bda7a12b84c6b0ac0d57db474500d66ca473b48511f9c96c97edbfe471c954f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.cc",
+          "sha256": "bdbcfdeec729bc54e57d3f469cb7a250ef056b414ea427c3677d52c6d8cef57e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.h",
+          "sha256": "56804ab97617fc2e66f704a291bf2e21d1113b8492d4017435c171f301aa9127"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_math_test.cc",
+          "sha256": "0735fda16b46e563218a861097aba685d81ad34da6075d12025a051b2ada921b"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_pinned_signatures_test.cc",
+          "sha256": "e8cc591d01a07160a5de518d205515219b8b427a633571c9a8af9ea3c5942a06"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+          "sha256": "3ca9a0670a5aa8c125b27eb10756fb17125cd1c3b08fc07d20613f4cdec01658"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -27473,7 +27685,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/triangular-band-expert-review.md",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -58996,12 +59210,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tbcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtbcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/triangular_band_view.h",
+          "sha256": "d642f366b6b996c0744afe063a48c40b012a604a7a2784596649acfbb18b9005"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_condition.h",
+          "sha256": "1285df9d0e1e15b531e39f4f457291237de2cf9a81f9ada211848f887755daec"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_error_bounds.h",
+          "sha256": "616c77c957086d6036b3c7d0d61fa2b54aad58b8da3bbf8ecd4eb04f950a18e7"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band.h",
+          "sha256": "340cf2575ca04b40129a7c360a966999b72e55601537a3275b70c784a0190566"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band_expert_counts.h",
+          "sha256": "e555de4361503712268618406f72f674792de6cd022b0f1afd4649405112ecef"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_band_expert.cc",
+          "sha256": "29455af080d95e71404143e1c7f4239ffb091bb9ee80d6ad85e97d4ffe78c9be"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_band_expert_main.cc",
+          "sha256": "57065f041e116a9e663beb9dbb75e9669a7704bff20aaea010c70aba19f45a0f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_fault_test.cc",
+          "sha256": "5bda7a12b84c6b0ac0d57db474500d66ca473b48511f9c96c97edbfe471c954f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.cc",
+          "sha256": "bdbcfdeec729bc54e57d3f469cb7a250ef056b414ea427c3677d52c6d8cef57e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.h",
+          "sha256": "56804ab97617fc2e66f704a291bf2e21d1113b8492d4017435c171f301aa9127"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_math_test.cc",
+          "sha256": "0735fda16b46e563218a861097aba685d81ad34da6075d12025a051b2ada921b"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_pinned_signatures_test.cc",
+          "sha256": "e8cc591d01a07160a5de518d205515219b8b427a633571c9a8af9ea3c5942a06"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+          "sha256": "3ca9a0670a5aa8c125b27eb10756fb17125cd1c3b08fc07d20613f4cdec01658"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59009,7 +59328,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/triangular-band-expert-review.md",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -59044,12 +59365,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tbrfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtbrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/triangular_band_view.h",
+          "sha256": "d642f366b6b996c0744afe063a48c40b012a604a7a2784596649acfbb18b9005"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_condition.h",
+          "sha256": "1285df9d0e1e15b531e39f4f457291237de2cf9a81f9ada211848f887755daec"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_error_bounds.h",
+          "sha256": "616c77c957086d6036b3c7d0d61fa2b54aad58b8da3bbf8ecd4eb04f950a18e7"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band.h",
+          "sha256": "340cf2575ca04b40129a7c360a966999b72e55601537a3275b70c784a0190566"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band_expert_counts.h",
+          "sha256": "e555de4361503712268618406f72f674792de6cd022b0f1afd4649405112ecef"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_band_expert.cc",
+          "sha256": "29455af080d95e71404143e1c7f4239ffb091bb9ee80d6ad85e97d4ffe78c9be"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_band_expert_main.cc",
+          "sha256": "57065f041e116a9e663beb9dbb75e9669a7704bff20aaea010c70aba19f45a0f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_fault_test.cc",
+          "sha256": "5bda7a12b84c6b0ac0d57db474500d66ca473b48511f9c96c97edbfe471c954f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.cc",
+          "sha256": "bdbcfdeec729bc54e57d3f469cb7a250ef056b414ea427c3677d52c6d8cef57e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.h",
+          "sha256": "56804ab97617fc2e66f704a291bf2e21d1113b8492d4017435c171f301aa9127"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_math_test.cc",
+          "sha256": "0735fda16b46e563218a861097aba685d81ad34da6075d12025a051b2ada921b"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_pinned_signatures_test.cc",
+          "sha256": "e8cc591d01a07160a5de518d205515219b8b427a633571c9a8af9ea3c5942a06"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+          "sha256": "3ca9a0670a5aa8c125b27eb10756fb17125cd1c3b08fc07d20613f4cdec01658"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59057,7 +59483,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/triangular-band-expert-review.md",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -90463,12 +90891,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tbcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.stbcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/triangular_band_view.h",
+          "sha256": "d642f366b6b996c0744afe063a48c40b012a604a7a2784596649acfbb18b9005"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_condition.h",
+          "sha256": "1285df9d0e1e15b531e39f4f457291237de2cf9a81f9ada211848f887755daec"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_error_bounds.h",
+          "sha256": "616c77c957086d6036b3c7d0d61fa2b54aad58b8da3bbf8ecd4eb04f950a18e7"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band.h",
+          "sha256": "340cf2575ca04b40129a7c360a966999b72e55601537a3275b70c784a0190566"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band_expert_counts.h",
+          "sha256": "e555de4361503712268618406f72f674792de6cd022b0f1afd4649405112ecef"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_band_expert.cc",
+          "sha256": "29455af080d95e71404143e1c7f4239ffb091bb9ee80d6ad85e97d4ffe78c9be"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_band_expert_main.cc",
+          "sha256": "57065f041e116a9e663beb9dbb75e9669a7704bff20aaea010c70aba19f45a0f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_fault_test.cc",
+          "sha256": "5bda7a12b84c6b0ac0d57db474500d66ca473b48511f9c96c97edbfe471c954f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.cc",
+          "sha256": "bdbcfdeec729bc54e57d3f469cb7a250ef056b414ea427c3677d52c6d8cef57e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.h",
+          "sha256": "56804ab97617fc2e66f704a291bf2e21d1113b8492d4017435c171f301aa9127"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_math_test.cc",
+          "sha256": "0735fda16b46e563218a861097aba685d81ad34da6075d12025a051b2ada921b"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_pinned_signatures_test.cc",
+          "sha256": "e8cc591d01a07160a5de518d205515219b8b427a633571c9a8af9ea3c5942a06"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+          "sha256": "3ca9a0670a5aa8c125b27eb10756fb17125cd1c3b08fc07d20613f4cdec01658"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90476,7 +91009,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/triangular-band-expert-review.md",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -90511,12 +91046,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tbrfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.stbrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/triangular_band_view.h",
+          "sha256": "d642f366b6b996c0744afe063a48c40b012a604a7a2784596649acfbb18b9005"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_condition.h",
+          "sha256": "1285df9d0e1e15b531e39f4f457291237de2cf9a81f9ada211848f887755daec"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_error_bounds.h",
+          "sha256": "616c77c957086d6036b3c7d0d61fa2b54aad58b8da3bbf8ecd4eb04f950a18e7"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band.h",
+          "sha256": "340cf2575ca04b40129a7c360a966999b72e55601537a3275b70c784a0190566"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band_expert_counts.h",
+          "sha256": "e555de4361503712268618406f72f674792de6cd022b0f1afd4649405112ecef"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_band_expert.cc",
+          "sha256": "29455af080d95e71404143e1c7f4239ffb091bb9ee80d6ad85e97d4ffe78c9be"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_band_expert_main.cc",
+          "sha256": "57065f041e116a9e663beb9dbb75e9669a7704bff20aaea010c70aba19f45a0f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_fault_test.cc",
+          "sha256": "5bda7a12b84c6b0ac0d57db474500d66ca473b48511f9c96c97edbfe471c954f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.cc",
+          "sha256": "bdbcfdeec729bc54e57d3f469cb7a250ef056b414ea427c3677d52c6d8cef57e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.h",
+          "sha256": "56804ab97617fc2e66f704a291bf2e21d1113b8492d4017435c171f301aa9127"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_math_test.cc",
+          "sha256": "0735fda16b46e563218a861097aba685d81ad34da6075d12025a051b2ada921b"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_pinned_signatures_test.cc",
+          "sha256": "e8cc591d01a07160a5de518d205515219b8b427a633571c9a8af9ea3c5942a06"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+          "sha256": "3ca9a0670a5aa8c125b27eb10756fb17125cd1c3b08fc07d20613f4cdec01658"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90524,7 +91164,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/triangular-band-expert-review.md",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -120482,12 +121124,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tbcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztbcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/triangular_band_view.h",
+          "sha256": "d642f366b6b996c0744afe063a48c40b012a604a7a2784596649acfbb18b9005"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_condition.h",
+          "sha256": "1285df9d0e1e15b531e39f4f457291237de2cf9a81f9ada211848f887755daec"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_error_bounds.h",
+          "sha256": "616c77c957086d6036b3c7d0d61fa2b54aad58b8da3bbf8ecd4eb04f950a18e7"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band.h",
+          "sha256": "340cf2575ca04b40129a7c360a966999b72e55601537a3275b70c784a0190566"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band_expert_counts.h",
+          "sha256": "e555de4361503712268618406f72f674792de6cd022b0f1afd4649405112ecef"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_band_expert.cc",
+          "sha256": "29455af080d95e71404143e1c7f4239ffb091bb9ee80d6ad85e97d4ffe78c9be"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_band_expert_main.cc",
+          "sha256": "57065f041e116a9e663beb9dbb75e9669a7704bff20aaea010c70aba19f45a0f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_fault_test.cc",
+          "sha256": "5bda7a12b84c6b0ac0d57db474500d66ca473b48511f9c96c97edbfe471c954f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.cc",
+          "sha256": "bdbcfdeec729bc54e57d3f469cb7a250ef056b414ea427c3677d52c6d8cef57e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.h",
+          "sha256": "56804ab97617fc2e66f704a291bf2e21d1113b8492d4017435c171f301aa9127"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_math_test.cc",
+          "sha256": "0735fda16b46e563218a861097aba685d81ad34da6075d12025a051b2ada921b"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_pinned_signatures_test.cc",
+          "sha256": "e8cc591d01a07160a5de518d205515219b8b427a633571c9a8af9ea3c5942a06"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+          "sha256": "3ca9a0670a5aa8c125b27eb10756fb17125cd1c3b08fc07d20613f4cdec01658"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -120495,7 +121242,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/triangular-band-expert-review.md",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -120530,12 +121279,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tbrfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztbrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/triangular_band_view.h",
+          "sha256": "d642f366b6b996c0744afe063a48c40b012a604a7a2784596649acfbb18b9005"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_condition.h",
+          "sha256": "1285df9d0e1e15b531e39f4f457291237de2cf9a81f9ada211848f887755daec"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_band_error_bounds.h",
+          "sha256": "616c77c957086d6036b3c7d0d61fa2b54aad58b8da3bbf8ecd4eb04f950a18e7"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band.h",
+          "sha256": "340cf2575ca04b40129a7c360a966999b72e55601537a3275b70c784a0190566"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_band_expert_counts.h",
+          "sha256": "e555de4361503712268618406f72f674792de6cd022b0f1afd4649405112ecef"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_band_expert.cc",
+          "sha256": "29455af080d95e71404143e1c7f4239ffb091bb9ee80d6ad85e97d4ffe78c9be"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_band_expert_main.cc",
+          "sha256": "57065f041e116a9e663beb9dbb75e9669a7704bff20aaea010c70aba19f45a0f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_fault_test.cc",
+          "sha256": "5bda7a12b84c6b0ac0d57db474500d66ca473b48511f9c96c97edbfe471c954f"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.cc",
+          "sha256": "bdbcfdeec729bc54e57d3f469cb7a250ef056b414ea427c3677d52c6d8cef57e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_faults.h",
+          "sha256": "56804ab97617fc2e66f704a291bf2e21d1113b8492d4017435c171f301aa9127"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_math_test.cc",
+          "sha256": "0735fda16b46e563218a861097aba685d81ad34da6075d12025a051b2ada921b"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_pinned_signatures_test.cc",
+          "sha256": "e8cc591d01a07160a5de518d205515219b8b427a633571c9a8af9ea3c5942a06"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+          "sha256": "3ca9a0670a5aa8c125b27eb10756fb17125cd1c3b08fc07d20613f4cdec01658"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -120543,7 +121397,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/triangular-band-expert-review.md",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
         }
       },
       "required_profiles": [

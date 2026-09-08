@@ -93,6 +93,8 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_triangular_error_bounds.h
   include/asc/dense/providers/lapack_triangular_packed.h
   include/asc/dense/providers/lapack_triangular_band.h
+  include/asc/dense/providers/lapack_triangular_band_condition.h
+  include/asc/dense/providers/lapack_triangular_band_error_bounds.h
   include/asc/dense/providers/lapack_triangular_packed_condition.h
   include/asc/dense/providers/lapack_triangular_packed_error_bounds.h
   include/asc/dense/providers/lapack_lu_band_expert.h

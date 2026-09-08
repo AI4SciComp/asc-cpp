@@ -11,7 +11,7 @@ foreach(_forbidden IN ITEMS sparse random utilities core_cuda dense_cuda)
     message(FATAL_ERROR "Dense LAPACK lookup leaked ASC::${_forbidden}")
   endif()
 endforeach()
-if(NOT ASCCpp_LAPACK_PROFILE STREQUAL "incremental-lapack-v19")
+if(NOT ASCCpp_LAPACK_PROFILE STREQUAL "incremental-lapack-v20")
   message(FATAL_ERROR "Unexpected installed development profile")
 endif()
 add_executable(installed_lu main.cc)
@@ -24,7 +24,7 @@ add_test(NAME installed_lu_advanced COMMAND installed_lu_advanced)
 foreach(_family IN ITEMS cholesky qr helpers cholesky_expert least_squares
     cholesky_band indefinite rank_revealing sylvester indefinite_expert
     svd_least_squares lu_band tridiagonal band_expert lu_band_expert
-    lu_band_equilibration_radix triangular triangular_expert packed_triangular packed_triangular_expert triangular_band)
+    lu_band_equilibration_radix triangular triangular_expert packed_triangular packed_triangular_expert triangular_band triangular_band_expert)
   add_executable("installed_${_family}" "${_family}_main.cc")
   target_link_libraries("installed_${_family}" PRIVATE ASC::dense_lapack)
   add_test(NAME "installed_${_family}" COMMAND "installed_${_family}")

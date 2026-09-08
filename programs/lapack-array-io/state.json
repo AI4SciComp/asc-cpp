@@ -16,10 +16,8 @@
   "integration_target": "develop",
   "last_implementation_commit": "e395588fc7b6dbc490dcdb0dd1dbb76b29da3707",
   "worktree_diff_identity": {
-    "state": "v19_committed_expert_admission_records_in_progress",
-    "parent_commit": "e395588fc7b6dbc490dcdb0dd1dbb76b29da3707",
-    "released_snapshot_tree": "42a5ab08094cc355eec4133d412028accce5e2ac",
-    "released_source_archive_sha256": "91d9378c8cbdf122290eddbb6db24f3a226dab2a8c5ad1a740bbe6ec4168336a"
+    "state": "v20_documentation_audited_ready_for_local_commit",
+    "parent_commit": "47e732153c30b4147f30590383b98a4923dcb543"
   },
   "packages": {
     "P00": {
@@ -629,11 +627,54 @@
       ],
       "draft": "p05-triangular-band-expert-draft-01",
       "candidate": "p05-triangular-band-expert-candidate-03",
-      "scope": "Eleven owned adapter/header/test files preserved. Both Debug12 executed:public/fault/count/signature4pass and8requiredmathfail;zero skips. Release/sanitizer and finalstrict audit pending. All8 rows stay required/not_started until atomic root integration."
+      "scope": "Unregistered checked TBCON/TBRFS8 candidate03. Six configurations each execute12 tests:four public/fault/count/signature passes andeight required mathematical failures,zero skips.54 fresh adapter/test/support objects;64 prior primary ASC TUs per lane explicitly reused and rehashed.14 exact-input strict checks,eight explicit isolated headers andcurrent11-file format pass. Prior two build/four strict failures preserved;no assertion removed. Per lane33280 public workflows/555520 checks,69888 failure profiles/394240 checks,71282 pure checks,eight full native signatures. Finite tiny/maximum mathematical gates remain failed;foreign code unsanitized. No root/installed/full-mode/platform or fully verified routine credit.",
+      "bounded_candidate_complete": true,
+      "completion_audit": "p05-triangular-band-expert-candidate-03/audit.json",
+      "completion_audit_sha256": "8eec6b0cf5c973f3f12ed4d8015e0f68582d2426585165d840cbd424da1b09d5",
+      "review": "programs/lapack-array-io/triangular-band-expert-review.md"
+    },
+    "P05.triangular_band_expert_root_integration": {
+      "base_commit": "47e732153c30b4147f30590383b98a4923dcb543",
+      "implementation_tree": "29060f4e2a9bdb41a843dd2a4f1572f2a1260bea",
+      "source_archive_sha256": "3bc1666c6beac4bfd3c627c6e6cd8467f4a9ba3d665fed0fa79fbbce22727085",
+      "coverage_mapping_sha256": "e8d5563db901c7257c6018c4457360fe2563e8e2d31d6b02a535a563cd09ce3e",
+      "scope": "Fresh v20 full GNU Release bothABIs each880 tests,810pass/70requiredmathfail;affected Debug each68,60pass/8requiredmathfail;ASC-only Clang19 sanitizer each19,11pass/8requiredmathfail. Zero skips.65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects. Four relocated24-family packages andsix source/contract/documentation checks pass;119headers/2148publicmembers/zeroDoxygenwarnings. Exact candidate strict/header evidence bound unchanged;foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim.",
+      "candidate": "p05-triangular-band-expert-integration-v20-01",
+      "state": "in_progress",
+      "completion_audit": "p05-triangular-band-expert-integration-v20-01/audit.json",
+      "completion_audit_sha256": "9becc61154c7bcd71b532ea3bb58d968dd4e660e7bda27f74ed8067f2a9979a7",
+      "bounded_integration_complete": true,
+      "dependencies": [
+        "P04"
+      ],
+      "remaining": "Required mathematical gates,full normalized modes,platform/shared-provider andfull program remain open."
+    },
+    "P05.triangular_band_expert_read_observation": {
+      "candidate": "p05-triangular-band-expert-read-candidate-02",
+      "state": "bounded_candidate_read_observation_complete",
+      "scope": "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, both ABIs; each1/1 and1056 protected-memory profiles,zero skips or sanitizer diagnostics. Twelve fresh test/support objects; exact candidate03 adapter andv19 primary ASC objects explicitly reused and rehashed. Two strict andformat checks pass. Two original strict failures preserved; only multiple declarations split. Real C++20 containing arrays, whole A protection for unit-scalar/empty paths, B/X padding protection, complete backing preservation andzero observed C++ allocation. No root/installed,foreign sanitizer,full-mode/platform or fully verified routine credit.",
+      "completion_audit": "p05-triangular-band-expert-read-candidate-02/audit.json",
+      "completion_audit_sha256": "783533f58dcc65ade1fc5e4639228af13029737ce1f2a01a4ebd1475c83be670",
+      "dependencies": [
+        "P05.triangular_band_expert_candidate"
+      ],
+      "root_integration": "pending",
+      "remaining": "Root test registration and exact-root binary replay; broader operands/modes/platform remain open."
+    },
+    "P05.triangular_band_expert_operand_preflight": {
+      "candidate": "p05-triangular-band-expert-operands-candidate-02",
+      "state": "in_progress",
+      "scope": "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, bothABIs;each1/1 and28800 operand-preflight profiles,zero skips or sanitizer diagnostics.18 fresh test/fault/support objects;exact candidate03 adapter andv19 production explicitly reused and rehashed. Two strict andformat checks pass. Original constructor-assumption runtime failure andtwo strict failures preserved. All25 invalid cases per profile retained at their actual descriptor/query/execution boundaries:invalid flags,shape/output length/stride,device placement andA/B/X/FERR/BERR overlaps. Complete operand/workspace bytes preserved,zero observed C++ allocations andzero observed provider entries. No native mathematical,root/installed,full-mode/platform or fully verified routine credit.",
+      "completion_audit": "p05-triangular-band-expert-operands-candidate-02/audit.json",
+      "completion_audit_sha256": "e4cab89316acda77cecaa957b9c2a98e38f27998ee914ea09e442c58a0f7af0c",
+      "root_integration": "pending",
+      "dependencies": [
+        "P05.triangular_band_expert_candidate"
+      ]
     }
   },
-  "active_task": "P05.triangular_band_expert_candidate",
-  "next_action": "Complete candidate03 TBCON/TBRFS8 Release/Debug and ASC-only sanitizer verification on both ABIs, retain all required math failures, bind strict/header/provenance evidence, then atomically integrate as v20. Add missing memory/validation acceptance;continue remaining P00-P11. No full routine verification claimed.",
+  "active_task": "P05.triangular_band_expert_memory_root_integration",
+  "next_action": "Commit the completed v20 eight-routine integration,then import the unchanged audited read/operand test sources. Freeze a fresh source tree,run affected GNU Release/Debug andASC-only sanitizer lanes,rehash unchanged v20 full-suite production/inputs andverify CMake registration. Continue all other P00-P11 requirements;70 math gates and130 required XBLAS remain open.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -641,7 +682,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "5faf24c1220712bcce87c902411cd67ec373315b5b1503dba07007ac0011f6cb"
+    "coverage_mapping_sha256": "b35feb962ebf88051951a7063860794ea9b1cbc7aea49667bb3a3f39c621558c"
   },
   "provider": {
     "version": "3.12.1",
@@ -903,7 +944,8 @@
       "p01-triangular-band-default-v19-01/audit.json",
       "p05-triangular-band-source-01/expert-closure-01/common-comparison.json",
       "p05-triangular-band-expert-counts-01/audit.json",
-      "p05-triangular-band-source-01/latbs-single-term-03/audit.json"
+      "p05-triangular-band-source-01/latbs-single-term-03/audit.json",
+      "p05-triangular-band-expert-candidate-03/audit.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -949,7 +991,12 @@
       "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim.",
       "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
       "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit.",
-      "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+      "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit.",
+      "Unregistered checked TBCON/TBRFS8 candidate03. Six configurations each execute12 tests:four public/fault/count/signature passes andeight required mathematical failures,zero skips.54 fresh adapter/test/support objects;64 prior primary ASC TUs per lane explicitly reused and rehashed.14 exact-input strict checks,eight explicit isolated headers andcurrent11-file format pass. Prior two build/four strict failures preserved;no assertion removed. Per lane33280 public workflows/555520 checks,69888 failure profiles/394240 checks,71282 pure checks,eight full native signatures. Finite tiny/maximum mathematical gates remain failed;foreign code unsanitized. No root/installed/full-mode/platform or fully verified routine credit.",
+      "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, both ABIs; each1/1 and1056 protected-memory profiles,zero skips or sanitizer diagnostics. Twelve fresh test/support objects; exact candidate03 adapter andv19 primary ASC objects explicitly reused and rehashed. Two strict andformat checks pass. Two original strict failures preserved; only multiple declarations split. Real C++20 containing arrays, whole A protection for unit-scalar/empty paths, B/X padding protection, complete backing preservation andzero observed C++ allocation. No root/installed,foreign sanitizer,full-mode/platform or fully verified routine credit.",
+      "Fresh v20 full GNU Release bothABIs each880 tests,810pass/70requiredmathfail;affected Debug each68,60pass/8requiredmathfail;ASC-only Clang19 sanitizer each19,11pass/8requiredmathfail. Zero skips.65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects. Four relocated24-family packages andsix source/contract/documentation checks pass;119headers/2148publicmembers/zeroDoxygenwarnings. Exact candidate strict/header evidence bound unchanged;foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim.",
+      "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim.",
+      "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, bothABIs;each1/1 and28800 operand-preflight profiles,zero skips or sanitizer diagnostics.18 fresh test/fault/support objects;exact candidate03 adapter andv19 production explicitly reused and rehashed. Two strict andformat checks pass. Original constructor-assumption runtime failure andtwo strict failures preserved. All25 invalid cases per profile retained at their actual descriptor/query/execution boundaries:invalid flags,shape/output length/stride,device placement andA/B/X/FERR/BERR overlaps. Complete operand/workspace bytes preserved,zero observed C++ allocations andzero observed provider entries. No native mathematical,root/installed,full-mode/platform or fully verified routine credit."
     ]
   },
   "counts": {
@@ -959,15 +1006,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1799,
-    "reference_in_progress_in_ledger": 314,
+    "reference_not_started_in_ledger": 1791,
+    "reference_in_progress_in_ledger": 322,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 314,
+    "registered_partial_reference_operations": 322,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113 required;314 Reference in_progress/1799 not_started;20 native implemented_unverified;zero fully verified. Root v19 affected GNU four52/52,ASC-only two7/7,provider-free static/shared16/16 andfour23-family installed packages pass. Historical v18 full62 required math failures and130 missing XBLAS remain open;TBCON/TBRFS8 unimplemented.",
+    "note": "2113 required;322 Reference in_progress/1791 not_started;native20 implemented_unverified;zero fully verified. Full v20 each880 tests810pass70requiredmathfail,zero skips. Audited default static/shared16/16. Two new memory/preflight candidates audited butunregistered;130 required XBLAS missing.",
     "unregistered_packed_operations_with_scoped_tests": 0
   },
   "blockers": [
@@ -1070,20 +1117,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "p05-triangular-band-expert-candidate-03",
-    "state": "debug_executed_other_lanes_running",
-    "scope": "Eleven owned adapter/header/test files preserved. Both Debug12 executed:public/fault/count/signature4pass and8requiredmathfail;zero skips. Release/sanitizer and finalstrict audit pending. All8 rows stay required/not_started until atomic root integration."
-  },
-  "last_completed_verification": {
-    "base_commit": "e05bd586e798dd8aaab62486408aee7ab3e88727",
-    "implementation_tree": "42a5ab08094cc355eec4133d412028accce5e2ac",
-    "source_archive_sha256": "91d9378c8cbdf122290eddbb6db24f3a226dab2a8c5ad1a740bbe6ec4168336a",
-    "coverage_mapping_sha256": "5faf24c1220712bcce87c902411cd67ec373315b5b1503dba07007ac0011f6cb",
+    "base_commit": "47e732153c30b4147f30590383b98a4923dcb543",
+    "implementation_tree": "b04f6bc01a7c97c570c89bb65c7fa4df998490ba",
+    "source_archive_sha256": "245a2ee3d40afffe0c6bc0c839869ac229232de7442b4fa8d692ecb2356000ff",
+    "coverage_mapping_sha256": "b35feb962ebf88051951a7063860794ea9b1cbc7aea49667bb3a3f39c621558c",
     "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
     "state": "bounded_documentation_complete",
-    "candidate": "p05-triangular-band-doc-integration-v19-01",
-    "completion_audit": "p05-triangular-band-doc-integration-v19-01/audit.json",
-    "completion_audit_sha256": "0aabf9501c1df416ba2f598c64c3dc481181ff48a8b6aac288e99d74f2f6e6b7"
+    "candidate": "p05-triangular-band-expert-doc-integration-v20-01",
+    "completion_audit": "p05-triangular-band-expert-doc-integration-v20-01/audit.json",
+    "completion_audit_sha256": "ffbad2202d73a82062677fc7249c2cc68f71835403a2bfe5d30973808bfd4107"
+  },
+  "last_completed_verification": {
+    "base_commit": "47e732153c30b4147f30590383b98a4923dcb543",
+    "implementation_tree": "b04f6bc01a7c97c570c89bb65c7fa4df998490ba",
+    "source_archive_sha256": "245a2ee3d40afffe0c6bc0c839869ac229232de7442b4fa8d692ecb2356000ff",
+    "coverage_mapping_sha256": "b35feb962ebf88051951a7063860794ea9b1cbc7aea49667bb3a3f39c621558c",
+    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+    "state": "bounded_documentation_complete",
+    "candidate": "p05-triangular-band-expert-doc-integration-v20-01",
+    "completion_audit": "p05-triangular-band-expert-doc-integration-v20-01/audit.json",
+    "completion_audit_sha256": "ffbad2202d73a82062677fc7249c2cc68f71835403a2bfe5d30973808bfd4107"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -1378,7 +1431,50 @@
       "candidate": "p05-triangular-band-doc-integration-v19-01",
       "completion_audit": "p05-triangular-band-doc-integration-v19-01/audit.json",
       "completion_audit_sha256": "0aabf9501c1df416ba2f598c64c3dc481181ff48a8b6aac288e99d74f2f6e6b7"
+    },
+    {
+      "candidate": "p05-triangular-band-expert-read-candidate-02",
+      "state": "bounded_candidate_read_observation_complete",
+      "scope": "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, both ABIs; each1/1 and1056 protected-memory profiles,zero skips or sanitizer diagnostics. Twelve fresh test/support objects; exact candidate03 adapter andv19 primary ASC objects explicitly reused and rehashed. Two strict andformat checks pass. Two original strict failures preserved; only multiple declarations split. Real C++20 containing arrays, whole A protection for unit-scalar/empty paths, B/X padding protection, complete backing preservation andzero observed C++ allocation. No root/installed,foreign sanitizer,full-mode/platform or fully verified routine credit.",
+      "completion_audit": "p05-triangular-band-expert-read-candidate-02/audit.json",
+      "completion_audit_sha256": "783533f58dcc65ade1fc5e4639228af13029737ce1f2a01a4ebd1475c83be670"
+    },
+    {
+      "base_commit": "47e732153c30b4147f30590383b98a4923dcb543",
+      "implementation_tree": "29060f4e2a9bdb41a843dd2a4f1572f2a1260bea",
+      "source_archive_sha256": "3bc1666c6beac4bfd3c627c6e6cd8467f4a9ba3d665fed0fa79fbbce22727085",
+      "coverage_mapping_sha256": "e8d5563db901c7257c6018c4457360fe2563e8e2d31d6b02a535a563cd09ce3e",
+      "scope": "Fresh v20 full GNU Release bothABIs each880 tests,810pass/70requiredmathfail;affected Debug each68,60pass/8requiredmathfail;ASC-only Clang19 sanitizer each19,11pass/8requiredmathfail. Zero skips.65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects. Four relocated24-family packages andsix source/contract/documentation checks pass;119headers/2148publicmembers/zeroDoxygenwarnings. Exact candidate strict/header evidence bound unchanged;foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim.",
+      "candidate": "p05-triangular-band-expert-integration-v20-01",
+      "state": "bounded_evidence_complete",
+      "completion_audit": "p05-triangular-band-expert-integration-v20-01/audit.json",
+      "completion_audit_sha256": "9becc61154c7bcd71b532ea3bb58d968dd4e660e7bda27f74ed8067f2a9979a7"
+    },
+    {
+      "candidate": "p01-triangular-band-expert-default-v20-01",
+      "state": "bounded_evidence_complete",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim.",
+      "completion_audit": "p01-triangular-band-expert-default-v20-01/audit.json",
+      "completion_audit_sha256": "49799ecb112ddca0838505c450ec6478035c339ef0fce9b33e1ec6780b69342c"
+    },
+    {
+      "candidate": "p05-triangular-band-expert-operands-candidate-02",
+      "state": "bounded_evidence_complete",
+      "scope": "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, bothABIs;each1/1 and28800 operand-preflight profiles,zero skips or sanitizer diagnostics.18 fresh test/fault/support objects;exact candidate03 adapter andv19 production explicitly reused and rehashed. Two strict andformat checks pass. Original constructor-assumption runtime failure andtwo strict failures preserved. All25 invalid cases per profile retained at their actual descriptor/query/execution boundaries:invalid flags,shape/output length/stride,device placement andA/B/X/FERR/BERR overlaps. Complete operand/workspace bytes preserved,zero observed C++ allocations andzero observed provider entries. No native mathematical,root/installed,full-mode/platform or fully verified routine credit.",
+      "completion_audit": "p05-triangular-band-expert-operands-candidate-02/audit.json",
+      "completion_audit_sha256": "e4cab89316acda77cecaa957b9c2a98e38f27998ee914ea09e442c58a0f7af0c"
+    },
+    {
+      "base_commit": "47e732153c30b4147f30590383b98a4923dcb543",
+      "implementation_tree": "b04f6bc01a7c97c570c89bb65c7fa4df998490ba",
+      "source_archive_sha256": "245a2ee3d40afffe0c6bc0c839869ac229232de7442b4fa8d692ecb2356000ff",
+      "coverage_mapping_sha256": "b35feb962ebf88051951a7063860794ea9b1cbc7aea49667bb3a3f39c621558c",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "state": "bounded_documentation_complete",
+      "candidate": "p05-triangular-band-expert-doc-integration-v20-01",
+      "completion_audit": "p05-triangular-band-expert-doc-integration-v20-01/audit.json",
+      "completion_audit_sha256": "ffbad2202d73a82062677fc7249c2cc68f71835403a2bfe5d30973808bfd4107"
     }
   ],
-  "next_task": "Complete candidate03 TBCON/TBRFS8 Release/Debug and ASC-only sanitizer verification on both ABIs, retain all required math failures, bind strict/header/provenance evidence, then atomically integrate as v20. Add missing memory/validation acceptance;continue remaining P00-P11. No full routine verification claimed."
+  "next_task": "Commit the completed v20 eight-routine integration,then import the unchanged audited read/operand test sources. Freeze a fresh source tree,run affected GNU Release/Debug andASC-only sanitizer lanes,rehash unchanged v20 full-suite production/inputs andverify CMake registration. Continue all other P00-P11 requirements;70 math gates and130 required XBLAS remain open."
 }

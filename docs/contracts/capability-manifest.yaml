@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v19 with314 partial Reference scalar routes;zero fully verified. Four affected GNU52/52 andtwo ASC-only sanitizer7/7 suites,four relocated23-family packages,six static checks,117-header documentation andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects plus60 provider-free objects. Exact prior v18 full evidence retains62 required math failures;130 missing required XBLAS andcomplete2113 routine/mode closure remain open. Foreign archives unsanitized"
+    evidence_scope: "unreleased incremental-lapack-v20 with322 partial Reference scalar routes;zero fully verified. Full GNU Release bothABIs each880 tests810pass70requiredmathfail;Debug68 each60pass8mathfail;ASC-only sanitizer19 each11pass8mathfail;zero skips.390 fresh primary objects,four relocated24-family packages,six static checks and119-header/2148-member Doxygen pass. Provider-free static/shared16/16 each. Foreign libraries unsanitized.130 missing required XBLAS andcomplete2113 routine/mode/platform closure remain open"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -134,6 +134,8 @@ capabilities:
       - "include/asc/dense/providers/lapack_triangular_error_bounds.h"
       - "include/asc/dense/providers/lapack_triangular_packed.h"
       - "include/asc/dense/providers/lapack_triangular_band.h"
+      - "include/asc/dense/providers/lapack_triangular_band_condition.h"
+      - "include/asc/dense/providers/lapack_triangular_band_error_bounds.h"
       - "include/asc/dense/lapack/triangular_band_view.h"
       - "include/asc/dense/providers/lapack_triangular_packed_condition.h"
       - "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h"
