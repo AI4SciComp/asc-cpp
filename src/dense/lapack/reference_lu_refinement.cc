@@ -88,7 +88,8 @@ struct Native<float> {
                             const Packed<float>& data, const lapack_int* pivots,
                             float* ferr, float* berr,
                             const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_sgerfs(
         &trans, &n, &nrhs, data.a, data.ld.data(), data.af, &data.ld[1], pivots,
         data.b, &data.ld[2], data.x, &data.ld[3], ferr, berr,
@@ -107,7 +108,8 @@ struct Native<double> {
                             const Packed<double>& data,
                             const lapack_int* pivots, double* ferr,
                             double* berr, const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_dgerfs(
         &trans, &n, &nrhs, data.a, data.ld.data(), data.af, &data.ld[1], pivots,
         data.b, &data.ld[2], data.x, &data.ld[3], ferr, berr,
@@ -126,7 +128,8 @@ struct Native<std::complex<float>> {
                             const Packed<std::complex<float>>& data,
                             const lapack_int* pivots, float* ferr, float* berr,
                             const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_cgerfs(
         &trans, &n, &nrhs, data.a, data.ld.data(), data.af, &data.ld[1], pivots,
         data.b, &data.ld[2], data.x, &data.ld[3], ferr, berr,
@@ -144,7 +147,8 @@ struct Native<std::complex<double>> {
                             const Packed<std::complex<double>>& data,
                             const lapack_int* pivots, double* ferr,
                             double* berr, const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_zgerfs(
         &trans, &n, &nrhs, data.a, data.ld.data(), data.af, &data.ld[1], pivots,
         data.b, &data.ld[2], data.x, &data.ld[3], ferr, berr,

@@ -159,7 +159,8 @@ struct Native<float> {
                             lapack_int* pivots, char& equed, float* r, float* c,
                             float& rcond, float* ferr, float* berr,
                             const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_sgesvx(&fact, &trans, &n, &nrhs, data.a, data.ld.data(), data.af,
                   &data.ld[1], pivots, &equed, r, c, data.b, &data.ld[2],
                   data.x, &data.ld[3], &rcond, ferr, berr,
@@ -178,7 +179,8 @@ struct Native<double> {
                             lapack_int* pivots, char& equed, double* r,
                             double* c, double& rcond, double* ferr,
                             double* berr, const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_dgesvx(&fact, &trans, &n, &nrhs, data.a, data.ld.data(), data.af,
                   &data.ld[1], pivots, &equed, r, c, data.b, &data.ld[2],
                   data.x, &data.ld[3], &rcond, ferr, berr,
@@ -198,7 +200,8 @@ struct Native<std::complex<float>> {
                             lapack_int* pivots, char& equed, float* r, float* c,
                             float& rcond, float* ferr, float* berr,
                             const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_cgesvx(
         &fact, &trans, &n, &nrhs, data.a, data.ld.data(), data.af, &data.ld[1],
         pivots, &equed, r, c, data.b, &data.ld[2], data.x, &data.ld[3], &rcond,
@@ -219,7 +222,8 @@ struct Native<std::complex<double>> {
                             lapack_int* pivots, char& equed, double* r,
                             double* c, double& rcond, double* ferr,
                             double* berr, const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_zgesvx(
         &fact, &trans, &n, &nrhs, data.a, data.ld.data(), data.af, &data.ld[1],
         pivots, &equed, r, c, data.b, &data.ld[2], data.x, &data.ld[3], &rcond,
@@ -677,6 +681,10 @@ Status Execute(const ReferenceLapackProvider& provider,
     for (extent_t i = 0; i < n; ++i) {
       converted[i] = static_cast<lapack_int>(values.pivots.values()[i]);
     }
+  } else {
+    // Every output pivot must be written in the full provider integer width.
+    std::fill_n(converted, static_cast<std::size_t>(n),
+                std::numeric_limits<lapack_int>::min());
   }
   const auto packed = PackAll(values, workspace);
   char equed = EquedChar(values.equed);

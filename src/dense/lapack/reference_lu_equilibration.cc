@@ -55,7 +55,8 @@ struct Native<float> {
                             const float* a, lapack_int lda, float* rows,
                             float* columns,
                             LapackEquilibrationStatistics<float>& statistics) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     if (radix) {
       LAPACK_sgeequb(&m, &n, a, &lda, rows, columns, &statistics.row_condition,
                      &statistics.column_condition, &statistics.absolute_maximum,
@@ -78,7 +79,8 @@ struct Native<double> {
                             const double* a, lapack_int lda, double* rows,
                             double* columns,
                             LapackEquilibrationStatistics<double>& statistics) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     if (radix) {
       LAPACK_dgeequb(&m, &n, a, &lda, rows, columns, &statistics.row_condition,
                      &statistics.column_condition, &statistics.absolute_maximum,
@@ -101,7 +103,8 @@ struct Native<std::complex<float>> {
                             const std::complex<float>* a, lapack_int lda,
                             float* rows, float* columns,
                             LapackEquilibrationStatistics<float>& statistics) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     if (radix) {
       LAPACK_cgeequb(&m, &n, a, &lda, rows, columns, &statistics.row_condition,
                      &statistics.column_condition, &statistics.absolute_maximum,
@@ -124,7 +127,8 @@ struct Native<std::complex<double>> {
                             const std::complex<double>* a, lapack_int lda,
                             double* rows, double* columns,
                             LapackEquilibrationStatistics<double>& statistics) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     if (radix) {
       LAPACK_zgeequb(&m, &n, a, &lda, rows, columns, &statistics.row_condition,
                      &statistics.column_condition, &statistics.absolute_maximum,

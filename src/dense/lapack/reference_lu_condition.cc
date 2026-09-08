@@ -59,7 +59,8 @@ struct Native<float> {
   static lapack_int Execute(char norm, lapack_int n, const float* a,
                             lapack_int lda, float anorm, float& rcond,
                             const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_sgecon(&norm, &n, a, &lda, &anorm, &rcond,
                   static_cast<float*>(workspace.regions[kScalar].data()),
                   static_cast<lapack_int*>(workspace.regions[kInteger].data()),
@@ -75,7 +76,8 @@ struct Native<double> {
   static lapack_int Execute(char norm, lapack_int n, const double* a,
                             lapack_int lda, double anorm, double& rcond,
                             const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_dgecon(&norm, &n, a, &lda, &anorm, &rcond,
                   static_cast<double*>(workspace.regions[kScalar].data()),
                   static_cast<lapack_int*>(workspace.regions[kInteger].data()),
@@ -92,7 +94,8 @@ struct Native<std::complex<float>> {
                             const std::complex<float>* a, lapack_int lda,
                             float anorm, float& rcond,
                             const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_cgecon(
         &norm, &n, a, &lda, &anorm, &rcond,
         static_cast<std::complex<float>*>(workspace.regions[kScalar].data()),
@@ -109,7 +112,8 @@ struct Native<std::complex<double>> {
                             const std::complex<double>* a, lapack_int lda,
                             double anorm, double& rcond,
                             const LapackWorkspace& workspace) {
-    lapack_int info = 0;
+    // The provider must write the complete native INFO destination.
+    lapack_int info = std::numeric_limits<lapack_int>::min();
     LAPACK_zgecon(
         &norm, &n, a, &lda, &anorm, &rcond,
         static_cast<std::complex<double>*>(workspace.regions[kScalar].data()),

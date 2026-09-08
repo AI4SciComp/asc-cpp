@@ -781,3 +781,46 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
       TARGET "${_target}" LABELS dense_lapack lapack compile)
   endforeach()
 endforeach()
+
+# Fault tests run the real routine before withholding its INFO output.
+set(_asc_lu_aux_info_wrap)
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_routine IN ITEMS gecon geequ geequb gerfs gesvx)
+    list(APPEND _asc_lu_aux_info_wrap "-Wl,--wrap=${_scalar}${_routine}_")
+  endforeach()
+endforeach()
+foreach(_family IN ITEMS condition equilibration refinement driver)
+  set(_target "asc_dense_lapack_lu_${_family}_info_test")
+  add_executable("${_target}" "lu_${_family}_info_test.cc"
+    lu_aux_info_faults.cc lu_aux_info_test_support.cc allocation_audit.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${PROJECT_SOURCE_DIR}" "${ASC_CPP_LAPACK_CONFIG_DIR}"
+    "${ASC_CPP_LAPACK_ROOT}/include")
+  target_link_options("${_target}" PRIVATE ${_asc_lu_aux_info_wrap}
+    "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+  foreach(_scalar IN ITEMS s d c z)
+    asc_register_test(NAME "asc_cpp.dense_lapack.lu_${_family}_info.${_scalar}"
+      TARGET "${_target}" ARGUMENTS "${_scalar}"
+      LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+  endforeach()
+endforeach()
+unset(_asc_lu_aux_info_wrap)
+
+# GESVX output-pivot faults preserve real numerical computation and INFO.
+add_executable(asc_dense_lapack_lu_driver_pivot_test
+  lu_driver_pivot_test.cc lu_driver_pivot_faults.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_driver_pivot_test)
+target_include_directories(asc_dense_lapack_lu_driver_pivot_test PRIVATE
+  "${PROJECT_SOURCE_DIR}" "${ASC_CPP_LAPACK_CONFIG_DIR}"
+  "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_lu_driver_pivot_test PRIVATE
+  "-Wl,--wrap=sgesvx_,--wrap=dgesvx_,--wrap=cgesvx_,--wrap=zgesvx_"
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.lu_driver_pivot.${_scalar}"
+    TARGET asc_dense_lapack_lu_driver_pivot_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+endforeach()

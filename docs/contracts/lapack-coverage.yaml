@@ -5096,7 +5096,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_condition.cc",
-          "sha256": "42979060a1098d4ab770796f98c4c9eba1cceca4f0d5aa73192cef5ea708da38"
+          "sha256": "75bda16521aa27a09224002857c1cc1448ba0c0f54af2f94bb6963b5a075f177"
         },
         {
           "path": "tests/dense_lapack/lu_condition_test.cc",
@@ -5145,6 +5145,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_info_test.cc",
+          "sha256": "e6d8be61f8a556fb04ba8d7c283224211fa587ba8225104899825e6684cae196"
         }
       ],
       "implementations": {
@@ -5229,7 +5249,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "ff417ba716bd686b5c011f462e7bafc98d24ee495241cb65c5b1facfd8d6e924"
+          "sha256": "44fc435fb3a7088afeec6dbc2facf5007c76ac39c0adef9bb667c38a213c5dc0"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
@@ -5270,6 +5290,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_info_test.cc",
+          "sha256": "c5d10e06f15f66781300bc2c4cfabfe0f0a7f305dea95c228de5dfdb591dced2"
         }
       ],
       "implementations": {
@@ -5304,7 +5344,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "ff417ba716bd686b5c011f462e7bafc98d24ee495241cb65c5b1facfd8d6e924"
+          "sha256": "44fc435fb3a7088afeec6dbc2facf5007c76ac39c0adef9bb667c38a213c5dc0"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
@@ -5345,6 +5385,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_info_test.cc",
+          "sha256": "c5d10e06f15f66781300bc2c4cfabfe0f0a7f305dea95c228de5dfdb591dced2"
         }
       ],
       "implementations": {
@@ -7250,7 +7310,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_refinement.cc",
-          "sha256": "0fa4a951799a3bba0251d916e05503f09adf54f032a69d15eb24550ebfc13e55"
+          "sha256": "ce80c51add3c8b17462fe880fbb2909f6cdcbe00b21556e7451cad9aeee32a70"
         },
         {
           "path": "tests/dense_lapack/lu_refinement_test.cc",
@@ -7303,6 +7363,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_info_test.cc",
+          "sha256": "610c95c25e26b6d6b4c84e41a6a4aec543449b74bc019b14a351c0006445729d"
         }
       ],
       "implementations": {
@@ -7699,7 +7779,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_driver.cc",
-          "sha256": "59191180a374ebe8076c99170d6cab5f9bf41cc13f7b2881b395ff19c3bec5f8"
+          "sha256": "a26a6f3897e77c542216a1dd7f2906c6f72b145e60e45cb22d1b4b4488b28fbc"
         },
         {
           "path": "tests/dense_lapack/lu_driver_test.cc",
@@ -7752,6 +7832,38 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_info_test.cc",
+          "sha256": "aef688168320022a2f28baca5bb42a8377923579ea04fefc4994db91632b99e2"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_faults.cc",
+          "sha256": "58ea6f2c3168e96b02d9bb6cb6abaf53ed7da8732cfc7765db60cf8cf8489a94"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_faults.h",
+          "sha256": "a20725a040173d0c6ec6e2633cf7ced851cd58ca082b624a90b6e1b6f3656ed9"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_test.cc",
+          "sha256": "b952b71faf9afe675aa2c2965f03b2c29f0efbaf4e7fc63941b7498c172a036c"
         }
       ],
       "implementations": {
@@ -34975,7 +35087,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_condition.cc",
-          "sha256": "42979060a1098d4ab770796f98c4c9eba1cceca4f0d5aa73192cef5ea708da38"
+          "sha256": "75bda16521aa27a09224002857c1cc1448ba0c0f54af2f94bb6963b5a075f177"
         },
         {
           "path": "tests/dense_lapack/lu_condition_test.cc",
@@ -35024,6 +35136,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_info_test.cc",
+          "sha256": "e6d8be61f8a556fb04ba8d7c283224211fa587ba8225104899825e6684cae196"
         }
       ],
       "implementations": {
@@ -35108,7 +35240,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "ff417ba716bd686b5c011f462e7bafc98d24ee495241cb65c5b1facfd8d6e924"
+          "sha256": "44fc435fb3a7088afeec6dbc2facf5007c76ac39c0adef9bb667c38a213c5dc0"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
@@ -35149,6 +35281,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_info_test.cc",
+          "sha256": "c5d10e06f15f66781300bc2c4cfabfe0f0a7f305dea95c228de5dfdb591dced2"
         }
       ],
       "implementations": {
@@ -35183,7 +35335,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "ff417ba716bd686b5c011f462e7bafc98d24ee495241cb65c5b1facfd8d6e924"
+          "sha256": "44fc435fb3a7088afeec6dbc2facf5007c76ac39c0adef9bb667c38a213c5dc0"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
@@ -35224,6 +35376,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_info_test.cc",
+          "sha256": "c5d10e06f15f66781300bc2c4cfabfe0f0a7f305dea95c228de5dfdb591dced2"
         }
       ],
       "implementations": {
@@ -37129,7 +37301,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_refinement.cc",
-          "sha256": "0fa4a951799a3bba0251d916e05503f09adf54f032a69d15eb24550ebfc13e55"
+          "sha256": "ce80c51add3c8b17462fe880fbb2909f6cdcbe00b21556e7451cad9aeee32a70"
         },
         {
           "path": "tests/dense_lapack/lu_refinement_test.cc",
@@ -37182,6 +37354,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_info_test.cc",
+          "sha256": "610c95c25e26b6d6b4c84e41a6a4aec543449b74bc019b14a351c0006445729d"
         }
       ],
       "implementations": {
@@ -37555,7 +37747,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_driver.cc",
-          "sha256": "59191180a374ebe8076c99170d6cab5f9bf41cc13f7b2881b395ff19c3bec5f8"
+          "sha256": "a26a6f3897e77c542216a1dd7f2906c6f72b145e60e45cb22d1b4b4488b28fbc"
         },
         {
           "path": "tests/dense_lapack/lu_driver_test.cc",
@@ -37608,6 +37800,38 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_info_test.cc",
+          "sha256": "aef688168320022a2f28baca5bb42a8377923579ea04fefc4994db91632b99e2"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_faults.cc",
+          "sha256": "58ea6f2c3168e96b02d9bb6cb6abaf53ed7da8732cfc7765db60cf8cf8489a94"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_faults.h",
+          "sha256": "a20725a040173d0c6ec6e2633cf7ced851cd58ca082b624a90b6e1b6f3656ed9"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_test.cc",
+          "sha256": "b952b71faf9afe675aa2c2965f03b2c29f0efbaf4e7fc63941b7498c172a036c"
         }
       ],
       "implementations": {
@@ -65507,7 +65731,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_condition.cc",
-          "sha256": "42979060a1098d4ab770796f98c4c9eba1cceca4f0d5aa73192cef5ea708da38"
+          "sha256": "75bda16521aa27a09224002857c1cc1448ba0c0f54af2f94bb6963b5a075f177"
         },
         {
           "path": "tests/dense_lapack/lu_condition_test.cc",
@@ -65556,6 +65780,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_info_test.cc",
+          "sha256": "e6d8be61f8a556fb04ba8d7c283224211fa587ba8225104899825e6684cae196"
         }
       ],
       "implementations": {
@@ -65640,7 +65884,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "ff417ba716bd686b5c011f462e7bafc98d24ee495241cb65c5b1facfd8d6e924"
+          "sha256": "44fc435fb3a7088afeec6dbc2facf5007c76ac39c0adef9bb667c38a213c5dc0"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
@@ -65681,6 +65925,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_info_test.cc",
+          "sha256": "c5d10e06f15f66781300bc2c4cfabfe0f0a7f305dea95c228de5dfdb591dced2"
         }
       ],
       "implementations": {
@@ -65715,7 +65979,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "ff417ba716bd686b5c011f462e7bafc98d24ee495241cb65c5b1facfd8d6e924"
+          "sha256": "44fc435fb3a7088afeec6dbc2facf5007c76ac39c0adef9bb667c38a213c5dc0"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
@@ -65756,6 +66020,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_info_test.cc",
+          "sha256": "c5d10e06f15f66781300bc2c4cfabfe0f0a7f305dea95c228de5dfdb591dced2"
         }
       ],
       "implementations": {
@@ -67661,7 +67945,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_refinement.cc",
-          "sha256": "0fa4a951799a3bba0251d916e05503f09adf54f032a69d15eb24550ebfc13e55"
+          "sha256": "ce80c51add3c8b17462fe880fbb2909f6cdcbe00b21556e7451cad9aeee32a70"
         },
         {
           "path": "tests/dense_lapack/lu_refinement_test.cc",
@@ -67714,6 +67998,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_info_test.cc",
+          "sha256": "610c95c25e26b6d6b4c84e41a6a4aec543449b74bc019b14a351c0006445729d"
         }
       ],
       "implementations": {
@@ -68087,7 +68391,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_driver.cc",
-          "sha256": "59191180a374ebe8076c99170d6cab5f9bf41cc13f7b2881b395ff19c3bec5f8"
+          "sha256": "a26a6f3897e77c542216a1dd7f2906c6f72b145e60e45cb22d1b4b4488b28fbc"
         },
         {
           "path": "tests/dense_lapack/lu_driver_test.cc",
@@ -68140,6 +68444,38 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_info_test.cc",
+          "sha256": "aef688168320022a2f28baca5bb42a8377923579ea04fefc4994db91632b99e2"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_faults.cc",
+          "sha256": "58ea6f2c3168e96b02d9bb6cb6abaf53ed7da8732cfc7765db60cf8cf8489a94"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_faults.h",
+          "sha256": "a20725a040173d0c6ec6e2633cf7ced851cd58ca082b624a90b6e1b6f3656ed9"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_test.cc",
+          "sha256": "b952b71faf9afe675aa2c2965f03b2c29f0efbaf4e7fc63941b7498c172a036c"
         }
       ],
       "implementations": {
@@ -94931,7 +95267,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_condition.cc",
-          "sha256": "42979060a1098d4ab770796f98c4c9eba1cceca4f0d5aa73192cef5ea708da38"
+          "sha256": "75bda16521aa27a09224002857c1cc1448ba0c0f54af2f94bb6963b5a075f177"
         },
         {
           "path": "tests/dense_lapack/lu_condition_test.cc",
@@ -94980,6 +95316,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_condition_info_test.cc",
+          "sha256": "e6d8be61f8a556fb04ba8d7c283224211fa587ba8225104899825e6684cae196"
         }
       ],
       "implementations": {
@@ -95064,7 +95420,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "ff417ba716bd686b5c011f462e7bafc98d24ee495241cb65c5b1facfd8d6e924"
+          "sha256": "44fc435fb3a7088afeec6dbc2facf5007c76ac39c0adef9bb667c38a213c5dc0"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
@@ -95105,6 +95461,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_info_test.cc",
+          "sha256": "c5d10e06f15f66781300bc2c4cfabfe0f0a7f305dea95c228de5dfdb591dced2"
         }
       ],
       "implementations": {
@@ -95139,7 +95515,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_equilibration.cc",
-          "sha256": "ff417ba716bd686b5c011f462e7bafc98d24ee495241cb65c5b1facfd8d6e924"
+          "sha256": "44fc435fb3a7088afeec6dbc2facf5007c76ac39c0adef9bb667c38a213c5dc0"
         },
         {
           "path": "tests/dense_lapack/lu_equilibration_test.cc",
@@ -95180,6 +95556,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_equilibration_info_test.cc",
+          "sha256": "c5d10e06f15f66781300bc2c4cfabfe0f0a7f305dea95c228de5dfdb591dced2"
         }
       ],
       "implementations": {
@@ -97085,7 +97481,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_refinement.cc",
-          "sha256": "0fa4a951799a3bba0251d916e05503f09adf54f032a69d15eb24550ebfc13e55"
+          "sha256": "ce80c51add3c8b17462fe880fbb2909f6cdcbe00b21556e7451cad9aeee32a70"
         },
         {
           "path": "tests/dense_lapack/lu_refinement_test.cc",
@@ -97138,6 +97534,26 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_refinement_info_test.cc",
+          "sha256": "610c95c25e26b6d6b4c84e41a6a4aec543449b74bc019b14a351c0006445729d"
         }
       ],
       "implementations": {
@@ -97534,7 +97950,7 @@
         },
         {
           "path": "src/dense/lapack/reference_lu_driver.cc",
-          "sha256": "59191180a374ebe8076c99170d6cab5f9bf41cc13f7b2881b395ff19c3bec5f8"
+          "sha256": "a26a6f3897e77c542216a1dd7f2906c6f72b145e60e45cb22d1b4b4488b28fbc"
         },
         {
           "path": "tests/dense_lapack/lu_driver_test.cc",
@@ -97587,6 +98003,38 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.cc",
+          "sha256": "84d8dd16cd732b45136957579e741f839f0b5c0dfe6b0553e7fc4d1bb9e28092"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_faults.h",
+          "sha256": "9c9666904420c557856736d9aec6b4a671ce5b88f73b243ab9bb7f2e7608ec4d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.cc",
+          "sha256": "8c999cf0ad8d9056f7a9acc7abdd27a7dff8ae683d36939a36fd8c8fd9f1f9d0"
+        },
+        {
+          "path": "tests/dense_lapack/lu_aux_info_test_support.h",
+          "sha256": "90f6e64b51a2950d492acaeda6a052a16a48350e8c9b94472a94543fffd6186c"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_info_test.cc",
+          "sha256": "aef688168320022a2f28baca5bb42a8377923579ea04fefc4994db91632b99e2"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_faults.cc",
+          "sha256": "58ea6f2c3168e96b02d9bb6cb6abaf53ed7da8732cfc7765db60cf8cf8489a94"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_faults.h",
+          "sha256": "a20725a040173d0c6ec6e2633cf7ced851cd58ca082b624a90b6e1b6f3656ed9"
+        },
+        {
+          "path": "tests/dense_lapack/lu_driver_pivot_test.cc",
+          "sha256": "b952b71faf9afe675aa2c2965f03b2c29f0efbaf4e7fc63941b7498c172a036c"
         }
       ],
       "implementations": {

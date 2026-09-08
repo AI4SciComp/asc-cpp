@@ -529,3 +529,17 @@ The audit first included a separately rebuilt subproject consumer in
 its primary-library uniqueness check; that failed attempt remains
 recorded. The final audit checks the exact primary library target
 object directories, still requiring all58 production sources.
+
+
+## Current composed root checkpoint
+
+Root two45/45 fresh Release lanes include38 affected numerical/fault/count controls,4 placement tests, package and2 policy tests. Four exact-input Debug/ASC-only sanitizer root replays38/38 reuse sealed current binaries. Fresh root production58 TUs per ABI; agent six58-TU lanes and24 fresh strict remain separately identified. All17 installed families per ABI pass. No full-project suite, foreign sanitizer, full mode/platform/shared-provider/XBLAS or required mathematical closure claim. Source-bound profile audit matches472272 main modes,321648 main native calls,47232 native warm calls and41472 reuse calls across six root executions. Format15/coverage/publicsurface pass. Initial build-record directory collision was rejected before compilation and preserved; corrected runner reused successful configures. Denominator2113/270 partial Reference/1843 not_started, native20 separate, zero fullyverified;30 required mathematical failures remain open.
+
+Frozen product tree `b5168234598803a41158c7ecf613e73af1ceb0e9`, archive SHA256
+`b2ed985dac1bbc3078ba38dfc547b91449e1bc19bcbb99b2d117fbf254f3c879`, mapping
+`91defdbf15f2d7df6cbcb630ccc8b1e352ba80b5fe0e2cc0ae76b7bbefbb829c`. Completion audit
+`p04-lu-aux-integration-01/completion-audit-01/audit.json`, SHA256
+`9f7356bcd29dd8c25fc673624fddcdc1fc3085f496fcadaa5be9bea202bc6dc0`. Root package executes all17 installed
+families perABI with the existing300s timeout. All prior failed-source
+controls remain in the original INFO02/pivot01 handoffs; no old or unexecuted
+configuration is relabeled current.
