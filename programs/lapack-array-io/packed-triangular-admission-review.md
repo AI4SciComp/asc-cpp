@@ -39,3 +39,41 @@ diagonal values for the source's singularity scan. The draft has no public
 declarations, complete adapter TU or public/fault tests yet. None is installed
 or registered. Finish source/control review and typed implementation/tests
 after the current v16 documentation checkpoint; preserve these artifacts.
+
+## Completed initial candidate01
+
+Unregistered packed TPTRI/TPTRS8 candidate01;each ofsix GNU Release/Debug and ASC-only sanitizer lanes passes2/2,zero skips:5824 public workflows/723968 assertions and1465114 pure source-count checks. Six strict checks pass. Each lane builds1 adapter and2 test TUs,rehashing prior61-TU production inputs/libraries;foreign archives unsanitized. No failure/installed/root/full-mode capability claim.
+
+The earlier no-declarations wording describes the admission-only checkpoint.
+The current candidate has16 explicit public declarations,8 native entry calls,
+checked packed conversion and source bounds. All8 INFO locals begin at the
+native minimum. Candidate01 keeps all6 owned files immutable. Its30 raw records
+are normalized in the2235-record ledger; no fully verified credit is awarded.
+
+Three additional fault files are prepared in the draft, including real initial
+and repeated query/operation allocation observations, first/last singularity,
+zero-RHS, native no/partial/impossible INFO, live A/B overlap and metadata/
+workspace preflight. They are not compiled or part of candidate01. Next freeze
+and execute candidate02, preserving candidate01 and all prior evidence.
+
+## Completed expanded candidate06
+
+Unregistered TPTRI/TPTRS8 candidate06: all6 GNU Release/Debug and ASC-only Clang19 sanitizer lanes pass4/4,zero skips;6496 numerical workflows/737728 assertions,12480 fault/preflight profiles/87744 assertions,1465114 count checks and8 exact signatures per lane. Audit39f10144 binds144 original records,48 fresh current adapter/test objects and explicitly reused61 primary ASC TUs per lane;both providers and22-object basic source closures rehashed.12 earlier strict and4 public-header checks cover unchanged bytes;4 current changed-test strict checks pass. Candidate04/05 function-size failures retained; no root, installed,foreign-sanitizer or fully verified credit.
+
+Candidate03 completed4/4 in all6 modes before the additive extreme-scale and
+preflight work. Candidate04 Release passed4/4 both ABIs; its151-line Reject
+helper failed strict size checking. Candidate05 extracted setup but retained
+an89-line helper,also rejected. Candidate06 separates option and buffer setup;
+all existing assertions remain. The raw failures are retained in the2350-record
+ledger. The first completion invocation failed before executing because relative
+manifest paths resolved under source;completion-record-02 uses absolute paths
+and seals the original error log. No failed result is promoted.
+
+The source/control self-review is externally bound as
+`p05-packed-triangular-source-01/basic-source-review.md`. It proves the
+conditional XERBLA exclusion and bounded integer/control paths for the basic8
+on the pinned GNU build,without claiming all numerical inputs or platforms.
+Placement rejection tests use tagged live host spans and claim no real CUDA
+allocation/access. Stronger read observation,complete normalized mode evidence,
+concurrency and platform gates remain open. Next perform the atomic root
+registration and fresh integration;all16 packed routines remain required.

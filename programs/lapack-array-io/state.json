@@ -496,10 +496,20 @@
       "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
       "completion_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-triangular-expert-doc-integration-v16-01/audit.json",
       "completion_audit_sha256": "567b792d9864aac762f17e0742a19802057882bb319073cda0d02401bc73444b"
+    },
+    "P05.packed_triangular_inverse_solve": {
+      "state": "in_progress",
+      "owner": "integration",
+      "dependencies": [
+        "P04"
+      ],
+      "candidate": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-packed-triangular-candidate-01",
+      "scope": "Unregistered packed TPTRI/TPTRS8 candidate01;each ofsix GNU Release/Debug and ASC-only sanitizer lanes passes2/2,zero skips:5824 public workflows/723968 assertions and1465114 pure source-count checks. Six strict checks pass. Each lane builds1 adapter and2 test TUs,rehashing prior61-TU production inputs/libraries;foreign archives unsanitized. No failure/installed/root/full-mode capability claim.",
+      "review": "programs/lapack-array-io/packed-triangular-admission-review.md"
     }
   },
-  "active_task": "P05.packed_triangular_inverse_solve",
-  "next_action": "Complete TPTRI/TPTRS8 typed public declarations and native dispatch around the preserved p05-packed-triangular-draft-01/adapter_body.inc and private packed helpers. Preserve the checked packed descriptor/storage contract, selected unit diagonal, source-derived integer bounds, explicit caller packing and full-width INFO. Freeze a separate candidate and execute independent public inverse/solve, singular/zero-RHS/alias/metadata/workspace/native-defect/count/ABI tests on both actual providers before root registration. All remaining P00-P11 required capabilities stay open.",
+  "active_task": "P05.packed_triangular_root_integration",
+  "next_action": "Import the10 unchanged candidate06 C++ files and register TPTRI/TPTRS8 as partial explicit Reference routes,incremental-lapack-v17,113 public headers and21 installed families. Freeze the root tree,then execute fresh62-primary-TU GNU Release full suites and Debug/ASC-only sanitizer affected suites,both ABIs,installed packages and static/source/header/strict gates. Preserve54 required mathematical failures and130 missing XBLAS routines. Continue TPCON/TPRFS8 and all remaining P00-P11 work.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -815,7 +825,8 @@
     "implemented_unverified_reference": 0,
     "registered_partial_reference_operations": 294,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113 required;294 Reference in_progress/1819 not_started;20 native implemented_unverified;zero fully verified. TRCON/TRRFS8 v16 bounded integration evidence sealed;54 required mathematical gates remain ordinary failures, 130 required XBLAS routines missing."
+    "note": "2113 required;294 Reference in_progress/1819 not_started;20 native implemented_unverified;zero fully verified. TRCON/TRRFS8 v16 bounded integration evidence sealed;54 required mathematical gates remain ordinary failures, 130 required XBLAS routines missing.",
+    "unregistered_packed_operations_with_scoped_tests": 8
   },
   "blockers": [
     {
@@ -912,9 +923,11 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-triangular-expert-doc-integration-v16-01",
-    "state": "in_progress",
-    "scope": "Six documentation checks and1487 unchanged-artifact/input rehashes complete;no new numerical or full-suite execution."
+    "candidate": "p05-packed-triangular-candidate-06",
+    "state": "scoped_candidate_audited",
+    "audit_sha256": "39f10144406404999481f7078cc0c084c781048453d8de2f8c061b188b0d2522",
+    "completion_record": "p05-packed-triangular-candidate-06/completion-record-02/record.json",
+    "scope": "Unregistered TPTRI/TPTRS8 candidate06: all6 GNU Release/Debug and ASC-only Clang19 sanitizer lanes pass4/4,zero skips;6496 numerical workflows/737728 assertions,12480 fault/preflight profiles/87744 assertions,1465114 count checks and8 exact signatures per lane. Audit39f10144 binds144 original records,48 fresh current adapter/test objects and explicitly reused61 primary ASC TUs per lane;both providers and22-object basic source closures rehashed.12 earlier strict and4 public-header checks cover unchanged bytes;4 current changed-test strict checks pass. Candidate04/05 function-size failures retained; no root, installed,foreign-sanitizer or fully verified credit."
   },
   "last_completed_verification": {
     "base_commit": "38660ddbcfb85470aecbe09dc865c6eaae818943",
@@ -1158,5 +1171,5 @@
       "completion_audit_sha256": "fdde49a93e0c03100a13452164e80d401baa218ea789364fa6269aee44a48bb6"
     }
   ],
-  "next_task": "Complete TPTRI/TPTRS8 typed public declarations and native dispatch around the preserved p05-packed-triangular-draft-01/adapter_body.inc and private packed helpers. Preserve the checked packed descriptor/storage contract, selected unit diagonal, source-derived integer bounds, explicit caller packing and full-width INFO. Freeze a separate candidate and execute independent public inverse/solve, singular/zero-RHS/alias/metadata/workspace/native-defect/count/ABI tests on both actual providers before root registration. All remaining P00-P11 required capabilities stay open."
+  "next_task": "Import the10 unchanged candidate06 C++ files and register TPTRI/TPTRS8 as partial explicit Reference routes,incremental-lapack-v17,113 public headers and21 installed families. Freeze the root tree,then execute fresh62-primary-TU GNU Release full suites and Debug/ASC-only sanitizer affected suites,both ABIs,installed packages and static/source/header/strict gates. Preserve54 required mathematical failures and130 missing XBLAS routines. Continue TPCON/TPRFS8 and all remaining P00-P11 work."
 }
