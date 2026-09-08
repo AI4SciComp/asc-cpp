@@ -1,3 +1,9 @@
+# Current v16 triangular estimator integration
+
+TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification.
+
+See [the exact root review](triangular-expert-root-review.md) and [packed source admission](packed-triangular-admission-review.md). The2199 normalized records retain original failures and exact external record hashes.
+
 # Verification summary
 
 The complete program is not verified. The following exact checkpoints are

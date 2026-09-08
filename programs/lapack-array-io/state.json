@@ -16,8 +16,12 @@
   "integration_target": "develop",
   "last_implementation_commit": "40785df54098700630ab4ee9a1b5e6f95bb46c4a",
   "worktree_diff_identity": {
-    "state": "durable_records_only_product_clean",
-    "parent_commit": "40785df54098700630ab4ee9a1b5e6f95bb46c4a"
+    "state": "coherent v16 root implementation and evidence ready for local commit",
+    "parent_commit": "97c5ed8ca4f02940cac7d974e15aa984ac161660",
+    "implementation_tree": "6daca25a38cbde2f9c8b476a741946c577b7c100",
+    "source_archive_sha256": "411945cf32f880dc2158f746787f3e91a6a99020cf6196b4a85a8f75ccdf7ad7",
+    "import_record": "p05-triangular-expert-root-import-01/import.json",
+    "correction": "Only header-count test110-to112 after initial full/Debug results; corrected02 replay passes."
   },
   "packages": {
     "P00": {
@@ -465,10 +469,31 @@
       "review": "programs/lapack-array-io/triangular-expert-review.md",
       "completion_audit": "p05-triangular-expert-candidate-06/audit.json",
       "completion_audit_sha256": "566fe87610e796155c698ea7cd6705a7e2c72f1f551fa5e0d26bae832451147a"
+    },
+    "P05.triangular_expert_root_integration": {
+      "state": "in_progress",
+      "owner": "integration",
+      "dependencies": [
+        "P04"
+      ],
+      "bounded_integration_complete": true,
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification.",
+      "review": "programs/lapack-array-io/triangular-expert-root-review.md",
+      "completion_audit": "p05-triangular-expert-integration-v16-02/audit.json",
+      "completion_audit_sha256": "fdde49a93e0c03100a13452164e80d401baa218ea789364fa6269aee44a48bb6"
+    },
+    "P05.packed_triangular_source_admission": {
+      "state": "in_progress",
+      "owner": "integration",
+      "dependencies": [
+        "P04"
+      ],
+      "scope": "All16 TPTRI/TPTRS/TPCON/TPRFS required andnot_started;32 emitted signatures and14 precision pairs checked. First pure inverse/solve source-count helper passes1465114 checks andstrict. Uncompiled packing/body draft preserved;no public route credit.",
+      "review": "programs/lapack-array-io/packed-triangular-admission-review.md"
     }
   },
-  "active_task": "P05.triangular_expert_root_integration",
-  "next_action": "Read full pinned TRCON/TRRFS bodies and actual helper closure for all S/D/C/Z variants; verify LP64/ILP64 symbols and native signatures, then implement typed condition/error-bound queries and operations using existing full-triangle descriptors. DTRRFS/ZTRRFS do not update X; preserve selected-triangle/unit-diagonal and workspace/report contracts. Admission starts at p05-triangular-expert-source-01/inventory.json; prior triangular12 and all broader gates remain open.",
+  "active_task": "P05.triangular_expert_documentation",
+  "next_action": "Commit the sealed v16 root integration locally, then update docs/lapack-provider.md, capability andeight coverage prose rows to the bound root results. Freeze that prose-only delta and run documentation/coverage checks with exact unchanged compiler-input reuse. Then implement packed TPTRI/TPTRS8 from p05-packed-triangular-draft-01;read packed-triangular-admission-review.md. All2113 required routines andP00-P11 remain in scope.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -476,7 +501,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "6b8e2e6cde6393e79195455596b7e8ad08eccfbc7e65cb8313331b4f9e2c0f12"
+    "coverage_mapping_sha256": "619bce44fc815bc22e1bd2a6acc70234abd114119554ec78e68bc5cfad3e702a"
   },
   "provider": {
     "version": "3.12.1",
@@ -764,7 +789,8 @@
       "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
       "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
       "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
-      "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged."
+      "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged.",
+      "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
     ]
   },
   "counts": {
@@ -774,15 +800,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1827,
-    "reference_in_progress_in_ledger": 286,
+    "reference_not_started_in_ledger": 1819,
+    "reference_in_progress_in_ledger": 294,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 286,
-    "unregistered_expert_operations_with_scoped_tests": 8,
-    "note": "2113 required;286 Reference in_progress/1827 not_started;20 native implemented_unverified;zero fully verified. Root triangular12 bounded integration completed;46 required mathematical failures perABI remain, old2 manifest failures corrected in separate6-test replay. Required130 missing XBLAS routines remain required."
+    "registered_partial_reference_operations": 294,
+    "unregistered_expert_operations_with_scoped_tests": 0,
+    "note": "2113 required;294 Reference in_progress/1819 not_started;20 native implemented_unverified;zero fully verified. TRCON/TRRFS8 v16 bounded integration evidence sealed;54 required mathematical gates remain ordinary failures, 130 required XBLAS routines missing."
   },
   "blockers": [
     {
@@ -879,20 +905,20 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "p05-triangular-expert-source-01",
-    "state": "source_admission",
-    "scope": "Eight exact required TRCON/TRRFS rows extracted/rehashed; no implementation or new routine credit."
+    "candidate": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-triangular-expert-integration-v16-02",
+    "state": "in_progress",
+    "scope": "Bounded integration executions/audit complete; broader required acceptance remains open."
   },
   "last_completed_verification": {
-    "base_commit": "04f8535a55d7a411ce3dfd24a7616685c4f94026",
-    "implementation_tree": "78995b4b105dfd99f5691643dae615b48c6cdf59",
-    "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e",
-    "coverage_mapping_sha256": "6b8e2e6cde6393e79195455596b7e8ad08eccfbc7e65cb8313331b4f9e2c0f12",
-    "scope": "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged.",
-    "candidate": "p05-triangular-edge-acceptance-01",
-    "state": "completed_triangular_additive_edge_checks",
-    "completion_audit": "p05-triangular-edge-acceptance-01/audit.json",
-    "completion_audit_sha256": "9a222d37e10396f521e826c3d7af771618dbc5182aa5ca5cae4737b83e33d55a"
+    "base_commit": "97c5ed8ca4f02940cac7d974e15aa984ac161660",
+    "implementation_tree": "6daca25a38cbde2f9c8b476a741946c577b7c100",
+    "source_archive_sha256": "411945cf32f880dc2158f746787f3e91a6a99020cf6196b4a85a8f75ccdf7ad7",
+    "coverage_mapping_sha256": "619bce44fc815bc22e1bd2a6acc70234abd114119554ec78e68bc5cfad3e702a",
+    "scope": "V16-01 GNU Release full suites and affected GNU Debug suites, V16-02 ASC-only Clang19 ASan/UBSan suites on both actual integer ABIs. 366 fresh primary Core/Dense/provider objects; foreign libraries unsanitized. Original full suites retain54 required mathematical failures plus4 header-count failures each; original Debug retains8 math plus4 header-count failures each. Corrected02 header replay10/10 each includes all6 fresh fixtures; sanitizer retains8 math failures each; zero skips. Four relocated20-family packages,14 strict checks and6 static gates from01. Only source delta01-to02 is the header-count oracle110-to112; every reused production/header/compiler input is byte-identical. No fresh full02 suite, full routine/mode/program completion or independent-review approval.",
+    "candidate": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-triangular-expert-integration-v16-02",
+    "state": "in_progress",
+    "completion_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-triangular-expert-integration-v16-02/audit.json",
+    "completion_audit_sha256": "fdde49a93e0c03100a13452164e80d401baa218ea789364fa6269aee44a48bb6"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -1114,5 +1140,5 @@
       "completion_audit_sha256": "d1b491a99cd3e0bd932ddf2f3abc2817778630538a8632f3bfe702086f5f886d"
     }
   ],
-  "next_task": "Import eleven exact candidate06 files, register TRCON/TRRFS8 partial routes and eight ordinary mathematical failures atomically with v16 optional-provider/public-header/source-policy/installed-consumer metadata; freeze coherent root source and run fresh LP64/true ILP64 integration plus affected ASC-only sanitizer, header/style/Doxygen gates. Preserve all required mathematical/XBLAS/full-mode gates."
+  "next_task": "Commit the sealed v16 root integration locally, then update docs/lapack-provider.md, capability andeight coverage prose rows to the bound root results. Freeze that prose-only delta and run documentation/coverage checks with exact unchanged compiler-input reuse. Then implement packed TPTRI/TPTRS8 from p05-packed-triangular-draft-01;read packed-triangular-admission-review.md. All2113 required routines andP00-P11 remain in scope."
 }

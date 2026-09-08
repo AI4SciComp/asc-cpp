@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v15` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v16` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 286 partial scalar routines.
-The other 1,827 required
+routes below bring the development mapping to 294 partial scalar routines.
+The other 1,819 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -61,9 +61,22 @@ nonunit diagonal, with unchanged output and a zero-based diagnostic index.
 with INFO=0. Its successful native completion is not an invertibility or
 finite-output certificate. Zero-order calls complete locally; zero-RHS
 `Trtrs` still enters the native routine and scans a nonunit diagonal.
-Packed/banded triangular storage, condition estimation, refinement and the
-remaining memory, extreme-range, platform and normalized-mode acceptance
-remain separate required work.
+`lapack_triangular_condition.h` and `lapack_triangular_error_bounds.h` add
+S/D/C/Z `Trcon` and `Trrfs`. `Trcon` computes a reciprocal condition estimate
+in the one/infinity norm. `Trrfs` estimates FERR/BERR for the supplied solution
+and preserves A, B and X; it performs no iterative refinement. The matrices
+may use independent layouts. Both operations use explicit scalar/real/native
+integer workspace and metadata-only formula queries. Unit diagonals and the
+unused triangle remain unread; complex N/T/C retains its exact meaning.
+
+Zero-order condition estimates return one locally; zero-order or zero-RHS
+error estimates return zero locally, with no fabricated INFO. Neither routine
+has a positive singular-pivot INFO contract. Negative estimates are provider
+defects and nonfinite estimates remain visible accuracy warnings. Required
+finite-scalar tests reproduce native tiny-condition and tiny/large FERR failures;
+they remain ordinary failing mathematical gates. Packed/banded triangular
+storage and remaining memory, extreme-range, platform and normalized-mode
+acceptance remain separate required work.
 
 The extra LU operations are declared in `asc/dense/providers/lapack_lu.h`;
 equilibration is in `asc/dense/providers/lapack_lu_equilibration.h`. GETRI uses

@@ -99717,6 +99717,2587 @@
       "external_record": "p05-triangular-expert-candidate-06/completion-record/record.json",
       "record_sha256": "24e25e95a7fc77ba9242c01231eda87b51a5623b4dce8405ad93a61b158c7145",
       "scope": "Unregistered TRCON/TRRFS candidate; do not infer full or mathematical verification."
+    },
+    {
+      "id": "triangular-expert-v16-debug-ilp64-build",
+      "started": "2026-09-08T07:00:03.703310+00:00",
+      "completed": "2026-09-08T07:02:44.195045+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-debug-ilp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_lapack_triangular_source_counts_test",
+        "asc_dense_lapack_triangular_pinned_signatures_test",
+        "asc_dense_lapack_triangular_math_test",
+        "asc_dense_lapack_triangular_fault_test",
+        "asc_dense_lapack_triangular_expert_source_counts_test",
+        "asc_dense_lapack_triangular_expert_pinned_signatures_test",
+        "asc_dense_lapack_triangular_expert_public_test",
+        "asc_dense_lapack_triangular_expert_fault_test",
+        "asc_dense_lapack_triangular_expert_math_test",
+        "asc_dense_lapack_header_lapack_triangular_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_condition_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_condition_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_error_bounds_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_error_bounds_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2f84ee747ea3082469df782bf809b65be68bd1d97ec6f50189d8d90d49e29306"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-debug-ilp64-build/record.json",
+      "record_sha256": "24a2feee9de764f7fc438d843d70cd0197e71c48cc300ce8d5b687b88ca1f611",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-debug-ilp64-configure",
+      "started": "2026-09-08T06:59:12.600864+00:00",
+      "completed": "2026-09-08T07:00:03.300952+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-debug-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f6a70d679bd4cd196d1aa44d02972c797fbfa1d26395a1e6911b73eb34ca565c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-debug-ilp64-configure/record.json",
+      "record_sha256": "bdfec71b96f27257dcd85d0d3ede63bb52c44e677e8e70a3ca84f4c90722483d",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-debug-ilp64-ctest",
+      "started": "2026-09-08T07:02:45.004679+00:00",
+      "completed": "2026-09-08T07:05:52.031828+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular[.]|triangular_expert[.]|triangular_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular(_condition|_error_bounds)?_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/record-debug-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "ed884b34905203a39e1e0eb0a53401160cc674c838057b26cd997163950547c7",
+        "ctest.xml": "32b092c1afc7c01bb0c701f1959c00052f4ab9d7847daf6c444070e7bfce7040"
+      },
+      "test_counts": {
+        "executed": 40,
+        "failed": 12,
+        "passed": 28,
+        "selected": 40,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-debug-ilp64-ctest/record.json",
+      "record_sha256": "c21a2e9d3b191312cd7ee1a752c2a02625cdda806375cc1f4ee0060737d8bdb8",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-debug-ilp64-registered",
+      "started": "2026-09-08T07:02:44.535864+00:00",
+      "completed": "2026-09-08T07:02:44.589455+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular[.]|triangular_expert[.]|triangular_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular(_condition|_error_bounds)?_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8b37105cb41a2422ecfb6b926ed82b27a359dc9f804b2bd6654617395b9a7db8"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-debug-ilp64-registered/record.json",
+      "record_sha256": "6503bfe358e7e9602674d9a4537970484aed9a3ceb942b179e28bc4a9e3adf80",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-debug-lp64-build",
+      "started": "2026-09-08T07:00:03.808903+00:00",
+      "completed": "2026-09-08T07:02:44.298937+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-debug-lp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_lapack_triangular_source_counts_test",
+        "asc_dense_lapack_triangular_pinned_signatures_test",
+        "asc_dense_lapack_triangular_math_test",
+        "asc_dense_lapack_triangular_fault_test",
+        "asc_dense_lapack_triangular_expert_source_counts_test",
+        "asc_dense_lapack_triangular_expert_pinned_signatures_test",
+        "asc_dense_lapack_triangular_expert_public_test",
+        "asc_dense_lapack_triangular_expert_fault_test",
+        "asc_dense_lapack_triangular_expert_math_test",
+        "asc_dense_lapack_header_lapack_triangular_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_condition_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_condition_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_error_bounds_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_error_bounds_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2f84ee747ea3082469df782bf809b65be68bd1d97ec6f50189d8d90d49e29306"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-debug-lp64-build/record.json",
+      "record_sha256": "d441f35f5b923d4e24c0c790d13e9f5c8a15f7abca5ce34f7e6c29119b69ecca",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-debug-lp64-configure",
+      "started": "2026-09-08T06:59:12.559471+00:00",
+      "completed": "2026-09-08T07:00:03.364173+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-debug-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bbbe271428e544095ecf57719a019a2476bfc1f5a399f7bb3bbb087e4cdb01fb"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-debug-lp64-configure/record.json",
+      "record_sha256": "d9c006a81ecbe2881a8ed1124783384f0d9ef94e3677c6394db1ef86ab046be1",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-debug-lp64-ctest",
+      "started": "2026-09-08T07:02:45.057128+00:00",
+      "completed": "2026-09-08T07:05:51.807113+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular[.]|triangular_expert[.]|triangular_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular(_condition|_error_bounds)?_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/record-debug-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "e3367e0e2a16be1168bc7877c39cabe074a9d665608526aa2ba0cc85afead461",
+        "ctest.xml": "01ae1be87c1b36c99321ac87fadfd50e3cca862399409bf50ba5819b6d979a1e"
+      },
+      "test_counts": {
+        "executed": 40,
+        "failed": 12,
+        "passed": 28,
+        "selected": 40,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-debug-lp64-ctest/record.json",
+      "record_sha256": "102f35eb104726ed4bcb397643313690ebd30dbfed4e8f26e0d2190913bdd2bc",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-debug-lp64-registered",
+      "started": "2026-09-08T07:02:44.674392+00:00",
+      "completed": "2026-09-08T07:02:44.708370+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular[.]|triangular_expert[.]|triangular_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular(_condition|_error_bounds)?_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1c8c20222935c0ba1ff78cc689b7f4146440f684df6150abc16fa8ee2a63ba8c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-debug-lp64-registered/record.json",
+      "record_sha256": "2f2956d0f009b1d765d7e19cf6ba16e69acaa601b0a95ce3e6dcbc7300784b1f",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-full-ilp64-build",
+      "started": "2026-09-08T06:44:47.868622+00:00",
+      "completed": "2026-09-08T07:10:03.249852+00:00",
+      "configuration": "full-release-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6798d8e0557f4d742b9dc86df3a435c0ae3c2af9833db1246330ef626b4e71ff"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-full-ilp64-build/record.json",
+      "record_sha256": "073a3fdf4e1c33ddf9ec427bf41d0dfe81d4f5ab612b3553ef7638de18ec512b",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-full-ilp64-configure",
+      "started": "2026-09-08T06:44:09.433382+00:00",
+      "completed": "2026-09-08T06:44:47.532594+00:00",
+      "configuration": "full-release-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b3577452a01e5efba2c7e0ec8677f828797a20a161e993e94588d9d08fff2e23"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-full-ilp64-configure/record.json",
+      "record_sha256": "756a0403e3fb175fcfbc728bc639f55978d750a249b8ea8b37907e815acfd175",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-full-ilp64-ctest",
+      "started": "2026-09-08T07:10:04.033683+00:00",
+      "completed": "2026-09-08T07:20:01.376316+00:00",
+      "configuration": "full-release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/record-full-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "9a7c8409b0feb0bb9f8b18b3e98127685c98432451910257af4d0a15247c0e9a",
+        "ctest.xml": "bd7814849eb2e5c5f7ce360d60cba444130d27dbefc74d5fbe0f87b19f6f6d07"
+      },
+      "test_counts": {
+        "executed": 831,
+        "failed": 58,
+        "passed": 773,
+        "selected": 831,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-full-ilp64-ctest/record.json",
+      "record_sha256": "a9801127f3b3a8f55aabb22c1ec6f928b1595cbc6ab9eb656918d83d5288beff",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-full-ilp64-registered",
+      "started": "2026-09-08T07:10:03.622086+00:00",
+      "completed": "2026-09-08T07:10:03.693365+00:00",
+      "configuration": "full-release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2797123f65592e2cef33b0f6ecbd74f54a5f7c307006c8beddd1d94273ae83f4"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-full-ilp64-registered/record.json",
+      "record_sha256": "c2b2c1b74178b447a59c83ab3c618d49411aa0b9188a68a36cecf7532f235c21",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-full-lp64-build",
+      "started": "2026-09-08T06:44:47.901790+00:00",
+      "completed": "2026-09-08T07:10:02.854587+00:00",
+      "configuration": "full-release-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6798d8e0557f4d742b9dc86df3a435c0ae3c2af9833db1246330ef626b4e71ff"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-full-lp64-build/record.json",
+      "record_sha256": "9ab1e7b25a850856492c91780b3710207f57969f59edfc41990baa8c85c964da",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-full-lp64-configure",
+      "started": "2026-09-08T06:44:09.434567+00:00",
+      "completed": "2026-09-08T06:44:47.566315+00:00",
+      "configuration": "full-release-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e52547ec4dc169929b62c77d47d853833bff65b36a6fa3710ee4e9557fe0859d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-full-lp64-configure/record.json",
+      "record_sha256": "8254d3e26d5d465e976655e39c65ce6beb98d8a8cc921d3de0d3a48fe593be83",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-full-lp64-ctest",
+      "started": "2026-09-08T07:10:03.642881+00:00",
+      "completed": "2026-09-08T07:20:00.085085+00:00",
+      "configuration": "full-release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/record-full-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "c381a9acec0ad132eb927e822a83bd2e54b7f559987bef29d6385f27a327debf",
+        "ctest.xml": "d271c8ff8c9ac260185afa3373ed88873f45f5a87e8a9c49ffb4745a4fc71981"
+      },
+      "test_counts": {
+        "executed": 831,
+        "failed": 58,
+        "passed": 773,
+        "selected": 831,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-full-lp64-ctest/record.json",
+      "record_sha256": "c77560b9c9f0fa8941c87fba1bb1b6b27a1c4c7399b23ecbb4f18740efe5634a",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-full-lp64-registered",
+      "started": "2026-09-08T07:10:03.239672+00:00",
+      "completed": "2026-09-08T07:10:03.310506+00:00",
+      "configuration": "full-release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "92e0418c8ff47dc2e946beb7269c0fcd72e4b5cbd445db1b019483f24da00ae1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/record-full-lp64-registered/record.json",
+      "record_sha256": "97f5e9bb43ad4cc1a58d387d06ffad24e3b146043d619c80e5460687def954ed",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-static-coverage",
+      "started": "2026-09-08T06:44:20.195835+00:00",
+      "completed": "2026-09-08T06:44:20.851084+00:00",
+      "configuration": "current-static",
+      "command": [
+        "/home/yicai/anaconda3/bin/python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tools/lapack/validate_coverage.py",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/docs/contracts/lapack-evidence.json",
+        "--evidence-root",
+        "$EVIDENCE_ROOT"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "cd362422f0ec98aebafd6da282dd593815fc0048543384dfb82a2cd6db5cd9c1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/static-coverage/record.json",
+      "record_sha256": "8cdf643e8807490b88b3acdfd033e90d62af36b1db67eb9f99b58646d3c66c75",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-static-doxygen",
+      "started": "2026-09-08T06:44:10.838799+00:00",
+      "completed": "2026-09-08T06:44:18.192704+00:00",
+      "configuration": "current-static",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/static-doxygen/record.json",
+      "record_sha256": "820109da1b23a6c6d1f9b9488e4a9056bb23f48fdb1e2a572153fdc1dd84c51c",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-static-doxygen-coverage",
+      "started": "2026-09-08T06:44:18.499176+00:00",
+      "completed": "2026-09-08T06:44:18.907700+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e651c49417476a3d53a4e9020911fb519f5d9053b857cd73f72040603b2ecdba"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/static-doxygen-coverage/record.json",
+      "record_sha256": "2d3fd9fda95010e6b56f5365ea0648eb285fc05cd666cfaf1c5de55fc94789e0",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-static-format",
+      "started": "2026-09-08T06:44:19.726794+00:00",
+      "completed": "2026-09-08T06:44:19.867854+00:00",
+      "configuration": "current-static",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include/asc/dense/providers/lapack_triangular_condition.h",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include/asc/dense/providers/lapack_triangular_error_bounds.h",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack/internal_triangular_expert_counts.h",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack/reference_triangular_expert.cc",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_fault_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_faults.cc",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_faults.h",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_source_counts_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_math_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/static-format/record.json",
+      "record_sha256": "ac7a562c066c3da928852e06e8964757030e2394fce5e55b30c25f58b88401ef",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-static-markdown",
+      "started": "2026-09-08T06:44:19.216974+00:00",
+      "completed": "2026-09-08T06:44:19.406585+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/static-markdown/record.json",
+      "record_sha256": "6f9ee6e182fbe75ea01339d090383adc34738fa52da58aaa5e4aa5f1f0a15bab",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-static-surface",
+      "started": "2026-09-08T06:44:10.486967+00:00",
+      "completed": "2026-09-08T06:44:10.522948+00:00",
+      "configuration": "current-static",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "04a81d6fe3cf584acb0c073cdefb50f0a4feaba5d8e752fd14f737611a988dee"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/static-surface/record.json",
+      "record_sha256": "6c00c1cec152319b6df370f81115808ce4a5da2e5a601214b45ced41211addbf",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-ilp64-0",
+      "started": "2026-09-08T06:49:21.088743+00:00",
+      "completed": "2026-09-08T06:50:12.354933+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack/reference_triangular_expert.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "031c9684690d30bf901a2491168be2bd907ffd9b869f7e4b3ade911e11c09a3a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-ilp64-0/record.json",
+      "record_sha256": "47613ffa558438127bd79ebfa51f319e7d1f23374bb027204564a14c0acd6a04",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-ilp64-1",
+      "started": "2026-09-08T06:50:12.719282+00:00",
+      "completed": "2026-09-08T06:50:27.860247+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3385d2872ff4039e88d9a1dac3025f6159d54ca6d982030d074825fd834f354"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-ilp64-1/record.json",
+      "record_sha256": "e80cff5bd75ae6bd7f1ea8898e91c216022af70c19ba09e7d0ede8651701b643",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-ilp64-2",
+      "started": "2026-09-08T06:50:28.191649+00:00",
+      "completed": "2026-09-08T06:51:26.508039+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4669b47f2833e421c13bd63adc7d9c99dbd0ec835d2a4c387744a841284a71b5"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-ilp64-2/record.json",
+      "record_sha256": "0e5c5efeb966316181fd6452c1e8df58075cb5d9260de38cd7ef70ccb1ebcd97",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-ilp64-3",
+      "started": "2026-09-08T06:51:26.902125+00:00",
+      "completed": "2026-09-08T06:51:37.349153+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_faults.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ea96caba4d38dd5883a6a55d1f5536373e6d4f69443900dfa9b0d58969973b80"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-ilp64-3/record.json",
+      "record_sha256": "d5ddaf6db61597c76b3f188040bc069b7f606ff57d58b863007bb2865dffb757",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-ilp64-4",
+      "started": "2026-09-08T06:51:37.696165+00:00",
+      "completed": "2026-09-08T06:51:44.517347+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5cd236282cc922731f4c44ef0d76b885a8c6e9e239588cdb1565bfe6cc6209c6"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-ilp64-4/record.json",
+      "record_sha256": "d6b3d987070e9d744a0f5719d8b903d550df5c86c34f305565958221ca32afa5",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-ilp64-5",
+      "started": "2026-09-08T06:51:45.029724+00:00",
+      "completed": "2026-09-08T06:51:54.556847+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_source_counts_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a271e941b1d45cc1ca5d731fec738a91a6fb2efbad6e63577b27e74b05d4fd5f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-ilp64-5/record.json",
+      "record_sha256": "582a2fbb37b0c6bd1c02fc8f8465db2c4cef5c76c5226c54d80faa0dd481c9d6",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-ilp64-6",
+      "started": "2026-09-08T06:51:54.953309+00:00",
+      "completed": "2026-09-08T06:52:18.386307+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_math_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4a7b139bd6d0351a9813b9c04185517c724dedc9d14fc0dbe449a65321c47a25"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-ilp64-6/record.json",
+      "record_sha256": "4380238736b807bd51f610285525de0c9ffa47cd5f7c70d13ae43348a2caf7a5",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-lp64-0",
+      "started": "2026-09-08T06:46:30.060300+00:00",
+      "completed": "2026-09-08T06:47:24.629530+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack/reference_triangular_expert.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3b18c71163c051fd848fdc1d771a62fd6ecfe65902d7da743f06ee38985a3299"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-lp64-0/record.json",
+      "record_sha256": "b21cb5ee64d2a0d2273b0bab41a8e9975dc96beb09ebd5c143b5618493072f7e",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-lp64-1",
+      "started": "2026-09-08T06:47:24.945294+00:00",
+      "completed": "2026-09-08T06:47:39.681232+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3385d2872ff4039e88d9a1dac3025f6159d54ca6d982030d074825fd834f354"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-lp64-1/record.json",
+      "record_sha256": "16e215b1bc54b11f0c4a92785398b1ba469ea1b41ad900afce3fc742bbb7eb60",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-lp64-2",
+      "started": "2026-09-08T06:47:40.004951+00:00",
+      "completed": "2026-09-08T06:48:39.776736+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b9668f378173691bc8b620e8dc019efd693e167a67f9986f880cdcb3e70280c0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-lp64-2/record.json",
+      "record_sha256": "9127c9cbf19ec5cb46c6cb08fbaa53863470e5de2446f5defe7fb1dfdcb2d526",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-lp64-3",
+      "started": "2026-09-08T06:48:40.096024+00:00",
+      "completed": "2026-09-08T06:48:49.277600+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_faults.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8f53b62ced3b62e209360b091a0abb0c17265ec1e6a7472952ae7f486e0df7be"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-lp64-3/record.json",
+      "record_sha256": "d54146058bc1b60aa1d5d65948f0178abf99b04daef66d06de4683dc9316045d",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-lp64-4",
+      "started": "2026-09-08T06:48:49.633908+00:00",
+      "completed": "2026-09-08T06:48:55.389182+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5cd236282cc922731f4c44ef0d76b885a8c6e9e239588cdb1565bfe6cc6209c6"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-lp64-4/record.json",
+      "record_sha256": "1b5cd277e38aa4dd1a7ea563b5ae2f3aa07e42d37e19009ba4e22dca9270a6aa",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-lp64-5",
+      "started": "2026-09-08T06:48:55.707810+00:00",
+      "completed": "2026-09-08T06:49:03.431740+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_source_counts_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a271e941b1d45cc1ca5d731fec738a91a6fb2efbad6e63577b27e74b05d4fd5f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-lp64-5/record.json",
+      "record_sha256": "f437f320042e05cbf905976523ba145ddc3bbcb249fcb9e62fc30393ef692f02",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-strict-lp64-6",
+      "started": "2026-09-08T06:49:03.736048+00:00",
+      "completed": "2026-09-08T06:49:20.818647+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/triangular_expert_math_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a5be82b4a99084446165087744dd64c3b1f192032b96a8a25603d18e149d3e63"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-01/strict-lp64-6/record.json",
+      "record_sha256": "c50f68824428e61b3672ea203e213a2b45f94e9a9be6983f0a26cf43130c7aa4",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-corrected-header02-ilp64-ctest",
+      "started": "2026-09-08T07:08:50.543175+00:00",
+      "completed": "2026-09-08T07:08:53.102974+00:00",
+      "configuration": "corrected-header-debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-header-correction02-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/record-header02-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "93fb4b9773f81acc75203a9b66e2520073ee981a8c1dee1b798d6f7767c89236",
+        "ctest.xml": "4302629e804d56e2deabe65b00017137f30153227b659ce53dd7b8908ab2655d"
+      },
+      "test_counts": {
+        "executed": 10,
+        "failed": 0,
+        "passed": 10,
+        "selected": 10,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-header02-ilp64-ctest/record.json",
+      "record_sha256": "bcfc5f73fdea71f5f9b01ecd527d2cefc1d4e0c0541ce4ec6de8c71d835a4661",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-corrected-header02-ilp64-registered",
+      "started": "2026-09-08T07:08:50.083097+00:00",
+      "completed": "2026-09-08T07:08:50.100623+00:00",
+      "configuration": "corrected-header-debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-header-correction02-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "0d30ef5f8001640ac5063dd743889a4ea674dc71feb8c9a74de05a69493cb046"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-header02-ilp64-registered/record.json",
+      "record_sha256": "e56ce2ec8d6e1abf581b799ac31a2106d15a26e45ecd300417fd9084f61bd44c",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-corrected-header02-lp64-ctest",
+      "started": "2026-09-08T07:08:50.512288+00:00",
+      "completed": "2026-09-08T07:08:53.047376+00:00",
+      "configuration": "corrected-header-debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-header-correction02-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/record-header02-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1510f908d7f0e2f41322be5005d98e0e18cce00e18308ee30895804095bae25b",
+        "ctest.xml": "e71c57ae339570325fe22793584f20a886f446e0e6f36e61f4960d92a0df88af"
+      },
+      "test_counts": {
+        "executed": 10,
+        "failed": 0,
+        "passed": 10,
+        "selected": 10,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-header02-lp64-ctest/record.json",
+      "record_sha256": "cf0423b250647121a28cde6c1f90a17fc38a9bb98950a0223c177b9c292b1201",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-corrected-header02-lp64-registered",
+      "started": "2026-09-08T07:08:50.056721+00:00",
+      "completed": "2026-09-08T07:08:50.073390+00:00",
+      "configuration": "corrected-header-debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-header-correction02-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "eb6d1a3271677c22ad0105d6db9cf01eda2f92e76df9c1a79a53eb1abead2c8b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-header02-lp64-registered/record.json",
+      "record_sha256": "1494cd287e2fb634f069d4eb0031f9eb84527b53e3016409964121e803613342",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-sanitizer-ilp64-build",
+      "started": "2026-09-08T07:08:53.838684+00:00",
+      "completed": "2026-09-08T07:11:11.816391+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-sanitizer-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c312259b598b4ac91bf78cc495e2e8c3db9e2738521bd78e0268715992a38883"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-sanitizer-ilp64-build/record.json",
+      "record_sha256": "f5a90b0e2a7f105e97b7bcec7d047f793c40f2dedffae04388d24e0ead48710c",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-sanitizer-ilp64-configure",
+      "started": "2026-09-08T07:08:50.196487+00:00",
+      "completed": "2026-09-08T07:08:53.422618+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-sanitizer-ilp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bbb8e2a5db51bc9d3a7299bf8acbaa38ddf312f1f39ec7502d4163a7ec801e2b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-sanitizer-ilp64-configure/record.json",
+      "record_sha256": "36a83c0db8330e8972a25508335dede43d55ab2225f6b41b7095a6a932d3e8f1",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-sanitizer-ilp64-ctest",
+      "started": "2026-09-08T07:11:12.661167+00:00",
+      "completed": "2026-09-08T07:11:30.358865+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-sanitizer-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/record-sanitizer-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "d2e3b393b650d901e5cd4344cb1f433c926a5e87e83f8d7aa8963b1ae799079f",
+        "ctest.xml": "42a24767f7c7e16c7458bbb978ef25c8aeff6ec162409dd544a98330be4a24a3"
+      },
+      "test_counts": {
+        "executed": 21,
+        "failed": 8,
+        "passed": 13,
+        "selected": 21,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-sanitizer-ilp64-ctest/record.json",
+      "record_sha256": "8ccfdb8eb7823558b2d6bc8903e3550156af3024c9d057ecaf9a777810579616",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-sanitizer-ilp64-registered",
+      "started": "2026-09-08T07:11:12.214145+00:00",
+      "completed": "2026-09-08T07:11:12.233124+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-sanitizer-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8fede99dd119a416f303c7581fd9073f3bf9693a721b44fa51d4acf6a42cc869"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-sanitizer-ilp64-registered/record.json",
+      "record_sha256": "49908be8a87fabcd19bcc5676e30055d2edfe289b38717ab65191a9366e21026",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-sanitizer-lp64-build",
+      "started": "2026-09-08T07:08:53.819782+00:00",
+      "completed": "2026-09-08T07:11:12.071151+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-sanitizer-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c312259b598b4ac91bf78cc495e2e8c3db9e2738521bd78e0268715992a38883"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-sanitizer-lp64-build/record.json",
+      "record_sha256": "20f44aec2a22f20ac1fd6fc7ea04b3b766e3639fa738479dd85d41256bbba302",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-sanitizer-lp64-configure",
+      "started": "2026-09-08T07:08:50.123030+00:00",
+      "completed": "2026-09-08T07:08:53.396516+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-sanitizer-lp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "159ecda4c8b57a9ab7a6aeff466a7fecf2dc5797f8bb2441ca82867483c8db74"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-sanitizer-lp64-configure/record.json",
+      "record_sha256": "20cf2f6b890b91756e0ff6ce1f7c608ef554d5e892eb8b0c6ee5e95d1e63d50f",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-sanitizer-lp64-ctest",
+      "started": "2026-09-08T07:11:12.934986+00:00",
+      "completed": "2026-09-08T07:11:30.583388+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-sanitizer-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/record-sanitizer-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "d2239b565837326577e312d6d0da8a15e174c3397ff0fe99148c43d27e2177da",
+        "ctest.xml": "fc8e28ca65a7c17d4e67f9cc41f2b87a705b6504d8956f6fbcd5e893e2959c31"
+      },
+      "test_counts": {
+        "executed": 21,
+        "failed": 8,
+        "passed": 13,
+        "selected": 21,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-sanitizer-lp64-ctest/record.json",
+      "record_sha256": "76b4289159167eefaae6fa588e718be8049d1e889677fff2d170b4b5e62fa714",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-sanitizer-lp64-registered",
+      "started": "2026-09-08T07:11:12.439100+00:00",
+      "completed": "2026-09-08T07:11:12.457882+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/build-sanitizer-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "475ee755d7a593852940b17d10547bebd2846b6b90ff0a0889668b39f97da4f0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/record-sanitizer-lp64-registered/record.json",
+      "record_sha256": "9cb054c40b471829c1c1fcaf2de096facd478dde6ebe943fb32b7680a9ea5651",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "triangular-expert-v16-completion-audit",
+      "started": "2026-09-08T07:21:06.740995+00:00",
+      "completed": "2026-09-08T07:21:07.733712+00:00",
+      "configuration": "integration-audit",
+      "command": [
+        "/home/yicai/anaconda3/bin/python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/seal_audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "60fb254fa00bc68b0cb82a6ebfcc0ce869ca295a5de7b19ab771852c115dd0e0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-integration-v16-02/completion-record/record.json",
+      "record_sha256": "87677d240ad58e56c8be65b897fc8d4fe89f162b6f91d831ec860466dbcd1f5e",
+      "scope": "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification."
+    },
+    {
+      "id": "packed-triangular-source-counts-01-build",
+      "started": "2026-09-08T07:11:17.390907+00:00",
+      "completed": "2026-09-08T07:11:19.193068+00:00",
+      "configuration": "GNU11-Release-pure-counts",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-triangular-counts-01/build",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "89964fb3a466e7743dbe1334a6ff4af14860a906105d561160ed145efb1df4ae"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-counts-01/record-build/record.json",
+      "record_sha256": "440ecc6b46fa583937830e806b9e74e61633d7379a148956e59d075128c06faf",
+      "scope": "Packed source/ABI/pure-count admission only; no operation capability credit."
+    },
+    {
+      "id": "packed-triangular-source-counts-01-configure",
+      "started": "2026-09-08T07:11:12.847531+00:00",
+      "completed": "2026-09-08T07:11:16.867094+00:00",
+      "configuration": "GNU11-Release-pure-counts",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-packed-triangular-counts-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-counts-01/build",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_BUILD_TYPE=Release"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f7a3ec28567e746dc31b0047607be2317cf0abb91640451da39e38e7dfa2c047"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-counts-01/record-configure/record.json",
+      "record_sha256": "cb09f1834c9821a9669ace5a3637234779493373d676eac60ea0954bc25c6f09",
+      "scope": "Packed source/ABI/pure-count admission only; no operation capability credit."
+    },
+    {
+      "id": "packed-triangular-source-counts-01-ctest",
+      "started": "2026-09-08T07:11:20.240200+00:00",
+      "completed": "2026-09-08T07:11:20.555143+00:00",
+      "configuration": "GNU11-Release-pure-counts",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-counts-01/build",
+        "--verbose",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-packed-triangular-counts-01/record-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5bd36476c98ab9f92c62efecedb904313d6d901617c522d3f11bf2422c7730a6",
+        "ctest.xml": "3e0c4b821e2967d44ea49b40849822363bfe1468bb7c5f8d36fc3f691dec79a5"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-counts-01/record-ctest/record.json",
+      "record_sha256": "8abe3d5eaeb612562a1b98c1816969871fb83db312d282f01a134f2c89f771d5",
+      "scope": "Packed source/ABI/pure-count admission only; no operation capability credit."
+    },
+    {
+      "id": "packed-triangular-source-counts-01-registered",
+      "started": "2026-09-08T07:11:19.713311+00:00",
+      "completed": "2026-09-08T07:11:19.726967+00:00",
+      "configuration": "GNU11-Release-pure-counts",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-counts-01/build",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7510f29ae8eb68fc95d5cdfa3b66262b19745c44e14c2fb4b48f487726f5ca71"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-counts-01/record-registered/record.json",
+      "record_sha256": "d016f89d7c9952baca1854a6feebcee15c32885e565886bb9b9d8ad06183aa8c",
+      "scope": "Packed source/ABI/pure-count admission only; no operation capability credit."
+    },
+    {
+      "id": "packed-source-counts-01-strict",
+      "started": "2026-09-08T07:15:26.433631+00:00",
+      "completed": "2026-09-08T07:15:38.244472+00:00",
+      "configuration": "ClangTidy18-pure-counts",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-counts-01/source/tests/dense_lapack/packed_triangular_source_counts_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-02/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=.*internal_packed_triangular_counts[.]h$",
+        "-p",
+        "$EVIDENCE_ROOT/p05-packed-triangular-counts-01/build"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a0371eba67d41e8786676a936dcf3ebf9a32577b411a5a6c8b63348ef88c5728"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9fb4b40e8ff442e4ffea4b37a0634fa502f83fb78c99bd49014a98497ce685d7",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-counts-01/record-strict/record.json",
+      "record_sha256": "456a2e7f99a83500d5890723900f3cac44ac0da885ff383422ff4829cbfb5ecf",
+      "scope": "Packed source/ABI/pure-count admission only; no operation capability credit."
+    },
+    {
+      "id": "packed-triangular-emitted-signatures-ilp64",
+      "started": "2026-09-08T07:00:12.959632+00:00",
+      "completed": "2026-09-08T07:00:14.216302+00:00",
+      "configuration": "GNU11-ilp64",
+      "command": [
+        "/usr/bin/g++-11",
+        "-std=c++20",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fsyntax-only",
+        "$EVIDENCE_ROOT/p05-packed-triangular-source-01/emitted-compare-ilp64.cc",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-source-01/emitted-compare-ilp64/record.json",
+      "record_sha256": "123703410cf7dd73367a37f9e9549f685d619178411194f3020b3738082a0944",
+      "scope": "Packed source/ABI/pure-count admission only; no operation capability credit."
+    },
+    {
+      "id": "packed-triangular-emitted-signatures-lp64",
+      "started": "2026-09-08T07:00:11.215808+00:00",
+      "completed": "2026-09-08T07:00:12.517019+00:00",
+      "configuration": "GNU11-lp64",
+      "command": [
+        "/usr/bin/g++-11",
+        "-std=c++20",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-fsyntax-only",
+        "$EVIDENCE_ROOT/p05-packed-triangular-source-01/emitted-compare-lp64.cc",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-expert-integration-v16-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "258cbfbf1e78fcbba0bd0c2ff046c99055dfe544f4f30891a473ef162d2da9ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-source-01/emitted-compare-lp64/record.json",
+      "record_sha256": "d072fc7f5f0cf7bcecc933f5f0a176b787ba0d49b82fd4b17868cff1797eceae",
+      "scope": "Packed source/ABI/pure-count admission only; no operation capability credit."
     }
   ]
 }

@@ -58,7 +58,6 @@ asc/dense/providers/lapack_lu_band_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_band_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_band_equilibration.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_band_equilibration_radix.h|asc_dense_lapack
-asc/dense/providers/lapack_triangular.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_band_expert.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_band_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_condition.h|asc_dense_lapack
@@ -70,6 +69,9 @@ asc/dense/providers/lapack_qr.h|asc_dense_lapack
 asc/dense/providers/lapack_rank_revealing.h|asc_dense_lapack
 asc/dense/providers/lapack_svd_least_squares.h|asc_dense_lapack
 asc/dense/providers/lapack_sylvester.h|asc_dense_lapack
+asc/dense/providers/lapack_triangular.h|asc_dense_lapack
+asc/dense/providers/lapack_triangular_condition.h|asc_dense_lapack
+asc/dense/providers/lapack_triangular_error_bounds.h|asc_dense_lapack
 asc/dense/providers/lapack_tridiagonal.h|asc_dense_lapack
 asc/dense/providers/lapack_tridiagonal_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_tridiagonal_driver.h|asc_dense_lapack

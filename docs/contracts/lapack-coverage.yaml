@@ -28434,12 +28434,105 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctrcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_condition.h",
+          "sha256": "7c941de515757b3069613185eb90f862646daf3ead7d3f9fe989fb5ccd6d2c3a"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_error_bounds.h",
+          "sha256": "41586a39de13e3c890cbf2e35abe33d3668fd20906988e3034ce403e06c4b203"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_expert.cc",
+          "sha256": "93fd6c6a9e72c7df752285cae359bcf82dfb6ce1abc75d796ec7eb6160323cd5"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+          "sha256": "c05cd48b7d7cf6df2a61487e06ba911ebf0c6c4abaa4e65d450cbe967550444e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_fault_test.cc",
+          "sha256": "0d5fbec7eee3872deac1f7f3284a92547485acc3e2c1585c6e21de43df71d174"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.cc",
+          "sha256": "2e775b56a1712d4d95d9d94674ca5a4cbadf383af1cdeadd2d4fff9638e49eef"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.h",
+          "sha256": "2303827bc0be0169f2eeb12c5e9188abd3322c79b55945bbb1579564fdd1f1a8"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_math_test.cc",
+          "sha256": "92e0109b8e2c9062f4d4d725b7292dcca8a220e81b1c430ccef667ead198a249"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+          "sha256": "7cc7172ccea9a42ae5983dcde258b81e2e80490c39d019883601903c5a8553dd"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_source_counts_test.cc",
+          "sha256": "a39d30f7248fe69a8efcf95337f2bba2a9e12af1bf7e55a568768604a98ee6b8"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -28447,7 +28540,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -28580,12 +28675,105 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trrfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctrrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_condition.h",
+          "sha256": "7c941de515757b3069613185eb90f862646daf3ead7d3f9fe989fb5ccd6d2c3a"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_error_bounds.h",
+          "sha256": "41586a39de13e3c890cbf2e35abe33d3668fd20906988e3034ce403e06c4b203"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_expert.cc",
+          "sha256": "93fd6c6a9e72c7df752285cae359bcf82dfb6ce1abc75d796ec7eb6160323cd5"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+          "sha256": "c05cd48b7d7cf6df2a61487e06ba911ebf0c6c4abaa4e65d450cbe967550444e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_fault_test.cc",
+          "sha256": "0d5fbec7eee3872deac1f7f3284a92547485acc3e2c1585c6e21de43df71d174"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.cc",
+          "sha256": "2e775b56a1712d4d95d9d94674ca5a4cbadf383af1cdeadd2d4fff9638e49eef"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.h",
+          "sha256": "2303827bc0be0169f2eeb12c5e9188abd3322c79b55945bbb1579564fdd1f1a8"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_math_test.cc",
+          "sha256": "92e0109b8e2c9062f4d4d725b7292dcca8a220e81b1c430ccef667ead198a249"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+          "sha256": "7cc7172ccea9a42ae5983dcde258b81e2e80490c39d019883601903c5a8553dd"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_source_counts_test.cc",
+          "sha256": "a39d30f7248fe69a8efcf95337f2bba2a9e12af1bf7e55a568768604a98ee6b8"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -28593,7 +28781,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -29039,9 +29229,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -29147,9 +29337,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -29255,9 +29445,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -59318,12 +59508,105 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtrcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_condition.h",
+          "sha256": "7c941de515757b3069613185eb90f862646daf3ead7d3f9fe989fb5ccd6d2c3a"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_error_bounds.h",
+          "sha256": "41586a39de13e3c890cbf2e35abe33d3668fd20906988e3034ce403e06c4b203"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_expert.cc",
+          "sha256": "93fd6c6a9e72c7df752285cae359bcf82dfb6ce1abc75d796ec7eb6160323cd5"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+          "sha256": "c05cd48b7d7cf6df2a61487e06ba911ebf0c6c4abaa4e65d450cbe967550444e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_fault_test.cc",
+          "sha256": "0d5fbec7eee3872deac1f7f3284a92547485acc3e2c1585c6e21de43df71d174"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.cc",
+          "sha256": "2e775b56a1712d4d95d9d94674ca5a4cbadf383af1cdeadd2d4fff9638e49eef"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.h",
+          "sha256": "2303827bc0be0169f2eeb12c5e9188abd3322c79b55945bbb1579564fdd1f1a8"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_math_test.cc",
+          "sha256": "92e0109b8e2c9062f4d4d725b7292dcca8a220e81b1c430ccef667ead198a249"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+          "sha256": "7cc7172ccea9a42ae5983dcde258b81e2e80490c39d019883601903c5a8553dd"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_source_counts_test.cc",
+          "sha256": "a39d30f7248fe69a8efcf95337f2bba2a9e12af1bf7e55a568768604a98ee6b8"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59331,7 +59614,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -59464,12 +59749,105 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trrfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtrrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_condition.h",
+          "sha256": "7c941de515757b3069613185eb90f862646daf3ead7d3f9fe989fb5ccd6d2c3a"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_error_bounds.h",
+          "sha256": "41586a39de13e3c890cbf2e35abe33d3668fd20906988e3034ce403e06c4b203"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_expert.cc",
+          "sha256": "93fd6c6a9e72c7df752285cae359bcf82dfb6ce1abc75d796ec7eb6160323cd5"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+          "sha256": "c05cd48b7d7cf6df2a61487e06ba911ebf0c6c4abaa4e65d450cbe967550444e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_fault_test.cc",
+          "sha256": "0d5fbec7eee3872deac1f7f3284a92547485acc3e2c1585c6e21de43df71d174"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.cc",
+          "sha256": "2e775b56a1712d4d95d9d94674ca5a4cbadf383af1cdeadd2d4fff9638e49eef"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.h",
+          "sha256": "2303827bc0be0169f2eeb12c5e9188abd3322c79b55945bbb1579564fdd1f1a8"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_math_test.cc",
+          "sha256": "92e0109b8e2c9062f4d4d725b7292dcca8a220e81b1c430ccef667ead198a249"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+          "sha256": "7cc7172ccea9a42ae5983dcde258b81e2e80490c39d019883601903c5a8553dd"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_source_counts_test.cc",
+          "sha256": "a39d30f7248fe69a8efcf95337f2bba2a9e12af1bf7e55a568768604a98ee6b8"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59477,7 +59855,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -59923,9 +60303,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -60031,9 +60411,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -60139,9 +60519,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -90154,12 +90534,105 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.strcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_condition.h",
+          "sha256": "7c941de515757b3069613185eb90f862646daf3ead7d3f9fe989fb5ccd6d2c3a"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_error_bounds.h",
+          "sha256": "41586a39de13e3c890cbf2e35abe33d3668fd20906988e3034ce403e06c4b203"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_expert.cc",
+          "sha256": "93fd6c6a9e72c7df752285cae359bcf82dfb6ce1abc75d796ec7eb6160323cd5"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+          "sha256": "c05cd48b7d7cf6df2a61487e06ba911ebf0c6c4abaa4e65d450cbe967550444e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_fault_test.cc",
+          "sha256": "0d5fbec7eee3872deac1f7f3284a92547485acc3e2c1585c6e21de43df71d174"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.cc",
+          "sha256": "2e775b56a1712d4d95d9d94674ca5a4cbadf383af1cdeadd2d4fff9638e49eef"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.h",
+          "sha256": "2303827bc0be0169f2eeb12c5e9188abd3322c79b55945bbb1579564fdd1f1a8"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_math_test.cc",
+          "sha256": "92e0109b8e2c9062f4d4d725b7292dcca8a220e81b1c430ccef667ead198a249"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+          "sha256": "7cc7172ccea9a42ae5983dcde258b81e2e80490c39d019883601903c5a8553dd"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_source_counts_test.cc",
+          "sha256": "a39d30f7248fe69a8efcf95337f2bba2a9e12af1bf7e55a568768604a98ee6b8"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90167,7 +90640,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -90300,12 +90775,105 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trrfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.strrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_condition.h",
+          "sha256": "7c941de515757b3069613185eb90f862646daf3ead7d3f9fe989fb5ccd6d2c3a"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_error_bounds.h",
+          "sha256": "41586a39de13e3c890cbf2e35abe33d3668fd20906988e3034ce403e06c4b203"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_expert.cc",
+          "sha256": "93fd6c6a9e72c7df752285cae359bcf82dfb6ce1abc75d796ec7eb6160323cd5"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+          "sha256": "c05cd48b7d7cf6df2a61487e06ba911ebf0c6c4abaa4e65d450cbe967550444e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_fault_test.cc",
+          "sha256": "0d5fbec7eee3872deac1f7f3284a92547485acc3e2c1585c6e21de43df71d174"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.cc",
+          "sha256": "2e775b56a1712d4d95d9d94674ca5a4cbadf383af1cdeadd2d4fff9638e49eef"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.h",
+          "sha256": "2303827bc0be0169f2eeb12c5e9188abd3322c79b55945bbb1579564fdd1f1a8"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_math_test.cc",
+          "sha256": "92e0109b8e2c9062f4d4d725b7292dcca8a220e81b1c430ccef667ead198a249"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+          "sha256": "7cc7172ccea9a42ae5983dcde258b81e2e80490c39d019883601903c5a8553dd"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_source_counts_test.cc",
+          "sha256": "a39d30f7248fe69a8efcf95337f2bba2a9e12af1bf7e55a568768604a98ee6b8"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90313,7 +90881,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -90759,9 +91329,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -90867,9 +91437,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -90975,9 +91545,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -119450,12 +120020,105 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztrcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_condition.h",
+          "sha256": "7c941de515757b3069613185eb90f862646daf3ead7d3f9fe989fb5ccd6d2c3a"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_error_bounds.h",
+          "sha256": "41586a39de13e3c890cbf2e35abe33d3668fd20906988e3034ce403e06c4b203"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_expert.cc",
+          "sha256": "93fd6c6a9e72c7df752285cae359bcf82dfb6ce1abc75d796ec7eb6160323cd5"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+          "sha256": "c05cd48b7d7cf6df2a61487e06ba911ebf0c6c4abaa4e65d450cbe967550444e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_fault_test.cc",
+          "sha256": "0d5fbec7eee3872deac1f7f3284a92547485acc3e2c1585c6e21de43df71d174"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.cc",
+          "sha256": "2e775b56a1712d4d95d9d94674ca5a4cbadf383af1cdeadd2d4fff9638e49eef"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.h",
+          "sha256": "2303827bc0be0169f2eeb12c5e9188abd3322c79b55945bbb1579564fdd1f1a8"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_math_test.cc",
+          "sha256": "92e0109b8e2c9062f4d4d725b7292dcca8a220e81b1c430ccef667ead198a249"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+          "sha256": "7cc7172ccea9a42ae5983dcde258b81e2e80490c39d019883601903c5a8553dd"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_source_counts_test.cc",
+          "sha256": "a39d30f7248fe69a8efcf95337f2bba2a9e12af1bf7e55a568768604a98ee6b8"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -119463,7 +120126,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -119596,12 +120261,105 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trrfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztrrfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_condition.h",
+          "sha256": "7c941de515757b3069613185eb90f862646daf3ead7d3f9fe989fb5ccd6d2c3a"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_error_bounds.h",
+          "sha256": "41586a39de13e3c890cbf2e35abe33d3668fd20906988e3034ce403e06c4b203"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular_expert.cc",
+          "sha256": "93fd6c6a9e72c7df752285cae359bcf82dfb6ce1abc75d796ec7eb6160323cd5"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_expert_main.cc",
+          "sha256": "c05cd48b7d7cf6df2a61487e06ba911ebf0c6c4abaa4e65d450cbe967550444e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_fault_test.cc",
+          "sha256": "0d5fbec7eee3872deac1f7f3284a92547485acc3e2c1585c6e21de43df71d174"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.cc",
+          "sha256": "2e775b56a1712d4d95d9d94674ca5a4cbadf383af1cdeadd2d4fff9638e49eef"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_faults.h",
+          "sha256": "2303827bc0be0169f2eeb12c5e9188abd3322c79b55945bbb1579564fdd1f1a8"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_math_test.cc",
+          "sha256": "92e0109b8e2c9062f4d4d725b7292dcca8a220e81b1c430ccef667ead198a249"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_pinned_signatures_test.cc",
+          "sha256": "7cc7172ccea9a42ae5983dcde258b81e2e80490c39d019883601903c5a8553dd"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_expert_source_counts_test.cc",
+          "sha256": "a39d30f7248fe69a8efcf95337f2bba2a9e12af1bf7e55a568768604a98ee6b8"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -119609,7 +120367,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -120055,9 +120815,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -120163,9 +120923,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -120271,9 +121031,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
           "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
-          "review": "programs/lapack-array-io/triangular-edge-review.md"
+          "review": "programs/lapack-array-io/triangular-edge-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
