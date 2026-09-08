@@ -14,10 +14,10 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "4aabd3334a0d9c37e993c3505a4c10662d1b056a",
+  "last_implementation_commit": "36bd98df8eaf5697b458af197e8884e7ded16dd0",
   "worktree_diff_identity": {
-    "state": "v18_ready_for_local_commit",
-    "parent_commit": "356bf790cae951a6185192c33d7a36cda638cdf3",
+    "state": "v18_committed_band_candidate_admitted_program_records_only",
+    "parent_commit": "36bd98df8eaf5697b458af197e8884e7ded16dd0",
     "implementation_tree": "ffe1d7f7ab27fba94570dbc2cd275dd5785045da",
     "source_archive_sha256": "9cf968d45cb398f9ddf088514bf94b6db7574152d402b9fd2246c21918f572cf"
   },
@@ -570,9 +570,13 @@
       "dependencies": [
         "P05.triangular_band_source_admission"
       ],
-      "candidate": "p05-triangular-band-solve-candidate-01",
+      "candidate": "p05-triangular-band-solve-candidate-04",
       "draft": "p05-triangular-band-draft-01",
-      "scope": "Six configurations each execute5/5 with zero skips:36864 public solve workflows/1907712 assertions,186643 pure integer checks,four signatures,descriptor and Linux read-observation tests. Existing63-primary-TU libraries reused with rehash. Strict checks are running; failure/alias/placement/allocation and root/installed gates remain open."
+      "scope": "Unregistered TBTRS4 candidate04. All six lanes execute7/7 with zero skips. Seventy-eight fresh adapter/test/support objects; prior63 primary ASC TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Ten original strict checks cover unchanged inputs; four candidate02 fault strict checks, eight explicitly input-bound isolated headers, four current read-test strict and current14-file format checks pass. Candidate03 four strict failures remain preserved. Each public suite has36864 workflows/1907712 assertions, failure suite42048 profiles/305280 assertions, counts186643 and four native signatures. Fresh Linux read observation establishes real C++20 array lifetimes and288 provider profiles with protected ignored A storage, whole backing preservation and zero observed C++ allocations. Earlier scalar-object harness results are historical, not array-lifetime proof. No root, installed, full-mode/platform or fully verified routine credit; all2113 required routines and130 missing XBLAS remain visible.",
+      "bounded_admission_complete": true,
+      "review": "programs/lapack-array-io/triangular-band-solve-review.md",
+      "completion_audit": "p05-triangular-band-solve-candidate-04/audit.json",
+      "completion_audit_sha256": "46a0675262847b42dab863aca41103d8ce4f4ea29f2be3486224a65da3e44361"
     },
     "P05.packed_triangular_expert_documentation": {
       "state": "in_progress",
@@ -583,8 +587,8 @@
       "completion_audit_sha256": "5006aaba4eca71f1fc39b1210c239c5df0874875e38f78359d08996432fffe8e"
     }
   },
-  "active_task": "P05.triangular_band_solve_candidate",
-  "next_action": "Commit the fully recorded v18 packed-estimator slice locally. Inspect p05-triangular-band-solve-candidate-01/checks-runner.log and its strict/header records; fix any failures in a fresh candidate. Add exact TBTRS failure injection, real singularity, preflight/alias/workspace/placement and allocation tests before root registration. Continue TBCON/TBRFS8 and all remaining required P00-P11 work.",
+  "active_task": "P05.triangular_band_root_integration",
+  "next_action": "Import the14 audited candidate04 files and atomically register TBTRS4, the neutral descriptor,117 public headers and23 installed families as v19. Freeze and execute affected root/header/package/source checks with exact unchanged v18 evidence explicitly retained. Continue TBCON/TBRFS8 and all remaining required P00-P11 work;62 prior full-suite mathematical gates and 130 required missing XBLAS routines remain open.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -847,7 +851,9 @@
       "p05-triangular-expert-candidate-06/strict-lp64-0/record.json",
       "p05-triangular-expert-source-01/emitted-compare-ilp64/record.json",
       "p05-triangular-expert-source-01/emitted-compare-lp64/record.json",
-      "p05-triangular-expert-candidate-06/completion-record/record.json"
+      "p05-triangular-expert-candidate-06/completion-record/record.json",
+      "p05-triangular-band-solve-candidate-04/audit.json",
+      "p05-triangular-band-solve-candidate-04/completion-record/record.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -887,7 +893,8 @@
       "Unregistered packed TPCON/TPRFS8 candidate04. All6 lanes execute12 each:4 pass8 ordinary required math failures,zero skips.54 fresh adapter/test objects;prior62 production TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Original14 strict and8 public-header checks apply to unchanged production/header/public/count/signature bytes;4 final changed-test strict checks pass. Candidate02/03 missing direct-header failures and earlier overly strict matrix estimator fixture are preserved, not promoted to passes/provider defects. No root,installed,full-mode or fully verified credit.",
       "Corrected V18-02 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All63 primary Core/Dense/provider TUs freshly compiled each lane,378 objects. Full853 each:791 pass62 required mathematical failures;Debug62 each:46 pass16 required mathematical failures; ASC-only sanitizer37 each:21 pass16 required mathematical failures. Zero skips. All four relocated22-family packages,14 strict and6 static checks pass. Foreign archives unsanitized. Initial01 four configure and two-file formatting failures preserved in23 records; only four source files change in02, including two whitespace-only test corrections. TPCON/TPRFS8 remains partial; no full normalized mode/routine/program verification or independent approval.",
       "Source admission and unregistered descriptor only. Twenty-seven executed records include preserved initial descriptor build and two strict failures; final descriptor two tests/five strict-header-format checks pass. Counts oracle186643 and strict pass. Actual24 emitted native signatures match installed headers; source closures85/10 members per ABI and18 complete precision pairs rehashed. Eight fresh pure-test/support objects across original and corrected candidates; existing Core library is reused, not freshly compiled. All12 TBTRS/TBCON/TBRFS rows remain required/not_started; no root/installed/full-mode credit.",
-      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "Unregistered TBTRS4 candidate04. All six lanes execute7/7 with zero skips. Seventy-eight fresh adapter/test/support objects; prior63 primary ASC TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Ten original strict checks cover unchanged inputs; four candidate02 fault strict checks, eight explicitly input-bound isolated headers, four current read-test strict and current14-file format checks pass. Candidate03 four strict failures remain preserved. Each public suite has36864 workflows/1907712 assertions, failure suite42048 profiles/305280 assertions, counts186643 and four native signatures. Fresh Linux read observation establishes real C++20 array lifetimes and288 provider profiles with protected ignored A storage, whole backing preservation and zero observed C++ allocations. Earlier scalar-object harness results are historical, not array-lifetime proof. No root, installed, full-mode/platform or fully verified routine credit; all2113 required routines and130 missing XBLAS remain visible."
     ]
   },
   "counts": {
@@ -1003,20 +1010,18 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "p05-triangular-band-solve-candidate-01",
-    "state": "numerical_passed_strict_and_failure_acceptance_pending",
-    "scope": "Six configurations each execute5/5 with zero skips:36864 public solve workflows/1907712 assertions,186643 pure integer checks,four signatures,descriptor and Linux read-observation tests. Existing63-primary-TU libraries reused with rehash. Strict checks are running; failure/alias/placement/allocation and root/installed gates remain open."
+    "candidate": "p05-triangular-band-solve-candidate-04",
+    "state": "bounded_candidate_admission_complete",
+    "scope": "Unregistered TBTRS4 candidate04. All six lanes execute7/7 with zero skips. Seventy-eight fresh adapter/test/support objects; prior63 primary ASC TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Ten original strict checks cover unchanged inputs; four candidate02 fault strict checks, eight explicitly input-bound isolated headers, four current read-test strict and current14-file format checks pass. Candidate03 four strict failures remain preserved. Each public suite has36864 workflows/1907712 assertions, failure suite42048 profiles/305280 assertions, counts186643 and four native signatures. Fresh Linux read observation establishes real C++20 array lifetimes and288 provider profiles with protected ignored A storage, whole backing preservation and zero observed C++ allocations. Earlier scalar-object harness results are historical, not array-lifetime proof. No root, installed, full-mode/platform or fully verified routine credit; all2113 required routines and130 missing XBLAS remain visible.",
+    "completion_audit": "p05-triangular-band-solve-candidate-04/audit.json",
+    "completion_audit_sha256": "46a0675262847b42dab863aca41103d8ce4f4ea29f2be3486224a65da3e44361"
   },
   "last_completed_verification": {
-    "base_commit": "356bf790cae951a6185192c33d7a36cda638cdf3",
-    "implementation_tree": "ffe1d7f7ab27fba94570dbc2cd275dd5785045da",
-    "source_archive_sha256": "9cf968d45cb398f9ddf088514bf94b6db7574152d402b9fd2246c21918f572cf",
-    "coverage_mapping_sha256": "7345738dcd8495e3d848d4f076c1968f4b8a8f7b400a6effe8c85627f309ad30",
-    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
-    "state": "bounded_documentation_complete",
-    "candidate": "p05-packed-triangular-expert-doc-integration-v18-01",
-    "completion_audit": "p05-packed-triangular-expert-doc-integration-v18-01/audit.json",
-    "completion_audit_sha256": "5006aaba4eca71f1fc39b1210c239c5df0874875e38f78359d08996432fffe8e"
+    "candidate": "p05-triangular-band-solve-candidate-04",
+    "state": "bounded_candidate_admission_complete",
+    "scope": "Unregistered TBTRS4 candidate04. All six lanes execute7/7 with zero skips. Seventy-eight fresh adapter/test/support objects; prior63 primary ASC TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Ten original strict checks cover unchanged inputs; four candidate02 fault strict checks, eight explicitly input-bound isolated headers, four current read-test strict and current14-file format checks pass. Candidate03 four strict failures remain preserved. Each public suite has36864 workflows/1907712 assertions, failure suite42048 profiles/305280 assertions, counts186643 and four native signatures. Fresh Linux read observation establishes real C++20 array lifetimes and288 provider profiles with protected ignored A storage, whole backing preservation and zero observed C++ allocations. Earlier scalar-object harness results are historical, not array-lifetime proof. No root, installed, full-mode/platform or fully verified routine credit; all2113 required routines and130 missing XBLAS remain visible.",
+    "completion_audit": "p05-triangular-band-solve-candidate-04/audit.json",
+    "completion_audit_sha256": "46a0675262847b42dab863aca41103d8ce4f4ea29f2be3486224a65da3e44361"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -1280,7 +1285,14 @@
       "candidate": "p05-packed-triangular-expert-doc-integration-v18-01",
       "completion_audit": "p05-packed-triangular-expert-doc-integration-v18-01/audit.json",
       "completion_audit_sha256": "5006aaba4eca71f1fc39b1210c239c5df0874875e38f78359d08996432fffe8e"
+    },
+    {
+      "candidate": "p05-triangular-band-solve-candidate-04",
+      "state": "bounded_candidate_admission_complete",
+      "scope": "Unregistered TBTRS4 candidate04. All six lanes execute7/7 with zero skips. Seventy-eight fresh adapter/test/support objects; prior63 primary ASC TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Ten original strict checks cover unchanged inputs; four candidate02 fault strict checks, eight explicitly input-bound isolated headers, four current read-test strict and current14-file format checks pass. Candidate03 four strict failures remain preserved. Each public suite has36864 workflows/1907712 assertions, failure suite42048 profiles/305280 assertions, counts186643 and four native signatures. Fresh Linux read observation establishes real C++20 array lifetimes and288 provider profiles with protected ignored A storage, whole backing preservation and zero observed C++ allocations. Earlier scalar-object harness results are historical, not array-lifetime proof. No root, installed, full-mode/platform or fully verified routine credit; all2113 required routines and130 missing XBLAS remain visible.",
+      "completion_audit": "p05-triangular-band-solve-candidate-04/audit.json",
+      "completion_audit_sha256": "46a0675262847b42dab863aca41103d8ce4f4ea29f2be3486224a65da3e44361"
     }
   ],
-  "next_task": "Commit the fully recorded v18 packed-estimator slice locally. Inspect p05-triangular-band-solve-candidate-01/checks-runner.log and its strict/header records; fix any failures in a fresh candidate. Add exact TBTRS failure injection, real singularity, preflight/alias/workspace/placement and allocation tests before root registration. Continue TBCON/TBRFS8 and all remaining required P00-P11 work."
+  "next_task": "Import the14 audited candidate04 files and atomically register TBTRS4, the neutral descriptor,117 public headers and23 installed families as v19. Freeze and execute affected root/header/package/source checks with exact unchanged v18 evidence explicitly retained. Continue TBCON/TBRFS8 and all remaining required P00-P11 work;62 prior full-suite mathematical gates and 130 required missing XBLAS routines remain open."
 }

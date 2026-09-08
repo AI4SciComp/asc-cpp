@@ -9,12 +9,17 @@ failures each. All 378 primary objects are freshly compiled; four relocated
 22-family packages, 14 strict and six static checks pass. Foreign archives
 remain unsanitized. See [the root review](packed-triangular-expert-review.md).
 
-There are 2,621 normalized records, including original configure/format/test
+There are 2,746 normalized records, including original configure/format/test
 failures. The three subsequent prose updates pass six fresh documentation checks;
 all 1,347 prior numerical compiler inputs and production artifacts rehash unchanged. The next triangular-band slice has
 source/count/descriptor admission evidence and an unregistered solve
 candidate. Its routines remain required; no full P00-P11 or missing-XBLAS
 requirement is removed. See [band admission](triangular-band-admission-review.md).
+
+The final unregistered band-solve candidate passes six7/7 suites and five
+current strict/format checks. Its125 new records preserve earlier strict and
+audit failures. The corrected C++20 protected-memory harness is separately
+bound; root/package integration remains next. See [the solve review](triangular-band-solve-review.md).
 
 # Historical v17 packed inverse and solve integration
 
