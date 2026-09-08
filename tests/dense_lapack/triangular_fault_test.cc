@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <complex>
 #include <cstddef>
 #include <cstdint>
@@ -432,6 +433,88 @@ void Preflight(Checks& checks, const asc::ReferenceLapackProvider& provider,
   }
 }
 
+// TRTI2 deliberately has no singularity scan. These are source-fidelity
+// checks for a singular input, not evidence of a mathematically valid inverse.
+template <typename T>
+void UncheckedZero(Checks& checks, const asc::ReferenceLapackProvider& provider,
+                   const Profile& profile, std::size_t zero) {
+  Fixture<T> sample(profile);
+  sample.a.At(zero, zero) = Value<T>(0);
+  const auto before = sample;
+  auto plan = Take(sample.Query(provider, profile));
+  auto workspace = sample.Workspace(plan);
+  auto report = DirtyReport();
+  asc_triangular_test::Disarm();
+  const auto calls = TotalCalls();
+  const auto status = sample.Call(provider, profile, plan, workspace, report);
+  checks.Expect(TotalCalls() == calls + 1, "zero diagonal enters real TRTI2");
+  checks.Expect(installed_internal::Succeeded(status, report),
+                "TRTI2 retains actual zero INFO without invented singularity");
+  checks.Expect(!std::isfinite(std::abs(
+                    installed_internal::Widen(sample.a.At(zero, zero)))),
+                "unchecked zero diagonal produces nonfinite reciprocal");
+  checks.Expect(!report.diagnostic_index && !report.native_argument &&
+                    !report.factor_family &&
+                    report.provider == provider.identity(),
+                "unchecked inverse has no invented factor or error diagnostic");
+  auto preserved = before.a.data;
+  for (std::size_t i = 0; i < 2; ++i) {
+    for (std::size_t j = 0; j < 2; ++j) {
+      if (profile.triangle == kUpper ? i <= j : i >= j) {
+        preserved[sample.a.Offset(i, j)] = sample.a.At(i, j);
+      }
+    }
+  }
+  checks.Expect(SameBytes(preserved, sample.a.data) &&
+                    SameBytes(sample.b.data, before.b.data),
+                "unchecked inverse preserves unused triangle padding and RHS");
+  checks.Expect(sample.packing.front() == before.packing.front() &&
+                    sample.packing.back() == before.packing.back(),
+                "unchecked inverse preserves workspace red zones");
+  checks.ProfileDone();
+}
+
+template <typename T>
+void AliasedSolve(Checks& checks, const asc::ReferenceLapackProvider& provider,
+                  const Profile& profile) {
+  Fixture<T> sample(profile);
+  const auto before = sample;
+  auto plan = Take(sample.Query(provider, profile));
+  auto workspace = sample.Workspace(plan);
+  auto report = DirtyReport();
+  // Both descriptors cover the same live scalar array. Their layouts are
+  // independent, and the RHS count remains exactly two for this rejection.
+  auto b = Take(asc::DenseBlasMatrixView<T>::Create(
+      sample.a.data.data(), 2, 2, profile.b_layout, 3,
+      {sample.a.data.data(), sizeof(sample.a.data), kHost}));
+  asc_triangular_test::Disarm();
+  const auto calls = TotalCalls();
+  const auto query =
+      asc::QueryTrtrsWorkspace(provider, profile.triangle, profile.diagonal,
+                               profile.operation, sample.a.ConstView(), b);
+  const auto status = asc::Trtrs(provider, profile.triangle, profile.diagonal,
+                                 profile.operation, sample.a.ConstView(), b,
+                                 plan, workspace, report);
+  checks.Expect(!query.ok() &&
+                    query.status().code() == asc::ErrorCode::kInvalidArgument &&
+                    status.code() == asc::ErrorCode::kInvalidArgument,
+                "query and execution reject actual A/B overlap");
+  checks.Expect(TotalCalls() == calls,
+                "overlapping solve makes no native call");
+  checks.Expect(SameBytes(sample.a.data, before.a.data) &&
+                    SameBytes(sample.b.data, before.b.data) &&
+                    SameBytes(sample.packing, before.packing),
+                "overlapping solve preserves every numeric and workspace byte");
+  checks.Expect(
+      !report.called_provider && !report.native_info &&
+          report.outcome == asc::LapackOutcome::kNotRun &&
+          report.output_validity == asc::LapackOutputValidity::kUnchanged &&
+          !report.diagnostic_index && !report.native_argument &&
+          !report.factor_family && report.provider == provider.identity(),
+      "overlapping solve resets stale report without fabricated INFO");
+  checks.ProfileDone();
+}
+
 template <typename T>
 void Scalar(Checks& checks, const asc::ReferenceLapackProvider& provider) {
   for (auto kind : {Kind::kTrtri, Kind::kTrti2, Kind::kTrtrs}) {
@@ -457,6 +540,13 @@ void Scalar(Checks& checks, const asc::ReferenceLapackProvider& provider) {
                   Inject<T>(checks, provider, profile, fault);
                 }
                 Preflight<T>(checks, provider, profile);
+                if (kind == Kind::kTrti2 && diagonal == kNonUnit) {
+                  UncheckedZero<T>(checks, provider, profile, 0);
+                  UncheckedZero<T>(checks, provider, profile, 1);
+                }
+                if (kind == Kind::kTrtrs && nrhs == 2) {
+                  AliasedSolve<T>(checks, provider, profile);
+                }
                 if (kind != Kind::kTrti2 && diagonal == kNonUnit) {
                   Singular<T>(checks, provider, profile, 0);
                   Singular<T>(checks, provider, profile, 1);

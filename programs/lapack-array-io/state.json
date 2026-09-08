@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
+  "last_implementation_commit": "04f8535a55d7a411ce3dfd24a7616685c4f94026",
   "worktree_diff_identity": {
-    "state": "documentation_checkpoint_ready_for_local_commit",
-    "parent_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
-    "implementation_tree": "47605f630177870567f358e31c6ddf064d127f69"
+    "state": "triangular_edges_ready_for_local_commit",
+    "parent_commit": "04f8535a55d7a411ce3dfd24a7616685c4f94026",
+    "implementation_tree": "78995b4b105dfd99f5691643dae615b48c6cdf59"
   },
   "packages": {
     "P00": {
@@ -450,10 +450,16 @@
       "owner": "integration",
       "scope": "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
       "review": "programs/lapack-array-io/triangular-root-review.md"
+    },
+    "P05.triangular_additive_edges": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged.",
+      "review": "programs/lapack-array-io/triangular-edge-review.md"
     }
   },
-  "active_task": "P05.triangular_additive_edges",
-  "next_action": "Commit documentation-only checkpoint locally. Freeze p05-triangular-edge-acceptance-01 from this product plus exact additive fault test f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b and refreshed12 coverage artifact hashes. Both initial Release ABI overlays1/1 and strict passed with7952profiles/62224checks. Complete new six-lane test compilation/runtime against individually audited unchanged Release/Debug/ASC sanitizer production archives; audit then import/commit the test-only slice. Continue remaining required memory/mode/family work.",
+  "active_task": "P05.triangular_condition_and_error_bounds",
+  "next_action": "Commit exact two-file triangular edge slice and durable records locally. Next dependency-satisfied provider work is the8 required S/D/C/Z TRCON/TRRFS routes using existing checked full-triangle views. Extract pinned inventory/source records into p05-triangular-expert-source-01, review actual native signatures, workspace formulas, scalar/norm semantics and complete source closure/count/ignored-operand proofs; implement typed provider queries/condition/error-bound APIs in an external candidate with ordinary numerical/error/memory tests. TRRFS estimates errors and does not update X. Preserve prior12 triangular and all other unresolved gates; no architecture restart, waiver or remote writes.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -461,7 +467,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "64439cfbd2094d98c9e88c6e99c12e1757e6abc61aa8edb56f138d31a74469a7"
+    "coverage_mapping_sha256": "6b8e2e6cde6393e79195455596b7e8ad08eccfbc7e65cb8313331b4f9e2c0f12"
   },
   "provider": {
     "version": "3.12.1",
@@ -565,7 +571,9 @@
       "programs/lapack-array-io/triangular-root-review.md",
       "p05-triangular-integration-v15-02/audit-02.json",
       "p05-triangular-doc-integration-v15-01/audit.json",
-      "programs/lapack-array-io/triangular-documentation-review.md"
+      "programs/lapack-array-io/triangular-documentation-review.md",
+      "programs/lapack-array-io/triangular-edge-review.md",
+      "p05-triangular-edge-acceptance-01/audit.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -597,7 +605,8 @@
       "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.",
       "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
       "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
-      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged."
     ]
   },
   "counts": {
@@ -707,26 +716,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
-    "implementation_tree": "47605f630177870567f358e31c6ddf064d127f69",
-    "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17",
-    "coverage_mapping_sha256": "64439cfbd2094d98c9e88c6e99c12e1757e6abc61aa8edb56f138d31a74469a7",
-    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
-    "candidate": "p05-triangular-doc-integration-v15-01",
-    "state": "completed_documentation_only",
-    "completion_audit": "p05-triangular-doc-integration-v15-01/audit.json",
-    "completion_audit_sha256": "d1b491a99cd3e0bd932ddf2f3abc2817778630538a8632f3bfe702086f5f886d"
+    "base_commit": "04f8535a55d7a411ce3dfd24a7616685c4f94026",
+    "implementation_tree": "78995b4b105dfd99f5691643dae615b48c6cdf59",
+    "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e",
+    "coverage_mapping_sha256": "6b8e2e6cde6393e79195455596b7e8ad08eccfbc7e65cb8313331b4f9e2c0f12",
+    "scope": "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged.",
+    "candidate": "p05-triangular-edge-acceptance-01",
+    "state": "completed_triangular_additive_edge_checks",
+    "completion_audit": "p05-triangular-edge-acceptance-01/audit.json",
+    "completion_audit_sha256": "9a222d37e10396f521e826c3d7af771618dbc5182aa5ca5cae4737b83e33d55a"
   },
   "last_completed_verification": {
-    "base_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
-    "implementation_tree": "47605f630177870567f358e31c6ddf064d127f69",
-    "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17",
-    "coverage_mapping_sha256": "64439cfbd2094d98c9e88c6e99c12e1757e6abc61aa8edb56f138d31a74469a7",
-    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
-    "candidate": "p05-triangular-doc-integration-v15-01",
-    "state": "completed_documentation_only",
-    "completion_audit": "p05-triangular-doc-integration-v15-01/audit.json",
-    "completion_audit_sha256": "d1b491a99cd3e0bd932ddf2f3abc2817778630538a8632f3bfe702086f5f886d"
+    "base_commit": "04f8535a55d7a411ce3dfd24a7616685c4f94026",
+    "implementation_tree": "78995b4b105dfd99f5691643dae615b48c6cdf59",
+    "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e",
+    "coverage_mapping_sha256": "6b8e2e6cde6393e79195455596b7e8ad08eccfbc7e65cb8313331b4f9e2c0f12",
+    "scope": "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged.",
+    "candidate": "p05-triangular-edge-acceptance-01",
+    "state": "completed_triangular_additive_edge_checks",
+    "completion_audit": "p05-triangular-edge-acceptance-01/audit.json",
+    "completion_audit_sha256": "9a222d37e10396f521e826c3d7af771618dbc5182aa5ca5cae4737b83e33d55a"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -935,7 +944,18 @@
       "state": "completed_triangular_root_scoped_full_math_open",
       "completion_audit": "p05-triangular-integration-v15-02/audit-02.json",
       "completion_audit_sha256": "5455d0c0c00fa196b8d0b374298cb53388bf223799e798163938748cf14ee94e"
+    },
+    {
+      "base_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
+      "implementation_tree": "47605f630177870567f358e31c6ddf064d127f69",
+      "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17",
+      "coverage_mapping_sha256": "64439cfbd2094d98c9e88c6e99c12e1757e6abc61aa8edb56f138d31a74469a7",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "candidate": "p05-triangular-doc-integration-v15-01",
+      "state": "completed_documentation_only",
+      "completion_audit": "p05-triangular-doc-integration-v15-01/audit.json",
+      "completion_audit_sha256": "d1b491a99cd3e0bd932ddf2f3abc2817778630538a8632f3bfe702086f5f886d"
     }
   ],
-  "next_task": "Commit documentation-only checkpoint locally. Freeze p05-triangular-edge-acceptance-01 from this product plus exact additive fault test f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b and refreshed12 coverage artifact hashes. Both initial Release ABI overlays1/1 and strict passed with7952profiles/62224checks. Complete new six-lane test compilation/runtime against individually audited unchanged Release/Debug/ASC sanitizer production archives; audit then import/commit the test-only slice. Continue remaining required memory/mode/family work."
+  "next_task": "Commit exact two-file triangular edge slice and durable records locally. Next dependency-satisfied provider work is the8 required S/D/C/Z TRCON/TRRFS routes using existing checked full-triangle views. Extract pinned inventory/source records into p05-triangular-expert-source-01, review actual native signatures, workspace formulas, scalar/norm semantics and complete source closure/count/ignored-operand proofs; implement typed provider queries/condition/error-bound APIs in an external candidate with ordinary numerical/error/memory tests. TRRFS estimates errors and does not update X. Preserve prior12 triangular and all other unresolved gates; no architecture restart, waiver or remote writes."
 }

@@ -29013,7 +29013,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -29040,8 +29040,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -29121,7 +29121,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -29148,8 +29148,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -29229,7 +29229,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -29256,8 +29256,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -59897,7 +59897,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -59924,8 +59924,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -60005,7 +60005,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -60032,8 +60032,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -60113,7 +60113,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -60140,8 +60140,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -90733,7 +90733,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -90760,8 +90760,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -90841,7 +90841,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -90868,8 +90868,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -90949,7 +90949,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -90976,8 +90976,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -120029,7 +120029,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -120056,8 +120056,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -120137,7 +120137,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -120164,8 +120164,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [
@@ -120245,7 +120245,7 @@
         },
         {
           "path": "tests/dense_lapack/triangular_fault_test.cc",
-          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+          "sha256": "f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b"
         },
         {
           "path": "tests/dense_lapack/triangular_faults.cc",
@@ -120272,8 +120272,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-root-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS with independent layouts and metadata-only caller packing. Analytic and failure-contract tests include source-derived count boundaries,12 signatures perABI, full-width INFO, real singular TRTRI/TRTRS, unchecked zero-diagonal TRTI2 and actual overlapping A/B preflight. Original root integration audit5455d0c0 remains separately bound to its source/test snapshot. Full normalized mode evidence, stronger read/allocation observation, finite extremes and platform/shared gates remain required; no full routine verification or native credit.",
+          "review": "programs/lapack-array-io/triangular-edge-review.md"
         }
       },
       "required_profiles": [

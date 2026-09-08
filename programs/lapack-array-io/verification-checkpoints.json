@@ -91983,6 +91983,1581 @@
       "external_record": "p05-triangular-doc-integration-v15-01/completion-record/record.json",
       "record_sha256": "0380f57e6b621f56b967f7aeea640cbddd9f18fbf4ca8e3b6aefc423847e3d81",
       "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17"
+    },
+    {
+      "id": "triangular-edge-current-coverage",
+      "started": "2026-09-08T05:30:09.205166+00:00",
+      "completed": "2026-09-08T05:30:09.752373+00:00",
+      "configuration": "coverage",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source",
+        "--evidence-root",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "41279d6512ecdd6b240080a87f29eceba22ee2e21c78d7279a9eeaf8308be18c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-coverage/record.json",
+      "record_sha256": "9ead745899d41b838f7c515fb8a29ab14878aae49e9f41d8f2dd45130b9f297d",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-debug-ilp64-build",
+      "started": "2026-09-08T05:29:08.937208+00:00",
+      "completed": "2026-09-08T05:29:11.851854+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-debug-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d031ecfdf87ea106fea36599be074992a17ee78357d49200c6763afc880079d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-debug-ilp64-build/record.json",
+      "record_sha256": "58c062521f6dcf739072f1858ed256a0a2db369ac043e0bf7600a59ec6e20a83",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-debug-ilp64-configure",
+      "started": "2026-09-08T05:29:06.240486+00:00",
+      "completed": "2026-09-08T05:29:08.629035+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-debug-ilp64",
+        "-DABI=ilp64",
+        "-DMODE=debug",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3f84672528bbc0aaf186cf529cfa50b4f0d5b0014753212af4106495467f16bb"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-debug-ilp64-configure/record.json",
+      "record_sha256": "ef97beb420a41b42e6574edef84350e4cdcf173abf8e87c3fcc6eeba09bb3d88",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-debug-ilp64-ctest",
+      "started": "2026-09-08T05:29:12.477224+00:00",
+      "completed": "2026-09-08T05:29:12.596754+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-debug-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/record-debug-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f875adbb5a3c8b9a34425ef84b03292f94efdfd01999a5d51f6130f9024a5a6a",
+        "ctest.xml": "31a7d4f2f018658a91b78abd3c89821ba3d8a89511be411087a59b0a3d31fea7"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-debug-ilp64-ctest/record.json",
+      "record_sha256": "1f36fd19d87ccea06f4a80b7eb90bf5e38d061a72956a70b067438c69cb40c12",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-debug-ilp64-registered",
+      "started": "2026-09-08T05:29:12.168713+00:00",
+      "completed": "2026-09-08T05:29:12.178188+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-debug-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "087f864733baa537cefab5068e8ef06c0050b7dbf1fbb251d772b3d084fb82c1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-debug-ilp64-registered/record.json",
+      "record_sha256": "41d179e3e1049916311d3c2b31cd1a28a3fd643c587b706a54f09adf177c3cc3",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-debug-lp64-build",
+      "started": "2026-09-08T05:29:09.007158+00:00",
+      "completed": "2026-09-08T05:29:11.812526+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-debug-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d031ecfdf87ea106fea36599be074992a17ee78357d49200c6763afc880079d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-debug-lp64-build/record.json",
+      "record_sha256": "06af943397897bb89bf592677a78dec14c0b80fd3e2bf4a4ae5953177709c150",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-debug-lp64-configure",
+      "started": "2026-09-08T05:29:06.300996+00:00",
+      "completed": "2026-09-08T05:29:08.687464+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-debug-lp64",
+        "-DABI=lp64",
+        "-DMODE=debug",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e896b33ae227807eb0b33d88998ff65567c76a61acf90aa2beda3837bb32a24c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-debug-lp64-configure/record.json",
+      "record_sha256": "3adc8c62ef1250b75cd2b264a559f2e4a696121481fdc76a965925ee31c685fe",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-debug-lp64-ctest",
+      "started": "2026-09-08T05:29:12.415684+00:00",
+      "completed": "2026-09-08T05:29:12.546270+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-debug-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/record-debug-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "735dc57114ec179d94ce3ac5a7f9c9bcfe13b7e7ba1f7dd6b722691d9c3d342b",
+        "ctest.xml": "286c165bc0613ca1d7dfa001ed0198d99ccad2d40f2fb268d53ad5f83abe1d97"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-debug-lp64-ctest/record.json",
+      "record_sha256": "7ef9a0da606a5abb9c4bc55576bafcf11e699b8699d5f956dfc9071abd7f9a04",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-debug-lp64-registered",
+      "started": "2026-09-08T05:29:12.102833+00:00",
+      "completed": "2026-09-08T05:29:12.116617+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-debug-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "be8d2dfbc972ce88ff0730543c8b5a01a6aa5160fc490cb1dabe8c626b14f04d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-debug-lp64-registered/record.json",
+      "record_sha256": "7ab0535bd3b039715baef35ec5af726bad2f00d40546b9c7ff25998750b30021",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-current-format",
+      "started": "2026-09-08T05:30:10.002151+00:00",
+      "completed": "2026-09-08T05:30:10.049417+00:00",
+      "configuration": "format",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--dry-run",
+        "--Werror",
+        "--style=file:$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/.clang-format",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense_lapack/triangular_fault_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-format/record.json",
+      "record_sha256": "ea07a593b301783b41dad157977d5fbc55dd8c804f78a5621a7cdaa97313e826",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-release-ilp64-build",
+      "started": "2026-09-08T05:29:01.071848+00:00",
+      "completed": "2026-09-08T05:29:05.220297+00:00",
+      "configuration": "release-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-release-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d031ecfdf87ea106fea36599be074992a17ee78357d49200c6763afc880079d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-release-ilp64-build/record.json",
+      "record_sha256": "f8beed6b09b4283b706f4cbe66a74ee3f6b52079e5f2d83c558f8fa466fa4662",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-release-ilp64-configure",
+      "started": "2026-09-08T05:28:58.638273+00:00",
+      "completed": "2026-09-08T05:29:00.774615+00:00",
+      "configuration": "release-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-release-ilp64",
+        "-DABI=ilp64",
+        "-DMODE=release",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "aff6f887a34f86f7e558650afeac2a9e666df317bb88289fcc2cd2f7a4192d39"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-release-ilp64-configure/record.json",
+      "record_sha256": "8adfdad5abb7aee6d4a430efbb6971bfbe8fdb3c5db27b78b5e85c5cee640739",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-release-ilp64-ctest",
+      "started": "2026-09-08T05:29:05.782782+00:00",
+      "completed": "2026-09-08T05:29:05.805209+00:00",
+      "configuration": "release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-release-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/record-release-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "407c63bf23f87b8d11092457ea369b602b52cbfeca81885631e53bbe452824c0",
+        "ctest.xml": "37fe532316d01fd77a7ae6fc84598c209a6326d547558d74ab77a07f6386e9c0"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-release-ilp64-ctest/record.json",
+      "record_sha256": "b5f93f3b6f76a41d33b5de3f9755d0d50f39e2cd49b9ab26e9a7f621ce2b3fe0",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-release-ilp64-registered",
+      "started": "2026-09-08T05:29:05.490373+00:00",
+      "completed": "2026-09-08T05:29:05.514862+00:00",
+      "configuration": "release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-release-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7e21ecb9d040990e0edd92871442cc81dc49afdad3c1f789d5a50356c1b0e2af"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-release-ilp64-registered/record.json",
+      "record_sha256": "81c555fde9912f3ec1098ad3960a2e845040f8f495da166ede06a484067931fa",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-release-lp64-build",
+      "started": "2026-09-08T05:29:01.041091+00:00",
+      "completed": "2026-09-08T05:29:05.289528+00:00",
+      "configuration": "release-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-release-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d031ecfdf87ea106fea36599be074992a17ee78357d49200c6763afc880079d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-release-lp64-build/record.json",
+      "record_sha256": "e1d6c9ba31e4d287fe789b698957e2543b9de156b4ec4e0deb819d44f1b796da",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-release-lp64-configure",
+      "started": "2026-09-08T05:28:58.626626+00:00",
+      "completed": "2026-09-08T05:29:00.771862+00:00",
+      "configuration": "release-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-release-lp64",
+        "-DABI=lp64",
+        "-DMODE=release",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "71056d4830d10bd09d58bd08b3b2cf33b898372a262aa83b620f5ddab8c954e5"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-release-lp64-configure/record.json",
+      "record_sha256": "52e6517273b9beb0014c99837ced5c7a3b9b4dd281b6876fe39f94597f435cea",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-release-lp64-ctest",
+      "started": "2026-09-08T05:29:05.858188+00:00",
+      "completed": "2026-09-08T05:29:05.880245+00:00",
+      "configuration": "release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-release-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/record-release-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4bc839bc56fcf9b27b9c2c7834a7ad96e345ab84714b436eee360e450943667d",
+        "ctest.xml": "a16a8fbd385627e6417162626074e92bc340b943af47e8186cf448ff96408f79"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-release-lp64-ctest/record.json",
+      "record_sha256": "d3db7d2dabb36b6f7235f3b09922f1ede280e916f160ffd6c2f4d77921d9d493",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-release-lp64-registered",
+      "started": "2026-09-08T05:29:05.570196+00:00",
+      "completed": "2026-09-08T05:29:05.580097+00:00",
+      "configuration": "release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-release-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "417ecdcbb7891ef104d4672b702c90e733c5b811482541efa8bb84475beef791"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-release-lp64-registered/record.json",
+      "record_sha256": "c97872be69ecf6aea4ba66d8488a9d175310aa493e17f8b9164c2d27220ed78c",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-sanitizer-ilp64-build",
+      "started": "2026-09-08T05:29:14.979736+00:00",
+      "completed": "2026-09-08T05:29:19.131104+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-sanitizer-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d031ecfdf87ea106fea36599be074992a17ee78357d49200c6763afc880079d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-sanitizer-ilp64-build/record.json",
+      "record_sha256": "776a18e38c433b4fe1ad040b008cbdccf71702cd4be0e66bda8e8cb2ce1fce90",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-sanitizer-ilp64-configure",
+      "started": "2026-09-08T05:29:13.087765+00:00",
+      "completed": "2026-09-08T05:29:14.688044+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-sanitizer-ilp64",
+        "-DABI=ilp64",
+        "-DMODE=sanitizer",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9437dff93c5b0118c849d75b396ca8f6bf0363681edbc8a6d1788ceb587191c7"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-sanitizer-ilp64-configure/record.json",
+      "record_sha256": "857d0102980f5097eb45efcfa370e2d87996dc5ff8493f46bcbc4e07feb335d0",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-sanitizer-ilp64-ctest",
+      "started": "2026-09-08T05:29:19.867354+00:00",
+      "completed": "2026-09-08T05:29:20.253132+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-sanitizer-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/record-sanitizer-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "701684022886b56f5e5912f1cf6fe4f14d8bd19ecba12106555515595cba5a88",
+        "ctest.xml": "935720d1b150798c43a963a49eaa5f0fa25d73a56ab64aca55d3ddb3329d1cbd"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-sanitizer-ilp64-ctest/record.json",
+      "record_sha256": "69acb2717479a233ed208ea0047b30c145f710041d119da87b777971af4109a6",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-sanitizer-ilp64-registered",
+      "started": "2026-09-08T05:29:19.496371+00:00",
+      "completed": "2026-09-08T05:29:19.512463+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-sanitizer-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7e5aba44b97d7826630f06f1f97b27232a22eed036bdf898cbc54aafb4c882ad"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-sanitizer-ilp64-registered/record.json",
+      "record_sha256": "5bce745bd08cd8d178895cc5826e7b4684057e415338520b7fbe3bc5b5dba207",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-sanitizer-lp64-build",
+      "started": "2026-09-08T05:29:14.978881+00:00",
+      "completed": "2026-09-08T05:29:19.224179+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-sanitizer-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d031ecfdf87ea106fea36599be074992a17ee78357d49200c6763afc880079d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-sanitizer-lp64-build/record.json",
+      "record_sha256": "43aaba4eb0727fd74bb2a152802f9ae0cea59961c6a3f07ca2c2361eedac62f7",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-sanitizer-lp64-configure",
+      "started": "2026-09-08T05:29:12.998724+00:00",
+      "completed": "2026-09-08T05:29:14.688044+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-sanitizer-lp64",
+        "-DABI=lp64",
+        "-DMODE=sanitizer",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "055ab260bc3486ddd42a51af13b55ca269fd9f72c36c72bd1f7407fce173a9a1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-sanitizer-lp64-configure/record.json",
+      "record_sha256": "e981de995e6efdd008ec12203b6487a09f0f06aa3c579eabe4292533cd368c06",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-sanitizer-lp64-ctest",
+      "started": "2026-09-08T05:29:19.977364+00:00",
+      "completed": "2026-09-08T05:29:20.360724+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-sanitizer-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/record-sanitizer-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ebfbbe0f2e89c93029fefc53b33fd1d3ce2c5fb74c262f7ca6e6a637ed5894bd",
+        "ctest.xml": "d1ed1cf32d80bc2738a47349ff905319bd804a568fc3edcf23e4359ca1b83679"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-sanitizer-lp64-ctest/record.json",
+      "record_sha256": "ccbed916cba2a5489f337c8319d89cf71de7ad407f7ddde1b26fd831ccec38d7",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-six-sanitizer-lp64-registered",
+      "started": "2026-09-08T05:29:19.598304+00:00",
+      "completed": "2026-09-08T05:29:19.609844+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/build-sanitizer-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3813cbcdee0b5e9be059379b5b3afc54bd6f49ef456fa04f8abe5d7577f4c388"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-sanitizer-lp64-registered/record.json",
+      "record_sha256": "cf36ae143b8cad6b872b9b67ce5fceaf43bef943b443468c4e7ba4828e4ba8f1",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-current-strict-ilp64",
+      "started": "2026-09-08T05:29:35.748322+00:00",
+      "completed": "2026-09-08T05:30:08.951251+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense_lapack/triangular_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense_lapack"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1f7ce76a9fce480b0fd406922eb09eafd04f4828c37ea3c1a9b101df803611ac"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-strict-ilp64/record.json",
+      "record_sha256": "d63d26ae3c9cff1664e6c1c881d1ecaa872c344037ff23cb094b8ba5ed17c244",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-edge-current-strict-lp64",
+      "started": "2026-09-08T05:28:59.859331+00:00",
+      "completed": "2026-09-08T05:29:35.500429+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense_lapack/triangular_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/source/tests/dense_lapack"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1f7ce76a9fce480b0fd406922eb09eafd04f4828c37ea3c1a9b101df803611ac"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/record-strict-lp64/record.json",
+      "record_sha256": "86859a2a70a7d2f60157ad5d30fd9d40487f1c738512dc36bedceb7018a3885d",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
+    },
+    {
+      "id": "triangular-additive-edge-ilp64-build",
+      "started": "2026-09-08T05:11:43.684770+00:00",
+      "completed": "2026-09-08T05:11:47.873624+00:00",
+      "configuration": "release-unimported-test-overlay-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/build-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "aeaa2d1a2cc4fca0d51d02178cb938ed6539392442ded5125e6200c72cb9af4c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/record-ilp64-build/record.json",
+      "record_sha256": "f1c51951bdc722176889e8b64eaa71cfcf1864a526ac84fe3eda3acb5f1cecc9",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-additive-edge-ilp64-configure",
+      "started": "2026-09-08T05:11:40.796336+00:00",
+      "completed": "2026-09-08T05:11:43.371795+00:00",
+      "configuration": "release-unimported-test-overlay-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/build-ilp64",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DABI=ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3ab8759b5bfdc6ddb1c2554ee005471fefb36d488e950c32d5b9b9f85d63373"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/record-ilp64-configure/record.json",
+      "record_sha256": "35d1f74dc88e54ebab5bae8bad86f299307613b09db84be6e89108aa7c2cc0b5",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-additive-edge-ilp64-ctest",
+      "started": "2026-09-08T05:11:48.505308+00:00",
+      "completed": "2026-09-08T05:11:48.526301+00:00",
+      "configuration": "release-unimported-test-overlay-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/build-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/record-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2d3b46e1ee341cd878177f381a64bca81ac6830bbd11ca9ba5af40bbc44f704d",
+        "ctest.xml": "edc3c1487f77e412a7820a48db20fc600da036c582fdb9e58ee74656d3b5efcb"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/record-ilp64-ctest/record.json",
+      "record_sha256": "9f3f7676101f0f3693efad53acddbeae182f68bf9782b88b9950bc55f5201d4c",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-additive-edge-ilp64-registered",
+      "started": "2026-09-08T05:11:48.185179+00:00",
+      "completed": "2026-09-08T05:11:48.199683+00:00",
+      "configuration": "release-unimported-test-overlay-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/build-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ac3492ec244e25ff81f31d4f8650b99ccfbeb7b696a4afaf0c21758162477dad"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/record-ilp64-registered/record.json",
+      "record_sha256": "dd338e1a82d7857aae3d30be97f935a5256bd058012b03f3e50a68cb3c932c46",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-additive-edge-lp64-build",
+      "started": "2026-09-08T05:11:43.655410+00:00",
+      "completed": "2026-09-08T05:11:47.873598+00:00",
+      "configuration": "release-unimported-test-overlay-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/build-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "aeaa2d1a2cc4fca0d51d02178cb938ed6539392442ded5125e6200c72cb9af4c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/record-lp64-build/record.json",
+      "record_sha256": "455e185c6b3a1c6bef46ecc03d809220cdad56e6fee0f013822acdf0e96c13dc",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-additive-edge-lp64-configure",
+      "started": "2026-09-08T05:11:40.788667+00:00",
+      "completed": "2026-09-08T05:11:43.382277+00:00",
+      "configuration": "release-unimported-test-overlay-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/build-lp64",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DABI=lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "06fcdb07a97984d9bc9c59ef115960746c81814ed0d8ab72d946952e6a694bb4"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/record-lp64-configure/record.json",
+      "record_sha256": "d3e7af9cdef3f1995a4133d56d41bdf09280c2441e2200262b04ac2ec3c5436a",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-additive-edge-lp64-ctest",
+      "started": "2026-09-08T05:11:48.505521+00:00",
+      "completed": "2026-09-08T05:11:48.529503+00:00",
+      "configuration": "release-unimported-test-overlay-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/build-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/record-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b7eb882ad2554a819f44c33001bf2cc4845b774372803cdc8cf30727ac4f70a8",
+        "ctest.xml": "29d228c325d74f7233eb3d5ab4959aa30ead4177f87c479c6d752a5fd8eb4211"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/record-lp64-ctest/record.json",
+      "record_sha256": "057d97c7c447405ab5113cf60f4fe1c99ebbc05bc3c131e912a8bdc65edfd01d",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-additive-edge-lp64-registered",
+      "started": "2026-09-08T05:11:48.185015+00:00",
+      "completed": "2026-09-08T05:11:48.199681+00:00",
+      "configuration": "release-unimported-test-overlay-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/build-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1dfdb7b6ec184533a574e287e97d3cc7cb56dae00b3c26ff9d583411de25c418"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/record-lp64-registered/record.json",
+      "record_sha256": "22cace6ea68a5018bbe06b86d4349c7f5f620b8e799deb5b61f2bd23e35d1417",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-edge-draft-strict-ilp64",
+      "started": "2026-09-08T04:57:39.681038+00:00",
+      "completed": "2026-09-08T04:58:27.739819+00:00",
+      "configuration": "unimported-test-strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/formatted/triangular_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/tests/dense_lapack"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1f7ce76a9fce480b0fd406922eb09eafd04f4828c37ea3c1a9b101df803611ac"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/strict-ilp64/record.json",
+      "record_sha256": "a8b43ec6a418cc46212453fd59c30e99d2cefb299db154c791cd058b7b11a355",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-edge-draft-strict-lp64",
+      "started": "2026-09-08T04:56:49.669422+00:00",
+      "completed": "2026-09-08T04:57:39.235063+00:00",
+      "configuration": "unimported-test-strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-edge-draft-01/formatted/triangular_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-integration-v15-02/source/tests/dense_lapack"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1f7ce76a9fce480b0fd406922eb09eafd04f4828c37ea3c1a9b101df803611ac"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d0306d5bf3d16a9bd73f5c8302bc577f68ca16abe917c7eea9574219239565ef",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-draft-01/strict-lp64/record.json",
+      "record_sha256": "d68831430fddc95e5159218b1a8bdc304b04bfbaeeef4aa557bdd9bac1c2947c",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-edge-completion",
+      "started": "2026-09-08T05:36:25.644693+00:00",
+      "completed": "2026-09-08T05:36:27.688060+00:00",
+      "configuration": "edge-audit",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-edge-acceptance-01/audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1987f3ab161f36bb55d350d36ed46b68f69248811cfe1f462dfbb3ce8dff3e9f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "df45f5a773561855632f8b4a82e777e5d140c4b6f797aeae27c21a5661379e4a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-edge-acceptance-01/completion-record/record.json",
+      "record_sha256": "6bba735b079202ea452423e1741b4168f349f699fbdce6b3564e1540f3a043d3",
+      "source_archive_sha256": "877fad72c5c9f18b1c1b917352433984bf10f0662a748978091d01fb6f2bf51e"
     }
   ]
 }
