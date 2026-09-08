@@ -33,6 +33,7 @@ foreach(_source IN ITEMS
     print_modes_test.cc
     io_test.cc
     io_fuzz_test.cc
+    io_stream_progress_test.cc
     matrix_market_test.cc
     resource_failure_test.cc
 )

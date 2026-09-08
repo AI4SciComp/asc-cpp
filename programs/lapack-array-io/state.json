@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "4c7ca50b60b3df7591e0e6c7f6543ff3b697226d",
+  "last_implementation_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
   "worktree_diff_identity": {
-    "state": "gbequb_checkpoint_ready_for_local_commit",
-    "parent_commit": "4c7ca50b60b3df7591e0e6c7f6543ff3b697226d",
-    "implementation_tree": "e03c6d58ec66bb944e9b168b8e058b6bfe1094a3"
+    "state": "p03_progress_checkpoint_ready_for_local_commit",
+    "parent_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
+    "implementation_tree": "445a63fed6224249e82a9781e338de710baf4764"
   },
   "packages": {
     "P00": {
@@ -427,8 +427,8 @@
     "P03.dense_binary_progress_root": {
       "state": "in_progress",
       "owner": "integration",
-      "candidate": "p03-dense-binary-progress-root-04",
-      "scope": "Corrected candidate04 audit passed:12 commands,Debug/Release/ASC sanitizer each3/3,220 boundary workflows per lane;57 fresh Core/Dense production objects and58 exact compiler-read inputs. Failed03 retains nine retry-status assertions inconsistent with sticky original callback error. No root import/registration or installed acceptance yet."
+      "scope": "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
+      "review": "programs/lapack-array-io/dense-binary-progress-review.md"
     },
     "P05.full_triangular_root_recovery": {
       "state": "in_progress",
@@ -443,8 +443,8 @@
       "review": "programs/lapack-array-io/lu-band-equb-root-review.md"
     }
   },
-  "active_task": "P03.dense_binary_progress_root_integration",
-  "next_action": "Commit completed GBEQUB scoped checkpoint locally; rehash P03 candidate04 and its58 compiler-read inputs, import io_stream_progress_test.cc and register the existing Dense allocation-observed target. Freeze current source and execute root focused Dense I/O plus installed-only checks, preserving failed03 and corrected04 evidence. Then continue preserved p05-full-triangular-root-02 source admission and acceptance implementation. No remote writes.",
+  "active_task": "P05.full_triangular_source_admission_and_acceptance",
+  "next_action": "Commit P03 boundary regression checkpoint locally. Continue preserved p05-full-triangular-root-02 draft:31-member actual source closures perABI recorded;24 compiler emissions preserved; new analytic triangular_main.cc unexecuted. Complete source/ABI/ignored-operand/count proofs and failure/memory tests, freeze candidate, run actual bothABI Debug/Release/ASC sanitizer/strict tests and public consumer, then import/register12 rows atomically. No routine credit until executed; no remote writes.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -548,7 +548,9 @@
       "programs/lapack-array-io/printing-modes-review.md",
       "p02-printing-modes-integration-01/audit.json",
       "programs/lapack-array-io/lu-band-equb-root-review.md",
-      "p05-gbequb-integration-v14-01/completion-audit-01/audit.json"
+      "p05-gbequb-integration-v14-01/completion-audit-01/audit.json",
+      "programs/lapack-array-io/dense-binary-progress-review.md",
+      "p03-dense-binary-progress-integration-01/audit.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -577,7 +579,8 @@
       "GB20 V13 full02 LP64/ILP64 each720/752, exactly30 required numerical failures plus two omitted-source-inventory failures, zero skips. Provider-free Debug280/282, Release280/282, shared282/284 retain the same two inventory failures. Final04 adds only five explicit source entries; the common source-only2/2 replay passes and its original commands match all five full lanes. Final03 formats only the new consumer and updates its mapping hashes: four fresh current-library and two fresh relocated-installed1/1 consumer tests pass. Full02 package passes17 installed families perABI with unchanged300s timeout. All58 primary CPU Core/Dense/provider TUs rebuilt in each full and ASC-only sanitizer lane; ASan each75/91 retains exactly16 GB math failures, no sanitizer diagnostics or skips. All34 changed-TU strict checks plus two final-consumer strict checks, format29, coverage, public surface, Markdown and Doxygen108headers/2036members/zero warnings pass. Exact consumer/object/provider closures audited. Original01 ABI-registration,02 format/source-policy and audit-helper failures remain preserved. No full04 suite, foreign sanitizer, normalized full-mode, platform, XBLAS or mathematical gate closure claim;270 Reference rows remain in_progress/1843 not_started of2113 required; native20 separately implemented_unverified; zero fullyverified.",
       "Root two45/45 fresh Release lanes include38 affected numerical/fault/count controls,4 placement tests, package and2 policy tests. Four exact-input Debug/ASC-only sanitizer root replays38/38 reuse sealed current binaries. Fresh root production58 TUs per ABI; agent six58-TU lanes and24 fresh strict remain separately identified. All17 installed families per ABI pass. No full-project suite, foreign sanitizer, full mode/platform/shared-provider/XBLAS or required mathematical closure claim. Source-bound profile audit matches472272 main modes,321648 main native calls,47232 native warm calls and41472 reuse calls across six root executions. Format15/coverage/publicsurface pass. Initial build-record directory collision was rejected before compilation and preserved; corrected runner reused successful configures. Denominator2113/270 partial Reference/1843 not_started, native20 separate, zero fullyverified;30 required mathematical failures remain open.",
       "P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified.",
-      "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required."
+      "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.",
+      "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate."
     ]
   },
   "counts": {
@@ -687,34 +690,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "4c7ca50b60b3df7591e0e6c7f6543ff3b697226d",
-    "implementation_tree": "e03c6d58ec66bb944e9b168b8e058b6bfe1094a3",
-    "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45",
+    "base_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
+    "implementation_tree": "445a63fed6224249e82a9781e338de710baf4764",
+    "source_archive_sha256": "c42b0ddf8b9bb424ebfa1e5bacd1374a32c9b64978c644d90b4ea149fc2b9615",
     "coverage_mapping_sha256": "20f311b426229c8e9eec57203b73f487754b534b3cf24690ab0c355461361ed1",
-    "scope": "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.",
-    "candidate": "p05-gbequb-integration-v14-01",
-    "state": "completed_scoped_gbequb_math_gates_open",
-    "completion_audit": "p05-gbequb-integration-v14-01/completion-audit-01/audit.json",
-    "completion_audit_sha256": "caadfc7ae84cb19fb042d9840abf67effa9158b285e15a86fad7f600173bd1b5",
-    "additional_custom_style_record": {
-      "path": "p05-gbequb-repository-style-01/record.json",
-      "sha256": "33d175d54ac4809414d9ab8b3661e61cdadac963675551333b4bf6bba8743c10"
-    }
+    "scope": "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
+    "candidate": "p03-dense-binary-progress-integration-01",
+    "state": "completed_scoped_dense_binary_progress",
+    "completion_audit": "p03-dense-binary-progress-integration-01/audit.json",
+    "completion_audit_sha256": "b3838127365dc9c7a6c3e048dd31aa558192f9ac82bc86a7743f9306abf98d8f"
   },
   "last_completed_verification": {
-    "base_commit": "4c7ca50b60b3df7591e0e6c7f6543ff3b697226d",
-    "implementation_tree": "e03c6d58ec66bb944e9b168b8e058b6bfe1094a3",
-    "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45",
+    "base_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
+    "implementation_tree": "445a63fed6224249e82a9781e338de710baf4764",
+    "source_archive_sha256": "c42b0ddf8b9bb424ebfa1e5bacd1374a32c9b64978c644d90b4ea149fc2b9615",
     "coverage_mapping_sha256": "20f311b426229c8e9eec57203b73f487754b534b3cf24690ab0c355461361ed1",
-    "scope": "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.",
-    "candidate": "p05-gbequb-integration-v14-01",
-    "state": "completed_scoped_gbequb_math_gates_open",
-    "completion_audit": "p05-gbequb-integration-v14-01/completion-audit-01/audit.json",
-    "completion_audit_sha256": "caadfc7ae84cb19fb042d9840abf67effa9158b285e15a86fad7f600173bd1b5",
-    "additional_custom_style_record": {
-      "path": "p05-gbequb-repository-style-01/record.json",
-      "sha256": "33d175d54ac4809414d9ab8b3661e61cdadac963675551333b4bf6bba8743c10"
-    }
+    "scope": "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
+    "candidate": "p03-dense-binary-progress-integration-01",
+    "state": "completed_scoped_dense_binary_progress",
+    "completion_audit": "p03-dense-binary-progress-integration-01/audit.json",
+    "completion_audit_sha256": "b3838127365dc9c7a6c3e048dd31aa558192f9ac82bc86a7743f9306abf98d8f"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -886,7 +881,22 @@
       "state": "completed_scoped_printing_modes",
       "completion_audit": "p02-printing-modes-integration-01/audit.json",
       "completion_audit_sha256": "9318cb2fbf4167626ed55c46c8b05caad77647b04ab75d18f6fb66107e4272fc"
+    },
+    {
+      "base_commit": "4c7ca50b60b3df7591e0e6c7f6543ff3b697226d",
+      "implementation_tree": "e03c6d58ec66bb944e9b168b8e058b6bfe1094a3",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45",
+      "coverage_mapping_sha256": "20f311b426229c8e9eec57203b73f487754b534b3cf24690ab0c355461361ed1",
+      "scope": "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.",
+      "candidate": "p05-gbequb-integration-v14-01",
+      "state": "completed_scoped_gbequb_math_gates_open",
+      "completion_audit": "p05-gbequb-integration-v14-01/completion-audit-01/audit.json",
+      "completion_audit_sha256": "caadfc7ae84cb19fb042d9840abf67effa9158b285e15a86fad7f600173bd1b5",
+      "additional_custom_style_record": {
+        "path": "p05-gbequb-repository-style-01/record.json",
+        "sha256": "33d175d54ac4809414d9ab8b3661e61cdadac963675551333b4bf6bba8743c10"
+      }
     }
   ],
-  "next_task": "Commit completed GBEQUB scoped checkpoint locally; rehash P03 candidate04 and its58 compiler-read inputs, import io_stream_progress_test.cc and register the existing Dense allocation-observed target. Freeze current source and execute root focused Dense I/O plus installed-only checks, preserving failed03 and corrected04 evidence. Then continue preserved p05-full-triangular-root-02 source admission and acceptance implementation. No remote writes."
+  "next_task": "Commit P03 boundary regression checkpoint locally. Continue preserved p05-full-triangular-root-02 draft:31-member actual source closures perABI recorded;24 compiler emissions preserved; new analytic triangular_main.cc unexecuted. Complete source/ABI/ignored-operand/count proofs and failure/memory tests, freeze candidate, run actual bothABI Debug/Release/ASC sanitizer/strict tests and public consumer, then import/register12 rows atomically. No routine credit until executed; no remote writes."
 }
