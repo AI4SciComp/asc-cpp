@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v21` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v22` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,12 +10,35 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 326 partial scalar routines.
-The other 1,787 required
+routes below bring the development mapping to 330 partial scalar routines.
+The other 1,783 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_cholesky_packed_solve.h` adds S/D/C/Z `Pptrs` for unchanged raw
+packed factors and independent factor/RHS layouts. Upper U solves U^H U X=B;
+lower L solves L L^H X=B, using transpose for real scalars. Every factor
+component is used, including complex diagonal imaginary parts. Row packing
+uses explicit caller storage for p factor and N*NRHS RHS entries. No
+refactorization, provenance certificate or finiteness/zero-diagonal scan is
+added. Empty order/RHS completes locally without numeric reads or native INFO.
+
+Any nonzero, missing or partially written INFO is a provider defect: row RHS
+publication is withheld and direct native writes survive. INFO0 means native
+completion, including native arithmetic on zero-diagonal raw factors. Six
+candidate configurations pass six tests each, with 10,080 independent solve
+workflows, 2,752 failure profiles, 192 protected queries/128 local executions
+and 160 scalar raw-factor cases per lane. Fresh root v22 Release passes
+826/896 per ABI, retaining 70 required mathematical failures; affected Debug
+passes 76/84 and ASC-only sanitizer passes 23/31, each with eight mathematical
+failures. Zero tests skip. All 67 primary translation units compile freshly
+in six lanes; four relocated packages pass 26 family consumers. Doxygen covers
+121 headers and 2,164 public members without warnings. Provider-free scoped
+static/shared checks pass 16/16 each. Full modes, concurrency and platform
+gates remain required; Linux memory observations do not establish other
+platform coverage.
 
 `lapack_cholesky_packed.h` adds S/D/C/Z `Pptrf` with the existing checked
 ordinary packed matrix descriptor. Upper and lower factors satisfy U^H U or

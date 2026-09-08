@@ -788,6 +788,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_lu_driver.h lapack_lu_helpers.h lapack_cholesky.h lapack_qr.h
     lapack_cholesky_condition.h
     lapack_cholesky_packed.h
+    lapack_cholesky_packed_solve.h
     lapack_cholesky_driver.h
     lapack_cholesky_equilibration.h
     lapack_cholesky_refinement.h
@@ -1219,3 +1220,60 @@ endforeach()
 asc_register_test(NAME asc_cpp.dense_lapack.packed_cholesky.failure
   TARGET asc_dense_lapack_packed_cholesky_fault_test
   LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+
+# Reusable ordinary packed Cholesky solves.
+foreach(_suite IN ITEMS source_counts pinned_signatures)
+  set(_target "asc_dense_lapack_packed_cholesky_solve_${_suite}_test")
+  add_executable("${_target}" "packed_cholesky_solve_${_suite}_test.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${PROJECT_SOURCE_DIR}/src/dense/lapack"
+    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+  asc_register_test(NAME "asc_cpp.dense_lapack.packed_cholesky_solve.${_suite}"
+    TARGET "${_target}" LABELS dense_lapack lapack runtime validation)
+endforeach()
+add_executable(asc_dense_lapack_packed_cholesky_solve_public_test
+  installed_lu/packed_cholesky_solve_main.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_packed_cholesky_solve_public_test)
+asc_register_test(NAME asc_cpp.dense_lapack.packed_cholesky_solve.public
+  TARGET asc_dense_lapack_packed_cholesky_solve_public_test
+  LABELS dense_lapack lapack runtime numerical TIMEOUT 120)
+add_executable(asc_dense_lapack_packed_cholesky_solve_fault_test
+  packed_cholesky_solve_fault_test.cc packed_cholesky_solve_faults.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_packed_cholesky_solve_fault_test)
+target_include_directories(asc_dense_lapack_packed_cholesky_solve_fault_test PRIVATE
+  "${PROJECT_SOURCE_DIR}/src/dense/lapack" "${PROJECT_SOURCE_DIR}/tests/dense"
+  "${CMAKE_CURRENT_SOURCE_DIR}/installed_lu"
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_packed_cholesky_solve_fault_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_stem IN ITEMS pptrs)
+    target_link_options(asc_dense_lapack_packed_cholesky_solve_fault_test PRIVATE
+      "-Wl,--wrap=${_scalar}${_stem}_")
+  endforeach()
+endforeach()
+asc_register_test(NAME asc_cpp.dense_lapack.packed_cholesky_solve.failure
+  TARGET asc_dense_lapack_packed_cholesky_solve_fault_test
+  LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+
+add_executable(asc_dense_lapack_packed_cholesky_solve_raw_factor_test
+  packed_cholesky_solve_raw_factor_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_packed_cholesky_solve_raw_factor_test)
+target_include_directories(asc_dense_lapack_packed_cholesky_solve_raw_factor_test PRIVATE
+  "${PROJECT_SOURCE_DIR}/tests/dense" "${CMAKE_CURRENT_SOURCE_DIR}/installed_lu")
+asc_register_test(NAME asc_cpp.dense_lapack.packed_cholesky_solve.raw_factor
+  TARGET asc_dense_lapack_packed_cholesky_solve_raw_factor_test
+  LABELS dense_lapack lapack runtime validation numerical TIMEOUT 120)
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  add_executable(asc_dense_lapack_packed_cholesky_solve_read_observation_test
+    packed_cholesky_solve_read_observation_test.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test(asc_dense_lapack_packed_cholesky_solve_read_observation_test)
+  target_include_directories(asc_dense_lapack_packed_cholesky_solve_read_observation_test PRIVATE
+    "${PROJECT_SOURCE_DIR}/tests/dense" "${CMAKE_CURRENT_SOURCE_DIR}/installed_lu")
+  asc_register_test(NAME asc_cpp.dense_lapack.packed_cholesky_solve.read_observation
+    TARGET asc_dense_lapack_packed_cholesky_solve_read_observation_test
+    LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+endif()
