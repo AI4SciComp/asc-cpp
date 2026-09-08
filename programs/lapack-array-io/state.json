@@ -14,10 +14,12 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "773c901dcb6bc399cb5964019376363cafbc8ea2",
+  "last_implementation_commit": "418a823f272237af899b661ef74069a5e7952b71",
   "worktree_diff_identity": {
-    "state": "v23_runtime_and_documentation_bound_ready_for_local_commit",
-    "parent_commit": "773c901dcb6bc399cb5964019376363cafbc8ea2"
+    "state": "v24_runtime_and_documentation_bound_ready_for_local_commit",
+    "parent_commit": "418a823f272237af899b661ef74069a5e7952b71",
+    "implementation_tree": "129692675f46d65cefeee59ac617a7314da9867b",
+    "source_archive_sha256": "2b262a09e851c06b44d685fc2d376e3c91bbc11fd7fa3a8c9bf4ba60baa37ed5"
   },
   "packages": {
     "P00": {
@@ -814,10 +816,30 @@
       "completion_audit_sha256": "f8e0165e25a17a2f317e4096a1df5cf659186aaa0950dc704776ff763ed5fb53",
       "scope": "PPEQU source admission: 12501 literal virtual-machine, physical packed-diagonal equivalence and actual integer-bound checks pass with one fresh GNU11 Debug C++20/no-exception test object and explicitly reused v22 Core. Six counts/configuration/strict/format records and seven complete source/ABI records pass. Two complete entry precision pairs match. Both six-object closures have no writable static state or external imports after valid-argument XERBLA conditioning; eight complete compiler-emitted signatures match installed declarations. Row packed storage has the opposite column triangle diagonal offsets, allowing direct native diagonal-only reads without packing. No typed API, numerical, full mode, concurrency, allocation or platform credit; all 2113 routines remain required.",
       "review": "programs/lapack-array-io/packed-cholesky-equilibration-admission-review.md"
+    },
+    "P05.packed_cholesky_driver_root_integration": {
+      "state": "in_progress",
+      "owner": "integration",
+      "bounded_integration_complete": true,
+      "scope": "Fresh v24 full GNU Release bothABIs each910 tests,840pass/70requiredmathfail;original affected Debug each98,89pass/9fail includingpackage300s timeout;original ASC-only Clang19 sanitizer each41,32pass/9fail includingband-public120s timeout. Four isolated same-limit gates pass onunchanged binaries;original8 requiredmathfailures perlane remain open. Zero skips.69 primary Core/Dense/provider TUs freshly compiled perlane,414 objects. Four relocated28-family packages,six static checks and123-header/2180-public-member Doxygen pass. Ten candidate files imported unchanged withcurrent strict/header evidence bound. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130 missing required XBLAS remain required.",
+      "completion_audit": "p05-packed-cholesky-driver-integration-v24-01/audit.json",
+      "completion_audit_sha256": "cb83f3df2cf9fe152d0464b94890619230bd6cb3dd6d7c91ecd051d112777d08",
+      "review": "programs/lapack-array-io/packed-cholesky-driver-review.md"
+    },
+    "P05.packed_cholesky_equilibration_candidate": {
+      "state": "in_progress",
+      "owner": "integration",
+      "candidate": "p05-packed-cholesky-equilibration-candidate-07",
+      "bounded_candidate_complete": true,
+      "completion_audit": "p05-packed-cholesky-equilibration-candidate-07/audit.json",
+      "completion_audit_sha256": "ba536fec1735b00e007fed4a2500f414353f172d4902506a94e797188d1cac7f",
+      "successful_seal": "p05-packed-cholesky-equilibration-candidate-07/completion-record-02/record.json",
+      "scope": "Unregistered PPEQU4 candidate07:six5/5 configurations,zero skips;60 fresh adapter/test/support objects with65 prior primary TUs explicitly reused/rehashed. Eachlane5296 public workflows112176checks,640 failure/alias/allocation profiles3345checks,72 protected-memory profiles comprising48 queries,16 local executions/16 empty stale-plan rejections,16 ignored-offdiagonal-page and8 complex ignored-imaginary-diagonal native calls;12501 sourcecounts and4 complete private signatures. Exactcurrent14 strict,4 normal/noexception headers andten-file formatting pass. All136 original records retained,including18 original assertion/strict/configure/build failures. First336 numerical test assertions perABI wrongly fabricated INFO0 forlocalempty;debugger confirmsabsent INFO;corrected oracle checksabsence,production unchanged. Style fixes retainall assertions;later external harness include/duplicate-target andone test pointer-argument failures retainfull logs,withno failed-build numerical credit. Admission13-plus-seal14 separately bound andalready normalized. No full mode/concurrency/platform/installed/root orfully verified credit;foreign archives unsanitized. All remaining P00-P11,70 required math failures and130 missing required XBLAS remain required.",
+      "review": "programs/lapack-array-io/packed-cholesky-equilibration-review.md"
     }
   },
-  "active_task": "P05.packed_cholesky_driver_root_integration",
-  "next_action": "Commit completed PPTRI slice, then import ten audited PPSV candidate05 files andregister four rows/123headers/28families asv24. Its91 candidate records arealready normalized. Freeze fresh69-primary-TU root: GNU Release bothABIs full910 tests,Debug98,ASC-only sanitizer41,installed28-family andstatic/header/docs/default checks;retain ordinary mathematical failures andall2113 required routines. PPEQU admission14 records are normalized;implement typed candidate whilefreshv24 runs. Continue all remaining P00-P11.",
+  "active_task": "P05.packed_cholesky_equilibration_root_integration",
+  "next_action": "Commit audited PPSV, then import ten audited PPEQU candidate07 files using completion-record-02 (138 records already normalized). Register four rows/124 headers/29 families asv25, freeze fresh70-primary-TU root;execute GNU Release bothABIs full917 tests,Debug105,ASC-only sanitizer46,29-family packages andstatic/header/docs/default gates. Keep70 requiredmathfailures and130requiredXBLAS visible. Continue PPCON source admission andallremainingP00-P11.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -825,7 +847,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "2d0751e9f0685ebd2e429e342f1f6a142a1002ec747cebad096e6d45c0f22f84"
+    "coverage_mapping_sha256": "2ce5e4555ac68fbab684c6c45c2cf09ebe5e65511858fd2c6ee96d151be7cdf5"
   },
   "provider": {
     "version": "3.12.1",
@@ -1105,7 +1127,11 @@
       "p05-packed-cholesky-equilibration-counts-01/audit.json",
       "p05-packed-cholesky-inverse-integration-v23-01/audit.json",
       "p01-packed-cholesky-inverse-default-v23-01/audit.json",
-      "p05-packed-cholesky-inverse-doc-integration-v23-01/audit.json"
+      "p05-packed-cholesky-inverse-doc-integration-v23-01/audit.json",
+      "p05-packed-cholesky-equilibration-candidate-07/audit.json",
+      "p05-packed-cholesky-driver-integration-v24-01/audit.json",
+      "p01-packed-cholesky-driver-default-v24-01/audit.json",
+      "p05-packed-cholesky-driver-doc-integration-v24-01/audit.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -1175,6 +1201,10 @@
       "PPEQU source admission: 12501 literal virtual-machine, physical packed-diagonal equivalence and actual integer-bound checks pass with one fresh GNU11 Debug C++20/no-exception test object and explicitly reused v22 Core. Six counts/configuration/strict/format records and seven complete source/ABI records pass. Two complete entry precision pairs match. Both six-object closures have no writable static state or external imports after valid-argument XERBLA conditioning; eight complete compiler-emitted signatures match installed declarations. Row packed storage has the opposite column triangle diagonal offsets, allowing direct native diagonal-only reads without packing. No typed API, numerical, full mode, concurrency, allocation or platform credit; all 2113 routines remain required.",
       "Fresh v23 full GNU Release bothABIs each903 tests,833pass/70requiredmathfail;affected Debug each91,83pass/8requiredmathfail;ASC-only Clang19 sanitizer each36,28pass/8requiredmathfail. Zero skips.68 primary Core/Dense/provider TUs freshly compiled perlane,408 objects. Four relocated27-family packages,six static checks andfour current-root strict checks pass;122headers/2172publicmembers/zeroDoxygenwarnings. One stale signature-test comment corrected withall declarations/assertions unchanged;candidate original strict/header evidence remains separately bound. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130 missing required XBLAS remain required.",
       "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. Unchanged neutral band header bound in actual installed/relocated packages. New PPTRI optional header stays absent. This is scoped current-v23 descriptor/header/package evidence,not a full baseline or shared-provider claim.",
+      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "Unregistered PPEQU4 candidate07:six5/5 configurations,zero skips;60 fresh adapter/test/support objects with65 prior primary TUs explicitly reused/rehashed. Eachlane5296 public workflows112176checks,640 failure/alias/allocation profiles3345checks,72 protected-memory profiles comprising48 queries,16 local executions/16 empty stale-plan rejections,16 ignored-offdiagonal-page and8 complex ignored-imaginary-diagonal native calls;12501 sourcecounts and4 complete private signatures. Exactcurrent14 strict,4 normal/noexception headers andten-file formatting pass. All136 original records retained,including18 original assertion/strict/configure/build failures. First336 numerical test assertions perABI wrongly fabricated INFO0 forlocalempty;debugger confirmsabsent INFO;corrected oracle checksabsence,production unchanged. Style fixes retainall assertions;later external harness include/duplicate-target andone test pointer-argument failures retainfull logs,withno failed-build numerical credit. Admission13-plus-seal14 separately bound andalready normalized. No full mode/concurrency/platform/installed/root orfully verified credit;foreign archives unsanitized. All remaining P00-P11,70 required math failures and130 missing required XBLAS remain required.",
+      "Fresh v24 full GNU Release bothABIs each910 tests,840pass/70requiredmathfail;original affected Debug each98,89pass/9fail includingpackage300s timeout;original ASC-only Clang19 sanitizer each41,32pass/9fail includingband-public120s timeout. Four isolated same-limit gates pass onunchanged binaries;original8 requiredmathfailures perlane remain open. Zero skips.69 primary Core/Dense/provider TUs freshly compiled perlane,414 objects. Four relocated28-family packages,six static checks and123-header/2180-public-member Doxygen pass. Ten candidate files imported unchanged withcurrent strict/header evidence bound. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130 missing required XBLAS remain required.",
+      "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. Unchanged neutral band header bound in actual installed/relocated packages. New PPSV optional header stays absent. This is scoped current-v24 descriptor/header/package evidence,not a full baseline or shared-provider claim.",
       "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
     ]
   },
@@ -1185,15 +1215,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1779,
-    "reference_in_progress_in_ledger": 334,
+    "reference_not_started_in_ledger": 1775,
+    "reference_in_progress_in_ledger": 338,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 334,
+    "registered_partial_reference_operations": 338,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113 required;334 Reference in_progress/1779 not_started;native20 implemented_unverified;zero fully verified. PPTRI4 bounded root v23 audited: Release each833/903 with70 required mathematical failures,zero skips. Full modes/platforms andall P00-P11 remain open;130 XBLAS routines remain required.",
+    "note": "2113 required;338 Reference in_progress/1775 not_started;native20 implemented_unverified;zero fully verified. PPSV4 bounded root v24 audited: Release each840/910 with70 required mathematical failures,zero skips. Original Debug/sanitizer timeouts retained;four same-limit isolated gates pass. Full modes/platforms andall P00-P11 remain open;130 XBLAS routines remain required.",
     "unregistered_packed_operations_with_scoped_tests": 4
   },
   "blockers": [
@@ -1296,26 +1326,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "773c901dcb6bc399cb5964019376363cafbc8ea2",
-    "implementation_tree": "f18a2e71749087bdcb0af97b65733d34518d58d6",
-    "source_archive_sha256": "e76caf4d0677513ee49ff04b161ae7b8071ef92ec63dc7d7df6b68ef2974f0ce",
-    "coverage_mapping_sha256": "43456854a339f6c8583a78baa57de4046f2e4ca92df07e00acb035f37dc81b48",
-    "scope": "Fresh v23 full GNU Release bothABIs each903 tests,833pass/70requiredmathfail;affected Debug each91,83pass/8requiredmathfail;ASC-only Clang19 sanitizer each36,28pass/8requiredmathfail. Zero skips.68 primary Core/Dense/provider TUs freshly compiled perlane,408 objects. Four relocated27-family packages,six static checks andfour current-root strict checks pass;122headers/2172publicmembers/zeroDoxygenwarnings. One stale signature-test comment corrected withall declarations/assertions unchanged;candidate original strict/header evidence remains separately bound. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130 missing required XBLAS remain required.",
-    "candidate": "p05-packed-cholesky-inverse-integration-v23-01",
+    "base_commit": "418a823f272237af899b661ef74069a5e7952b71",
+    "implementation_tree": "129692675f46d65cefeee59ac617a7314da9867b",
+    "source_archive_sha256": "2b262a09e851c06b44d685fc2d376e3c91bbc11fd7fa3a8c9bf4ba60baa37ed5",
+    "coverage_mapping_sha256": "d8294271e5553ccfbce0c72a281a7c4bed49aa7bfd0834a248b62ef011b95465",
+    "scope": "Fresh v24 full GNU Release bothABIs each910 tests,840pass/70requiredmathfail;original affected Debug each98,89pass/9fail includingpackage300s timeout;original ASC-only Clang19 sanitizer each41,32pass/9fail includingband-public120s timeout. Four isolated same-limit gates pass onunchanged binaries;original8 requiredmathfailures perlane remain open. Zero skips.69 primary Core/Dense/provider TUs freshly compiled perlane,414 objects. Four relocated28-family packages,six static checks and123-header/2180-public-member Doxygen pass. Ten candidate files imported unchanged withcurrent strict/header evidence bound. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130 missing required XBLAS remain required.",
+    "candidate": "p05-packed-cholesky-driver-integration-v24-01",
     "state": "bounded_integration_complete",
-    "completion_audit": "p05-packed-cholesky-inverse-integration-v23-01/audit.json",
-    "completion_audit_sha256": "98cbc9f3d9dc791841fce1c437942568e5a9bead430db6e0202921a029211e00"
+    "completion_audit": "p05-packed-cholesky-driver-integration-v24-01/audit.json",
+    "completion_audit_sha256": "cb83f3df2cf9fe152d0464b94890619230bd6cb3dd6d7c91ecd051d112777d08"
   },
   "last_completed_verification": {
-    "base_commit": "773c901dcb6bc399cb5964019376363cafbc8ea2",
-    "implementation_tree": "f18a2e71749087bdcb0af97b65733d34518d58d6",
-    "source_archive_sha256": "e76caf4d0677513ee49ff04b161ae7b8071ef92ec63dc7d7df6b68ef2974f0ce",
-    "coverage_mapping_sha256": "43456854a339f6c8583a78baa57de4046f2e4ca92df07e00acb035f37dc81b48",
-    "scope": "Fresh v23 full GNU Release bothABIs each903 tests,833pass/70requiredmathfail;affected Debug each91,83pass/8requiredmathfail;ASC-only Clang19 sanitizer each36,28pass/8requiredmathfail. Zero skips.68 primary Core/Dense/provider TUs freshly compiled perlane,408 objects. Four relocated27-family packages,six static checks andfour current-root strict checks pass;122headers/2172publicmembers/zeroDoxygenwarnings. One stale signature-test comment corrected withall declarations/assertions unchanged;candidate original strict/header evidence remains separately bound. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130 missing required XBLAS remain required.",
-    "candidate": "p05-packed-cholesky-inverse-integration-v23-01",
+    "base_commit": "418a823f272237af899b661ef74069a5e7952b71",
+    "implementation_tree": "129692675f46d65cefeee59ac617a7314da9867b",
+    "source_archive_sha256": "2b262a09e851c06b44d685fc2d376e3c91bbc11fd7fa3a8c9bf4ba60baa37ed5",
+    "coverage_mapping_sha256": "d8294271e5553ccfbce0c72a281a7c4bed49aa7bfd0834a248b62ef011b95465",
+    "scope": "Fresh v24 full GNU Release bothABIs each910 tests,840pass/70requiredmathfail;original affected Debug each98,89pass/9fail includingpackage300s timeout;original ASC-only Clang19 sanitizer each41,32pass/9fail includingband-public120s timeout. Four isolated same-limit gates pass onunchanged binaries;original8 requiredmathfailures perlane remain open. Zero skips.69 primary Core/Dense/provider TUs freshly compiled perlane,414 objects. Four relocated28-family packages,six static checks and123-header/2180-public-member Doxygen pass. Ten candidate files imported unchanged withcurrent strict/header evidence bound. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130 missing required XBLAS remain required.",
+    "candidate": "p05-packed-cholesky-driver-integration-v24-01",
     "state": "bounded_integration_complete",
-    "completion_audit": "p05-packed-cholesky-inverse-integration-v23-01/audit.json",
-    "completion_audit_sha256": "98cbc9f3d9dc791841fce1c437942568e5a9bead430db6e0202921a029211e00"
+    "completion_audit": "p05-packed-cholesky-driver-integration-v24-01/audit.json",
+    "completion_audit_sha256": "cb83f3df2cf9fe152d0464b94890619230bd6cb3dd6d7c91ecd051d112777d08"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -1704,19 +1734,30 @@
       "state": "bounded_integration_complete",
       "completion_audit": "p05-packed-cholesky-inverse-integration-v23-01/audit.json",
       "completion_audit_sha256": "98cbc9f3d9dc791841fce1c437942568e5a9bead430db6e0202921a029211e00"
+    },
+    {
+      "base_commit": "418a823f272237af899b661ef74069a5e7952b71",
+      "implementation_tree": "129692675f46d65cefeee59ac617a7314da9867b",
+      "source_archive_sha256": "2b262a09e851c06b44d685fc2d376e3c91bbc11fd7fa3a8c9bf4ba60baa37ed5",
+      "coverage_mapping_sha256": "d8294271e5553ccfbce0c72a281a7c4bed49aa7bfd0834a248b62ef011b95465",
+      "scope": "Fresh v24 full GNU Release bothABIs each910 tests,840pass/70requiredmathfail;original affected Debug each98,89pass/9fail includingpackage300s timeout;original ASC-only Clang19 sanitizer each41,32pass/9fail includingband-public120s timeout. Four isolated same-limit gates pass onunchanged binaries;original8 requiredmathfailures perlane remain open. Zero skips.69 primary Core/Dense/provider TUs freshly compiled perlane,414 objects. Four relocated28-family packages,six static checks and123-header/2180-public-member Doxygen pass. Ten candidate files imported unchanged withcurrent strict/header evidence bound. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130 missing required XBLAS remain required.",
+      "candidate": "p05-packed-cholesky-driver-integration-v24-01",
+      "state": "bounded_integration_complete",
+      "completion_audit": "p05-packed-cholesky-driver-integration-v24-01/audit.json",
+      "completion_audit_sha256": "cb83f3df2cf9fe152d0464b94890619230bd6cb3dd6d7c91ecd051d112777d08"
     }
   ],
-  "next_task": "Commit completed PPTRI slice, then import ten audited PPSV candidate05 files andregister four rows/123headers/28families asv24. Its91 candidate records arealready normalized. Freeze fresh69-primary-TU root: GNU Release bothABIs full910 tests,Debug98,ASC-only sanitizer41,installed28-family andstatic/header/docs/default checks;retain ordinary mathematical failures andall2113 required routines. PPEQU admission14 records are normalized;implement typed candidate whilefreshv24 runs. Continue all remaining P00-P11.",
+  "next_task": "Commit audited PPSV, then import ten audited PPEQU candidate07 files using completion-record-02 (138 records already normalized). Register four rows/124 headers/29 families asv25, freeze fresh70-primary-TU root;execute GNU Release bothABIs full917 tests,Debug105,ASC-only sanitizer46,29-family packages andstatic/header/docs/default gates. Keep70 requiredmathfailures and130requiredXBLAS visible. Continue PPCON source admission andallremainingP00-P11.",
   "documentation_verification": {
-    "candidate": "p05-packed-cholesky-inverse-doc-integration-v23-01",
-    "completion_audit": "p05-packed-cholesky-inverse-doc-integration-v23-01/audit.json",
-    "completion_audit_sha256": "d10a7cadabaa99fcbbfa22fe68eb874499c4e575810e394bb1ce3a7b57299fd4",
+    "candidate": "p05-packed-cholesky-driver-doc-integration-v24-01",
+    "completion_audit": "p05-packed-cholesky-driver-doc-integration-v24-01/audit.json",
+    "completion_audit_sha256": "8f8dfea5cab948ea57d719f53eedccbf5cc9872a2a7950bfe4cd0e4a9901c356",
     "metadata": {
-      "base_commit": "773c901dcb6bc399cb5964019376363cafbc8ea2",
-      "implementation_tree": "5cafbd5b96bd8373c669a7936eae27b00477c330",
-      "source_archive_sha256": "4208cf11376abecc6ee0ed901777518842401c0f6b26a7e3d1e8dcd75df5c917",
-      "coverage_mapping_sha256": "2d0751e9f0685ebd2e429e342f1f6a142a1002ec747cebad096e6d45c0f22f84",
-      "scope": "Only three released v23 prose/coverage scope files change after numeric/default audits. Six fresh documentation checks andexact prior compiler-input rehash required;no new runtime credit."
+      "base_commit": "418a823f272237af899b661ef74069a5e7952b71",
+      "implementation_tree": "5c4be451af233641eea0f02f0258f1b4e8799c65",
+      "source_archive_sha256": "2c8c71d35517e92212a63e5799097cdb4813fe7b2ee7e2b2846ca3588a70e1fa",
+      "coverage_mapping_sha256": "2ce5e4555ac68fbab684c6c45c2cf09ebe5e65511858fd2c6ee96d151be7cdf5",
+      "scope": "Only three released v24 prose/coverage scope files change after numeric/default audits. Six fresh documentation checks andexact prior compiler-input rehash required;no new runtime credit."
     },
     "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
   }

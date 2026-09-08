@@ -74,3 +74,56 @@ implemented_unverified and zero fully verified. Complete PPTRI v23 full suites,
 audit/documentation and commit; then import these ten audited files and run
 fresh root v24. All routine/mode/concurrency/platform closure, P00-P11, 70 prior
 ordinary mathematical failures and 130 missing required XBLAS remain required.
+
+
+## Root registration
+
+The ten audited candidate05 files are imported byte-for-byte with atomic
+optional source/header, profile v24, installed-family and contract registrations.
+The 91 candidate records were already normalized and are not counted again.
+PPSV4 is now in_progress: 338 Reference partial/1,775 not_started, native20
+implemented_unverified and zero fully verified. Fresh 69-primary-TU, 123-header
+and 28-family verification is recorded below. Full mode/concurrency/platform evidence,
+all P00-P11, 70 ordinary mathematical failures and 130 missing required XBLAS
+remain required.
+
+
+## Executed v24 integration
+
+Audit `cb83f3df2cf9fe152d0464b94890619230bd6cb3dd6d7c91ecd051d112777d08`
+and its seal bind the 1095-file frozen product and 42 original records. Both
+GNU Release suites execute 910 tests: 840 pass and 70 required mathematical
+tests fail. Original affected Debug passes 89/98 per ABI, with eight mathematical
+failures and a package timeout at 300 seconds. Original ASC-only Clang19
+sanitizer passes 32/41, with eight mathematical failures and a triangular-band
+public timeout at 120 seconds. Four isolated gates pass with those original
+time limits and unchanged binaries; only the package WORK_DIR changes. The
+original failures and logs remain intact. This is targeted reexecution, not a
+full Debug or sanitizer rerun. Zero tests skip; no sanitizer diagnostics appear.
+
+All 69 Core/Dense/provider translation units compile freshly in six lanes,
+producing 414 primary objects. Foreign archives are unsanitized. Four relocated
+packages pass all 28 family consumers, including PPSV's 14,784 workflows and
+441,841 checks. Six static checks pass; Doxygen covers 123 headers and 2,180
+public members with zero warnings. Ten candidate files are unchanged, and
+their exact-input strict and isolated-header evidence remains bound.
+
+Provider-free audit
+`5d20bb1d32807e1d52e55bcb1f0d7881e0eb0072ae5daad5bdf9fdbe591ea703`
+and its seal bind GNU static/shared scoped 16/16 checks each, 60 fresh primary
+objects and 12 test/support objects. All four optional packed Cholesky headers
+are absent; there is no Fortran discovery or linkage. This is scoped baseline
+evidence, not a full baseline or shared-provider claim. These 52 new records
+bring the ledger to 3,884. PPEQU4's successful candidate07 seal and 138 records
+are already normalized; its root import follows this commit. Complete
+routine/mode/concurrency/platform acceptance, all P00-P11, 70 ordinary
+mathematical failures and 130 missing required XBLAS remain open.
+
+
+The three final documentation changes pass six fresh checks. Audit
+`8f8dfea5cab948ea57d719f53eedccbf5cc9872a2a7950bfe4cd0e4a9901c356`
+rehashes 10,310 unchanged numerical/default compiler inputs and artifacts,
+including installed consumers. Its frozen source archive is
+`2c8c71d35517e92212a63e5799097cdb4813fe7b2ee7e2b2846ca3588a70e1fa`.
+Numerical executions retain their original v24 identities; no numerical rerun
+on changed prose is claimed. The ledger contains 3,890 normalized records.

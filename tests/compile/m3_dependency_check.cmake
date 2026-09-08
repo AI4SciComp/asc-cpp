@@ -71,6 +71,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_cholesky_packed.h
   include/asc/dense/providers/lapack_cholesky_packed_solve.h
   include/asc/dense/providers/lapack_cholesky_packed_inverse.h
+  include/asc/dense/providers/lapack_cholesky_packed_driver.h
   include/asc/dense/providers/lapack_qr.h
   include/asc/dense/providers/lapack_cholesky_condition.h
   include/asc/dense/providers/lapack_cholesky_driver.h
