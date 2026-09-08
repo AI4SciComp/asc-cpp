@@ -27948,12 +27948,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tpcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctpcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_condition.h",
+          "sha256": "7af7459fef07c711edb899f5f2c9677f16e61801cef97aa9f979e2d5f745bc56"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h",
+          "sha256": "8c9d8f5a532b4ff7f1f15385fedd945ee9d16d81f544d5fb3e1b51140917ace0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_expert_counts.h",
+          "sha256": "999550ec2df8efca936ddafa3eccd4f78db5ad5db4c598d53d9c96a84d1e0cc3"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_packed_triangular_expert.cc",
+          "sha256": "5e16a1a83a83187dc63902770ba38e1e9d770273d65b8706c716e0c416cf708d"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_triangular_expert_main.cc",
+          "sha256": "52938f5b9d01909ddf6783d0e8be99d22982324dc8d8dc224e79a3600cebc2fa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_fault_test.cc",
+          "sha256": "db6901c7af19f19f08c141fe9f5e03623695e2a00022a3f29ffd1175c1f0ff55"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.cc",
+          "sha256": "2162c8d20e6cf0aca1bb110f3042e1b986bc021f1842fe145b0a18d27f7632e0"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.h",
+          "sha256": "656f205d6366cef31ebc318ae9eab908cb1a2c8364ab102ab9dea8eb5bcf8790"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_math_test.cc",
+          "sha256": "b2593522bcd1c202b57690edddfd766bfc61793867d883ffeacae6ec02068f9c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_pinned_signatures_test.cc",
+          "sha256": "f31392637d5f3c6ff5f8cde01f32d4745a51ff3d8d18ff60c6e3172a1d9bee15"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_source_counts_test.cc",
+          "sha256": "10ecdf79f811f8bd07c5dc71642d956189ac2b2d79c2cd0f7516b645143fe18f"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -27961,7 +28066,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -28171,12 +28278,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tprfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctprfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_condition.h",
+          "sha256": "7af7459fef07c711edb899f5f2c9677f16e61801cef97aa9f979e2d5f745bc56"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h",
+          "sha256": "8c9d8f5a532b4ff7f1f15385fedd945ee9d16d81f544d5fb3e1b51140917ace0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_expert_counts.h",
+          "sha256": "999550ec2df8efca936ddafa3eccd4f78db5ad5db4c598d53d9c96a84d1e0cc3"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_packed_triangular_expert.cc",
+          "sha256": "5e16a1a83a83187dc63902770ba38e1e9d770273d65b8706c716e0c416cf708d"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_triangular_expert_main.cc",
+          "sha256": "52938f5b9d01909ddf6783d0e8be99d22982324dc8d8dc224e79a3600cebc2fa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_fault_test.cc",
+          "sha256": "db6901c7af19f19f08c141fe9f5e03623695e2a00022a3f29ffd1175c1f0ff55"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.cc",
+          "sha256": "2162c8d20e6cf0aca1bb110f3042e1b986bc021f1842fe145b0a18d27f7632e0"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.h",
+          "sha256": "656f205d6366cef31ebc318ae9eab908cb1a2c8364ab102ab9dea8eb5bcf8790"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_math_test.cc",
+          "sha256": "b2593522bcd1c202b57690edddfd766bfc61793867d883ffeacae6ec02068f9c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_pinned_signatures_test.cc",
+          "sha256": "f31392637d5f3c6ff5f8cde01f32d4745a51ff3d8d18ff60c6e3172a1d9bee15"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_source_counts_test.cc",
+          "sha256": "10ecdf79f811f8bd07c5dc71642d956189ac2b2d79c2cd0f7516b645143fe18f"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -28184,7 +28396,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -59188,12 +59402,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tpcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtpcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_condition.h",
+          "sha256": "7af7459fef07c711edb899f5f2c9677f16e61801cef97aa9f979e2d5f745bc56"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h",
+          "sha256": "8c9d8f5a532b4ff7f1f15385fedd945ee9d16d81f544d5fb3e1b51140917ace0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_expert_counts.h",
+          "sha256": "999550ec2df8efca936ddafa3eccd4f78db5ad5db4c598d53d9c96a84d1e0cc3"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_packed_triangular_expert.cc",
+          "sha256": "5e16a1a83a83187dc63902770ba38e1e9d770273d65b8706c716e0c416cf708d"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_triangular_expert_main.cc",
+          "sha256": "52938f5b9d01909ddf6783d0e8be99d22982324dc8d8dc224e79a3600cebc2fa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_fault_test.cc",
+          "sha256": "db6901c7af19f19f08c141fe9f5e03623695e2a00022a3f29ffd1175c1f0ff55"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.cc",
+          "sha256": "2162c8d20e6cf0aca1bb110f3042e1b986bc021f1842fe145b0a18d27f7632e0"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.h",
+          "sha256": "656f205d6366cef31ebc318ae9eab908cb1a2c8364ab102ab9dea8eb5bcf8790"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_math_test.cc",
+          "sha256": "b2593522bcd1c202b57690edddfd766bfc61793867d883ffeacae6ec02068f9c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_pinned_signatures_test.cc",
+          "sha256": "f31392637d5f3c6ff5f8cde01f32d4745a51ff3d8d18ff60c6e3172a1d9bee15"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_source_counts_test.cc",
+          "sha256": "10ecdf79f811f8bd07c5dc71642d956189ac2b2d79c2cd0f7516b645143fe18f"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59201,7 +59520,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -59411,12 +59732,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tprfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtprfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_condition.h",
+          "sha256": "7af7459fef07c711edb899f5f2c9677f16e61801cef97aa9f979e2d5f745bc56"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h",
+          "sha256": "8c9d8f5a532b4ff7f1f15385fedd945ee9d16d81f544d5fb3e1b51140917ace0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_expert_counts.h",
+          "sha256": "999550ec2df8efca936ddafa3eccd4f78db5ad5db4c598d53d9c96a84d1e0cc3"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_packed_triangular_expert.cc",
+          "sha256": "5e16a1a83a83187dc63902770ba38e1e9d770273d65b8706c716e0c416cf708d"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_triangular_expert_main.cc",
+          "sha256": "52938f5b9d01909ddf6783d0e8be99d22982324dc8d8dc224e79a3600cebc2fa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_fault_test.cc",
+          "sha256": "db6901c7af19f19f08c141fe9f5e03623695e2a00022a3f29ffd1175c1f0ff55"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.cc",
+          "sha256": "2162c8d20e6cf0aca1bb110f3042e1b986bc021f1842fe145b0a18d27f7632e0"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.h",
+          "sha256": "656f205d6366cef31ebc318ae9eab908cb1a2c8364ab102ab9dea8eb5bcf8790"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_math_test.cc",
+          "sha256": "b2593522bcd1c202b57690edddfd766bfc61793867d883ffeacae6ec02068f9c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_pinned_signatures_test.cc",
+          "sha256": "f31392637d5f3c6ff5f8cde01f32d4745a51ff3d8d18ff60c6e3172a1d9bee15"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_source_counts_test.cc",
+          "sha256": "10ecdf79f811f8bd07c5dc71642d956189ac2b2d79c2cd0f7516b645143fe18f"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59424,7 +59850,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -90380,12 +90808,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tpcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.stpcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_condition.h",
+          "sha256": "7af7459fef07c711edb899f5f2c9677f16e61801cef97aa9f979e2d5f745bc56"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h",
+          "sha256": "8c9d8f5a532b4ff7f1f15385fedd945ee9d16d81f544d5fb3e1b51140917ace0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_expert_counts.h",
+          "sha256": "999550ec2df8efca936ddafa3eccd4f78db5ad5db4c598d53d9c96a84d1e0cc3"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_packed_triangular_expert.cc",
+          "sha256": "5e16a1a83a83187dc63902770ba38e1e9d770273d65b8706c716e0c416cf708d"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_triangular_expert_main.cc",
+          "sha256": "52938f5b9d01909ddf6783d0e8be99d22982324dc8d8dc224e79a3600cebc2fa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_fault_test.cc",
+          "sha256": "db6901c7af19f19f08c141fe9f5e03623695e2a00022a3f29ffd1175c1f0ff55"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.cc",
+          "sha256": "2162c8d20e6cf0aca1bb110f3042e1b986bc021f1842fe145b0a18d27f7632e0"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.h",
+          "sha256": "656f205d6366cef31ebc318ae9eab908cb1a2c8364ab102ab9dea8eb5bcf8790"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_math_test.cc",
+          "sha256": "b2593522bcd1c202b57690edddfd766bfc61793867d883ffeacae6ec02068f9c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_pinned_signatures_test.cc",
+          "sha256": "f31392637d5f3c6ff5f8cde01f32d4745a51ff3d8d18ff60c6e3172a1d9bee15"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_source_counts_test.cc",
+          "sha256": "10ecdf79f811f8bd07c5dc71642d956189ac2b2d79c2cd0f7516b645143fe18f"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90393,7 +90926,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -90603,12 +91138,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tprfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.stprfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_condition.h",
+          "sha256": "7af7459fef07c711edb899f5f2c9677f16e61801cef97aa9f979e2d5f745bc56"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h",
+          "sha256": "8c9d8f5a532b4ff7f1f15385fedd945ee9d16d81f544d5fb3e1b51140917ace0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_expert_counts.h",
+          "sha256": "999550ec2df8efca936ddafa3eccd4f78db5ad5db4c598d53d9c96a84d1e0cc3"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_packed_triangular_expert.cc",
+          "sha256": "5e16a1a83a83187dc63902770ba38e1e9d770273d65b8706c716e0c416cf708d"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_triangular_expert_main.cc",
+          "sha256": "52938f5b9d01909ddf6783d0e8be99d22982324dc8d8dc224e79a3600cebc2fa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_fault_test.cc",
+          "sha256": "db6901c7af19f19f08c141fe9f5e03623695e2a00022a3f29ffd1175c1f0ff55"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.cc",
+          "sha256": "2162c8d20e6cf0aca1bb110f3042e1b986bc021f1842fe145b0a18d27f7632e0"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.h",
+          "sha256": "656f205d6366cef31ebc318ae9eab908cb1a2c8364ab102ab9dea8eb5bcf8790"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_math_test.cc",
+          "sha256": "b2593522bcd1c202b57690edddfd766bfc61793867d883ffeacae6ec02068f9c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_pinned_signatures_test.cc",
+          "sha256": "f31392637d5f3c6ff5f8cde01f32d4745a51ff3d8d18ff60c6e3172a1d9bee15"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_source_counts_test.cc",
+          "sha256": "10ecdf79f811f8bd07c5dc71642d956189ac2b2d79c2cd0f7516b645143fe18f"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90616,7 +91256,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -120032,12 +120674,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tpcon",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztpcon",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_condition.h",
+          "sha256": "7af7459fef07c711edb899f5f2c9677f16e61801cef97aa9f979e2d5f745bc56"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h",
+          "sha256": "8c9d8f5a532b4ff7f1f15385fedd945ee9d16d81f544d5fb3e1b51140917ace0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_expert_counts.h",
+          "sha256": "999550ec2df8efca936ddafa3eccd4f78db5ad5db4c598d53d9c96a84d1e0cc3"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_packed_triangular_expert.cc",
+          "sha256": "5e16a1a83a83187dc63902770ba38e1e9d770273d65b8706c716e0c416cf708d"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_triangular_expert_main.cc",
+          "sha256": "52938f5b9d01909ddf6783d0e8be99d22982324dc8d8dc224e79a3600cebc2fa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_fault_test.cc",
+          "sha256": "db6901c7af19f19f08c141fe9f5e03623695e2a00022a3f29ffd1175c1f0ff55"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.cc",
+          "sha256": "2162c8d20e6cf0aca1bb110f3042e1b986bc021f1842fe145b0a18d27f7632e0"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.h",
+          "sha256": "656f205d6366cef31ebc318ae9eab908cb1a2c8364ab102ab9dea8eb5bcf8790"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_math_test.cc",
+          "sha256": "b2593522bcd1c202b57690edddfd766bfc61793867d883ffeacae6ec02068f9c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_pinned_signatures_test.cc",
+          "sha256": "f31392637d5f3c6ff5f8cde01f32d4745a51ff3d8d18ff60c6e3172a1d9bee15"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_source_counts_test.cc",
+          "sha256": "10ecdf79f811f8bd07c5dc71642d956189ac2b2d79c2cd0f7516b645143fe18f"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -120045,7 +120792,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
         }
       },
       "required_profiles": [
@@ -120255,12 +121004,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Tprfs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztprfs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_condition.h",
+          "sha256": "e58df10aafddf95f2a00780dcfcf1db62a740ef43e62a8b9f02992c12be75224"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_condition.h",
+          "sha256": "7af7459fef07c711edb899f5f2c9677f16e61801cef97aa9f979e2d5f745bc56"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h",
+          "sha256": "8c9d8f5a532b4ff7f1f15385fedd945ee9d16d81f544d5fb3e1b51140917ace0"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_expert_counts.h",
+          "sha256": "999550ec2df8efca936ddafa3eccd4f78db5ad5db4c598d53d9c96a84d1e0cc3"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_expert_counts.h",
+          "sha256": "b383fcd7c7bb05a3412f07d2290a5f4561dd4ca9b6b923cc6305c28effacd315"
+        },
+        {
+          "path": "src/dense/lapack/reference_packed_triangular_expert.cc",
+          "sha256": "5e16a1a83a83187dc63902770ba38e1e9d770273d65b8706c716e0c416cf708d"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_triangular_expert_main.cc",
+          "sha256": "52938f5b9d01909ddf6783d0e8be99d22982324dc8d8dc224e79a3600cebc2fa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_fault_test.cc",
+          "sha256": "db6901c7af19f19f08c141fe9f5e03623695e2a00022a3f29ffd1175c1f0ff55"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.cc",
+          "sha256": "2162c8d20e6cf0aca1bb110f3042e1b986bc021f1842fe145b0a18d27f7632e0"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_faults.h",
+          "sha256": "656f205d6366cef31ebc318ae9eab908cb1a2c8364ab102ab9dea8eb5bcf8790"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_math_test.cc",
+          "sha256": "b2593522bcd1c202b57690edddfd766bfc61793867d883ffeacae6ec02068f9c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_pinned_signatures_test.cc",
+          "sha256": "f31392637d5f3c6ff5f8cde01f32d4745a51ff3d8d18ff60c6e3172a1d9bee15"
+        },
+        {
+          "path": "tests/dense_lapack/packed_triangular_expert_source_counts_test.cc",
+          "sha256": "10ecdf79f811f8bd07c5dc71642d956189ac2b2d79c2cd0f7516b645143fe18f"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -120268,7 +121122,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
         }
       },
       "required_profiles": [

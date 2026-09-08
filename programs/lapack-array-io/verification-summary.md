@@ -1,4 +1,22 @@
-# Current v17 packed inverse and solve integration
+# Current v18 packed estimator integration
+
+The program has 310 Reference rows in progress and 1,803 not started out of
+2,113 required. The 20 native implementations remain separately unverified;
+no routine has complete verified status. Both full Release suites execute
+853 tests: 791 pass, 62 required math gates fail, zero skip. Affected Debug
+passes 46/62 and ASC-only sanitizer 21/37 per ABI, retaining 16 required math
+failures each. All 378 primary objects are freshly compiled; four relocated
+22-family packages, 14 strict and six static checks pass. Foreign archives
+remain unsanitized. See [the root review](packed-triangular-expert-review.md).
+
+There are 2,621 normalized records, including original configure/format/test
+failures. The three subsequent prose updates pass six fresh documentation checks;
+all 1,347 prior numerical compiler inputs and production artifacts rehash unchanged. The next triangular-band slice has
+source/count/descriptor admission evidence and an unregistered solve
+candidate. Its routines remain required; no full P00-P11 or missing-XBLAS
+requirement is removed. See [band admission](triangular-band-admission-review.md).
+
+# Historical v17 packed inverse and solve integration
 
 Eight packed TPTRI/TPTRS routes are integrated as partial capability:302 Reference
 rows in_progress,1811 not_started of2113 required;20 native implemented_unverified,

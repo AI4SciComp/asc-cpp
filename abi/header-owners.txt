@@ -73,6 +73,8 @@ asc/dense/providers/lapack_triangular.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_error_bounds.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_packed.h|asc_dense_lapack
+asc/dense/providers/lapack_triangular_packed_condition.h|asc_dense_lapack
+asc/dense/providers/lapack_triangular_packed_error_bounds.h|asc_dense_lapack
 asc/dense/providers/lapack_tridiagonal.h|asc_dense_lapack
 asc/dense/providers/lapack_tridiagonal_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_tridiagonal_driver.h|asc_dense_lapack

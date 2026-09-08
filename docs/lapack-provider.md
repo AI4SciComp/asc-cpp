@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v17` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v18` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 302 partial scalar routines.
-The other 1,811 required
+routes below bring the development mapping to 310 partial scalar routines.
+The other 1,803 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -74,7 +74,7 @@ error estimates return zero locally, with no fabricated INFO. Neither routine
 has a positive singular-pivot INFO contract. Negative estimates are provider
 defects and nonfinite estimates remain visible accuracy warnings. Required
 finite-scalar tests reproduce native tiny-condition and tiny/large FERR failures;
-they remain ordinary failing mathematical gates. Packed condition/error estimates, banded triangular
+they remain ordinary failing mathematical gates. Banded triangular
 storage and remaining memory, extreme-range, platform and normalized-mode
 acceptance remain separate required work.
 
@@ -87,7 +87,7 @@ unwritten. Nonunit singularity preserves A/B and the exact native INFO;
 zero-RHS solves still perform that source-defined scan. Metadata-only queries
 protect actual native packed intermediates and bind the exact provider/plan.
 
-The v17 root checks pass all four new packed inverse/solve tests in each
+Historical v17 root checks pass all four new packed inverse/solve tests in each
 GNU Release/Debug and ASC-only Clang19 sanitizer configuration, for both
 LP64 and ILP64. They include representable extreme scales, first/last
 singularity, native INFO, stale plans, live aliases, workspace and rejected
@@ -101,8 +101,36 @@ mathematical gates fail. Affected Debug suites pass 38 of 46; ASC-only
 sanitizer suites pass 17 of 25, retaining eight existing mathematical failures
 each. There are zero skips. The foreign GNU archives are unsanitized.
 Complete normalized modes, stronger memory observation and platform gates
-remain open. `Tpcon`, `Tprfs` and other required packed/banded routines remain
-separate required work.
+remain open. Other required packed/banded routines remain separate work.
+
+`lapack_triangular_packed_condition.h` and
+`lapack_triangular_packed_error_bounds.h` add S/D/C/Z `Tpcon` and `Tprfs`.
+They use ordinary packed triangular A and explicit caller scalar, real/native
+integer and layout workspace. `Tpcon` estimates reciprocal one/infinity-norm
+condition. `Tprfs` reports FERR/BERR for the supplied solution and leaves
+A, B and X unchanged; B/X layouts are independent. It performs no refinement.
+Unit diagonals remain unread. Metadata-only queries bind actual source cursor
+bounds, layouts, flags, strides, scalar and provider identity.
+
+Zero-order condition returns one locally; zero-order/zero-RHS error estimates
+return zero locally, with absent INFO. Negative or unwritten native INFO and
+negative estimates are defects; nonfinite estimates remain visible warnings.
+The scoped candidate passes public/fault/count/signature tests on both ABIs in
+Release, Debug and ASC-only sanitizers. Its eight ordinary mathematical gates
+fail on finite extreme cases, reproduced by direct pinned calls: tiny scalar
+RCOND zero, tiny/huge FERR infinity, and maximum-scale packed matrix RCOND
+zero or NaN. These are unresolved required gates. No numerical success is
+inferred from native INFO zero.
+
+Corrected v18 root integration freshly compiles all 63 Core/Dense/provider
+translation units in each of six configurations. All four relocated packages
+pass their 22 family consumers; 14 strict and six static checks pass. Doxygen
+covers 115 headers and 2,116 public members without warnings. Both full
+Release suites execute 853 tests: 791 pass and 62 required mathematical gates
+fail. Affected Debug passes 46 of 62, and ASC-only sanitizer passes 21 of 37,
+each retaining 16 required mathematical failures. There are zero skips.
+The foreign archives remain unsanitized. Complete modes, stronger memory
+observation, concurrency and platform acceptance remain open.
 
 Historical bounded v16 verification covers both actual LP64 and ILP64 static providers.
 Each full GNU Release suite executes 831 tests: 773 passes, 54 required
