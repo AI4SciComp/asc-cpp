@@ -40,6 +40,7 @@ asc/dense/providers/lapack_cholesky_packed.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_packed_solve.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_packed_inverse.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_packed_driver.h|asc_dense_lapack
+asc/dense/providers/lapack_cholesky_packed_equilibration.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_band.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_band_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_band_driver.h|asc_dense_lapack

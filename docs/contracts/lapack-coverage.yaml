@@ -23384,12 +23384,125 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Ppequ",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cppequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed_equilibration.h",
+          "sha256": "f170b94e64fe5dcb3bd57a5a149943faecc66bca2d76f2ee3f015d93e395188c"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_counts.h",
+          "sha256": "812eb56c321e1c09422bc6f59c6a705de910b961045342c8fe2d13b2f6763afa"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_equilibration_counts.h",
+          "sha256": "8ed6832307781037fd7a65d5342f776124b583edba8a952a93b6c2e6dee1bc82"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed_equilibration.cc",
+          "sha256": "1b8db6402a1ecc8133dffc8daa599ad19a5904592fcae2f394d37653961c5506"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense/allocation_probe.h",
+          "sha256": "a1eec4d79318937e480fa21d9e509c8931023870ae353b56fa35faabb5fc4f6e"
+        },
+        {
+          "path": "tests/dense/test_support.h",
+          "sha256": "b6172a454f4474b61006c8b24b4d392cfa51f04f6e054cda3612530872a0170b"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_equilibration_main.cc",
+          "sha256": "73226c17b0cb643c13c4aaacd3dd8559f55bbe2160494913c463e392d7f948d4"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_fault_test.cc",
+          "sha256": "ef6e4403fdfdf8a14770a5375ea831a4d9690bba0fc286f9caafaaf6d8631d03"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_faults.cc",
+          "sha256": "3ec97355a282c0c034715c20f6e258f784e92cea39d75e156096793d6cef665c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_faults.h",
+          "sha256": "7e4201d365533952c4e7657151e1c58a3eb4af82372a27a7d178e0710af2bd71"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_pinned_signatures_test.cc",
+          "sha256": "e905dd882ffb29b9dbf27e50939752bc5f662bce1f244dd962281b30a8fd8bef"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_read_observation_test.cc",
+          "sha256": "473bf1605f5bdcc54d19ec83ff575281adb88eaf0feb3087bbe02c7e86a2e66a"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_source_counts_test.cc",
+          "sha256": "759f996f5900e95fce3f85cb6f915430ba77ebec571354490ca08de9d544db8c"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -23397,7 +23510,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual PPEQU with checked source cursors, immutable packed storage androw-UPLO diagonal equivalence, zero workspace, metadata-only query andprecise positive/full-width INFO defect/late-output-warning semantics. Candidate07 six5/5 and14strict/4isolatedheaders/currentformat pass. Rootv25 six fresh70-primary-TU lanes:Release each847/917 with70requiredmathfailures;Debug97/105 andASC-only sanitizer38/46 eachwith8requiredmathfailures. Zero skips/timeouts/sanitizer diagnostics;four29family packages and124header/2188memberDoxygen pass. Fullmodes/concurrency/platform andnormalized acceptance remainrequired;no native orfullyverified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-equilibration-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -54220,12 +54335,125 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Ppequ",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dppequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed_equilibration.h",
+          "sha256": "f170b94e64fe5dcb3bd57a5a149943faecc66bca2d76f2ee3f015d93e395188c"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_counts.h",
+          "sha256": "812eb56c321e1c09422bc6f59c6a705de910b961045342c8fe2d13b2f6763afa"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_equilibration_counts.h",
+          "sha256": "8ed6832307781037fd7a65d5342f776124b583edba8a952a93b6c2e6dee1bc82"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed_equilibration.cc",
+          "sha256": "1b8db6402a1ecc8133dffc8daa599ad19a5904592fcae2f394d37653961c5506"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense/allocation_probe.h",
+          "sha256": "a1eec4d79318937e480fa21d9e509c8931023870ae353b56fa35faabb5fc4f6e"
+        },
+        {
+          "path": "tests/dense/test_support.h",
+          "sha256": "b6172a454f4474b61006c8b24b4d392cfa51f04f6e054cda3612530872a0170b"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_equilibration_main.cc",
+          "sha256": "73226c17b0cb643c13c4aaacd3dd8559f55bbe2160494913c463e392d7f948d4"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_fault_test.cc",
+          "sha256": "ef6e4403fdfdf8a14770a5375ea831a4d9690bba0fc286f9caafaaf6d8631d03"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_faults.cc",
+          "sha256": "3ec97355a282c0c034715c20f6e258f784e92cea39d75e156096793d6cef665c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_faults.h",
+          "sha256": "7e4201d365533952c4e7657151e1c58a3eb4af82372a27a7d178e0710af2bd71"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_pinned_signatures_test.cc",
+          "sha256": "e905dd882ffb29b9dbf27e50939752bc5f662bce1f244dd962281b30a8fd8bef"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_read_observation_test.cc",
+          "sha256": "473bf1605f5bdcc54d19ec83ff575281adb88eaf0feb3087bbe02c7e86a2e66a"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_source_counts_test.cc",
+          "sha256": "759f996f5900e95fce3f85cb6f915430ba77ebec571354490ca08de9d544db8c"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -54233,7 +54461,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual PPEQU with checked source cursors, immutable packed storage androw-UPLO diagonal equivalence, zero workspace, metadata-only query andprecise positive/full-width INFO defect/late-output-warning semantics. Candidate07 six5/5 and14strict/4isolatedheaders/currentformat pass. Rootv25 six fresh70-primary-TU lanes:Release each847/917 with70requiredmathfailures;Debug97/105 andASC-only sanitizer38/46 eachwith8requiredmathfailures. Zero skips/timeouts/sanitizer diagnostics;four29family packages and124header/2188memberDoxygen pass. Fullmodes/concurrency/platform andnormalized acceptance remainrequired;no native orfullyverified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-equilibration-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -86432,12 +86662,125 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Ppequ",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sppequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed_equilibration.h",
+          "sha256": "f170b94e64fe5dcb3bd57a5a149943faecc66bca2d76f2ee3f015d93e395188c"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_counts.h",
+          "sha256": "812eb56c321e1c09422bc6f59c6a705de910b961045342c8fe2d13b2f6763afa"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_equilibration_counts.h",
+          "sha256": "8ed6832307781037fd7a65d5342f776124b583edba8a952a93b6c2e6dee1bc82"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed_equilibration.cc",
+          "sha256": "1b8db6402a1ecc8133dffc8daa599ad19a5904592fcae2f394d37653961c5506"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense/allocation_probe.h",
+          "sha256": "a1eec4d79318937e480fa21d9e509c8931023870ae353b56fa35faabb5fc4f6e"
+        },
+        {
+          "path": "tests/dense/test_support.h",
+          "sha256": "b6172a454f4474b61006c8b24b4d392cfa51f04f6e054cda3612530872a0170b"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_equilibration_main.cc",
+          "sha256": "73226c17b0cb643c13c4aaacd3dd8559f55bbe2160494913c463e392d7f948d4"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_fault_test.cc",
+          "sha256": "ef6e4403fdfdf8a14770a5375ea831a4d9690bba0fc286f9caafaaf6d8631d03"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_faults.cc",
+          "sha256": "3ec97355a282c0c034715c20f6e258f784e92cea39d75e156096793d6cef665c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_faults.h",
+          "sha256": "7e4201d365533952c4e7657151e1c58a3eb4af82372a27a7d178e0710af2bd71"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_pinned_signatures_test.cc",
+          "sha256": "e905dd882ffb29b9dbf27e50939752bc5f662bce1f244dd962281b30a8fd8bef"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_read_observation_test.cc",
+          "sha256": "473bf1605f5bdcc54d19ec83ff575281adb88eaf0feb3087bbe02c7e86a2e66a"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_source_counts_test.cc",
+          "sha256": "759f996f5900e95fce3f85cb6f915430ba77ebec571354490ca08de9d544db8c"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -86445,7 +86788,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual PPEQU with checked source cursors, immutable packed storage androw-UPLO diagonal equivalence, zero workspace, metadata-only query andprecise positive/full-width INFO defect/late-output-warning semantics. Candidate07 six5/5 and14strict/4isolatedheaders/currentformat pass. Rootv25 six fresh70-primary-TU lanes:Release each847/917 with70requiredmathfailures;Debug97/105 andASC-only sanitizer38/46 eachwith8requiredmathfailures. Zero skips/timeouts/sanitizer diagnostics;four29family packages and124header/2188memberDoxygen pass. Fullmodes/concurrency/platform andnormalized acceptance remainrequired;no native orfullyverified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-equilibration-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -118403,12 +118748,125 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Ppequ",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zppequ",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed_equilibration.h",
+          "sha256": "f170b94e64fe5dcb3bd57a5a149943faecc66bca2d76f2ee3f015d93e395188c"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_counts.h",
+          "sha256": "812eb56c321e1c09422bc6f59c6a705de910b961045342c8fe2d13b2f6763afa"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_equilibration_counts.h",
+          "sha256": "8ed6832307781037fd7a65d5342f776124b583edba8a952a93b6c2e6dee1bc82"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed_equilibration.cc",
+          "sha256": "1b8db6402a1ecc8133dffc8daa599ad19a5904592fcae2f394d37653961c5506"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense/allocation_probe.h",
+          "sha256": "a1eec4d79318937e480fa21d9e509c8931023870ae353b56fa35faabb5fc4f6e"
+        },
+        {
+          "path": "tests/dense/test_support.h",
+          "sha256": "b6172a454f4474b61006c8b24b4d392cfa51f04f6e054cda3612530872a0170b"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_equilibration_main.cc",
+          "sha256": "73226c17b0cb643c13c4aaacd3dd8559f55bbe2160494913c463e392d7f948d4"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_fault_test.cc",
+          "sha256": "ef6e4403fdfdf8a14770a5375ea831a4d9690bba0fc286f9caafaaf6d8631d03"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_faults.cc",
+          "sha256": "3ec97355a282c0c034715c20f6e258f784e92cea39d75e156096793d6cef665c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_faults.h",
+          "sha256": "7e4201d365533952c4e7657151e1c58a3eb4af82372a27a7d178e0710af2bd71"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_pinned_signatures_test.cc",
+          "sha256": "e905dd882ffb29b9dbf27e50939752bc5f662bce1f244dd962281b30a8fd8bef"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_read_observation_test.cc",
+          "sha256": "473bf1605f5bdcc54d19ec83ff575281adb88eaf0feb3087bbe02c7e86a2e66a"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_equilibration_source_counts_test.cc",
+          "sha256": "759f996f5900e95fce3f85cb6f915430ba77ebec571354490ca08de9d544db8c"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -118416,7 +118874,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual PPEQU with checked source cursors, immutable packed storage androw-UPLO diagonal equivalence, zero workspace, metadata-only query andprecise positive/full-width INFO defect/late-output-warning semantics. Candidate07 six5/5 and14strict/4isolatedheaders/currentformat pass. Rootv25 six fresh70-primary-TU lanes:Release each847/917 with70requiredmathfailures;Debug97/105 andASC-only sanitizer38/46 eachwith8requiredmathfailures. Zero skips/timeouts/sanitizer diagnostics;four29family packages and124header/2188memberDoxygen pass. Fullmodes/concurrency/platform andnormalized acceptance remainrequired;no native orfullyverified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-equilibration-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [

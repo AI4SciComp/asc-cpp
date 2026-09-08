@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v24 with338 partial Reference scalar routes;zero fully verified. PPSV4 candidate05 six5/5 runs,14 strict/4 isolated-header/current-format checks pass;60 fresh candidate objects with65 prior primary TUs explicitly reused. Audited root v24 freshly compiles69 primary TUs in six lanes;Release each840/910 with70 required math failures. Original Debug89/98 andASC-only sanitizer32/41 each retain8 math failures andone timeout;four isolated same-limit gates pass,original failures preserved. Zero skips;four28-family packages and123-header/2180-member Doxygen pass. Provider-free static/shared scoped16/16 each pass. Prior70 mathematical failures,130 missing required XBLAS andcomplete2113 routine/mode/platform closure remain open"
+    evidence_scope: "unreleased incremental-lapack-v25 with342 partial Reference scalar routes;zero fully verified. PPEQU4 candidate07 six5/5 runs,14 strict/4 isolated-header/current-format checks pass;60 fresh candidate objects with65 prior primary TUs explicitly reused. Audited root v25 freshly compiles70 primary TUs in six lanes;Release each847/917 with70 required math failures,Debug97/105 andASC-only sanitizer38/46 eachwith8 required math failures. Zero skips/timeouts/sanitizer diagnostics;four29-family packages and124-header/2188-member Doxygen pass. Provider-free static/shared scoped16/16 eachpass. Prior70 mathematical failures,130 missing required XBLAS andcomplete2113 routine/mode/platform closure remain open"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -113,6 +113,7 @@ capabilities:
       - "include/asc/dense/providers/lapack_cholesky_packed_solve.h"
       - "include/asc/dense/providers/lapack_cholesky_packed_inverse.h"
       - "include/asc/dense/providers/lapack_cholesky_packed_driver.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed_equilibration.h"
       - "include/asc/dense/providers/lapack_qr.h"
       - "include/asc/dense/providers/lapack_cholesky_condition.h"
       - "include/asc/dense/providers/lapack_cholesky_driver.h"

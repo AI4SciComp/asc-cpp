@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v24` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v25` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,12 +10,35 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 338 partial scalar routines.
-The other 1,775 required
+routes below bring the development mapping to 342 partial scalar routines.
+The other 1,771 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_cholesky_packed_equilibration.h` adds actual S/D/C/Z `Ppequ` and
+metadata-only `QueryPpequWorkspace`. It computes scales and SCOND/AMAX from
+real diagonal components without applying them or certifying definiteness.
+Both packed layouts use original storage and zero workspace; row layout flips
+native UPLO because the diagonal offsets match. A stays byte-for-byte unchanged,
+including ignored off-diagonal and complex imaginary diagonal components.
+
+Positive INFO returns raw diagonal S and complete AMAX with unchanged SCOND.
+Invalid, missing or partially written INFO is a provider defect with raw direct
+outputs retained. Invalid INFO0 scale/statistic outputs report accuracy warning.
+Zero order completes locally with SCOND=1 and AMAX=0, without native INFO.
+Six candidate configurations pass five tests each, including 5,296 independent
+workflows, 640 failure profiles and 72 Linux protected-memory profiles. Actual
+ignored off-diagonal pages and complex imaginary diagonal components remain
+inaccessible during native calls. Fresh v25 Release passes 847/917 per ABI, retaining 70 required mathematical
+failures. Affected Debug passes 97/105 and ASC-only sanitizer 38/46, each
+retaining eight required math failures. No tests skip or time out; no sanitizer
+diagnostics occur. All 70 primary translation units compile freshly in six
+lanes. Four relocated packages pass 29 family consumers; Doxygen covers 124
+headers and 2188 public members without warnings. Provider-free scoped
+static/shared checks pass 16/16 each. Full routine/mode, concurrency and
+platform acceptance remain required; no native or fully verified credit is added.
 
 `lapack_cholesky_packed_driver.h` adds S/D/C/Z `Ppsv`, calling the actual
 pinned ordinary packed positive-definite driver with independent A/B layouts.
