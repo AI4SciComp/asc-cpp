@@ -23688,12 +23688,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Pptri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cpptri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed_inverse.h",
+          "sha256": "8f0ce1a366544cd9a0ee1299ddc53bbc8300652ff6523f89f62f686337c5cf5a"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_inverse_counts.h",
+          "sha256": "6895d773f1e249404684c9c3feb550c40254adfd7c8b0d5d6686820d377f7a75"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed_inverse.cc",
+          "sha256": "c9543776c9d0611d5d69e12570755150449d3605289520805665829f329f1ce1"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense/allocation_probe.h",
+          "sha256": "a1eec4d79318937e480fa21d9e509c8931023870ae353b56fa35faabb5fc4f6e"
+        },
+        {
+          "path": "tests/dense/test_support.h",
+          "sha256": "b6172a454f4474b61006c8b24b4d392cfa51f04f6e054cda3612530872a0170b"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_inverse_main.cc",
+          "sha256": "d8d83fee38975e2dc5dce8dbcc28a9460317a5eba488cc37512b3cdd7dd86b92"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_fault_test.cc",
+          "sha256": "1a78d136c25b6b62445c7a4799dcb5b634cb037928e8133169e602dfa4e53b61"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_faults.cc",
+          "sha256": "354a953f624f382ec35308d654508e87006b8f722e5471f12da6cf7f15e55144"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_faults.h",
+          "sha256": "fba340aaf140489277952b8bbadf0a9df840446eb73833e31a047bf33811d21c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_pinned_signatures_test.cc",
+          "sha256": "a78ee5ec17113c9c73e99e8e80c36f36ac0d52f95fa69e7cc4c4b2722f11e3e5"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_read_observation_test.cc",
+          "sha256": "2a023a44f4fdc4895d26218f4b5667efa64a102a38cc76490c7adce32ca3b3f6"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_source_counts_test.cc",
+          "sha256": "d03c02746c7cb2efe363cb82288ffc8ccb293be02b35be11043d4b8550c30a02"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -23701,7 +23806,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual PPTRI packed Cholesky inverse with source-specific integer bounds, caller-owned row packing, metadata-only query/local empty, exact singular unchanged-factor and full-width INFO defect behavior. Candidate04 six5/5 andstrict/header checks pass; root comment/header strict checks revalidated. Root v23 six fresh68-primary-TU lanes: Release each833/903 with70 required math failures,Debug83/91 andASC-only sanitizer28/36 with8 math failures each,zero skips;four27-family packages and122-header Doxygen pass. Full modes/concurrency/platform evidence remains required;no native orfully verified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-inverse-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -54302,12 +54409,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Pptri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dpptri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed_inverse.h",
+          "sha256": "8f0ce1a366544cd9a0ee1299ddc53bbc8300652ff6523f89f62f686337c5cf5a"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_inverse_counts.h",
+          "sha256": "6895d773f1e249404684c9c3feb550c40254adfd7c8b0d5d6686820d377f7a75"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed_inverse.cc",
+          "sha256": "c9543776c9d0611d5d69e12570755150449d3605289520805665829f329f1ce1"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense/allocation_probe.h",
+          "sha256": "a1eec4d79318937e480fa21d9e509c8931023870ae353b56fa35faabb5fc4f6e"
+        },
+        {
+          "path": "tests/dense/test_support.h",
+          "sha256": "b6172a454f4474b61006c8b24b4d392cfa51f04f6e054cda3612530872a0170b"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_inverse_main.cc",
+          "sha256": "d8d83fee38975e2dc5dce8dbcc28a9460317a5eba488cc37512b3cdd7dd86b92"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_fault_test.cc",
+          "sha256": "1a78d136c25b6b62445c7a4799dcb5b634cb037928e8133169e602dfa4e53b61"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_faults.cc",
+          "sha256": "354a953f624f382ec35308d654508e87006b8f722e5471f12da6cf7f15e55144"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_faults.h",
+          "sha256": "fba340aaf140489277952b8bbadf0a9df840446eb73833e31a047bf33811d21c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_pinned_signatures_test.cc",
+          "sha256": "a78ee5ec17113c9c73e99e8e80c36f36ac0d52f95fa69e7cc4c4b2722f11e3e5"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_read_observation_test.cc",
+          "sha256": "2a023a44f4fdc4895d26218f4b5667efa64a102a38cc76490c7adce32ca3b3f6"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_source_counts_test.cc",
+          "sha256": "d03c02746c7cb2efe363cb82288ffc8ccb293be02b35be11043d4b8550c30a02"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -54315,7 +54527,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual PPTRI packed Cholesky inverse with source-specific integer bounds, caller-owned row packing, metadata-only query/local empty, exact singular unchanged-factor and full-width INFO defect behavior. Candidate04 six5/5 andstrict/header checks pass; root comment/header strict checks revalidated. Root v23 six fresh68-primary-TU lanes: Release each833/903 with70 required math failures,Debug83/91 andASC-only sanitizer28/36 with8 math failures each,zero skips;four27-family packages and122-header Doxygen pass. Full modes/concurrency/platform evidence remains required;no native orfully verified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-inverse-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -86292,12 +86506,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Pptri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.spptri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed_inverse.h",
+          "sha256": "8f0ce1a366544cd9a0ee1299ddc53bbc8300652ff6523f89f62f686337c5cf5a"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_inverse_counts.h",
+          "sha256": "6895d773f1e249404684c9c3feb550c40254adfd7c8b0d5d6686820d377f7a75"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed_inverse.cc",
+          "sha256": "c9543776c9d0611d5d69e12570755150449d3605289520805665829f329f1ce1"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense/allocation_probe.h",
+          "sha256": "a1eec4d79318937e480fa21d9e509c8931023870ae353b56fa35faabb5fc4f6e"
+        },
+        {
+          "path": "tests/dense/test_support.h",
+          "sha256": "b6172a454f4474b61006c8b24b4d392cfa51f04f6e054cda3612530872a0170b"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_inverse_main.cc",
+          "sha256": "d8d83fee38975e2dc5dce8dbcc28a9460317a5eba488cc37512b3cdd7dd86b92"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_fault_test.cc",
+          "sha256": "1a78d136c25b6b62445c7a4799dcb5b634cb037928e8133169e602dfa4e53b61"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_faults.cc",
+          "sha256": "354a953f624f382ec35308d654508e87006b8f722e5471f12da6cf7f15e55144"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_faults.h",
+          "sha256": "fba340aaf140489277952b8bbadf0a9df840446eb73833e31a047bf33811d21c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_pinned_signatures_test.cc",
+          "sha256": "a78ee5ec17113c9c73e99e8e80c36f36ac0d52f95fa69e7cc4c4b2722f11e3e5"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_read_observation_test.cc",
+          "sha256": "2a023a44f4fdc4895d26218f4b5667efa64a102a38cc76490c7adce32ca3b3f6"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_source_counts_test.cc",
+          "sha256": "d03c02746c7cb2efe363cb82288ffc8ccb293be02b35be11043d4b8550c30a02"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -86305,7 +86624,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual PPTRI packed Cholesky inverse with source-specific integer bounds, caller-owned row packing, metadata-only query/local empty, exact singular unchanged-factor and full-width INFO defect behavior. Candidate04 six5/5 andstrict/header checks pass; root comment/header strict checks revalidated. Root v23 six fresh68-primary-TU lanes: Release each833/903 with70 required math failures,Debug83/91 andASC-only sanitizer28/36 with8 math failures each,zero skips;four27-family packages and122-header Doxygen pass. Full modes/concurrency/platform evidence remains required;no native orfully verified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-inverse-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -118041,12 +118362,117 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Pptri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zpptri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed_inverse.h",
+          "sha256": "8f0ce1a366544cd9a0ee1299ddc53bbc8300652ff6523f89f62f686337c5cf5a"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_inverse_counts.h",
+          "sha256": "6895d773f1e249404684c9c3feb550c40254adfd7c8b0d5d6686820d377f7a75"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular_counts.h",
+          "sha256": "8e95d9beb68529ace4af64c6c16a53b58b2b3c43d728a8baf381f4765b89cb83"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed_inverse.cc",
+          "sha256": "c9543776c9d0611d5d69e12570755150449d3605289520805665829f329f1ce1"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense/allocation_probe.h",
+          "sha256": "a1eec4d79318937e480fa21d9e509c8931023870ae353b56fa35faabb5fc4f6e"
+        },
+        {
+          "path": "tests/dense/test_support.h",
+          "sha256": "b6172a454f4474b61006c8b24b4d392cfa51f04f6e054cda3612530872a0170b"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_inverse_main.cc",
+          "sha256": "d8d83fee38975e2dc5dce8dbcc28a9460317a5eba488cc37512b3cdd7dd86b92"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_fault_test.cc",
+          "sha256": "1a78d136c25b6b62445c7a4799dcb5b634cb037928e8133169e602dfa4e53b61"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_faults.cc",
+          "sha256": "354a953f624f382ec35308d654508e87006b8f722e5471f12da6cf7f15e55144"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_faults.h",
+          "sha256": "fba340aaf140489277952b8bbadf0a9df840446eb73833e31a047bf33811d21c"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_pinned_signatures_test.cc",
+          "sha256": "a78ee5ec17113c9c73e99e8e80c36f36ac0d52f95fa69e7cc4c4b2722f11e3e5"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_read_observation_test.cc",
+          "sha256": "2a023a44f4fdc4895d26218f4b5667efa64a102a38cc76490c7adce32ca3b3f6"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_inverse_source_counts_test.cc",
+          "sha256": "d03c02746c7cb2efe363cb82288ffc8ccb293be02b35be11043d4b8550c30a02"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -118054,7 +118480,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual PPTRI packed Cholesky inverse with source-specific integer bounds, caller-owned row packing, metadata-only query/local empty, exact singular unchanged-factor and full-width INFO defect behavior. Candidate04 six5/5 andstrict/header checks pass; root comment/header strict checks revalidated. Root v23 six fresh68-primary-TU lanes: Release each833/903 with70 required math failures,Debug83/91 andASC-only sanitizer28/36 with8 math failures each,zero skips;four27-family packages and122-header Doxygen pass. Full modes/concurrency/platform evidence remains required;no native orfully verified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-inverse-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [

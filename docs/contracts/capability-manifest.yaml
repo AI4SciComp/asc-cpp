@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v22 with330 partial Reference scalar routes;zero fully verified. PPTRS4 candidate06 six6/6 runs,16 strict/4 isolated-header/current-format checks pass;66 fresh candidate objects with65 prior primary TUs explicitly reused. Audited root v22 freshly compiles67 primary TUs in six lanes;Release each826/896 with70 required math failures,Debug76/84 andASC-only sanitizer23/31 with8 math failures each,zero skips;four26-family relocated packages and121-header/2164-member Doxygen pass. Provider-free static/shared scoped16/16 each pass. Prior70 mathematical failures,130 missing required XBLAS andcomplete2113 routine/mode/platform closure remain open"
+    evidence_scope: "unreleased incremental-lapack-v23 with334 partial Reference scalar routes;zero fully verified. PPTRI4 candidate04 six5/5 runs,14 strict/4 isolated-header/current-format checks pass;60 fresh candidate objects with65 prior primary TUs explicitly reused. Audited root v23 freshly compiles68 primary TUs in six lanes;Release each833/903 with70 required math failures,Debug83/91 andASC-only sanitizer28/36 with8 math failures each,zero skips;four27-family relocated packages and122-header/2172-member Doxygen pass. Provider-free static/shared scoped16/16 each pass. Prior70 mathematical failures,130 missing required XBLAS andcomplete2113 routine/mode/platform closure remain open"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -111,6 +111,7 @@ capabilities:
       - "include/asc/dense/providers/lapack_cholesky.h"
       - "include/asc/dense/providers/lapack_cholesky_packed.h"
       - "include/asc/dense/providers/lapack_cholesky_packed_solve.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed_inverse.h"
       - "include/asc/dense/providers/lapack_qr.h"
       - "include/asc/dense/providers/lapack_cholesky_condition.h"
       - "include/asc/dense/providers/lapack_cholesky_driver.h"

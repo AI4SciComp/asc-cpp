@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v22` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v23` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,12 +10,34 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 330 partial scalar routines.
-The other 1,783 required
+routes below bring the development mapping to 334 partial scalar routines.
+The other 1,779 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_cholesky_packed_inverse.h` adds S/D/C/Z `Pptri`, replacing raw
+upper/lower Cholesky factors with the selected ordinary packed inverse.
+Row layout uses p live caller packing objects; column storage is direct.
+The inverse equation assumes valid factors with real complex diagonals;
+all supplied components reach native TPTRI without a provenance, finiteness
+or positivity scan. No refactorization, rescaling or fallback is added.
+
+An exact zero factor diagonal produces positive INFO with the original factor
+unchanged. Invalid, missing or partial INFO is a provider defect: row output
+is withheld and direct writes survive. Empty order completes locally, and
+queries inspect metadata only. Six candidate configurations pass five tests
+each: 1,344 independent inverse/singularity profiles, 384 failure profiles,
+64 protected queries, 16 local executions and 16 empty stale-plan rejections.
+Fresh root v23 Release passes 833/903 per ABI, retaining 70 required
+mathematical failures; affected Debug passes 83/91 and ASC-only sanitizer
+passes 28/36, each with eight mathematical failures. Zero tests skip. All 68
+primary translation units compile freshly in six lanes; four relocated
+packages pass 27 family consumers. Doxygen covers 122 headers and 2,172
+public members without warnings. Provider-free scoped static/shared checks
+pass 16/16 each. Full routine/mode, concurrency and platform acceptance remain
+required; no native credit is added.
 
 `lapack_cholesky_packed_solve.h` adds S/D/C/Z `Pptrs` for unchanged raw
 packed factors and independent factor/RHS layouts. Upper U solves U^H U X=B;

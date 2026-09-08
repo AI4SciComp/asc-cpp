@@ -40,6 +40,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_cholesky.h
   include/asc/dense/providers/lapack_cholesky_packed.h
   include/asc/dense/providers/lapack_cholesky_packed_solve.h
+  include/asc/dense/providers/lapack_cholesky_packed_inverse.h
   include/asc/dense/providers/lapack_qr.h
   include/asc/dense/providers/lapack_cholesky_condition.h
   include/asc/dense/providers/lapack_cholesky_driver.h
@@ -158,6 +159,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_cholesky.cc
   src/dense/lapack/reference_cholesky_packed.cc
   src/dense/lapack/reference_cholesky_packed_solve.cc
+  src/dense/lapack/reference_cholesky_packed_inverse.cc
   src/dense/lapack/reference_qr.cc
   src/dense/lapack/reference_cholesky_condition.cc
   src/dense/lapack/reference_cholesky_driver.cc

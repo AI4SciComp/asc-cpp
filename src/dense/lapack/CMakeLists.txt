@@ -40,6 +40,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_packed_triangular_expert.cc reference_triangular_band.cc
   reference_triangular_band_expert.cc reference_cholesky_packed.cc
   reference_cholesky_packed_solve.cc
+  reference_cholesky_packed_inverse.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
   FILES
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack.h"
@@ -53,6 +54,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_solve.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_inverse.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_qr.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_driver.h"

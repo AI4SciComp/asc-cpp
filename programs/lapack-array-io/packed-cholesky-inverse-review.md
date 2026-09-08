@@ -58,3 +58,52 @@ verified. Complete current PPTRS v22 evidence/documentation and commit it,
 then import these exact ten files and run fresh root/installed verification.
 All routine/mode/concurrency/platform closure, P00-P11, 70 prior mathematical
 failures and130 missing required XBLAS entries remain required.
+
+
+## Root registration
+
+The ten candidate04 files are imported with atomic optional header/source,
+profile v23, installed-family and contract registrations. A single stale
+signature-test comment now says PPTRI instead of PPTRF; the complete native
+signature declarations/assertions are unchanged. Both original and imported
+hashes are recorded. Fresh root tests and exact-file strict checks are recorded below.
+The candidate's 87 records were already normalized and are not counted again.
+
+PPTRI4 is now in_progress: 334 Reference partial/1,779 not_started, native20
+implemented_unverified and zero fully verified. Executed 68-primary-TU, 122-header
+and 27-family verification is recorded below. All remaining routines, full normalized
+mode/concurrency/platform acceptance, P00-P11, 70 prior mathematical failures
+and 130 missing required XBLAS entries remain required.
+
+
+## Executed v23 integration
+
+Audit `98cbc9f3d9dc791841fce1c437942568e5a9bead430db6e0202921a029211e00`
+and its seal bind the 1085-file frozen product and 34 original records. Both
+GNU Release suites execute 903 tests: 833 pass and 70 required mathematical
+tests fail. Affected Debug passes 83/91 and ASC-only Clang19 sanitizer passes
+28/36 per ABI, each retaining eight mathematical failures. Zero tests skip;
+there are no sanitizer diagnostics. All 68 Core/Dense/provider translation
+units compile freshly in six lanes, producing 408 primary objects. Foreign
+archives are unsanitized. Four relocated packages pass all 27 family consumers,
+including PPTRI's 1,344 workflows/85,457 checks. Six static checks pass;
+Doxygen covers 122 headers and 2,172 public members with zero warnings.
+Four fresh strict checks bind the corrected signature comment and current public header filter in both ABIs. Other candidate checks bind unchanged inputs.
+
+Provider-free audit
+`fcf751f37d68d99a3f171bf11ab62a5a831a037489d5bf1f7e16c4c19fb9686f`
+and its seal bind fresh GNU static/shared scoped 16/16 checks each, 60 primary
+objects and 12 test/support objects. All three optional packed Cholesky headers
+are absent; there is no Fortran discovery or linkage. This is scoped baseline
+evidence, not full baseline or shared-provider verification. These 44 new
+raw/completion records bring the normalized ledger to 3,688. The separately audited PPSV4 candidate remains unregistered, with its 91 records already normalized. PPEQU admission14 records are normalized; typed work remains. Complete routine/mode/concurrency/platform acceptance, all P00-P11,
+70 ordinary mathematical failures and 130 missing required XBLAS stay open.
+
+
+The three final documentation changes pass six fresh checks. Audit
+`d10a7cadabaa99fcbbfa22fe68eb874499c4e575810e394bb1ce3a7b57299fd4`
+rehashes 10,050 unchanged numerical/default compiler inputs and artifacts,
+including installed consumers. Its frozen source archive is
+`4208cf11376abecc6ee0ed901777518842401c0f6b26a7e3d1e8dcd75df5c917`.
+Numerical executions retain their original v23 identities; no numerical rerun
+on changed prose is claimed. The ledger contains 3,694 normalized records.
