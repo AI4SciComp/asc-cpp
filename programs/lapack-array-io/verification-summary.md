@@ -550,3 +550,10 @@ configuration is relabeled current.
 P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified.
 
 Audit SHA256 `9318cb2fbf4167626ed55c46c8b05caad77647b04ab75d18f6fb66107e4272fc`.
+
+
+## Root GBEQUB v14 checkpoint
+
+Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.
+
+Audit SHA256 `caadfc7ae84cb19fb042d9840abf67effa9158b285e15a86fad7f600173bd1b5`.

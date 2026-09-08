@@ -82171,6 +82171,2276 @@
       "external_record": "p02-printing-modes-root-review-record-01/record.json",
       "record_sha256": "662059364cac838e6c7c39835e2a05a3c03393d436f1c6d9f65161e686335cc7",
       "source_archive_sha256": "b2ed985dac1bbc3078ba38dfc547b91449e1bc19bcbb99b2d117fbf254f3c879"
+    },
+    {
+      "id": "gbequb-asan-ilp64-configure",
+      "started": "2026-09-08T03:00:11.237271+00:00",
+      "completed": "2026-09-08T03:00:14.255488+00:00",
+      "configuration": "asan-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-asan-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON",
+        "-DASC_CPP_ENABLE_ADDRESS_SANITIZER=ON",
+        "-DASC_CPP_ENABLE_UNDEFINED_SANITIZER=ON"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e561d424d46a039ffd6bf3ca70eeb689ff2999c29b7951b448390635e553672a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-asan-ilp64-configure/record.json",
+      "record_sha256": "5fb5c224ea93b4af829fc06c846d4fcce2bab16dccf9173aa87ddb6c7cd8ab63",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-asan-lp64-configure",
+      "started": "2026-09-08T03:00:11.229176+00:00",
+      "completed": "2026-09-08T03:00:14.206144+00:00",
+      "configuration": "asan-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-asan-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON",
+        "-DASC_CPP_ENABLE_ADDRESS_SANITIZER=ON",
+        "-DASC_CPP_ENABLE_UNDEFINED_SANITIZER=ON"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e561d424d46a039ffd6bf3ca70eeb689ff2999c29b7951b448390635e553672a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-asan-lp64-configure/record.json",
+      "record_sha256": "6ed4b7a49462760cfe3e1bfe966ddedb99cb9a8110dbc4bd29a11454997be5ed",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-debug-ilp64-build",
+      "started": "2026-09-08T02:48:36.283508+00:00",
+      "completed": "2026-09-08T02:50:10.278108+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-debug-ilp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_dense_lapack_lu_band_expert_counts_test",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_fault_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_native_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_pinned_signatures_test",
+        "asc_dense_lapack_header_lapack_lu_band_equilibration_radix_h_normal",
+        "asc_dense_lapack_header_lapack_lu_band_equilibration_radix_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f85477fb870299107b20cad7a3fe91b136dab19c8c04050be8dc7e017461352b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-debug-ilp64-build/record.json",
+      "record_sha256": "79c064eb3f7a6a8197e36e9c793993b5951cc0bb12473b1c4c2903ea79ed8602",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-debug-ilp64-configure",
+      "started": "2026-09-08T02:48:07.398291+00:00",
+      "completed": "2026-09-08T02:48:36.008626+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-debug-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "34d173b9d08ee34143f39bb3c963dd48f980b3b028e0ec6251f07f08c04c7396"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-debug-ilp64-configure/record.json",
+      "record_sha256": "3c9516570e4de53b37c0db301caa8f628d7fd6fe94d0be1e8f27c3446e0fc460",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-debug-ilp64-ctest",
+      "started": "2026-09-08T02:50:10.947540+00:00",
+      "completed": "2026-09-08T02:50:11.838661+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](gb_equb[.]|gb_equb_pinned_signatures$|lu_band_expert_counts$|normal_return_guard$|provider_placement[.]|header[.]lapack_lu_band_equilibration_radix_h[.])|architecture[.]public_file_policy$|compile[.]dependency_audit$)",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/record-debug-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "94c930daf99c7390e86b8c12041fa9d9c064e12687f6fcf4e67b37a9f4de1519",
+        "ctest.xml": "33b7428f8caec7a2306b2f6eb80b26cbf69d4ae7ff6ee54c533e069a2d4cacf7"
+      },
+      "test_counts": {
+        "executed": 43,
+        "failed": 16,
+        "passed": 27,
+        "selected": 43,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-debug-ilp64-ctest/record.json",
+      "record_sha256": "b51369c8d83f69e81291c1ee5978793099368451f59ea8b355bac164f4f12b03",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-debug-ilp64-registered",
+      "started": "2026-09-08T02:50:10.587459+00:00",
+      "completed": "2026-09-08T02:50:10.620031+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](gb_equb[.]|gb_equb_pinned_signatures$|lu_band_expert_counts$|normal_return_guard$|provider_placement[.]|header[.]lapack_lu_band_equilibration_radix_h[.])|architecture[.]public_file_policy$|compile[.]dependency_audit$)",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c2ddba356a0116e12b6a5bdee6bb4dd1df44656652f326bb22a2f6a086346463"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-debug-ilp64-registered/record.json",
+      "record_sha256": "9f4c7a6381fbcb14dd2ba9fe805ce4b2823974399d5434bbb547f987d18d4ef8",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-debug-lp64-build",
+      "started": "2026-09-08T02:48:36.385522+00:00",
+      "completed": "2026-09-08T02:50:10.676918+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-debug-lp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_dense_lapack_lu_band_expert_counts_test",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_fault_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_native_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_pinned_signatures_test",
+        "asc_dense_lapack_header_lapack_lu_band_equilibration_radix_h_normal",
+        "asc_dense_lapack_header_lapack_lu_band_equilibration_radix_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f85477fb870299107b20cad7a3fe91b136dab19c8c04050be8dc7e017461352b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-debug-lp64-build/record.json",
+      "record_sha256": "947e53733c98b38e03f0b71a8a86262605f1418f541251a25dad1bda25964f37",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-debug-lp64-configure",
+      "started": "2026-09-08T02:48:07.418837+00:00",
+      "completed": "2026-09-08T02:48:36.112502+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-debug-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6efadb1e02b43f7ac10172a5929e9d48d466e55c77cc517be8355efd1101406d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-debug-lp64-configure/record.json",
+      "record_sha256": "0a5c80f458ce2c6e8b253f556d08ec9aa181a78955aa40810d708ac12874288f",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-debug-lp64-ctest",
+      "started": "2026-09-08T02:50:11.358461+00:00",
+      "completed": "2026-09-08T02:50:12.217023+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](gb_equb[.]|gb_equb_pinned_signatures$|lu_band_expert_counts$|normal_return_guard$|provider_placement[.]|header[.]lapack_lu_band_equilibration_radix_h[.])|architecture[.]public_file_policy$|compile[.]dependency_audit$)",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/record-debug-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "c47607d62dab44755add9d2fa25e3443b62c78c1358cf71884d02695e1d29093",
+        "ctest.xml": "913264b8df8c576e9babc852244f06d79582ba3c95259150b5e8ba666ce0d809"
+      },
+      "test_counts": {
+        "executed": 43,
+        "failed": 16,
+        "passed": 27,
+        "selected": 43,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-debug-lp64-ctest/record.json",
+      "record_sha256": "25484d43f6c37e04dfce4a93899f6c40ff5a97dd2611b45559210dc5305e1263",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-debug-lp64-registered",
+      "started": "2026-09-08T02:50:11.015107+00:00",
+      "completed": "2026-09-08T02:50:11.047556+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](gb_equb[.]|gb_equb_pinned_signatures$|lu_band_expert_counts$|normal_return_guard$|provider_placement[.]|header[.]lapack_lu_band_equilibration_radix_h[.])|architecture[.]public_file_policy$|compile[.]dependency_audit$)",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "64ec3fa16a9fff0e210f71c956582f43363608806732df030df8c6b26a9a0e16"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-debug-lp64-registered/record.json",
+      "record_sha256": "ae275b786b55a3b445240d43fd3c9f66da59935b74a21495cedca1764f2ffda4",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-release-ilp64-build",
+      "started": "2026-09-08T02:36:35.194520+00:00",
+      "completed": "2026-09-08T02:40:25.882281+00:00",
+      "configuration": "release-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_dense_lapack_lu_band_expert_counts_test",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_fault_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_native_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_pinned_signatures_test",
+        "asc_dense_lapack_header_lapack_lu_band_equilibration_radix_h_normal",
+        "asc_dense_lapack_header_lapack_lu_band_equilibration_radix_h_no_exceptions",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "35914b8c67aba54db97e795d627dc818ad5a184e00f80a7d17e2d46aa412eb9a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-release-ilp64-build/record.json",
+      "record_sha256": "f4d2cac5cb482dd8ee6cda8c0ea39d760a62dc55f7b7a7458a3634b52e2b20a7",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-release-ilp64-configure",
+      "started": "2026-09-08T02:36:00.151459+00:00",
+      "completed": "2026-09-08T02:36:34.851868+00:00",
+      "configuration": "release-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6adcbaedeeec35f287ef01866bf458bbdc5f12a0c39ce921f39d66c6d88a2385"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-release-ilp64-configure/record.json",
+      "record_sha256": "006d2ef13e27a6e79d7879bb0d51d6abe59d027bdf2ca8054b1cd1381914faca",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-release-ilp64-ctest",
+      "started": "2026-09-08T02:40:26.662265+00:00",
+      "completed": "2026-09-08T02:43:35.293666+00:00",
+      "configuration": "release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](gb_equb[.]|gb_equb_pinned_signatures$|lu_band_expert_counts$|normal_return_guard$|provider_placement[.]|header[.]lapack_lu_band_equilibration_radix_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/record-release-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "1724e3f7128e64d373694a692a2c1a10864878c698bc39c97baed731dfe87e11",
+        "ctest.xml": "98b919d37ee3e59d94977b60e6261eab5c41618d5ec930e508fbf33ab793719a"
+      },
+      "test_counts": {
+        "executed": 54,
+        "failed": 16,
+        "passed": 38,
+        "selected": 54,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-release-ilp64-ctest/record.json",
+      "record_sha256": "53d3646fa74a9ccec5f5cbc86b753a51bce45c0f6575eb7010595b32879c8ea1",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-release-ilp64-registered",
+      "started": "2026-09-08T02:40:26.259933+00:00",
+      "completed": "2026-09-08T02:40:26.295161+00:00",
+      "configuration": "release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](gb_equb[.]|gb_equb_pinned_signatures$|lu_band_expert_counts$|normal_return_guard$|provider_placement[.]|header[.]lapack_lu_band_equilibration_radix_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "fdc1a68c89e46de61e4e1fc5a3c44e0cc9bd0427a6614d86f39af40a2ed02d11"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-release-ilp64-registered/record.json",
+      "record_sha256": "de3602b929809e7378cbee1137e213e0029570a3a9b68f67f4238cdff9655b28",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-release-lp64-build",
+      "started": "2026-09-08T02:36:35.195250+00:00",
+      "completed": "2026-09-08T02:40:28.112171+00:00",
+      "configuration": "release-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_dense_lapack_lu_band_expert_counts_test",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_fault_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_native_test",
+        "asc_dense_lapack_lu_band_equilibration_radix_pinned_signatures_test",
+        "asc_dense_lapack_header_lapack_lu_band_equilibration_radix_h_normal",
+        "asc_dense_lapack_header_lapack_lu_band_equilibration_radix_h_no_exceptions",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "35914b8c67aba54db97e795d627dc818ad5a184e00f80a7d17e2d46aa412eb9a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-release-lp64-build/record.json",
+      "record_sha256": "576bd296f3918ec615c2796e4432f0846301cd34b00487b8d8be9c8cb2f898cd",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-release-lp64-configure",
+      "started": "2026-09-08T02:36:00.118506+00:00",
+      "completed": "2026-09-08T02:36:34.851815+00:00",
+      "configuration": "release-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "447bc14fb28bbc628b3de4974cb199b558dcf8aad98303958ec471e03f5f2a0e"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-release-lp64-configure/record.json",
+      "record_sha256": "c6185b3076e67f211b1901ce5b7a1f017e7ed001dbc2fdea16f925943e93ba04",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-release-lp64-ctest",
+      "started": "2026-09-08T02:40:28.873383+00:00",
+      "completed": "2026-09-08T02:43:37.612183+00:00",
+      "configuration": "release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](gb_equb[.]|gb_equb_pinned_signatures$|lu_band_expert_counts$|normal_return_guard$|provider_placement[.]|header[.]lapack_lu_band_equilibration_radix_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/record-release-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "5f1e417a9e19c87558ea44c4976aa44cbd061e04e389d9481b2c8229e8e6f323",
+        "ctest.xml": "9320cded79e12d282438beb926b0e6daea53268e1382c53d13127e30b024cb9d"
+      },
+      "test_counts": {
+        "executed": 54,
+        "failed": 16,
+        "passed": 38,
+        "selected": 54,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-release-lp64-ctest/record.json",
+      "record_sha256": "51ca77dbfde6982f580ff70a9ce4b65ad9ba3a2f6038413fad0eaec359fe140b",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-release-lp64-registered",
+      "started": "2026-09-08T02:40:28.462191+00:00",
+      "completed": "2026-09-08T02:40:28.498755+00:00",
+      "configuration": "release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](gb_equb[.]|gb_equb_pinned_signatures$|lu_band_expert_counts$|normal_return_guard$|provider_placement[.]|header[.]lapack_lu_band_equilibration_radix_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1a63ca76ddd17acde6a8d0063a671164ca12ac71fb6bca3e2a3c91333736b09d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-release-lp64-registered/record.json",
+      "record_sha256": "fb86031bd5f845b36b1f94166ab80d972b6260e4bd76e3bf6e07b4df9413cd3f",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-sanitizer-ilp64-build",
+      "started": "2026-09-08T03:07:47.865544+00:00",
+      "completed": "2026-09-08T03:09:16.381024+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-sanitizer-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f7cefea2da077e46393729086066e3d33a19984dc32a82d2a0ab0998246ed5b1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-sanitizer-ilp64-build/record.json",
+      "record_sha256": "e26886b2a342c95ec0cdda47a9aa2a98d1d7b06ee9b14ec6ca7e262d1e341d0d",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-sanitizer-ilp64-configure",
+      "started": "2026-09-08T03:07:45.503171+00:00",
+      "completed": "2026-09-08T03:07:47.613458+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-sanitizer-ilp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5fd169511755c43f10a9410d353690c8bde321ab7607be2c6424d5befa9372c0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-sanitizer-ilp64-configure/record.json",
+      "record_sha256": "03cb585ce0085ae15b8e3ac1d0fa9ce7b76b28749fc2fb65bfbc5fd908fb1c24",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-sanitizer-ilp64-ctest",
+      "started": "2026-09-08T03:09:16.950530+00:00",
+      "completed": "2026-09-08T03:09:17.416748+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-sanitizer-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/record-sanitizer-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "595f6ea059c1c53196efa3a24549cd3336e1ad814249af8ce4dea67e802405d6",
+        "ctest.xml": "ce1f43bd4413a181635cdc6032742aff0efb50eaea0187c2f8b7698e7afad1c4"
+      },
+      "test_counts": {
+        "executed": 36,
+        "failed": 16,
+        "passed": 20,
+        "selected": 36,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-sanitizer-ilp64-ctest/record.json",
+      "record_sha256": "89e2f43bd18989238c7b7519f8993213e4039a72e1b110bb361497057a61a64e",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-sanitizer-ilp64-registered",
+      "started": "2026-09-08T03:09:16.665521+00:00",
+      "completed": "2026-09-08T03:09:16.689299+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-sanitizer-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1587b022848c4eef3759aa7d1e727ef0471be04c64ed2bb02fbb2296a3773994"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-sanitizer-ilp64-registered/record.json",
+      "record_sha256": "7fc234328b77423e960114b45a1d626e35d9ac603ccf2dac42441f1b29169c34",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-sanitizer-lp64-build",
+      "started": "2026-09-08T03:07:47.865704+00:00",
+      "completed": "2026-09-08T03:09:16.406511+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-sanitizer-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f7cefea2da077e46393729086066e3d33a19984dc32a82d2a0ab0998246ed5b1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-sanitizer-lp64-build/record.json",
+      "record_sha256": "2e0ba3b4443bec0cfc60eb1df6d21938e27a682795651373eacfa14de2908860",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-sanitizer-lp64-configure",
+      "started": "2026-09-08T03:07:45.503017+00:00",
+      "completed": "2026-09-08T03:07:47.608145+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-sanitizer-lp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9191d7cee6543eac587f45db16760243a6b5093a9d8b2c84b06a9c74e08805a3"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-sanitizer-lp64-configure/record.json",
+      "record_sha256": "96c35863d6eeaa1485538a843856cadb6f311dd5fa92a2417a06a645acdc3bf0",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-sanitizer-lp64-ctest",
+      "started": "2026-09-08T03:09:16.963247+00:00",
+      "completed": "2026-09-08T03:09:17.433283+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-sanitizer-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/record-sanitizer-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "955fb09373ce40a9f3adcfef3f267c1e81c34bd213587fea7ebe72d795df91c2",
+        "ctest.xml": "398f2a14c3f96170c55859a0f990633b01ce29749a84107340319d973666fc1a"
+      },
+      "test_counts": {
+        "executed": 36,
+        "failed": 16,
+        "passed": 20,
+        "selected": 36,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-sanitizer-lp64-ctest/record.json",
+      "record_sha256": "3dc52a8fc794b4d7dfe8e25ea7c05755ce19839e886a6fcffee2ee0a7b03e6f0",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-sanitizer-lp64-registered",
+      "started": "2026-09-08T03:09:16.693323+00:00",
+      "completed": "2026-09-08T03:09:16.703845+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-sanitizer-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9a308587546ed4733707674a4303cb280c7861155e8433abd037f088f22ee962"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/record-sanitizer-lp64-registered/record.json",
+      "record_sha256": "2d904d2034f82cbbb7f875a2a84739bad29f6e65bccda6c2e5650e8ce3b3e96a",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-static-coverage-current",
+      "started": "2026-09-08T02:36:45.020437+00:00",
+      "completed": "2026-09-08T02:36:46.110547+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "--evidence-root",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3c5ad6d789346fa3d72c5814584a013e1e5ba9d5fd6315b1e05555e95cfd6ebd"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/static-coverage-current/record.json",
+      "record_sha256": "3600a275a986ea181c45a7a658a40a2d695333237858e0292dc89e8b2ac77309",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-static-doxygen",
+      "started": "2026-09-08T02:36:47.172659+00:00",
+      "completed": "2026-09-08T02:37:00.974911+00:00",
+      "configuration": "current-static",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/static-doxygen/record.json",
+      "record_sha256": "da551c16381c8b6c17c5cde0afec57bbcef8214270f6782f0f40a3d1fd967686",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-static-doxygen-coverage",
+      "started": "2026-09-08T02:37:01.463870+00:00",
+      "completed": "2026-09-08T02:37:02.147055+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "--build",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a2e62b50a44781f025f7fb8543d4de32d974c7b9b3136ea13da42c899cef6e0c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/static-doxygen-coverage/record.json",
+      "record_sha256": "23e9be36ea05a6f7c9613d0f5eec1f7ba699846718d0315c3173a236616eafcb",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-static-format",
+      "started": "2026-09-08T02:37:03.389366+00:00",
+      "completed": "2026-09-08T02:37:03.514240+00:00",
+      "configuration": "current-static",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include/asc/dense/providers/lapack_lu_band_equilibration_radix.h",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack/reference_lu_band_equilibration_radix.cc",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_fault_test.cc",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_faults.cc",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_faults.h",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_native_test.cc",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_test.cc",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/installed_lu/lu_band_equilibration_radix_main.cc",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_pinned_signatures_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/static-format/record.json",
+      "record_sha256": "d3f563a19f707a935b0a2dc77855b6f7fe8d723b99931b55ebf7c290cca9a4a8",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-static-markdown",
+      "started": "2026-09-08T02:37:02.635372+00:00",
+      "completed": "2026-09-08T02:37:02.937619+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/static-markdown/record.json",
+      "record_sha256": "b4a4b10d8e5ec331055c041b8240ba428fc8a47de393aa255d87b66e7dd50b81",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-static-surface",
+      "started": "2026-09-08T02:36:46.636025+00:00",
+      "completed": "2026-09-08T02:36:46.679521+00:00",
+      "configuration": "current-static",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7757935e345e6961fbd8e02656152b7643feb36e0e5873b9db339d9f5445e9e1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/static-surface/record.json",
+      "record_sha256": "6ed99bbb3718075357d79b28023b1133fc676fdcc3a9db5fd0032f41835d1fc9",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-ilp64-0",
+      "started": "2026-09-08T02:41:29.467383+00:00",
+      "completed": "2026-09-08T02:42:08.504642+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack/reference_lu_band_equilibration_radix.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "338315017eaaed1e02e8a8fa2e0f72fec731fdfa938332ae292930147cec901f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-ilp64-0/record.json",
+      "record_sha256": "cad9bf266d7ace35939ab69cdf7bcbb16079b406b68d9fadcadc77b592279437",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-ilp64-1",
+      "started": "2026-09-08T02:42:09.004878+00:00",
+      "completed": "2026-09-08T02:43:02.430951+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1ca964aec03b61064d41af6c00b94662ebf9afdc63f699969ceb1d6393bc0ef1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-ilp64-1/record.json",
+      "record_sha256": "e20c4de5f9d75dbc75b823e3575cf49b5d7721ced739282b594480480d2871ef",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-ilp64-2",
+      "started": "2026-09-08T02:43:02.801916+00:00",
+      "completed": "2026-09-08T02:43:15.218190+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_faults.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "dad28c7d1ec33cf9e3e554f5be3396bddc4bb7dfca0962e486ea3769d268c79a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-ilp64-2/record.json",
+      "record_sha256": "540b34e4ca557303c9f64285cf341190cd4ba72565b8389f1e83856616f5cc6d",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-ilp64-3",
+      "started": "2026-09-08T02:43:15.589631+00:00",
+      "completed": "2026-09-08T02:43:36.369105+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_native_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8bac708dfae7ae49a7665a111ac3f0b7ea699550697e7d5ec6ad19918060cea0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-ilp64-3/record.json",
+      "record_sha256": "fbac2d16d19e27a6a3e21967ea61bbdbf816e0e5310f5844187d1ccb20c8c59e",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-ilp64-4",
+      "started": "2026-09-08T02:43:36.723095+00:00",
+      "completed": "2026-09-08T02:44:05.064320+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "162d3f536257a40346036e38b1a389800e8a5eaa3d9a89968a13403437cb92c7"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-ilp64-4/record.json",
+      "record_sha256": "c6d8274564a498fc95d066704abcefee8e2a2e892ea207016e0f87fa6c457875",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-ilp64-5",
+      "started": "2026-09-08T02:44:05.363537+00:00",
+      "completed": "2026-09-08T02:44:31.494941+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/installed_lu/lu_band_equilibration_radix_main.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2c8e8fe89887d571abcf483f953410292f16040d07f5597caa9dc7a476621c41"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-ilp64-5/record.json",
+      "record_sha256": "37b57c12fb3a9f1591fe1b0d4364355d6422840f52b16f3b8811c3a28c02a876",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-ilp64-6",
+      "started": "2026-09-08T02:44:31.756214+00:00",
+      "completed": "2026-09-08T02:44:36.352300+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_pinned_signatures_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d21e90b283935feb587be6b3e64642c0cd8a9e62b1e0454cfdc83315cc76c618"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-ilp64-6/record.json",
+      "record_sha256": "74140bd7bd60d0d1db116b318e0ed51c8d823b6a67b721373fac4fef8675bba8",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-lp64-0",
+      "started": "2026-09-08T02:38:29.962241+00:00",
+      "completed": "2026-09-08T02:39:02.645196+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack/reference_lu_band_equilibration_radix.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "93fd2fe4077273508d935ec83fc8ed403bdfeaceb0a050e065a073927de6bd5e"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-lp64-0/record.json",
+      "record_sha256": "b4464e751317d2f9e6dd7abbf65dac3f4af99fc8a53ef5d243dcf3dd58fcab51",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-lp64-1",
+      "started": "2026-09-08T02:39:02.949019+00:00",
+      "completed": "2026-09-08T02:39:46.386100+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1ca964aec03b61064d41af6c00b94662ebf9afdc63f699969ceb1d6393bc0ef1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-lp64-1/record.json",
+      "record_sha256": "98906fd08489cf9b49ea0d2c00c31e94915807b32e6c4e68786a80482916bddb",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-lp64-2",
+      "started": "2026-09-08T02:39:46.746747+00:00",
+      "completed": "2026-09-08T02:39:56.349651+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_faults.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f8c9adb47eb99b2736bfb20a78647a7bd0ddbf5cf50e4a4353e842e82fdfa83d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-lp64-2/record.json",
+      "record_sha256": "f9dd73f4ad3d04d65d2d0016ed822442385804aac7457ff9750323a589fe5397",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-lp64-3",
+      "started": "2026-09-08T02:39:56.729791+00:00",
+      "completed": "2026-09-08T02:40:15.774002+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_native_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "446e6a06ae3f7378742d79b7ab656de838773fe96fb1c6c490b0145a578bce3e"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-lp64-3/record.json",
+      "record_sha256": "302e3cd55e2e86ba496444eea128e792ae6f77fadede630b94413c583e420273",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-lp64-4",
+      "started": "2026-09-08T02:40:16.089091+00:00",
+      "completed": "2026-09-08T02:40:46.401584+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "162d3f536257a40346036e38b1a389800e8a5eaa3d9a89968a13403437cb92c7"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-lp64-4/record.json",
+      "record_sha256": "1205f468c3afba39e59a6a80fd01705cd20832d9fe5e7e01ccf8cd732e37b49e",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-lp64-5",
+      "started": "2026-09-08T02:40:46.783712+00:00",
+      "completed": "2026-09-08T02:41:21.727225+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/installed_lu/lu_band_equilibration_radix_main.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2c8e8fe89887d571abcf483f953410292f16040d07f5597caa9dc7a476621c41"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-lp64-5/record.json",
+      "record_sha256": "83eeeb82df1960dc374e1d41a20d86aee2b06ca8afdeed5c85076d707d8ad232",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-strict-lp64-6",
+      "started": "2026-09-08T02:41:22.132577+00:00",
+      "completed": "2026-09-08T02:41:29.102510+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/tests/dense_lapack/lu_band_equilibration_radix_pinned_signatures_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/(lu_band_.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/build-release-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d21e90b283935feb587be6b3e64642c0cd8a9e62b1e0454cfdc83315cc76c618"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/strict-lp64-6/record.json",
+      "record_sha256": "3af9c569bcb237e97c30f1d76460ed04f20224e645ac23f9d64c013dbd24448f",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "gbequb-root-completion",
+      "started": "2026-09-08T03:14:04.252002+00:00",
+      "completed": "2026-09-08T03:14:17.596021+00:00",
+      "configuration": "root-completion",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-gbequb-integration-v14-01/audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e1f49418552f4459461c2987aec87e9ab9b262fe04d47203b6261f98fcf14fb8"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4bcb389eda9fdb1be50169590fd37869c900b323c0cb359931fcdd9f0c339230",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-integration-v14-01/completion-record/record.json",
+      "record_sha256": "4cf124253720b3f0e10b2a2861ce8f41b1d50894c21d5f92daedb9d9bd3d3229",
+      "source_archive_sha256": "a165f21f8c3c85b0e7c38fb71a610a17b93729f5f51287932053cc9632b9bb45"
+    },
+    {
+      "id": "root-gbequb-review",
+      "started": "2026-09-08T02:20:10.164686+00:00",
+      "completed": "2026-09-08T02:20:10.321193+00:00",
+      "configuration": "root-review",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/audit-gbequb-root-01.py"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "356116102f450b0587209ceeb649d8ea679ecb062a39e0467ac949f8369055d0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "57204942d2aca8d610c6ff5bc6779eadefb3a23bdfb0641c956b680900662a49",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "57204942d2aca8d610c6ff5bc6779eadefb3a23bdfb0641c956b680900662a49",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-root-review-record-01/record.json",
+      "record_sha256": "8a977ecdc1cca13392afba9a97adf44a0ef5cd707b6ca9f9c1d0e0dd696b0525",
+      "source_archive_sha256": null
+    },
+    {
+      "id": "root-gbequb-review",
+      "started": "2026-09-08T02:20:49.158574+00:00",
+      "completed": "2026-09-08T02:20:50.128401+00:00",
+      "configuration": "root-review",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/audit-gbequb-root-02.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "66a0f9c4cf4da7fb30fa53ea7f1c1f79efed506ef97f634f0cf69d916c2c42c5"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "57204942d2aca8d610c6ff5bc6779eadefb3a23bdfb0641c956b680900662a49",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "57204942d2aca8d610c6ff5bc6779eadefb3a23bdfb0641c956b680900662a49",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-gbequb-root-review-record-02/record.json",
+      "record_sha256": "a55c072d99cfc067d1ffb00e9c9057a510a53a8c0849dc05ea9ec174568a4a93",
+      "source_archive_sha256": null
     }
   ]
 }

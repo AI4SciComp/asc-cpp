@@ -4012,12 +4012,97 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gbequb",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cgbequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_general_band.h",
+          "sha256": "526f7d2c5bac19211ea48fc52528e29d436fce668fccd5ae0db61158eec1fd99"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band_equilibration_radix.h",
+          "sha256": "18fdd73360452a838b3e9380612b967ce4b76ee85c9ee1292f21a626dacea17e"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_expert.h",
+          "sha256": "16d87033adb7ab5ad77bab5ce8000757e73ea64eae74778059113c857c1b1b1d"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_expert_counts.h",
+          "sha256": "d75ea857b4fa86f4a8a213bc33e76f8e47fff6658f230de354fc454d9a5261f2"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band_equilibration_radix.cc",
+          "sha256": "b49808533f3f1c1c031c7606c2b8146e427479405e2c53b618b38dc762fa57e0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_equilibration_radix_main.cc",
+          "sha256": "ad32e641ce3982c0d8bac8af5eba6a90118aad95662d34164f22aeaac1bce780"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_fault_test.cc",
+          "sha256": "ce1222d2423e6426130e1ff4fdc85ce759819b0024f509635247530b83db56f7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_faults.cc",
+          "sha256": "f5e0b8c312ecce26df4c121afc5d602f8796c7b431bd9a3f7e275ea6d7c062f3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_faults.h",
+          "sha256": "c514029a62a1f0056f0588d5d160d398529d0fff7d631cb9de47558a7d63cedc"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_native_test.cc",
+          "sha256": "e481e50484d1492510b6111642384a67f0ffee78c44b6ed777c6ccd575e36e48"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_pinned_signatures_test.cc",
+          "sha256": "cd1a042b0a0afa7155d77ec12f49d406d1ea24379dfbf3df9b6874ccdd8e9be5"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_test.cc",
+          "sha256": "a6f9ad95b3320319d7d5cd9ac580e6ff5625aa834a0a2997b4d98349994ccfba"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_expert_counts_test.cc",
+          "sha256": "34260684dd72e180393df373c2d6c7f231d10734081a198240da68f3c64bfd5f"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_expert_test_support.h",
+          "sha256": "6f99c7ffaecb26526d7aad0ef4c1addd7a91a7748e51e7cbe38a02aecd9106d3"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -4025,7 +4110,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual S/D/C/Z GBEQUB radix-power equilibration, zero-workspace query and raw INFO/diagnostics. Eight owner lanes retain16 ordinary required mathematical failures each; exact-source acceptance02 corrects one byte-workspace alias without dropping28 assertions. Independent public consumer64workflows/2536checks and portable complete prototype probe pass bothABIs with20 wrong-type and4 wrong-output controls. Current root composed59-TU/installed18-family/sanitizer/normalized modes pending. No verified routine credit or substitution for actual compiler-emission gate.",
+          "review": "programs/lapack-array-io/lu-band-equb-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -34003,12 +34090,97 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gbequb",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dgbequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_general_band.h",
+          "sha256": "526f7d2c5bac19211ea48fc52528e29d436fce668fccd5ae0db61158eec1fd99"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band_equilibration_radix.h",
+          "sha256": "18fdd73360452a838b3e9380612b967ce4b76ee85c9ee1292f21a626dacea17e"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_expert.h",
+          "sha256": "16d87033adb7ab5ad77bab5ce8000757e73ea64eae74778059113c857c1b1b1d"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_expert_counts.h",
+          "sha256": "d75ea857b4fa86f4a8a213bc33e76f8e47fff6658f230de354fc454d9a5261f2"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band_equilibration_radix.cc",
+          "sha256": "b49808533f3f1c1c031c7606c2b8146e427479405e2c53b618b38dc762fa57e0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_equilibration_radix_main.cc",
+          "sha256": "ad32e641ce3982c0d8bac8af5eba6a90118aad95662d34164f22aeaac1bce780"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_fault_test.cc",
+          "sha256": "ce1222d2423e6426130e1ff4fdc85ce759819b0024f509635247530b83db56f7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_faults.cc",
+          "sha256": "f5e0b8c312ecce26df4c121afc5d602f8796c7b431bd9a3f7e275ea6d7c062f3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_faults.h",
+          "sha256": "c514029a62a1f0056f0588d5d160d398529d0fff7d631cb9de47558a7d63cedc"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_native_test.cc",
+          "sha256": "e481e50484d1492510b6111642384a67f0ffee78c44b6ed777c6ccd575e36e48"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_pinned_signatures_test.cc",
+          "sha256": "cd1a042b0a0afa7155d77ec12f49d406d1ea24379dfbf3df9b6874ccdd8e9be5"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_test.cc",
+          "sha256": "a6f9ad95b3320319d7d5cd9ac580e6ff5625aa834a0a2997b4d98349994ccfba"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_expert_counts_test.cc",
+          "sha256": "34260684dd72e180393df373c2d6c7f231d10734081a198240da68f3c64bfd5f"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_expert_test_support.h",
+          "sha256": "6f99c7ffaecb26526d7aad0ef4c1addd7a91a7748e51e7cbe38a02aecd9106d3"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -34016,7 +34188,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual S/D/C/Z GBEQUB radix-power equilibration, zero-workspace query and raw INFO/diagnostics. Eight owner lanes retain16 ordinary required mathematical failures each; exact-source acceptance02 corrects one byte-workspace alias without dropping28 assertions. Independent public consumer64workflows/2536checks and portable complete prototype probe pass bothABIs with20 wrong-type and4 wrong-output controls. Current root composed59-TU/installed18-family/sanitizer/normalized modes pending. No verified routine credit or substitution for actual compiler-emission gate.",
+          "review": "programs/lapack-array-io/lu-band-equb-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -64647,12 +64821,97 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gbequb",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.sgbequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_general_band.h",
+          "sha256": "526f7d2c5bac19211ea48fc52528e29d436fce668fccd5ae0db61158eec1fd99"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band_equilibration_radix.h",
+          "sha256": "18fdd73360452a838b3e9380612b967ce4b76ee85c9ee1292f21a626dacea17e"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_expert.h",
+          "sha256": "16d87033adb7ab5ad77bab5ce8000757e73ea64eae74778059113c857c1b1b1d"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_expert_counts.h",
+          "sha256": "d75ea857b4fa86f4a8a213bc33e76f8e47fff6658f230de354fc454d9a5261f2"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band_equilibration_radix.cc",
+          "sha256": "b49808533f3f1c1c031c7606c2b8146e427479405e2c53b618b38dc762fa57e0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_equilibration_radix_main.cc",
+          "sha256": "ad32e641ce3982c0d8bac8af5eba6a90118aad95662d34164f22aeaac1bce780"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_fault_test.cc",
+          "sha256": "ce1222d2423e6426130e1ff4fdc85ce759819b0024f509635247530b83db56f7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_faults.cc",
+          "sha256": "f5e0b8c312ecce26df4c121afc5d602f8796c7b431bd9a3f7e275ea6d7c062f3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_faults.h",
+          "sha256": "c514029a62a1f0056f0588d5d160d398529d0fff7d631cb9de47558a7d63cedc"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_native_test.cc",
+          "sha256": "e481e50484d1492510b6111642384a67f0ffee78c44b6ed777c6ccd575e36e48"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_pinned_signatures_test.cc",
+          "sha256": "cd1a042b0a0afa7155d77ec12f49d406d1ea24379dfbf3df9b6874ccdd8e9be5"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_test.cc",
+          "sha256": "a6f9ad95b3320319d7d5cd9ac580e6ff5625aa834a0a2997b4d98349994ccfba"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_expert_counts_test.cc",
+          "sha256": "34260684dd72e180393df373c2d6c7f231d10734081a198240da68f3c64bfd5f"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_expert_test_support.h",
+          "sha256": "6f99c7ffaecb26526d7aad0ef4c1addd7a91a7748e51e7cbe38a02aecd9106d3"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -64660,7 +64919,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual S/D/C/Z GBEQUB radix-power equilibration, zero-workspace query and raw INFO/diagnostics. Eight owner lanes retain16 ordinary required mathematical failures each; exact-source acceptance02 corrects one byte-workspace alias without dropping28 assertions. Independent public consumer64workflows/2536checks and portable complete prototype probe pass bothABIs with20 wrong-type and4 wrong-output controls. Current root composed59-TU/installed18-family/sanitizer/normalized modes pending. No verified routine credit or substitution for actual compiler-emission gate.",
+          "review": "programs/lapack-array-io/lu-band-equb-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -94183,12 +94444,97 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Gbequb",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zgbequb",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_general_band.h",
+          "sha256": "526f7d2c5bac19211ea48fc52528e29d436fce668fccd5ae0db61158eec1fd99"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_band_equilibration_radix.h",
+          "sha256": "18fdd73360452a838b3e9380612b967ce4b76ee85c9ee1292f21a626dacea17e"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_lu_equilibration.h",
+          "sha256": "d6cb99386c03335eeff8fa26ac2df2105225920865b63252a109cf116edaa416"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_expert.h",
+          "sha256": "16d87033adb7ab5ad77bab5ce8000757e73ea64eae74778059113c857c1b1b1d"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_band_expert_counts.h",
+          "sha256": "d75ea857b4fa86f4a8a213bc33e76f8e47fff6658f230de354fc454d9a5261f2"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_lu_band_equilibration_radix.cc",
+          "sha256": "b49808533f3f1c1c031c7606c2b8146e427479405e2c53b618b38dc762fa57e0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/lu_band_equilibration_radix_main.cc",
+          "sha256": "ad32e641ce3982c0d8bac8af5eba6a90118aad95662d34164f22aeaac1bce780"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_fault_test.cc",
+          "sha256": "ce1222d2423e6426130e1ff4fdc85ce759819b0024f509635247530b83db56f7"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_faults.cc",
+          "sha256": "f5e0b8c312ecce26df4c121afc5d602f8796c7b431bd9a3f7e275ea6d7c062f3"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_faults.h",
+          "sha256": "c514029a62a1f0056f0588d5d160d398529d0fff7d631cb9de47558a7d63cedc"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_native_test.cc",
+          "sha256": "e481e50484d1492510b6111642384a67f0ffee78c44b6ed777c6ccd575e36e48"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_pinned_signatures_test.cc",
+          "sha256": "cd1a042b0a0afa7155d77ec12f49d406d1ea24379dfbf3df9b6874ccdd8e9be5"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_equilibration_radix_test.cc",
+          "sha256": "a6f9ad95b3320319d7d5cd9ac580e6ff5625aa834a0a2997b4d98349994ccfba"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_expert_counts_test.cc",
+          "sha256": "34260684dd72e180393df373c2d6c7f231d10734081a198240da68f3c64bfd5f"
+        },
+        {
+          "path": "tests/dense_lapack/lu_band_expert_test_support.h",
+          "sha256": "6f99c7ffaecb26526d7aad0ef4c1addd7a91a7748e51e7cbe38a02aecd9106d3"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -94196,7 +94542,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual S/D/C/Z GBEQUB radix-power equilibration, zero-workspace query and raw INFO/diagnostics. Eight owner lanes retain16 ordinary required mathematical failures each; exact-source acceptance02 corrects one byte-workspace alias without dropping28 assertions. Independent public consumer64workflows/2536checks and portable complete prototype probe pass bothABIs with20 wrong-type and4 wrong-output controls. Current root composed59-TU/installed18-family/sanitizer/normalized modes pending. No verified routine credit or substitution for actual compiler-emission gate.",
+          "review": "programs/lapack-array-io/lu-band-equb-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [

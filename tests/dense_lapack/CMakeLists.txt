@@ -703,6 +703,47 @@ asc_register_test(NAME asc_cpp.dense_lapack.gb_expert_pinned_signatures
   TARGET asc_dense_lapack_lu_band_expert_pinned_signatures_test
   LABELS dense_lapack lapack validation TIMEOUT 30)
 
+# Actual GBEQUB is separate from GBEQU. Preserve every owner runtime mode;
+# actual compiler-emitted prototype evidence remains external and required.
+foreach(_suite IN ITEMS lu_band_equilibration_radix
+    lu_band_equilibration_radix_fault lu_band_equilibration_radix_native)
+  _asc_dense_lapack_add_gb_expert_test("${_suite}")
+endforeach()
+target_sources(asc_dense_lapack_lu_band_equilibration_radix_fault_test PRIVATE
+  lu_band_equilibration_radix_faults.cc)
+foreach(_scalar IN ITEMS s d c z)
+  target_link_options(asc_dense_lapack_lu_band_equilibration_radix_fault_test
+    PRIVATE "-Wl,--wrap=${_scalar}gbequb_")
+  foreach(_mode IN ITEMS regular scaled amax extreme)
+    asc_register_test(NAME "asc_cpp.dense_lapack.gb_equb.${_scalar}.${_mode}"
+      TARGET asc_dense_lapack_lu_band_equilibration_radix_test
+      ARGUMENTS "${_scalar}" "${_mode}"
+      LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+  endforeach()
+  foreach(_mode IN ITEMS cold fault)
+    asc_register_test(NAME "asc_cpp.dense_lapack.gb_equb.${_scalar}.${_mode}"
+      TARGET asc_dense_lapack_lu_band_equilibration_radix_fault_test
+      ARGUMENTS "${_scalar}" "${_mode}"
+      LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+  endforeach()
+  foreach(_mode IN ITEMS math nonfinite)
+    asc_register_test(NAME "asc_cpp.dense_lapack.gb_equb.${_scalar}.native_${_mode}"
+      TARGET asc_dense_lapack_lu_band_equilibration_radix_native_test
+      ARGUMENTS "${_scalar}" "${_mode}"
+      LABELS dense_lapack lapack runtime numerical validation TIMEOUT 120)
+  endforeach()
+endforeach()
+add_executable(asc_dense_lapack_lu_band_equilibration_radix_pinned_signatures_test
+  lu_band_equilibration_radix_pinned_signatures_test.cc)
+_asc_dense_lapack_configure_test(
+  asc_dense_lapack_lu_band_equilibration_radix_pinned_signatures_test)
+target_include_directories(
+  asc_dense_lapack_lu_band_equilibration_radix_pinned_signatures_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+asc_register_test(NAME asc_cpp.dense_lapack.gb_equb_pinned_signatures
+  TARGET asc_dense_lapack_lu_band_equilibration_radix_pinned_signatures_test
+  LABELS dense_lapack lapack validation TIMEOUT 30)
+
 if(ASC_CPP_INSTALL)
   string(REPLACE ";" "|" _lapack_runtimes "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   add_test(NAME asc_cpp.dense_lapack.package_integration
@@ -758,6 +799,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_lu_band_condition.h
     lapack_lu_band_driver.h
     lapack_lu_band_equilibration.h
+    lapack_lu_band_equilibration_radix.h
     lapack_lu_band_expert.h
     lapack_lu_band_refinement.h
     lapack_tridiagonal.h lapack_tridiagonal_condition.h lapack_tridiagonal_driver.h lapack_tridiagonal_refinement.h

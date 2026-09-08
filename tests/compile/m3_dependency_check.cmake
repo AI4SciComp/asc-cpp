@@ -86,6 +86,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_lu_band_condition.h
   include/asc/dense/providers/lapack_lu_band_driver.h
   include/asc/dense/providers/lapack_lu_band_equilibration.h
+  include/asc/dense/providers/lapack_lu_band_equilibration_radix.h
   include/asc/dense/providers/lapack_lu_band_expert.h
   include/asc/dense/providers/lapack_lu_band_refinement.h
   include/asc/dense/providers/lapack_tridiagonal.h

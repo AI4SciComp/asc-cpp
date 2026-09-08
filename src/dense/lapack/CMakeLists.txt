@@ -22,6 +22,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_lu_band_condition.cc
   reference_lu_band_driver.cc
   reference_lu_band_equilibration.cc
+  reference_lu_band_equilibration_radix.cc
   reference_lu_band_refinement.cc
   reference_lu_band_solve.cc
   reference_tridiagonal.cc
@@ -64,6 +65,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_driver.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_equilibration.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_equilibration_radix.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_expert.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_refinement.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_tridiagonal.h"
