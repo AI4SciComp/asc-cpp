@@ -108731,6 +108731,2255 @@
       "external_record": "p05-packed-triangular-candidate-06/completion-record-02/record.json",
       "record_sha256": "7483a4184b6cad9f956438a380f12a818b5b3349ff71749b0531fd95699d4be8",
       "scope": "Unregistered TPTRI/TPTRS8 candidate06: all6 GNU Release/Debug and ASC-only Clang19 sanitizer lanes pass4/4,zero skips;6496 numerical workflows/737728 assertions,12480 fault/preflight profiles/87744 assertions,1465114 count checks and8 exact signatures per lane. Audit39f10144 binds144 original records,48 fresh current adapter/test objects and explicitly reused61 primary ASC TUs per lane;both providers and22-object basic source closures rehashed.12 earlier strict and4 public-header checks cover unchanged bytes;4 current changed-test strict checks pass. Candidate04/05 function-size failures retained; no root, installed,foreign-sanitizer or fully verified credit."
+    },
+    {
+      "id": "packed-triangular-v17-debug-ilp64-build",
+      "started": "2026-09-08T08:38:08.221766+00:00",
+      "completed": "2026-09-08T08:40:41.825492+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-debug-ilp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_lapack_triangular_source_counts_test",
+        "asc_dense_lapack_triangular_pinned_signatures_test",
+        "asc_dense_lapack_triangular_math_test",
+        "asc_dense_lapack_triangular_fault_test",
+        "asc_dense_lapack_triangular_expert_source_counts_test",
+        "asc_dense_lapack_triangular_expert_pinned_signatures_test",
+        "asc_dense_lapack_triangular_expert_public_test",
+        "asc_dense_lapack_triangular_expert_fault_test",
+        "asc_dense_lapack_triangular_expert_math_test",
+        "asc_dense_lapack_packed_triangular_source_counts_test",
+        "asc_dense_lapack_packed_triangular_pinned_signatures_test",
+        "asc_dense_lapack_packed_triangular_public_test",
+        "asc_dense_lapack_packed_triangular_fault_test",
+        "asc_dense_lapack_header_lapack_triangular_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_condition_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_condition_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_error_bounds_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_error_bounds_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_packed_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_packed_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "817336c4b37321423c8c2af034d85ce8da5c22fca6241ab64885ff878cf7d24d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-debug-ilp64-build/record.json",
+      "record_sha256": "4d233cb877d820b894bec84e9663691dbae3c60776908d7bdbf9c8cbf8da6328",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-debug-ilp64-configure",
+      "started": "2026-09-08T08:37:33.271060+00:00",
+      "completed": "2026-09-08T08:38:07.874629+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-debug-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c8f7a1b2eaf290832bb9163827bf21ccd33bee88bda25908bd24131aba2132c2"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-debug-ilp64-configure/record.json",
+      "record_sha256": "ab4043d7078bcf599414df1f64a3f51f4e1c1e109d299e306dbaa31303bbdd4b",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-debug-ilp64-ctest",
+      "started": "2026-09-08T08:40:42.672298+00:00",
+      "completed": "2026-09-08T08:44:18.365719+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](packed_triangular[.]|triangular[.]|triangular_expert[.]|triangular_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular(_condition|_error_bounds|_packed)?_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/record-debug-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "b2ef9ab35892302bd8ed6e84ef8902a4d1912e09dbca2f86678e8dc676607ba4",
+        "ctest.xml": "d52a52d7738c41416554d0936ca0169384cbb953d27315f9c168f49cdab3d577"
+      },
+      "test_counts": {
+        "executed": 46,
+        "failed": 8,
+        "passed": 38,
+        "selected": 46,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-debug-ilp64-ctest/record.json",
+      "record_sha256": "26420b917c737306380a920f4f24ac681a6d1585aa6b972eb625df3ae8f453f9",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-debug-ilp64-registered",
+      "started": "2026-09-08T08:40:42.237439+00:00",
+      "completed": "2026-09-08T08:40:42.274501+00:00",
+      "configuration": "debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](packed_triangular[.]|triangular[.]|triangular_expert[.]|triangular_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular(_condition|_error_bounds|_packed)?_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ebe65ea32afe12aaca33226abcb85715e13c1a720662ea0610d034f0745e3017"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-debug-ilp64-registered/record.json",
+      "record_sha256": "e21ee9a664e6bd670dce0755cbd49221822db161931293b6d87016489fdf007c",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-debug-lp64-build",
+      "started": "2026-09-08T08:38:08.276847+00:00",
+      "completed": "2026-09-08T08:40:43.038233+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-debug-lp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_lapack_triangular_source_counts_test",
+        "asc_dense_lapack_triangular_pinned_signatures_test",
+        "asc_dense_lapack_triangular_math_test",
+        "asc_dense_lapack_triangular_fault_test",
+        "asc_dense_lapack_triangular_expert_source_counts_test",
+        "asc_dense_lapack_triangular_expert_pinned_signatures_test",
+        "asc_dense_lapack_triangular_expert_public_test",
+        "asc_dense_lapack_triangular_expert_fault_test",
+        "asc_dense_lapack_triangular_expert_math_test",
+        "asc_dense_lapack_packed_triangular_source_counts_test",
+        "asc_dense_lapack_packed_triangular_pinned_signatures_test",
+        "asc_dense_lapack_packed_triangular_public_test",
+        "asc_dense_lapack_packed_triangular_fault_test",
+        "asc_dense_lapack_header_lapack_triangular_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_condition_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_condition_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_error_bounds_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_error_bounds_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_packed_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_packed_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "817336c4b37321423c8c2af034d85ce8da5c22fca6241ab64885ff878cf7d24d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-debug-lp64-build/record.json",
+      "record_sha256": "16e0eb15d30ec889c1d432572c756c48cfcae615140cbed35914866351bb7490",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-debug-lp64-configure",
+      "started": "2026-09-08T08:37:33.283661+00:00",
+      "completed": "2026-09-08T08:38:07.908521+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-debug-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "44a6a46696413ec0cef4eeea098fdf099ef65157e57d89c1af01454d688de91c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-debug-lp64-configure/record.json",
+      "record_sha256": "aa5bc6cd04355c37ba4b20847e58baf16d171fe395492701c765a4b067b99bc8",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-debug-lp64-ctest",
+      "started": "2026-09-08T08:40:43.760839+00:00",
+      "completed": "2026-09-08T08:44:19.461849+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](packed_triangular[.]|triangular[.]|triangular_expert[.]|triangular_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular(_condition|_error_bounds|_packed)?_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/record-debug-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "a2aa012b6f9fdf6d61ee0ba437423f92bd0eb88cb105b833d92d2dd32afbc571",
+        "ctest.xml": "ce660e7e780d5c6ca61e1a4f3f30206c0b079afb1a69c91f47da5477579a5d21"
+      },
+      "test_counts": {
+        "executed": 46,
+        "failed": 8,
+        "passed": 38,
+        "selected": 46,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-debug-lp64-ctest/record.json",
+      "record_sha256": "2ccfc797b49a40e5ad283d765c3858c9dc121cfe439bc8f93d0a24346fdc1feb",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-debug-lp64-registered",
+      "started": "2026-09-08T08:40:43.393671+00:00",
+      "completed": "2026-09-08T08:40:43.428238+00:00",
+      "configuration": "debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](packed_triangular[.]|triangular[.]|triangular_expert[.]|triangular_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular(_condition|_error_bounds|_packed)?_h[.]|package_integration$)|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d83e07a338127a8b94a4dea90338f6afa9071ccdf5ab37d1c11f94e723b594ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-debug-lp64-registered/record.json",
+      "record_sha256": "acf0b41484f67331ffe2f65fca3116b879158167b62ce8eb8996ef81de195730",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-full-ilp64-build",
+      "started": "2026-09-08T08:37:14.582091+00:00",
+      "completed": "2026-09-08T09:01:48.806668+00:00",
+      "configuration": "full-release-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d6d3781ff456899b4e5f4d35458ef9a7f279a90fcb76ace0180ab5016be7c42f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-full-ilp64-build/record.json",
+      "record_sha256": "6baa723e90dd25f569392bb964423ba09269e42a66ac6fa972aec561254c11db",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-full-ilp64-configure",
+      "started": "2026-09-08T08:36:44.464416+00:00",
+      "completed": "2026-09-08T08:37:14.308349+00:00",
+      "configuration": "full-release-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "42841743e63c154dfcb13c1b7f387b64f8106043e86e1e2b52301a092e0417b6"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-full-ilp64-configure/record.json",
+      "record_sha256": "ad4a85a444a61882bc5df07eb04d5b098b550bd69bf2d6e53646da4588c2f407",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-full-ilp64-ctest",
+      "started": "2026-09-08T09:01:49.546177+00:00",
+      "completed": "2026-09-08T09:10:46.581545+00:00",
+      "configuration": "full-release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/record-full-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "b4c5b7ae9fbf99a48ac87d9fb43176f6e247763700189071f3a6ba6dec453f5d",
+        "ctest.xml": "8aed67dffd72bbe7d3d0de4ff4e09c77a69dec8debc8c92528f60cf67bca2f34"
+      },
+      "test_counts": {
+        "executed": 837,
+        "failed": 54,
+        "passed": 783,
+        "selected": 837,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-full-ilp64-ctest/record.json",
+      "record_sha256": "908a7f0ee762646c63cca25a10d64a3abbfa6bd393b2b76b707e481be572c321",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-full-ilp64-registered",
+      "started": "2026-09-08T09:01:49.148600+00:00",
+      "completed": "2026-09-08T09:01:49.214722+00:00",
+      "configuration": "full-release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8e9493eb972b2b58996d65035e4fc852ead7e5fcbe094ec5164bf0fd6d5b151b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-full-ilp64-registered/record.json",
+      "record_sha256": "bb4dcf7beb043789d4553c7bcb26718d879a9b9681552dbaa088b5d93ce19322",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-full-lp64-build",
+      "started": "2026-09-08T08:37:14.617731+00:00",
+      "completed": "2026-09-08T09:01:49.806111+00:00",
+      "configuration": "full-release-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d6d3781ff456899b4e5f4d35458ef9a7f279a90fcb76ace0180ab5016be7c42f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-full-lp64-build/record.json",
+      "record_sha256": "24e0cba57be45e883ad6b398f3d325c726f850c94ec7a2b824d397c10657c0d0",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-full-lp64-configure",
+      "started": "2026-09-08T08:36:44.464101+00:00",
+      "completed": "2026-09-08T08:37:14.338250+00:00",
+      "configuration": "full-release-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "55547cd1028bc8eeb75d4c620b8e2913f3dbcf7a6bb39af839e32def6d14772c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-full-lp64-configure/record.json",
+      "record_sha256": "560fcc381a8f32a5aaf83c14da8f4512639b47340fe0faf2b50201221bc65160",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-full-lp64-ctest",
+      "started": "2026-09-08T09:01:50.564406+00:00",
+      "completed": "2026-09-08T09:10:46.991222+00:00",
+      "configuration": "full-release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/record-full-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "042a11bfedeac83788eb28e58158abb890bec1c3e4343cc6f878d9f0fc04840f",
+        "ctest.xml": "05518b2559a9df5ec7fe0a9561dce1ded43109b2d1fc6e530e7e219f14563ac8"
+      },
+      "test_counts": {
+        "executed": 837,
+        "failed": 54,
+        "passed": 783,
+        "selected": 837,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-full-lp64-ctest/record.json",
+      "record_sha256": "a4b36f368ff2207baced74c61ef8cdc3df67d92aabf25d0d95fef396521cdb3b",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-full-lp64-registered",
+      "started": "2026-09-08T09:01:50.168869+00:00",
+      "completed": "2026-09-08T09:01:50.236166+00:00",
+      "configuration": "full-release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5a923b0a77ccebfed6c221797927d68357e60d6b583fd48403ab98c948c88c06"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-full-lp64-registered/record.json",
+      "record_sha256": "9c1773095a57c7903836586f4f1d12c050c1cdff32310e88cefe947571c5f27f",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-sanitizer-ilp64-build",
+      "started": "2026-09-08T08:41:12.728169+00:00",
+      "completed": "2026-09-08T08:44:08.614123+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-sanitizer-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5dc56a4e89aac6c60cb66d84ee9aebe25f37725408f8bcfbcd44c8c858374c22"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-sanitizer-ilp64-build/record.json",
+      "record_sha256": "6a77b70543077b7b536160ddf78b655c3b8786270f102cd512203c83f347a875",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-sanitizer-ilp64-configure",
+      "started": "2026-09-08T08:41:09.980333+00:00",
+      "completed": "2026-09-08T08:41:12.297225+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-sanitizer-ilp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b7f13e4b10da462241ae737bca9daa68b6a1cd6faeebd39976fa366c0b3dbf82"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-sanitizer-ilp64-configure/record.json",
+      "record_sha256": "232fe406bbfefe3fc39c3e6881ed163e5c91432be2688e6909ca6c68a60cc163",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-sanitizer-ilp64-ctest",
+      "started": "2026-09-08T08:44:09.425351+00:00",
+      "completed": "2026-09-08T08:44:38.633073+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-sanitizer-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/record-sanitizer-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "b15f6b46a8f1a9bebc6a95117afd2fc1b18020e1035cc67145418b22766d2195",
+        "ctest.xml": "22da0d09465c87e07ffd693e9fd6359539631aefaa8782f2ea7f6d8880ff39d2"
+      },
+      "test_counts": {
+        "executed": 25,
+        "failed": 8,
+        "passed": 17,
+        "selected": 25,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-sanitizer-ilp64-ctest/record.json",
+      "record_sha256": "33584a958b3abdc01b79375278ebbcab514a44041b542e1431d0b3a4f212955f",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-sanitizer-ilp64-registered",
+      "started": "2026-09-08T08:44:09.016284+00:00",
+      "completed": "2026-09-08T08:44:09.032224+00:00",
+      "configuration": "sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-sanitizer-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5d66edfc3f5878877bdc8dfc9212b388f247896cf774eb8562425280cf9273a3"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-sanitizer-ilp64-registered/record.json",
+      "record_sha256": "c4de18a6dd5233024a450a9f2adcd21a9122e7edaeb2f3766c7b8791c6159cca",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-sanitizer-lp64-build",
+      "started": "2026-09-08T08:41:12.736567+00:00",
+      "completed": "2026-09-08T08:44:08.306023+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-sanitizer-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5dc56a4e89aac6c60cb66d84ee9aebe25f37725408f8bcfbcd44c8c858374c22"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-sanitizer-lp64-build/record.json",
+      "record_sha256": "b61975814ba18c003e3b0c62ea9b9c2eccadb8470bc0ce3418202efef0b04328",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-sanitizer-lp64-configure",
+      "started": "2026-09-08T08:41:09.955983+00:00",
+      "completed": "2026-09-08T08:41:12.334838+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-sanitizer-lp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5a9cad9c632f9324297abd9f197677334869d8f4ccbde6cd1aafd8970b0bfbc6"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-sanitizer-lp64-configure/record.json",
+      "record_sha256": "a6f0d289d002990857e4a14d0b314389ddb1c68f4fb3c4bf2e55d44cf0686cc7",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-sanitizer-lp64-ctest",
+      "started": "2026-09-08T08:44:09.073508+00:00",
+      "completed": "2026-09-08T08:44:38.146028+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-sanitizer-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/record-sanitizer-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "7470f0249697728c32fa8909550b3a847c09b6b662a819c79da58ee994f39fae",
+        "ctest.xml": "d0b70e36b695761fc3b4bccfd4fbe7937b4253b316308369062c8c1d502a6643"
+      },
+      "test_counts": {
+        "executed": 25,
+        "failed": 8,
+        "passed": 17,
+        "selected": 25,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-sanitizer-lp64-ctest/record.json",
+      "record_sha256": "c81497499484b48914b50ae158435fb2179fa0937a90514df6af2f84598630d5",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-sanitizer-lp64-registered",
+      "started": "2026-09-08T08:44:08.696216+00:00",
+      "completed": "2026-09-08T08:44:08.709129+00:00",
+      "configuration": "sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-sanitizer-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f804e1445bd402f167e728e0e17fd14b50321649c8afad847efe7fee1cd8c253"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/record-sanitizer-lp64-registered/record.json",
+      "record_sha256": "514e23091e5a113cda1b4c19343669248a0b8706f0e839f2ff511dfbb4ec782a",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-static-coverage",
+      "started": "2026-09-08T08:36:52.759371+00:00",
+      "completed": "2026-09-08T08:36:53.367532+00:00",
+      "configuration": "current-static",
+      "command": [
+        "/home/yicai/anaconda3/bin/python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tools/lapack/validate_coverage.py",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/docs/contracts/lapack-evidence.json",
+        "--evidence-root",
+        "$EVIDENCE_ROOT"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c49f97effbf14bfe0a7f4ac3be6bc0b068d7b7cc0fc1606fcfea19798b399128"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/static-coverage/record.json",
+      "record_sha256": "44a610072da5977c1f662b1163d0e9c456e98cd310ae3640ac0134f8d9c95178",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-static-doxygen",
+      "started": "2026-09-08T08:36:44.685204+00:00",
+      "completed": "2026-09-08T08:36:50.949367+00:00",
+      "configuration": "current-static",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/static-doxygen/record.json",
+      "record_sha256": "0ffb998f7577edc459852d1d562cfa09453a431096fb44b5635b4c3e79f9abc8",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-static-doxygen-coverage",
+      "started": "2026-09-08T08:36:51.240642+00:00",
+      "completed": "2026-09-08T08:36:51.625574+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "fcc7d701b3367696a3c5b2f253025e7a047f6163230439cb1029936e0ba0425b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/static-doxygen-coverage/record.json",
+      "record_sha256": "7001c8d1de7fdd4218edd06a78bfca31a0a53231ac2db7abdfcbbc3f1749b5f9",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-static-format",
+      "started": "2026-09-08T08:36:52.377029+00:00",
+      "completed": "2026-09-08T08:36:52.471076+00:00",
+      "configuration": "current-static",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include/asc/dense/providers/lapack_triangular_packed.h",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack/internal_packed_triangular.h",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack/internal_packed_triangular_counts.h",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack/reference_packed_triangular.cc",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_source_counts_test.cc",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu/packed_triangular_main.cc",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_fault_test.cc",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_faults.cc",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_faults.h",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_pinned_signatures_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/static-format/record.json",
+      "record_sha256": "cbfb991fafb7e88552ec34348618961692e81b78debd93fc566535ba9503a294",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-static-markdown",
+      "started": "2026-09-08T08:36:51.909725+00:00",
+      "completed": "2026-09-08T08:36:52.087184+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/static-markdown/record.json",
+      "record_sha256": "6ffb820dc038eabab37c81cf25f7919f9dad3478ee68493492b80ea7f53f46d8",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-static-surface",
+      "started": "2026-09-08T08:36:44.388251+00:00",
+      "completed": "2026-09-08T08:36:44.412630+00:00",
+      "configuration": "current-static",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "94a23453c114355c680ac707d4a563cfdad6e1f18a5b1ed32c51bde0d722a091"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/static-surface/record.json",
+      "record_sha256": "223e2449703a7e012fe18b6ab412b1e911e87e8a36463f1a9fafaed75df82adc",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-ilp64-0",
+      "started": "2026-09-08T08:40:10.478657+00:00",
+      "completed": "2026-09-08T08:40:52.536403+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack/reference_packed_triangular.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "995f1c8cedbb33266e9aa342c3e9eb7c242a40c503b21497d12f11d0b8354680"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-ilp64-0/record.json",
+      "record_sha256": "666176773572f647c508bbc7331307d64d777853437cb8acd72109dab1392fee",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-ilp64-1",
+      "started": "2026-09-08T08:40:52.896266+00:00",
+      "completed": "2026-09-08T08:41:04.967452+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_source_counts_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7f8f50e8f590d0494cf27314e9b9eb553d9bc9f9df1f8451a76e75ad9f6b2863"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-ilp64-1/record.json",
+      "record_sha256": "866485c84b6fe43760933c7fe0addf6e5bf68346c3c4e6b927870156870c0b79",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-ilp64-2",
+      "started": "2026-09-08T08:41:05.323234+00:00",
+      "completed": "2026-09-08T08:41:23.494037+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu/packed_triangular_main.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e2cc1e980c8318b67ff6c69e52aaa5cb684f3ededcbf123b984f593be53e772d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-ilp64-2/record.json",
+      "record_sha256": "058d4ee411e6c6fa0c9d8edd321e0f19d1de1335150ba9d7f603c51cead0081c",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-ilp64-3",
+      "started": "2026-09-08T08:41:23.908684+00:00",
+      "completed": "2026-09-08T08:42:58.080959+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "cc2965683b67b1a30551cccec5dc30d25810aa44305b38ad9ce054c6b9c66340"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-ilp64-3/record.json",
+      "record_sha256": "8e66c6eaa28fbc76ffbdba4142a9300cf3f5e1a31b8732a05540858e1765df2d",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-ilp64-4",
+      "started": "2026-09-08T08:42:58.553014+00:00",
+      "completed": "2026-09-08T08:43:10.659703+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_faults.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "af53d2385ad3ca91ddea69a9049743158b7e4b9b957bc55d4bfa6ac600d3b02f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-ilp64-4/record.json",
+      "record_sha256": "15b18bb9e8ac2ac83340f27c654503260f919de4a270c1172fe645df33bab7cb",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-ilp64-5",
+      "started": "2026-09-08T08:43:11.056459+00:00",
+      "completed": "2026-09-08T08:43:18.468562+00:00",
+      "configuration": "strict-ilp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_pinned_signatures_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-ilp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-ilp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4663047d23b1a541b94b9cbb02dca1abf961bbbf3c74ef675d283d10573d0634"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-ilp64-5/record.json",
+      "record_sha256": "6bf70e3f3d6a556791ca01ddd9d83b135c65b00d3a12893258006f713f5ef847",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-lp64-0",
+      "started": "2026-09-08T08:37:33.195898+00:00",
+      "completed": "2026-09-08T08:38:12.193678+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack/reference_packed_triangular.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "156651468e5d04c352459550e70b2aa9c6bdf40703801f73e05ea1a4fd30d783"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-lp64-0/record.json",
+      "record_sha256": "57818325fc55612b9ca525f9f65650944ebfb609386217aed008b179f6a9617b",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-lp64-1",
+      "started": "2026-09-08T08:38:12.529858+00:00",
+      "completed": "2026-09-08T08:38:24.698005+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_source_counts_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7f8f50e8f590d0494cf27314e9b9eb553d9bc9f9df1f8451a76e75ad9f6b2863"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-lp64-1/record.json",
+      "record_sha256": "71b5113ff06cadd8be676a1961049eac46866449376dbbb7e741e628a665c96d",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-lp64-2",
+      "started": "2026-09-08T08:38:25.038761+00:00",
+      "completed": "2026-09-08T08:38:40.620180+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu/packed_triangular_main.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e2cc1e980c8318b67ff6c69e52aaa5cb684f3ededcbf123b984f593be53e772d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-lp64-2/record.json",
+      "record_sha256": "84dceaf5ee58f7ce4e225c0a49141fd8be1b9dc79d1d52d4932a18eae326a19d",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-lp64-3",
+      "started": "2026-09-08T08:38:40.940064+00:00",
+      "completed": "2026-09-08T08:39:52.695006+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_fault_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "cc2965683b67b1a30551cccec5dc30d25810aa44305b38ad9ce054c6b9c66340"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-lp64-3/record.json",
+      "record_sha256": "0ed5e0a13e91599e212946af03e011aa64b4cb877406300a57824799ecbf7bbb",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-lp64-4",
+      "started": "2026-09-08T08:39:53.066121+00:00",
+      "completed": "2026-09-08T08:40:03.430088+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_faults.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "89e4b174aa7d95d3ab3dbf73a4253ede0c5a19b21205175b75256f56a5663b9a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-lp64-4/record.json",
+      "record_sha256": "9aadd6a724c9e03941c1e5de9acaf86c959dcd4426688721bca67cf78975e855",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-strict-lp64-5",
+      "started": "2026-09-08T08:40:03.798528+00:00",
+      "completed": "2026-09-08T08:40:10.135433+00:00",
+      "configuration": "strict-lp64",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/packed_triangular_pinned_signatures_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=(.*/src/dense/lapack/internal_.*|.*/tests/dense_lapack/((packed_)?triangular.*|installed_lu/(normal_return_guard|factorization_support)))\\.h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/build-full-lp64/dense-lapack-config",
+        "-isystem",
+        "$EVIDENCE_ROOT/installs/lapack-lp64-static/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5cd236282cc922731f4c44ef0d76b885a8c6e9e239588cdb1565bfe6cc6209c6"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/strict-lp64-5/record.json",
+      "record_sha256": "942700b711798d6637e42369c1c4aec3886c839cc4efbe9911185260ca5baa55",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-completion",
+      "started": "2026-09-08T09:21:06.305171+00:00",
+      "completed": "2026-09-08T09:21:07.351768+00:00",
+      "configuration": "v17-scoped-completion",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-integration-v17-01/seal_audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "aa213e9ca1d556f2bf02b23d1de6ce8ba69886a1c2bfdf3edec24fd21774c9e2"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "934b4d20c925e1cfb586f0f16414d3d7e796b28d70689d44b9cb29c77a7d4b23",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-integration-v17-01/completion-record/record.json",
+      "record_sha256": "45bc4ef084b194e7c3f097052f6f5da2df9569aad68264bbe96f568c1eb2a0c1",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+    },
+    {
+      "id": "packed-triangular-v17-documentation-coverage",
+      "started": "2026-09-08T09:25:10.856633+00:00",
+      "completed": "2026-09-08T09:25:11.350607+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source",
+        "--evidence-root",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c49f97effbf14bfe0a7f4ac3be6bc0b068d7b7cc0fc1606fcfea19798b399128"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-doc-integration-v17-01/record-coverage/record.json",
+      "record_sha256": "584c992518274d930cfbb2fe75feb25086c32135e8842f6339016880ba14d9af",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "packed-triangular-v17-documentation-dependency_audit",
+      "started": "2026-09-08T09:25:12.586642+00:00",
+      "completed": "2026-09-08T09:25:12.864460+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DSOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source",
+        "-P",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/tests/compile/dependency_check.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-doc-integration-v17-01/record-dependency_audit/record.json",
+      "record_sha256": "847c2b011570f125da3f5c47d38ec7bd107103dfb5384e7a1f69bdc88a04edfd",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "packed-triangular-v17-documentation-documentation_consistency",
+      "started": "2026-09-08T09:25:13.105125+00:00",
+      "completed": "2026-09-08T09:25:13.166945+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DASC_CPP_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source",
+        "-P",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/tests/hardening/documentation_consistency_test.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "961380bcaa187d93b1fbd333aa1da60a0719d5c4a648bb46fd13c16d80c3bb7d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-doc-integration-v17-01/record-documentation_consistency/record.json",
+      "record_sha256": "29cda63e766f04caf9db8e3209a38ae60744a5940e8594cb1dd07608f8aeaae0",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "packed-triangular-v17-documentation-markdown",
+      "started": "2026-09-08T09:25:11.843560+00:00",
+      "completed": "2026-09-08T09:25:11.991432+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-doc-integration-v17-01/record-markdown/record.json",
+      "record_sha256": "2fa7adc9a99e9f2afd4eb950412583b58ce347a268017dcb4b653c6eaeba9108",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "packed-triangular-v17-documentation-public_file_policy",
+      "started": "2026-09-08T09:25:12.239898+00:00",
+      "completed": "2026-09-08T09:25:12.339803+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DSOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source",
+        "-DENABLE_CUDA:BOOL=OFF",
+        "-P",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/tests/architecture/check_public_file_policy.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-doc-integration-v17-01/record-public_file_policy/record.json",
+      "record_sha256": "7b7de33a6510b1f1a35065b6f4b0ad6eb674b55b5bf6fc03f624314c67d65d60",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "packed-triangular-v17-documentation-surface",
+      "started": "2026-09-08T09:25:11.584657+00:00",
+      "completed": "2026-09-08T09:25:11.606889+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-packed-triangular-doc-integration-v17-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "94a23453c114355c680ac707d4a563cfdad6e1f18a5b1ed32c51bde0d722a091"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "d7f167dc0d3093e501a296fdaac19a394f6797e09e165973ed3f767f97a31291",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-triangular-doc-integration-v17-01/record-surface/record.json",
+      "record_sha256": "6394fc7499a8cbbdc80d75f61e2d01606f8440fb7333947a943e7678524b8aa7",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
     }
   ]
 }

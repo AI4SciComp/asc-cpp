@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v16` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v17` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 294 partial scalar routines.
-The other 1,819 required
+routes below bring the development mapping to 302 partial scalar routines.
+The other 1,811 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -74,11 +74,37 @@ error estimates return zero locally, with no fabricated INFO. Neither routine
 has a positive singular-pivot INFO contract. Negative estimates are provider
 defects and nonfinite estimates remain visible accuracy warnings. Required
 finite-scalar tests reproduce native tiny-condition and tiny/large FERR failures;
-they remain ordinary failing mathematical gates. Packed/banded triangular
+they remain ordinary failing mathematical gates. Packed condition/error estimates, banded triangular
 storage and remaining memory, extreme-range, platform and normalized-mode
 acceptance remain separate required work.
 
-Bounded v16 verification covers both actual LP64 and ILP64 static providers.
+`lapack_triangular_packed.h` adds S/D/C/Z `Tptri` and `Tptrs` using checked
+`DenseBlasPackedMatrixView` storage. Upper/lower, unit/nonunit and row/column
+packed orders remain explicit. `Tptrs` supports N/T/C and independent RHS
+layouts. Row-packed A needs p=n*(n+1)/2 caller scalar objects; row-major B
+adds n*nrhs. No dense expansion occurs. Unit diagonals remain unread and
+unwritten. Nonunit singularity preserves A/B and the exact native INFO;
+zero-RHS solves still perform that source-defined scan. Metadata-only queries
+protect actual native packed intermediates and bind the exact provider/plan.
+
+The v17 root checks pass all four new packed inverse/solve tests in each
+GNU Release/Debug and ASC-only Clang19 sanitizer configuration, for both
+LP64 and ILP64. They include representable extreme scales, first/last
+singularity, native INFO, stale plans, live aliases, workspace and rejected
+placement metadata. Each configuration freshly compiles all 62 primary
+Core/Dense/provider translation units. All four relocated packages pass
+their 21 installed family consumers. Twelve strict checks and six static
+checks pass; Doxygen documents all 113 public headers and 2,100 members.
+
+Each full Release suite executes 837 tests: 783 pass and 54 existing required
+mathematical gates fail. Affected Debug suites pass 38 of 46; ASC-only
+sanitizer suites pass 17 of 25, retaining eight existing mathematical failures
+each. There are zero skips. The foreign GNU archives are unsanitized.
+Complete normalized modes, stronger memory observation and platform gates
+remain open. `Tpcon`, `Tprfs` and other required packed/banded routines remain
+separate required work.
+
+Historical bounded v16 verification covers both actual LP64 and ILP64 static providers.
 Each full GNU Release suite executes 831 tests: 773 passes, 54 required
 mathematical failures and 4 header-count failures. The corrected header oracle
 subsequently passes all 4 checks and 6 fixture setups in each ABI. Each affected

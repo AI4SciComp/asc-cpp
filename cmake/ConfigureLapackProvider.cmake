@@ -52,7 +52,7 @@ file(WRITE "${ASC_CPP_LAPACK_CONFIG_DIR}/lapack_build_config.h"
 )
 
 # The relocation contract contains no original source/build/install paths.
-set(ASC_CPP_LAPACK_PROFILE "incremental-lapack-v16")
+set(ASC_CPP_LAPACK_PROFILE "incremental-lapack-v17")
 file(SHA256 "${_asc_cpp_lapack_source_dir}/docs/contracts/lapack-upstream-inventory.json" _inventory_digest)
 set(_metadata "{\"schema_version\":1,\"identity_sha256\":\"${ASC_CPP_LAPACK_BUILD_ID}\",\"source_input_sha256\":\"${_source_digest}\",\"inventory_sha256\":\"${_inventory_digest}\",\"profile\":\"${ASC_CPP_LAPACK_PROFILE}\",\"integer_bits\":${ASC_CPP_LAPACK_INTEGER_BITS},\"libraries\":[],\"runtimes\":[]}")
 set(_suffix)

@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v16 with294 partial scalar routes and zero fully verified Reference rows. Root auditfdde49a9 binds366 fresh primary ASC objects; full GNU Release each773/831 passes with54 required mathematical and4 header-count failures, Debug each28/40 with8 math and4 header-count failures; corrected header replay10/10 each, ASC-only sanitizer13/21 each with8 math failures. Zero skips, allfour relocated20-family packages and14 strict/6 static checks pass. Foreign archives unsanitized; full2113 routine/mode coverage and130 missing required XBLAS routines remain incomplete"
+    evidence_scope: "unreleased incremental-lapack-v17 with302 partial Reference scalar routes;zero fully verified. Six fresh62-primary-TU lanes and four relocated21-family packages audited. Full Release783/837 each with54 required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. All packed TPTRI/TPTRS8 scoped tests,12 strict and6 static checks pass. Foreign archives unsanitized;130 required missing XBLAS routines and full2113 routine/mode closure remain open"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -132,6 +132,7 @@ capabilities:
       - "include/asc/dense/providers/lapack_triangular.h"
       - "include/asc/dense/providers/lapack_triangular_condition.h"
       - "include/asc/dense/providers/lapack_triangular_error_bounds.h"
+      - "include/asc/dense/providers/lapack_triangular_packed.h"
       - "include/asc/dense/providers/lapack_lu_band_expert.h"
       - "include/asc/dense/providers/lapack_lu_band_refinement.h"
       - "include/asc/dense/providers/lapack_tridiagonal.h"

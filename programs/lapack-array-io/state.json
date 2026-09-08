@@ -16,10 +16,12 @@
   "integration_target": "develop",
   "last_implementation_commit": "38660ddbcfb85470aecbe09dc865c6eaae818943",
   "worktree_diff_identity": {
-    "state": "documentation-only checkpoint;compare actual git status",
-    "implementation_tree": "b3acb86031815175fc62e6750b8b2cbb3d52d2dc",
-    "source_archive_sha256": "7b763e61e437ccde716c7ac2038f0056a12053e9c19f6f67d46a8f644528cdb3",
-    "parent_commit": "38660ddbcfb85470aecbe09dc865c6eaae818943"
+    "state": "v17 implementation and documentation audited; ready for coherent local commit",
+    "parent_commit": "a7d3e9c32d3067d31c99727517205a7e4f534b35",
+    "implementation_tree": "0725d7f7c5504e96d3ce75ea81976c0f2f462c3d",
+    "source_archive_sha256": "8b30d497d3f3dfe3e45064a771261c0f7fe289d030ca61c4580ce5070954d4b8",
+    "numerical_snapshot": "p05-packed-triangular-integration-v17-01",
+    "documentation_snapshot": "p05-packed-triangular-doc-integration-v17-01"
   },
   "packages": {
     "P00": {
@@ -486,7 +488,7 @@
       "dependencies": [
         "P04"
       ],
-      "scope": "All16 TPTRI/TPTRS/TPCON/TPRFS required andnot_started;32 emitted signatures and14 precision pairs checked. First pure inverse/solve source-count helper passes1465114 checks andstrict. Uncompiled packing/body draft preserved;no public route credit.",
+      "scope": "TPTRI/TPTRS8 registered as partial v17 routes;22-object pinned basic closure and integer/control self-review complete for GNU11 static both ABIs. TPCON/TPRFS8 remain required and unregistered. Preserved expert candidate01 passes14 strict and8 isolated-header checks; Release each4/12 pass with8 ordinary required scalar mathematics failures. Its81-object closure and packed LATPS finite-control/overflow review remain separate ongoing work.",
       "review": "programs/lapack-array-io/packed-triangular-admission-review.md"
     },
     "P05.triangular_expert_documentation": {
@@ -503,13 +505,33 @@
       "dependencies": [
         "P04"
       ],
-      "candidate": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-packed-triangular-candidate-01",
-      "scope": "Unregistered packed TPTRI/TPTRS8 candidate01;each ofsix GNU Release/Debug and ASC-only sanitizer lanes passes2/2,zero skips:5824 public workflows/723968 assertions and1465114 pure source-count checks. Six strict checks pass. Each lane builds1 adapter and2 test TUs,rehashing prior61-TU production inputs/libraries;foreign archives unsanitized. No failure/installed/root/full-mode capability claim.",
+      "candidate": "p05-packed-triangular-candidate-06",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval.",
       "review": "programs/lapack-array-io/packed-triangular-admission-review.md"
+    },
+    "P05.packed_triangular_root_integration": {
+      "state": "in_progress",
+      "owner": "integration",
+      "dependencies": [
+        "P04"
+      ],
+      "bounded_integration_complete": true,
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval.",
+      "review": "programs/lapack-array-io/packed-triangular-review.md",
+      "completion_audit": "p05-packed-triangular-integration-v17-01/audit.json",
+      "completion_audit_sha256": "8ab7e96c9c2da48c24199393e8d3136458ff116c69999e47689a57fafd31ea52"
+    },
+    "P05.packed_triangular_documentation": {
+      "state": "in_progress",
+      "owner": "integration",
+      "bounded_documentation_complete": true,
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "completion_audit": "p05-packed-triangular-doc-integration-v17-01/audit.json",
+      "completion_audit_sha256": "bff845b1e7e68feb8e6b441e2fbd951b095ce26960a451b18a253012219b19f9"
     }
   },
-  "active_task": "P05.packed_triangular_root_integration",
-  "next_action": "Import the10 unchanged candidate06 C++ files and register TPTRI/TPTRS8 as partial explicit Reference routes,incremental-lapack-v17,113 public headers and21 installed families. Freeze the root tree,then execute fresh62-primary-TU GNU Release full suites and Debug/ASC-only sanitizer affected suites,both ABIs,installed packages and static/source/header/strict gates. Preserve54 required mathematical failures and130 missing XBLAS routines. Continue TPCON/TPRFS8 and all remaining P00-P11 work.",
+  "active_task": "P05.packed_triangular_expert_acceptance",
+  "next_action": "Finish the preserved unregistered TPCON/TPRFS8 candidate01 audit and packed LATPS source/control review; all6 numerical lanes now execute12 each,4 pass8 required math failures,zero skips. Bind81-object closures,54 fresh adapter/test objects and explicitly reused62 primary production TUs. Add required extreme-scale/norm-overflow and comprehensive preflight acceptance in a fresh candidate without changing old evidence. Then register the bounded expert slice and continue all remaining P00-P11 work.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -517,7 +539,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "e03409d49cf296b2326dc29c1a8541ce8ac4e2a974d73af03a5affffb38c8465"
+    "coverage_mapping_sha256": "46f51dc87ff1e768db8d8d97a087ba9ca6f25192a8cd6ca25f39fcc6b31b42ab"
   },
   "provider": {
     "version": "3.12.1",
@@ -807,7 +829,8 @@
       "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
       "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged.",
       "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification.",
-      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
     ]
   },
   "counts": {
@@ -817,16 +840,16 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1819,
-    "reference_in_progress_in_ledger": 294,
+    "reference_not_started_in_ledger": 1811,
+    "reference_in_progress_in_ledger": 302,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 294,
+    "registered_partial_reference_operations": 302,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113 required;294 Reference in_progress/1819 not_started;20 native implemented_unverified;zero fully verified. TRCON/TRRFS8 v16 bounded integration evidence sealed;54 required mathematical gates remain ordinary failures, 130 required XBLAS routines missing.",
-    "unregistered_packed_operations_with_scoped_tests": 8
+    "note": "2113 required;302 Reference in_progress/1811 not_started;20 native implemented_unverified;zero fully verified. TPTRI/TPTRS8 registered;root v17 verification pending.54 required mathematical failures and130 missing XBLAS routines remain open.",
+    "unregistered_packed_operations_with_scoped_tests": 0
   },
   "blockers": [
     {
@@ -923,22 +946,20 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "p05-packed-triangular-candidate-06",
-    "state": "scoped_candidate_audited",
-    "audit_sha256": "39f10144406404999481f7078cc0c084c781048453d8de2f8c061b188b0d2522",
-    "completion_record": "p05-packed-triangular-candidate-06/completion-record-02/record.json",
-    "scope": "Unregistered TPTRI/TPTRS8 candidate06: all6 GNU Release/Debug and ASC-only Clang19 sanitizer lanes pass4/4,zero skips;6496 numerical workflows/737728 assertions,12480 fault/preflight profiles/87744 assertions,1465114 count checks and8 exact signatures per lane. Audit39f10144 binds144 original records,48 fresh current adapter/test objects and explicitly reused61 primary ASC TUs per lane;both providers and22-object basic source closures rehashed.12 earlier strict and4 public-header checks cover unchanged bytes;4 current changed-test strict checks pass. Candidate04/05 function-size failures retained; no root, installed,foreign-sanitizer or fully verified credit."
+    "candidate": "p05-packed-triangular-expert-candidate-01",
+    "state": "in_progress",
+    "scope": "All6 initial scoped numerical lanes complete with8 ordinary required math failures each; artifact/source admission audit and expanded acceptance pending."
   },
   "last_completed_verification": {
-    "base_commit": "38660ddbcfb85470aecbe09dc865c6eaae818943",
-    "implementation_tree": "b3acb86031815175fc62e6750b8b2cbb3d52d2dc",
-    "source_archive_sha256": "7b763e61e437ccde716c7ac2038f0056a12053e9c19f6f67d46a8f644528cdb3",
-    "coverage_mapping_sha256": "e03409d49cf296b2326dc29c1a8541ce8ac4e2a974d73af03a5affffb38c8465",
-    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
-    "candidate": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-triangular-expert-doc-integration-v16-01",
-    "state": "in_progress",
-    "completion_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-triangular-expert-doc-integration-v16-01/audit.json",
-    "completion_audit_sha256": "567b792d9864aac762f17e0742a19802057882bb319073cda0d02401bc73444b"
+    "base_commit": "a7d3e9c32d3067d31c99727517205a7e4f534b35",
+    "implementation_tree": "c18710718c4d9e8980d21141251e43d24613e79e",
+    "source_archive_sha256": "9a9eb88659e84d5c409464a54ff7de82747b28922f7a25b4d34472e07dab9c50",
+    "coverage_mapping_sha256": "9a1cc32d8f841c0f1953c64928a95c16706976ae00887275f9b6c5c6009a0518",
+    "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval.",
+    "candidate": "p05-packed-triangular-integration-v17-01",
+    "state": "bounded_integration_complete",
+    "completion_audit": "p05-packed-triangular-integration-v17-01/audit.json",
+    "completion_audit_sha256": "8ab7e96c9c2da48c24199393e8d3136458ff116c69999e47689a57fafd31ea52"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -1169,7 +1190,18 @@
       "state": "in_progress",
       "completion_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-triangular-expert-integration-v16-02/audit.json",
       "completion_audit_sha256": "fdde49a93e0c03100a13452164e80d401baa218ea789364fa6269aee44a48bb6"
+    },
+    {
+      "base_commit": "a7d3e9c32d3067d31c99727517205a7e4f534b35",
+      "implementation_tree": "c18710718c4d9e8980d21141251e43d24613e79e",
+      "source_archive_sha256": "9a9eb88659e84d5c409464a54ff7de82747b28922f7a25b4d34472e07dab9c50",
+      "coverage_mapping_sha256": "9a1cc32d8f841c0f1953c64928a95c16706976ae00887275f9b6c5c6009a0518",
+      "scope": "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval.",
+      "candidate": "p05-packed-triangular-integration-v17-01",
+      "state": "bounded_integration_complete",
+      "completion_audit": "p05-packed-triangular-integration-v17-01/audit.json",
+      "completion_audit_sha256": "8ab7e96c9c2da48c24199393e8d3136458ff116c69999e47689a57fafd31ea52"
     }
   ],
-  "next_task": "Import the10 unchanged candidate06 C++ files and register TPTRI/TPTRS8 as partial explicit Reference routes,incremental-lapack-v17,113 public headers and21 installed families. Freeze the root tree,then execute fresh62-primary-TU GNU Release full suites and Debug/ASC-only sanitizer affected suites,both ABIs,installed packages and static/source/header/strict gates. Preserve54 required mathematical failures and130 missing XBLAS routines. Continue TPCON/TPRFS8 and all remaining P00-P11 work."
+  "next_task": "Finish the preserved unregistered TPCON/TPRFS8 candidate01 audit and packed LATPS source/control review; all6 numerical lanes now execute12 each,4 pass8 required math failures,zero skips. Bind81-object closures,54 fresh adapter/test objects and explicitly reused62 primary production TUs. Add required extreme-scale/norm-overflow and comprehensive preflight acceptance in a fresh candidate without changing old evidence. Then register the bounded expert slice and continue all remaining P00-P11 work."
 }

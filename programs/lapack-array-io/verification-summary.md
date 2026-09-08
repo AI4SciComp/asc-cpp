@@ -1,3 +1,20 @@
+# Current v17 packed inverse and solve integration
+
+Eight packed TPTRI/TPTRS routes are integrated as partial capability:302 Reference
+rows in_progress,1811 not_started of2113 required;20 native implemented_unverified,
+zero fully verified. Both full GNU Release runs pass783/837 with54 required math
+failures; affected Debug38/46 and ASC-only sanitizer17/25 each retain8 existing
+math failures. Zero skips. All packed basic tests, four21-family relocated
+packages,12 strict and6 static checks pass. All62 primary ASC TUs are freshly
+compiled per lane (372 objects); foreign archives remain unsanitized.
+
+See [the bound root review](packed-triangular-review.md). Six subsequent
+documentation checks pass and every prior numerical compiler input rehashes
+unchanged. There are2399 normalized records. TPCON/TPRFS8 remains a preserved
+unregistered candidate; its initial numerical suites retain8 additional ordinary
+math failures per lane. Complete routine/mode/platform and P00-P11 gates,
+including130 missing required XBLAS routines, remain open.
+
 # Current v16 documentation and next implementation
 
 Six documentation/coverage checks pass;1487 prior artifacts and compiler inputs rehash unchanged. No new numerical/full-suite claim. See [the documentation review](triangular-expert-documentation-review.md). The2205 normalized records retain all prior failures. Next: packed TPTRI/TPTRS8 implementation;all P00-P11 requirements remain open.

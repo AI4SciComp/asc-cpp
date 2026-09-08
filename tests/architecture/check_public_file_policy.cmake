@@ -61,6 +61,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_triangular.h
   include/asc/dense/providers/lapack_triangular_condition.h
   include/asc/dense/providers/lapack_triangular_error_bounds.h
+  include/asc/dense/providers/lapack_triangular_packed.h
   include/asc/dense/providers/lapack_lu_band_expert.h
   include/asc/dense/providers/lapack_lu_band_refinement.h
   include/asc/dense/providers/lapack_tridiagonal.h
@@ -169,6 +170,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_lu_band_equilibration_radix.cc
   src/dense/lapack/reference_triangular.cc
   src/dense/lapack/reference_triangular_expert.cc
+  src/dense/lapack/reference_packed_triangular.cc
   src/dense/lapack/reference_lu_band_refinement.cc
   src/dense/lapack/reference_lu_band_solve.cc
   src/dense/lapack/reference_tridiagonal.cc
