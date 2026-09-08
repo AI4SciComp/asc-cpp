@@ -19,6 +19,11 @@ target_sources(asc_dense_lapack PRIVATE
   reference_indefinite_refinement.cc
   reference_svd_least_squares.cc
   reference_lu_band.cc
+  reference_lu_band_condition.cc
+  reference_lu_band_driver.cc
+  reference_lu_band_equilibration.cc
+  reference_lu_band_refinement.cc
+  reference_lu_band_solve.cc
   reference_tridiagonal.cc
   reference_tridiagonal_condition.cc
   reference_tridiagonal_driver.cc
@@ -55,6 +60,12 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_refinement.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_svd_least_squares.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_general_band.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_condition.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_driver.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_equilibration.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_expert.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_refinement.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_tridiagonal.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_tridiagonal_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_tridiagonal_driver.h"

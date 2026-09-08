@@ -514,3 +514,18 @@ Completion audit `p05-band-expert-integration-v12-01/completion-audit-01/audit.j
 Current originalLU8+expert16 INFO integration: six22/22 Debug/Release/ASC-only ASan lanes pass,0skips. All53CPUCore/Dense/provider TUs rebuilt eachlane; exact312/468expert modes/scalar and preserved112/168originalINFO profiles pass. Format5/coverage/publicsurface pass. Historical6strict records apply through byte-identical actual compiler-read changedTU/headers/generatedABIconfig; no freshstrict or fullproject claim. Foreign archives/runtimes unsanitized; output-pivot correction and full mathematical/mode/platform gates remain separate.
 
 Frozen tree `e8d719945740a6640fa963a37c68b73c64b9f0ae`, archive SHA256 `7f75537dafded1f9ae2b8e002e50f41285abed84c6ae73dac126d99acda10211`, mapping `d566272179926c1ae9c67dabccc0cfd37acca14b021cd31b4c471c868d64c4da`. Completion audit `p04-lu-expert-info-integration-01/completion-audit-01/audit.json` SHA256 `e6da4a3267fad30efe4ab36e19bdaabf64eff43da37e2f67fb2b4f4527e50dee` verifies21 executed records,921 exact source files, every compiled CPU source and actual returned/native mode profiles. Root product files match the frozen source.
+
+
+## V13 composed integration checkpoint
+
+GB20 V13 full02 LP64/ILP64 each720/752, exactly30 required numerical failures plus two omitted-source-inventory failures, zero skips. Provider-free Debug280/282, Release280/282, shared282/284 retain the same two inventory failures. Final04 adds only five explicit source entries; the common source-only2/2 replay passes and its original commands match all five full lanes. Final03 formats only the new consumer and updates its mapping hashes: four fresh current-library and two fresh relocated-installed1/1 consumer tests pass. Full02 package passes17 installed families perABI with unchanged300s timeout. All58 primary CPU Core/Dense/provider TUs rebuilt in each full and ASC-only sanitizer lane; ASan each75/91 retains exactly16 GB math failures, no sanitizer diagnostics or skips. All34 changed-TU strict checks plus two final-consumer strict checks, format29, coverage, public surface, Markdown and Doxygen108headers/2036members/zero warnings pass. Exact consumer/object/provider closures audited. Original01 ABI-registration,02 format/source-policy and audit-helper failures remain preserved. No full04 suite, foreign sanitizer, normalized full-mode, platform, XBLAS or mathematical gate closure claim;270 Reference rows remain in_progress/1843 not_started of2113 required; native20 separately implemented_unverified; zero fullyverified.
+
+Final product tree `eeb249415cbe7c8d0b0127f8af290f386bca1356`, archive SHA256
+`15ff5e4717103d77eaf9ce6967f2338f410fd682242f2a7abf11bf1754f0bbfd`, mapping
+`442e2f8c421b9ec5fd6149eaa23981b4abb3f01ba5e03fb7c6c747cadb3e4474`. Completion audit `p05-general-band-expert-integration-v13-04/completion-audit-01/audit.json`
+SHA256 `99914ff87c875d8fdac08359ab600ce0787fdad273fa2c678df7ab972d67f32e` binds the executed records, primary production objects,
+final public consumers and unchanged actual provider prefixes.
+The audit first included a separately rebuilt subproject consumer in
+its primary-library uniqueness check; that failed attempt remains
+recorded. The final audit checks the exact primary library target
+object directories, still requiring all58 production sources.

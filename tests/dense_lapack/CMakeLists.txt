@@ -631,6 +631,78 @@ foreach(_kind IN ITEMS expert estimation refinement driver)
     TARGET "${_target}" LABELS dense_lapack lapack validation TIMEOUT 300)
 endforeach()
 
+# General-band expert paths: preserve all ordinary owner runtime selections.
+function(_asc_dense_lapack_add_gb_expert_test suite)
+  set(_target "asc_dense_lapack_${suite}_test")
+  add_executable("${_target}" "${suite}_test.cc" allocation_audit.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+  target_link_options("${_target}" PRIVATE
+    "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+endfunction()
+foreach(_suite IN ITEMS lu_band_equilibration lu_band_condition
+    lu_band_refinement lu_band_solve lu_band_driver lu_band_driver_outcome
+    lu_band_expert_fault lu_band_diagnostics)
+  _asc_dense_lapack_add_gb_expert_test("${_suite}")
+endforeach()
+target_sources(asc_dense_lapack_lu_band_expert_fault_test PRIVATE
+  lu_band_expert_faults.cc)
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_routine IN ITEMS gbequ gbcon gbrfs gbsv gbsvx)
+    target_link_options(asc_dense_lapack_lu_band_expert_fault_test PRIVATE
+      "-Wl,--wrap=${_scalar}${_routine}_")
+  endforeach()
+  foreach(_suite IN ITEMS equilibration condition refinement driver_outcome)
+    foreach(_mode IN ITEMS regular extreme)
+      asc_register_test(
+        NAME "asc_cpp.dense_lapack.lu_band_${_suite}.${_scalar}.${_mode}"
+        TARGET "asc_dense_lapack_lu_band_${_suite}_test"
+        ARGUMENTS "${_scalar}" "${_mode}"
+        LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+    endforeach()
+  endforeach()
+  foreach(_suite IN ITEMS solve driver expert_fault)
+    asc_register_test(NAME "asc_cpp.dense_lapack.lu_band_${_suite}.${_scalar}"
+      TARGET "asc_dense_lapack_lu_band_${_suite}_test" ARGUMENTS "${_scalar}"
+      LABELS dense_lapack lapack runtime numerical validation allocation
+      TIMEOUT 120)
+  endforeach()
+  foreach(_route RANGE 0 6)
+    asc_register_test(
+      NAME "asc_cpp.dense_lapack.lu_band_expert_cold.${_scalar}.${_route}"
+      TARGET asc_dense_lapack_lu_band_expert_fault_test
+      ARGUMENTS "${_scalar}" "${_route}"
+      LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+  endforeach()
+endforeach()
+add_executable(asc_dense_lapack_lu_band_expert_counts_test
+  lu_band_expert_counts_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_band_expert_counts_test)
+target_include_directories(asc_dense_lapack_lu_band_expert_counts_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+asc_register_test(NAME asc_cpp.dense_lapack.lu_band_expert_counts
+  TARGET asc_dense_lapack_lu_band_expert_counts_test
+  LABELS dense_lapack lapack validation TIMEOUT 120)
+asc_register_test(NAME asc_cpp.dense_lapack.lu_band_diagnostics
+  TARGET asc_dense_lapack_lu_band_diagnostics_test ARGUMENTS regular
+  LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+# The external actual compiler-emission comparison remains a separate required
+# ABI gate. A portable CXX pinned-signature probe does not replace that evidence.
+
+# Portable pinned-signature check; external actual-emission replay stays required.
+add_executable(asc_dense_lapack_lu_band_expert_pinned_signatures_test
+  lu_band_expert_pinned_signatures_test.cc)
+_asc_dense_lapack_configure_test(
+  asc_dense_lapack_lu_band_expert_pinned_signatures_test)
+target_include_directories(
+  asc_dense_lapack_lu_band_expert_pinned_signatures_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+asc_register_test(NAME asc_cpp.dense_lapack.gb_expert_pinned_signatures
+  TARGET asc_dense_lapack_lu_band_expert_pinned_signatures_test
+  LABELS dense_lapack lapack validation TIMEOUT 30)
+
 if(ASC_CPP_INSTALL)
   string(REPLACE ";" "|" _lapack_runtimes "${ASC_CPP_LAPACK_RUNTIME_LIBRARIES}")
   add_test(NAME asc_cpp.dense_lapack.package_integration
@@ -682,6 +754,12 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_indefinite_condition.h lapack_indefinite_driver.h
     lapack_indefinite_refinement.h lapack_svd_least_squares.h
     lapack_lu_band.h
+    lapack_general_band.h
+    lapack_lu_band_condition.h
+    lapack_lu_band_driver.h
+    lapack_lu_band_equilibration.h
+    lapack_lu_band_expert.h
+    lapack_lu_band_refinement.h
     lapack_tridiagonal.h lapack_tridiagonal_condition.h lapack_tridiagonal_driver.h lapack_tridiagonal_refinement.h
     lapack_cholesky_band_condition.h
     lapack_cholesky_band_driver.h

@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v12` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v13` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,12 +10,35 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 250 partial scalar routines.
-The other 1,863 required
+routes below bring the development mapping to 270 partial scalar routines.
+The other 1,843 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+The general-band expert headers `lapack_general_band.h` and
+`lapack_lu_band_{equilibration,condition,refinement,driver,expert}.h`
+add S/D/C/Z `Gbequ`, `Gbcon`, `Gbrfs`, `Gbsv` and `Gbsvx` routes.
+Compact original bands place the diagonal at KU; expanded LU storage places
+it at KL+KU and retains factor fill-in. These are distinct checked descriptors.
+Raw band pivots carry the sequential band-swap convention and do not certify
+a successful factorization. B and X independently support both layouts with
+explicit caller packing; refinement and expert drivers support N/T/C.
+
+`Gbsvx`, `GbsvxEquilibrated` and `GbsvxFactored` select FACT=N/E/F
+explicitly. Equilibration modifies only the operands documented by that
+entry point. The report preserves native INFO, singular partial factors,
+accuracy warnings and raw condition/error statistics. FERR is an estimate,
+not a guaranteed error bound. The native-width integer workspace separates
+converted pivots from IWORK, and output sentinels detect missing or partial
+native writes before publication.
+
+Required extreme-scale mathematical checks remain failing in the pinned
+provider: GBEQU can return an incorrect scale ratio, GBCON can return zero
+for a condition-one system, and GBRFS/GBSVX can return nonfinite error
+estimates. The ordinary failing tests remain registered. The separate
+GBEQUB routes and complete routine/mode/platform acceptance are still required.
 
 The extra LU operations are declared in `asc/dense/providers/lapack_lu.h`;
 equilibration is in `asc/dense/providers/lapack_lu_equilibration.h`. GETRI uses

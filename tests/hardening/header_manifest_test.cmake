@@ -130,6 +130,12 @@ set(_lapack_entries
   "dense_lapack|asc/dense/providers/lapack_indefinite_refinement.h"
   "dense_lapack|asc/dense/providers/lapack_svd_least_squares.h"
   "dense_lapack|asc/dense/providers/lapack_lu_band.h"
+  "dense_lapack|asc/dense/providers/lapack_general_band.h"
+  "dense_lapack|asc/dense/providers/lapack_lu_band_condition.h"
+  "dense_lapack|asc/dense/providers/lapack_lu_band_driver.h"
+  "dense_lapack|asc/dense/providers/lapack_lu_band_equilibration.h"
+  "dense_lapack|asc/dense/providers/lapack_lu_band_expert.h"
+  "dense_lapack|asc/dense/providers/lapack_lu_band_refinement.h"
   "dense_lapack|asc/dense/providers/lapack_tridiagonal.h"
   "dense_lapack|asc/dense/providers/lapack_tridiagonal_condition.h"
   "dense_lapack|asc/dense/providers/lapack_tridiagonal_driver.h"
@@ -148,9 +154,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 102)
+if(NOT _all_header_count EQUAL 108)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 102 headers; got "
+    "Independent source-header oracle must contain 108 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -162,7 +168,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 102-header oracle.\n"
+    "Source public-header tree differs from the frozen 108-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

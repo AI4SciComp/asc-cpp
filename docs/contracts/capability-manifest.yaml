@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v12 with250 partial scalar routes. V11 GT24 current sanitizer46/50 eachABI retains4required mathfail; full and strict checks pending. New Band20 independently reviewed final source88test lanes retain10required mathfail; current combined integration pending. Full2113 routine/mode coverage remains incomplete"
+    evidence_scope: "unreleased incremental-lapack-v13 with270 partial scalar routes. Added GB20 owner eight75-test lanes each59pass16required mathematical failures; independent public consumer bothABIs passes96workflows/864calls. Current combined and installed revalidation pending. Prior V12 full each634/648 remains historical. Full2113 routine/mode coverage remains incomplete"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -124,6 +124,12 @@ capabilities:
       - "include/asc/dense/providers/lapack_indefinite_refinement.h"
       - "include/asc/dense/providers/lapack_svd_least_squares.h"
       - "include/asc/dense/providers/lapack_lu_band.h"
+      - "include/asc/dense/providers/lapack_general_band.h"
+      - "include/asc/dense/providers/lapack_lu_band_condition.h"
+      - "include/asc/dense/providers/lapack_lu_band_driver.h"
+      - "include/asc/dense/providers/lapack_lu_band_equilibration.h"
+      - "include/asc/dense/providers/lapack_lu_band_expert.h"
+      - "include/asc/dense/providers/lapack_lu_band_refinement.h"
       - "include/asc/dense/providers/lapack_tridiagonal.h"
       - "include/asc/dense/providers/lapack_tridiagonal_condition.h"
       - "include/asc/dense/providers/lapack_tridiagonal_driver.h"

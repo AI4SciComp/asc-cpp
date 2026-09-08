@@ -82,6 +82,12 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_indefinite_refinement.h
   include/asc/dense/providers/lapack_svd_least_squares.h
   include/asc/dense/providers/lapack_lu_band.h
+  include/asc/dense/providers/lapack_general_band.h
+  include/asc/dense/providers/lapack_lu_band_condition.h
+  include/asc/dense/providers/lapack_lu_band_driver.h
+  include/asc/dense/providers/lapack_lu_band_equilibration.h
+  include/asc/dense/providers/lapack_lu_band_expert.h
+  include/asc/dense/providers/lapack_lu_band_refinement.h
   include/asc/dense/providers/lapack_tridiagonal.h
   include/asc/dense/providers/lapack_tridiagonal_condition.h
   include/asc/dense/providers/lapack_tridiagonal_driver.h
