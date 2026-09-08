@@ -102298,6 +102298,224 @@
       "external_record": "p05-packed-triangular-source-01/emitted-compare-lp64/record.json",
       "record_sha256": "d072fc7f5f0cf7bcecc933f5f0a176b787ba0d49b82fd4b17868cff1797eceae",
       "scope": "Packed source/ABI/pure-count admission only; no operation capability credit."
+    },
+    {
+      "id": "triangular-expert-v16-documentation-coverage",
+      "started": "2026-09-08T07:27:19.667170+00:00",
+      "completed": "2026-09-08T07:27:20.257708+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source",
+        "--evidence-root",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "cd362422f0ec98aebafd6da282dd593815fc0048543384dfb82a2cd6db5cd9c1"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-doc-integration-v16-01/record-coverage/record.json",
+      "record_sha256": "0f4707ccf3a4bd3b2d99e2c01c9bf1ea8490130157a9a4d8248cafefd2f2314f",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-expert-v16-documentation-dependency_audit",
+      "started": "2026-09-08T07:27:21.652809+00:00",
+      "completed": "2026-09-08T07:27:21.956051+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DSOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/tests/compile/dependency_check.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-doc-integration-v16-01/record-dependency_audit/record.json",
+      "record_sha256": "92174eb993c49ceb0b1ccf80f0b462ba908a1f31180aab99b1271c73720c453c",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-expert-v16-documentation-documentation_consistency",
+      "started": "2026-09-08T07:27:22.227115+00:00",
+      "completed": "2026-09-08T07:27:22.287691+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DASC_CPP_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/tests/hardening/documentation_consistency_test.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "961380bcaa187d93b1fbd333aa1da60a0719d5c4a648bb46fd13c16d80c3bb7d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-doc-integration-v16-01/record-documentation_consistency/record.json",
+      "record_sha256": "23f9dd89e177d70eef24e9ad3b577640e91ae4ba41888149064fbbef8278bd42",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-expert-v16-documentation-markdown",
+      "started": "2026-09-08T07:27:20.822473+00:00",
+      "completed": "2026-09-08T07:27:20.992603+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-doc-integration-v16-01/record-markdown/record.json",
+      "record_sha256": "3eab2d31df77802fb3912ceb00cafe2ee2449cf3cc8b61a0dd08b5e5859a7b98",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-expert-v16-documentation-public_file_policy",
+      "started": "2026-09-08T07:27:21.267460+00:00",
+      "completed": "2026-09-08T07:27:21.379861+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DSOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source",
+        "-DENABLE_CUDA:BOOL=OFF",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/tests/architecture/check_public_file_policy.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-doc-integration-v16-01/record-public_file_policy/record.json",
+      "record_sha256": "82480af1bb683878517ae99e95553827b1ed3eec6120954d6d10a977c9698b66",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-expert-v16-documentation-surface",
+      "started": "2026-09-08T07:27:20.522366+00:00",
+      "completed": "2026-09-08T07:27:20.548059+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-expert-doc-integration-v16-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "04a81d6fe3cf584acb0c073cdefb50f0a4feaba5d8e752fd14f737611a988dee"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "9bb22d55278e5d97c4392bc1dddcd5f3d1659aaeacb74372dc1e50b22f4f8288",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-expert-doc-integration-v16-01/record-surface/record.json",
+      "record_sha256": "de317e388d989acec13daef3d76ede5aa344e8d7b53f3bab81a5847bbb30b5f9",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
     }
   ]
 }

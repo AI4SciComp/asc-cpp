@@ -1,3 +1,7 @@
+# Current v16 documentation and next implementation
+
+Six documentation/coverage checks pass;1487 prior artifacts and compiler inputs rehash unchanged. No new numerical/full-suite claim. See [the documentation review](triangular-expert-documentation-review.md). The2205 normalized records retain all prior failures. Next: packed TPTRI/TPTRS8 implementation;all P00-P11 requirements remain open.
+
 # Current v16 triangular estimator integration
 
 TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification.

@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v16 with294 partial scalar routes and zero fully verified Reference rows. Triangular estimator candidate audit566fe876 binds54 fresh adapter/test objects: six12-test lanes each4passes and8required mathematical failures,zero skips;14 applicable strict checks pass. Coherent v16 root/20-family installed verification is pending. Full2113 routine/mode coverage, earlier46 required mathematical failures and130 missing required XBLAS routines remain incomplete"
+    evidence_scope: "unreleased incremental-lapack-v16 with294 partial scalar routes and zero fully verified Reference rows. Root auditfdde49a9 binds366 fresh primary ASC objects; full GNU Release each773/831 passes with54 required mathematical and4 header-count failures, Debug each28/40 with8 math and4 header-count failures; corrected header replay10/10 each, ASC-only sanitizer13/21 each with8 math failures. Zero skips, allfour relocated20-family packages and14 strict/6 static checks pass. Foreign archives unsanitized; full2113 routine/mode coverage and130 missing required XBLAS routines remain incomplete"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"

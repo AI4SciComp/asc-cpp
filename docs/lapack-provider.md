@@ -78,6 +78,21 @@ they remain ordinary failing mathematical gates. Packed/banded triangular
 storage and remaining memory, extreme-range, platform and normalized-mode
 acceptance remain separate required work.
 
+Bounded v16 verification covers both actual LP64 and ILP64 static providers.
+Each full GNU Release suite executes 831 tests: 773 passes, 54 required
+mathematical failures and 4 header-count failures. The corrected header oracle
+subsequently passes all 4 checks and 6 fixture setups in each ABI. Each affected
+Debug suite records 28/40 passes with the 8 estimator math failures and the
+4 corrected header failures; each ASC-only ASan/UBSan suite records 13/21
+passes with the 8 math failures. There are zero skips. All four Release/Debug
+relocated installations pass 20 family consumers; 14 strict and 6 static checks
+pass. All 61 primary ASC
+Core/Dense/provider TUs are freshly compiled per numerical lane. The foreign
+archives remain unsanitized. The header-only test correction changes no
+production/header/compiler input; no new full suite is claimed for that
+corrected snapshot. These results establish bounded integration evidence,
+while the finite-extreme and full routine/mode gates remain open.
+
 The extra LU operations are declared in `asc/dense/providers/lapack_lu.h`;
 equilibration is in `asc/dense/providers/lapack_lu_equilibration.h`. GETRI uses
 an actual nonmutating workspace query on the supplied raw LU/pivots, with

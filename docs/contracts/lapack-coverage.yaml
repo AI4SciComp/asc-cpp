@@ -28540,8 +28540,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
-          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. V16 root auditfdde49a9: six fresh61-TU lanes; full Release each773/831 passes with54 required math plus4 header-count failures, Debug each28/40 with8 math plus4 header-count failures, ASC-only sanitizer each13/21 with8 math failures. Corrected header replay10/10 each;four relocated20-family packages,14 strict and6 static checks pass,zero skips. Native INFO/allocation/public equation/source count/typed ABI tests remain scoped;finite scalar mathematical gates, full normalized/alias/read/platform acceptance remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-root-review.md",
           "state": "in_progress"
         }
       },
@@ -28781,8 +28781,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
-          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. V16 root auditfdde49a9: six fresh61-TU lanes; full Release each773/831 passes with54 required math plus4 header-count failures, Debug each28/40 with8 math plus4 header-count failures, ASC-only sanitizer each13/21 with8 math failures. Corrected header replay10/10 each;four relocated20-family packages,14 strict and6 static checks pass,zero skips. Native INFO/allocation/public equation/source count/typed ABI tests remain scoped;finite scalar mathematical gates, full normalized/alias/read/platform acceptance remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-root-review.md",
           "state": "in_progress"
         }
       },
@@ -59614,8 +59614,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
-          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. V16 root auditfdde49a9: six fresh61-TU lanes; full Release each773/831 passes with54 required math plus4 header-count failures, Debug each28/40 with8 math plus4 header-count failures, ASC-only sanitizer each13/21 with8 math failures. Corrected header replay10/10 each;four relocated20-family packages,14 strict and6 static checks pass,zero skips. Native INFO/allocation/public equation/source count/typed ABI tests remain scoped;finite scalar mathematical gates, full normalized/alias/read/platform acceptance remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-root-review.md",
           "state": "in_progress"
         }
       },
@@ -59855,8 +59855,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
-          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. V16 root auditfdde49a9: six fresh61-TU lanes; full Release each773/831 passes with54 required math plus4 header-count failures, Debug each28/40 with8 math plus4 header-count failures, ASC-only sanitizer each13/21 with8 math failures. Corrected header replay10/10 each;four relocated20-family packages,14 strict and6 static checks pass,zero skips. Native INFO/allocation/public equation/source count/typed ABI tests remain scoped;finite scalar mathematical gates, full normalized/alias/read/platform acceptance remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-root-review.md",
           "state": "in_progress"
         }
       },
@@ -90640,8 +90640,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
-          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. V16 root auditfdde49a9: six fresh61-TU lanes; full Release each773/831 passes with54 required math plus4 header-count failures, Debug each28/40 with8 math plus4 header-count failures, ASC-only sanitizer each13/21 with8 math failures. Corrected header replay10/10 each;four relocated20-family packages,14 strict and6 static checks pass,zero skips. Native INFO/allocation/public equation/source count/typed ABI tests remain scoped;finite scalar mathematical gates, full normalized/alias/read/platform acceptance remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-root-review.md",
           "state": "in_progress"
         }
       },
@@ -90881,8 +90881,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
-          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. V16 root auditfdde49a9: six fresh61-TU lanes; full Release each773/831 passes with54 required math plus4 header-count failures, Debug each28/40 with8 math plus4 header-count failures, ASC-only sanitizer each13/21 with8 math failures. Corrected header replay10/10 each;four relocated20-family packages,14 strict and6 static checks pass,zero skips. Native INFO/allocation/public equation/source count/typed ABI tests remain scoped;finite scalar mathematical gates, full normalized/alias/read/platform acceptance remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-root-review.md",
           "state": "in_progress"
         }
       },
@@ -120126,8 +120126,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
-          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. V16 root auditfdde49a9: six fresh61-TU lanes; full Release each773/831 passes with54 required math plus4 header-count failures, Debug each28/40 with8 math plus4 header-count failures, ASC-only sanitizer each13/21 with8 math failures. Corrected header replay10/10 each;four relocated20-family packages,14 strict and6 static checks pass,zero skips. Native INFO/allocation/public equation/source count/typed ABI tests remain scoped;finite scalar mathematical gates, full normalized/alias/read/platform acceptance remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-root-review.md",
           "state": "in_progress"
         }
       },
@@ -120367,8 +120367,8 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. Candidate06 six12-test lanes each4pass8required mathematical fail0skip; native INFO faults, cold/warm allocation observations, independent public equations, source counts and actual pinned signatures scoped. Root/installed and full normalized modes remain pending; finite scalar condition/error-bound mathematical gates remain unmet.",
-          "review": "programs/lapack-array-io/triangular-expert-review.md",
+          "partial_scope": "Actual full-storage TRCON/TRRFS with explicit mixed workspace, selected triangle/unit diagonal and independently laid immutable inputs. V16 root auditfdde49a9: six fresh61-TU lanes; full Release each773/831 passes with54 required math plus4 header-count failures, Debug each28/40 with8 math plus4 header-count failures, ASC-only sanitizer each13/21 with8 math failures. Corrected header replay10/10 each;four relocated20-family packages,14 strict and6 static checks pass,zero skips. Native INFO/allocation/public equation/source count/typed ABI tests remain scoped;finite scalar mathematical gates, full normalized/alias/read/platform acceptance remain unmet.",
+          "review": "programs/lapack-array-io/triangular-expert-root-review.md",
           "state": "in_progress"
         }
       },
