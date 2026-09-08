@@ -581,3 +581,10 @@ Completed root triangular bounded integration: Twelve full-storage TRTRI/TRTI2/T
 Triangular v15 documentation reconciliation: three documentation/metadata files only;6 checks pass,1467 old artifacts/compiler inputs rehashed unchanged. Audit `d1b491a99cd3e0bd932ddf2f3abc2817778630538a8632f3bfe702086f5f886d`. No new numerical/full-suite claim.
 
 Triangular edge acceptance: Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged. Audit `9a222d37e10396f521e826c3d7af771618dbc5182aa5ca5cae4737b83e33d55a`.
+
+Triangular estimator candidate06 (unregistered TRCON/TRRFS8) is preserved with
+audit `566fe87610e796155c698ea7cd6705a7e2c72f1f551fa5e0d26bae832451147a`. Six current12-test lanes each have4passes and8ordinary
+required mathematical failures, zero skips;54 new adapter/test objects and
+14 applicable strict checks are audited. The166 foreign closure objects and
+16 actual native-emitted signatures are source-bound. Full current root/installed
+integration is next; this scoped checkpoint promotes no routine to verified.
