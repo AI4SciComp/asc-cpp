@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
+  "last_implementation_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
   "worktree_diff_identity": {
-    "state": "p03_progress_checkpoint_ready_for_local_commit",
-    "parent_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
-    "implementation_tree": "445a63fed6224249e82a9781e338de710baf4764"
+    "state": "triangular_root_checkpoint_ready_for_local_commit",
+    "parent_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
+    "implementation_tree": "c54b8bbd22e2f1f6018883c601b3dc00c082f1ff"
   },
   "packages": {
     "P00": {
@@ -403,7 +403,7 @@
         "P04"
       ],
       "preserved_candidate": "p05-full-triangular-01-wztau3h8",
-      "scope": "12 required TRTRI/TRTI2/TRTRS rows remain not_started in coverage. Unsealed external source/prototype work is preserved after delegated agent usage-limit failure. No implementation or executed acceptance pass credited. TRTI2 must retain native INFO=0 behavior without an invented zero-diagonal guard."
+      "scope": "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open."
     },
     "P03.binary_failure_progress_acceptance": {
       "state": "in_progress",
@@ -433,18 +433,27 @@
     "P05.full_triangular_root_recovery": {
       "state": "in_progress",
       "owner": "integration",
-      "candidate": "p05-full-triangular-root-02",
-      "scope": "Original five files and24 actual prototype emissions preserved. Root02 composed/formatted draft; four query RHS documentation errors corrected separately. Full source-admission proofs, runtime/strict tests, independent review and root import remain open; no callable or verified credit."
+      "candidate": "p05-full-triangular-candidate-08",
+      "scope": "Six5/5 lanes:30 executed current tests zero failures/skips;6272 analytic workflows/1143040 assertions and7696 failure/preflight profiles/61072 assertions eachlane;1762 source-count checks and12 complete actual compiler-emission signatures perABI. One new triangular TU andeight test TUs perlane;59 prior ASC production TUs reused by exact identity. Four compiler/header modes and11-file format pass. Two INFO-zero diagnostic binaries fail1/1 each as required. Root registration, installed package, all memory/normalized numerical modes and platform gates remain open. Subsequent root import/registration and bounded v15 integration are completed as separately bound by triangular-root-review.md; the original candidate review remains historical.",
+      "completion_audit": "p05-full-triangular-candidate-08/audit.json",
+      "completion_audit_sha256": "ac678d6895fd2d5e8f724494019eaa59e3d99ac39d49a37d5df2957a9c616d2b",
+      "review": "programs/lapack-array-io/triangular-review.md"
     },
     "P05.general_band_radix_equilibration_root_integration": {
       "state": "in_progress",
       "owner": "integration",
       "scope": "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.",
       "review": "programs/lapack-array-io/lu-band-equb-root-review.md"
+    },
+    "P05.full_triangular_root_integration": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
+      "review": "programs/lapack-array-io/triangular-root-review.md"
     }
   },
-  "active_task": "P05.full_triangular_source_admission_and_acceptance",
-  "next_action": "Commit P03 boundary regression checkpoint locally. Continue preserved p05-full-triangular-root-02 draft:31-member actual source closures perABI recorded;24 compiler emissions preserved; new analytic triangular_main.cc unexecuted. Complete source/ABI/ignored-operand/count proofs and failure/memory tests, freeze candidate, run actual bothABI Debug/Release/ASC sanitizer/strict tests and public consumer, then import/register12 rows atomically. No routine credit until executed; no remote writes.",
+  "active_task": "P05.triangular_post_integration_documentation_and_edges",
+  "next_action": "Commit exact root triangular checkpoint locally. Import reviewed p05-triangular-doc-draft-01 guide and reconcile v15 capability prose, freeze documentation-only snapshot and revalidate affected contracts/docs. Continue additive edge draft: bothABI strict passed; run-edge.py LP64/ILP64 sessions still executing. Audit executed results; complete Debug/ASC sanitizer edge tests with unchanged production identities, then import/hash/register test-only change. Continue remaining memory/mode acceptance and required structured families. No remote writes.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -452,7 +461,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "20f311b426229c8e9eec57203b73f487754b534b3cf24690ab0c355461361ed1"
+    "coverage_mapping_sha256": "3388180859dba3698728bc4f39fe20977d5734713a857d1ff9a8884054545c7d"
   },
   "provider": {
     "version": "3.12.1",
@@ -550,7 +559,11 @@
       "programs/lapack-array-io/lu-band-equb-root-review.md",
       "p05-gbequb-integration-v14-01/completion-audit-01/audit.json",
       "programs/lapack-array-io/dense-binary-progress-review.md",
-      "p03-dense-binary-progress-integration-01/audit.json"
+      "p03-dense-binary-progress-integration-01/audit.json",
+      "programs/lapack-array-io/triangular-review.md",
+      "p05-full-triangular-candidate-08/audit.json",
+      "programs/lapack-array-io/triangular-root-review.md",
+      "p05-triangular-integration-v15-02/audit-02.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -580,7 +593,8 @@
       "Root two45/45 fresh Release lanes include38 affected numerical/fault/count controls,4 placement tests, package and2 policy tests. Four exact-input Debug/ASC-only sanitizer root replays38/38 reuse sealed current binaries. Fresh root production58 TUs per ABI; agent six58-TU lanes and24 fresh strict remain separately identified. All17 installed families per ABI pass. No full-project suite, foreign sanitizer, full mode/platform/shared-provider/XBLAS or required mathematical closure claim. Source-bound profile audit matches472272 main modes,321648 main native calls,47232 native warm calls and41472 reuse calls across six root executions. Format15/coverage/publicsurface pass. Initial build-record directory collision was rejected before compilation and preserved; corrected runner reused successful configures. Denominator2113/270 partial Reference/1843 not_started, native20 separate, zero fullyverified;30 required mathematical failures remain open.",
       "P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified.",
       "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.",
-      "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate."
+      "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
+      "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open."
     ]
   },
   "counts": {
@@ -590,15 +604,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1839,
-    "reference_in_progress_in_ledger": 274,
+    "reference_not_started_in_ledger": 1827,
+    "reference_in_progress_in_ledger": 286,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 274,
+    "registered_partial_reference_operations": 286,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113 required,274 Reference in_progress/1839 not_started,20 native implemented_unverified,zero fully verified. Newly registeredGBEQUB4 retains16 required ordinary math failures, in addition to historicalGT4+Band10+GB16. Current root v14 tests are running."
+    "note": "2113 required;286 Reference in_progress/1827 not_started;20 native implemented_unverified;zero fully verified. Root triangular12 bounded integration completed;46 required mathematical failures perABI remain, old2 manifest failures corrected in separate6-test replay. Required130 missing XBLAS routines remain required."
   },
   "blockers": [
     {
@@ -690,26 +704,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
-    "implementation_tree": "445a63fed6224249e82a9781e338de710baf4764",
-    "source_archive_sha256": "c42b0ddf8b9bb424ebfa1e5bacd1374a32c9b64978c644d90b4ea149fc2b9615",
-    "coverage_mapping_sha256": "20f311b426229c8e9eec57203b73f487754b534b3cf24690ab0c355461361ed1",
-    "scope": "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
-    "candidate": "p03-dense-binary-progress-integration-01",
-    "state": "completed_scoped_dense_binary_progress",
-    "completion_audit": "p03-dense-binary-progress-integration-01/audit.json",
-    "completion_audit_sha256": "b3838127365dc9c7a6c3e048dd31aa558192f9ac82bc86a7743f9306abf98d8f"
+    "base_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
+    "implementation_tree": "c54b8bbd22e2f1f6018883c601b3dc00c082f1ff",
+    "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683",
+    "coverage_mapping_sha256": "3388180859dba3698728bc4f39fe20977d5734713a857d1ff9a8884054545c7d",
+    "scope": "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
+    "candidate": "p05-triangular-integration-v15-02",
+    "state": "completed_triangular_root_scoped_full_math_open",
+    "completion_audit": "p05-triangular-integration-v15-02/audit-02.json",
+    "completion_audit_sha256": "5455d0c0c00fa196b8d0b374298cb53388bf223799e798163938748cf14ee94e"
   },
   "last_completed_verification": {
-    "base_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
-    "implementation_tree": "445a63fed6224249e82a9781e338de710baf4764",
-    "source_archive_sha256": "c42b0ddf8b9bb424ebfa1e5bacd1374a32c9b64978c644d90b4ea149fc2b9615",
-    "coverage_mapping_sha256": "20f311b426229c8e9eec57203b73f487754b534b3cf24690ab0c355461361ed1",
-    "scope": "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
-    "candidate": "p03-dense-binary-progress-integration-01",
-    "state": "completed_scoped_dense_binary_progress",
-    "completion_audit": "p03-dense-binary-progress-integration-01/audit.json",
-    "completion_audit_sha256": "b3838127365dc9c7a6c3e048dd31aa558192f9ac82bc86a7743f9306abf98d8f"
+    "base_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
+    "implementation_tree": "c54b8bbd22e2f1f6018883c601b3dc00c082f1ff",
+    "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683",
+    "coverage_mapping_sha256": "3388180859dba3698728bc4f39fe20977d5734713a857d1ff9a8884054545c7d",
+    "scope": "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
+    "candidate": "p05-triangular-integration-v15-02",
+    "state": "completed_triangular_root_scoped_full_math_open",
+    "completion_audit": "p05-triangular-integration-v15-02/audit-02.json",
+    "completion_audit_sha256": "5455d0c0c00fa196b8d0b374298cb53388bf223799e798163938748cf14ee94e"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -896,7 +910,18 @@
         "path": "p05-gbequb-repository-style-01/record.json",
         "sha256": "33d175d54ac4809414d9ab8b3661e61cdadac963675551333b4bf6bba8743c10"
       }
+    },
+    {
+      "base_commit": "ccce9274a92c9164904b88aededc398d69e9013f",
+      "implementation_tree": "445a63fed6224249e82a9781e338de710baf4764",
+      "source_archive_sha256": "c42b0ddf8b9bb424ebfa1e5bacd1374a32c9b64978c644d90b4ea149fc2b9615",
+      "coverage_mapping_sha256": "20f311b426229c8e9eec57203b73f487754b534b3cf24690ab0c355461361ed1",
+      "scope": "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
+      "candidate": "p03-dense-binary-progress-integration-01",
+      "state": "completed_scoped_dense_binary_progress",
+      "completion_audit": "p03-dense-binary-progress-integration-01/audit.json",
+      "completion_audit_sha256": "b3838127365dc9c7a6c3e048dd31aa558192f9ac82bc86a7743f9306abf98d8f"
     }
   ],
-  "next_task": "Commit P03 boundary regression checkpoint locally. Continue preserved p05-full-triangular-root-02 draft:31-member actual source closures perABI recorded;24 compiler emissions preserved; new analytic triangular_main.cc unexecuted. Complete source/ABI/ignored-operand/count proofs and failure/memory tests, freeze candidate, run actual bothABI Debug/Release/ASC sanitizer/strict tests and public consumer, then import/register12 rows atomically. No routine credit until executed; no remote writes."
+  "next_task": "Commit exact root triangular checkpoint locally. Import reviewed p05-triangular-doc-draft-01 guide and reconcile v15 capability prose, freeze documentation-only snapshot and revalidate affected contracts/docs. Continue additive edge draft: bothABI strict passed; run-edge.py LP64/ILP64 sessions still executing. Audit executed results; complete Debug/ASC sanitizer edge tests with unchanged production identities, then import/hash/register test-only change. Continue remaining memory/mode acceptance and required structured families. No remote writes."
 }

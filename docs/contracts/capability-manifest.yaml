@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v14 with274 partial scalar routes. Current GBEQUB4 integration retains16 required ordinary mathematical failures; its separately reviewed public consumer and complete pinned-signature probe pass both ABIs. Root LP64/ILP64, sanitizer and installed18-family revalidation pending. Prior GB20 and auxiliary INFO/pivot checkpoints remain source-bound historical evidence. Full2113 routine/mode coverage remains incomplete"
+    evidence_scope: "unreleased incremental-lapack-v15 with286 partial scalar routes. Full triangular12 candidate passes bothABI Debug/Release/ASC sanitizer scoped checks; root composed60-TU and installed19-family verification pending. Prior GBEQUB/GB20/GT/band required mathematical failures remain open and unchanged. Full2113 routine/mode coverage and130 required missing XBLAS-dependent routines remain incomplete"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -129,6 +129,7 @@ capabilities:
       - "include/asc/dense/providers/lapack_lu_band_driver.h"
       - "include/asc/dense/providers/lapack_lu_band_equilibration.h"
       - "include/asc/dense/providers/lapack_lu_band_equilibration_radix.h"
+      - "include/asc/dense/providers/lapack_triangular.h"
       - "include/asc/dense/providers/lapack_lu_band_expert.h"
       - "include/asc/dense/providers/lapack_lu_band_refinement.h"
       - "include/asc/dense/providers/lapack_tridiagonal.h"

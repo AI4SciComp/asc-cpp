@@ -28945,12 +28945,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trti2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctrti2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -28958,7 +29039,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -28970,12 +29053,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trtri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctrtri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -28983,7 +29147,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -28995,12 +29161,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trtrs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ctrtrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -29008,7 +29255,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -59580,12 +59829,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trti2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtrti2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59593,7 +59923,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -59605,12 +59937,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trtri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtrtri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59618,7 +60031,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -59630,12 +60045,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trtrs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dtrtrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -59643,7 +60139,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -90167,12 +90665,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trti2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.strti2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90180,7 +90759,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -90192,12 +90773,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trtri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.strtri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90205,7 +90867,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -90217,12 +90881,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trtrs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.strtrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -90230,7 +90975,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -119214,12 +119961,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trti2",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztrti2",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -119227,7 +120055,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -119239,12 +120069,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trtri",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztrtri",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -119252,7 +120163,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [
@@ -119264,12 +120177,93 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Trtrs",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.ztrtrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_triangular.h",
+          "sha256": "9d7f95dae11f36ccf9da5ee9e7c48749af2ab3790d3d2bd94aef90da7a5ebe6b"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular.h",
+          "sha256": "77f37c9af290ef18e18349eb757d6ad21a446e9dbc22a9c8823435fcb287dd8f"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_counts.h",
+          "sha256": "119324ebf288dfe2bb55c93f2159a2e7a69c5f55e0ee0d2f0877b80ac2045e98"
+        },
+        {
+          "path": "src/dense/lapack/internal_triangular_prototypes.h",
+          "sha256": "a3c528faf94b2f0975331cb9401444a19a9ac048eb1e47a6004e387f25460251"
+        },
+        {
+          "path": "src/dense/lapack/reference_triangular.cc",
+          "sha256": "f9f1118be688d18faf0845090c5b894f21fa3e8f0b254d259371f67c61939e75"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/triangular_main.cc",
+          "sha256": "e11dae1dcc047bc97972cc7e5c3fd66cefdefca53dfab18d50600c6bb63db88d"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_fault_test.cc",
+          "sha256": "29e3ce2155f1973a185599cb250c1cc66a8b5a84cdb9e51412703eb3bf981ca1"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.cc",
+          "sha256": "ac94299a4da4d06ef01b758987013e3548b900cdf053879b36b0adedd875ea47"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_faults.h",
+          "sha256": "f1cfd610189a2b6cf0d3b8b44171b0f05432edb971862088a63a1490b656db5e"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_pinned_signatures_test.cc",
+          "sha256": "dd351c19036aac80ccaad71ba0c229f82015496138f80d7d596ac9c8420efecf"
+        },
+        {
+          "path": "tests/dense_lapack/triangular_source_counts_test.cc",
+          "sha256": "8ae9651e36894d59674529354d63b191e3cc383b6023e4fdd10958b4ce412b13"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -119277,7 +120271,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "state": "in_progress",
+          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-review.md"
         }
       },
       "required_profiles": [

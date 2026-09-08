@@ -35,6 +35,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_cholesky_band_equilibration.cc
   reference_cholesky_band_expert.cc
   reference_cholesky_band_refinement.cc
+  reference_triangular.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
   FILES
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack.h"
@@ -76,7 +77,8 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_band_driver.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_band_equilibration.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_band_expert.h"
-    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_band_refinement.h")
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_band_refinement.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular.h")
 target_include_directories(asc_dense_lapack PRIVATE
   "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
 set_target_properties(asc_dense_lapack PROPERTIES
