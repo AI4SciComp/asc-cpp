@@ -1,5 +1,11 @@
 # Ordinary packed positive-definite refinement candidate
 
+Current preserved implementation: candidate15, eleven files, unregistered.
+Six configurations pass five behavioral tests and retain four ordinary
+required mathematical failures. Numerical, preflight, memory and provenance
+evidence is recorded chronologically below; root reconciliation/registration
+and complete mode/platform acceptance remain required.
+
 Five unregistered files in external candidate02 implement the optional
 QueryPprfsWorkspace/Pprfs declarations and adapter, a private source-count
 helper, its literal test and four complete private signature checks. The
@@ -184,3 +190,120 @@ raw-factor/wrong-triangle provenance obligations, then reconcile its frozen
 v25 base with committed PPCON v26 before root import. Root and installed-family
 verification must use that new identity. All four PPRFS mathematical failures,
 all 2,113 required routines, 130 missing XBLAS and remaining P00-P11 stay open.
+
+
+## Executed provenance observations: candidate15
+
+The same six packed coefficients now exercise two distinct positive-definite
+matrices under the triangle/layout interpretations, using the matching factor
+for each selected problem. The original common RHS is [26,28,75]. One solution
+is [1,1,1]; the other is [-2245,10283,4731]/3563, certified by exact integer
+matrix-vector products. The latter visibly differs when the triangle choice
+changes. These 128 added workflows preserve the provenance precondition and
+verify independent residuals/solutions without automatic triangle inference.
+
+Public runs now pass 27,008 profiles and 9,083,776 LP64 or 9,004,160 ILP64
+checks. The 79,616 difference is exactly INTEGER guard bytes; the new real
+order-three profiles add 768 such bytes. All prior mathematical thresholds
+and scalar extreme tests are unchanged. Failure/preflight remains 11,248
+profiles and 144,160 checks.
+
+Memory/raw-factor runs now pass 2,176 profiles, including 576 new calls.
+Negative and complex-phase coefficients satisfy the selected scalar factor
+equation; the complex phase case proves that AFP's full diagonal coefficient
+is used. Zero and NaN factors enter the native routine and retain nonfinite
+FERR with the documented warning; infinite raw factors return INFO0 and zero
+FERR. Those invalid-provenance cases test finite progress and report fidelity
+only, without mathematical accuracy or factor-certification credit. Inputs
+and guards survive, and measured native calls allocate nothing.
+
+Candidate14 executes all six behavioral suites successfully but its two memory
+strict checks reject the enum's default int representation. Candidate15 adds
+the direct cstdint include and uint8_t underlying type without changing any
+assertion. Its two memory strict checks, the unchanged two public strict
+checks and eleven-file formatting pass; earlier exact-input checks stay bound.
+Both candidates execute nine tests per configuration: five pass and four
+ordinary required mathematical gates fail, with zero skips or sanitizer
+diagnostics. Each candidate compiles 66 fresh objects across six lanes,
+reusing exact older ASC libraries and unsanitized foreign archives explicitly.
+
+Audit `9593e5e7dc9cc5af7282d1f5221c9cbc3c2107ebd3d4e1e21012da9f8b750bc2`
+and its seal bind 56 raw records plus the seal. Fourteen nonzero records are
+preserved. The ledger contains 4,437 records. Production remains unchanged
+from candidate06. Root self-review is complete for this bounded slice;
+full routine/mode/concurrency/platform acceptance and installed consumers
+remain open. All 2,113 routines and 130 missing required XBLAS remain required.
+
+Before import, reconciliation against committed PPCON e29bc568 confirms the
+v26 product adds exactly eleven PPCON files to the candidate's v25 base and
+changes thirteen registry/build/prose files. No existing C++ source or header
+differs, and all eleven PPRFS paths are absent. The proof is in
+`p05-packed-cholesky-refinement-root-reconciliation-v27-01/reconciliation.json`.
+Apply the prepared atomic import, then perform fresh v27 validation.
+
+
+## Root registration
+
+The eleven audited candidate15 files are imported byte-for-byte after PPCON
+commit e29bc5680cd75ae88d3c6f19061e23876ddac75f. Before mutation, the complete
+v26 product matched D26. Relative to the candidate's v25 baseline, v26 adds
+exactly eleven PPCON files and changes thirteen registry/build/prose files;
+no existing C++ source or header changes. The separate reconciliation proof
+records every hash. Existing durable PPRFS evidence changes are preserved.
+
+Atomic source/header/profile v27 and installed-family/coverage registrations
+add four in_progress routes:350 Reference partial/1763 not_started, native20
+implemented_unverified, zero fully verified. Four ordinary required PPRFS
+mathematical tests join the74 existing gates, for78 full-root required failures.
+Fresh72-primary-TU,126-header and31-family validation is recorded below. Candidate
+evidence remains bounded to its original source identity. All2113 routines,
+130 missing required XBLAS and remaining P00-P11 acceptance remain required.
+
+
+## Scoped provider-free v27 execution
+
+Audit `a78b5b8aaeff0d2df1bfbca6cbc73d1a2015d529344a7083ad6a704ced65f94f`
+and its passing seal bind GNU Release static/shared16/16 each, zero skips,
+sixty fresh primary objects and twelve test/support objects. Seven optional
+packed Cholesky headers are absent; no Fortran configuration, foreign
+provider linkage or installed LAPACK target occurs. Eight raw records plus
+the seal are normalized. This is bounded current-v27 isolation evidence,
+not the complete provider-free baseline or a shared-provider claim. Full
+root Release, final audit and documentation checks remain in progress.
+
+
+## Executed v27 root integration
+
+Audit `247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f` and its passing seal bind the frozen1127-file
+product and thirty raw records. Both GNU Release suites execute939 tests:
+861 pass and78 ordinary required mathematical tests fail. Affected Debug
+passes111/127 per ABI; ASC-only Clang19 sanitizer passes48/64. Each retains
+sixteen required mathematical failures. No tests skip or time out, and no
+sanitizer diagnostics occur. All five PPRFS behavioral tests pass in each
+configuration:27008 public profiles (9083776 LP64/9004160 ILP64 checks),
+11248 fault profiles/144160 checks,25310 source-count checks, four complete
+signatures and2176 protected-memory/raw profiles. Each of the four scalar
+mathematical gates still fails12 of168 checks; none is waived.
+
+All72 primary Core/Dense/provider TUs compile freshly per lane,432 primary
+objects in total. Four relocated packages pass31 family consumers. Six
+static checks pass; Doxygen covers126 headers and2204 public members with
+zero warnings. All eleven imported candidate15 files remain byte-identical;
+their prior strict/header and source/provenance evidence is rehashed and
+bound. Foreign archives remain unsanitized. This is bounded root self-review,
+not complete routine/mode/platform acceptance or independent approval.
+
+These31 records bring the normalized ledger to4561. The nine provider-free
+v27 records were already normalized and are not counted again. Three final
+normative documentation changes require fresh checks and exact compiler-input
+rehashing before a local commit. PPSVX remains external and unregistered;
+all2113 routines,130 missing required XBLAS and remaining P00-P11 remain required.
+
+
+The three final documentation changes pass six fresh checks. Audit
+`8848ee1919004da59a607ce66eafb8f7b1fe15f294380608a9751ee7ec809e92`
+rehashes 11152 unchanged numerical/default compiler inputs and artifacts,
+including installed consumers. Its frozen source archive is
+`513b56f631cb626123e3433b1e9f1db8e7fc5724cbfc7145a083a83c1545459d`. Numerical executions retain their original v27 identities;
+no numerical rerun on changed prose is claimed. The ledger now has 4567
+normalized records. PPSVX remains external and unregistered. Candidate06 numerical evidence and remaining fault/memory acceptance are next.

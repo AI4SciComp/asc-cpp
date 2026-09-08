@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v26` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v27` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,12 +10,47 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 346 partial scalar routines.
-The other 1,767 required
+routes below bring the development mapping to 350 partial scalar routines.
+The other 1,763 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_cholesky_packed_refinement.h` adds actual S/D/C/Z `Pprfs` and
+metadata-only `QueryPprfsWorkspace`. It refines full X using immutable ordinary
+packed AP/AFP and full B, with independent layouts and contiguous real
+FERR/BERR outputs. The caller supplies matching original/factor/RHS provenance.
+All six operands and workspace are disjoint. Original Hermitian AP packing
+reads only the real diagonal; AFP packing reads full complex coefficients.
+Raw factors have no zero-diagonal, finiteness or positive-definiteness certificate.
+
+Real workspace is 3N scalar objects plus N native INTEGER; complex workspace
+is 2N scalar objects plus N underlying-real entries. Each row packed operand
+adds N(N+1)/2 caller scalar objects, and row B/X each add N*NRHS. There is no
+hidden allocation, dense conversion, transfer, rescaling or fallback. Empty N
+or NRHS writes zero error bounds locally without reading AP/AFP/B/X or scratch.
+Plans bind every layout, dimension, stride, vector size and provider identity.
+
+INFO starts signed MIN and FERR/BERR start NaN. Missing, partial or nonzero
+INFO and negative estimates are provider defects: direct writes survive,
+while row X is withheld. Nonfinite estimates retain completed X and raw
+bounds with an accuracy warning and partial validity. FERR is an estimate,
+not a universal certificate; arbitrary nonfinite inputs have no finite-X guarantee.
+
+Six candidate15 configurations pass five behavioral tests and fail four
+ordinary required mathematical gates. Public tests include 27008 profiles;
+11248 fault/preflight and 2176 memory/raw-factor profiles also pass. For scalar
+A=B with exact X=1, the two smallest subnormals and maximum finite value
+produce infinite native FERR despite a finite independent formula. Direct
+pinned calls reproduce INFO=0. These failures remain required, with unchanged
+tolerances. Audited v27 Release passes861/939 per ABI with78 required math
+failures; Debug111/127 and ASC-only sanitizer48/64 each retain16. There are
+no skips, timeouts or sanitizer diagnostics. All72 primary TUs compile
+freshly in six lanes; four relocated packages pass31 family consumers.
+Doxygen covers126 headers and2204 public members without warnings. Scoped
+provider-free static/shared checks pass16/16 each. Complete routine/mode,
+concurrency and platform acceptance remain required.
 
 `lapack_cholesky_packed_condition.h` adds actual S/D/C/Z `Ppcon` and
 metadata-only `QueryPpconWorkspace`. It estimates reciprocal condition from

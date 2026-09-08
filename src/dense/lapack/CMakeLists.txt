@@ -44,6 +44,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_cholesky_packed_driver.cc
   reference_cholesky_packed_equilibration.cc
   reference_cholesky_packed_condition.cc
+  reference_cholesky_packed_refinement.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
   FILES
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack.h"
@@ -61,6 +62,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_driver.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_equilibration.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_condition.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_refinement.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_qr.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_driver.h"
