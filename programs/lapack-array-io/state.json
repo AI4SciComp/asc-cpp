@@ -14,12 +14,10 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "324ff44faa7d77e1e64b1a48a04f62c9c73d8d03",
+  "last_implementation_commit": "347c04967870a348832c50fc5efb5d5445f6aa79",
   "worktree_diff_identity": {
-    "state": "v25_runtime_and_documentation_bound_ready_for_local_commit",
-    "parent_commit": "324ff44faa7d77e1e64b1a48a04f62c9c73d8d03",
-    "implementation_tree": "1cbb6e6a39aee7ed6b18f7bb3697b4696df210e8",
-    "source_archive_sha256": "84b175abcf577943fdd05bf234a63caa99564bcc0adc6519c8b2fb71ad12b8a5"
+    "state": "v26_runtime_and_documentation_bound_ready_for_local_commit",
+    "parent_commit": "347c04967870a348832c50fc5efb5d5445f6aa79"
   },
   "packages": {
     "P00": {
@@ -882,11 +880,52 @@
       "compile_only_audit": "p05-packed-cholesky-refinement-candidate-02/compile-audit.json",
       "compile_only_audit_sha256": "8a58988dbe335055de658a9f4c59c26de8c68e34a629bee18dd7122193c5310b",
       "scope": "PPRFS compile/count/signature candidate02:both GNU11 Debug ABIs compile3 new objects andpass2 tests (25310 source-count checks+fourfull signatures);11 strict/header/format commands pass. Candidate01 two builds fail oncopied range-loop descriptor underWerror;its4 configure/build and11passing static records remain. Two const-reference loop bindings aretheonly source change. Six freshobjects total;65prior ASC primaryTUs explicitly reused,foreign archives unsanitized. Public adapter compiles but isnot executed bythese two tests;no typed numerical/failure/memory/installed/fullmode/platform credit.34rawrecords,all2113routines/130missingXBLAS remain required.",
-      "review": "programs/lapack-array-io/packed-cholesky-refinement-review.md"
+      "review": "programs/lapack-array-io/packed-cholesky-refinement-review.md",
+      "runtime_candidate": "p05-packed-cholesky-refinement-candidate-06",
+      "runtime_evidence_state": "audited_and_normalized",
+      "runtime_scope": "PPRFS candidate06 seven-file numerical slice: six configurations each7 tests,3pass/4ordinaryrequiredmathfail,zeroskips/sanitizer diagnostics. Each passes26880 independent public profiles (9042432 LP64/8963584 ILP64 checks;78848 exact INTEGER guard-byte difference),25310 source counts andfourfull signatures. Eachscalar mathgate fails12/168 at smallesttwo subnormals andmaximum finite A=B,X1: nativeFERRInf versusfinite independentformula, directpinned INFO0 reproduces. Current30 freshobjects;exact65 priorASC primaryTUs reused perlane,foreignunsanitized. Current8 priorpublic/adapter/count/signature strict+2newmath strict,4isolatedheaders and7-fileformat pass; all mathematical thresholds unchanged.94newrawrecords include11 nonzero historical/current failures. Earlier compile-only35 records already normalized;not repeated. Fullfailure/preflight/memory/allocation/concurrency/installed/platform acceptance remainsopen. All2113 routines,130missingrequiredXBLAS andremainingP00-P11 remainrequired;no fullyverified credit.",
+      "next_candidate_state": "bounded_candidate_complete_remaining_acceptance_and_root_reconciliation",
+      "next_candidate_scope": "Review remaining raw-factor/wrong-triangle provenance obligations. After PPCON v26 documentation/commit, reconcile candidate13 v25 baseline with v26 product and atomically register all eleven preserved PPRFS files and four required math gates for fresh root, installed and provider-free validation.",
+      "runtime_audit": "p05-packed-cholesky-refinement-candidate-06/numeric-audit.json",
+      "runtime_audit_sha256": "6aef05bf3fb12646ad1547ba006ceea87ef8641a264a97c781d57293ba98693f",
+      "failure_candidate": "p05-packed-cholesky-refinement-candidate-09",
+      "failure_evidence_state": "audited_and_normalized",
+      "failure_audit": "p05-packed-cholesky-refinement-candidate-09/failure-audit.json",
+      "failure_audit_sha256": "9484966a038a6294890c8dbaac2c54a19701db91677d81abdbe7e8353220a6fd",
+      "failure_scope": "PPRFS candidate09 ten-file fault slice: six configurations each execute eight tests, four pass and four ordinary required math gates fail, zero skips or sanitizer diagnostics. Each fault run passes 6272 profiles and 110464 checks: all sixteen independent layouts, both triangles, four scalars, two real calls, thirteen injected outcomes and 34 preflight cases. INFO sentinels/partial writes, direct error retention, row-X publication and zero observed C++/wrapped libc allocation are scoped. Seven owned plus two support objects compile freshly per current lane (54 total); historical candidates07/08 each compile nine. Their copied metadata incorrectly said eight owned objects; actual compile commands prove seven, and no extra object credit is assigned. Candidate07 four strict failures and candidate08 two strict failures remain; candidate09 four strict checks and ten-file formatting pass. The seven numerical sources are unchanged from candidate06. All math thresholds remain unchanged. 47 new raw records include 14 nonzero records. Mutual operand alias classes, protected reads, concurrency, installed/platform and complete mode acceptance remain open. All 2113 required routines and 130 missing XBLAS remain required; no fully verified credit.",
+      "memory_candidate": "p05-packed-cholesky-refinement-candidate-11",
+      "memory_evidence_state": "audited_and_normalized",
+      "memory_audit": "p05-packed-cholesky-refinement-candidate-11/memory-audit.json",
+      "memory_audit_sha256": "a4975972c983d7f921194eb9fcf6a65f41283cafc25c1cba09ec4ee3d391f7a4",
+      "memory_scope": "PPRFS candidate11 eleven-file memory/alias slice: six configurations each execute nine tests, five pass and four ordinary required math gates fail, zero skips or sanitizer diagnostics. Failure tests pass 10112 profiles and 137344 checks, including all fifteen mutual operand pairs with exact/partial overlap (3840 new profiles), valid containing arrays and the C++ complex interleaved-component guarantee. Each memory run passes 1600 profiles: 768 fully protected queries,512 local calls with unread AP/AFP/B/X and scratch,768 stale-plan rejections, 768 native calls at packed/error/full-row-column protected boundaries and64 calls with the original Hermitian imaginary diagonal protected. Actual placement array new establishes containing-array lifetimes. The current four strict checks and eleven-file formatting pass. Eleven objects per lane (eight owned,three support),66 current objects; candidate10 also compiles66. Exact prior65-TU ASC libraries are reused; foreign archives are unsanitized. Candidate10 metadata retains copied eight-test wording before stating the actual nine-test total; executed registrations and JUnit prove nine, with no extra credit.56 new raw records retain twelve CTest exit8 failures. Production remains unchanged from candidate06; all mathematical thresholds stay fixed. Raw-factor/wrong-triangle provenance, complete malformed-descriptor dimensions, concurrency, installed/platform/full-mode closure remain open. All2113 required routines and130 missing XBLAS remain required; no fully verified credit.",
+      "current_candidate": "p05-packed-cholesky-refinement-candidate-13",
+      "preflight_evidence_state": "audited_and_normalized",
+      "preflight_audit": "p05-packed-cholesky-refinement-candidate-13/preflight-audit.json",
+      "preflight_audit_sha256": "7fc6ceced71dc199913af4457a3dfaa97e58c7f3f8d8bdc15385af9a62597ce6",
+      "preflight_scope": "PPRFS candidate13 preflight extension: six configurations execute nine tests each, five pass and four ordinary required mathematical tests fail, with zero skips or sanitizer diagnostics. Each failure test passes11248 profiles/144160 checks. Nine new rejection classes add 1136 profiles: seven RHS/solution column, FERR/BERR length, backward increment and stale B/X stride cases across128 profiles; two packing size/alignment cases across120 active-packing profiles. All prior mutual operand aliases, native fault translations and1600 protected memory profiles remain. Candidate12 Debug LP64 passes five behavioral tests but both strict checks fail the80-line function limit (88 lines); candidate13 extracts a packing helper without changing assertions. Two current strict checks and eleven-file formatting pass; unchanged other strict/header/source evidence is bound to candidate11 and its prior chain. Eleven fresh objects per lane,66 current plus11 historical; exact prior65-primary-TU ASC libraries reused, foreign unsanitized. 34 new raw records include nine nonzero records, all preserved. Production remains unchanged from candidate06. Full raw-factor/wrong-triangle provenance, installed family, concurrency, platform and complete mode acceptance remain open. All2113 required routines,130 missing required XBLAS and remaining P00-P11 remain required; zero fully verified credit."
+    },
+    "P05.packed_cholesky_condition_root_integration": {
+      "state": "in_progress",
+      "owner": "integration",
+      "candidate": "p05-packed-cholesky-condition-candidate-04",
+      "completion_audit": "p05-packed-cholesky-condition-integration-v26-01/audit.json",
+      "completion_audit_sha256": "f237bdbe1b438a320fbd8610fcf1f49f35a4b15d39921f22966472508fd0b2bf",
+      "review": "programs/lapack-array-io/packed-cholesky-condition-review.md",
+      "scope": "Fresh v26 full GNU Release both ABIs each928 tests,854pass/74requiredmathfail; affected Debug each116,104pass/12requiredmathfail; ASC-only Clang19 sanitizer each55,43pass/12requiredmathfail. Zero skips. 71 primary Core/Dense/provider TUs freshly compiled per lane,426 objects. Four relocated30-family packages,six static checks and125-header/2196-member Doxygen pass. Eleven PPCON candidate04 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. The four scalar condition-one failures remain ordinary required gates;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
+      "bounded_integration_complete": true
+    },
+    "P01.packed_cholesky_condition_provider_free": {
+      "state": "in_progress",
+      "owner": "integration",
+      "bounded_checks_complete": true,
+      "completion_audit": "p01-packed-cholesky-condition-default-v26-01/audit.json",
+      "completion_audit_sha256": "9e5bc1c4a4e9ba962476cc4ca6cf4de3ae9edac0c0762c737d7c804a2b766132",
+      "successful_seal": "p01-packed-cholesky-condition-default-v26-01/completion-record-02/record.json",
+      "scope": "Both scoped static/shared lanes pass 16/16 with zero skips; 60 fresh primary objects and 12 support objects, all six optional packed Cholesky headers absent. First passing seal has stale v25/PPEQU prose only; corrected seal02 binds the first record and changes the label to v26/PPCON. Audit and numerical checks unchanged. Ten records including both seals remain pending normalization with root v26. Full baseline/shared-provider acceptance remains open."
     }
   },
-  "active_task": "P05.packed_cholesky_condition_root_integration",
-  "next_action": "Commit audited PPEQU, then import the exact eleven PPCON candidate04 files and register all four ordinary required mathematical gates. Freeze v26 with 346 partial Reference rows, 125 headers and 30 installed families. Execute fresh 71-primary-TU lanes: GNU Release 928 tests per ABI, affected Debug 116 and ASC-only sanitizer 55, plus installed/static/docs/default checks. The 74 required mathematical failures remain failures. Continue PPRFS candidate02 with independent public numerical, failure and memory tests. All remaining P00-P11 and 130 missing required XBLAS entries stay required.",
+  "active_task": "P05.packed_cholesky_refinement_candidate",
+  "next_action": "Commit the audited PPCON v26 slice locally. Preserve PPRFS candidate13 and its eleven files, audits and ordinary required mathematical failures. Review remaining raw-factor/wrong-triangle provenance obligations, then reconcile its frozen v25 base against the committed v26 product before atomic PPRFS registration and fresh v27 root/installed/default validation. All 2113 required routines,130 missing XBLAS and remaining P00-P11 remain required.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -894,7 +933,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "950b23b6dd74f048d17596f8ea2aa70105e6f9561c1dd2551ba0817d2e615aca"
+    "coverage_mapping_sha256": "7fe32d670675c5aa24c178137b43c9c664372ba51da07340b96c7fae4cd78e2d"
   },
   "provider": {
     "version": "3.12.1",
@@ -1185,7 +1224,14 @@
       "p05-packed-cholesky-refinement-candidate-02/compile-audit.json",
       "p05-packed-cholesky-equilibration-integration-v25-01/audit.json",
       "p01-packed-cholesky-equilibration-default-v25-01/audit.json",
-      "p05-packed-cholesky-equilibration-doc-integration-v25-01/audit.json"
+      "p05-packed-cholesky-equilibration-doc-integration-v25-01/audit.json",
+      "p05-packed-cholesky-refinement-candidate-06/numeric-audit.json",
+      "p05-packed-cholesky-refinement-candidate-09/failure-audit.json",
+      "p05-packed-cholesky-refinement-candidate-11/memory-audit.json",
+      "p05-packed-cholesky-refinement-candidate-13/preflight-audit.json",
+      "p05-packed-cholesky-condition-integration-v26-01/audit.json",
+      "p01-packed-cholesky-condition-default-v26-01/audit.json",
+      "p05-packed-cholesky-condition-doc-integration-v26-01/audit.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -1266,6 +1312,13 @@
       "PPRFS compile/count/signature candidate02:both GNU11 Debug ABIs compile3 new objects andpass2 tests (25310 source-count checks+fourfull signatures);11 strict/header/format commands pass. Candidate01 two builds fail oncopied range-loop descriptor underWerror;its4 configure/build and11passing static records remain. Two const-reference loop bindings aretheonly source change. Six freshobjects total;65prior ASC primaryTUs explicitly reused,foreign archives unsanitized. Public adapter compiles but isnot executed bythese two tests;no typed numerical/failure/memory/installed/fullmode/platform credit.34rawrecords,all2113routines/130missingXBLAS remain required.",
       "Fresh v25 full GNU Release bothABIs each917 tests,847pass/70requiredmathfail;affected Debug each105,97pass/8requiredmathfail;ASC-only Clang19 sanitizer each46,38pass/8requiredmathfail. Zero skips.70 primary Core/Dense/provider TUs freshly compiled perlane,420 objects. Four relocated29-family packages,six static checks and124-header/2188-public-member Doxygen pass. Ten PPEQU candidate07 files imported unchanged,successful completion-record-02 andcurrent exact-input strict/header evidence bound;failed first candidate seal retained. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
       "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. Unchanged neutral band header bound in actual installed/relocated packages. New PPSV optional header stays absent. This is scoped current-v25 descriptor/header/package evidence,not a full baseline or shared-provider claim.",
+      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "PPRFS candidate06 seven-file numerical slice: six configurations each7 tests,3pass/4ordinaryrequiredmathfail,zeroskips/sanitizer diagnostics. Each passes26880 independent public profiles (9042432 LP64/8963584 ILP64 checks;78848 exact INTEGER guard-byte difference),25310 source counts andfourfull signatures. Eachscalar mathgate fails12/168 at smallesttwo subnormals andmaximum finite A=B,X1: nativeFERRInf versusfinite independentformula, directpinned INFO0 reproduces. Current30 freshobjects;exact65 priorASC primaryTUs reused perlane,foreignunsanitized. Current8 priorpublic/adapter/count/signature strict+2newmath strict,4isolatedheaders and7-fileformat pass; all mathematical thresholds unchanged.94newrawrecords include11 nonzero historical/current failures. Earlier compile-only35 records already normalized;not repeated. Fullfailure/preflight/memory/allocation/concurrency/installed/platform acceptance remainsopen. All2113 routines,130missingrequiredXBLAS andremainingP00-P11 remainrequired;no fullyverified credit.",
+      "PPRFS candidate09 ten-file fault slice: six configurations each execute eight tests, four pass and four ordinary required math gates fail, zero skips or sanitizer diagnostics. Each fault run passes 6272 profiles and 110464 checks: all sixteen independent layouts, both triangles, four scalars, two real calls, thirteen injected outcomes and 34 preflight cases. INFO sentinels/partial writes, direct error retention, row-X publication and zero observed C++/wrapped libc allocation are scoped. Seven owned plus two support objects compile freshly per current lane (54 total); historical candidates07/08 each compile nine. Their copied metadata incorrectly said eight owned objects; actual compile commands prove seven, and no extra object credit is assigned. Candidate07 four strict failures and candidate08 two strict failures remain; candidate09 four strict checks and ten-file formatting pass. The seven numerical sources are unchanged from candidate06. All math thresholds remain unchanged. 47 new raw records include 14 nonzero records. Mutual operand alias classes, protected reads, concurrency, installed/platform and complete mode acceptance remain open. All 2113 required routines and 130 missing XBLAS remain required; no fully verified credit.",
+      "PPRFS candidate11 eleven-file memory/alias slice: six configurations each execute nine tests, five pass and four ordinary required math gates fail, zero skips or sanitizer diagnostics. Failure tests pass 10112 profiles and 137344 checks, including all fifteen mutual operand pairs with exact/partial overlap (3840 new profiles), valid containing arrays and the C++ complex interleaved-component guarantee. Each memory run passes 1600 profiles: 768 fully protected queries,512 local calls with unread AP/AFP/B/X and scratch,768 stale-plan rejections, 768 native calls at packed/error/full-row-column protected boundaries and64 calls with the original Hermitian imaginary diagonal protected. Actual placement array new establishes containing-array lifetimes. The current four strict checks and eleven-file formatting pass. Eleven objects per lane (eight owned,three support),66 current objects; candidate10 also compiles66. Exact prior65-TU ASC libraries are reused; foreign archives are unsanitized. Candidate10 metadata retains copied eight-test wording before stating the actual nine-test total; executed registrations and JUnit prove nine, with no extra credit.56 new raw records retain twelve CTest exit8 failures. Production remains unchanged from candidate06; all mathematical thresholds stay fixed. Raw-factor/wrong-triangle provenance, complete malformed-descriptor dimensions, concurrency, installed/platform/full-mode closure remain open. All2113 required routines and130 missing XBLAS remain required; no fully verified credit.",
+      "PPRFS candidate13 preflight extension: six configurations execute nine tests each, five pass and four ordinary required mathematical tests fail, with zero skips or sanitizer diagnostics. Each failure test passes11248 profiles/144160 checks. Nine new rejection classes add 1136 profiles: seven RHS/solution column, FERR/BERR length, backward increment and stale B/X stride cases across128 profiles; two packing size/alignment cases across120 active-packing profiles. All prior mutual operand aliases, native fault translations and1600 protected memory profiles remain. Candidate12 Debug LP64 passes five behavioral tests but both strict checks fail the80-line function limit (88 lines); candidate13 extracts a packing helper without changing assertions. Two current strict checks and eleven-file formatting pass; unchanged other strict/header/source evidence is bound to candidate11 and its prior chain. Eleven fresh objects per lane,66 current plus11 historical; exact prior65-primary-TU ASC libraries reused, foreign unsanitized. 34 new raw records include nine nonzero records, all preserved. Production remains unchanged from candidate06. Full raw-factor/wrong-triangle provenance, installed family, concurrency, platform and complete mode acceptance remain open. All2113 required routines,130 missing required XBLAS and remaining P00-P11 remain required; zero fully verified credit.",
+      "Fresh v26 full GNU Release both ABIs each928 tests,854pass/74requiredmathfail; affected Debug each116,104pass/12requiredmathfail; ASC-only Clang19 sanitizer each55,43pass/12requiredmathfail. Zero skips. 71 primary Core/Dense/provider TUs freshly compiled per lane,426 objects. Four relocated30-family packages,six static checks and125-header/2196-member Doxygen pass. Eleven PPCON candidate04 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. The four scalar condition-one failures remain ordinary required gates;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
+      "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. Unchanged neutral band header bound in actual installed/relocated packages. All six optional packed Cholesky headers stay absent. This is scoped current-v26 descriptor/header/package evidence,not a full baseline or shared-provider claim.",
       "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
     ]
   },
@@ -1276,15 +1329,15 @@
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 0,
-    "reference_not_started_in_ledger": 1771,
-    "reference_in_progress_in_ledger": 342,
+    "reference_not_started_in_ledger": 1767,
+    "reference_in_progress_in_ledger": 346,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 20,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 342,
+    "registered_partial_reference_operations": 346,
     "unregistered_expert_operations_with_scoped_tests": 0,
-    "note": "2113required;342Reference in_progress/1771not_started;native20implemented_unverified;zerofullyverified. PPEQUv25:Releaseeach847/917 with70requiredmathfailures;Debug97/105 andASC-only sanitizer38/46 with8requiredmathfailures,zeroskips/timeouts. Four29familypackages and124headerDoxygen pass. FourunregisteredPPCON math failures remainrequired. AllP00-P11/fullmodes/platforms and130missingrequiredXBLAS remainopen.",
+    "note": "2113 required;346 Reference in_progress/1767 not_started;native20 implemented_unverified;zero fully verified. Root v26 Release each 854/928 with74 required mathematical failures;Debug104/116 andASC-only sanitizer43/55 eachwith12 required mathematical failures. No skips, timeouts or sanitizer diagnostics. Four30-family packages and125-header Doxygen pass. Four unregistered PPRFS mathematical failures remain required. All routine/mode/platform andP00-P11 acceptance remain open.",
     "unregistered_packed_operations_with_scoped_tests": 4
   },
   "blockers": [
@@ -1371,7 +1424,31 @@
     {
       "id": "PACKED-CHOLESKY-CONDITION-SCALAR-MATH",
       "record": "programs/lapack-array-io/packed-cholesky-condition-review.md",
-      "scope": "Pinned allfourPPCON precisions return0 forsmallesttwo subnormal scalar norms andInf formaximum finite scalar norm;exactcondition1 required. Directcalls reproduceINFO0 inbothABIs/all6configurations. Four ordinary failing mathematicalCTests remainunregistered pendingrootintegration;no patch/rescaling/fallback/waiver. Continue unaffectedwork."
+      "scope": "All four pinned PPCON precisions return RCOND0 for the two smallest subnormal scalar norms and Inf for the maximum finite scalar norm, although exact condition1 is required. Direct calls reproduce INFO0 in both ABIs/all six candidate configurations. Four ordinary required mathematical CTests are registered in v26; both affected Debug root runs retain them. No patch, rescaling, fallback or waiver. Continue unaffected work."
+    },
+    {
+      "id": "PACKED-CHOLESKY-REFINEMENT-SCALAR-MATH",
+      "packages": [
+        "P05"
+      ],
+      "affected_rows": [
+        "spprfs",
+        "dpprfs",
+        "cpprfs",
+        "zpprfs"
+      ],
+      "state": "open",
+      "observed_failure": "Candidate06 reproduces all four required scalar failures in GNU11 Debug/Release and ASC-only Clang19 ASan/UBSan, both actual integer ABIs. Each scalar fails 12/168 checks: both triangles/layouts at denorm_min, twice denorm_min and maximum finite A=B return X1 and FERRInf with INFO0. The independent scalar FERR is finite. Unit, minimum-normal and maximum-quarter controls pass; BERR agrees with its safeguarded formula. Direct pinned calls reproduce every failing bound.",
+      "evidence": "p05-packed-cholesky-refinement-candidate-06/numeric-audit.json",
+      "command": [
+        "python3",
+        "-B",
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/p05-packed-cholesky-refinement-candidate-06/numeric-audit.py"
+      ],
+      "cause": "PPRFS estimates inv(A)*diag(W) using unscaled PPTRS operations: subnormal inverse intermediates overflow before weighting, while maximum finite A gives an overflowing abs(A)*abs(X)+abs(B) intermediate. The finite widened scalar formula avoids both verifier overflows.",
+      "attempted_resolution": "Derived the scalar FERR/BERR independently and checked rounded-factor reconstruction within two epsilon. Candidate06 fixes only the LP64 test aggregate narrowing by separating native INFO from numerical values. All six configurations executed with unchanged formulas and tolerances. No mathematical resolution or waiver is claimed.",
+      "closure": "Pass the unchanged independent scalar gates under an explicitly approved provider/source/contract resolution. No provider patch, implicit rescaling, precision fallback or waiver is introduced.",
+      "unaffected_work": "Continue PPRFS failure/preflight/protected-memory/allocation tests, PPCON v26 integration and all remaining P00-P11. Keep all2113 routines and130 missing required XBLAS required."
     }
   ],
   "external_approvals": [
@@ -1392,26 +1469,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "324ff44faa7d77e1e64b1a48a04f62c9c73d8d03",
-    "implementation_tree": "1cbb6e6a39aee7ed6b18f7bb3697b4696df210e8",
-    "source_archive_sha256": "84b175abcf577943fdd05bf234a63caa99564bcc0adc6519c8b2fb71ad12b8a5",
-    "coverage_mapping_sha256": "9a6596b54899760dac0ec601e425f2158018c351a53f30f98925822bd957a361",
-    "scope": "Fresh v25 full GNU Release bothABIs each917 tests,847pass/70requiredmathfail;affected Debug each105,97pass/8requiredmathfail;ASC-only Clang19 sanitizer each46,38pass/8requiredmathfail. Zero skips.70 primary Core/Dense/provider TUs freshly compiled perlane,420 objects. Four relocated29-family packages,six static checks and124-header/2188-public-member Doxygen pass. Ten PPEQU candidate07 files imported unchanged,successful completion-record-02 andcurrent exact-input strict/header evidence bound;failed first candidate seal retained. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
-    "candidate": "p05-packed-cholesky-equilibration-integration-v25-01",
+    "base_commit": "347c04967870a348832c50fc5efb5d5445f6aa79",
+    "implementation_tree": "8bed16013d088939b21dea9c459a223c6d219884",
+    "source_archive_sha256": "7d126fcf40086e72e740c9d0190bba9bcbbf69debf48499e91b231a04f20fcf0",
+    "coverage_mapping_sha256": "d9c9d28116385768406f3bb138813244601762b3025f0389ba4a61cece559e79",
+    "scope": "Fresh v26 full GNU Release both ABIs each928 tests,854pass/74requiredmathfail; affected Debug each116,104pass/12requiredmathfail; ASC-only Clang19 sanitizer each55,43pass/12requiredmathfail. Zero skips. 71 primary Core/Dense/provider TUs freshly compiled per lane,426 objects. Four relocated30-family packages,six static checks and125-header/2196-member Doxygen pass. Eleven PPCON candidate04 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. The four scalar condition-one failures remain ordinary required gates;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
+    "candidate": "p05-packed-cholesky-condition-integration-v26-01",
     "state": "bounded_integration_complete",
-    "completion_audit": "p05-packed-cholesky-equilibration-integration-v25-01/audit.json",
-    "completion_audit_sha256": "3ccd3c7db9a03613842c0445b59303e3123382a2191e1f83f1fe019ed0838487"
+    "completion_audit": "p05-packed-cholesky-condition-integration-v26-01/audit.json",
+    "completion_audit_sha256": "f237bdbe1b438a320fbd8610fcf1f49f35a4b15d39921f22966472508fd0b2bf"
   },
   "last_completed_verification": {
-    "base_commit": "324ff44faa7d77e1e64b1a48a04f62c9c73d8d03",
-    "implementation_tree": "1cbb6e6a39aee7ed6b18f7bb3697b4696df210e8",
-    "source_archive_sha256": "84b175abcf577943fdd05bf234a63caa99564bcc0adc6519c8b2fb71ad12b8a5",
-    "coverage_mapping_sha256": "9a6596b54899760dac0ec601e425f2158018c351a53f30f98925822bd957a361",
-    "scope": "Fresh v25 full GNU Release bothABIs each917 tests,847pass/70requiredmathfail;affected Debug each105,97pass/8requiredmathfail;ASC-only Clang19 sanitizer each46,38pass/8requiredmathfail. Zero skips.70 primary Core/Dense/provider TUs freshly compiled perlane,420 objects. Four relocated29-family packages,six static checks and124-header/2188-public-member Doxygen pass. Ten PPEQU candidate07 files imported unchanged,successful completion-record-02 andcurrent exact-input strict/header evidence bound;failed first candidate seal retained. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
-    "candidate": "p05-packed-cholesky-equilibration-integration-v25-01",
+    "base_commit": "347c04967870a348832c50fc5efb5d5445f6aa79",
+    "implementation_tree": "8bed16013d088939b21dea9c459a223c6d219884",
+    "source_archive_sha256": "7d126fcf40086e72e740c9d0190bba9bcbbf69debf48499e91b231a04f20fcf0",
+    "coverage_mapping_sha256": "d9c9d28116385768406f3bb138813244601762b3025f0389ba4a61cece559e79",
+    "scope": "Fresh v26 full GNU Release both ABIs each928 tests,854pass/74requiredmathfail; affected Debug each116,104pass/12requiredmathfail; ASC-only Clang19 sanitizer each55,43pass/12requiredmathfail. Zero skips. 71 primary Core/Dense/provider TUs freshly compiled per lane,426 objects. Four relocated30-family packages,six static checks and125-header/2196-member Doxygen pass. Eleven PPCON candidate04 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. The four scalar condition-one failures remain ordinary required gates;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
+    "candidate": "p05-packed-cholesky-condition-integration-v26-01",
     "state": "bounded_integration_complete",
-    "completion_audit": "p05-packed-cholesky-equilibration-integration-v25-01/audit.json",
-    "completion_audit_sha256": "3ccd3c7db9a03613842c0445b59303e3123382a2191e1f83f1fe019ed0838487"
+    "completion_audit": "p05-packed-cholesky-condition-integration-v26-01/audit.json",
+    "completion_audit_sha256": "f237bdbe1b438a320fbd8610fcf1f49f35a4b15d39921f22966472508fd0b2bf"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -1822,19 +1899,30 @@
       "state": "bounded_integration_complete",
       "completion_audit": "p05-packed-cholesky-equilibration-integration-v25-01/audit.json",
       "completion_audit_sha256": "3ccd3c7db9a03613842c0445b59303e3123382a2191e1f83f1fe019ed0838487"
+    },
+    {
+      "base_commit": "347c04967870a348832c50fc5efb5d5445f6aa79",
+      "implementation_tree": "8bed16013d088939b21dea9c459a223c6d219884",
+      "source_archive_sha256": "7d126fcf40086e72e740c9d0190bba9bcbbf69debf48499e91b231a04f20fcf0",
+      "coverage_mapping_sha256": "d9c9d28116385768406f3bb138813244601762b3025f0389ba4a61cece559e79",
+      "scope": "Fresh v26 full GNU Release both ABIs each928 tests,854pass/74requiredmathfail; affected Debug each116,104pass/12requiredmathfail; ASC-only Clang19 sanitizer each55,43pass/12requiredmathfail. Zero skips. 71 primary Core/Dense/provider TUs freshly compiled per lane,426 objects. Four relocated30-family packages,six static checks and125-header/2196-member Doxygen pass. Eleven PPCON candidate04 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. The four scalar condition-one failures remain ordinary required gates;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
+      "candidate": "p05-packed-cholesky-condition-integration-v26-01",
+      "state": "bounded_integration_complete",
+      "completion_audit": "p05-packed-cholesky-condition-integration-v26-01/audit.json",
+      "completion_audit_sha256": "f237bdbe1b438a320fbd8610fcf1f49f35a4b15d39921f22966472508fd0b2bf"
     }
   ],
-  "next_task": "Commit audited PPEQU, then import the exact eleven PPCON candidate04 files and register all four ordinary required mathematical gates. Freeze v26 with 346 partial Reference rows, 125 headers and 30 installed families. Execute fresh 71-primary-TU lanes: GNU Release 928 tests per ABI, affected Debug 116 and ASC-only sanitizer 55, plus installed/static/docs/default checks. The 74 required mathematical failures remain failures. Continue PPRFS candidate02 with independent public numerical, failure and memory tests. All remaining P00-P11 and 130 missing required XBLAS entries stay required.",
+  "next_task": "Commit the audited PPCON v26 slice locally. Preserve PPRFS candidate13 and its eleven files, audits and ordinary required mathematical failures. Review remaining raw-factor/wrong-triangle provenance obligations, then reconcile its frozen v25 base against the committed v26 product before atomic PPRFS registration and fresh v27 root/installed/default validation. All 2113 required routines,130 missing XBLAS and remaining P00-P11 remain required.",
   "documentation_verification": {
-    "candidate": "p05-packed-cholesky-equilibration-doc-integration-v25-01",
-    "completion_audit": "p05-packed-cholesky-equilibration-doc-integration-v25-01/audit.json",
-    "completion_audit_sha256": "641c3f8bd3d17e970f1428499d0903d94c78ff26ac83b530a0889665d3f1efba",
+    "candidate": "p05-packed-cholesky-condition-doc-integration-v26-01",
+    "completion_audit": "p05-packed-cholesky-condition-doc-integration-v26-01/audit.json",
+    "completion_audit_sha256": "09dbc148a639968b747a7e42cbfd22b72ad75fc7d384f1c0a7162fa61d8ebd50",
     "metadata": {
-      "base_commit": "324ff44faa7d77e1e64b1a48a04f62c9c73d8d03",
-      "implementation_tree": "26c743373470e9c4545a670d60194150c4de1e44",
-      "source_archive_sha256": "7ba1493f04f804fbfd2db5bc5c94f8293a213937886d9bb018d44514fc54a991",
-      "coverage_mapping_sha256": "950b23b6dd74f048d17596f8ea2aa70105e6f9561c1dd2551ba0817d2e615aca",
-      "scope": "Only three released v25 prose/coverage scope files change after numeric/default audits. Six fresh documentation checks andexact prior compiler-input rehash required;no new runtime credit."
+      "base_commit": "347c04967870a348832c50fc5efb5d5445f6aa79",
+      "implementation_tree": "a378fbb0b29396175d3acdaf609cf3ecc887d0ad",
+      "source_archive_sha256": "7919110a7894fb9b0a51e49b5fdc79b33c45d16f9d1588a08fa9ebd6cd31e1f9",
+      "coverage_mapping_sha256": "7fe32d670675c5aa24c178137b43c9c664372ba51da07340b96c7fae4cd78e2d",
+      "scope": "Only three released v26 prose/coverage scope files change after numeric/default audits. Six fresh documentation checks andexact prior compiler-input rehash required;no new runtime credit."
     },
     "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
   }

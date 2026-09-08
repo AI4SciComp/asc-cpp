@@ -82,3 +82,63 @@ PPCON candidate, register its four ordinary required mathematical gates, and
 run fresh root integration. Full routine/mode/concurrency/platform acceptance,
 all P00-P11,70 existing andfour new required mathematical tests, and130 missing
 required XBLAS remain open. Zero routines are fully verified.
+
+
+## Root registration
+
+The eleven audited candidate04 files are imported byte-for-byte after PPEQU
+commit 347c049. Its audit and passing seal remain bound, including all earlier
+failed records. Atomic source/header/profile v26, installed-family and contract
+registrations add four in_progress routes: 346 Reference partial/1767
+not_started, native20 implemented_unverified and zero fully verified. All
+97 candidate records were already normalized. Four ordinary required scalar
+math failures are registered alongside the five passing candidate tests;
+there are now 74 full-root required mathematical gates expected to fail.
+Fresh 71-primary-TU, 125-header and 30-family verification is recorded below.
+All routine/mode/concurrency/platform acceptance, P00-P11 and 130 missing
+required XBLAS entries remain required. PPRFS candidate02 is only compiled;
+its independent public/failure/memory tests remain the next draft work.
+
+
+## Executed v26 root integration
+
+Audit `f237bdbe1b438a320fbd8610fcf1f49f35a4b15d39921f22966472508fd0b2bf` and its seal bind the frozen 1,116-file product
+and thirty raw records. Both GNU Release suites execute 928 tests: 854 pass
+and 74 ordinary required mathematical tests fail. Affected Debug passes
+104/116 per ABI; ASC-only Clang19 sanitizer passes 43/55. Each retains twelve
+required mathematical failures. No tests skip or time out, and no sanitizer
+diagnostics occur. All five PPCON behavioral tests pass in every configuration:
+1,504 public profiles (247,760 LP64 or 241,936 ILP64 checks), 608 fault profiles
+and 6,176 checks, 19,209 source-count checks, four full signatures and 192
+protected-memory profiles. The four scalar condition-one gates remain failures.
+
+All 71 primary Core/Dense/provider TUs compile freshly per lane, producing
+426 primary objects. Four relocated packages pass thirty family consumers.
+Six static checks pass; Doxygen covers 125 headers and 2,196 public members
+without warnings. The eleven candidate04 files remain byte-identical, and
+their strict/header evidence and historical failures are bound. Foreign
+archives are unsanitized. This is bounded root self-review, not complete
+routine/mode/platform acceptance or independent approval.
+
+Provider-free audit
+`9e5bc1c4a4e9ba962476cc4ca6cf4de3ae9edac0c0762c737d7c804a2b766132`
+binds scoped GNU static/shared runs of 16/16 checks each, sixty fresh primary
+objects and twelve test/support objects. All six optional packed Cholesky
+headers are absent, with no Fortran discovery or foreign linkage. Both audit
+seals pass. The first seal's copied stdout calls the result v25/PPEQU; the
+second corrects that label to v26/PPCON and binds the first record unchanged.
+The audit/source/artifact checks were valid in both; no numerical rerun or
+additional coverage is inferred. These 41 records bring the ledger to 4,374.
+
+PPRFS numerical, fault, memory and further preflight slices are recorded in
+its adjacent review. PPRFS remains external and unregistered. All 2,113
+routines, 130 missing required XBLAS and complete P00-P11 remain required.
+
+
+The three final documentation changes pass six fresh checks. Audit
+`09dbc148a639968b747a7e42cbfd22b72ad75fc7d384f1c0a7162fa61d8ebd50`
+rehashes 10861 unchanged numerical/default compiler inputs and artifacts,
+including installed consumers. Its frozen source archive is
+`7919110a7894fb9b0a51e49b5fdc79b33c45d16f9d1588a08fa9ebd6cd31e1f9`. Numerical executions retain their original v26 identities;
+no numerical rerun on changed prose is claimed. The ledger now has 4380
+normalized records. PPRFS candidate13 remains preserved and unregistered; its remaining provenance obligations and root reconciliation are next.

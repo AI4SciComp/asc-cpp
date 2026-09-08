@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v25` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v26` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,12 +10,39 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 342 partial scalar routines.
-The other 1,771 required
+routes below bring the development mapping to 346 partial scalar routines.
+The other 1,767 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_cholesky_packed_condition.h` adds actual S/D/C/Z `Ppcon` and
+metadata-only `QueryPpconWorkspace`. It estimates reciprocal condition from
+immutable ordinary packed Cholesky factors and a finite nonnegative original
+matrix one-norm. Active row factors pack p live scalar objects in explicit
+caller storage; column factors stay direct. Real workspace is 3N scalars plus
+N native INTEGER, complex is 2N scalars plus N underlying-real entries.
+Empty order and positive-order zero norm return RCOND=1/0 locally, with absent
+INFO and no factor or scratch reads. No rescaling, allocation or fallback occurs.
+
+INFO starts signed MIN and RCOND starts NaN. Any nonzero, missing or partial
+INFO is a provider defect; negative RCOND is a defect, and nonfinite RCOND is
+an accuracy warning with partial validity. Direct output remains visible.
+Six candidate configurations each pass five public/failure/count/signature/
+protected-memory tests and fail four ordinary required mathematical tests.
+For each scalar, one-by-one matrices at the two smallest subnormal norms
+return RCOND=0 and maximum finite norm returns infinity despite exact
+reciprocal condition one. Direct pinned calls reproduce this with INFO=0.
+The independent tolerance is unchanged; these failures block acceptance.
+Fresh v26 Release passes 854/928 per ABI, retaining 74 required mathematical
+failures. Affected Debug passes 104/116 and ASC-only sanitizer 43/55, each
+retaining twelve required math failures. No tests skip or time out; no
+sanitizer diagnostics occur. All 71 primary TUs compile freshly in six
+lanes. Four relocated packages pass thirty family consumers. Doxygen covers
+125 headers and 2196 public members without warnings. Provider-free scoped
+static/shared checks pass 16/16 each. Full routine/mode, concurrency and
+platform acceptance remain required; no native or fully verified credit is added.
 
 `lapack_cholesky_packed_equilibration.h` adds actual S/D/C/Z `Ppequ` and
 metadata-only `QueryPpequWorkspace`. It computes scales and SCOND/AMAX from

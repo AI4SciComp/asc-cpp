@@ -792,6 +792,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_cholesky_packed_inverse.h
     lapack_cholesky_packed_driver.h
     lapack_cholesky_packed_equilibration.h
+    lapack_cholesky_packed_condition.h
     lapack_cholesky_driver.h
     lapack_cholesky_equilibration.h
     lapack_cholesky_refinement.h
@@ -1427,3 +1428,64 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     TARGET asc_dense_lapack_packed_cholesky_equilibration_read_observation_test
     LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
 endif()
+
+# Ordinary packed positive-definite condition estimation.
+foreach(_suite IN ITEMS source_counts pinned_signatures)
+  set(_target "asc_dense_lapack_packed_cholesky_condition_${_suite}_test")
+  add_executable("${_target}" "packed_cholesky_condition_${_suite}_test.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE
+    "${PROJECT_SOURCE_DIR}/src/dense/lapack"
+    "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+  asc_register_test(NAME "asc_cpp.dense_lapack.packed_cholesky_condition.${_suite}"
+    TARGET "${_target}" LABELS dense_lapack lapack runtime validation)
+endforeach()
+add_executable(asc_dense_lapack_packed_cholesky_condition_public_test
+  installed_lu/packed_cholesky_condition_main.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_packed_cholesky_condition_public_test)
+asc_register_test(NAME asc_cpp.dense_lapack.packed_cholesky_condition.public
+  TARGET asc_dense_lapack_packed_cholesky_condition_public_test
+  LABELS dense_lapack lapack runtime numerical TIMEOUT 120)
+add_executable(asc_dense_lapack_packed_cholesky_condition_fault_test
+  packed_cholesky_condition_fault_test.cc packed_cholesky_condition_faults.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_packed_cholesky_condition_fault_test)
+target_include_directories(asc_dense_lapack_packed_cholesky_condition_fault_test PRIVATE
+  "${PROJECT_SOURCE_DIR}/src/dense/lapack" "${PROJECT_SOURCE_DIR}/tests/dense"
+  "${CMAKE_CURRENT_SOURCE_DIR}/installed_lu"
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_packed_cholesky_condition_fault_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_stem IN ITEMS ppcon)
+    target_link_options(asc_dense_lapack_packed_cholesky_condition_fault_test PRIVATE
+      "-Wl,--wrap=${_scalar}${_stem}_")
+  endforeach()
+endforeach()
+asc_register_test(NAME asc_cpp.dense_lapack.packed_cholesky_condition.failure
+  TARGET asc_dense_lapack_packed_cholesky_condition_fault_test
+  LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  add_executable(asc_dense_lapack_packed_cholesky_condition_read_observation_test
+    packed_cholesky_condition_read_observation_test.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test(asc_dense_lapack_packed_cholesky_condition_read_observation_test)
+  target_include_directories(asc_dense_lapack_packed_cholesky_condition_read_observation_test PRIVATE
+    "${PROJECT_SOURCE_DIR}/tests/dense" "${CMAKE_CURRENT_SOURCE_DIR}/installed_lu")
+  asc_register_test(NAME asc_cpp.dense_lapack.packed_cholesky_condition.read_observation
+    TARGET asc_dense_lapack_packed_cholesky_condition_read_observation_test
+    LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+endif()
+
+add_executable(asc_dense_lapack_packed_cholesky_condition_math_test
+  packed_cholesky_condition_math_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_packed_cholesky_condition_math_test)
+target_include_directories(asc_dense_lapack_packed_cholesky_condition_math_test PRIVATE
+  "${PROJECT_SOURCE_DIR}/src/dense/lapack" "${CMAKE_CURRENT_SOURCE_DIR}/installed_lu"
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.packed_cholesky_condition.required_math_${_scalar}ppcon"
+    TARGET asc_dense_lapack_packed_cholesky_condition_math_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack runtime numerical TIMEOUT 120)
+endforeach()
