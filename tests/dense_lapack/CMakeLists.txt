@@ -1151,3 +1151,33 @@ foreach(_scalar IN ITEMS s d c z)
       LABELS dense_lapack lapack runtime numerical TIMEOUT 120)
   endforeach()
 endforeach()
+
+# Observe actual ignored loads and rejected operands through the checked facet.
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  add_executable(asc_dense_lapack_triangular_band_expert_read_observation_test
+    triangular_band_expert_read_observation_test.cc
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test(asc_dense_lapack_triangular_band_expert_read_observation_test)
+  target_include_directories(asc_dense_lapack_triangular_band_expert_read_observation_test PRIVATE
+    "${PROJECT_SOURCE_DIR}/tests/dense" "${CMAKE_CURRENT_SOURCE_DIR}/installed_lu")
+  asc_register_test(NAME asc_cpp.dense_lapack.triangular_band_expert.read_observation
+    TARGET asc_dense_lapack_triangular_band_expert_read_observation_test
+    LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)
+endif()
+add_executable(asc_dense_lapack_triangular_band_expert_operands_test
+  triangular_band_expert_operands_test.cc triangular_band_expert_faults.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_triangular_band_expert_operands_test)
+target_include_directories(asc_dense_lapack_triangular_band_expert_operands_test PRIVATE
+  "${PROJECT_SOURCE_DIR}/src/dense/lapack" "${PROJECT_SOURCE_DIR}/tests/dense"
+  "${CMAKE_CURRENT_SOURCE_DIR}/installed_lu"
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_stem IN ITEMS tbcon tbrfs)
+    target_link_options(asc_dense_lapack_triangular_band_expert_operands_test PRIVATE
+      "-Wl,--wrap=${_scalar}${_stem}_")
+  endforeach()
+endforeach()
+asc_register_test(NAME asc_cpp.dense_lapack.triangular_band_expert.operands
+  TARGET asc_dense_lapack_triangular_band_expert_operands_test
+  LABELS dense_lapack lapack runtime validation allocation TIMEOUT 120)

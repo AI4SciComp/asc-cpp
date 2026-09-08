@@ -14,9 +14,9 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "e395588fc7b6dbc490dcdb0dd1dbb76b29da3707",
+  "last_implementation_commit": "ec1b4e20201901bb7bd00a881cca117657a4c331",
   "worktree_diff_identity": {
-    "state": "v20_documentation_audited_ready_for_local_commit",
+    "state": "memory_root_audited_ready_for_commit_packed_factor_counts_preserved",
     "parent_commit": "47e732153c30b4147f30590383b98a4923dcb543"
   },
   "packages": {
@@ -671,10 +671,36 @@
       "dependencies": [
         "P05.triangular_band_expert_candidate"
       ]
+    },
+    "P05.triangular_band_expert_memory_root_integration": {
+      "base_commit": "ec1b4e20201901bb7bd00a881cca117657a4c331",
+      "implementation_tree": "36c0541f18a7493945be5516dd80ec0a6e9e1940",
+      "source_archive_sha256": "e15f50c06c8ace6f8263ac28aa4dd22f03263003f67cb09cf0ba58eef5456353",
+      "coverage_mapping_sha256": "b35feb962ebf88051951a7063860794ea9b1cbc7aea49667bb3a3f39c621558c",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit.",
+      "candidate": "p05-triangular-band-expert-memory-integration-v20-01",
+      "state": "in_progress",
+      "completion_audit": "p05-triangular-band-expert-memory-integration-v20-01/audit.json",
+      "completion_audit_sha256": "f30886c6a1c0ca0b465ea3bddf329a01f6556f05da0f692ba0e604b46f9e6d17",
+      "bounded_root_integration_complete": true,
+      "remaining": "Full normalized modes,memory/platform/foreign sanitizer and70 required mathematical gates remain open."
+    },
+    "P05.packed_cholesky_source_admission": {
+      "candidate": "p05-packed-cholesky-counts-01",
+      "state": "in_progress",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit.",
+      "completion_audit": "p05-packed-cholesky-counts-01/audit.json",
+      "completion_audit_sha256": "54b52e12fb3779eba41244efaaad2bb96b6fe30dfa24e2bb4b421309cf864006",
+      "dependencies": [
+        "P01",
+        "P04"
+      ],
+      "source_review": "programs/lapack-array-io/packed-cholesky-admission-review.md",
+      "remaining": "Compiler-emitted PPTRF signatures,typed adapter/public contract,mathematical/failure/memory/installed evidence;all32 ordinary packed positive-definite routines remain required andunimplemented."
     }
   },
-  "active_task": "P05.triangular_band_expert_memory_root_integration",
-  "next_action": "Commit the completed v20 eight-routine integration,then import the unchanged audited read/operand test sources. Freeze a fresh source tree,run affected GNU Release/Debug andASC-only sanitizer lanes,rehash unchanged v20 full-suite production/inputs andverify CMake registration. Continue all other P00-P11 requirements;70 math gates and130 required XBLAS remain open.",
+  "active_task": "P05.packed_cholesky_factor_candidate",
+  "next_action": "Commit the audited two-test band-estimator slice. Finish exact PPTRF emitted-signature binding,then implement the four typed PPTRF provider overloads using the tested integer bounds,real-only complex diagonal reads andsource-defined partial publication. Continue all32 packed positive-definite routines andall remaining P00-P11;130 missing XBLAS and70 required mathematical gates remain open.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -996,7 +1022,9 @@
       "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, both ABIs; each1/1 and1056 protected-memory profiles,zero skips or sanitizer diagnostics. Twelve fresh test/support objects; exact candidate03 adapter andv19 primary ASC objects explicitly reused and rehashed. Two strict andformat checks pass. Two original strict failures preserved; only multiple declarations split. Real C++20 containing arrays, whole A protection for unit-scalar/empty paths, B/X padding protection, complete backing preservation andzero observed C++ allocation. No root/installed,foreign sanitizer,full-mode/platform or fully verified routine credit.",
       "Fresh v20 full GNU Release bothABIs each880 tests,810pass/70requiredmathfail;affected Debug each68,60pass/8requiredmathfail;ASC-only Clang19 sanitizer each19,11pass/8requiredmathfail. Zero skips.65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects. Four relocated24-family packages andsix source/contract/documentation checks pass;119headers/2148publicmembers/zeroDoxygenwarnings. Exact candidate strict/header evidence bound unchanged;foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim.",
       "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim.",
-      "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, bothABIs;each1/1 and28800 operand-preflight profiles,zero skips or sanitizer diagnostics.18 fresh test/fault/support objects;exact candidate03 adapter andv19 production explicitly reused and rehashed. Two strict andformat checks pass. Original constructor-assumption runtime failure andtwo strict failures preserved. All25 invalid cases per profile retained at their actual descriptor/query/execution boundaries:invalid flags,shape/output length/stride,device placement andA/B/X/FERR/BERR overlaps. Complete operand/workspace bytes preserved,zero observed C++ allocations andzero observed provider entries. No native mathematical,root/installed,full-mode/platform or fully verified routine credit."
+      "Six final GNU Release/Debug and ASC-only Clang19 sanitizer runs, bothABIs;each1/1 and28800 operand-preflight profiles,zero skips or sanitizer diagnostics.18 fresh test/fault/support objects;exact candidate03 adapter andv19 production explicitly reused and rehashed. Two strict andformat checks pass. Original constructor-assumption runtime failure andtwo strict failures preserved. All25 invalid cases per profile retained at their actual descriptor/query/execution boundaries:invalid flags,shape/output length/stride,device placement andA/B/X/FERR/BERR overlaps. Complete operand/workspace bytes preserved,zero observed C++ allocations andzero observed provider entries. No native mathematical,root/installed,full-mode/platform or fully verified routine credit.",
+      "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit.",
+      "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
     ]
   },
   "counts": {
@@ -1117,26 +1145,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "47e732153c30b4147f30590383b98a4923dcb543",
-    "implementation_tree": "b04f6bc01a7c97c570c89bb65c7fa4df998490ba",
-    "source_archive_sha256": "245a2ee3d40afffe0c6bc0c839869ac229232de7442b4fa8d692ecb2356000ff",
+    "base_commit": "ec1b4e20201901bb7bd00a881cca117657a4c331",
+    "implementation_tree": "36c0541f18a7493945be5516dd80ec0a6e9e1940",
+    "source_archive_sha256": "e15f50c06c8ace6f8263ac28aa4dd22f03263003f67cb09cf0ba58eef5456353",
     "coverage_mapping_sha256": "b35feb962ebf88051951a7063860794ea9b1cbc7aea49667bb3a3f39c621558c",
-    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
-    "state": "bounded_documentation_complete",
-    "candidate": "p05-triangular-band-expert-doc-integration-v20-01",
-    "completion_audit": "p05-triangular-band-expert-doc-integration-v20-01/audit.json",
-    "completion_audit_sha256": "ffbad2202d73a82062677fc7249c2cc68f71835403a2bfe5d30973808bfd4107"
+    "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit.",
+    "candidate": "p05-triangular-band-expert-memory-integration-v20-01",
+    "state": "bounded_evidence_complete",
+    "completion_audit": "p05-triangular-band-expert-memory-integration-v20-01/audit.json",
+    "completion_audit_sha256": "f30886c6a1c0ca0b465ea3bddf329a01f6556f05da0f692ba0e604b46f9e6d17"
   },
   "last_completed_verification": {
-    "base_commit": "47e732153c30b4147f30590383b98a4923dcb543",
-    "implementation_tree": "b04f6bc01a7c97c570c89bb65c7fa4df998490ba",
-    "source_archive_sha256": "245a2ee3d40afffe0c6bc0c839869ac229232de7442b4fa8d692ecb2356000ff",
+    "base_commit": "ec1b4e20201901bb7bd00a881cca117657a4c331",
+    "implementation_tree": "36c0541f18a7493945be5516dd80ec0a6e9e1940",
+    "source_archive_sha256": "e15f50c06c8ace6f8263ac28aa4dd22f03263003f67cb09cf0ba58eef5456353",
     "coverage_mapping_sha256": "b35feb962ebf88051951a7063860794ea9b1cbc7aea49667bb3a3f39c621558c",
-    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
-    "state": "bounded_documentation_complete",
-    "candidate": "p05-triangular-band-expert-doc-integration-v20-01",
-    "completion_audit": "p05-triangular-band-expert-doc-integration-v20-01/audit.json",
-    "completion_audit_sha256": "ffbad2202d73a82062677fc7249c2cc68f71835403a2bfe5d30973808bfd4107"
+    "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit.",
+    "candidate": "p05-triangular-band-expert-memory-integration-v20-01",
+    "state": "bounded_evidence_complete",
+    "completion_audit": "p05-triangular-band-expert-memory-integration-v20-01/audit.json",
+    "completion_audit_sha256": "f30886c6a1c0ca0b465ea3bddf329a01f6556f05da0f692ba0e604b46f9e6d17"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -1474,7 +1502,25 @@
       "candidate": "p05-triangular-band-expert-doc-integration-v20-01",
       "completion_audit": "p05-triangular-band-expert-doc-integration-v20-01/audit.json",
       "completion_audit_sha256": "ffbad2202d73a82062677fc7249c2cc68f71835403a2bfe5d30973808bfd4107"
+    },
+    {
+      "base_commit": "ec1b4e20201901bb7bd00a881cca117657a4c331",
+      "implementation_tree": "36c0541f18a7493945be5516dd80ec0a6e9e1940",
+      "source_archive_sha256": "e15f50c06c8ace6f8263ac28aa4dd22f03263003f67cb09cf0ba58eef5456353",
+      "coverage_mapping_sha256": "b35feb962ebf88051951a7063860794ea9b1cbc7aea49667bb3a3f39c621558c",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit.",
+      "candidate": "p05-triangular-band-expert-memory-integration-v20-01",
+      "state": "bounded_evidence_complete",
+      "completion_audit": "p05-triangular-band-expert-memory-integration-v20-01/audit.json",
+      "completion_audit_sha256": "f30886c6a1c0ca0b465ea3bddf329a01f6556f05da0f692ba0e604b46f9e6d17"
+    },
+    {
+      "candidate": "p05-packed-cholesky-counts-01",
+      "state": "bounded_evidence_complete",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit.",
+      "completion_audit": "p05-packed-cholesky-counts-01/audit.json",
+      "completion_audit_sha256": "54b52e12fb3779eba41244efaaad2bb96b6fe30dfa24e2bb4b421309cf864006"
     }
   ],
-  "next_task": "Commit the completed v20 eight-routine integration,then import the unchanged audited read/operand test sources. Freeze a fresh source tree,run affected GNU Release/Debug andASC-only sanitizer lanes,rehash unchanged v20 full-suite production/inputs andverify CMake registration. Continue all other P00-P11 requirements;70 math gates and130 required XBLAS remain open."
+  "next_task": "Commit the audited two-test band-estimator slice. Finish exact PPTRF emitted-signature binding,then implement the four typed PPTRF provider overloads using the tested integer bounds,real-only complex diagonal reads andsource-defined partial publication. Continue all32 packed positive-definite routines andall remaining P00-P11;130 missing XBLAS and70 required mathematical gates remain open."
 }

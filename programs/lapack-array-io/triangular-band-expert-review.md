@@ -122,3 +122,21 @@ Audit `ffbad2202d73a82062677fc7249c2cc68f71835403a2bfe5d30973808bfd4107`
 rehashes 8,700 numerical/default compiler inputs and artifacts unchanged. Only
 three released prose/scope files differ from the executed root snapshot. No
 new mathematical execution or closure is claimed for this prose update.
+
+## Registered memory and operand tests
+
+The two audited candidate sources are imported unchanged and registered in
+root CMake. Audit `f30886c6a1c0ca0b465ea3bddf329a01f6556f05da0f692ba0e604b46f9e6d17`
+binds tree `36c0541f18a7493945be5516dd80ec0a6e9e1940` and archive
+`e15f50c06c8ace6f8263ac28aa4dd22f03263003f67cb09cf0ba58eef5456353`.
+Four fresh affected GNU Release/Debug suites each execute 70 tests: 62 pass
+and eight required mathematical gates fail. Both ASC-only sanitizer suites
+execute 21: 13 pass and eight fail. There are no skips or sanitizer diagnostics.
+Every lane freshly compiles all 65 primary TUs, giving 390 objects; all four
+relocated 24-family packages, four current-root strict checks and format pass.
+The 1,056 protected-memory and 28,800 operand-preflight profiles execute in
+every lane. Prior full v20 inputs and 70 mathematical failures are rehashed
+without relabeling the older 880-test executions as fresh full-suite results.
+No public declaration, provider identity, production code or frozen contract
+changes in this three-file test slice. Stronger modes/platform and full P00-P11
+acceptance remain required.

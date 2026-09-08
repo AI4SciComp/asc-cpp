@@ -137660,6 +137660,1898 @@
       "external_record": "p05-triangular-band-expert-doc-integration-v20-01/record-surface/record.json",
       "record_sha256": "eaf4258d6ecd9af49cba60b3cccd2555ae5e73186cb8074d75576436d7d329d3",
       "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-release-lp64-configure",
+      "started": "2026-09-08T13:33:36.174587+00:00",
+      "completed": "2026-09-08T13:34:06.269773+00:00",
+      "configuration": "affected-release-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-release-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "82118587b2253473ebd9972575197c8a28fcf322444d577e1ce68299290648bc"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-release-lp64-configure/record.json",
+      "record_sha256": "84bb1af0145d862e24fe2c71fe12e433e636700dada3924c861bd8f4c39e67b8",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-release-ilp64-configure",
+      "started": "2026-09-08T13:33:36.198293+00:00",
+      "completed": "2026-09-08T13:34:05.992865+00:00",
+      "configuration": "affected-release-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-release-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "84cb65d809fcd8e924e3036a104eb0bd7c6e7fcda232dcfa94b31b7828755bb9"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-release-ilp64-configure/record.json",
+      "record_sha256": "a2c1adb5e8ab550be61de5be461b3858f2767f425af699054e9b4b1024dacb9d",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-debug-lp64-configure",
+      "started": "2026-09-08T13:33:36.218492+00:00",
+      "completed": "2026-09-08T13:34:06.265402+00:00",
+      "configuration": "affected-debug-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d07066c9d705dfa8d0dc8b4407dfd612f3295577c840c3093cb26754688e7df0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-debug-lp64-configure/record.json",
+      "record_sha256": "78166f9286dd214c66b946c497291c2dc1c7adf648dc804d93d414b4e625803f",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-debug-ilp64-configure",
+      "started": "2026-09-08T13:33:36.259125+00:00",
+      "completed": "2026-09-08T13:34:06.269795+00:00",
+      "configuration": "affected-debug-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f36832fe977bedfdd6de9686cb383b794345074a97c587c3a351b111731caafa"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-debug-ilp64-configure/record.json",
+      "record_sha256": "b6df3b0f42bc58435c347a191d867e12496d77e75ee7609e743ffe862a82073f",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-release-ilp64-build",
+      "started": "2026-09-08T13:34:06.326787+00:00",
+      "completed": "2026-09-08T13:40:55.447628+00:00",
+      "configuration": "affected-release-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-release-ilp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_blas_test",
+        "asc_dense_blas_level1_test",
+        "asc_dense_blas_level2_test",
+        "asc_dense_blas_level3_test",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_random_distribution_test",
+        "asc_random_engine_test",
+        "asc_random_generator_test",
+        "asc_random_seed_test",
+        "asc_random_stateful_engine_test",
+        "asc_random_statistical_test",
+        "asc_random_quasi_test",
+        "asc_random_dense_advanced_sampler_test",
+        "asc_random_dense_dense_generation_test",
+        "asc_random_dense_qmc_fill_test",
+        "asc_random_dense_thread_partition_test",
+        "asc_random_sparse_random_adapter_test",
+        "asc_random_sparse_sparse_generation_test",
+        "asc_random_sparse_thread_reproducibility_test",
+        "asc_dense_lapack_triangular_band_public_test",
+        "asc_dense_lapack_triangular_band_source_counts_test",
+        "asc_dense_lapack_triangular_band_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_fault_test",
+        "asc_dense_lapack_triangular_band_provider_read_observation_test",
+        "asc_dense_lapack_header_lapack_triangular_band_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_h_no_exceptions",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h",
+        "asc_dense_lapack_triangular_band_expert_public_test",
+        "asc_dense_lapack_triangular_band_expert_source_counts_test",
+        "asc_dense_lapack_triangular_band_expert_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_expert_fault_test",
+        "asc_dense_lapack_triangular_band_expert_math_test",
+        "asc_dense_lapack_triangular_band_expert_read_observation_test",
+        "asc_dense_lapack_triangular_band_expert_operands_test",
+        "asc_dense_lapack_header_lapack_triangular_band_condition_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_condition_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_band_error_bounds_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_error_bounds_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6ab7c3153be69f7eccc03f0caa7c959a210d5ae071be95d15a7e550a1b45cdaf"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-release-ilp64-build/record.json",
+      "record_sha256": "79b930a46d7fe9dbf663a61f71b3b3f2b450ae948e9c4ea7e4f2b0fc74c14a81",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-debug-ilp64-build",
+      "started": "2026-09-08T13:34:06.570634+00:00",
+      "completed": "2026-09-08T13:38:01.676423+00:00",
+      "configuration": "affected-debug-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-ilp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_blas_test",
+        "asc_dense_blas_level1_test",
+        "asc_dense_blas_level2_test",
+        "asc_dense_blas_level3_test",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_random_distribution_test",
+        "asc_random_engine_test",
+        "asc_random_generator_test",
+        "asc_random_seed_test",
+        "asc_random_stateful_engine_test",
+        "asc_random_statistical_test",
+        "asc_random_quasi_test",
+        "asc_random_dense_advanced_sampler_test",
+        "asc_random_dense_dense_generation_test",
+        "asc_random_dense_qmc_fill_test",
+        "asc_random_dense_thread_partition_test",
+        "asc_random_sparse_random_adapter_test",
+        "asc_random_sparse_sparse_generation_test",
+        "asc_random_sparse_thread_reproducibility_test",
+        "asc_dense_lapack_triangular_band_public_test",
+        "asc_dense_lapack_triangular_band_source_counts_test",
+        "asc_dense_lapack_triangular_band_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_fault_test",
+        "asc_dense_lapack_triangular_band_provider_read_observation_test",
+        "asc_dense_lapack_header_lapack_triangular_band_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_h_no_exceptions",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h",
+        "asc_dense_lapack_triangular_band_expert_public_test",
+        "asc_dense_lapack_triangular_band_expert_source_counts_test",
+        "asc_dense_lapack_triangular_band_expert_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_expert_fault_test",
+        "asc_dense_lapack_triangular_band_expert_math_test",
+        "asc_dense_lapack_triangular_band_expert_read_observation_test",
+        "asc_dense_lapack_triangular_band_expert_operands_test",
+        "asc_dense_lapack_header_lapack_triangular_band_condition_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_condition_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_band_error_bounds_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_error_bounds_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6ab7c3153be69f7eccc03f0caa7c959a210d5ae071be95d15a7e550a1b45cdaf"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-debug-ilp64-build/record.json",
+      "record_sha256": "ca2d2ecec62e7ad4ea70b767dee7cc8f376e797afc3e2655f8c2b7173b4e01b8",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-debug-lp64-build",
+      "started": "2026-09-08T13:34:06.571611+00:00",
+      "completed": "2026-09-08T13:38:02.269405+00:00",
+      "configuration": "affected-debug-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-lp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_blas_test",
+        "asc_dense_blas_level1_test",
+        "asc_dense_blas_level2_test",
+        "asc_dense_blas_level3_test",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_random_distribution_test",
+        "asc_random_engine_test",
+        "asc_random_generator_test",
+        "asc_random_seed_test",
+        "asc_random_stateful_engine_test",
+        "asc_random_statistical_test",
+        "asc_random_quasi_test",
+        "asc_random_dense_advanced_sampler_test",
+        "asc_random_dense_dense_generation_test",
+        "asc_random_dense_qmc_fill_test",
+        "asc_random_dense_thread_partition_test",
+        "asc_random_sparse_random_adapter_test",
+        "asc_random_sparse_sparse_generation_test",
+        "asc_random_sparse_thread_reproducibility_test",
+        "asc_dense_lapack_triangular_band_public_test",
+        "asc_dense_lapack_triangular_band_source_counts_test",
+        "asc_dense_lapack_triangular_band_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_fault_test",
+        "asc_dense_lapack_triangular_band_provider_read_observation_test",
+        "asc_dense_lapack_header_lapack_triangular_band_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_h_no_exceptions",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h",
+        "asc_dense_lapack_triangular_band_expert_public_test",
+        "asc_dense_lapack_triangular_band_expert_source_counts_test",
+        "asc_dense_lapack_triangular_band_expert_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_expert_fault_test",
+        "asc_dense_lapack_triangular_band_expert_math_test",
+        "asc_dense_lapack_triangular_band_expert_read_observation_test",
+        "asc_dense_lapack_triangular_band_expert_operands_test",
+        "asc_dense_lapack_header_lapack_triangular_band_condition_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_condition_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_band_error_bounds_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_error_bounds_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6ab7c3153be69f7eccc03f0caa7c959a210d5ae071be95d15a7e550a1b45cdaf"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-debug-lp64-build/record.json",
+      "record_sha256": "f5506a632452dbe3a4969b87b17bcd4c69988bcbc0a11195de0bd0370420b3ce",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-release-lp64-build",
+      "started": "2026-09-08T13:34:06.571775+00:00",
+      "completed": "2026-09-08T13:40:58.302576+00:00",
+      "configuration": "affected-release-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-release-lp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_blas_test",
+        "asc_dense_blas_level1_test",
+        "asc_dense_blas_level2_test",
+        "asc_dense_blas_level3_test",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_random_distribution_test",
+        "asc_random_engine_test",
+        "asc_random_generator_test",
+        "asc_random_seed_test",
+        "asc_random_stateful_engine_test",
+        "asc_random_statistical_test",
+        "asc_random_quasi_test",
+        "asc_random_dense_advanced_sampler_test",
+        "asc_random_dense_dense_generation_test",
+        "asc_random_dense_qmc_fill_test",
+        "asc_random_dense_thread_partition_test",
+        "asc_random_sparse_random_adapter_test",
+        "asc_random_sparse_sparse_generation_test",
+        "asc_random_sparse_thread_reproducibility_test",
+        "asc_dense_lapack_triangular_band_public_test",
+        "asc_dense_lapack_triangular_band_source_counts_test",
+        "asc_dense_lapack_triangular_band_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_fault_test",
+        "asc_dense_lapack_triangular_band_provider_read_observation_test",
+        "asc_dense_lapack_header_lapack_triangular_band_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_h_no_exceptions",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h",
+        "asc_dense_lapack_triangular_band_expert_public_test",
+        "asc_dense_lapack_triangular_band_expert_source_counts_test",
+        "asc_dense_lapack_triangular_band_expert_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_expert_fault_test",
+        "asc_dense_lapack_triangular_band_expert_math_test",
+        "asc_dense_lapack_triangular_band_expert_read_observation_test",
+        "asc_dense_lapack_triangular_band_expert_operands_test",
+        "asc_dense_lapack_header_lapack_triangular_band_condition_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_condition_h_no_exceptions",
+        "asc_dense_lapack_header_lapack_triangular_band_error_bounds_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_error_bounds_h_no_exceptions"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "6ab7c3153be69f7eccc03f0caa7c959a210d5ae071be95d15a7e550a1b45cdaf"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-release-lp64-build/record.json",
+      "record_sha256": "0f5153b5ace4996ad1112f88cca79004adc84154b289a2187dcaa3d4372368af",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-sanitizer-lp64-configure",
+      "started": "2026-09-08T13:35:29.441050+00:00",
+      "completed": "2026-09-08T13:35:31.781856+00:00",
+      "configuration": "asc-only-sanitizer-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-sanitizer-lp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ddfa8b1a5d8f768c035a7e4f765b906447d28aebd044ae2f71078309185d2302"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-lp64-configure/record.json",
+      "record_sha256": "c0ea8fc213bb57dd68c8eae64f47068b5bdbc4ae4fd5d958b9266d46c487aa13",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-sanitizer-ilp64-configure",
+      "started": "2026-09-08T13:35:29.463401+00:00",
+      "completed": "2026-09-08T13:35:31.848228+00:00",
+      "configuration": "asc-only-sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-sanitizer-ilp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c3a46bbd451ab416c11326f1329c0aa9404e0b293c9555bb491bc38b3ed29621"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-ilp64-configure/record.json",
+      "record_sha256": "4973ad86e7e7a697da18006d4eed885e0b3fdf26415ddfb92b5a6af25bc5cdcc",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-strict-read-lp64",
+      "started": "2026-09-08T13:35:30.594463+00:00",
+      "completed": "2026-09-08T13:36:10.797375+00:00",
+      "configuration": "current-root-clang18",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/triangular_band_expert_read_observation_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/installed_lu"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8bfab4b2208662208d25f31ccf201af9570e012a8b00dcb16738b6b43e5ebe8d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/static-strict-read-lp64/record.json",
+      "record_sha256": "0522653d38a8ba568ea404aafa0e6979720fff15579c426206a6e7a3b81cb31b",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-sanitizer-lp64-build",
+      "started": "2026-09-08T13:35:32.280196+00:00",
+      "completed": "2026-09-08T13:38:44.697211+00:00",
+      "configuration": "asc-only-sanitizer-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-sanitizer-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "948a5a109ea12fd3c8b62259ed501211b2be6d2483d8636483f296370ace5938"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-lp64-build/record.json",
+      "record_sha256": "efe28b1d62699d9a1894c17742cb38564eb4e653e95fb4ab1e3b4fd70544801a",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-sanitizer-ilp64-build",
+      "started": "2026-09-08T13:35:32.323632+00:00",
+      "completed": "2026-09-08T13:38:44.429961+00:00",
+      "configuration": "asc-only-sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-sanitizer-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "948a5a109ea12fd3c8b62259ed501211b2be6d2483d8636483f296370ace5938"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-ilp64-build/record.json",
+      "record_sha256": "6b326ff22a553d3418010ee295baee684c0bae7389f6c9bc6584e08bc9cde3ca",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-strict-read-ilp64",
+      "started": "2026-09-08T13:36:11.204106+00:00",
+      "completed": "2026-09-08T13:36:49.992195+00:00",
+      "configuration": "current-root-clang18",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/triangular_band_expert_read_observation_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/installed_lu"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8bfab4b2208662208d25f31ccf201af9570e012a8b00dcb16738b6b43e5ebe8d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/static-strict-read-ilp64/record.json",
+      "record_sha256": "4600a664427996af31e4be027850ed8ec70a858a1a9bcda1ae8b10fc6dfa7019",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-strict-operands-lp64",
+      "started": "2026-09-08T13:36:50.383289+00:00",
+      "completed": "2026-09-08T13:37:15.734132+00:00",
+      "configuration": "current-root-clang18",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/triangular_band_expert_operands_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-lp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5a8f879b099d731de61e8b32a7981c810c10674d60d86c662c8f9d2ba2fa40ab"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/static-strict-operands-lp64/record.json",
+      "record_sha256": "387bf88e3ee3bf51f9727004c332d8e2be5b4ae40d54f2b30d71be4ec903a304",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-strict-operands-ilp64",
+      "started": "2026-09-08T13:37:16.210253+00:00",
+      "completed": "2026-09-08T13:37:48.243017+00:00",
+      "configuration": "current-root-clang18",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/triangular_band_expert_operands_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-DASC_DENSE_LAPACK_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-ilp64/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/installed_lu",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5a8f879b099d731de61e8b32a7981c810c10674d60d86c662c8f9d2ba2fa40ab"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/static-strict-operands-ilp64/record.json",
+      "record_sha256": "80306a706e96b6f11b71a31f2bff7e01e2d5637e4945fb27dc1ead56e459bfbc",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-format",
+      "started": "2026-09-08T13:37:48.796864+00:00",
+      "completed": "2026-09-08T13:37:48.892707+00:00",
+      "configuration": "current-root-clang18",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--style=file:$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/.clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/triangular_band_expert_read_observation_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/source/tests/dense_lapack/triangular_band_expert_operands_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/static-format/record.json",
+      "record_sha256": "fe51ccfb1c10b262e453a151fd4a83e95797a29ae81a2e66c748d70734dd2780",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-debug-ilp64-registered",
+      "started": "2026-09-08T13:38:02.331561+00:00",
+      "completed": "2026-09-08T13:38:02.410736+00:00",
+      "configuration": "affected-debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|triangular_band_expert[.]|triangular_band_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band(_condition|_error_bounds)?_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "7d123d5e3b822d23ad6e7655442b1348dc694c3cdc4990f3a25c4970fa8f47ac"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-debug-ilp64-registered/record.json",
+      "record_sha256": "8e5b7311d12993b7bfff86ff154fa1888daa580f9b059f6ed6be19e9d17fb31d",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-debug-lp64-registered",
+      "started": "2026-09-08T13:38:03.017486+00:00",
+      "completed": "2026-09-08T13:38:03.094335+00:00",
+      "configuration": "affected-debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|triangular_band_expert[.]|triangular_band_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band(_condition|_error_bounds)?_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8313b236195a8aa3dba1da738eaff0a365f5bf3975429e62d1e189e9f2f632a6"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-debug-lp64-registered/record.json",
+      "record_sha256": "d0fc0bc597d4d41376947fc314a4e12363b959d347b76ee7eb051272de6a1e66",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-debug-ilp64-ctest",
+      "started": "2026-09-08T13:38:03.189495+00:00",
+      "completed": "2026-09-08T13:42:25.578809+00:00",
+      "configuration": "affected-debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|triangular_band_expert[.]|triangular_band_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band(_condition|_error_bounds)?_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/record-debug-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "e6e5fe34b2a026abba1cb7866d03a3f366431da9edeaa21809232853e1d6fcbb",
+        "ctest.xml": "6d189a6194cab5d8469567ebaca6287f7a15d7a3f1f1b9d7b8302a7f98c88ea9"
+      },
+      "test_counts": {
+        "executed": 70,
+        "failed": 8,
+        "passed": 62,
+        "selected": 70,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-debug-ilp64-ctest/record.json",
+      "record_sha256": "f911fd613bfdf7fdae05c3e97c96e8817bd0695fad34fe2b5740100aaf145db1",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-debug-lp64-ctest",
+      "started": "2026-09-08T13:38:03.728118+00:00",
+      "completed": "2026-09-08T13:42:26.160823+00:00",
+      "configuration": "affected-debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|triangular_band_expert[.]|triangular_band_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band(_condition|_error_bounds)?_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/record-debug-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "6f1b8de071558c603e6bbe8fdf7798887013bd2dda620b93bd8ca25ac2d4f453",
+        "ctest.xml": "c82e7216b69fb3176a5e9128284b850689370fce88cbe00c7ce560761c129377"
+      },
+      "test_counts": {
+        "executed": 70,
+        "failed": 8,
+        "passed": 62,
+        "selected": 70,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-debug-lp64-ctest/record.json",
+      "record_sha256": "ce895c22a714edfd47e7306c3104c260d28f92ecaf2bfb04e1f12d8284aa5745",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-sanitizer-ilp64-registered",
+      "started": "2026-09-08T13:38:44.801996+00:00",
+      "completed": "2026-09-08T13:38:44.816966+00:00",
+      "configuration": "asc-only-sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-sanitizer-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "dfa65770022e7bad29d7e81c2a0988c785e55a4af36970f15b4fe00620d30013"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-ilp64-registered/record.json",
+      "record_sha256": "1654a5de5de21b008e00eaddb114d7185c87296ea315abee2cb2d9cb93fff938",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-sanitizer-lp64-registered",
+      "started": "2026-09-08T13:38:45.102897+00:00",
+      "completed": "2026-09-08T13:38:45.118360+00:00",
+      "configuration": "asc-only-sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-sanitizer-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5d0879eb52016ded97ba6aa231c34b457b2bec00f68534a354f4c57528b6298c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-lp64-registered/record.json",
+      "record_sha256": "6c6f5a2240a5a67db781943f0c9a25099d7a60a8948922b19b19f95128d0ab94",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-sanitizer-ilp64-ctest",
+      "started": "2026-09-08T13:38:45.208204+00:00",
+      "completed": "2026-09-08T13:40:16.343992+00:00",
+      "configuration": "asc-only-sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-sanitizer-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "ec9a39912b81f231e33136ee8ab67e2dc3ed0a12958db748ea0b9abd66b07fbc",
+        "ctest.xml": "d12fd867c7eea9c04ebc5dcc96d8d398a8e331e6975c533e38dbe953fd937bd5"
+      },
+      "test_counts": {
+        "executed": 21,
+        "failed": 8,
+        "passed": 13,
+        "selected": 21,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-ilp64-ctest/record.json",
+      "record_sha256": "428ebf4581113589669a13ec7ba69df0285eea7c6b7d400387cd5e7039400706",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-sanitizer-lp64-ctest",
+      "started": "2026-09-08T13:38:45.484747+00:00",
+      "completed": "2026-09-08T13:40:17.071934+00:00",
+      "configuration": "asc-only-sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-sanitizer-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "43bc07c76ed5ac705b096b658c4a7fb90c8bc54f277bac5879d45521457c6b5d",
+        "ctest.xml": "ed24cb191f965a749bef5b4bff9d4c82e558a9cc57aec0906d5b4a11dfa5a30f"
+      },
+      "test_counts": {
+        "executed": 21,
+        "failed": 8,
+        "passed": 13,
+        "selected": 21,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-sanitizer-lp64-ctest/record.json",
+      "record_sha256": "81e105bf247e2b1dbd2f7f34df75f142b303d3b4ccc9688af3aeb0e06b273a97",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "packed-cholesky-source-01-closure-lp64",
+      "started": "2026-09-08T13:39:19.771332+00:00",
+      "completed": "2026-09-08T13:39:24.840163+00:00",
+      "configuration": "pinned-lp64-mechanical-closure",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-source-01/audit_sources.py",
+        "lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "69d5602cbe8e61287593bf88bcb5fa8c1f4088877a663fcb15fd062f38a59595"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-source-01/record-closure-lp64/record.json",
+      "record_sha256": "e16dd394283355703154a3224fa1653e2e300a1dbd558705b1e3e4451341eb8c",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "packed-cholesky-source-01-closure-ilp64",
+      "started": "2026-09-08T13:39:19.816925+00:00",
+      "completed": "2026-09-08T13:39:24.840144+00:00",
+      "configuration": "pinned-ilp64-mechanical-closure",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-source-01/audit_sources.py",
+        "ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "24f759f8982f8513b4a21b9d01e668faa22f8a2a1ee94ee1c17b7fce549a8c8d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-source-01/record-closure-ilp64/record.json",
+      "record_sha256": "f3d43ed5e688b4b27a1404af263d125fe65ebe1d2d895956d7adb598f7a29a7d",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-release-ilp64-registered",
+      "started": "2026-09-08T13:40:55.761272+00:00",
+      "completed": "2026-09-08T13:40:55.796634+00:00",
+      "configuration": "affected-release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-release-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|triangular_band_expert[.]|triangular_band_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band(_condition|_error_bounds)?_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "abbd3cb51c29b70ad054cece23543b6208522d622e2781723c5cdad84248c63f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-release-ilp64-registered/record.json",
+      "record_sha256": "7edab46d68133d4f728bd9b3d65eb80462a36110d067f0d1b75c729070ebf524",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-release-ilp64-ctest",
+      "started": "2026-09-08T13:40:56.120947+00:00",
+      "completed": "2026-09-08T13:44:05.152720+00:00",
+      "configuration": "affected-release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-release-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|triangular_band_expert[.]|triangular_band_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band(_condition|_error_bounds)?_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/record-release-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "5def1c0356b094f756f7010d80c0a1e4d446ab7006d027b1deca12d646ac590d",
+        "ctest.xml": "3537136fe58853acb8359fbaf9812e5433e32fe1eec113f53196e1f373bd28b7"
+      },
+      "test_counts": {
+        "executed": 70,
+        "failed": 8,
+        "passed": 62,
+        "selected": 70,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-release-ilp64-ctest/record.json",
+      "record_sha256": "92ce3605ed463232cb67b49e752dc479627e4373c1bd51a327b2d75b1367dceb",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-release-lp64-registered",
+      "started": "2026-09-08T13:40:58.610519+00:00",
+      "completed": "2026-09-08T13:40:58.642245+00:00",
+      "configuration": "affected-release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-release-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|triangular_band_expert[.]|triangular_band_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band(_condition|_error_bounds)?_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b5cf75e189b2e1b9b009c42b76e4f57cf2d9ff364d92610b4769c455cadd7fb4"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-release-lp64-registered/record.json",
+      "record_sha256": "2a3e3cc426ba6bb15aa08c0f9e8253bc39e6b5cbcc5f1c81c73dc8d0fab23833",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-01-release-lp64-ctest",
+      "started": "2026-09-08T13:40:58.956821+00:00",
+      "completed": "2026-09-08T13:44:08.452923+00:00",
+      "configuration": "affected-release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/build-release-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|triangular_band_expert[.]|triangular_band_expert_math[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band(_condition|_error_bounds)?_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/record-release-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "b9ea3c100f2580e85f59c113de7e04c1179881e41c068519ee41f6a963a7d9ad",
+        "ctest.xml": "0640aa097786e372257be65807443a09a373bcfd20faa2c914cdb39843f6e4c5"
+      },
+      "test_counts": {
+        "executed": 70,
+        "failed": 8,
+        "passed": 62,
+        "selected": 70,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/record-release-lp64-ctest/record.json",
+      "record_sha256": "99d9f696b3590fb2eab53cf29523798873c4c76f5ef17aeefc8ebfa02694bb43",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "packed-cholesky-source-01-factor-precision",
+      "started": "2026-09-08T13:43:16.277589+00:00",
+      "completed": "2026-09-08T13:43:16.346713+00:00",
+      "configuration": "complete-pinned-statement-comparison",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-source-01/factor_precision_01.py"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ad30f0f46b60d445efb7afafbf82b2026fe3d767c3dc8ca286ea94e36c9e445d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-source-01/record-factor-precision-01/record.json",
+      "record_sha256": "151478059ac4268f11b24177aa46611379571b7054704a07af8b85e9f1b477b3",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "packed-cholesky-counts-01-configure",
+      "started": "2026-09-08T13:47:15.697201+00:00",
+      "completed": "2026-09-08T13:47:17.673525+00:00",
+      "configuration": "GNU11-Debug-pure-counts",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/build",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_BUILD_TYPE=Debug"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c220ac2aefbe668c93586f5b9fc239656d5acab790adceeb618fff42df56397b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-counts-01/record-configure/record.json",
+      "record_sha256": "fa8460d050cbee25012e7cdee78961efa18c5f0a198599129dc18b6909350308",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "packed-cholesky-counts-01-build",
+      "started": "2026-09-08T13:47:17.952114+00:00",
+      "completed": "2026-09-08T13:47:19.005105+00:00",
+      "configuration": "GNU11-Debug-pure-counts",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/build",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "15517d733216809f4e0574e48da7298c47dfa2abe80d32406f2fdda4fb3a0454"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-counts-01/record-build/record.json",
+      "record_sha256": "7e19d5bc5db6cf754c728471fc64b3054d04489af2dd72e904adacc5c25f61a2",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "packed-cholesky-counts-01-registered",
+      "started": "2026-09-08T13:47:19.314668+00:00",
+      "completed": "2026-09-08T13:47:19.329691+00:00",
+      "configuration": "GNU11-Debug-pure-counts",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/build",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f912e22d12d72cba410a74bd07fd957b1a614cffd3359a89e10fc96d79ceb1bf"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-counts-01/record-registered/record.json",
+      "record_sha256": "fa3cc03f203e51b66f18189ad3995dfff335c2fee4fbe274ca6d244a8ee89aad",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "packed-cholesky-counts-01-ctest",
+      "started": "2026-09-08T13:47:19.599596+00:00",
+      "completed": "2026-09-08T13:47:20.071363+00:00",
+      "configuration": "GNU11-Debug-pure-counts",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/build",
+        "--verbose",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/record-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3f9d902632fce87dcff94825eb8cb650f053ee38a1b2467e4a3755c7c6e724b",
+        "ctest.xml": "82d762f0eb205e34b857491ae54c585ed6ecb44f42b78a6db3f0971b9337e9d5"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-counts-01/record-ctest/record.json",
+      "record_sha256": "0d9c026199ddf393a674fa60c31ca776701f7ecb123a6a36c8111ddc29d1304c",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "packed-cholesky-counts-01-strict",
+      "started": "2026-09-08T13:47:20.401787+00:00",
+      "completed": "2026-09-08T13:47:29.622985+00:00",
+      "configuration": "GNU11-Debug-pure-counts",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/source/tests/dense_lapack/packed_cholesky_source_counts_test.cc",
+        "-p",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/build",
+        "--config-file=$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/source/.clang-tidy",
+        "--warnings-as-errors=*"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f7b0ab9588803e69d19beb3af0ffcf95a4d200b7cfed59e9805ee046ede73bd3"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-counts-01/record-strict/record.json",
+      "record_sha256": "96f0223529586095d3b38cc794d41d46dda0e67f9179d012b9ec769545840c29",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "packed-cholesky-counts-01-format",
+      "started": "2026-09-08T13:47:29.910004+00:00",
+      "completed": "2026-09-08T13:47:29.950133+00:00",
+      "configuration": "GNU11-Debug-pure-counts",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--style=file:$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/source/.clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/source/src/dense/lapack/internal_packed_cholesky_counts.h",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/source/tests/dense_lapack/packed_cholesky_source_counts_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-counts-01/record-format/record.json",
+      "record_sha256": "b01bc0b1f132fc4fed56430de9514e60086e4c9b86503b4d293bd2cb68d1912b",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "packed-cholesky-source-01-reviewed-factor-precision",
+      "started": "2026-09-08T13:48:39.933313+00:00",
+      "completed": "2026-09-08T13:48:39.991663+00:00",
+      "configuration": "explicit-reviewed-source-normalizations",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-source-01/factor_precision_02.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b16c4e833c66779263a0c6e77c679b7b599b03777e35ccbe4978bea1aa0e6c39"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-source-01/record-factor-precision-02/record.json",
+      "record_sha256": "9c6adacee096261d21e943ddb4a9d4aa9aaee84da550ef302fab649b5a27d6b9",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
+    },
+    {
+      "id": "triangular-band-expert-memory-v20-completion",
+      "started": "2026-09-08T13:51:23.094098+00:00",
+      "completed": "2026-09-08T13:51:26.258553+00:00",
+      "configuration": "scoped-root-memory-evidence",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-memory-integration-v20-01/seal_audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "fde45419a788149bb6ed0147dc7f564e90efdf663a56a42f2b904a597c666930"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "aafb4f87afcd0d15511b9f725b5c3262b7208ab468af95408e432e5d52e8cd0a",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-memory-integration-v20-01/completion-record/record.json",
+      "record_sha256": "b4e55c4208d5c3fea8ed5d1ed78a0704eaafa3ecaf0310be484bcc26eadd1d68",
+      "scope": "Two unchanged audited tests andCMake registration added after committed v20;no production/provider/public-contract change. Four fresh affected GNU Release/Debug runs each70 tests62pass8requiredmathfail;two ASC-only Clang19 sanitizer runs each21 tests13pass8requiredmathfail;zero skips or sanitizer diagnostics. All65 primary Core/Dense/provider TUs freshly compiled in eachlane,390 objects;four relocated24-family packages pass. Current-root four strict checks andtwo-file format pass. New1056 protected-memory and28800 operand-preflight profiles perlane;foreign code unsanitized. Prior full-v20 both880-test runs with70 required math failures explicitly rehashed,not rerun or relabeled current full-suite. No fully verified routine/full-mode/platform/program credit."
+    },
+    {
+      "id": "packed-cholesky-counts-01-completion",
+      "started": "2026-09-08T13:54:03.255735+00:00",
+      "completed": "2026-09-08T13:54:03.526282+00:00",
+      "configuration": "source-counts-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-packed-cholesky-counts-01/seal_audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "80e7c9797dba8461416e3e4027893e78cfbe3f220f316e378dc273a5207e90fd"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "798fd0370ecd699cd028723efd2bbd880232f6e4c137b75acad91cdeb58974d2",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-packed-cholesky-counts-01/completion-record/record.json",
+      "record_sha256": "61a3993d50ca5d9e65bb7dbaf47a9e2aaae4931d995780727aecd9c1f7de843b",
+      "scope": "Pure PPTRF integer admission only;12340 literal virtual-source andactual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object andexact reused Core library;strict/format pass.32 required ordinary packed positive-definite entries inventoried;both mechanical provider closures contain127 objects,no writable static andfour conditioned external functions. Ten full PPTRF/selected-BLAS precision comparisons match afterthree explicit reviewed source differences;original unqualified comparison failure retained. No foreign PPTRF execution,public route,numerical/floating-environment/full32-source-progress orcapability credit."
     }
   ]
 }
