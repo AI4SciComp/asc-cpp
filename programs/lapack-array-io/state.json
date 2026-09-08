@@ -14,14 +14,10 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "38660ddbcfb85470aecbe09dc865c6eaae818943",
+  "last_implementation_commit": "4aabd3334a0d9c37e993c3505a4c10662d1b056a",
   "worktree_diff_identity": {
-    "state": "v17 implementation and documentation audited; ready for coherent local commit",
-    "parent_commit": "a7d3e9c32d3067d31c99727517205a7e4f534b35",
-    "implementation_tree": "0725d7f7c5504e96d3ce75ea81976c0f2f462c3d",
-    "source_archive_sha256": "8b30d497d3f3dfe3e45064a771261c0f7fe289d030ca61c4580ce5070954d4b8",
-    "numerical_snapshot": "p05-packed-triangular-integration-v17-01",
-    "documentation_snapshot": "p05-packed-triangular-doc-integration-v17-01"
+    "state": "candidate evidence checkpoint only",
+    "parent_commit": "4aabd3334a0d9c37e993c3505a4c10662d1b056a"
   },
   "packages": {
     "P00": {
@@ -528,10 +524,22 @@
       "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
       "completion_audit": "p05-packed-triangular-doc-integration-v17-01/audit.json",
       "completion_audit_sha256": "bff845b1e7e68feb8e6b441e2fbd951b095ce26960a451b18a253012219b19f9"
+    },
+    "P05.packed_triangular_expert_acceptance": {
+      "state": "in_progress",
+      "owner": "integration",
+      "dependencies": [
+        "P04"
+      ],
+      "bounded_candidate_complete": true,
+      "scope": "Unregistered packed TPCON/TPRFS8 candidate04. All6 lanes execute12 each:4 pass8 ordinary required math failures,zero skips.54 fresh adapter/test objects;prior62 production TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Original14 strict and8 public-header checks apply to unchanged production/header/public/count/signature bytes;4 final changed-test strict checks pass. Candidate02/03 missing direct-header failures and earlier overly strict matrix estimator fixture are preserved, not promoted to passes/provider defects. No root,installed,full-mode or fully verified credit.",
+      "review": "programs/lapack-array-io/packed-triangular-expert-admission-review.md",
+      "completion_audit": "p05-packed-triangular-expert-candidate-04/audit.json",
+      "completion_audit_sha256": "0c5e0276bfa885467fcee9a960d4391abff0b0f1e05746543f994a4526cfe8f6"
     }
   },
-  "active_task": "P05.packed_triangular_expert_acceptance",
-  "next_action": "Finish the preserved unregistered TPCON/TPRFS8 candidate01 audit and packed LATPS source/control review; all6 numerical lanes now execute12 each,4 pass8 required math failures,zero skips. Bind81-object closures,54 fresh adapter/test objects and explicitly reused62 primary production TUs. Add required extreme-scale/norm-overflow and comprehensive preflight acceptance in a fresh candidate without changing old evidence. Then register the bounded expert slice and continue all remaining P00-P11 work.",
+  "active_task": "P05.packed_triangular_expert_root_integration",
+  "next_action": "Import11 unchanged packed estimator candidate04 C++ files and register TPCON/TPRFS8 as partial v18 routes,115 public headers and22 installed families. Freeze root and execute fresh63-primary-TU full GNU Release both ABIs,affected Debug and ASC-only sanitizer,all installed and strict/source/header/documentation gates. Preserve eight new required mathematical failures (62 full gates including prior54),zero unexpected skips,130 missing required XBLAS routines. Continue triangular band and all remaining P00-P11 work.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -830,7 +838,8 @@
       "Six current tests pass, zero failures/skips:7952 profiles/62224 assertions perlane. 24 fresh test objects;60 prior production TUs perlane rehashed and reused. No new production build, foreign instrumentation, installed package or full-suite execution. 256 additive edge profiles preserve all prior7696 profiles byte-for-byte. Existing required mathematical/XBLAS and wider acceptance gates remain open. The new cases are64 real zero-diagonal TRTI2 source-fidelity profiles and192 live A/B-overlap query/execution rejections; neither implies mathematical invertibility for singular input. Fresh strict bothABIs, one-file format and coverage validation pass. Reference286partial/1827not_started of2113 and20native implemented_unverified remain unchanged.",
       "TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification.",
       "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
-      "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval."
+      "V17 GNU Release full suites and affected GNU Debug/ASC-only Clang19 sanitizer suites, both actual integer ABIs. All62 primary Core/Dense/provider TUs freshly compiled each lane,372 objects total. Full837 each:783 pass54 required mathematical failures;Debug46 each:38 pass8 required mathematical failures; ASC-only sanitizer25 each:17 pass8 required mathematical failures. Zero skips. All four relocated21-family packages,12 strict and6 static checks pass. Foreign archives unsanitized. TPTRI/TPTRS8 remains partial; no full normalized mode/routine/program verification or independent approval.",
+      "Unregistered packed TPCON/TPRFS8 candidate04. All6 lanes execute12 each:4 pass8 ordinary required math failures,zero skips.54 fresh adapter/test objects;prior62 production TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Original14 strict and8 public-header checks apply to unchanged production/header/public/count/signature bytes;4 final changed-test strict checks pass. Candidate02/03 missing direct-header failures and earlier overly strict matrix estimator fixture are preserved, not promoted to passes/provider defects. No root,installed,full-mode or fully verified credit."
     ]
   },
   "counts": {
@@ -849,7 +858,7 @@
     "registered_partial_reference_operations": 302,
     "unregistered_expert_operations_with_scoped_tests": 0,
     "note": "2113 required;302 Reference in_progress/1811 not_started;20 native implemented_unverified;zero fully verified. TPTRI/TPTRS8 registered;root v17 verification pending.54 required mathematical failures and130 missing XBLAS routines remain open.",
-    "unregistered_packed_operations_with_scoped_tests": 0
+    "unregistered_packed_operations_with_scoped_tests": 8
   },
   "blockers": [
     {
@@ -946,9 +955,10 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "p05-packed-triangular-expert-candidate-01",
-    "state": "in_progress",
-    "scope": "All6 initial scoped numerical lanes complete with8 ordinary required math failures each; artifact/source admission audit and expanded acceptance pending."
+    "candidate": "p05-packed-triangular-expert-candidate-04",
+    "state": "bounded_candidate_audited",
+    "scope": "Unregistered packed TPCON/TPRFS8 candidate04. All6 lanes execute12 each:4 pass8 ordinary required math failures,zero skips.54 fresh adapter/test objects;prior62 production TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Original14 strict and8 public-header checks apply to unchanged production/header/public/count/signature bytes;4 final changed-test strict checks pass. Candidate02/03 missing direct-header failures and earlier overly strict matrix estimator fixture are preserved, not promoted to passes/provider defects. No root,installed,full-mode or fully verified credit.",
+    "completion_audit_sha256": "0c5e0276bfa885467fcee9a960d4391abff0b0f1e05746543f994a4526cfe8f6"
   },
   "last_completed_verification": {
     "base_commit": "a7d3e9c32d3067d31c99727517205a7e4f534b35",
@@ -1203,5 +1213,5 @@
       "completion_audit_sha256": "8ab7e96c9c2da48c24199393e8d3136458ff116c69999e47689a57fafd31ea52"
     }
   ],
-  "next_task": "Finish the preserved unregistered TPCON/TPRFS8 candidate01 audit and packed LATPS source/control review; all6 numerical lanes now execute12 each,4 pass8 required math failures,zero skips. Bind81-object closures,54 fresh adapter/test objects and explicitly reused62 primary production TUs. Add required extreme-scale/norm-overflow and comprehensive preflight acceptance in a fresh candidate without changing old evidence. Then register the bounded expert slice and continue all remaining P00-P11 work."
+  "next_task": "Import11 unchanged packed estimator candidate04 C++ files and register TPCON/TPRFS8 as partial v18 routes,115 public headers and22 installed families. Freeze root and execute fresh63-primary-TU full GNU Release both ABIs,affected Debug and ASC-only sanitizer,all installed and strict/source/header/documentation gates. Preserve eight new required mathematical failures (62 full gates including prior54),zero unexpected skips,130 missing required XBLAS routines. Continue triangular band and all remaining P00-P11 work."
 }
