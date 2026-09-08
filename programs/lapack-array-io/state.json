@@ -14,12 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "37ec9c45d5c025fe91cf79da7e68682ff16204a4",
+  "last_implementation_commit": "fe160ad1c098f56c472349ceeae3816bae4def11",
   "worktree_diff_identity": {
-    "state": "auxiliary_info_pivots_ready_for_local_commit",
-    "parent_commit": "37ec9c45d5c025fe91cf79da7e68682ff16204a4",
-    "implementation_tree": "b5168234598803a41158c7ecf613e73af1ceb0e9",
-    "note": "All exported product files match frozen source; final scoped verification passed. Durable records are the only later edits."
+    "state": "printing_modes_checkpoint_ready_for_local_commit",
+    "parent_commit": "fe160ad1c098f56c472349ceeae3816bae4def11",
+    "implementation_tree": "567a39f761bfccdf9d994297d62dbab5e9a73fac"
   },
   "packages": {
     "P00": {
@@ -417,10 +416,23 @@
         "p03-dense-binary-progress-02-y2ssb46p"
       ],
       "scope": "Unsealed external work preserved after delegated agent usage-limit failure; current source, failures and any still-running commands must be reconciled before continuing. No execution pass credited from the failed agent turn."
+    },
+    "P02.printing_modes_and_rank0_acceptance": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified.",
+      "review": "programs/lapack-array-io/printing-modes-review.md",
+      "partial_overlay": "programs/lapack-array-io/printing-modes-partial-acceptance.json"
+    },
+    "P03.dense_binary_progress_root": {
+      "state": "in_progress",
+      "owner": "integration",
+      "candidate": "p03-dense-binary-progress-root-04",
+      "scope": "Unsealed corrected retry-status assertion candidate against current P02 source.03Debug2/3 retained; no root import/runtime pass yet. Existing source retains original callback error; successful-consumption retry remains InvalidState. All other220workflow progress/rollback checks retained; three retry diagnostic checks added."
     }
   },
-  "active_task": "P02.printing_modes_and_rank0_acceptance",
-  "next_action": "Commit the completed auxiliary INFO/pivot correction locally, then verify p02-display-composed-v13-04-01-_70o_er0/check_import.py against root, import its five-file printing delta, reconcile94 compiler-read inputs, execute root current printing/installed checks and record the partial acceptance. Continue GBEQUB4 and preserved unfinished P03/triangular work. No remote writes.",
+  "active_task": "P05.general_band_radix_equilibration_root_integration",
+  "next_action": "Commit completed printing slice locally; import GBEQUB4 original seven product/test files excluding external compiler-emission probe, apply acceptance02 valid byte-workspace alias correction and additive02 portable probe/public consumer. Register optional header/source, ABI/header/source inventories, v14 profile, installed18th family and four partial rows atomically; run current LP64/ILP64, sanitizer, installed and strict checks while retaining16 required mathematical failures. Continue preserved P03 corrected candidate04 and full-triangular work. No remote writes.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -520,7 +532,9 @@
       "programs/lapack-array-io/printing-acceptance-review.md",
       "p05-general-band-expert-integration-v13-04/completion-audit-01/audit.json",
       "programs/lapack-array-io/lu-band-expert-review.md",
-      "p04-lu-aux-integration-01/completion-audit-01/audit.json"
+      "p04-lu-aux-integration-01/completion-audit-01/audit.json",
+      "programs/lapack-array-io/printing-modes-review.md",
+      "p02-printing-modes-integration-01/audit.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -547,7 +561,8 @@
       "V9 full02 actual LP64/ILP64 each493/493, provider-free Debug277/277 Release277/277 shared279/279, zero skips; installed13 eachABI audited in full raw logs. All-ASC-C++ ASan71 eachABI passes, foreign archives/runtimes unsanitized. All23 strict02 TUs passed except probe corrected03; current preflight strict05 passes bothABIs. Current05 six scoped lanes each8/8; control03 six lanes each1/1; docs04 92headers/1827members zero warnings. Current05 all82 changed C++ format, coverage and public-header contract checks pass. Full02 is not relabeled full05; exact source deltas and command artifacts preserved. Full normalized modes/platforms/shared-provider/required mathematical failures remain open.",
       "Four current4/4 provider-free printing lanes, all23 Core/Dense/Sparse CPU TUs rebuilt each lane; six relocated isolated1/1 installed consumers; two current strict TUs/helper, format3/coverage/surface pass. Nine root load-observation records preserve successful instrumented and failed uninstrumented positive controls. P02 modes/platforms remain partial; no routine credit.",
       "GB20 V13 full02 LP64/ILP64 each720/752, exactly30 required numerical failures plus two omitted-source-inventory failures, zero skips. Provider-free Debug280/282, Release280/282, shared282/284 retain the same two inventory failures. Final04 adds only five explicit source entries; the common source-only2/2 replay passes and its original commands match all five full lanes. Final03 formats only the new consumer and updates its mapping hashes: four fresh current-library and two fresh relocated-installed1/1 consumer tests pass. Full02 package passes17 installed families perABI with unchanged300s timeout. All58 primary CPU Core/Dense/provider TUs rebuilt in each full and ASC-only sanitizer lane; ASan each75/91 retains exactly16 GB math failures, no sanitizer diagnostics or skips. All34 changed-TU strict checks plus two final-consumer strict checks, format29, coverage, public surface, Markdown and Doxygen108headers/2036members/zero warnings pass. Exact consumer/object/provider closures audited. Original01 ABI-registration,02 format/source-policy and audit-helper failures remain preserved. No full04 suite, foreign sanitizer, normalized full-mode, platform, XBLAS or mathematical gate closure claim;270 Reference rows remain in_progress/1843 not_started of2113 required; native20 separately implemented_unverified; zero fullyverified.",
-      "Root two45/45 fresh Release lanes include38 affected numerical/fault/count controls,4 placement tests, package and2 policy tests. Four exact-input Debug/ASC-only sanitizer root replays38/38 reuse sealed current binaries. Fresh root production58 TUs per ABI; agent six58-TU lanes and24 fresh strict remain separately identified. All17 installed families per ABI pass. No full-project suite, foreign sanitizer, full mode/platform/shared-provider/XBLAS or required mathematical closure claim. Source-bound profile audit matches472272 main modes,321648 main native calls,47232 native warm calls and41472 reuse calls across six root executions. Format15/coverage/publicsurface pass. Initial build-record directory collision was rejected before compilation and preserved; corrected runner reused successful configures. Denominator2113/270 partial Reference/1843 not_started, native20 separate, zero fullyverified;30 required mathematical failures remain open."
+      "Root two45/45 fresh Release lanes include38 affected numerical/fault/count controls,4 placement tests, package and2 policy tests. Four exact-input Debug/ASC-only sanitizer root replays38/38 reuse sealed current binaries. Fresh root production58 TUs per ABI; agent six58-TU lanes and24 fresh strict remain separately identified. All17 installed families per ABI pass. No full-project suite, foreign sanitizer, full mode/platform/shared-provider/XBLAS or required mathematical closure claim. Source-bound profile audit matches472272 main modes,321648 main native calls,47232 native warm calls and41472 reuse calls across six root executions. Format15/coverage/publicsurface pass. Initial build-record directory collision was rejected before compilation and preserved; corrected runner reused successful configures. Denominator2113/270 partial Reference/1843 not_started, native20 separate, zero fullyverified;30 required mathematical failures remain open.",
+      "P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified."
     ]
   },
   "counts": {
@@ -657,32 +672,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "37ec9c45d5c025fe91cf79da7e68682ff16204a4",
-    "implementation_tree": "b5168234598803a41158c7ecf613e73af1ceb0e9",
-    "source_archive_sha256": "b2ed985dac1bbc3078ba38dfc547b91449e1bc19bcbb99b2d117fbf254f3c879",
+    "base_commit": "fe160ad1c098f56c472349ceeae3816bae4def11",
+    "implementation_tree": "567a39f761bfccdf9d994297d62dbab5e9a73fac",
+    "source_archive_sha256": "0e148c387482b7a6fc924a247c17aab9d0ebad29368afb211b3061fcabcca26e",
     "coverage_mapping_sha256": "91defdbf15f2d7df6cbcb630ccc8b1e352ba80b5fe0e2cc0ae76b7bbefbb829c",
-    "scope": "Root two45/45 fresh Release lanes include38 affected numerical/fault/count controls,4 placement tests, package and2 policy tests. Four exact-input Debug/ASC-only sanitizer root replays38/38 reuse sealed current binaries. Fresh root production58 TUs per ABI; agent six58-TU lanes and24 fresh strict remain separately identified. All17 installed families per ABI pass. No full-project suite, foreign sanitizer, full mode/platform/shared-provider/XBLAS or required mathematical closure claim. Source-bound profile audit matches472272 main modes,321648 main native calls,47232 native warm calls and41472 reuse calls across six root executions. Format15/coverage/publicsurface pass. Initial build-record directory collision was rejected before compilation and preserved; corrected runner reused successful configures. Denominator2113/270 partial Reference/1843 not_started, native20 separate, zero fullyverified;30 required mathematical failures remain open.",
-    "candidate": "p04-lu-aux-integration-01",
-    "state": "completed_scoped_auxiliary_info_pivots",
-    "pending": [
-      "Full modes, required mathematical failures, platforms, shared provider, XBLAS and provenance"
-    ],
-    "completion_audit": "p04-lu-aux-integration-01/completion-audit-01/audit.json",
-    "completion_audit_sha256": "9f7356bcd29dd8c25fc673624fddcdc1fc3085f496fcadaa5be9bea202bc6dc0"
+    "scope": "P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified.",
+    "candidate": "p02-printing-modes-integration-01",
+    "state": "completed_scoped_printing_modes",
+    "completion_audit": "p02-printing-modes-integration-01/audit.json",
+    "completion_audit_sha256": "9318cb2fbf4167626ed55c46c8b05caad77647b04ab75d18f6fb66107e4272fc"
   },
   "last_completed_verification": {
-    "base_commit": "37ec9c45d5c025fe91cf79da7e68682ff16204a4",
-    "implementation_tree": "b5168234598803a41158c7ecf613e73af1ceb0e9",
-    "source_archive_sha256": "b2ed985dac1bbc3078ba38dfc547b91449e1bc19bcbb99b2d117fbf254f3c879",
+    "base_commit": "fe160ad1c098f56c472349ceeae3816bae4def11",
+    "implementation_tree": "567a39f761bfccdf9d994297d62dbab5e9a73fac",
+    "source_archive_sha256": "0e148c387482b7a6fc924a247c17aab9d0ebad29368afb211b3061fcabcca26e",
     "coverage_mapping_sha256": "91defdbf15f2d7df6cbcb630ccc8b1e352ba80b5fe0e2cc0ae76b7bbefbb829c",
-    "scope": "Root two45/45 fresh Release lanes include38 affected numerical/fault/count controls,4 placement tests, package and2 policy tests. Four exact-input Debug/ASC-only sanitizer root replays38/38 reuse sealed current binaries. Fresh root production58 TUs per ABI; agent six58-TU lanes and24 fresh strict remain separately identified. All17 installed families per ABI pass. No full-project suite, foreign sanitizer, full mode/platform/shared-provider/XBLAS or required mathematical closure claim. Source-bound profile audit matches472272 main modes,321648 main native calls,47232 native warm calls and41472 reuse calls across six root executions. Format15/coverage/publicsurface pass. Initial build-record directory collision was rejected before compilation and preserved; corrected runner reused successful configures. Denominator2113/270 partial Reference/1843 not_started, native20 separate, zero fullyverified;30 required mathematical failures remain open.",
-    "candidate": "p04-lu-aux-integration-01",
-    "state": "completed_scoped_auxiliary_info_pivots",
-    "pending": [
-      "Full modes, required mathematical failures, platforms, shared provider, XBLAS and provenance"
-    ],
-    "completion_audit": "p04-lu-aux-integration-01/completion-audit-01/audit.json",
-    "completion_audit_sha256": "9f7356bcd29dd8c25fc673624fddcdc1fc3085f496fcadaa5be9bea202bc6dc0"
+    "scope": "P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified.",
+    "candidate": "p02-printing-modes-integration-01",
+    "state": "completed_scoped_printing_modes",
+    "completion_audit": "p02-printing-modes-integration-01/audit.json",
+    "completion_audit_sha256": "9318cb2fbf4167626ed55c46c8b05caad77647b04ab75d18f6fb66107e4272fc"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -829,7 +838,21 @@
         "Full normalized modes, platforms, shared provider, XBLAS and provenance requirements"
       ],
       "implementation_commit": "37ec9c45d5c025fe91cf79da7e68682ff16204a4"
+    },
+    {
+      "base_commit": "37ec9c45d5c025fe91cf79da7e68682ff16204a4",
+      "implementation_tree": "b5168234598803a41158c7ecf613e73af1ceb0e9",
+      "source_archive_sha256": "b2ed985dac1bbc3078ba38dfc547b91449e1bc19bcbb99b2d117fbf254f3c879",
+      "coverage_mapping_sha256": "91defdbf15f2d7df6cbcb630ccc8b1e352ba80b5fe0e2cc0ae76b7bbefbb829c",
+      "scope": "Root two45/45 fresh Release lanes include38 affected numerical/fault/count controls,4 placement tests, package and2 policy tests. Four exact-input Debug/ASC-only sanitizer root replays38/38 reuse sealed current binaries. Fresh root production58 TUs per ABI; agent six58-TU lanes and24 fresh strict remain separately identified. All17 installed families per ABI pass. No full-project suite, foreign sanitizer, full mode/platform/shared-provider/XBLAS or required mathematical closure claim. Source-bound profile audit matches472272 main modes,321648 main native calls,47232 native warm calls and41472 reuse calls across six root executions. Format15/coverage/publicsurface pass. Initial build-record directory collision was rejected before compilation and preserved; corrected runner reused successful configures. Denominator2113/270 partial Reference/1843 not_started, native20 separate, zero fullyverified;30 required mathematical failures remain open.",
+      "candidate": "p04-lu-aux-integration-01",
+      "state": "completed_scoped_auxiliary_info_pivots",
+      "pending": [
+        "Full modes, required mathematical failures, platforms, shared provider, XBLAS and provenance"
+      ],
+      "completion_audit": "p04-lu-aux-integration-01/completion-audit-01/audit.json",
+      "completion_audit_sha256": "9f7356bcd29dd8c25fc673624fddcdc1fc3085f496fcadaa5be9bea202bc6dc0"
     }
   ],
-  "next_task": "Commit the completed auxiliary INFO/pivot correction locally, then verify p02-display-composed-v13-04-01-_70o_er0/check_import.py against root, import its five-file printing delta, reconcile94 compiler-read inputs, execute root current printing/installed checks and record the partial acceptance. Continue GBEQUB4 and preserved unfinished P03/triangular work. No remote writes."
+  "next_task": "Commit completed printing slice locally; import GBEQUB4 original seven product/test files excluding external compiler-emission probe, apply acceptance02 valid byte-workspace alias correction and additive02 portable probe/public consumer. Register optional header/source, ABI/header/source inventories, v14 profile, installed18th family and four partial rows atomically; run current LP64/ILP64, sanitizer, installed and strict checks while retaining16 required mathematical failures. Continue preserved P03 corrected candidate04 and full-triangular work. No remote writes."
 }

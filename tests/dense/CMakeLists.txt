@@ -30,6 +30,7 @@ foreach(_source IN ITEMS
     lapack_qr_test.cc
     print_test.cc
     print_acceptance_test.cc
+    print_modes_test.cc
     io_test.cc
     io_fuzz_test.cc
     matrix_market_test.cc
@@ -51,6 +52,9 @@ target_include_directories(
 )
 target_include_directories(
   asc_dense_print_acceptance_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_print_modes_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
 )
 target_include_directories(
   asc_dense_lapack_lu_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"

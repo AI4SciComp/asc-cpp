@@ -543,3 +543,10 @@ Frozen product tree `b5168234598803a41158c7ecf613e73af1ceb0e9`, archive SHA256
 families perABI with the existing300s timeout. All prior failed-source
 controls remain in the original INFO02/pivot01 handoffs; no old or unexecuted
 configuration is relabeled current.
+
+
+## Root P02 printing-mode checkpoint
+
+P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified.
+
+Audit SHA256 `9318cb2fbf4167626ed55c46c8b05caad77647b04ab75d18f6fb66107e4272fc`.

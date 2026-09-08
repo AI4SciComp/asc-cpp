@@ -213,5 +213,6 @@
     }
   ],
   "existing_evidence": "historical-print-records-01.json; dependency-bridge-{debug,release,shared}-01.json; original exact-source sanitizer/libc tests",
-  "installed_examples": "installed-print-examples-01.json preserves raw V12 example output identity; these are historical commands, not new commit-wide replays."
+  "installed_examples": "installed-print-examples-01.json preserves raw V12 example output identity; these are historical commands, not new commit-wide replays.",
+  "successor_mode_overlay": "programs/lapack-array-io/printing-modes-partial-acceptance.json"
 }
