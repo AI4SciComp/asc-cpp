@@ -91732,6 +91732,257 @@
       "external_record": "p05-triangular-integration-v15-02/completion-record/record.json",
       "record_sha256": "dda7ebde6339a510104da7de1e1a045e8d8628a14dd701e958ad888e1763190a",
       "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683"
+    },
+    {
+      "id": "triangular-v15-documentation-coverage",
+      "started": "2026-09-08T05:18:15.205851+00:00",
+      "completed": "2026-09-08T05:18:15.769625+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source",
+        "--evidence-root",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "41279d6512ecdd6b240080a87f29eceba22ee2e21c78d7279a9eeaf8308be18c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-doc-integration-v15-01/record-coverage/record.json",
+      "record_sha256": "664baeb223bcecde9b756bb9b8a7755a66acfd8ff7a750b49fe7c28f5fe4393d",
+      "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17"
+    },
+    {
+      "id": "triangular-v15-documentation-dependency_audit",
+      "started": "2026-09-08T05:18:17.131016+00:00",
+      "completed": "2026-09-08T05:18:17.462530+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DSOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/tests/compile/dependency_check.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-doc-integration-v15-01/record-dependency_audit/record.json",
+      "record_sha256": "6f11d4aad8035a43c21296ffb184ed3322fdc303db16aef45776cc0a54da5f08",
+      "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17"
+    },
+    {
+      "id": "triangular-v15-documentation-documentation_consistency",
+      "started": "2026-09-08T05:18:17.728919+00:00",
+      "completed": "2026-09-08T05:18:17.796322+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DASC_CPP_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/tests/hardening/documentation_consistency_test.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "961380bcaa187d93b1fbd333aa1da60a0719d5c4a648bb46fd13c16d80c3bb7d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-doc-integration-v15-01/record-documentation_consistency/record.json",
+      "record_sha256": "776e7244cd55556fca30f213398720be022d97eb0c5e600ab7a185ddf8862c3e",
+      "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17"
+    },
+    {
+      "id": "triangular-v15-documentation-markdown",
+      "started": "2026-09-08T05:18:16.343402+00:00",
+      "completed": "2026-09-08T05:18:16.501462+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-doc-integration-v15-01/record-markdown/record.json",
+      "record_sha256": "1aedaeb6ee49b907fb6850d5328ca1bff6964065c197baa348bdee25227f4d5e",
+      "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17"
+    },
+    {
+      "id": "triangular-v15-documentation-public_file_policy",
+      "started": "2026-09-08T05:18:16.760882+00:00",
+      "completed": "2026-09-08T05:18:16.868897+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DSOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source",
+        "-DENABLE_CUDA:BOOL=OFF",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/tests/architecture/check_public_file_policy.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-doc-integration-v15-01/record-public_file_policy/record.json",
+      "record_sha256": "c9b8419b37c30b19b230c99defb64db4d2f1278ed51e926bfd7502a964ea8259",
+      "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17"
+    },
+    {
+      "id": "triangular-v15-documentation-surface",
+      "started": "2026-09-08T05:18:16.037481+00:00",
+      "completed": "2026-09-08T05:18:16.062403+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e908027b651869d4c0337609b84f509b6211efb24beb4cf0f834d2d2565f5e90"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-doc-integration-v15-01/record-surface/record.json",
+      "record_sha256": "2881c09be00d06dad9c70dfe3396e1585806a4ab09e1205bf1c3cc57c53f6976",
+      "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17"
+    },
+    {
+      "id": "triangular-v15-doc-completion",
+      "started": "2026-09-08T05:21:30.962390+00:00",
+      "completed": "2026-09-08T05:21:34.331453+00:00",
+      "configuration": "documentation-audit",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-doc-integration-v15-01/audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "dbdf009884331127860aadf34d457186f94bf02c563336163ba3856d887d70c4"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "27d7883c92017936e1253c3e18c9177bbc655e2304768f55e27eda1f65f7bd04",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-doc-integration-v15-01/completion-record/record.json",
+      "record_sha256": "0380f57e6b621f56b967f7aeea640cbddd9f18fbf4ca8e3b6aefc423847e3d81",
+      "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17"
     }
   ]
 }

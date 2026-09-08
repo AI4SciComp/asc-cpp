@@ -29040,8 +29040,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -29148,8 +29148,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -29256,8 +29256,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -59924,8 +59924,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -60032,8 +60032,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -60140,8 +60140,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -90760,8 +90760,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -90868,8 +90868,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -90976,8 +90976,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -120056,8 +120056,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -120164,8 +120164,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [
@@ -120272,8 +120272,8 @@
         "reference_cpu": {
           "evidence_ids": [],
           "state": "in_progress",
-          "partial_scope": "Actual full-storage TRTRI/TRTI2/TRTRS with independent layouts, metadata-only packing plans, INFO and caller-memory contracts. Candidate08 six5/5 lanes with6272 analytic workflows and7696 failure/preflight profiles each pass; actual12-signature emissions perABI and two INFO-zero diagnostic controls are bound. Current composed60-TU/installed19-family verification pending. Full normalized modes, remaining memory/finite-range/platform gates stay open; no verified or native credit.",
-          "review": "programs/lapack-array-io/triangular-review.md"
+          "partial_scope": "Checked full-storage TRTRI/TRTI2/TRTRS, independent layouts and metadata-only caller-packing plans. Root v15 audit5455d0c0 binds360 fresh ASC CPU objects, bothABI Debug24/24, ASC-only sanitizer9/9 and four relocated19-family packages. Prior full01 each767/815 retains46 required math failures plus2 corrected manifest failures; corrected02 surface replay6/6 eachABI. Numerical6272 workflows/1143040 assertions and failure/preflight7696 profiles/61072 assertions per numerical lane; actual12 signatures and1762 source-count checks remain separate. Full normalized modes, stronger read/allocation observation, extreme-range mathematics and platform/shared gates stay open; no fully verified or native credit.",
+          "review": "programs/lapack-array-io/triangular-root-review.md"
         }
       },
       "required_profiles": [

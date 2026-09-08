@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v13` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v15` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 270 partial scalar routines.
-The other 1,843 required
+routes below bring the development mapping to 286 partial scalar routines.
+The other 1,827 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -37,8 +37,33 @@ native writes before publication.
 Required extreme-scale mathematical checks remain failing in the pinned
 provider: GBEQU can return an incorrect scale ratio, GBCON can return zero
 for a condition-one system, and GBRFS/GBSVX can return nonfinite error
-estimates. The ordinary failing tests remain registered. The separate
-GBEQUB routes and complete routine/mode/platform acceptance are still required.
+estimates. The ordinary failing tests remain registered. Complete routine/mode/platform
+acceptance remains required.
+
+`lapack_lu_band_equilibration_radix.h` adds S/D/C/Z `Gbequb` for compact
+original general-band storage. This is the exact pinned radix-quantized
+operation, separately reported from `Gbequ`. Its original-maximum, extreme
+scaling and scale-ratio mathematical checks still expose failures in the
+prepared provider. The raw diagnostics and partial-output contract remain
+visible; four callable paths do not constitute verified mathematical coverage.
+
+`lapack_triangular.h` adds S/D/C/Z `Trtri`, `Trti2` and `Trtrs` on full checked
+square Dense BLAS views. Upper/lower storage, implicit unit/nonunit diagonals,
+and independently selected matrix/RHS layouts are explicit. `Trtrs` supports
+N/T/C, preserves A and overwrites B; the inverse operations overwrite only
+the selected triangle. Row-major calls use live scalar objects in the caller's
+`kLayoutConversion` workspace. Metadata-only queries bind the original
+strides, options, actual foreign dimensions and exact provider identity.
+
+`Trtri` and `Trtrs` preserve the native positive INFO for an exact zero
+nonunit diagonal, with unchanged output and a zero-based diagnostic index.
+`Trti2` has no singularity scan: a zero diagonal can produce nonfinite values
+with INFO=0. Its successful native completion is not an invertibility or
+finite-output certificate. Zero-order calls complete locally; zero-RHS
+`Trtrs` still enters the native routine and scans a nonunit diagonal.
+Packed/banded triangular storage, condition estimation, refinement and the
+remaining memory, extreme-range, platform and normalized-mode acceptance
+remain separate required work.
 
 The extra LU operations are declared in `asc/dense/providers/lapack_lu.h`;
 equilibration is in `asc/dense/providers/lapack_lu_equilibration.h`. GETRI uses

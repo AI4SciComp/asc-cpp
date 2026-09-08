@@ -14,11 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
+  "last_implementation_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
   "worktree_diff_identity": {
-    "state": "triangular_root_checkpoint_ready_for_local_commit",
-    "parent_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
-    "implementation_tree": "c54b8bbd22e2f1f6018883c601b3dc00c082f1ff"
+    "state": "documentation_checkpoint_ready_for_local_commit",
+    "parent_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
+    "implementation_tree": "47605f630177870567f358e31c6ddf064d127f69"
   },
   "packages": {
     "P00": {
@@ -452,8 +452,8 @@
       "review": "programs/lapack-array-io/triangular-root-review.md"
     }
   },
-  "active_task": "P05.triangular_post_integration_documentation_and_edges",
-  "next_action": "Commit exact root triangular checkpoint locally. Import reviewed p05-triangular-doc-draft-01 guide and reconcile v15 capability prose, freeze documentation-only snapshot and revalidate affected contracts/docs. Continue additive edge draft: bothABI strict passed; run-edge.py LP64/ILP64 sessions still executing. Audit executed results; complete Debug/ASC sanitizer edge tests with unchanged production identities, then import/hash/register test-only change. Continue remaining memory/mode acceptance and required structured families. No remote writes.",
+  "active_task": "P05.triangular_additive_edges",
+  "next_action": "Commit documentation-only checkpoint locally. Freeze p05-triangular-edge-acceptance-01 from this product plus exact additive fault test f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b and refreshed12 coverage artifact hashes. Both initial Release ABI overlays1/1 and strict passed with7952profiles/62224checks. Complete new six-lane test compilation/runtime against individually audited unchanged Release/Debug/ASC sanitizer production archives; audit then import/commit the test-only slice. Continue remaining required memory/mode/family work.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -461,7 +461,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "3388180859dba3698728bc4f39fe20977d5734713a857d1ff9a8884054545c7d"
+    "coverage_mapping_sha256": "64439cfbd2094d98c9e88c6e99c12e1757e6abc61aa8edb56f138d31a74469a7"
   },
   "provider": {
     "version": "3.12.1",
@@ -563,7 +563,9 @@
       "programs/lapack-array-io/triangular-review.md",
       "p05-full-triangular-candidate-08/audit.json",
       "programs/lapack-array-io/triangular-root-review.md",
-      "p05-triangular-integration-v15-02/audit-02.json"
+      "p05-triangular-integration-v15-02/audit-02.json",
+      "p05-triangular-doc-integration-v15-01/audit.json",
+      "programs/lapack-array-io/triangular-documentation-review.md"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -594,7 +596,8 @@
       "P02 modes/rank0 five-file delta integrated. Fresh GNU11 Debug/Release/shared and Clang19 ASan+UBSan each6/6; Debug libc diagnostic6/6; six fresh isolated relocated installed Dense/Sparse consumers each3/3:48 current passes,zero skips. All23 Core/Dense/Sparse production TUs rebuilt in each of four lanes (92 objects);21 Random/Utilities install-prerequisite objects have no Random runtime credit. Format3 passes; prior strict2 rehashed and source-identical. Independent literal mode endpoints cover four real/complex scalars, general/fixed/scientific1/32 and custom C++ locale (48 Dense/144 Sparse cases); 417 exact rank0 budgets and288 sink boundaries,12 Dense/22 Sparse empty fixtures and9/27 live-object scratch aliases. Full modes/platforms/read-count crossproducts remain open. Preserved initial global no-exceptions build failure at unchanged Random seed catch is not closed by printing passes. No LAPACK/native routine credit;270 Reference partial/1843 not_started of2113 required,20 native implemented_unverified,zero fully verified.",
       "Six fresh current ASC production lanes59 TUs each. Release54 tests each38pass16required mathfail; Debug43 each27pass16mathfail; Clang19 ASC-only diagnostic36 each20pass16mathfail, including current public consumer. All266 selected tests execute,170pass96fail0skip;14 strict and6 static checks pass. Both18-family installed suites pass. Two rejected public Clang configurations retain the unchanged GNU-only package gate. No full-project suite, Clang package, foreign sanitizer, shared-provider, full normalized modes/platforms/XBLAS or mathematical closure claim. Four actual GBEQUB rows remain in_progress:274 Reference partial,1839 not_started of2113 required;20 native implemented_unverified and zero fully verified. Required130 XBLAS-dependent routines remain missing and required.",
       "Fresh root Debug/Release/shared/ASC sanitizer each3/3;three fresh relocated installed-only Dense consumers each3/3 with exceptions disabled:21passes zero skips.76 fresh Core/Dense objects;33 Sparse/Random/Utilities install prerequisites have no runtime credit. Initial installed harness missing-header build failure retained and fixed in new harness/directory. Prior exact-source strict/three diagnostic lanes rehashed, no full P03/platform/allocation-mode closure. Independent72-byte i16 fixture:75 reads and145 writes (220 workflows per lane), every failing boundary,3-byte short chunks, whole-file EOF failure before commit, exact reports/native diagnostics, whole destination/padding rollback, guarded staging/metadata/scratch, and failed-cursor nonreplay. Other scalars/formats/modes/platforms and complete P03 acceptance remain separate.",
-      "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open."
+      "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
+      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
     ]
   },
   "counts": {
@@ -704,26 +707,26 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
-    "implementation_tree": "c54b8bbd22e2f1f6018883c601b3dc00c082f1ff",
-    "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683",
-    "coverage_mapping_sha256": "3388180859dba3698728bc4f39fe20977d5734713a857d1ff9a8884054545c7d",
-    "scope": "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
-    "candidate": "p05-triangular-integration-v15-02",
-    "state": "completed_triangular_root_scoped_full_math_open",
-    "completion_audit": "p05-triangular-integration-v15-02/audit-02.json",
-    "completion_audit_sha256": "5455d0c0c00fa196b8d0b374298cb53388bf223799e798163938748cf14ee94e"
+    "base_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
+    "implementation_tree": "47605f630177870567f358e31c6ddf064d127f69",
+    "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17",
+    "coverage_mapping_sha256": "64439cfbd2094d98c9e88c6e99c12e1757e6abc61aa8edb56f138d31a74469a7",
+    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+    "candidate": "p05-triangular-doc-integration-v15-01",
+    "state": "completed_documentation_only",
+    "completion_audit": "p05-triangular-doc-integration-v15-01/audit.json",
+    "completion_audit_sha256": "d1b491a99cd3e0bd932ddf2f3abc2817778630538a8632f3bfe702086f5f886d"
   },
   "last_completed_verification": {
-    "base_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
-    "implementation_tree": "c54b8bbd22e2f1f6018883c601b3dc00c082f1ff",
-    "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683",
-    "coverage_mapping_sha256": "3388180859dba3698728bc4f39fe20977d5734713a857d1ff9a8884054545c7d",
-    "scope": "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
-    "candidate": "p05-triangular-integration-v15-02",
-    "state": "completed_triangular_root_scoped_full_math_open",
-    "completion_audit": "p05-triangular-integration-v15-02/audit-02.json",
-    "completion_audit_sha256": "5455d0c0c00fa196b8d0b374298cb53388bf223799e798163938748cf14ee94e"
+    "base_commit": "abe21eab68ccacb92fb9b981ab4703f4383adb6a",
+    "implementation_tree": "47605f630177870567f358e31c6ddf064d127f69",
+    "source_archive_sha256": "704180e2105e396f03467f4cf19e961e4c2a99ea512c2834199aa2f200933f17",
+    "coverage_mapping_sha256": "64439cfbd2094d98c9e88c6e99c12e1757e6abc61aa8edb56f138d31a74469a7",
+    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+    "candidate": "p05-triangular-doc-integration-v15-01",
+    "state": "completed_documentation_only",
+    "completion_audit": "p05-triangular-doc-integration-v15-01/audit.json",
+    "completion_audit_sha256": "d1b491a99cd3e0bd932ddf2f3abc2817778630538a8632f3bfe702086f5f886d"
   },
   "remote_checkpoint": {
     "implementation_commit": "b1b78d789fb8f5366f13f86c411832df842b2755",
@@ -921,7 +924,18 @@
       "state": "completed_scoped_dense_binary_progress",
       "completion_audit": "p03-dense-binary-progress-integration-01/audit.json",
       "completion_audit_sha256": "b3838127365dc9c7a6c3e048dd31aa558192f9ac82bc86a7743f9306abf98d8f"
+    },
+    {
+      "base_commit": "7bb12169747683d75e625b841ad85395ffe95f8f",
+      "implementation_tree": "c54b8bbd22e2f1f6018883c601b3dc00c082f1ff",
+      "source_archive_sha256": "1063524f06a1f33f7579f3c1b73b5c401cb1aed6e7c421e2792e43317e9bf683",
+      "coverage_mapping_sha256": "3388180859dba3698728bc4f39fe20977d5734713a857d1ff9a8884054545c7d",
+      "scope": "Twelve full-storage TRTRI/TRTI2/TRTRS routes registered;286 Reference in_progress/1827 not_started of2113 required,20 native implemented_unverified,zero fully verified. Full01 Release each767/815 pass with46 required mathematics plus2 old manifest failures andzero skips. Corrected02 Debug each24/24, ASC-only Clang19 ASan/UBSan each9/9, fresh surface replay02 each6/6 includingall4 fixture setups pass. All60 Core/Dense/provider TUs freshly rebuilt in eachof6 numerical lanes (360 objects), all4 Release/Debug relocated19-family packages pass;12 fresh strict checks and Doxygen110headers2068members pass. Foreign archives unsanitized. Initial surface-replay report-directory failures and the Debug runner18-versus24 fixture-count assertions preserved. Required130 missing XBLAS routines and full normalized/memory/extreme/platform/program gates remain open.",
+      "candidate": "p05-triangular-integration-v15-02",
+      "state": "completed_triangular_root_scoped_full_math_open",
+      "completion_audit": "p05-triangular-integration-v15-02/audit-02.json",
+      "completion_audit_sha256": "5455d0c0c00fa196b8d0b374298cb53388bf223799e798163938748cf14ee94e"
     }
   ],
-  "next_task": "Commit exact root triangular checkpoint locally. Import reviewed p05-triangular-doc-draft-01 guide and reconcile v15 capability prose, freeze documentation-only snapshot and revalidate affected contracts/docs. Continue additive edge draft: bothABI strict passed; run-edge.py LP64/ILP64 sessions still executing. Audit executed results; complete Debug/ASC sanitizer edge tests with unchanged production identities, then import/hash/register test-only change. Continue remaining memory/mode acceptance and required structured families. No remote writes."
+  "next_task": "Commit documentation-only checkpoint locally. Freeze p05-triangular-edge-acceptance-01 from this product plus exact additive fault test f9eaa622a8e29b3b45b07574660937f680d088fcda4fa46fbdd6f1c34dabeb1b and refreshed12 coverage artifact hashes. Both initial Release ABI overlays1/1 and strict passed with7952profiles/62224checks. Complete new six-lane test compilation/runtime against individually audited unchanged Release/Debug/ASC sanitizer production archives; audit then import/commit the test-only slice. Continue remaining required memory/mode/family work."
 }
