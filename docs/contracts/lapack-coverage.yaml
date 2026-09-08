@@ -23576,12 +23576,97 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Pptrf",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.cpptrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed.h",
+          "sha256": "de4e9208b4ea46fdf655ddcdb399d2bcdc426ab526165cd296afc900f7145ba9"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_counts.h",
+          "sha256": "812eb56c321e1c09422bc6f59c6a705de910b961045342c8fe2d13b2f6763afa"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed.cc",
+          "sha256": "ea39ebabab31a7122f4bc01558b1c8825390d1cf55b22f5f21b9a674cda3cd45"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_main.cc",
+          "sha256": "9fa848123eb926a2ea28cdce98a07a251be3b5f1da1350281dcc513c5293d0c2"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_fault_test.cc",
+          "sha256": "3c516d163acfe127c25470f1419c0f783570afd248a81a5feda3c2c07c4a2550"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_faults.cc",
+          "sha256": "3f6cf6309a565e3c3cd8a6c86b315b333ded6e54c0b44778e76479076a3285aa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_faults.h",
+          "sha256": "0b5ab47c611bf68a0ddab62aab216c92a254ff01ffe834c18d80830ccb5af0c2"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_pinned_signatures_test.cc",
+          "sha256": "954c2706e9cce06adc4e5a15c51abd7a0ce862cd7c36ea9ef7de8b8f030e8405"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_source_counts_test.cc",
+          "sha256": "9f5f95363894adcdcf3ec2ed2dff8f1a8de678644f4f25497e1c2b8005aa3cf7"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -23589,7 +23674,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked actual PPTRF with explicit ordinary packed layouts, real-only complex diagonal packing, source-specific integer bounds and preserved partial INFO/output. Candidate03 six4/4 andstrict/header checks pass. Root v21 six fresh66-primary-TU lanes: Release each818/888 with70 required math failures, Debug68/76 andASC-only sanitizer17/25 with8 math failures each, zero skips;four25-family packages and120-header Doxygen pass. Full modes, ignored-load/concurrency/platform evidence remains required; no native or fully verified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-factor-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -27530,9 +27617,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-expert-review.md",
-          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -27685,9 +27772,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-expert-review.md",
-          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -27932,9 +28019,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TBTRS with full-domain neutral triangular band descriptor,independent layouts,N/T/C,unit read rules,source count admission,caller workspace and full-width INFO. Root v19-02 GNU four52/52,ASC-only two7/7,four relocated23-family packages,six static checks andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects and60 provider-free primary objects. Candidate full failure/read/allocation/header proofs remain bound;complete normalized modes,concurrency and platform gates remain open. No fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-solve-review.md",
-          "partial_scope": "Checked actual TBTRS with full-domain neutral triangular band descriptor,independent layouts,N/T/C,unit read rules,source count admission,caller workspace and full-width INFO. Root v19-02 GNU four52/52,ASC-only two7/7,four relocated23-family packages,six static checks andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects and60 provider-free primary objects. Candidate full failure/read/allocation/header proofs remain bound;complete normalized modes,concurrency and platform gates remain open. No fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -28387,9 +28474,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
-          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -28717,9 +28804,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
-          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -28963,9 +29050,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-review.md",
-          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -29071,9 +29158,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-review.md",
-          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -54000,12 +54087,97 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Pptrf",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.dpptrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed.h",
+          "sha256": "de4e9208b4ea46fdf655ddcdb399d2bcdc426ab526165cd296afc900f7145ba9"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_counts.h",
+          "sha256": "812eb56c321e1c09422bc6f59c6a705de910b961045342c8fe2d13b2f6763afa"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed.cc",
+          "sha256": "ea39ebabab31a7122f4bc01558b1c8825390d1cf55b22f5f21b9a674cda3cd45"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_main.cc",
+          "sha256": "9fa848123eb926a2ea28cdce98a07a251be3b5f1da1350281dcc513c5293d0c2"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_fault_test.cc",
+          "sha256": "3c516d163acfe127c25470f1419c0f783570afd248a81a5feda3c2c07c4a2550"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_faults.cc",
+          "sha256": "3f6cf6309a565e3c3cd8a6c86b315b333ded6e54c0b44778e76479076a3285aa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_faults.h",
+          "sha256": "0b5ab47c611bf68a0ddab62aab216c92a254ff01ffe834c18d80830ccb5af0c2"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_pinned_signatures_test.cc",
+          "sha256": "954c2706e9cce06adc4e5a15c51abd7a0ce862cd7c36ea9ef7de8b8f030e8405"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_source_counts_test.cc",
+          "sha256": "9f5f95363894adcdcf3ec2ed2dff8f1a8de678644f4f25497e1c2b8005aa3cf7"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -54013,7 +54185,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked actual PPTRF with explicit ordinary packed layouts, real-only complex diagonal packing, source-specific integer bounds and preserved partial INFO/output. Candidate03 six4/4 andstrict/header checks pass. Root v21 six fresh66-primary-TU lanes: Release each818/888 with70 required math failures, Debug68/76 andASC-only sanitizer17/25 with8 math failures each, zero skips;four25-family packages and120-header Doxygen pass. Full modes, ignored-load/concurrency/platform evidence remains required; no native or fully verified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-factor-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -59328,9 +59502,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-expert-review.md",
-          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -59483,9 +59657,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-expert-review.md",
-          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -59730,9 +59904,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TBTRS with full-domain neutral triangular band descriptor,independent layouts,N/T/C,unit read rules,source count admission,caller workspace and full-width INFO. Root v19-02 GNU four52/52,ASC-only two7/7,four relocated23-family packages,six static checks andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects and60 provider-free primary objects. Candidate full failure/read/allocation/header proofs remain bound;complete normalized modes,concurrency and platform gates remain open. No fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-solve-review.md",
-          "partial_scope": "Checked actual TBTRS with full-domain neutral triangular band descriptor,independent layouts,N/T/C,unit read rules,source count admission,caller workspace and full-width INFO. Root v19-02 GNU four52/52,ASC-only two7/7,four relocated23-family packages,six static checks andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects and60 provider-free primary objects. Candidate full failure/read/allocation/header proofs remain bound;complete normalized modes,concurrency and platform gates remain open. No fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -60162,9 +60336,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
-          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -60492,9 +60666,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
-          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -60738,9 +60912,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-review.md",
-          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -60846,9 +61020,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-review.md",
-          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -85800,12 +85974,97 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Pptrf",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.spptrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed.h",
+          "sha256": "de4e9208b4ea46fdf655ddcdb399d2bcdc426ab526165cd296afc900f7145ba9"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_counts.h",
+          "sha256": "812eb56c321e1c09422bc6f59c6a705de910b961045342c8fe2d13b2f6763afa"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed.cc",
+          "sha256": "ea39ebabab31a7122f4bc01558b1c8825390d1cf55b22f5f21b9a674cda3cd45"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_main.cc",
+          "sha256": "9fa848123eb926a2ea28cdce98a07a251be3b5f1da1350281dcc513c5293d0c2"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_fault_test.cc",
+          "sha256": "3c516d163acfe127c25470f1419c0f783570afd248a81a5feda3c2c07c4a2550"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_faults.cc",
+          "sha256": "3f6cf6309a565e3c3cd8a6c86b315b333ded6e54c0b44778e76479076a3285aa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_faults.h",
+          "sha256": "0b5ab47c611bf68a0ddab62aab216c92a254ff01ffe834c18d80830ccb5af0c2"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_pinned_signatures_test.cc",
+          "sha256": "954c2706e9cce06adc4e5a15c51abd7a0ce862cd7c36ea9ef7de8b8f030e8405"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_source_counts_test.cc",
+          "sha256": "9f5f95363894adcdcf3ec2ed2dff8f1a8de678644f4f25497e1c2b8005aa3cf7"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -85813,7 +86072,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked actual PPTRF with explicit ordinary packed layouts, real-only complex diagonal packing, source-specific integer bounds and preserved partial INFO/output. Candidate03 six4/4 andstrict/header checks pass. Root v21 six fresh66-primary-TU lanes: Release each818/888 with70 required math failures, Debug68/76 andASC-only sanitizer17/25 with8 math failures each, zero skips;four25-family packages and120-header Doxygen pass. Full modes, ignored-load/concurrency/platform evidence remains required; no native or fully verified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-factor-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -91009,9 +91270,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-expert-review.md",
-          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -91164,9 +91425,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-expert-review.md",
-          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -91411,9 +91672,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TBTRS with full-domain neutral triangular band descriptor,independent layouts,N/T/C,unit read rules,source count admission,caller workspace and full-width INFO. Root v19-02 GNU four52/52,ASC-only two7/7,four relocated23-family packages,six static checks andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects and60 provider-free primary objects. Candidate full failure/read/allocation/header proofs remain bound;complete normalized modes,concurrency and platform gates remain open. No fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-solve-review.md",
-          "partial_scope": "Checked actual TBTRS with full-domain neutral triangular band descriptor,independent layouts,N/T/C,unit read rules,source count admission,caller workspace and full-width INFO. Root v19-02 GNU four52/52,ASC-only two7/7,four relocated23-family packages,six static checks andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects and60 provider-free primary objects. Candidate full failure/read/allocation/header proofs remain bound;complete normalized modes,concurrency and platform gates remain open. No fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -91889,9 +92150,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
-          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -92219,9 +92480,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
-          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -92465,9 +92726,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-review.md",
-          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -92573,9 +92834,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-review.md",
-          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -117359,12 +117620,97 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
+        "asc_operation": "asc::Pptrf",
         "mode_cases": [],
         "state": "pending"
       },
       "id": "lapack.zpptrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "include/asc/dense/blas.h",
+          "sha256": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/types.h",
+          "sha256": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack.h",
+          "sha256": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_cholesky_packed.h",
+          "sha256": "de4e9208b4ea46fdf655ddcdb399d2bcdc426ab526165cd296afc900f7145ba9"
+        },
+        {
+          "path": "src/dense/lapack/internal_indefinite.h",
+          "sha256": "9320b6f0da78b99fd0d821628d094cb273ae044e67e7315a40b3badf22df9e99"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_cholesky_counts.h",
+          "sha256": "812eb56c321e1c09422bc6f59c6a705de910b961045342c8fe2d13b2f6763afa"
+        },
+        {
+          "path": "src/dense/lapack/internal_packed_triangular.h",
+          "sha256": "d02964eed42516c23c16bec947bd55299f10dd560e88971268d16735a2e9fa59"
+        },
+        {
+          "path": "src/dense/lapack/reference_cholesky_packed.cc",
+          "sha256": "ea39ebabab31a7122f4bc01558b1c8825390d1cf55b22f5f21b9a674cda3cd45"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/factorization_support.h",
+          "sha256": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "tests/dense_lapack/installed_lu/packed_cholesky_main.cc",
+          "sha256": "9fa848123eb926a2ea28cdce98a07a251be3b5f1da1350281dcc513c5293d0c2"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_fault_test.cc",
+          "sha256": "3c516d163acfe127c25470f1419c0f783570afd248a81a5feda3c2c07c4a2550"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_faults.cc",
+          "sha256": "3f6cf6309a565e3c3cd8a6c86b315b333ded6e54c0b44778e76479076a3285aa"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_faults.h",
+          "sha256": "0b5ab47c611bf68a0ddab62aab216c92a254ff01ffe834c18d80830ccb5af0c2"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_pinned_signatures_test.cc",
+          "sha256": "954c2706e9cce06adc4e5a15c51abd7a0ce862cd7c36ea9ef7de8b8f030e8405"
+        },
+        {
+          "path": "tests/dense_lapack/packed_cholesky_source_counts_test.cc",
+          "sha256": "9f5f95363894adcdcf3ec2ed2dff8f1a8de678644f4f25497e1c2b8005aa3cf7"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -117372,7 +117718,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked actual PPTRF with explicit ordinary packed layouts, real-only complex diagonal packing, source-specific integer bounds and preserved partial INFO/output. Candidate03 six4/4 andstrict/header checks pass. Root v21 six fresh66-primary-TU lanes: Release each818/888 with70 required math failures, Debug68/76 andASC-only sanitizer17/25 with8 math failures each, zero skips;four25-family packages and120-header Doxygen pass. Full modes, ignored-load/concurrency/platform evidence remains required; no native or fully verified credit.",
+          "review": "programs/lapack-array-io/packed-cholesky-factor-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -121242,9 +121590,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-expert-review.md",
-          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -121397,9 +121745,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-expert-review.md",
-          "partial_scope": "Checked TBCON/TBRFS with full-domain band descriptor,explicit band packing,independent RHS layouts,unit read rules,source-specific integer/work admission andfull-width INFO. Root v20 full GNU Release each880 tests810pass70requiredmathfail;Debug68 andASC-only sanitizer19 each8requiredmathfail;zero skips.390 fresh primary objects,four24-family packages,six static and119-header documentation checks;exact candidate strict/header evidence retained. Provider-free static/shared16/16. Complete mathematical/mode/memory/platform/program gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -121644,9 +121992,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TBTRS with full-domain neutral triangular band descriptor,independent layouts,N/T/C,unit read rules,source count admission,caller workspace and full-width INFO. Root v19-02 GNU four52/52,ASC-only two7/7,four relocated23-family packages,six static checks andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects and60 provider-free primary objects. Candidate full failure/read/allocation/header proofs remain bound;complete normalized modes,concurrency and platform gates remain open. No fully verified or native credit.",
           "review": "programs/lapack-array-io/triangular-band-solve-review.md",
-          "partial_scope": "Checked actual TBTRS with full-domain neutral triangular band descriptor,independent layouts,N/T/C,unit read rules,source count admission,caller workspace and full-width INFO. Root v19-02 GNU four52/52,ASC-only two7/7,four relocated23-family packages,six static checks andprovider-free static/shared16/16 pass;zero skips.384 fresh primary root objects and60 provider-free primary objects. Candidate full failure/read/allocation/header proofs remain bound;complete normalized modes,concurrency and platform gates remain open. No fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -122076,9 +122424,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
-          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -122406,9 +122754,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-expert-review.md",
-          "partial_scope": "Checked actual packed TPCON/TPRFS, explicit A and independent RHS layout workspace, unit-diagonal read rules, source integer/work bounds and full-width INFO. Root v18 six fresh 63-primary-TU lanes and four relocated 22-family packages audited. Full Release 791/853 each with62 required math failures; Debug46/62 and ASC-only sanitizer21/37 each with16 required math failures; zero skips. All four new scoped tests,14 strict and6 static checks pass. Complete normalized modes, stronger read/memory/concurrency, invalid-option/operand-alias crossproducts and platform gates remain open; no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -122652,9 +123000,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-review.md",
-          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -122760,9 +123108,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "in_progress",
+          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit.",
           "review": "programs/lapack-array-io/packed-triangular-review.md",
-          "partial_scope": "Checked actual TPTRI/TPTRS with explicit packed layout conversion, independent RHS layouts, unit-diagonal read/write rules, native cursor bounds and full-width INFO. Root v17 six fresh62-primary-TU lanes pass all4 new packed tests; four relocated21-family packages pass. Full Release783/837 each with54 existing required math failures; Debug38/46 and ASC-only sanitizer17/25 each with8 existing math failures;zero skips. Twelve strict and6 static checks pass. Complete normalized modes,stronger read/memory/concurrency and platform gates remain open;no fully verified or native credit."
+          "state": "in_progress"
         }
       },
       "required_profiles": [

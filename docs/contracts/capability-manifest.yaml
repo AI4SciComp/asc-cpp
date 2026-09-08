@@ -98,7 +98,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 6
     status: "runtime-tested"
-    evidence_scope: "unreleased incremental-lapack-v20 with322 partial Reference scalar routes;zero fully verified. Full GNU Release bothABIs each880 tests810pass70requiredmathfail;Debug68 each60pass8mathfail;ASC-only sanitizer19 each11pass8mathfail;zero skips.390 fresh primary objects,four relocated24-family packages,six static checks and119-header/2148-member Doxygen pass. Provider-free static/shared16/16 each. Foreign libraries unsanitized.130 missing required XBLAS andcomplete2113 routine/mode/platform closure remain open"
+    evidence_scope: "unreleased incremental-lapack-v21 with326 partial Reference scalar routes;zero fully verified. PPTRF4 candidate03 six4/4 runs and12 strict/4 isolated-header/current-format checks pass;48 fresh candidate objects with65 prior primary TUs explicitly reused. Audited root v21 freshly compiles66 primary TUs in six lanes;Release each818/888 with70 required math failures,Debug68/76 andASC-only sanitizer17/25 with8 math failures each,zero skips;four25-family relocated packages and120-header/2156-member Doxygen pass. Provider-free static/shared scoped16/16 each pass. Prior70 mathematical failures,130 missing required XBLAS andcomplete2113 routine/mode/platform closure remain open"
     public_headers:
       - "include/asc/dense/providers/lapack.h"
       - "include/asc/dense/providers/lapack_export.h"
@@ -109,6 +109,7 @@ capabilities:
       - "include/asc/dense/providers/lapack_lu_driver.h"
       - "include/asc/dense/providers/lapack_lu_helpers.h"
       - "include/asc/dense/providers/lapack_cholesky.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed.h"
       - "include/asc/dense/providers/lapack_qr.h"
       - "include/asc/dense/providers/lapack_cholesky_condition.h"
       - "include/asc/dense/providers/lapack_cholesky_driver.h"

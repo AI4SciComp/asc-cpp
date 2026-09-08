@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v20` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v21` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,12 +10,35 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 322 partial scalar routines.
-The other 1,791 required
+routes below bring the development mapping to 326 partial scalar routines.
+The other 1,787 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_cholesky_packed.h` adds S/D/C/Z `Pptrf` with the existing checked
+ordinary packed matrix descriptor. Upper and lower factors satisfy U^H U or
+L L^H, using transpose for real scalars. Row conversion uses exactly the
+queried caller-owned packed storage. Complex diagonal imaginary components
+are ignored. Queries read metadata only; source-specific cursor bounds and
+all workspace/provenance checks precede native entry.
+
+Positive INFO preserves the source-defined partial factorization, including
+untouched future diagonal components on upper or first-pivot lower failure.
+Invalid or unwritten INFO withholds row publication; direct native writes
+remain visible. The candidate passes four tests in each Debug, Release and
+ASC-only sanitizer ABI lane, with independent normalized reconstruction,
+finite dyadic scale extremes, first/last nonpositive pivots, preflight checks
+and scoped allocation observations. Fresh root v21 Release suites pass
+818/888 tests per ABI, retaining 70 required mathematical failures and zero
+skips. Affected Debug passes 68/76 and ASC-only sanitizer passes 17/25 per ABI,
+with eight required mathematical failures each. All 66 primary translation
+units compile freshly in six lanes; four relocated packages pass 25 family
+consumers. Doxygen covers 120 headers and 2,156 public members without warnings.
+Provider-free static/shared scoped checks pass 16/16 each. Full modes,
+ignored-load observations, concurrency and platform acceptance remain open;
+no native capability is added.
 
 `lapack_triangular_band.h` adds S/D/C/Z `Tbtrs` with the neutral
 `LapackTriangularBandView`. The descriptor supports bandwidths equal to or
