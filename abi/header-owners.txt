@@ -26,6 +26,7 @@ asc/dense/lapack/lu.h|asc_dense
 asc/dense/lapack/qr.h|asc_dense
 asc/dense/lapack/report.h|asc_dense
 asc/dense/lapack/structured_view.h|asc_dense
+asc/dense/lapack/triangular_band_view.h|asc_dense
 asc/dense/lapack/types.h|asc_dense
 asc/dense/lapack/workspace.h|asc_dense
 asc/dense/layout.h|asc_dense
@@ -73,6 +74,7 @@ asc/dense/providers/lapack_triangular.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_error_bounds.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_packed.h|asc_dense_lapack
+asc/dense/providers/lapack_triangular_band.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_packed_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_packed_error_bounds.h|asc_dense_lapack
 asc/dense/providers/lapack_tridiagonal.h|asc_dense_lapack

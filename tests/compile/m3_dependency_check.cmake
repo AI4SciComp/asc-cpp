@@ -24,6 +24,7 @@ set(_expected_public_files
   include/asc/dense/lapack/report.h
   include/asc/dense/lapack/factor_view.h
   include/asc/dense/lapack/structured_view.h
+  include/asc/dense/lapack/triangular_band_view.h
   include/asc/dense/lapack/lu.h
   include/asc/dense/lapack/cholesky.h
   include/asc/dense/lapack/qr.h
@@ -91,6 +92,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_triangular_condition.h
   include/asc/dense/providers/lapack_triangular_error_bounds.h
   include/asc/dense/providers/lapack_triangular_packed.h
+  include/asc/dense/providers/lapack_triangular_band.h
   include/asc/dense/providers/lapack_triangular_packed_condition.h
   include/asc/dense/providers/lapack_triangular_packed_error_bounds.h
   include/asc/dense/providers/lapack_lu_band_expert.h
@@ -150,6 +152,7 @@ set(_asc_lapack_contract_headers
   asc/dense/lapack/report.h
   asc/dense/lapack/factor_view.h
   asc/dense/lapack/structured_view.h
+  asc/dense/lapack/triangular_band_view.h
   asc/dense/lapack/lu.h
   asc/dense/lapack/cholesky.h
   asc/dense/lapack/qr.h

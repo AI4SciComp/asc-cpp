@@ -1,4 +1,23 @@
-# Current v18 packed estimator integration
+# Current v19 triangular-band solve integration
+
+The program has314 Reference rows in progress and1,799 not started of2,113
+required;20 native implementations remain separately unverified and zero
+routines have complete verified status. TBTRS4 is registered with the new
+neutral band descriptor. Four GNU affected suites pass52/52, both ASC-only
+sanitizer suites7/7, four relocated23-family packages and provider-free
+static/shared16/16 each pass. Zero skips. Six static checks and117-header
+Doxygen coverage pass. See [the bound review](triangular-band-solve-review.md).
+
+There are2,795 normalized records, preserving original failures. The384 fresh
+primary root objects and60 provider-free primary objects are separate from
+explicitly retained older evidence. Historical v18 full suites still have62
+required mathematical failures;130 missing required XBLAS routines and all
+remaining P00-P11/mode/platform gates stay open. TBCON/TBRFS8 closure comparison
+is executed source evidence only; implementation remains required. The three
+prose updates pass six fresh checks with2,968 prior compiler inputs/artifacts
+rehashed unchanged. The bounded v19 slice is ready for its local commit.
+
+# Historical v18 packed estimator integration
 
 The program has 310 Reference rows in progress and 1,803 not started out of
 2,113 required. The 20 native implementations remain separately unverified;

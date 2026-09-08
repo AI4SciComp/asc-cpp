@@ -126127,6 +126127,2176 @@
       "external_record": "p05-triangular-band-solve-candidate-04/completion-record/record.json",
       "record_sha256": "521de9a9519fedab277eb70bafa7d56e041bfa617eb83286b58b3d10c85a9025",
       "scope": "Unregistered TBTRS4 candidate04. All six lanes execute7/7 with zero skips. Seventy-eight fresh adapter/test/support objects; prior63 primary ASC TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Ten original strict checks cover unchanged inputs; four candidate02 fault strict checks, eight explicitly input-bound isolated headers, four current read-test strict and current14-file format checks pass. Candidate03 four strict failures remain preserved. Each public suite has36864 workflows/1907712 assertions, failure suite42048 profiles/305280 assertions, counts186643 and four native signatures. Fresh Linux read observation establishes real C++20 array lifetimes and288 provider profiles with protected ignored A storage, whole backing preservation and zero observed C++ allocations. Earlier scalar-object harness results are historical, not array-lifetime proof. No root, installed, full-mode/platform or fully verified routine credit; all2113 required routines and130 missing XBLAS remain visible."
+    },
+    {
+      "id": "triangular-band-v19-02-static-surface",
+      "started": "2026-09-08T11:31:55.001779+00:00",
+      "completed": "2026-09-08T11:31:55.053385+00:00",
+      "configuration": "current-static",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "659c7233c17a47a307a9940f027de2ae33d15872412f5e986a84abfe38e0b142"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/static-surface/record.json",
+      "record_sha256": "44965d14b862394c1f20faf455435f11728c1efd3d574a474b3f56bca18a032e",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-release-lp64-configure",
+      "started": "2026-09-08T11:31:55.051852+00:00",
+      "completed": "2026-09-08T11:32:26.119841+00:00",
+      "configuration": "affected-release-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-release-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "c0db6e3903deb84f40f3707e22caf75dd8c3c36719aac115b317d849e7a7f206"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-release-lp64-configure/record.json",
+      "record_sha256": "0efb99bbccc5c8da3d3da3f86f8453f0889dd63b7861dffb5081c50b73740be7",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-release-ilp64-configure",
+      "started": "2026-09-08T11:31:55.069683+00:00",
+      "completed": "2026-09-08T11:32:26.210673+00:00",
+      "configuration": "affected-release-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-release-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "af28de2cc30ed95c46015ec21bd1ac0010584367aa8cbb6ace5f8eb0eb377b61"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-release-ilp64-configure/record.json",
+      "record_sha256": "1d4402480402ecef1458f5b91dca23d2e1c8d6b41e402e6e0e2baaced0d6b7b1",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-static-doxygen",
+      "started": "2026-09-08T11:31:55.328941+00:00",
+      "completed": "2026-09-08T11:32:03.048832+00:00",
+      "configuration": "current-static",
+      "command": [
+        "cmake",
+        "-DASC_CPP_DOCUMENTATION_SOURCE_DIR=$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "-DASC_CPP_DOCUMENTATION_BUILD_DIR=$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-docs",
+        "-DASC_CPP_DOCUMENTATION_VERSION=0.9.0",
+        "-DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE=/home/yicai/.local/bin/doxygen",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tools/documentation/BuildDoxygen.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/static-doxygen/record.json",
+      "record_sha256": "f7944839149248caf8269428261a3db502fee16239583940f26dc1cdda453b70",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-static-doxygen-coverage",
+      "started": "2026-09-08T11:32:03.328851+00:00",
+      "completed": "2026-09-08T11:32:03.709225+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tools/documentation/check_doxygen.py",
+        "--source",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-docs",
+        "--xml",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-docs/docs/doxygen/xml",
+        "--html",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-docs/docs/doxygen/html",
+        "--tagfile",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-docs/docs/doxygen/ASCCpp.tag",
+        "--warnings",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-docs/docs/doxygen/doxygen-warnings.log"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a56ca5f9731a20ee499d57ba0540477682b8550eaeba0a14239ed81d32f96ae9"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/static-doxygen-coverage/record.json",
+      "record_sha256": "18b59a81e37cc3d7db0b7660a2ec2648b4e68e020b22a6690045c6ab9222b07e",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-static-markdown",
+      "started": "2026-09-08T11:32:03.990749+00:00",
+      "completed": "2026-09-08T11:32:04.158628+00:00",
+      "configuration": "current-static",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/static-markdown/record.json",
+      "record_sha256": "94041bb4bc742c2105b41fabc2b2c35c0e2029f23c1a6bd7772597bc2c82ff29",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-static-format",
+      "started": "2026-09-08T11:32:04.442115+00:00",
+      "completed": "2026-09-08T11:32:04.559403+00:00",
+      "configuration": "current-static",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--style=file:$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/.clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/include/asc/dense/lapack/triangular_band_view.h",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/include/asc/dense/providers/lapack_triangular_band.h",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/src/dense/lapack/internal_triangular_band.h",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/src/dense/lapack/internal_triangular_band_counts.h",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/src/dense/lapack/reference_triangular_band.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense/lapack_triangular_band_read_observation_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense/lapack_triangular_band_view_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense_lapack/installed_lu/triangular_band_main.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense_lapack/triangular_band_fault_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense_lapack/triangular_band_faults.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense_lapack/triangular_band_faults.h",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense_lapack/triangular_band_pinned_signatures_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense_lapack/triangular_band_read_observation_test.cc",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tests/dense_lapack/triangular_band_source_counts_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/static-format/record.json",
+      "record_sha256": "30bbb9fcf52d8bc78eaa9e000680c8170eea0b4e1833d6e8188a296bcc6e79e6",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-static-coverage",
+      "started": "2026-09-08T11:32:04.824935+00:00",
+      "completed": "2026-09-08T11:32:05.361484+00:00",
+      "configuration": "current-static",
+      "command": [
+        "/home/yicai/anaconda3/bin/python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/tools/lapack/validate_coverage.py",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source/docs/contracts/lapack-evidence.json",
+        "--evidence-root",
+        "$EVIDENCE_ROOT"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "937e84ef9565c0ba59b7a2f165f65f1360f187bb0d46be63ac68ca0bb7676b0a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/static-coverage/record.json",
+      "record_sha256": "0a3e4c75e49712631ea33a6a8c720eb80e8bd4d52f60ea9fe871a52a021d4eb6",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-release-lp64-build",
+      "started": "2026-09-08T11:32:26.400991+00:00",
+      "completed": "2026-09-08T11:38:31.241601+00:00",
+      "configuration": "affected-release-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-release-lp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_blas_test",
+        "asc_dense_blas_level1_test",
+        "asc_dense_blas_level2_test",
+        "asc_dense_blas_level3_test",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_random_distribution_test",
+        "asc_random_engine_test",
+        "asc_random_generator_test",
+        "asc_random_seed_test",
+        "asc_random_stateful_engine_test",
+        "asc_random_statistical_test",
+        "asc_random_quasi_test",
+        "asc_random_dense_advanced_sampler_test",
+        "asc_random_dense_dense_generation_test",
+        "asc_random_dense_qmc_fill_test",
+        "asc_random_dense_thread_partition_test",
+        "asc_random_sparse_random_adapter_test",
+        "asc_random_sparse_sparse_generation_test",
+        "asc_random_sparse_thread_reproducibility_test",
+        "asc_dense_lapack_triangular_band_public_test",
+        "asc_dense_lapack_triangular_band_source_counts_test",
+        "asc_dense_lapack_triangular_band_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_fault_test",
+        "asc_dense_lapack_triangular_band_provider_read_observation_test",
+        "asc_dense_lapack_header_lapack_triangular_band_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_h_no_exceptions",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "32fc0ef46de5ae1ae6141156065e17b10fd0132c9fb547222302adc23905f568"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-release-lp64-build/record.json",
+      "record_sha256": "8222a378317950befc2f2ba30c5a9c0108428611c714c75ce3fa30c2a29631ea",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-release-ilp64-build",
+      "started": "2026-09-08T11:32:26.469195+00:00",
+      "completed": "2026-09-08T11:38:29.147210+00:00",
+      "configuration": "affected-release-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-release-ilp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_blas_test",
+        "asc_dense_blas_level1_test",
+        "asc_dense_blas_level2_test",
+        "asc_dense_blas_level3_test",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_random_distribution_test",
+        "asc_random_engine_test",
+        "asc_random_generator_test",
+        "asc_random_seed_test",
+        "asc_random_stateful_engine_test",
+        "asc_random_statistical_test",
+        "asc_random_quasi_test",
+        "asc_random_dense_advanced_sampler_test",
+        "asc_random_dense_dense_generation_test",
+        "asc_random_dense_qmc_fill_test",
+        "asc_random_dense_thread_partition_test",
+        "asc_random_sparse_random_adapter_test",
+        "asc_random_sparse_sparse_generation_test",
+        "asc_random_sparse_thread_reproducibility_test",
+        "asc_dense_lapack_triangular_band_public_test",
+        "asc_dense_lapack_triangular_band_source_counts_test",
+        "asc_dense_lapack_triangular_band_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_fault_test",
+        "asc_dense_lapack_triangular_band_provider_read_observation_test",
+        "asc_dense_lapack_header_lapack_triangular_band_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_h_no_exceptions",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "32fc0ef46de5ae1ae6141156065e17b10fd0132c9fb547222302adc23905f568"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-release-ilp64-build/record.json",
+      "record_sha256": "2794eed157a862e16a68c64c82fa6fa52be1c94488cc2fdc91846314f2830d59",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-debug-lp64-configure",
+      "started": "2026-09-08T11:32:39.670359+00:00",
+      "completed": "2026-09-08T11:33:11.325939+00:00",
+      "configuration": "affected-debug-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-lp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=32",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-lp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-lp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "42fdd250ff1ac87076a139c5c3fd6f525bebe2897cdb711ea113422fc2c1e975"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-debug-lp64-configure/record.json",
+      "record_sha256": "4c44cd189c1f1d4f3e81c5d64f0194ebd7954c2acbbfb8c3f7ab3d28a524ec17",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-debug-ilp64-configure",
+      "started": "2026-09-08T11:32:39.679545+00:00",
+      "completed": "2026-09-08T11:33:11.215345+00:00",
+      "configuration": "affected-debug-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-ilp64",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=ON",
+        "-DASC_CPP_LAPACK_INTEGER_BITS=64",
+        "-DASC_CPP_LAPACK_ROOT=$EVIDENCE_ROOT/installs/lapack-ilp64-static",
+        "-DASC_CPP_LAPACK_ATTESTATION=$EVIDENCE_ROOT/provider-ilp64-attestation-01.json",
+        "-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/usr/lib/x86_64-linux-gnu/libgfortran.so.5.0.0;/usr/lib/x86_64-linux-gnu/libquadmath.so.0.0.0",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/x86_64-linux-gnu-gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11/",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f9a4347826e2c65e4f47dcda780c7d7f8e6ffc3f855a175a919fff50c250f196"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-debug-ilp64-configure/record.json",
+      "record_sha256": "d2f0cc8c04ea17fc923b61e018d9cc7cd0de6de1fe11c9ef7d65b408899401aa",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-debug-ilp64-build",
+      "started": "2026-09-08T11:33:11.553290+00:00",
+      "completed": "2026-09-08T11:36:23.725490+00:00",
+      "configuration": "affected-debug-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-ilp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_blas_test",
+        "asc_dense_blas_level1_test",
+        "asc_dense_blas_level2_test",
+        "asc_dense_blas_level3_test",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_random_distribution_test",
+        "asc_random_engine_test",
+        "asc_random_generator_test",
+        "asc_random_seed_test",
+        "asc_random_stateful_engine_test",
+        "asc_random_statistical_test",
+        "asc_random_quasi_test",
+        "asc_random_dense_advanced_sampler_test",
+        "asc_random_dense_dense_generation_test",
+        "asc_random_dense_qmc_fill_test",
+        "asc_random_dense_thread_partition_test",
+        "asc_random_sparse_random_adapter_test",
+        "asc_random_sparse_sparse_generation_test",
+        "asc_random_sparse_thread_reproducibility_test",
+        "asc_dense_lapack_triangular_band_public_test",
+        "asc_dense_lapack_triangular_band_source_counts_test",
+        "asc_dense_lapack_triangular_band_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_fault_test",
+        "asc_dense_lapack_triangular_band_provider_read_observation_test",
+        "asc_dense_lapack_header_lapack_triangular_band_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_h_no_exceptions",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "32fc0ef46de5ae1ae6141156065e17b10fd0132c9fb547222302adc23905f568"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-debug-ilp64-build/record.json",
+      "record_sha256": "1cec8c95b09e047ca8b891a4c6c5b53817a90c83d223f4fbe4d884c662372572",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-debug-lp64-build",
+      "started": "2026-09-08T11:33:11.656105+00:00",
+      "completed": "2026-09-08T11:36:23.499541+00:00",
+      "configuration": "affected-debug-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-lp64",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_dense_lapack",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_normal_return_probe",
+        "asc_dense_lapack_provider_placement_test",
+        "asc_dense_blas_test",
+        "asc_dense_blas_level1_test",
+        "asc_dense_blas_level2_test",
+        "asc_dense_blas_level3_test",
+        "asc_dense_lapack_foundations_test",
+        "asc_dense_lapack_structured_view_test",
+        "asc_dense_lapack_lu_test",
+        "asc_dense_lapack_cholesky_test",
+        "asc_dense_lapack_qr_test",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_random_distribution_test",
+        "asc_random_engine_test",
+        "asc_random_generator_test",
+        "asc_random_seed_test",
+        "asc_random_stateful_engine_test",
+        "asc_random_statistical_test",
+        "asc_random_quasi_test",
+        "asc_random_dense_advanced_sampler_test",
+        "asc_random_dense_dense_generation_test",
+        "asc_random_dense_qmc_fill_test",
+        "asc_random_dense_thread_partition_test",
+        "asc_random_sparse_random_adapter_test",
+        "asc_random_sparse_sparse_generation_test",
+        "asc_random_sparse_thread_reproducibility_test",
+        "asc_dense_lapack_triangular_band_public_test",
+        "asc_dense_lapack_triangular_band_source_counts_test",
+        "asc_dense_lapack_triangular_band_pinned_signatures_test",
+        "asc_dense_lapack_triangular_band_fault_test",
+        "asc_dense_lapack_triangular_band_provider_read_observation_test",
+        "asc_dense_lapack_header_lapack_triangular_band_h_normal",
+        "asc_dense_lapack_header_lapack_triangular_band_h_no_exceptions",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "32fc0ef46de5ae1ae6141156065e17b10fd0132c9fb547222302adc23905f568"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-debug-lp64-build/record.json",
+      "record_sha256": "2a526a60b078d1d80f9f306e1e43f3b14c7f02a30db9d9e7b225a0830c324961",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-sanitizer-lp64-configure",
+      "started": "2026-09-08T11:34:29.076005+00:00",
+      "completed": "2026-09-08T11:34:31.514036+00:00",
+      "configuration": "asc-only-sanitizer-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-sanitizer-lp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "72eb3b738a792343a1ec964bb2cc81d4ba7385e1f443ba1059db2835bf843248"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-sanitizer-lp64-configure/record.json",
+      "record_sha256": "dedd08bdba312ac1c6c4a976da5674e6576cfc7d6bf8f3408ca7a1191bfb8ec1",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-sanitizer-ilp64-configure",
+      "started": "2026-09-08T11:34:29.084146+00:00",
+      "completed": "2026-09-08T11:34:31.496252+00:00",
+      "configuration": "asc-only-sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/sanitizer",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-sanitizer-ilp64",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/clang++-19",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DABI=ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1ce1181674f98ec804e2936f752cafa9f21174bf9b6faf9e90e71e35c9699929"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-sanitizer-ilp64-configure/record.json",
+      "record_sha256": "218f361bcc18d94880ef7dc10352683d71a3859d1946070e2dd77909ba85efb0",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-sanitizer-ilp64-build",
+      "started": "2026-09-08T11:34:31.890261+00:00",
+      "completed": "2026-09-08T11:36:52.344121+00:00",
+      "configuration": "asc-only-sanitizer-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-sanitizer-ilp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2dbd462715f4cc5cdb81c0ad07aa918781f046ea2f79f970a7333275cc46c054"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-sanitizer-ilp64-build/record.json",
+      "record_sha256": "75beef615715556fd92a00a285e264dc3fbe9cc7da4997dd2ae0a41ea4eb70cb",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-sanitizer-lp64-build",
+      "started": "2026-09-08T11:34:31.902648+00:00",
+      "completed": "2026-09-08T11:36:53.971752+00:00",
+      "configuration": "asc-only-sanitizer-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-sanitizer-lp64",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2dbd462715f4cc5cdb81c0ad07aa918781f046ea2f79f970a7333275cc46c054"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-sanitizer-lp64-build/record.json",
+      "record_sha256": "71ad7aee72de9e1a21c870f8cc5c825ffef649b4f216e692f24943549ed07e4b",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-debug-lp64-registered",
+      "started": "2026-09-08T11:36:23.885461+00:00",
+      "completed": "2026-09-08T11:36:23.934055+00:00",
+      "configuration": "affected-debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e42d19fd59c12ea2dc882eca5977775996556d9950213f9c51656cfa82ded61e"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-debug-lp64-registered/record.json",
+      "record_sha256": "c3700625781c6e8baa91ba84438c0a393b76bea05fa80c1868a36a4f4108ef8a",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-debug-ilp64-registered",
+      "started": "2026-09-08T11:36:24.102581+00:00",
+      "completed": "2026-09-08T11:36:24.138747+00:00",
+      "configuration": "affected-debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ec3232b996d6ce115fc3befd924bb99ff307ede25a8a6c0593ba32186f185562"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-debug-ilp64-registered/record.json",
+      "record_sha256": "44cc30217fe1339438e9133374eee7d1bbfd0a05a6d9dd7936d66909cf59fa00",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-debug-lp64-ctest",
+      "started": "2026-09-08T11:36:24.300366+00:00",
+      "completed": "2026-09-08T11:41:16.955979+00:00",
+      "configuration": "affected-debug-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/record-debug-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3be2c3a55fce5c02c917312dcfca0c871f158ab0a83f455fa9adec5b9059e8fb",
+        "ctest.xml": "5bd1ad939a926a84823208c4a3594cf30f0e36b2cf59584d203a2219f8347c24"
+      },
+      "test_counts": {
+        "executed": 52,
+        "failed": 0,
+        "passed": 52,
+        "selected": 52,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-debug-lp64-ctest/record.json",
+      "record_sha256": "73f8cf3697e4dc05d97c064446e53d2b2076d0918b9cba93598b8ccc7ab3017f",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-debug-ilp64-ctest",
+      "started": "2026-09-08T11:36:24.539039+00:00",
+      "completed": "2026-09-08T11:41:17.708518+00:00",
+      "configuration": "affected-debug-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/record-debug-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a3cddb45fb3bf48d116720e022a91a6050ff76aa11e0c01783baeab87ff17b09",
+        "ctest.xml": "df910c6cc060c3a48aab3d372d65a48b53e32bb3af3789aab40dcfd03225967c"
+      },
+      "test_counts": {
+        "executed": 52,
+        "failed": 0,
+        "passed": 52,
+        "selected": 52,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-debug-ilp64-ctest/record.json",
+      "record_sha256": "450bdb0f17b3360984de08c52221973f2085ced6229fa80ff5bcf7a1c9802347",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-sanitizer-ilp64-registered",
+      "started": "2026-09-08T11:36:52.709305+00:00",
+      "completed": "2026-09-08T11:36:52.720527+00:00",
+      "configuration": "asc-only-sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-sanitizer-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "33f0c827143791d6e0334063288108d83928cf822395ff2e815671bef5dd5920"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-sanitizer-ilp64-registered/record.json",
+      "record_sha256": "f2545c1e143f6baefb54711dc8f0276e5668a8bc66b70575b903d95d9a1eb09f",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-sanitizer-ilp64-ctest",
+      "started": "2026-09-08T11:36:53.125862+00:00",
+      "completed": "2026-09-08T11:38:36.636753+00:00",
+      "configuration": "asc-only-sanitizer-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-sanitizer-ilp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/record-sanitizer-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "9efb3e054f2d286c465b492861f9df5f7f0ca2e6ddd96fa1d143a79d4ce4cad2",
+        "ctest.xml": "b568eb080bb980722aea32abaf0b5cecebe7a8e3e336033c582767a5ec4c41e2"
+      },
+      "test_counts": {
+        "executed": 7,
+        "failed": 0,
+        "passed": 7,
+        "selected": 7,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-sanitizer-ilp64-ctest/record.json",
+      "record_sha256": "8eb86975a9e281b56d572eddd74c28a3cd5cc32ed6bd002f3096efa20b0ec9dd",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-sanitizer-lp64-registered",
+      "started": "2026-09-08T11:36:54.375455+00:00",
+      "completed": "2026-09-08T11:36:54.387847+00:00",
+      "configuration": "asc-only-sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-sanitizer-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a9da83510028bd4025e5ee89df8baf5013803010723c5dbde8118ab0d61c30b0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-sanitizer-lp64-registered/record.json",
+      "record_sha256": "2d9371ab6af629fb406b4504e56e9ec28fc5c83802c9e2c25f2f61a81d700f7d",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-sanitizer-lp64-ctest",
+      "started": "2026-09-08T11:36:54.764164+00:00",
+      "completed": "2026-09-08T11:38:39.099677+00:00",
+      "configuration": "asc-only-sanitizer-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-sanitizer-lp64",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/record-sanitizer-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "36bcbf22e7ec04d6bcfab62f714b7bd4292b68fe7e9a8ba2c73dfe484fd2f680",
+        "ctest.xml": "840ad172102a72428de504e7231c696f06c51bcf4771be2583cb361dded07f21"
+      },
+      "test_counts": {
+        "executed": 7,
+        "failed": 0,
+        "passed": 7,
+        "selected": 7,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-sanitizer-lp64-ctest/record.json",
+      "record_sha256": "201eb31f98399c5c4cd88bd293da3c454dfc3cc3a44d4d797bacc9b24b5d32ec",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-expert-closure-01-lp64",
+      "started": "2026-09-08T11:37:19.960907+00:00",
+      "completed": "2026-09-08T11:37:22.798639+00:00",
+      "configuration": "source-closure-no-capability-credit",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/expert-closure-01/audit_sources.py",
+        "lp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "0a973fc89475ba633edf17c27b6afde6d07d01d6f2ebcad2ad206a6bfe3472df"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/expert-closure-01/record-lp64/record.json",
+      "record_sha256": "02e9f7ad6294f429b2a26b9441684feb22af75e04b7e2c45ac50a63841a831ce",
+      "scope": "Mechanical source/object identity comparison only.57 complete shared members per ABI match the prior81-object packed estimator closure;24 band members remain subject to their own complete source/integer/progress/numerical review. No routine capability or mathematical pass follows."
+    },
+    {
+      "id": "triangular-band-expert-closure-01-ilp64",
+      "started": "2026-09-08T11:37:20.011928+00:00",
+      "completed": "2026-09-08T11:37:22.803807+00:00",
+      "configuration": "source-closure-no-capability-credit",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/expert-closure-01/audit_sources.py",
+        "ilp64"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3700f927b7141566ba526d3871def3906eda23a137c081e20b84d41ad99d9f90"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/expert-closure-01/record-ilp64/record.json",
+      "record_sha256": "9063544db8ecb092c53e33bc45ee0c5d27f73cae87efdb8bb987f01c9f565d9b",
+      "scope": "Mechanical source/object identity comparison only.57 complete shared members per ABI match the prior81-object packed estimator closure;24 band members remain subject to their own complete source/integer/progress/numerical review. No routine capability or mathematical pass follows."
+    },
+    {
+      "id": "triangular-band-v19-02-release-ilp64-registered",
+      "started": "2026-09-08T11:38:29.666361+00:00",
+      "completed": "2026-09-08T11:38:29.711793+00:00",
+      "configuration": "affected-release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-release-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "40f468ccea8e3bda6fa6f5ae7a1aa83c5f69a421a44e5d9c89512da13c03cb66"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-release-ilp64-registered/record.json",
+      "record_sha256": "019c71548271096d11ac7a31dabfb6a904b8e1549f7c9ebee8025ba715aba919",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-release-ilp64-ctest",
+      "started": "2026-09-08T11:38:30.216642+00:00",
+      "completed": "2026-09-08T11:42:18.410100+00:00",
+      "configuration": "affected-release-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-release-ilp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/record-release-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "06c375974fdcb76bc210986eaaf6f4639d26bf3e78b91aa37406e5538648f4e4",
+        "ctest.xml": "1c2a462af0d8cc61d04bb23c93833d22c9f692221a3c7621436a61923368a80b"
+      },
+      "test_counts": {
+        "executed": 52,
+        "failed": 0,
+        "passed": 52,
+        "selected": 52,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-release-ilp64-ctest/record.json",
+      "record_sha256": "bba2ed131f2f99288aedd111b634368f3386898610087fe7c6c3bddb0ad14ee2",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-release-lp64-registered",
+      "started": "2026-09-08T11:38:31.736054+00:00",
+      "completed": "2026-09-08T11:38:31.792805+00:00",
+      "configuration": "affected-release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-release-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "3405d128e58012a86e95d0b3171b8bd4a670f30587daf97a5820d4b2826a7427"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-release-lp64-registered/record.json",
+      "record_sha256": "6e3abc1930dda61ba34a2b02a47c6cdeedb71839a3ae794304e3117b4fd5cee4",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-v19-02-release-lp64-ctest",
+      "started": "2026-09-08T11:38:32.284510+00:00",
+      "completed": "2026-09-08T11:42:20.720085+00:00",
+      "configuration": "affected-release-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-release-lp64",
+        "-R",
+        "^asc_cpp[.](dense_lapack[.](triangular_band[.]|normal_return_guard$|provider_placement[.]|header[.]lapack_triangular_band_h[.]|package_integration$)|dense[.](blas|blas_level1|blas_level2|blas_level3|lapack_foundations|lapack_structured_view|lapack_lu|lapack_cholesky|lapack_qr|lapack_triangular_band_view|lapack_triangular_band_read_observation)_test$|random[.](distribution|engine|generator|seed|stateful_engine|statistical|quasi)_test$|random_dense[.](advanced_sampler|dense_generation|qmc_fill|thread_partition)_test$|random_sparse[.](random_adapter|sparse_generation|thread_reproducibility)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--test-output-size-passed",
+        "20000000",
+        "--test-output-size-failed",
+        "20000000",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/record-release-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a387985358897e0d32251e75f41580240f705cd194690320b537c4cc30c281ed",
+        "ctest.xml": "dabaeb89573b2590ee45c393c008f3f272f2bab342024fce035e553d6b845eed"
+      },
+      "test_counts": {
+        "executed": 52,
+        "failed": 0,
+        "passed": 52,
+        "selected": 52,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/record-release-lp64-ctest/record.json",
+      "record_sha256": "3e0b8dbf9dfe769f6a1b1cfb7903fe22336c9ca089202cfa7c0fa1ba4e2c3485",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-default-v19-01-static-configure",
+      "started": "2026-09-08T11:45:07.842981+00:00",
+      "completed": "2026-09-08T11:45:33.633151+00:00",
+      "configuration": "provider-free-static",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/build-static",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=OFF",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1c395104f6b0745dbe1cb64877988b7d4409f9e99c2fc175ed2c59e6e56db640"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/record-static-configure/record.json",
+      "record_sha256": "884c3962d5fd885ebee15fc82a6967bcf23a9628f44017f87add7b7bdcb1eecb",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-default-v19-01-shared-configure",
+      "started": "2026-09-08T11:45:07.863500+00:00",
+      "completed": "2026-09-08T11:45:33.733711+00:00",
+      "configuration": "provider-free-shared",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/source",
+        "-B",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/build-shared",
+        "-G",
+        "Unix Makefiles",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=$EVIDENCE_ROOT/dependencies/asccmake-8a7dcbad/source",
+        "-DASC_CPP_BUILD_TESTING=ON",
+        "-DASC_CPP_INSTALL=ON",
+        "-DASC_CPP_ENABLE_CUDA=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DASC_CPP_BUILD_DOCUMENTATION=OFF",
+        "-DASC_CPP_ENABLE_LAPACK=OFF",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DASC_CPP_WARNINGS_AS_ERRORS=ON"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "69bd5c8f0ea5dbf1232f7cee49ad0dab412d8b937525cf9e160a329046d12b19"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/record-shared-configure/record.json",
+      "record_sha256": "025c4c07d3087696d931a745f22002533fc789ee900f8709fba1043e1ff6d0eb",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-default-v19-01-static-build",
+      "started": "2026-09-08T11:45:33.922728+00:00",
+      "completed": "2026-09-08T11:46:37.346521+00:00",
+      "configuration": "provider-free-static",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/build-static",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "8d536bd7dd24a9e7579777b7319c6bce5b98a3dbf3c315557c35e3b36568ebcd"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/record-static-build/record.json",
+      "record_sha256": "cdca8a27e66b92399567f0ff2f4205bdb93c79135483fae7c7692f0263317fdf",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-default-v19-01-shared-build",
+      "started": "2026-09-08T11:45:34.015211+00:00",
+      "completed": "2026-09-08T11:46:38.264321+00:00",
+      "configuration": "provider-free-shared",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/build-shared",
+        "--parallel",
+        "1",
+        "--target",
+        "asc_core",
+        "asc_dense",
+        "asc_sparse",
+        "asc_random",
+        "asc_utilities",
+        "asc_dense_lapack_triangular_band_view_test",
+        "asc_dense_lapack_triangular_band_read_observation_test",
+        "asc_m3_header_asc_dense_lapack_triangular_band_view_h",
+        "asc_m3_header_no_exceptions_asc_dense_lapack_triangular_band_view_h"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "64c57116a7496d5b25a894e0f3e17565ca16808de5c85230777ed6f5a5a022e0"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/record-shared-build/record.json",
+      "record_sha256": "a97eb57cc2dd7f4b0e5d859a3a0920319d588f5fbf4440f9254155556d446015",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-v19-02-completion",
+      "started": "2026-09-08T11:46:03.916227+00:00",
+      "completed": "2026-09-08T11:46:06.822704+00:00",
+      "configuration": "affected-root-completion",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/seal_audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "67afea6a5e13ba5b25194eeaaa2407de69b1aa0064bc539d5969371a9cd2b30b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-integration-v19-02/completion-record/record.json",
+      "record_sha256": "e9da0ad0630344a4b877c334bd05c6280daf7a984cc70d78136f2850d5466f71",
+      "scope": "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim."
+    },
+    {
+      "id": "triangular-band-default-v19-01-static-registered",
+      "started": "2026-09-08T11:46:37.669908+00:00",
+      "completed": "2026-09-08T11:46:37.707211+00:00",
+      "configuration": "provider-free-static",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/build-static",
+        "-R",
+        "^asc_cpp[.](dense[.]lapack_triangular_band_(view|read_observation)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "82628f70674afffd764693af82e44c106cfa553e73f856aafadabb4b3a363de4"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/record-static-registered/record.json",
+      "record_sha256": "c8b087cd9f89c5150147af53df9968758829232746ae4eeced231436cf47aaa1",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-default-v19-01-static-ctest",
+      "started": "2026-09-08T11:46:38.007825+00:00",
+      "completed": "2026-09-08T11:46:39.124644+00:00",
+      "configuration": "provider-free-static",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/build-static",
+        "-R",
+        "^asc_cpp[.](dense[.]lapack_triangular_band_(view|read_observation)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/record-static-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "f7ca1b4827ff92b90c47b96c2ad6fdf5ebbed92b5a7c0f7460ddd713baa64cff",
+        "ctest.xml": "46243002d1ba288e32f6eb690aedd115e572652994b83d98bc207d831d0cde42"
+      },
+      "test_counts": {
+        "executed": 16,
+        "failed": 0,
+        "passed": 16,
+        "selected": 16,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/record-static-ctest/record.json",
+      "record_sha256": "9822642914dde2600b6c63d4e628eb6321e7fc68bd99167a646c61999a253655",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-default-v19-01-shared-registered",
+      "started": "2026-09-08T11:46:38.559062+00:00",
+      "completed": "2026-09-08T11:46:38.575574+00:00",
+      "configuration": "provider-free-shared",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/build-shared",
+        "-R",
+        "^asc_cpp[.](dense[.]lapack_triangular_band_(view|read_observation)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "803ef4ac02072108a284eefe42dae0e4e70f1a8da8084add42ef4cd7795146e3"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/record-shared-registered/record.json",
+      "record_sha256": "6fb8222931e33bdb06341b4b97cda03042538439d3dad5af712c565334b39437",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-default-v19-01-shared-ctest",
+      "started": "2026-09-08T11:46:38.861129+00:00",
+      "completed": "2026-09-08T11:46:40.272367+00:00",
+      "configuration": "provider-free-shared",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/build-shared",
+        "-R",
+        "^asc_cpp[.](dense[.]lapack_triangular_band_(view|read_observation)_test$|compile[.]m3_header(_no_exceptions)?[.]asc_dense_lapack_triangular_band_view_h$|architecture[.]public_file_policy$|compile[.]dependency_audit$|hardening[.]header_manifest[.])",
+        "--verbose",
+        "--parallel",
+        "1",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/record-shared-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d8b7f084e08403bc5448bd38e4018ee8422571606327eff62a58cd8a18103f58",
+        "ctest.xml": "ac4ac89f1d17ae124845517087645f64128275c254ca2d65c3159f214f2f7cac"
+      },
+      "test_counts": {
+        "executed": 16,
+        "failed": 0,
+        "passed": 16,
+        "selected": 16,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/record-shared-ctest/record.json",
+      "record_sha256": "6dfa83237627c7343ba1d55725354d6e49d0e13b143a2c52799fdb75645559f7",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-expert-closure-01-comparison",
+      "started": "2026-09-08T11:46:58.014037+00:00",
+      "completed": "2026-09-08T11:46:58.093926+00:00",
+      "configuration": "source-comparison-no-capability-credit",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/expert-closure-01/compare_to_packed.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "20017c55d1e90b5b1226f0e36aca82b5a673eaa60e2ee33e07ce0b71cdf89ff9"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/expert-closure-01/record-comparison/record.json",
+      "record_sha256": "2f46186694a78308e6da9d6a1a1f9090196f83e6ac1691103413a4a711b1d924",
+      "scope": "Mechanical source/object identity comparison only.57 complete shared members per ABI match the prior81-object packed estimator closure;24 band members remain subject to their own complete source/integer/progress/numerical review. No routine capability or mathematical pass follows."
+    },
+    {
+      "id": "triangular-band-default-v19-01-completion",
+      "started": "2026-09-08T11:51:02.571770+00:00",
+      "completed": "2026-09-08T11:51:02.765345+00:00",
+      "configuration": "provider-free-header-completion",
+      "command": [
+        "python3",
+        "-B",
+        "$EVIDENCE_ROOT/p01-triangular-band-default-v19-01/seal_audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "dbf3a5db6a085f322acf2c508e4f05c791914ffcfeeec5518594cd7e76baa51e"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "4b92f41fa2669904c88e8457382cfe30e176e9999197d44b69946635c135717b",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p01-triangular-band-default-v19-01/completion-record/record.json",
+      "record_sha256": "214015f1f570b9d9cb6abedb9fd67d2711554c7c63b133e02d865784252ca9f2",
+      "scope": "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim."
+    },
+    {
+      "id": "triangular-band-v19-documentation-coverage",
+      "started": "2026-09-08T11:54:38.828278+00:00",
+      "completed": "2026-09-08T11:54:39.349627+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/tools/lapack/validate_coverage.py",
+        "--inventory",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/docs/contracts/lapack-upstream-inventory.json",
+        "--mapping",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/docs/contracts/lapack-coverage.yaml",
+        "--provider-lock",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/docs/contracts/lapack-provider-lock.json",
+        "--evidence",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/docs/contracts/lapack-evidence.json",
+        "--source-root",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source",
+        "--evidence-root",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "937e84ef9565c0ba59b7a2f165f65f1360f187bb0d46be63ac68ca0bb7676b0a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-doc-integration-v19-01/record-coverage/record.json",
+      "record_sha256": "effa42275ada83484ca669f50b7d31f57205e7444e47751b219d66aa36d0c219",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-band-v19-documentation-dependency_audit",
+      "started": "2026-09-08T11:54:40.626664+00:00",
+      "completed": "2026-09-08T11:54:40.919276+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DSOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/tests/compile/dependency_check.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-doc-integration-v19-01/record-dependency_audit/record.json",
+      "record_sha256": "8d755a2cc6b5c52d7e2371908ead8d9ac5e9831dd7561907004ea8a155cb28ca",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-band-v19-documentation-documentation_consistency",
+      "started": "2026-09-08T11:54:41.172193+00:00",
+      "completed": "2026-09-08T11:54:41.229117+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DASC_CPP_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/tests/hardening/documentation_consistency_test.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "961380bcaa187d93b1fbd333aa1da60a0719d5c4a648bb46fd13c16d80c3bb7d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-doc-integration-v19-01/record-documentation_consistency/record.json",
+      "record_sha256": "d51a553f170b51a175fdc6c35861752eb5d4642062415bfb386acbc2022e9a4e",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-band-v19-documentation-markdown",
+      "started": "2026-09-08T11:54:39.865846+00:00",
+      "completed": "2026-09-08T11:54:40.015258+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/tools/documentation/check_links.py",
+        "--root",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "623a7f44e41f08826f86c2986f9cbb7c4f6c7ea2392c416f4ed5ee0aaa4595ef"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-doc-integration-v19-01/record-markdown/record.json",
+      "record_sha256": "840bc124dfb7996513112815d745f3e04d1bf2af24a445c93e9d5a4ccfd7765f",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-band-v19-documentation-public_file_policy",
+      "started": "2026-09-08T11:54:40.270001+00:00",
+      "completed": "2026-09-08T11:54:40.377946+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DSOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source",
+        "-DENABLE_CUDA:BOOL=OFF",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/tests/architecture/check_public_file_policy.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-doc-integration-v19-01/record-public_file_policy/record.json",
+      "record_sha256": "5f846d26becb3b7b5473452348694c3e3675e47bb82a7cbd8207ed306213d40c",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-band-v19-documentation-surface",
+      "started": "2026-09-08T11:54:39.592663+00:00",
+      "completed": "2026-09-08T11:54:39.615931+00:00",
+      "configuration": "documentation-only",
+      "command": [
+        "cmake",
+        "-DASC_CPP_HARDENING_SOURCE_DIR:PATH=$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source",
+        "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/public-surface.txt",
+        "-P",
+        "$EVIDENCE_ROOT/p05-triangular-band-doc-integration-v19-01/source/tools/hardening/CheckPublicSurface.cmake"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "659c7233c17a47a307a9940f027de2ae33d15872412f5e986a84abfe38e0b142"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "86dcd384c68e921f6f395495d69c0999fc4cdfda334376120d000da0963183ac",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-doc-integration-v19-01/record-surface/record.json",
+      "record_sha256": "9ca2638205245a3285dc02ba69670a321bfb139c3302c9cfe2e324b3da0b5b43",
+      "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
     }
   ]
 }

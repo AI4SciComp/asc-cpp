@@ -62,6 +62,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_triangular_condition.h
   include/asc/dense/providers/lapack_triangular_error_bounds.h
   include/asc/dense/providers/lapack_triangular_packed.h
+  include/asc/dense/providers/lapack_triangular_band.h
   include/asc/dense/providers/lapack_triangular_packed_condition.h
   include/asc/dense/providers/lapack_triangular_packed_error_bounds.h
   include/asc/dense/providers/lapack_lu_band_expert.h
@@ -84,6 +85,7 @@ set(_expected_public_files
   include/asc/dense/lapack/report.h
   include/asc/dense/lapack/factor_view.h
   include/asc/dense/lapack/structured_view.h
+  include/asc/dense/lapack/triangular_band_view.h
   include/asc/dense/lapack/lu.h
   include/asc/dense/lapack/cholesky.h
   include/asc/dense/lapack/qr.h
@@ -174,6 +176,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_triangular_expert.cc
   src/dense/lapack/reference_packed_triangular.cc
   src/dense/lapack/reference_packed_triangular_expert.cc
+  src/dense/lapack/reference_triangular_band.cc
   src/dense/lapack/reference_lu_band_refinement.cc
   src/dense/lapack/reference_lu_band_solve.cc
   src/dense/lapack/reference_tridiagonal.cc

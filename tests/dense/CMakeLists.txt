@@ -25,6 +25,7 @@ foreach(_source IN ITEMS
     blas_level3_test.cc
     lapack_foundations_test.cc
     lapack_structured_view_test.cc
+    lapack_triangular_band_view_test.cc
     lapack_lu_test.cc
     lapack_cholesky_test.cc
     lapack_qr_test.cc
@@ -215,3 +216,13 @@ unset(_negative_output)
 unset(_negative_source)
 unset(_source)
 unset(_target)
+
+# Linux page protection observes descriptor reads on a real live array.
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  add_executable(asc_dense_lapack_triangular_band_read_observation_test
+    lapack_triangular_band_read_observation_test.cc allocation_probe.cc)
+  _asc_dense_configure_test(asc_dense_lapack_triangular_band_read_observation_test)
+  asc_register_test(NAME asc_cpp.dense.lapack_triangular_band_read_observation_test
+    TARGET asc_dense_lapack_triangular_band_read_observation_test
+    LABELS dense runtime validation allocation TIMEOUT 120)
+endif()

@@ -68,6 +68,7 @@ set(_provider_free_entries
   "dense|asc/dense/lapack/report.h"
   "dense|asc/dense/lapack/factor_view.h"
   "dense|asc/dense/lapack/structured_view.h"
+  "dense|asc/dense/lapack/triangular_band_view.h"
   "dense|asc/dense/lapack/lu.h"
   "dense|asc/dense/lapack/cholesky.h"
   "dense|asc/dense/lapack/qr.h"
@@ -139,6 +140,7 @@ set(_lapack_entries
   "dense_lapack|asc/dense/providers/lapack_triangular_condition.h"
   "dense_lapack|asc/dense/providers/lapack_triangular_error_bounds.h"
   "dense_lapack|asc/dense/providers/lapack_triangular_packed.h"
+  "dense_lapack|asc/dense/providers/lapack_triangular_band.h"
   "dense_lapack|asc/dense/providers/lapack_triangular_packed_condition.h"
   "dense_lapack|asc/dense/providers/lapack_triangular_packed_error_bounds.h"
   "dense_lapack|asc/dense/providers/lapack_lu_band_expert.h"
@@ -161,9 +163,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 115)
+if(NOT _all_header_count EQUAL 117)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 115 headers; got "
+    "Independent source-header oracle must contain 117 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -175,7 +177,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 115-header oracle.\n"
+    "Source public-header tree differs from the frozen 117-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

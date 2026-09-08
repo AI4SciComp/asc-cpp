@@ -2,7 +2,7 @@
 
 `ASC::dense_lapack` is an optional Dense-owned facet, not a seventh module.
 `ASC::dense`, `ASC::cpp` and every other base component remain provider-free.
-The `incremental-lapack-v18` facet implements checked `Getrf`, `Getrs`,
+The `incremental-lapack-v19` facet implements checked `Getrf`, `Getrs`,
 `Getrf2`, `Getf2`, `Getri` and `Gesv` for `float`, `double` and their complex
 counterparts, including N/T/C reusable solve modes. These and `Geequ`/`Geequb`
 support both layouts, including independently selected factor/RHS layouts,
@@ -10,12 +10,32 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 310 partial scalar routines.
-The other 1,803 required
+routes below bring the development mapping to 314 partial scalar routines.
+The other 1,799 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_triangular_band.h` adds S/D/C/Z `Tbtrs` with the neutral
+`LapackTriangularBandView`. The descriptor supports bandwidths equal to or
+greater than order, with full physical backing and explicit row/column encoding.
+A/B layouts are independent, N/T/C preserve complex conjugation, and unit
+coefficients and unused corners are never read. Row conversion uses caller
+workspace; queries inspect metadata only. A nonunit zero-RHS solve still checks
+the actual diagonal and preserves first-zero native INFO. Zero-order completion
+is local with absent INFO. All structural checks precede numeric mutation.
+
+The admitted solve candidate passes seven tests on both integer ABIs in Release,
+Debug and ASC-only sanitizers, including scoped Linux protected-memory checks.
+Bounded root v19 checks pass: four affected GNU suites52/52, both ASC-only
+sanitizer suites7/7 and four relocated23-family packages. Provider-free static
+and shared descriptor/header/package suites pass16/16 each. Zero skips. The
+117-header documentation and six static checks pass. These checks retain
+prior unchanged full-suite evidence explicitly; they are not a new full-suite
+pass or complete routine/mode verification. The band
+condition/error-estimate routines `Tbcon`/`Tbrfs`, complete routine/mode evidence
+and platform gates remain required work. Native LAPACK coverage is separate.
 
 The general-band expert headers `lapack_general_band.h` and
 `lapack_lu_band_{equilibration,condition,refinement,driver,expert}.h`

@@ -33,6 +33,7 @@ target_sources(
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/report.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/factor_view.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/structured_view.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/triangular_band_view.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/lu.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/cholesky.h"
       "${PROJECT_SOURCE_DIR}/include/asc/dense/lapack/qr.h"

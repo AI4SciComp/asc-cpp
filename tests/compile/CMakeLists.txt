@@ -329,6 +329,7 @@ set(_asc_m3_public_headers
   asc/dense/lapack/report.h
   asc/dense/lapack/factor_view.h
   asc/dense/lapack/structured_view.h
+  asc/dense/lapack/triangular_band_view.h
   asc/dense/lapack/lu.h
   asc/dense/lapack/cholesky.h
   asc/dense/lapack/qr.h
