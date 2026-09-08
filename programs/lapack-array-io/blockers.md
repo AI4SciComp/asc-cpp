@@ -425,3 +425,16 @@ that every listed routine has a defect. Band20's five corresponding call
 sites are now undergoing bounded independent reproduction/correction before
 import. No existing source is reset, and prior full numerical suites do not
 establish this missing error-contract mode. Other implementation continues.
+
+## COMPLEX-LATBS-SINGLE-TERM — required mathematical gate unmet
+
+Pinned CLATBS/ZLATBS lower slow transpose/conjugate paths use JLEN>1 and
+omit a one-element dot product. Both ABI finite equation tests return wrong
+X with INFO=0 and SCALE=1: for A=t*[[1,0],[1+i,1]], Xtrue=[1,1], the returned
+X is [2+i,1] (transpose) or [2-i,1] (conjugate), t=min-normal. Sixteen tiny
+cases per ABI fail, while real and unit-scale controls pass. Exact shared
+runtime/link-map evidence and all source identities are in the
+[band estimator source review](triangular-band-expert-admission-review.md).
+No provider patch, fallback, rescaling or tolerance waiver is introduced.
+This remains a required LATBS mathematical gap and known TBCON dependency
+defect; independent implementation continues.

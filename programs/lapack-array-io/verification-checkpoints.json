@@ -128297,6 +128297,962 @@
       "external_record": "p05-triangular-band-doc-integration-v19-01/record-surface/record.json",
       "record_sha256": "9ca2638205245a3285dc02ba69670a321bfb139c3302c9cfe2e324b3da0b5b43",
       "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    },
+    {
+      "id": "triangular-band-expert-counts-01-build",
+      "started": "2026-09-08T12:04:58.288343+00:00",
+      "completed": "2026-09-08T12:04:59.244861+00:00",
+      "configuration": "pure-counts-gcc11-no-exceptions",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/build",
+        "--parallel",
+        "1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "744759902ba9844b24a6c37fac66760190bc1af8facdcc7895452179e684417a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-counts-01/record-build/record.json",
+      "record_sha256": "f3aff6b76e7caf4eca301fd1495aa8f0edc469550f84e1a31707b2be527e9b4d",
+      "scope": "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit."
+    },
+    {
+      "id": "triangular-band-expert-counts-01-configure",
+      "started": "2026-09-08T12:04:55.422980+00:00",
+      "completed": "2026-09-08T12:04:58.011184+00:00",
+      "configuration": "pure-counts-gcc11-no-exceptions",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/build",
+        "-DCMAKE_CXX_COMPILER=/usr/bin/g++-11",
+        "-DCMAKE_BUILD_TYPE=Debug"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "2dcf067038535eddc480a39a4bb72d4080d8138567b10246764e59af16905ae8"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-counts-01/record-configure/record.json",
+      "record_sha256": "6a95dad4490b296e52fedd3098675f20fbc9a30a24181d1906ec4f134b30809d",
+      "scope": "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit."
+    },
+    {
+      "id": "triangular-band-expert-counts-01-ctest",
+      "started": "2026-09-08T12:04:59.805646+00:00",
+      "completed": "2026-09-08T12:04:59.834422+00:00",
+      "configuration": "pure-counts-gcc11-no-exceptions",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/build",
+        "--verbose",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/record-ctest/ctest.xml"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "14120f1d6dd8e7037a3823dfe577e8f04c5ad450ba22b98c236b0d002efc265e",
+        "ctest.xml": "38de9c6728899fad0a3de9ba890064b442261dfb8b31f63427fa926b9e9c1b9c"
+      },
+      "test_counts": {
+        "executed": 1,
+        "failed": 0,
+        "passed": 1,
+        "selected": 1,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-counts-01/record-ctest/record.json",
+      "record_sha256": "d92a1a78f5ca554cacb46513550f2d80146764982dd72907569c0e5fcf243f68",
+      "scope": "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit."
+    },
+    {
+      "id": "triangular-band-expert-counts-01-format",
+      "started": "2026-09-08T12:05:11.829425+00:00",
+      "completed": "2026-09-08T12:05:11.873181+00:00",
+      "configuration": "pure-counts-gcc11-no-exceptions",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-format",
+        "--style=file:$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/source/.clang-format",
+        "--dry-run",
+        "--Werror",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/source/src/dense/lapack/internal_triangular_band_expert_counts.h",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/source/tests/dense_lapack/triangular_band_expert_source_counts_test.cc"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-counts-01/record-format/record.json",
+      "record_sha256": "1d9ded2e8a1f401d457223bf7be96607f864bf007fb3de7f7d4e4a6f92a73083",
+      "scope": "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit."
+    },
+    {
+      "id": "triangular-band-expert-counts-01-registered",
+      "started": "2026-09-08T12:04:59.519768+00:00",
+      "completed": "2026-09-08T12:04:59.541638+00:00",
+      "configuration": "pure-counts-gcc11-no-exceptions",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/build",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5343f2d02956be8c5d666b129d2a923d9cb1d2c373dcfc13aa1d5cb428a2d6db"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-counts-01/record-registered/record.json",
+      "record_sha256": "ed72cd4baf4c61b41f83583f40ab348438f5312ff535f2df090b2ed2399b894f",
+      "scope": "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit."
+    },
+    {
+      "id": "triangular-band-expert-counts-01-strict",
+      "started": "2026-09-08T12:05:00.085785+00:00",
+      "completed": "2026-09-08T12:05:11.559639+00:00",
+      "configuration": "pure-counts-gcc11-no-exceptions",
+      "command": [
+        "$EVIDENCE_ROOT/devtools/bin/clang-tidy",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/source/tests/dense_lapack/triangular_band_expert_source_counts_test.cc",
+        "--config-file=$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/source/.clang-tidy",
+        "--warnings-as-errors=*",
+        "--header-filter=.*internal_triangular_band_expert_counts[.]h$",
+        "--",
+        "-std=c++20",
+        "-DASC_CORE_STATIC_DEFINE",
+        "-DASC_DENSE_STATIC_DEFINE",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/source/include",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/source/src/dense/lapack",
+        "-I",
+        "$EVIDENCE_ROOT/p05-triangular-band-integration-v19-02/build-debug-lp64/include"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "4ded89eade0e915d2fdd40f1ea0e12587cce882466ef406fb7c045ab9138828a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-counts-01/record-strict/record.json",
+      "record_sha256": "063147a18bb0134d7f62e9ce10cdc3c1408815f304880ef46486777b6069b256",
+      "scope": "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit."
+    },
+    {
+      "id": "triangular-band-expert-counts-01-completion",
+      "started": "2026-09-08T12:16:49.046646+00:00",
+      "completed": "2026-09-08T12:16:49.213177+00:00",
+      "configuration": "pure-counts-gcc11-no-exceptions",
+      "command": [
+        "python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-expert-counts-01/seal_audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "ce0faf6db2b831a0acb300cae7f24aacd5dbaa1f5b36260ce40798709b803b9f"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-expert-counts-01/completion-record/record.json",
+      "record_sha256": "e3423bcd8fe3cbed0d6cef179fb1f1ebeb77cd173c5494e6f107efdf0ec8be1d",
+      "scope": "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit."
+    },
+    {
+      "id": "latbs-single-term-01-lp64-configure",
+      "started": "2026-09-08T12:19:11.848803+00:00",
+      "completed": "2026-09-08T12:19:12.946264+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-01",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-01/build-lp64",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/gfortran-11",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DABI=lp64",
+        "-DPROVIDER=$EVIDENCE_ROOT/installs/lapack-lp64-static"
+      ],
+      "command_exit_code": 1,
+      "evidence_exit_code": 1,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "1edd8cb65ee638291dfde45c0ae562e8e0f01503baab0eb9f87680a627a47a6c"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-01/record-lp64-configure/record.json",
+      "record_sha256": "48bdf0f2af3eb9bd12db34ec9ad48b62b6de54afbd14f71f8de4efee1c0c22d4",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-02-ilp64-build",
+      "started": "2026-09-08T12:20:19.457382+00:00",
+      "completed": "2026-09-08T12:20:19.824097+00:00",
+      "configuration": "direct-gfortran11-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/build-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "a8c0f8ef0195ef53e09e9af940af62139a0709720d1cc9f0560d254f04aa0b72"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-02/record-ilp64-build/record.json",
+      "record_sha256": "53c21a2d67580d26cbb0e78b0277f1268f65892987efd7518ad941ac61f2313f",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-02-ilp64-configure",
+      "started": "2026-09-08T12:20:18.358487+00:00",
+      "completed": "2026-09-08T12:20:19.214572+00:00",
+      "configuration": "direct-gfortran11-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/build-ilp64",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DABI=ilp64",
+        "-DPROVIDER=$EVIDENCE_ROOT/installs/lapack-ilp64-static"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "cf73b64b03c1b5e2f659f8b263ff8d0dd47917903949ada4173f2fe11c7faa36"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-02/record-ilp64-configure/record.json",
+      "record_sha256": "ef07e4f03d0f820ee835814a51ae40384dca4a7b3ef7ace518709b0e162c61b4",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-02-ilp64-ctest",
+      "started": "2026-09-08T12:20:20.326419+00:00",
+      "completed": "2026-09-08T12:20:20.342594+00:00",
+      "configuration": "direct-gfortran11-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/build-ilp64",
+        "--verbose",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/record-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "3fbd8f0c8033d6df259ad456d4ee9433be7e088702d7f9e725f2b68fc1426d7f",
+        "ctest.xml": "2b87a6474933711b44e161e402fd4eec3a63b46b3d1846965ed19746232f6759"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 2,
+        "passed": 2,
+        "selected": 4,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-02/record-ilp64-ctest/record.json",
+      "record_sha256": "c382ce3cec273f1ef07faf31ea967330004fa3a50b36a944908fee3f678d3346",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-02-ilp64-registered",
+      "started": "2026-09-08T12:20:20.067255+00:00",
+      "completed": "2026-09-08T12:20:20.077190+00:00",
+      "configuration": "direct-gfortran11-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/build-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "71aedd292e2d4bb2c7fe03f3c70b2e9f77c68ece6d18f7eb3f9583c2ccf655a3"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-02/record-ilp64-registered/record.json",
+      "record_sha256": "0c1308534ff70e62872d83bf8c3e1f62325eb29ca7996eb1ff31571ada65c686",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-02-lp64-build",
+      "started": "2026-09-08T12:20:17.201855+00:00",
+      "completed": "2026-09-08T12:20:17.565046+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/build-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "da2cc83dd4d89931fd635797adb7d9ae02ddb0dfbab23889f7f63b16f619c49a"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-02/record-lp64-build/record.json",
+      "record_sha256": "f243b68c8a8ae7f47e8678eaeac7da83a6c4bc45f2df6bde4e7f121bd4844fc4",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-02-lp64-configure",
+      "started": "2026-09-08T12:20:16.093707+00:00",
+      "completed": "2026-09-08T12:20:16.953555+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/build-lp64",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DABI=lp64",
+        "-DPROVIDER=$EVIDENCE_ROOT/installs/lapack-lp64-static"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "5e35e1a1003a670ef239af04885e85836cae572286ebb0fcf3a2b8e88602decc"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-02/record-lp64-configure/record.json",
+      "record_sha256": "7dd4836fb7ed93faf969da621d72aae3a63afa6b173abb9b99b716576a8cedfe",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-02-lp64-ctest",
+      "started": "2026-09-08T12:20:18.075760+00:00",
+      "completed": "2026-09-08T12:20:18.092053+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/build-lp64",
+        "--verbose",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/record-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "ced619b044ac287aeeddf3f570d19d27022d4a720435a9b68e8be4965df32b0c",
+        "ctest.xml": "dda94189384d1c98b31bfedf66653cb6e9c89df8657c00e7b697ddbc32e7ca2b"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 2,
+        "passed": 2,
+        "selected": 4,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-02/record-lp64-ctest/record.json",
+      "record_sha256": "ba968857b73aadf9e24f6bc1869bd1dd78e034fd9421fe029492e3e0c889cd68",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-02-lp64-registered",
+      "started": "2026-09-08T12:20:17.817720+00:00",
+      "completed": "2026-09-08T12:20:17.838786+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-02/build-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "21927125d9a2a695f1f361f98803d3451761ac169388ffff497403f4b25e7f46"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-02/record-lp64-registered/record.json",
+      "record_sha256": "088c3d0a22039b6fe7922faf6ead640d665ae136f9e9812bff2787040c7a3d14",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-ilp64-build",
+      "started": "2026-09-08T12:34:16.202895+00:00",
+      "completed": "2026-09-08T12:34:16.563786+00:00",
+      "configuration": "direct-gfortran11-ilp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/build-ilp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "917ed804d26920b52a5615b72a4c7a4b2d1eee69f9dd37a38352a5352399938d"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/record-ilp64-build/record.json",
+      "record_sha256": "e0794bf63dc61947d340ca9275b9e3c92600658250c30efff6527947cd924cdf",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-ilp64-configure",
+      "started": "2026-09-08T12:34:15.095282+00:00",
+      "completed": "2026-09-08T12:34:15.956517+00:00",
+      "configuration": "direct-gfortran11-ilp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/build-ilp64",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DABI=ilp64",
+        "-DPROVIDER=$EVIDENCE_ROOT/installs/lapack-ilp64-static"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "cfccb2045b8906e6159e9e336a8286ad0f9335e5338f804a934151685639391b"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/record-ilp64-configure/record.json",
+      "record_sha256": "7f7bf65784651ce6dc4866dedaeb7bfcb193c26af67bcdfef91eeb5601622b1b",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-ilp64-ctest",
+      "started": "2026-09-08T12:34:17.591904+00:00",
+      "completed": "2026-09-08T12:34:17.607140+00:00",
+      "configuration": "direct-gfortran11-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/build-ilp64",
+        "--verbose",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/record-ilp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "0441dae53a4446e3f0aca38940644b869aef290aba87785ed0e69e2cb6972a1d",
+        "ctest.xml": "a34d0788833bc69bbbb93643521bb3f196014840088b8c85ecc14e095db5a19b"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 2,
+        "passed": 2,
+        "selected": 4,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/record-ilp64-ctest/record.json",
+      "record_sha256": "c33d93727801286efa75c04ca4e5ea0884ebad6971672c72ba5bae432d49297f",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-ilp64-registered",
+      "started": "2026-09-08T12:34:16.816740+00:00",
+      "completed": "2026-09-08T12:34:17.351789+00:00",
+      "configuration": "direct-gfortran11-ilp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/build-ilp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "49f2a46372f04901217588ce6fb415b2d2384abbbb4652306e0535fe29b01ed6"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/record-ilp64-registered/record.json",
+      "record_sha256": "b1863ff90629f6447bf2072fbcea4f017e0e55a9f3a670a2536c156e70f3ce43",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-lp64-build",
+      "started": "2026-09-08T12:34:13.916794+00:00",
+      "completed": "2026-09-08T12:34:14.282424+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "cmake",
+        "--build",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/build-lp64",
+        "--parallel",
+        "2"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "bcd839e80cbc89f8216b19f61d29514cc48bbc2ab8f2b469db369e2206b10650"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/record-lp64-build/record.json",
+      "record_sha256": "633cb08cbb1bed44747ad845c78bb13fd6a3ecb586ab24f248df95a6b751aafc",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-lp64-configure",
+      "started": "2026-09-08T12:34:12.726359+00:00",
+      "completed": "2026-09-08T12:34:13.664691+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "cmake",
+        "-S",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/build-lp64",
+        "-DCMAKE_Fortran_COMPILER=$EVIDENCE_ROOT/toolchain/usr/bin/gfortran-11",
+        "-DCMAKE_Fortran_FLAGS=-B/usr/lib/gcc/x86_64-linux-gnu/11/ -L$EVIDENCE_ROOT/toolchain/usr/lib/gcc/x86_64-linux-gnu/11",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DABI=lp64",
+        "-DPROVIDER=$EVIDENCE_ROOT/installs/lapack-lp64-static"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "589e58e143c1f6445c9874ace249df92c617f99e99d879e1f7509f15963ea088"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/record-lp64-configure/record.json",
+      "record_sha256": "8687be8db08c85ca8a11ce70bb360dd314d73e89e54c769d59cf3485008f7723",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-lp64-ctest",
+      "started": "2026-09-08T12:34:14.801940+00:00",
+      "completed": "2026-09-08T12:34:14.819792+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/build-lp64",
+        "--verbose",
+        "--no-tests=error",
+        "--output-junit",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/record-lp64-ctest/ctest.xml"
+      ],
+      "command_exit_code": 8,
+      "evidence_exit_code": 8,
+      "evidence_failures": [
+        "CTest recorded one or more failed tests"
+      ],
+      "artifacts": {
+        "command.log": "e7d79b7ac873661459e311c2bc530121b699ab32106c4e09d547e1aa48ca6591",
+        "ctest.xml": "9cf079ff0523af0721cdaca9aed7420ebd06cbd7e74f03b31d37497f63cce05c"
+      },
+      "test_counts": {
+        "executed": 4,
+        "failed": 2,
+        "passed": 2,
+        "selected": 4,
+        "skipped": 0
+      },
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/record-lp64-ctest/record.json",
+      "record_sha256": "a6761fe49f06d5a07ee52809cf7bfe83c112e3fac1ceb607a2fc258918dc1421",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-lp64-registered",
+      "started": "2026-09-08T12:34:14.533856+00:00",
+      "completed": "2026-09-08T12:34:14.557732+00:00",
+      "configuration": "direct-gfortran11-lp64",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/build-lp64",
+        "--show-only=json-v1"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "b8de024b711f8e33c7d0b25be861c18e9b76c64de8c0c39c161843e9c15928cd"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/record-lp64-registered/record.json",
+      "record_sha256": "64599b7ee333aca4a5a77f55d584beb4493247d7aa687d4da9b0086ec3989a33",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
+    },
+    {
+      "id": "latbs-single-term-03-completion",
+      "started": "2026-09-08T12:35:56.358632+00:00",
+      "completed": "2026-09-08T12:35:56.478173+00:00",
+      "configuration": "source-admission-failure-audit",
+      "command": [
+        "/home/yicai/anaconda3/bin/python",
+        "-B",
+        "$EVIDENCE_ROOT/p05-triangular-band-source-01/latbs-single-term-03/seal_audit.py"
+      ],
+      "command_exit_code": 0,
+      "evidence_exit_code": 0,
+      "evidence_failures": [],
+      "artifacts": {
+        "command.log": "d555584ae5da017420028149d819f3636e9df774a0771e43feae28040e4789df"
+      },
+      "test_counts": null,
+      "source_before": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "source_after": {
+        "commit": null,
+        "content_sha256": "725378a9a9b1fb6ebe82e79638bdde3924519820814e122fb1f880ca7108c31f",
+        "dirty_diff_sha256": null,
+        "tree": null
+      },
+      "external_record": "p05-triangular-band-source-01/latbs-single-term-03/completion-record/record.json",
+      "record_sha256": "c09056d0d27fa9701c15f42e3c7a6949a0f9806c3a796548957d6424c5ecc078",
+      "scope": "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
     }
   ]
 }

@@ -14,12 +14,12 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "36bd98df8eaf5697b458af197e8884e7ded16dd0",
+  "last_implementation_commit": "e395588fc7b6dbc490dcdb0dd1dbb76b29da3707",
   "worktree_diff_identity": {
-    "state": "v19_ready_for_local_commit",
-    "parent_commit": "e05bd586e798dd8aaab62486408aee7ab3e88727",
-    "implementation_tree": "42a5ab08094cc355eec4133d412028accce5e2ac",
-    "source_archive_sha256": "91d9378c8cbdf122290eddbb6db24f3a226dab2a8c5ad1a740bbe6ec4168336a"
+    "state": "v19_committed_expert_admission_records_in_progress",
+    "parent_commit": "e395588fc7b6dbc490dcdb0dd1dbb76b29da3707",
+    "released_snapshot_tree": "42a5ab08094cc355eec4133d412028accce5e2ac",
+    "released_source_archive_sha256": "91d9378c8cbdf122290eddbb6db24f3a226dab2a8c5ad1a740bbe6ec4168336a"
   },
   "packages": {
     "P00": {
@@ -607,7 +607,11 @@
       ],
       "source_closure": "p05-triangular-band-source-01/expert-closure-01",
       "common_comparison_sha256": "5614344f17fc24b6d4c82b7b6af876e4e282794bde4654f2e2a863c5dfc2ff46",
-      "scope": "Both actual ABI TBCON/TBRFS8 closures have81 unique objects/no writable static data,57 exact shared prior packed-estimator objects and24 band-specific objects. Mechanical comparison only;complete LATBS progress/LANTB/TBRFS count review,independent arithmetic tests and implementation remain required. Eight rows stay not_started."
+      "scope": "Complete source-control and SCALE progress self-review bound to exact81-member closures,57 byte-identical shared dependencies and24 band-specific objects. Integer gate71282 checks passes. Direct complex LATBS lower single-term omission reproduced on bothABIs with finite equations; requiredmath failure remains open. Exact shared-runtime maps bound in candidate03; no providerpatch/rescaling/fallback. No routine capability credit.",
+      "integer_admission_audit": "p05-triangular-band-expert-counts-01/audit.json",
+      "integer_admission_audit_sha256": "559f25614998fb833c83c4a8953424c01fe6d8f1a99b642486000eb5dbb19553",
+      "bounded_admission_complete": true,
+      "review": "programs/lapack-array-io/triangular-band-expert-admission-review.md"
     },
     "P05.triangular_band_documentation": {
       "state": "in_progress",
@@ -616,10 +620,20 @@
       "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
       "completion_audit": "p05-triangular-band-doc-integration-v19-01/audit.json",
       "completion_audit_sha256": "0aabf9501c1df416ba2f598c64c3dc481181ff48a8b6aac288e99d74f2f6e6b7"
+    },
+    "P05.triangular_band_expert_candidate": {
+      "state": "in_progress",
+      "owner": "integration",
+      "dependencies": [
+        "P05.triangular_band_expert_source_admission"
+      ],
+      "draft": "p05-triangular-band-expert-draft-01",
+      "candidate": "p05-triangular-band-expert-candidate-03",
+      "scope": "Eleven owned adapter/header/test files preserved. Both Debug12 executed:public/fault/count/signature4pass and8requiredmathfail;zero skips. Release/sanitizer and finalstrict audit pending. All8 rows stay required/not_started until atomic root integration."
     }
   },
-  "active_task": "P05.triangular_band_expert_source_admission",
-  "next_action": "Commit the completed v19 TBTRS4 slice locally. Seal and normalize p05-triangular-band-expert-counts-01:all6 commands passed,71282 pure arithmetic checks,one fresh test object with exact reused Core. Finish complete band-estimator source/progress review and implement TBCON/TBRFS8;all remaining P00-P11,62 prior mathematical failures and130 missing required XBLAS remain open.",
+  "active_task": "P05.triangular_band_expert_candidate",
+  "next_action": "Complete candidate03 TBCON/TBRFS8 Release/Debug and ASC-only sanitizer verification on both ABIs, retain all required math failures, bind strict/header/provenance evidence, then atomically integrate as v20. Add missing memory/validation acceptance;continue remaining P00-P11. No full routine verification claimed.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -887,7 +901,9 @@
       "p05-triangular-band-solve-candidate-04/completion-record/record.json",
       "p05-triangular-band-integration-v19-02/audit.json",
       "p01-triangular-band-default-v19-01/audit.json",
-      "p05-triangular-band-source-01/expert-closure-01/common-comparison.json"
+      "p05-triangular-band-source-01/expert-closure-01/common-comparison.json",
+      "p05-triangular-band-expert-counts-01/audit.json",
+      "p05-triangular-band-source-01/latbs-single-term-03/audit.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -931,7 +947,9 @@
       "Unregistered TBTRS4 candidate04. All six lanes execute7/7 with zero skips. Seventy-eight fresh adapter/test/support objects; prior63 primary ASC TUs per lane explicitly reused and rehashed. Foreign archives unsanitized. Ten original strict checks cover unchanged inputs; four candidate02 fault strict checks, eight explicitly input-bound isolated headers, four current read-test strict and current14-file format checks pass. Candidate03 four strict failures remain preserved. Each public suite has36864 workflows/1907712 assertions, failure suite42048 profiles/305280 assertions, counts186643 and four native signatures. Fresh Linux read observation establishes real C++20 array lifetimes and288 provider profiles with protected ignored A storage, whole backing preservation and zero observed C++ allocations. Earlier scalar-object harness results are historical, not array-lifetime proof. No root, installed, full-mode/platform or fully verified routine credit; all2113 required routines and130 missing XBLAS remain visible.",
       "Fresh affected v19 GNU Release/Debug LP64/trueILP64 and ASC-only Clang19 sanitizer lanes;all64 primary Core/Dense/provider TUs freshly compiled per lane,384 objects. Four relocated23-family packages and six static/header/documentation gates; exact candidate strict/header evidence retained by unchanged source binding. Foreign archives unsanitized. Prior full v18 math failures remain required and source-bound;no fresh v19 full-suite,fully verified routine,platform or P00-P11 closure claim.",
       "Provider-free GNU Release static/shared each16/16,zero skips. Sixty fresh primary ASC objects plus12 test/support objects;no Fortran configuration,foreign provider headers/libraries or LAPACK target installed. New neutral header bound in actual installed/relocated packages. This is scoped descriptor/header/package evidence,not a full baseline or shared-provider claim.",
-      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+      "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed.",
+      "Pure condition/error integer admission only.71282 literal virtual-source and actual LP64/ILP64 metadata checks pass,one fresh GNU Debug C++20/no-exceptions test object and exact reused Core library;strict/format pass. No foreign estimator execution,public route or numerical/progress capability credit.",
+      "Direct pinned LATBS equation gates FAIL on both ABIs:16 cases per scalar,8 failures in each complex precision,real andunit-scale controls pass. Two CTestpass/twofail per ABI,zero skips;rawCTest8 preserved. Eight fresh Fortran driverobjects,foreign archivesunsanitized. Initial link-search configure failure and candidate02 audit runtime-assumption failure preserved;candidate03 binds explicit shared runtimes and actual link maps. No ASC route/full capability credit."
     ]
   },
   "counts": {
@@ -1027,6 +1045,11 @@
       "id": "TRIANGULAR-ESTIMATOR-FINITE-SCALAR-MATH",
       "record": "programs/lapack-array-io/triangular-expert-review.md",
       "scope": "All4 scalar TRCON tiny-condition-one and TRRFS tiny/max finite weighted-bound failures reproduced by exact raw provider in both ABIs. Eight ordinary required failing CTests remain unregistered until root integration. No source patch/fallback/waiver; continue unaffected acceptance/integration."
+    },
+    {
+      "id": "COMPLEX-LATBS-SINGLE-TERM",
+      "scope": "Pinned complex lower slow T/C path drops single off-diagonal;finite required equation gates fail on bothABIs. Does not block independent work.",
+      "record": "programs/lapack-array-io/triangular-band-expert-admission-review.md"
     }
   ],
   "external_approvals": [
@@ -1047,9 +1070,9 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "p05-triangular-band-expert-counts-01",
-    "state": "six_pure_count_checks_passed_admission_audit_pending",
-    "scope": "Unregistered helper/source-control test executes71282 checks with zero failures;configure/build/registration/CTest/strict/format all0. Both native integer limits use pure metadata only;no foreign TBCON/TBRFS execution. Complete source/progress admission and implementation remain open."
+    "candidate": "p05-triangular-band-expert-candidate-03",
+    "state": "debug_executed_other_lanes_running",
+    "scope": "Eleven owned adapter/header/test files preserved. Both Debug12 executed:public/fault/count/signature4pass and8requiredmathfail;zero skips. Release/sanitizer and finalstrict audit pending. All8 rows stay required/not_started until atomic root integration."
   },
   "last_completed_verification": {
     "base_commit": "e05bd586e798dd8aaab62486408aee7ab3e88727",
@@ -1357,5 +1380,5 @@
       "completion_audit_sha256": "0aabf9501c1df416ba2f598c64c3dc481181ff48a8b6aac288e99d74f2f6e6b7"
     }
   ],
-  "next_task": "Commit the completed v19 TBTRS4 slice locally. Seal and normalize p05-triangular-band-expert-counts-01:all6 commands passed,71282 pure arithmetic checks,one fresh test object with exact reused Core. Finish complete band-estimator source/progress review and implement TBCON/TBRFS8;all remaining P00-P11,62 prior mathematical failures and130 missing required XBLAS remain open."
+  "next_task": "Complete candidate03 TBCON/TBRFS8 Release/Debug and ASC-only sanitizer verification on both ABIs, retain all required math failures, bind strict/header/provenance evidence, then atomically integrate as v20. Add missing memory/validation acceptance;continue remaining P00-P11. No full routine verification claimed."
 }
