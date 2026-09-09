@@ -929,3 +929,29 @@ four new fixture constant-naming diagnostics.
 
 These are local scoped passes. The final W3/W4 candidate and hosted platform
 gates remain pending; the prior candidate's19/19 matrix remains historical.
+
+### W4 portable production cleanup candidate (2026-09-10)
+
+Private Dense/Sparse path helpers now accept a per-call opener defaulting to
+Core File. Matrix Market's existing helper bodies moved into private functions;
+public signatures, validation order, flush/close policy and result publication
+are unchanged. `w4-header-review-01.json` reviews exactly four changed header
+hashes; exported targets and header ownership do not change. The hash baseline
+has no updating generator (see the hardening tools README); its four entries
+were updated for these reviewed implementation changes.
+
+The two maintained `file_cleanup_test` targets execute108 profiles over
+Dense/COO ranks0–4 and empty/nonempty CSR/CSC with real/complex owners. Each now
+has12 fault/control scenarios and two public save/load controls. The same
+production cleanup code runs with actual linked Core File operations and
+per-instance fault state; this does not claim portable libc failure injection.
+The retained62 Linux/static GNU-wrap installed cases remain separate evidence.
+The test source note `tests/array_io/file_cleanup_test.md` records the finite
+equivalence classes and exact control-flow assertions.
+
+Initial GNU11shared2/2 passed before the extra flush-only/phase assertions.
+`w4-targeted-02` retains an unused-variable diagnostic from an incomplete phase
+assertion edit; the assertion is now present. `w4-tidy-01` retains local
+include/nested-conditional/unnamed-parameter findings in the new tests, corrected
+without suppressions. Final candidate regression and platform gates remain
+pending; this record does not promote I/O acceptance on an initial subset.

@@ -236,3 +236,15 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     TARGET asc_dense_lapack_triangular_band_read_observation_test
     LABELS dense runtime validation allocation TIMEOUT 120)
 endif()
+
+# Portable per-call faults run the same private path-helper body as public
+# save/load. Core File still belongs to the linked static/shared library.
+add_executable(asc_dense_file_cleanup_test file_cleanup_test.cc)
+_asc_dense_configure_test(asc_dense_file_cleanup_test)
+set(_cleanup_scratch "${CMAKE_CURRENT_BINARY_DIR}/cleanup scratch")
+file(MAKE_DIRECTORY "${_cleanup_scratch}")
+add_test(NAME asc_cpp.dense.file_cleanup_test
+  COMMAND asc_dense_file_cleanup_test "${_cleanup_scratch}")
+set_tests_properties(asc_cpp.dense.file_cleanup_test PROPERTIES
+  LABELS "dense;runtime;array-io;file-cleanup" TIMEOUT 120)
+unset(_cleanup_scratch)

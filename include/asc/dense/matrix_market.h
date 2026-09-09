@@ -701,6 +701,85 @@ Result<DenseArray<Element, ExtentsType>> ReadDenseMatrixMarket(
   return ReadDenseMatrixMarket<Element, ExtentsType>(*reader, resource, layout);
 }
 
+namespace internal_dense_matrix_market {
+
+// Per-call opening shares the actual path-helper control flow with boundary
+// fault tests. Public helpers retain Core File and their existing contracts.
+template <DenseElement Element, typename ExtentsType, typename Layout,
+          typename Open = decltype(&File::OpenRead)>
+Result<DenseArray<Element, ExtentsType>> Load(
+    const std::filesystem::path& path, MemoryResource& resource, Layout layout,
+    std::span<std::byte> scratch, const ArrayIoLimits& limits,
+    ArrayIoReport& report, Open open = &File::OpenRead) {
+  if (internal_array_format::Overlaps(scratch.data(), scratch.size(), &report,
+                                      sizeof(report))) {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  report = {};
+  auto file = open(path);
+  if (!file.ok()) {
+    return internal_core_result::StatusAccess::TakeFailure(std::move(file));
+  }
+  auto owner = ReadDenseMatrixMarket<Element, ExtentsType>(
+      *file, resource, layout, scratch, limits, report);
+  auto close = file->Close();
+  if (!close.ok()) {
+    report.cleanup_error = close.code();
+    report.committed = false;
+    report.section = ArrayIoSection::kTrailer;
+    if (owner.ok()) {
+      return close;
+    }
+  }
+  return owner;
+}
+
+template <typename Element, std::size_t Rank,
+          typename Open = decltype(&File::OpenWrite)>
+Status Save(const std::filesystem::path& path,
+            const DenseView<Element, Rank>& view, MatrixMarketSymmetry symmetry,
+            ArrayFileOverwrite overwrite, const ArrayIoLimits& limits,
+            std::span<std::byte> scratch, ArrayIoReport& report,
+            Open open = &File::OpenWrite) {
+  auto aliases = internal_dense_matrix_market::ValidateWriterAliases(
+      view, scratch, report);
+  if (!aliases.ok()) {
+    return aliases;
+  }
+  report = {};
+  if (overwrite != ArrayFileOverwrite::kTruncate) {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  auto status = internal_dense_matrix_market::ValidateWrite(view, symmetry,
+                                                            limits, scratch);
+  if (!status.ok()) {
+    return status;
+  }
+  auto file = open(path);
+  if (!file.ok()) {
+    return internal_core_result::StatusAccess::TakeFailure(std::move(file));
+  }
+  status =
+      WriteDenseMatrixMarket(view, *file, symmetry, limits, scratch, report);
+  if (status.ok()) {
+    report.section = ArrayIoSection::kTrailer;
+    status = file->Flush();
+  }
+  auto close = file->Close();
+  if (!close.ok()) {
+    report.cleanup_error = close.code();
+    if (status.ok()) {
+      status = std::move(close);
+    }
+  }
+  if (status.ok()) {
+    report.section = ArrayIoSection::kComplete;
+  }
+  return status;
+}
+
+}  // namespace internal_dense_matrix_market
+
 /** @brief Loads one whole Matrix Market array file and checks explicit close.
  * @tparam Element Caller-selected supported destination scalar.
  * @tparam ExtentsType Rank-two static/dynamic shape.
@@ -726,27 +805,8 @@ Result<DenseArray<Element, ExtentsType>> LoadDenseMatrixMarket(
     const std::filesystem::path& path, MemoryResource& resource, Layout layout,
     std::span<std::byte> scratch, const ArrayIoLimits& limits,
     ArrayIoReport& report) {
-  if (internal_array_format::Overlaps(scratch.data(), scratch.size(), &report,
-                                      sizeof(report))) {
-    return Status(ErrorCode::kInvalidArgument);
-  }
-  report = {};
-  auto file = File::OpenRead(path);
-  if (!file.ok()) {
-    return internal_core_result::StatusAccess::TakeFailure(std::move(file));
-  }
-  auto owner = ReadDenseMatrixMarket<Element, ExtentsType>(
-      *file, resource, layout, scratch, limits, report);
-  auto close = file->Close();
-  if (!close.ok()) {
-    report.cleanup_error = close.code();
-    report.committed = false;
-    report.section = ArrayIoSection::kTrailer;
-    if (owner.ok()) {
-      return close;
-    }
-  }
-  return owner;
+  return internal_dense_matrix_market::Load<Element, ExtentsType>(
+      path, resource, layout, scratch, limits, report);
 }
 
 /** @brief Creates/truncates a path and writes one checked Matrix Market array.
@@ -776,41 +836,8 @@ Status SaveDenseMatrixMarket(const std::filesystem::path& path,
                              const ArrayIoLimits& limits,
                              std::span<std::byte> scratch,
                              ArrayIoReport& report) {
-  auto aliases = internal_dense_matrix_market::ValidateWriterAliases(
-      view, scratch, report);
-  if (!aliases.ok()) {
-    return aliases;
-  }
-  report = {};
-  if (overwrite != ArrayFileOverwrite::kTruncate) {
-    return Status(ErrorCode::kInvalidArgument);
-  }
-  auto status = internal_dense_matrix_market::ValidateWrite(view, symmetry,
-                                                            limits, scratch);
-  if (!status.ok()) {
-    return status;
-  }
-  auto file = File::OpenWrite(path);
-  if (!file.ok()) {
-    return internal_core_result::StatusAccess::TakeFailure(std::move(file));
-  }
-  status =
-      WriteDenseMatrixMarket(view, *file, symmetry, limits, scratch, report);
-  if (status.ok()) {
-    report.section = ArrayIoSection::kTrailer;
-    status = file->Flush();
-  }
-  auto close = file->Close();
-  if (!close.ok()) {
-    report.cleanup_error = close.code();
-    if (status.ok()) {
-      status = std::move(close);
-    }
-  }
-  if (status.ok()) {
-    report.section = ArrayIoSection::kComplete;
-  }
-  return status;
+  return internal_dense_matrix_market::Save(path, view, symmetry, overwrite,
+                                            limits, scratch, report);
 }
 
 }  // namespace asc

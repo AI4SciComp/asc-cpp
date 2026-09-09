@@ -1255,10 +1255,15 @@ Status ReadSparseArrayBinaryInto(
 
 namespace internal_sparse_io {
 
-template <SparseIoView View>
+// Per-call opening keeps the production validation/codec/cleanup sequence
+// testable without process-global interposition. Public helpers use Core File;
+// this unsupported implementation boundary does not change their API.
+
+template <SparseIoView View, typename Open = decltype(&File::OpenWrite)>
 Status Save(const std::filesystem::path& path, const View& view,
             ArrayFileOverwrite overwrite, const ArrayIoLimits& limits,
-            std::span<std::byte> scratch, ArrayIoReport& report, bool binary) {
+            std::span<std::byte> scratch, ArrayIoReport& report, bool binary,
+            Open open = &File::OpenWrite) {
   report = {};
   if (overwrite != ArrayFileOverwrite::kTruncate) {
     return Status(ErrorCode::kInvalidArgument);
@@ -1270,7 +1275,7 @@ Status Save(const std::filesystem::path& path, const View& view,
   if (!status.ok()) {
     return status;
   }
-  auto file = File::OpenWrite(path);
+  auto file = open(path);
   if (!file.ok()) {
     return file.status();
   }
@@ -1292,13 +1297,13 @@ Status Save(const std::filesystem::path& path, const View& view,
   return status;
 }
 
-template <SparseIoOwner Owner>
+template <SparseIoOwner Owner, typename Open = decltype(&File::OpenRead)>
 Result<Owner> Load(const std::filesystem::path& path, MemoryResource& resource,
                    std::span<extent_t> metadata, std::span<std::byte> scratch,
                    const ArrayIoLimits& limits, ArrayIoReport& report,
-                   bool binary) {
+                   bool binary, Open open = &File::OpenRead) {
   report = {};
-  auto file = File::OpenRead(path);
+  auto file = open(path);
   if (!file.ok()) {
     return file.status();
   }

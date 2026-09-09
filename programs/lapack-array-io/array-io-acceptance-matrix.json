@@ -287,10 +287,12 @@
         "asc_cpp.array_io.file_close_c128-csr",
         "asc_cpp.array_io.file_close_c128-csc",
         "asc_cpp.array_io.file_close_matrix_market_dense",
-        "asc_cpp.array_io.file_close_matrix_market_sparse"
+        "asc_cpp.array_io.file_close_matrix_market_sparse",
+        "asc_cpp.dense.file_cleanup_test",
+        "asc_cpp.sparse.file_cleanup_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained60 ASC+2MM tests execute through Linux/static installed package lanes, with2808 assertions; external installed replay77 nested tests. Shared/Windows/macOS injection and primary read/write plus cleanup failures remain open. No atomic replacement/durability claim.",
+      "evidence_or_open": "Portable per-call opener now exercises the same production helper bodies, actual linked Core File and explicit public path controls.108rank/storage/real-complex profiles pass initial GNU11shared2/2. Final strengthened12-scenario+2public-control profiles, sanitizer and hosted static/shared platform runs pending. Retained62GNU-wrap installed cases remain actual Linux/static libc-boundary evidence.",
       "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
@@ -316,11 +318,9 @@
     }
   ],
   "remaining_cells": [
-    "Independent binary directions are now maintained and locally executed; include their new source/test inputs in the final platform candidate replay.",
-    "Maintain/review the extended compiler-load diagnostic; close remaining precision/locale boundary equivalence requirements",
-    "File-helper primary read/write plus cleanup error cases and portable shared/Windows/macOS failure injection",
-    "Consolidated per-row native and I/O artifact/evidence acceptance review; no package promotion from a tested subset",
-    "Owner/provenance approval remains a separate pending decision, not a reason to stop native/I/O implementation"
+    "Final coherent candidate execution of maintained binary directions, compiler-load diagnostics, precision/locale, portable cleanup and full mapped I/O modes on required static/shared platforms.",
+    "Current candidate regression, sanitizer, expanded lint, relocated package, documentation and header/ABI gates; native evidence unchanged-input reconciliation and actual validator replay.",
+    "Owner approval of amended redistribution packet remains separate; no reference-coverage denominator change."
   ],
   "tested_candidate": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
   "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",

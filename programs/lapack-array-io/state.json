@@ -1027,7 +1027,7 @@
     }
   },
   "active_task": "W3.maintain_load_and_precision_checks",
-  "next_action": "Finish W4 portable cleanup tests and run one coherent native/I/O candidate matrix; W1/W2/W3 local closure is retained.",
+  "next_action": "Run final GNU11shared regression, Clang19ASan/UBSan, strict affected tests plus existing expanded BLAS audit, relocated package/docs/header/ABI and hosted static/shared platform gates.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2350,8 +2350,13 @@
         "classification": "missing execution/platform evidence",
         "requirement": "files.cleanup and frozen primary/cleanup precedence",
         "existing": "62 Linux/static nonempty-rank2 cleanup cases",
-        "action": "Portable production-path boundary seam and combined primary/cleanup tests; execute required static/shared platforms",
-        "state": "pending"
+        "action": "Run final GNU11shared regression, Clang19ASan/UBSan, strict affected tests plus existing expanded BLAS audit, relocated package/docs/header/ABI and hosted static/shared platform gates.",
+        "state": "portable_tests_implemented_final_candidate_gates_pending",
+        "maintained_tests": [
+          "asc_cpp.dense.file_cleanup_test",
+          "asc_cpp.sparse.file_cleanup_test"
+        ],
+        "initial_execution": "w4-targeted-01 GNU11Debug/shared2/2,108profiles; subsequent flush-only/phase assertions and local lint clarifications require final replay"
       },
       "owner": {
         "classification": "owner decision",

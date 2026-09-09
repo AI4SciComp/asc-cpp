@@ -162,3 +162,15 @@ unset(_negative_output)
 unset(_negative_source)
 unset(_source)
 unset(_target)
+
+# Portable per-call faults run the same private path-helper body as public
+# save/load. Core File still belongs to the linked static/shared library.
+add_executable(asc_sparse_file_cleanup_test file_cleanup_test.cc)
+_asc_sparse_configure_test(asc_sparse_file_cleanup_test)
+set(_cleanup_scratch "${CMAKE_CURRENT_BINARY_DIR}/cleanup scratch")
+file(MAKE_DIRECTORY "${_cleanup_scratch}")
+add_test(NAME asc_cpp.sparse.file_cleanup_test
+  COMMAND asc_sparse_file_cleanup_test "${_cleanup_scratch}")
+set_tests_properties(asc_cpp.sparse.file_cleanup_test PROPERTIES
+  LABELS "sparse;runtime;array-io;file-cleanup" TIMEOUT 120)
+unset(_cleanup_scratch)

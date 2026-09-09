@@ -1433,6 +1433,80 @@ Status WriteSparseMatrixMarket(const View& view, ByteSink& sink,
                                                scratch, *count, report.io);
 }
 
+namespace internal_sparse_matrix_market {
+
+// Per-call opening shares the actual path-helper control flow with boundary
+// fault tests. Public helpers retain Core File and their existing contracts.
+template <internal_sparse_matrix_market::MatrixOwner Owner,
+          typename Open = decltype(&File::OpenRead)>
+Result<Owner> Load(const std::filesystem::path& path, MemoryResource& resource,
+                   std::span<std::byte> scratch, const ArrayIoLimits& limits,
+                   const SparseMatrixMarketReadOptions& options,
+                   SparseMatrixMarketReport& report,
+                   Open open = &File::OpenRead) {
+  if (internal_array_format::Overlaps(&report, sizeof(report), scratch.data(),
+                                      scratch.size())) {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  report = {};
+  auto file = open(path);
+  if (!file.ok()) {
+    return internal_core_result::StatusAccess::TakeFailure(std::move(file));
+  }
+  auto owner = ReadSparseMatrixMarket<Owner>(*file, resource, scratch, limits,
+                                             options, report);
+  auto close = file->Close();
+  if (!close.ok()) {
+    report.io.cleanup_error = close.code();
+    report.io.committed = false;
+    report.io.section = ArrayIoSection::kTrailer;
+    if (owner.ok()) {
+      return close;
+    }
+  }
+  return owner;
+}
+
+template <internal_sparse_matrix_market::MatrixView View,
+          typename Open = decltype(&File::OpenWrite)>
+Status Save(const std::filesystem::path& path, const View& view,
+            ArrayFileOverwrite overwrite, const ArrayIoLimits& limits,
+            const SparseMatrixMarketWriteOptions& options,
+            std::span<std::byte> scratch, SparseMatrixMarketReport& report,
+            Open open = &File::OpenWrite) {
+  auto status =
+      internal_sparse_matrix_market::ResetReport(view, scratch, report);
+  if (!status.ok()) {
+    return status;
+  }
+  if (overwrite != ArrayFileOverwrite::kTruncate) {
+    return Status(ErrorCode::kInvalidArgument);
+  }
+  auto file = open(path);
+  if (!file.ok()) {
+    return internal_core_result::StatusAccess::TakeFailure(std::move(file));
+  }
+  status =
+      WriteSparseMatrixMarket(view, *file, limits, options, scratch, report);
+  if (status.ok()) {
+    report.io.section = ArrayIoSection::kTrailer;
+    status = file->Flush();
+  }
+  auto close = file->Close();
+  if (!close.ok()) {
+    report.io.cleanup_error = close.code();
+    if (status.ok()) {
+      status = std::move(close);
+    }
+  }
+  if (status.ok()) {
+    report.io.section = ArrayIoSection::kComplete;
+  }
+  return status;
+}
+
+}  // namespace internal_sparse_matrix_market
+
 /** @brief Explicitly creates/truncates a path and writes coordinate Matrix
  * Market.
  * @tparam View Finalized rank-two canonical host Sparse view.
@@ -1457,35 +1531,8 @@ Status SaveSparseMatrixMarket(const std::filesystem::path& path,
                               const SparseMatrixMarketWriteOptions& options,
                               std::span<std::byte> scratch,
                               SparseMatrixMarketReport& report) {
-  auto status =
-      internal_sparse_matrix_market::ResetReport(view, scratch, report);
-  if (!status.ok()) {
-    return status;
-  }
-  if (overwrite != ArrayFileOverwrite::kTruncate) {
-    return Status(ErrorCode::kInvalidArgument);
-  }
-  auto file = File::OpenWrite(path);
-  if (!file.ok()) {
-    return internal_core_result::StatusAccess::TakeFailure(std::move(file));
-  }
-  status =
-      WriteSparseMatrixMarket(view, *file, limits, options, scratch, report);
-  if (status.ok()) {
-    report.io.section = ArrayIoSection::kTrailer;
-    status = file->Flush();
-  }
-  auto close = file->Close();
-  if (!close.ok()) {
-    report.io.cleanup_error = close.code();
-    if (status.ok()) {
-      status = std::move(close);
-    }
-  }
-  if (status.ok()) {
-    report.io.section = ArrayIoSection::kComplete;
-  }
-  return status;
+  return internal_sparse_matrix_market::Save(path, view, overwrite, limits,
+                                             options, scratch, report);
 }
 
 /** @brief Loads one complete coordinate Matrix Market path into a new owner.
@@ -1508,27 +1555,8 @@ Result<Owner> LoadSparseMatrixMarket(
     std::span<std::byte> scratch, const ArrayIoLimits& limits,
     const SparseMatrixMarketReadOptions& options,
     SparseMatrixMarketReport& report) {
-  if (internal_array_format::Overlaps(&report, sizeof(report), scratch.data(),
-                                      scratch.size())) {
-    return Status(ErrorCode::kInvalidArgument);
-  }
-  report = {};
-  auto file = File::OpenRead(path);
-  if (!file.ok()) {
-    return internal_core_result::StatusAccess::TakeFailure(std::move(file));
-  }
-  auto owner = ReadSparseMatrixMarket<Owner>(*file, resource, scratch, limits,
-                                             options, report);
-  auto close = file->Close();
-  if (!close.ok()) {
-    report.io.cleanup_error = close.code();
-    report.io.committed = false;
-    report.io.section = ArrayIoSection::kTrailer;
-    if (owner.ok()) {
-      return close;
-    }
-  }
-  return owner;
+  return internal_sparse_matrix_market::Load<Owner>(path, resource, scratch,
+                                                    limits, options, report);
 }
 
 }  // namespace asc

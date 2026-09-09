@@ -769,11 +769,16 @@ Result<DenseArray<Element, ExtentsType>> ReadDenseArrayBinary(
 
 namespace internal_dense_io {
 
-template <typename Element, std::size_t Rank>
+// Per-call opening keeps the production validation/codec/cleanup sequence
+// testable without process-global interposition. Public helpers use Core File;
+// this unsupported implementation boundary does not change their API.
+
+template <typename Element, std::size_t Rank,
+          typename Open = decltype(&File::OpenWrite)>
 Status Save(const std::filesystem::path& path,
             const DenseView<Element, Rank>& view, ArrayFileOverwrite overwrite,
             const ArrayIoLimits& limits, std::span<std::byte> scratch,
-            ArrayIoReport& report, bool binary) {
+            ArrayIoReport& report, bool binary, Open open = &File::OpenWrite) {
   report = {};
   if (overwrite != ArrayFileOverwrite::kTruncate) {
     return Status(ErrorCode::kInvalidArgument);
@@ -785,7 +790,7 @@ Status Save(const std::filesystem::path& path,
   if (!status.ok()) {
     return status;
   }
-  auto file = File::OpenWrite(path);
+  auto file = open(path);
   if (!file.ok()) {
     return file.status();
   }
@@ -807,13 +812,15 @@ Status Save(const std::filesystem::path& path,
   return status;
 }
 
-template <DenseElement Element, typename ExtentsType, typename Layout>
+template <DenseElement Element, typename ExtentsType, typename Layout,
+          typename Open = decltype(&File::OpenRead)>
 Result<DenseArray<Element, ExtentsType>> Load(
     const std::filesystem::path& path, MemoryResource& resource, Layout layout,
     std::span<extent_t> metadata, std::span<std::byte> scratch,
-    const ArrayIoLimits& limits, ArrayIoReport& report, bool binary) {
+    const ArrayIoLimits& limits, ArrayIoReport& report, bool binary,
+    Open open = &File::OpenRead) {
   report = {};
-  auto file = File::OpenRead(path);
+  auto file = open(path);
   if (!file.ok()) {
     return file.status();
   }
