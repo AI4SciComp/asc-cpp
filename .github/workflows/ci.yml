@@ -237,6 +237,26 @@ jobs:
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
           cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
+      - name: Audit the five native BLAS test and benchmark translation units
+        shell: bash
+        env:
+          CC: clang-18
+          CXX: clang++-18
+        run: |
+          set -euo pipefail
+          build="$RUNNER_TEMP/clang18-expanded-blas"
+          mkdir -p "$build"
+          cmake -S asc-cpp -B "$build" \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DBUILD_TESTING=ON \
+            -DASC_CPP_BUILD_TESTING=ON \
+            -DASC_CPP_ENABLE_LAPACK=OFF \
+            -DASC_CPP_ENABLE_CUDA=OFF \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          python3 -B asc-cpp/tools/lapack_io/check_native_blas_style.py \
+            --build-dir "$build" --clang-tidy clang-tidy-18 \
+            2>&1 | tee "$build/ci-expanded-tidy.log"
       - name: Preserve failure evidence
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

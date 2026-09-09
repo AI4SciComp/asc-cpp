@@ -1025,8 +1025,8 @@
       "current_preserved_candidate_state": "bounded_acceptance_audited_not_registered_not_fully_verified"
     }
   },
-  "active_task": "A3.maintain_installed_and_close_failure_harness",
-  "next_action": "Transfer reusable installed and checked-close checks into maintained tests; derive finite I/O gap matrix; retain A2 cross-cutting and row-level verification pending A4.",
+  "active_task": "A3.A4.final_candidate_verification",
+  "next_action": "Run composed candidate and maintained cleanup/installed harness, fix failures without weakening checks, then consolidate exact row and remaining I/O gap evidence.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2117,13 +2117,13 @@
       "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
     }
   ],
-  "next_task": "A3.maintain_installed_and_close_failure_harness",
+  "next_task": "A3.A4.final_candidate_verification",
   "documentation_verification": {
     "state": "passed",
     "scope": "Current local links, git diff whitespace, JSON parsing, exact manifest hashes and program-record-only diff; no product changes.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/final-documentation-checks-01/record.json"
   },
-  "next_command": "ctest --test-dir <candidate-build> --verbose --no-tests=error -R ^asc_cpp.examples.installed_relocated$",
+  "next_command": "ctest --test-dir <new-candidate-build> --verbose --no-tests=error",
   "stabilization_checkpoint": {
     "base": "46412183b2ae86101b2361c52376a8db8efff264",
     "deferred_numerical_task": {
@@ -2275,13 +2275,27 @@
       "closed_slots": 40,
       "closing_test": "asc_cpp.dense.native_report_alias_test",
       "closure": "programs/lapack-array-io/native-report-alias-acceptance.json",
-      "native_verified_operations": 0
+      "native_verified_operations": 0,
+      "additional_evidence": {
+        "asan_ubsan": "native-sanitizer-01/record-ctest/record.json",
+        "count": "7/7;40 report alias profiles",
+        "still_open": "New fixture Windows/macOS/Release/installed and final per-row consolidation"
+      }
     },
     "A3": {
-      "state": "pending"
+      "state": "implemented_test_additions_pending_final_candidate",
+      "gap_matrix": "programs/lapack-array-io/array-io-acceptance-matrix.json",
+      "maintained_harness": "tests/package/run_installed_examples.cmake; tests/array_io/file_close",
+      "executed": [
+        "close-maintained-02:62/62 and2808assertions",
+        "installed-maintained-01:aggregate and5standaloneexamples",
+        "a3-test-01:324Dense scalar/rank/layoutprofiles,648formatpaths"
+      ],
+      "limits": "Cleanup injection remains GNU ELF/static. Header ownership cleanup, short staging, nested JUnit validation and automatic static cleanup registration need final replay."
     },
     "A4": {
-      "state": "pending"
+      "state": "candidate_preparation",
+      "required": "Freeze product/tests/workflows; local complete regression/sanitizers/package/docs/header/ABI, expanded audit and authorized hosted matrix."
     },
     "owner_approval": false
   }

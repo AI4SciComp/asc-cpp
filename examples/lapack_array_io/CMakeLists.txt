@@ -18,6 +18,16 @@ find_package(
   ASCCpp 0.9.0 EXACT CONFIG REQUIRED
   COMPONENTS ${_asc_array_io_components}
 )
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+  foreach(_unrelated IN ITEMS sparse random utilities core_cuda)
+    if(TARGET "ASC::${_unrelated}")
+      message(FATAL_ERROR "Dense archive consumer imported ${_unrelated}.")
+    endif()
+  endforeach()
+  if(NOT ASC_CPP_EXAMPLES_ENABLE_LAPACK AND TARGET ASC::dense_lapack)
+    message(FATAL_ERROR "Native archive consumer imported the optional provider.")
+  endif()
+endif()
 
 add_executable(asc_cpp_example_lapack_array_io main.cc)
 target_compile_features(asc_cpp_example_lapack_array_io PRIVATE cxx_std_20)

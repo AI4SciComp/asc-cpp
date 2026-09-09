@@ -798,3 +798,35 @@ execute before and after rejection. QR uses live contiguous one-scalar tau
 and scratch, checks both report collisions and short-workspace validation
 order, and independently reconstructs Q/R and Q*Q. New test/platform/sanitizer
 and complete row-level evidence remain pending; native verified stays zero.
+
+A3 continuation maintains the retained first-party cleanup tests under
+`tests/array_io/file_close`, with a portable-path generator and explicit
+Linux/static adapter admission. The first maintained replay passes all 60
+ASC scalar/storage cases plus 2 Matrix Market cases, 2,808 assertions, zero skips.
+It uses a newly installed/relocated complete C14 producer after an audited 299
+product/header-file bridge. C15 was a selected-target build; its missing
+Utilities archive correctly failed whole installation, retained as
+`close-maintained-01`. No dependency was rebuilt or old evidence overwritten.
+The new shape test additionally exercises 324 Dense profiles: all 12 codes,
+ranks 0/1/2/3/4, left/right/strided, empty only at positive rank, each text/binary.
+Independent text and logical-offset expectations, padding/length checks and
+trailer rollback passed GNU11 Debug/shared. Added short-staging controls and
+cleanup generated-header ownership corrections await the final replay.
+
+`array-io-acceptance-matrix.json` defines 20 finite contract-derived behavior
+groups and retains precise missing cells. Existing frozen overlays are history,
+not silently promoted. The copied maintained installed harness passes its
+aggregate and five isolated example consumers on snapshot 01. It now also
+validates every nested CTest JUnit and runs the maintained 62 cleanup tests in
+Linux/static package lanes; shared/Windows/macOS injection stays explicitly
+open. The exact five-file expanded BLAS audit is added to the configured
+quality workflow; original matrix commands remain byte-identical. Final
+candidate regression/platform evidence is pending, not inferred from the
+prior 19/19 stabilization runs.
+
+A2's seven original/additive native tests also pass fresh Clang19
+ASan/UBSan in `native-sanitizer-01`, including all 40 unique report-alias slots.
+The C++20 lifetime rationale is [N4861 intro.object paragraphs 3–4](https://timsong-cpp.github.io/cppwp/n4861/intro.object#3),
+with explicit object creation/destruction and no report assignment during the
+nested scalar's lifetime. Current libstdc++ uses actual byte-array backing;
+other standard-library/platform execution remains a required gate.
