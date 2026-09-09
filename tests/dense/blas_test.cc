@@ -392,10 +392,13 @@ void TestGemvFailures(TestContext& test) {
   auto output = MakeView<Real, 1>(output_storage.data(), output_shape, {1});
   const auto before = output_storage;
 
-  CheckStatusError(test,
-                   asc::Gemv(context, static_cast<asc::DenseBlasTranspose>(255),
-                             Real{1}, matrix, input, Real{0}, output),
-                   asc::ErrorCode::kInvalidArgument);
+  CheckStatusError(
+      test,
+      // Deliberately invalid API flag; representable by this uint8_t enum.
+      // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+      asc::Gemv(context, static_cast<asc::DenseBlasTranspose>(255), Real{1},
+                matrix, input, Real{0}, output),
+      asc::ErrorCode::kInvalidArgument);
   ASC_DENSE_TEST_EQ(test, output_storage, before);
 
   const std::array<asc::extent_t, 1> short_input_shape{2};
@@ -644,6 +647,8 @@ void TestGemmZeroInnerAndFailures(TestContext& test) {
   const auto before = independent_output_storage;
   CheckStatusError(
       test,
+      // Deliberately invalid API flag; representable by this uint8_t enum.
+      // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
       asc::Gemm(context, static_cast<asc::DenseBlasTranspose>(255),
                 asc::DenseBlasTranspose::kNone, Real{1}, square_left,
                 square_right, Real{0}, independent_output),

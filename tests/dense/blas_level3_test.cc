@@ -77,7 +77,9 @@ Element OpAt(asc::DenseBlasMatrixView<const Element> matrix,
   if (transpose == asc::DenseBlasTranspose::kNone) {
     return At(matrix, row, column);
   }
-  const Element value = At(matrix, column, row);
+  const asc::index_t source_row = column;
+  const asc::index_t source_column = row;
+  const Element value = At(matrix, source_row, source_column);
   return transpose == asc::DenseBlasTranspose::kConjugateTranspose
              ? Conjugate(value)
              : value;
@@ -189,8 +191,9 @@ Element StructuredAt(asc::DenseBlasMatrixView<const Element> matrix,
   const bool stored = triangle == asc::DenseBlasTriangle::kUpper
                           ? row <= column
                           : row >= column;
-  const Element value =
-      stored ? At(matrix, row, column) : At(matrix, column, row);
+  const asc::index_t source_row = stored ? row : column;
+  const asc::index_t source_column = stored ? column : row;
+  const Element value = At(matrix, source_row, source_column);
   return !stored && hermitian ? Conjugate(value) : value;
 }
 
@@ -274,6 +277,62 @@ void TestStructured(TestContext& test) {
 }
 
 template <typename Element>
+void TestHermitianRankK(TestContext& test, const asc::ExecutionContext& context,
+                        asc::DenseBlasTriangle triangle,
+                        asc::DenseBlasTranspose transpose,
+                        asc::DenseBlasMatrixView<Element> left,
+                        asc::DenseBlasMatrixView<Element> right,
+                        asc::DenseBlasMatrixView<Element> output) {
+  Fill(output, Real<Element>{0.25});
+  ASC_DENSE_TEST_CHECK(
+      test, asc::Herk(context, triangle, transpose, Real<Element>{0.75},
+                      asc::DenseBlasMatrixView<const Element>(left),
+                      Real<Element>{0.25}, output)
+                .ok());
+  for (asc::index_t diagonal = 0; diagonal < 3; ++diagonal) {
+    ASC_DENSE_TEST_EQ(test, std::imag(At(output, diagonal, diagonal)),
+                      Real<Element>{0});
+  }
+  Fill(output, Real<Element>{0.25});
+  ASC_DENSE_TEST_CHECK(
+      test, asc::Her2k(context, triangle, transpose,
+                       Value<Element>(Real<Element>{0.75}, Real<Element>{0.25}),
+                       asc::DenseBlasMatrixView<const Element>(left),
+                       asc::DenseBlasMatrixView<const Element>(right),
+                       Real<Element>{0.25}, output)
+                .ok());
+  for (asc::index_t diagonal = 0; diagonal < 3; ++diagonal) {
+    ASC_DENSE_TEST_EQ(test, std::imag(At(output, diagonal, diagonal)),
+                      Real<Element>{0});
+  }
+}
+
+template <typename Element>
+void TestAdditionalRankK(TestContext& test,
+                         const asc::ExecutionContext& context,
+                         asc::DenseBlasTriangle triangle,
+                         asc::DenseBlasTranspose transpose,
+                         asc::DenseBlasMatrixView<Element> left,
+                         asc::DenseBlasMatrixView<Element> right,
+                         asc::DenseBlasMatrixView<Element> output) {
+  const auto effective_transpose =
+      transpose == asc::DenseBlasTranspose::kConjugateTranspose
+          ? asc::DenseBlasTranspose::kTranspose
+          : transpose;
+  Fill(output, Real<Element>{0.25});
+  ASC_DENSE_TEST_CHECK(test,
+                       asc::Syrk(context, triangle, effective_transpose,
+                                 Value<Element>(Real<Element>{0.75}),
+                                 asc::DenseBlasMatrixView<const Element>(left),
+                                 Value<Element>(Real<Element>{0.25}), output)
+                           .ok());
+
+  if constexpr (asc::DenseBlasComplex<Element>) {
+    TestHermitianRankK(test, context, triangle, transpose, left, right, output);
+  }
+}
+
+template <typename Element>
 void TestRankK(TestContext& test) {
   const auto context = asc::ExecutionContext::Serial();
   for (asc::DenseBlasLayout layout :
@@ -329,16 +388,17 @@ void TestRankK(TestContext& test) {
                 original[static_cast<std::size_t>(row * 3 + column)]);
             continue;
           }
+          const asc::index_t other_output_row = column;
           Element sum{};
           for (asc::index_t inner = 0; inner < 2; ++inner) {
             sum += OpAt(asc::DenseBlasMatrixView<const Element>(left),
                         effective_transpose, row, inner) *
                        OpAt(asc::DenseBlasMatrixView<const Element>(right),
-                            effective_transpose, column, inner) +
+                            effective_transpose, other_output_row, inner) +
                    OpAt(asc::DenseBlasMatrixView<const Element>(right),
                         effective_transpose, row, inner) *
                        OpAt(asc::DenseBlasMatrixView<const Element>(left),
-                            effective_transpose, column, inner);
+                            effective_transpose, other_output_row, inner);
           }
           const Element expected =
               Value<Element>(Real<Element>{0.75}) * sum -
@@ -349,39 +409,8 @@ void TestRankK(TestContext& test) {
         }
       }
 
-      Fill(output, Real<Element>{0.25});
-      ASC_DENSE_TEST_CHECK(
-          test, asc::Syrk(context, triangle, effective_transpose,
-                          Value<Element>(Real<Element>{0.75}),
-                          asc::DenseBlasMatrixView<const Element>(left),
-                          Value<Element>(Real<Element>{0.25}), output)
-                    .ok());
-
-      if constexpr (asc::DenseBlasComplex<Element>) {
-        Fill(output, Real<Element>{0.25});
-        ASC_DENSE_TEST_CHECK(
-            test, asc::Herk(context, triangle, transpose, Real<Element>{0.75},
-                            asc::DenseBlasMatrixView<const Element>(left),
-                            Real<Element>{0.25}, output)
-                      .ok());
-        for (asc::index_t diagonal = 0; diagonal < 3; ++diagonal) {
-          ASC_DENSE_TEST_EQ(test, std::imag(At(output, diagonal, diagonal)),
-                            Real<Element>{0});
-        }
-        Fill(output, Real<Element>{0.25});
-        ASC_DENSE_TEST_CHECK(
-            test,
-            asc::Her2k(context, triangle, transpose,
-                       Value<Element>(Real<Element>{0.75}, Real<Element>{0.25}),
-                       asc::DenseBlasMatrixView<const Element>(left),
-                       asc::DenseBlasMatrixView<const Element>(right),
-                       Real<Element>{0.25}, output)
-                .ok());
-        for (asc::index_t diagonal = 0; diagonal < 3; ++diagonal) {
-          ASC_DENSE_TEST_EQ(test, std::imag(At(output, diagonal, diagonal)),
-                            Real<Element>{0});
-        }
-      }
+      TestAdditionalRankK(test, context, triangle, transpose, left, right,
+                          output);
     }
   }
 }
@@ -552,6 +581,52 @@ void TestScalarEdges(TestContext& test) {
   }
 }
 
+void TestPlacementEmptyAndAllocations(TestContext& test,
+                                      const asc::ExecutionContext& context,
+                                      asc::DenseBlasMatrixView<float> a,
+                                      asc::DenseBlasMatrixView<float> b,
+                                      asc::DenseBlasMatrixView<float> c) {
+  auto device =
+      MakeMatrix(a.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 3,
+                 asc::ConstMemoryView(a.data(), 32 * sizeof(float),
+                                      asc::MemorySpace::kDevice));
+  auto wrong_backend = asc::Gemm(
+      context, asc::DenseBlasTranspose::kNone, asc::DenseBlasTranspose::kNone,
+      1.0F, asc::DenseBlasMatrixView<const float>(device),
+      asc::DenseBlasMatrixView<const float>(b), 0.0F, c);
+  ASC_DENSE_TEST_CHECK(test, !wrong_backend.ok());
+  ASC_DENSE_TEST_EQ(test, wrong_backend.code(), asc::ErrorCode::kMemoryAccess);
+
+  auto empty = asc::DenseBlasMatrixView<const float>::Create(
+      nullptr, 0, 2, asc::DenseBlasLayout::kColumnMajor, 1,
+      asc::ConstMemoryView(nullptr, 0, asc::MemorySpace::kHost));
+  auto empty_output = asc::DenseBlasMatrixView<float>::Create(
+      nullptr, 0, 2, asc::DenseBlasLayout::kColumnMajor, 1,
+      asc::ConstMemoryView(nullptr, 0, asc::MemorySpace::kHost));
+  ASC_DENSE_TEST_CHECK(test, empty.ok() && empty_output.ok());
+  if (empty.ok() && empty_output.ok()) {
+    ASC_DENSE_TEST_CHECK(
+        test,
+        asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                  asc::DenseBlasTranspose::kNone, 1.0F, *empty,
+                  asc::DenseBlasMatrixView<const float>(b), 0.0F, *empty_output)
+            .ok());
+  }
+
+  std::size_t allocation_count = 0;
+  {
+    asc_dense_test::AllocationProbe probe;
+    auto status = asc::Gemm(context, asc::DenseBlasTranspose::kNone,
+                            asc::DenseBlasTranspose::kNone, 0.0F,
+                            asc::DenseBlasMatrixView<const float>(a),
+                            asc::DenseBlasMatrixView<const float>(b), 0.0F, c);
+    ASC_DENSE_TEST_CHECK(test, status.ok());
+    allocation_count = probe.count();
+  }
+  ASC_DENSE_TEST_CHECK(
+      test, asc_test::ProcessAllocationCountMatches(allocation_count, 0));
+}
+
 void TestValidationAndEdges(TestContext& test) {
   const auto context = asc::ExecutionContext::Serial();
   std::array<float, 32> a_storage{};
@@ -607,44 +682,7 @@ void TestValidationAndEdges(TestContext& test) {
   ASC_DENSE_TEST_CHECK(test, !overlap.ok());
   ASC_DENSE_TEST_EQ(test, overlap.code(), asc::ErrorCode::kInvalidArgument);
 
-  auto device =
-      MakeMatrix(a_storage.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 3,
-                 Storage(a_storage, asc::MemorySpace::kDevice));
-  auto wrong_backend = asc::Gemm(
-      context, asc::DenseBlasTranspose::kNone, asc::DenseBlasTranspose::kNone,
-      1.0F, asc::DenseBlasMatrixView<const float>(device),
-      asc::DenseBlasMatrixView<const float>(b), 0.0F, c);
-  ASC_DENSE_TEST_CHECK(test, !wrong_backend.ok());
-  ASC_DENSE_TEST_EQ(test, wrong_backend.code(), asc::ErrorCode::kMemoryAccess);
-
-  auto empty = asc::DenseBlasMatrixView<const float>::Create(
-      nullptr, 0, 2, asc::DenseBlasLayout::kColumnMajor, 1,
-      asc::ConstMemoryView(nullptr, 0, asc::MemorySpace::kHost));
-  auto empty_output = asc::DenseBlasMatrixView<float>::Create(
-      nullptr, 0, 2, asc::DenseBlasLayout::kColumnMajor, 1,
-      asc::ConstMemoryView(nullptr, 0, asc::MemorySpace::kHost));
-  ASC_DENSE_TEST_CHECK(test, empty.ok() && empty_output.ok());
-  if (empty.ok() && empty_output.ok()) {
-    ASC_DENSE_TEST_CHECK(
-        test,
-        asc::Gemm(context, asc::DenseBlasTranspose::kNone,
-                  asc::DenseBlasTranspose::kNone, 1.0F, *empty,
-                  asc::DenseBlasMatrixView<const float>(b), 0.0F, *empty_output)
-            .ok());
-  }
-
-  std::size_t allocation_count = 0;
-  {
-    asc_dense_test::AllocationProbe probe;
-    auto status = asc::Gemm(context, asc::DenseBlasTranspose::kNone,
-                            asc::DenseBlasTranspose::kNone, 0.0F,
-                            asc::DenseBlasMatrixView<const float>(a),
-                            asc::DenseBlasMatrixView<const float>(b), 0.0F, c);
-    ASC_DENSE_TEST_CHECK(test, status.ok());
-    allocation_count = probe.count();
-  }
-  ASC_DENSE_TEST_CHECK(
-      test, asc_test::ProcessAllocationCountMatches(allocation_count, 0));
+  TestPlacementEmptyAndAllocations(test, context, a, b, c);
 }
 
 }  // namespace
