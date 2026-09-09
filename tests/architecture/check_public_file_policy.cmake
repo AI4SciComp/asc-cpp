@@ -135,6 +135,7 @@ set(_expected_public_files
 set(_expected_compiled_sources
   src/core/array_format.cc
   src/core/array_io.cc
+  src/core/array_parse.cc
   src/core/configuration.cc
   src/core/contracts.cc
   src/core/execution.cc

@@ -1,4 +1,20 @@
-Current local stabilization checkpoint: product `6c72b638b46f159e41db2f26346d6caa8ecc9788`.
+Current stabilization product is `fbe21fe514910e86c05bad2c1aca6c954b838acf`,
+locally committed and byte-identical to frozen candidate08. Its portable decimal
+fallback and explicit native alias gap pass affected GNU11/GCC14 tests,
+C07 identical-source ASan+UBSan26/26, real libc++14 Core2/2, pinned LP64 and
+true ILP64 foundation10/10 each, fresh installed Dense1/1 and Sparse1/1,
+three strict TUs, formatting and strict Doxygen/links. C08 full runs finish GNU11 shared289/291, GCC14 static288/290 and shared290/292: only the two compiled-source inventory audits fail. C09 adds exactly the missing Core parser source to the explicit inventory; both actual audits pass2/2. All compiled inputs are identical. Fresh hosted full-candidate verification remains pending; no single-invocation C09 full pass is claimed.
+
+The prior pushed head254db534 / tested merge79cc79f has 13 successful CI jobs
+and passing CodeQL, with four diagnosed macOS missing-from_chars failures and
+two MSVC alias-fixture padding failures. Current fbe21fe repairs those sources;
+Linux compilation alone does not close their platform evidence. All2113
+Reference requirements,350 partial routes,1763 not started, native20
+implemented_unverified,40 partial native class slots and78 historical required
+mathematical failures remain unchanged. See [current review](stabilization-review.md)
+and [the concrete pending owner packet](redistribution-review-packet.md).
+
+Historical first local stabilization checkpoint: product `6c72b638b46f159e41db2f26346d6caa8ecc9788`.
 GNU11 Debug shared290/290, GCC14 Release static289/289 and shared291/291;
 zero failures/skips in these closing runs. ASC sanitizer22/22 plus MM3/3;
 actual LP64/ILP64 LU+ABI10/10 each; installed Dense1/1 and Sparse1/1;
@@ -7,7 +23,7 @@ and exact source bridges are retained in `local-checkpoint-01/manifest.json`.
 Hosted results and complete subset acceptance remain pending; see
 [stabilization review](stabilization-review.md). Full2113 remains incomplete.
 
-# Current stabilization checkpoint (2026-09-09)
+# Initial stabilization recovery (2026-09-09)
 
 The current integration recovery is `9bc62db` (product V27 `87cd646`),
 39 commits beyond remote V7 `b1b78d7`. The 350 partial reference routes and
@@ -21,7 +37,7 @@ CI log causes, candidate fixes, executed evidence and remaining acceptance.
 The [concrete redistribution packet](redistribution-review-packet.md) is
 assembled and awaits owner review; no approval is asserted.
 
-# Current v19 triangular-band solve integration
+# Historical v19 triangular-band solve integration
 
 The program has314 Reference rows in progress and1,799 not started of2,113
 required;20 native implementations remain separately unverified and zero
@@ -80,11 +96,11 @@ unregistered candidate; its initial numerical suites retain8 additional ordinary
 math failures per lane. Complete routine/mode/platform and P00-P11 gates,
 including130 missing required XBLAS routines, remain open.
 
-# Current v16 documentation and next implementation
+# Historical v16 documentation and next implementation
 
 Six documentation/coverage checks pass;1487 prior artifacts and compiler inputs rehash unchanged. No new numerical/full-suite claim. See [the documentation review](triangular-expert-documentation-review.md). The2205 normalized records retain all prior failures. Next: packed TPTRI/TPTRS8 implementation;all P00-P11 requirements remain open.
 
-# Current v16 triangular estimator integration
+# Historical v16 triangular estimator integration
 
 TRCON/TRRFS8 integrated as v16:294 Reference partial/1819 required not_started,20 native implemented_unverified,zero fully verified. Full01 each773/831 passes,54 required math and4 header-count failures; Debug01 each28/40 passes,8 math and4 header-count failures. Corrected02 header replay10/10 each fixes all4 checks with6 fresh fixtures; ASC-only Clang sanitizer02 each13/21 passes and8 math failures. Zero skips;366 fresh primary ASC objects;four relocated20-family packages,14 strict and6 static checks pass. Foreign archives remain unsanitized. No full02 suite or full routine/program verification.
 
