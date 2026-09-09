@@ -39,3 +39,10 @@ add_test(NAME asc_cpp.array_io.binary_interop.${ASC_BINARY_COMPONENT}
     -P "${CMAKE_CURRENT_SOURCE_DIR}/run.cmake")
 set_tests_properties(asc_cpp.array_io.binary_interop.${ASC_BINARY_COMPONENT}
   PROPERTIES LABELS "array-io;installed;independent-wire")
+if(WIN32)
+  # Match the standalone installed examples: CMake/Python children inherit the
+  # selected exported target's relocated DLL directory, including multi-config.
+  set_tests_properties(asc_cpp.array_io.binary_interop.${ASC_BINARY_COMPONENT}
+    PROPERTIES ENVIRONMENT_MODIFICATION
+      "PATH=path_list_prepend:$<TARGET_FILE_DIR:ASC::${ASC_BINARY_COMPONENT}>")
+endif()
