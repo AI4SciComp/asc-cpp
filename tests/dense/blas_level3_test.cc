@@ -4,13 +4,13 @@
 #include <cstddef>
 #include <cstdlib>
 #include <limits>
-#include <span>
-#include <type_traits>
 
+#include "allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
 #include "asc/core/status.h"
+#include "asc/core/types.h"
 #include "asc/dense/blas.h"
 #include "test_support.h"
 
@@ -643,7 +643,8 @@ void TestValidationAndEdges(TestContext& test) {
     ASC_DENSE_TEST_CHECK(test, status.ok());
     allocation_count = probe.count();
   }
-  ASC_DENSE_TEST_EQ(test, allocation_count, std::size_t{0});
+  ASC_DENSE_TEST_CHECK(
+      test, asc_test::ProcessAllocationCountMatches(allocation_count, 0));
 }
 
 }  // namespace

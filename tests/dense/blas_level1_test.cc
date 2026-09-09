@@ -4,8 +4,8 @@
 #include <cstddef>
 #include <cstdlib>
 #include <limits>
-#include <type_traits>
 
+#include "allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
@@ -162,7 +162,8 @@ void TestVectorUpdates(TestContext& test) {
     allocations = probe.count();
     ASC_DENSE_TEST_CHECK(test, status.ok());
   }
-  ASC_DENSE_TEST_EQ(test, allocations, std::size_t{0});
+  ASC_DENSE_TEST_CHECK(test,
+                       asc_test::ProcessAllocationCountMatches(allocations, 0));
 }
 
 template <typename Real>

@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.25)
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   project(ASCCppDenseFactorizationsExample LANGUAGES CXX)
   include(CTest)
+  # Windows may enable RC while selecting its C++ toolchain. Package lookup
+  # must preserve the languages that the standalone project already enabled.
+  get_property(_languages_before GLOBAL PROPERTY ENABLED_LANGUAGES)
   find_package(ASCCpp 0.9.0 EXACT CONFIG REQUIRED COMPONENTS dense)
   foreach(_unrelated IN ITEMS sparse random utilities dense_lapack
       core_cuda dense_cuda sparse_cuda random_cuda cpp_cuda)
@@ -11,7 +14,7 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     endif()
   endforeach()
   get_property(_languages GLOBAL PROPERTY ENABLED_LANGUAGES)
-  if(NOT _languages STREQUAL "CXX")
+  if(NOT _languages STREQUAL _languages_before)
     message(FATAL_ERROR "Native Dense consumer enabled ${_languages}.")
   endif()
 endif()

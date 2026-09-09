@@ -54,7 +54,7 @@ class Unsigned {
     for (std::size_t i = kWords; i != 0; --i) {
       if (words_[i - 1] != 0) {
         return static_cast<int>((i - 1) * 32) +
-               static_cast<int>(std::bit_width(words_[i - 1]));
+               (32 - std::countl_zero(words_[i - 1]));
       }
     }
     return 0;

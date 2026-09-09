@@ -49,6 +49,14 @@ foreach(_source IN ITEMS
   )
 endforeach()
 
+foreach(_target IN ITEMS
+    asc_dense_blas_test
+    asc_dense_blas_level1_test
+    asc_dense_blas_level2_test
+    asc_dense_blas_level3_test)
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}/tests")
+endforeach()
+
 target_include_directories(
   asc_dense_complex_array_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
 )

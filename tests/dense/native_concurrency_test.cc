@@ -4,6 +4,7 @@
 #include <complex>
 #include <cstddef>
 #include <cstdio>
+#include <exception>
 #include <limits>
 #include <thread>
 
@@ -146,14 +147,30 @@ void Worker(std::barrier<>& start, bool& passed) {
 
 int main() {
   std::array<bool, 4> passed{};
-  std::barrier start(4);
-  {
-    std::jthread real_single([&] { Worker<float>(start, passed[0]); });
-    std::jthread real_double([&] { Worker<double>(start, passed[1]); });
-    std::jthread complex_single(
-        [&] { Worker<std::complex<float>>(start, passed[2]); });
-    std::jthread complex_double(
-        [&] { Worker<std::complex<double>>(start, passed[3]); });
+  std::barrier start(5);
+  constexpr std::array kWorkers{Worker<float>, Worker<double>,
+                                Worker<std::complex<float>>,
+                                Worker<std::complex<double>>};
+  std::array<std::thread, 4> workers;
+  std::size_t launched = 0;
+  try {
+    for (std::size_t i = 0; i < workers.size(); ++i) {
+      workers[i] = std::thread([&, i] { kWorkers[i](start, passed[i]); });
+      ++launched;
+    }
+  } catch (const std::exception& error) {
+    std::fprintf(stderr, "Native worker launch failed: %s\n", error.what());
+  }
+  // Release and join every live worker even if a later launch failed.
+  for (std::size_t i = launched; i < workers.size(); ++i) {
+    start.arrive_and_drop();
+  }
+  start.arrive_and_wait();
+  for (std::size_t i = 0; i < launched; ++i) {
+    workers[i].join();
+  }
+  if (launched != workers.size()) {
+    return 1;
   }
   for (bool result : passed) {
     if (!result) {

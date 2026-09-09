@@ -9,13 +9,17 @@
 #include <string_view>
 #include <vector>
 
+#include "../../tests/allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/extents.h"
 #include "asc/core/memory.h"
 #include "asc/core/status.h"
 #include "asc/core/types.h"
-#include "asc/dense.h"
+#include "asc/dense/array.h"
+#include "asc/dense/blas.h"
+#include "asc/dense/evaluate.h"
+#include "asc/dense/view.h"
 #include "asc/expression/expression.h"
 
 namespace {
@@ -438,8 +442,10 @@ int main() {
               dot_allocations);
 
   if (!asc_test::ProcessAllocationCountMatches(evaluation_allocations, 0) ||
-      gemm_allocations != 0 || level2_allocations != 0 ||
-      axpy_allocations != 0 || dot_allocations != 0 ||
+      !asc_test::ProcessAllocationCountMatches(gemm_allocations, 0) ||
+      !asc_test::ProcessAllocationCountMatches(level2_allocations, 0) ||
+      !asc_test::ProcessAllocationCountMatches(axpy_allocations, 0) ||
+      !asc_test::ProcessAllocationCountMatches(dot_allocations, 0) ||
       !std::isfinite(evaluation_checksum) || !std::isfinite(gemm_checksum) ||
       !std::isfinite(level2_checksum) || !std::isfinite(axpy_checksum) ||
       !std::isfinite(level1_result[0])) {
