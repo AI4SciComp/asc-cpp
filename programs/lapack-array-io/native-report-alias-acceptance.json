@@ -531,12 +531,10 @@
       ]
     }
   ],
-  "native_verified_operations": 0,
+  "native_verified_operations": 20,
   "reference_credit_added": 0,
   "required_reference_operations": 2113,
-  "open": [
-    "Per-row normalized artifact/evidence review and validator-backed ledger promotion; original40 alias slots are closed but no whole row is promoted automatically."
-  ],
+  "open": [],
   "lifetime_rationale": "C++20 [intro.object] permits an aligned live scalar nested in an actual std::byte array providing storage; the enclosing report remains alive. Explicit construct_at/destroy_at; no copy/move of the container. Numerical controls receive a separate report; the aliased report may only be used by the preserving rejection path. POTRF and factor creation use their actual same-call separate successful report.",
   "native_workspace_query": "No native query API is promised: Geqrf takes fixed, checked tau and scratch lengths. Optional provider QueryGeqrfWorkspace evidence is separate.",
   "candidate": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
@@ -546,5 +544,10 @@
     "index": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/native-row-gates-final-03.json",
     "sha256": "651fd0fcb2c5907ab9f7a1a447a22fcf269d6fe98887d3f4a7242219edf3c04b",
     "scope": "Linux GNU/Clang, macOS AppleClang, Windows MSVC static/shared Debug/Release; ASan/UBSan; actual relocated native static consumer. No Reference credit."
+  },
+  "normalized_acceptance": {
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w2-source-validation-01.json",
+    "scope": "The original40 closures combine with all112 modes/1120 required class slots; existing validator accepts20 native routes. No Reference credit.",
+    "remaining_native_row_requirements": []
   }
 }

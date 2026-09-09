@@ -52,3 +52,24 @@ The approval requirement comes from
 [provenance review](../../docs/provenance/mdecpp-review.md): “The lead/owner must
 approve a new notice inventory when a concrete dependency or derived source is
 accepted.” The proposed notice has not been applied to the product.
+
+## Native evidence amendment, 2026-09-09
+
+The original packet remains pending and immutable. W2 changes only the 20
+first-party native status/evidence-ID pairs in the bound coverage mapping;
+all source-derived signatures, Reference rows, licenses and notice bytes remain
+unchanged. The existing validator accepts 20 native verified routes and zero
+Reference verified routes. No approval of the original packet is inferred.
+
+The amended manifest is retained at
+`subset-closure-20260909-01/owner-packet-amendment-01/packet.json`, SHA-256
+`380a8792f8c23263439ac79e8c02bb1959089b674c1221c6397e9bc26585992c`. The coverage mapping changes from
+`21116d3357fdc030224d9390d4c5da87a275d228fc2f5c7dae245f0ba79e4290` to
+`443161a92d539a34929eadfffb18192267dcc3cfa4e655602992f4d3dc456bb8`. The proposed notice remains
+`9ebeaf30a78e77f5fa4a4ba94ed66c68bdb92acd1dfdc8b1456e0c114ffbed41`.
+
+The pending owner decision is to approve or amend this concrete amended packet
+under the same external-provider model. It grants no bundled provider/runtime,
+XBLAS/MdeCpp import, upstream patch, dependency upgrade, merge or release rights.
+Future material changes require a new amendment; successful technical tests do
+not clear this decision.

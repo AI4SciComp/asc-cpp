@@ -1026,8 +1026,8 @@
       "current_preserved_candidate_state": "bounded_acceptance_audited_not_registered_not_fully_verified"
     }
   },
-  "active_task": "W2.normalize_native_rows",
-  "next_action": "Import the normalized native evidence already accepted by the existing validator, bind offline artifacts and update the changed redistribution packet material; retain zero Reference credit.",
+  "active_task": "W3.maintain_load_and_precision_checks",
+  "next_action": "Integrate the preserved24 compressed and288 higher-rank compiler-load checks, and exercise finite precision/locale boundaries against frozen contracts.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2113,7 +2113,7 @@
       "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
     }
   ],
-  "next_task": "W2.normalize_native_rows",
+  "next_task": "W3.maintain_load_and_precision_checks",
   "documentation_verification": {
     "state": "passed",
     "scope": "This six-file summary followup: local Markdown links, JSON/slot/contract identity checks, whitespace and complete unchanged-input bridge. Whole candidate03 CI is not attributed to this later tree.",
@@ -2267,19 +2267,19 @@
       "hosted_evidence": "hosted-03/acceptance.json: both quality jobs pass configured production tidy and the maintained five-TU expanded audit"
     },
     "A2": {
-      "state": "original40_slots_closed_all_configured_platforms_normalization_pending",
+      "state": "native20_normalized_validated_at_candidate03_inputs",
       "potrs_original_slots": 32,
       "geqrf_original_slots": 8,
       "closed_slots": 40,
       "closing_test": "asc_cpp.dense.native_report_alias_test",
       "closure": "programs/lapack-array-io/native-report-alias-acceptance.json",
-      "native_verified_operations": 0,
+      "native_verified_operations": 20,
       "additional_evidence": {
         "full_gnu11": "293/293 with warnings-as-errors; all40 alias profiles",
         "asan_ubsan": "246/246; all40 alias profiles",
         "installed_native": "7/7 against relocated GCC14 static; all40 alias profiles",
         "hosted": "All seven native test IDs mapped to 32 full/sanitizer job lanes in native-row-gates-final-03.json; Windows executes both Debug and Release per linkage",
-        "still_open": "Consolidated per-row normalized artifact/evidence review and validator-backed ledger promotion; 20 native routes remain implemented_unverified"
+        "still_open": "No native row-level gap at the validated candidate03 inputs. Later relevant input changes require matching native replay/bridge; full program and I/O remain incomplete."
       }
     },
     "A3": {
@@ -2330,14 +2330,19 @@
         "requirement": "20 existing native rows,112 modes,1120 class slots; native-report-alias-acceptance.json",
         "existing": "native-row-gates-final-03.json and executed native7/platform evidence; original40 alias slots closed",
         "action": "Normalize artifacts and run actual coverage validator; identify exact missing obligations for nonverified rows",
-        "state": "external_normalized_validator_passed_pending_ledger_import"
+        "state": "validated_native20_promoted",
+        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w2-source-validation-01.json",
+        "required_modes": 112,
+        "required_class_slots": 1120,
+        "native_verified": 20,
+        "reference_credit_added": 0
       },
       "W3": {
         "classification": "missing maintained test",
         "requirement": "P02.dense.ranks/sparse.storage/scalar.options and frozen text/MM precision policies",
         "existing": "printing-load-04 and existing scalar/locale fixtures",
         "action": "Maintain 24 compressed and288 higher-rank load diagnostics; close finite precision/locale boundary review",
-        "state": "pending"
+        "state": "in_progress"
       },
       "W4": {
         "classification": "missing execution/platform evidence",
@@ -2349,7 +2354,8 @@
       "owner": {
         "classification": "owner decision",
         "state": "pending",
-        "action": "Exact unchanged redistribution packet approval/amendment; separate from native/I/O implementation"
+        "action": "Exact unchanged redistribution packet approval/amendment; separate from native/I/O implementation",
+        "amended_packet_sha256": "380a8792f8c23263439ac79e8c02bb1959089b674c1221c6397e9bc26585992c"
       }
     }
   },

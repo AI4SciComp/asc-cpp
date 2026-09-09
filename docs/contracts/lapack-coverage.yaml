@@ -7217,8 +7217,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -8673,8 +8675,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
@@ -9319,8 +9323,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
@@ -22716,8 +22722,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -23339,8 +23347,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -39216,8 +39226,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -40856,8 +40868,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
@@ -41502,8 +41516,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
@@ -53921,8 +53937,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -54544,8 +54562,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -71868,8 +71888,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -73485,8 +73507,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
@@ -74131,8 +74155,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
@@ -86502,8 +86528,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -87125,8 +87153,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -103412,8 +103442,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -104891,8 +104923,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
@@ -105537,8 +105571,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
@@ -118842,8 +118878,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {
@@ -119465,8 +119503,10 @@
       ],
       "implementations": {
         "native": {
-          "evidence_ids": [],
-          "state": "implemented_unverified",
+          "evidence_ids": [
+            "native-installed-candidate03"
+          ],
+          "state": "verified",
           "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
         },
         "reference_cpu": {

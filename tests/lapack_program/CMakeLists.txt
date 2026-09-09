@@ -28,7 +28,7 @@ add_test(
     --provider-lock "${PROJECT_SOURCE_DIR}/docs/contracts/lapack-provider-lock.json"
     --evidence "${PROJECT_SOURCE_DIR}/docs/contracts/lapack-evidence.json"
     --source-root "${PROJECT_SOURCE_DIR}"
-    --evidence-root "${PROJECT_BINARY_DIR}"
+    --evidence-root "${PROJECT_SOURCE_DIR}"
 )
 set_tests_properties(
   asc_cpp.program.coverage_integrity

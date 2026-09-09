@@ -6,6 +6,8 @@ Twenty additional real/complex profiles exercise quiet-NaN component payloads,
 infinities and signed zeros. No signaling-NaN or text payload claim is made.
 """
 
+from __future__ import annotations
+
 import argparse
 import dataclasses
 import json
