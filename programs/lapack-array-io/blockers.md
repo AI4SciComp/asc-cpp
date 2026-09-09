@@ -442,3 +442,16 @@ runtime/link-map evidence and all source identities are in the
 No provider patch, fallback, rescaling or tolerance waiver is introduced.
 This remains a required LATBS mathematical gap and known TBCON dependency
 defect; independent implementation continues.
+
+## Stabilization checkpoint — hosted CI closed, acceptance still open
+
+Current candidate15 PR/push CI each pass 19/19 jobs and both CodeQL runs pass.
+Linux/macOS/Windows native/array-I/O test subsets now have executed platform
+logs; earlier platform failures are historical. See [the checkpoint](stabilization-review.md).
+This closes the diagnosed integration failures, not whole routine/mode coverage.
+
+Forty native alias slots, full P02/P03/P10 crossproducts and 18 baseline-reproduced
+legacy test/benchmark lint findings remain open. The next bounded task is the
+18-finding quality repair recorded in state.json. No numerical family is added.
+Required mathematical failures, 130 absent XBLAS definitions and concrete owner
+redistribution review remain unchanged; useful independent work is unblocked.

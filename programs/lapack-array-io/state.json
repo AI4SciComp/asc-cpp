@@ -16,14 +16,14 @@
   "integration_target": "develop",
   "last_implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
   "worktree_diff_identity": {
-    "state": "candidate15_product_committed_local_hosted_push_pending",
-    "head": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
+    "state": "tested_product_committed_and_pushed; final_checkpoint_changes_are_program_records_only",
     "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
     "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
     "source_snapshot": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/candidate-15/source",
     "source_context": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/candidate-15/source-context.json",
     "bridge": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/candidate15-commit-bridge.json",
-    "scope": "All1131non-programfiles match product; later local changes are program records only. Recover actual git status again before editing."
+    "scope": "All1131non-program files match tested product. Final records will be a local documentation-only descendant; actual HEAD/status and its external final-handoff-01.json must be read on resume.",
+    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8"
   },
   "packages": {
     "P00": {
@@ -1025,8 +1025,8 @@
       "current_preserved_candidate_state": "bounded_acceptance_audited_not_registered_not_fully_verified"
     }
   },
-  "active_task": "R1.sparse_io_dll_resource_observation",
-  "next_action": "Push the tested candidate15 checkpoint under retained authorization, then inspect all fresh hosted results. Do not repeat completed local tests or the C14 push.",
+  "active_task": "stabilization.legacy_blas_quality",
+  "next_action": "Repair the 18 reproduced legacy BLAS test/benchmark clang-tidy findings without changing mathematical assertions, negative cases, tolerances or global checks. Use the bounded command and handoff in stabilization-review.md; do not repeat the completed candidate15 push/CI or import a numerical family.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1034,7 +1034,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "8dfe36fc94ea18bbc543806c932bc8e0cbfdd233e31dc67c114e063dd6495153"
+    "coverage_mapping_sha256": "21116d3357fdc030224d9390d4c5da87a275d228fc2f5c7dae245f0ba79e4290"
   },
   "provider": {
     "version": "3.12.1",
@@ -1636,35 +1636,45 @@
     "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
     "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
     "candidate": "stabilization-candidate15",
-    "state": "four_affected_tests_and_strict_passed_hosted_pending",
-    "scope": "OnlySparseIOtest changes fromC14; fouraffectedGNU11/GCC14static/shared/ASanUBSan each1/1,zero skips; fullSparseIOclang-tidy andformat pass. C14threefullmatrix and unchangedC10provider/ABI/externalconsumer evidence retain source-specific scopes. No fullP00-P11 acceptance."
+    "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
+    "scope": "PR and push CI19/19 jobs each; both CodeQL pass. All19PRjob logs, bothCodeQL logs and bothpushWindowslogs sealed; zero unexpected CTest skips, all test totals agree with individual results. This is provider-free CI and partial native/I/O acceptance, not full LAPACK or whole-package verification.",
+    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8",
+    "tested_merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
+    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json",
+    "checkpoint_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4"
   },
   "last_completed_verification": {
-    "base_commit": "e29bc5680cd75ae88d3c6f19061e23876ddac75f",
-    "implementation_tree": "620aeb9c1e3de5d70240cc4e11f15f46d38bfeae",
-    "source_archive_sha256": "bfacdf1c4a3ebf88879651deb3b9c1358221bf9294659141708de013d923416b",
-    "coverage_mapping_sha256": "372ac5f7fd27ae4a46ef5cab66612ae0d2bce80303d70e8a7c967929f359d214",
-    "scope": "Fresh v27 full GNU Release both ABIs each939 tests,861pass/78requiredmathfail; affected Debug each127,111pass/16requiredmathfail; ASC-only Clang19 sanitizer each64,48pass/16requiredmathfail. Zero skips.72 primary Core/Dense/provider TUs freshly compiled per lane,432 objects. Four relocated31-family packages,six static checks and126-header/2204-member Doxygen pass. Eleven PPRFS candidate15 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. Four scalar refinement failures remain ordinary required gates alongside four PPCON and prior70;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
-    "candidate": "p05-packed-cholesky-refinement-integration-v27-01",
-    "state": "bounded_integration_complete",
-    "completion_audit": "p05-packed-cholesky-refinement-integration-v27-01/audit.json",
-    "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
+    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
+    "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
+    "candidate": "stabilization-candidate15",
+    "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
+    "scope": "PR and push CI19/19 jobs each; both CodeQL pass. All19PRjob logs, bothCodeQL logs and bothpushWindowslogs sealed; zero unexpected CTest skips, all test totals agree with individual results. This is provider-free CI and partial native/I/O acceptance, not full LAPACK or whole-package verification.",
+    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8",
+    "tested_merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
+    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json",
+    "checkpoint_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4"
   },
   "remote_checkpoint": {
-    "implementation_commit": "6f5cd1c0a84be54b66823b3f0dff7ada1fa39a6a",
-    "head": "b223ada16bd499f2ee8b6dc04e1bfab436da0e90",
+    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
+    "head": "52439959f261351da6e51e3131391ef1197da2e8",
     "push": "non-force origin feature/lapack-array-io succeeded under retained explicit authorization",
     "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
     "draft": true,
     "base": "develop",
     "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-    "merge_candidate": "b1e1bf9479940f1cabd5b8db5f076c4c649b884e",
+    "merge_candidate": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
     "body_update": "Existing draft body updated through authorized GitHub CLI PATCH; no permissions changed",
-    "evidence": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/record-authorized-push-03-retry/record.json",
+    "evidence": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/record-authorized-push-04/record.json",
     "previous_checkpoint": {
       "head": "b1b78d789fb8f5366f13f86c411832df842b2755",
       "tested_merge": "ff074864eaf5aea998fc501c533fb4dd77234efd"
-    }
+    },
+    "checks": "Both CI runs and both CodeQL runs completed success",
+    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
+    "final_documentation_sync": "Product is synchronized at5243995. Final acceptance records form one local documentation-only follow-up; exact local HEAD and patch are external final-handoff-01.json. No product changes are pending."
   },
   "session_recovery": {
     "evidence": "resume-20260908-01/recovery.json",
@@ -1680,7 +1690,24 @@
     "scope": "59 foreign-calling test/consumer mains plus new probe use automatic local guard; configuration ABI probe included, pure count/header tests excluded. Actual pinned DGETRF STOP and std::exit(0) exit93 with guard, normal return0; unguarded process STOP exits0 before unreachable return3, and unguarded regression fails1/1 perABI. No production handler override. Fresh full suite required. Final03probe adds direct lapacke_config include and narrowly documented concurrency-mt-unsafe exception for intentional single-threaded std::exit; bothABIstrict and Debug/Release/ASan controls pass. Full02 each493/493 and13installed pass with guard; exact current03 controls all6lanespass.",
     "current_evidence": "p05-p06-integration-v9-03"
   },
-  "pending_verifications": [],
+  "pending_verifications": [
+    {
+      "task": "P02/P03/P10",
+      "scope": "Complete scalar/storage/layout/failure/rank/platform crossproducts; reusable checked-close harness integration."
+    },
+    {
+      "task": "native_foundation",
+      "scope": "32 POTRS factor/report and8 QR report/tau/workspace valid same-call alias slots."
+    },
+    {
+      "task": "expanded_legacy_quality",
+      "scope": "18 baseline-reproduced test/benchmark lint diagnostics remain failed."
+    },
+    {
+      "task": "full_reference_program",
+      "scope": "All2113 routine contracts incomplete;350partial,1763notstarted,130requiredXBLASabsent,78historicalrequiredmathematicalfailures retained."
+    }
+  ],
   "completed_verification_history": [
     {
       "state": "completed_composed_v10",
@@ -2090,21 +2117,13 @@
       "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
     }
   ],
-  "next_task": "R1.sparse_io_dll_resource_observation",
+  "next_task": "stabilization.legacy_blas_quality",
   "documentation_verification": {
-    "candidate": "p05-packed-cholesky-refinement-doc-integration-v27-01",
-    "completion_audit": "p05-packed-cholesky-refinement-doc-integration-v27-01/audit.json",
-    "completion_audit_sha256": "8848ee1919004da59a607ce66eafb8f7b1fe15f294380608a9751ee7ec809e92",
-    "metadata": {
-      "base_commit": "e29bc5680cd75ae88d3c6f19061e23876ddac75f",
-      "implementation_tree": "923992dcb17a98143ab11d73037e7da548d8dd5e",
-      "source_archive_sha256": "513b56f631cb626123e3433b1e9f1db8e7fc5724cbfc7145a083a83c1545459d",
-      "coverage_mapping_sha256": "8dfe36fc94ea18bbc543806c932bc8e0cbfdd233e31dc67c114e063dd6495153",
-      "scope": "Only three released v27 prose/coverage scope files change after numeric/default audits. Six fresh documentation checks andexact prior compiler-input rehash required;no new runtime credit."
-    },
-    "scope": "Six documentation/contract/source-policy checks passed. Every prior numerical compiler input and production artifact was rehashed unchanged. No new numerical or full-suite execution is claimed."
+    "state": "passed",
+    "scope": "Current local links, git diff whitespace, JSON parsing, exact manifest hashes and program-record-only diff; no product changes.",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/final-documentation-checks-01/record.json"
   },
-  "next_command": "git push origin HEAD:refs/heads/feature/lapack-array-io",
+  "next_command": "cmake -S /home/yicai/AI4SciComp/asc-cpp-lapack-array-io -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 -DCMAKE_CXX_COMPILER=/usr/bin/g++-11 -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON -DASC_CPP_ENABLE_LAPACK=OFF -DASC_CPP_ENABLE_CUDA=OFF -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/dependencies/asccmake-8a7dcbad/source",
   "stabilization_checkpoint": {
     "base": "46412183b2ae86101b2361c52376a8db8efff264",
     "deferred_numerical_task": {
@@ -2115,18 +2134,18 @@
     },
     "evidence_directory": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01",
     "recovered_head": "9bc62dbb5064260207166e61f36ea33aeb4c2f87",
-    "remote_head": "b223ada16bd499f2ee8b6dc04e1bfab436da0e90",
+    "remote_head": "52439959f261351da6e51e3131391ef1197da2e8",
     "review": "programs/lapack-array-io/stabilization-review.md",
     "scope": "User-requested R0-R4 foundation and array-I/O stabilization; full 2113 denominator and all package obligations unchanged.",
-    "stage": "R1.sparse_io_dll_resource_observation",
-    "status": "candidate15_local_affected_gates_passed_ready_for_authorized_push",
-    "tested_pr_merge": "b1e1bf9479940f1cabd5b8db5f076c4c649b884e",
+    "stage": "R1_complete_R2_R3_subset_acceptance_pending",
+    "status": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
+    "tested_pr_merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
     "current_candidate": "candidate15; only tests/sparse/io_test.cc differs from C14",
     "completed_slice_index": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/checkpoint-slice-01.json",
     "completed_slice_index_sha256": "2cdc439a7c16c8b8cec43904903775c92bfed0653604a32ddb45dd78f728214f",
     "owner_packet": "programs/lapack-array-io/redistribution-review-packet.md",
     "fresh_executed_subset": "C10 GNU11 expanded26/26; audits3/3; GNU11/GCC14/ASan3/3 each; real libc++14 Core2/2; actual pinnedLP64/trueILP64 each10/10; strict3TUs/unchangedABI; installed04Dense1/1 Sparse1/1. C12 affected legacy runtime5/5. C11 standalone copied examples each1/1.",
-    "in_progress_gates": "Fresh hosted full matrix after authorized push. External cleanup scalar/storage matrix is running separately; no full-package/native/reference promotion.",
+    "in_progress_gates": "No command remains running. Whole subset acceptance and full program obligations remain open.",
     "new_preserved_base_worktree": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/base-gcc14-worktree",
     "slice_02_records": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/checkpoint-slice-02/records.json",
     "slice_02_sha256": "bdfd49be48859c41a9977820445d6cc482497dddb43ac9a7c46d815b64d0c0b7",
@@ -2136,12 +2155,12 @@
     "product_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
     "gcc14_static": "C14 Release static290/290 full tests passed,zero failures/skips",
     "gcc14_shared": "C14 Release shared292/292 full tests passed,zero failures/skips",
-    "local_checkpoint_manifest": "subset-acceptance-03/checkpoint.json:63 current executed API/test/configuration mappings, exact C14 source hashes and preserved full logs.",
-    "local_checkpoint_sha256": "0ed0fb6a0b86932177d9bccb59abea105c82b537adfb8bd3934214fe8a64f5f8",
+    "local_checkpoint_manifest": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/local-checkpoint-04/manifest.json",
+    "local_checkpoint_sha256": "046c8589b00e4f2c59473dbaffa82da08b56bcc15500953781daf2cc91293583",
     "product_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
     "previous_session_handoff": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/previous-session-handoff.json",
-    "fresh_merge_candidate": "b1e1bf9479940f1cabd5b8db5f076c4c649b884e",
-    "new_hosted_failures": "C14 PR/push CI each18pass/1fail; bothCodeQLpass. Windowsstatic Debug227/227 andRelease227/227; sharedDebug227/227,sharedRelease226/227. Solefailure sparse.io_test has40wrong process-visible resource count assertions:22atline384,18at1141. All other assertions pass; both full failed logs retained.",
+    "fresh_merge_candidate": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
+    "new_hosted_failures": "None in current PR/push CI or CodeQL. Historical third checkpoint shared Release Sparse I/O failure is closed by current Windows Debug/Release227/227 each. All old failing logs retained.",
     "decimal_development": "Original fixed-capacity integer-ratio fallback rounds exact float/double boundaries ties-to-even, preserves signed zero, reports overflow/underflow and performs no allocations; exact Fraction fixtures regenerated byte-identically. C01 wrong test macros and C02 strict widening-cast diagnostic preserved and fixed. C07 affected GNU/sanitizer26/26 and libc++14 Core2/2 pass. libc++14 broad lane cannot supply preexisting C++20 range algorithms, so no broader platform credit.",
     "abi_decimal_review": "C07 InspectElfAbi adds exactly two internal Core parser symbols, zero removals and no SONAME/dependency delta; candidate08 baseline digest831e8d9ddbcfb214732fdc9297a1fd28ec3f26788210bbb4038b405400342a51. Header hash updated only for Core array_io.h.",
     "hosted_checkpoint_01": "PR CI34322877900 completed:13 pass/6 fail, CodeQL34322877813 success. All14 successful job logs and all6 failed logs inspected; actual checkout79cc79f merges254db534 into46412183. Success totals/skips in hosted-success-new-01/summary.json; failure diagnoses in hosted-failures-new-01/diagnostic-summary.json.",
@@ -2151,16 +2170,16 @@
       "results": "Dense1/1, Sparse1/1; residuals0/0,124/124binary bytes;95-byte consumed malformed prefix leavesXunchanged; installed-only header/module/provider isolation passes"
     },
     "strict_current": "C14format/parser/native-thread strictchecks pass. Expanded legacytest/benchmarktidy retains18diagnostics, all independently reproduced on isolatedbase46412183; no new diagnostic and no suppression. FullP11quality closure remains open.",
-    "coverage_current": "C08 incremental validator passes, strict full validator exits1 at lapack.cbbcsd full profile incomplete; denominator2113, registered partial350, reference not_started1763, native implemented_unverified20, verified0 unchanged.",
+    "coverage_current": "Current candidate15 incremental validator exits0; strict full exits1 at lapack.cbbcsd full profile incomplete. Corrected stale top-level coverage SHA fromV27 to actual21116d33; only16 repeated SHA artifacts changed across2tests, no ledger status/denominator/provider change.",
     "provider_foundation_current": "C10 actual pinnedLP64 and trueILP64 each10/10 executed; C14production/provider inputs byte-identical via candidate10-14-bridge.json. No route promotion.",
     "contract_inventory_fix": "Add exactly src/core/array_parse.cc to expected compiled source set, retain all assertions; freshC09 actual CTest audits2/2. All6 original failure-artifact ZIPs contain real pre-CTest build diagnostics.",
-    "current_remote_head": "b223ada16bd499f2ee8b6dc04e1bfab436da0e90",
+    "current_remote_head": "52439959f261351da6e51e3131391ef1197da2e8",
     "legacy_observation_policy": "Existing tests/allocation_observation.h unchanged: Release/nonMSVC exact process count; MSVCDebug STL proxy instrumentation allowance already established by base. Apply that existing predicate to five legacy BLAS/benchmark consumers, preserving all mathematical assertions and reporting actual benchmark counts. Base/source comparison is not an executed Windows baseline.",
     "c13_build_failure": "All three affected builds failed because the benchmark direct include lacked its tests-root search path; C14 uses the existing relative ../../tests/allocation_observation.h convention. C13 raw logs preserved.",
-    "local_source_bridge": "candidate14-commit-bridge.json:all1131non-programfilesexactlymatch6f5cd1c",
+    "local_source_bridge": "candidate15-commit-bridge.json:all1131non-program files match product5f3c6d9; candidate14-15 bridge changes only Sparse io_test.",
     "checked_close_acceptance": "C14 actual GCC14 static installed:60scalar/storage configurations,2760assertions,60/60CTest,zero failures/skips. All12wire scalars;nonemptyrank2 Denseleft/right,COO/CSR/CSC;text/binary;firsterror/secondaryclose/unpublishedownerrelease. file-close-matrix-run-03/acceptance.json. Other ranks/empty/strided/platform/linkage/repositoryintegration remain open.",
-    "preserved_worktrees": "preserved-worktrees-recheck-02.json:all16original+siblingworktrees match recoveredheads/status/diffs/untrackedhashes; no imports.",
-    "next_task": "Inspect every fresh hosted CI failure and repair the smallest evidenced portability cause; do not expand numerical families.",
+    "preserved_worktrees": "preserved-worktrees-recheck-03.json: all16 original+sibling heads/status/diffs/untracked hashes unchanged; no imports.",
+    "next_task": "Repair the 18 reproduced legacy BLAS test/benchmark clang-tidy findings without changing mathematical assertions, negative cases, tolerances or global checks. Use the bounded command and handoff in stabilization-review.md; do not repeat the completed candidate15 push/CI or import a numerical family.",
     "hosted_checkpoint_03": {
       "head": "b223ada16bd499f2ee8b6dc04e1bfab436da0e90",
       "merge": "b1e1bf9479940f1cabd5b8db5f076c4c649b884e",
@@ -2170,9 +2189,24 @@
       "push_codeql": 34333940805,
       "status": "CI18pass1fail each;CodeQLpass each"
     },
-    "hosted_checkpoint_02": "C09 PR CI34328080477 complete:12passing/7failing, CodeQL34328080791 success. All14 failed push/PR job logs inspected. macOS4:missing jthread; quality:bit_width redundant cast; Windows staticDebug221/227(BLAS4,benchmark,installed examples),sharedDebug226/227(installed examples); Release not reached. Candidate14 fixes remain unverified on hosts.",
+    "hosted_checkpoint_02": "C09 PR CI34328080477 complete:12passing/7failing, CodeQL34328080791 success. All14 failed push/PR job logs inspected. macOS4:missing jthread; quality:bit_width redundant cast; Windows staticDebug221/227(BLAS4,benchmark,installed examples),sharedDebug226/227(installed examples); Release not reached. Candidate14 fixes remain unverified on hosts. Historical status; those fixes now pass the fourth hosted checkpoint.",
     "sparse_dll_fix": "Use unchanged ProcessVisibleResourceAllocationCount(failure-1) at both assertions; Core DLL HostMemoryResource allocation is not interposed by executable new. Add exact allocation_attempts==failure in both resource/long-diagnostic paths. Keep process exactness where observable, all long diagnostic/rollback/leak assertions and existing observer policy.",
-    "local_sparse15_results": "Four affected CTest invocations pass1/1 each,zero skips:GNU11Debugshared,GCC14Releasestatic/shared,Clang19ASanUBSan. Formatting and fullSparseIOTUclang-tidy pass."
+    "local_sparse15_results": "Four affected CTest invocations pass1/1 each,zero skips:GNU11Debugshared,GCC14Releasestatic/shared,Clang19ASanUBSan. Formatting and fullSparseIOTUclang-tidy pass.",
+    "hosted_checkpoint_04": {
+      "head": "52439959f261351da6e51e3131391ef1197da2e8",
+      "merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
+      "pr_ci": 34341838137,
+      "pr_codeql": 34341838133,
+      "push_ci": 34341831100,
+      "push_codeql": 34341831174,
+      "status": "completed_success_all_jobs",
+      "evidence": "hosted-final-checkpoint-01"
+    },
+    "current_hosted_failed_jobs": [],
+    "next_command": "cmake -S /home/yicai/AI4SciComp/asc-cpp-lapack-array-io -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 -DCMAKE_CXX_COMPILER=/usr/bin/g++-11 -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON -DASC_CPP_ENABLE_LAPACK=OFF -DASC_CPP_ENABLE_CUDA=OFF -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/dependencies/asccmake-8a7dcbad/source",
+    "final_acceptance_manifest": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json",
+    "final_acceptance_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4",
+    "hosted_closing_results": "PR CI34341838137 and pushCI34341831100 each19/19 jobs pass; CodeQL34341838133/34341831174 pass. Windowsstatic/shared Debug/Release each227/227; macOSfour lanes289/289; fullLinuxGNU11each290,GCC14static290/shared292,Clangstatic289/shared291; ASanUBSan244,LSan244,TSan4; package72. Zero unexpected skips."
   },
   "historical_worktree_diff_identity_v27": {
     "state": "v27_committed_external_ppsvx_candidate18_acceptance_audited",
@@ -2200,5 +2234,21 @@
     "state": "local_three_lane_regression_passed_hosted_in_progress",
     "completion_audit": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/subset-acceptance-03/checkpoint.json",
     "scope": "Provider-free fullGNU11Debugshared291/291,GCC14Releasestatic290/290,shared292/292;zero skips. Three18/18affected selections. C10unchangedinputactualLP64/trueILP64foundation10/10each,ASCsanitizer3/3 and ABI/installedevidence retain exact scope. Full routine/mode/platform/native/P00-P11 acceptance remains open; no mathematical failure relabeled."
+  },
+  "historical_manifest_hashes_v27": {
+    "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
+    "coverage_mapping_sha256": "8dfe36fc94ea18bbc543806c932bc8e0cbfdd233e31dc67c114e063dd6495153"
+  },
+  "historical_last_completed_verification_v27": {
+    "base_commit": "e29bc5680cd75ae88d3c6f19061e23876ddac75f",
+    "implementation_tree": "620aeb9c1e3de5d70240cc4e11f15f46d38bfeae",
+    "source_archive_sha256": "bfacdf1c4a3ebf88879651deb3b9c1358221bf9294659141708de013d923416b",
+    "coverage_mapping_sha256": "372ac5f7fd27ae4a46ef5cab66612ae0d2bce80303d70e8a7c967929f359d214",
+    "scope": "Fresh v27 full GNU Release both ABIs each939 tests,861pass/78requiredmathfail; affected Debug each127,111pass/16requiredmathfail; ASC-only Clang19 sanitizer each64,48pass/16requiredmathfail. Zero skips.72 primary Core/Dense/provider TUs freshly compiled per lane,432 objects. Four relocated31-family packages,six static checks and126-header/2204-member Doxygen pass. Eleven PPRFS candidate15 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. Four scalar refinement failures remain ordinary required gates alongside four PPCON and prior70;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
+    "candidate": "p05-packed-cholesky-refinement-integration-v27-01",
+    "state": "bounded_integration_complete",
+    "completion_audit": "p05-packed-cholesky-refinement-integration-v27-01/audit.json",
+    "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
   }
 }

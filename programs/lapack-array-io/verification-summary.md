@@ -1,3 +1,38 @@
+Current verdict: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING**.
+Product 5f3c6d9 / candidate15 is pushed at 5243995; tested merge bf99463e has the
+same tree 8c4a1711, base develop 46412183. PR #47 remains an open draft.
+PR/push CI each pass 19/19 jobs; both CodeQL pass. Windows static/shared Debug/
+Release each 227/227, macOS four lanes 289/289; Linux and package/sanitizer totals,
+raw logs and checkout identities are in the [current checkpoint](stabilization-review.md).
+No unexpected CTest skips. The last Sparse I/O DLL-observation harness failure
+is closed; all original failures are preserved. Final program records are a
+local documentation-only follow-up with an external commit/patch handoff.
+
+Installed Dense/Sparse consumers each pass 1/1 with public exported targets and
+relocated prefixes. Dense factor reuse gives independent residuals0/0 and exact
+124-byte reload; malformed input consumes 95 bytes and preserves destination.
+Sparse reloads exact COO/CSR/CSC without Dense linkage. New installed text/binary
+checked-close tests pass 60/60 configurations and2,760 assertions; scoped Matrix
+Market cleanup passes1/1 and24 assertions per consumer. Wider ranks, layouts,
+scalar/failure/platform combinations and reusable harness integration remain open.
+
+All20 native routines remain implemented_unverified, with 40 partial alias slots.
+Reference has 350 executable partial registrations,1,763 not started of2,113;
+strict complete callable 0 and verified 0 do not mean zero executable routes.
+Actual pinned LP64/trueILP64 foundation 10/10 each is separate from provider-free
+CI. Historical 78 required mathematical failures, 130 absent required XBLAS
+routines and full P00–P11 obligations remain. The current incremental validator
+passes; strict full validation still fails at cbbcsd full profile incomplete.
+The corrected top-level coverage SHA matches the actual frozen contract.
+
+Next bounded task: fix 18 baseline-reproduced legacy BLAS test/benchmark lint
+findings, retaining all assertions and global checks. Concrete
+[redistribution review](redistribution-review-packet.md) remains pending.
+`acceptance-checkpoint-final-01/manifest.json` seals the current evidence.
+
+Historical results below retain their original identities. Old “current,”
+“pending” and “next” statements are superseded by the checkpoint above.
+
 Current local product5f3c6d9 / candidate15 repairs the sole remaining C14
 hosted failure: two Sparse I/O assertions omitted Windows DLL resource visibility.
 Four affected tests pass1/1 each under GNU11Debugshared, GCC14Releasestatic/shared

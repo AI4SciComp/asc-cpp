@@ -1,5 +1,115 @@
 # Stabilization and subset acceptance checkpoint
 
+Status: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING** (2026-09-09).
+Fresh PR and push CI each pass all 19 jobs; both CodeQL runs pass. The product
+is synchronized at `52439959f261351da6e51e3131391ef1197da2e8`, product commit
+`5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed`, tested PR merge
+`bf99463e6d7edbaff70f4e81be87065dd7668ae7`. Head and merge have the exact same
+tree `8c4a17111e0a4f9d09c22e8df4d77af802baf571`; base `develop` remains
+`46412183b2ae86101b2361c52376a8db8efff264`. PR #47 remains OPEN DRAFT.
+The final acceptance records are a local documentation-only follow-up, with
+its actual commit and patch recorded in external `final-handoff-01.json`.
+No production, test, contract, workflow or provider change is unsynchronized.
+
+The authoritative external index is
+`stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json`.
+`hosted-final-checkpoint-01` binds all 19 PR job logs, both CodeQL logs, both
+push Windows logs, commands, toolchains, checkout identities and test totals.
+Every total agrees with individual passing-test lines; there are zero unexpected
+CTest skips. Successful jobs' skipped failure-artifact uploads are not tests.
+The optional third-run failure ZIP was only partially downloaded; both complete
+failed Windows job logs are retained, and that ZIP grants no evidence credit.
+
+| Current dimension | Evidence-backed status |
+| --- | --- |
+| Integrated product | Recovered V27 plus four stabilization repair slices; candidate15 matches all 1,131 non-program files |
+| Hosted CI | PR 34341838137 and push 34341831100: 19/19 jobs each; CodeQL 34341838133 and 34341831174 pass; current failed jobs: none |
+| Windows MSVC 19.44 | Static and shared, Debug and Release: 227/227 each; the 40 Sparse resource-observation assertions now pass with exact resource-attempt and rollback checks retained |
+| macOS AppleClang 17 | Debug/Release, static/shared: 289/289 each; portable decimal and explicit thread lifetime fixes execute |
+| Linux full runtime | GNU 11 Debug/Release: 290 each; GCC 14 static 290/shared 292; Clang 18 Debug/Release static 289/shared 291 |
+| Other hosted gates | ASan+UBSan 244, LSan 244, TSan 4, package/contracts/examples 72; format/tidy and strict Doxygen pass within their actual configured scopes |
+| Local executed evidence | C14 full GNU 11 Debug shared 291, GCC 14 Release static 290/shared 292; C15 Sparse I/O four affected 1/1 replays and strict analysis pass; exact unchanged-source bridges retain the other results |
+| Preserved work | Original dirty checkout and all 15 dirty siblings still match recovered heads, diffs and untracked hashes; no sibling import; PPSVX candidate18 retained externally |
+
+All historical failed jobs are diagnosed in the sequence below. The final
+Windows failure was a test-harness visibility error: Core DLL resource allocations
+are not observed by the executable's replacement `operator new`. Candidate15
+uses the existing resource-visibility helper at two expectations and adds exact
+resource-attempt assertions. Release exactness where observable, long diagnostics,
+rollback and leak checks remain. Earlier repaired causes include the named pivot
+view lifetime, macOS integer/parser/thread portability, Windows export/section/
+newline issues, and installed example language discovery. No warning, failing
+mathematical assertion, test or global check was removed to obtain these passes.
+
+| Capability | Implemented/callable and tested subset | Fully verified / still open |
+| --- | --- | --- |
+| P02 Dense/Sparse printing | Public bounded printers; real/complex, rank0/empty/higher ranks, layouts/subviews, visible truncation and sink failures. All mapped print tests pass Linux/macOS/Windows | Whole precision/rank/layout/metadata/read-count crossproducts remain open; previews are not reloadable |
+| P03 text/binary | Public Dense and COO/CSR/CSC persistence, independent wire fixtures, all 12 scalar codes, structural/value checks, progress, size/overflow and transaction tests execute across hosted platforms | Complete scalar/storage/layout/failure crossproducts remain open; no implicit conversion, padding serialization, device copy or densification |
+| P03 file cleanup | Installed Linux GCC14 static:60 scalar/storage configurations, 2,760 assertions, 60/60 CTest; checked close/flush, first-error/secondary-cleanup and unpublished-owner release | Nonempty rank2 Dense left/right and COO/CSR/CSC only; other ranks/empty/strided modes, linkage/platforms and reusable repository integration remain open |
+| P10 Matrix Market | Existing representation/order/symmetry/pattern/duplicate/malformed tests pass across hosted platforms; independent interop and installed consumers pass | Complete required crossproducts remain open. New checked-close evidence is f64 general Dense array and COO coordinate only, 24 assertions/1 CTest each on Linux static |
+| Native LU/Cholesky/Householder QR | 20 callable routines: 8 GETRF/GETRS, 8 POTRF/POTRS, 4 GEQRF. Reconstruction, residuals, multiple RHS, supported N/T/C, numerical failures, zero sizes, ownership/workspace/layout and concurrency subsets execute | 0 fully verified; all 20 implemented_unverified. Forty partial slots remain: 32 valid same-call POTRS factor/report aliases and 8 QR report/tau/workspace aliases |
+| Optional Reference provider | 350 executable partial registrations; actual pinned LP64 and true ILP64 foundation 10/10 each, bound to unchanged production and real archive/ABI identities | Strict complete-implementation callable count 0 and verified 0; this does not mean zero executable routes |
+| Full Reference scope | 2,113 required routines retained; 1,763 not started and 350 in progress | All 2,113 full contracts incomplete; 130 required XBLAS definitions absent; 78 historical required mathematical failures retained separately |
+| Expanded quality/review | Hosted BUILD_TESTING=OFF tidy passes; owner packet assembled | 18 manually audited legacy test/benchmark lint findings reproduced on the isolated base remain failed; concrete redistribution approval pending |
+
+`subset-acceptance-04/checkpoint.json` maps 63 local API/test/configuration rows.
+The final hosted subset map binds the same 21 tests to each full Linux/macOS/
+Windows job, ASan/UBSan and LSan; Windows executes them in both configurations.
+TSan executes its selected native concurrency test. These are test-subset passes,
+not completed routine/mode contracts. Random/BLAS compatibility regressions are
+included in the full provider-free runs. Provider-free CI does not exercise the
+optional Reference facet. Historical V27 LP64/ILP64 full 861/939 results retain
+their exact frozen inputs and 78 failures; they are not current passing evidence.
+
+Executed installed-consumer command:
+
+```sh
+python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/installed-consumers-04.py
+```
+
+This completed harness has exclusive output paths; use a fresh suffix for a
+replay. It relocates the actual C10 GNU11 Debug shared installation and compiles
+copied public examples linked only through exported ASC targets. Production is
+byte-identical through C14/C15. Dense prints A/B, factors once, solves two RHS
+twice, and independently obtains scaled residuals `0.00000e+00` for both solves.
+Save/read compares exactly 124 binary bytes. A malformed read consumes 95 source
+bytes while leaving X unchanged. Sparse independently passes exact COO/CSR/CSC
+text/binary reloads, stored negative zero and corruption rollback. Compiler
+dependencies exclude source/private headers; Sparse links no Dense, and neither
+native consumer links LAPACK/Fortran. Dense and Sparse CTest each pass 1/1.
+
+File helpers require explicit overwrite intent, truncate, flush successful
+writes, and check close. They preserve a primary error and report secondary
+cleanup failure; a close-only load failure discards staged ownership. Destination
+rollback does not undo source consumption. No atomic replacement, fsync durability
+or race-free path replacement is claimed; a failed save can leave a partial file.
+
+The top-level state coverage SHA was stale V27 metadata. The current hash is
+`21116d3357fdc030224d9390d4c5da87a275d228fc2f5c7dae245f0ba79e4290`, already
+shared by candidate08, candidate15 and owner packet01. The semantic comparison
+finds only 16 repeated artifact hashes for two amended tests; no routine, mode,
+status, denominator or provider changed. Fresh candidate15 incremental validation
+exits 0; strict full validation exits 1 at `lapack.cbbcsd: full profile incomplete`.
+The original stale hash and both executed outcomes are retained.
+
+Owner decision remains: approve or amend the exact
+[redistribution packet](redistribution-review-packet.md), covering the pinned
+3.12.1 source-derived metadata/declarations and proposed notice under the external
+provider model. Both full license texts and all material hashes remain matched;
+no notice, upstream patch, binary bundling or XBLAS import is approved here.
+
+One next bounded implementation task: repair the 18 baseline-reproduced legacy
+BLAS test/benchmark lint findings, preserving negative cases and numerical
+assertions. The exact configuration command and diagnostic inventory are in
+“Next bounded quality task after hosted stabilization” below and `state.json`.
+No new numerical family or sibling import precedes that quality slice.
+
+## Historical slice records
+
+Everything below records observations at its stated slice. Earlier “pending,”
+“next,” “current” and local/remote identities are historical; the checkpoint
+above supersedes them without erasing their failures or evidence boundaries.
+
 Status: candidate15/product5f3c6d9 repairs the last C14 hosted failure with
 four passing affected tests and passing format/strict checks. Fresh hosted
 verification is next. C14 has18passing/1failing CI jobs and passingCodeQL;

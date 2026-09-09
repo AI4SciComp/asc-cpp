@@ -17,3 +17,8 @@ and installed prefixes live under sibling `asc-cpp-evidence/lapack-array-io`.
 See [baseline](baseline.md), [decisions](decisions.md), [API notes](api-notes.md)
 and [verification summary](verification-summary.md). Actual source identities,
 manifest hashes and executed test counts are recorded as they become available.
+
+The [2026-09-09 stabilization checkpoint](stabilization-review.md) records
+passing provider-free hosted CI and explicitly incomplete native/array-I/O
+subset acceptance. Read its current section before the historical slices.
+All 2,113 Reference routines remain required; no merge or release is authorized.
