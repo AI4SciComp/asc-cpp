@@ -49,7 +49,9 @@ jobs:
       - name: Configure, build, and test
         shell: bash
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/gcc11-${{ matrix.config }}"
+          mkdir -p "$build"
           cmake -S asc-cpp -B "$build" \
             -DCMAKE_BUILD_TYPE=${{ matrix.config }} \
             -DBUILD_SHARED_LIBS=OFF \
@@ -57,10 +59,10 @@ jobs:
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_INSTALL=ON \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
-          cmake --build "$build" --parallel 2
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
           ctest --test-dir "$build" --parallel 2 --no-tests=error \
-            --output-on-failure --output-junit "$build/ctest.xml"
+            --output-on-failure --output-junit "$build/ctest.xml" 2>&1 | tee "$build/ci-ctest.log"
           python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
       - name: Preserve failure evidence
         if: failure()
@@ -68,6 +70,9 @@ jobs:
         with:
           name: gcc11-cmake325-${{ matrix.config }}-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/gcc11-${{ matrix.config }}/Testing/**
             ${{ runner.temp }}/gcc11-${{ matrix.config }}/ctest.xml
             ${{ runner.temp }}/gcc11-${{ matrix.config }}/asc-cpp-test-workspaces/**
@@ -101,7 +106,9 @@ jobs:
           CC: gcc-14
           CXX: g++-14
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/gcc14-${{ matrix.linkage }}"
+          mkdir -p "$build"
           cmake -S asc-cpp -B "$build" \
             -DCMAKE_BUILD_TYPE=Release \
             -DBUILD_SHARED_LIBS=${{ matrix.shared }} \
@@ -109,10 +116,10 @@ jobs:
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_INSTALL=ON \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
-          cmake --build "$build" --parallel 2
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
           ctest --test-dir "$build" --parallel 2 --no-tests=error \
-            --output-on-failure --output-junit "$build/ctest.xml"
+            --output-on-failure --output-junit "$build/ctest.xml" 2>&1 | tee "$build/ci-ctest.log"
           python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
       - name: Preserve failure evidence
         if: failure()
@@ -120,6 +127,9 @@ jobs:
         with:
           name: gcc14-release-${{ matrix.linkage }}-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/gcc14-${{ matrix.linkage }}/Testing/**
             ${{ runner.temp }}/gcc14-${{ matrix.linkage }}/ctest.xml
             ${{ runner.temp }}/gcc14-${{ matrix.linkage }}/asc-cpp-test-workspaces/**
@@ -161,7 +171,9 @@ jobs:
           CC: clang-18
           CXX: clang++-18
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/clang18-${{ matrix.config }}-${{ matrix.linkage }}"
+          mkdir -p "$build"
           cmake -S asc-cpp -B "$build" \
             -DCMAKE_BUILD_TYPE=${{ matrix.config }} \
             -DBUILD_SHARED_LIBS=${{ matrix.shared }} \
@@ -169,10 +181,10 @@ jobs:
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_INSTALL=ON \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
-          cmake --build "$build" --parallel 2
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
           ctest --test-dir "$build" --parallel 2 --no-tests=error \
-            --output-on-failure --output-junit "$build/ctest.xml"
+            --output-on-failure --output-junit "$build/ctest.xml" 2>&1 | tee "$build/ci-ctest.log"
           python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
       - name: Preserve failure evidence
         if: failure()
@@ -180,6 +192,9 @@ jobs:
         with:
           name: clang18-${{ matrix.config }}-${{ matrix.linkage }}-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/clang18-${{ matrix.config }}-${{ matrix.linkage }}/Testing/**
             ${{ runner.temp }}/clang18-${{ matrix.config }}-${{ matrix.linkage }}/ctest.xml
             ${{ runner.temp }}/clang18-${{ matrix.config }}-${{ matrix.linkage }}/asc-cpp-test-workspaces/**
@@ -210,7 +225,9 @@ jobs:
           CC: clang-18
           CXX: clang++-18
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/clang18-tidy"
+          mkdir -p "$build"
           cmake -S asc-cpp -B "$build" \
             -DCMAKE_BUILD_TYPE=Debug \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
@@ -218,14 +235,17 @@ jobs:
             -DBUILD_TESTING=OFF \
             -DASC_CPP_BUILD_TESTING=OFF \
             -DASC_CPP_ENABLE_CUDA=OFF \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
-          cmake --build "$build" --parallel 2
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
       - name: Preserve failure evidence
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: clang18-quality-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/clang18-tidy/compile_commands.json
             ${{ runner.temp }}/clang18-tidy/Testing/**
           if-no-files-found: warn
@@ -266,7 +286,9 @@ jobs:
           CC: clang-18
           CXX: clang++-18
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/${{ matrix.name }}"
+          mkdir -p "$build"
           cmake -S asc-cpp -B "$build" \
             -DCMAKE_BUILD_TYPE=Debug \
             -DBUILD_SHARED_LIBS=OFF \
@@ -274,12 +296,12 @@ jobs:
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_WARNINGS_AS_ERRORS=ON \
-            ${{ matrix.options }}
-          cmake --build "$build" --parallel 2
+            ${{ matrix.options }} 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
           ctest --test-dir "$build" --parallel 2 --no-tests=error \
             --label-regex '${{ matrix.include_label }}' \
             --label-exclude '${{ matrix.exclude_label }}' \
-            --output-on-failure --output-junit "$build/ctest.xml"
+            --output-on-failure --output-junit "$build/ctest.xml" 2>&1 | tee "$build/ci-ctest.log"
           python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
       - name: Preserve failure evidence
         if: failure()
@@ -287,6 +309,9 @@ jobs:
         with:
           name: ${{ matrix.name }}-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/${{ matrix.name }}/Testing/**
             ${{ runner.temp }}/${{ matrix.name }}/ctest.xml
           if-no-files-found: warn
@@ -312,19 +337,25 @@ jobs:
       - name: Configure, build, and test both configurations
         shell: pwsh
         run: |
+          $ErrorActionPreference = "Stop"
           $build = Join-Path $env:RUNNER_TEMP "msvc-${{ matrix.linkage }}"
+          New-Item -ItemType Directory -Force -Path $build | Out-Null
           cmake -S asc-cpp -B $build -G "Visual Studio 17 2022" -A x64 `
             -DBUILD_SHARED_LIBS=${{ matrix.shared }} `
             -DBUILD_TESTING=ON `
             -DASC_CPP_BUILD_TESTING=ON `
             -DASC_CPP_ENABLE_CUDA=OFF `
             -DASC_CPP_INSTALL=ON `
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | Tee-Object -FilePath "$build/ci-configure.log"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           foreach ($config in @("Debug", "Release")) {
-            cmake --build $build --config $config --parallel 2
+            cmake --build $build --config $config --parallel 2 2>&1 | Tee-Object -FilePath "$build/ci-build-$config.log"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
             ctest --test-dir $build -C $config --parallel 2 --no-tests=error `
-              --output-on-failure --output-junit "$build/ctest-$config.xml"
+              --output-on-failure --output-junit "$build/ctest-$config.xml" 2>&1 | Tee-Object -FilePath "$build/ci-ctest-$config.log"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
             python asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest-$config.xml"
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           }
       - name: Preserve failure evidence
         if: failure()
@@ -332,6 +363,9 @@ jobs:
         with:
           name: msvc-${{ matrix.linkage }}-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/msvc-${{ matrix.linkage }}/Testing/**
             ${{ runner.temp }}/msvc-${{ matrix.linkage }}/ctest-*.xml
             ${{ runner.temp }}/msvc-${{ matrix.linkage }}/asc-cpp-test-workspaces/**
@@ -366,7 +400,9 @@ jobs:
       - name: Configure, build, and test
         shell: bash
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/appleclang-${{ matrix.config }}-${{ matrix.linkage }}"
+          mkdir -p "$build"
           cmake -S asc-cpp -B "$build" \
             -DCMAKE_BUILD_TYPE=${{ matrix.config }} \
             -DBUILD_SHARED_LIBS=${{ matrix.shared }} \
@@ -374,10 +410,10 @@ jobs:
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_INSTALL=ON \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
-          cmake --build "$build" --parallel 2
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
           ctest --test-dir "$build" --parallel 2 --no-tests=error \
-            --output-on-failure --output-junit "$build/ctest.xml"
+            --output-on-failure --output-junit "$build/ctest.xml" 2>&1 | tee "$build/ci-ctest.log"
           python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
       - name: Preserve failure evidence
         if: failure()
@@ -385,6 +421,9 @@ jobs:
         with:
           name: appleclang-${{ matrix.config }}-${{ matrix.linkage }}-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/appleclang-${{ matrix.config }}-${{ matrix.linkage }}/Testing/**
             ${{ runner.temp }}/appleclang-${{ matrix.config }}-${{ matrix.linkage }}/ctest.xml
             ${{ runner.temp }}/appleclang-${{ matrix.config }}-${{ matrix.linkage }}/asc-cpp-test-workspaces/**
@@ -409,7 +448,9 @@ jobs:
       - name: Build independent strict documentation evidence
         shell: bash
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/package-docs"
+          mkdir -p "$build"
           cmake \
             -DASC_CPP_DOCUMENTATION_SOURCE_DIR="$GITHUB_WORKSPACE/asc-cpp" \
             -DASC_CPP_DOCUMENTATION_BUILD_DIR="$build" \
@@ -427,7 +468,9 @@ jobs:
       - name: Build and verify package evidence
         shell: bash
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/package-docs"
+          mkdir -p "$build"
           install="$RUNNER_TEMP/ASCCpp install prefix"
           cmake -S asc-cpp -B "$build" \
             -DCMAKE_BUILD_TYPE=Release \
@@ -438,20 +481,23 @@ jobs:
             -DASC_CPP_BUILD_DOCUMENTATION=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_INSTALL=ON \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
-          cmake --build "$build" --parallel 2
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
           ctest --test-dir "$build" --parallel 2 --no-tests=error \
             --label-regex 'architecture|contracts|package|consumer|relocation|provenance|documentation|examples' \
-            --output-on-failure --output-junit "$build/ctest.xml"
+            --output-on-failure --output-junit "$build/ctest.xml" 2>&1 | tee "$build/ci-ctest.log"
           python3 asc-cpp/tools/ci/check_ctest_junit.py "$build/ctest.xml"
-          cmake --build "$build" --target asc_cpp_docs_check --parallel 2
-          cmake --install "$build"
+          cmake --build "$build" --target asc_cpp_docs_check --parallel 2 2>&1 | tee "$build/ci-docs-build.log"
+          cmake --install "$build" 2>&1 | tee "$build/ci-install.log"
       - name: Upload documentation evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: ASCCpp-0.9.0-documentation
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/package-docs/docs/doxygen/html/**
             ${{ runner.temp }}/package-docs/docs/doxygen/xml/**
             ${{ runner.temp }}/package-docs/docs/doxygen/ASCCpp.tag
@@ -464,6 +510,9 @@ jobs:
         with:
           name: package-docs-examples-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/package-docs/Testing/**
             ${{ runner.temp }}/package-docs/ctest.xml
             ${{ runner.temp }}/package-docs/asc-cpp-test-workspaces/**

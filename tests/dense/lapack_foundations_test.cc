@@ -318,6 +318,23 @@ void TestLayoutWorkspaceSizeDomain(TestContext& test) {
                        asc_test::ProcessAllocationCountMatches(allocations, 0));
 }
 
+void TestPivotRangeLifetime(TestContext& test) {
+  std::array<asc::index_t, 3> entries{3, 3, 3};
+  std::span<const asc::index_t> values;
+  {
+    const auto pivots = asc::RawLapackPivotView::Create(
+        entries.data(), 3, asc::LapackFactorFamily::kLuPartialPivot,
+        {entries.data(), sizeof(entries), asc::MemorySpace::kHost});
+    ASC_DENSE_TEST_CHECK(test, pivots.ok());
+    values = pivots->values();
+  }
+  // The range borrows entries, not the destroyed descriptor.
+  ASC_DENSE_TEST_EQ(test, values.data(), entries.data());
+  entries[1] = 2;
+  ASC_DENSE_TEST_EQ(test, values[1], 2);
+  ASC_DENSE_TEST_EQ(test, values[2], 3);
+}
+
 void TestPivotsAndFactors(TestContext& test) {
   std::array<asc::index_t, 3> entries{3, 3, 3};
   auto pivots = asc::RawLapackPivotView::Create(
@@ -454,6 +471,7 @@ int main() {
   TestReportsAndAllocations(test);
   TestWorkspaceIntegerAbi(test);
   TestLayoutWorkspaceSizeDomain(test);
+  TestPivotRangeLifetime(test);
   TestPivotsAndFactors(test);
   TestColumnPermutations(test);
   return test.Finish();

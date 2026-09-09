@@ -78,7 +78,13 @@ class EvidenceTest(unittest.TestCase):
 
     def test_success_and_log_hash(self):
         """A successful command records its actual output and matching hash."""
-        result = self.run_command([sys.executable, "-c", "print('observed')"])
+        result = self.run_command(
+            [
+                sys.executable,
+                "-c",
+                "import sys; sys.stdout.buffer.write(b'observed\\n')",
+            ],
+        )
         self.assertEqual(result.returncode, 0, result.stderr)
         log = (self.records / "command.log").read_bytes()
         self.assertEqual(log, b"observed\n")

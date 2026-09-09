@@ -359,7 +359,9 @@ class CoordinateView {
                     "Sparse coordinate and value storage cannot overlap");
     }
     std::array<extent_t, Rank> shape{};
-    std::copy(extents.begin(), extents.end(), shape.begin());
+    if constexpr (Rank != 0) {
+      std::copy_n(extents.data(), Rank, shape.data());
+    }
     CoordinateView result(coordinates, values, shape, nonzeros, memory_space,
                           false);
     if (memory_space == MemorySpace::kHost) {
@@ -892,7 +894,10 @@ class CoordinateArray {
                     "Coordinate and value storage sizes do not agree");
     }
     std::array<extent_t, kRank> shape{};
-    std::copy(extents.values().begin(), extents.values().end(), shape.begin());
+    if constexpr (kRank != 0) {
+      const auto dimensions = extents.values();
+      std::copy_n(dimensions.data(), kRank, shape.data());
+    }
     auto validated = CoordinateView<const Element, kRank>::Create(
         coordinates.data(), values.data(), shape, *nonzeros,
         MemorySpace::kHost);
@@ -1085,8 +1090,8 @@ class CoordinateArray {
   [[nodiscard]] std::array<extent_t, kRank> Shape() const noexcept {
     std::array<extent_t, kRank> result{};
     if constexpr (kRank != 0) {
-      std::copy(extents_.values().begin(), extents_.values().end(),
-                result.begin());
+      const auto dimensions = extents_.values();
+      std::copy_n(dimensions.data(), kRank, result.data());
     }
     return result;
   }

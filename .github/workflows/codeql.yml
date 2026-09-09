@@ -35,15 +35,17 @@ jobs:
       - name: Configure and build
         shell: bash
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/codeql"
+          mkdir -p "$build"
           cmake -S . -B "$build" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DBUILD_SHARED_LIBS=ON \
             -DBUILD_TESTING=ON \
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
-          cmake --build "$build" --parallel 2
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
       - name: Analyze
         uses: github/codeql-action/analyze@a2983b8bed1923f44751c5c43237f479442827b3
         with:
@@ -54,6 +56,9 @@ jobs:
         with:
           name: codeql-cpp-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/codeql/CMakeFiles/CMakeOutput.log
             ${{ runner.temp }}/codeql/Testing/**
           if-no-files-found: warn

@@ -132,6 +132,9 @@ std::size_t Exercise(TestContext& test, const View& view,
   for (std::size_t iteration = 0; iteration < 4096; ++iteration) {
     const auto seed = kSeeds[iteration % kSeeds.size()];
     std::array<char, 256> bytes{};
+    if (seed.empty() || seed.size() >= bytes.size()) {
+      std::abort();
+    }
     std::copy(seed.begin(), seed.end(), bytes.begin());
     std::size_t size = seed.size();
     const auto position = static_cast<std::size_t>(Next(state)) % size;

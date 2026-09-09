@@ -63,7 +63,7 @@ ASC_DENSE_EXPORT Status WriteHeader(std::span<const extent_t, 2> shape,
  * payload includes trailing comment/whitespace and EOF validation.
  * @ingroup asc_dense
  */
-class ASC_DENSE_EXPORT DenseMatrixMarketReader {
+class DenseMatrixMarketReader {
  public:
   /** @brief Reads and validates one array banner and dimension record.
    * @param[in,out] source Explicit synchronous source, borrowed until
@@ -77,10 +77,9 @@ class ASC_DENSE_EXPORT DenseMatrixMarketReader {
    * provider selection occurs. Work is linear in bounded header bytes.
    * @ingroup asc_dense
    */
-  static Result<DenseMatrixMarketReader> Prepare(ByteSource& source,
-                                                 std::span<std::byte> scratch,
-                                                 const ArrayIoLimits& limits,
-                                                 ArrayIoReport& report);
+  static ASC_DENSE_EXPORT Result<DenseMatrixMarketReader> Prepare(
+      ByteSource& source, std::span<std::byte> scratch,
+      const ArrayIoLimits& limits, ArrayIoReport& report);
 
   /** @brief A source cursor cannot be copied. @ingroup asc_dense */
   DenseMatrixMarketReader(const DenseMatrixMarketReader&) = delete;
@@ -92,7 +91,8 @@ class ASC_DENSE_EXPORT DenseMatrixMarketReader {
    * @param[in,out] other Cursor whose borrowed lifetimes remain unchanged.
    * @ingroup asc_dense
    */
-  DenseMatrixMarketReader(DenseMatrixMarketReader&& other) noexcept;
+  ASC_DENSE_EXPORT DenseMatrixMarketReader(
+      DenseMatrixMarketReader&& other) noexcept;
   /** @brief Assignment cannot discard an unfinished source cursor.
    * @ingroup asc_dense
    */
@@ -148,7 +148,7 @@ class ASC_DENSE_EXPORT DenseMatrixMarketReader {
   DenseMatrixMarketReader(ByteSource& source, std::span<std::byte> scratch,
                           ArrayIoLimits limits, ArrayIoReport& report)
       : input_(source, limits, report), scratch_(scratch) {}
-  Status ParseHeader();
+  ASC_DENSE_EXPORT Status ParseHeader();
 
   template <typename T, typename Store>
   Status Payload(Store store) {

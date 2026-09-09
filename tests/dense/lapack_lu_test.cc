@@ -434,7 +434,8 @@ void TestPivotAndFailure(TestContext& test) {
                                    .ok());
     ASC_DENSE_TEST_CHECK(
         test, asc_test::ProcessAllocationCountMatches(probe.count(), 0));
-    for (asc::index_t pivot : pivots.raw().values()) {
+    const auto raw_pivots = pivots.raw();
+    for (asc::index_t pivot : raw_pivots.values()) {
       ASC_DENSE_TEST_EQ(test, pivot, 3);
     }
     CheckReconstruction(test, original, matrix, pivots);

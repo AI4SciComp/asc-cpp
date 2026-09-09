@@ -380,20 +380,21 @@ class DenseArray {
                     static_cast<Element*>(clone->buffer_.data()));
       }
       return std::move(*clone);
+    } else {
+      auto destination_memory = clone->buffer_.mutable_view();
+      if (!destination_memory.ok()) {
+        return destination_memory.status();
+      }
+      auto copied = CopyBytes(context, *destination_memory, *source_memory);
+      if (!copied.ok()) {
+        return copied.status();
+      }
+      Status wait_status = copied->Wait();
+      if (!wait_status.ok()) {
+        return wait_status;
+      }
+      return std::move(*clone);
     }
-    auto destination_memory = clone->buffer_.mutable_view();
-    if (!destination_memory.ok()) {
-      return destination_memory.status();
-    }
-    auto copied = CopyBytes(context, *destination_memory, *source_memory);
-    if (!copied.ok()) {
-      return copied.status();
-    }
-    Status wait_status = copied->Wait();
-    if (!wait_status.ok()) {
-      return wait_status;
-    }
-    return std::move(*clone);
   }
 
   /**

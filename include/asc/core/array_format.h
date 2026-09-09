@@ -122,44 +122,37 @@ template <typename T>
 constexpr std::string_view ScalarName() {
   if constexpr (std::same_as<T, std::complex<float>>) {
     return "c64";
-  }
-  if constexpr (std::same_as<T, std::complex<double>>) {
+  } else if constexpr (std::same_as<T, std::complex<double>>) {
     return "c128";
-  }
-  if constexpr (std::same_as<T, float>) {
+  } else if constexpr (std::same_as<T, float>) {
     return "f32";
-  }
-  if constexpr (std::same_as<T, double>) {
+  } else if constexpr (std::same_as<T, double>) {
     return "f64";
-  }
-  if constexpr (std::is_signed_v<T>) {
+  } else if constexpr (std::is_signed_v<T>) {
     if constexpr (sizeof(T) == 1) {
       return "i8";
-    }
-    if constexpr (sizeof(T) == 2) {
+    } else if constexpr (sizeof(T) == 2) {
       return "i16";
-    }
-    if constexpr (sizeof(T) == 4) {
+    } else if constexpr (sizeof(T) == 4) {
       return "i32";
-    }
-    if constexpr (sizeof(T) == 8) {
+    } else if constexpr (sizeof(T) == 8) {
       return "i64";
+    } else {
+      return {};
     }
   } else {
     if constexpr (sizeof(T) == 1) {
       return "u8";
-    }
-    if constexpr (sizeof(T) == 2) {
+    } else if constexpr (sizeof(T) == 2) {
       return "u16";
-    }
-    if constexpr (sizeof(T) == 4) {
+    } else if constexpr (sizeof(T) == 4) {
       return "u32";
-    }
-    if constexpr (sizeof(T) == 8) {
+    } else if constexpr (sizeof(T) == 8) {
       return "u64";
+    } else {
+      return {};
     }
   }
-  return {};
 }
 
 ASC_CORE_EXPORT Status ValidateOptions(const ArrayPrintOptions& options);
@@ -240,12 +233,13 @@ Result<std::size_t> FormatScalar(T value, std::span<char> scratch,
 // Storage-neutral output counting. A null sink measures only metadata bytes;
 // it does not read values or allocate. Owning-module templates reserve their
 // own closing punctuation before writing optional preview tokens.
-class ASC_CORE_EXPORT Output {
+class Output {
  public:
   Output(ByteSink* sink, std::size_t limit, ArrayPrintReport& report)
       : sink_(sink), limit_(limit), report_(report) {}
-  [[nodiscard]] bool Fits(std::size_t bytes, std::size_t reserve = 0) const;
-  bool Write(std::string_view text);
+  [[nodiscard]] ASC_CORE_EXPORT bool Fits(std::size_t bytes,
+                                          std::size_t reserve = 0) const;
+  ASC_CORE_EXPORT bool Write(std::string_view text);
   [[nodiscard]] const Status& status() const { return status_; }
   ArrayPrintReport& report() { return report_; }
   void Fail(ErrorCode code) {

@@ -84,7 +84,7 @@ ASC_SPARSE_EXPORT Status WriteIndex(std::uint64_t value, bool binary,
  * Only host Sparse values/structure are supported; no transfer, densification,
  * Dense dependency or provider selection is implied. @ingroup asc_sparse
  */
-class ASC_SPARSE_EXPORT SparseArrayReader {
+class SparseArrayReader {
  public:
   /** @brief Reads an ASC text-v1 Sparse header without allocating values.
    * @param source Borrowed synchronous source; short reads are normal.
@@ -98,12 +98,10 @@ class ASC_SPARSE_EXPORT SparseArrayReader {
    * O(header bytes) work; no allocation, source rollback or synchronization.
    * @ingroup asc_sparse
    */
-  static Result<SparseArrayReader> PrepareText(ByteSource& source,
-                                               std::span<extent_t> metadata,
-                                               std::span<std::byte> scratch,
-                                               const ArrayIoLimits& limits,
-                                               ArrayIoReport& report,
-                                               bool require_eof = false);
+  static ASC_SPARSE_EXPORT Result<SparseArrayReader> PrepareText(
+      ByteSource& source, std::span<extent_t> metadata,
+      std::span<std::byte> scratch, const ArrayIoLimits& limits,
+      ArrayIoReport& report, bool require_eof = false);
   /** @brief Reads an ASC binary-v1 Sparse envelope without values allocation.
    * @param source Borrowed source retained through checksum validation.
    * @param metadata Caller extent capacity checked before rank writes.
@@ -116,12 +114,10 @@ class ASC_SPARSE_EXPORT SparseArrayReader {
    * lifetime, concurrency and no-allocation contract as PrepareText applies.
    * @ingroup asc_sparse
    */
-  static Result<SparseArrayReader> PrepareBinary(ByteSource& source,
-                                                 std::span<extent_t> metadata,
-                                                 std::span<std::byte> scratch,
-                                                 const ArrayIoLimits& limits,
-                                                 ArrayIoReport& report,
-                                                 bool require_eof = false);
+  static ASC_SPARSE_EXPORT Result<SparseArrayReader> PrepareBinary(
+      ByteSource& source, std::span<extent_t> metadata,
+      std::span<std::byte> scratch, const ArrayIoLimits& limits,
+      ArrayIoReport& report, bool require_eof = false);
   /** @brief A consumable source cursor cannot be copied. @ingroup asc_sparse */
   SparseArrayReader(const SparseArrayReader&) = delete;
   /** @brief Copy assignment cannot duplicate a cursor. @ingroup asc_sparse */
@@ -130,7 +126,7 @@ class ASC_SPARSE_EXPORT SparseArrayReader {
    * @param other Cursor whose borrowed lifetimes are retained unchanged.
    * @ingroup asc_sparse
    */
-  SparseArrayReader(SparseArrayReader&& other) noexcept;
+  ASC_SPARSE_EXPORT SparseArrayReader(SparseArrayReader&& other) noexcept;
   /** @brief Assignment cannot discard an unfinished cursor. @ingroup asc_sparse
    */
   SparseArrayReader& operator=(SparseArrayReader&&) = delete;
@@ -178,16 +174,16 @@ class ASC_SPARSE_EXPORT SparseArrayReader {
         scratch_(scratch),
         binary_(binary),
         require_eof_(require_eof) {}
-  Status ParseTextHeader();
-  Status ParseTextPrefix();
-  Status ParseBinaryHeader();
-  Status ValidateBinaryPayload(std::uint64_t count,
-                               std::uint64_t structure_count,
-                               std::uint64_t payload_bytes,
-                               std::uint64_t header_bytes);
-  Status Trailer();
-  Result<index_t> ReadIndex(char separator);
-  Status Line(std::string_view text);
+  ASC_SPARSE_EXPORT Status ParseTextHeader();
+  ASC_SPARSE_EXPORT Status ParseTextPrefix();
+  ASC_SPARSE_EXPORT Status ParseBinaryHeader();
+  ASC_SPARSE_EXPORT Status ValidateBinaryPayload(std::uint64_t count,
+                                                 std::uint64_t structure_count,
+                                                 std::uint64_t payload_bytes,
+                                                 std::uint64_t header_bytes);
+  ASC_SPARSE_EXPORT Status Trailer();
+  ASC_SPARSE_EXPORT Result<index_t> ReadIndex(char separator);
+  ASC_SPARSE_EXPORT Status Line(std::string_view text);
   Status Fail(ErrorCode code) {
     ready_ = false;
     structure_read_ = false;

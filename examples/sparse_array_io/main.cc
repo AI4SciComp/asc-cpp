@@ -228,5 +228,6 @@ int main(int argc, char** argv) {
     std::cerr << status.ToString() << '\n';
     return 1;
   }
-  return 0;
+  std::cout.flush();
+  return std::cout ? 0 : 1;
 }

@@ -150,7 +150,7 @@ ASC_SPARSE_EXPORT Status ValidateShape(std::span<const extent_t, 2> shape,
  * absent.
  * @ingroup asc_sparse
  */
-class ASC_SPARSE_EXPORT SparseMatrixMarketReader {
+class SparseMatrixMarketReader {
  public:
   /** @brief Parses a complete coordinate banner and dimensions without
    * allocation.
@@ -166,7 +166,7 @@ class ASC_SPARSE_EXPORT SparseMatrixMarketReader {
    * not rewound, no values are allocated and no destination is modified.
    * @ingroup asc_sparse
    */
-  static Result<SparseMatrixMarketReader> Prepare(
+  static ASC_SPARSE_EXPORT Result<SparseMatrixMarketReader> Prepare(
       ByteSource& source, std::span<std::byte> scratch,
       const ArrayIoLimits& limits, const SparseMatrixMarketReadOptions& options,
       SparseMatrixMarketReport& report, bool require_eof = true);
@@ -179,7 +179,8 @@ class ASC_SPARSE_EXPORT SparseMatrixMarketReader {
    * @param other Reader whose source/scratch/report lifetimes remain required.
    * @ingroup asc_sparse
    */
-  SparseMatrixMarketReader(SparseMatrixMarketReader&& other) noexcept;
+  ASC_SPARSE_EXPORT SparseMatrixMarketReader(
+      SparseMatrixMarketReader&& other) noexcept;
   /** @brief Assignment cannot discard a pending source transaction.
    * @ingroup asc_sparse
    */
@@ -227,8 +228,8 @@ class ASC_SPARSE_EXPORT SparseMatrixMarketReader {
         options_(options),
         report_(&report),
         require_eof_(require_eof) {}
-  Status ParseHeader();
-  Status ParseDimensions();
+  ASC_SPARSE_EXPORT Status ParseHeader();
+  ASC_SPARSE_EXPORT Status ParseDimensions();
   Status Fail(ErrorCode code) {
     ready_ = false;
     return input_.Fail(code);

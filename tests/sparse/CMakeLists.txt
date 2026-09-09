@@ -69,6 +69,10 @@ target_include_directories(
 target_include_directories(
   asc_sparse_io_shapes_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
 )
+if(MSVC)
+  # The scalar/storage/shape cross product exceeds COFF's section limit.
+  target_compile_options(asc_sparse_io_shapes_test PRIVATE /bigobj)
+endif()
 
 foreach(_target IN ITEMS asc_sparse_matrix_market_test
     asc_sparse_matrix_market_fuzz_test)

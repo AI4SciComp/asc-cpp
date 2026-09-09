@@ -277,7 +277,7 @@ Status DenseArrayReader::ParseBinaryHeader() {
   if (!status.ok()) {
     return Fail(status.code());
   }
-  const auto expected = internal_array_io::MultiplySize(
+  const auto expected = internal_array_io::MultiplySize<std::uint64_t>(
       count_, internal_array_io::ScalarWidth(scalar_));
   if (!expected.ok()) {
     return Fail(ErrorCode::kOverflow);
@@ -370,7 +370,7 @@ Status ValidateShape(std::span<const extent_t> shape, std::uint64_t count,
   if (logical > std::numeric_limits<std::uint64_t>::max() / width) {
     return Status(ErrorCode::kOverflow);
   }
-  auto bytes = internal_array_io::MultiplySize(logical, width);
+  auto bytes = internal_array_io::MultiplySize<std::uint64_t>(logical, width);
   if (!bytes.ok()) {
     return Status(ErrorCode::kOverflow);
   }
@@ -421,7 +421,7 @@ Status WriteHeader(std::span<const extent_t> shape, std::uint64_t count,
   if (header_bytes > limits.max_header_bytes || scratch.size() < 56) {
     return Status(ErrorCode::kAllocation);
   }
-  const auto payload = internal_array_io::MultiplySize(
+  const auto payload = internal_array_io::MultiplySize<std::uint64_t>(
       count, internal_array_io::ScalarWidth(scalar));
   if (!payload.ok()) {
     return payload.status();

@@ -317,17 +317,19 @@ Result<T> DecodeScalar(std::span<const std::byte> input) {
 
 // No over-read: even a token boundary requests only its next byte. A failed
 // source stays failed. Caller owns source, scratch and report lifetimes.
-class ASC_CORE_EXPORT Input {
+class Input {
  public:
   Input(ByteSource& source, ArrayIoLimits limits, ArrayIoReport& report)
       : source_(&source), limits_(limits), report_(&report) {}
-  Status Read(std::span<std::byte> bytes, bool checksum = true);
-  Result<std::string_view> Line(std::span<char> scratch, std::size_t cap);
-  Status Expect(std::string_view text);
-  Status EndOfLine();
-  Result<std::string_view> Token(std::span<char> scratch, char separator);
-  Status EndOfFile(bool text_whitespace);
-  Status Fail(ErrorCode code);
+  ASC_CORE_EXPORT Status Read(std::span<std::byte> bytes, bool checksum = true);
+  ASC_CORE_EXPORT Result<std::string_view> Line(std::span<char> scratch,
+                                                std::size_t cap);
+  ASC_CORE_EXPORT Status Expect(std::string_view text);
+  ASC_CORE_EXPORT Status EndOfLine();
+  ASC_CORE_EXPORT Result<std::string_view> Token(std::span<char> scratch,
+                                                 char separator);
+  ASC_CORE_EXPORT Status EndOfFile(bool text_whitespace);
+  ASC_CORE_EXPORT Status Fail(ErrorCode code);
   [[nodiscard]] const Status& status() const { return status_; }
   [[nodiscard]] const ArrayIoLimits& limits() const { return limits_; }
   [[nodiscard]] std::uint32_t checksum() const { return crc_ ^ 0xffffffffU; }
@@ -341,12 +343,13 @@ class ASC_CORE_EXPORT Input {
   Status status_;
 };
 
-class ASC_CORE_EXPORT Output {
+class Output {
  public:
   Output(ByteSink& sink, std::size_t limit, ArrayIoReport& report)
       : sink_(&sink), limit_(limit), report_(&report) {}
-  Status Write(std::span<const std::byte> bytes, bool checksum = true);
-  Status Text(std::string_view text);
+  ASC_CORE_EXPORT Status Write(std::span<const std::byte> bytes,
+                               bool checksum = true);
+  ASC_CORE_EXPORT Status Text(std::string_view text);
   [[nodiscard]] std::uint32_t checksum() const { return crc_ ^ 0xffffffffU; }
   [[nodiscard]] const Status& status() const { return status_; }
 

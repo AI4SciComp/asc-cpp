@@ -63,7 +63,7 @@ ASC_DENSE_EXPORT Status WriteHeader(std::span<const extent_t> shape,
  * there is no automatic resynchronization or source rollback. CPU-only.
  * @ingroup asc_dense
  */
-class ASC_DENSE_EXPORT DenseArrayReader {
+class DenseArrayReader {
  public:
   /**
    * @brief Prepares an ASC text-v1 Dense header without allocating values.
@@ -80,12 +80,10 @@ class ASC_DENSE_EXPORT DenseArrayReader {
    * Work is linear in bounded header bytes; no allocation/transfer occurs.
    * @ingroup asc_dense
    */
-  static Result<DenseArrayReader> PrepareText(ByteSource& source,
-                                              std::span<extent_t> metadata,
-                                              std::span<std::byte> scratch,
-                                              const ArrayIoLimits& limits,
-                                              ArrayIoReport& report,
-                                              bool require_eof = false);
+  static ASC_DENSE_EXPORT Result<DenseArrayReader> PrepareText(
+      ByteSource& source, std::span<extent_t> metadata,
+      std::span<std::byte> scratch, const ArrayIoLimits& limits,
+      ArrayIoReport& report, bool require_eof = false);
 
   /**
    * @brief Prepares an ASC binary-v1 Dense envelope without allocating values.
@@ -101,12 +99,10 @@ class ASC_DENSE_EXPORT DenseArrayReader {
    * Same lifetime, failure and concurrency contract as PrepareText applies.
    * @ingroup asc_dense
    */
-  static Result<DenseArrayReader> PrepareBinary(ByteSource& source,
-                                                std::span<extent_t> metadata,
-                                                std::span<std::byte> scratch,
-                                                const ArrayIoLimits& limits,
-                                                ArrayIoReport& report,
-                                                bool require_eof = false);
+  static ASC_DENSE_EXPORT Result<DenseArrayReader> PrepareBinary(
+      ByteSource& source, std::span<extent_t> metadata,
+      std::span<std::byte> scratch, const ArrayIoLimits& limits,
+      ArrayIoReport& report, bool require_eof = false);
 
   /** @brief Readers cannot duplicate a consumable source cursor.
    * @ingroup asc_dense
@@ -118,7 +114,7 @@ class ASC_DENSE_EXPORT DenseArrayReader {
    * @param[in,out] other Reader whose borrowed lifetimes remain unchanged.
    * @ingroup asc_dense
    */
-  DenseArrayReader(DenseArrayReader&& other) noexcept;
+  ASC_DENSE_EXPORT DenseArrayReader(DenseArrayReader&& other) noexcept;
   /** @brief Assignment cannot discard an unfinished cursor. @ingroup asc_dense
    */
   DenseArrayReader& operator=(DenseArrayReader&&) = delete;
@@ -160,9 +156,9 @@ class ASC_DENSE_EXPORT DenseArrayReader {
         scratch_(scratch),
         binary_(binary),
         require_eof_(require_eof) {}
-  Status ParseTextHeader();
-  Status ParseBinaryHeader();
-  Status Trailer();
+  ASC_DENSE_EXPORT Status ParseTextHeader();
+  ASC_DENSE_EXPORT Status ParseBinaryHeader();
+  ASC_DENSE_EXPORT Status Trailer();
   Status Fail(ErrorCode code) {
     ready_ = false;
     return input_.Fail(code);

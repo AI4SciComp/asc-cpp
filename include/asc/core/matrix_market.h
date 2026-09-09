@@ -88,7 +88,7 @@ struct Record {
   }
 };
 
-class ASC_CORE_EXPORT Input {
+class Input {
  public:
   Input(ByteSource& source, ArrayIoLimits limits, ArrayIoReport& report)
       : source_(&source), limits_(limits), report_(&report) {}
@@ -97,19 +97,20 @@ class ASC_CORE_EXPORT Input {
   Input(Input&&) noexcept = default;
   Input& operator=(Input&&) = delete;
   ~Input() = default;
-  Result<Record> FirstRecord(std::span<std::byte> scratch);
-  Result<Record> NextRecord(std::span<std::byte> scratch);
-  Status Finish(std::span<std::byte> scratch);
-  Status Fail(ErrorCode code);
+  ASC_CORE_EXPORT Result<Record> FirstRecord(std::span<std::byte> scratch);
+  ASC_CORE_EXPORT Result<Record> NextRecord(std::span<std::byte> scratch);
+  ASC_CORE_EXPORT Status Finish(std::span<std::byte> scratch);
+  ASC_CORE_EXPORT Status Fail(ErrorCode code);
   [[nodiscard]] const ArrayIoLimits& limits() const { return limits_; }
   [[nodiscard]] const Status& status() const { return status_; }
   ArrayIoReport& report() { return *report_; }
 
  private:
-  Result<int> ReadByte();
-  Result<int> ReadLineByte(std::size_t& line_bytes);
-  Status SkipComment(std::size_t& line_bytes);
-  Result<Record> ReadRecord(std::span<std::byte> scratch, bool comments);
+  ASC_CORE_EXPORT Result<int> ReadByte();
+  ASC_CORE_EXPORT Result<int> ReadLineByte(std::size_t& line_bytes);
+  ASC_CORE_EXPORT Status SkipComment(std::size_t& line_bytes);
+  ASC_CORE_EXPORT Result<Record> ReadRecord(std::span<std::byte> scratch,
+                                            bool comments);
   ByteSource* source_;
   ArrayIoLimits limits_;
   ArrayIoReport* report_;
@@ -191,10 +192,13 @@ Result<T> CheckedNegate(T value) {
       if (value == std::numeric_limits<T>::min()) {
         return Status(ErrorCode::kOverflow);
       }
-    } else if (value != 0) {
-      return Status(ErrorCode::kOverflow);
+      return static_cast<T>(-value);
+    } else {
+      if (value != 0) {
+        return Status(ErrorCode::kOverflow);
+      }
+      return T{0};
     }
-    return static_cast<T>(-value);
   } else {
     if (!Finite(value)) {
       return Status(ErrorCode::kOverflow);

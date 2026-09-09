@@ -267,7 +267,10 @@ long double ScaledResidual(std::span<const double, 9> matrix,
     norm_r = std::max(norm_r, r_sum);
   }
   const long double scale = norm_a * norm_x + norm_b;
-  return scale == 0 ? norm_r : norm_r / scale;
+  if (scale == 0) {
+    return norm_r == 0 ? 0 : std::numeric_limits<long double>::infinity();
+  }
+  return norm_r / scale;
 }
 
 bool VerifyNumerics(std::span<const double, 9> original_a,
@@ -277,7 +280,10 @@ bool VerifyNumerics(std::span<const double, 9> original_a,
   constexpr std::array<double, 6> kExpected{1, 2, -1, -2, 0, 3};
   constexpr double kTolerance = 256 * std::numeric_limits<double>::epsilon();
   const auto residual = ScaledResidual(original_a, original_b, solution);
-  if (!std::isfinite(residual) || residual > kTolerance) {
+  const auto repeated_residual =
+      ScaledResidual(original_a, original_b, repeated);
+  if (!std::isfinite(residual) || residual > kTolerance ||
+      !std::isfinite(repeated_residual) || repeated_residual > kTolerance) {
     return false;
   }
   for (std::size_t i = 0; i < kExpected.size(); ++i) {
@@ -287,7 +293,18 @@ bool VerifyNumerics(std::span<const double, 9> original_a,
       return false;
     }
   }
-  return std::printf("scaled infinity-norm residual = %.5Le\n", residual) >= 0;
+  return std::printf("scaled infinity-norm residual = %.5Le; reuse = %.5Le\n",
+                     residual, repeated_residual) >= 0;
+}
+
+template <typename Owner>
+bool PrintInput(const Owner& owner, const char* label) {
+  StandardOutput output;
+  std::array<std::byte, 2048> scratch{};
+  asc::ArrayPrintReport report;
+  return std::printf("%s\n", label) >= 0 &&
+         Check(asc::PrintArray(owner, output, {}, scratch, report), label) &&
+         !report.truncated;
 }
 
 bool PrintAndRoundTrip(const RhsOwner& owner, const std::filesystem::path& path,
@@ -448,6 +465,9 @@ bool Run(const Route& route, const std::filesystem::path& a_path,
   auto original_b = asc::LoadDenseArrayText<double, RhsShape>(
       b_path, resource, asc::LayoutLeft{}, metadata, scratch, {}, report);
   if (!Check(original_b, "read B") || !report.committed) {
+    return false;
+  }
+  if (!PrintInput(*original_a, "A") || !PrintInput(*original_b, "B")) {
     return false;
   }
   auto a = original_a->view();
