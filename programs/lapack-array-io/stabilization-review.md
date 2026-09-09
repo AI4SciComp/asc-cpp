@@ -1,5 +1,110 @@
 # Stabilization and subset acceptance checkpoint
 
+Status: **SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE** (2026-09-10).
+Native/I/O technical acceptance is closed. Full LAPACK, owner acceptance,
+provenance clearance, merge and release remain separate and incomplete.
+
+Feature/remote candidate `c020803af564fdf478bf4626797fedcf1fedbbde`, PR merge
+`10f18f94269249e3e17a145dbbfd939875f28a3f`, both tree `dfd7f6823b1e0d53531a847f7a4050aa8a399c5c`;
+develop base `46412183b2ae86101b2361c52376a8db8efff264`. PR #47 remains OPEN DRAFT.
+The later summary-only local commit has its own checks/input bridge and patch
+in external `subset-closure-20260909-01/final-handoff-01.json`; it is not the
+whole tree tested by these hosted runs. The original local documentation commit
+e8ea0e0f is preserved in the ordinary fast-forward history.
+
+PR CI 34380787106 and push CI 34380779945 each pass **19/19 jobs**; CodeQL
+34380786872 and 34380779888 pass. Windows static/shared each pass 231/231
+in Debug and Release; macOS configurations each pass 293/293. All logs,
+checkout identities, toolchains,
+test totals and zero unexpected skips are bound by `final-checkpoint-01/manifest.json`
+under `subset-closure-20260909-01`, SHA-256 `2b0925a0d4ee2727256b6a598400ed65e402661502031f62873f255a1605e426`.
+
+| Work | Before | Closed requirement and executed evidence |
+| --- | --- | --- |
+| W1 independent binary | External 60 shared profiles in two directions | Maintained installed 32 Dense + 48 Sparse profiles: 60 original finite + 20 special-bit profiles, each in both directions and with 3 malformed rollback variants. Whole wire/CRC/logical ordering and public loaded structure/component bits are checked independently |
+| W2 native rows | 20 callable, 0 normalized verified | Existing validator accepts 20 native rows, 112 modes, 1,120 class slots; original 32 POTRS + 8 GEQRF aliases stay closed by `asc_cpp.dense.native_report_alias_test`. Seven installed tests and all seven native IDs in 32 hosted full/sanitizer jobs; no Reference credit |
+| W3 load/precision | External 24 compressed / 288 higher-rank load cases; precision review open | Both load diagnostics maintained with required uninstrumented negative control. Added 768 Dense / 2,304 Sparse exact rounding profiles, all precisions 1–32 / 3 notations and custom-locale positive control; independent 9/17-digit text/MM boundary fixtures |
+| W4 cleanup | 62 Linux/static rank 2 libc-injection cases | Two maintained production-path tests execute 108 rank/storage profiles, 12 scenarios + 2 public controls each, on Linux/macOS/Windows static/shared. Main/cleanup error precedence, close attempts, unpublished-owner release and phase/consumption checks pass. Original 62 libc cases remain separate scoped evidence |
+
+The [finite 20-group I/O matrix](array-io-acceptance-matrix.json) has no remaining
+technical cells. Dense 324 scalar/rank/layout profiles and 648 text/binary paths
+remain distinct counting units. Equivalence rules retain all named scalar,
+rank, storage, field/symmetry and error branches; they do not add an unlimited
+Cartesian product or shrink a promised mode. Pretty previews are not serialization.
+Binary quiet-NaN/signed-zero bits do not imply text/MM payload preservation.
+The deterministic custom C++ locale needs no installed OS locale pack.
+Clang/AppleClang instruction-load diagnostics are not claimed for GCC/MSVC.
+
+Local GNU 11 Debug/shared warnings-as-errors passes 295/295; Clang 19 ASan/UBSan
+passes 248/248. Expanded five-file BLAS tidy, all C++ formatting, changed Python
+lint, strict changed C++ tests, documentation/links, header/ABI inventories and
+package isolation pass. Strict Doxygen covers 126 headers / 2,204 members,
+with zero warnings.
+The c020 change from locally tested b41 is only the Windows standalone consumer
+CTest DLL directory. All other 1255 tracked files match, so local evidence is
+reused through that explicit bridge; hosted runs test the exact c020 inputs.
+
+The b41 PR/push CI each passed 18/19; Windows static passed 231/231 Debug and
+Release. Both failed Windows shared jobs stopped at installed binary interop:
+`0xC0000135` before `main`, because the new consumer omitted the relocated DLL
+directory. c020 adds the same target-derived CTest PATH used by existing
+installed examples. Fresh shared Debug/Release closes the failure. Complete
+original job/run logs are retained; a stalled optional 137 MB artifact download
+was stopped without acceptance credit. No assertions, warnings or test were removed.
+
+The maintained installed command is `tests/package/run_installed_examples.cmake`,
+registered as `asc_cpp.examples.installed_relocated`. Actual local execution is
+recorded with its complete CMake arguments in
+`candidate-01/installed-clang19/record-maintained/record.json`. A normal fresh
+producer build can rerun it without this evidence directory:
+
+```sh
+ctest --test-dir <fresh-producer-build> -C Release --no-tests=error --verbose \
+  -R '^asc_cpp\.examples\.installed_relocated$'
+```
+
+That fixture-driven Clang19 static run passes 81 nested tests in 11 JUnit reports.
+Dense factor reuse independently obtains residuals 0/0, saves/reloads 124 bytes,
+and preserves the destination despite 95 consumed malformed-input bytes. Sparse
+reloads exact COO/CSR/CSC structure/values without Dense/provider linkage.
+Actual dependency files exclude source/private headers; consumers use relocated
+exported targets. These numerical/byte observations are fixture-specific.
+Public file helpers require explicit truncation, preserve primary and secondary
+cleanup errors, and discard a staged load result if checked close fails.
+They do not promise source rollback, atomic replacement or durability.
+
+Reference remains **2,113 required**, 350 executable partial registrations,
+1,763 not started, **0 strict complete-callable/verified Reference rows**.
+130 absent required XBLAS definitions and 78 historical mathematical failures
+remain distinct limitations. Actual pinned LP64/true-ILP64 foundation 10/10
+evidence is retained through unchanged provider/native inputs; provider-free
+CI is not provider-ABI evidence. Original checkout and 15 siblings are preserved;
+no numerical sibling import occurred in this milestone.
+
+The [redistribution packet](redistribution-review-packet.md) remains **pending**.
+Native evidence normalization amended one bound material: current manifest
+`380a8792f8c23263439ac79e8c02bb1959089b674c1221c6397e9bc26585992c`
+supersedes original `6f5e8985d4c4d14c20c2cd44a5dabfbd28dc4720d92de2e52be0abb589f08fca`.
+Proposed notice remains `9ebeaf30a78e77f5fa4a4ba94ed66c68bdb92acd1dfdc8b1456e0c114ffbed41`;
+all current bound materials match. No decision was inferred and no notice applied.
+The pending question is approval or a specific amendment under the external-provider
+model; bundled LAPACK/Fortran, XBLAS/MdeCpp import, upstream patches/upgrades,
+merge and release are not authorized by that packet.
+
+One next bounded task: append PPSVX candidate19 active-buffer/workspace boundary
+tests in the retained `p05-packed-cholesky-expert-draft-01` fault test. Preserve
+all ten owned files/candidate18 assertions and four ordinary mathematical failures.
+The existing read-only guard command in state.json checks that exact handoff;
+it is not an implementation or new passing test. After appending tests and
+freezing a fresh candidate19, build its `faults` target and execute
+`ctest --test-dir <candidate19-build> --no-tests=error --verbose -R '^packed_cholesky_expert\.faults$'`
+for both actual ABIs. No new numerical family began during subset closure.
+
+## Historical subset-acceptance checkpoint (5cc3a935)
+
+The dated records below retain their original inputs. Earlier current/next/open
+labels are historical and are superseded by the checkpoint above.
+
 Status: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING** (2026-09-09).
 The tested feature candidate is `5cc3a9350f7ea176552340de41a38ef73de0aebe`, PR merge
 `184c0ac1f359756c9477e9c1399719780ca060a6`, both tree `34c7712b7d67090114aa522e6206000638273d2d`.

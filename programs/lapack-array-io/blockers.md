@@ -443,7 +443,7 @@ No provider patch, fallback, rescaling or tolerance waiver is introduced.
 This remains a required LATBS mathematical gap and known TBCON dependency
 defect; independent implementation continues.
 
-## Current subset checkpoint — CI healthy, acceptance still open
+## Historical subset checkpoint — 5cc3a935
 
 Candidate03 PR/push CI each pass 19/19 jobs and both CodeQL runs pass.
 All 18 expanded lint findings and the original 40 native alias slots have
@@ -459,3 +459,18 @@ acceptance tasks, not new numerical families or an owner-approval dependency.
 The exact redistribution packet remains pending with unchanged bound materials.
 The 130 absent required XBLAS definitions and 78 historical mathematical failures
 remain visible in their original families. No denominator or tolerance changed.
+
+## Current native/I/O technical checkpoint
+
+W1–W4 are closed at the exact candidate and evidence in
+[stabilization-review.md](stabilization-review.md). Existing validator accepts
+20 native rows; the finite 20-group I/O matrix has no remaining technical cell.
+The new Windows shared installed-consumer DLL-path failure is closed in both
+fresh PR/push platform runs. Historical failures remain retained.
+
+Full Reference 2,113 contracts remain incomplete: 350 partial / 1,763 not started,
+130 required XBLAS definitions absent and 78 historical mathematical failures.
+The amended external-provider packet 380a8792 still needs an explicit owner
+decision; no proposed notice was applied. These are separate from subset
+technical readiness. The next unblocked task is retained PPSVX candidate19
+active-buffer/workspace boundary acceptance, not a new architecture phase.

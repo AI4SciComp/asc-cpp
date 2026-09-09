@@ -28,9 +28,10 @@
         "asc_cpp.printing.compiler_load_observation",
         "asc_cpp.printing.compiler_load_negative_control"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained printing_load now executes the retained24 compressed/all12-scalar and288 Dense rank3/4 cases unchanged; Clang19 Linux installed/static2/2 passes, including uninstru\u00admented negative control. Current candidate/platform reruns pending; other compilers gain no load-instrumentation credit.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Maintained printing_load now executes the retained24 compressed/all12-scalar and288 Dense rank3/4 cases unchanged; Clang19 Linux installed/static2/2 passes, including uninstru\u00admented negative control. Current candidate/platform reruns pending; other compilers gain no load-instrumentation credit."
     },
     {
       "id": "P02.sparse.storage",
@@ -42,9 +43,10 @@
         "asc_cpp.printing.compiler_load_observation",
         "asc_cpp.printing.compiler_load_negative_control"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained printing_load now executes the retained24 compressed/all12-scalar and288 Dense rank3/4 cases unchanged; Clang19 Linux installed/static2/2 passes, including uninstru\u00admented negative control. Current candidate/platform reruns pending; other compilers gain no load-instrumentation credit.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Maintained printing_load now executes the retained24 compressed/all12-scalar and288 Dense rank3/4 cases unchanged; Clang19 Linux installed/static2/2 passes, including uninstru\u00admented negative control. Current candidate/platform reruns pending; other compilers gain no load-instrumentation credit."
     },
     {
       "id": "P02.scalar.options",
@@ -53,9 +55,10 @@
         "asc_cpp.dense.print_modes_test",
         "asc_cpp.sparse.print_modes_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "All1..32 precisions now exercised in3notations with independent exact dyadic halfway/carry/threshold tokens, real/complex components and classic/custom locales:768Dense/2304Sparse additional profiles pass GNU11shared at w3-targeted-03. Existing48/144 profiles and bounds remain; final candidate gates pending.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "All1..32 precisions now exercised in3notations with independent exact dyadic halfway/carry/threshold tokens, real/complex components and classic/custom locales:768Dense/2304Sparse additional profiles pass GNU11shared at w3-targeted-03. Existing48/144 profiles and bounds remain; final candidate gates pending."
     },
     {
       "id": "P02.failures",
@@ -64,9 +67,10 @@
         "asc_cpp.dense.print_acceptance_test",
         "asc_cpp.sparse.print_acceptance_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Existing negative fixtures remain required; no stream rollback or hidden transfer claim.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Existing negative fixtures remain required; no stream rollback or hidden transfer claim."
     },
     {
       "id": "P03.dense.scalar_rank_layout",
@@ -74,21 +78,23 @@
       "ctest_ids": [
         "asc_cpp.dense.io_shapes_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "All324 profiles execute current GNU11/shared, ASan/UBSan and hosted runtime tests, including648 format paths, trailer rollback, padding exclusion and short staging. Representative rank grouping remains subject to final acceptance review.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "All324 profiles execute current GNU11/shared, ASan/UBSan and hosted runtime tests, including648 format paths, trailer rollback, padding exclusion and short staging. Representative rank grouping remains subject to final acceptance review."
     },
     {
       "id": "P03.dense.scalar_bits",
       "required_cases": "All12 scalar codes/exact widths/extrema; f32/f64/c64/c128 signed-zero, finite extrema, quietNaN/inf component rules",
       "ctest_ids": [
         "asc_cpp.dense.io_test",
-        "asc_cpp.dense.io_test",
-        "asc_cpp.core.array_parse_test"
+        "asc_cpp.core.array_parse_test",
+        "asc_cpp.array_io.binary_interop.dense"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Current full/hosted execution passes the listed special-value/encoding tests. Binary NaN bit guarantees remain distinct from text/MM; finite all-scalar independent wire fixtures do not prove every nonfinite interaction.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "All12 codes and independent finite/special-value binary directions close exact quiet-NaN payload/sign, signed-zero and structure requirements. No signaling-NaN or text/MM payload claim.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Current full/hosted execution passes the listed special-value/encoding tests. Binary NaN bit guarantees remain distinct from text/MM; finite all-scalar independent wire fixtures do not prove every nonfinite interaction."
     },
     {
       "id": "P03.dense.transaction",
@@ -98,20 +104,23 @@
         "asc_cpp.dense.io_stream_progress_test",
         "asc_cpp.dense.io_shapes_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Current full/hosted replay passes existing byte-boundary tests and324 all-scalar/rank/layout trailer rollback profiles plus every nonempty short-staging case. Source consumption remains distinct from destination rollback.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Current full/hosted replay passes existing byte-boundary tests and324 all-scalar/rank/layout trailer rollback profiles plus every nonempty short-staging case. Source consumption remains distinct from destination rollback."
     },
     {
       "id": "P03.sparse.scalar_structure",
       "required_cases": "All12 codes x COO/CSR/CSC rank2; empty and nonempty; signed/stored zeros; values-only exact-structure commit",
       "ctest_ids": [
         "asc_cpp.sparse.io_test",
-        "asc_cpp.sparse.io_shapes_test"
+        "asc_cpp.sparse.io_shapes_test",
+        "asc_cpp.array_io.binary_interop.sparse"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Retained tests exercise exact structure and values; no implicit native archive canonicalization or format conversion.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Retained tests exercise exact structure and values; no implicit native archive canonicalization or format conversion."
     },
     {
       "id": "P03.sparse.ranks",
@@ -120,9 +129,10 @@
         "asc_cpp.sparse.io_shapes_test",
         "asc_cpp.sparse.io_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Rank0 zero/one is its own branch; rank1 coordinate, rank>=3 coordinate-loop equivalence needs documented per-width boundary rationale, not every unbounded rank.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "All12 scalar codes execute rank 0/1/3 and empty COO; rank 32 f64 checks metadata boundary. Coordinate/shape traversal uses integer metadata independently of value width, while the separate all 12 scalar structure/byte-width tests cover value alignment/components. CSR/CSC remain rank 2. No unsupported unbounded Cartesian product is added.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Rank0 zero/one is its own branch; rank1 coordinate, rank>=3 coordinate-loop equivalence needs documented per-width boundary rationale, not every unbounded rank."
     },
     {
       "id": "P03.invalid_wire",
@@ -135,9 +145,10 @@
         "asc_cpp.array_io.binary_interop.dense",
         "asc_cpp.array_io.binary_interop.sparse"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained installed interop passes60 original profiles in both directions plus20 quiet-NaN/infinity profiles. ASC writer output matches independent bytes/decoder; ASC reader public view bits/structure are observed without an ASC formatter. Three malformed inputs per profile preserve destination. Local GNU14/static executes; final candidate platform replay pending.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Maintained installed interop passes60 original profiles in both directions plus20 quiet-NaN/infinity profiles. ASC writer output matches independent bytes/decoder; ASC reader public view bits/structure are observed without an ASC formatter. Three malformed inputs per profile preserve destination. Local GNU14/static executes; final candidate platform replay pending."
     },
     {
       "id": "P03.stream_progress",
@@ -148,9 +159,10 @@
         "asc_cpp.sparse.io_test",
         "asc_cpp.core.io_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Existing boundary tests define exact accepted/consumed bytes and preserved destinations; source is not rolled back.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Existing boundary tests define exact accepted/consumed bytes and preserved destinations; source is not rolled back."
     },
     {
       "id": "P03.resources_placement",
@@ -159,9 +171,10 @@
         "asc_cpp.dense.io_test",
         "asc_cpp.sparse.io_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "No broad no-exceptions claim: whole Random -fno-exceptions build has retained open failure; public-header no-exception checks are a separate scope.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "No broad no-exceptions claim: whole Random -fno-exceptions build has retained open failure; public-header no-exception checks are a separate scope."
     },
     {
       "id": "P10.fields_symmetry",
@@ -170,9 +183,10 @@
         "asc_cpp.dense.matrix_market_test",
         "asc_cpp.sparse.matrix_market_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "All named field/symmetry classes have retained independent fixtures. Scalar boundary interactions (integer exactness/negation, complex diagonal) remain separately checked; a field class is not every type/mode Cartesian product.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "All named field/symmetry classes have retained independent fixtures. Scalar boundary interactions (integer exactness/negation, complex diagonal) remain separately checked; a field class is not every type/mode Cartesian product."
     },
     {
       "id": "P10.order_structure",
@@ -181,9 +195,10 @@
         "asc_cpp.dense.matrix_market_test",
         "asc_cpp.sparse.matrix_market_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Native Dense array and Sparse coordinate are required; optional cross-representation conversion is outside frozen required profile, not silently added.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Native Dense array and Sparse coordinate are required; optional cross-representation conversion is outside frozen required profile, not silently added."
     },
     {
       "id": "P10.duplicates_zeros",
@@ -192,9 +207,10 @@
         "asc_cpp.sparse.matrix_market_test",
         "asc_cpp.core.matrix_market_helpers_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Retained independent expected entries and overflow tests. Exact native stored-structure archival guarantees do not extend to symmetry-compressed Matrix Market.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Retained independent expected entries and overflow tests. Exact native stored-structure archival guarantees do not extend to symmetry-compressed Matrix Market."
     },
     {
       "id": "P10.failures_resources",
@@ -205,9 +221,10 @@
         "asc_cpp.dense.matrix_market_interop.read",
         "asc_cpp.sparse.matrix_market_fuzz_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Required independent fixtures remain; optional SciPy interoperability is separate external-tool evidence.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Required independent fixtures remain; optional SciPy interoperability is separate external-tool evidence."
     },
     {
       "id": "files.overwrite_open",
@@ -218,9 +235,10 @@
         "asc_cpp.dense.matrix_market_test",
         "asc_cpp.sparse.matrix_market_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Retained path tests plus installed workflows; no existing-file restoration is promised after an authorized destructive save fails.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Retained path tests plus installed workflows; no existing-file restoration is promised after an authorized destructive save fails."
     },
     {
       "id": "files.cleanup",
@@ -291,9 +309,10 @@
         "asc_cpp.dense.file_cleanup_test",
         "asc_cpp.sparse.file_cleanup_test"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Portable per-call opener now exercises the same production helper bodies, actual linked Core File and explicit public path controls.108rank/storage/real-complex profiles pass initial GNU11shared2/2. Final strengthened12-scenario+2public-control profiles, sanitizer and hosted static/shared platform runs pending. Retained62GNU-wrap installed cases remain actual Linux/static libc-boundary evidence.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "108 portable real/complex/rank/storage profiles,12 scenarios and2 uninjected public controls each, execute in all required Linux/macOS/Windows static/shared runtime lanes plus ASan/UBSan andLSan. Same production bodies call actual linked Core File. Separate62all 12-scalar GNU-wrap libc cases pass Linux/static; no actual libc fault-injection claim on other OSes.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Portable per-call opener now exercises the same production helper bodies, actual linked Core File and explicit public path controls.108rank/storage/real-complex profiles pass initial GNU11shared2/2. Final strengthened12-scenario+2public-control profiles, sanitizer and hosted static/shared platform runs pending. Retained62GNU-wrap installed cases remain actual Linux/static libc-boundary evidence."
     },
     {
       "id": "installed.dense",
@@ -302,9 +321,10 @@
         "asc_cpp.example.lapack_array_io.native",
         "asc_cpp.example.dense_factorizations"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained copied aggregate and five standalone installed consumers pass locally and in all hosted full/package lanes. Local nested JUnit audit:77 tests,zero skips. Dense fixture residuals0/0,124-byte save/reload,95 consumed bytes with rollback; Sparse-only links exclude Dense/provider. These exact observations are fixture-specific.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Maintained copied aggregate and five standalone installed consumers pass locally and in all hosted full/package lanes. Local nested JUnit audit:77 tests,zero skips. Dense fixture residuals0/0,124-byte save/reload,95 consumed bytes with rollback; Sparse-only links exclude Dense/provider. These exact observations are fixture-specific."
     },
     {
       "id": "installed.sparse",
@@ -312,20 +332,17 @@
       "ctest_ids": [
         "asc_cpp.example.sparse_array_io"
       ],
-      "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained copied aggregate and five standalone installed consumers pass locally and in all hosted full/package lanes. Local nested JUnit audit:77 tests,zero skips. Dense fixture residuals0/0,124-byte save/reload,95 consumed bytes with rollback; Sparse-only links exclude Dense/provider. These exact observations are fixture-specific.",
-      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
+      "status": "verified_contract_scope",
+      "evidence_or_open": "Required finite cases closed by maintained tests and matching execution; no remaining technical cell. Historical observations below retain their original identities and limits.",
+      "candidate_replay": "subset-closure-20260909-01/final-checkpoint-01/manifest.json: exact current hosted32 full/sanitizer job records; all22 mapped outer I/O test IDs execute, twice per Windows job. Nested installed tests are independently JUnit-validated by the maintained harness.",
+      "historical_evidence_or_open_before_final": "Maintained copied aggregate and five standalone installed consumers pass locally and in all hosted full/package lanes. Local nested JUnit audit:77 tests,zero skips. Dense fixture residuals0/0,124-byte save/reload,95 consumed bytes with rollback; Sparse-only links exclude Dense/provider. These exact observations are fixture-specific."
     }
   ],
-  "remaining_cells": [
-    "Final coherent candidate execution of maintained binary directions, compiler-load diagnostics, precision/locale, portable cleanup and full mapped I/O modes on required static/shared platforms.",
-    "Current candidate regression, sanitizer, expanded lint, relocated package, documentation and header/ABI gates; native evidence unchanged-input reconciliation and actual validator replay.",
-    "Owner approval of amended redistribution packet remains separate; no reference-coverage denominator change."
-  ],
-  "tested_candidate": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-  "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
-  "current_evidence_index": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
-  "current_evidence_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
+  "remaining_cells": [],
+  "tested_candidate": "c020803af564fdf478bf4626797fedcf1fedbbde",
+  "tested_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+  "current_evidence_index": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json",
+  "current_evidence_sha256": "2b0925a0d4ee2727256b6a598400ed65e402661502031f62873f255a1605e426",
   "test_id_corrections": {
     "reason": "Old names had no CTest registration. Actual registered encoder/parser/MM helper tests preserve the required semantic scope; this correction alone adds no pass credit.",
     "mapping": [
@@ -353,5 +370,9 @@
     "matrix_market": "Separate finite real/complex literal9/17-digit fixtures and independent loaded bits; existing exact integer, symmetry, pattern/duplicate, nonfinite and conversion tests retained.",
     "locale": "Deterministic custom std::numpunct with a positive ostream control exercises decimal/grouping changes without optional OS locale packs. ASCII charconv/bounded decimal paths are locale-independent; does not claim named C locale installation.",
     "shared_scalar_scope": "Core encoding/parsing is storage-neutral. New exact boundary literals exercise Dense public text/MM entrypoints; Sparse public COO/CSR/CSC existing independent scalar/storage fixtures execute again under the same custom locale. All12 wire-code structure combinations remain required and tested in W1."
-  }
+  },
+  "technical_scope_verified": true,
+  "package_state_note": "Technical20-group scope is verified and review-ready. Owner acceptance/provenance and global program package dependencies remain separate; this flag does not reopen any closed technical row.",
+  "tested_merge": "10f18f94269249e3e17a145dbbfd939875f28a3f",
+  "owner_decision": "Pending amended packet380a8792; owner/provenance acceptance is separate from technical rows."
 }

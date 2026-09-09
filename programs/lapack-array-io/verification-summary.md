@@ -1,3 +1,29 @@
+Current verdict: **SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE**.
+Tested feature `c020803af564fdf478bf4626797fedcf1fedbbde`, PR merge `10f18f94269249e3e17a145dbbfd939875f28a3f`,
+tree `dfd7f6823b1e0d53531a847f7a4050aa8a399c5c`. PR/push CI each pass 19/19
+and both CodeQL runs pass. Local GNU 11 shared passes 295/295, Clang 19
+ASan/UBSan 248/248; maintained installed 81 nested tests and seven native tests
+pass, with zero unexpected skips. The exact identities, commands,
+hashes and source bridges are in the [current checkpoint](stabilization-review.md).
+
+W1–W4 close the finite native/I/O technical scope: 80 binary profiles in both
+independent directions; 20 validator-verified native rows / 112 modes / 1,120
+class slots; maintained 24/288 load cases and exact precision/locale fixtures;
+108 portable cleanup profiles on required static/shared platforms. Original
+18 lint and 40 alias repairs remain closed. No technical I/O matrix cell remains.
+The separate 62 GNU-wrap cleanup
+cases are Linux/static evidence; no other-platform libc interposition claim.
+
+Reference: 2,113 required, 350 partial / 1,763 not started, zero strict complete
+callable/verified. The 130 absent XBLAS definitions and 78 historical mathematical
+failures remain separate. Owner acceptance and amended provenance packet
+380a8792 remain pending. No merge
+or release authorized. Next: retained PPSVX candidate19 active-buffer/workspace
+boundary tests, preserving candidate18 assertions and required mathematical failures.
+Final summary-only commit/patch has separate external checks and input bridge.
+
+## Historical subset summary (5cc3a935)
+
 Current verdict: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING**.
 Tested candidate `5cc3a9350f7ea176552340de41a38ef73de0aebe`, merge `184c0ac1f359756c9477e9c1399719780ca060a6`,
 tree `34c7712b7d67090114aa522e6206000638273d2d`; base develop unchanged. PR/push CI each 19/19

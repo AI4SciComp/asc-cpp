@@ -1,3 +1,13 @@
+Current native status: 20 verified rows through the existing acceptance validator,
+112 modes and 1,120 required class slots. Normalized evidence is in
+`docs/contracts/lapack-evidence.json` and `lapack-native-executed.json`; current
+implementation/test/platform bridges and fresh replays are bound by
+[the subset checkpoint](stabilization-review.md). The original 40 alias slots
+are closed. This grants zero Reference-provider credit.
+
+Everything below is historical at its stated revision; its earlier open slots
+and next integration steps are preserved rather than reapplied.
+
 Native20 acceptance is implemented as additive external tests and reviewed partial records. No native production file, original native test, frozen contract, preserved owner worktree or shared root ledger was edited. The source snapshot is `a0a1e156041015636534627098e1e025e90e2ac3`; all 58 recorded native/Core/Dense transitive source inputs also match the frozen V12 source. Historical V9-02 full-suite commands retain their historical identity.
 
 The final import candidate contains four new test files:

@@ -14,15 +14,15 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+  "last_implementation_commit": "c020803af564fdf478bf4626797fedcf1fedbbde",
   "worktree_diff_identity": {
-    "state": "candidate03_committed_and_pushed; final_followup_contains_program_records_only",
-    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
-    "source_snapshot": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/candidate-03/source",
-    "source_context": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/candidate-03/source-context.json",
-    "bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/candidate02-03-bridge.json",
-    "scope": "Whole candidate03 gates refer to the frozen tree above. Later summary records require their explicit unchanged-input bridge and Markdown/JSON checks; actual local HEAD/patch is external final-handoff-01.json."
+    "state": "candidate02_pushed; later_summary_records_separate",
+    "implementation_commit": "c020803af564fdf478bf4626797fedcf1fedbbde",
+    "implementation_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+    "source_snapshot": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/wire-path-fix-01/source",
+    "source_context": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/wire-path-fix-01/candidate.json",
+    "bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/wire-path-fix-01/bridge.json",
+    "scope": "Only Windows binary consumer DLL-path CTest environment differs from local b41 gates; fresh hosted candidate02 covers exact source/test/workflow inputs."
   },
   "packages": {
     "P00": {
@@ -40,14 +40,20 @@
       "dependencies": [
         "P00",
         "P01"
-      ]
+      ],
+      "technical_status": "verified_contract_scope",
+      "technical_evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json",
+      "state_note": "Technical scope closed; top-level package stays in_progress pending program dependency/owner acceptance gates. No remaining native/I/O technical cell is inferred from unrelated Reference work."
     },
     "P03": {
       "state": "in_progress",
       "dependencies": [
         "P00",
         "P01"
-      ]
+      ],
+      "technical_status": "verified_contract_scope",
+      "technical_evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json",
+      "state_note": "Technical scope closed; top-level package stays in_progress pending program dependency/owner acceptance gates. No remaining native/I/O technical cell is inferred from unrelated Reference work."
     },
     "P04": {
       "state": "in_progress",
@@ -92,7 +98,10 @@
       "state": "in_progress",
       "dependencies": [
         "P03"
-      ]
+      ],
+      "technical_status": "verified_contract_scope",
+      "technical_evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json",
+      "state_note": "Technical scope closed; top-level package stays in_progress pending program dependency/owner acceptance gates. No remaining native/I/O technical cell is inferred from unrelated Reference work."
     },
     "P11": {
       "state": "not_started",
@@ -1026,8 +1035,8 @@
       "current_preserved_candidate_state": "bounded_acceptance_audited_not_registered_not_fully_verified"
     }
   },
-  "active_task": "W3.maintain_load_and_precision_checks",
-  "next_action": "Run final GNU11shared regression, Clang19ASan/UBSan, strict affected tests plus existing expanded BLAS audit, relocated package/docs/header/ABI and hosted static/shared platform gates.",
+  "active_task": "P05.packed_cholesky_expert_implementation",
+  "next_action": "Append candidate19 active packed/full/vector/workspace boundary cases to the retained PPSVX draft fault test, preserving all candidate18 assertions and ten owned files. Use real containing arrays, guard boundaries, exact workspace minima, four scalars/triangles/layouts/FACT modes at N3/NRHS2. Freeze a new candidate19 and run packed_cholesky_expert.faults in both real ABIs; retain all four ordinary required mathematical failures. No new registrations, provider patch or wholesale sibling import.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1035,7 +1044,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "21116d3357fdc030224d9390d4c5da87a275d228fc2f5c7dae245f0ba79e4290"
+    "coverage_mapping_sha256": "443161a92d539a34929eadfffb18192267dcc3cfa4e655602992f4d3dc456bb8"
   },
   "provider": {
     "version": "3.12.1",
@@ -1350,7 +1359,11 @@
       "p05-packed-cholesky-expert-candidate-15/protected-audit.json",
       "p05-packed-cholesky-expert-candidate-16/no-rhs-audit.json",
       "p05-packed-cholesky-expert-candidate-17/raw-factor-audit.json",
-      "p05-packed-cholesky-expert-candidate-18/ignored-original-audit.json"
+      "p05-packed-cholesky-expert-candidate-18/ignored-original-audit.json",
+      "subset-closure-20260909-01/w1-acceptance-01.json",
+      "subset-closure-20260909-01/w2-source-validation-01.json",
+      "subset-closure-20260909-01/w3-acceptance-01.json",
+      "subset-closure-20260909-01/final-checkpoint-01/manifest.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -1464,16 +1477,16 @@
     "callable_reference": 0,
     "verified_reference": 0,
     "callable_native": 20,
-    "verified_native": 0,
+    "verified_native": 20,
     "reference_not_started_in_ledger": 1763,
     "reference_in_progress_in_ledger": 350,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
-    "implemented_unverified_native": 20,
+    "implemented_unverified_native": 0,
     "implemented_unverified_reference": 0,
     "registered_partial_reference_operations": 350,
     "unregistered_expert_operations_with_scoped_tests": 4,
-    "note": "2113 required;350 Reference in_progress/1763 not_started;native20 implemented_unverified;zero fully verified. Root v27 Release each861/939 with78 required mathematical failures;Debug111/127 andASC-only sanitizer48/64 eachwith16 required mathematical failures. Zero skips/timeouts/sanitizer diagnostics. Four31-family packages and126-header Doxygen pass. External PPSVX required scalar failures remain open and unregistered. All routine, mode,platform andP00-P11 acceptance remains required. Both unregistered scoped-operation counters describe the same four PPSVX scalar rows; they are not additive and do not change the 350 registered rows or grant full verification.",
+    "note": "Native 20 callable/verified by the executed existing validator:112 modes/1120 required class slots. Reference 2113 required:350 executable partial registrations,1763 not started,0 strict complete-callable/verified.130 absent required XBLAS definitions and78 historical mathematical failures remain separate dimensions. Two unregistered scoped-operation counters describe the same four preserved PPSVX rows; no new integration or Reference credit.",
     "unregistered_packed_operations_with_scoped_tests": 4
   },
   "blockers": [
@@ -1633,44 +1646,44 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "subset-acceptance-candidate03",
-    "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
+    "candidate": "subset-closure-candidate02",
+    "state": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
-    "tested_head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-    "tested_merge": "184c0ac1f359756c9477e9c1399719780ca060a6",
-    "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
-    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
-    "checkpoint_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
-    "scope": "PR CI34358528862 and push CI34358523278 each 19/19 jobs passed; CodeQL34358528859/34358523089 passed. All 38 CI logs and both CodeQL logs bound to checkout identity; totals match individual passing tests; zero unexpected skips. GNU11 Debug/shared warnings-as-errors 293/293; Clang19 ASan/UBSan 246/246; installed native 7/7; maintained installed 77 nested tests. Native/I/O subset acceptance and full program remain incomplete."
+    "implementation_commit": "c020803af564fdf478bf4626797fedcf1fedbbde",
+    "implementation_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+    "tested_head": "c020803af564fdf478bf4626797fedcf1fedbbde",
+    "tested_merge": "10f18f94269249e3e17a145dbbfd939875f28a3f",
+    "tested_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json",
+    "checkpoint_sha256": "2b0925a0d4ee2727256b6a598400ed65e402661502031f62873f255a1605e426",
+    "scope": "Native 20 and the finite20-group P02/P03/P10 technical scope closed; PR/push CI19/19 each and both CodeQL pass. GNU11shared295/295,Clang19ASanUBSan248/248,installed81 nested/native7; exact Windows-only test-environment bridge retains local b41 evidence. Full2113 Reference program, owner acceptance and provenance remain incomplete."
   },
   "last_completed_verification": {
-    "candidate": "subset-acceptance-candidate03",
-    "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
+    "candidate": "subset-closure-candidate02",
+    "state": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
-    "tested_head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-    "tested_merge": "184c0ac1f359756c9477e9c1399719780ca060a6",
-    "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
-    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
-    "checkpoint_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
-    "scope": "PR CI34358528862 and push CI34358523278 each 19/19 jobs passed; CodeQL34358528859/34358523089 passed. All 38 CI logs and both CodeQL logs bound to checkout identity; totals match individual passing tests; zero unexpected skips. GNU11 Debug/shared warnings-as-errors 293/293; Clang19 ASan/UBSan 246/246; installed native 7/7; maintained installed 77 nested tests. Native/I/O subset acceptance and full program remain incomplete."
+    "implementation_commit": "c020803af564fdf478bf4626797fedcf1fedbbde",
+    "implementation_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+    "tested_head": "c020803af564fdf478bf4626797fedcf1fedbbde",
+    "tested_merge": "10f18f94269249e3e17a145dbbfd939875f28a3f",
+    "tested_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json",
+    "checkpoint_sha256": "2b0925a0d4ee2727256b6a598400ed65e402661502031f62873f255a1605e426",
+    "scope": "Native 20 and the finite20-group P02/P03/P10 technical scope closed; PR/push CI19/19 each and both CodeQL pass. GNU11shared295/295,Clang19ASanUBSan248/248,installed81 nested/native7; exact Windows-only test-environment bridge retains local b41 evidence. Full2113 Reference program, owner acceptance and provenance remain incomplete."
   },
   "remote_checkpoint": {
-    "head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-    "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
-    "merge_candidate": "184c0ac1f359756c9477e9c1399719780ca060a6",
+    "head": "c020803af564fdf478bf4626797fedcf1fedbbde",
+    "implementation_commit": "c020803af564fdf478bf4626797fedcf1fedbbde",
+    "tested_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+    "merge_candidate": "10f18f94269249e3e17a145dbbfd939875f28a3f",
     "base": "develop",
     "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
     "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
     "draft": true,
-    "push": "Ordinary fast-forward under preserved explicit owner authorization",
-    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/push-candidate-03.json",
-    "checks": "Both CI runs 19/19; both CodeQL passed; all logs retained in hosted-03",
-    "final_documentation_sync": "One later local summary-only followup will be retained with a patch and exact HEAD in external final-handoff-01.json. It is not the tested candidate tree."
+    "push": "Ordinary fast-forward under retained explicit authorization",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/push-candidate-02.json",
+    "checks": "PR34380787106/push34380779945 each19/19; CodeQL34380786872/34380779888 pass; all logs/hash/identity/skip checks retained",
+    "final_documentation_sync": "Later summary-only local commit has separate checks, input bridge and patch in external final-handoff-01.json; it is not this tested whole tree."
   },
   "session_recovery": {
     "evidence": "resume-20260908-01/recovery.json",
@@ -1688,20 +1701,12 @@
   },
   "pending_verifications": [
     {
-      "task": "P02/P03/P10",
-      "scope": "Complete scalar/storage/layout/failure/rank/platform crossproducts; reusable checked-close harness integration."
-    },
-    {
-      "task": "native_foundation",
-      "scope": "32 POTRS factor/report and8 QR report/tau/workspace valid same-call alias slots."
-    },
-    {
-      "task": "expanded_legacy_quality",
-      "scope": "18 baseline-reproduced test/benchmark lint diagnostics remain failed."
-    },
-    {
       "task": "full_reference_program",
-      "scope": "All2113 routine contracts incomplete;350partial,1763notstarted,130requiredXBLASabsent,78historicalrequiredmathematicalfailures retained."
+      "scope": "All2113 contracts incomplete:350partial,1763not_started;130 required XBLAS definitions absent and78 historical mathematical failures retained. Next bounded PPSVX active-buffer acceptance slice is unblocked."
+    },
+    {
+      "task": "owner_provenance",
+      "scope": "Amended external-provider packet380a8792 and unchanged proposed notice9ebeaf30 pending explicit owner/reviewer decision; separate from completed native/I/O technical acceptance."
     }
   ],
   "completed_verification_history": [
@@ -2111,17 +2116,255 @@
       "state": "bounded_integration_complete",
       "completion_audit": "p05-packed-cholesky-refinement-integration-v27-01/audit.json",
       "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
+    },
+    {
+      "candidate": "subset-acceptance-candidate03",
+      "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
+      "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "tested_head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "tested_merge": "184c0ac1f359756c9477e9c1399719780ca060a6",
+      "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
+      "checkpoint_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
+      "scope": "PR CI34358528862 and push CI34358523278 each 19/19 jobs passed; CodeQL34358528859/34358523089 passed. All 38 CI logs and both CodeQL logs bound to checkout identity; totals match individual passing tests; zero unexpected skips. GNU11 Debug/shared warnings-as-errors 293/293; Clang19 ASan/UBSan 246/246; installed native 7/7; maintained installed 77 nested tests. Native/I/O subset acceptance and full program remain incomplete."
     }
   ],
-  "next_task": "W3.maintain_load_and_precision_checks",
+  "next_task": "P05.PPSVX_candidate19_active_buffer_boundaries",
   "documentation_verification": {
-    "state": "passed",
-    "scope": "This six-file summary followup: local Markdown links, JSON/slot/contract identity checks, whitespace and complete unchanged-input bridge. Whole candidate03 CI is not attributed to this later tree.",
-    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-documentation-check-01/record.json",
-    "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-documentation-audit-01.json"
+    "state": "recorded_externally_after_summary_freeze",
+    "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
+    "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/run-maintained-next-wire.py",
+  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/resume-packed-expert-boundaries-19.py",
   "stabilization_checkpoint": {
+    "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
+    "stage": "W1_W4_technical_scope_closed",
+    "review": "programs/lapack-array-io/stabilization-review.md",
+    "evidence_directory": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01",
+    "current_candidate": "c020803af564fdf478bf4626797fedcf1fedbbde",
+    "tested_pr_merge": "10f18f94269249e3e17a145dbbfd939875f28a3f",
+    "tested_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+    "current_hosted_failed_jobs": [],
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json",
+    "owner_decision": "Amended packet pending; proposed notice not applied",
+    "deferred_numerical_task": {
+      "active_task": "P05.packed_cholesky_expert_implementation",
+      "next_action": "Append candidate19 active packed/full/vector/workspace boundary cases to the retained PPSVX draft fault test, preserving all candidate18 assertions and ten owned files. Use real containing arrays, guard boundaries, exact workspace minima, four scalars/triangles/layouts/FACT modes at N3/NRHS2. Freeze a new candidate19 and run packed_cholesky_expert.faults in both real ABIs; retain all four ordinary required mathematical failures. No new registrations, provider patch or wholesale sibling import.",
+      "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/resume-packed-expert-boundaries-19.py"
+    }
+  },
+  "historical_worktree_diff_identity_v27": {
+    "state": "v27_committed_external_ppsvx_candidate18_acceptance_audited",
+    "parent_commit": "87cd6460206cfa3e2ea384adc8fbcdfcefb8e3e3",
+    "frozen_tree": "620aeb9c1e3de5d70240cc4e11f15f46d38bfeae",
+    "source_archive_sha256": "bfacdf1c4a3ebf88879651deb3b9c1358221bf9294659141708de013d923416b"
+  },
+  "historical_verification_v27": {
+    "base_commit": "e29bc5680cd75ae88d3c6f19061e23876ddac75f",
+    "implementation_tree": "620aeb9c1e3de5d70240cc4e11f15f46d38bfeae",
+    "source_archive_sha256": "bfacdf1c4a3ebf88879651deb3b9c1358221bf9294659141708de013d923416b",
+    "coverage_mapping_sha256": "372ac5f7fd27ae4a46ef5cab66612ae0d2bce80303d70e8a7c967929f359d214",
+    "scope": "Fresh v27 full GNU Release both ABIs each939 tests,861pass/78requiredmathfail; affected Debug each127,111pass/16requiredmathfail; ASC-only Clang19 sanitizer each64,48pass/16requiredmathfail. Zero skips.72 primary Core/Dense/provider TUs freshly compiled per lane,432 objects. Four relocated31-family packages,six static checks and126-header/2204-member Doxygen pass. Eleven PPRFS candidate15 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. Four scalar refinement failures remain ordinary required gates alongside four PPCON and prior70;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
+    "candidate": "p05-packed-cholesky-refinement-integration-v27-01",
+    "state": "bounded_integration_complete",
+    "completion_audit": "p05-packed-cholesky-refinement-integration-v27-01/audit.json",
+    "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f",
+    "historical_scope_note": "Retained V27 numerical-family evidence; current stabilization evidence is in stabilization_checkpoint. No claim that the complete current candidate passed this historical matrix."
+  },
+  "historical_verification_candidate14": {
+    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+    "implementation_commit": "6f5cd1c0a84be54b66823b3f0dff7ada1fa39a6a",
+    "implementation_tree": "3e42c84c32cf5fe249ed87c555b7bb720d8e1408",
+    "candidate": "stabilization-candidate14",
+    "state": "local_three_lane_regression_passed_hosted_in_progress",
+    "completion_audit": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/subset-acceptance-03/checkpoint.json",
+    "scope": "Provider-free fullGNU11Debugshared291/291,GCC14Releasestatic290/290,shared292/292;zero skips. Three18/18affected selections. C10unchangedinputactualLP64/trueILP64foundation10/10each,ASCsanitizer3/3 and ABI/installedevidence retain exact scope. Full routine/mode/platform/native/P00-P11 acceptance remains open; no mathematical failure relabeled."
+  },
+  "historical_manifest_hashes_v27": {
+    "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
+    "coverage_mapping_sha256": "8dfe36fc94ea18bbc543806c932bc8e0cbfdd233e31dc67c114e063dd6495153"
+  },
+  "historical_last_completed_verification_v27": {
+    "base_commit": "e29bc5680cd75ae88d3c6f19061e23876ddac75f",
+    "implementation_tree": "620aeb9c1e3de5d70240cc4e11f15f46d38bfeae",
+    "source_archive_sha256": "bfacdf1c4a3ebf88879651deb3b9c1358221bf9294659141708de013d923416b",
+    "coverage_mapping_sha256": "372ac5f7fd27ae4a46ef5cab66612ae0d2bce80303d70e8a7c967929f359d214",
+    "scope": "Fresh v27 full GNU Release both ABIs each939 tests,861pass/78requiredmathfail; affected Debug each127,111pass/16requiredmathfail; ASC-only Clang19 sanitizer each64,48pass/16requiredmathfail. Zero skips.72 primary Core/Dense/provider TUs freshly compiled per lane,432 objects. Four relocated31-family packages,six static checks and126-header/2204-member Doxygen pass. Eleven PPRFS candidate15 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. Four scalar refinement failures remain ordinary required gates alongside four PPCON and prior70;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
+    "candidate": "p05-packed-cholesky-refinement-integration-v27-01",
+    "state": "bounded_integration_complete",
+    "completion_audit": "p05-packed-cholesky-refinement-integration-v27-01/audit.json",
+    "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
+  },
+  "subset_acceptance_milestone": {
+    "scope": "W1-W4 finite native/I/O technical acceptance completed; full Reference scope unchanged",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01",
+    "recovered_head": "0e525a3bcf2ce2731ceec7c19eaefcabe39444af",
+    "A1": {
+      "state": "passed_local_and_hosted",
+      "implementation_commit": "ba952aff87b1a5942b8cf54cdc3d9a613a6b7951",
+      "expanded_command": "python3 -B tools/lapack_io/check_native_blas_style.py --build-dir ../asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 --clang-tidy ../asc-cpp-evidence/lapack-array-io/devtools/bin/clang-tidy",
+      "scope": "All5recordedTUs,18findingsclosed;4tests+benchmark5/5,zero skips; original assertion sites64/93/95/32 unchanged; five benchmark loops/oracles/final allocation checks retained. No performance certification.",
+      "records": [
+        "a1-findings-closed.json",
+        "a1-expanded-02/record.json",
+        "a1-ctest-02/record.json",
+        "a1-tool-controls-01/record.json"
+      ],
+      "retained_failure": "a1-expanded-01 retained the single oversized rankK function; corrected in02.",
+      "hosted_evidence": "hosted-03/acceptance.json: both quality jobs pass configured production tidy and the maintained five-TU expanded audit"
+    },
+    "A2": {
+      "state": "native20_normalized_validated_at_candidate03_inputs",
+      "potrs_original_slots": 32,
+      "geqrf_original_slots": 8,
+      "closed_slots": 40,
+      "closing_test": "asc_cpp.dense.native_report_alias_test",
+      "closure": "programs/lapack-array-io/native-report-alias-acceptance.json",
+      "native_verified_operations": 20,
+      "additional_evidence": {
+        "full_gnu11": "293/293 with warnings-as-errors; all40 alias profiles",
+        "asan_ubsan": "246/246; all40 alias profiles",
+        "installed_native": "7/7 against relocated GCC14 static; all40 alias profiles",
+        "hosted": "All seven native test IDs mapped to 32 full/sanitizer job lanes in native-row-gates-final-03.json; Windows executes both Debug and Release per linkage",
+        "still_open": "No native row-level gap at the validated candidate03 inputs. Later relevant input changes require matching native replay/bridge; full program and I/O remain incomplete."
+      }
+    },
+    "A3": {
+      "state": "finite_contract_derived_technical_scope_verified",
+      "gap_matrix": "programs/lapack-array-io/array-io-acceptance-matrix.json",
+      "maintained_harness": "tests/package/run_installed_examples.cmake; tests/array_io/file_close",
+      "executed": [
+        "installed-maintained-02:77 nested tests across8JUnit reports,62 cleanup cases/2808assertions;zero skips",
+        "candidate-02:324Dense profiles/648format paths,including short-staging failures,fullGNU11shared/ASanUBSan",
+        "independent-wire-02:all60 installed C++ binary outputs match Python reference encoder byte-for-byte",
+        "independent-readback-02:all60 Python-encoded fixtures load via installed public C++ APIs and match exact values/structure;external prototype not yet maintained",
+        "printing-load-04:24 all-scalar CSR/CSC load cases and288 Dense rank3/4 preview cases; instrumented pass, uninstrumented control fails as required, strict/format pass; external diagnostic only",
+        "W3 maintained diagnostic2/2 and GNU11shared7/7targeted tests;768Dense/2304Sparse additional rounding profiles; w3-acceptance-01.json binds exact source/commands/logs.",
+        "W1-W4 final candidate:81 maintained nested tests,80 binary profiles in2directions,24/288load cases,108 portablecleanup profiles; current local and hosted platform evidence in subset-closure final-checkpoint-01."
+      ],
+      "limits": "Compiler-load instruction observation is Clang/AppleClang; GNU libc failure injection remains Linux/static. Portable production cleanup/public controls execute all required runtime platforms/linkages. No atomic/durable or signaling-NaN/text-payload claim."
+    },
+    "A4": {
+      "candidate": "subset-closure-candidate02",
+      "state": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
+      "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+      "implementation_commit": "c020803af564fdf478bf4626797fedcf1fedbbde",
+      "implementation_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+      "tested_head": "c020803af564fdf478bf4626797fedcf1fedbbde",
+      "tested_merge": "10f18f94269249e3e17a145dbbfd939875f28a3f",
+      "tested_tree": "dfd7f6823b1e0d53531a847f7a4050aa8a399c5c",
+      "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json",
+      "checkpoint_sha256": "2b0925a0d4ee2727256b6a598400ed65e402661502031f62873f255a1605e426",
+      "scope": "Native 20 and the finite20-group P02/P03/P10 technical scope closed; PR/push CI19/19 each and both CodeQL pass. GNU11shared295/295,Clang19ASanUBSan248/248,installed81 nested/native7; exact Windows-only test-environment bridge retains local b41 evidence. Full2113 Reference program, owner acceptance and provenance remain incomplete.",
+      "ci_runs": [
+        34380787106,
+        34380779945
+      ],
+      "codeql_runs": [
+        34380786872,
+        34380779888
+      ],
+      "current_failed_jobs": []
+    },
+    "owner_approval": false,
+    "remaining_work": {
+      "W1": {
+        "classification": "missing maintained test",
+        "requirement": "P03.invalid_wire and installed.dense/sparse; array-binary-v1.md",
+        "existing": "independent-wire-02 and independent-readback-02, 60 shared profiles in two directions",
+        "action": "Retain mapped regression tests; no remaining subset technical action.",
+        "state": "closed_technical_scope",
+        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w1-acceptance-01.json",
+        "closing_evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json"
+      },
+      "W2": {
+        "classification": "evidence mapping/validation",
+        "requirement": "20 existing native rows,112 modes,1120 class slots; native-report-alias-acceptance.json",
+        "existing": "native-row-gates-final-03.json and executed native7/platform evidence; original40 alias slots closed",
+        "action": "Retain mapped regression tests; no remaining subset technical action.",
+        "state": "closed_technical_scope",
+        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w2-source-validation-01.json",
+        "required_modes": 112,
+        "required_class_slots": 1120,
+        "native_verified": 20,
+        "reference_credit_added": 0,
+        "closing_evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json"
+      },
+      "W3": {
+        "classification": "missing maintained test",
+        "requirement": "P02.dense.ranks/sparse.storage/scalar.options and frozen text/MM precision policies",
+        "existing": "printing-load-04 and existing scalar/locale fixtures",
+        "action": "Retain mapped regression tests; no remaining subset technical action.",
+        "state": "closed_technical_scope",
+        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w3-acceptance-01.json",
+        "closing_evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json"
+      },
+      "W4": {
+        "classification": "missing execution/platform evidence",
+        "requirement": "files.cleanup and frozen primary/cleanup precedence",
+        "existing": "62 Linux/static nonempty-rank2 cleanup cases",
+        "action": "Retain mapped regression tests; no remaining subset technical action.",
+        "state": "closed_technical_scope",
+        "maintained_tests": [
+          "asc_cpp.dense.file_cleanup_test",
+          "asc_cpp.sparse.file_cleanup_test"
+        ],
+        "initial_execution": "w4-targeted-01 GNU11Debug/shared2/2,108profiles; subsequent flush-only/phase assertions and local lint clarifications require final replay",
+        "closing_evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-checkpoint-01/manifest.json"
+      },
+      "owner": {
+        "classification": "owner decision",
+        "state": "pending",
+        "action": "Approve or request a specific amendment to packet380a8792; original packet6f5e8985 is superseded only for the normalized native coverage material. No approval inferred.",
+        "amended_packet_sha256": "380a8792f8c23263439ac79e8c02bb1959089b674c1221c6397e9bc26585992c"
+      }
+    },
+    "verdict": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
+    "technical_review_ready": true,
+    "historical_A4_candidate03": {
+      "state": "candidate03_local_and_hosted_gates_passed",
+      "head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "merge": "184c0ac1f359756c9477e9c1399719780ca060a6",
+      "tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
+      "checkpoint_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
+      "ci_runs": [
+        34358528862,
+        34358523278
+      ],
+      "codeql_runs": [
+        34358528859,
+        34358523089
+      ],
+      "current_failed_jobs": [],
+      "original_failure_closures": "hosted-03/failure-closures.json: eight failed candidate02 jobs/two harness diagnostics closed; no tests or assertions removed",
+      "local": "GNU11 Debug/shared Werror 293/293, Clang19 ASan/UBSan Werror 246/246, strict changed TUs and formatting pass; package/docs/header/ABI gates pass at their recorded scopes",
+      "historical_input_bridge": "candidate02-03-bridge.json: only three private test files and two program records differ; production/header/provider/workflow/ABI/A1 inputs unchanged"
+    }
+  },
+  "historical_last_completed_stabilization": {
+    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
+    "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
+    "candidate": "stabilization-candidate15",
+    "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
+    "scope": "PR and push CI19/19 jobs each; both CodeQL pass. All19PRjob logs, bothCodeQL logs and bothpushWindowslogs sealed; zero unexpected CTest skips, all test totals agree with individual results. This is provider-free CI and partial native/I/O acceptance, not full LAPACK or whole-package verification.",
+    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8",
+    "tested_merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
+    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json",
+    "checkpoint_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4"
+  },
+  "historical_documentation_verification": {
+    "state": "passed",
+    "scope": "Current local links, git diff whitespace, JSON parsing, exact manifest hashes and program-record-only diff; no product changes.",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/final-documentation-checks-01/record.json"
+  },
+  "historical_stabilization_checkpoint_before_W1_W4": {
     "base": "46412183b2ae86101b2361c52376a8db8efff264",
     "deferred_numerical_task": {
       "active_task": "P05.packed_cholesky_expert_implementation",
@@ -2205,183 +2448,28 @@
     "final_acceptance_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4",
     "hosted_closing_results": "PR CI34341838137 and pushCI34341831100 each19/19 jobs pass; CodeQL34341838133/34341831174 pass. Windowsstatic/shared Debug/Release each227/227; macOSfour lanes289/289; fullLinuxGNU11each290,GCC14static290/shared292,Clangstatic289/shared291; ASanUBSan244,LSan244,TSan4; package72. Zero unexpected skips."
   },
-  "historical_worktree_diff_identity_v27": {
-    "state": "v27_committed_external_ppsvx_candidate18_acceptance_audited",
-    "parent_commit": "87cd6460206cfa3e2ea384adc8fbcdfcefb8e3e3",
-    "frozen_tree": "620aeb9c1e3de5d70240cc4e11f15f46d38bfeae",
-    "source_archive_sha256": "bfacdf1c4a3ebf88879651deb3b9c1358221bf9294659141708de013d923416b"
+  "historical_counts_before_native_normalization": {
+    "required_denominator": 2113,
+    "specification_mapped": 20,
+    "callable_reference": 0,
+    "verified_reference": 0,
+    "callable_native": 20,
+    "verified_native": 0,
+    "reference_not_started_in_ledger": 1763,
+    "reference_in_progress_in_ledger": 350,
+    "reference_blocked_in_ledger": 0,
+    "incomplete_reference_contracts": 2113,
+    "implemented_unverified_native": 20,
+    "implemented_unverified_reference": 0,
+    "registered_partial_reference_operations": 350,
+    "unregistered_expert_operations_with_scoped_tests": 4,
+    "note": "2113 required;350 Reference in_progress/1763 not_started;native20 implemented_unverified;zero fully verified. Root v27 Release each861/939 with78 required mathematical failures;Debug111/127 andASC-only sanitizer48/64 eachwith16 required mathematical failures. Zero skips/timeouts/sanitizer diagnostics. Four31-family packages and126-header Doxygen pass. External PPSVX required scalar failures remain open and unregistered. All routine, mode,platform andP00-P11 acceptance remains required. Both unregistered scoped-operation counters describe the same four PPSVX scalar rows; they are not additive and do not change the 350 registered rows or grant full verification.",
+    "unregistered_packed_operations_with_scoped_tests": 4
   },
-  "historical_verification_v27": {
-    "base_commit": "e29bc5680cd75ae88d3c6f19061e23876ddac75f",
-    "implementation_tree": "620aeb9c1e3de5d70240cc4e11f15f46d38bfeae",
-    "source_archive_sha256": "bfacdf1c4a3ebf88879651deb3b9c1358221bf9294659141708de013d923416b",
-    "coverage_mapping_sha256": "372ac5f7fd27ae4a46ef5cab66612ae0d2bce80303d70e8a7c967929f359d214",
-    "scope": "Fresh v27 full GNU Release both ABIs each939 tests,861pass/78requiredmathfail; affected Debug each127,111pass/16requiredmathfail; ASC-only Clang19 sanitizer each64,48pass/16requiredmathfail. Zero skips.72 primary Core/Dense/provider TUs freshly compiled per lane,432 objects. Four relocated31-family packages,six static checks and126-header/2204-member Doxygen pass. Eleven PPRFS candidate15 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. Four scalar refinement failures remain ordinary required gates alongside four PPCON and prior70;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
-    "candidate": "p05-packed-cholesky-refinement-integration-v27-01",
-    "state": "bounded_integration_complete",
-    "completion_audit": "p05-packed-cholesky-refinement-integration-v27-01/audit.json",
-    "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f",
-    "historical_scope_note": "Retained V27 numerical-family evidence; current stabilization evidence is in stabilization_checkpoint. No claim that the complete current candidate passed this historical matrix."
-  },
-  "historical_verification_candidate14": {
-    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-    "implementation_commit": "6f5cd1c0a84be54b66823b3f0dff7ada1fa39a6a",
-    "implementation_tree": "3e42c84c32cf5fe249ed87c555b7bb720d8e1408",
-    "candidate": "stabilization-candidate14",
-    "state": "local_three_lane_regression_passed_hosted_in_progress",
-    "completion_audit": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/subset-acceptance-03/checkpoint.json",
-    "scope": "Provider-free fullGNU11Debugshared291/291,GCC14Releasestatic290/290,shared292/292;zero skips. Three18/18affected selections. C10unchangedinputactualLP64/trueILP64foundation10/10each,ASCsanitizer3/3 and ABI/installedevidence retain exact scope. Full routine/mode/platform/native/P00-P11 acceptance remains open; no mathematical failure relabeled."
-  },
-  "historical_manifest_hashes_v27": {
-    "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "8dfe36fc94ea18bbc543806c932bc8e0cbfdd233e31dc67c114e063dd6495153"
-  },
-  "historical_last_completed_verification_v27": {
-    "base_commit": "e29bc5680cd75ae88d3c6f19061e23876ddac75f",
-    "implementation_tree": "620aeb9c1e3de5d70240cc4e11f15f46d38bfeae",
-    "source_archive_sha256": "bfacdf1c4a3ebf88879651deb3b9c1358221bf9294659141708de013d923416b",
-    "coverage_mapping_sha256": "372ac5f7fd27ae4a46ef5cab66612ae0d2bce80303d70e8a7c967929f359d214",
-    "scope": "Fresh v27 full GNU Release both ABIs each939 tests,861pass/78requiredmathfail; affected Debug each127,111pass/16requiredmathfail; ASC-only Clang19 sanitizer each64,48pass/16requiredmathfail. Zero skips.72 primary Core/Dense/provider TUs freshly compiled per lane,432 objects. Four relocated31-family packages,six static checks and126-header/2204-member Doxygen pass. Eleven PPRFS candidate15 files imported unchanged;current exact-input strict/header evidence andall earlier failures bound. Four scalar refinement failures remain ordinary required gates alongside four PPCON and prior70;no tolerance or provider patch change. Foreign archives unsanitized. No fully verified routine,full-mode/platform orP00-P11 closure claim;all2113 routines and130missingrequiredXBLAS remain required.",
-    "candidate": "p05-packed-cholesky-refinement-integration-v27-01",
-    "state": "bounded_integration_complete",
-    "completion_audit": "p05-packed-cholesky-refinement-integration-v27-01/audit.json",
-    "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
-  },
-  "subset_acceptance_milestone": {
-    "scope": "A1-A4 owner continuation; no new Reference families or denominator changes",
-    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01",
-    "recovered_head": "0e525a3bcf2ce2731ceec7c19eaefcabe39444af",
-    "A1": {
-      "state": "passed_local_and_hosted",
-      "implementation_commit": "ba952aff87b1a5942b8cf54cdc3d9a613a6b7951",
-      "expanded_command": "python3 -B tools/lapack_io/check_native_blas_style.py --build-dir ../asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 --clang-tidy ../asc-cpp-evidence/lapack-array-io/devtools/bin/clang-tidy",
-      "scope": "All5recordedTUs,18findingsclosed;4tests+benchmark5/5,zero skips; original assertion sites64/93/95/32 unchanged; five benchmark loops/oracles/final allocation checks retained. No performance certification.",
-      "records": [
-        "a1-findings-closed.json",
-        "a1-expanded-02/record.json",
-        "a1-ctest-02/record.json",
-        "a1-tool-controls-01/record.json"
-      ],
-      "retained_failure": "a1-expanded-01 retained the single oversized rankK function; corrected in02.",
-      "hosted_evidence": "hosted-03/acceptance.json: both quality jobs pass configured production tidy and the maintained five-TU expanded audit"
-    },
-    "A2": {
-      "state": "native20_normalized_validated_at_candidate03_inputs",
-      "potrs_original_slots": 32,
-      "geqrf_original_slots": 8,
-      "closed_slots": 40,
-      "closing_test": "asc_cpp.dense.native_report_alias_test",
-      "closure": "programs/lapack-array-io/native-report-alias-acceptance.json",
-      "native_verified_operations": 20,
-      "additional_evidence": {
-        "full_gnu11": "293/293 with warnings-as-errors; all40 alias profiles",
-        "asan_ubsan": "246/246; all40 alias profiles",
-        "installed_native": "7/7 against relocated GCC14 static; all40 alias profiles",
-        "hosted": "All seven native test IDs mapped to 32 full/sanitizer job lanes in native-row-gates-final-03.json; Windows executes both Debug and Release per linkage",
-        "still_open": "No native row-level gap at the validated candidate03 inputs. Later relevant input changes require matching native replay/bridge; full program and I/O remain incomplete."
-      }
-    },
-    "A3": {
-      "state": "maintained_subset_passed_finite_gaps_open",
-      "gap_matrix": "programs/lapack-array-io/array-io-acceptance-matrix.json",
-      "maintained_harness": "tests/package/run_installed_examples.cmake; tests/array_io/file_close",
-      "executed": [
-        "installed-maintained-02:77 nested tests across8JUnit reports,62 cleanup cases/2808assertions;zero skips",
-        "candidate-02:324Dense profiles/648format paths,including short-staging failures,fullGNU11shared/ASanUBSan",
-        "independent-wire-02:all60 installed C++ binary outputs match Python reference encoder byte-for-byte",
-        "independent-readback-02:all60 Python-encoded fixtures load via installed public C++ APIs and match exact values/structure;external prototype not yet maintained",
-        "printing-load-04:24 all-scalar CSR/CSC load cases and288 Dense rank3/4 preview cases; instrumented pass, uninstrumented control fails as required, strict/format pass; external diagnostic only",
-        "W3 maintained diagnostic2/2 and GNU11shared7/7targeted tests;768Dense/2304Sparse additional rounding profiles; w3-acceptance-01.json binds exact source/commands/logs."
-      ],
-      "limits": "W1/W3 maintained independent wire/readback/load fixtures and finite precision/locale checks now pass their recorded local scopes. Final candidate package/platform replay and W4 portable combined cleanup gates remain open."
-    },
-    "A4": {
-      "state": "candidate03_local_and_hosted_gates_passed",
-      "head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
-      "merge": "184c0ac1f359756c9477e9c1399719780ca060a6",
-      "tree": "34c7712b7d67090114aa522e6206000638273d2d",
-      "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
-      "checkpoint_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
-      "ci_runs": [
-        34358528862,
-        34358523278
-      ],
-      "codeql_runs": [
-        34358528859,
-        34358523089
-      ],
-      "current_failed_jobs": [],
-      "original_failure_closures": "hosted-03/failure-closures.json: eight failed candidate02 jobs/two harness diagnostics closed; no tests or assertions removed",
-      "local": "GNU11 Debug/shared Werror 293/293, Clang19 ASan/UBSan Werror 246/246, strict changed TUs and formatting pass; package/docs/header/ABI gates pass at their recorded scopes",
-      "historical_input_bridge": "candidate02-03-bridge.json: only three private test files and two program records differ; production/header/provider/workflow/ABI/A1 inputs unchanged"
-    },
-    "owner_approval": false,
-    "remaining_work": {
-      "W1": {
-        "classification": "missing maintained test",
-        "requirement": "P03.invalid_wire and installed.dense/sparse; array-binary-v1.md",
-        "existing": "independent-wire-02 and independent-readback-02, 60 shared profiles in two directions",
-        "action": "Maintain and execute both directions of the existing60 independent binary fixture profiles, with direct public-view component-bit and structure observations; then native per-row evidence validation.",
-        "state": "recorded_scope_passed",
-        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w1-acceptance-01.json"
-      },
-      "W2": {
-        "classification": "evidence mapping/validation",
-        "requirement": "20 existing native rows,112 modes,1120 class slots; native-report-alias-acceptance.json",
-        "existing": "native-row-gates-final-03.json and executed native7/platform evidence; original40 alias slots closed",
-        "action": "Normalize artifacts and run actual coverage validator; identify exact missing obligations for nonverified rows",
-        "state": "validated_native20_promoted",
-        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w2-source-validation-01.json",
-        "required_modes": 112,
-        "required_class_slots": 1120,
-        "native_verified": 20,
-        "reference_credit_added": 0
-      },
-      "W3": {
-        "classification": "missing maintained test",
-        "requirement": "P02.dense.ranks/sparse.storage/scalar.options and frozen text/MM precision policies",
-        "existing": "printing-load-04 and existing scalar/locale fixtures",
-        "action": "Run integrated package/platform gates on final W3/W4 candidate; no remaining missing maintained binary/load fixture.",
-        "state": "maintained_local_precision_and_load_checks_passed_final_candidate_replay_pending",
-        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w3-acceptance-01.json"
-      },
-      "W4": {
-        "classification": "missing execution/platform evidence",
-        "requirement": "files.cleanup and frozen primary/cleanup precedence",
-        "existing": "62 Linux/static nonempty-rank2 cleanup cases",
-        "action": "Run final GNU11shared regression, Clang19ASan/UBSan, strict affected tests plus existing expanded BLAS audit, relocated package/docs/header/ABI and hosted static/shared platform gates.",
-        "state": "portable_tests_implemented_final_candidate_gates_pending",
-        "maintained_tests": [
-          "asc_cpp.dense.file_cleanup_test",
-          "asc_cpp.sparse.file_cleanup_test"
-        ],
-        "initial_execution": "w4-targeted-01 GNU11Debug/shared2/2,108profiles; subsequent flush-only/phase assertions and local lint clarifications require final replay"
-      },
-      "owner": {
-        "classification": "owner decision",
-        "state": "pending",
-        "action": "Exact unchanged redistribution packet approval/amendment; separate from native/I/O implementation",
-        "amended_packet_sha256": "380a8792f8c23263439ac79e8c02bb1959089b674c1221c6397e9bc26585992c"
-      }
-    }
-  },
-  "historical_last_completed_stabilization": {
-    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
-    "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
-    "candidate": "stabilization-candidate15",
-    "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
-    "scope": "PR and push CI19/19 jobs each; both CodeQL pass. All19PRjob logs, bothCodeQL logs and bothpushWindowslogs sealed; zero unexpected CTest skips, all test totals agree with individual results. This is provider-free CI and partial native/I/O acceptance, not full LAPACK or whole-package verification.",
-    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8",
-    "tested_merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
-    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
-    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json",
-    "checkpoint_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4"
-  },
-  "historical_documentation_verification": {
+  "historical_documentation_verification_before_W1_W4": {
     "state": "passed",
-    "scope": "Current local links, git diff whitespace, JSON parsing, exact manifest hashes and program-record-only diff; no product changes.",
-    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/final-documentation-checks-01/record.json"
+    "scope": "This six-file summary followup: local Markdown links, JSON/slot/contract identity checks, whitespace and complete unchanged-input bridge. Whole candidate03 CI is not attributed to this later tree.",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-documentation-check-01/record.json",
+    "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-documentation-audit-01.json"
   }
 }
