@@ -1,10 +1,11 @@
 # Stabilization and subset acceptance checkpoint
 
-Status: first pushed checkpoint has 13 passing CI jobs plus passing CodeQL,
-and six diagnosed platform failures. Their fixes pass affected local tests;
-the final candidate08 matrix and fresh hosted verification remain pending. The owner’s
-2026-09-09 stabilization assignment supersedes the queued PPSVX candidate19
-expansion. Full P00–P11 scope and the 2,113 required routines remain unchanged.
+Status: local stabilization candidate14/product6f5cd1c passes all three full
+provider-free lanes: GNU11 Debug shared 291/291, GCC14 Release static 290/290
+and shared 292/292, zero failures/skips. Fresh hosted verification is next.
+Previous remote0d623ba / tested merge9d5153ff has 12 passing CI jobs, seven
+fully diagnosed failures and passing CodeQL; its failures are repaired locally.
+The full 2,113 Reference requirements and all P00–P11 obligations remain open.
 No merge, release, tag, upstream patch or redistribution approval is implied.
 
 ## Recovered identities and preserved work
@@ -386,3 +387,147 @@ failures and untruncated LastTest logs are retained under
 `candidate-08/retained-full-logs`. The source-independent inventories are fixed,
 not skipped. This is combined local closing evidence, not a claim that a single
 C09 full CTest invocation passed. Fresh hosted full C09 verification is next.
+
+
+## Second hosted diagnostic slice
+
+Second pushed head `0d623ba85017bc4b3fc377c46299fc59779e6145` addresses both
+original platform defects and the source inventory omission. Fresh PR
+CI34328080477 has twelve passing Linux/package/sanitizer jobs, five failed jobs
+(four macOS plus quality), and two Windows jobs still running at the recorded
+observation. All ten push/PR failed-job logs are retained/read in
+`hosted-second-failures-01`; no Windows cause is inferred from these logs.
+
+The quality error is the explicit `bit_width` result cast under GCC14 headers:
+[LWG3656](https://cplusplus.github.io/LWG/issue3656) changes its result to int,
+while GCC11 headers return the unsigned argument type. C10 uses the equivalent
+`32 - countl_zero(word)` for the nonzero 32-bit word, whose result is consistently
+int. No warning is disabled. macOS now compiles through the decimal reader and
+stops in `native_concurrency_test.cc` because its libc++ lacks `jthread`.
+C10 uses explicit `std::thread` joins, preserving four scalar workers and all
+4,000 fixture groups/20,000 numerical calls. A fifth barrier participant keeps
+startup coordinated; if thread creation fails, missing participants drop and
+all started workers are released/joined before the test fails. This changes a
+test harness, not ASC's public exception or numerical contracts.
+
+C10 GNU11 Debug shared, GCC14 Debug shared and Clang19 ASan+UBSan each execute
+3/3 affected parser/Matrix Market helper/concurrency tests, zero skips. Real
+libc++14 Core executes2/2. Three strict checks (both GCC standard-library header
+sets plus the thread test) pass. Fresh InspectElfAbi matches the existing
+`831e8d9d...` baseline exactly. The relocated installed command is now
+`python3 -B ../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/installed-consumers-04.py`;
+it passes Dense1/1 and Sparse1/1 with the same residual/124-byte/95-byte rollback
+observations and installed-only dependency checks on the actual C10 producer.
+Expanded native/I/O and refreshed real-provider gates remain in progress here;
+no C10 hosted or full-profile acceptance is claimed.
+
+`subset-acceptance-02/checkpoint-02.json` binds 63 executed C08 test/configuration
+records, 240 LU numerical profiles, 248 QR numerical profiles and 112 alias modes
+per compiler configuration to actual public declarations and source hashes.
+The initial record used abbreviated QR labels and is explicitly superseded by
+the corrected FormHouseholderQ/ApplyHouseholderQ labels. This is scoped C08/C09
+evidence, not a fully verified native overlay or a pass for every C10 input.
+All 40 native partial slots and the full Reference denominator remain required.
+
+## Windows runtime and installed-example repair slice
+
+C09 PR CI34328080477 completed with12passing/7failing jobs; CodeQL34328080791
+passed. Head0d623ba was tested as merge9d5153ff into base46412183. All14
+failed push/PR logs are preserved under hosted-second-failures-01. Windows
+static Debug executes221/227 and shared Debug226/227, with zero skips; neither
+job reaches Release. This supersedes the earlier observation that Windows was
+still running. macOS4 and quality fail for the C10-fixed causes above.
+
+Windows standalone examples compare ENABLED_LANGUAGES to literal CXX, although
+Windows toolchain selection already enabled CXX;RC before package lookup.
+Three examples now capture the language set before find_package and require
+it to remain identical afterwards. Unrelated imported targets remain forbidden.
+All three copied standalone examples configure/build/run1/1 using the relocated
+C10 installed prefix in standalone-consumers-11; Windows still requires replay.
+
+Static Debug’s four legacy BLAS tests and Dense benchmark require a zero global
+allocation count despite MSVC Debug STL proxy allocations in public Status/Result
+scaffolding. Their sources, production BLAS/Status and the existing observation
+helper are byte-identical to base46412183 (msvc-debug-source-comparison.json).
+The helper already documents this instrumentation allowance and preserves exact
+counts in Release/non-MSVC builds. C12 applies that same unchanged policy to
+these five consumers; mathematical assertions and reported benchmark counts are
+retained. This is not a claim of allocation-free MSVC Debug behavior. Source
+comparison is not an executed Windows baseline; available Windows tooling has
+no installed MSVC C++ component, so hosted replay is the required platform gate.
+
+C12 affected runtime tests pass5/5. C13’s added direct benchmark include failed
+all three local builds because that target lacks the tests-root search path;
+C14 uses the existing relative include convention. Original logs remain intact.
+C14 also fixes directly-used/missing and unused includes in the touched legacy
+files. Production/native/I/O/provider inputs are byte-identical to C10 through
+candidate10-14-bridge.json, retaining scoped C10 native/I/O26/26, actual provider
+10/10 perABI, sanitizer3/3, libc++14Core2/2, ABI and installed-consumer evidence.
+
+An expanded manual clang-tidy invocation on the five legacy test/benchmark TUs
+fails on pre-existing long functions, invalid-enum negative cases, deliberate
+transpose index ordering and direct include debt. This is broader than the
+hosted quality job, which configures BUILD_TESTING=OFF. It is recorded as failed,
+not suppressed or called a pass. An isolated-base reproduction and current
+replay distinguish unchanged findings from the direct-include corrections.
+Full subset/code-quality acceptance remains open.
+
+## Deterministic checked-close acceptance
+
+The external command
+`python3 -B ../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/run-file-close-faults-01.py`
+executes a new fault harness against the actual C14 GCC14 Release static
+installation, relocated before discovery. Dense-only and Sparse-only projects
+link through their installed exported targets; compiler dependencies exclude
+source/private headers, and Sparse imports/links no Dense target/library.
+Both CTest invocations pass 1/1 with zero skips, each exercising 46 assertions.
+`file-close-faults-run-01/identity-and-results.json` binds the retained harness,
+installed files, commands and raw logs to C14/product6f5cd1c.
+
+GNU link wrapping calls the real fclose/fflush, then deterministically returns
+EIO/ENOSPC. Successful payloads followed by close failure reject owner publication
+and release staged resource allocations before returning. Malformed input and
+resource-allocation failures retain their original error with a secondary
+cleanup error. Saves flush and close exactly once; flush error remains primary
+when close also fails. Disarming faults restores successful saves. This tests
+ASC's reported cleanup contract, not a real filesystem outage or durable write.
+
+Scope is Linux, GCC14, static linkage, f64 rank-two Dense and Sparse COO, text
+and binary. It closes that specific deterministic close-only gap. Other scalar,
+rank, layout, CSR/CSC and platform cross-products remain open; integrating this
+external harness into reusable repository tests also remains review work.
+Existing helpers still require explicit truncate intent and promise neither
+atomic replacement nor fsync-style durability. Original owners and the source
+checkout are unmodified by the fault harness.
+
+The expanded manual legacy lint comparison is now executed on the isolated
+base, not inferred: `legacy-tidy-baseline-comparison-01.json` shows all 18
+remaining candidate diagnostics also occur on base46412183. Missing/direct
+includes are corrected; no warning suppression, threshold change or negative
+assertion deletion was introduced. This audit remains failed and is an open
+P11 quality obligation outside the hosted BUILD_TESTING=OFF tidy scope.
+
+## Candidate14 full local checkpoint
+
+Product6f5cd1c0a84be54b66823b3f0dff7ada1fa39a6a matches all 1,131 non-program
+files in candidate14. Full GNU11 Debug shared passes291/291; GCC14 Release
+static passes290/290 and shared passes292/292. Every run has zero failures and
+zero skips. Each also passes18/18 affected tests before the full run. The full
+runs cover module isolation, headers, inventories, package/relocation, installed
+examples, native LU/Cholesky/QR, array I/O, BLAS and Random compatibility.
+
+`subset-acceptance-03/checkpoint.json` binds63 current executed API/test/configuration
+mappings, exact source hashes, emitted numerical/alias records and immutable full
+LastTest logs. C10 unchanged-source provider10/10 per real ABI and sanitizer/ABI
+results retain their scope. No full routine/mode/platform status is promoted:
+native20 remain implemented_unverified, 40 native class slots remain partial,
+350 executable partial reference routes remain in_progress, and all2,113
+reference contracts remain incomplete.
+
+Cleanup harness02 repeats both installed46-assertion tests successfully and
+passes strict lint for both configurations. Original harness01 runtime passes
+and strict failures are retained: unused include, missing nodiscard and GNU
+reserved linker identifiers. Harness02 fixes those with direct includes,
+nodiscard and assembly symbol labels; no diagnostic is disabled. The separate
+60-configuration scalar/storage cleanup matrix is in progress and receives no
+pass credit yet. Fresh hosted candidate verification is the next R1 action.

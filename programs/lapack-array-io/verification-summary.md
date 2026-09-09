@@ -1,4 +1,25 @@
-Current stabilization product is `fbe21fe514910e86c05bad2c1aca6c954b838acf`,
+Current product6f5cd1c / frozen candidate14 passes full provider-free GNU11
+Debug shared291/291, GCC14 Release static290/290 and shared292/292, zero
+failures/skips. All three affected selections pass18/18. Formatting and the
+parser/thread strict checks pass. Fresh hosted verification is next; previous
+remote0d623ba/merge9d5153ff CI12pass/7fail and passingCodeQL retain their identities.
+
+`subset-acceptance-03/checkpoint.json` maps63 current executed API/test/configuration
+records to C14 source hashes and preserved full logs. Actual unchanged-source
+LP64/trueILP64 foundation10/10 each, C10sanitizer3/3, libc++14Core2/2, ABI and
+installed04Dense1/1 Sparse1/1 retain scoped validity. Both installed close-fault
+harness02 consumers pass46assertions/CTest1/1 and strict checks. Its wider
+60-configuration matrix remains running. The separately expanded legacytesttidy
+has18remaining diagnostics, all reproduced on the isolated base; it remains
+failed and an open P11 quality obligation.
+
+All2113Reference requirements,350partialroutes,1763notstarted,native20
+implemented_unverified,40partialnativeclassslots,78historicalrequiredmath
+failures,130missingrequiredXBLAS definitions and concrete owner review remain
+open. See [current review](stabilization-review.md). Earlier results retain
+their exact frozen identities and do not grant full subset acceptance.
+
+Earlier stabilization product is `fbe21fe514910e86c05bad2c1aca6c954b838acf`,
 locally committed and byte-identical to frozen candidate08. Its portable decimal
 fallback and explicit native alias gap pass affected GNU11/GCC14 tests,
 C07 identical-source ASan+UBSan26/26, real libc++14 Core2/2, pinned LP64 and
