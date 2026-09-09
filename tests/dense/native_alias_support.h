@@ -28,8 +28,6 @@ using Op = asc::DenseBlasTranspose;
 using Triangle = asc::DenseBlasTriangle;
 using Wide = std::complex<long double>;
 constexpr std::array kLayouts{Layout::kRowMajor, Layout::kColumnMajor};
-constexpr std::array kOperations{Op::kNone, Op::kTranspose,
-                                 Op::kConjugateTranspose};
 constexpr std::array kTriangles{Triangle::kLower, Triangle::kUpper};
 constexpr auto kHost = asc::MemorySpace::kHost;
 

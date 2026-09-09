@@ -1,5 +1,42 @@
 # Stabilization and subset acceptance checkpoint
 
+Current continuation: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING**.
+Candidate `eb3640d70d80135663d157392a4c98a1bcc1a231` is synchronized; its PR merge
+`661ee391133b4ff7a7049e9668a55ceb181b67c7` has the same tree
+`e8f89cf95878d93a7a834e72d9c57eede324165e`. The prior stabilization table below
+is historical evidence for `52439959`, not the current candidate's CI result.
+
+A1 closes all 18 original findings locally and passes the newly maintained
+expanded five-TU hosted audit. A2's original 32 POTRS and eight GEQRF aliases
+execute with independent residual/reconstruction and protected-state checks.
+Native verified remains zero pending complete row/platform evidence. A3 adds
+324 Dense scalar/rank/layout profiles, including short-staging rollback, and
+maintains installed examples plus 62 cleanup cases (2,808 assertions).
+The final maintained installed replay passes 77 nested tests across eight JUnit
+reports, zero skips; fixture residuals are 0/0, binary reload is 124 bytes and
+malformed input consumes 95 bytes while preserving the destination.
+All 60 native-format scalar/storage binary outputs independently match Python;
+reverse C++ readback also passes 60 independently encoded fixtures. That reverse
+prototype remains external and is not counted as maintained CI coverage.
+
+Candidate02 local full GNU11 Debug/shared passes 293/293 and Clang19
+ASan/UBSan passes 246/246; strict documentation/header/ABI and configured
+analysis pass. PR CI34355299517 and push CI34355293358 each pass 15/19 jobs.
+Every failed job log is retained under `subset-acceptance-20260909-01/hosted-02`.
+GCC11 Debug/Release rejects an unused `kOperations` from a newly shared test
+header; Windows static/shared rejects a rank-zero shift expression in the new
+I/O harness before CTest. The old conditional does not evaluate that shift at
+rank zero; `if constexpr` now discards the expression during instantiation.
+The constant moves unchanged to its only using TU. No tests, assertions,
+numerical tolerances or warnings were removed. The earlier local GNU11 cache
+had warnings-as-errors OFF; its pass did not prove the hosted warning gate.
+With it ON, all three affected tests now build and pass; full closing replay
+and fresh hosted results are pending. macOS, package, sanitizers and expanded
+lint passed their actual candidate02 scope. Owner packet approval remains
+pending, all 2,113 Reference requirements remain, and no sibling was imported.
+
+## Historical completed stabilization checkpoint
+
 Status: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING** (2026-09-09).
 Fresh PR and push CI each pass all 19 jobs; both CodeQL runs pass. The product
 is synchronized at `52439959f261351da6e51e3131391ef1197da2e8`, product commit

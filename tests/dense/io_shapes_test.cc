@@ -172,8 +172,8 @@ void Shape(TestContext& test, const char* code, Layout layout,
     std::size_t offset = 2;
     std::size_t physical_stride =
         std::is_same_v<Layout, asc::LayoutStride<Rank>> ? 2 : 1;
-    if constexpr (std::is_same_v<Layout, asc::LayoutRight>) {
-      physical_stride = Rank == 0 ? 1 : std::size_t{1} << (Rank - 1);
+    if constexpr (std::is_same_v<Layout, asc::LayoutRight> && Rank > 0) {
+      physical_stride = std::size_t{1} << (Rank - 1);
     }
     for (std::size_t axis = 0; axis < Rank; ++axis) {
       offset += (remainder % 2) * physical_stride;

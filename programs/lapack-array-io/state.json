@@ -2256,7 +2256,7 @@
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01",
     "recovered_head": "0e525a3bcf2ce2731ceec7c19eaefcabe39444af",
     "A1": {
-      "state": "passed_local",
+      "state": "passed_local_and_hosted_expanded_scope",
       "implementation_commit": "ba952aff87b1a5942b8cf54cdc3d9a613a6b7951",
       "expanded_command": "python3 -B tools/lapack_io/check_native_blas_style.py --build-dir ../asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 --clang-tidy ../asc-cpp-evidence/lapack-array-io/devtools/bin/clang-tidy",
       "scope": "All5recordedTUs,18findingsclosed;4tests+benchmark5/5,zero skips; original assertion sites64/93/95/32 unchanged; five benchmark loops/oracles/final allocation checks retained. No performance certification.",
@@ -2266,7 +2266,8 @@
         "a1-ctest-02/record.json",
         "a1-tool-controls-01/record.json"
       ],
-      "retained_failure": "a1-expanded-01 retained the single oversized rankK function; corrected in02."
+      "retained_failure": "a1-expanded-01 retained the single oversized rankK function; corrected in02.",
+      "hosted_evidence": "hosted-02/all-job-evidence.json: quality job passes PR34355299517 and push34355293358, including the maintained five-TU expanded audit"
     },
     "A2": {
       "state": "original_40_slots_executed_linux_pending_cross_cutting",
@@ -2279,23 +2280,37 @@
       "additional_evidence": {
         "asan_ubsan": "native-sanitizer-01/record-ctest/record.json",
         "count": "7/7;40 report alias profiles",
-        "still_open": "New fixture Windows/macOS/Release/installed and final per-row consolidation"
+        "still_open": "New fixture Windows/macOS/Release/installed and final per-row consolidation",
+        "candidate02": "GNU11Debugshared293/293 full and Clang19ASanUBSan246/246;40 exact emitted alias keys audited in candidate-commit-02.json. Hosted Linux/macOS additive tests pass; Windows blocked before CTest by new I/O harness diagnostic."
       }
     },
     "A3": {
-      "state": "implemented_test_additions_pending_final_candidate",
+      "state": "maintained_harness_executed_subset_gaps_open",
       "gap_matrix": "programs/lapack-array-io/array-io-acceptance-matrix.json",
       "maintained_harness": "tests/package/run_installed_examples.cmake; tests/array_io/file_close",
       "executed": [
-        "close-maintained-02:62/62 and2808assertions",
-        "installed-maintained-01:aggregate and5standaloneexamples",
-        "a3-test-01:324Dense scalar/rank/layoutprofiles,648formatpaths"
+        "installed-maintained-02:77 nested tests across8JUnit reports,62 cleanup cases/2808assertions;zero skips",
+        "candidate-02:324Dense profiles/648format paths,including short-staging failures,fullGNU11shared/ASanUBSan",
+        "independent-wire-02:all60 installed C++ binary outputs match Python reference encoder byte-for-byte",
+        "independent-readback-02:all60 Python-encoded fixtures load via installed public C++ APIs and match exact values/structure;external prototype not yet maintained"
       ],
-      "limits": "Cleanup injection remains GNU ELF/static. Header ownership cleanup, short staging, nested JUnit validation and automatic static cleanup registration need final replay."
+      "limits": "Cleanup injection GNU ELF/static only; portable cleanup and primary read/write+cleanup error cases, printer load/precision acceptance and maintained independent binary readback integration remain open."
     },
     "A4": {
-      "state": "candidate_preparation",
-      "required": "Freeze product/tests/workflows; local complete regression/sanitizers/package/docs/header/ABI, expanded audit and authorized hosted matrix."
+      "state": "repairing_two_candidate02_test_harness_diagnostics",
+      "candidate02_head": "eb3640d70d80135663d157392a4c98a1bcc1a231",
+      "candidate02_merge": "661ee391133b4ff7a7049e9668a55ceb181b67c7",
+      "candidate02_tree": "e8f89cf95878d93a7a834e72d9c57eede324165e",
+      "local_results": "GNU11Debugshared293/293 (warnings-as-errors OFF);Clang19ASanUBSan246/246;installed77;strictdocs/headerABI/format/expandedtidy pass at recorded scopes",
+      "hosted_results": "PR34355299517 and push34355293358 each15pass4fail; all8failedjoblogs inspected and hashed in hosted-02/failure-summary.json",
+      "fixes": "Move unused header kOperations into sole consuming TU; compile-discard Rank0 right-layout shift with if constexpr. No assertion/case/tolerance/suppression changes. GNU11 WerrorON affected3/3 pass; final combined/hosted replay pending.",
+      "closing_local_records": [
+        "ci-repair-configure-03/record.json",
+        "ci-repair-build-03/record.json",
+        "ci-repair-ctest-03/record.json",
+        "ci-repair-format-03/record.json"
+      ],
+      "next_task": "Finish full warnings-as-errors candidate build and regression, affected sanitizer/strict replay, then authorized fast-forward push and all hosted gates."
     },
     "owner_approval": false
   }

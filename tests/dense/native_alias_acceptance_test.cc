@@ -20,6 +20,8 @@
 
 namespace {
 using namespace asc_native_test;  // NOLINT(google-build-using-namespace)
+constexpr std::array kOperations{Op::kNone, Op::kTranspose,
+                                 Op::kConjugateTranspose};
 std::size_t g_mode_groups = 0;
 
 template <typename T>
