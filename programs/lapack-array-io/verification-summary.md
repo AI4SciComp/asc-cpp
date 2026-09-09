@@ -1,3 +1,17 @@
+Current local product5f3c6d9 / candidate15 repairs the sole remaining C14
+hosted failure: two Sparse I/O assertions omitted Windows DLL resource visibility.
+Four affected tests pass1/1 each under GNU11Debugshared, GCC14Releasestatic/shared
+and Clang19ASanUBSan, zero skips. Formatting and full Sparse I/O strict analysis pass; fresh hosted verification
+remains pending. All other1,130non-program files are
+identical to C14; no production/provider/header/package change is present.
+
+C14 PR/push CI each finish18pass/1fail; bothCodeQLpass. WindowsstaticDebug and
+Release each227/227; sharedDebug227/227, sharedRelease226/227. The sole test
+failure consists of40process-count assertions at two sites; original logs and
+all numerical/rollback/long-diagnostic assertions are preserved. Candidate15
+maps the expected observable count using the unchanged repository helper and
+adds exact resource-attempt checks. Full acceptance is not yet awarded.
+
 Current product6f5cd1c / frozen candidate14 passes full provider-free GNU11
 Debug shared291/291, GCC14 Release static290/290 and shared292/292, zero
 failures/skips. All three affected selections pass18/18. Formatting and the

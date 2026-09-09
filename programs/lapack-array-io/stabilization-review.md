@@ -1,11 +1,11 @@
 # Stabilization and subset acceptance checkpoint
 
-Status: local stabilization candidate14/product6f5cd1c passes all three full
-provider-free lanes: GNU11 Debug shared 291/291, GCC14 Release static 290/290
-and shared 292/292, zero failures/skips. Fresh hosted verification is next.
-Previous remote0d623ba / tested merge9d5153ff has 12 passing CI jobs, seven
-fully diagnosed failures and passing CodeQL; its failures are repaired locally.
-The full 2,113 Reference requirements and all P00–P11 obligations remain open.
+Status: candidate15/product5f3c6d9 repairs the last C14 hosted failure with
+four passing affected tests and passing format/strict checks. Fresh hosted
+verification is next. C14 has18passing/1failing CI jobs and passingCodeQL;
+its sole Windows shared Release failure is diagnosed below. The three C14
+full local runs and unchanged production/provider evidence retain their
+precise scopes. Full2,113Reference and P00–P11 acceptance remain incomplete.
 No merge, release, tag, upstream patch or redistribution approval is implied.
 
 ## Recovered identities and preserved work
@@ -531,3 +531,114 @@ reserved linker identifiers. Harness02 fixes those with direct includes,
 nodiscard and assembly symbol labels; no diagnostic is disabled. The separate
 60-configuration scalar/storage cleanup matrix is in progress and receives no
 pass credit yet. Fresh hosted candidate verification is the next R1 action.
+
+## Third pushed checkpoint and wider cleanup evidence
+
+Authorized non-force push succeeded at b223ada16bd499f2ee8b6dc04e1bfab436da0e90
+(product6f5cd1c); draft #47 still targets develop46412183. New merge candidate is
+b1e1bf9479940f1cabd5b8db5f076c4c649b884e. PR CI34333946235 and CodeQL34333946309
+are queued/running; push runs34333940704/34333940805 are separate. Fresh platform
+results remain required. The first evidence-launch attempt resolved a relative
+manifest against the wrong working directory and failed before git push;
+absolute external paths fixed the launcher. No source-tree artifact was created.
+
+The cleanup matrix now completes all60 configurations and2,760 assertions:
+all12 exact wire scalar encodings, nonempty rank-two Dense left/right and Sparse
+COO/CSR/CSC, each exercising text and binary save/load failure boundaries.
+All60 CTest invocations pass1/1, zero failures/skips. Every consumer uses only
+installed public targets/headers; all Sparse links exclude Dense. The same
+real fclose/fflush wrappers exercise close-only failure, primary parse/allocation/
+flush errors, secondary cleanup reporting, one-close lifetime and staged-owner
+release. `file-close-matrix-run-03/acceptance.json` binds every executed record,
+fixture matrix, generator, source identity and link evidence.
+
+These are independently constructed text seed fixtures; binary seed archives
+in this cleanup matrix are writer-produced. Independent binary-schema acceptance
+remains separately supported by the repository fixture tests. This scoped Linux
+GCC14 static result does not grant other ranks, empty/strided layouts, OS/linkage
+or whole P02/P03/P10 acceptance. Reusable repository integration remains open.
+
+The same installed cleanup experiment now covers f64 general Matrix Market
+Dense array and Sparse COO coordinate helpers: each passes 24 assertions,
+CTest 1/1, zero skips, and strict lint. See `file-close-mm-run-05/acceptance.json`.
+The original MM harness04 runtime pass and include-cleaner failures remain
+preserved; harness05 removes unused includes without changing assertions.
+This does not claim symmetry/Hermitian/skew/pattern or complete scalar/storage
+cleanup acceptance for Matrix Market.
+
+`owner-packet-recheck-02.json` rehashes every proposed ASC material and both
+upstream license texts. All still match the exact pending packet. The notice
+is unapplied and no owner approval is recorded. The provider/source locks,
+full coverage denominator and proposed distribution model remain unchanged.
+
+The GitHub CLI refused completed-job logs while the overall workflow was still
+running. Those retrieval errors are retained in hosted-third-logs-01. The
+completed-job API endpoint succeeds; hosted-third-logs-02 retains actual PR
+logs for Linux and macOS, with one transient EOF retried separately. CTest's
+macOS summary omits the explicit zero-failure phrase; normalized-summary-03
+parses both forms and cross-checks the actual passed-test lines. Earlier
+normalizations are preserved and superseded, not mistaken for missing tests.
+The repository evidence runner already reads JUnit and needs no change.
+
+## Next bounded quality task after hosted stabilization
+
+Repair the 18 independently reproduced legacy test/benchmark clang-tidy
+findings in the five already-touched BLAS consumers. Six are deliberate
+fixed-underlying-enum negative cases, four are intentional transposed-index
+oracle calls, and eight are oversized fixture functions. Preserve every
+numerical/negative assertion and tolerance. Use the repository's existing
+narrow, explained treatment of false positives where applicable; split the
+long fixtures into named checks without changing their operation sequence.
+Do not alter the global check list, thresholds, warnings-as-errors or the
+allocation-observation policy. The exact baseline/current diagnostics are in
+`legacy-tidy-baseline-comparison-01.json`. No new numerical family or sibling
+import is part of this task.
+
+Configure its working-tree test context outside source with:
+
+```sh
+cmake -S /home/yicai/AI4SciComp/asc-cpp-lapack-array-io \
+  -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 \
+  -DCMAKE_CXX_COMPILER=/usr/bin/g++-11 -DCMAKE_BUILD_TYPE=Debug \
+  -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON \
+  -DASC_CPP_ENABLE_LAPACK=OFF -DASC_CPP_ENABLE_CUDA=OFF \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+  -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/dependencies/asccmake-8a7dcbad/source
+```
+
+Apply the bounded fixture edits before rerunning the five affected lint/runtime
+checks. Existing frozen candidate14 evidence must remain unchanged. The 40
+partial native slots, remaining array-I/O cross-products and complete Reference
+program continue to be required after this quality slice.
+
+## Fourth repair: Sparse I/O allocation observation across a DLL
+
+Third PR/push CI both finish18pass/1fail; both CodeQL runs pass. Windows static
+passes227/227 in both Debug and Release. Shared Debug passes227/227; shared
+Release passes226/227. Its only failed test is sparse.io_test:22 assertions at
+line384 and18 at1141 expect all successful resource requests to appear in the
+executable-global allocation probe. All other assertions pass. Both failed job
+logs and both static success logs are in hosted-third-windows-04.
+
+IoResource delegates successful requests to HostMemoryResource::Allocate in
+Core. Under Windows DLL linkage, the executable's replacement operator new
+cannot interpose that allocation. The existing observation helper already maps
+resource counts accordingly, and Sparse Matrix Market tests already use it.
+This is a program-introduced test-harness error; the base has no sparse/io_test.cc.
+C15 uses ProcessVisibleResourceAllocationCount(failure-1) at exactly those two
+sites and adds exact resource.allocation_attempts()==failure assertions. Long
+message/provider/native-code preservation, rollback, no leaked resource and
+all numerical/format checks remain. The helper and its platform policy are
+unchanged. Shared Release still requires an exact zero executable-probe count.
+
+Only this test differs from C14 (`candidate14-15-bridge.json`); all1,130 other
+non-program files match, including every production/native/provider/header and
+package input. GNU11/GCC14 static/shared and sanitizer affected replays are in
+progress. Fresh hosted verification remains required before stabilization passes.
+
+Candidate15 affected verification is complete: GNU11 Debug shared, GCC14
+Release static/shared, and Clang19 ASan+UBSan each pass the full Sparse I/O
+executable1/1, zero skips. Formatting and the complete Sparse I/O TU clang-tidy
+check pass. Product5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed matches all1,131
+frozen candidate15 files. No other production or test input changed; the next
+action is the authorized feature push and fresh hosted matrix.
