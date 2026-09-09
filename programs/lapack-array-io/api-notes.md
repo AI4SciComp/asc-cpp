@@ -30,7 +30,9 @@ named. Owner loads accept a resource and limits, while Dense `Into` and Sparse
 values-only `Into` use explicit disjoint staging and commit only after complete
 validation. Sparse structure comparison is exact, never checksum-only. Save
 wrappers require explicit truncation intent and checked close; examples run
-against installed components. Matrix Market is still a separate P10 task.
+against installed components. P10 now implements native Dense array and Sparse
+coordinate Matrix Market interchange; complete mode/platform acceptance remains
+open. See `matrix-market-review.md` and the current `stabilization-review.md`.
 
 New array-stream errors retain ErrorCode/native code without copying arbitrary
 source/sink strings. Internal failed-Result moves preserve long owner-resource

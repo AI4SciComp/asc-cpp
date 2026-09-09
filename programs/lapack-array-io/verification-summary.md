@@ -1,3 +1,26 @@
+Current local stabilization checkpoint: product `6c72b638b46f159e41db2f26346d6caa8ecc9788`.
+GNU11 Debug shared290/290, GCC14 Release static289/289 and shared291/291;
+zero failures/skips in these closing runs. ASC sanitizer22/22 plus MM3/3;
+actual LP64/ILP64 LU+ABI10/10 each; installed Dense1/1 and Sparse1/1;
+strict11 TUs, Doxygen126 headers/2204 members/zero warnings. Original failures
+and exact source bridges are retained in `local-checkpoint-01/manifest.json`.
+Hosted results and complete subset acceptance remain pending; see
+[stabilization review](stabilization-review.md). Full2113 remains incomplete.
+
+# Current stabilization checkpoint (2026-09-09)
+
+The current integration recovery is `9bc62db` (product V27 `87cd646`),
+39 commits beyond remote V7 `b1b78d7`. The 350 partial reference routes and
+1,763 not-started rows retain all 2,113 requirements; native20 are separate,
+implemented-unverified. The historical v19 and earlier sections below retain
+their original source/configuration identities.
+
+The owner-requested R0–R4 stabilization milestone now precedes PPSVX
+candidate19. See [the current checkpoint](stabilization-review.md) for fresh
+CI log causes, candidate fixes, executed evidence and remaining acceptance.
+The [concrete redistribution packet](redistribution-review-packet.md) is
+assembled and awaits owner review; no approval is asserted.
+
 # Current v19 triangular-band solve integration
 
 The program has314 Reference rows in progress and1,799 not started of2,113

@@ -33,12 +33,16 @@ independent work.
 
 ## LAPACK-REDISTRIBUTION — pending owner/reviewer decision
 
+The [concrete review packet](redistribution-review-packet.md) is now assembled
+with complete license texts, exact hashes, proposed notice and external-only
+distribution contents. Approval remains pending; no product notice was changed.
+
 Affected work: import/distribution of upstream material and the final provider
 notice inventory, including any extra-precision dependency. ADR 0017 requires
 reviewer approval for direct source/data adaptation; the existing provenance
 review requires owner approval of new notice inventory. Program direction does
-not establish that approval. The concrete license paths, hashes and proposed
-redistribution contents must be assembled before requesting the decision.
+not establish that approval. The packet identifies the concrete license paths, hashes and proposed
+redistribution contents for the requested decision.
 
 Unblocked: exact external dependency preparation, source-derived inventory,
 independent ASC implementation, local tests, native algorithms and array I/O.
