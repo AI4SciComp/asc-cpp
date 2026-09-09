@@ -189,3 +189,28 @@ if(ASC_FILE_CLOSE_ENABLED)
 else()
   message(STATUS "File-close fault injection remains pending for this platform/linkage; ordinary installed examples execute.")
 endif()
+
+# Clang's compiler-load callback diagnostic is separate from runtime printing
+# tests, which execute for all toolchains. Unsupported compilers are not
+# represented as passing instrumentation runs.
+if(ASC_PRINT_LOAD_ENABLED)
+  set(_load_source "${WORK_DIR}/copied printing load tests")
+  file(COPY "${CMAKE_CURRENT_LIST_DIR}/../array_io/printing_load/"
+    DESTINATION "${_load_source}")
+  file(COPY "${CMAKE_CURRENT_LIST_DIR}/../array_display_test_support.h"
+    DESTINATION "${_load_source}")
+  set(_load_build "${WORK_DIR}/printing load build")
+  _run("installed printing load configure" "${CMAKE_COMMAND}"
+    -S "${_load_source}" -B "${_load_build}" ${_generator_arguments}
+    "-DASCCpp_DIR:PATH=${ASCCPP_PACKAGE_DIR}"
+    "-DCMAKE_CXX_COMPILER:FILEPATH=${CXX_COMPILER}"
+    "-DCMAKE_BUILD_TYPE:STRING=${CONFIG}"
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON"
+    "-DCMAKE_FIND_USE_PACKAGE_REGISTRY:BOOL=OFF"
+    "-DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY:BOOL=OFF")
+  _run("installed printing load build" "${CMAKE_COMMAND}"
+    --build "${_load_build}" --config "${CONFIG}" --parallel 2)
+  _runtime("installed printing load tests and control" "${_load_build}")
+else()
+  message(STATUS "Compiler-load instrumentation is not configured for this compiler; runtime printing tests remain required.")
+endif()

@@ -24,10 +24,12 @@
       "ctest_ids": [
         "asc_cpp.dense.print_test",
         "asc_cpp.dense.print_acceptance_test",
-        "asc_cpp.dense.print_modes_test"
+        "asc_cpp.dense.print_modes_test",
+        "asc_cpp.printing.compiler_load_observation",
+        "asc_cpp.printing.compiler_load_negative_control"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Named rank/layout/empty runtime branches pass current hosted platforms. External printing-load-04 adds288 rank3/4 edge/prefix, metadata and global-cap load cases; no universal hardware/platform claim.",
+      "evidence_or_open": "Maintained printing_load now executes the retained24 compressed/all12-scalar and288 Dense rank3/4 cases unchanged; Clang19 Linux installed/static2/2 passes, including uninstru\u00admented negative control. Current candidate/platform reruns pending; other compilers gain no load-instrumentation credit.",
       "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
@@ -36,10 +38,12 @@
       "ctest_ids": [
         "asc_cpp.sparse.print_test",
         "asc_cpp.sparse.print_acceptance_test",
-        "asc_cpp.sparse.print_modes_test"
+        "asc_cpp.sparse.print_modes_test",
+        "asc_cpp.printing.compiler_load_observation",
+        "asc_cpp.printing.compiler_load_negative_control"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "All three storage-form runtime tests pass hosted platforms. External printing-load-04 extends compiler-observed value loads to all12 CSR/CSC scalar codes; maintained/platform instrumentation remains open.",
+      "evidence_or_open": "Maintained printing_load now executes the retained24 compressed/all12-scalar and288 Dense rank3/4 cases unchanged; Clang19 Linux installed/static2/2 passes, including uninstru\u00admented negative control. Current candidate/platform reruns pending; other compilers gain no load-instrumentation credit.",
       "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
@@ -50,7 +54,7 @@
         "asc_cpp.sparse.print_modes_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Existing value/option fixtures and custom locale controls; exact round-boundary/intermediate precision equivalence review and additional load-observation cases pending.",
+      "evidence_or_open": "All1..32 precisions now exercised in3notations with independent exact dyadic halfway/carry/threshold tokens, real/complex components and classic/custom locales:768Dense/2304Sparse additional profiles pass GNU11shared at w3-targeted-03. Existing48/144 profiles and bounds remain; final candidate gates pending.",
       "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
@@ -79,8 +83,8 @@
       "required_cases": "All12 scalar codes/exact widths/extrema; f32/f64/c64/c128 signed-zero, finite extrema, quietNaN/inf component rules",
       "ctest_ids": [
         "asc_cpp.dense.io_test",
-        "asc_cpp.core.array_io_test",
-        "asc_cpp.core.decimal_parse_test"
+        "asc_cpp.dense.io_test",
+        "asc_cpp.core.array_parse_test"
       ],
       "status": "tested_subset_pending_acceptance",
       "evidence_or_open": "Current full/hosted execution passes the listed special-value/encoding tests. Binary NaN bit guarantees remain distinct from text/MM; finite all-scalar independent wire fixtures do not prove every nonfinite interaction.",
@@ -186,7 +190,7 @@
       "required_cases": "Explicit pattern unit policy; reject or stable checked duplicate sum before mirroring; preserve/drop zeros; symmetry projection diagnostics",
       "ctest_ids": [
         "asc_cpp.sparse.matrix_market_test",
-        "asc_cpp.sparse.matrix_market_helpers_test"
+        "asc_cpp.core.matrix_market_helpers_test"
       ],
       "status": "tested_subset_pending_acceptance",
       "evidence_or_open": "Retained independent expected entries and overflow tests. Exact native stored-structure archival guarantees do not extend to symmetry-compressed Matrix Market.",
@@ -321,5 +325,33 @@
   "tested_candidate": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
   "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
   "current_evidence_index": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
-  "current_evidence_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a"
+  "current_evidence_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
+  "test_id_corrections": {
+    "reason": "Old names had no CTest registration. Actual registered encoder/parser/MM helper tests preserve the required semantic scope; this correction alone adds no pass credit.",
+    "mapping": [
+      {
+        "row": "P03.dense.scalar_bits",
+        "before": "asc_cpp.core.array_io_test",
+        "after": "asc_cpp.dense.io_test"
+      },
+      {
+        "row": "P03.dense.scalar_bits",
+        "before": "asc_cpp.core.decimal_parse_test",
+        "after": "asc_cpp.core.array_parse_test"
+      },
+      {
+        "row": "P10.duplicates_zeros",
+        "before": "asc_cpp.sparse.matrix_market_helpers_test",
+        "after": "asc_cpp.core.matrix_market_helpers_test"
+      }
+    ]
+  },
+  "precision_review": {
+    "pretty": "Bounded previews are not reloadable. Explicit ASCII locale policy and1..32precision tested through public print paths; scalar traversal equivalence documented above.",
+    "text": "Independent IEEE bit fixtures and literal9/17-digit tokens cover +/-0, least subnormal/normal, greatest finite, nextafter-one, one-tenth and general-notation boundary, both complex components; native text no NaN-payload claim. Original integer/range/nonfinite/transaction tests preserved.",
+    "binary": "W1 checks all12codes and finite/quiet-NaN/signed-zero component bits in two independent directions; no signaling-NaN or padding/object-layout guarantee.",
+    "matrix_market": "Separate finite real/complex literal9/17-digit fixtures and independent loaded bits; existing exact integer, symmetry, pattern/duplicate, nonfinite and conversion tests retained.",
+    "locale": "Deterministic custom std::numpunct with a positive ostream control exercises decimal/grouping changes without optional OS locale packs. ASCII charconv/bounded decimal paths are locale-independent; does not claim named C locale installation.",
+    "shared_scalar_scope": "Core encoding/parsing is storage-neutral. New exact boundary literals exercise Dense public text/MM entrypoints; Sparse public COO/CSR/CSC existing independent scalar/storage fixtures execute again under the same custom locale. All12 wire-code structure combinations remain required and tested in W1."
+  }
 }

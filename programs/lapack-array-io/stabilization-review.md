@@ -907,3 +907,25 @@ The C++20 lifetime rationale is [N4861 intro.object paragraphs 3–4](https://ti
 with explicit object creation/destruction and no report assignment during the
 nested scalar's lifetime. Current libstdc++ uses actual byte-array backing;
 other standard-library/platform execution remains a required gate.
+
+### W3 maintained load and precision closure (2026-09-10)
+
+`subset-closure-20260909-01/w3-acceptance-01.json` binds the retained raw
+records: Clang19 installed load diagnostic2/2, GNU11shared targeted7/7, and
+strict changed-TU checks. The original24 compressed and288 higher-rank
+diagnostic cases are now maintained in `tests/array_io/printing_load` and run
+by the relocated package harness on Clang/AppleClang. The deliberately
+uninstrumented control must fail; it is not a skipped acceptance test.
+
+Printing adds768Dense/2304Sparse exact-token profiles for all1..32precisions,
+three notations, real/complex components and classic/custom locales. Independent
+IEEE fixtures also check canonical9/17-digit text and Matrix Market tokens and
+readback bits at finite range/subnormal/signed-zero boundaries. Sparse's existing
+independent scalar/storage and rejection tests run under the custom locale.
+The shared scalar-codec equivalence and three stale CTest-name corrections are
+recorded in the existing array-I/O matrix. No precision/default/wire contract
+changed. Raw failure logs retain the corrected CMake generator-expression and
+four new fixture constant-naming diagnostics.
+
+These are local scoped passes. The final W3/W4 candidate and hosted platform
+gates remain pending; the prior candidate's19/19 matrix remains historical.

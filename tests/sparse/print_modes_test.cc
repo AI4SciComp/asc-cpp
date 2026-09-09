@@ -88,11 +88,60 @@ void Numeric(TestContext& test) {
   NumericView<T>(test, csr);
   NumericView<T>(test, csc);
 }
+template <typename T, typename View>
+void RoundingView(TestContext& test, const View& view) {
+  std::array<std::byte, 1024> scratch{};
+  for (auto format :
+       {asc::ArrayFloatFormat::kGeneral, asc::ArrayFloatFormat::kFixed,
+        asc::ArrayFloatFormat::kScientific}) {
+    for (int precision = 1; precision <= 32; ++precision) {
+      const auto expected = modes::RoundingExpected<T>(format, precision, true);
+      asc::ArrayPrintOptions options;
+      options.show_metadata = false;
+      options.float_format = format;
+      options.precision = precision;
+      Sink sink;
+      sink.chunk = 3;
+      asc::ArrayPrintReport report;
+      test.Check(Print(test, view, sink, options, scratch, report).ok(),
+                 "every valid precision must print exact dyadic boundaries");
+      test.Check(sink.text() == expected,
+                 "ties, exponent carry and component precision use independent "
+                 "literals");
+      test.Check(report.output_bytes == expected.size() &&
+                     report.values_displayed == 4 && !report.truncated,
+                 "rounding fixtures have complete bounded progress");
+    }
+  }
+}
+template <typename T>
+void Rounding(TestContext& test) {
+  const auto values = modes::RoundingValues<T>();
+  const std::array<asc::index_t, 8> coordinates{0, 0, 1, 1, 2, 2, 3, 3};
+  const std::array<asc::nnz_t, 5> offsets{0, 1, 2, 3, 4};
+  const std::array<asc::index_t, 4> indices{0, 1, 2, 3};
+  const std::array<asc::extent_t, 2> shape{4, 4};
+  const auto coo = Take(asc::CoordinateView<const T, 2>::Create(
+      coordinates.data(), values.data(), shape, 4, asc::MemorySpace::kHost));
+  const auto csr = Take(asc::CsrView<const T>::Create(
+      offsets.data(), indices.data(), values.data(), shape, 4,
+      asc::MemorySpace::kHost));
+  const auto csc = Take(asc::CscView<const T>::Create(
+      offsets.data(), indices.data(), values.data(), shape, 4,
+      asc::MemorySpace::kHost));
+  RoundingView<T>(test, coo);
+  RoundingView<T>(test, csr);
+  RoundingView<T>(test, csc);
+}
 void AllNumeric(TestContext& test) {
   Numeric<float>(test);
   Numeric<double>(test);
   Numeric<std::complex<float>>(test);
   Numeric<std::complex<double>>(test);
+  Rounding<float>(test);
+  Rounding<double>(test);
+  Rounding<std::complex<float>>(test);
+  Rounding<std::complex<double>>(test);
 }
 void ScalarBudget(TestContext& test) {
   const std::int64_t value = 3141592653589793238;
@@ -279,6 +328,8 @@ int main() {
     modes::LocaleControl(test);
     AllNumeric(test);
   }
+  std::puts(
+      "2304 additional exact rounding/precision/locale profiles executed.");
   ScalarBudget(test);
   EmptyShapes(test);
   CoordinateAliases(test);

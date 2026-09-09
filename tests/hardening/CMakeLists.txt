@@ -748,6 +748,10 @@ unset(_m8_install_command)
 unset(_m8_install_include)
 unset(_m8_install_includedir)
 
+set(_m8_print_load_enabled OFF)
+if(CMAKE_CXX_COMPILER_ID MATCHES "^(Clang|AppleClang)$")
+  set(_m8_print_load_enabled ON)
+endif()
 add_test(
   NAME asc_cpp.examples.installed_relocated
   COMMAND
@@ -762,6 +766,7 @@ add_test(
     "-DCONFIG:STRING=$<CONFIG>"
     "-DWORK_DIR:PATH=${ASC_CPP_TEST_WORKSPACE_ROOT}/installed examples"
     "-DASC_FILE_CLOSE_ENABLED:BOOL=$<AND:$<PLATFORM_ID:Linux>,$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>>"
+    "-DASC_PRINT_LOAD_ENABLED:BOOL=${_m8_print_load_enabled}"
     "-DASC_CPP_TEST_WORKSPACE_ROOT:PATH=${ASC_CPP_TEST_WORKSPACE_ROOT}"
     "-DASC_CPP_TEST_WORKSPACE_GUARD:FILEPATH=${ASC_CPP_TEST_WORKSPACE_GUARD}"
     -P "${PROJECT_SOURCE_DIR}/tests/package/run_installed_examples.cmake"
@@ -774,6 +779,7 @@ set_tests_properties(
     RUN_SERIAL TRUE
     TIMEOUT 600
 )
+unset(_m8_print_load_enabled)
 unset(_m8_install_libdir)
 unset(_m8_install_package)
 unset(_m8_install_prefix)

@@ -14,9 +14,12 @@
 #include <string>
 #include <string_view>
 #include <system_error>
+#include <type_traits>
 #include <utility>
 
 #include "../allocation_observation.h"
+#include "../array_io/decimal_cases.h"
+#include "../locale_test_support.h"
 #include "allocation_probe.h"
 #include "asc/core/array_io.h"
 #include "asc/core/contracts.h"
@@ -977,10 +980,56 @@ void TestPathConveniences(TestContext& test) {
                        std::filesystem::remove(directory, error) && !error);
 }
 
+template <typename T>
+void TestCanonicalDecimals(TestContext& test) {
+  auto values = asc_decimal_test::Values<T>();
+  auto view = View(values.data(), std::array<asc::extent_t, 2>{2, 4});
+  ASC_DENSE_TEST_CHECK(test, view.ok());
+  if (!view.ok()) {
+    return;
+  }
+  std::array<std::byte, 1024> scratch{};
+  asc::ArrayIoReport report;
+  Sink sink;
+  constexpr bool kReal = std::is_floating_point_v<T>;
+  const std::string expected = std::string("%%MatrixMarket matrix array ") +
+                               (kReal ? "real" : "complex") +
+                               " general\n2 4\n" +
+                               asc_decimal_test::Payload<T>(true);
+  ASC_DENSE_TEST_CHECK(
+      test, asc::WriteDenseMatrixMarket(*view, sink, Symmetry::kGeneral, {},
+                                        scratch, report)
+                .ok());
+  ASC_DENSE_TEST_EQ(test, sink.text(), expected);
+  Source independent(expected);
+  asc_dense_test::CountingMemoryResource resource;
+  auto owner = asc::ReadDenseMatrixMarket<T, Shape>(
+      independent, resource, asc::LayoutLeft{}, scratch, {}, report);
+  ASC_DENSE_TEST_CHECK(test, owner.ok() && report.committed);
+  if (owner.ok()) {
+    auto loaded = owner->view();
+    ASC_DENSE_TEST_CHECK(test, loaded.ok());
+    if (loaded.ok()) {
+      for (std::size_t i = 0; i < values.size(); ++i) {
+        ASC_DENSE_TEST_CHECK(
+            test, asc_decimal_test::SameBits(loaded->data()[i], values[i]));
+      }
+    }
+  }
+}
+
+void TestCanonicalDecimals(TestContext& test) {
+  TestCanonicalDecimals<float>(test);
+  TestCanonicalDecimals<double>(test);
+  TestCanonicalDecimals<std::complex<float>>(test);
+  TestCanonicalDecimals<std::complex<double>>(test);
+}
+
 }  // namespace
 
 int main() {
   TestContext test;
+  TestCanonicalDecimals(test);
   TestAllNativeScalars(test);
   TestAllStructuredClasses(test);
   TestExactConversions(test);
@@ -996,5 +1045,14 @@ int main() {
   TestWriterLimitsAliasesAndHugeEmpty(test);
   TestBoundedMutationRollback(test);
   TestPathConveniences(test);
+  {
+    asc_locale_test::LocaleGuard locale;
+    TestCanonicalDecimals(test);
+    ASC_DENSE_TEST_CHECK(test, asc_locale_test::LocaleControl());
+    TestAllNativeScalars(test);
+    TestAllStructuredClasses(test);
+    TestExactConversions(test);
+    TestLexicalFailuresAndRollback(test);
+  }
   return test.Finish();
 }

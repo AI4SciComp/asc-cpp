@@ -6,9 +6,7 @@
 #include <cstddef>
 #include <cstdlib>
 #include <limits>
-#include <locale>
 #include <span>
-#include <sstream>
 #include <string>
 #include <string_view>
 #include <type_traits>
@@ -21,6 +19,7 @@
 #include "asc/core/memory.h"
 #include "asc/core/result.h"
 #include "asc/core/status.h"
+#include "locale_test_support.h"
 
 namespace asc_array_display_modes_test {
 using asc_array_display_test::Sink;
@@ -65,33 +64,9 @@ class Resource final : public asc::MemoryResource {
   std::size_t attempts_ = 0;
 };
 
-// An unnamed custom C++ locale avoids dependence on optional OS locale packs.
-// The positive ostream control proves the active decimal/grouping behavior;
-// this does not claim a named C setlocale locale was installed.
-class CommaPunctuation final : public std::numpunct<char> {
- protected:
-  [[nodiscard]] char do_decimal_point() const override { return ','; }
-  [[nodiscard]] char do_thousands_sep() const override { return '.'; }
-  [[nodiscard]] std::string do_grouping() const override { return "\3"; }
-};
-class LocaleGuard {
- public:
-  LocaleGuard()
-      : original_(std::locale::global(
-            std::locale(std::locale::classic(), new CommaPunctuation))) {}
-  ~LocaleGuard() { std::locale::global(original_); }
-  LocaleGuard(const LocaleGuard&) = delete;
-  LocaleGuard& operator=(const LocaleGuard&) = delete;
-  LocaleGuard(LocaleGuard&&) = delete;
-  LocaleGuard& operator=(LocaleGuard&&) = delete;
-
- private:
-  std::locale original_;
-};
+using asc_locale_test::LocaleGuard;
 inline void LocaleControl(TestContext& test) {
-  std::ostringstream stream;
-  stream << 1234.5;
-  test.Check(stream.str() == "1.234,5",
+  test.Check(asc_locale_test::LocaleControl(),
              "custom non-classic locale must affect its positive control");
 }
 
@@ -147,6 +122,128 @@ std::array<std::string, 5> Tokens(const FormatCase& fixture) {
                 std::string(fixture.positive_zero) + ")",
             "(inf,-inf)", "(nan,nan)"};
   }
+}
+
+// Exact dyadic inputs make the rounding oracle independent of libstdc++ or
+// ASC formatting. The tiny magnitude is exactly 13/131072; the literals below
+// cover exponent carry at -4 and precision, ties-to-even and all32 precisions.
+inline std::string TinyToken(asc::ArrayFloatFormat format, int precision) {
+  constexpr std::array<std::string_view, 13> kGeneral{"0.0001",
+                                                      "9.9e-05",
+                                                      "9.92e-05",
+                                                      "9.918e-05",
+                                                      "9.9182e-05",
+                                                      "9.91821e-05",
+                                                      "9.918213e-05",
+                                                      "9.9182129e-05",
+                                                      "9.91821289e-05",
+                                                      "9.918212891e-05",
+                                                      "9.9182128906e-05",
+                                                      "9.91821289062e-05",
+                                                      "9.918212890625e-05"};
+  constexpr std::array<std::string_view, 17> kFixed{"0.0",
+                                                    "0.00",
+                                                    "0.000",
+                                                    "0.0001",
+                                                    "0.00010",
+                                                    "0.000099",
+                                                    "0.0000992",
+                                                    "0.00009918",
+                                                    "0.000099182",
+                                                    "0.0000991821",
+                                                    "0.00009918213",
+                                                    "0.000099182129",
+                                                    "0.0000991821289",
+                                                    "0.00009918212891",
+                                                    "0.000099182128906",
+                                                    "0.0000991821289062",
+                                                    "0.00009918212890625"};
+  const auto digits = static_cast<std::size_t>(precision);
+  if (format == asc::ArrayFloatFormat::kGeneral) {
+    return std::string(kGeneral[std::min(digits, kGeneral.size()) - 1]);
+  }
+  if (format == asc::ArrayFloatFormat::kFixed) {
+    return digits <= kFixed.size()
+               ? std::string(kFixed[digits - 1])
+               : std::string(kFixed.back()) + std::string(digits - 17, '0');
+  }
+  if (digits < 12) {
+    return std::string(kGeneral[digits]);
+  }
+  return "9.918212890625" + std::string(digits - 12, '0') + "e-05";
+}
+
+inline std::array<std::string, 4> RoundingRealTokens(
+    asc::ArrayFloatFormat format, int precision) {
+  const auto digits = static_cast<std::size_t>(precision);
+  std::array<std::string, 4> tokens;
+  if (format == asc::ArrayFloatFormat::kGeneral) {
+    constexpr std::array<std::string_view, 3> kQuarter{"1", "1.2", "1.25"};
+    constexpr std::array<std::string_view, 4> kEighth{"-1", "-1.4", "-1.38",
+                                                      "-1.375"};
+    tokens[0] = kQuarter[std::min(digits, kQuarter.size()) - 1];
+    tokens[1] = kEighth[std::min(digits, kEighth.size()) - 1];
+    tokens[2] = precision < 3 ? "1e+02" : "99.5";
+  } else {
+    tokens[0] = precision == 1 ? "1.2" : "1.25" + std::string(digits - 2, '0');
+    if (precision < 3) {
+      tokens[1] = precision == 1 ? "-1.4" : "-1.38";
+    } else {
+      tokens[1] = "-1.375" + std::string(digits - 3, '0');
+    }
+    if (format == asc::ArrayFloatFormat::kScientific) {
+      tokens[0] += "e+00";
+      tokens[1] += "e+00";
+      tokens[2] = precision == 1
+                      ? "1.0e+02"
+                      : "9.95" + std::string(digits - 2, '0') + "e+01";
+    } else {
+      tokens[2] = "99.5" + std::string(digits - 1, '0');
+    }
+  }
+  tokens[3] = "-" + TinyToken(format, precision);
+  return tokens;
+}
+
+template <typename T>
+std::array<T, 4> RoundingValues() {
+  if constexpr (std::is_floating_point_v<T>) {
+    return {T{1.25}, T{-1.375}, T{99.5}, T{-0x1.ap-14}};
+  } else {
+    return {T{1.25, -1.375}, T{-1.375, 1.25}, T{99.5, -0x1.ap-14},
+            T{-0x1.ap-14, 99.5}};
+  }
+}
+
+template <typename T>
+std::string RoundingExpected(asc::ArrayFloatFormat format, int precision,
+                             bool sparse) {
+  auto tokens = RoundingRealTokens(format, precision);
+  if constexpr (!std::is_floating_point_v<T>) {
+    const auto real = tokens;
+    tokens = {"(" + real[0] + "," + real[1] + ")",
+              "(" + real[1] + "," + real[0] + ")",
+              "(" + real[2] + "," + real[3] + ")",
+              "(" + real[3] + "," + real[2] + ")"};
+  }
+  constexpr std::array<std::string_view, 4> kCoordinates{
+      "(0,0) = ", "(1,1) = ", "(2,2) = ", "(3,3) = "};
+  std::string output = sparse ? "" : "[";
+  for (std::size_t i = 0; i < tokens.size(); ++i) {
+    if (sparse) {
+      output += kCoordinates[i];
+    } else if (i != 0) {
+      output += ", ";
+    }
+    output += tokens[i];
+    if (sparse) {
+      output += '\n';
+    }
+  }
+  if (!sparse) {
+    output += "]\n";
+  }
+  return output;
 }
 
 // Independent literal outputs determine all three rank-zero budget regions:

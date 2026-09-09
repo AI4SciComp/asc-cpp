@@ -1027,7 +1027,7 @@
     }
   },
   "active_task": "W3.maintain_load_and_precision_checks",
-  "next_action": "Integrate the preserved24 compressed and288 higher-rank compiler-load checks, and exercise finite precision/locale boundaries against frozen contracts.",
+  "next_action": "Finish W4 portable cleanup tests and run one coherent native/I/O candidate matrix; W1/W2/W3 local closure is retained.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2291,9 +2291,10 @@
         "candidate-02:324Dense profiles/648format paths,including short-staging failures,fullGNU11shared/ASanUBSan",
         "independent-wire-02:all60 installed C++ binary outputs match Python reference encoder byte-for-byte",
         "independent-readback-02:all60 Python-encoded fixtures load via installed public C++ APIs and match exact values/structure;external prototype not yet maintained",
-        "printing-load-04:24 all-scalar CSR/CSC load cases and288 Dense rank3/4 preview cases; instrumented pass, uninstrumented control fails as required, strict/format pass; external diagnostic only"
+        "printing-load-04:24 all-scalar CSR/CSC load cases and288 Dense rank3/4 preview cases; instrumented pass, uninstrumented control fails as required, strict/format pass; external diagnostic only",
+        "W3 maintained diagnostic2/2 and GNU11shared7/7targeted tests;768Dense/2304Sparse additional rounding profiles; w3-acceptance-01.json binds exact source/commands/logs."
       ],
-      "limits": "Portable shared/Windows/macOS cleanup injection and primary read/write plus cleanup errors remain open. Independent readback and extended load checks are tested external sources pending maintained integration. Precision equivalence and final contract-row review remain open."
+      "limits": "W1/W3 maintained independent wire/readback/load fixtures and finite precision/locale checks now pass their recorded local scopes. Final candidate package/platform replay and W4 portable combined cleanup gates remain open."
     },
     "A4": {
       "state": "candidate03_local_and_hosted_gates_passed",
@@ -2341,8 +2342,9 @@
         "classification": "missing maintained test",
         "requirement": "P02.dense.ranks/sparse.storage/scalar.options and frozen text/MM precision policies",
         "existing": "printing-load-04 and existing scalar/locale fixtures",
-        "action": "Maintain 24 compressed and288 higher-rank load diagnostics; close finite precision/locale boundary review",
-        "state": "in_progress"
+        "action": "Run integrated package/platform gates on final W3/W4 candidate; no remaining missing maintained binary/load fixture.",
+        "state": "maintained_local_precision_and_load_checks_passed_final_candidate_replay_pending",
+        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w3-acceptance-01.json"
       },
       "W4": {
         "classification": "missing execution/platform evidence",

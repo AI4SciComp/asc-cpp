@@ -75,11 +75,47 @@ void Numeric(TestContext& test) {
     asc_array_display_test::Balanced(test, sink.text());
   }
 }
+template <typename T>
+void Rounding(TestContext& test) {
+  const auto values = modes::RoundingValues<T>();
+  const auto mapping = Take(asc::DenseLayout<1>::Create(
+      std::array<asc::extent_t, 1>{4}, asc::LayoutLeft{}));
+  const auto view = Take(asc::DenseView<const T, 1>::Create(
+      values.data(), mapping, asc::MemorySpace::kHost));
+  std::array<std::byte, 1024> scratch{};
+  for (auto format :
+       {asc::ArrayFloatFormat::kGeneral, asc::ArrayFloatFormat::kFixed,
+        asc::ArrayFloatFormat::kScientific}) {
+    for (int precision = 1; precision <= 32; ++precision) {
+      const auto expected =
+          modes::RoundingExpected<T>(format, precision, false);
+      asc::ArrayPrintOptions options;
+      options.show_metadata = false;
+      options.float_format = format;
+      options.precision = precision;
+      Sink sink;
+      sink.chunk = 3;
+      asc::ArrayPrintReport report;
+      test.Check(Print(test, view, sink, options, scratch, report).ok(),
+                 "every valid precision must print exact dyadic boundaries");
+      test.Check(sink.text() == expected,
+                 "ties, exponent carry and component precision use independent "
+                 "literals");
+      test.Check(report.output_bytes == expected.size() &&
+                     report.values_displayed == 4 && !report.truncated,
+                 "rounding fixtures have complete bounded progress");
+    }
+  }
+}
 void AllNumeric(TestContext& test) {
   Numeric<float>(test);
   Numeric<double>(test);
   Numeric<std::complex<float>>(test);
   Numeric<std::complex<double>>(test);
+  Rounding<float>(test);
+  Rounding<double>(test);
+  Rounding<std::complex<float>>(test);
+  Rounding<std::complex<double>>(test);
 }
 
 void ScalarBudget(TestContext& test) {
@@ -234,6 +270,8 @@ int main() {
     modes::LocaleControl(test);
     AllNumeric(test);
   }
+  std::puts(
+      "768 additional exact rounding/precision/locale profiles executed.");
   ScalarBudget(test);
   EmptyShapes(test);
   OwnerAndViewAliases(test);

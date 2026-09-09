@@ -18,6 +18,8 @@
 #include <utility>
 
 #include "../allocation_observation.h"
+#include "../array_io/decimal_cases.h"
+#include "../locale_test_support.h"
 #include "allocation_probe.h"
 #include "asc/core/array_format.h"
 #include "asc/core/array_io.h"
@@ -980,10 +982,66 @@ void TestMovedLongSinkErrors(TestContext& test) {
   }
 }
 
+template <typename T>
+void TestCanonicalDecimals(TestContext& test) {
+  auto values = asc_decimal_test::Values<T>();
+  auto view = View(values.data(), std::array<asc::extent_t, 2>{2, 4});
+  ASC_DENSE_TEST_CHECK(test, view.ok());
+  if (!view.ok()) {
+    return;
+  }
+  std::array<std::byte, 1024> scratch{};
+  asc::ArrayIoReport report;
+  Sink sink;
+  constexpr std::string_view kScalar = [] {
+    if constexpr (std::is_same_v<T, float>) {
+      return "f32";
+    }
+    if constexpr (std::is_same_v<T, double>) {
+      return "f64";
+    }
+    if constexpr (std::is_same_v<T, std::complex<float>>) {
+      return "c64";
+    }
+    return "c128";
+  }();
+  const std::string expected =
+      "ASCARRAY 1\nkind dense\nscalar " + std::string(kScalar) +
+      "\nrank 2\nshape 2 4\norder dim0\ncount 8\ndata\n" +
+      asc_decimal_test::Payload<T>(false) + "end\n";
+  ASC_DENSE_TEST_CHECK(
+      test, asc::WriteDenseArrayText(*view, sink, {}, scratch, report).ok());
+  ASC_DENSE_TEST_EQ(test, sink.text(), expected);
+  Source independent(expected);
+  asc_dense_test::CountingMemoryResource resource;
+  std::array<asc::extent_t, 2> metadata{};
+  auto owner = asc::ReadDenseArrayText<T, Shape2>(
+      independent, resource, asc::LayoutLeft{}, metadata, scratch, {}, report);
+  ASC_DENSE_TEST_CHECK(test, owner.ok() && report.committed);
+  if (owner.ok()) {
+    auto loaded = owner->view();
+    ASC_DENSE_TEST_CHECK(test, loaded.ok());
+    if (loaded.ok()) {
+      for (std::size_t i = 0; i < values.size(); ++i) {
+        ASC_DENSE_TEST_CHECK(
+            test, asc_decimal_test::SameBits(loaded->data()[i], values[i]));
+      }
+    }
+  }
+}
+
+void TestCanonicalDecimals(TestContext& test) {
+  TestCanonicalDecimals<float>(test);
+  TestCanonicalDecimals<double>(test);
+  TestCanonicalDecimals<std::complex<float>>(test);
+  TestCanonicalDecimals<std::complex<double>>(test);
+}
+
 }  // namespace
 
 int main() {
   TestContext test;
+  TestCanonicalDecimals(test);
   TestIndependentTextAndLayouts(test);
   TestIndependentBinary(test);
   TestAllScalarCodes(test);
@@ -1004,5 +1062,14 @@ int main() {
   TestWholeFileProbeBudgets(test);
   TestMovedLongSourceErrors(test);
   TestMovedLongSinkErrors(test);
+  {
+    asc_locale_test::LocaleGuard locale;
+    TestCanonicalDecimals(test);
+    ASC_DENSE_TEST_CHECK(test, asc_locale_test::LocaleControl());
+    TestIndependentTextAndLayouts(test);
+    TestAllScalarCodes(test);
+    TestTextSpecialValues(test);
+    TestRankThreeStridedAndDirectRounding(test);
+  }
   return test.Finish();
 }

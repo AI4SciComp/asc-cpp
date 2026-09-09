@@ -16,6 +16,7 @@
 #include <string_view>
 #include <utility>
 
+#include "../locale_test_support.h"
 #include "allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/array_format.h"
@@ -1301,5 +1302,15 @@ int main() {
   ComplexLifecycle<std::complex<double>>(test);
   FactoryDiagnostics<std::complex<float>>(test);
   FactoryDiagnostics<std::complex<double>>(test);
+  {
+    asc_locale_test::LocaleGuard locale;
+    ASC_SPARSE_TEST_CHECK(test, asc_locale_test::LocaleControl());
+    AllKinds<float>(test);
+    AllKinds<double>(test);
+    AllKinds<std::complex<float>>(test);
+    AllKinds<std::complex<double>>(test);
+    IndependentFixtures(test);
+    MalformedText(test);
+  }
   return test.Finish();
 }

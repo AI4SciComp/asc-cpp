@@ -17,6 +17,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "../locale_test_support.h"
 #include "allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/array_format.h"
@@ -998,5 +999,15 @@ int main() {
   NumericFailures(test);
   ReaderStateAliases(test);
   std::cout << "sparse_matrix_market executed=" << executed << '\n';
+  {
+    asc_locale_test::LocaleGuard locale;
+    ASC_SPARSE_TEST_CHECK(test, asc_locale_test::LocaleControl());
+    Scalar<float>(test);
+    Scalar<double>(test);
+    Scalar<std::complex<float>>(test);
+    Scalar<std::complex<double>>(test);
+    NumericFailures(test);
+    Malformed(test);
+  }
   return test.Finish();
 }
