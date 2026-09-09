@@ -1,39 +1,79 @@
 # Stabilization and subset acceptance checkpoint
 
-Current continuation: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING**.
-Candidate `eb3640d70d80135663d157392a4c98a1bcc1a231` is synchronized; its PR merge
-`661ee391133b4ff7a7049e9668a55ceb181b67c7` has the same tree
-`e8f89cf95878d93a7a834e72d9c57eede324165e`. The prior stabilization table below
-is historical evidence for `52439959`, not the current candidate's CI result.
+Status: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING** (2026-09-09).
+The tested feature candidate is `5cc3a9350f7ea176552340de41a38ef73de0aebe`, PR merge
+`184c0ac1f359756c9477e9c1399719780ca060a6`, both tree `34c7712b7d67090114aa522e6206000638273d2d`.
+The develop base remains `46412183b2ae86101b2361c52376a8db8efff264`. PR #47 is OPEN DRAFT.
+The implementation and tests are synchronized. This later program-record
+followup is a separate local documentation commit, with its exact HEAD/patch
+in external `subset-acceptance-20260909-01/final-handoff-01.json`; it is not
+represented as the whole tree tested by the earlier runs.
 
-A1 closes all 18 original findings locally and passes the newly maintained
-expanded five-TU hosted audit. A2's original 32 POTRS and eight GEQRF aliases
-execute with independent residual/reconstruction and protected-state checks.
-Native verified remains zero pending complete row/platform evidence. A3 adds
-324 Dense scalar/rank/layout profiles, including short-staging rollback, and
-maintains installed examples plus 62 cleanup cases (2,808 assertions).
-The final maintained installed replay passes 77 nested tests across eight JUnit
-reports, zero skips; fixture residuals are 0/0, binary reload is 124 bytes and
-malformed input consumes 95 bytes while preserving the destination.
-All 60 native-format scalar/storage binary outputs independently match Python;
-reverse C++ readback also passes 60 independently encoded fixtures. That reverse
-prototype remains external and is not counted as maintained CI coverage.
+PR CI 34358528862 and push CI 34358523278 each pass **19/19 jobs**; CodeQL
+34358528859 and 34358523089 pass. Every CI log is retained, checkout identities
+are checked, and all totals agree with individual passing-test lines. There
+are zero unexpected skips. Candidate02's eight failed jobs had two new test
+harness diagnostics: unused header-local kOperations on GCC11 and MSVC's
+rank-zero shift diagnostic. The constant moved into its sole consumer, and
+if constexpr discards the rank-zero shift expression. No assertion, mode,
+tolerance, warning or test was removed. Original logs and closing records
+are in `hosted-02` and `hosted-03/failure-closures.json`.
 
-Candidate02 local full GNU11 Debug/shared passes 293/293 and Clang19
-ASan/UBSan passes 246/246; strict documentation/header/ABI and configured
-analysis pass. PR CI34355299517 and push CI34355293358 each pass 15/19 jobs.
-Every failed job log is retained under `subset-acceptance-20260909-01/hosted-02`.
-GCC11 Debug/Release rejects an unused `kOperations` from a newly shared test
-header; Windows static/shared rejects a rank-zero shift expression in the new
-I/O harness before CTest. The old conditional does not evaluate that shift at
-rank zero; `if constexpr` now discards the expression during instantiation.
-The constant moves unchanged to its only using TU. No tests, assertions,
-numerical tolerances or warnings were removed. The earlier local GNU11 cache
-had warnings-as-errors OFF; its pass did not prove the hosted warning gate.
-With it ON, all three affected tests now build and pass; full closing replay
-and fresh hosted results are pending. macOS, package, sanitizers and expanded
-lint passed their actual candidate02 scope. Owner packet approval remains
-pending, all 2,113 Reference requirements remain, and no sibling was imported.
+| Gate or capability | Implemented and executed evidence | Remaining acceptance |
+| --- | --- | --- |
+| A1 expanded lint | All 18 original findings closed; same five test/benchmark TUs pass locally and in both hosted quality jobs; BLAS numerical/negative tests and benchmark correctness preserved | No remaining A1 diagnostic; no performance certification |
+| Native LU/Cholesky/QR | 20 callable, implemented_unverified routes; all original 32 POTRS and 8 GEQRF alias slots execute with real public APIs; seven installed native tests pass; seven native test IDs execute throughout hosted full/sanitizer lanes | 0 fully verified rows; normalized per-row artifacts/evidence and validator-backed promotion remain |
+| Dense scalar/rank I/O | 324 profiles across 12 codes, ranks 0–4, left/right/strided, empty extents; 648 text/binary paths, independent text/offset expectations, padding exclusion, trailer and short-staging rollback |Finite contract-derived matrix and remaining interactions stay explicit; no whole-package promotion |
+| Maintained installed and cleanup harness | 77 nested tests locally, 62 cleanup cases/2,808 assertions; copied public examples run in every hosted full/package lane; Sparse-only isolation preserved |Cleanup fault injection remains Linux/static; portable shared/Windows/macOS and primary read/write plus cleanup errors remain |
+| Independent binary and printer loads | 60 C++ outputs match independent Python encodings byte-for-byte;60 Python inputs load through installed C++ APIs with exact structure/value comparison. Extended load diagnostic passes 24 compressed scalar/storage and 288 higher-rank Dense cases, plus strict/format and valid negative controls |New reverse-readback and extended-load sources remain external pending maintained integration; precision equivalence and platform instrumentation remain |
+| Full Reference program | 2113 required; 350 executable partial registrations and 1,763 not started; strict complete-callable/verified Reference counts 0 | 130 absent required XBLAS definitions and 78 retained historical mathematical failures remain separate limitations; P00–P11 incomplete |
+
+Fresh hosted Windows static/shared Debug/Release each pass 229/229; macOS
+four configurations each 291/291. GNU11 Debug/Release each 292, GCC14
+static 292/shared 294, Clang18 static 291/shared 293. ASan/UBSan 246, LSan 246,
+TSan 4 and package/contracts/examples 72 pass. Locally, GNU11 Debug/shared
+with warnings-as-errors passes 293/293 and Clang19 ASan/UBSan passes 246/246.
+The original local GNU cache had warnings-as-errors OFF; that old pass was
+not a warning-gate pass. The closing build explicitly enables it.
+
+The authoritative external index is `final-checkpoint-03/manifest.json`,
+SHA-256 `1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a`, under
+`subset-acceptance-20260909-01`. It retains 81 raw command records and 19
+indexes/archives. Historical stabilization and provider results retain their
+original inputs. All 299 production/header files match the installed producer;
+actual pinned LP64/true-ILP64 foundation 10/10 evidence remains a separately
+scoped unchanged-input bridge, never inferred from provider-free CI.
+
+The maintained installed workflow is driven by `tests/package/run_installed_examples.cmake`.
+Executed external command: `python3 -B ../asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/run-installed-02.py`.
+Its exclusive paths must not be reused. The Dense fixture prints A/B, factors
+once, reuses factors for multiple RHS, obtains independent residuals 0/0,
+saves/reloads exactly 124 binary bytes and preserves the destination despite
+95 consumed malformed-input bytes. Sparse reads/prints/reloads COO/CSR/CSC
+without Dense or a provider dependency. These are exact fixture observations.
+File helpers require explicit truncate intent and check flush/close; failures
+can consume input or leave a partial file. No atomic replacement or durability
+is claimed. Text/MM guarantees do not inherit binary bit-preservation claims.
+
+Original checkout and all 15 sibling worktrees retain their heads, tracked
+diffs and untracked hashes; no sibling import occurred. The concrete
+[redistribution packet](redistribution-review-packet.md) remains pending:
+manifest `6f5e8985d4c4d14c20c2cd44a5dabfbd28dc4720d92de2e52be0abb589f08fca`,
+proposed notice `9ebeaf30a78e77f5fa4a4ba94ed66c68bdb92acd1dfdc8b1456e0c114ffbed41`.
+All six bound materials remain unchanged. No owner/provenance, merge or release
+approval is inferred. Native and I/O work remains independently authorized.
+
+One next bounded implementation task: Integrate the tested independent binary readback into the maintained installed harness, preserving all 60 independent fixtures and exact structure/value comparisons.
+Reuse `independent-readback-02/source` and the current installed harness;
+do not create a competing consumer project. After integration, execute:
+
+```sh
+python3 -B ../asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/run-maintained-next-wire.py
+```
+
+This prepared driver has fresh scratch paths and has not been executed.
+The retained finite gap matrix and native row index describe subsequent work;
+no new numerical family begins before this subset checkpoint is settled.
 
 ## Historical completed stabilization checkpoint
 

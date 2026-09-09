@@ -443,15 +443,19 @@ No provider patch, fallback, rescaling or tolerance waiver is introduced.
 This remains a required LATBS mathematical gap and known TBCON dependency
 defect; independent implementation continues.
 
-## Stabilization checkpoint — hosted CI closed, acceptance still open
+## Current subset checkpoint — CI healthy, acceptance still open
 
-Current candidate15 PR/push CI each pass 19/19 jobs and both CodeQL runs pass.
-Linux/macOS/Windows native/array-I/O test subsets now have executed platform
-logs; earlier platform failures are historical. See [the checkpoint](stabilization-review.md).
-This closes the diagnosed integration failures, not whole routine/mode coverage.
+Candidate03 PR/push CI each pass 19/19 jobs and both CodeQL runs pass.
+All 18 expanded lint findings and the original 40 native alias slots have
+closing executed evidence. Their earlier open labels remain historical.
+See [the checkpoint](stabilization-review.md) for source/configuration scope.
 
-Forty native alias slots, full P02/P03/P10 crossproducts and 18 baseline-reproduced
-legacy test/benchmark lint findings remain open. The next bounded task is the
-18-finding quality repair recorded in state.json. No numerical family is added.
-Required mathematical failures, 130 absent XBLAS definitions and concrete owner
-redistribution review remain unchanged; useful independent work is unblocked.
+The 20 native routes still need normalized row evidence and ledger review. Array-I/O needs
+maintained independent binary readback and extended load checks, precision
+acceptance review, primary read/write plus cleanup errors, and portable
+shared/Windows/macOS cleanup fault injection. These are finite technical
+acceptance tasks, not new numerical families or an owner-approval dependency.
+
+The exact redistribution packet remains pending with unchanged bound materials.
+The 130 absent required XBLAS definitions and 78 historical mathematical failures
+remain visible in their original families. No denominator or tolerance changed.

@@ -27,7 +27,8 @@
         "asc_cpp.dense.print_modes_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Retained tests cover named rank/layout branches. New source-matched full candidate replay pending."
+      "evidence_or_open": "Named rank/layout/empty runtime branches pass current hosted platforms. External printing-load-04 adds288 rank3/4 edge/prefix, metadata and global-cap load cases; no universal hardware/platform claim.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P02.sparse.storage",
@@ -38,7 +39,8 @@
         "asc_cpp.sparse.print_modes_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Retained tests cover all three storage forms and scalar encoding. Expanded byte-load observation across CSR/CSC scalar widths remains open."
+      "evidence_or_open": "All three storage-form runtime tests pass hosted platforms. External printing-load-04 extends compiler-observed value loads to all12 CSR/CSC scalar codes; maintained/platform instrumentation remains open.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P02.scalar.options",
@@ -48,7 +50,8 @@
         "asc_cpp.sparse.print_modes_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Existing value/option fixtures and custom locale controls; exact round-boundary/intermediate precision equivalence review and additional load-observation cases pending."
+      "evidence_or_open": "Existing value/option fixtures and custom locale controls; exact round-boundary/intermediate precision equivalence review and additional load-observation cases pending.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P02.failures",
@@ -58,7 +61,8 @@
         "asc_cpp.sparse.print_acceptance_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Existing negative fixtures remain required; no stream rollback or hidden transfer claim."
+      "evidence_or_open": "Existing negative fixtures remain required; no stream rollback or hidden transfer claim.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P03.dense.scalar_rank_layout",
@@ -67,7 +71,8 @@
         "asc_cpp.dense.io_shapes_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "324 profiles executed GNU11 Debug/shared, 648 format paths with trailer rollback; added short-staging controls require final replay."
+      "evidence_or_open": "All324 profiles execute current GNU11/shared, ASan/UBSan and hosted runtime tests, including648 format paths, trailer rollback, padding exclusion and short staging. Representative rank grouping remains subject to final acceptance review.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P03.dense.scalar_bits",
@@ -78,7 +83,8 @@
         "asc_cpp.core.decimal_parse_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Text NaN payload is excluded by contract; binary quietNaN bits remain required. Existing tests need composed candidate replay."
+      "evidence_or_open": "Current full/hosted execution passes the listed special-value/encoding tests. Binary NaN bit guarantees remain distinct from text/MM; finite all-scalar independent wire fixtures do not prove every nonfinite interaction.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P03.dense.transaction",
@@ -89,7 +95,8 @@
         "asc_cpp.dense.io_shapes_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Existing every-boundary i16 binary and f64 text rollback plus new324 profile trailer rollback; all-scalar short-staging gap being closed."
+      "evidence_or_open": "Current full/hosted replay passes existing byte-boundary tests and324 all-scalar/rank/layout trailer rollback profiles plus every nonempty short-staging case. Source consumption remains distinct from destination rollback.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P03.sparse.scalar_structure",
@@ -99,7 +106,8 @@
         "asc_cpp.sparse.io_shapes_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Retained tests exercise exact structure and values; no implicit native archive canonicalization or format conversion."
+      "evidence_or_open": "Retained tests exercise exact structure and values; no implicit native archive canonicalization or format conversion.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P03.sparse.ranks",
@@ -109,7 +117,8 @@
         "asc_cpp.sparse.io_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Rank0 zero/one is its own branch; rank1 coordinate, rank>=3 coordinate-loop equivalence needs documented per-width boundary rationale, not every unbounded rank."
+      "evidence_or_open": "Rank0 zero/one is its own branch; rank1 coordinate, rank>=3 coordinate-loop equivalence needs documented per-width boundary rationale, not every unbounded rank.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P03.invalid_wire",
@@ -121,7 +130,8 @@
         "asc_cpp.sparse.io_fuzz_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Independent cross-language encoder/decoder execution for all scalar/storage encodings remains a finite gap; do not credit writer-reader agreement alone."
+      "evidence_or_open": "All60 installed C++ binary outputs independently match Python byte encodings; C++ installed readback of60 independently encoded inputs preserves exact values and structure. Nonempty rank2/all12 scalar codes/five storage-layout cases; reverse-readback source remains external pending maintained registration. Other malformed/overflow/corruption fixtures retain current executed CTest evidence.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P03.stream_progress",
@@ -133,7 +143,8 @@
         "asc_cpp.core.io_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Existing boundary tests define exact accepted/consumed bytes and preserved destinations; source is not rolled back."
+      "evidence_or_open": "Existing boundary tests define exact accepted/consumed bytes and preserved destinations; source is not rolled back.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P03.resources_placement",
@@ -143,7 +154,8 @@
         "asc_cpp.sparse.io_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "No broad no-exceptions claim: whole Random -fno-exceptions build has retained open failure; public-header no-exception checks are a separate scope."
+      "evidence_or_open": "No broad no-exceptions claim: whole Random -fno-exceptions build has retained open failure; public-header no-exception checks are a separate scope.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P10.fields_symmetry",
@@ -153,7 +165,8 @@
         "asc_cpp.sparse.matrix_market_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "All named field/symmetry classes have retained independent fixtures. Scalar boundary interactions (integer exactness/negation, complex diagonal) remain separately checked; a field class is not every type/mode Cartesian product."
+      "evidence_or_open": "All named field/symmetry classes have retained independent fixtures. Scalar boundary interactions (integer exactness/negation, complex diagonal) remain separately checked; a field class is not every type/mode Cartesian product.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P10.order_structure",
@@ -163,7 +176,8 @@
         "asc_cpp.sparse.matrix_market_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Native Dense array and Sparse coordinate are required; optional cross-representation conversion is outside frozen required profile, not silently added."
+      "evidence_or_open": "Native Dense array and Sparse coordinate are required; optional cross-representation conversion is outside frozen required profile, not silently added.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P10.duplicates_zeros",
@@ -173,7 +187,8 @@
         "asc_cpp.sparse.matrix_market_helpers_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Retained independent expected entries and overflow tests. Exact native stored-structure archival guarantees do not extend to symmetry-compressed Matrix Market."
+      "evidence_or_open": "Retained independent expected entries and overflow tests. Exact native stored-structure archival guarantees do not extend to symmetry-compressed Matrix Market.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "P10.failures_resources",
@@ -185,7 +200,8 @@
         "asc_cpp.sparse.matrix_market_fuzz_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Required independent fixtures remain; optional SciPy interoperability is separate external-tool evidence."
+      "evidence_or_open": "Required independent fixtures remain; optional SciPy interoperability is separate external-tool evidence.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "files.overwrite_open",
@@ -197,7 +213,8 @@
         "asc_cpp.sparse.matrix_market_test"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Retained path tests plus installed workflows; no existing-file restoration is promised after an authorized destructive save fails."
+      "evidence_or_open": "Retained path tests plus installed workflows; no existing-file restoration is promised after an authorized destructive save fails.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "files.cleanup",
@@ -267,7 +284,8 @@
         "asc_cpp.array_io.file_close_matrix_market_sparse"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained60 ASC+2MM tests pass GNU14 Release/static installed. Required shared/Windows/macOS injection and primary write/read+cleanup interactions remain open. Rank/field-independent cleanup control-flow grouping still needs review; no cross-platform credit."
+      "evidence_or_open": "Maintained60 ASC+2MM tests execute through Linux/static installed package lanes, with2808 assertions; external installed replay77 nested tests. Shared/Windows/macOS injection and primary read/write plus cleanup failures remain open. No atomic replacement/durability claim.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "installed.dense",
@@ -277,7 +295,8 @@
         "asc_cpp.example.dense_factorizations"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained snapshot01 installed replay passed aggregate examples and five standalone consumers; residuals0/0, save/reload124bytes, malformed rollback95consumed bytes. New JUnit enforcement replay pending."
+      "evidence_or_open": "Maintained copied aggregate and five standalone installed consumers pass locally and in all hosted full/package lanes. Local nested JUnit audit:77 tests,zero skips. Dense fixture residuals0/0,124-byte save/reload,95 consumed bytes with rollback; Sparse-only links exclude Dense/provider. These exact observations are fixture-specific.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
       "id": "installed.sparse",
@@ -286,15 +305,19 @@
         "asc_cpp.example.sparse_array_io"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "Maintained snapshot01 standalone Sparse-only passed; header dependency files exclude producer source. New JUnit enforcement replay pending."
+      "evidence_or_open": "Maintained copied aggregate and five standalone installed consumers pass locally and in all hosted full/package lanes. Local nested JUnit audit:77 tests,zero skips. Dense fixture residuals0/0,124-byte save/reload,95 consumed bytes with rollback; Sparse-only links exclude Dense/provider. These exact observations are fixture-specific.",
+      "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     }
   ],
   "remaining_cells": [
-    "P02 additional compressed-scalar/higher-rank load counts and precision/locale boundary rationale",
-    "P03 finite independent wire fixtures consumed/emitted across all12codes and required storage forms",
-    "P03 all-scalar short-staging transaction replay",
+    "Maintain the executed independent all12-scalar/storage binary readback and comparison in the installed harness",
+    "Maintain/review the extended compiler-load diagnostic; close remaining precision/locale boundary equivalence requirements",
     "File-helper primary read/write plus cleanup error cases and portable shared/Windows/macOS failure injection",
-    "New candidate full regression/sanitizer/package and hosted platform evidence",
-    "Consolidated row-level native and I/O acceptance review; owner/provenance approval separate"
-  ]
+    "Consolidated per-row native and I/O artifact/evidence acceptance review; no package promotion from a tested subset",
+    "Owner/provenance approval remains a separate pending decision, not a reason to stop native/I/O implementation"
+  ],
+  "tested_candidate": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+  "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+  "current_evidence_index": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
+  "current_evidence_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a"
 }

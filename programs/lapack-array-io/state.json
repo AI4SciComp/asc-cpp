@@ -14,16 +14,15 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "ba952aff87b1a5942b8cf54cdc3d9a613a6b7951",
+  "last_implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
   "worktree_diff_identity": {
-    "state": "tested_product_committed_and_pushed; final_checkpoint_changes_are_program_records_only",
-    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
-    "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
-    "source_snapshot": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/candidate-15/source",
-    "source_context": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/candidate-15/source-context.json",
-    "bridge": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/candidate15-commit-bridge.json",
-    "scope": "All1131non-program files match tested product. Final records will be a local documentation-only descendant; actual HEAD/status and its external final-handoff-01.json must be read on resume.",
-    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8"
+    "state": "candidate03_committed_and_pushed; final_followup_contains_program_records_only",
+    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "source_snapshot": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/candidate-03/source",
+    "source_context": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/candidate-03/source-context.json",
+    "bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/candidate02-03-bridge.json",
+    "scope": "Whole candidate03 gates refer to the frozen tree above. Later summary records require their explicit unchanged-input bridge and Markdown/JSON checks; actual local HEAD/patch is external final-handoff-01.json."
   },
   "packages": {
     "P00": {
@@ -370,7 +369,8 @@
       "owner": "integration",
       "scope": "Four additive files and three tests integrated; current four6/6 native lanes, clean relocated installed3/3eachDebug/Release/shared and fresh3strict/format4/coverage/surface pass. Exact modes/source/object/isolation audit completed. Native20 implemented_unverified;40partial class slots and requiredWindows/macOS remain open.",
       "review": "programs/lapack-array-io/native20-acceptance-review.md",
-      "partial_overlay": "programs/lapack-array-io/native20-partial-acceptance.json"
+      "partial_overlay": "programs/lapack-array-io/native20-partial-acceptance.json",
+      "current_checkpoint": "subset_acceptance_milestone.A2; original40 aliases now closed in executed platform matrix; normalized row evidence still pending"
     },
     "P02.printing_acceptance": {
       "state": "in_progress",
@@ -380,7 +380,8 @@
       "partial_overlays": [
         "programs/lapack-array-io/printing-partial-acceptance.json",
         "programs/lapack-array-io/printing-load-partial-acceptance.json"
-      ]
+      ],
+      "current_checkpoint": "subset_acceptance_milestone.A3; runtime hosted and external all-width/higher-rank load checks pass at stated scopes; full P02 acceptance remains open"
     },
     "P05.general_band_expert_root_integration": {
       "state": "in_progress",
@@ -1025,8 +1026,8 @@
       "current_preserved_candidate_state": "bounded_acceptance_audited_not_registered_not_fully_verified"
     }
   },
-  "active_task": "A3.A4.final_candidate_verification",
-  "next_action": "Run composed candidate and maintained cleanup/installed harness, fix failures without weakening checks, then consolidate exact row and remaining I/O gap evidence.",
+  "active_task": "A3.maintain_independent_binary_readback",
+  "next_action": "Integrate the tested independent binary readback into the maintained installed harness, preserving all 60 independent fixtures and exact structure/value comparisons. Then execute the fresh-scratch driver in next_command; do not replay its completed predecessors.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1632,49 +1633,44 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
-    "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
-    "candidate": "stabilization-candidate15",
+    "candidate": "subset-acceptance-candidate03",
     "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
-    "scope": "PR and push CI19/19 jobs each; both CodeQL pass. All19PRjob logs, bothCodeQL logs and bothpushWindowslogs sealed; zero unexpected CTest skips, all test totals agree with individual results. This is provider-free CI and partial native/I/O acceptance, not full LAPACK or whole-package verification.",
-    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8",
-    "tested_merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
-    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
-    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json",
-    "checkpoint_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4"
+    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "tested_head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "tested_merge": "184c0ac1f359756c9477e9c1399719780ca060a6",
+    "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
+    "checkpoint_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
+    "scope": "PR CI34358528862 and push CI34358523278 each 19/19 jobs passed; CodeQL34358528859/34358523089 passed. All 38 CI logs and both CodeQL logs bound to checkout identity; totals match individual passing tests; zero unexpected skips. GNU11 Debug/shared warnings-as-errors 293/293; Clang19 ASan/UBSan 246/246; installed native 7/7; maintained installed 77 nested tests. Native/I/O subset acceptance and full program remain incomplete."
   },
   "last_completed_verification": {
-    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
-    "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
-    "candidate": "stabilization-candidate15",
+    "candidate": "subset-acceptance-candidate03",
     "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
-    "scope": "PR and push CI19/19 jobs each; both CodeQL pass. All19PRjob logs, bothCodeQL logs and bothpushWindowslogs sealed; zero unexpected CTest skips, all test totals agree with individual results. This is provider-free CI and partial native/I/O acceptance, not full LAPACK or whole-package verification.",
-    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8",
-    "tested_merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
-    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
-    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json",
-    "checkpoint_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4"
+    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "tested_head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "tested_merge": "184c0ac1f359756c9477e9c1399719780ca060a6",
+    "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
+    "checkpoint_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
+    "scope": "PR CI34358528862 and push CI34358523278 each 19/19 jobs passed; CodeQL34358528859/34358523089 passed. All 38 CI logs and both CodeQL logs bound to checkout identity; totals match individual passing tests; zero unexpected skips. GNU11 Debug/shared warnings-as-errors 293/293; Clang19 ASan/UBSan 246/246; installed native 7/7; maintained installed 77 nested tests. Native/I/O subset acceptance and full program remain incomplete."
   },
   "remote_checkpoint": {
-    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
-    "head": "52439959f261351da6e51e3131391ef1197da2e8",
-    "push": "non-force origin feature/lapack-array-io succeeded under retained explicit authorization",
-    "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
-    "draft": true,
+    "head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "tested_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "merge_candidate": "184c0ac1f359756c9477e9c1399719780ca060a6",
     "base": "develop",
     "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-    "merge_candidate": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
-    "body_update": "Existing draft body updated through authorized GitHub CLI PATCH; no permissions changed",
-    "evidence": "../asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/record-authorized-push-04/record.json",
-    "previous_checkpoint": {
-      "head": "b1b78d789fb8f5366f13f86c411832df842b2755",
-      "tested_merge": "ff074864eaf5aea998fc501c533fb4dd77234efd"
-    },
-    "checks": "Both CI runs and both CodeQL runs completed success",
-    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
-    "final_documentation_sync": "Product is synchronized at5243995. Final acceptance records form one local documentation-only follow-up; exact local HEAD and patch are external final-handoff-01.json. No product changes are pending."
+    "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
+    "draft": true,
+    "push": "Ordinary fast-forward under preserved explicit owner authorization",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/push-candidate-03.json",
+    "checks": "Both CI runs 19/19; both CodeQL passed; all logs retained in hosted-03",
+    "final_documentation_sync": "One later local summary-only followup will be retained with a patch and exact HEAD in external final-handoff-01.json. It is not the tested candidate tree."
   },
   "session_recovery": {
     "evidence": "resume-20260908-01/recovery.json",
@@ -2117,13 +2113,14 @@
       "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
     }
   ],
-  "next_task": "A3.A4.final_candidate_verification",
+  "next_task": "A3.maintain_independent_binary_readback",
   "documentation_verification": {
     "state": "passed",
-    "scope": "Current local links, git diff whitespace, JSON parsing, exact manifest hashes and program-record-only diff; no product changes.",
-    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/final-documentation-checks-01/record.json"
+    "scope": "This six-file summary followup: local Markdown links, JSON/slot/contract identity checks, whitespace and complete unchanged-input bridge. Whole candidate03 CI is not attributed to this later tree.",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-documentation-check-01/record.json",
+    "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "ctest --test-dir <new-candidate-build> --verbose --no-tests=error",
+  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/run-maintained-next-wire.py",
   "stabilization_checkpoint": {
     "base": "46412183b2ae86101b2361c52376a8db8efff264",
     "deferred_numerical_task": {
@@ -2256,7 +2253,7 @@
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01",
     "recovered_head": "0e525a3bcf2ce2731ceec7c19eaefcabe39444af",
     "A1": {
-      "state": "passed_local_and_hosted_expanded_scope",
+      "state": "passed_local_and_hosted",
       "implementation_commit": "ba952aff87b1a5942b8cf54cdc3d9a613a6b7951",
       "expanded_command": "python3 -B tools/lapack_io/check_native_blas_style.py --build-dir ../asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 --clang-tidy ../asc-cpp-evidence/lapack-array-io/devtools/bin/clang-tidy",
       "scope": "All5recordedTUs,18findingsclosed;4tests+benchmark5/5,zero skips; original assertion sites64/93/95/32 unchanged; five benchmark loops/oracles/final allocation checks retained. No performance certification.",
@@ -2267,10 +2264,10 @@
         "a1-tool-controls-01/record.json"
       ],
       "retained_failure": "a1-expanded-01 retained the single oversized rankK function; corrected in02.",
-      "hosted_evidence": "hosted-02/all-job-evidence.json: quality job passes PR34355299517 and push34355293358, including the maintained five-TU expanded audit"
+      "hosted_evidence": "hosted-03/acceptance.json: both quality jobs pass configured production tidy and the maintained five-TU expanded audit"
     },
     "A2": {
-      "state": "original_40_slots_executed_linux_pending_cross_cutting",
+      "state": "original40_slots_closed_all_configured_platforms_normalization_pending",
       "potrs_original_slots": 32,
       "geqrf_original_slots": 8,
       "closed_slots": 40,
@@ -2278,40 +2275,64 @@
       "closure": "programs/lapack-array-io/native-report-alias-acceptance.json",
       "native_verified_operations": 0,
       "additional_evidence": {
-        "asan_ubsan": "native-sanitizer-01/record-ctest/record.json",
-        "count": "7/7;40 report alias profiles",
-        "still_open": "New fixture Windows/macOS/Release/installed and final per-row consolidation",
-        "candidate02": "GNU11Debugshared293/293 full and Clang19ASanUBSan246/246;40 exact emitted alias keys audited in candidate-commit-02.json. Hosted Linux/macOS additive tests pass; Windows blocked before CTest by new I/O harness diagnostic."
+        "full_gnu11": "293/293 with warnings-as-errors; all40 alias profiles",
+        "asan_ubsan": "246/246; all40 alias profiles",
+        "installed_native": "7/7 against relocated GCC14 static; all40 alias profiles",
+        "hosted": "All seven native test IDs mapped to 32 full/sanitizer job lanes in native-row-gates-final-03.json; Windows executes both Debug and Release per linkage",
+        "still_open": "Consolidated per-row normalized artifact/evidence review and validator-backed ledger promotion; 20 native routes remain implemented_unverified"
       }
     },
     "A3": {
-      "state": "maintained_harness_executed_subset_gaps_open",
+      "state": "maintained_subset_passed_finite_gaps_open",
       "gap_matrix": "programs/lapack-array-io/array-io-acceptance-matrix.json",
       "maintained_harness": "tests/package/run_installed_examples.cmake; tests/array_io/file_close",
       "executed": [
         "installed-maintained-02:77 nested tests across8JUnit reports,62 cleanup cases/2808assertions;zero skips",
         "candidate-02:324Dense profiles/648format paths,including short-staging failures,fullGNU11shared/ASanUBSan",
         "independent-wire-02:all60 installed C++ binary outputs match Python reference encoder byte-for-byte",
-        "independent-readback-02:all60 Python-encoded fixtures load via installed public C++ APIs and match exact values/structure;external prototype not yet maintained"
+        "independent-readback-02:all60 Python-encoded fixtures load via installed public C++ APIs and match exact values/structure;external prototype not yet maintained",
+        "printing-load-04:24 all-scalar CSR/CSC load cases and288 Dense rank3/4 preview cases; instrumented pass, uninstrumented control fails as required, strict/format pass; external diagnostic only"
       ],
-      "limits": "Cleanup injection GNU ELF/static only; portable cleanup and primary read/write+cleanup error cases, printer load/precision acceptance and maintained independent binary readback integration remain open."
+      "limits": "Portable shared/Windows/macOS cleanup injection and primary read/write plus cleanup errors remain open. Independent readback and extended load checks are tested external sources pending maintained integration. Precision equivalence and final contract-row review remain open."
     },
     "A4": {
-      "state": "repairing_two_candidate02_test_harness_diagnostics",
-      "candidate02_head": "eb3640d70d80135663d157392a4c98a1bcc1a231",
-      "candidate02_merge": "661ee391133b4ff7a7049e9668a55ceb181b67c7",
-      "candidate02_tree": "e8f89cf95878d93a7a834e72d9c57eede324165e",
-      "local_results": "GNU11Debugshared293/293 (warnings-as-errors OFF);Clang19ASanUBSan246/246;installed77;strictdocs/headerABI/format/expandedtidy pass at recorded scopes",
-      "hosted_results": "PR34355299517 and push34355293358 each15pass4fail; all8failedjoblogs inspected and hashed in hosted-02/failure-summary.json",
-      "fixes": "Move unused header kOperations into sole consuming TU; compile-discard Rank0 right-layout shift with if constexpr. No assertion/case/tolerance/suppression changes. GNU11 WerrorON affected3/3 pass; final combined/hosted replay pending.",
-      "closing_local_records": [
-        "ci-repair-configure-03/record.json",
-        "ci-repair-build-03/record.json",
-        "ci-repair-ctest-03/record.json",
-        "ci-repair-format-03/record.json"
+      "state": "candidate03_local_and_hosted_gates_passed",
+      "head": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "merge": "184c0ac1f359756c9477e9c1399719780ca060a6",
+      "tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-checkpoint-03/manifest.json",
+      "checkpoint_sha256": "1b29d034a490ec59b078ef417b81a2782f80b516917cd935ec7a01172299848a",
+      "ci_runs": [
+        34358528862,
+        34358523278
       ],
-      "next_task": "Finish full warnings-as-errors candidate build and regression, affected sanitizer/strict replay, then authorized fast-forward push and all hosted gates."
+      "codeql_runs": [
+        34358528859,
+        34358523089
+      ],
+      "current_failed_jobs": [],
+      "original_failure_closures": "hosted-03/failure-closures.json: eight failed candidate02 jobs/two harness diagnostics closed; no tests or assertions removed",
+      "local": "GNU11 Debug/shared Werror 293/293, Clang19 ASan/UBSan Werror 246/246, strict changed TUs and formatting pass; package/docs/header/ABI gates pass at their recorded scopes",
+      "historical_input_bridge": "candidate02-03-bridge.json: only three private test files and two program records differ; production/header/provider/workflow/ABI/A1 inputs unchanged"
     },
     "owner_approval": false
+  },
+  "historical_last_completed_stabilization": {
+    "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+    "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
+    "implementation_tree": "9816e818d7b6c7bc0bcab5cfbc9c6fbd75f54422",
+    "candidate": "stabilization-candidate15",
+    "state": "STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING",
+    "scope": "PR and push CI19/19 jobs each; both CodeQL pass. All19PRjob logs, bothCodeQL logs and bothpushWindowslogs sealed; zero unexpected CTest skips, all test totals agree with individual results. This is provider-free CI and partial native/I/O acceptance, not full LAPACK or whole-package verification.",
+    "tested_head": "52439959f261351da6e51e3131391ef1197da2e8",
+    "tested_merge": "bf99463e6d7edbaff70f4e81be87065dd7668ae7",
+    "tested_tree": "8c4a17111e0a4f9d09c22e8df4d77af802baf571",
+    "checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/acceptance-checkpoint-final-01/manifest.json",
+    "checkpoint_sha256": "ba595d1c6617042a079874d598f912993575a540344db66273f8584a1238a1f4"
+  },
+  "historical_documentation_verification": {
+    "state": "passed",
+    "scope": "Current local links, git diff whitespace, JSON parsing, exact manifest hashes and program-record-only diff; no product changes.",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/final-documentation-checks-01/record.json"
   }
 }

@@ -1,4 +1,31 @@
 Current verdict: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING**.
+Tested candidate `5cc3a9350f7ea176552340de41a38ef73de0aebe`, merge `184c0ac1f359756c9477e9c1399719780ca060a6`,
+tree `34c7712b7d67090114aa522e6206000638273d2d`; base develop unchanged. PR/push CI each 19/19
+and both CodeQL runs pass. Windows each 229/229; macOS each 291/291;
+full local GNU11/shared Werror 293/293 and ASan/UBSan 246/246. Raw identities,
+commands, totals/skips and original failure closures are in the
+[current checkpoint](stabilization-review.md) and external
+`subset-acceptance-20260909-01/final-checkpoint-03/manifest.json`.
+
+A1 closes 18 findings in the exact expanded audit. All 32 POTRS and 8 GEQRF
+alias slots now execute in the configured platform matrix and an installed
+native consumer; 20 native routes still await normalized row evidence/ledger review.
+The maintained installed harness passes 77 nested tests; 62 cleanup cases retain
+2,808 assertions. Dense scalar/rank I/O adds 324 profiles, with source-matched
+runtime/sanitizer/platform execution. Independent 60-case binary readback and
+expanded 24/288 printer load diagnostics also pass externally; maintained
+integration and the finite remaining I/O cells are still open. No package or
+routine is promoted from these subset passes. The 2,113 denominator, 350 partial
+Reference routes, 1,763 not started, 130 absent XBLAS definitions and 78 historical
+mathematical failures remain unchanged and describe separate dimensions.
+
+Next: Integrate the tested independent binary readback into the maintained installed harness, preserving all 60 independent fixtures and exact structure/value comparisons. Use state.json's exact fresh-scratch command after integration.
+Concrete owner packet approval is still pending. Later program-summary changes
+are a separate local commit and do not inherit whole-tree CI identity.
+
+## Historical stabilization summary
+
+Current verdict: **STABILIZATION_PASSED_SUBSET_ACCEPTANCE_PENDING**.
 Product 5f3c6d9 / candidate15 is pushed at 5243995; tested merge bf99463e has the
 same tree 8c4a1711, base develop 46412183. PR #47 remains an open draft.
 PR/push CI each pass 19/19 jobs; both CodeQL pass. Windows static/shared Debug/
