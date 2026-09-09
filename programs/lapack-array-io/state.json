@@ -14,7 +14,7 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
+  "last_implementation_commit": "ba952aff87b1a5942b8cf54cdc3d9a613a6b7951",
   "worktree_diff_identity": {
     "state": "tested_product_committed_and_pushed; final_checkpoint_changes_are_program_records_only",
     "implementation_commit": "5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed",
@@ -1025,8 +1025,8 @@
       "current_preserved_candidate_state": "bounded_acceptance_audited_not_registered_not_fully_verified"
     }
   },
-  "active_task": "stabilization.legacy_blas_quality",
-  "next_action": "Repair the 18 reproduced legacy BLAS test/benchmark clang-tidy findings without changing mathematical assertions, negative cases, tolerances or global checks. Use the bounded command and handoff in stabilization-review.md; do not repeat the completed candidate15 push/CI or import a numerical family.",
+  "active_task": "A3.maintain_installed_and_close_failure_harness",
+  "next_action": "Transfer reusable installed and checked-close checks into maintained tests; derive finite I/O gap matrix; retain A2 cross-cutting and row-level verification pending A4.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2117,13 +2117,13 @@
       "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
     }
   ],
-  "next_task": "stabilization.legacy_blas_quality",
+  "next_task": "A3.maintain_installed_and_close_failure_harness",
   "documentation_verification": {
     "state": "passed",
     "scope": "Current local links, git diff whitespace, JSON parsing, exact manifest hashes and program-record-only diff; no product changes.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-20260909-01/final-documentation-checks-01/record.json"
   },
-  "next_command": "cmake -S /home/yicai/AI4SciComp/asc-cpp-lapack-array-io -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 -DCMAKE_CXX_COMPILER=/usr/bin/g++-11 -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=ON -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON -DASC_CPP_ENABLE_LAPACK=OFF -DASC_CPP_ENABLE_CUDA=OFF -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DFETCHCONTENT_SOURCE_DIR_ASCCMAKE=/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/dependencies/asccmake-8a7dcbad/source",
+  "next_command": "ctest --test-dir <candidate-build> --verbose --no-tests=error -R ^asc_cpp.examples.installed_relocated$",
   "stabilization_checkpoint": {
     "base": "46412183b2ae86101b2361c52376a8db8efff264",
     "deferred_numerical_task": {
@@ -2250,5 +2250,39 @@
     "state": "bounded_integration_complete",
     "completion_audit": "p05-packed-cholesky-refinement-integration-v27-01/audit.json",
     "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
+  },
+  "subset_acceptance_milestone": {
+    "scope": "A1-A4 owner continuation; no new Reference families or denominator changes",
+    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01",
+    "recovered_head": "0e525a3bcf2ce2731ceec7c19eaefcabe39444af",
+    "A1": {
+      "state": "passed_local",
+      "implementation_commit": "ba952aff87b1a5942b8cf54cdc3d9a613a6b7951",
+      "expanded_command": "python3 -B tools/lapack_io/check_native_blas_style.py --build-dir ../asc-cpp-evidence/lapack-array-io/stabilization-next-legacy-tidy-01 --clang-tidy ../asc-cpp-evidence/lapack-array-io/devtools/bin/clang-tidy",
+      "scope": "All5recordedTUs,18findingsclosed;4tests+benchmark5/5,zero skips; original assertion sites64/93/95/32 unchanged; five benchmark loops/oracles/final allocation checks retained. No performance certification.",
+      "records": [
+        "a1-findings-closed.json",
+        "a1-expanded-02/record.json",
+        "a1-ctest-02/record.json",
+        "a1-tool-controls-01/record.json"
+      ],
+      "retained_failure": "a1-expanded-01 retained the single oversized rankK function; corrected in02."
+    },
+    "A2": {
+      "state": "original_40_slots_executed_linux_pending_cross_cutting",
+      "potrs_original_slots": 32,
+      "geqrf_original_slots": 8,
+      "closed_slots": 40,
+      "closing_test": "asc_cpp.dense.native_report_alias_test",
+      "closure": "programs/lapack-array-io/native-report-alias-acceptance.json",
+      "native_verified_operations": 0
+    },
+    "A3": {
+      "state": "pending"
+    },
+    "A4": {
+      "state": "pending"
+    },
+    "owner_approval": false
   }
 }

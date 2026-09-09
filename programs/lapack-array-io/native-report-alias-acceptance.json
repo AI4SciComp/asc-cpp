@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "kind": "native_report_alias_closure",
+  "review_kind": "implementation_self_review",
+  "base_overlay": "native20-partial-acceptance.json",
+  "source_test": "tests/dense/native_report_alias_test.cc",
+  "source_sha256": "744b308e6a02a26ea3921b803ccd8bbd9d177ca17596467c179bd511fafd0365",
+  "ctest_id": "asc_cpp.dense.native_report_alias_test",
+  "state": "executed_linux_debug_shared",
+  "record": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/a2-test-02/record.json",
+  "record_sha256": "5e8992201dd8de3374bd0ba7d818193b6595738132bf3fd48076e109d1a6b516",
+  "slots": [
+    {
+      "operation": "lapack.cgeqrf",
+      "mode": "row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "report_tau_overlap",
+        "report_scratch_overlap",
+        "short_scratch_validation_order",
+        "unchanged_matrix_tau_scratch_report",
+        "independent_qr_reconstruction_unitarity"
+      ]
+    },
+    {
+      "operation": "lapack.cgeqrf",
+      "mode": "column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "report_tau_overlap",
+        "report_scratch_overlap",
+        "short_scratch_validation_order",
+        "unchanged_matrix_tau_scratch_report",
+        "independent_qr_reconstruction_unitarity"
+      ]
+    },
+    {
+      "operation": "lapack.cpotrs",
+      "mode": "row_major.lower.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.cpotrs",
+      "mode": "row_major.lower.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.cpotrs",
+      "mode": "row_major.upper.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.cpotrs",
+      "mode": "row_major.upper.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.cpotrs",
+      "mode": "column_major.lower.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.cpotrs",
+      "mode": "column_major.lower.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.cpotrs",
+      "mode": "column_major.upper.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.cpotrs",
+      "mode": "column_major.upper.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.dgeqrf",
+      "mode": "row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "report_tau_overlap",
+        "report_scratch_overlap",
+        "short_scratch_validation_order",
+        "unchanged_matrix_tau_scratch_report",
+        "independent_qr_reconstruction_unitarity"
+      ]
+    },
+    {
+      "operation": "lapack.dgeqrf",
+      "mode": "column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "report_tau_overlap",
+        "report_scratch_overlap",
+        "short_scratch_validation_order",
+        "unchanged_matrix_tau_scratch_report",
+        "independent_qr_reconstruction_unitarity"
+      ]
+    },
+    {
+      "operation": "lapack.dpotrs",
+      "mode": "row_major.lower.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.dpotrs",
+      "mode": "row_major.lower.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.dpotrs",
+      "mode": "row_major.upper.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.dpotrs",
+      "mode": "row_major.upper.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.dpotrs",
+      "mode": "column_major.lower.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.dpotrs",
+      "mode": "column_major.lower.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.dpotrs",
+      "mode": "column_major.upper.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.dpotrs",
+      "mode": "column_major.upper.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.sgeqrf",
+      "mode": "row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "report_tau_overlap",
+        "report_scratch_overlap",
+        "short_scratch_validation_order",
+        "unchanged_matrix_tau_scratch_report",
+        "independent_qr_reconstruction_unitarity"
+      ]
+    },
+    {
+      "operation": "lapack.sgeqrf",
+      "mode": "column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "report_tau_overlap",
+        "report_scratch_overlap",
+        "short_scratch_validation_order",
+        "unchanged_matrix_tau_scratch_report",
+        "independent_qr_reconstruction_unitarity"
+      ]
+    },
+    {
+      "operation": "lapack.spotrs",
+      "mode": "row_major.lower.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.spotrs",
+      "mode": "row_major.lower.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.spotrs",
+      "mode": "row_major.upper.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.spotrs",
+      "mode": "row_major.upper.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.spotrs",
+      "mode": "column_major.lower.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.spotrs",
+      "mode": "column_major.lower.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.spotrs",
+      "mode": "column_major.upper.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.spotrs",
+      "mode": "column_major.upper.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.zgeqrf",
+      "mode": "row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "report_tau_overlap",
+        "report_scratch_overlap",
+        "short_scratch_validation_order",
+        "unchanged_matrix_tau_scratch_report",
+        "independent_qr_reconstruction_unitarity"
+      ]
+    },
+    {
+      "operation": "lapack.zgeqrf",
+      "mode": "column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "report_tau_overlap",
+        "report_scratch_overlap",
+        "short_scratch_validation_order",
+        "unchanged_matrix_tau_scratch_report",
+        "independent_qr_reconstruction_unitarity"
+      ]
+    },
+    {
+      "operation": "lapack.zpotrs",
+      "mode": "row_major.lower.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.zpotrs",
+      "mode": "row_major.lower.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.zpotrs",
+      "mode": "row_major.upper.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.zpotrs",
+      "mode": "row_major.upper.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.zpotrs",
+      "mode": "column_major.lower.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.zpotrs",
+      "mode": "column_major.lower.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.zpotrs",
+      "mode": "column_major.upper.row_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    },
+    {
+      "operation": "lapack.zpotrs",
+      "mode": "column_major.upper.column_major",
+      "class": "padding_aliasing",
+      "state": "closed_linux_debug_shared",
+      "checks": [
+        "same_call_factor_report_overlap",
+        "rhs_report_overlap",
+        "factor_rhs_overlap",
+        "unchanged_factor_and_report_bytes",
+        "repeated_two_rhs_independent_residual"
+      ]
+    }
+  ],
+  "native_verified_operations": 0,
+  "reference_credit_added": 0,
+  "required_reference_operations": 2113,
+  "open": [
+    "New alias fixture sanitizer, installed and Windows/macOS/static/Release execution",
+    "Consolidated per-row contract/test evidence and source bridges before native verified promotion"
+  ],
+  "lifetime_rationale": "C++20 [intro.object] permits an aligned live scalar nested in an actual std::byte array providing storage; the enclosing report remains alive. Explicit construct_at/destroy_at; no copy/move of the container. Numerical controls receive a separate report; the aliased report may only be used by the preserving rejection path. POTRF and factor creation use their actual same-call separate successful report.",
+  "native_workspace_query": "No native query API is promised: Geqrf takes fixed, checked tau and scratch lengths. Optional provider QueryGeqrfWorkspace evidence is separate."
+}

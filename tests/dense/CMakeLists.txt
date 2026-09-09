@@ -78,7 +78,8 @@ target_include_directories(
 
 foreach(_source IN ITEMS
     native_mode_acceptance_test.cc
-    native_alias_acceptance_test.cc)
+    native_alias_acceptance_test.cc
+    native_report_alias_test.cc)
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_dense_${_name}")
   add_executable("${_target}" "${_source}" allocation_probe.cc)

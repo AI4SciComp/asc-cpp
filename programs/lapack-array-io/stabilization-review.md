@@ -752,3 +752,49 @@ executable1/1, zero skips. Formatting and the complete Sparse I/O TU clang-tidy
 check pass. Product5f3c6d921374bab53a036fd6b5b4e4f7ce9591ed matches all1,131
 frozen candidate15 files. No other production or test input changed; the next
 action is the authorized feature push and fresh hosted matrix.
+
+## Continued acceptance milestone: A1 closed locally
+
+The exact five-file expanded audit now passes through the maintained
+`tools/lapack_io/check_native_blas_style.py` command recorded in state.json.
+All18 original findings map to fixes in external
+`subset-acceptance-20260909-01/a1-findings-closed.json`: eight long functions
+are split into named checks, four intentional transposed oracle accesses name
+their source coordinates, and six invalid-option casts retain the existing
+single-line analyzer exception with a local explanation. Fixed-underlying-enum
+values include every underlying representation ([language rule](https://eel.is/c++draft/dcl.enum#8));
+the deliberate invalid API flags and rejection assertions are unchanged.
+No general warning/check or test scope was removed. The driver rejects an
+empty/missing compilation scope before invoking analysis.
+
+Affected BLAS tests and benchmark pass5/5, zero skips. Original assertion-site
+counts remain64/93/95/32; operation/scalar loops and numerical tolerances remain.
+Benchmark stages retain their independent oracles, iteration counts and final
+allocation/finiteness checks; this is correctness/smoke evidence only.
+The first replay retained one oversized rankK function; the second fixes it
+and passes the same complete expanded scope. Current product commit is
+`ba952aff87b1a5942b8cf54cdc3d9a613a6b7951`. The old configured CI remains evidence for its old inputs;
+fresh combined/platform gates follow the coherent A2/A3 candidate.
+
+Next is A2, using explicit live scalar construction inside report byte storage
+to exercise actual same-call factor/report and tau/workspace overlap. No native
+slot or Reference row is promoted before execution and per-row gate review.
+
+A2 continuation adds `native_report_alias_test.cc` and the supplemental
+`native-report-alias-acceptance.json`, preserving the historical 1,080/40
+overlay. All original 32 POTRS and eight GEQRF slot keys are independently
+matched to 40 unique emitted profiles in the executed GNU11 Debug/shared log.
+Five affected original/additive native tests pass; the final clarified fixture
+replay passes 1/1 and strict clang-tidy18 passes. The first build requested a
+new target before reconfiguration; the first strict check found a missing direct
+types include and missing deleted move operations. Both failures remain in
+`subset-acceptance-20260909-01/a2-*`; later records close them. No production
+algorithm, public declaration, original test or denominator changed.
+
+The valid same-call POTRF factor is one aligned scalar nested in a report byte
+array. Its successful factor/report provenance is separate from the report
+that POTRS must reject without resetting. Two-RHS residual and reuse controls
+execute before and after rejection. QR uses live contiguous one-scalar tau
+and scratch, checks both report collisions and short-workspace validation
+order, and independently reconstructs Q/R and Q*Q. New test/platform/sanitizer
+and complete row-level evidence remain pending; native verified stays zero.
