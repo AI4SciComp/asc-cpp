@@ -380,9 +380,13 @@ void ResourceCases(TestContext& test, const Sink& encoded, bool binary,
       asc_sparse_test::AllocationProbe probe;
       auto owner = Load<View>(*reader, resource);
       ASC_SPARSE_TEST_CHECK(test, !owner.ok());
-      ASC_SPARSE_TEST_CHECK(test, asc_test::ProcessAllocationCountMatches(
-                                      probe.count(), failure - 1));
+      ASC_SPARSE_TEST_CHECK(
+          test,
+          asc_test::ProcessAllocationCountMatches(
+              probe.count(),
+              asc_test::ProcessVisibleResourceAllocationCount(failure - 1)));
     }
+    ASC_SPARSE_TEST_EQ(test, resource.allocation_attempts(), failure);
     ASC_SPARSE_TEST_EQ(test, resource.live_allocations(), std::size_t{0});
     ASC_SPARSE_TEST_CHECK(test, !report.committed);
   }
@@ -1137,9 +1141,13 @@ void FactoryFailure(TestContext& test, std::size_t failure, Factory factory) {
     ASC_SPARSE_TEST_EQ(test, owner.status().provider().size(),
                        std::size_t{256});
     ASC_SPARSE_TEST_EQ(test, owner.status().native_code(), std::int64_t{91});
-    ASC_SPARSE_TEST_CHECK(test, asc_test::ProcessAllocationCountMatches(
-                                    probe.count(), failure - 1));
+    ASC_SPARSE_TEST_CHECK(
+        test,
+        asc_test::ProcessAllocationCountMatches(
+            probe.count(),
+            asc_test::ProcessVisibleResourceAllocationCount(failure - 1)));
   }
+  ASC_SPARSE_TEST_EQ(test, resource.allocation_attempts(), failure);
   ASC_SPARSE_TEST_EQ(test, resource.live_allocations(), std::size_t{0});
 }
 
