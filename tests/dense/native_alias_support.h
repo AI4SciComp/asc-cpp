@@ -151,8 +151,11 @@ auto Bytes(const T& value) {
 template <typename T, typename Middle>
 struct GappedMatrix {
   std::array<T, 2> first{T{1}, T{0}};
-  alignas(std::max(alignof(Middle), sizeof(T))) Middle middle{};
-  alignas(sizeof(T)) std::array<T, 2> last{T{0}, T{1}};
+  Middle middle{};
+  // Keep the last scalar block on a scalar-size boundary with explicit bytes.
+  // The nonempty gap also avoids imposing alignment padding on the aggregate.
+  std::array<std::byte, sizeof(T) - sizeof(Middle) % sizeof(T)> gap{};
+  std::array<T, 2> last{T{0}, T{1}};
 
   auto View(Layout layout) {
     using Storage = GappedMatrix<T, Middle>;

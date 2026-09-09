@@ -6,6 +6,7 @@ target_sources(
   PRIVATE
     array_format.cc
     array_io.cc
+    array_parse.cc
     configuration.cc
     contracts.cc
     execution.cc

@@ -1,7 +1,7 @@
 format|asc-cpp-elf-abi-digest-v1
 environment|Ubuntu 22.04.5 LTS|x86_64|GCC 11.4.0|libstdc++.so.6.0.30 ff0825e113603c3866680d5d52216bc6d8eedf3a59f52a0aef67ff01994db128|glibc 2.35-0ubuntu3.14|Debug|shared|CUDA disabled
-report-sha256|1afd6c7ceb94b82b9d68e7ad6a4773c7c89d89b571c393206dc0f57228b7870b
-library|libasc_core.so.0.9.0|defined-dynamic-symbols|192|weak-or-unique|35
+report-sha256|831e8d9ddbcfb214732fdc9297a1fd28ec3f26788210bbb4038b405400342a51
+library|libasc_core.so.0.9.0|defined-dynamic-symbols|194|weak-or-unique|35
 library|libasc_dense.so.0.9.0|defined-dynamic-symbols|241|weak-or-unique|119
 library|libasc_random.so.0.9.0|defined-dynamic-symbols|46|weak-or-unique|3
 library|libasc_sparse.so.0.9.0|defined-dynamic-symbols|44|weak-or-unique|18
@@ -14,3 +14,4 @@ observation|Feature LAPACK/array-I/O update: 149 added dynamic symbols; zero rem
 observation|Dense and Sparse OS-ABI markers change from System V to GNU alongside new GNU-unique standard-library objects.
 review|programs/lapack-array-io/stabilization-review.md; base and candidate InspectElfAbi reports retained externally.
 prior-report-sha256|c28bd7c30053d986543a29a3fd33ae945433e9f43777ea45d8ece2e544da14a5
+observation|Portable decimal fallback adds two internal Core codec export boundaries; no removed symbols or dependency changes.

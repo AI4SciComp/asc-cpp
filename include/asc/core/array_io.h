@@ -163,6 +163,10 @@ ASC_CORE_EXPORT Result<ArrayScalarCode> ParseScalarCode(std::string_view name);
 ASC_CORE_EXPORT std::string_view ScalarName(ArrayScalarCode code);
 ASC_CORE_EXPORT std::size_t ScalarWidth(ArrayScalarCode code);
 ASC_CORE_EXPORT bool FiniteRealSyntax(std::string_view token);
+// Bounded, locale-independent fallback for standard libraries without floating
+// from_chars. These are codec implementation boundaries, not supported API.
+ASC_CORE_EXPORT Result<float> ParseFiniteFloat(std::string_view token);
+ASC_CORE_EXPORT Result<double> ParseFiniteDouble(std::string_view token);
 ASC_CORE_EXPORT std::uint32_t UpdateCrc(std::uint32_t state,
                                         std::span<const std::byte> bytes);
 
@@ -173,32 +177,44 @@ ArrayScalarCode ScalarCode() {
 
 template <typename T>
 Result<T> ParseFinite(std::string_view token) {
-  if (token.front() == '+') {
-    token.remove_prefix(1);
-  }
-  // Character integer aliases are missing from some from_chars overload sets.
-  // A checked full-width integer avoids any real-type intermediate/narrowing.
-  using Parsed = std::conditional_t<
-      std::integral<T>,
-      std::conditional_t<std::is_signed_v<T>, std::int64_t, std::uint64_t>, T>;
-  Parsed value{};
-  const auto result =
-      std::from_chars(token.data(), token.data() + token.size(), value);
-  if (result.ec == std::errc::result_out_of_range) {
-    return Status(ErrorCode::kOverflow);
-  }
-  if (result.ec != std::errc{} || result.ptr != token.data() + token.size()) {
-    return Status(ErrorCode::kEncoding);
-  }
-  if constexpr (std::floating_point<T>) {
-    if (!std::isfinite(value)) {
+  if constexpr (std::floating_point<T> &&
+                !requires(const char* first, const char* last, T& value) {
+                  std::from_chars(first, last, value);
+                }) {
+    if constexpr (std::same_as<T, float>) {
+      return ParseFiniteFloat(token);
+    } else {
+      return ParseFiniteDouble(token);
+    }
+  } else {
+    if (token.front() == '+') {
+      token.remove_prefix(1);
+    }
+    // Character integer aliases are missing from some from_chars overload sets.
+    // A checked full-width integer avoids any real-type intermediate/narrowing.
+    using Parsed = std::conditional_t<
+        std::integral<T>,
+        std::conditional_t<std::is_signed_v<T>, std::int64_t, std::uint64_t>,
+        T>;
+    Parsed value{};
+    const auto result =
+        std::from_chars(token.data(), token.data() + token.size(), value);
+    if (result.ec == std::errc::result_out_of_range) {
       return Status(ErrorCode::kOverflow);
     }
-  } else if (value < static_cast<Parsed>(std::numeric_limits<T>::min()) ||
-             value > static_cast<Parsed>(std::numeric_limits<T>::max())) {
-    return Status(ErrorCode::kOverflow);
+    if (result.ec != std::errc{} || result.ptr != token.data() + token.size()) {
+      return Status(ErrorCode::kEncoding);
+    }
+    if constexpr (std::floating_point<T>) {
+      if (!std::isfinite(value)) {
+        return Status(ErrorCode::kOverflow);
+      }
+    } else if (value < static_cast<Parsed>(std::numeric_limits<T>::min()) ||
+               value > static_cast<Parsed>(std::numeric_limits<T>::max())) {
+      return Status(ErrorCode::kOverflow);
+    }
+    return static_cast<T>(value);
   }
-  return static_cast<T>(value);
 }
 
 template <typename T>
