@@ -125,6 +125,44 @@ foreach(_example IN ITEMS
   endforeach()
 endforeach()
 
+# Independent wire checks are portable and run for both static/shared installs.
+set(_wire_source "${WORK_DIR}/copied binary interop")
+set(_wire_tools "${WORK_DIR}/copied binary tools")
+file(COPY "${CMAKE_CURRENT_LIST_DIR}/../array_io/binary_interop/"
+  DESTINATION "${_wire_source}")
+file(COPY
+  "${CMAKE_CURRENT_LIST_DIR}/../../tools/array_io/check_binary_interop.py"
+  "${CMAKE_CURRENT_LIST_DIR}/../../tools/array_io/prepare_file_close_cases.py"
+  "${CMAKE_CURRENT_LIST_DIR}/../../tools/array_io/reference_codec.py"
+  DESTINATION "${_wire_tools}")
+foreach(_component IN ITEMS dense sparse)
+  set(_wire_build "${WORK_DIR}/${_component} binary interop build")
+  _run("${_component} independent binary configure" "${CMAKE_COMMAND}"
+    -S "${_wire_source}" -B "${_wire_build}" ${_generator_arguments}
+    "-DASCCpp_DIR:PATH=${ASCCPP_PACKAGE_DIR}"
+    "-DCMAKE_CXX_COMPILER:FILEPATH=${CXX_COMPILER}"
+    "-DCMAKE_BUILD_TYPE:STRING=${CONFIG}"
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON"
+    "-DASC_BINARY_COMPONENT:STRING=${_component}"
+    "-DASC_BINARY_TOOLS:PATH=${_wire_tools}"
+    "-DCMAKE_FIND_USE_PACKAGE_REGISTRY:BOOL=OFF"
+    "-DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY:BOOL=OFF")
+  _run("${_component} independent binary build" "${CMAKE_COMMAND}"
+    --build "${_wire_build}" --config "${CONFIG}" --parallel 2)
+  _runtime("${_component} independent binary runtime" "${_wire_build}")
+  file(GLOB_RECURSE _wire_dependencies "${_wire_build}/*.o.d")
+  get_filename_component(_checkout "${EXAMPLES_SOURCE_DIR}" DIRECTORY)
+  foreach(_dependency IN LISTS _wire_dependencies)
+    file(READ "${_dependency}" _contents)
+    foreach(_forbidden IN ITEMS "${_checkout}/include" "${_checkout}/src")
+      string(FIND "${_contents}" "${_forbidden}" _position)
+      if(NOT _position EQUAL -1)
+        message(FATAL_ERROR "Independent binary consumer used checkout headers.")
+      endif()
+    endforeach()
+  endforeach()
+endforeach()
+
 if(ASC_FILE_CLOSE_ENABLED)
   set(_close_source "${WORK_DIR}/copied cleanup tests")
   file(COPY "${CMAKE_CURRENT_LIST_DIR}/../array_io/file_close/"

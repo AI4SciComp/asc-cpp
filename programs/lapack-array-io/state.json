@@ -1026,8 +1026,8 @@
       "current_preserved_candidate_state": "bounded_acceptance_audited_not_registered_not_fully_verified"
     }
   },
-  "active_task": "A3.maintain_independent_binary_readback",
-  "next_action": "Integrate the tested independent binary readback into the maintained installed harness, preserving all 60 independent fixtures and exact structure/value comparisons. Then execute the fresh-scratch driver in next_command; do not replay its completed predecessors.",
+  "active_task": "W2.normalize_native_rows",
+  "next_action": "Import the normalized native evidence already accepted by the existing validator, bind offline artifacts and update the changed redistribution packet material; retain zero Reference credit.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2113,7 +2113,7 @@
       "completion_audit_sha256": "247c762b54b74c78e2aa5da44563e81585a68aa4022ffa6e786d6a800777ea9f"
     }
   ],
-  "next_task": "A3.maintain_independent_binary_readback",
+  "next_task": "W2.normalize_native_rows",
   "documentation_verification": {
     "state": "passed",
     "scope": "This six-file summary followup: local Markdown links, JSON/slot/contract identity checks, whitespace and complete unchanged-input bridge. Whole candidate03 CI is not attributed to this later tree.",
@@ -2315,7 +2315,43 @@
       "local": "GNU11 Debug/shared Werror 293/293, Clang19 ASan/UBSan Werror 246/246, strict changed TUs and formatting pass; package/docs/header/ABI gates pass at their recorded scopes",
       "historical_input_bridge": "candidate02-03-bridge.json: only three private test files and two program records differ; production/header/provider/workflow/ABI/A1 inputs unchanged"
     },
-    "owner_approval": false
+    "owner_approval": false,
+    "remaining_work": {
+      "W1": {
+        "classification": "missing maintained test",
+        "requirement": "P03.invalid_wire and installed.dense/sparse; array-binary-v1.md",
+        "existing": "independent-wire-02 and independent-readback-02, 60 shared profiles in two directions",
+        "action": "Maintain and execute both directions of the existing60 independent binary fixture profiles, with direct public-view component-bit and structure observations; then native per-row evidence validation.",
+        "state": "recorded_scope_passed",
+        "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/w1-acceptance-01.json"
+      },
+      "W2": {
+        "classification": "evidence mapping/validation",
+        "requirement": "20 existing native rows,112 modes,1120 class slots; native-report-alias-acceptance.json",
+        "existing": "native-row-gates-final-03.json and executed native7/platform evidence; original40 alias slots closed",
+        "action": "Normalize artifacts and run actual coverage validator; identify exact missing obligations for nonverified rows",
+        "state": "external_normalized_validator_passed_pending_ledger_import"
+      },
+      "W3": {
+        "classification": "missing maintained test",
+        "requirement": "P02.dense.ranks/sparse.storage/scalar.options and frozen text/MM precision policies",
+        "existing": "printing-load-04 and existing scalar/locale fixtures",
+        "action": "Maintain 24 compressed and288 higher-rank load diagnostics; close finite precision/locale boundary review",
+        "state": "pending"
+      },
+      "W4": {
+        "classification": "missing execution/platform evidence",
+        "requirement": "files.cleanup and frozen primary/cleanup precedence",
+        "existing": "62 Linux/static nonempty-rank2 cleanup cases",
+        "action": "Portable production-path boundary seam and combined primary/cleanup tests; execute required static/shared platforms",
+        "state": "pending"
+      },
+      "owner": {
+        "classification": "owner decision",
+        "state": "pending",
+        "action": "Exact unchanged redistribution packet approval/amendment; separate from native/I/O implementation"
+      }
+    }
   },
   "historical_last_completed_stabilization": {
     "base_commit": "46412183b2ae86101b2361c52376a8db8efff264",

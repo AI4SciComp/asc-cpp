@@ -127,10 +127,12 @@
         "asc_cpp.dense.io_test",
         "asc_cpp.sparse.io_test",
         "asc_cpp.dense.io_fuzz_test",
-        "asc_cpp.sparse.io_fuzz_test"
+        "asc_cpp.sparse.io_fuzz_test",
+        "asc_cpp.array_io.binary_interop.dense",
+        "asc_cpp.array_io.binary_interop.sparse"
       ],
       "status": "tested_subset_pending_acceptance",
-      "evidence_or_open": "All60 installed C++ binary outputs independently match Python byte encodings; C++ installed readback of60 independently encoded inputs preserves exact values and structure. Nonempty rank2/all12 scalar codes/five storage-layout cases; reverse-readback source remains external pending maintained registration. Other malformed/overflow/corruption fixtures retain current executed CTest evidence.",
+      "evidence_or_open": "Maintained installed interop passes60 original profiles in both directions plus20 quiet-NaN/infinity profiles. ASC writer output matches independent bytes/decoder; ASC reader public view bits/structure are observed without an ASC formatter. Three malformed inputs per profile preserve destination. Local GNU14/static executes; final candidate platform replay pending.",
       "candidate_replay": "hosted-03/acceptance.json and local final-checkpoint-03/manifest.json; mapped tests pass at their actual configured scopes"
     },
     {
@@ -310,7 +312,7 @@
     }
   ],
   "remaining_cells": [
-    "Maintain the executed independent all12-scalar/storage binary readback and comparison in the installed harness",
+    "Independent binary directions are now maintained and locally executed; include their new source/test inputs in the final platform candidate replay.",
     "Maintain/review the extended compiler-load diagnostic; close remaining precision/locale boundary equivalence requirements",
     "File-helper primary read/write plus cleanup error cases and portable shared/Windows/macOS failure injection",
     "Consolidated per-row native and I/O artifact/evidence acceptance review; no package promotion from a tested subset",
