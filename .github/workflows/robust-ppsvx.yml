@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   linux-static:
-    name: Robust PPSVX and PT / GNU 11 / static / integer ${{ matrix.bits }}
+    name: Robust PPSVX, PT and mixed solves / GNU 11 / static / integer ${{ matrix.bits }}
     runs-on: ubuntu-22.04
     timeout-minutes: 45
     strategy:
@@ -59,7 +59,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
-            -R 'robust_ppsvx|positive_tridiagonal|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|dense_lapack.package_integration' \
             > "$RUNNER_TEMP/asc-selected.json"
           python3 - "$RUNNER_TEMP/asc-selected.json" <<'PY'
           import json
@@ -72,12 +72,16 @@ jobs:
                       for mode in ("", "required_math_", "fault_")}
           required |= {prefix + name for name in
                        ("native_comparison", "observation", "public_example")}
+          mixed = "asc_cpp.dense_lapack.mixed_general."
+          required |= {mixed + mode + scalar for scalar in "dz"
+                       for mode in ("", "required_math_", "fault_")}
+          required |= {mixed + name for name in ("observation", "public_example")}
           missing = required - selected
           if missing:
-              raise SystemExit("Missing configured PT tests: " + str(sorted(missing)))
+              raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
           PY
           ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
-            -R 'robust_ppsvx|positive_tridiagonal|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|dense_lapack.package_integration' \
             --output-junit "$RUNNER_TEMP/asc-tests.xml" \
             2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
       - name: Audit JUnit outcomes even when numerical gates fail

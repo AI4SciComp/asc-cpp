@@ -10,19 +10,30 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 358 partial scalar routines.
-The other 1,755 required
+routes below bring the development mapping to 360 partial scalar routines.
+The other 1,753 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_mixed_general.h` adds actual `Dsgesv` and `Zcgesv`, with explicit
+lower-precision scratch and separate ITER/fallback statistics. A/B/X layouts are
+independent; B stays immutable, X stages without reading old outputs, and working
+fallback factors can be reused through the existing LU APIs. The provider's
+prescribed fallback is part of this explicitly selected mixed driver. It changes
+no default provider or algorithm. Six actual-ABI Debug/Release/ASC-only sanitizer
+profiles pass all eight mixed tests; TSan and relocated public consumers pass
+both ABIs. See the [installed example](../examples/mixed_general/README.md).
+Full normalized Reference/platform acceptance and separate PT/PPSVX mathematical
+requirements remain incomplete.
 
 `lapack_positive_tridiagonal.h` adds S/D/C/Z `Pttrf` and `Pttrs` with
 real D, real/complex E, explicit RHS packing, nominal borrowed factors and a
 move-only host-resource owner. Lower factors represent L D L^H; an owned
 orientation conversion conjugates complex E to represent U^H D U. Factors
 and plans may be reused with independent RHS/workspace/reports. See the
-[PT review](../programs/lapack-array-io/positive-tridiagonal-review.md) and
+[PT review](https://github.com/AI4SciComp/asc-cpp/blob/fb8c86fb390d88065d9f2b6d823a64cf9680c19f/programs/lapack-array-io/positive-tridiagonal-review.md) and
 [installed example](../examples/positive_tridiagonal/README.md).
 
 Six actual-ABI Debug/Release/ASC-only sanitizer profiles pass ordinary,

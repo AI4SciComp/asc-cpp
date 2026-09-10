@@ -45,6 +45,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_cholesky_packed_equilibration.h
   include/asc/dense/providers/lapack_cholesky_packed_condition.h
   include/asc/dense/providers/lapack_cholesky_packed_refinement.h
+  include/asc/dense/providers/lapack_mixed_general.h
   include/asc/dense/providers/lapack_positive_tridiagonal.h
   include/asc/dense/providers/lapack_cholesky_packed_robust.h
   include/asc/dense/providers/lapack_qr.h
@@ -172,6 +173,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_cholesky_packed_condition.cc
   src/dense/lapack/reference_cholesky_packed_refinement.cc
   src/dense/lapack/robust_cholesky_packed_expert.cc
+  src/dense/lapack/reference_mixed_general.cc
   src/dense/lapack/reference_positive_tridiagonal.cc
   src/dense/lapack/reference_qr.cc
   src/dense/lapack/reference_cholesky_condition.cc

@@ -123,6 +123,7 @@ set(_lapack_entries
   "dense_lapack|asc/dense/providers/lapack_cholesky_packed_equilibration.h"
   "dense_lapack|asc/dense/providers/lapack_cholesky_packed_condition.h"
   "dense_lapack|asc/dense/providers/lapack_cholesky_packed_refinement.h"
+  "dense_lapack|asc/dense/providers/lapack_mixed_general.h"
   "dense_lapack|asc/dense/providers/lapack_positive_tridiagonal.h"
   "dense_lapack|asc/dense/providers/lapack_cholesky_packed_robust.h"
   "dense_lapack|asc/dense/providers/lapack_qr.h"
@@ -174,9 +175,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 128)
+if(NOT _all_header_count EQUAL 129)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 128 headers; got "
+    "Independent source-header oracle must contain 129 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -188,7 +189,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 128-header oracle.\n"
+    "Source public-header tree differs from the frozen 129-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

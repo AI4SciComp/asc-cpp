@@ -168,6 +168,7 @@ capabilities:
       - "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h"
       - "include/asc/dense/providers/lapack_lu_band_expert.h"
       - "include/asc/dense/providers/lapack_lu_band_refinement.h"
+      - "include/asc/dense/providers/lapack_mixed_general.h"
       - "include/asc/dense/providers/lapack_positive_tridiagonal.h"
       - "include/asc/dense/providers/lapack_tridiagonal.h"
       - "include/asc/dense/providers/lapack_tridiagonal_condition.h"

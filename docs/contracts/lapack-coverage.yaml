@@ -57931,12 +57931,322 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active A/B/X/pivots, scratch and metadata checked disjoint. Output numeric values unread before native entry. B immutable; output estimates are not manufactured.",
+        "asc_operation": "asc::Dsgesv",
+        "descriptors": "Square mutable A, immutable full B, staged full output X with independent layouts and contiguous one-based ASC pivots.",
+        "documentation": "programs/lapack-array-io/mixed-general-review.md",
+        "mode_cases": [
+          {
+            "id": "column_major_column_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "6bf8586649f35850806b2992cbbcc1df229424100402583f74a13b533f46bb7d",
+              "declaration": "SUBROUTINE DSGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsgesv.f",
+              "sha256": "81b65327539c43063fe2edabb1ff315cd50d5e665393cd7768318ed5b36ee93e"
+            }
+          },
+          {
+            "id": "column_major_column_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "6bf8586649f35850806b2992cbbcc1df229424100402583f74a13b533f46bb7d",
+              "declaration": "SUBROUTINE DSGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsgesv.f",
+              "sha256": "81b65327539c43063fe2edabb1ff315cd50d5e665393cd7768318ed5b36ee93e"
+            }
+          },
+          {
+            "id": "column_major_row_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "6bf8586649f35850806b2992cbbcc1df229424100402583f74a13b533f46bb7d",
+              "declaration": "SUBROUTINE DSGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsgesv.f",
+              "sha256": "81b65327539c43063fe2edabb1ff315cd50d5e665393cd7768318ed5b36ee93e"
+            }
+          },
+          {
+            "id": "column_major_row_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "6bf8586649f35850806b2992cbbcc1df229424100402583f74a13b533f46bb7d",
+              "declaration": "SUBROUTINE DSGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsgesv.f",
+              "sha256": "81b65327539c43063fe2edabb1ff315cd50d5e665393cd7768318ed5b36ee93e"
+            }
+          },
+          {
+            "id": "row_major_column_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "6bf8586649f35850806b2992cbbcc1df229424100402583f74a13b533f46bb7d",
+              "declaration": "SUBROUTINE DSGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsgesv.f",
+              "sha256": "81b65327539c43063fe2edabb1ff315cd50d5e665393cd7768318ed5b36ee93e"
+            }
+          },
+          {
+            "id": "row_major_column_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "6bf8586649f35850806b2992cbbcc1df229424100402583f74a13b533f46bb7d",
+              "declaration": "SUBROUTINE DSGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsgesv.f",
+              "sha256": "81b65327539c43063fe2edabb1ff315cd50d5e665393cd7768318ed5b36ee93e"
+            }
+          },
+          {
+            "id": "row_major_row_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "6bf8586649f35850806b2992cbbcc1df229424100402583f74a13b533f46bb7d",
+              "declaration": "SUBROUTINE DSGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsgesv.f",
+              "sha256": "81b65327539c43063fe2edabb1ff315cd50d5e665393cd7768318ed5b36ee93e"
+            }
+          },
+          {
+            "id": "row_major_row_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "6bf8586649f35850806b2992cbbcc1df229424100402583f74a13b533f46bb7d",
+              "declaration": "SUBROUTINE DSGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsgesv.f",
+              "sha256": "81b65327539c43063fe2edabb1ff315cd50d5e665393cd7768318ed5b36ee93e"
+            }
+          }
+        ],
+        "mutation": "Native mixed success preserves A; documented native fallback publishes working LU. X publishes only after valid INFO=0, ITER and pivots; singular/defect withholds caller X. Preflight preserves statistics and numeric outputs. Local N=0 has absent native diagnostics.",
+        "numerical_outcomes": "Exact INFO/ITER retained; explicit native fallback -1/-2/-3/-31, successful iterations 0..30. Singular fallback is numerical partial; nonfinite computed X remains visible as an accuracy warning, without clamping. ITER is not an independent forward/condition certificate.",
+        "pivots": "One-based native LU pivots validated and widened; lower or working precision exposed in separate statistics. Only complete working fallback certifies caller A as reusable LU.",
+        "scalar_signature": "double working, float lower",
+        "state": "reviewed",
+        "workspace": "Metadata-only query; explicit live working/lower/norm scalars, staged X plus row A/B conversion, raw native INTEGER storage. N>0 NRHS=0 retains norm work and one extra live inactive SX slot. No allocation."
       },
       "id": "lapack.dsgesv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/mixed_general/CMakeLists.txt",
+          "sha256": "91e9edaa8f1fd7c9b6116adef7115df37daf4491485cad3900bdd7cff1f616fe"
+        },
+        {
+          "path": "examples/mixed_general/README.md",
+          "sha256": "8fba1d7a2d2695456d01972465c197c9ccb2e180a8b13c5480439829735ab8b3"
+        },
+        {
+          "path": "examples/mixed_general/main.cc",
+          "sha256": "a7283125087fe73ed915ede9985b73cda2478a40c0119edfe03c239ae45dcb38"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_mixed_general.h",
+          "sha256": "e85ecb92357b09e8c02fc688051d1a18e252a0e01bf9df01bd79c1e19af8201e"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_counts.h",
+          "sha256": "834a371b8b637f787a8dcb1c08526370f564ab408f35e4cbbf285a9c5fa8a777"
+        },
+        {
+          "path": "src/dense/lapack/internal_mixed_general_counts.h",
+          "sha256": "cc02af5fea6a648ea4dead22acfe4954f3067a8433a555418d5aaf6d920bf06b"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_mixed_general.cc",
+          "sha256": "a9e9d6ab643862677cad967c66b7afbdeb60261bd79584550f943f0c60796ffa"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_fault_test.cc",
+          "sha256": "21e9e704a1cc8793fa92af20c84d51b26973946bcfc50364f3b626ecc42e367e"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_faults.cc",
+          "sha256": "e29d2f2d7a61b5d01a99a18bec1c89356b3eb76c3d21de28d5839da20c320d70"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_faults.h",
+          "sha256": "ed535c72651682af5b4fd962c302ff82578009154b2e54e219b0b457a3ac870e"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_observation_test.cc",
+          "sha256": "5ed19f3409cf066a8d2469f59fc77736841bdda825b44c3f3dcfacf578453b50"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_test.cc",
+          "sha256": "de680b255ce41cbd1dada8e4a34ea446e9f7cece6eb2b14b89a56fc00398052f"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_test_support.h",
+          "sha256": "3e6ee44c94c148252adfa6855bddc6e28c33cb9e2d54f08211dca6d057d01403"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_tests.cmake",
+          "sha256": "e7e4cdb22dad5af56205b169d977d41942fc0194ee87c77e9d8217f51c58f51d"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -57944,7 +58254,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual mixed native driver, explicit low workspace and ITER/fallback semantics, independent layouts and public working-factor reuse. Eight maintained tests pass in six LP64/global ILP64 Debug/Release/ASC-only sanitizer profiles; real-provider TSan and relocated public consumers pass both ABIs. Normalized whole-profile/platform/catalogue acceptance remains incomplete; this does not close Reference PPSVX/PT mathematical gates.",
+          "review": "programs/lapack-array-io/mixed-general-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -97478,12 +97790,322 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active A/B/X/pivots, scratch and metadata checked disjoint. Output numeric values unread before native entry. B immutable; output estimates are not manufactured.",
+        "asc_operation": "asc::Zcgesv",
+        "descriptors": "Square mutable A, immutable full B, staged full output X with independent layouts and contiguous one-based ASC pivots.",
+        "documentation": "programs/lapack-array-io/mixed-general-review.md",
+        "mode_cases": [
+          {
+            "id": "column_major_column_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "88e565042eacac7b46875e021232051aafdb6bbae788f233a93d99ae7b35082a",
+              "declaration": "SUBROUTINE ZCGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcgesv.f",
+              "sha256": "9cb281e01b1d14de7e0254587a335b8a32796feca324ff539f29bdebb071dc1f"
+            }
+          },
+          {
+            "id": "column_major_column_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "88e565042eacac7b46875e021232051aafdb6bbae788f233a93d99ae7b35082a",
+              "declaration": "SUBROUTINE ZCGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcgesv.f",
+              "sha256": "9cb281e01b1d14de7e0254587a335b8a32796feca324ff539f29bdebb071dc1f"
+            }
+          },
+          {
+            "id": "column_major_row_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "88e565042eacac7b46875e021232051aafdb6bbae788f233a93d99ae7b35082a",
+              "declaration": "SUBROUTINE ZCGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcgesv.f",
+              "sha256": "9cb281e01b1d14de7e0254587a335b8a32796feca324ff539f29bdebb071dc1f"
+            }
+          },
+          {
+            "id": "column_major_row_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "88e565042eacac7b46875e021232051aafdb6bbae788f233a93d99ae7b35082a",
+              "declaration": "SUBROUTINE ZCGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcgesv.f",
+              "sha256": "9cb281e01b1d14de7e0254587a335b8a32796feca324ff539f29bdebb071dc1f"
+            }
+          },
+          {
+            "id": "row_major_column_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "88e565042eacac7b46875e021232051aafdb6bbae788f233a93d99ae7b35082a",
+              "declaration": "SUBROUTINE ZCGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcgesv.f",
+              "sha256": "9cb281e01b1d14de7e0254587a335b8a32796feca324ff539f29bdebb071dc1f"
+            }
+          },
+          {
+            "id": "row_major_column_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "88e565042eacac7b46875e021232051aafdb6bbae788f233a93d99ae7b35082a",
+              "declaration": "SUBROUTINE ZCGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcgesv.f",
+              "sha256": "9cb281e01b1d14de7e0254587a335b8a32796feca324ff539f29bdebb071dc1f"
+            }
+          },
+          {
+            "id": "row_major_row_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "88e565042eacac7b46875e021232051aafdb6bbae788f233a93d99ae7b35082a",
+              "declaration": "SUBROUTINE ZCGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcgesv.f",
+              "sha256": "9cb281e01b1d14de7e0254587a335b8a32796feca324ff539f29bdebb071dc1f"
+            }
+          },
+          {
+            "id": "row_major_row_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_pivots",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "88e565042eacac7b46875e021232051aafdb6bbae788f233a93d99ae7b35082a",
+              "declaration": "SUBROUTINE ZCGESV( N, NRHS, A, LDA, IPIV, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcgesv.f",
+              "sha256": "9cb281e01b1d14de7e0254587a335b8a32796feca324ff539f29bdebb071dc1f"
+            }
+          }
+        ],
+        "mutation": "Native mixed success preserves A; documented native fallback publishes working LU. X publishes only after valid INFO=0, ITER and pivots; singular/defect withholds caller X. Preflight preserves statistics and numeric outputs. Local N=0 has absent native diagnostics.",
+        "numerical_outcomes": "Exact INFO/ITER retained; explicit native fallback -1/-2/-3/-31, successful iterations 0..30. Singular fallback is numerical partial; nonfinite computed X remains visible as an accuracy warning, without clamping. ITER is not an independent forward/condition certificate.",
+        "pivots": "One-based native LU pivots validated and widened; lower or working precision exposed in separate statistics. Only complete working fallback certifies caller A as reusable LU.",
+        "scalar_signature": "complex<double> working, complex<float> lower, double norm work",
+        "state": "reviewed",
+        "workspace": "Metadata-only query; explicit live working/lower/norm scalars, staged X plus row A/B conversion, raw native INTEGER storage. N>0 NRHS=0 retains norm work and one extra live inactive SX slot. No allocation."
       },
       "id": "lapack.zcgesv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/mixed_general/CMakeLists.txt",
+          "sha256": "91e9edaa8f1fd7c9b6116adef7115df37daf4491485cad3900bdd7cff1f616fe"
+        },
+        {
+          "path": "examples/mixed_general/README.md",
+          "sha256": "8fba1d7a2d2695456d01972465c197c9ccb2e180a8b13c5480439829735ab8b3"
+        },
+        {
+          "path": "examples/mixed_general/main.cc",
+          "sha256": "a7283125087fe73ed915ede9985b73cda2478a40c0119edfe03c239ae45dcb38"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_mixed_general.h",
+          "sha256": "e85ecb92357b09e8c02fc688051d1a18e252a0e01bf9df01bd79c1e19af8201e"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_lu_counts.h",
+          "sha256": "834a371b8b637f787a8dcb1c08526370f564ab408f35e4cbbf285a9c5fa8a777"
+        },
+        {
+          "path": "src/dense/lapack/internal_mixed_general_counts.h",
+          "sha256": "cc02af5fea6a648ea4dead22acfe4954f3067a8433a555418d5aaf6d920bf06b"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_mixed_general.cc",
+          "sha256": "a9e9d6ab643862677cad967c66b7afbdeb60261bd79584550f943f0c60796ffa"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_fault_test.cc",
+          "sha256": "21e9e704a1cc8793fa92af20c84d51b26973946bcfc50364f3b626ecc42e367e"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_faults.cc",
+          "sha256": "e29d2f2d7a61b5d01a99a18bec1c89356b3eb76c3d21de28d5839da20c320d70"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_faults.h",
+          "sha256": "ed535c72651682af5b4fd962c302ff82578009154b2e54e219b0b457a3ac870e"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_observation_test.cc",
+          "sha256": "5ed19f3409cf066a8d2469f59fc77736841bdda825b44c3f3dcfacf578453b50"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_test.cc",
+          "sha256": "de680b255ce41cbd1dada8e4a34ea446e9f7cece6eb2b14b89a56fc00398052f"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_test_support.h",
+          "sha256": "3e6ee44c94c148252adfa6855bddc6e28c33cb9e2d54f08211dca6d057d01403"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_tests.cmake",
+          "sha256": "e7e4cdb22dad5af56205b169d977d41942fc0194ee87c77e9d8217f51c58f51d"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -97491,7 +98113,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual mixed native driver, explicit low workspace and ITER/fallback semantics, independent layouts and public working-factor reuse. Eight maintained tests pass in six LP64/global ILP64 Debug/Release/ASC-only sanitizer profiles; real-provider TSan and relocated public consumers pass both ABIs. Normalized whole-profile/platform/catalogue acceptance remains incomplete; this does not close Reference PPSVX/PT mathematical gates.",
+          "review": "programs/lapack-array-io/mixed-general-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [

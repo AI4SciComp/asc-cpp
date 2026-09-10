@@ -14,15 +14,11 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "1e15d843d8968f659c393af85e6bdcf99af3345a",
+  "last_implementation_commit": "fb8c86fb390d88065d9f2b6d823a64cf9680c19f",
   "worktree_diff_identity": {
-    "state": "frozen_product_pushed; final_programme_records_separate",
-    "implementation_commit": "1e15d843d8968f659c393af85e6bdcf99af3345a",
-    "implementation_tree": "ca291bf16f76ef78144f91caffc97bb84da442fa",
-    "amendment_sha256": "a019780c300f373d97f94ed0005ca8d7385d6eb3421e2a57b5a8283583b04f5c",
-    "bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/metadata-correction-input-bridge.json",
-    "final_summary_bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/final-summary-input-bridge.json",
-    "scope": "Final record changes are restricted to programme summaries/state. Product/header/test/build/export/compiler/provider inputs remain those of the hosted-tested product."
+    "state": "mixed_general_product_ready_to_freeze",
+    "scope": "Two mixed general routes plus maintained tests, exports, example, documentation and dependency/backlog tools; final source/tree recorded externally.",
+    "freeze": "master-continuation-20260910-01/mixed-frozen-product-01"
   },
   "packages": {
     "P00": {
@@ -1191,7 +1187,7 @@
       "executed": "Both actual ABIs: final Debug/Release/ASC sanitizer each 13/17 pass with four required math failures; ASC TSan4/4; relocated public consumer and provider-free isolation pass; strict tidy and Doxygen pass."
     },
     "P09.mixed_general_solve": {
-      "state": "in_progress",
+      "state": "integrated_partial",
       "owner": "integration",
       "upstream_rows": [
         "lapack.dsgesv",
@@ -1201,19 +1197,71 @@
         "P01.workspace_report_pivots",
         "P04.provider_component"
       ],
-      "source_api_files": [],
-      "next_action": "Implement checked DSGESV/ZCGESV using existing mixed scalar identities; explicit lower-precision scratch, staged output, raw ITER/fallback semantics. Both actual providers export and execute the routines; no other family wrapper prerequisite is missing.",
+      "source_api_files": [
+        "include/asc/dense/providers/lapack_mixed_general.h",
+        "src/dense/lapack/reference_mixed_general.cc",
+        "tests/dense_lapack/mixed_general_tests.cmake",
+        "examples/mixed_general/main.cc"
+      ],
+      "next_action": "Preserve passing mixed-general engineering scope; normalize full per-row profile evidence and wider admission alongside the ready queue. Continue actual DSPOSV/ZCPOSV now.",
       "required_modes": "successful low-precision refinement, prescribed fallback, conversion range, singularity, independent X/report, both layouts and real ABIs",
       "reuse_candidates": "existing LU integer/layout/report helpers; no current/sibling implementation found",
-      "numerical_result": "not_executed",
+      "numerical_result": "Eight selected tests pass in six actual-ABI Debug/Release/ASC-only sanitizer profiles. Independent scalar extreme, ordinary residual/solution, real native fallback, fault and calibrated output observation gates pass.",
       "profile_admission": "existing GNU11 Linux static LP64/global ILP64",
       "owner_decision": "ordinary development authorized",
       "integrated_revision": null,
-      "prerequisite_evidence": "master-continuation-20260910-01/p09-prerequisite-01 and p09-prerequisite-02"
+      "prerequisite_evidence": "master-continuation-20260910-01/p09-prerequisite-01 and p09-prerequisite-02",
+      "evidence": [
+        "programs/lapack-array-io/mixed-general-review.md",
+        "master-continuation-20260910-01/mixed-debug-lp64-06",
+        "master-continuation-20260910-01/mixed-{debug,release,sanitizer}-{abi}-02",
+        "master-continuation-20260910-01/mixed-tsan-{abi}-01",
+        "master-continuation-20260910-01/install-mixed-{abi}-01",
+        "master-continuation-20260910-01/mixed-integration-{abi}-01"
+      ],
+      "integration_identity_note": "Root product candidate; exact commit/tree is frozen in the external synchronization record after review, without a self-SHA commit loop."
+    },
+    "P09.mixed_positive_solve": {
+      "state": "in_progress",
+      "owner": "integration",
+      "upstream_rows": [
+        "lapack.dsposv",
+        "lapack.zcposv"
+      ],
+      "dependencies": [
+        "P01.workspace_report_pivots",
+        "P04.provider_component"
+      ],
+      "source_api_files": [],
+      "next_action": "Finish pinned ZCPOSV source/ABI review; implement checked DSPOSV/ZCPOSV with shared mixed statistics, selected-triangle packing and explicit low/working workspace. DSPOSV source review completed; no additional ASC wrapper prerequisite is required.",
+      "required_modes": "both triangles, independent A/B/X layouts, native refinement/fallback, lower precision loss of definiteness, working nonpositive failure, factor reuse, actual ABIs",
+      "reuse_candidates": "mixed_general explicit output staging/statistics; existing Cholesky triangle and count contracts",
+      "numerical_result": "not_executed",
+      "profile_admission": "prepared GNU/Linux/static actual LP64 and global ILP64 provider context",
+      "owner_decision": "ordinary checked development authorized",
+      "integrated_revision": null
+    },
+    "P09.exhaustive_catalogue_closure": {
+      "state": "in_progress",
+      "owner": "integration",
+      "backlog": "programs/lapack-array-io/remaining-reference-backlog.json",
+      "backlog_sha256": "b4d17c79c6c015edcb9d361fe6e54324a736c2d1a30c90cb7413694b7b674bb9",
+      "scope": "All 2113 required rows occur exactly once in 568 finite family tasks, with source/API pointers, modes, reuse candidates, route status and next action; unreviewed modes remain explicit. No generated task or declaration earns implementation/evidence credit.",
+      "next_action": "Execute the dependency-ready family queue; normalize per-row historical mode/profile evidence without rerunning unchanged numerical failures."
+    },
+    "P09.extra_precision_provider_decision": {
+      "state": "blocked",
+      "owner": "integration",
+      "upstream_row_count": 130,
+      "dependency_closure": "programs/lapack-array-io/xblas-dependency-closure.json",
+      "closure_sha256": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640",
+      "scope": "Exact selected-source closure complete:54 rows reach28 XBLAS helpers;76 have only existing provider boundary dependencies. All130 source definitions exist but USE_XBLAS=OFF excludes them in both actual providers. Candidate XBLAS archive/28bridges/license inspected, never built or adopted.",
+      "blocker": "Existing providers cannot be changed under current scope; separate source-selection/extra-precision profile and C-int versus true-ILP64 bridge decision required. Exact candidate/evaluation requirements in owner-decisions.md.",
+      "next_action": "Resume only on bound owner decision or a concrete newly approved equivalent; continue independent ready LAPACK work."
     }
   },
-  "active_task": "P09.mixed_general_solve",
-  "next_action": "Integrate and test the staged checked DSGESV/ZCGESV implementation, then continue the dependency-ready master queue. PT engineering is integrated locally with a preserved one-cause numerical blocker; branch commit/push evidence is recorded externally.",
+  "active_task": "P09.mixed_positive_solve",
+  "next_action": "Continue actual DSPOSV/ZCPOSV source/ABI review and checked implementation, then the inventory-backed ready queue and scoped P11 checks; do not stop at the passing mixed-general slice.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1653,20 +1701,20 @@
   },
   "counts": {
     "required_denominator": 2113,
-    "specification_mapped": 28,
+    "specification_mapped": 30,
     "callable_reference": 0,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
-    "reference_not_started_in_ledger": 1755,
-    "reference_in_progress_in_ledger": 358,
+    "reference_not_started_in_ledger": 1753,
+    "reference_in_progress_in_ledger": 360,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 0,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 358,
+    "registered_partial_reference_operations": 360,
     "unregistered_expert_operations_with_scoped_tests": 4,
-    "note": "Native20 retains accepted112 modes/1120 class slots via checked unchanged-input extension. Reference2113 required:358 partial registrations,1755 not started,zero strict complete/verified. PT adds eight partial rows and four required mathematical processes (48 assertions/eight scalar-input cases/one cause) in the affected selections; 78 historical root math failures remain separate. No fresh whole-root total is claimed. Four experimental robust PPSVX algorithms remain separate from Reference.",
+    "note": "Native20 retains accepted112 modes/1120 class slots via checked unchanged-input extension. Reference2113 required:360 partial registrations,1753 not started,zero strict complete/verified. PT adds eight partial rows and four required mathematical processes (48 assertions/eight scalar-input cases/one cause) in the affected selections; 78 historical root math failures remain separate. No fresh whole-root total is claimed. Four experimental robust PPSVX algorithms remain separate from Reference. Two mixed-general rows add passing bounded engineering scope, not strict Reference/platform completion.",
     "unregistered_packed_operations_with_scoped_tests": 4,
     "experimental_first_party_robust_ppsvx_algorithms": 4,
     "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24
@@ -1852,20 +1900,12 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "ppsvx-robust-integration-01",
-    "state": "PPSVX_ROBUST_INTEGRATED_EXPERIMENTAL_FULL_PROGRAM_INCOMPLETE",
-    "implementation_commit": "1e15d843d8968f659c393af85e6bdcf99af3345a",
-    "implementation_tree": "ca291bf16f76ef78144f91caffc97bb84da442fa",
-    "tested_head": "1e15d843d8968f659c393af85e6bdcf99af3345a",
-    "tested_merge": "a8f7e30560c873ceb4dbdf7d6e70324ff168dd92",
-    "tested_tree": "ca291bf16f76ef78144f91caffc97bb84da442fa",
-    "local_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/local-audit-01.json",
-    "local_audit_sha256": "78e3c0cdf9146a50ceabf09211a635e02c97a75248dc695165b0953c97f71b8e",
-    "hosted_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/hosted-audit-01.json",
-    "scope": "First-party S/D/C/Z robust PPSVX opt-in experimental Linux x86_64 GNU11.4 static actual LP64/global ILP64. Six local numerical/safety lanes, ASC TSan both ABIs, calibrated Clang supplemental observer, fresh relocated public consumers and hosted source checks passed. Reference numerical acceptance and wider provider platform admission remain incomplete.",
-    "reference_full_release": "Each original 957-test run:871 passed,78 genuine required Reference mathematical failures,8 metadata failures;14/14 metadata/package closure per ABI passes. Original full invocations remain failed.",
-    "reference_ppsvx_replay": "Each ABI:4 failing processes,176 failed assertions,44 unique scalar/mode/value cases,5 overlapping causes; ordered lines match candidate22.",
-    "native_subset_milestone": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE"
+    "candidate": "mixed-general-integration-01",
+    "scope": "Two actual mixed general routines, maintained tests/public installation, six actual-ABI numerical/safety lanes, two TSan/installed/package lanes. Full programme and wider platform acceptance remain incomplete.",
+    "source_records": "master-continuation-20260910-01/mixed-{mode}-{abi}-{attempt}/inputs.json and mixed-registration-01/result.json",
+    "state": "local_scoped_engineering_passed_full_program_incomplete",
+    "current_code_source": "root integration worktree; final commit/tree frozen in external synchronization record",
+    "final_checks": "master-continuation-20260910-01/mixed-final-record-checks-01 and mixed-documentation-02; all executed commands exit 0"
   },
   "last_completed_verification": {
     "candidate": "ppsvx-robust-integration-01",
@@ -2373,7 +2413,7 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.mixed_general_solve",
+  "next_task": "P09.mixed_positive_solve",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
@@ -2962,33 +3002,46 @@
     "one_active_writer": true,
     "pt_progress": "Six 13/17 affected profiles; both TSan4/4; installed public/base isolation pass; both full package tests pass; one source-list omission corrected and retested; current strict signature/format/coverage/Doxygen checks pass. Four required math processes/eight scalar-input cases/one provider cause remain failed.",
     "current_remote_read": {
-      "head": "9032f622752d5014c673f08bc0a14a9ca1612989",
+      "head": "fb8c86fb390d88065d9f2b6d823a64cf9680c19f",
       "draft": true,
       "comments": 0,
       "new_owner_approval": false,
-      "notice_decision": "pending unchanged packet; ordinary feature development remains authorized"
+      "notice_decision": "pending unchanged packet; ordinary feature development remains authorized",
+      "hosted": "PT provider selection 25/29 each ABI with exactly four ordinary math failures; CodeQL pass; CI documentation failure; current first-party link fix passes fresh local Doxygen."
     },
-    "p09_stage": "master-continuation-20260910-01/p09-stage (public header, counts, provider source drafted; not yet compiled/integrated). Both actual-ABI branch prerequisites executed.",
-    "remaining_actionable": "DSGESV/ZCGESV staged implementation/tests, complete inventory-backed ready queue and 130-definition closure, remaining P04-P09 and wider-platform/P11 work. These are not all external blockers.",
+    "p09_stage": "Superseded by maintained DSGESV/ZCGESV root implementation; six 8/8 profiles, both TSan/installed/package profiles pass.",
+    "remaining_actionable": "DSPOSV/ZCPOSV implementation, remaining inventory-backed P04-P09 queue, wider provider admission and P11 closure. XBLAS dependency closure is complete; adoption/source selection decisions are separate.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
-      "blocked_reference": 0,
-      "callable_native": 20,
+      "required_denominator": 2113,
+      "specification_mapped": 30,
       "callable_reference": 0,
-      "discovered": 3551,
-      "excluded": 1438,
+      "verified_reference": 0,
+      "callable_native": 20,
+      "verified_native": 20,
+      "reference_not_started_in_ledger": 1753,
+      "reference_in_progress_in_ledger": 360,
+      "reference_blocked_in_ledger": 0,
+      "incomplete_reference_contracts": 2113,
       "implemented_unverified_native": 0,
       "implemented_unverified_reference": 0,
-      "in_progress_reference": 358,
-      "incomplete_reference": 2113,
-      "mapped_contracts": 28,
-      "not_started_reference": 1755,
-      "profile_complete": false,
-      "required": 2113,
-      "verified_native": 20,
-      "verified_reference": 0
+      "registered_partial_reference_operations": 360,
+      "unregistered_expert_operations_with_scoped_tests": 4,
+      "note": "Native20 retains accepted112 modes/1120 class slots via checked unchanged-input extension. Reference2113 required:360 partial registrations,1753 not started,zero strict complete/verified. PT adds eight partial rows and four required mathematical processes (48 assertions/eight scalar-input cases/one cause) in the affected selections; 78 historical root math failures remain separate. No fresh whole-root total is claimed. Four experimental robust PPSVX algorithms remain separate from Reference. Two mixed-general rows add passing bounded engineering scope, not strict Reference/platform completion.",
+      "unregistered_packed_operations_with_scoped_tests": 4,
+      "experimental_first_party_robust_ppsvx_algorithms": 4,
+      "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24
     },
     "original_supplied_instruction_sha256": "98b9ad9665c2ff0aa75b94f80a5093b1db2a2164cc3c4c511f694044f9be862d",
     "instruction_normalization": "Four trailing Markdown hard-break spaces removed for repository whitespace policy; original untracked user instruction and external copy preserved."
+  },
+  "historical_worktree_diff_identity_before_mixed_integration": {
+    "state": "frozen_product_pushed; final_programme_records_separate",
+    "implementation_commit": "1e15d843d8968f659c393af85e6bdcf99af3345a",
+    "implementation_tree": "ca291bf16f76ef78144f91caffc97bb84da442fa",
+    "amendment_sha256": "a019780c300f373d97f94ed0005ca8d7385d6eb3421e2a57b5a8283583b04f5c",
+    "bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/metadata-correction-input-bridge.json",
+    "final_summary_bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/final-summary-input-bridge.json",
+    "scope": "Final record changes are restricted to programme summaries/state. Product/header/test/build/export/compiler/provider inputs remain those of the hosted-tested product."
   }
 }
