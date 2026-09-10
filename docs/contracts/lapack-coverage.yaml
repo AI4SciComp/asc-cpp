@@ -58192,7 +58192,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_mixed_general.h",
-          "sha256": "e85ecb92357b09e8c02fc688051d1a18e252a0e01bf9df01bd79c1e19af8201e"
+          "sha256": "f78596bab38089d06eb09fb1628f6fcf5bd36dad6d59941a867c554d25dd517d"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -58537,12 +58537,586 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active A/B/X, scratch and metadata checked disjoint. Output numeric values unread before native entry. B immutable; output estimates are not manufactured.",
+        "asc_operation": "asc::Dsposv",
+        "descriptors": "Square selected symmetric/Hermitian triangle of mutable A, immutable full B, staged output X; independent layouts. Imaginary diagonals are ignored inputs, normalized in explicit complex packing.",
+        "documentation": "programs/lapack-array-io/mixed-positive-review.md",
+        "mode_cases": [
+          {
+            "id": "upper_column_major_column_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "triangle": "upper",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "upper_column_major_column_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "triangle": "upper",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "upper_column_major_row_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "triangle": "upper",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "upper_column_major_row_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "triangle": "upper",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "upper_row_major_column_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "triangle": "upper",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "upper_row_major_column_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "triangle": "upper",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "upper_row_major_row_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "triangle": "upper",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "upper_row_major_row_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "triangle": "upper",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "lower_column_major_column_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "triangle": "lower",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "lower_column_major_column_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "triangle": "lower",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "lower_column_major_row_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "triangle": "lower",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "lower_column_major_row_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "triangle": "lower",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "lower_row_major_column_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "triangle": "lower",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "lower_row_major_column_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "triangle": "lower",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "lower_row_major_row_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "triangle": "lower",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          },
+          {
+            "id": "lower_row_major_row_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "triangle": "lower",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e824553c9ff722b09e5bf03b5b545b4f4980060968ee72f0096fa4516426a76d",
+              "declaration": "SUBROUTINE DSPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, ITER, INFO )",
+              "path": "SRC/dsposv.f",
+              "sha256": "6f25471dfec3d0703b4935ec1366e2485432919c072785557721474397e82518"
+            }
+          }
+        ],
+        "mutation": "Native mixed success preserves A; documented native fallback publishes selected working Cholesky. Nonpositive partial publication retains old imaginary diagonals only after native return. X publishes only after valid INFO=0, ITER; nonpositive/defect withholds caller X. Preflight preserves statistics and numeric outputs. Local N=0 has absent native diagnostics.",
+        "numerical_outcomes": "Exact INFO/ITER retained; explicit native fallback -1/-2/-3/-31, successful iterations 0..30. Nonpositive fallback is numerical partial; nonfinite computed X remains visible as an accuracy warning, without clamping. ITER is not an independent forward/condition certificate.",
+        "pivots": "No pivots. Selected precision is exposed in separate statistics. Only a complete working fallback certifies caller A as reusable Cholesky factors with the same triangle/provider.",
+        "scalar_signature": "double working, float lower",
+        "state": "reviewed",
+        "workspace": "Metadata-only query; explicit live working/lower/norm scalars, staged X plus selected row A/all complex A and row B conversion; no integer workspace. N>0 NRHS=0 retains norm work and one extra live inactive SX slot. No allocation."
       },
       "id": "lapack.dsposv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/mixed_positive/CMakeLists.txt",
+          "sha256": "11079567fa9d9d3196c25e99b91ec41d2f0adf5560386d9032bf34bed78ab82c"
+        },
+        {
+          "path": "examples/mixed_positive/README.md",
+          "sha256": "c2c7223b082560a028e1477fa732a2b6f6323863e7f22be4da8d8d0536a86987"
+        },
+        {
+          "path": "examples/mixed_positive/main.cc",
+          "sha256": "a0073de15224900c40abbdcfa0efcc618e9fda8926d0ae51850ba74a51705fe5"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_mixed_general.h",
+          "sha256": "f78596bab38089d06eb09fb1628f6fcf5bd36dad6d59941a867c554d25dd517d"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_mixed_positive.h",
+          "sha256": "1740ee2066ded3186271f8990dd58b57c034632785f96288931f492320760811"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_limits.h",
+          "sha256": "22d13baed3999f9dc94902532042552b4d6bf4daba98a5a2453caf685ed5b70f"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_mixed_positive_counts.h",
+          "sha256": "d101994d00da8335bb4156880cb3e65e03a5ce4423adfa0b753faec48dd7c4e6"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_mixed_positive.cc",
+          "sha256": "4c0efd84091ceab7de81e3314507a2ead070e3495be41b0ca23e4a55741f217d"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_test_support.h",
+          "sha256": "3e6ee44c94c148252adfa6855bddc6e28c33cb9e2d54f08211dca6d057d01403"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_fault_test.cc",
+          "sha256": "72fc4bd1a3022128f46ad91df0f4845da89c469656f9689ff5af324ca37f0375"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_faults.cc",
+          "sha256": "15a43aa55806a60ad22a2656011e525172bf15240b11ff3916bf78ca2e4f2500"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_faults.h",
+          "sha256": "6992c8c12f016e1990d249ea3394988aeb3a8584c34329e9628e9b22d498d629"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_observation_test.cc",
+          "sha256": "ed2e08c715423257e9f5b3a7fe3952a8c2e15928abfc529ea67c26de8bcdc582"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_test.cc",
+          "sha256": "e02ec3f12b13f7909d9fc97f174d319e41730c74b1699135437ed5ca3952e4a4"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_test_support.h",
+          "sha256": "9a2d4b5c3fd119708c5a3ed3eefdfa15624fecc7d175efb83c98d908ffd70c81"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_tests.cmake",
+          "sha256": "13dee7bbae93852b21d34c9f32fa50bd92b6dad71933b2419e24810202c77f1d"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -58550,7 +59124,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual mixed native driver, explicit low workspace and ITER/fallback semantics, independent layouts and public working-factor reuse. Eight maintained tests pass in six LP64/global ILP64 Debug/Release/ASC-only sanitizer profiles; real-provider TSan and relocated public consumers pass both ABIs. Normalized whole-profile/platform/catalogue acceptance remains incomplete; this does not close Reference PPSVX/PT mathematical gates.",
+          "review": "programs/lapack-array-io/mixed-positive-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -98051,7 +98627,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_mixed_general.h",
-          "sha256": "e85ecb92357b09e8c02fc688051d1a18e252a0e01bf9df01bd79c1e19af8201e"
+          "sha256": "f78596bab38089d06eb09fb1628f6fcf5bd36dad6d59941a867c554d25dd517d"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -99576,12 +100152,586 @@
     {
       "classification": "public_driver",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active A/B/X, scratch and metadata checked disjoint. Output numeric values unread before native entry. B immutable; output estimates are not manufactured.",
+        "asc_operation": "asc::Zcposv",
+        "descriptors": "Square selected symmetric/Hermitian triangle of mutable A, immutable full B, staged output X; independent layouts. Imaginary diagonals are ignored inputs, normalized in explicit complex packing.",
+        "documentation": "programs/lapack-array-io/mixed-positive-review.md",
+        "mode_cases": [
+          {
+            "id": "upper_column_major_column_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "triangle": "upper",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "upper_column_major_column_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "triangle": "upper",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "upper_column_major_row_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "triangle": "upper",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "upper_column_major_row_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "triangle": "upper",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "upper_row_major_column_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "triangle": "upper",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "upper_row_major_column_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "triangle": "upper",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "upper_row_major_row_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "triangle": "upper",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "upper_row_major_row_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "triangle": "upper",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "lower_column_major_column_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "triangle": "lower",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "lower_column_major_column_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "column_major",
+              "triangle": "lower",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "lower_column_major_row_major_column_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "triangle": "lower",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "lower_column_major_row_major_row_major",
+            "options": {
+              "a_layout": "column_major",
+              "b_layout": "row_major",
+              "triangle": "lower",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "lower_row_major_column_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "triangle": "lower",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "lower_row_major_column_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "column_major",
+              "triangle": "lower",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "lower_row_major_row_major_column_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "triangle": "lower",
+              "x_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          },
+          {
+            "id": "lower_row_major_row_major_row_major",
+            "options": {
+              "a_layout": "row_major",
+              "b_layout": "row_major",
+              "triangle": "lower",
+              "x_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "known_solution",
+              "refinement",
+              "native_fallback",
+              "required_extreme_math",
+              "native_info_iter_partial_triangle",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9046abb67ca2a1cf9063fe5ea2456b3c0d4de8cf3fea2a23e4f35d09d05f7c6e",
+              "declaration": "SUBROUTINE ZCPOSV( UPLO, N, NRHS, A, LDA, B, LDB, X, LDX, WORK, SWORK, RWORK, ITER, INFO )",
+              "path": "SRC/zcposv.f",
+              "sha256": "9ae744f8ff9a1c0a66c7e32f1112d6f1c70a483d748d38a109403986d766ebe8"
+            }
+          }
+        ],
+        "mutation": "Native mixed success preserves A; documented native fallback publishes selected working Cholesky. Nonpositive partial publication retains old imaginary diagonals only after native return. X publishes only after valid INFO=0, ITER; nonpositive/defect withholds caller X. Preflight preserves statistics and numeric outputs. Local N=0 has absent native diagnostics.",
+        "numerical_outcomes": "Exact INFO/ITER retained; explicit native fallback -1/-2/-3/-31, successful iterations 0..30. Nonpositive fallback is numerical partial; nonfinite computed X remains visible as an accuracy warning, without clamping. ITER is not an independent forward/condition certificate.",
+        "pivots": "No pivots. Selected precision is exposed in separate statistics. Only a complete working fallback certifies caller A as reusable Cholesky factors with the same triangle/provider.",
+        "scalar_signature": "complex<double> working, complex<float> lower, double norm work",
+        "state": "reviewed",
+        "workspace": "Metadata-only query; explicit live working/lower/norm scalars, staged X plus selected row A/all complex A and row B conversion; no integer workspace. N>0 NRHS=0 retains norm work and one extra live inactive SX slot. No allocation."
       },
       "id": "lapack.zcposv",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/mixed_positive/CMakeLists.txt",
+          "sha256": "11079567fa9d9d3196c25e99b91ec41d2f0adf5560386d9032bf34bed78ab82c"
+        },
+        {
+          "path": "examples/mixed_positive/README.md",
+          "sha256": "c2c7223b082560a028e1477fa732a2b6f6323863e7f22be4da8d8d0536a86987"
+        },
+        {
+          "path": "examples/mixed_positive/main.cc",
+          "sha256": "a0073de15224900c40abbdcfa0efcc618e9fda8926d0ae51850ba74a51705fe5"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_mixed_general.h",
+          "sha256": "f78596bab38089d06eb09fb1628f6fcf5bd36dad6d59941a867c554d25dd517d"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_mixed_positive.h",
+          "sha256": "1740ee2066ded3186271f8990dd58b57c034632785f96288931f492320760811"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert.h",
+          "sha256": "f6c1deb32310bb43332649a91f925b413d6543b95d8ce31ca3f3a4bf20677c77"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_expert_counts.h",
+          "sha256": "efa339f5cd876846a19f23645984c0b170f7d28884bc77e1685a553b98179da2"
+        },
+        {
+          "path": "src/dense/lapack/internal_cholesky_limits.h",
+          "sha256": "22d13baed3999f9dc94902532042552b4d6bf4daba98a5a2453caf685ed5b70f"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_mixed_positive_counts.h",
+          "sha256": "d101994d00da8335bb4156880cb3e65e03a5ce4423adfa0b753faec48dd7c4e6"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_mixed_positive.cc",
+          "sha256": "4c0efd84091ceab7de81e3314507a2ead070e3495be41b0ca23e4a55741f217d"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_general_test_support.h",
+          "sha256": "3e6ee44c94c148252adfa6855bddc6e28c33cb9e2d54f08211dca6d057d01403"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_fault_test.cc",
+          "sha256": "72fc4bd1a3022128f46ad91df0f4845da89c469656f9689ff5af324ca37f0375"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_faults.cc",
+          "sha256": "15a43aa55806a60ad22a2656011e525172bf15240b11ff3916bf78ca2e4f2500"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_faults.h",
+          "sha256": "6992c8c12f016e1990d249ea3394988aeb3a8584c34329e9628e9b22d498d629"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_observation_test.cc",
+          "sha256": "ed2e08c715423257e9f5b3a7fe3952a8c2e15928abfc529ea67c26de8bcdc582"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_test.cc",
+          "sha256": "e02ec3f12b13f7909d9fc97f174d319e41730c74b1699135437ed5ca3952e4a4"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_test_support.h",
+          "sha256": "9a2d4b5c3fd119708c5a3ed3eefdfa15624fecc7d175efb83c98d908ffd70c81"
+        },
+        {
+          "path": "tests/dense_lapack/mixed_positive_tests.cmake",
+          "sha256": "13dee7bbae93852b21d34c9f32fa50bd92b6dad71933b2419e24810202c77f1d"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -99589,7 +100739,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Actual mixed native driver, explicit low workspace and ITER/fallback semantics, independent layouts and public working-factor reuse. Eight maintained tests pass in six LP64/global ILP64 Debug/Release/ASC-only sanitizer profiles; real-provider TSan and relocated public consumers pass both ABIs. Normalized whole-profile/platform/catalogue acceptance remains incomplete; this does not close Reference PPSVX/PT mathematical gates.",
+          "review": "programs/lapack-array-io/mixed-positive-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [

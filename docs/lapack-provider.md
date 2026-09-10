@@ -10,8 +10,8 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 360 partial scalar routines.
-The other 1,753 required
+routes below bring the development mapping to 362 partial scalar routines.
+The other 1,751 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
@@ -27,6 +27,13 @@ profiles pass all eight mixed tests; TSan and relocated public consumers pass
 both ABIs. See the [installed example](../examples/mixed_general/README.md).
 Full normalized Reference/platform acceptance and separate PT/PPSVX mathematical
 requirements remain incomplete.
+
+`lapack_mixed_positive.h` adds the actual `Dsposv`/`Zcposv` positive-definite
+mixed drivers. They preserve independent A/B/X layouts and explicit triangles,
+normalize ignored complex diagonals in caller workspace, retain native ITER and
+INFO, and reuse returned working Cholesky factors through `Potrs`. See the
+[installed example](../examples/mixed_positive/README.md). Their source and
+executed scope are recorded separately from full Reference/platform acceptance.
 
 `lapack_positive_tridiagonal.h` adds S/D/C/Z `Pttrf` and `Pttrs` with
 real D, real/complex E, explicit RHS packing, nominal borrowed factors and a

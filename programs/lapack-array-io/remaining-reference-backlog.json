@@ -26488,20 +26488,73 @@
         "SRC/dsposv.f",
         "SRC/zcposv.f"
       ],
-      "source_api_files": [],
-      "route_states": {
-        "lapack.dsposv": "not_started",
-        "lapack.zcposv": "not_started"
-      },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
-      "required_mode_cases": {
-        "lapack.dsposv": [],
-        "lapack.zcposv": []
-      },
-      "unreviewed_mode_rows": [
-        "lapack.dsposv",
-        "lapack.zcposv"
+      "source_api_files": [
+        "examples/mixed_positive/CMakeLists.txt",
+        "examples/mixed_positive/README.md",
+        "examples/mixed_positive/main.cc",
+        "include/asc/dense/providers/lapack_mixed_general.h",
+        "include/asc/dense/providers/lapack_mixed_positive.h",
+        "src/dense/lapack/internal_cholesky_expert.h",
+        "src/dense/lapack/internal_cholesky_expert_counts.h",
+        "src/dense/lapack/internal_cholesky_limits.h",
+        "src/dense/lapack/internal_layout.h",
+        "src/dense/lapack/internal_mixed_positive_counts.h",
+        "src/dense/lapack/internal_tridiagonal.h",
+        "src/dense/lapack/internal_workspace_context.h",
+        "src/dense/lapack/reference_mixed_positive.cc",
+        "tests/dense_lapack/mixed_general_test_support.h",
+        "tests/dense_lapack/mixed_positive_fault_test.cc",
+        "tests/dense_lapack/mixed_positive_faults.cc",
+        "tests/dense_lapack/mixed_positive_faults.h",
+        "tests/dense_lapack/mixed_positive_observation_test.cc",
+        "tests/dense_lapack/mixed_positive_test.cc",
+        "tests/dense_lapack/mixed_positive_test_support.h",
+        "tests/dense_lapack/mixed_positive_tests.cmake"
       ],
+      "route_states": {
+        "lapack.dsposv": "in_progress",
+        "lapack.zcposv": "in_progress"
+      },
+      "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
+      "required_mode_cases": {
+        "lapack.dsposv": [
+          "upper_column_major_column_major_column_major",
+          "upper_column_major_column_major_row_major",
+          "upper_column_major_row_major_column_major",
+          "upper_column_major_row_major_row_major",
+          "upper_row_major_column_major_column_major",
+          "upper_row_major_column_major_row_major",
+          "upper_row_major_row_major_column_major",
+          "upper_row_major_row_major_row_major",
+          "lower_column_major_column_major_column_major",
+          "lower_column_major_column_major_row_major",
+          "lower_column_major_row_major_column_major",
+          "lower_column_major_row_major_row_major",
+          "lower_row_major_column_major_column_major",
+          "lower_row_major_column_major_row_major",
+          "lower_row_major_row_major_column_major",
+          "lower_row_major_row_major_row_major"
+        ],
+        "lapack.zcposv": [
+          "upper_column_major_column_major_column_major",
+          "upper_column_major_column_major_row_major",
+          "upper_column_major_row_major_column_major",
+          "upper_column_major_row_major_row_major",
+          "upper_row_major_column_major_column_major",
+          "upper_row_major_column_major_row_major",
+          "upper_row_major_row_major_column_major",
+          "upper_row_major_row_major_row_major",
+          "lower_column_major_column_major_column_major",
+          "lower_column_major_column_major_row_major",
+          "lower_column_major_row_major_column_major",
+          "lower_column_major_row_major_row_major",
+          "lower_row_major_column_major_column_major",
+          "lower_row_major_column_major_row_major",
+          "lower_row_major_row_major_column_major",
+          "lower_row_major_row_major_row_major"
+        ]
+      },
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -26511,15 +26564,19 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/mixed-positive-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
-      "integrated_revision": null,
-      "execution_progress": "not_executed",
+      "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
+      "execution_progress": "partial_source_and_review_exist",
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/mixed-positive-review.md"
+      ]
     },
     {
       "task_id": "P05.required.posvx",
@@ -34927,7 +34984,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "98e92fbef1d31e3cdfcf83734465308a96d9aec9e4e18cf6289ef9492c7581c4",
+    "lapack-coverage.yaml": "cfb16180b6a49e694e2593fd675b9dd767243895551617501ee164b9c5508624",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

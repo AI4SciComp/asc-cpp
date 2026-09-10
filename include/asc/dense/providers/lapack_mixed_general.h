@@ -66,8 +66,10 @@ namespace asc {
 enum class LapackMixedFallback : std::uint8_t {
   kNone,  ///< ITER=0..30: the low factor and working refinement succeeded.
   kImplementation,    ///< ITER=-1: provider implementation/machine choice.
-  kConversionRange,   ///< ITER=-2: narrowing overflowed; working LU was tried.
-  kLowFactorization,  ///< ITER=-3: low LU failed; working LU was tried.
+  kConversionRange,   ///< ITER=-2: narrowing overflowed; working factorization
+                      ///< tried.
+  kLowFactorization,  ///< ITER=-3: low factorization failed; working precision
+                      ///< tried.
   kIterationLimit     ///< ITER=-31: 30 refinements failed the stopping rule.
 };
 /** @brief Caller-owned mixed-driver diagnostics, separate from native INFO.
@@ -79,7 +81,8 @@ enum class LapackMixedFallback : std::uint8_t {
 struct LapackMixedSolveStatistics {
   std::optional<std::int64_t> native_iteration;  ///< Exact post-call ITER bits.
   std::optional<LapackMixedFallback> fallback;   ///< Recognized ITER meaning.
-  std::optional<LapackScalarKind> factor_scalar;  ///< Selected LU precision,
+  std::optional<LapackScalarKind>
+      factor_scalar;  ///< Selected factor precision,
   ///< present after validated successful or singular factor publication.
 };
 
