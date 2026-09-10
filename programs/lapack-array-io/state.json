@@ -14,12 +14,12 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "e84ab830d814e8ace909722f629a2ab5d146d0bb",
+  "last_implementation_commit": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
   "worktree_diff_identity": {
-    "state": "general_lu_delivery_preparing_freeze",
-    "base_commit": "e84ab830d814e8ace909722f629a2ab5d146d0bb",
-    "scope": "Maintained LU public/package/concurrency consumer, bounded callable-contract normalization, GESV query comments and mixed-positive test formatting repair; unchanged product algorithms/providers.",
-    "freeze": "master-continuation-20260910-01/lu-frozen-product-01"
+    "state": "precision_conversion_preparing_freeze",
+    "base_commit": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
+    "scope": "Four checked explicit Reference precision conversion routines with maintained numerical/safety/observer/concurrency/public/package tests and reviewed catalogue contracts.",
+    "freeze": "master-continuation-20260910-01/conversion-frozen-product-01"
   },
   "packages": {
     "P00": {
@@ -1363,8 +1363,8 @@
       "result": "All eight source/symbol identities checked in both actual providers; GEDMD576 query/solve cases per scalar per ABI pass on exact rank-two non-square snapshots across four scaling, valid vector/residual, three extra-output, four SVD and three rank choices. No ASC DMD row is registered or verified by this native probe."
     }
   },
-  "active_task": "P09.dmd",
-  "next_action": "Implement the checked GEDMD/GEDMDQ public adapters and maintained tests from the source/API prerequisite review; continue wider platform admission and remaining inventory-backed P04-P09/P11 tasks. The independent source dependency/SVD stages are already present in both pinned providers.",
+  "active_task": "P09.precision_conversion_delivery",
+  "next_action": "Finish precision-conversion frozen source/package checks and ordinary feature synchronization, then implement checked GEDMD/GEDMDQ APIs/tests using the completed native prerequisite matrix. Continue the inventory-backed ready queue and independent platform admission.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1804,34 +1804,34 @@
   },
   "counts": {
     "required_denominator": 2113,
-    "specification_mapped": 48,
-    "callable_reference": 24,
+    "specification_mapped": 52,
+    "callable_reference": 28,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
-    "reference_not_started_in_ledger": 1751,
+    "reference_not_started_in_ledger": 1747,
     "reference_in_progress_in_ledger": 338,
     "reference_blocked_in_ledger": 0,
-    "incomplete_reference_contracts": 2089,
+    "incomplete_reference_contracts": 2085,
     "implemented_unverified_native": 0,
-    "implemented_unverified_reference": 24,
+    "implemented_unverified_reference": 28,
     "registered_partial_reference_operations": 338,
     "unregistered_expert_operations_with_scoped_tests": 4,
-    "note": "Native20 retains accepted112 modes/1120 class slots. Reference2113:24 callable-unverified,338 partial,1751 not started,0 verified. Eight PT partial rows retain four failed processes/48 assertions/eight scalar-input cases/one cause; historical78 root mathematical failures remain separate. Four robust first-party PPSVX algorithms are not Reference rows. Full programme/platform/owner acceptance remains incomplete.",
+    "note": "Native20 retains accepted112 modes/1120 class slots. Reference2113:28 callable-unverified,338 partial,1747 not started,0 verified. Four robust first-party algorithms remain separate. Historical78 root mathematical failed processes and PT/PPSVX causes are retained. Full programme/platform/owner acceptance remains incomplete.",
     "unregistered_packed_operations_with_scoped_tests": 4,
     "experimental_first_party_robust_ppsvx_algorithms": 4,
     "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
     "in_progress_reference": 338,
-    "not_started_reference": 1751,
-    "mapped_contracts": 48,
+    "not_started_reference": 1747,
+    "mapped_contracts": 52,
     "blocked_reference": 0,
     "discovered": 3551,
     "excluded": 1438,
-    "incomplete_reference": 2089,
+    "incomplete_reference": 2085,
     "profile_complete": false,
     "required": 2113,
-    "registered_callable_reference_operations": 24,
-    "registered_reference_operations_total": 362
+    "registered_callable_reference_operations": 28,
+    "registered_reference_operations_total": 366
   },
   "blockers": [
     {
@@ -2014,10 +2014,12 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "mixed-positive-integration-01",
-    "state": "local_scoped_engineering_passed_fresh_tracked_source_freeze_next",
-    "source_records": "master-continuation-20260910-01/positive-{mode}-{abi}-{attempt}/inputs.json and positive-registration-01/result.json",
-    "scope": "Two Reference mixed positive routines; six actual-ABI numerical/safety, TSan, installation, public headers and documentation. Full programme remains incomplete."
+    "candidate": "precision-conversion-integration-01",
+    "state": "local_frozen_source_delivery_passed_feature_sync_next",
+    "source_records": "master-continuation-20260910-01/conversion-*/inputs.json",
+    "review": "programs/lapack-array-io/precision-conversion-review.md",
+    "frozen_tree": "a3a8bc38aad27a4b6910577138cc89ac6e5db5f9",
+    "fresh_results": "conversion-fresh-{lp64,ilp64}-01 each13/13, zero skips"
   },
   "last_completed_verification": {
     "candidate": "ppsvx-robust-integration-01",
@@ -2036,17 +2038,17 @@
     "native_subset_milestone": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE"
   },
   "remote_checkpoint": {
-    "head": "e84ab830d814e8ace909722f629a2ab5d146d0bb",
-    "tested_tree": "5b7d3be55c3c7087baf490f86fd15a91f50873e1",
+    "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
+    "tested_tree": "bdb7a151400e104896e1bd85df46fb8bafae2a77",
     "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
     "draft": true,
     "checks": {
-      "pr_ci": 34515880520,
-      "pr_codeql": 34515880545,
-      "pr_families": 34515880531
+      "pr_ci": 34519820006,
+      "pr_codeql": 34519820167,
+      "pr_families": 34519820028
     },
-    "result": "Family45/49 per ABI, exactly four PT mathematical failures,0skips. CodeQL passes. CI other jobs pass; Clang18 format job fails, later tidy steps unexecuted. Reviewed repair passes local format18/19 plus affected six two-test profiles and both TSan profiles; fresh repaired hosted checks pending.",
-    "evidence": "master-continuation-20260910-01/positive-hosted-final-01 and positive-hosted-ci-final-02"
+    "result": "CI and CodeQL pass. Family72/76 per actual ABI, exactly four retained PT mathematical failed processes, zero skips. This hosted source predates precision conversion.",
+    "evidence": "master-continuation-20260910-01/lu-hosted-final-01"
   },
   "session_recovery": {
     "evidence": "resume-20260908-01/recovery.json",
@@ -2524,7 +2526,7 @@
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect examples/lapack_array_io and tests/dense_lapack/installed_lu plus lu_layout/INFO/pivot records; implement the missing maintained installed general-LU mode consumer. Finish the positive source freeze/fresh install/hosted checks alongside it.",
+  "next_command": "Complete current conversion-fresh/package records; inspect pinned SRC/{s,d,c,z}gedmd.f90 and existing dmd_prerequisite.cc before checked public DMD implementation.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3106,46 +3108,51 @@
     "one_active_writer": true,
     "pt_progress": "Six 13/17 affected profiles; both TSan4/4; installed public/base isolation pass; both full package tests pass; one source-list omission corrected and retested; current strict signature/format/coverage/Doxygen checks pass. Four required math processes/eight scalar-input cases/one provider cause remain failed.",
     "current_remote_read": {
-      "head": "fb8c86fb390d88065d9f2b6d823a64cf9680c19f",
+      "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
+      "tested_tree": "bdb7a151400e104896e1bd85df46fb8bafae2a77",
+      "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
       "draft": true,
-      "comments": 0,
-      "new_owner_approval": false,
-      "notice_decision": "pending unchanged packet; ordinary feature development remains authorized",
-      "hosted": "PT provider selection 25/29 each ABI with exactly four ordinary math failures; CodeQL pass; CI documentation failure; current first-party link fix passes fresh local Doxygen."
+      "checks": {
+        "pr_ci": 34519820006,
+        "pr_codeql": 34519820167,
+        "pr_families": 34519820028
+      },
+      "result": "CI and CodeQL pass. Family72/76 per actual ABI, exactly four retained PT mathematical failed processes, zero skips. This hosted source predates precision conversion.",
+      "evidence": "master-continuation-20260910-01/lu-hosted-final-01"
     },
-    "p09_stage": "DSGESV/ZCGESV and DSPOSV/ZCPOSV integrated with passing bounded local engineering matrices; GEDMD/GEDMDQ symbols available and GEDMD native prerequisite matrix passes both ABIs; ASC DMD adapters not yet implemented.",
+    "p09_stage": "Both mixed driver families integrated and hosted-tested. Four full-matrix precision conversions pass six local profiles, real-provider TSan, installed/relocated consumers, eight affected gates, and fresh tracked-source13/13 each actual ABI. Feature synchronization next. DMD native prerequisites are available; checked ASC DMD adapters remain actionable.",
     "remaining_actionable": "Checked DMD APIs/tests (provider readiness established), remaining P04-P08/P09 inventory bodies/contracts/normalized evidence, wider compiler/shared/native-platform admission and final P11 gates. These remain actionable implementation work, separate from recorded owner decisions.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required_denominator": 2113,
-      "specification_mapped": 48,
-      "callable_reference": 24,
+      "specification_mapped": 52,
+      "callable_reference": 28,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
-      "reference_not_started_in_ledger": 1751,
+      "reference_not_started_in_ledger": 1747,
       "reference_in_progress_in_ledger": 338,
       "reference_blocked_in_ledger": 0,
-      "incomplete_reference_contracts": 2089,
+      "incomplete_reference_contracts": 2085,
       "implemented_unverified_native": 0,
-      "implemented_unverified_reference": 24,
+      "implemented_unverified_reference": 28,
       "registered_partial_reference_operations": 338,
       "unregistered_expert_operations_with_scoped_tests": 4,
-      "note": "Native20 retains accepted112 modes/1120 class slots. Reference2113:24 callable-unverified,338 partial,1751 not started,0 verified. Eight PT partial rows retain four failed processes/48 assertions/eight scalar-input cases/one cause; historical78 root mathematical failures remain separate. Four robust first-party PPSVX algorithms are not Reference rows. Full programme/platform/owner acceptance remains incomplete.",
+      "note": "Native20 retains accepted112 modes/1120 class slots. Reference2113:28 callable-unverified,338 partial,1747 not started,0 verified. Four robust first-party algorithms remain separate. Historical78 root mathematical failed processes and PT/PPSVX causes are retained. Full programme/platform/owner acceptance remains incomplete.",
       "unregistered_packed_operations_with_scoped_tests": 4,
       "experimental_first_party_robust_ppsvx_algorithms": 4,
       "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
       "in_progress_reference": 338,
-      "not_started_reference": 1751,
-      "mapped_contracts": 48,
+      "not_started_reference": 1747,
+      "mapped_contracts": 52,
       "blocked_reference": 0,
       "discovered": 3551,
       "excluded": 1438,
-      "incomplete_reference": 2089,
+      "incomplete_reference": 2085,
       "profile_complete": false,
       "required": 2113,
-      "registered_callable_reference_operations": 24,
-      "registered_reference_operations_total": 362
+      "registered_callable_reference_operations": 28,
+      "registered_reference_operations_total": 366
     },
     "original_supplied_instruction_sha256": "98b9ad9665c2ff0aa75b94f80a5093b1db2a2164cc3c4c511f694044f9be862d",
     "instruction_normalization": "Four trailing Markdown hard-break spaces removed for repository whitespace policy; original untracked user instruction and external copy preserved."

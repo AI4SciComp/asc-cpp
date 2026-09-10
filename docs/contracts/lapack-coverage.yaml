@@ -16048,12 +16048,217 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "Reachable operand spans, all active workspace and report metadata must be disjoint. Plans bind conversion direction, provider and descriptor metadata. Independent context/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "asc_operation": "asc::Clag2z",
+        "descriptors": "Immutable full input and same-shape staged output, independent padded row/column layouts; empty M or N is local.",
+        "documentation": "programs/lapack-array-io/precision-conversion-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "2261c478e88f38f3ca53c52e0bab7347051dcdce88421e69c92667255d667a60",
+              "declaration": "SUBROUTINE CLAG2Z( M, N, SA, LDSA, A, LDA, INFO )",
+              "path": "SRC/clag2z.f",
+              "sha256": "a01ddc6abf3008b940d61b46ae22a3774272e65cc7ad632a508cd8d4b9db9141"
+            }
+          },
+          {
+            "id": "row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "2261c478e88f38f3ca53c52e0bab7347051dcdce88421e69c92667255d667a60",
+              "declaration": "SUBROUTINE CLAG2Z( M, N, SA, LDSA, A, LDA, INFO )",
+              "path": "SRC/clag2z.f",
+              "sha256": "a01ddc6abf3008b940d61b46ae22a3774272e65cc7ad632a508cd8d4b9db9141"
+            }
+          },
+          {
+            "id": "column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "2261c478e88f38f3ca53c52e0bab7347051dcdce88421e69c92667255d667a60",
+              "declaration": "SUBROUTINE CLAG2Z( M, N, SA, LDSA, A, LDA, INFO )",
+              "path": "SRC/clag2z.f",
+              "sha256": "a01ddc6abf3008b940d61b46ae22a3774272e65cc7ad632a508cd8d4b9db9141"
+            }
+          },
+          {
+            "id": "column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "2261c478e88f38f3ca53c52e0bab7347051dcdce88421e69c92667255d667a60",
+              "declaration": "SUBROUTINE CLAG2Z( M, N, SA, LDSA, A, LDA, INFO )",
+              "path": "SRC/clag2z.f",
+              "sha256": "a01ddc6abf3008b940d61b46ae22a3774272e65cc7ad632a508cd8d4b9db9141"
+            }
+          }
+        ],
+        "mutation": "Caller input and padding immutable. No old output reads before native entry. Preflight, range INFO=1 and malformed INFO preserve caller output; valid INFO=0 publishes all numeric output, including visible nonfinite values.",
+        "numerical_outcomes": "Finite widening exact. Narrowing follows native rounding/underflow; INFO=1 range failure is numerical accuracy warning and unchanged output. Widening only accepts INFO=0. Malformed/omitted/short-width INFO is a provider defect. Nonfinite INFO=0 output is published with numerical accuracy warning; sentinel NaN cannot distinguish omitted output from legitimate NaN. No clamp or floating-point environment change.",
+        "pivots": "No pivots or factors; conversion can lose information and does not imply reversible factor reuse.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/precision-conversion-review.md"
+        },
+        "scalar_signature": {
+          "conversion": "c32_to_c64",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "state": "reviewed",
+        "workspace": "Metadata-only query; explicit live output scalars in kScratch and row-input scalars in kLayoutConversion. Checked aggregate bytes, foreign loop terminals and actual leading dimensions. No allocation."
       },
       "id": "lapack.clag2z",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/precision_conversion/CMakeLists.txt",
+          "sha256": "b0309af447d00b8d230995344471f05bb23a2780b6734964131a52e3065585b0"
+        },
+        {
+          "path": "examples/precision_conversion/README.md",
+          "sha256": "c22c4e19c05c878844aa58c43bafbae8c1e5bd638af9d1b2d51edebfebe5e2b0"
+        },
+        {
+          "path": "examples/precision_conversion/main.cc",
+          "sha256": "46ce7dfd1e663d7ffdba3917ee2b78ed4aef9db5adabe3242d217edd651bca53"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_precision_conversion.h",
+          "sha256": "94a086f21a09d5b3c2badf00a82a5879abfed031ab3a744d98c19fb832385332"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_precision_conversion_counts.h",
+          "sha256": "cd18957fefbf8b863bee99c5b43584be1e22a8a9192b045d037d8fa2e46235d8"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_precision_conversion.cc",
+          "sha256": "cef5dfbb24c5d8d651c9952a724ea8b471790a21c3cb3ab75fc6d80fc17c604f"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_fault_test.cc",
+          "sha256": "5e993c79028ffc9787643a4e9012a92679c2d2de3a561d7c81b5fdc60eb30e0d"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_faults.cc",
+          "sha256": "c60c3448b4e2ef887199b2da164e12d366e59c4b155bda4a7ebaf90a7e493039"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_faults.h",
+          "sha256": "3332d4f6c953b456ab645fdb14e228088a076c9961817dc5a14ead14e958ed80"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_observation_test.cc",
+          "sha256": "e04e161c78c932de90fdc58f44e9716f743c081de1bfecbe05441611540f98d2"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_test.cc",
+          "sha256": "2a4396b977d4a1b60b4718e7b5c472bd0ef7c729592e7f1fe2844f3f13eae66a"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_test_support.h",
+          "sha256": "2f783e1e23fe3032ff08700300ba7b91a9d3f75b5855db108194096f8f593549"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_tests.cmake",
+          "sha256": "4b14333b95086da91654e95fefeef227d55c67846096a491db139ff19f4bb1ff"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -16061,7 +16266,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked native precision conversion, maintained four-layout tests, calibrated output observation, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "review": "programs/lapack-array-io/precision-conversion-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -45741,12 +45948,217 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "Reachable operand spans, all active workspace and report metadata must be disjoint. Plans bind conversion direction, provider and descriptor metadata. Independent context/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "asc_operation": "asc::Dlag2s",
+        "descriptors": "Immutable full input and same-shape staged output, independent padded row/column layouts; empty M or N is local.",
+        "documentation": "programs/lapack-array-io/precision-conversion-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "d01f428ab2869f07a6f5a88fb3c7a7696eb4b1f804730c376b880879c11b88d1",
+              "declaration": "SUBROUTINE DLAG2S( M, N, A, LDA, SA, LDSA, INFO )",
+              "path": "SRC/dlag2s.f",
+              "sha256": "1be6467718f58b2815b660a693016a35d17738b8e1dfe69ce7803e3c7213c5fe"
+            }
+          },
+          {
+            "id": "row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "d01f428ab2869f07a6f5a88fb3c7a7696eb4b1f804730c376b880879c11b88d1",
+              "declaration": "SUBROUTINE DLAG2S( M, N, A, LDA, SA, LDSA, INFO )",
+              "path": "SRC/dlag2s.f",
+              "sha256": "1be6467718f58b2815b660a693016a35d17738b8e1dfe69ce7803e3c7213c5fe"
+            }
+          },
+          {
+            "id": "column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "d01f428ab2869f07a6f5a88fb3c7a7696eb4b1f804730c376b880879c11b88d1",
+              "declaration": "SUBROUTINE DLAG2S( M, N, A, LDA, SA, LDSA, INFO )",
+              "path": "SRC/dlag2s.f",
+              "sha256": "1be6467718f58b2815b660a693016a35d17738b8e1dfe69ce7803e3c7213c5fe"
+            }
+          },
+          {
+            "id": "column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "d01f428ab2869f07a6f5a88fb3c7a7696eb4b1f804730c376b880879c11b88d1",
+              "declaration": "SUBROUTINE DLAG2S( M, N, A, LDA, SA, LDSA, INFO )",
+              "path": "SRC/dlag2s.f",
+              "sha256": "1be6467718f58b2815b660a693016a35d17738b8e1dfe69ce7803e3c7213c5fe"
+            }
+          }
+        ],
+        "mutation": "Caller input and padding immutable. No old output reads before native entry. Preflight, range INFO=1 and malformed INFO preserve caller output; valid INFO=0 publishes all numeric output, including visible nonfinite values.",
+        "numerical_outcomes": "Finite widening exact. Narrowing follows native rounding/underflow; INFO=1 range failure is numerical accuracy warning and unchanged output. Widening only accepts INFO=0. Malformed/omitted/short-width INFO is a provider defect. Nonfinite INFO=0 output is published with numerical accuracy warning; sentinel NaN cannot distinguish omitted output from legitimate NaN. No clamp or floating-point environment change.",
+        "pivots": "No pivots or factors; conversion can lose information and does not imply reversible factor reuse.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/precision-conversion-review.md"
+        },
+        "scalar_signature": {
+          "conversion": "f64_to_f32",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "state": "reviewed",
+        "workspace": "Metadata-only query; explicit live output scalars in kScratch and row-input scalars in kLayoutConversion. Checked aggregate bytes, foreign loop terminals and actual leading dimensions. No allocation."
       },
       "id": "lapack.dlag2s",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/precision_conversion/CMakeLists.txt",
+          "sha256": "b0309af447d00b8d230995344471f05bb23a2780b6734964131a52e3065585b0"
+        },
+        {
+          "path": "examples/precision_conversion/README.md",
+          "sha256": "c22c4e19c05c878844aa58c43bafbae8c1e5bd638af9d1b2d51edebfebe5e2b0"
+        },
+        {
+          "path": "examples/precision_conversion/main.cc",
+          "sha256": "46ce7dfd1e663d7ffdba3917ee2b78ed4aef9db5adabe3242d217edd651bca53"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_precision_conversion.h",
+          "sha256": "94a086f21a09d5b3c2badf00a82a5879abfed031ab3a744d98c19fb832385332"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_precision_conversion_counts.h",
+          "sha256": "cd18957fefbf8b863bee99c5b43584be1e22a8a9192b045d037d8fa2e46235d8"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_precision_conversion.cc",
+          "sha256": "cef5dfbb24c5d8d651c9952a724ea8b471790a21c3cb3ab75fc6d80fc17c604f"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_fault_test.cc",
+          "sha256": "5e993c79028ffc9787643a4e9012a92679c2d2de3a561d7c81b5fdc60eb30e0d"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_faults.cc",
+          "sha256": "c60c3448b4e2ef887199b2da164e12d366e59c4b155bda4a7ebaf90a7e493039"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_faults.h",
+          "sha256": "3332d4f6c953b456ab645fdb14e228088a076c9961817dc5a14ead14e958ed80"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_observation_test.cc",
+          "sha256": "e04e161c78c932de90fdc58f44e9716f743c081de1bfecbe05441611540f98d2"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_test.cc",
+          "sha256": "2a4396b977d4a1b60b4718e7b5c472bd0ef7c729592e7f1fe2844f3f13eae66a"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_test_support.h",
+          "sha256": "2f783e1e23fe3032ff08700300ba7b91a9d3f75b5855db108194096f8f593549"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_tests.cmake",
+          "sha256": "4b14333b95086da91654e95fefeef227d55c67846096a491db139ff19f4bb1ff"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -45754,7 +46166,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked native precision conversion, maintained four-layout tests, calibrated output observation, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "review": "programs/lapack-array-io/precision-conversion-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -80074,12 +80488,217 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "Reachable operand spans, all active workspace and report metadata must be disjoint. Plans bind conversion direction, provider and descriptor metadata. Independent context/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "asc_operation": "asc::Slag2d",
+        "descriptors": "Immutable full input and same-shape staged output, independent padded row/column layouts; empty M or N is local.",
+        "documentation": "programs/lapack-array-io/precision-conversion-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ab6970538fd374384691d0dbc806b539726201c2a2b4da2707edbc1acfd6682f",
+              "declaration": "SUBROUTINE SLAG2D( M, N, SA, LDSA, A, LDA, INFO )",
+              "path": "SRC/slag2d.f",
+              "sha256": "16e824d3334fbf060d9b8dfb0d99abc59540b4888b323ef98d24b2fdb2871253"
+            }
+          },
+          {
+            "id": "row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ab6970538fd374384691d0dbc806b539726201c2a2b4da2707edbc1acfd6682f",
+              "declaration": "SUBROUTINE SLAG2D( M, N, SA, LDSA, A, LDA, INFO )",
+              "path": "SRC/slag2d.f",
+              "sha256": "16e824d3334fbf060d9b8dfb0d99abc59540b4888b323ef98d24b2fdb2871253"
+            }
+          },
+          {
+            "id": "column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ab6970538fd374384691d0dbc806b539726201c2a2b4da2707edbc1acfd6682f",
+              "declaration": "SUBROUTINE SLAG2D( M, N, SA, LDSA, A, LDA, INFO )",
+              "path": "SRC/slag2d.f",
+              "sha256": "16e824d3334fbf060d9b8dfb0d99abc59540b4888b323ef98d24b2fdb2871253"
+            }
+          },
+          {
+            "id": "column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ab6970538fd374384691d0dbc806b539726201c2a2b4da2707edbc1acfd6682f",
+              "declaration": "SUBROUTINE SLAG2D( M, N, SA, LDSA, A, LDA, INFO )",
+              "path": "SRC/slag2d.f",
+              "sha256": "16e824d3334fbf060d9b8dfb0d99abc59540b4888b323ef98d24b2fdb2871253"
+            }
+          }
+        ],
+        "mutation": "Caller input and padding immutable. No old output reads before native entry. Preflight, range INFO=1 and malformed INFO preserve caller output; valid INFO=0 publishes all numeric output, including visible nonfinite values.",
+        "numerical_outcomes": "Finite widening exact. Narrowing follows native rounding/underflow; INFO=1 range failure is numerical accuracy warning and unchanged output. Widening only accepts INFO=0. Malformed/omitted/short-width INFO is a provider defect. Nonfinite INFO=0 output is published with numerical accuracy warning; sentinel NaN cannot distinguish omitted output from legitimate NaN. No clamp or floating-point environment change.",
+        "pivots": "No pivots or factors; conversion can lose information and does not imply reversible factor reuse.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/precision-conversion-review.md"
+        },
+        "scalar_signature": {
+          "conversion": "f32_to_f64",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "state": "reviewed",
+        "workspace": "Metadata-only query; explicit live output scalars in kScratch and row-input scalars in kLayoutConversion. Checked aggregate bytes, foreign loop terminals and actual leading dimensions. No allocation."
       },
       "id": "lapack.slag2d",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/precision_conversion/CMakeLists.txt",
+          "sha256": "b0309af447d00b8d230995344471f05bb23a2780b6734964131a52e3065585b0"
+        },
+        {
+          "path": "examples/precision_conversion/README.md",
+          "sha256": "c22c4e19c05c878844aa58c43bafbae8c1e5bd638af9d1b2d51edebfebe5e2b0"
+        },
+        {
+          "path": "examples/precision_conversion/main.cc",
+          "sha256": "46ce7dfd1e663d7ffdba3917ee2b78ed4aef9db5adabe3242d217edd651bca53"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_precision_conversion.h",
+          "sha256": "94a086f21a09d5b3c2badf00a82a5879abfed031ab3a744d98c19fb832385332"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_precision_conversion_counts.h",
+          "sha256": "cd18957fefbf8b863bee99c5b43584be1e22a8a9192b045d037d8fa2e46235d8"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_precision_conversion.cc",
+          "sha256": "cef5dfbb24c5d8d651c9952a724ea8b471790a21c3cb3ab75fc6d80fc17c604f"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_fault_test.cc",
+          "sha256": "5e993c79028ffc9787643a4e9012a92679c2d2de3a561d7c81b5fdc60eb30e0d"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_faults.cc",
+          "sha256": "c60c3448b4e2ef887199b2da164e12d366e59c4b155bda4a7ebaf90a7e493039"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_faults.h",
+          "sha256": "3332d4f6c953b456ab645fdb14e228088a076c9961817dc5a14ead14e958ed80"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_observation_test.cc",
+          "sha256": "e04e161c78c932de90fdc58f44e9716f743c081de1bfecbe05441611540f98d2"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_test.cc",
+          "sha256": "2a4396b977d4a1b60b4718e7b5c472bd0ef7c729592e7f1fe2844f3f13eae66a"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_test_support.h",
+          "sha256": "2f783e1e23fe3032ff08700300ba7b91a9d3f75b5855db108194096f8f593549"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_tests.cmake",
+          "sha256": "4b14333b95086da91654e95fefeef227d55c67846096a491db139ff19f4bb1ff"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -80087,7 +80706,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked native precision conversion, maintained four-layout tests, calibrated output observation, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "review": "programs/lapack-array-io/precision-conversion-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -116350,12 +116971,217 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "Reachable operand spans, all active workspace and report metadata must be disjoint. Plans bind conversion direction, provider and descriptor metadata. Independent context/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "asc_operation": "asc::Zlag2c",
+        "descriptors": "Immutable full input and same-shape staged output, independent padded row/column layouts; empty M or N is local.",
+        "documentation": "programs/lapack-array-io/precision-conversion-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fd2a2bc7d82d4984f45342984887fcfe433ad8f705813e8a4b3a958a83137451",
+              "declaration": "SUBROUTINE ZLAG2C( M, N, A, LDA, SA, LDSA, INFO )",
+              "path": "SRC/zlag2c.f",
+              "sha256": "310c1d03a18a29c7c7ded5f1ae05ba1df108ba596eb8dc8287714bf2b185c297"
+            }
+          },
+          {
+            "id": "row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fd2a2bc7d82d4984f45342984887fcfe433ad8f705813e8a4b3a958a83137451",
+              "declaration": "SUBROUTINE ZLAG2C( M, N, A, LDA, SA, LDSA, INFO )",
+              "path": "SRC/zlag2c.f",
+              "sha256": "310c1d03a18a29c7c7ded5f1ae05ba1df108ba596eb8dc8287714bf2b185c297"
+            }
+          },
+          {
+            "id": "column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fd2a2bc7d82d4984f45342984887fcfe433ad8f705813e8a4b3a958a83137451",
+              "declaration": "SUBROUTINE ZLAG2C( M, N, A, LDA, SA, LDSA, INFO )",
+              "path": "SRC/zlag2c.f",
+              "sha256": "310c1d03a18a29c7c7ded5f1ae05ba1df108ba596eb8dc8287714bf2b185c297"
+            }
+          },
+          {
+            "id": "column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "exact_conversion",
+              "rounding_underflow_nonfinite_range",
+              "native_info",
+              "pre_native_output_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fd2a2bc7d82d4984f45342984887fcfe433ad8f705813e8a4b3a958a83137451",
+              "declaration": "SUBROUTINE ZLAG2C( M, N, A, LDA, SA, LDSA, INFO )",
+              "path": "SRC/zlag2c.f",
+              "sha256": "310c1d03a18a29c7c7ded5f1ae05ba1df108ba596eb8dc8287714bf2b185c297"
+            }
+          }
+        ],
+        "mutation": "Caller input and padding immutable. No old output reads before native entry. Preflight, range INFO=1 and malformed INFO preserve caller output; valid INFO=0 publishes all numeric output, including visible nonfinite values.",
+        "numerical_outcomes": "Finite widening exact. Narrowing follows native rounding/underflow; INFO=1 range failure is numerical accuracy warning and unchanged output. Widening only accepts INFO=0. Malformed/omitted/short-width INFO is a provider defect. Nonfinite INFO=0 output is published with numerical accuracy warning; sentinel NaN cannot distinguish omitted output from legitimate NaN. No clamp or floating-point environment change.",
+        "pivots": "No pivots or factors; conversion can lose information and does not imply reversible factor reuse.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/precision-conversion-review.md"
+        },
+        "scalar_signature": {
+          "conversion": "c64_to_c32",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ]
+        },
+        "state": "reviewed",
+        "workspace": "Metadata-only query; explicit live output scalars in kScratch and row-input scalars in kLayoutConversion. Checked aggregate bytes, foreign loop terminals and actual leading dimensions. No allocation."
       },
       "id": "lapack.zlag2c",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/precision_conversion/CMakeLists.txt",
+          "sha256": "b0309af447d00b8d230995344471f05bb23a2780b6734964131a52e3065585b0"
+        },
+        {
+          "path": "examples/precision_conversion/README.md",
+          "sha256": "c22c4e19c05c878844aa58c43bafbae8c1e5bd638af9d1b2d51edebfebe5e2b0"
+        },
+        {
+          "path": "examples/precision_conversion/main.cc",
+          "sha256": "46ce7dfd1e663d7ffdba3917ee2b78ed4aef9db5adabe3242d217edd651bca53"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_precision_conversion.h",
+          "sha256": "94a086f21a09d5b3c2badf00a82a5879abfed031ab3a744d98c19fb832385332"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_precision_conversion_counts.h",
+          "sha256": "cd18957fefbf8b863bee99c5b43584be1e22a8a9192b045d037d8fa2e46235d8"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_precision_conversion.cc",
+          "sha256": "cef5dfbb24c5d8d651c9952a724ea8b471790a21c3cb3ab75fc6d80fc17c604f"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_fault_test.cc",
+          "sha256": "5e993c79028ffc9787643a4e9012a92679c2d2de3a561d7c81b5fdc60eb30e0d"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_faults.cc",
+          "sha256": "c60c3448b4e2ef887199b2da164e12d366e59c4b155bda4a7ebaf90a7e493039"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_faults.h",
+          "sha256": "3332d4f6c953b456ab645fdb14e228088a076c9961817dc5a14ead14e958ed80"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_observation_test.cc",
+          "sha256": "e04e161c78c932de90fdc58f44e9716f743c081de1bfecbe05441611540f98d2"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_test.cc",
+          "sha256": "2a4396b977d4a1b60b4718e7b5c472bd0ef7c729592e7f1fe2844f3f13eae66a"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_test_support.h",
+          "sha256": "2f783e1e23fe3032ff08700300ba7b91a9d3f75b5855db108194096f8f593549"
+        },
+        {
+          "path": "tests/dense_lapack/precision_conversion_tests.cmake",
+          "sha256": "4b14333b95086da91654e95fefeef227d55c67846096a491db139ff19f4bb1ff"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -116363,7 +117189,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked native precision conversion, maintained four-layout tests, calibrated output observation, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "review": "programs/lapack-array-io/precision-conversion-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [

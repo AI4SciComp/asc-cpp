@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   linux-static:
-    name: Robust PPSVX, PT, mixed solves and LU / GNU 11 / static / integer ${{ matrix.bits }}
+    name: Selected LAPACK / GNU 11 / static / integer ${{ matrix.bits }}
     runs-on: ubuntu-22.04
     timeout-minutes: 45
     strategy:
@@ -59,7 +59,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|general_lu|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|general_lu|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             > "$RUNNER_TEMP/asc-selected.json"
           python3 - "$RUNNER_TEMP/asc-selected.json" <<'PY'
           import json
@@ -78,6 +78,10 @@ jobs:
                            for mode in ("", "required_math_", "fault_")}
               required |= {mixed + name for name in ("observation", "public_example")}
           required.add("asc_cpp.dense_lapack.general_lu.public_modes")
+          conversion = "asc_cpp.dense_lapack.precision_conversion."
+          required |= {conversion + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "fault_")}
+          required |= {conversion + name for name in ("observation", "public_example")}
           for family in ("reference_lu", "lu_layout", "lu_expert", "lu_info",
                          "lu_expert_info", "lu_pivot"):
               required |= {"asc_cpp.dense_lapack." + family + "." + scalar
@@ -89,7 +93,7 @@ jobs:
               raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
           PY
           ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|general_lu|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|general_lu|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             --output-junit "$RUNNER_TEMP/asc-tests.xml" \
             2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
       - name: Audit JUnit outcomes even when numerical gates fail

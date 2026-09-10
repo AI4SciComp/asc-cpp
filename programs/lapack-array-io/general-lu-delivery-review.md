@@ -117,3 +117,9 @@ pass in all six profiles and both TSan profiles after the repair:
 `positive-debug-lp64-04`, and the other mode/ABI `positive-*-02` runs.
 `positive-style-portability-01` passes full tracked Clang18 formatting and
 strict analysis of the changed test; no numerical tolerance or case changes.
+
+Fresh hosted checks on `c4e6d4710629538bddf4a074aa200fb974b0b99d`
+(tree `bdb7a151400e104896e1bd85df46fb8bafae2a77`) complete: CI34519820006
+and CodeQL34519820167 pass. Family34519820028 passes72/76 per actual ABI,
+with exactly the four retained PT mathematical failures and zero skips. Raw
+artifacts and JUnit audit are `lu-hosted-final-01`; no later source is credited.

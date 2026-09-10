@@ -77,6 +77,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_cholesky_packed_refinement.h
   include/asc/dense/providers/lapack_mixed_general.h
   include/asc/dense/providers/lapack_mixed_positive.h
+  include/asc/dense/providers/lapack_precision_conversion.h
   include/asc/dense/providers/lapack_positive_tridiagonal.h
   include/asc/dense/providers/lapack_cholesky_packed_robust.h
   include/asc/dense/providers/lapack_qr.h

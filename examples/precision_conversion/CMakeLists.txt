@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.25)
+project(ASCCppPrecisionConversionExample LANGUAGES CXX)
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense_lapack)
+add_executable(precision_conversion main.cc)
+target_compile_features(precision_conversion PRIVATE cxx_std_20)
+target_link_libraries(precision_conversion PRIVATE ASC::dense_lapack)
+enable_testing()
+add_test(NAME precision_conversion.public_example COMMAND precision_conversion)
