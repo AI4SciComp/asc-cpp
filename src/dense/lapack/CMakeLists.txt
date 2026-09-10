@@ -50,6 +50,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_cholesky_packed_refinement.cc
   reference_mixed_positive.cc
   reference_precision_conversion.cc
+  reference_matrix_copy.cc
   reference_mixed_general.cc
   reference_positive_tridiagonal.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
@@ -95,6 +96,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_refinement.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_mixed_positive.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_precision_conversion.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_copy.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_mixed_general.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_positive_tridiagonal.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_tridiagonal.h"

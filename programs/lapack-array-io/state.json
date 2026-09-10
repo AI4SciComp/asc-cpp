@@ -14,12 +14,13 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
+  "last_implementation_commit": "1ad352bad1dc5bbe199bbea233bfca91d75e85ab",
   "worktree_diff_identity": {
-    "state": "precision_conversion_preparing_freeze",
-    "base_commit": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
-    "scope": "Four checked explicit Reference precision conversion routines with maintained numerical/safety/observer/concurrency/public/package tests and reviewed catalogue contracts.",
-    "freeze": "master-continuation-20260910-01/conversion-frozen-product-01"
+    "state": "matrix_copy_frozen_locally_verified_pending_sync",
+    "base_commit": "1ad352bad1dc5bbe199bbea233bfca91d75e85ab",
+    "scope": "Four checked selected-copy Reference routines; six-profile affected checks, real-provider TSan, relocated consumers, eight affected gates and frozen-source9/9 each actual ABI pass. Hosted current-product checks require synchronization.",
+    "freeze": "master-continuation-20260910-01/lacpy-frozen-product-01",
+    "tested_source_tree": "dc86346df297d6ba06f393b3a8ecce3601bc5373"
   },
   "packages": {
     "P00": {
@@ -2526,7 +2527,7 @@
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Complete current conversion-fresh/package records; inspect pinned SRC/{s,d,c,z}gedmd.f90 and existing dmd_prerequisite.cc before checked public DMD implementation.",
+  "next_command": "Synchronize frozen LACPY product and inspect hosted checks; continue DMD count implementation from dmd-counts-source-audit-01/minimum-formulas.md and existing checked nested-query arithmetic. DMD remains unregistered.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3108,51 +3109,51 @@
     "one_active_writer": true,
     "pt_progress": "Six 13/17 affected profiles; both TSan4/4; installed public/base isolation pass; both full package tests pass; one source-list omission corrected and retested; current strict signature/format/coverage/Doxygen checks pass. Four required math processes/eight scalar-input cases/one provider cause remain failed.",
     "current_remote_read": {
-      "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
-      "tested_tree": "bdb7a151400e104896e1bd85df46fb8bafae2a77",
+      "head": "1ad352bad1dc5bbe199bbea233bfca91d75e85ab",
+      "tested_tree": "3fb9a38e16bc0dc6df58c2c44637bf6aa1458492",
       "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
       "draft": true,
       "checks": {
-        "pr_ci": 34519820006,
-        "pr_codeql": 34519820167,
-        "pr_families": 34519820028
+        "pr_ci": 34526096450,
+        "pr_codeql": 34526096407,
+        "pr_families": 34526096586
       },
-      "result": "CI and CodeQL pass. Family72/76 per actual ABI, exactly four retained PT mathematical failed processes, zero skips. This hosted source predates precision conversion.",
-      "evidence": "master-continuation-20260910-01/lu-hosted-final-01"
+      "result": "CI and CodeQL pass. Family84/88 per actual ABI, exactly four retained PT mathematical failed processes, zero skips. This hosted source predates LACPY.",
+      "evidence": "master-continuation-20260910-01/conversion-hosted-update-03/junit-audit.json; conversion-hosted-update-04"
     },
-    "p09_stage": "Both mixed driver families integrated and hosted-tested. Four full-matrix precision conversions pass six local profiles, real-provider TSan, installed/relocated consumers, eight affected gates, and fresh tracked-source13/13 each actual ABI. Feature synchronization next. DMD native prerequisites are available; checked ASC DMD adapters remain actionable.",
+    "p09_stage": "Mixed general/positive and four full-matrix precision conversions integrated and hosted-tested. Four selected matrix-copy routines pass six-profile affected checks, TSan, relocated consumers, eight affected gates and frozen-source9/9 each actual ABI. Feature synchronization next. DMD native prerequisites, actual min/preferred-workspace solves and independent minimum-formula queries pass; nested rounded query guards and checked ASC APIs/tests remain actionable.",
     "remaining_actionable": "Checked DMD APIs/tests (provider readiness established), remaining P04-P08/P09 inventory bodies/contracts/normalized evidence, wider compiler/shared/native-platform admission and final P11 gates. These remain actionable implementation work, separate from recorded owner decisions.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required_denominator": 2113,
-      "specification_mapped": 52,
-      "callable_reference": 28,
+      "specification_mapped": 56,
+      "callable_reference": 32,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
-      "reference_not_started_in_ledger": 1747,
+      "reference_not_started_in_ledger": 1743,
       "reference_in_progress_in_ledger": 338,
       "reference_blocked_in_ledger": 0,
-      "incomplete_reference_contracts": 2085,
+      "incomplete_reference_contracts": 2081,
       "implemented_unverified_native": 0,
-      "implemented_unverified_reference": 28,
+      "implemented_unverified_reference": 32,
       "registered_partial_reference_operations": 338,
       "unregistered_expert_operations_with_scoped_tests": 4,
-      "note": "Native20 retains accepted112 modes/1120 class slots. Reference2113:28 callable-unverified,338 partial,1747 not started,0 verified. Four robust first-party algorithms remain separate. Historical78 root mathematical failed processes and PT/PPSVX causes are retained. Full programme/platform/owner acceptance remains incomplete.",
+      "note": "Native20 retains accepted112 modes/1120 class slots. Reference2113:32 callable-unverified,338 partial,1743 not started,0 verified. Four robust first-party algorithms remain separate. Historical78 root mathematical failed processes and PT/PPSVX causes are retained. Full programme/platform/owner acceptance remains incomplete.",
       "unregistered_packed_operations_with_scoped_tests": 4,
       "experimental_first_party_robust_ppsvx_algorithms": 4,
       "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
       "in_progress_reference": 338,
-      "not_started_reference": 1747,
-      "mapped_contracts": 52,
+      "not_started_reference": 1743,
+      "mapped_contracts": 56,
       "blocked_reference": 0,
       "discovered": 3551,
       "excluded": 1438,
-      "incomplete_reference": 2085,
+      "incomplete_reference": 2081,
       "profile_complete": false,
       "required": 2113,
-      "registered_callable_reference_operations": 28,
-      "registered_reference_operations_total": 366
+      "registered_callable_reference_operations": 32,
+      "registered_reference_operations_total": 370
     },
     "original_supplied_instruction_sha256": "98b9ad9665c2ff0aa75b94f80a5093b1db2a2164cc3c4c511f694044f9be862d",
     "instruction_normalization": "Four trailing Markdown hard-break spaces removed for repository whitespace policy; original untracked user instruction and external copy preserved."

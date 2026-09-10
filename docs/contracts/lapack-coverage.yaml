@@ -15775,12 +15775,445 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "asc_operation": "asc::Lacpy",
+        "descriptors": "Immutable full input and same-shape staged output; explicit all/upper/lower trapezoid with independent padded row/column layouts. Empty M or N is local.",
+        "documentation": "programs/lapack-array-io/matrix-copy-review.md",
+        "mode_cases": [
+          {
+            "id": "all.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "all.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "all.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "all.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "upper.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "upper.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "upper.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "upper.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "lower.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "lower.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "lower.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          },
+          {
+            "id": "lower.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
+              "declaration": "SUBROUTINE CLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/clacpy.f",
+              "sha256": "7833954cb5e9901d22662ae2c16167433bfc9f5b44d0e4d5efad372a02f53e6a"
+            }
+          }
+        ],
+        "mutation": "Input and padding immutable. Row packing reads only selected input cells. No old caller output reads before native entry; only selected cells publish. Preflight failures preserve caller numeric buffers and empty calls make no numeric access.",
+        "numerical_outcomes": "Native assignment, without scaling/conjugation/finiteness filtering. Signed zeros, subnormals, finite extremes, infinity and quiet NaN remain visible. No native INFO parameter: native_info stays absent on every path. Success means ordinary native return; no native numerical failure channel is invented.",
+        "pivots": "No pivots or factors; reusable plans perform independent copies.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/matrix-copy-review.md"
+        },
+        "scalar_signature": {
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c64"
+        },
+        "state": "reviewed",
+        "workspace": "Metadata-only query. Explicit simultaneous live output scalars in kScratch and selected row-input scalars in kLayoutConversion. Checked aggregate bytes, foreign loop terminals and actual leading dimensions. No allocation."
       },
       "id": "lapack.clacpy",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/matrix_copy/CMakeLists.txt",
+          "sha256": "b4694893eb19a5e7ad3c365e572e28d1c457e3f3ddf6a6fdab51817980b2396c"
+        },
+        {
+          "path": "examples/matrix_copy/README.md",
+          "sha256": "b4d7a8c0fa22eb42b01722665c3c51daa52528a7b760bd69053363bea141a88c"
+        },
+        {
+          "path": "examples/matrix_copy/main.cc",
+          "sha256": "9d0d68ed73cc8c73dcdf535bbc8172bbf45ba73d574f97a40f0654609707ae70"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_matrix_copy.h",
+          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_matrix_copy_counts.h",
+          "sha256": "33157e44987dd2b8c6131a93ab099483bf0a7a7ff6bdf830e76c101b44687192"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_matrix_copy.cc",
+          "sha256": "69a3a384b342091284606cdbcb13bbb23dd5f4c831c39bd800faf183164da0eb"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_entry.cc",
+          "sha256": "fd49934eb8e0b60d747bda896404487266f42e78576d1425e4c18cd65e17db18"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_entry.h",
+          "sha256": "74d769ff68e732468caa85ac787ec4aa4f7ab512332e955d42a2c96bc92b7e2d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_observation_test.cc",
+          "sha256": "aabd41a2e4ae9b31252123345b521fc42aae8f119dcc8d602728926bc02a5ff7"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_test.cc",
+          "sha256": "ac59a604543ab43b6b11af3605cf114e1aec97fee02c5c6a747777f8aa6fe046"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_test_support.h",
+          "sha256": "36dcc131e68ae8d6ddedaf98d3998566288fe85075874740e2da6e8789ac6412"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_tests.cmake",
+          "sha256": "be2ddc161e3167824322f1277a0dada9f0bb91add70d7fbf832454c023883e9c"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -15788,7 +16221,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked native selected matrix copy, maintained three-part/four-layout tests, calibrated output and unselected-input observations, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "review": "programs/lapack-array-io/matrix-copy-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -45377,12 +45812,445 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "asc_operation": "asc::Lacpy",
+        "descriptors": "Immutable full input and same-shape staged output; explicit all/upper/lower trapezoid with independent padded row/column layouts. Empty M or N is local.",
+        "documentation": "programs/lapack-array-io/matrix-copy-review.md",
+        "mode_cases": [
+          {
+            "id": "all.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "all.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "all.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "all.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "upper.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "upper.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "upper.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "upper.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "lower.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "lower.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "lower.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          },
+          {
+            "id": "lower.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
+              "declaration": "SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/dlacpy.f",
+              "sha256": "00a07a6244d34435e247cb4b037dcf512d10c27177c8f96410d325e9554c7c18"
+            }
+          }
+        ],
+        "mutation": "Input and padding immutable. Row packing reads only selected input cells. No old caller output reads before native entry; only selected cells publish. Preflight failures preserve caller numeric buffers and empty calls make no numeric access.",
+        "numerical_outcomes": "Native assignment, without scaling/conjugation/finiteness filtering. Signed zeros, subnormals, finite extremes, infinity and quiet NaN remain visible. No native INFO parameter: native_info stays absent on every path. Success means ordinary native return; no native numerical failure channel is invented.",
+        "pivots": "No pivots or factors; reusable plans perform independent copies.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/matrix-copy-review.md"
+        },
+        "scalar_signature": {
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f64"
+        },
+        "state": "reviewed",
+        "workspace": "Metadata-only query. Explicit simultaneous live output scalars in kScratch and selected row-input scalars in kLayoutConversion. Checked aggregate bytes, foreign loop terminals and actual leading dimensions. No allocation."
       },
       "id": "lapack.dlacpy",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/matrix_copy/CMakeLists.txt",
+          "sha256": "b4694893eb19a5e7ad3c365e572e28d1c457e3f3ddf6a6fdab51817980b2396c"
+        },
+        {
+          "path": "examples/matrix_copy/README.md",
+          "sha256": "b4d7a8c0fa22eb42b01722665c3c51daa52528a7b760bd69053363bea141a88c"
+        },
+        {
+          "path": "examples/matrix_copy/main.cc",
+          "sha256": "9d0d68ed73cc8c73dcdf535bbc8172bbf45ba73d574f97a40f0654609707ae70"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_matrix_copy.h",
+          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_matrix_copy_counts.h",
+          "sha256": "33157e44987dd2b8c6131a93ab099483bf0a7a7ff6bdf830e76c101b44687192"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_matrix_copy.cc",
+          "sha256": "69a3a384b342091284606cdbcb13bbb23dd5f4c831c39bd800faf183164da0eb"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_entry.cc",
+          "sha256": "fd49934eb8e0b60d747bda896404487266f42e78576d1425e4c18cd65e17db18"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_entry.h",
+          "sha256": "74d769ff68e732468caa85ac787ec4aa4f7ab512332e955d42a2c96bc92b7e2d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_observation_test.cc",
+          "sha256": "aabd41a2e4ae9b31252123345b521fc42aae8f119dcc8d602728926bc02a5ff7"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_test.cc",
+          "sha256": "ac59a604543ab43b6b11af3605cf114e1aec97fee02c5c6a747777f8aa6fe046"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_test_support.h",
+          "sha256": "36dcc131e68ae8d6ddedaf98d3998566288fe85075874740e2da6e8789ac6412"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_tests.cmake",
+          "sha256": "be2ddc161e3167824322f1277a0dada9f0bb91add70d7fbf832454c023883e9c"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -45390,7 +46258,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked native selected matrix copy, maintained three-part/four-layout tests, calibrated output and unselected-input observations, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "review": "programs/lapack-array-io/matrix-copy-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -79917,12 +80787,445 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "asc_operation": "asc::Lacpy",
+        "descriptors": "Immutable full input and same-shape staged output; explicit all/upper/lower trapezoid with independent padded row/column layouts. Empty M or N is local.",
+        "documentation": "programs/lapack-array-io/matrix-copy-review.md",
+        "mode_cases": [
+          {
+            "id": "all.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "all.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "all.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "all.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "upper.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "upper.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "upper.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "upper.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "lower.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "lower.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "lower.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          },
+          {
+            "id": "lower.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
+              "declaration": "SUBROUTINE SLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/slacpy.f",
+              "sha256": "b262c07f986bf494fccb0b0d26ba5b78b2c596b087aad7b651438d5c92b72375"
+            }
+          }
+        ],
+        "mutation": "Input and padding immutable. Row packing reads only selected input cells. No old caller output reads before native entry; only selected cells publish. Preflight failures preserve caller numeric buffers and empty calls make no numeric access.",
+        "numerical_outcomes": "Native assignment, without scaling/conjugation/finiteness filtering. Signed zeros, subnormals, finite extremes, infinity and quiet NaN remain visible. No native INFO parameter: native_info stays absent on every path. Success means ordinary native return; no native numerical failure channel is invented.",
+        "pivots": "No pivots or factors; reusable plans perform independent copies.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/matrix-copy-review.md"
+        },
+        "scalar_signature": {
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f32"
+        },
+        "state": "reviewed",
+        "workspace": "Metadata-only query. Explicit simultaneous live output scalars in kScratch and selected row-input scalars in kLayoutConversion. Checked aggregate bytes, foreign loop terminals and actual leading dimensions. No allocation."
       },
       "id": "lapack.slacpy",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/matrix_copy/CMakeLists.txt",
+          "sha256": "b4694893eb19a5e7ad3c365e572e28d1c457e3f3ddf6a6fdab51817980b2396c"
+        },
+        {
+          "path": "examples/matrix_copy/README.md",
+          "sha256": "b4d7a8c0fa22eb42b01722665c3c51daa52528a7b760bd69053363bea141a88c"
+        },
+        {
+          "path": "examples/matrix_copy/main.cc",
+          "sha256": "9d0d68ed73cc8c73dcdf535bbc8172bbf45ba73d574f97a40f0654609707ae70"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_matrix_copy.h",
+          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_matrix_copy_counts.h",
+          "sha256": "33157e44987dd2b8c6131a93ab099483bf0a7a7ff6bdf830e76c101b44687192"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_matrix_copy.cc",
+          "sha256": "69a3a384b342091284606cdbcb13bbb23dd5f4c831c39bd800faf183164da0eb"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_entry.cc",
+          "sha256": "fd49934eb8e0b60d747bda896404487266f42e78576d1425e4c18cd65e17db18"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_entry.h",
+          "sha256": "74d769ff68e732468caa85ac787ec4aa4f7ab512332e955d42a2c96bc92b7e2d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_observation_test.cc",
+          "sha256": "aabd41a2e4ae9b31252123345b521fc42aae8f119dcc8d602728926bc02a5ff7"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_test.cc",
+          "sha256": "ac59a604543ab43b6b11af3605cf114e1aec97fee02c5c6a747777f8aa6fe046"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_test_support.h",
+          "sha256": "36dcc131e68ae8d6ddedaf98d3998566288fe85075874740e2da6e8789ac6412"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_tests.cmake",
+          "sha256": "be2ddc161e3167824322f1277a0dada9f0bb91add70d7fbf832454c023883e9c"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -79930,7 +81233,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked native selected matrix copy, maintained three-part/four-layout tests, calibrated output and unselected-input observations, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "review": "programs/lapack-array-io/matrix-copy-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -116698,12 +118003,445 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "asc_operation": "asc::Lacpy",
+        "descriptors": "Immutable full input and same-shape staged output; explicit all/upper/lower trapezoid with independent padded row/column layouts. Empty M or N is local.",
+        "documentation": "programs/lapack-array-io/matrix-copy-review.md",
+        "mode_cases": [
+          {
+            "id": "all.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "all.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "all.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "all.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "all"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "upper.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "upper.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "upper.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "upper.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "upper"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "lower.row_major.row_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "row_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "lower.row_major.column_major",
+            "options": {
+              "input_layout": "row_major",
+              "output_layout": "column_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "lower.column_major.row_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "row_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          },
+          {
+            "id": "lower.column_major.column_major",
+            "options": {
+              "input_layout": "column_major",
+              "output_layout": "column_major",
+              "part": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar_rectangular",
+              "workspace",
+              "padding_aliasing",
+              "allocation",
+              "selected_copy_and_complement",
+              "signed_zero_nonfinite_subnormal",
+              "absent_native_info",
+              "pre_native_output_observation",
+              "unselected_input_observation",
+              "concurrency",
+              "installed_consumer"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
+              "declaration": "SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )",
+              "path": "SRC/zlacpy.f",
+              "sha256": "f65b6a095dd9d9d608719485271a0537b99b40422556025fd5171f6a3e9a648e"
+            }
+          }
+        ],
+        "mutation": "Input and padding immutable. Row packing reads only selected input cells. No old caller output reads before native entry; only selected cells publish. Preflight failures preserve caller numeric buffers and empty calls make no numeric access.",
+        "numerical_outcomes": "Native assignment, without scaling/conjugation/finiteness filtering. Signed zeros, subnormals, finite extremes, infinity and quiet NaN remain visible. No native INFO parameter: native_info stays absent on every path. Success means ordinary native return; no native numerical failure channel is invented.",
+        "pivots": "No pivots or factors; reusable plans perform independent copies.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/matrix-copy-review.md"
+        },
+        "scalar_signature": {
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c128"
+        },
+        "state": "reviewed",
+        "workspace": "Metadata-only query. Explicit simultaneous live output scalars in kScratch and selected row-input scalars in kLayoutConversion. Checked aggregate bytes, foreign loop terminals and actual leading dimensions. No allocation."
       },
       "id": "lapack.zlacpy",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/matrix_copy/CMakeLists.txt",
+          "sha256": "b4694893eb19a5e7ad3c365e572e28d1c457e3f3ddf6a6fdab51817980b2396c"
+        },
+        {
+          "path": "examples/matrix_copy/README.md",
+          "sha256": "b4d7a8c0fa22eb42b01722665c3c51daa52528a7b760bd69053363bea141a88c"
+        },
+        {
+          "path": "examples/matrix_copy/main.cc",
+          "sha256": "9d0d68ed73cc8c73dcdf535bbc8172bbf45ba73d574f97a40f0654609707ae70"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_matrix_copy.h",
+          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_matrix_copy_counts.h",
+          "sha256": "33157e44987dd2b8c6131a93ab099483bf0a7a7ff6bdf830e76c101b44687192"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_matrix_copy.cc",
+          "sha256": "69a3a384b342091284606cdbcb13bbb23dd5f4c831c39bd800faf183164da0eb"
+        },
+        {
+          "path": "src/dense/lapack_foundations.cc",
+          "sha256": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676"
+        },
+        {
+          "path": "tests/dense/allocation_probe.cc",
+          "sha256": "31f152aeff34ca9ad97b5c964728860e5a1d1ce48461b174b227204f98d16835"
+        },
+        {
+          "path": "tests/dense_lapack/allocation_audit.cc",
+          "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_entry.cc",
+          "sha256": "fd49934eb8e0b60d747bda896404487266f42e78576d1425e4c18cd65e17db18"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_entry.h",
+          "sha256": "74d769ff68e732468caa85ac787ec4aa4f7ab512332e955d42a2c96bc92b7e2d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_observation_test.cc",
+          "sha256": "aabd41a2e4ae9b31252123345b521fc42aae8f119dcc8d602728926bc02a5ff7"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_test.cc",
+          "sha256": "ac59a604543ab43b6b11af3605cf114e1aec97fee02c5c6a747777f8aa6fe046"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_test_support.h",
+          "sha256": "36dcc131e68ae8d6ddedaf98d3998566288fe85075874740e2da6e8789ac6412"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_tests.cmake",
+          "sha256": "be2ddc161e3167824322f1277a0dada9f0bb91add70d7fbf832454c023883e9c"
+        },
+        {
+          "path": "tests/dense_lapack/tridiagonal_test_support.h",
+          "sha256": "fae92077ed13beda7b689eac7fcc62abc0ebdae4475276a762dae533fbc51d27"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -116711,7 +118449,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Checked native selected matrix copy, maintained three-part/four-layout tests, calibrated output and unselected-input observations, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "review": "programs/lapack-array-io/matrix-copy-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
