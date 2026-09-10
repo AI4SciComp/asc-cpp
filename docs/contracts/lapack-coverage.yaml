@@ -7665,9 +7665,134 @@
     {
       "classification": "public_driver",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Gesv",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "3c1457fd309e5d769b0624b49490e48b29012c62a9fe02732aee7016279e136f",
+              "declaration": "SUBROUTINE CGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/cgesv.f",
+              "sha256": "5706a6cbd2ba145835a5c731916acf0821309e96d7425cebb9fda4d11301d23a"
+            }
+          },
+          {
+            "id": "row_major.column_major",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "3c1457fd309e5d769b0624b49490e48b29012c62a9fe02732aee7016279e136f",
+              "declaration": "SUBROUTINE CGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/cgesv.f",
+              "sha256": "5706a6cbd2ba145835a5c731916acf0821309e96d7425cebb9fda4d11301d23a"
+            }
+          },
+          {
+            "id": "column_major.row_major",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "3c1457fd309e5d769b0624b49490e48b29012c62a9fe02732aee7016279e136f",
+              "declaration": "SUBROUTINE CGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/cgesv.f",
+              "sha256": "5706a6cbd2ba145835a5c731916acf0821309e96d7425cebb9fda4d11301d23a"
+            }
+          },
+          {
+            "id": "column_major.column_major",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "3c1457fd309e5d769b0624b49490e48b29012c62a9fe02732aee7016279e136f",
+              "declaration": "SUBROUTINE CGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/cgesv.f",
+              "sha256": "5706a6cbd2ba145835a5c731916acf0821309e96d7425cebb9fda4d11301d23a"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c32"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.cgesv",
       "implementation_artifacts": [
@@ -7681,7 +7806,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -7734,6 +7859,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -7742,9 +7879,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -8393,9 +8545,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getf2",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "01785715fba62116a9eb7647bf2c644af57ec0a94ec1dcf44887a33283fb386d",
+              "declaration": "SUBROUTINE CGETF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/cgetf2.f",
+              "sha256": "0e2ae33599fd9136c08314318f831bd8418b72f0eb5958cf4f45290f168773ec"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "01785715fba62116a9eb7647bf2c644af57ec0a94ec1dcf44887a33283fb386d",
+              "declaration": "SUBROUTINE CGETF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/cgetf2.f",
+              "sha256": "0e2ae33599fd9136c08314318f831bd8418b72f0eb5958cf4f45290f168773ec"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c32"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.cgetf2",
       "implementation_artifacts": [
@@ -8409,7 +8632,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -8462,6 +8685,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -8470,9 +8705,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -8682,9 +8932,24 @@
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -8696,9 +8961,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getrf2",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "2c5680ba606d6813e72bda8aef60e371783bc9581a2adc3276ac824ddd4da43d",
+              "declaration": "RECURSIVE SUBROUTINE CGETRF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/cgetrf2.f",
+              "sha256": "4a2304c95779f0d5560f556c438d1d10220e4fa224226459d533aeabd9373009"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "2c5680ba606d6813e72bda8aef60e371783bc9581a2adc3276ac824ddd4da43d",
+              "declaration": "RECURSIVE SUBROUTINE CGETRF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/cgetrf2.f",
+              "sha256": "4a2304c95779f0d5560f556c438d1d10220e4fa224226459d533aeabd9373009"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c32"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.cgetrf2",
       "implementation_artifacts": [
@@ -8712,7 +9048,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -8765,6 +9101,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -8773,9 +9121,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -8787,9 +9150,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getri",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "factor_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "inverse_products",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar",
+              "workspace_minimum_preferred"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "3c7fc2c46dce3579194224fa11da849404a7d6e6d2075ef36f6375a1154c2370",
+              "declaration": "SUBROUTINE CGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )",
+              "path": "SRC/cgetri.f",
+              "sha256": "89ed10eee2670fe5f591b507926b7477e6f87fd55e1c2eea0519277b326ec82b"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "factor_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "inverse_products",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar",
+              "workspace_minimum_preferred"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "3c7fc2c46dce3579194224fa11da849404a7d6e6d2075ef36f6375a1154c2370",
+              "declaration": "SUBROUTINE CGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )",
+              "path": "SRC/cgetri.f",
+              "sha256": "89ed10eee2670fe5f591b507926b7477e6f87fd55e1c2eea0519277b326ec82b"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c32"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.cgetri",
       "implementation_artifacts": [
@@ -8803,7 +9237,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -8856,6 +9290,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -8864,9 +9310,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -9330,9 +9791,24 @@
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -39981,9 +40457,134 @@
     {
       "classification": "public_driver",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Gesv",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "63e6adc84e1d37878c8aefe31bb553bc77fe28154783ae772378db28a2c954c2",
+              "declaration": "SUBROUTINE DGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/dgesv.f",
+              "sha256": "0179d91ee67735647b427cfb2773648b1fdb17490b4b7d15c011a5d0d809bba4"
+            }
+          },
+          {
+            "id": "row_major.column_major",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "63e6adc84e1d37878c8aefe31bb553bc77fe28154783ae772378db28a2c954c2",
+              "declaration": "SUBROUTINE DGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/dgesv.f",
+              "sha256": "0179d91ee67735647b427cfb2773648b1fdb17490b4b7d15c011a5d0d809bba4"
+            }
+          },
+          {
+            "id": "column_major.row_major",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "63e6adc84e1d37878c8aefe31bb553bc77fe28154783ae772378db28a2c954c2",
+              "declaration": "SUBROUTINE DGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/dgesv.f",
+              "sha256": "0179d91ee67735647b427cfb2773648b1fdb17490b4b7d15c011a5d0d809bba4"
+            }
+          },
+          {
+            "id": "column_major.column_major",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "63e6adc84e1d37878c8aefe31bb553bc77fe28154783ae772378db28a2c954c2",
+              "declaration": "SUBROUTINE DGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/dgesv.f",
+              "sha256": "0179d91ee67735647b427cfb2773648b1fdb17490b4b7d15c011a5d0d809bba4"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f64"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.dgesv",
       "implementation_artifacts": [
@@ -39997,7 +40598,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -40050,6 +40651,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -40058,9 +40671,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -40916,9 +41544,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getf2",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "755180839bc5ce37075be4dc3a671b6be76b677c208d5b5fb1e15857ac52de79",
+              "declaration": "SUBROUTINE DGETF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/dgetf2.f",
+              "sha256": "001a765b2a8aca7baf5238da7fc59885413eef5c35695d5ddcaff5602a0b7e3f"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "755180839bc5ce37075be4dc3a671b6be76b677c208d5b5fb1e15857ac52de79",
+              "declaration": "SUBROUTINE DGETF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/dgetf2.f",
+              "sha256": "001a765b2a8aca7baf5238da7fc59885413eef5c35695d5ddcaff5602a0b7e3f"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f64"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.dgetf2",
       "implementation_artifacts": [
@@ -40932,7 +41631,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -40985,6 +41684,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -40993,9 +41704,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -41205,9 +41931,24 @@
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -41219,9 +41960,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getrf2",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "85037904b42fa49ffaabc0df446893194237e98e23d925b270603e91f71f99cf",
+              "declaration": "RECURSIVE SUBROUTINE DGETRF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/dgetrf2.f",
+              "sha256": "b3431df86dc051eeef0b3fe753709eb5f5ff1747016173ce883b3923200c98a4"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "85037904b42fa49ffaabc0df446893194237e98e23d925b270603e91f71f99cf",
+              "declaration": "RECURSIVE SUBROUTINE DGETRF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/dgetrf2.f",
+              "sha256": "b3431df86dc051eeef0b3fe753709eb5f5ff1747016173ce883b3923200c98a4"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f64"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.dgetrf2",
       "implementation_artifacts": [
@@ -41235,7 +42047,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -41288,6 +42100,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -41296,9 +42120,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -41310,9 +42149,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getri",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "factor_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "inverse_products",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar",
+              "workspace_minimum_preferred"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "eb64dffb33d674efa9f9c4a98627401fcde41790943ccf80b1b5232c69190bf7",
+              "declaration": "SUBROUTINE DGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )",
+              "path": "SRC/dgetri.f",
+              "sha256": "126072cb70788500d376efea94b1272f1ea3de4656ee72239d163d5293c98edf"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "factor_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "inverse_products",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar",
+              "workspace_minimum_preferred"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "eb64dffb33d674efa9f9c4a98627401fcde41790943ccf80b1b5232c69190bf7",
+              "declaration": "SUBROUTINE DGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )",
+              "path": "SRC/dgetri.f",
+              "sha256": "126072cb70788500d376efea94b1272f1ea3de4656ee72239d163d5293c98edf"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f64"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.dgetri",
       "implementation_artifacts": [
@@ -41326,7 +42236,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -41379,6 +42289,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -41387,9 +42309,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -41853,9 +42790,24 @@
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -59106,7 +60058,7 @@
         },
         {
           "path": "tests/dense_lapack/mixed_positive_test.cc",
-          "sha256": "e02ec3f12b13f7909d9fc97f174d319e41730c74b1699135437ed5ca3952e4a4"
+          "sha256": "43f38dfd9f7f57662109427ce53510dbd87541ef2f5649fc922629c3ff4ea08b"
         },
         {
           "path": "tests/dense_lapack/mixed_positive_test_support.h",
@@ -73861,9 +74813,134 @@
     {
       "classification": "public_driver",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Gesv",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "c32d35ded5b766f2ef39d87124e801e9a02759c9ec11334a594cbf2f54eac8fd",
+              "declaration": "SUBROUTINE SGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/sgesv.f",
+              "sha256": "78978f22d43cb3a8ef6dadee5ee0c96f7a9a714197d8e66d47674300a0c686f8"
+            }
+          },
+          {
+            "id": "row_major.column_major",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "c32d35ded5b766f2ef39d87124e801e9a02759c9ec11334a594cbf2f54eac8fd",
+              "declaration": "SUBROUTINE SGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/sgesv.f",
+              "sha256": "78978f22d43cb3a8ef6dadee5ee0c96f7a9a714197d8e66d47674300a0c686f8"
+            }
+          },
+          {
+            "id": "column_major.row_major",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "c32d35ded5b766f2ef39d87124e801e9a02759c9ec11334a594cbf2f54eac8fd",
+              "declaration": "SUBROUTINE SGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/sgesv.f",
+              "sha256": "78978f22d43cb3a8ef6dadee5ee0c96f7a9a714197d8e66d47674300a0c686f8"
+            }
+          },
+          {
+            "id": "column_major.column_major",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "c32d35ded5b766f2ef39d87124e801e9a02759c9ec11334a594cbf2f54eac8fd",
+              "declaration": "SUBROUTINE SGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/sgesv.f",
+              "sha256": "78978f22d43cb3a8ef6dadee5ee0c96f7a9a714197d8e66d47674300a0c686f8"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f32"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.sgesv",
       "implementation_artifacts": [
@@ -73877,7 +74954,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -73930,6 +75007,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -73938,9 +75027,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -74773,9 +75877,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getf2",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "f099449fa6dfc85b1371cd138aa500e46a67f4d934b3f0f9887ea7f94f8f9087",
+              "declaration": "SUBROUTINE SGETF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/sgetf2.f",
+              "sha256": "24f2a57145d635b6d1ce0a4f2da7929f3e97d9802e91cd28cc3196795d1a2585"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "f099449fa6dfc85b1371cd138aa500e46a67f4d934b3f0f9887ea7f94f8f9087",
+              "declaration": "SUBROUTINE SGETF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/sgetf2.f",
+              "sha256": "24f2a57145d635b6d1ce0a4f2da7929f3e97d9802e91cd28cc3196795d1a2585"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f32"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.sgetf2",
       "implementation_artifacts": [
@@ -74789,7 +75964,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -74842,6 +76017,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -74850,9 +76037,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -75062,9 +76264,24 @@
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -75076,9 +76293,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getrf2",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "4ea0428e4684dec28dcd1a4ac87f30bc409d2b69a9db2f406e773f521cf36a97",
+              "declaration": "RECURSIVE SUBROUTINE SGETRF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/sgetrf2.f",
+              "sha256": "2e79eb299e6e47ef210c060e6176494bd1124fef2a6890795dfffb471ce9cf02"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "4ea0428e4684dec28dcd1a4ac87f30bc409d2b69a9db2f406e773f521cf36a97",
+              "declaration": "RECURSIVE SUBROUTINE SGETRF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/sgetrf2.f",
+              "sha256": "2e79eb299e6e47ef210c060e6176494bd1124fef2a6890795dfffb471ce9cf02"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f32"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.sgetrf2",
       "implementation_artifacts": [
@@ -75092,7 +76380,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -75145,6 +76433,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -75153,9 +76453,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -75167,9 +76482,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getri",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "factor_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "inverse_products",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar",
+              "workspace_minimum_preferred"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "1f403395d79932108eb9c56bb0f16bf885b6378284fe5027741951018e679994",
+              "declaration": "SUBROUTINE SGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )",
+              "path": "SRC/sgetri.f",
+              "sha256": "f846f135a4228c8a1560d422bd6b7bda8da6fbff7f831c84634de0daf2776baa"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "factor_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "inverse_products",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar",
+              "workspace_minimum_preferred"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "1f403395d79932108eb9c56bb0f16bf885b6378284fe5027741951018e679994",
+              "declaration": "SUBROUTINE SGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )",
+              "path": "SRC/sgetri.f",
+              "sha256": "f846f135a4228c8a1560d422bd6b7bda8da6fbff7f831c84634de0daf2776baa"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "f32"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.sgetri",
       "implementation_artifacts": [
@@ -75183,7 +76569,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -75236,6 +76622,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -75244,9 +76642,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -75710,9 +77123,24 @@
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -100721,7 +102149,7 @@
         },
         {
           "path": "tests/dense_lapack/mixed_positive_test.cc",
-          "sha256": "e02ec3f12b13f7909d9fc97f174d319e41730c74b1699135437ed5ca3952e4a4"
+          "sha256": "43f38dfd9f7f57662109427ce53510dbd87541ef2f5649fc922629c3ff4ea08b"
         },
         {
           "path": "tests/dense_lapack/mixed_positive_test_support.h",
@@ -106656,9 +108084,134 @@
     {
       "classification": "public_driver",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Gesv",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major.row_major",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "c33de2f6a0905c1d2d6c739fc47ebf85e49cd6454d90e098a905d01f72d1d106",
+              "declaration": "SUBROUTINE ZGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/zgesv.f",
+              "sha256": "3742dafca03b3c615faeb9dbbccc91580ed7791dbc449a9603898f4102aec997"
+            }
+          },
+          {
+            "id": "row_major.column_major",
+            "options": {
+              "factor_layout": "row_major",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "c33de2f6a0905c1d2d6c739fc47ebf85e49cd6454d90e098a905d01f72d1d106",
+              "declaration": "SUBROUTINE ZGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/zgesv.f",
+              "sha256": "3742dafca03b3c615faeb9dbbccc91580ed7791dbc449a9603898f4102aec997"
+            }
+          },
+          {
+            "id": "column_major.row_major",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "c33de2f6a0905c1d2d6c739fc47ebf85e49cd6454d90e098a905d01f72d1d106",
+              "declaration": "SUBROUTINE ZGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/zgesv.f",
+              "sha256": "3742dafca03b3c615faeb9dbbccc91580ed7791dbc449a9603898f4102aec997"
+            }
+          },
+          {
+            "id": "column_major.column_major",
+            "options": {
+              "factor_layout": "column_major",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "known_solution",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_multiple_rhs",
+              "zero_rhs_factorization"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "c33de2f6a0905c1d2d6c739fc47ebf85e49cd6454d90e098a905d01f72d1d106",
+              "declaration": "SUBROUTINE ZGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )",
+              "path": "SRC/zgesv.f",
+              "sha256": "3742dafca03b3c615faeb9dbbccc91580ed7791dbc449a9603898f4102aec997"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c64"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.zgesv",
       "implementation_artifacts": [
@@ -106672,7 +108225,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -106725,6 +108278,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -106733,9 +108298,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -107407,9 +108987,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getf2",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ca0beea93861686e764ce0524cab6a536ccb607938c7f403224df8144d83dc77",
+              "declaration": "SUBROUTINE ZGETF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/zgetf2.f",
+              "sha256": "882789e4079f018a939e58669e76bb4eb9fba25685a0b080b1df2461616d1c56"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ca0beea93861686e764ce0524cab6a536ccb607938c7f403224df8144d83dc77",
+              "declaration": "SUBROUTINE ZGETF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/zgetf2.f",
+              "sha256": "882789e4079f018a939e58669e76bb4eb9fba25685a0b080b1df2461616d1c56"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c64"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.zgetf2",
       "implementation_artifacts": [
@@ -107423,7 +109074,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -107476,6 +109127,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -107484,9 +109147,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -107696,9 +109374,24 @@
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -107710,9 +109403,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getrf2",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "matrix_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "64fa9c2de46fbc7b6ac467dd9659aa6287ce2a241b9f87806c7571d5efc3fcb0",
+              "declaration": "RECURSIVE SUBROUTINE ZGETRF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/zgetrf2.f",
+              "sha256": "3cc626c5d51b0653828f76f2eeea58bc557f662ba6d3e706fa66620b9588f63c"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "matrix_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "reconstruction",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar_rectangular",
+              "scaling"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "64fa9c2de46fbc7b6ac467dd9659aa6287ce2a241b9f87806c7571d5efc3fcb0",
+              "declaration": "RECURSIVE SUBROUTINE ZGETRF2( M, N, A, LDA, IPIV, INFO )",
+              "path": "SRC/zgetrf2.f",
+              "sha256": "3cc626c5d51b0653828f76f2eeea58bc557f662ba6d3e706fa66620b9588f63c"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c64"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.zgetrf2",
       "implementation_artifacts": [
@@ -107726,7 +109490,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -107779,6 +109543,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -107787,9 +109563,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -107801,9 +109592,80 @@
     {
       "classification": "public_computational",
       "contract": {
+        "aliasing": "Conservative reachable spans including padding must be disjoint from active operands, pivots and all workspace. Reports and workspace are independently owned; independent calls may run concurrently. No shared-workspace guarantee.",
         "asc_operation": "asc::Getri",
-        "mode_cases": [],
-        "state": "pending"
+        "descriptors": "Checked host full dense row/column descriptors including padding; square inverse/driver, rectangular factorization; independent factor/RHS layouts for GESV.",
+        "documentation": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "mode_cases": [
+          {
+            "id": "row_major",
+            "options": {
+              "factor_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "inverse_products",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar",
+              "workspace_minimum_preferred"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9b8b0aa89949deddddb161238232fb99dfae3ce26e0ed5cd088d3b2141349661",
+              "declaration": "SUBROUTINE ZGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )",
+              "path": "SRC/zgetri.f",
+              "sha256": "abe4363a2886579159faf6b336eaadadc9f4c1ef0b982edcbce22d65222955a8"
+            }
+          },
+          {
+            "id": "column_major",
+            "options": {
+              "factor_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "padding_aliasing",
+              "allocation",
+              "native_info",
+              "installed_consumer",
+              "concurrency",
+              "inverse_products",
+              "pivots",
+              "numerical_failure",
+              "empty_scalar",
+              "workspace_minimum_preferred"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9b8b0aa89949deddddb161238232fb99dfae3ce26e0ed5cd088d3b2141349661",
+              "declaration": "SUBROUTINE ZGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )",
+              "path": "SRC/zgetri.f",
+              "sha256": "abe4363a2886579159faf6b336eaadadc9f4c1ef0b982edcbce22d65222955a8"
+            }
+          }
+        ],
+        "mutation": "Preflight leaves all numeric operands unchanged. Accepted INFO and valid output pivots publish packed factors; singular factor/driver publishes documented partial LU but not failed RHS. GETRI only publishes packed success. Direct column-major native writes survive provider defects and are unusable.",
+        "numerical_outcomes": "Exact native INFO=0 success and positive singular index; negative/excess/omitted/selected short-width INFO is a provider defect. Empty factor/driver/inverse execution is local with no native INFO; empty inverse query calls provider. Nonfinite native arithmetic is not a finiteness/conditioning guarantee.",
+        "pivots": "kLuPartialPivot, signed one-based sequential swaps with i <= IPIV(i) <= m; P_seq*A=L*U. Only complete successful factors are reusable. Foreign output pivots and INFO are seeded with selected full-width minimum and validated before publication.",
+        "review": {
+          "kind": "implementation_self_review",
+          "owner_approval": false,
+          "reference": "programs/lapack-array-io/general-lu-delivery-review.md"
+        },
+        "scalar_signature": {
+          "pivots": "ASC signed 64-bit one-based sequential swaps, checked foreign conversion",
+          "reference_integer_abis_required": [
+            32,
+            64
+          ],
+          "scalar": "c64"
+        },
+        "state": "reviewed",
+        "workspace": "Explicit checked plan/workspace, row packing and live foreign integer pivots. Metadata-only factor/driver queries; actual GETRI LWORK=-1 query with valid descriptors and full pivot storage, followed by no-requery execution at minimum/preferred work."
       },
       "id": "lapack.zgetri",
       "implementation_artifacts": [
@@ -107817,7 +109679,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_lu.h",
-          "sha256": "55906529c8cb02e7fee64bbd16b8cf5af71a108562fe0e9f8c75e39745da1859"
+          "sha256": "5d2db0a7150a0d7e7d6f2cfb75d5865d5f21adaf5cc54ef7fe0ab6532c6121d3"
         },
         {
           "path": "src/dense/lapack/reference_lu_expert.cc",
@@ -107870,6 +109732,18 @@
         {
           "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
           "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
+          "path": "examples/general_lu/main.cc",
+          "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+        },
+        {
+          "path": "examples/general_lu/CMakeLists.txt",
+          "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+        },
+        {
+          "path": "tests/dense_lapack/general_lu_tests.cmake",
+          "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
         }
       ],
       "implementations": {
@@ -107878,9 +109752,24 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [
@@ -108344,9 +110233,24 @@
           "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
         },
         "reference_cpu": {
+          "delivery_artifacts": [
+            {
+              "path": "examples/general_lu/main.cc",
+              "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+            },
+            {
+              "path": "examples/general_lu/CMakeLists.txt",
+              "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+            },
+            {
+              "path": "tests/dense_lapack/general_lu_tests.cmake",
+              "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+            }
+          ],
           "evidence_ids": [],
-          "partial_scope": "Both layouts and mixed factor/RHS layouts implemented with caller-owned packing. Actual LP64/trueILP64 numerical/failure snapshots pass; final integrated installed and normalized contract/evidence closure pending.",
-          "state": "in_progress"
+          "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+          "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+          "state": "implemented_unverified"
         }
       },
       "required_profiles": [

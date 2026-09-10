@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "scope": "Twenty-four existing Reference LU rows become callable-unverified after bounded contract review. Native20 contracts/artifacts/routes and original executed records remain unchanged; only separate Reference statuses change in eight shared rows. The reference LU public header changes comments only, with no declaration or ABI change.",
+  "baseline_commit": "e84ab830d814e8ace909722f629a2ab5d146d0bb",
+  "prior_mapping_sha256": "cfb16180b6a49e694e2593fd675b9dd767243895551617501ee164b9c5508624",
+  "extended_mapping_sha256": "7ba31fff7cc9530578801b7ddc085275bc6460dca72c09ca7534c4a4c19f8de9",
+  "changed_reference_rows": [
+    "lapack.cgesv",
+    "lapack.cgetf2",
+    "lapack.cgetrf",
+    "lapack.cgetrf2",
+    "lapack.cgetri",
+    "lapack.cgetrs",
+    "lapack.dgesv",
+    "lapack.dgetf2",
+    "lapack.dgetrf",
+    "lapack.dgetrf2",
+    "lapack.dgetri",
+    "lapack.dgetrs",
+    "lapack.dsposv",
+    "lapack.sgesv",
+    "lapack.sgetf2",
+    "lapack.sgetrf",
+    "lapack.sgetrf2",
+    "lapack.sgetri",
+    "lapack.sgetrs",
+    "lapack.zcposv",
+    "lapack.zgesv",
+    "lapack.zgetf2",
+    "lapack.zgetrf",
+    "lapack.zgetrf2",
+    "lapack.zgetri",
+    "lapack.zgetrs"
+  ],
+  "unchanged_native_contract_artifact_routes_sha256": "405e88a3cfb9e2e0a72cda04c61399b22ba31d557b1858df1296790b5b7e96b2",
+  "prior_expected_identity": {
+    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mapping_sha256": "cfb16180b6a49e694e2593fd675b9dd767243895551617501ee164b9c5508624",
+    "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+  },
+  "prior_mapping_extension": {
+    "path": "docs/contracts/lapack-positive-mixed-native-evidence-extension.json",
+    "sha256": "1be597b663473e439475df97eb04007ada283dc676647b43578d9d09b42503b0",
+    "execution_reused": true
+  },
+  "prior_evidence_sha256": "dbd4afc4c63fefbd1fd81d952b0d121c85c7842f61ec3561c3a50db553534986",
+  "external_exact_copy": "master-continuation-20260910-01/lu-registration-01/prior-evidence.json",
+  "generator_sha256": "ea22f92e18c19d51dbedad318068003a0e9444fc549ccff1b50c1e23fa3fe597",
+  "pre_amendment_bridge": {
+    "sha256": "1731e8c0b524b7cb26bbdef0fb78c853606336b93d36616a8df8b4a09017daed",
+    "external_path": "master-continuation-20260910-01/lu-record-amendment-01/lapack-lu-delivery-native-evidence-extension.json"
+  },
+  "post_review_amendment": {
+    "reason": "Hosted Clang18 rejects Clang19 spelling of ternary comparisons. Explicit parentheses keep the same predicate and pass both formatters; no fixture, tolerance or product body changes.",
+    "changed_reference_test_artifacts": [
+      {
+        "path": "tests/dense_lapack/mixed_positive_test.cc",
+        "sha256": "43f38dfd9f7f57662109427ce53510dbd87541ef2f5649fc922629c3ff4ea08b"
+      }
+    ],
+    "changed_rows": [
+      "lapack.dsposv",
+      "lapack.zcposv"
+    ],
+    "preserved_original_source": "master-continuation-20260910-01/positive-hosted-style-amendment-01/mixed_positive_test.cc"
+  }
+}

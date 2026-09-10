@@ -14,6 +14,7 @@ endfunction()
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/mixed_general_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/mixed_positive_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/general_lu_tests.cmake")
 
 if(ASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX)
   include("${CMAKE_CURRENT_SOURCE_DIR}/robust_ppsvx_tests.cmake")

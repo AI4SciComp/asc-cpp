@@ -143,7 +143,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getri(const ReferenceLapackProvider& provider,
  * @param provider Explicit checked reference provider.
  * @param matrix Square row/column-major A, unchanged by query.
  * @param pivots Contiguous n-entry output, unchanged by query.
- * @param rhs Column-major n-by-nrhs B, disjoint and unchanged by query.
+ * @param rhs Row/column-major n-by-nrhs B, disjoint and unchanged by query.
  * @return Checked exact conversion plan or structural failure.
  */
 ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGesvWorkspace(
@@ -249,7 +249,7 @@ ASC_DENSE_LAPACK_EXPORT Status Getri(const ReferenceLapackProvider& provider,
  * @param provider Explicit checked reference provider.
  * @param matrix Square row/column-major A, unchanged by query.
  * @param pivots Contiguous n-entry output, unchanged by query.
- * @param rhs Column-major n-by-nrhs B, disjoint and unchanged by query.
+ * @param rhs Row/column-major n-by-nrhs B, disjoint and unchanged by query.
  * @return Checked exact conversion plan or structural failure.
  */
 ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGesvWorkspace(
@@ -354,7 +354,7 @@ Getri(const ReferenceLapackProvider& provider,
  * @param provider Explicit checked reference provider.
  * @param matrix Square row/column-major A, unchanged by query.
  * @param pivots Contiguous n-entry output, unchanged by query.
- * @param rhs Column-major n-by-nrhs B, disjoint and unchanged by query.
+ * @param rhs Row/column-major n-by-nrhs B, disjoint and unchanged by query.
  * @return Checked exact conversion plan or structural failure.
  */
 ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGesvWorkspace(
@@ -462,7 +462,7 @@ Getri(const ReferenceLapackProvider& provider,
  * @param provider Explicit checked reference provider.
  * @param matrix Square row/column-major A, unchanged by query.
  * @param pivots Contiguous n-entry output, unchanged by query.
- * @param rhs Column-major n-by-nrhs B, disjoint and unchanged by query.
+ * @param rhs Row/column-major n-by-nrhs B, disjoint and unchanged by query.
  * @return Checked exact conversion plan or structural failure.
  */
 ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGesvWorkspace(

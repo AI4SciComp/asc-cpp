@@ -123,3 +123,30 @@ unbuilt probes, failed with Not Run and remain preserved without passing credit.
 Both `positive-integration-{abi}-01` runs pass all eight configured affected
 package/architecture/header/documentation commands. None of these scoped results closes retained PT/PPSVX mathematical
 failures or full Reference/platform/owner acceptance.
+
+## Frozen tracked-source installation
+
+Product commit `e84ab830d814e8ace909722f629a2ab5d146d0bb`, tree
+`5b7d3be55c3c7087baf490f86fd15a91f50873e1`, is archived directly with git.
+`positive-fresh-{abi}-01` configures and builds that tracked source with isolated
+matching dependencies. Twenty mixed/header tests pass per ABI; the separately
+selected package process fails because the runner omitted the existing
+Utilities build target. Failed commands and install prefixes remain preserved.
+`positive-fresh-package-{abi}-02` then builds that actual target and executes
+the original configured package command with a fresh guarded scratch prefix.
+Both ABIs pass full build/install/relocation/public-example and isolation checks.
+No product fix, copied provider bundle or historical source include is needed.
+These are twenty passing original tests plus the successful package replay,
+not a relabeled 21/21 result for the first failed process.
+
+Fresh PR family run34515880531 on that product executes49 tests per actual ABI:
+45 pass, exactly the four retained PT mathematical processes fail, and none
+skip. CodeQL34515880545 passes. CI34515880520 completes with its other jobs
+passing, but the Clang18 format job fails on one ternary comparison that the
+local Clang19 formatter spelled differently; subsequent tidy steps do not run.
+`positive-hosted-final-01` retains JUnit and job records, and
+`positive-hosted-ci-final-02` records completed CI. The reviewed repair adds
+parentheses around the same comparisons, preserves all numerical requirements,
+and passes both formatters. All six affected ordinary/concurrency two-test
+profiles and both TSan profiles pass again. This does not retroactively turn
+the original hosted CI green; fresh checks follow the repaired feature commit.

@@ -111,7 +111,8 @@ T Coefficient(const Problem<T>& p, asc::extent_t i, asc::extent_t j) {
   if (i == j) {
     return Value<T>(ToWide(p.a.At(i, i)).real());
   }
-  const bool stored = p.uplo == asc::DenseBlasTriangle::kUpper ? i<j : i> j;
+  const bool stored =
+      p.uplo == asc::DenseBlasTriangle::kUpper ? (i < j) : (i > j);
   if constexpr (asc::DenseBlasComplex<T>) {
     return stored ? p.a.At(i, j) : std::conj(p.a.At(j, i));
   } else {
