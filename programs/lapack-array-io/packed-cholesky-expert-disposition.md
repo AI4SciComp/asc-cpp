@@ -1,12 +1,22 @@
 # PPSVX numerical disposition
 
-PPSVX numerical acceptance remains blocked. The required scalar assertions
-remain justified and unchanged. Candidate22 reproduces candidate21's complete
+The pinned Reference PPSVX numerical acceptance remains blocked. The required
+scalar assertions remain justified and unchanged. Candidate22 reproduces candidate21's complete
 failure signatures in all six Linux configurations; candidate21 already binds
 the comparison to candidate18. Candidate06's direct-provider reproduction is
 still relevant. No new broad numerical sweep, provider change, tolerance change,
 input rescaling, fallback, or floating-point environment change is needed to
 classify these failures.
+
+The user's 2026-09-10 decision now authorizes an original first-party algorithm
+experiment, with the pinned compatibility path unchanged. The separately named
+[robust candidate](packed-cholesky-expert-robust-experiment.md) passes the
+unchanged scalar predicate and bounded generalization in both actual ABIs.
+This resolves the experiment's five arithmetic sites; it does not turn the
+Reference failures below into passes or authorize adoption, root integration,
+notice approval or full-platform promotion. The remaining numerical strategy
+decision is review/adoption of that concrete candidate, not permission to begin
+its already-executed implementation.
 
 The fixture is `N=NRHS=1`, original `A=B=[a]`, with positive finite `a`, exact
 `X=1`, and condition one. Supplied factors are rounded `sqrt(a)` and pass the
@@ -53,13 +63,13 @@ accepted warning behavior does not satisfy the separate numerical gate.
 The mapping, guard, and rounded-factor checks pass. There is no evidence here
 of an ASC mapping defect or an objectively faulty scalar oracle.
 
-The decision needed is whether to authorize evaluation and adoption of a
-specifically identified robust provider/algorithm covering these five sites,
-with the same numerical domain and assertions. Reassociating only equilibration
-does not close the other four sites. This packet proposes no dependency patch,
-upgrade, redistribution, or contract waiver. Until an authorized route passes
-the unchanged gates in both real ABIs, all four PPSVX numerical rows remain
-incomplete. The pending notice/metadata amendment is a separate decision.
+The original evaluation decision is recorded as granted for a first-party
+experiment. Adoption and the corresponding wider admission remain separate;
+all four pinned Reference numerical rows remain incomplete. The experiment
+addresses all five sites with the same scalar domain and assertions.
+Reassociating only equilibration would not close the other four sites. This
+packet proposes no dependency patch, upgrade, redistribution or contract
+waiver. The pending notice/metadata amendment is a separate decision.
 
 Evidence is relative to the existing external `asc-cpp-evidence/lapack-array-io`
 root:

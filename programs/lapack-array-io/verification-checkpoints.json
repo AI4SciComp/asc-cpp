@@ -224014,6 +224014,15 @@
       "candidate_source_manifest_sha256": "df43641aa1ebc0cff2c9ae1d2efcbc30d02eb14435181d269d8461488482b9c6",
       "integration_source_manifest_sha256": "ad63344b47066cf755e9ff0a85620fc4719d8b98bea4a38a791fb02f4e0d4f45",
       "scope": "201 command records in external audit, including retained failures; counts are separate from the historical normalized evidence ledger. Candidate22 calibrated pre-native output observations and existing regressions pass. Local N0 load instrumentation passes both Clang ABIs. Real concurrent and relocated installed public family use pass in actual LP64/ILP64; GCC ASC-only TSan passes with process-local ASLR disabled, provider not instrumented. Native installed 7/7 and Dense/Sparse array I/O examples pass per ABI. Staged integration each passes four behavioral and fails four unchanged required scalar mathematical tests; 44 unique cases/five arithmetic causes. Public surface127 and Doxygen2228 members pass. No feature-root PPSVX registration, numerical acceptance or complete-platform/owner credit."
+    },
+    {
+      "id": "ppsvx-first-party-robust-experiment-01",
+      "external_record": "ppsvx-robust-experiment-01/review-audit.json",
+      "record_sha256": "0c85ba1007737306a967738c76c863af5efb47b6590421517893b261773c8d59",
+      "configuration": "GNU11 Debug/Release and Clang19 ASC-only sanitizer, actual LP64/true ILP64; GNU11 static relocated installs and ASC-only TSan",
+      "source_manifest_sha256": "d74cfec8c65dd71de24f5128879d158c3108f3b850aade4522d216a862cf6a8a",
+      "staged_source_manifest_sha256": "7adf632698d0e28d87b15ffe377546f298f9bdae99336bdb70120e2fc5981e73",
+      "scope": "Authorized original first-party RobustPpsvx N/E/F route, separately named and no native numerical calls. All unchanged scalar fixtures/predicates pass:384 composite cases/2304 assertions per lane, plus46080 bounded generalization profiles, ordinary192 and concurrent1600. GNU final11/11 each; Clang final11pass/1observer timeout each, both same-binary120-second selectors then pass~58seconds. Safety2080 profiles/613889 allocation checks; observed693781 checks and20 negative controls. Relocated actual public ordinary/concurrent/safety3/3 both ABIs and ASC-only TSan3/3 both ABIs. Fresh staged Reference behavioral4pass/math4fail, robustmath4pass; all176 ordered Reference failure signatures unchanged. Native7/7 and Dense/Sparse examples1/1 per ABI remain provider-free. Strict/public headers/Doxygen128headers2252members pass. Corrected stale header checksum and runner docstring failures preserved. Source/driver bundle and complete20-file pending patch remain external and unapplied. Root/reference counts unchanged; experiment acceptance is separate from adoption, wider platform admission, notice approval and release."
     }
   ]
 }

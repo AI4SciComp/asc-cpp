@@ -1105,7 +1105,7 @@
     }
   },
   "active_task": "P05.packed_cholesky_expert_implementation",
-  "next_action": "Review the concrete five-cause PPSVX numerical-disposition packet. Candidate22 pre-native reads, relevant regressions, real concurrency, ASC-only TSan, relocated static public use in both actual ABIs, and staged integration documentation/header gates are complete. Preserve the genuine mathematical failures and existing platform gates. Do not start a new numerical family, silently change provider arithmetic, or register PPSVX before its specific prerequisites pass.",
+  "next_action": "Review/adopt the concrete first-party robust PPSVX candidate and staged API/report contract. The authorized experiment is implemented and passes the unchanged scalar requirements, bounded generalization, affected safety/concurrency, TSan and relocated public use in both actual ABIs. Preserve candidate22 Reference failures, all historical evidence, wider platform/root admission and the independent notice decision. Do not start another family or restart stabilization.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1697,7 +1697,7 @@
       "cause": "Five distinct arithmetic causes: tiny condition inverse cannot be unscaled; tiny forward estimator overflows the unweighted inverse; maximum-value condition estimate overflows reciprocal before normalization; maximum-value residual/weight arithmetic overflows; FACT E subnormal scale product overflows before AP multiplication. Forty-four unique scalar/mode/value cases, not four independent bugs.",
       "attempted_resolution": "Independentlongdouble scalar condition/solution/error bounds, roundedfactor certificates anddirectpinned comparison. The unrelatedpublic BERR oracle was corrected fromnormwise tocomponentwise zero equations withunchangedtolerances. No provider/source/contract resolution orwaiver isclaimed.",
       "closure": "Pass unchanged requiredscalar mathematicalgates after anexplicitlyapproved provider/source/contract resolution.",
-      "unaffected_work": "Required candidate22/concurrency/installed/static integration engineering completed in the family review packet. Further numerical implementation requires its explicit provider/algorithm decision; remaining platform admission and reviewed root registration stay open.",
+      "unaffected_work": "The authorized original algorithm experiment has completed its finite Linux/both-ABI numerical/safety/concurrency/staged-use target. Concrete adoption/API review and wider platform/root admission remain; pinned Reference numerical rows continue to fail.",
       "latest_evidence": "ppsvx-family-use-22/review-audit.json",
       "disposition": "programs/lapack-array-io/packed-cholesky-expert-disposition.md",
       "latest_counts": {
@@ -1706,6 +1706,21 @@
         "assertions_per_lane": 2400,
         "unique_scalar_mode_value_cases": 44,
         "arithmetic_causes": 5
+      },
+      "first_party_resolution": {
+        "candidate": "ppsvx-robust-experiment-01",
+        "state": "finite_authorized_experiment_passed",
+        "authorization": "2026-09-10 explicit user instruction: original algorithm and isolated staged evaluation only",
+        "decision_record": "programs/lapack-array-io/packed-cholesky-expert-robust-experiment.md",
+        "audit": "ppsvx-robust-experiment-01/review-audit.json",
+        "audit_sha256": "0c85ba1007737306a967738c76c863af5efb47b6590421517893b261773c8d59",
+        "staged_manifest_sha256": "7adf632698d0e28d87b15ffe377546f298f9bdae99336bdb70120e2fc5981e73",
+        "patch_sha256": "c3d28360d9a0c0ca624aa07b2f2f69c0a637f338d672b994f37ac3a5c05c1caf",
+        "reference_path_unchanged": true,
+        "root_integrated": false,
+        "reference_promotion": false,
+        "adoption": "not_authorized_by_experiment_decision",
+        "remaining": "Review/adopt the concrete first-party numerical algorithm and its staged API/report contract; wider platform/root admission and independent notice review remain."
       }
     }
   ],
@@ -2231,14 +2246,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.PPSVX_numerical_provider_decision",
+  "next_task": "P05.PPSVX_first_party_candidate_review_and_admission",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/ppsvx-family-use-22/resume-review.py",
+  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/ppsvx-robust-experiment-01/resume_review.py",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -2596,7 +2611,15 @@
         "numerical_acceptance": "failed",
         "full_platform_verification": "incomplete_existing_admission_gates",
         "owner_provenance": "pending_separate_notice_metadata_decision",
-        "merge_release_authorization": "not_granted"
+        "merge_release_authorization": "not_granted",
+        "first_party_experiment": {
+          "routine": "asc_robust_sppsvx_v1",
+          "mathematics": "unchanged scalar predicate and bounded generalization pass all six prepared configurations",
+          "safety": "all six numerical lanes pass; Clang output observation timeout closed by same-binary same-timeout replay in both ABIs",
+          "concurrency": "actual first-party algorithm passes six configurations and staged ASC-only TSan both ABIs",
+          "installed_use": "relocated Linux GNU11 static public consumer passes both actual ABIs",
+          "adoption_and_wider_admission": "pending; no Reference or root registration credit"
+        }
       },
       "dppsvx": {
         "external_observation": "passed_six_prepared_lanes",
@@ -2606,7 +2629,15 @@
         "numerical_acceptance": "failed",
         "full_platform_verification": "incomplete_existing_admission_gates",
         "owner_provenance": "pending_separate_notice_metadata_decision",
-        "merge_release_authorization": "not_granted"
+        "merge_release_authorization": "not_granted",
+        "first_party_experiment": {
+          "routine": "asc_robust_dppsvx_v1",
+          "mathematics": "unchanged scalar predicate and bounded generalization pass all six prepared configurations",
+          "safety": "all six numerical lanes pass; Clang output observation timeout closed by same-binary same-timeout replay in both ABIs",
+          "concurrency": "actual first-party algorithm passes six configurations and staged ASC-only TSan both ABIs",
+          "installed_use": "relocated Linux GNU11 static public consumer passes both actual ABIs",
+          "adoption_and_wider_admission": "pending; no Reference or root registration credit"
+        }
       },
       "cppsvx": {
         "external_observation": "passed_six_prepared_lanes",
@@ -2616,7 +2647,15 @@
         "numerical_acceptance": "failed",
         "full_platform_verification": "incomplete_existing_admission_gates",
         "owner_provenance": "pending_separate_notice_metadata_decision",
-        "merge_release_authorization": "not_granted"
+        "merge_release_authorization": "not_granted",
+        "first_party_experiment": {
+          "routine": "asc_robust_cppsvx_v1",
+          "mathematics": "unchanged scalar predicate and bounded generalization pass all six prepared configurations",
+          "safety": "all six numerical lanes pass; Clang output observation timeout closed by same-binary same-timeout replay in both ABIs",
+          "concurrency": "actual first-party algorithm passes six configurations and staged ASC-only TSan both ABIs",
+          "installed_use": "relocated Linux GNU11 static public consumer passes both actual ABIs",
+          "adoption_and_wider_admission": "pending; no Reference or root registration credit"
+        }
       },
       "zppsvx": {
         "external_observation": "passed_six_prepared_lanes",
@@ -2626,8 +2665,31 @@
         "numerical_acceptance": "failed",
         "full_platform_verification": "incomplete_existing_admission_gates",
         "owner_provenance": "pending_separate_notice_metadata_decision",
-        "merge_release_authorization": "not_granted"
+        "merge_release_authorization": "not_granted",
+        "first_party_experiment": {
+          "routine": "asc_robust_zppsvx_v1",
+          "mathematics": "unchanged scalar predicate and bounded generalization pass all six prepared configurations",
+          "safety": "all six numerical lanes pass; Clang output observation timeout closed by same-binary same-timeout replay in both ABIs",
+          "concurrency": "actual first-party algorithm passes six configurations and staged ASC-only TSan both ABIs",
+          "installed_use": "relocated Linux GNU11 static public consumer passes both actual ABIs",
+          "adoption_and_wider_admission": "pending; no Reference or root registration credit"
+        }
       }
+    },
+    "first_party_experiment": {
+      "candidate": "ppsvx-robust-experiment-01",
+      "state": "finite_authorized_experiment_passed",
+      "authorization": "2026-09-10 explicit user instruction: original algorithm and isolated staged evaluation only",
+      "decision_record": "programs/lapack-array-io/packed-cholesky-expert-robust-experiment.md",
+      "audit": "ppsvx-robust-experiment-01/review-audit.json",
+      "audit_sha256": "0c85ba1007737306a967738c76c863af5efb47b6590421517893b261773c8d59",
+      "staged_manifest_sha256": "7adf632698d0e28d87b15ffe377546f298f9bdae99336bdb70120e2fc5981e73",
+      "patch_sha256": "c3d28360d9a0c0ca624aa07b2f2f69c0a637f338d672b994f37ac3a5c05c1caf",
+      "reference_path_unchanged": true,
+      "root_integrated": false,
+      "reference_promotion": false,
+      "adoption": "not_authorized_by_experiment_decision",
+      "remaining": "Review/adopt the concrete first-party numerical algorithm and its staged API/report contract; wider platform/root admission and independent notice review remain."
     }
   }
 }

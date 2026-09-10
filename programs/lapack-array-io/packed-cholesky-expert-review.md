@@ -1,8 +1,13 @@
 # Ordinary packed positive-definite expert candidate
 
-Current checkpoint: candidate22 and the isolated installed family have completed
-the permitted Linux engineering slice. Numerical acceptance remains blocked;
-see the final section and [numerical disposition](packed-cholesky-expert-disposition.md).
+Current checkpoint: candidate22 and the isolated installed family retain their
+completed Linux engineering slice and failed pinned-provider numerical gates.
+The now-authorized [first-party numerical experiment](packed-cholesky-expert-robust-experiment.md)
+implements a separately named robust route and passes the unchanged scalar
+requirements, bounded generalization, affected safety/concurrency and staged
+public use in both actual ABIs. This is experimental acceptance of that finite
+candidate, not Reference acceptance or root registration; wider admission and
+adoption remain open. See the [numerical disposition](packed-cholesky-expert-disposition.md).
 Earlier sections below retain their original historical scopes.
 
 The five preserved candidate01 files implement24 optional Ppsvx declarations

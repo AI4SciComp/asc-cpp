@@ -18,8 +18,14 @@ Reference: 2,113 required, 350 partial / 1,763 not started, zero strict complete
 callable/verified. The 130 absent XBLAS definitions and 78 historical mathematical
 failures remain separate. Owner acceptance and amended provenance packet
 380a8792 remain pending. No merge
-or release authorized. Next: retained PPSVX candidate19 active-buffer/workspace
-boundary tests, preserving candidate18 assertions and required mathematical failures.
+or release authorized. Candidate22 and its concurrency/installed slice are
+complete with Reference failures retained. The subsequently authorized
+[first-party robust PPSVX experiment](packed-cholesky-expert-robust-experiment.md)
+passes the unchanged scalar failures, bounded generalization, safety/concurrency
+and isolated public installations in both actual ABIs. Its numerical code and
+integration patch remain external; no Reference or root-API promotion follows.
+Next: review/adopt that concrete algorithm and API/report contract before the
+existing wider platform and root-admission gates. The pending notice is separate.
 Final summary-only commit/patch has separate external checks and input bridge.
 
 ## Historical subset summary (5cc3a935)
