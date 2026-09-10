@@ -12,6 +12,27 @@ evidence_labels:
   - "blocked"
 
 capabilities:
+  - capability: "experimental first-party robust PPSVX"
+    owner: "dense"
+    facet: "dense_lapack"
+    development_stage: 5
+    status: "runtime-tested"
+    evidence_scope: "Explicit opt-in; Linux x86_64 GNU11.4 static, actual LP64/ILP64; source/API/report review and integrated tests are recorded in programs/lapack-array-io/packed-cholesky-expert-robust-integration.md. No Reference routine credit, wider-platform or release acceptance."
+    public_headers:
+      - "include/asc/dense/providers/lapack_cholesky_packed_robust.h"
+    direct_dependencies:
+      - "core"
+      - "dense"
+    tests:
+      - "unchanged four-scalar extreme mathematical predicate and bounded generalization"
+      - "explicit workspace, publication loss, factor reuse and diagnostic isolation"
+      - "independent-context concurrency and relocated installed public example"
+    guarantees:
+      - "separately named original algorithm, no foreign INFO or silent fallback"
+    non_guarantees:
+      - "universal forward-error theorem, cheap quadratic expert diagnostics or wider-platform admission"
+      - "Reference PPSVX acceptance, dependency redistribution or release authorization"
+
   - capability: "bounded Matrix Market lexical and scalar primitives"
     owner: "core"
     development_stage: 10

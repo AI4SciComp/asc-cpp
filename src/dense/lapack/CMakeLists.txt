@@ -1,5 +1,8 @@
 add_library(asc_dense_lapack)
 add_library(ASC::dense_lapack ALIAS asc_dense_lapack)
+if(ASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX)
+  target_sources(asc_dense_lapack PRIVATE robust_cholesky_packed_expert.cc)
+endif()
 target_sources(asc_dense_lapack PRIVATE
   reference_lu.cc reference_lu_expert.cc reference_lu_equilibration.cc
   reference_lu_condition.cc reference_lu_refinement.cc reference_lu_driver.cc
@@ -63,6 +66,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_equilibration.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_refinement.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_packed_robust.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_qr.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_driver.h"

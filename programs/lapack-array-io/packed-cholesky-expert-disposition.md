@@ -12,11 +12,12 @@ The user's 2026-09-10 decision now authorizes an original first-party algorithm
 experiment, with the pinned compatibility path unchanged. The separately named
 [robust candidate](packed-cholesky-expert-robust-experiment.md) passes the
 unchanged scalar predicate and bounded generalization in both actual ABIs.
-This resolves the experiment's five arithmetic sites; it does not turn the
-Reference failures below into passes or authorize adoption, root integration,
-notice approval or full-platform promotion. The remaining numerical strategy
-decision is review/adoption of that concrete candidate, not permission to begin
-its already-executed implementation.
+This resolves the experiment's five arithmetic sites without turning the
+Reference failures below into passes. A subsequent user decision authorizes
+conditional first-party adoption and opt-in root integration, recorded in the
+[integration review](packed-cholesky-expert-robust-integration.md). Notice
+approval and full-platform promotion remain separate; neither follows from
+first-party numerical success.
 
 The fixture is `N=NRHS=1`, original `A=B=[a]`, with positive finite `a`, exact
 `X=1`, and condition one. Supplied factors are rounded `sqrt(a)` and pass the
@@ -63,9 +64,9 @@ accepted warning behavior does not satisfy the separate numerical gate.
 The mapping, guard, and rounded-factor checks pass. There is no evidence here
 of an ASC mapping defect or an objectively faulty scalar oracle.
 
-The original evaluation decision is recorded as granted for a first-party
-experiment. Adoption and the corresponding wider admission remain separate;
-all four pinned Reference numerical rows remain incomplete. The experiment
+The original evaluation and subsequent conditional first-party integration
+decisions are recorded as granted. Wider admission and notice review remain
+separate; all four pinned Reference numerical rows remain incomplete. The experiment
 addresses all five sites with the same scalar domain and assertions.
 Reassociating only equilibration would not close the other four sites. This
 packet proposes no dependency patch, upgrade, redistribution or contract

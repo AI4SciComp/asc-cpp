@@ -1,0 +1,81 @@
+name: Experimental robust PPSVX
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "robust-ppsvx-${{ github.event.pull_request.number || github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  linux-static:
+    name: Robust PPSVX / GNU 11 / static / integer ${{ matrix.bits }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        bits: [32, 64]
+    steps:
+      - name: Check out ASC
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: asc-cpp
+          persist-credentials: false
+      - name: Prepare GNU compilers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-11 g++-11 gfortran-11
+      - name: Build and attest the pinned provider outside ASC
+        run: |
+          python3 -B asc-cpp/tools/lapack/prepare_reference.py \
+            --work-dir "$RUNNER_TEMP/provider" --integer-bits ${{ matrix.bits }} --jobs 2
+      - name: Build the experimental integrated profile
+        shell: bash
+        run: |
+          set -euo pipefail
+          runtimes="$(realpath "$(gfortran-11 -print-file-name=libgfortran.so)");$(realpath "$(gfortran-11 -print-file-name=libquadmath.so)")"
+          cmake -S asc-cpp -B "$RUNNER_TEMP/asc-build" \
+            -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11 \
+            -DCMAKE_Fortran_COMPILER=gfortran-11 -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON \
+            -DASC_CPP_INSTALL=ON -DASC_CPP_ENABLE_CUDA=OFF \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON -DASC_CPP_ENABLE_LAPACK=ON \
+            -DASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX=ON \
+            -DASC_CPP_LAPACK_INTEGER_BITS=${{ matrix.bits }} \
+            -DASC_CPP_LAPACK_ROOT="$RUNNER_TEMP/provider/prefix" \
+            -DASC_CPP_LAPACK_ATTESTATION="$RUNNER_TEMP/provider/attestation.json" \
+            -DASC_CPP_LAPACK_RUNTIME_LIBRARIES="$runtimes" \
+            2>&1 | tee "$RUNNER_TEMP/asc-configure.log"
+          cmake --build "$RUNNER_TEMP/asc-build" --parallel 2 \
+            2>&1 | tee "$RUNNER_TEMP/asc-build.log"
+      - name: Check actual selectors, numerical requirements, concurrency and relocation
+        shell: bash
+        run: |
+          set -euo pipefail
+          ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
+            -R 'robust_ppsvx|dense_lapack.package_integration' \
+            > "$RUNNER_TEMP/asc-selected.json"
+          ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
+            -R 'robust_ppsvx|dense_lapack.package_integration' \
+            --output-junit "$RUNNER_TEMP/asc-tests.xml" \
+            2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
+          python3 asc-cpp/tools/ci/check_ctest_junit.py "$RUNNER_TEMP/asc-tests.xml"
+      - name: Preserve command and test records only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: robust-ppsvx-${{ matrix.bits }}-records
+          path: |
+            ${{ runner.temp }}/provider/*.log
+            ${{ runner.temp }}/provider/*.json
+            ${{ runner.temp }}/provider/*.xml
+            ${{ runner.temp }}/asc-*.log
+            ${{ runner.temp }}/asc-selected.json
+            ${{ runner.temp }}/asc-tests.xml
+          if-no-files-found: warn

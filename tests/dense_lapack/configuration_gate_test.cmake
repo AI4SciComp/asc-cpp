@@ -18,7 +18,7 @@ file(WRITE "${WORK_DIR}/provider-inputs.cmake"
 math(EXPR _other_bits "96 - ${INTEGER_BITS}")
 
 foreach(_case IN ITEMS disabled-lazy full-disabled shared wrong-width
-    missing-attestation full-profile)
+    missing-attestation full-profile robust-disabled)
   set(_command "${CMAKE_COMMAND}" -S "${SOURCE_DIR}"
     -B "${WORK_DIR}/${_case}" "-DASCCMake_DIR=${ASCCMAKE_DIR}"
     "-DCMAKE_CXX_COMPILER=${CXX_COMPILER}"
@@ -40,6 +40,10 @@ foreach(_case IN ITEMS disabled-lazy full-disabled shared wrong-width
     list(APPEND _command -DASC_CPP_ENABLE_LAPACK=OFF
       -DASC_CPP_LAPACK_REQUIRE_FULL_PROFILE=ON)
     set(_expected "full LAPACK profile requires")
+  elseif(_case STREQUAL "robust-disabled")
+    list(APPEND _command -DASC_CPP_ENABLE_LAPACK=OFF
+      -DASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX=ON)
+    set(_expected "Experimental RobustPpsvx uses the explicit Dense LAPACK context")
   else()
     list(APPEND _command -DASC_CPP_ENABLE_LAPACK=ON)
     if(_case STREQUAL "shared")
@@ -76,4 +80,4 @@ foreach(_case IN ITEMS disabled-lazy full-disabled shared wrong-width
     message(FATAL_ERROR "${_case} did not fail its intended gate; see ${WORK_DIR}/${_case}.log")
   endif()
 endforeach()
-message(STATUS "Six configuration gates passed; required full/shared profiles remain rejected")
+message(STATUS "Seven configuration gates passed; required full/shared profiles remain rejected")

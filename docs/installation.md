@@ -52,3 +52,41 @@ The install contains libraries, all public headers, component-isolated CMake
 metadata, `LICENSE`, `THIRD_PARTY_NOTICES`, and Joe--Kuo data/license. Package
 tests relocate a prefix containing spaces and disable package registries to
 detect hidden source/build dependencies.
+
+## Experimental first-party robust PPSVX
+
+The [robust PPSVX contract](contracts/robust-ppsvx.md) defines the limited
+Linux x86_64 GNU 11.4 static development profile. The feature defaults to OFF.
+It uses an independently prepared, attested Reference-LAPACK 3.12.1 context
+while executing a separately named original numerical algorithm. Preparing the
+provider does not approve its redistribution or bundle it with ASC.
+
+For each desired integer ABI, choose a fresh external directory and build the
+exact locked provider with the maintained tool (32 for LP64, 64 for global
+ILP64). The tool retains commands, real upstream test results and attestation:
+
+```sh
+python3 -B tools/lapack/prepare_reference.py \
+  --work-dir /tmp/asc-provider-32 --integer-bits 32 --jobs 2
+cmake -S . -B /tmp/asc-robust-32 \
+  -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11 \
+  -DCMAKE_Fortran_COMPILER=gfortran-11 -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON \
+  -DASC_CPP_INSTALL=ON -DASC_CPP_ENABLE_LAPACK=ON \
+  -DASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX=ON \
+  -DASC_CPP_LAPACK_INTEGER_BITS=32 \
+  -DASC_CPP_LAPACK_ROOT=/tmp/asc-provider-32/prefix \
+  -DASC_CPP_LAPACK_ATTESTATION=/tmp/asc-provider-32/attestation.json \
+  '-DASC_CPP_LAPACK_RUNTIME_LIBRARIES=/absolute/libgfortran.so.5;/absolute/libquadmath.so.0'
+cmake --build /tmp/asc-robust-32 --parallel 2
+ctest --test-dir /tmp/asc-robust-32 --show-only=json-v1 -R robust_ppsvx
+ctest --test-dir /tmp/asc-robust-32 --no-tests=error --output-on-failure \
+  -R 'robust_ppsvx|dense_lapack.package_integration'
+cmake --install /tmp/asc-robust-32 --prefix /tmp/asc-robust-install-32
+```
+
+Replace the runtime placeholders with the compiler's actual shared runtime
+files. See [the public example](../examples/robust_ppsvx/README.md) for a C++-only
+consumer of the relocated installation. The selected tests above concern the
+first-party capability and package; the separately required Reference numerical
+checks remain genuine failures and are not converted into expected successes.

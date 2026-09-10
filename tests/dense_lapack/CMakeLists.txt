@@ -11,6 +11,10 @@ function(_asc_dense_lapack_configure_test target)
   endif()
 endfunction()
 
+if(ASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX)
+  include("${CMAKE_CURRENT_SOURCE_DIR}/robust_ppsvx_tests.cmake")
+endif()
+
 add_executable(asc_dense_lapack_normal_return_probe normal_return_probe.cc)
 _asc_dense_lapack_configure_test(asc_dense_lapack_normal_return_probe)
 target_include_directories(asc_dense_lapack_normal_return_probe PRIVATE
@@ -756,6 +760,7 @@ if(ASC_CPP_INSTALL)
       "-DLAPACK_ROOT:PATH=${ASC_CPP_LAPACK_ROOT}"
       "-DLAPACK_RUNTIMES:STRING=${_lapack_runtimes}"
       "-DCXX_COMPILER:FILEPATH=${CMAKE_CXX_COMPILER}"
+      "-DROBUST_ENABLED:BOOL=${ASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX}"
       "-DCONFIG:STRING=$<CONFIG>"
       -P "${CMAKE_CURRENT_SOURCE_DIR}/package_integration_test.cmake")
   set_tests_properties(asc_cpp.dense_lapack.package_integration PROPERTIES
@@ -794,6 +799,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_cholesky_packed_equilibration.h
     lapack_cholesky_packed_condition.h
     lapack_cholesky_packed_refinement.h
+    lapack_cholesky_packed_robust.h
     lapack_cholesky_driver.h
     lapack_cholesky_equilibration.h
     lapack_cholesky_refinement.h

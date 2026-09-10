@@ -39,6 +39,12 @@ option(
 )
 option(ASC_CPP_ENABLE_LAPACK
   "Build the explicit incremental Dense-owned Reference-LAPACK facet" OFF)
+option(ASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX
+  "Build explicitly selected experimental first-party RobustPpsvx APIs" OFF)
+if(ASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX AND NOT ASC_CPP_ENABLE_LAPACK)
+  message(FATAL_ERROR
+    "Experimental RobustPpsvx uses the explicit Dense LAPACK context; enable ASC_CPP_ENABLE_LAPACK.")
+endif()
 set(ASC_CPP_LAPACK_ROOT "" CACHE PATH "Explicit prepared Reference-LAPACK prefix")
 set(ASC_CPP_LAPACK_ATTESTATION "" CACHE FILEPATH
   "Exact external Reference-LAPACK build attestation")

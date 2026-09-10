@@ -169,6 +169,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_cholesky_packed_equilibration.cc
   src/dense/lapack/reference_cholesky_packed_condition.cc
   src/dense/lapack/reference_cholesky_packed_refinement.cc
+  src/dense/lapack/robust_cholesky_packed_expert.cc
   src/dense/lapack/reference_qr.cc
   src/dense/lapack/reference_cholesky_condition.cc
   src/dense/lapack/reference_cholesky_driver.cc

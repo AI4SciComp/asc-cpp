@@ -1,5 +1,10 @@
 # PPSVX first-party numerical experiment
 
+This is the preserved experiment record. The subsequent conditional adoption
+and opt-in integration decision is in the
+[integration review](packed-cholesky-expert-robust-integration.md); the original
+experiment-only authorization below describes its historical scope.
+
 The user's 2026-09-10 instruction authorizes original numerical implementation
 and isolated staged evaluation addressing all five causes in the
 [disposition](packed-cholesky-expert-disposition.md). The pinned Reference

@@ -1104,8 +1104,8 @@
       ]
     }
   },
-  "active_task": "P05.packed_cholesky_expert_implementation",
-  "next_action": "Review/adopt the concrete first-party robust PPSVX candidate and staged API/report contract. The authorized experiment is implemented and passes the unchanged scalar requirements, bounded generalization, affected safety/concurrency, TSan and relocated public use in both actual ABIs. Preserve candidate22 Reference failures, all historical evidence, wider platform/root admission and the independent notice decision. Do not start another family or restart stabilization.",
+  "active_task": "P05.robust_ppsvx_experimental_integration",
+  "next_action": "Finish the authorized opt-in robust PPSVX integration gates against actual source: Release/sanitizer/concurrency, installed and fresh-checkout consumers, unchanged Reference failures, scoped validators, ordinary feature push and fresh hosted checks. Do not repeat the experiment or promote Reference rows.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2246,14 +2246,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.PPSVX_first_party_candidate_review_and_admission",
+  "next_task": "P05.robust_ppsvx_integrated_validation",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/ppsvx-robust-experiment-01/resume_review.py",
+  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/execute.py --help",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -2619,6 +2619,14 @@
           "concurrency": "actual first-party algorithm passes six configurations and staged ASC-only TSan both ABIs",
           "installed_use": "relocated Linux GNU11 static public consumer passes both actual ABIs",
           "adoption_and_wider_admission": "pending; no Reference or root registration credit"
+        },
+        "first_party_integration": {
+          "routine": "asc_robust_sppsvx_v1",
+          "root_availability": "opt_in_experimental",
+          "integrated_debug": "passed_LP64_and_true_ILP64",
+          "public_example": "relocated_install_passed_both_ABIs",
+          "remaining_validation": "final source profile and hosted records pending",
+          "owner_provenance": "conditional first-party integration authorized; separate notice pending"
         }
       },
       "dppsvx": {
@@ -2637,6 +2645,14 @@
           "concurrency": "actual first-party algorithm passes six configurations and staged ASC-only TSan both ABIs",
           "installed_use": "relocated Linux GNU11 static public consumer passes both actual ABIs",
           "adoption_and_wider_admission": "pending; no Reference or root registration credit"
+        },
+        "first_party_integration": {
+          "routine": "asc_robust_dppsvx_v1",
+          "root_availability": "opt_in_experimental",
+          "integrated_debug": "passed_LP64_and_true_ILP64",
+          "public_example": "relocated_install_passed_both_ABIs",
+          "remaining_validation": "final source profile and hosted records pending",
+          "owner_provenance": "conditional first-party integration authorized; separate notice pending"
         }
       },
       "cppsvx": {
@@ -2655,6 +2671,14 @@
           "concurrency": "actual first-party algorithm passes six configurations and staged ASC-only TSan both ABIs",
           "installed_use": "relocated Linux GNU11 static public consumer passes both actual ABIs",
           "adoption_and_wider_admission": "pending; no Reference or root registration credit"
+        },
+        "first_party_integration": {
+          "routine": "asc_robust_cppsvx_v1",
+          "root_availability": "opt_in_experimental",
+          "integrated_debug": "passed_LP64_and_true_ILP64",
+          "public_example": "relocated_install_passed_both_ABIs",
+          "remaining_validation": "final source profile and hosted records pending",
+          "owner_provenance": "conditional first-party integration authorized; separate notice pending"
         }
       },
       "zppsvx": {
@@ -2673,6 +2697,14 @@
           "concurrency": "actual first-party algorithm passes six configurations and staged ASC-only TSan both ABIs",
           "installed_use": "relocated Linux GNU11 static public consumer passes both actual ABIs",
           "adoption_and_wider_admission": "pending; no Reference or root registration credit"
+        },
+        "first_party_integration": {
+          "routine": "asc_robust_zppsvx_v1",
+          "root_availability": "opt_in_experimental",
+          "integrated_debug": "passed_LP64_and_true_ILP64",
+          "public_example": "relocated_install_passed_both_ABIs",
+          "remaining_validation": "final source profile and hosted records pending",
+          "owner_provenance": "conditional first-party integration authorized; separate notice pending"
         }
       }
     },
@@ -2690,6 +2722,26 @@
       "reference_promotion": false,
       "adoption": "not_authorized_by_experiment_decision",
       "remaining": "Review/adopt the concrete first-party numerical algorithm and its staged API/report contract; wider platform/root admission and independent notice review remain."
+    },
+    "first_party_integration": {
+      "candidate": "ppsvx-robust-integration-01",
+      "state": "integrated_experimental_validation_in_progress",
+      "authorization": "2026-09-10 subsequent explicit user instruction: conditional adoption, bounded fixes, opt-in root integration, ordinary feature commits; notice and release separate",
+      "decision_record": "programs/lapack-array-io/packed-cholesky-expert-robust-integration.md",
+      "bound_staged_manifest_sha256": "7adf632698d0e28d87b15ffe377546f298f9bdae99336bdb70120e2fc5981e73",
+      "bound_original_patch_sha256": "c3d28360d9a0c0ca624aa07b2f2f69c0a637f338d672b994f37ac3a5c05c1caf",
+      "root_integrated": true,
+      "opt_in": true,
+      "experimental": true,
+      "reference_promotion": false,
+      "profile": "Linux x86_64 GNU11.4 static actual LP64/ILP64",
+      "next_dependency_ready_family": "P05 positive-definite tridiagonal PTTRF/PTTRS, eight existing S/D/C/Z rows"
     }
+  },
+  "historical_robust_adoption_pointer": {
+    "active_task": "P05.packed_cholesky_expert_implementation",
+    "next_task": "P05.PPSVX_first_party_candidate_review_and_admission",
+    "next_action": "Review/adopt the concrete first-party robust PPSVX candidate and staged API/report contract. The authorized experiment is implemented and passes the unchanged scalar requirements, bounded generalization, affected safety/concurrency, TSan and relocated public use in both actual ABIs. Preserve candidate22 Reference failures, all historical evidence, wider platform/root admission and the independent notice decision. Do not start another family or restart stabilization.",
+    "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/ppsvx-robust-experiment-01/resume_review.py"
   }
 }
