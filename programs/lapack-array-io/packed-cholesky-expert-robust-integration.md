@@ -1,5 +1,9 @@
 # Experimental robust PPSVX integration review
 
+Finite verdict: **PPSVX_ROBUST_INTEGRATED_EXPERIMENTAL_FULL_PROGRAM_INCOMPLETE**.
+This closes the authorized first-party Linux/static integration slice. It does
+not certify the pinned Reference PPSVX family or the full programme.
+
 The user's subsequent 2026-09-10 instruction conditionally authorizes bounded
 review, concrete first-party fixes, opt-in root integration and ordinary feature
 commits of the existing experiment. It supersedes the experiment-only admission
@@ -55,13 +59,45 @@ checked; no numerical architecture was replaced for style.
 
 Raw commands, selectors, statuses, input identities and retained failed attempts
 are under external `asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01`.
-At this review checkpoint, integrated GNU11 Debug passes 11/11 in each actual
-ABI; both relocated public examples and installed/source header comparisons
-pass. Strict adapter/header and maintained consumer checks pass both ABIs.
-Doxygen reports 127/127 headers, 2,228 documented public members and zero
-warnings. Release, sanitizer, package, supplemental observation and final
-revision/hosted results are recorded in the final execution checkpoint rather
-than inferred from the older record-only commit.
+The frozen integrated product is `1e15d843d8968f659c393af85e6bdcf99af3345a`,
+tree `ca291bf16f76ef78144f91caffc97bb84da442fa`. Its full reviewed amendment
+from the preserved starting revision has SHA-256
+`a019780c300f373d97f94ed0005ca8d7385d6eb3421e2a57b5a8283583b04f5c`;
+the original patch remains unchanged. The local audit records individual test
+IDs, commands, exit codes, source inputs and provider identities. No zero-test
+selection or unexpected skip receives credit.
+
+| Executed gate | LP64 | True ILP64 | Scope |
+| --- | --- | --- | --- |
+| Integrated GNU11 Debug | 11/11 | 11/11 | Four unchanged required scalar gates, bounded generalization, ordinary behavior, concurrency and allocation safety |
+| Integrated GNU11 Release | 12/12 | 12/12 | Same 11 tests plus the package integration test |
+| ASC-only GNU11 ASan/UBSan | 11/11 | 11/11 | ASC code instrumented; provider/runtime uninstrumented |
+| ASC-only GNU11 TSan | 1/1 | 1/1 | Independent real algorithm calls, buffers, scratch and reports; foreign code uninstrumented |
+| Clang19 ASan/UBSan and calibrated load observation | 11/11 | 11/11 | Actual adapter and maintained tests; 20 intentional forbidden-read controls detected |
+| Fresh independent checkout numerical build | 11/11 | 11/11 | No historical source-tree include path |
+| Fresh relocated package | 1/1 | 1/1 | 34 nested installed family tests, including three robust tests, plus the copied public robust example and existing isolation controls |
+| Clang19 copied installed public example | 1/1 | 1/1 | Consumer compatibility with the admitted GNU-built installed facet |
+| Provider-free Dense and Sparse I/O consumers | 1/1 each | 1/1 each | Provider discovery disabled; runtime dependencies contain no LAPACK, BLAS, Fortran or quadmath |
+| Corrected metadata/package closure | 14/14 | 14/14 | Eight affected audits and six required package fixtures |
+
+Both default-OFF graphs omit the robust implementation and export a false
+feature Boolean. The installed experimental library exports 24 robust public
+query/execute symbols and no unadmitted ASC Reference PPSVX symbols. The public
+example uses only intended installed targets and independent ordinary fixtures;
+the extreme failures are neither suppressed nor part of its oracle.
+
+Strict adapter/header, mathematics, maintained consumer and example checks pass.
+Formatting, Python formatting/lint, coverage and links pass. Doxygen reports
+127/127 headers, 2,228 documented public members and zero warnings. The fresh
+checkout numerical/package runs used `8b0f5315`; the explicit changed-input
+comparison to `1e15d843` preserves every implementation, test, compiler setting,
+build option and installed-export input. Only the metadata correction below
+required new closure. Local provider identity SHA-256 values are
+`7334974ceff5d71da38f7df94ffb10803d136b15bd7fa32e6cc1d49e465b210c`
+(LP64) and `8460d29a665eb2aedc0c6d081026280b966d44015227bc47a69b362ca6f5da97`
+(ILP64), both built from the unchanged pinned provider commit
+`6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca`. ILP64 uses the recorded global
+Fortran integer build route, not merely a C++ typedef.
 
 The first integrated revision `8b0f5315eabbb245518466b1bc6af88819fbaacc`
 passed both Release numerical/package selections, ASC-only ASan/UBSan, TSan,
@@ -96,9 +132,38 @@ The original [Reference numerical disposition](packed-cholesky-expert-dispositio
 remains required: four failing processes, 176 failed assertions, 44 unique
 scalar/mode/value cases and five overlapping arithmetic causes. The five-cause
 table is not replaced by first-party success. The original unchanged Reference
-tests are separately replayed against integrated ASC libraries.
+tests were separately replayed against integrated ASC libraries in both ABIs:
+all four processes still fail, with all 176 ordered failed assertion lines
+identical to candidate22. Their canonical signature SHA-256 is
+`e2df0fd618ffe9613e77625f7d316abffbaedba8849698bb79b9127276c95abc`.
+The exact fixtures, values, native INFO and direct-provider comparisons remain
+in the disposition table and its 44-case raw artifact.
 
 ## Admission dimensions
+
+Fresh hosted checks bind feature `1e15d843d8968f659c393af85e6bdcf99af3345a`
+and PR merge `a8f7e30560c873ceb4dbdf7d6e70324ff168dd92`; both have tree
+`ca291bf16f76ef78144f91caffc97bb84da442fa`. The base remains
+`46412183b2ae86101b2361c52376a8db8efff264`. PR/push
+[CI 34487946167](https://github.com/AI4SciComp/asc-cpp/actions/runs/34487946167) /
+[34487939731](https://github.com/AI4SciComp/asc-cpp/actions/runs/34487939731)
+pass 19/19 jobs each, and both CodeQL runs 34487946187 / 34487939752 pass.
+These default provider-free platform jobs preserve their scope.
+
+The new opt-in [PR robust workflow 34487946145](https://github.com/AI4SciComp/asc-cpp/actions/runs/34487946145)
+and [push workflow 34487939821](https://github.com/AI4SciComp/asc-cpp/actions/runs/34487939821)
+each pass both actual ABI jobs. Every job independently prepares the pinned
+provider, passes 111/111 upstream processes, builds the actual integrated
+profile and passes the listed 12/12 ASC numerical/package tests with zero skips.
+Only logs, JUnit, command records and attestations are uploaded. The hosted
+provider identities are distinct from the local builds and retained in the
+external hosted audit. No dependency archive or runtime is bundled.
+
+The earlier `8b0f5315` CI failures and automatically cancelled robust workflows
+remain historical failed/incomplete attempts; they do not acquire the later
+revision's success. This final programme-record update has its own scoped
+validators and explicit unchanged-product-input comparison to `1e15d843`.
+It does not claim its later whole tree was the tree tested above.
 
 | Route | Availability and acceptance |
 | --- | --- |
@@ -106,7 +171,7 @@ tests are separately replayed against integrated ASC libraries.
 | Reference SPPSVX/DPPSVX/CPPSVX/ZPPSVX | Four external, unregistered candidates. All four required mathematical gates remain failed; no row promotion. |
 | Native20/array-I/O | Preserve `SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE`; new PPSVX records do not redefine its scope. |
 | Reference catalogue | 2,113 required rows; 350 partially registered, 1,763 not started, zero strictly complete or verified. New query/execute overloads do not enlarge the denominator. |
-| Platforms and package | Initial GNU11.4 Linux x86_64 static LP64/ILP64; wider compiler/platform/shared admission requires its own evidence. Provider guards are unchanged. |
+| Platforms and package | Initial GNU11.4 Linux x86_64 static LP64/ILP64; Full Clang/provider, shared, macOS and Windows provider admission remains unexecuted or unadmitted. Supplemental Clang consumer/adapter results do not expand that scope. Provider guards are unchanged. |
 | Owner/provenance/release | Conditional first-party adoption/integration is authorized. Notice/metadata packet and release authorization remain separate and pending. |
 
 The actual pending notice packet remains

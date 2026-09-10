@@ -1,5 +1,17 @@
 # Program blockers and required external decisions
 
+Current PPSVX scope: the authorized first-party robust capability has completed
+its opt-in experimental Linux/static integration in both actual ABIs; see the
+[integration review](packed-cholesky-expert-robust-integration.md). No blocking
+first-party finding remains in that finite slice. Full Clang/provider, shared,
+macOS and Windows provider admission remains incomplete. The pinned Reference
+path retains five arithmetic causes and its four mathematical test failures;
+the [exact numerical disposition](packed-cholesky-expert-disposition.md) still
+requires a separate provider/algorithm decision under unchanged requirements.
+First-party success neither closes those rows nor approves the notice packet.
+The next independent family is the existing P05 PTTRF/PTTRS contract/signature
+review. Historical continuation pointers below retain their original context.
+
 ## TRSYL-FINITE-DIAGONAL-OVERFLOW — required mathematical gate unmet
 
 Independent review reproduced a silent wrong finite solution in all four

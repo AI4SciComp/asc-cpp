@@ -1,4 +1,17 @@
-Current verdict: **SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE**.
+Current first-party PPSVX verdict:
+**PPSVX_ROBUST_INTEGRATED_EXPERIMENTAL_FULL_PROGRAM_INCOMPLETE**.
+The [integration review](packed-cholesky-expert-robust-integration.md) closes the
+authorized opt-in Linux/static slice at product
+`1e15d843d8968f659c393af85e6bdcf99af3345a`, tree
+`ca291bf16f76ef78144f91caffc97bb84da442fa`. Maintained source, public exports,
+tests and relocated examples pass in actual LP64 and true ILP64. Fresh PR/push
+CI each pass 19/19, both CodeQL pass, and both new robust workflows pass their
+two ABI jobs with 12/12 ASC tests and 111/111 upstream processes per job.
+Debug, Release, ASC sanitizers, concurrency, calibrated load observation and
+fresh installed-use records are bound separately in that review. Wider provider
+platform admission remains incomplete; the existing guards are unchanged.
+
+Accepted native/I/O verdict: **SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE**.
 Tested feature `c020803af564fdf478bf4626797fedcf1fedbbde`, PR merge `10f18f94269249e3e17a145dbbfd939875f28a3f`,
 tree `dfd7f6823b1e0d53531a847f7a4050aa8a399c5c`. PR/push CI each pass 19/19
 and both CodeQL runs pass. Local GNU 11 shared passes 295/295, Clang 19
@@ -18,15 +31,23 @@ Reference: 2,113 required, 350 partial / 1,763 not started, zero strict complete
 callable/verified. The 130 absent XBLAS definitions and 78 historical mathematical
 failures remain separate. Owner acceptance and amended provenance packet
 380a8792 remain pending. No merge
-or release authorized. Candidate22 and its concurrency/installed slice are
-complete with Reference failures retained. The subsequently authorized
-[first-party robust PPSVX experiment](packed-cholesky-expert-robust-experiment.md)
-passes the unchanged scalar failures, bounded generalization, safety/concurrency
-and isolated public installations in both actual ABIs. Its numerical code and
-integration patch remain external; no Reference or root-API promotion follows.
-Next: review/adopt that concrete algorithm and API/report contract before the
-existing wider platform and root-admission gates. The pending notice is separate.
-Final summary-only commit/patch has separate external checks and input bridge.
+or release authorized. Candidate22 and its concurrency/installed slice remain
+complete with Reference failures retained. Its four required mathematical
+processes still fail on an unchanged replay against the integrated libraries:
+176 failed assertions, 44 scalar/mode/value cases and five overlapping causes.
+The [numerical disposition](packed-cholesky-expert-disposition.md) remains open
+for the pinned path. Four separately selected first-party robust algorithms are
+now experimentally integrated; they do not register or verify Reference rows.
+The first full integrated Release runs each remain recorded as 871/957 passing,
+with 78 mathematical failures and eight metadata failures. The latter are fixed
+and close through 14/14 affected audits/fixtures in both ABIs and fresh hosted CI.
+
+Next dependency-ready family: S/D/C/Z PTTRF/PTTRS, eight existing P05 rows.
+Begin with its typed real-diagonal/real-or-complex-off-diagonal factor contract
+and pinned signature/storage review. No implementation is started here.
+The separate pending notice remains unchanged. Final summary-only changes use
+scoped validators and an explicit input bridge; their later whole tree is not
+represented as the hosted-tested product.
 
 ## Historical subset summary (5cc3a935)
 
