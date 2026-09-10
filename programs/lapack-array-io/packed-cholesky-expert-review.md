@@ -395,3 +395,66 @@ all remaining P00–P11 work remain required. The350 registered partial Referenc
 rows,1763 ledger-not-started rows and20 native implemented-unverified rows remain;
 the4 tested external PPSVX rows are unregistered and already within2113.
 All130 missing required XBLAS stay visible. No merge/publish/push occurred.
+
+
+## Recovered active-boundary candidates19–21, 2026-09-10
+
+This section supersedes candidate18's next-task pointer. W1–W4 later verified
+all20 native rows; that separate subset remains
+`SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE`. Recovery found clean local
+`dcf8eb52` descending from fetched remote `c020803a`, no operations/locks or
+active build processes, and no candidate19. The seven-file local summary and
+all ten candidate18 draft files survived. The closure manifest hash and scoped
+native validator pass; the reused native alias smoke executes1/1. Original
+checkout and all recorded sibling worktrees remain intact.
+
+Candidate21 audit `f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b`
+and its successful completion record bind39 current raw command records and54
+fresh objects. Six Linux/static configurations—GNU11 Debug/Release and Clang19
+ASC-only ASan/UBSan in actual LP64/true ILP64—each pass the exact
+`packed_cholesky_expert.faults` test and all three behavioral tests. The four
+ordinary scalar mathematical tests remain failures in every lane:44/600 each.
+All176 detailed signatures per lane match candidate18. They are not expected
+passing tests. No foreign sanitizer or Windows/macOS guard-page credit follows.
+
+The new3072 profiles add191946 assertions, including10392 exact one-byte-short
+workspace rejections. All original93752 profiles/856227 assertions survive;
+total faults96824 profiles/1048173 assertions pass per lane. Four scalars,
+32 independent layout/triangle choices,four FACT modes,N3 with NRHS0/2 and
+both boundary directions execute. Extra E/F controls actually scale AP/B using
+A=diag(4,16,1024), with exact binary S=(1/2,1/4,1/32). Independent original-system
+residuals, factor reconstruction, analytic condition and existing error bounds
+remain distinct from exact byte guards.
+
+Nonallocating placement array new establishes real containing arrays inside
+mapped storage. Packed/vector/scratch views expose exact active extents at
+nontrivial offsets. Full views use explicit leading dimensions with protected
+pages between every major slice. Both boundary directions and all remaining
+padding are checked. Exact real3N/complex2N, native INTEGER N/real N, packed
+layout and paired error-workspace minima are checked against literal formulas.
+Queries and capacity rejections keep all numeric/scratch pages inaccessible;
+rejections reset the report and preserve all protected bytes without native
+entry. Positive-order NRHS0 still computes factors/condition while inactive
+full/error buffers remain inaccessible. C18's N0 and ignored imaginary-diagonal
+observations remain unchanged, including their narrower write-mode scope.
+
+The original calibrated allocation totals are asserted before the added cases;
+all3072 added queries and13464 executions also observe zero C/C++ allocations.
+Both current strict checks and ten-file formatting pass. Candidate19's wrong
+`size_bytes()` member causes a retained build failure and two strict failures;
+candidate20 uses actual `size()` and passes six runtime lanes but has two
+strict failures for nested test conditionals. Candidate21 names their diagonal
+values without changing any assertion. All failed snapshots/logs survive.
+The exact v26 ASC libraries, provider archives, installed headers, actual
+Fortran integer flags and runtimes were rehashed rather than rebuilt.
+
+The existing ledger gains93 executed records (4958 to
+5051), including failed attempts. This is an external,
+unregistered test-only delta to one of the ten owned files; no integration
+product, provider source, routine registration or denominator changes.
+The next bounded task is candidate22 pre-native output-read observation for
+AFP/X/FERR/BERR through the existing provider-entry hook. Concurrency, installed
+use, full mode/platform coverage and mathematical closure remain later gates.
+The2113 required Reference rows,350 partial registrations,1763 not started,
+130 absent XBLAS definitions and78 historical root mathematical failures remain
+separate. The amended redistribution packet remains pending and unchanged.

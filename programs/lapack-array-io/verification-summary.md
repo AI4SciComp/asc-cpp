@@ -819,3 +819,17 @@ required mathematical failures, zero skips;54 new adapter/test objects and
 14 applicable strict checks are audited. The166 foreign closure objects and
 16 actual native-emitted signatures are source-bound. Full current root/installed
 integration is next; this scoped checkpoint promotes no routine to verified.
+
+
+## Recovery and PPSVX boundary slice, 2026-09-10
+
+The accepted native/I/O subset remains review-ready with20 verified native rows;
+its product/test/workflow inputs are unchanged. Clean local `dcf8eb52` and the
+external candidate18 survived; no candidate19 had started. The scoped validator
+and native alias environment smoke pass. The latest bounded PPSVX result is
+[the candidate21 review](packed-cholesky-expert-review.md): six actual ABI/mode
+lanes pass faults and behavioral tests, while all four ordinary scalar math
+tests per lane retain their candidate18 signatures. Strict2 and format pass.
+Audit `f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b` binds the external source, command records and reused libraries.
+No PPSVX registration or full numerical-family verification is granted.
+The state pointer advances to candidate22 pre-native output-read observation.
