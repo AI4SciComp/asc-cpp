@@ -1370,7 +1370,7 @@
       "subset-closure-20260909-01/w3-acceptance-01.json",
       "subset-closure-20260909-01/final-checkpoint-01/manifest.json",
       "p05-packed-cholesky-expert-candidate-21/active-boundary-audit.json",
-      "ppsvx-recovery-20260910-01/final-handoff-01.json"
+      "ppsvx-recovery-20260910-01/final-handoff-02.json"
     ],
     "outcomes": [
       "Baseline Debug 219/219 and Release 219/219 passed, zero skips",
@@ -1701,7 +1701,7 @@
     "source_lock_hashes_match": true,
     "provider_prefix_revalidation": "resume-20260908-01/provider-{lp64,ilp64}/record.json",
     "latest": {
-      "evidence": "ppsvx-recovery-20260910-01/final-handoff-01.json",
+      "evidence": "ppsvx-recovery-20260910-01/final-handoff-02.json",
       "recovered_head": "dcf8eb52a0a26226c320fb245103bc1bd99d0033",
       "fetched_remote": "c020803af564fdf478bf4626797fedcf1fedbbde",
       "clean_at_recovery": true,
