@@ -10,12 +10,28 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 350 partial scalar routines.
-The other 1,763 required
+routes below bring the development mapping to 358 partial scalar routines.
+The other 1,755 required
 LAPACK routines
 and shared-facet isolation remain incomplete. Native coverage is separate;
 registration and scoped tests
 do not close the full routine/mode/evidence manifest.
+
+`lapack_positive_tridiagonal.h` adds S/D/C/Z `Pttrf` and `Pttrs` with
+real D, real/complex E, explicit RHS packing, nominal borrowed factors and a
+move-only host-resource owner. Lower factors represent L D L^H; an owned
+orientation conversion conjugates complex E to represent U^H D U. Factors
+and plans may be reused with independent RHS/workspace/reports. See the
+[PT review](../programs/lapack-array-io/positive-tridiagonal-review.md) and
+[installed example](../examples/positive_tridiagonal/README.md).
+
+Six actual-ABI Debug/Release/ASC-only sanitizer profiles pass ordinary,
+behavioral, calibrated metadata-observation and public-use tests. The required
+scalar PTTRS subnormal cases remain failing: the provider forms an overflowing
+reciprocal before scaling B even though exact X=1 is representable. Direct
+pinned-provider calls reproduce this cause. These eight partial registrations
+receive no strict complete or verified Reference credit. The historical v27
+results below retain their original source and scope.
 
 `lapack_cholesky_packed_refinement.h` adds actual S/D/C/Z `Pprfs` and
 metadata-only `QueryPprfsWorkspace`. It refines full X using immutable ordinary

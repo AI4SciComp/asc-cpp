@@ -324,3 +324,30 @@ kPivotConversion remains ASC64 conversion staging when actually required;
 it is not reinterpreted as packed LP64 integers or silently rounded byte
 slots. This corrects root's earlier implementation direction and preserves
 the established public workspace and object-lifetime contracts.
+
+## D023: dependency-ready continuation and bounded workspace, 2026-09-10
+
+The current user master continuation authorizes ordinary checked programme
+APIs, maintained integration, tests, feature commits/non-force pushes and draft
+PR47 updates across all remaining P00–P11 work. Package dependencies remain
+final acceptance dependencies; a subtask starts once its actual descriptors,
+provider symbols/ABI, resource and test prerequisites exist. Provider-internal
+kernels need not first have separate ASC wrappers. After PTTRF/PTTRS, the next
+cycle includes the two actual mixed-precision general drivers DSGESV/ZCGESV.
+Interleave other ready workstreams after two slices in one workstream.
+
+One active implementation writer uses the existing checkout/build/evidence
+roots. No new sibling worktree/clone or destructive retirement is implied.
+The finite external workspace-cleanup-review.md records actual usage and unique
+contents; all 15 sibling feature worktrees contain dirty/untracked work and
+remain preserved. Pending cleanup or numerical/notice decisions release the
+active slot to independent tasks. No dependency, numerical property, default,
+notice, merge or release approval is inferred.
+
+The authoritative continuation is [remaining-project-runbook.md](remaining-project-runbook.md),
+SHA-256 `b9f5596fbded908ddcdcab855531e8de59d0271261763da6d56239e17d4e2a06` (only four trailing Markdown hard-break spaces normalized).
+The original supplied bytes retain SHA-256 `98b9ad9665c2ff0aa75b94f80a5093b1db2a2164cc3c4c511f694044f9be862d`.
+Its original supplied file is preserved untracked. The unchanged original
+runbook SHA-256 is `51c1cdf7e864bb38b849d7c5280fe34e92ff278da2653e6ee3c97c1cfb2923ae`.
+Live Google C++/Python guides were read once at this continuation's start;
+D003 and the existing format/tidy rules remain in force.

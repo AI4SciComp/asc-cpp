@@ -74,6 +74,7 @@ asc/dense/providers/lapack_lu_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_equilibration.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_helpers.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_refinement.h|asc_dense_lapack
+asc/dense/providers/lapack_positive_tridiagonal.h|asc_dense_lapack
 asc/dense/providers/lapack_qr.h|asc_dense_lapack
 asc/dense/providers/lapack_rank_revealing.h|asc_dense_lapack
 asc/dense/providers/lapack_svd_least_squares.h|asc_dense_lapack

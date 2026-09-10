@@ -86,13 +86,14 @@
       ]
     },
     "P09": {
-      "state": "not_started",
+      "state": "in_progress",
       "dependencies": [
         "P05",
         "P06",
         "P07",
         "P08"
-      ]
+      ],
+      "state_note": "Mixed-general prerequisites and both actual-ABI native branch probes executed; package dependencies remain final-completion barriers, not blockers to this ready slice."
     },
     "P10": {
       "state": "in_progress",
@@ -104,7 +105,7 @@
       "state_note": "Technical scope closed; top-level package stays in_progress pending program dependency/owner acceptance gates. No remaining native/I/O technical cell is inferred from unrelated Reference work."
     },
     "P11": {
-      "state": "not_started",
+      "state": "in_progress",
       "dependencies": [
         "P02",
         "P03",
@@ -115,7 +116,13 @@
         "P08",
         "P09",
         "P10"
-      ]
+      ],
+      "technical_status": "mapped_existing_scoped_evidence_final_full_program_gates_pending",
+      "technical_evidence": [
+        "programs/lapack-array-io/stabilization-review.md",
+        "programs/lapack-array-io/packed-cholesky-expert-robust-integration.md"
+      ],
+      "state_note": "Existing documentation, public headers, ABI, relocation, isolation and installed workflows are executed scoped P11 work; final full Reference/platform/owner completion is still pending."
     }
   },
   "subtasks": {
@@ -159,15 +166,25 @@
       "scope": "bounded_slice_implemented_tested_remaining_representations_pending"
     },
     "P02.printing": {
-      "state": "in_progress",
+      "state": "verified_contract_scope",
       "owner": "p00_array_contracts",
-      "scope": "implemented_snapshot_verified_remaining_platform_examples_pending"
+      "scope": "Accepted finite native20/array-I/O technical requirements, current subset-closure evidence supersedes earlier unverified labels; full-program/owner gates remain separate.",
+      "historical_label_before_master_continuation": {
+        "state": "in_progress",
+        "scope": "implemented_snapshot_verified_remaining_platform_examples_pending"
+      },
+      "current_evidence": "programs/lapack-array-io/stabilization-review.md"
     },
     "P04.native_lu": {
-      "state": "implemented_unverified",
+      "state": "verified_contract_scope",
       "owner": "integration",
-      "scope": "Eight native contracts self-reviewed; scoped snapshot and installed tests passed, exact contract-bound mode/evidence closure pending",
-      "evidence_index": "p04-native-lu-04/index.json"
+      "scope": "Accepted finite native20/array-I/O technical requirements, current subset-closure evidence supersedes earlier unverified labels; full-program/owner gates remain separate.",
+      "evidence_index": "p04-native-lu-04/index.json",
+      "historical_label_before_master_continuation": {
+        "state": "implemented_unverified",
+        "scope": "Eight native contracts self-reviewed; scoped snapshot and installed tests passed, exact contract-bound mode/evidence closure pending"
+      },
+      "current_evidence": "programs/lapack-array-io/stabilization-review.md"
     },
     "P04.external_lp64_dependency": {
       "state": "verified",
@@ -180,9 +197,14 @@
       "scope": "Exact true global ILP64 external build and upstream tests only; not full ASC routine coverage"
     },
     "P03.dense_io": {
-      "state": "in_progress",
+      "state": "verified_contract_scope",
       "owner": "p00_array_contracts",
-      "scope": "All wire scalars, 8194 mutation cases, bounded stream/resource/hostile-size errors and installed example pass scoped tests; corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
+      "scope": "Accepted finite native20/array-I/O technical requirements, current subset-closure evidence supersedes earlier unverified labels; full-program/owner gates remain separate.",
+      "historical_label_before_master_continuation": {
+        "state": "in_progress",
+        "scope": "All wire scalars, 8194 mutation cases, bounded stream/resource/hostile-size errors and installed example pass scoped tests; corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
+      },
+      "current_evidence": "programs/lapack-array-io/stabilization-review.md"
     },
     "P04.reference_lu": {
       "state": "in_progress",
@@ -190,9 +212,14 @@
       "scope": "Registered32-operation v3 frozen8c53d8d passed full LP64/trueILP64 each285 tests including both-layout installed consumers, zero skips; all4 layout scalar processes pass both-ABI ASC sanitizer checks. Final normalized contracts/evidence pending"
     },
     "P03.sparse_io": {
-      "state": "in_progress",
+      "state": "verified_contract_scope",
       "owner": "p00_baseline",
-      "scope": "COO/CSR/CSC, all wire scalars, 24582 mutation cases, 208 shape/special cases; snapshot13 Debug/Release/ASan/shared each10/10 and relocated static/shared examples each1/1 pass. Corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
+      "scope": "Accepted finite native20/array-I/O technical requirements, current subset-closure evidence supersedes earlier unverified labels; full-program/owner gates remain separate.",
+      "historical_label_before_master_continuation": {
+        "state": "in_progress",
+        "scope": "COO/CSR/CSC, all wire scalars, 24582 mutation cases, 208 shape/special cases; snapshot13 Debug/Release/ASan/shared each10/10 and relocated static/shared examples each1/1 pass. Corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
+      },
+      "current_evidence": "programs/lapack-array-io/stabilization-review.md"
     },
     "P04.provider_component": {
       "state": "in_progress",
@@ -221,21 +248,36 @@
       "scope": "Internal nonnegative size arithmetic and Dense owner-layout preflight preserve public Core arithmetic/Extents/Layout semantics. Five Dense malicious-header/layout cases plus direct helper limits tested with zero hidden allocations; corrected coherent d3675f3 full Debug/Release259 each and sanitizer subset11 pass"
     },
     "P10.matrix_market": {
-      "state": "in_progress",
+      "state": "verified_contract_scope",
       "owner": "p00_baseline,p00_inventory",
-      "scope": "Required Core/Dense-array/Sparse-coordinate paths registered. Frozen74ff2fb full Debug/Release each271/271 and shared Release273/273 pass, zero skips; relocated aggregate9 and separate Dense/Sparse examples1 each pass. Unchanged production candidate01 ASC sanitizer6/6 passed; both Doxygen71/1413 zero warnings. Final mode/evidence and platform gates pending; optional cross-representation conversions not implemented"
+      "scope": "Accepted finite native20/array-I/O technical requirements, current subset-closure evidence supersedes earlier unverified labels; full-program/owner gates remain separate.",
+      "historical_label_before_master_continuation": {
+        "state": "in_progress",
+        "scope": "Required Core/Dense-array/Sparse-coordinate paths registered. Frozen74ff2fb full Debug/Release each271/271 and shared Release273/273 pass, zero skips; relocated aggregate9 and separate Dense/Sparse examples1 each pass. Unchanged production candidate01 ASC sanitizer6/6 passed; both Doxygen71/1413 zero warnings. Final mode/evidence and platform gates pending; optional cross-representation conversions not implemented"
+      },
+      "current_evidence": "programs/lapack-array-io/stabilization-review.md"
     },
     "P05.native_cholesky": {
-      "state": "implemented_unverified",
+      "state": "verified_contract_scope",
       "owner": "integration",
-      "scope": "Eight native POTRF/POTRS contracts implemented; v5 full provider-free Debug/Release277 and shared279, aggregate10 and standalone Dense-only1 passed. Native scoped ASan5 passed unchanged numerical bytes. Exact normalized mode evidence remains pending.",
-      "review": "programs/lapack-array-io/native-cholesky-review.md"
+      "scope": "Accepted finite native20/array-I/O technical requirements, current subset-closure evidence supersedes earlier unverified labels; full-program/owner gates remain separate.",
+      "review": "programs/lapack-array-io/native-cholesky-review.md",
+      "historical_label_before_master_continuation": {
+        "state": "implemented_unverified",
+        "scope": "Eight native POTRF/POTRS contracts implemented; v5 full provider-free Debug/Release277 and shared279, aggregate10 and standalone Dense-only1 passed. Native scoped ASan5 passed unchanged numerical bytes. Exact normalized mode evidence remains pending."
+      },
+      "current_evidence": "programs/lapack-array-io/stabilization-review.md"
     },
     "P06.native_qr": {
-      "state": "implemented_unverified",
+      "state": "verified_contract_scope",
       "owner": "integration",
-      "scope": "Four native GEQRF contracts plus separate Q conveniences implemented; v5 full provider-free Debug/Release277/shared279 and installed aggregate10/standalone1 passed. Native scoped ASan5 passed unchanged numerical bytes; no native ORG/UNG/ORM/UNM credit and exact mode evidence pending.",
-      "review": "programs/lapack-array-io/native-qr-review.md"
+      "scope": "Accepted finite native20/array-I/O technical requirements, current subset-closure evidence supersedes earlier unverified labels; full-program/owner gates remain separate.",
+      "review": "programs/lapack-array-io/native-qr-review.md",
+      "historical_label_before_master_continuation": {
+        "state": "implemented_unverified",
+        "scope": "Four native GEQRF contracts plus separate Q conveniences implemented; v5 full provider-free Debug/Release277/shared279 and installed aggregate10/standalone1 passed. Native scoped ASan5 passed unchanged numerical bytes; no native ORG/UNG/ORM/UNM credit and exact mode evidence pending."
+      },
+      "current_evidence": "programs/lapack-array-io/stabilization-review.md"
     },
     "P05.reference_cholesky": {
       "state": "in_progress",
@@ -374,12 +416,17 @@
       "review": "programs/lapack-array-io/lu-output-pivot-review.md"
     },
     "P04.P05.P06.native20_acceptance": {
-      "state": "in_progress",
+      "state": "verified_contract_scope",
       "owner": "integration",
-      "scope": "Four additive files and three tests integrated; current four6/6 native lanes, clean relocated installed3/3eachDebug/Release/shared and fresh3strict/format4/coverage/surface pass. Exact modes/source/object/isolation audit completed. Native20 implemented_unverified;40partial class slots and requiredWindows/macOS remain open.",
+      "scope": "Accepted finite native20/array-I/O technical requirements, current subset-closure evidence supersedes earlier unverified labels; full-program/owner gates remain separate.",
       "review": "programs/lapack-array-io/native20-acceptance-review.md",
       "partial_overlay": "programs/lapack-array-io/native20-partial-acceptance.json",
-      "current_checkpoint": "subset_acceptance_milestone.A2; original40 aliases now closed in executed platform matrix; normalized row evidence still pending"
+      "current_checkpoint": "subset_acceptance_milestone.A2; original40 aliases now closed in executed platform matrix; normalized row evidence still pending",
+      "historical_label_before_master_continuation": {
+        "state": "in_progress",
+        "scope": "Four additive files and three tests integrated; current four6/6 native lanes, clean relocated installed3/3eachDebug/Release/shared and fresh3strict/format4/coverage/surface pass. Exact modes/source/object/isolation audit completed. Native20 implemented_unverified;40partial class slots and requiredWindows/macOS remain open."
+      },
+      "current_evidence": "programs/lapack-array-io/stabilization-review.md"
     },
     "P02.printing_acceptance": {
       "state": "in_progress",
@@ -1102,10 +1149,71 @@
         "remaining shared/compiler/platform admission and reviewed root registration",
         "owner/provenance approval and separate merge/release authorization"
       ]
+    },
+    "P11.scoped_delivery": {
+      "state": "in_progress",
+      "owner": "integration",
+      "scope": "Accepted native/I/O installed workflows, source/header/ABI/ODR/package/relocation checks and robust experimental installed delivery mapped; remaining spectral/least-squares applications and full provider/platform/owner completion remain",
+      "evidence": [
+        "programs/lapack-array-io/stabilization-review.md",
+        "programs/lapack-array-io/packed-cholesky-expert-robust-integration.md"
+      ]
+    },
+    "P05.positive_definite_tridiagonal_factor_solve": {
+      "state": "integrated_partial_numerical_gate_failed",
+      "owner": "integration",
+      "upstream_rows": [
+        "lapack.spttrf",
+        "lapack.dpttrf",
+        "lapack.cpttrf",
+        "lapack.zpttrf",
+        "lapack.spttrs",
+        "lapack.dpttrs",
+        "lapack.cpttrs",
+        "lapack.zpttrs"
+      ],
+      "dependencies": [
+        "P01.structured_descriptors",
+        "P04.provider_component"
+      ],
+      "source_api_files": [
+        "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+        "src/dense/lapack/reference_positive_tridiagonal.cc"
+      ],
+      "next_action": "Retain required mathematical failure and complete wider platform/full mode admission on the existing queue; no repeated scalar reproducer is needed.",
+      "required_modes": "real/complex scalar pairing, lower/upper-equivalent factors, both RHS layouts; N0/1/unrolled, RHS0/1/multiple; bad pivots, stale plans, context/alias/workspace, direct mapping and independent residuals",
+      "reuse_candidates": "existing structured descriptor/internal_tridiagonal helpers; sibling contains GT only, preserved without import",
+      "numerical_result": "not_executed",
+      "profile_admission": "existing GNU11 Linux static LP64/global ILP64",
+      "owner_decision": "ordinary development authorized",
+      "integrated_revision": null,
+      "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+      "executed": "Both actual ABIs: final Debug/Release/ASC sanitizer each 13/17 pass with four required math failures; ASC TSan4/4; relocated public consumer and provider-free isolation pass; strict tidy and Doxygen pass."
+    },
+    "P09.mixed_general_solve": {
+      "state": "in_progress",
+      "owner": "integration",
+      "upstream_rows": [
+        "lapack.dsgesv",
+        "lapack.zcgesv"
+      ],
+      "dependencies": [
+        "P01.workspace_report_pivots",
+        "P04.provider_component"
+      ],
+      "source_api_files": [],
+      "next_action": "Implement checked DSGESV/ZCGESV using existing mixed scalar identities; explicit lower-precision scratch, staged output, raw ITER/fallback semantics. Both actual providers export and execute the routines; no other family wrapper prerequisite is missing.",
+      "required_modes": "successful low-precision refinement, prescribed fallback, conversion range, singularity, independent X/report, both layouts and real ABIs",
+      "reuse_candidates": "existing LU integer/layout/report helpers; no current/sibling implementation found",
+      "numerical_result": "not_executed",
+      "profile_admission": "existing GNU11 Linux static LP64/global ILP64",
+      "owner_decision": "ordinary development authorized",
+      "integrated_revision": null,
+      "prerequisite_evidence": "master-continuation-20260910-01/p09-prerequisite-01 and p09-prerequisite-02"
     }
   },
-  "active_task": "P05.robust_ppsvx_experimental_integration_complete",
-  "next_action": "Begin the existing S/D/C/Z PTTRF/PTTRS typed factor contract and pinned signature/storage review. Preserve the closed native20/array-I/O and robust experimental slices; do not promote Reference rows or begin with a broad stabilization matrix.",
+  "active_task": "P09.mixed_general_solve",
+  "next_action": "Integrate and test the staged checked DSGESV/ZCGESV implementation, then continue the dependency-ready master queue. PT engineering is integrated locally with a preserved one-cause numerical blocker; branch commit/push evidence is recorded externally.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1545,20 +1653,20 @@
   },
   "counts": {
     "required_denominator": 2113,
-    "specification_mapped": 20,
+    "specification_mapped": 28,
     "callable_reference": 0,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
-    "reference_not_started_in_ledger": 1763,
-    "reference_in_progress_in_ledger": 350,
+    "reference_not_started_in_ledger": 1755,
+    "reference_in_progress_in_ledger": 358,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2113,
     "implemented_unverified_native": 0,
     "implemented_unverified_reference": 0,
-    "registered_partial_reference_operations": 350,
+    "registered_partial_reference_operations": 358,
     "unregistered_expert_operations_with_scoped_tests": 4,
-    "note": "Native20 callable/verified by accepted validator:112 modes/1120 class slots. Reference2113 required:350 executable partial registrations,1763 not started,0 strict complete-callable/verified.130 absent required XBLAS definitions and78 historical root mathematical failures remain. Both unregistered scoped-operation counters refer to the same four external Reference PPSVX rows. Four experimentally integrated first-party robust algorithms/24 declarations are separate and give no Reference credit.",
+    "note": "Native20 retains accepted112 modes/1120 class slots via checked unchanged-input extension. Reference2113 required:358 partial registrations,1755 not started,zero strict complete/verified. PT adds eight partial rows and four required mathematical processes (48 assertions/eight scalar-input cases/one cause) in the affected selections; 78 historical root math failures remain separate. No fresh whole-root total is claimed. Four experimental robust PPSVX algorithms remain separate from Reference.",
     "unregistered_packed_operations_with_scoped_tests": 4,
     "experimental_first_party_robust_ppsvx_algorithms": 4,
     "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24
@@ -2265,14 +2373,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.positive_definite_tridiagonal_factor_solve_contract",
+  "next_task": "P09.mixed_general_solve",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "rg -n -i 'pttrf|pttrs|positive.definite tridiagonal' programs/lapack-array-io/runbook.md docs/contracts/lapack-coverage.yaml",
+  "next_command": "Read programs/lapack-array-io/positive-tridiagonal-review.md and master-continuation-20260910-01/p09-stage; continue the staged mixed-general source and tests without redoing PT or robust PPSVX.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -2841,5 +2949,46 @@
     "checks": "PR34380787106/push34380779945 each19/19; CodeQL34380786872/34380779888 pass; all logs/hash/identity/skip checks retained",
     "final_documentation_sync": "Later summary-only local commit has separate checks, input bridge and patch in external final-handoff-01.json; it is not this tested whole tree."
   },
-  "historical_last_implementation_commit_before_robust_integration": "c020803af564fdf478bf4626797fedcf1fedbbde"
+  "historical_last_implementation_commit_before_robust_integration": "c020803af564fdf478bf4626797fedcf1fedbbde",
+  "master_continuation": {
+    "instruction": "programs/lapack-array-io/remaining-project-runbook.md",
+    "instruction_sha256": "b9f5596fbded908ddcdcab855531e8de59d0271261763da6d56239e17d4e2a06",
+    "base_head": "9032f622752d5014c673f08bc0a14a9ca1612989",
+    "state": "in_progress",
+    "workspace_reconciliation": "completed_once_no_retirement",
+    "workspace_review": "workspace-cleanup-review.md",
+    "evidence_root": "master-continuation-20260910-01",
+    "scheduling": "D023: actual subtask prerequisites; package dependencies preserved as final gates",
+    "one_active_writer": true,
+    "pt_progress": "Six 13/17 affected profiles; both TSan4/4; installed public/base isolation pass; both full package tests pass; one source-list omission corrected and retested; current strict signature/format/coverage/Doxygen checks pass. Four required math processes/eight scalar-input cases/one provider cause remain failed.",
+    "current_remote_read": {
+      "head": "9032f622752d5014c673f08bc0a14a9ca1612989",
+      "draft": true,
+      "comments": 0,
+      "new_owner_approval": false,
+      "notice_decision": "pending unchanged packet; ordinary feature development remains authorized"
+    },
+    "p09_stage": "master-continuation-20260910-01/p09-stage (public header, counts, provider source drafted; not yet compiled/integrated). Both actual-ABI branch prerequisites executed.",
+    "remaining_actionable": "DSGESV/ZCGESV staged implementation/tests, complete inventory-backed ready queue and 130-definition closure, remaining P04-P09 and wider-platform/P11 work. These are not all external blockers.",
+    "owner_packet": "programs/lapack-array-io/owner-decisions.md",
+    "latest_counts": {
+      "blocked_reference": 0,
+      "callable_native": 20,
+      "callable_reference": 0,
+      "discovered": 3551,
+      "excluded": 1438,
+      "implemented_unverified_native": 0,
+      "implemented_unverified_reference": 0,
+      "in_progress_reference": 358,
+      "incomplete_reference": 2113,
+      "mapped_contracts": 28,
+      "not_started_reference": 1755,
+      "profile_complete": false,
+      "required": 2113,
+      "verified_native": 20,
+      "verified_reference": 0
+    },
+    "original_supplied_instruction_sha256": "98b9ad9665c2ff0aa75b94f80a5093b1db2a2164cc3c4c511f694044f9be862d",
+    "instruction_normalization": "Four trailing Markdown hard-break spaces removed for repository whitespace policy; original untracked user instruction and external copy preserved."
+  }
 }

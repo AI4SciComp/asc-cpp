@@ -1,4 +1,4 @@
-name: Experimental robust PPSVX
+name: Selected LAPACK families
 
 on:
   push:
@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   linux-static:
-    name: Robust PPSVX / GNU 11 / static / integer ${{ matrix.bits }}
+    name: Robust PPSVX and PT / GNU 11 / static / integer ${{ matrix.bits }}
     runs-on: ubuntu-22.04
     timeout-minutes: 45
     strategy:
@@ -59,13 +59,30 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
-            -R 'robust_ppsvx|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|dense_lapack.package_integration' \
             > "$RUNNER_TEMP/asc-selected.json"
+          python3 - "$RUNNER_TEMP/asc-selected.json" <<'PY'
+          import json
+          import sys
+
+          with open(sys.argv[1], encoding="utf-8") as source:
+              selected = {test["name"] for test in json.load(source)["tests"]}
+          prefix = "asc_cpp.dense_lapack.positive_tridiagonal."
+          required = {prefix + mode + scalar for scalar in "sdcz"
+                      for mode in ("", "required_math_", "fault_")}
+          required |= {prefix + name for name in
+                       ("native_comparison", "observation", "public_example")}
+          missing = required - selected
+          if missing:
+              raise SystemExit("Missing configured PT tests: " + str(sorted(missing)))
+          PY
           ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
-            -R 'robust_ppsvx|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|dense_lapack.package_integration' \
             --output-junit "$RUNNER_TEMP/asc-tests.xml" \
             2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
-          python3 asc-cpp/tools/ci/check_ctest_junit.py "$RUNNER_TEMP/asc-tests.xml"
+      - name: Audit JUnit outcomes even when numerical gates fail
+        if: always()
+        run: python3 asc-cpp/tools/ci/check_ctest_junit.py "$RUNNER_TEMP/asc-tests.xml"
       - name: Preserve command and test records only
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

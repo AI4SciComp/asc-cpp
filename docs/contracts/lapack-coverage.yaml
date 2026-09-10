@@ -24893,12 +24893,132 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active operand, workspace and report/provider/plan metadata spans checked disjoint; metadata alias preserves report.",
+        "asc_operation": "asc::Pttrf",
+        "descriptors": "Existing contiguous positive-definite tridiagonal view; nominal immutable factor view for solve; real D for every scalar; checked disjoint host buffers.",
+        "documentation": "programs/lapack-array-io/positive-tridiagonal-review.md",
+        "mode_cases": [
+          {
+            "id": "lower_contiguous",
+            "options": {
+              "layout": "contiguous_real_D_scalar_E",
+              "orientation": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "reconstruction",
+              "bad_pivots"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "80d019c72464dbcc27233c980399d091b7bb43e25eb81c67fde4fe5194d87c72",
+              "declaration": "SUBROUTINE CPTTRF( N, D, E, INFO )",
+              "path": "SRC/cpttrf.f",
+              "sha256": "875df4ebec714cf2e9e0c6fa8134ed7ccba501eff0179e68cc1aed2b1d65161f"
+            }
+          }
+        ],
+        "mutation": "Factor overwrites D/E, partial INFO retained; solve preserves D/E and publishes B=X. Metadata/workspace preflight precedes writes. Local N=0 and solve NRHS=0 do not read numeric arrays. Provider defects withhold packed RHS publication; direct writes survive.",
+        "numerical_outcomes": "Exact native INFO, no success certificate for nonpositive/nonfinite factors. Nonfinite solve output yields accuracy warning, not a clamp. Required analytic tiny-scalar solve gate remains failed.",
+        "pivots": "No pivot vector. Factor INFO>0 gives zero-based failed leading minor; last pivot has completed-but-nonpositive factorization semantics.",
+        "scalar_signature": "float D,complex<float> E",
+        "state": "reviewed",
+        "workspace": "No native scratch; active row-major RHS uses exactly N*NRHS live scalar entries; metadata query and bounded foreign INTEGER checks."
       },
       "id": "lapack.cpttrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/positive_tridiagonal/CMakeLists.txt",
+          "sha256": "ae92260fc96cd488094e91875dbd235c8e9a41e34673a72efe8680e3fc58fe61"
+        },
+        {
+          "path": "examples/positive_tridiagonal/README.md",
+          "sha256": "0c5eefe6ed1364f7689cfa3cb2d54127c5b83e035631bd22ae0f9204f185d12f"
+        },
+        {
+          "path": "examples/positive_tridiagonal/main.cc",
+          "sha256": "c409547d5aef9fc09d69f125b6f916c37ee0bd9ab513076efddf862947f0019f"
+        },
+        {
+          "path": "include/asc/dense/array.h",
+          "sha256": "e7f15878965e9a02904e10c61ba80621e343c1ff6fa61ae23d4eb631d05396b8"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+          "sha256": "0a8a730264faf5d73bf760f94f2f653b5b5db9601bcd4a20f908a52ab8f43219"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+          "sha256": "aef894eceadc263f889a1cf828940c836bb9e260e26a048d35cb3b8698a50c81"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_positive_tridiagonal.cc",
+          "sha256": "1c2313145e69b7ef0c3bfff0f575b9f8b8bab542ecf84335356095bcb1b6c080"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_fault_test.cc",
+          "sha256": "307327207ded524814d884f936dbeb25cfce61dc59600163ee4e82991e9d450b"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.cc",
+          "sha256": "05c0aa35b1e46e6cd353d3b0b84b50d032589a0912bdd4d0352053792d7efd16"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.h",
+          "sha256": "cf5dc4c3649de16d90913d6fd615a660b112d12bd4b36852b9194ea7451d20f3"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_native_comparison_test.cc",
+          "sha256": "679f7927d231b61ffb87dbcf28e3c498a42d2438f3308c76c62f98d8e4691bca"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_observation_test.cc",
+          "sha256": "2d959f6258b0087c0d7f8c675887a7b210688b44e951d64c1804054f90079309"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_test.cc",
+          "sha256": "c37920e7f3282931d6148ce49668a202c523bd72425bbe6dd63d1a1ebaf41222"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_tests.cmake",
+          "sha256": "7c3485b897503c34f856a7b63e74ea2e074336a49c1e860dffb0a8b10159a513"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -24906,7 +25026,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Maintained actual PTTRF/PTTRS, explicit resource-owned and borrowed factors, both orientations and RHS layouts. Six actual LP64/trueILP64 Debug/Release/ASC sanitizer profiles retain four required mathematical failures per profile; calibrated metadata observation, real-provider concurrency, native INFO faults and installed relocation executed. Strict full routine/platform acceptance remains incomplete; provider scalar reciprocal cause stays required. No verified or first-party robust credit.",
+          "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -24918,12 +25040,218 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active operand, workspace and report/provider/plan metadata spans checked disjoint; metadata alias preserves report.",
+        "asc_operation": "asc::Pttrs",
+        "descriptors": "Existing contiguous positive-definite tridiagonal view; nominal immutable factor view for solve; real D for every scalar; checked disjoint host buffers.",
+        "documentation": "programs/lapack-array-io/positive-tridiagonal-review.md",
+        "mode_cases": [
+          {
+            "id": "lower_row_major",
+            "options": {
+              "orientation": "lower",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ac9e575d5e4e8b0ead9a367d14a0e887a63cc56e700c7401db37680b11c8a76a",
+              "declaration": "SUBROUTINE CPTTRS( UPLO, N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/cpttrs.f",
+              "sha256": "0ace150787c483f8c69c8c64075b6a0e0020b5dd815c68e1e699f7fffca2b182"
+            }
+          },
+          {
+            "id": "lower_column_major",
+            "options": {
+              "orientation": "lower",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ac9e575d5e4e8b0ead9a367d14a0e887a63cc56e700c7401db37680b11c8a76a",
+              "declaration": "SUBROUTINE CPTTRS( UPLO, N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/cpttrs.f",
+              "sha256": "0ace150787c483f8c69c8c64075b6a0e0020b5dd815c68e1e699f7fffca2b182"
+            }
+          },
+          {
+            "id": "upper_row_major",
+            "options": {
+              "orientation": "upper",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ac9e575d5e4e8b0ead9a367d14a0e887a63cc56e700c7401db37680b11c8a76a",
+              "declaration": "SUBROUTINE CPTTRS( UPLO, N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/cpttrs.f",
+              "sha256": "0ace150787c483f8c69c8c64075b6a0e0020b5dd815c68e1e699f7fffca2b182"
+            }
+          },
+          {
+            "id": "upper_column_major",
+            "options": {
+              "orientation": "upper",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "ac9e575d5e4e8b0ead9a367d14a0e887a63cc56e700c7401db37680b11c8a76a",
+              "declaration": "SUBROUTINE CPTTRS( UPLO, N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/cpttrs.f",
+              "sha256": "0ace150787c483f8c69c8c64075b6a0e0020b5dd815c68e1e699f7fffca2b182"
+            }
+          }
+        ],
+        "mutation": "Factor overwrites D/E, partial INFO retained; solve preserves D/E and publishes B=X. Metadata/workspace preflight precedes writes. Local N=0 and solve NRHS=0 do not read numeric arrays. Provider defects withhold packed RHS publication; direct writes survive.",
+        "numerical_outcomes": "Exact native INFO, no success certificate for nonpositive/nonfinite factors. Nonfinite solve output yields accuracy warning, not a clamp. Required analytic tiny-scalar solve gate remains failed.",
+        "pivots": "No pivot vector. Factor INFO>0 gives zero-based failed leading minor; last pivot has completed-but-nonpositive factorization semantics.",
+        "scalar_signature": "float D,complex<float> E",
+        "state": "reviewed",
+        "workspace": "No native scratch; active row-major RHS uses exactly N*NRHS live scalar entries; metadata query and bounded foreign INTEGER checks."
       },
       "id": "lapack.cpttrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/positive_tridiagonal/CMakeLists.txt",
+          "sha256": "ae92260fc96cd488094e91875dbd235c8e9a41e34673a72efe8680e3fc58fe61"
+        },
+        {
+          "path": "examples/positive_tridiagonal/README.md",
+          "sha256": "0c5eefe6ed1364f7689cfa3cb2d54127c5b83e035631bd22ae0f9204f185d12f"
+        },
+        {
+          "path": "examples/positive_tridiagonal/main.cc",
+          "sha256": "c409547d5aef9fc09d69f125b6f916c37ee0bd9ab513076efddf862947f0019f"
+        },
+        {
+          "path": "include/asc/dense/array.h",
+          "sha256": "e7f15878965e9a02904e10c61ba80621e343c1ff6fa61ae23d4eb631d05396b8"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+          "sha256": "0a8a730264faf5d73bf760f94f2f653b5b5db9601bcd4a20f908a52ab8f43219"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+          "sha256": "aef894eceadc263f889a1cf828940c836bb9e260e26a048d35cb3b8698a50c81"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_positive_tridiagonal.cc",
+          "sha256": "1c2313145e69b7ef0c3bfff0f575b9f8b8bab542ecf84335356095bcb1b6c080"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_fault_test.cc",
+          "sha256": "307327207ded524814d884f936dbeb25cfce61dc59600163ee4e82991e9d450b"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.cc",
+          "sha256": "05c0aa35b1e46e6cd353d3b0b84b50d032589a0912bdd4d0352053792d7efd16"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.h",
+          "sha256": "cf5dc4c3649de16d90913d6fd615a660b112d12bd4b36852b9194ea7451d20f3"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_native_comparison_test.cc",
+          "sha256": "679f7927d231b61ffb87dbcf28e3c498a42d2438f3308c76c62f98d8e4691bca"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_observation_test.cc",
+          "sha256": "2d959f6258b0087c0d7f8c675887a7b210688b44e951d64c1804054f90079309"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_test.cc",
+          "sha256": "c37920e7f3282931d6148ce49668a202c523bd72425bbe6dd63d1a1ebaf41222"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_tests.cmake",
+          "sha256": "7c3485b897503c34f856a7b63e74ea2e074336a49c1e860dffb0a8b10159a513"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -24931,7 +25259,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Maintained actual PTTRF/PTTRS, explicit resource-owned and borrowed factors, both orientations and RHS layouts. Six actual LP64/trueILP64 Debug/Release/ASC sanitizer profiles retain four required mathematical failures per profile; calibrated metadata observation, real-provider concurrency, native INFO faults and installed relocation executed. Strict full routine/platform acceptance remains incomplete; provider scalar reciprocal cause stays required. No verified or first-party robust credit.",
+          "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -56062,12 +56392,132 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active operand, workspace and report/provider/plan metadata spans checked disjoint; metadata alias preserves report.",
+        "asc_operation": "asc::Pttrf",
+        "descriptors": "Existing contiguous positive-definite tridiagonal view; nominal immutable factor view for solve; real D for every scalar; checked disjoint host buffers.",
+        "documentation": "programs/lapack-array-io/positive-tridiagonal-review.md",
+        "mode_cases": [
+          {
+            "id": "lower_contiguous",
+            "options": {
+              "layout": "contiguous_real_D_scalar_E",
+              "orientation": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "reconstruction",
+              "bad_pivots"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "eff28626e213e095177dea510fe1630b9e434b69cce2ce56f3ee520ca9548550",
+              "declaration": "SUBROUTINE DPTTRF( N, D, E, INFO )",
+              "path": "SRC/dpttrf.f",
+              "sha256": "5b9870c1c778a1f6b72259067d09243e5956c4f7887df29abe15000eb7112175"
+            }
+          }
+        ],
+        "mutation": "Factor overwrites D/E, partial INFO retained; solve preserves D/E and publishes B=X. Metadata/workspace preflight precedes writes. Local N=0 and solve NRHS=0 do not read numeric arrays. Provider defects withhold packed RHS publication; direct writes survive.",
+        "numerical_outcomes": "Exact native INFO, no success certificate for nonpositive/nonfinite factors. Nonfinite solve output yields accuracy warning, not a clamp. Required analytic tiny-scalar solve gate remains failed.",
+        "pivots": "No pivot vector. Factor INFO>0 gives zero-based failed leading minor; last pivot has completed-but-nonpositive factorization semantics.",
+        "scalar_signature": "double D,double E",
+        "state": "reviewed",
+        "workspace": "No native scratch; active row-major RHS uses exactly N*NRHS live scalar entries; metadata query and bounded foreign INTEGER checks."
       },
       "id": "lapack.dpttrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/positive_tridiagonal/CMakeLists.txt",
+          "sha256": "ae92260fc96cd488094e91875dbd235c8e9a41e34673a72efe8680e3fc58fe61"
+        },
+        {
+          "path": "examples/positive_tridiagonal/README.md",
+          "sha256": "0c5eefe6ed1364f7689cfa3cb2d54127c5b83e035631bd22ae0f9204f185d12f"
+        },
+        {
+          "path": "examples/positive_tridiagonal/main.cc",
+          "sha256": "c409547d5aef9fc09d69f125b6f916c37ee0bd9ab513076efddf862947f0019f"
+        },
+        {
+          "path": "include/asc/dense/array.h",
+          "sha256": "e7f15878965e9a02904e10c61ba80621e343c1ff6fa61ae23d4eb631d05396b8"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+          "sha256": "0a8a730264faf5d73bf760f94f2f653b5b5db9601bcd4a20f908a52ab8f43219"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+          "sha256": "aef894eceadc263f889a1cf828940c836bb9e260e26a048d35cb3b8698a50c81"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_positive_tridiagonal.cc",
+          "sha256": "1c2313145e69b7ef0c3bfff0f575b9f8b8bab542ecf84335356095bcb1b6c080"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_fault_test.cc",
+          "sha256": "307327207ded524814d884f936dbeb25cfce61dc59600163ee4e82991e9d450b"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.cc",
+          "sha256": "05c0aa35b1e46e6cd353d3b0b84b50d032589a0912bdd4d0352053792d7efd16"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.h",
+          "sha256": "cf5dc4c3649de16d90913d6fd615a660b112d12bd4b36852b9194ea7451d20f3"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_native_comparison_test.cc",
+          "sha256": "679f7927d231b61ffb87dbcf28e3c498a42d2438f3308c76c62f98d8e4691bca"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_observation_test.cc",
+          "sha256": "2d959f6258b0087c0d7f8c675887a7b210688b44e951d64c1804054f90079309"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_test.cc",
+          "sha256": "c37920e7f3282931d6148ce49668a202c523bd72425bbe6dd63d1a1ebaf41222"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_tests.cmake",
+          "sha256": "7c3485b897503c34f856a7b63e74ea2e074336a49c1e860dffb0a8b10159a513"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -56075,7 +56525,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Maintained actual PTTRF/PTTRS, explicit resource-owned and borrowed factors, both orientations and RHS layouts. Six actual LP64/trueILP64 Debug/Release/ASC sanitizer profiles retain four required mathematical failures per profile; calibrated metadata observation, real-provider concurrency, native INFO faults and installed relocation executed. Strict full routine/platform acceptance remains incomplete; provider scalar reciprocal cause stays required. No verified or first-party robust credit.",
+          "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -56087,12 +56539,218 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active operand, workspace and report/provider/plan metadata spans checked disjoint; metadata alias preserves report.",
+        "asc_operation": "asc::Pttrs",
+        "descriptors": "Existing contiguous positive-definite tridiagonal view; nominal immutable factor view for solve; real D for every scalar; checked disjoint host buffers.",
+        "documentation": "programs/lapack-array-io/positive-tridiagonal-review.md",
+        "mode_cases": [
+          {
+            "id": "lower_row_major",
+            "options": {
+              "orientation": "lower",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b5cc3d47db809e32fbf7237222c0e4df34a903bd24ca8ba36dd4182b55db3355",
+              "declaration": "SUBROUTINE DPTTRS( N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/dpttrs.f",
+              "sha256": "18c70ecfc94b30c7fda8a8a30a778654a20dafd52e3570d1327c03e708ef2bb9"
+            }
+          },
+          {
+            "id": "lower_column_major",
+            "options": {
+              "orientation": "lower",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b5cc3d47db809e32fbf7237222c0e4df34a903bd24ca8ba36dd4182b55db3355",
+              "declaration": "SUBROUTINE DPTTRS( N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/dpttrs.f",
+              "sha256": "18c70ecfc94b30c7fda8a8a30a778654a20dafd52e3570d1327c03e708ef2bb9"
+            }
+          },
+          {
+            "id": "upper_row_major",
+            "options": {
+              "orientation": "upper",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b5cc3d47db809e32fbf7237222c0e4df34a903bd24ca8ba36dd4182b55db3355",
+              "declaration": "SUBROUTINE DPTTRS( N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/dpttrs.f",
+              "sha256": "18c70ecfc94b30c7fda8a8a30a778654a20dafd52e3570d1327c03e708ef2bb9"
+            }
+          },
+          {
+            "id": "upper_column_major",
+            "options": {
+              "orientation": "upper",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "b5cc3d47db809e32fbf7237222c0e4df34a903bd24ca8ba36dd4182b55db3355",
+              "declaration": "SUBROUTINE DPTTRS( N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/dpttrs.f",
+              "sha256": "18c70ecfc94b30c7fda8a8a30a778654a20dafd52e3570d1327c03e708ef2bb9"
+            }
+          }
+        ],
+        "mutation": "Factor overwrites D/E, partial INFO retained; solve preserves D/E and publishes B=X. Metadata/workspace preflight precedes writes. Local N=0 and solve NRHS=0 do not read numeric arrays. Provider defects withhold packed RHS publication; direct writes survive.",
+        "numerical_outcomes": "Exact native INFO, no success certificate for nonpositive/nonfinite factors. Nonfinite solve output yields accuracy warning, not a clamp. Required analytic tiny-scalar solve gate remains failed.",
+        "pivots": "No pivot vector. Factor INFO>0 gives zero-based failed leading minor; last pivot has completed-but-nonpositive factorization semantics.",
+        "scalar_signature": "double D,double E",
+        "state": "reviewed",
+        "workspace": "No native scratch; active row-major RHS uses exactly N*NRHS live scalar entries; metadata query and bounded foreign INTEGER checks."
       },
       "id": "lapack.dpttrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/positive_tridiagonal/CMakeLists.txt",
+          "sha256": "ae92260fc96cd488094e91875dbd235c8e9a41e34673a72efe8680e3fc58fe61"
+        },
+        {
+          "path": "examples/positive_tridiagonal/README.md",
+          "sha256": "0c5eefe6ed1364f7689cfa3cb2d54127c5b83e035631bd22ae0f9204f185d12f"
+        },
+        {
+          "path": "examples/positive_tridiagonal/main.cc",
+          "sha256": "c409547d5aef9fc09d69f125b6f916c37ee0bd9ab513076efddf862947f0019f"
+        },
+        {
+          "path": "include/asc/dense/array.h",
+          "sha256": "e7f15878965e9a02904e10c61ba80621e343c1ff6fa61ae23d4eb631d05396b8"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+          "sha256": "0a8a730264faf5d73bf760f94f2f653b5b5db9601bcd4a20f908a52ab8f43219"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+          "sha256": "aef894eceadc263f889a1cf828940c836bb9e260e26a048d35cb3b8698a50c81"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_positive_tridiagonal.cc",
+          "sha256": "1c2313145e69b7ef0c3bfff0f575b9f8b8bab542ecf84335356095bcb1b6c080"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_fault_test.cc",
+          "sha256": "307327207ded524814d884f936dbeb25cfce61dc59600163ee4e82991e9d450b"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.cc",
+          "sha256": "05c0aa35b1e46e6cd353d3b0b84b50d032589a0912bdd4d0352053792d7efd16"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.h",
+          "sha256": "cf5dc4c3649de16d90913d6fd615a660b112d12bd4b36852b9194ea7451d20f3"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_native_comparison_test.cc",
+          "sha256": "679f7927d231b61ffb87dbcf28e3c498a42d2438f3308c76c62f98d8e4691bca"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_observation_test.cc",
+          "sha256": "2d959f6258b0087c0d7f8c675887a7b210688b44e951d64c1804054f90079309"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_test.cc",
+          "sha256": "c37920e7f3282931d6148ce49668a202c523bd72425bbe6dd63d1a1ebaf41222"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_tests.cmake",
+          "sha256": "7c3485b897503c34f856a7b63e74ea2e074336a49c1e860dffb0a8b10159a513"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -56100,7 +56758,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Maintained actual PTTRF/PTTRS, explicit resource-owned and borrowed factors, both orientations and RHS layouts. Six actual LP64/trueILP64 Debug/Release/ASC sanitizer profiles retain four required mathematical failures per profile; calibrated metadata observation, real-provider concurrency, native INFO faults and installed relocation executed. Strict full routine/platform acceptance remains incomplete; provider scalar reciprocal cause stays required. No verified or first-party robust credit.",
+          "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -88653,12 +89313,132 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active operand, workspace and report/provider/plan metadata spans checked disjoint; metadata alias preserves report.",
+        "asc_operation": "asc::Pttrf",
+        "descriptors": "Existing contiguous positive-definite tridiagonal view; nominal immutable factor view for solve; real D for every scalar; checked disjoint host buffers.",
+        "documentation": "programs/lapack-array-io/positive-tridiagonal-review.md",
+        "mode_cases": [
+          {
+            "id": "lower_contiguous",
+            "options": {
+              "layout": "contiguous_real_D_scalar_E",
+              "orientation": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "reconstruction",
+              "bad_pivots"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "9b2aaf29edfb8a68c583ed402c6c06a880be0ddbdc5cd1e363f7e05e7578839d",
+              "declaration": "SUBROUTINE SPTTRF( N, D, E, INFO )",
+              "path": "SRC/spttrf.f",
+              "sha256": "3f6d2eeb708555a17b4a634854ae161137ae3cc3a52344e366df78368fdd656f"
+            }
+          }
+        ],
+        "mutation": "Factor overwrites D/E, partial INFO retained; solve preserves D/E and publishes B=X. Metadata/workspace preflight precedes writes. Local N=0 and solve NRHS=0 do not read numeric arrays. Provider defects withhold packed RHS publication; direct writes survive.",
+        "numerical_outcomes": "Exact native INFO, no success certificate for nonpositive/nonfinite factors. Nonfinite solve output yields accuracy warning, not a clamp. Required analytic tiny-scalar solve gate remains failed.",
+        "pivots": "No pivot vector. Factor INFO>0 gives zero-based failed leading minor; last pivot has completed-but-nonpositive factorization semantics.",
+        "scalar_signature": "float D,float E",
+        "state": "reviewed",
+        "workspace": "No native scratch; active row-major RHS uses exactly N*NRHS live scalar entries; metadata query and bounded foreign INTEGER checks."
       },
       "id": "lapack.spttrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/positive_tridiagonal/CMakeLists.txt",
+          "sha256": "ae92260fc96cd488094e91875dbd235c8e9a41e34673a72efe8680e3fc58fe61"
+        },
+        {
+          "path": "examples/positive_tridiagonal/README.md",
+          "sha256": "0c5eefe6ed1364f7689cfa3cb2d54127c5b83e035631bd22ae0f9204f185d12f"
+        },
+        {
+          "path": "examples/positive_tridiagonal/main.cc",
+          "sha256": "c409547d5aef9fc09d69f125b6f916c37ee0bd9ab513076efddf862947f0019f"
+        },
+        {
+          "path": "include/asc/dense/array.h",
+          "sha256": "e7f15878965e9a02904e10c61ba80621e343c1ff6fa61ae23d4eb631d05396b8"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+          "sha256": "0a8a730264faf5d73bf760f94f2f653b5b5db9601bcd4a20f908a52ab8f43219"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+          "sha256": "aef894eceadc263f889a1cf828940c836bb9e260e26a048d35cb3b8698a50c81"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_positive_tridiagonal.cc",
+          "sha256": "1c2313145e69b7ef0c3bfff0f575b9f8b8bab542ecf84335356095bcb1b6c080"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_fault_test.cc",
+          "sha256": "307327207ded524814d884f936dbeb25cfce61dc59600163ee4e82991e9d450b"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.cc",
+          "sha256": "05c0aa35b1e46e6cd353d3b0b84b50d032589a0912bdd4d0352053792d7efd16"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.h",
+          "sha256": "cf5dc4c3649de16d90913d6fd615a660b112d12bd4b36852b9194ea7451d20f3"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_native_comparison_test.cc",
+          "sha256": "679f7927d231b61ffb87dbcf28e3c498a42d2438f3308c76c62f98d8e4691bca"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_observation_test.cc",
+          "sha256": "2d959f6258b0087c0d7f8c675887a7b210688b44e951d64c1804054f90079309"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_test.cc",
+          "sha256": "c37920e7f3282931d6148ce49668a202c523bd72425bbe6dd63d1a1ebaf41222"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_tests.cmake",
+          "sha256": "7c3485b897503c34f856a7b63e74ea2e074336a49c1e860dffb0a8b10159a513"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -88666,7 +89446,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Maintained actual PTTRF/PTTRS, explicit resource-owned and borrowed factors, both orientations and RHS layouts. Six actual LP64/trueILP64 Debug/Release/ASC sanitizer profiles retain four required mathematical failures per profile; calibrated metadata observation, real-provider concurrency, native INFO faults and installed relocation executed. Strict full routine/platform acceptance remains incomplete; provider scalar reciprocal cause stays required. No verified or first-party robust credit.",
+          "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -88678,12 +89460,218 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active operand, workspace and report/provider/plan metadata spans checked disjoint; metadata alias preserves report.",
+        "asc_operation": "asc::Pttrs",
+        "descriptors": "Existing contiguous positive-definite tridiagonal view; nominal immutable factor view for solve; real D for every scalar; checked disjoint host buffers.",
+        "documentation": "programs/lapack-array-io/positive-tridiagonal-review.md",
+        "mode_cases": [
+          {
+            "id": "lower_row_major",
+            "options": {
+              "orientation": "lower",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e19b7f38032110b5e93011ef5d685feca8171fe8ab2329653385436b810eedc5",
+              "declaration": "SUBROUTINE SPTTRS( N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/spttrs.f",
+              "sha256": "1dad3f8374537b7d811e094071c12dfe33478a422992b90ceb19d801eb61d8a7"
+            }
+          },
+          {
+            "id": "lower_column_major",
+            "options": {
+              "orientation": "lower",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e19b7f38032110b5e93011ef5d685feca8171fe8ab2329653385436b810eedc5",
+              "declaration": "SUBROUTINE SPTTRS( N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/spttrs.f",
+              "sha256": "1dad3f8374537b7d811e094071c12dfe33478a422992b90ceb19d801eb61d8a7"
+            }
+          },
+          {
+            "id": "upper_row_major",
+            "options": {
+              "orientation": "upper",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e19b7f38032110b5e93011ef5d685feca8171fe8ab2329653385436b810eedc5",
+              "declaration": "SUBROUTINE SPTTRS( N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/spttrs.f",
+              "sha256": "1dad3f8374537b7d811e094071c12dfe33478a422992b90ceb19d801eb61d8a7"
+            }
+          },
+          {
+            "id": "upper_column_major",
+            "options": {
+              "orientation": "upper",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "e19b7f38032110b5e93011ef5d685feca8171fe8ab2329653385436b810eedc5",
+              "declaration": "SUBROUTINE SPTTRS( N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/spttrs.f",
+              "sha256": "1dad3f8374537b7d811e094071c12dfe33478a422992b90ceb19d801eb61d8a7"
+            }
+          }
+        ],
+        "mutation": "Factor overwrites D/E, partial INFO retained; solve preserves D/E and publishes B=X. Metadata/workspace preflight precedes writes. Local N=0 and solve NRHS=0 do not read numeric arrays. Provider defects withhold packed RHS publication; direct writes survive.",
+        "numerical_outcomes": "Exact native INFO, no success certificate for nonpositive/nonfinite factors. Nonfinite solve output yields accuracy warning, not a clamp. Required analytic tiny-scalar solve gate remains failed.",
+        "pivots": "No pivot vector. Factor INFO>0 gives zero-based failed leading minor; last pivot has completed-but-nonpositive factorization semantics.",
+        "scalar_signature": "float D,float E",
+        "state": "reviewed",
+        "workspace": "No native scratch; active row-major RHS uses exactly N*NRHS live scalar entries; metadata query and bounded foreign INTEGER checks."
       },
       "id": "lapack.spttrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/positive_tridiagonal/CMakeLists.txt",
+          "sha256": "ae92260fc96cd488094e91875dbd235c8e9a41e34673a72efe8680e3fc58fe61"
+        },
+        {
+          "path": "examples/positive_tridiagonal/README.md",
+          "sha256": "0c5eefe6ed1364f7689cfa3cb2d54127c5b83e035631bd22ae0f9204f185d12f"
+        },
+        {
+          "path": "examples/positive_tridiagonal/main.cc",
+          "sha256": "c409547d5aef9fc09d69f125b6f916c37ee0bd9ab513076efddf862947f0019f"
+        },
+        {
+          "path": "include/asc/dense/array.h",
+          "sha256": "e7f15878965e9a02904e10c61ba80621e343c1ff6fa61ae23d4eb631d05396b8"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+          "sha256": "0a8a730264faf5d73bf760f94f2f653b5b5db9601bcd4a20f908a52ab8f43219"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+          "sha256": "aef894eceadc263f889a1cf828940c836bb9e260e26a048d35cb3b8698a50c81"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_positive_tridiagonal.cc",
+          "sha256": "1c2313145e69b7ef0c3bfff0f575b9f8b8bab542ecf84335356095bcb1b6c080"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_fault_test.cc",
+          "sha256": "307327207ded524814d884f936dbeb25cfce61dc59600163ee4e82991e9d450b"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.cc",
+          "sha256": "05c0aa35b1e46e6cd353d3b0b84b50d032589a0912bdd4d0352053792d7efd16"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.h",
+          "sha256": "cf5dc4c3649de16d90913d6fd615a660b112d12bd4b36852b9194ea7451d20f3"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_native_comparison_test.cc",
+          "sha256": "679f7927d231b61ffb87dbcf28e3c498a42d2438f3308c76c62f98d8e4691bca"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_observation_test.cc",
+          "sha256": "2d959f6258b0087c0d7f8c675887a7b210688b44e951d64c1804054f90079309"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_test.cc",
+          "sha256": "c37920e7f3282931d6148ce49668a202c523bd72425bbe6dd63d1a1ebaf41222"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_tests.cmake",
+          "sha256": "7c3485b897503c34f856a7b63e74ea2e074336a49c1e860dffb0a8b10159a513"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -88691,7 +89679,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Maintained actual PTTRF/PTTRS, explicit resource-owned and borrowed factors, both orientations and RHS layouts. Six actual LP64/trueILP64 Debug/Release/ASC sanitizer profiles retain four required mathematical failures per profile; calibrated metadata observation, real-provider concurrency, native INFO faults and installed relocation executed. Strict full routine/platform acceptance remains incomplete; provider scalar reciprocal cause stays required. No verified or first-party robust credit.",
+          "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -121049,12 +122039,132 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active operand, workspace and report/provider/plan metadata spans checked disjoint; metadata alias preserves report.",
+        "asc_operation": "asc::Pttrf",
+        "descriptors": "Existing contiguous positive-definite tridiagonal view; nominal immutable factor view for solve; real D for every scalar; checked disjoint host buffers.",
+        "documentation": "programs/lapack-array-io/positive-tridiagonal-review.md",
+        "mode_cases": [
+          {
+            "id": "lower_contiguous",
+            "options": {
+              "layout": "contiguous_real_D_scalar_E",
+              "orientation": "lower"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "reconstruction",
+              "bad_pivots"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "25c331235fc83bcbb95b182a46fdc750111797bb4e480babe69872982dd0fa3c",
+              "declaration": "SUBROUTINE ZPTTRF( N, D, E, INFO )",
+              "path": "SRC/zpttrf.f",
+              "sha256": "90d089300cfc19970011d07b43408952b47f964a78c7d54a735a103cef452624"
+            }
+          }
+        ],
+        "mutation": "Factor overwrites D/E, partial INFO retained; solve preserves D/E and publishes B=X. Metadata/workspace preflight precedes writes. Local N=0 and solve NRHS=0 do not read numeric arrays. Provider defects withhold packed RHS publication; direct writes survive.",
+        "numerical_outcomes": "Exact native INFO, no success certificate for nonpositive/nonfinite factors. Nonfinite solve output yields accuracy warning, not a clamp. Required analytic tiny-scalar solve gate remains failed.",
+        "pivots": "No pivot vector. Factor INFO>0 gives zero-based failed leading minor; last pivot has completed-but-nonpositive factorization semantics.",
+        "scalar_signature": "double D,complex<double> E",
+        "state": "reviewed",
+        "workspace": "No native scratch; active row-major RHS uses exactly N*NRHS live scalar entries; metadata query and bounded foreign INTEGER checks."
       },
       "id": "lapack.zpttrf",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/positive_tridiagonal/CMakeLists.txt",
+          "sha256": "ae92260fc96cd488094e91875dbd235c8e9a41e34673a72efe8680e3fc58fe61"
+        },
+        {
+          "path": "examples/positive_tridiagonal/README.md",
+          "sha256": "0c5eefe6ed1364f7689cfa3cb2d54127c5b83e035631bd22ae0f9204f185d12f"
+        },
+        {
+          "path": "examples/positive_tridiagonal/main.cc",
+          "sha256": "c409547d5aef9fc09d69f125b6f916c37ee0bd9ab513076efddf862947f0019f"
+        },
+        {
+          "path": "include/asc/dense/array.h",
+          "sha256": "e7f15878965e9a02904e10c61ba80621e343c1ff6fa61ae23d4eb631d05396b8"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+          "sha256": "0a8a730264faf5d73bf760f94f2f653b5b5db9601bcd4a20f908a52ab8f43219"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+          "sha256": "aef894eceadc263f889a1cf828940c836bb9e260e26a048d35cb3b8698a50c81"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_positive_tridiagonal.cc",
+          "sha256": "1c2313145e69b7ef0c3bfff0f575b9f8b8bab542ecf84335356095bcb1b6c080"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_fault_test.cc",
+          "sha256": "307327207ded524814d884f936dbeb25cfce61dc59600163ee4e82991e9d450b"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.cc",
+          "sha256": "05c0aa35b1e46e6cd353d3b0b84b50d032589a0912bdd4d0352053792d7efd16"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.h",
+          "sha256": "cf5dc4c3649de16d90913d6fd615a660b112d12bd4b36852b9194ea7451d20f3"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_native_comparison_test.cc",
+          "sha256": "679f7927d231b61ffb87dbcf28e3c498a42d2438f3308c76c62f98d8e4691bca"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_observation_test.cc",
+          "sha256": "2d959f6258b0087c0d7f8c675887a7b210688b44e951d64c1804054f90079309"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_test.cc",
+          "sha256": "c37920e7f3282931d6148ce49668a202c523bd72425bbe6dd63d1a1ebaf41222"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_tests.cmake",
+          "sha256": "7c3485b897503c34f856a7b63e74ea2e074336a49c1e860dffb0a8b10159a513"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -121062,7 +122172,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Maintained actual PTTRF/PTTRS, explicit resource-owned and borrowed factors, both orientations and RHS layouts. Six actual LP64/trueILP64 Debug/Release/ASC sanitizer profiles retain four required mathematical failures per profile; calibrated metadata observation, real-provider concurrency, native INFO faults and installed relocation executed. Strict full routine/platform acceptance remains incomplete; provider scalar reciprocal cause stays required. No verified or first-party robust credit.",
+          "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [
@@ -121074,12 +122186,218 @@
     {
       "classification": "public_computational",
       "contract": {
-        "asc_operation": null,
-        "mode_cases": [],
-        "state": "pending"
+        "aliasing": "All active operand, workspace and report/provider/plan metadata spans checked disjoint; metadata alias preserves report.",
+        "asc_operation": "asc::Pttrs",
+        "descriptors": "Existing contiguous positive-definite tridiagonal view; nominal immutable factor view for solve; real D for every scalar; checked disjoint host buffers.",
+        "documentation": "programs/lapack-array-io/positive-tridiagonal-review.md",
+        "mode_cases": [
+          {
+            "id": "lower_row_major",
+            "options": {
+              "orientation": "lower",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "bc371ffb5822ed9c77f908a897b947cac23630583434da7d76c3691bd6c67ac8",
+              "declaration": "SUBROUTINE ZPTTRS( UPLO, N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/zpttrs.f",
+              "sha256": "2695c3e31c29859c8317f7017c59eccf5be793c044f7eaf850a2f2e91e786101"
+            }
+          },
+          {
+            "id": "lower_column_major",
+            "options": {
+              "orientation": "lower",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "bc371ffb5822ed9c77f908a897b947cac23630583434da7d76c3691bd6c67ac8",
+              "declaration": "SUBROUTINE ZPTTRS( UPLO, N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/zpttrs.f",
+              "sha256": "2695c3e31c29859c8317f7017c59eccf5be793c044f7eaf850a2f2e91e786101"
+            }
+          },
+          {
+            "id": "upper_row_major",
+            "options": {
+              "orientation": "upper",
+              "rhs_layout": "row_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "bc371ffb5822ed9c77f908a897b947cac23630583434da7d76c3691bd6c67ac8",
+              "declaration": "SUBROUTINE ZPTTRS( UPLO, N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/zpttrs.f",
+              "sha256": "2695c3e31c29859c8317f7017c59eccf5be793c044f7eaf850a2f2e91e786101"
+            }
+          },
+          {
+            "id": "upper_column_major",
+            "options": {
+              "orientation": "upper",
+              "rhs_layout": "column_major"
+            },
+            "required_test_classes": [
+              "validation",
+              "empty_scalar",
+              "scaling",
+              "numerical_failure",
+              "padding_aliasing",
+              "allocation",
+              "workspace",
+              "concurrency",
+              "installed_consumer",
+              "known_solution",
+              "factor_reuse",
+              "orientation",
+              "required_extreme_math"
+            ],
+            "source_evidence": {
+              "argument_contracts_sha256": "bc371ffb5822ed9c77f908a897b947cac23630583434da7d76c3691bd6c67ac8",
+              "declaration": "SUBROUTINE ZPTTRS( UPLO, N, NRHS, D, E, B, LDB, INFO )",
+              "path": "SRC/zpttrs.f",
+              "sha256": "2695c3e31c29859c8317f7017c59eccf5be793c044f7eaf850a2f2e91e786101"
+            }
+          }
+        ],
+        "mutation": "Factor overwrites D/E, partial INFO retained; solve preserves D/E and publishes B=X. Metadata/workspace preflight precedes writes. Local N=0 and solve NRHS=0 do not read numeric arrays. Provider defects withhold packed RHS publication; direct writes survive.",
+        "numerical_outcomes": "Exact native INFO, no success certificate for nonpositive/nonfinite factors. Nonfinite solve output yields accuracy warning, not a clamp. Required analytic tiny-scalar solve gate remains failed.",
+        "pivots": "No pivot vector. Factor INFO>0 gives zero-based failed leading minor; last pivot has completed-but-nonpositive factorization semantics.",
+        "scalar_signature": "double D,complex<double> E",
+        "state": "reviewed",
+        "workspace": "No native scratch; active row-major RHS uses exactly N*NRHS live scalar entries; metadata query and bounded foreign INTEGER checks."
       },
       "id": "lapack.zpttrs",
-      "implementation_artifacts": [],
+      "implementation_artifacts": [
+        {
+          "path": "examples/positive_tridiagonal/CMakeLists.txt",
+          "sha256": "ae92260fc96cd488094e91875dbd235c8e9a41e34673a72efe8680e3fc58fe61"
+        },
+        {
+          "path": "examples/positive_tridiagonal/README.md",
+          "sha256": "0c5eefe6ed1364f7689cfa3cb2d54127c5b83e035631bd22ae0f9204f185d12f"
+        },
+        {
+          "path": "examples/positive_tridiagonal/main.cc",
+          "sha256": "c409547d5aef9fc09d69f125b6f916c37ee0bd9ab513076efddf862947f0019f"
+        },
+        {
+          "path": "include/asc/dense/array.h",
+          "sha256": "e7f15878965e9a02904e10c61ba80621e343c1ff6fa61ae23d4eb631d05396b8"
+        },
+        {
+          "path": "include/asc/dense/lapack/report.h",
+          "sha256": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe"
+        },
+        {
+          "path": "include/asc/dense/lapack/structured_view.h",
+          "sha256": "d299869ff264a118bdf9793c4e623bb96472f62ce54a6c6ee3368ddb53f019b6"
+        },
+        {
+          "path": "include/asc/dense/lapack/workspace.h",
+          "sha256": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232"
+        },
+        {
+          "path": "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+          "sha256": "0a8a730264faf5d73bf760f94f2f653b5b5db9601bcd4a20f908a52ab8f43219"
+        },
+        {
+          "path": "src/dense/lapack/internal_layout.h",
+          "sha256": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205"
+        },
+        {
+          "path": "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+          "sha256": "aef894eceadc263f889a1cf828940c836bb9e260e26a048d35cb3b8698a50c81"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal.h",
+          "sha256": "18eb9394e942cfa82572ec9c41c8c1bbdd5ed358079c84ee190af0b41ea78069"
+        },
+        {
+          "path": "src/dense/lapack/internal_tridiagonal_counts.h",
+          "sha256": "bea2153cac3f9d9cf1b643b58f15e6f0ac800d15bfc08d9532791b79b75785f7"
+        },
+        {
+          "path": "src/dense/lapack/internal_workspace_context.h",
+          "sha256": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94"
+        },
+        {
+          "path": "src/dense/lapack/reference_positive_tridiagonal.cc",
+          "sha256": "1c2313145e69b7ef0c3bfff0f575b9f8b8bab542ecf84335356095bcb1b6c080"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_fault_test.cc",
+          "sha256": "307327207ded524814d884f936dbeb25cfce61dc59600163ee4e82991e9d450b"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.cc",
+          "sha256": "05c0aa35b1e46e6cd353d3b0b84b50d032589a0912bdd4d0352053792d7efd16"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_faults.h",
+          "sha256": "cf5dc4c3649de16d90913d6fd615a660b112d12bd4b36852b9194ea7451d20f3"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_native_comparison_test.cc",
+          "sha256": "679f7927d231b61ffb87dbcf28e3c498a42d2438f3308c76c62f98d8e4691bca"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_observation_test.cc",
+          "sha256": "2d959f6258b0087c0d7f8c675887a7b210688b44e951d64c1804054f90079309"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_test.cc",
+          "sha256": "c37920e7f3282931d6148ce49668a202c523bd72425bbe6dd63d1a1ebaf41222"
+        },
+        {
+          "path": "tests/dense_lapack/positive_tridiagonal_tests.cmake",
+          "sha256": "7c3485b897503c34f856a7b63e74ea2e074336a49c1e860dffb0a8b10159a513"
+        }
+      ],
       "implementations": {
         "native": {
           "evidence_ids": [],
@@ -121087,7 +122405,9 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "state": "not_started"
+          "partial_scope": "Maintained actual PTTRF/PTTRS, explicit resource-owned and borrowed factors, both orientations and RHS layouts. Six actual LP64/trueILP64 Debug/Release/ASC sanitizer profiles retain four required mathematical failures per profile; calibrated metadata observation, real-provider concurrency, native INFO faults and installed relocation executed. Strict full routine/platform acceptance remains incomplete; provider scalar reciprocal cause stays required. No verified or first-party robust credit.",
+          "review": "programs/lapack-array-io/positive-tridiagonal-review.md",
+          "state": "in_progress"
         }
       },
       "required_profiles": [

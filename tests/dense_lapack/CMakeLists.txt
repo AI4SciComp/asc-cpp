@@ -11,6 +11,8 @@ function(_asc_dense_lapack_configure_test target)
   endif()
 endfunction()
 
+include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_tests.cmake")
+
 if(ASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX)
   include("${CMAKE_CURRENT_SOURCE_DIR}/robust_ppsvx_tests.cmake")
 endif()
@@ -824,6 +826,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_triangular_packed_error_bounds.h
     lapack_lu_band_expert.h
     lapack_lu_band_refinement.h
+    lapack_positive_tridiagonal.h
     lapack_tridiagonal.h lapack_tridiagonal_condition.h lapack_tridiagonal_driver.h lapack_tridiagonal_refinement.h
     lapack_cholesky_band_condition.h
     lapack_cholesky_band_driver.h

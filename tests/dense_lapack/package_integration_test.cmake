@@ -83,6 +83,28 @@ _run(example-build TRUE "${CMAKE_COMMAND}" --build "${WORK_DIR}/example build"
 _run(example-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
   "${WORK_DIR}/example build" -C "${CONFIG}" --output-on-failure --no-tests=error)
 
+file(COPY "${SOURCE_DIR}/examples/positive_tridiagonal/"
+  DESTINATION "${WORK_DIR}/copied PT example")
+file(READ "${WORK_DIR}/copied PT example/CMakeLists.txt" _pt_project)
+file(WRITE "${WORK_DIR}/copied PT example/CMakeLists.txt"
+  "string(REPLACE \"|\" \";\" ASC_CPP_LAPACK_RUNTIME_LIBRARIES \"\${TEST_RUNTIMES}\")\n"
+  "${_pt_project}\n")
+_run(pt-example-configure TRUE "${CMAKE_COMMAND}"
+  -S "${WORK_DIR}/copied PT example" -B "${WORK_DIR}/PT example build"
+  "-DASCCpp_DIR=${_package}" "-DCMAKE_CXX_COMPILER=${CXX_COMPILER}"
+  "-DASC_CPP_LAPACK_ROOT=${LAPACK_ROOT}"
+  "-DTEST_RUNTIMES=${LAPACK_RUNTIMES}"
+  -DCMAKE_DISABLE_FIND_PACKAGE_CUDAToolkit=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_Python3=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_LAPACK=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_BLAS=TRUE
+  -DCMAKE_FIND_USE_PACKAGE_REGISTRY=FALSE)
+_run(pt-example-build TRUE "${CMAKE_COMMAND}" --build
+  "${WORK_DIR}/PT example build" --config "${CONFIG}")
+_run(pt-example-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
+  "${WORK_DIR}/PT example build" -C "${CONFIG}"
+  --output-on-failure --no-tests=error)
+
 if(ROBUST_ENABLED)
   file(COPY "${SOURCE_DIR}/examples/robust_ppsvx/"
     DESTINATION "${WORK_DIR}/copied robust example")
