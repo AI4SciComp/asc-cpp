@@ -54,6 +54,7 @@ asc/dense/providers/lapack_cholesky_packed_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_packed_robust.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_packed_solve.h|asc_dense_lapack
 asc/dense/providers/lapack_cholesky_refinement.h|asc_dense_lapack
+asc/dense/providers/lapack_dmd.h|asc_dense_lapack
 asc/dense/providers/lapack_export.h|asc_dense_lapack
 asc/dense/providers/lapack_general_band.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite.h|asc_dense_lapack
