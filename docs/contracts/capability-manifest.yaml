@@ -21,7 +21,6 @@ capabilities:
     public_headers:
       - "include/asc/dense/providers/lapack_cholesky_packed_robust.h"
     direct_dependencies:
-      - "core"
       - "dense"
     tests:
       - "unchanged four-scalar extreme mathematical predicate and bounded generalization"

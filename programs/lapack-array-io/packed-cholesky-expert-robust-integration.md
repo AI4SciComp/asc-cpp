@@ -63,6 +63,26 @@ warnings. Release, sanitizer, package, supplemental observation and final
 revision/hosted results are recorded in the final execution checkpoint rather
 than inferred from the older record-only commit.
 
+The first integrated revision `8b0f5315eabbb245518466b1bc6af88819fbaacc`
+passed both Release numerical/package selections, ASC-only ASan/UBSan, TSan,
+Clang supplemental observation, fresh numerical builds and relocated family
+consumers. Its full Release runs each executed 957 tests: 871 passed, 78 retained
+Reference mathematical gates failed, and eight integration metadata audits
+failed. Hosted provider-free CI reproduced the metadata omissions. These
+failures are preserved and are not relabeled as a passing full run.
+
+The reviewed correction removes a transitive Core dependency from the new
+capability's direct-edge list, adds the authorized experimental capability to
+the exact-name oracle, and adds its public header to the independent source,
+Dense-facet exclusion and exported-header inventories. The explicit total
+increases from 126 to 127 because exactly one public header was adopted.
+Validator logic, existing entries and numerical requirements are unchanged.
+The affected eight audits and six required package fixtures then pass 14/14
+in each actual ABI. This correction changes metadata and its exact oracles;
+the numerical implementation, tests, build options and installed exports remain
+byte-identical. A separate amendment identity preserves the original commit
+and patch instead of amending history.
+
 The supplemental Clang harness compiles the actual adapter and maintained tests
 against an installed, admitted GNU context. The existing observer is separately
 compiled; `-O1 -fsanitize-coverage=trace-pc,trace-loads` brackets initialized

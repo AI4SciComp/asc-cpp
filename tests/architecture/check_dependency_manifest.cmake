@@ -483,6 +483,7 @@ endforeach()
 _finalize_capability()
 
 set(_expected_capabilities
+  "experimental first-party robust PPSVX"
   "bounded Matrix Market lexical and scalar primitives"
   "Dense Matrix Market array interchange"
   "Sparse Matrix Market coordinate interchange"
