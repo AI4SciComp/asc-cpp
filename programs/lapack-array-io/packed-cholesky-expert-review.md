@@ -1,5 +1,10 @@
 # Ordinary packed positive-definite expert candidate
 
+Current checkpoint: candidate22 and the isolated installed family have completed
+the permitted Linux engineering slice. Numerical acceptance remains blocked;
+see the final section and [numerical disposition](packed-cholesky-expert-disposition.md).
+Earlier sections below retain their original historical scopes.
+
 The five preserved candidate01 files implement24 optional Ppsvx declarations
 and their FACT N/E/F adapters, the private integer helper, its literal test
 and complete private native signature checks. The adjacent admission review
@@ -458,3 +463,132 @@ use, full mode/platform coverage and mathematical closure remain later gates.
 The2113 required Reference rows,350 partial registrations,1763 not started,
 130 absent XBLAS definitions and78 historical root mathematical failures remain
 separate. The amended redistribution packet remains pending and unchanged.
+
+## Candidate22 and finite family review packet, 2026-09-10
+
+The completed source is `p05-packed-cholesky-expert-candidate-22`, external and
+unregistered. Its 1,139-file source manifest is
+`df43641aa1ebc0cff2c9ae1d2efcbc30d02eb14435181d269d8461488482b9c6`.
+The candidate21-to22 patch and a full source/driver companion archive are
+retained. Candidate21's patch alone contains one existing-test delta and cannot
+restore its other nine owned PPSVX files. Candidates18–21, the original draft,
+all three previously unpushed summary/record commits, and every worktree survive.
+No production adapter, public declaration, provider source, or numeric oracle
+changed during candidate22 observation development.
+
+The retained continuation script executed successfully and verified the
+candidate21 handoff. It was a read-only recovery script, not a test runner.
+Candidate22's actual commands, configured test listings, selections, statuses,
+and raw logs are bound by
+`ppsvx-family-use-22/review-audit.json`, SHA-256
+`6d4c244d7793a4e475179d4aa2c3e5438052abdc33c1154885b19f0504891a66`.
+Its 201 command records include failures; these are not additional routine
+registrations or additions to the historical normalized evidence count.
+
+The existing wrapped foreign entry now restores protected containing arrays
+before native numeric access. AFP is protected only for FACT N/E; supplied
+FACT F factors remain readable. X and caller FERR/BERR are protected through
+entry. The hook checks the actual dimensions, FACT and CHARACTER lengths and
+the distinct initialized FERR/BERR scratch addresses. Scratch sentinel reads
+occur after the boundary. Permitted partial complex AFP publication is tested
+after return and retains the old imaginary diagonal components.
+
+All six prepared Linux/static lanes pass the calibrated observer and retained
+fault regressions: GNU11 Debug/Release and Clang19 ASC-only ASan/UBSan, each
+with its own real LP64 or true ILP64 provider. Each fault test retains the
+96,824 profiles and now executes 1,060,621 passing assertions. The original
+1,048,173 assertions remain; 12,448 are added. The 3,072 boundary profiles retain
+10,392 exact undersized-workspace rejections. Sixteen intentional protected
+output reads, four legitimate supplied-factor pre-entry reads, four actual
+provider writing controls and sixteen partial-return controls calibrate the
+added phase observation. The same existing modes cover both triangles and all
+sixteen independent AP/AFP/B/X layouts, including positive N with NRHS=0.
+
+Local N=0 is separate. In both Clang19 lanes, the accepted Clang load-callback
+mechanism observes the actual adapter and test TU at `-O1`: 1,024 profiles /
+8,194 checks pass, including load/store controls. Empty AFP/X and all unused
+numeric inputs remain protected. Active FERR/BERR stores incur no observed
+loads of their old values. Queries and stale plans retain their metadata-only
+observation. This is not GCC/MSVC instruction instrumentation or foreign-code
+instrumentation. Guard pages cover actual accesses before entry even in
+uninstrumented library code; the compiler callbacks cover emitted loads in the
+instrumented ASC/test TUs and do not measure arbitrary foreign/library internals.
+
+Both initial sanitizer lanes passed. Two later replays under concurrent build
+and tidy load timed out at the unchanged 120-second test limit. Both final
+serial replays pass with unchanged binaries and limits; the timeouts remain
+in `recheck-sanitizer-*-02`. The initial two tidy findings were corrected in
+test control flow and formatting. Both current ABI strict passes cover the
+observer variant, both wrapper passes and both consumer passes succeed, and
+format/Python style checks pass. No test, assertion, timeout, or warning rule
+was relaxed.
+
+The [numerical disposition](packed-cholesky-expert-disposition.md) classifies
+five provider arithmetic causes across 44 unique scalar/mode/value cases.
+Every original scalar mathematical test still fails 44/600 assertions in each
+lane. All 176 detailed signatures match candidate21, whose audit binds the
+candidate18 comparison. Fresh staged-integration runs also match exactly.
+These are genuine gate failures, not expected-success tests or fidelity credit.
+
+The finite concurrent consumer uses four independent serial-provider contexts,
+caller buffers, workspaces and reports, without the fault wrapper. Its ordinary
+fixtures are independently formed from explicit triangular factors and known
+solutions. All four scalars, FACT N/E/F and both supplied scaling choices, both
+triangles and two representative independent layout arrangements execute.
+Returned factors are reused through the public FACT F APIs. Each lane passes
+1,600 solve/reuse profiles plus 32 genuine nonpositive-definite calls with
+diagnostic isolation; there is no shared-workspace requirement or shared-plan
+concurrency claim. GNU11 TSan instruments ASC and the consumer in both ABIs.
+The original pre-main mapping failures are retained; `setarch x86_64 -R`
+permits both tests to execute and pass without changing numerical settings.
+The pinned Fortran provider and shared runtimes remain uninstrumented.
+
+An isolated installation based on local integration HEAD
+`5165469692478a96b20c8ffda376565ad04cf146` adds the candidate adapter/header to
+the real exported `ASC::dense_lapack` target. The 1,168-file staged source
+manifest is
+`ad63344b47066cf755e9ff0a85620fc4719d8b98bea4a38a791fb02f4e0d4f45`.
+Its header ownership and public-header digest baselines are updated together.
+The pending integration patch applies cleanly to that base, but is not applied
+to the feature worktree and does not register PPSVX in the routine ledger.
+
+Both actual ABI static installations are relocated with independently relocated
+pinned dependencies. The maintained `installed_ppsvx` CMake entry uses public
+ASC headers and only `ASC::dense_lapack`, without an evidence-directory setting.
+Both installed ordinary and concurrent tests pass. Ordinary runs have 192
+profiles and 88,512 LP64 / 87,360 ILP64 checks; concurrent runs have 737,440 /
+727,840 checks. Dependency files contain only relocated ASC include paths.
+The optional-provider executables load GNU Fortran/quadmath runtimes. Seven
+installed native tests and independent Dense/Sparse array-I/O examples pass
+against each candidate install and have no LAPACK/Fortran dependency.
+The accepted native/I/O inputs remain unchanged in the feature worktree.
+
+Fresh staged-integration regression matrices each pass public/count/signature/
+fault tests and fail the four unchanged mathematical tests. Installed header
+isolation, all 24 PPSVX/query symbols, and source/installed surface checks pass
+in both ABIs. Strict Doxygen reports 127/127 headers, 2,228 documented public
+members, zero warnings; documentation links pass. Initial missing-toolchain,
+consumer-record directory collision and copied-test-support failures remain
+with their successful replays. Existing product configuration rejects shared
+provider installs and Clang provider builds; these platform admission gates
+were not changed. There is no hosted verification claim for this external
+PPSVX candidate or for the later summary-only feature commit.
+
+| Routine | External behavior/observation | Installed candidate, actual ABIs | Root registration | Mathematical / fully verified |
+| --- | --- | --- | --- | --- |
+| SPPSVX | Passing scoped six-lane evidence | LP64 and ILP64 static pass | Unregistered | Failed / no |
+| DPPSVX | Passing scoped six-lane evidence | LP64 and ILP64 static pass | Unregistered | Failed / no |
+| CPPSVX | Passing scoped six-lane evidence | LP64 and ILP64 static pass | Unregistered | Failed / no |
+| ZPPSVX | Passing scoped six-lane evidence | LP64 and ILP64 static pass | Unregistered | Failed / no |
+
+Owner/provenance approval, numerical-provider adoption, and merge/release
+authorization are separate. The notice/metadata amendment remains pending for
+manifest `380a8792f8c23263439ac79e8c02bb1959089b674c1221c6397e9bc26585992c`
+and notice `9ebeaf30a78e77f5fa4a4ba94ed66c68bdb92acd1dfdc8b1456e0c114ffbed41`.
+The next prerequisite is a recorded numerical provider/algorithm decision for
+the five specified arithmetic causes. The unchanged numerical gates must pass
+before PPSVX numerical promotion; full platform and reviewed integration gates
+also remain open. Native/I/O retains
+`SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE`. The denominator stays 2,113:
+350 partial Reference registrations, 1,763 not started, zero complete or verified
+Reference rows, and 20 separately verified native operations.

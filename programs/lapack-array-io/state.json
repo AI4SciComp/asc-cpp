@@ -971,7 +971,7 @@
       "review": "programs/lapack-array-io/packed-cholesky-expert-admission-review.md"
     },
     "P05.packed_cholesky_expert_implementation": {
-      "state": "in_progress",
+      "state": "blocked",
       "owner": "integration",
       "draft": "p05-packed-cholesky-expert-draft-01",
       "scope": "PPSVX compile/count/signature candidate01:both GNU11 Debug ABIs compile3 new objects andpass2 tests (25331 source-count checks+fourfull21-argument signatures);11 strict/header/format commands pass. Six freshobjects total;exact audited v26 71-primary-TU ASC libraries explicitly reused,foreign archives unsanitized. Public adapter compiles but isnot executed bythese two tests;no typed numerical/failure/memory/installed/fullmode/platform credit.19passing rawrecords;all2113routines/130missingXBLAS remain required.",
@@ -989,7 +989,7 @@
       "fault_audit": "p05-packed-cholesky-expert-candidate-08/fault-audit.json",
       "fault_audit_sha256": "db24cdcb44aa23cece80fe1db23a4c3f781d4fb03f7410c22f57e5c204f4b71d",
       "fault_scope": "PPSVX candidate08 fault/publication slice: sixconfigurations each8tests,4behavioralpass and4ordinaryscalar mathematicalfailures. Zero skips/sanitizer diagnostics. Faults13312profiles/418816checks each, four scalars*32triangle/layouts*fourFACTmodes*26nativefault/controlcases. ActualN3/NRHS2/padding, all21nativearguments includingthreehiddenlengths, fullwidthINFOincomingMIN andrawresult, report/outcome/pivot/argument/factorauthorization, retaineddirectwrites/withheldpackedAP/AFP/B/X, rawscales/RCOND, NaNerrorstaging/publication andguards are checked. Realdiagonalcontrols independentlysolveX1/2 withRCOND1/4. Public82176profiles,25331counts andfourfullsignatures stillpass;eachscalar mathfails44/600unchanged.58newrawrecords retain12CTest8 andfourC07strictfailures;C08onlyrenamesconstants/refactorsnestedtestconditionals withsamechecks.42currentfreshobjects plus42historical;v26ASC71primaryTUsreused/foreignunsanitized. Allcurrentfourstrict/format pass. Newstub usesverifiednative declarations andtest-onlyGNUwrap;nm/link/ldd bind allfourreal+wrappedentrypoints. No production/providerchange. Actualallocation/protected-memory, fullpreflight/alias,realnonpositive/rawfactor/empty/concurrency/installed/mode/platform andremainingP00-P11 remainrequired. All2113routines/130missingrequiredXBLAS remainrequired;PPSVXexternal/unregistered,no fullyverifiedcredit.",
-      "pending_candidate": "p05-packed-cholesky-expert-candidate-22",
+      "pending_candidate": null,
       "real_failure_candidate": "p05-packed-cholesky-expert-candidate-09",
       "real_failure_state": "bounded_real_failures_audited",
       "real_failure_audit": "p05-packed-cholesky-expert-candidate-09/real-failure-audit.json",
@@ -1037,11 +1037,75 @@
       "active_boundary_state": "bounded_active_boundaries_audited",
       "active_boundary_audit": "p05-packed-cholesky-expert-candidate-21/active-boundary-audit.json",
       "active_boundary_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b",
-      "active_boundary_scope": "PPSVX candidate21 active-boundary slice: six Linux static configurations (GNU11 Debug/Release and Clang19 ASC-only ASan/UBSan, actual LP64/true ILP64) each pass faults1 and behavioral3; each separately fails all4 ordinary scalar mathematical tests,44/600 checks each, with all176 detailed failure signatures matching candidate18. All original C18 code/assertions survive byte-for-byte. Faults96824profiles/1048173checks; added3072profiles/191946checks include 10392 one-byte-short typed workspace rejections before active reads/provider entry. Four scalars,32 triangle/layout choices,four FACT modes,NRHS0/2,N3, both protected boundary directions; additional actual E/F scaling writes use A=diag4/16/1024, exact S=1/2,1/4,1/32. Real containing arrays protect packed ends, every full-matrix major-slice boundary, vectors and exact typed scratch. Report reset, destination/scratch byte preservation, independent residuals, factor reconstruction/condition and calibrated zero operation allocations pass. Both strict checks and ten-file formatting pass;54 fresh objects reuse rehashed v26 libraries and unchanged actual provider archives. Foreign code unsanitized. C19 size_bytes compile/strict failures and C20 nested-conditional strict failures retained. External/unregistered PPSVX, no new capability credit; output-read/concurrency/installed/full-mode/platform/math obligations remain. Native/I/O subset remains review-ready;2113 Reference requirements,350 partial, 1763 not started,0 complete-callable/verified,130 missing XBLAS,78 historical root mathematical failures and amended owner approval remain separate."
+      "active_boundary_scope": "PPSVX candidate21 active-boundary slice: six Linux static configurations (GNU11 Debug/Release and Clang19 ASC-only ASan/UBSan, actual LP64/true ILP64) each pass faults1 and behavioral3; each separately fails all4 ordinary scalar mathematical tests,44/600 checks each, with all176 detailed failure signatures matching candidate18. All original C18 code/assertions survive byte-for-byte. Faults96824profiles/1048173checks; added3072profiles/191946checks include 10392 one-byte-short typed workspace rejections before active reads/provider entry. Four scalars,32 triangle/layout choices,four FACT modes,NRHS0/2,N3, both protected boundary directions; additional actual E/F scaling writes use A=diag4/16/1024, exact S=1/2,1/4,1/32. Real containing arrays protect packed ends, every full-matrix major-slice boundary, vectors and exact typed scratch. Report reset, destination/scratch byte preservation, independent residuals, factor reconstruction/condition and calibrated zero operation allocations pass. Both strict checks and ten-file formatting pass;54 fresh objects reuse rehashed v26 libraries and unchanged actual provider archives. Foreign code unsanitized. C19 size_bytes compile/strict failures and C20 nested-conditional strict failures retained. External/unregistered PPSVX, no new capability credit; output-read/concurrency/installed/full-mode/platform/math obligations remain. Native/I/O subset remains review-ready;2113 Reference requirements,350 partial, 1763 not started,0 complete-callable/verified,130 missing XBLAS,78 historical root mathematical failures and amended owner approval remain separate.",
+      "current_family_review": {
+        "candidate": "p05-packed-cholesky-expert-candidate-22",
+        "state": "blocked",
+        "engineering_state": "completed_permitted_Linux_slice",
+        "numerical_acceptance": "failed_unchanged_required_gates",
+        "audit": "ppsvx-family-use-22/review-audit.json",
+        "audit_sha256": "6d4c244d7793a4e475179d4aa2c3e5438052abdc33c1154885b19f0504891a66",
+        "source_manifest_sha256": "df43641aa1ebc0cff2c9ae1d2efcbc30d02eb14435181d269d8461488482b9c6",
+        "integration_source_manifest_sha256": "ad63344b47066cf755e9ff0a85620fc4719d8b98bea4a38a791fb02f4e0d4f45",
+        "integrated_in_feature_worktree": false,
+        "isolated_installed_candidate": true,
+        "required_reference_denominator": 2113,
+        "registered_ppsvx": 0,
+        "fully_verified_ppsvx": 0,
+        "decision_record": "programs/lapack-array-io/packed-cholesky-expert-disposition.md",
+        "routine_rows": {
+          "sppsvx": {
+            "external_observation": "passed_six_prepared_lanes",
+            "concurrency": "passed_six_lanes_and_ASC_TSan_both_ABIs",
+            "installed_use": "passed_relocated_Linux_GNU11_static_LP64_and_true_ILP64",
+            "root_registration": "not_registered",
+            "numerical_acceptance": "failed",
+            "full_platform_verification": "incomplete_existing_admission_gates",
+            "owner_provenance": "pending_separate_notice_metadata_decision",
+            "merge_release_authorization": "not_granted"
+          },
+          "dppsvx": {
+            "external_observation": "passed_six_prepared_lanes",
+            "concurrency": "passed_six_lanes_and_ASC_TSan_both_ABIs",
+            "installed_use": "passed_relocated_Linux_GNU11_static_LP64_and_true_ILP64",
+            "root_registration": "not_registered",
+            "numerical_acceptance": "failed",
+            "full_platform_verification": "incomplete_existing_admission_gates",
+            "owner_provenance": "pending_separate_notice_metadata_decision",
+            "merge_release_authorization": "not_granted"
+          },
+          "cppsvx": {
+            "external_observation": "passed_six_prepared_lanes",
+            "concurrency": "passed_six_lanes_and_ASC_TSan_both_ABIs",
+            "installed_use": "passed_relocated_Linux_GNU11_static_LP64_and_true_ILP64",
+            "root_registration": "not_registered",
+            "numerical_acceptance": "failed",
+            "full_platform_verification": "incomplete_existing_admission_gates",
+            "owner_provenance": "pending_separate_notice_metadata_decision",
+            "merge_release_authorization": "not_granted"
+          },
+          "zppsvx": {
+            "external_observation": "passed_six_prepared_lanes",
+            "concurrency": "passed_six_lanes_and_ASC_TSan_both_ABIs",
+            "installed_use": "passed_relocated_Linux_GNU11_static_LP64_and_true_ILP64",
+            "root_registration": "not_registered",
+            "numerical_acceptance": "failed",
+            "full_platform_verification": "incomplete_existing_admission_gates",
+            "owner_provenance": "pending_separate_notice_metadata_decision",
+            "merge_release_authorization": "not_granted"
+          }
+        }
+      },
+      "current_candidate": "p05-packed-cholesky-expert-candidate-22",
+      "remaining_obligations": [
+        "authorized numerical provider/algorithm route and unchanged mathematical gate passes",
+        "remaining shared/compiler/platform admission and reviewed root registration",
+        "owner/provenance approval and separate merge/release authorization"
+      ]
     }
   },
   "active_task": "P05.packed_cholesky_expert_implementation",
-  "next_action": "Add pre-native output-only AFP/X/FERR/BERR read observation to the retained PPSVX fault harness using its provider-entry hook. Preserve candidate21 and all existing assertions; distinguish FACT N/E output factors, FACT F input factors, N0 and positive-order NRHS0. Freeze candidate22 only after the change is concrete and run packed_cholesky_expert.faults in both actual ABIs, keeping the four ordinary mathematical failures separate. No registrations, provider patch or sibling import.",
+  "next_action": "Review the concrete five-cause PPSVX numerical-disposition packet. Candidate22 pre-native reads, relevant regressions, real concurrency, ASC-only TSan, relocated static public use in both actual ABIs, and staged integration documentation/header gates are complete. Preserve the genuine mathematical failures and existing platform gates. Do not start a new numerical family, silently change provider arithmetic, or register PPSVX before its specific prerequisites pass.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1630,10 +1694,19 @@
         "-R",
         "required_math_"
       ],
-      "cause": "Bound PPCON/PPRFS inverse/norm intermediateoverflow persists insidePPSVX. FACT E additionally forms S*S before multiplying the scalar AP, overflowing for the two smallest subnormal A; X becomes0 withRCOND0/NaNerrorbounds. This source-order inference matches directnative observations.",
+      "cause": "Five distinct arithmetic causes: tiny condition inverse cannot be unscaled; tiny forward estimator overflows the unweighted inverse; maximum-value condition estimate overflows reciprocal before normalization; maximum-value residual/weight arithmetic overflows; FACT E subnormal scale product overflows before AP multiplication. Forty-four unique scalar/mode/value cases, not four independent bugs.",
       "attempted_resolution": "Independentlongdouble scalar condition/solution/error bounds, roundedfactor certificates anddirectpinned comparison. The unrelatedpublic BERR oracle was corrected fromnormwise tocomponentwise zero equations withunchangedtolerances. No provider/source/contract resolution orwaiver isclaimed.",
       "closure": "Pass unchanged requiredscalar mathematicalgates after anexplicitlyapproved provider/source/contract resolution.",
-      "unaffected_work": "PPSVX failure/preflight/memory/allocation/concurrency/installed implementation andremainingP00-P11 work. All2113routines and130missingrequiredXBLAS remainrequired."
+      "unaffected_work": "Required candidate22/concurrency/installed/static integration engineering completed in the family review packet. Further numerical implementation requires its explicit provider/algorithm decision; remaining platform admission and reviewed root registration stay open.",
+      "latest_evidence": "ppsvx-family-use-22/review-audit.json",
+      "disposition": "programs/lapack-array-io/packed-cholesky-expert-disposition.md",
+      "latest_counts": {
+        "failed_processes_per_lane": 4,
+        "failed_assertions_per_lane": 176,
+        "assertions_per_lane": 2400,
+        "unique_scalar_mode_value_cases": 44,
+        "arithmetic_causes": 5
+      }
     }
   ],
   "external_approvals": [
@@ -1722,7 +1795,7 @@
   "pending_verifications": [
     {
       "task": "full_reference_program",
-      "scope": "All2113 contracts incomplete:350partial,1763not_started;130 required XBLAS definitions absent and78 historical mathematical failures retained. Next bounded PPSVX active-buffer acceptance slice is unblocked."
+      "scope": "All 2113 Reference contracts remain incomplete: 350 partial registrations, 1763 not started; 130 required XBLAS definitions absent and 78 historical root mathematical failures retained. PPSVX finite Linux engineering is complete; five arithmetic causes block its unchanged mathematical gates and root numerical promotion. No new family started."
     },
     {
       "task": "owner_provenance",
@@ -2158,14 +2231,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.PPSVX_candidate22_pre_native_output_reads",
+  "next_task": "P05.PPSVX_numerical_provider_decision",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/resume-packed-expert-output-reads-22.py",
+  "next_command": "python3 -B ../asc-cpp-evidence/lapack-array-io/ppsvx-family-use-22/resume-review.py",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -2498,5 +2571,63 @@
     "scope": "This six-file summary followup: local Markdown links, JSON/slot/contract identity checks, whitespace and complete unchanged-input bridge. Whole candidate03 CI is not attributed to this later tree.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-acceptance-20260909-01/final-documentation-audit-01.json"
+  },
+  "ppsvx_family_review": {
+    "candidate": "p05-packed-cholesky-expert-candidate-22",
+    "state": "blocked",
+    "engineering_state": "completed_permitted_Linux_slice",
+    "numerical_acceptance": "failed_unchanged_required_gates",
+    "audit": "ppsvx-family-use-22/review-audit.json",
+    "audit_sha256": "6d4c244d7793a4e475179d4aa2c3e5438052abdc33c1154885b19f0504891a66",
+    "source_manifest_sha256": "df43641aa1ebc0cff2c9ae1d2efcbc30d02eb14435181d269d8461488482b9c6",
+    "integration_source_manifest_sha256": "ad63344b47066cf755e9ff0a85620fc4719d8b98bea4a38a791fb02f4e0d4f45",
+    "integrated_in_feature_worktree": false,
+    "isolated_installed_candidate": true,
+    "required_reference_denominator": 2113,
+    "registered_ppsvx": 0,
+    "fully_verified_ppsvx": 0,
+    "decision_record": "programs/lapack-array-io/packed-cholesky-expert-disposition.md",
+    "routine_rows": {
+      "sppsvx": {
+        "external_observation": "passed_six_prepared_lanes",
+        "concurrency": "passed_six_lanes_and_ASC_TSan_both_ABIs",
+        "installed_use": "passed_relocated_Linux_GNU11_static_LP64_and_true_ILP64",
+        "root_registration": "not_registered",
+        "numerical_acceptance": "failed",
+        "full_platform_verification": "incomplete_existing_admission_gates",
+        "owner_provenance": "pending_separate_notice_metadata_decision",
+        "merge_release_authorization": "not_granted"
+      },
+      "dppsvx": {
+        "external_observation": "passed_six_prepared_lanes",
+        "concurrency": "passed_six_lanes_and_ASC_TSan_both_ABIs",
+        "installed_use": "passed_relocated_Linux_GNU11_static_LP64_and_true_ILP64",
+        "root_registration": "not_registered",
+        "numerical_acceptance": "failed",
+        "full_platform_verification": "incomplete_existing_admission_gates",
+        "owner_provenance": "pending_separate_notice_metadata_decision",
+        "merge_release_authorization": "not_granted"
+      },
+      "cppsvx": {
+        "external_observation": "passed_six_prepared_lanes",
+        "concurrency": "passed_six_lanes_and_ASC_TSan_both_ABIs",
+        "installed_use": "passed_relocated_Linux_GNU11_static_LP64_and_true_ILP64",
+        "root_registration": "not_registered",
+        "numerical_acceptance": "failed",
+        "full_platform_verification": "incomplete_existing_admission_gates",
+        "owner_provenance": "pending_separate_notice_metadata_decision",
+        "merge_release_authorization": "not_granted"
+      },
+      "zppsvx": {
+        "external_observation": "passed_six_prepared_lanes",
+        "concurrency": "passed_six_lanes_and_ASC_TSan_both_ABIs",
+        "installed_use": "passed_relocated_Linux_GNU11_static_LP64_and_true_ILP64",
+        "root_registration": "not_registered",
+        "numerical_acceptance": "failed",
+        "full_platform_verification": "incomplete_existing_admission_gates",
+        "owner_provenance": "pending_separate_notice_metadata_decision",
+        "merge_release_authorization": "not_granted"
+      }
+    }
   }
 }

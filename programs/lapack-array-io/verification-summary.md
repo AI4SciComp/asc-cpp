@@ -833,3 +833,42 @@ tests per lane retain their candidate18 signatures. Strict2 and format pass.
 Audit `f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b` binds the external source, command records and reused libraries.
 No PPSVX registration or full numerical-family verification is granted.
 The state pointer advances to candidate22 pre-native output-read observation.
+
+## PPSVX candidate22 family checkpoint, 2026-09-10
+
+Candidate22 completes the calibrated pre-native output observation in all six
+prepared Linux/static configurations: real LP64 and true ILP64, each GNU11
+Debug/Release and Clang19 ASC-only ASan/UBSan. Negative reads, supplied-factor
+input reads, native writes, and permitted post-return complex preservation are
+distinguished at foreign entry. Separate Clang local-N=0 load observation passes
+both ABIs. All candidate18–21 assertions and failed attempts remain retained.
+
+Real-provider concurrency passes all six configurations. GNU11 TSan passes in
+both ABIs with ASC and consumer instrumentation; provider code is uninstrumented.
+Relocated, dependency-isolated public PPSVX consumers pass against isolated
+static candidate installs in both actual ABIs, including returned-factor reuse.
+The pending integration patch, header ownership/digests, installed headers,
+symbols, strict analysis, formatting and documentation checks are retained.
+Shared-provider and Clang package admission remain blocked by existing policy.
+No PPSVX product or registration change is applied to the feature worktree.
+
+The four mathematical test processes still fail 176 composite assertions per
+configuration: 44 distinct scalar/mode/value cases repeated over four layouts
+and triangles. Their signatures match candidate21 and fresh staged integration.
+The [numerical disposition](packed-cholesky-expert-disposition.md) identifies
+five provider arithmetic causes: tiny condition and forward estimation,
+maximum-value condition and refinement diagnostics, and subnormal equilibration.
+The unchanged numerical gate requires an explicit provider/algorithm decision;
+direct-call fidelity does not close it. The pending notice amendment is separate.
+
+The [family review](packed-cholesky-expert-review.md) binds the completed external
+candidate and 201 raw command records through audit
+`6d4c244d7793a4e475179d4aa2c3e5438052abdc33c1154885b19f0504891a66`.
+This command count is separate from historical normalized evidence totals.
+PPSVX remains 0/4 root-registered and 0/4 fully verified. Reference counts remain
+350 partial, 1,763 not started, zero complete or verified of 2,113 required.
+The 20 verified native operations and accepted array-I/O subset retain
+`SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE` through unchanged feature inputs
+and fresh provider-free installed regressions. No later summary tree is claimed
+to have passed the earlier hosted checks. The next task is the recorded numerical
+provider/algorithm decision, followed by the still-required admission gates.
