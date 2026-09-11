@@ -42175,26 +42175,70 @@
         "SRC/sptcon.f",
         "SRC/zptcon.f"
       ],
-      "source_api_files": [],
-      "route_states": {
-        "lapack.cptcon": "not_started",
-        "lapack.dptcon": "not_started",
-        "lapack.sptcon": "not_started",
-        "lapack.zptcon": "not_started"
-      },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
-      "required_mode_cases": {
-        "lapack.cptcon": [],
-        "lapack.dptcon": [],
-        "lapack.sptcon": [],
-        "lapack.zptcon": []
-      },
-      "unreviewed_mode_rows": [
-        "lapack.cptcon",
-        "lapack.dptcon",
-        "lapack.sptcon",
-        "lapack.zptcon"
+      "source_api_files": [
+        "examples/positive_tridiagonal_condition/CMakeLists.txt",
+        "examples/positive_tridiagonal_condition/main.cc",
+        "include/asc/dense/providers/lapack_positive_tridiagonal.h",
+        "include/asc/dense/providers/lapack_positive_tridiagonal_condition.h",
+        "src/dense/lapack/internal_positive_tridiagonal_condition_counts.h",
+        "src/dense/lapack/internal_positive_tridiagonal_counts.h",
+        "src/dense/lapack/internal_tridiagonal.h",
+        "src/dense/lapack/internal_workspace_context.h",
+        "src/dense/lapack/reference_positive_tridiagonal.cc",
+        "src/dense/lapack/reference_positive_tridiagonal_condition.cc",
+        "src/dense/lapack_foundations.cc",
+        "tests/dense/allocation_probe.cc",
+        "tests/dense_lapack/allocation_audit.cc",
+        "tests/dense_lapack/positive_tridiagonal_condition_entry.cc",
+        "tests/dense_lapack/positive_tridiagonal_condition_entry.h",
+        "tests/dense_lapack/positive_tridiagonal_condition_fault_test.cc",
+        "tests/dense_lapack/positive_tridiagonal_condition_observation_test.cc",
+        "tests/dense_lapack/positive_tridiagonal_condition_test.cc",
+        "tests/dense_lapack/positive_tridiagonal_condition_tests.cmake",
+        "tests/dense_lapack/tridiagonal_test_support.h"
       ],
+      "route_states": {
+        "lapack.cptcon": "implemented_unverified",
+        "lapack.dptcon": "implemented_unverified",
+        "lapack.sptcon": "implemented_unverified",
+        "lapack.zptcon": "implemented_unverified"
+      },
+      "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
+      "required_mode_cases": {
+        "lapack.cptcon": [
+          "lower.active",
+          "lower.empty",
+          "lower.zero_norm",
+          "upper.active",
+          "upper.empty",
+          "upper.zero_norm"
+        ],
+        "lapack.dptcon": [
+          "lower.active",
+          "lower.empty",
+          "lower.zero_norm",
+          "upper.active",
+          "upper.empty",
+          "upper.zero_norm"
+        ],
+        "lapack.sptcon": [
+          "lower.active",
+          "lower.empty",
+          "lower.zero_norm",
+          "upper.active",
+          "upper.empty",
+          "upper.zero_norm"
+        ],
+        "lapack.zptcon": [
+          "lower.active",
+          "lower.empty",
+          "lower.zero_norm",
+          "upper.active",
+          "upper.empty",
+          "upper.zero_norm"
+        ]
+      },
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -42204,15 +42248,19 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/positive-tridiagonal-condition-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
-      "integrated_revision": null,
-      "execution_progress": "not_executed",
+      "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
+      "execution_progress": "partial_source_and_review_exist",
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/positive-tridiagonal-condition-review.md"
+      ]
     },
     {
       "task_id": "P05.required.pteqr",
@@ -49161,7 +49209,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "550a66c31eebf6b8d90458572e726d1b14d40d4812edaa10813900cea0b3c5ab",
+    "lapack-coverage.yaml": "909a5a9bce09e90f658e7b636821cb26292f3a8be3ca4dd597bc687d9024fd4e",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

@@ -132,3 +132,16 @@ in `laset-record-checks-01`. Fresh hosted checks must name the actual delivered
 revision; local execution does not establish hosted or wider-platform admission.
 Existing Reference PPSVX/PT/SGEDMDQ/GBRFS and other numerical failures remain
 separate required failures, with no suppression or numerical acceptance credit.
+
+Delivered revision `d346a16bee2f7cb50b4ababd7f512df3daae2eff` has fresh hosted
+CI success (34577976090) and CodeQL success (34577976086). Family run
+34577976123 executes 155 tests in each of four static/shared actual-ABI profiles:
+146 pass, all six LASET tests pass, exactly the retained PT4/SGEDMDQ1/GBRFS4
+mathematical processes fail, and zero tests skip. The selector also includes
+the two new header checks; test counts come from actual JUnit, not the number
+of family declarations. `laset-hosted-audit-01/audit.json` binds all four raw
+artifacts. Two CLI artifact-read failures remain retained; the recorded direct
+API download succeeds. The PR merge commit
+`ae269a9d9e8a7329d6c76947b6931df7d7efa250` has tree
+`d6b4edc40b9434cdba619af1985854fa76835f93`, identical to the delivered feature
+head, as checked in `laset-hosted-final-state-01`. PR47 remains a draft.

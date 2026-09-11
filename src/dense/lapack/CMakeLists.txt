@@ -57,6 +57,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_dmd_qr.cc
   reference_mixed_general.cc
   reference_positive_tridiagonal.cc
+  reference_positive_tridiagonal_condition.cc
   PUBLIC FILE_SET HEADERS BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
   FILES
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack.h"
@@ -107,6 +108,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_dmd_qr.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_mixed_general.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_positive_tridiagonal.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_positive_tridiagonal_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_tridiagonal.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_tridiagonal_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_tridiagonal_driver.h"
