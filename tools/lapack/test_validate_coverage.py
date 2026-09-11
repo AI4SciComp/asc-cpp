@@ -731,10 +731,17 @@ class MigrationCommandTest(CoverageFixture):
                                capture_output=True,
                                text=True)
         self.assertEqual(check.returncode, 0, check.stderr)
+        # Validate exact emitted bytes as well as the parsed manifest. This is
+        # a file identity contract, independent of the host's newline spelling.
+        generated = self.output / "mapping.json"
+        self.assertNotIn(b"\r", generated.read_bytes())
+        ledger = coverage.read_json(self.output / "evidence.json")
+        expected = ledger["expected_identities"]["original"]["mapping_sha256"]
+        self.assertEqual(coverage.file_hash(generated), expected)
         # Exclusive output is a preservation rule, not an implicit overwrite.
         repeated = IdentityCommandTest.execute_fixture(self)
         self.assertEqual(repeated.returncode, 1)
-        self.assertIn("File exists", repeated.stderr)
+        self.assertIn("Output directory already exists", repeated.stderr)
 
     def test_stale_expectation_cannot_be_replaced_by_new_index_hash(self):
         """A migration rejects wrong old hashes instead of laundering them."""

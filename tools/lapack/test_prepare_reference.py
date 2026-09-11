@@ -86,7 +86,7 @@ class PreparationTest(unittest.TestCase):
                                     capture_output=True,
                                     text=True)
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn("File exists", result.stderr)
+            self.assertIn("Output directory already exists", result.stderr)
             self.assertEqual(list(root.iterdir()), [sentinel])
             self.assertEqual(sentinel.read_text(encoding="utf-8"),
                              "historical execution\n")

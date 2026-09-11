@@ -126,7 +126,11 @@ def main() -> int:
         coverage.require(inventory["specification"] == lock,
                          "Source lock and inventory differ")
         attestation.source_identity(source, inventory)
-    work.mkdir(parents=True, exist_ok=False)
+    try:
+        work.mkdir(parents=True, exist_ok=False)
+    except FileExistsError:
+        parser.error(
+            "Output directory already exists; select a new external path")
     build = work / "build"
     prefix = work / "prefix"
     if args.source_dir:

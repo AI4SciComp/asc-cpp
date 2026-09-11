@@ -178,13 +178,21 @@ def main() -> int:
             "mapping_sha256": coverage.file_hash(args.mapping),
             "evidence_sha256": coverage.file_hash(args.evidence),
         }
-        args.output_directory.mkdir()
+        try:
+            args.output_directory.mkdir()
+        except FileExistsError as error:
+            raise coverage.ValidationError(
+                "Output directory already exists; select a new path") from error
         for name, value in (("mapping.json", mapping),
                             ("evidence.json", evidence), ("migration.json",
                                                           bridge)):
-            (args.output_directory / name).write_text(serialized(
-                value, sort_keys=name == "mapping.json"),
-                                                      encoding="utf-8")
+            # The mapping identity hashes these exact UTF-8/LF bytes. Text-mode
+            # newline translation would invalidate that identity on Windows.
+            with (args.output_directory / name).open("xb") as output:
+                output.write(
+                    serialized(
+                        value,
+                        sort_keys=name == "mapping.json").encode("utf-8"))
         print(json.dumps(counts, sort_keys=True))
         return 0
     except (OSError, ValueError, KeyError) as error:
