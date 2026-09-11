@@ -237,6 +237,28 @@ _run(dmd-example-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
   "${WORK_DIR}/dmd example build" -C "${CONFIG}"
   --output-on-failure --no-tests=error)
 
+file(COPY "${SOURCE_DIR}/examples/dmd_qr/"
+  DESTINATION "${WORK_DIR}/copied dmd_qr example")
+file(READ "${WORK_DIR}/copied dmd_qr example/CMakeLists.txt" _dmd_qr_project)
+file(WRITE "${WORK_DIR}/copied dmd_qr example/CMakeLists.txt"
+  "string(REPLACE \"|\" \";\" ASC_CPP_LAPACK_RUNTIME_LIBRARIES \"\${TEST_RUNTIMES}\")\n"
+  "${_dmd_qr_project}\n")
+_run(dmd_qr-example-configure TRUE "${CMAKE_COMMAND}"
+  -S "${WORK_DIR}/copied dmd_qr example" -B "${WORK_DIR}/dmd_qr example build"
+  "-DASCCpp_DIR=${_package}" "-DCMAKE_CXX_COMPILER=${CXX_COMPILER}"
+  "-DASC_CPP_LAPACK_ROOT=${LAPACK_ROOT}"
+  "-DTEST_RUNTIMES=${LAPACK_RUNTIMES}"
+  -DCMAKE_DISABLE_FIND_PACKAGE_CUDAToolkit=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_Python3=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_LAPACK=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_BLAS=TRUE
+  -DCMAKE_FIND_USE_PACKAGE_REGISTRY=FALSE)
+_run(dmd_qr-example-build TRUE "${CMAKE_COMMAND}" --build
+  "${WORK_DIR}/dmd_qr example build" --config "${CONFIG}")
+_run(dmd_qr-example-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
+  "${WORK_DIR}/dmd_qr example build" -C "${CONFIG}"
+  --output-on-failure --no-tests=error)
+
 if(ROBUST_ENABLED)
   file(COPY "${SOURCE_DIR}/examples/robust_ppsvx/"
     DESTINATION "${WORK_DIR}/copied robust example")

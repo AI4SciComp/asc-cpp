@@ -186,3 +186,8 @@ contract and maintained adapter/tests remain actionable, with this genuine
 provider failure retained as a required gate. The provider cannot be patched
 or the documented mode silently replaced under current authorization. The
 precise strategy decision is in the maintained owner packet.
+
+The subsequent [GEDMDQ integration review](dmd-qr-review.md) records the now
+maintained adapter, four partial registrations and actual Linux/static tests.
+Its single-real mathematical gate still fails; the earlier GEDMD records above
+retain their original execution and registration scope.

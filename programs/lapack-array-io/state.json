@@ -14,13 +14,13 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "18fd37e469a47fe914aea0ceaba038735855ad85",
+  "last_implementation_commit": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
   "worktree_diff_identity": {
-    "state": "gedmd_frozen_source_verified_pending_feature_synchronization",
-    "base_commit": "18fd37e469a47fe914aea0ceaba038735855ad85",
-    "scope": "Four integrated GEDMD routines; six12/12 profiles, both TSan4/4, relocated installed consumers, public headers and affected gates pass after the retained header-count repair. Frozen-source15/15 per actual ABI pass; hosted checks require feature synchronization.",
-    "freeze": "master-continuation-20260910-01/dmd-frozen-product-01",
-    "tested_source_tree": "33794ba02726b6bf5f7f76ffa88d79bd638a323a"
+    "state": "gedmdq_partial_delivery_executed_pending_feature_sync",
+    "base_commit": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
+    "scope": "Four partial GEDMDQ rows; all six integrated profiles14/15 retain only required_math_s. Both TSan, installed relocation, strict source/docs/headers, both8/8 affected gates and both fresh17/18 tests pass within stated scope. Fresh package237.733/238.639 seconds. Numerical and wider acceptance remain incomplete.",
+    "candidate": "master-continuation-20260910-01/dmdq-integration-edits-01",
+    "freeze": "master-continuation-20260910-01/dmdq-frozen-product-01"
   },
   "packages": {
     "P00": {
@@ -1303,12 +1303,12 @@
         "lapack.cgesv",
         "lapack.zgesv"
       ],
-      "next_action": "Extend maintained installed general-LU use to all four scalars and N/T/C/layouts, normalize existing passing per-row contract/mode evidence. Original LU source and selected tests are byte-identical to the existing ledger base; no duplicate adapter implementation is needed.",
+      "next_action": "The maintained all-scalar LU consumer is delivered. Normalize existing passing per-row mode/class execution evidence without changing its original source identity; the current single expected_identity schema must support independently bound executions without weakening stale-record rejection.",
       "dependencies": [
         "P01.workspace_report_pivots",
         "P04.provider_component"
       ],
-      "identified_gap": "Existing lapack_array_io example uses the double GETRF/GETRS route with N; installed_lu/main exercises GETRF2/GETF2/GETRI/GESV but no general GETRF/GETRS N/T/C scalar matrix."
+      "identified_gap": "24 basic LU routes and96 mode IDs have six27/27 profiles and installed/TSan/package evidence; normalization and wider admission remain. The old installed GETRF/GETRS coverage gap is closed."
     },
     "P04.reference_lu_basic_delivery": {
       "state": "callable_unverified",
@@ -1344,7 +1344,7 @@
       "remaining": "Normalized per-mode/class Reference ledger and wider mandatory platform admission, separate from provider numerical blockers in unrelated families."
     },
     "P09.dmd": {
-      "state": "prerequisites_executed_adapters_pending",
+      "state": "gedmd_and_gedmdq_delivered_partial_acceptance",
       "owner": "integration",
       "upstream_rows": [
         "lapack.sgedmd",
@@ -1360,12 +1360,21 @@
         "P01.workspace_report_pivots",
         "P04.provider_component"
       ],
-      "evidence": "master-continuation-20260910-01/dmd-prerequisite-01",
-      "result": "All eight source/symbol identities checked in both actual providers; GEDMD576 query/solve cases per scalar per ABI pass on exact rank-two non-square snapshots across four scaling, valid vector/residual, three extra-output, four SVD and three rank choices. No ASC DMD row is registered or verified by this native probe."
+      "evidence": "master-continuation-20260910-01/dmdq-integrated-audit-01; dmd-hosted-update-04",
+      "result": "GEDMD4 integrated and hosted: CI/CodeQL pass; all12 family tests pass in each ABI. GEDMDQ4 now partial registered; six integrated profiles14/15, only required_math_s fails. One source cause/eight execution variants; no provider patch or silent substitution. Both actual-ABI TSan and installed public QR reuse pass. No Reference verified credit. Both affected8/8 gates and fresh17/18 per ABI complete; only SGEDMDQ required_math_s remains failed. No skips. All939 prior C++ source/header/test/example inputs unchanged.",
+      "review": "programs/lapack-array-io/dmd-qr-review.md"
+    },
+    "P04.execution_evidence_identity_normalization": {
+      "state": "implementation_in_progress",
+      "owner": "integration",
+      "dependency": "Existing preserved native20 and Reference basic-LU executions need different explicit source expectations.",
+      "implementation": "tools/lapack/validate_coverage.py and test_validate_coverage.py unstaged next-slice work; schema1 retained, schema2 explicit catalog and per-route selectors;41 unit tests pass.",
+      "evidence": "master-continuation-20260910-01/execution-ledger-preflight-01; execution-ledger-tests-01",
+      "remaining": "Versioned contract, adversarial CLI hash checks, maintained generator/migration and exact execution mappings. No new verified Reference credit."
     }
   },
-  "active_task": "P09.precision_conversion_delivery",
-  "next_action": "Finish precision-conversion frozen source/package checks and ordinary feature synchronization, then implement checked GEDMD/GEDMDQ APIs/tests using the completed native prerequisite matrix. Continue the inventory-backed ready queue and independent platform admission.",
+  "active_task": "P04.execution_evidence_identity_normalization",
+  "next_action": "Synchronize the reviewed GEDMDQ staged commit and read actual hosted results; continue the working-tree evidence-validator schema extension and its CLI/contract tests, then normalize existing Reference execution records without changing native20 identity. Linux shared and remaining implementation work stay ready.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1373,7 +1382,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "cfb16180b6a49e694e2593fd675b9dd767243895551617501ee164b9c5508624"
+    "coverage_mapping_sha256": "456e878349a53d3ae6e1d08f352b6bb49022e61225f746a30a90ee37ea2ed2ff"
   },
   "provider": {
     "version": "3.12.1",
@@ -1805,26 +1814,26 @@
   },
   "counts": {
     "required_denominator": 2113,
-    "specification_mapped": 60,
+    "specification_mapped": 64,
     "callable_reference": 36,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
-    "reference_not_started_in_ledger": 1739,
-    "reference_in_progress_in_ledger": 338,
+    "reference_not_started_in_ledger": 1735,
+    "reference_in_progress_in_ledger": 342,
     "reference_blocked_in_ledger": 0,
     "incomplete_reference_contracts": 2077,
     "implemented_unverified_native": 0,
     "implemented_unverified_reference": 36,
-    "registered_partial_reference_operations": 338,
+    "registered_partial_reference_operations": 342,
     "unregistered_expert_operations_with_scoped_tests": 4,
-    "note": "Native20 retains accepted112 modes/1120 class slots. Reference2113:36 callable-unverified,338 partial,1739 not started,0 verified;374 registered. Four robust first-party algorithms remain separate. All historical numerical failures persist; GEDMDQ direct probe adds one SGEDMDQ JOBZ=Q cause, not registered acceptance.",
+    "note": "2113 Reference requirements:36 callable-unverified,342 partial,1735 not started,0 verified;378 registered. GEDMDQ adds four partial rows/2880 legal mode IDs per scalar, not extra catalogue entries. Native20 verified112 modes/1120 class slots and four experimental first-party robust algorithms retain their separate scope.",
     "unregistered_packed_operations_with_scoped_tests": 4,
     "experimental_first_party_robust_ppsvx_algorithms": 4,
     "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
-    "in_progress_reference": 338,
-    "not_started_reference": 1739,
-    "mapped_contracts": 60,
+    "in_progress_reference": 342,
+    "not_started_reference": 1735,
+    "mapped_contracts": 64,
     "blocked_reference": 0,
     "discovered": 3551,
     "excluded": 1438,
@@ -1832,7 +1841,7 @@
     "profile_complete": false,
     "required": 2113,
     "registered_callable_reference_operations": 36,
-    "registered_reference_operations_total": 374
+    "registered_reference_operations_total": 378
   },
   "blockers": [
     {
@@ -2520,14 +2529,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.GEDMDQ_checked_resource_API_and_tests",
+  "next_task": "P04.partial_mode_evidence_and_P11_provider_platform_admission",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Synchronize the reviewed GEDMD frozen-source delivery, then continue GEDMDQ checked workspace counts and public contract from dmdq-source-review-01/contract-counts-notes.md, dmdq_counts_candidate.h and dmdq-prerequisite-02. The external count candidate is implemented but untested. Preserve SGEDMDQ JOBZ=Q mathematical failure; no provider patch or silent mode substitution.",
+  "next_command": "GEDMDQ fresh_dmdq.py both ABIs completed17/18 with only required_math_s; do not rerun those unchanged inputs. Two unstaged tools/lapack Python files implement named expected identities plus per-route execution_identity_ids, with41 unit tests passing in execution-ledger-tests-01. Finish the versioned evidence contract, adversarial CLI metadata-binding tests and actual Reference ledger normalization; preserve schema1/native20 and keep next work out of the GEDMDQ staged source freeze.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3109,43 +3118,43 @@
     "one_active_writer": true,
     "pt_progress": "Six 13/17 affected profiles; both TSan4/4; installed public/base isolation pass; both full package tests pass; one source-list omission corrected and retested; current strict signature/format/coverage/Doxygen checks pass. Four required math processes/eight scalar-input cases/one provider cause remain failed.",
     "current_remote_read": {
-      "head": "18fd37e469a47fe914aea0ceaba038735855ad85",
-      "tested_tree": "753ec3597fa9eb3b2479c8673e0a1ead5427d6cd",
+      "head": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
+      "tested_tree": "962373995a2e8622a96b37a57a7ac3b07301a9d4",
       "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
       "draft": true,
       "checks": {
-        "pr_ci": 34531160686,
-        "pr_codeql": 34531160677,
-        "pr_families": 34531160680
+        "pr_ci": 34541545285,
+        "pr_codeql": 34541545286,
+        "pr_families": 34541545292
       },
-      "result": "CI and CodeQL pass. Family92/96 per actual ABI, exactly four retained PT math failures, zero skips. This hosted source predates GEDMD.",
-      "evidence": "master-continuation-20260910-01/lacpy-hosted-update-06; lacpy-hosted-update-05/junit-audit.json; lacpy-hosted-pr-update-01"
+      "result": "CI/CodeQL pass. Family104/108 per actual ABI, exactly four retained PT mathematical failed processes, zero skips; provider111/111 each. These runs include integrated GEDMD and predate GEDMDQ.",
+      "evidence": "master-continuation-20260910-01/dmd-hosted-update-04; dmd-hosted-pr-update-01"
     },
-    "p09_stage": "Mixed general/positive, precision conversions and LACPY delivered and hosted-tested. GEDMD4 locally integrated: all six12/12 profiles, TSan, relocated consumer, affected gates and frozen-source15/15 per actual ABI pass. Feature synchronization pending. GEDMDQ source review and direct both-ABI probes expose one SGEDMDQ Q-mode cause; checked count candidate implemented externally but untested.",
-    "remaining_actionable": "Ordinary GEDMD synchronization/hosted checks; GEDMDQ checked counts/API/tests with its required provider-failing mode retained; remaining P04-P08/P09 bodies/contracts/normalized evidence, wider platform admission and final P11 checks. None is replaced by this checkpoint.",
+    "p09_stage": "Mixed general/positive, precision conversions, LACPY and GEDMD delivered and hosted-tested. GEDMDQ checked APIs/tests/public consumer integrated and four partial rows registered; actual six-profile14/15 results retain only SGEDMDQ QR-factored mathematical failure. Both TSan, public headers,134-header/2341-member strict documentation and relocated installed use pass. Final package/fresh-source delivery continues. Both affected package gates now pass8/8; full package222.602/222.649 seconds. Frozen-source checks and feature synchronization remain. Frozen source17/18 per actual ABI completes; required_math_s remains the only failure, full package237.733/238.639 seconds. GEDMDQ ordinary feature delivery is ready.",
+    "remaining_actionable": "GEDMDQ ordinary synchronization/actual hosted status; in-progress P04/P11 evidence-identity extension and normalization; Linux shared/profile admission, remaining P05-P09 implementations and existing historical numerical-cause consolidation. No blocked provider decision stops these independent tasks.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required_denominator": 2113,
-      "specification_mapped": 60,
+      "specification_mapped": 64,
       "callable_reference": 36,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
-      "reference_not_started_in_ledger": 1739,
-      "reference_in_progress_in_ledger": 338,
+      "reference_not_started_in_ledger": 1735,
+      "reference_in_progress_in_ledger": 342,
       "reference_blocked_in_ledger": 0,
       "incomplete_reference_contracts": 2077,
       "implemented_unverified_native": 0,
       "implemented_unverified_reference": 36,
-      "registered_partial_reference_operations": 338,
+      "registered_partial_reference_operations": 342,
       "unregistered_expert_operations_with_scoped_tests": 4,
-      "note": "Native20 retains accepted112 modes/1120 class slots. Reference2113:36 callable-unverified,338 partial,1739 not started,0 verified;374 registered. Four robust first-party algorithms remain separate. All historical numerical failures persist; GEDMDQ direct probe adds one SGEDMDQ JOBZ=Q cause, not registered acceptance.",
+      "note": "2113 Reference requirements:36 callable-unverified,342 partial,1735 not started,0 verified;378 registered. GEDMDQ adds four partial rows/2880 legal mode IDs per scalar, not extra catalogue entries. Native20 verified112 modes/1120 class slots and four experimental first-party robust algorithms retain their separate scope.",
       "unregistered_packed_operations_with_scoped_tests": 4,
       "experimental_first_party_robust_ppsvx_algorithms": 4,
       "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
-      "in_progress_reference": 338,
-      "not_started_reference": 1739,
-      "mapped_contracts": 60,
+      "in_progress_reference": 342,
+      "not_started_reference": 1735,
+      "mapped_contracts": 64,
       "blocked_reference": 0,
       "discovered": 3551,
       "excluded": 1438,
@@ -3153,7 +3162,7 @@
       "profile_complete": false,
       "required": 2113,
       "registered_callable_reference_operations": 36,
-      "registered_reference_operations_total": 374
+      "registered_reference_operations_total": 378
     },
     "original_supplied_instruction_sha256": "98b9ad9665c2ff0aa75b94f80a5093b1db2a2164cc3c4c511f694044f9be862d",
     "instruction_normalization": "Four trailing Markdown hard-break spaces removed for repository whitespace policy; original untracked user instruction and external copy preserved."
