@@ -21,6 +21,14 @@ Windows/macOS or other required runners will be identified by their actual
 missing resources when the existing admission queue reaches them. No platform
 is marked verified from another platform's result.
 
+One concrete oracle discrepancy has been isolated in that consolidation:
+[GBRFS tiny diagnostic assertions](general-band-refinement-oracle-review.md)
+omitted the documented small-denominator safeguards. The reviewed correction
+retains the required finite-FERR failure and every existing input; the separate
+provider inverse-before-weight overflow still needs a numerical strategy.
+This test correction is ordinary authorized engineering, not an owner waiver
+or a new dependency/provider algorithm decision.
+
 ## Extra-precision candidate: decision-ready scope
 
 Read-only review obtained the authoritative [Netlib XBLAS distribution](https://www.netlib.org/xblas/)

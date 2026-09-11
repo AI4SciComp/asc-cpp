@@ -160,3 +160,16 @@ The audit first included a separately rebuilt subproject consumer in
 its primary-library uniqueness check; that failed attempt remains
 recorded. The final audit checks the exact primary library target
 object directories, still requiring all58 production sources.
+
+
+## Safeguarded GBRFS oracle correction
+
+The historical tiny GBRFS comparison against true backward error0 and an
+O(epsilon) FERR bound omitted documented small-denominator safeguards.
+The [derived correction](general-band-refinement-oracle-review.md) preserves
+true residual/solution checks, all inputs/modes/layouts and finite-FERR
+acceptance. It compares BERR with its safeguarded expression and tiny scalar
+FERR with its independently finite weighted bound. The four required extreme
+processes still fail on nonfinite FERR; their old108 assertions per scalar and
+all raw outputs remain retained. This is a first-party test correction, not a
+provider patch, contract waiver or Reference verification promotion.

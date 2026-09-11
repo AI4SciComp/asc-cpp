@@ -52,11 +52,42 @@ long double Backward(const base::Band<T>& band, const base::Rhs<T>& x,
   }
   return result;
 }
+struct TinyEstimates {
+  long double backward;
+  long double forward;
+};
+
+template <typename T>
+TinyEstimates ExactTinyEstimates(TestContext& test, const base::Band<T>& band,
+                                 const base::Rhs<T>& x, asc::extent_t rhs) {
+  using Real = asc::DenseBlasRealType<T>;
+  // This exact scalar fixture has positive real A and dyadic original B/X.
+  // The documented safeguarded estimates differ from the true zero residual.
+  ASC_DENSE_TEST_EQ(test, band.n, 1);
+  const auto expected = x.expected[static_cast<std::size_t>(rhs)];
+  const auto original = x.original[static_cast<std::size_t>(rhs)];
+  const auto a = band.original[0];
+  ASC_DENSE_TEST_CHECK(test, a.real() > 0 && a.imag() == 0);
+  ASC_DENSE_TEST_EQ(test, a * expected, original);
+  const auto magnitude = Magnitude(expected);
+  ASC_DENSE_TEST_CHECK(test, magnitude > 0);
+  const auto denominator = Magnitude(original) + a.real() * magnitude;
+  // The pinned xLAMCH('E') is half C++ epsilon on the admitted binary profile.
+  const auto unit_roundoff =
+      static_cast<long double>(std::numeric_limits<Real>::epsilon()) / 2;
+  const auto safe =
+      2 * static_cast<long double>(std::numeric_limits<Real>::min());
+  ASC_DENSE_TEST_CHECK(test, denominator < safe / unit_roundoff);
+  return {safe / (denominator + safe),
+          (2 * unit_roundoff * denominator + safe) / (a.real() * magnitude)};
+}
+
 template <typename T>
 void Diagnostics(TestContext& test, const base::Band<T>& band,
                  const base::Rhs<T>& x,
                  const support::Vector<asc::DenseBlasRealType<T>>& ferr,
-                 const support::Vector<asc::DenseBlasRealType<T>>& berr) {
+                 const support::Vector<asc::DenseBlasRealType<T>>& berr,
+                 bool exact_tiny) {
   using Real = asc::DenseBlasRealType<T>;
   for (asc::extent_t j = 0; j < x.count; ++j) {
     const auto f = ferr.values[static_cast<std::size_t>(j + 1)];
@@ -66,6 +97,25 @@ void Diagnostics(TestContext& test, const base::Band<T>& band,
     const auto residual = Backward(band, x, j);
     ASC_DENSE_TEST_CHECK(test,
                          residual <= 64 * std::numeric_limits<Real>::epsilon());
+    if (exact_tiny) {
+      const auto expected = ExactTinyEstimates(test, band, x, j);
+      ASC_DENSE_TEST_CHECK(
+          test, std::abs(static_cast<long double>(b) - expected.backward) <=
+                    64 * std::numeric_limits<Real>::epsilon());
+      const auto relative_error =
+          std::abs(static_cast<long double>(f) - expected.forward) /
+          expected.forward;
+      ASC_DENSE_TEST_CHECK(
+          test,
+          std::isfinite(f) &&
+              relative_error <= 64 * std::numeric_limits<Real>::epsilon());
+      std::printf(
+          "GBRFS exact tiny rhs=%lld: BERR=%La expected=%La "
+          "FERR=%La finite weighted bound=%La\n",
+          static_cast<long long>(j), static_cast<long double>(b),
+          expected.backward, static_cast<long double>(f), expected.forward);
+      continue;
+    }
     ASC_DENSE_TEST_CHECK(test,
                          std::abs(static_cast<long double>(b) - residual) <=
                              64 * std::numeric_limits<Real>::epsilon());
@@ -134,7 +184,7 @@ void One(TestContext& test, const asc::ReferenceLapackProvider& provider,
   ASC_DENSE_TEST_CHECK(test, support::SameBytes(band.values, af_before));
   ASC_DENSE_TEST_CHECK(test, support::SameBytes(b.values, b_before));
   x.Check(test, band, x_before);
-  Diagnostics(test, band, x, ferr, berr);
+  Diagnostics(test, band, x, ferr, berr, extreme);
   ferr.Check(test);
   berr.Check(test);
   scratch.Check(test);

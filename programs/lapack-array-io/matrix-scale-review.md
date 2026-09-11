@@ -165,3 +165,18 @@ signature/padding/observation requirements, all ordinary finite assertions,
 platform guards and the2113 denominator remain unchanged. The independent
 GBRFS guarded-diagnostic oracle correction is recorded externally and is not
 part of this LASCL implementation or its mathematical acceptance.
+
+## Hosted inventory correction
+
+Revision `dbc924d7aaada7f51dc1359739f7b54f981af6af` has a fresh CodeQL pass
+(run34567090338), but CI34567090343 failed. The GCC11 Release log identifies
+five inventory checks out of294: the new optional LASCL header was omitted
+from the independent Dense dependency and hardening header lists. The reviewed
+correction adds exactly that header, changes the explicit135-header oracle,
+and retains both exact-equality checks and the unchanged provider-free list.
+`lascl-header-oracle-fix-01` preserves original files and amendment identities.
+`lascl-header-fix-provider-free-01` configures and builds a fresh GNU11 Release
+provider-free checkout profile and passes11/11 actual configured checks and
+fixtures, including build/copy/install/relocation, zero skips. No product
+source or provider change was needed. The original hosted failure is retained;
+new hosted checks must confirm the corrected revision.
