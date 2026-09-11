@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "scope": "Index-only extension for four existing GERFS rows, now callable-unverified. Every other row and executed source/provider identity, selector, case and outcome is unchanged. Prior execution does not certify this later index.",
+  "baseline_commit": "45b8bb5073d72afb3af208a25c71c91deb3ed52a",
+  "prior_mapping_sha256": "e6a2ab6eed02d8b0fce00c3009cab4124a447d5d3d400c38efa91ccd1cd20b81",
+  "extended_mapping_sha256": "3bc8da3622ebc3f34df5a4feca48320b45ec263aa5bed208b323aa59b3bdb102",
+  "prior_evidence_sha256": "240f308279d4347cd5202b9baf564b57209175b7e9f80e10ea24c5947ce46921",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "e6a2ab6eed02d8b0fce00c3009cab4124a447d5d3d400c38efa91ccd1cd20b81",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "e6a2ab6eed02d8b0fce00c3009cab4124a447d5d3d400c38efa91ccd1cd20b81",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "d8c6d34628575209c6af20b14859c0dea9a18c0de50eb42f9a19b7953e2833c2",
+    "reference-lu-release-lp64-20260911": "fae9605c818010fe8ed815cdcf21598964e2d677c825be58fa48df7204096de4",
+    "reference-lu-release-ilp64-20260911": "2117ff32bd39e48a47bceff8f0f9362a9312afffdf576ac4fbd47e6f232a17d9"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cgerfs",
+    "lapack.dgerfs",
+    "lapack.sgerfs",
+    "lapack.zgerfs"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/gerfs-registration-01",
+  "generator_sha256": "6943c3ff72021d5aa620809d644ab1d22bc43175a46ce253f9b9ec3d5afc817c"
+}

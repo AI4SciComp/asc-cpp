@@ -10,11 +10,11 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "a1ca705174e8e4f755c5a97a44efc488e5ab0ae6",
+  "current_base_commit": "45b8bb5073d72afb3af208a25c71c91deb3ed52a",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "a1ca705174e8e4f755c5a97a44efc488e5ab0ae6",
+  "last_implementation_commit": "45b8bb5073d72afb3af208a25c71c91deb3ed52a",
   "worktree_diff_identity": {
     "state": "gedmdq_partial_delivery_executed_pending_feature_sync",
     "base_commit": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
@@ -1380,8 +1380,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P04.required.geequ/geequb: delivery; next GERFS missing maintained evidence",
-  "next_action": "Commit/push reviewed eight-row GEEQU/GEEQUB continuation after final record checks; audit actual hosted revision. Continue GERFS from its existing typed source review and finite missing concurrency/output/math gates.",
+  "active_task": "P04.required.gerfs: implement missing bounded maintained evidence around existing API",
+  "next_action": "Complete GERFS observer-only style retry, then static/shared/sanitizer/concurrency verification, matched installed/regression reuse and normalized records. GEEQU/GEEQUB has been ordinarily pushed; audit its actual hosted checks when complete.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1820,36 +1820,21 @@
     ]
   },
   "counts": {
-    "required_denominator": 2113,
-    "specification_mapped": 100,
-    "callable_reference": 72,
+    "required": 2113,
+    "excluded": 1438,
+    "mapped_contracts": 104,
+    "callable_reference": 76,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
-    "reference_not_started_in_ledger": 1711,
-    "reference_in_progress_in_ledger": 330,
-    "reference_blocked_in_ledger": 0,
-    "incomplete_reference_contracts": 2041,
-    "implemented_unverified_native": 0,
-    "implemented_unverified_reference": 72,
-    "registered_partial_reference_operations": 330,
-    "unregistered_expert_operations_with_scoped_tests": 4,
-    "note": "Current scoped validator:2113required,402registered Reference=72callable-unverified+330partial,1711notstarted,0verified;100reviewed routine contracts. Eight existing GEEQU/GEEQUB rows normalized, denominator unchanged. Native20and4separateexperimentalrobustalgorithms retain their prior limited acceptance. Earlier state preserved in geequ-programme-records-01/state-before.json.",
-    "unregistered_packed_operations_with_scoped_tests": 4,
-    "experimental_first_party_robust_ppsvx_algorithms": 4,
-    "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
-    "in_progress_reference": 330,
-    "not_started_reference": 1711,
-    "mapped_contracts": 100,
     "blocked_reference": 0,
+    "not_started_reference": 1711,
+    "in_progress_reference": 326,
+    "incomplete_reference": 2037,
+    "implemented_unverified_reference": 76,
+    "implemented_unverified_native": 0,
     "discovered": 3551,
-    "excluded": 1438,
-    "incomplete_reference": 2041,
-    "profile_complete": false,
-    "required": 2113,
-    "registered_callable_reference_operations": 72,
-    "registered_reference_operations_total": 402,
-    "registered_reference_operations": 402
+    "profile_complete": false
   },
   "blockers": [
     {
@@ -3138,16 +3123,16 @@
     "latest_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 100,
-      "callable_reference": 72,
+      "mapped_contracts": 104,
+      "callable_reference": 76,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
       "not_started_reference": 1711,
-      "in_progress_reference": 330,
-      "incomplete_reference": 2041,
-      "implemented_unverified_reference": 72,
+      "in_progress_reference": 326,
+      "incomplete_reference": 2037,
+      "implemented_unverified_reference": 76,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3577,22 +3562,22 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 100,
-      "callable_reference": 72,
+      "mapped_contracts": 104,
+      "callable_reference": 76,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
       "not_started_reference": 1711,
-      "in_progress_reference": 330,
-      "incomplete_reference": 2041,
-      "implemented_unverified_reference": 72,
+      "in_progress_reference": 326,
+      "incomplete_reference": 2037,
+      "implemented_unverified_reference": 76,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
     },
     "gecon": {
-      "state": "bounded_local_engineering_delivered_hosted_pending_numerical_acceptance_blocked",
+      "state": "bounded_local_engineering_and_hosted_audit_complete_numerical_acceptance_blocked",
       "base_head": "674c09872e1717891acaab885623b3c33075ccd7",
       "review": "programs/lapack-array-io/lu-condition-review.md",
       "prerequisites": "master-continuation-20260910-01/gecon-continuation-contract-01/review.json",
@@ -3602,7 +3587,6 @@
       "strict": "master-continuation-20260910-01/gecon-modes-style-01",
       "mathematical": "Fourgenuinefailedprocesses16assertions/profile,minnormal/1024scalarLU=ANORMrequiresRCOND1at32epsilon,ASC/directGECONreturn0INFO0. Onealreadyrecordedguardedinverse-scalerestorationcause;2minnormalcontrolpasses. No numerical waiver/providerchange.",
       "remaining": [
-        "actual delivered revision hosted completion audit",
         "numerical strategy, unavailable wider provider environments, full programme requirements"
       ],
       "next_family": "P04.required.geequ and P04.required.geequb; eight existing entries, preserved typed review and finite evidence gaps",
@@ -3621,11 +3605,12 @@
         "ci": 34641336597,
         "family": 34641336577,
         "codeql": 34641336612,
-        "latest_read": "gecon-hosted-read-02:allinprogress"
-      }
+        "latest_read": "gecon-hosted-read-05:CI19/19pass,CodeQLpass;fourfamilyprofiles197/226with29mathfailures,previous25outputsexact,new4GECON16assertionsmatchlocal;provider111/fivePTexamplespass"
+      },
+      "hosted_audit": "master-continuation-20260910-01/gecon-hosted-audit-01/audit.json"
     },
     "geequ": {
-      "state": "bounded_local_engineering_complete_numerical_acceptance_blocked_delivery_pending",
+      "state": "bounded_local_engineering_pushed_hosted_pending_numerical_acceptance_blocked",
       "base_head": "a1ca705174e8e4f755c5a97a44efc488e5ab0ae6",
       "review": "programs/lapack-array-io/lu-equilibration-review.md",
       "prerequisites": "master-continuation-20260910-01/geequ-continuation-contract-01/review.json",
@@ -3636,7 +3621,7 @@
       "strict": "geequ-modes-style-02/modes plus unchanged geequ-modes-style-01/observation",
       "numerical": "LP64GEEQUBnonzero3x2fixture at2^-140single/2^-1050double:fourprocesses88assertions,fourscalarfixtures8layoutexecutions,oneknownpositive-power-before-reciprocal libgccoverflowcause. GEEQUbothABIs/GEEQUBtrueILP64pass. Same16epsilonoracle, provider/runtime unchanged; needseparatelyauthorizednumerical/providerdecision.",
       "remaining": [
-        "final reviewed feature commit/push and actual hosted checks",
+        "actual hosted audit of pushed45b8bb5",
         "LP64GEEQUB numerical strategy, widerplatform and owner/fullprogramme requirements"
       ],
       "shared_audit": "master-continuation-20260910-01/geequ-shared-audit-01/audit.json",
@@ -3647,7 +3632,52 @@
         "compiled_build_api_test_example_abi_inputs": 1204,
         "scope": "One reviewed existing GEEQU/GEEQUB continuation. Public API and production adapters unchanged; two maintained new test units and first-party fixture/oracle support, test registration/workflow selectors, eight normalized contracts. Static Debug/Release/ASCsanitizer LP64fiveengineeringpass/fourmathfail88assertions;trueILP64ninepass;bothTSanfourpass.48oldordinaryINFO andfouractualinstalledconsumers reused via selectedinputs. Sharednewprofilespending. No numericalacceptance, provider/dependency/runtime/FPchange or native/PPSVXredo."
       },
-      "next_family": "P04.required.gerfs; existing source and typed review in gerfs-continuation-contract-01/review.json, no reimplementation"
+      "next_family": "P04.required.gerfs; existing source and typed review in gerfs-continuation-contract-01/review.json, no reimplementation",
+      "delivery_commit": "45b8bb5073d72afb3af208a25c71c91deb3ed52a",
+      "delivery": "master-continuation-20260910-01/geequ-feature-commit-01",
+      "push": "master-continuation-20260910-01/geequ-feature-push-01",
+      "hosted": {
+        "ci": 34644695593,
+        "codeql": 34644695420,
+        "family": 34644695416,
+        "latest_read": "geequ-hosted-read-01:inprogress"
+      }
+    },
+    "gerfs": {
+      "state": "bounded_local_engineering_complete_delivery_checks_next_numerical_acceptance_blocked",
+      "prerequisite": "master-continuation-20260910-01/gerfs-continuation-prerequisite-01/review.json",
+      "typed_review": "master-continuation-20260910-01/gerfs-continuation-contract-01/review.json",
+      "base_head": "45b8bb5073d72afb3af208a25c71c91deb3ed52a",
+      "source_changes": "Three maintained test/registration files; public API and production adapter unchanged.",
+      "next": "Review/commit tested GERFS delta; ordinary push after prior GEEQU hosted checks finish to preserve those runs. Continue prepared GESVX maintained tests.",
+      "initial_modes": "master-continuation-20260910-01/gerfs-modes-{lp64,ilp64}-01",
+      "initial_observer": "master-continuation-20260910-01/gerfs-observation-{lp64,ilp64}-01",
+      "observer_style_amendment": "master-continuation-20260910-01/gerfs-observer-style-amendment-01",
+      "mathematical": "Four failed processes72assertions perABI;minnormal/1024scalar FERRnonfinite, unchanged64epsilonfiniteweightedestimateoracle. N/T/C,layouts0/15;2minnormalcontrolpasses. OnepreviouslyrecordedunscaledGETRS-before-smallweightcause.",
+      "static_audit": "master-continuation-20260910-01/gerfs-static-audit-02/audit.json",
+      "unchanged_regressions": "master-continuation-20260910-01/gerfs-existing-evidence-reuse-01/audit.json",
+      "installed_reuse": "master-continuation-20260910-01/gerfs-installed-reuse-01/audit.json",
+      "registration": "master-continuation-20260910-01/gerfs-registration-01",
+      "shared_audit": "master-continuation-20260910-01/gerfs-shared-audit-01/audit.json",
+      "frozen_source": {
+        "tree": "7fc407b8993b3e7264e2bb388fee85d04d37cc01",
+        "archive_sha256": "16ab0a71a179826f125b0ac42408b8d0895b19ce39686e1b42831cc1bde0e1a2",
+        "base_head": "45b8bb5073d72afb3af208a25c71c91deb3ed52a",
+        "compiled_build_api_test_example_abi_inputs": 1207,
+        "scope": "One reviewed existing GERFS continuation. Public API and production adapters unchanged; two maintained new test units, test registration/workflow selectors, four normalized contracts192cases each. Static Debug/Release/ASCsanitizer bothABIs fiveengineeringpass/fourmathfail72assertions;bothTSanfourpass.48oldordinaryINFO andfouractualinstalledconsumers reused via selectedinputs. Sharednewprofilespending. No numericalacceptance, provider/dependency/runtime/FPchange or native/PPSVXredo."
+      },
+      "remaining": [
+        "feature delivery and actual hosted checks",
+        "separately authorized numerical strategy, unavailable wider provider environments, full programme requirements"
+      ]
+    },
+    "gesvx": {
+      "state": "typed_review_and_unchanged_regression_reuse_complete_new_modes_source_prepared_uncompiled",
+      "prerequisite": "master-continuation-20260910-01/gesvx-continuation-prerequisite-01/review.json",
+      "typed_review": "master-continuation-20260910-01/gesvx-continuation-contract-01/review.json",
+      "unchanged_regressions": "master-continuation-20260910-01/gesvx-existing-evidence-reuse-01/audit.json",
+      "new_source": "tests/dense_lapack/lu_driver_modes_test.cc; not yet registered, compiled or included in GERFS delivery",
+      "next": "After GERFS delivery commit, register/build new modes, implement calibrated output observer, reuse installed evidence; no public API reimplementation."
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

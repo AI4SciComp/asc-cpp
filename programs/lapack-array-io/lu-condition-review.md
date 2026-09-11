@@ -252,3 +252,15 @@ remain callable-unverified; mathematical acceptance, wider provider platforms
 and owner decisions remain open. The next dependency-ready continuation is
 the existing GEEQU/GEEQUB family, whose prerequisites are recorded in
 `geequ-continuation-prerequisite-01/review.json`.
+
+Feature revision `a1ca705174e8e4f755c5a97a44efc488e5ab0ae6`, tree
+`1097a5f7b4423750c9c0ef2b589884a53a8ad566`, was ordinarily pushed. Fresh
+CI34641336597 passed all 19 jobs and CodeQL34641336612 passed. Hosted merge
+3978a41bb6821ca1765884979b40d8acffe1c696 has the exact same tree. The family
+run34641336577 remains failed: all four profiles pass 197/226 with 29 genuine
+mathematical failures. The previous 25 failed process outputs are identical;
+the four new GECON failures retain 16 assertions and match local raw values.
+The 19 added selectors include 17 GECON processes and two public-header tests.
+All 111 provider checks and five PT public examples pass per profile, with no
+skips. `gecon-hosted-audit-01/audit.json` binds actual IDs and provider/source
+identities. These checks do not certify a later GEEQU/GEEQUB or GERFS revision.
