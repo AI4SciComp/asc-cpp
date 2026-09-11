@@ -1380,8 +1380,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "Deliver locally validated PTCON and continue original PTRFS adapter",
-  "next_action": "Audit four ordinary passes and four required mathematical failures perABI; complete bounded fault/observation/concurrency/strict review and root installed integration. Original lower descriptor semantics preserved by explicit upper-complex conjugate packing.",
+  "active_task": "PTRFS feature synchronization and hosted verification; next PTSV implementation",
+  "next_action": "Commit and ordinarily push the reviewed PTRFS integration; record hosted outcomes for that revision. Continue dependency-ready S/D/C/Z PTSV without waiting for independent numerical/notice decisions.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1821,34 +1821,34 @@
   },
   "counts": {
     "required_denominator": 2113,
-    "specification_mapped": 64,
-    "callable_reference": 36,
+    "specification_mapped": 80,
+    "callable_reference": 52,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
-    "reference_not_started_in_ledger": 1735,
+    "reference_not_started_in_ledger": 1719,
     "reference_in_progress_in_ledger": 342,
     "reference_blocked_in_ledger": 0,
-    "incomplete_reference_contracts": 2077,
+    "incomplete_reference_contracts": 2061,
     "implemented_unverified_native": 0,
-    "implemented_unverified_reference": 36,
+    "implemented_unverified_reference": 52,
     "registered_partial_reference_operations": 342,
     "unregistered_expert_operations_with_scoped_tests": 4,
-    "note": "2113 Reference requirements:36 callable-unverified,342 partial,1735 not started,0 verified;378 registered. GEDMDQ adds four partial rows/2880 legal mode IDs per scalar, not extra catalogue entries. Native20 verified112 modes/1120 class slots and four experimental first-party robust algorithms retain their separate scope.",
+    "note": "2113Reference requirements:52callable-unverified,342partial,1719notstarted,0verified;394registered and80reviewed routine contracts. Implemented-unverified does not mean mathematical acceptance or complete normalized classes. Native20verified112modes/1120classslots and4separate experimental robust algorithms retain their original scope. Current counts derive from ptrfs-registration-02; older top-level counts are retained in ptrfs-root-records-01/state-before.json.",
     "unregistered_packed_operations_with_scoped_tests": 4,
     "experimental_first_party_robust_ppsvx_algorithms": 4,
     "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
     "in_progress_reference": 342,
-    "not_started_reference": 1735,
-    "mapped_contracts": 64,
+    "not_started_reference": 1719,
+    "mapped_contracts": 80,
     "blocked_reference": 0,
     "discovered": 3551,
     "excluded": 1438,
-    "incomplete_reference": 2077,
+    "incomplete_reference": 2061,
     "profile_complete": false,
     "required": 2113,
-    "registered_callable_reference_operations": 36,
-    "registered_reference_operations_total": 378
+    "registered_callable_reference_operations": 52,
+    "registered_reference_operations_total": 394
   },
   "blockers": [
     {
@@ -2542,7 +2542,7 @@
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Audit ptrfs-candidate-{lp64,ilp64}-02/tests.xml and implement remaining fault/observation/concurrency checks; complete PTCON feature synchronization and actual hosted audit.",
+  "next_command": "Commit/push the reviewed PTRFS candidate, then record actual hosted runs; existing numerical/static/shared/package/header executions must not be restarted without changed inputs.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3132,21 +3132,21 @@
       "checks": "CI and CodeQL success. Four family profiles146/155: all6LASET pass,exactlyPT4+SGEDMDQ1+GBRFS4 retained math failures,zero skips. PR merge tree identical to delivered feature tree."
     },
     "p09_stage": "Mixed general/positive, conversions, LACPY, GEDMD and GEDMDQ integrated. GEDMDQ c01abddf has fresh CI/CodeQL passes and family118/123 per ABI with exactly retained PT4 and SGEDMDQ1 failures. Both actual ABIs, six local profiles, real concurrency, relocated install and frozen-source package evidence retained; no global numerical acceptance.",
-    "remaining_actionable": "Complete PTCON affected integration gates and synchronization; continue existing PTRFS/PTSV/PTSVX, remaining P04-P09 coverage, cross-family numerical consolidation and P11 platform admission.",
+    "remaining_actionable": "Complete integrated PTRFS safety/package delivery, actual PTCON/PTRFS hosted evidence, then PTSV/PTSVX and remaining P04-P09/platform/P11 ready queue. Existing numerical/notice decisions do not block unrelated engineering.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 76,
-      "callable_reference": 48,
+      "mapped_contracts": 80,
+      "callable_reference": 52,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1723,
+      "not_started_reference": 1719,
       "in_progress_reference": 342,
-      "incomplete_reference": 2065,
-      "implemented_unverified_reference": 48,
+      "incomplete_reference": 2061,
+      "implemented_unverified_reference": 52,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3314,10 +3314,10 @@
       }
     },
     "ptcon": {
-      "state": "integrated_local_profiles_and_packages_complete_reference_math_failed_delivery_pending",
+      "state": "integrated_and_pushed_hosted_audited_required_math_failed",
       "prerequisites": "master-continuation-20260910-01/ptcon-prerequisite-01/review.json",
       "source": "master-continuation-20260910-01/ptcon-source-01",
-      "next": "Commit/push reviewed PTCON inputs, record fresh hosted revision checks, continue PTRFS safety and installed integration.",
+      "next": "Retain the numerical decision packet; independent PTRFS/PTSV delivery continues.",
       "review": "programs/lapack-array-io/positive-tridiagonal-condition-review.md",
       "root_import": "master-continuation-20260910-01/ptcon-root-import-01/manifest.json",
       "registration": "master-continuation-20260910-01/ptcon-registration-03",
@@ -3339,8 +3339,8 @@
       ],
       "running": [],
       "unexecuted": [
-        "feature synchronization and fresh hosted audit",
-        "wider provider platforms where unavailable"
+        "unavailable wider provider platforms",
+        "numerical acceptance requires explicit strategy for recorded causes"
       ],
       "source_amendments": [
         "master-continuation-20260910-01/ptcon-status-move-amendment-01/identity.json",
@@ -3353,14 +3353,118 @@
         "master-continuation-20260910-01/ptcon-final-static-audit-01/audit.json",
         "master-continuation-20260910-01/ptcon-final-shared-audit-01/audit.json",
         "master-continuation-20260910-01/ptcon-package-audit-01/audit.json"
-      ]
+      ],
+      "delivery_commit": "e8509cc342a86c8904d87daf8e96107acf5d2326",
+      "delivery": "master-continuation-20260910-01/ptcon-synchronization-01",
+      "hosted": {
+        "ci": 34587486556,
+        "family": 34587486569,
+        "codeql": 34587486442,
+        "latest_read": "master-continuation-20260910-01/ptcon-hosted-read-03",
+        "audit": "master-continuation-20260910-01/ptcon-hosted-audit-01/audit.json",
+        "state": "completed:CI and CodeQL success; four family profiles155/168 with PTTRS4/PTCON4/SGEDMDQ1/GBRFS4 required failures, zero skips; provider111/111 each; PTCON raw signatures unchanged"
+      }
     },
     "ptrfs": {
-      "state": "external_original_adapter_both_actual_abi_initial_execution",
-      "review": "master-continuation-20260910-01/ptrfs-prerequisite-01",
-      "next": "Audit four ordinary passes and four required mathematical failures perABI; complete bounded fault/observation/concurrency/strict review and root installed integration. Original lower descriptor semantics preserved by explicit upper-complex conjugate packing.",
+      "state": "local_static_shared_delivery_complete_required_math_failed_feature_sync_pending",
+      "review": "programs/lapack-array-io/positive-tridiagonal-refinement-review.md",
+      "next": "Commit and ordinarily push the reviewed PTRFS integration; record hosted outcomes for that revision. Continue dependency-ready S/D/C/Z PTSV without waiting for independent numerical/notice decisions.",
       "source": "master-continuation-20260910-01/ptrfs-source-01",
-      "candidate": "master-continuation-20260910-01/ptrfs-candidate-{lp64,ilp64}-02"
+      "candidate": "master-continuation-20260910-01/ptrfs-candidate-{lp64,ilp64}-02",
+      "final_external": "master-continuation-20260910-01/ptrfs-final-external-audit-01/audit.json",
+      "root_import": "master-continuation-20260910-01/ptrfs-root-import-01/manifest.json",
+      "registration": "master-continuation-20260910-01/ptrfs-registration-02",
+      "running": [],
+      "unexecuted": [
+        "feature synchronization and fresh hosted verification",
+        "unavailable wider provider platforms",
+        "numerical acceptance requires explicit strategy for two recorded causes"
+      ],
+      "static_audit": "master-continuation-20260910-01/ptrfs-static-profile-audit-01/audit.json",
+      "observer_time_budget": "master-continuation-20260910-01/ptrfs-observer-time-budget-01/review.json",
+      "frozen_source_identity": {
+        "tree": "a5f03f3dc40ff47dde5c36d8e00986b44a304a17",
+        "archive_sha256": "902e4b6f2cf1dab340e932c581ba6db27c33bdf372e51b813beec2af4405fca1",
+        "base_head": "e8509cc342a86c8904d87daf8e96107acf5d2326",
+        "compiled_build_api_test_example_abi_inputs": 1169,
+        "scope": "One final reviewed original PTRFS integration; no provider or numerical source change. Root index unchanged; user instruction files excluded. Static evidence with unchanged C++ and observer-only scheduling companion remains separately indexed."
+      },
+      "shared_status_audit": "master-continuation-20260910-01/ptrfs-shared-status-audit-01/audit.json",
+      "shared_status_audit_sha256": "74d02e65b8ed52710f3f245aeee6c01d0b3dedc9e9a4349295942363f5e07ea7",
+      "shared_runs": [
+        {
+          "run": "ptrfs-shared-debug-lp64-01",
+          "abi": "lp64",
+          "profile": "debug",
+          "state": "completed_with_required_mathematical_failures",
+          "completed": "2026-09-11T12:57:49.380585+00:00",
+          "ctest_exit": 8,
+          "tests": 11,
+          "passed": 7,
+          "failed": 4,
+          "skipped": 0,
+          "failed_assertions": 80,
+          "initial_failure_signatures_equal": true
+        },
+        {
+          "run": "ptrfs-shared-sanitizer-lp64-01",
+          "abi": "lp64",
+          "profile": "sanitizer",
+          "state": "completed_with_required_mathematical_failures",
+          "completed": "2026-09-11T12:58:35.403621+00:00",
+          "ctest_exit": 8,
+          "tests": 11,
+          "passed": 7,
+          "failed": 4,
+          "skipped": 0,
+          "failed_assertions": 80,
+          "initial_failure_signatures_equal": true
+        },
+        {
+          "run": "ptrfs-shared-debug-ilp64-01",
+          "abi": "ilp64",
+          "profile": "debug",
+          "state": "completed_with_required_mathematical_failures",
+          "completed": "2026-09-11T12:57:49.638383+00:00",
+          "ctest_exit": 8,
+          "tests": 11,
+          "passed": 7,
+          "failed": 4,
+          "skipped": 0,
+          "failed_assertions": 80,
+          "initial_failure_signatures_equal": true
+        },
+        {
+          "run": "ptrfs-shared-sanitizer-ilp64-01",
+          "abi": "ilp64",
+          "profile": "sanitizer",
+          "state": "completed_with_required_mathematical_failures",
+          "completed": "2026-09-11T12:58:35.552419+00:00",
+          "ctest_exit": 8,
+          "tests": 11,
+          "passed": 7,
+          "failed": 4,
+          "skipped": 0,
+          "failed_assertions": 80,
+          "initial_failure_signatures_equal": true
+        }
+      ],
+      "unaudited_completed_records": [],
+      "recovery_scope": "Completed outstanding shared TSan and package/installed-header checks; reused all prior completed matching numerical and safety executions. Two required numerical causes remain; no provider or tolerance change.",
+      "final_audits": [
+        "master-continuation-20260910-01/ptrfs-static-profile-audit-01/audit.json",
+        "master-continuation-20260910-01/ptrfs-shared-status-audit-01/audit.json",
+        "master-continuation-20260910-01/ptrfs-shared-tsan-audit-01/audit.json",
+        "master-continuation-20260910-01/ptrfs-fresh-producer-audit-01/audit.json",
+        "master-continuation-20260910-01/ptrfs-package-audit-01/audit.json",
+        "master-continuation-20260910-01/ptrfs-delivery-checks-01/installed-header-audit.json",
+        "master-continuation-20260910-01/ptrfs-delivery-checks-01/unchanged-inputs.json"
+      ]
+    },
+    "ptsv": {
+      "state": "dependency_ready_source_review_complete_implementation_pending",
+      "prerequisites": "master-continuation-20260910-01/ptsv-prerequisite-01/review.json",
+      "next": "Implement the checked four-scalar PTSV driver using real D/lower E, explicit B staging, native N>0 NRHS0 factorization, raw INFO and existing typed FromRaw factor reuse."
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

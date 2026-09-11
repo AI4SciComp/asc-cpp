@@ -83,6 +83,7 @@ asc/dense/providers/lapack_mixed_general.h|asc_dense_lapack
 asc/dense/providers/lapack_mixed_positive.h|asc_dense_lapack
 asc/dense/providers/lapack_positive_tridiagonal.h|asc_dense_lapack
 asc/dense/providers/lapack_positive_tridiagonal_condition.h|asc_dense_lapack
+asc/dense/providers/lapack_positive_tridiagonal_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_precision_conversion.h|asc_dense_lapack
 asc/dense/providers/lapack_qr.h|asc_dense_lapack
 asc/dense/providers/lapack_rank_revealing.h|asc_dense_lapack

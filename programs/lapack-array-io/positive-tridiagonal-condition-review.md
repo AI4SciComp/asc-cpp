@@ -167,3 +167,17 @@ The accepted native20/array-I/O milestone remains
 slice nor the separate opt-in RobustPpsvx capability closes full-program or
 Reference numerical acceptance. The next dependency-ready work is PTRFS,
 followed by PTSV/PTSVX and the existing remaining queue.
+
+
+## Completed hosted evidence
+
+The preserved final runs for commit `e8509cc342a86c8904d87daf8e96107acf5d2326`
+are now audited in `master-continuation-20260910-01/ptcon-hosted-audit-01/audit.json`.
+CI run 34587486556 and CodeQL run 34587486442 passed. Family run 34587486569
+failed its required mathematical gates: each of four static/shared actual-ABI
+profiles passed 155 of 168 tests, with PTTRS four, PTCON four, SGEDMDQ one and
+GBRFS four failed processes, and zero skips. Each pinned provider suite passed
+111 of 111. PTCON passed its seven ordinary/control/example tests and retained
+four mathematical failures with all 32 original observations unchanged. This
+evidence belongs to the PTCON revision and does not certify the later PTRFS
+source or grant mathematical acceptance. No hosted job was rerun for this audit.

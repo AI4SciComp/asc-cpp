@@ -172,6 +172,7 @@ capabilities:
       - "include/asc/dense/providers/lapack_mixed_positive.h"
       - "include/asc/dense/providers/lapack_positive_tridiagonal.h"
       - "include/asc/dense/providers/lapack_positive_tridiagonal_condition.h"
+      - "include/asc/dense/providers/lapack_positive_tridiagonal_refinement.h"
       - "include/asc/dense/providers/lapack_precision_conversion.h"
       - "include/asc/dense/providers/lapack_matrix_copy.h"
       - "include/asc/dense/providers/lapack_matrix_scale.h"
