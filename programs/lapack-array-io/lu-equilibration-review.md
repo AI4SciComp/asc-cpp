@@ -1,5 +1,8 @@
 # Reference general-matrix equilibration evidence
 
+The historical integration-pending statements below are superseded by the
+[current continuation](#master-continuation-normalized-geequgeequb-modes).
+
 This bounded slice implements actual S/D/C/Z GEEQU and GEEQUB, in both
 column-major and row-major layouts. It does not close P04, the full provider,
 owner/license approval, or the unmet LP64 extreme numerical gate below.
@@ -222,3 +225,125 @@ equilibration source/test files, then rerunning installed/component and full
 profile gates. Their local verification is recorded separately, not attributed
 to the earlier ordinary-LU/P10 checkpoints. This bounded correction does not
 satisfy the distinct LP64 GEEQUB subnormal mathematical-success gate above.
+
+## Master continuation: normalized GEEQU/GEEQUB modes
+
+All eight public scalar routines and their installed declarations already exist
+in the integration tree. This continuation retains those adapters and adds the
+missing bounded concurrency/output-observation evidence and a maintained true
+mathematical gate. `master-continuation-20260910-01/geequ-continuation-contract-01`
+binds the eight inspected pinned definitions and 17 unchanged selected inputs.
+There is no FACT, UPLO, factor-reuse token or Hermitian-only interpretation.
+S/D input storage is float/double; C/Z is complex float/double. All five output
+operands use the underlying real scalar, including the three statistics.
+Complex magnitudes use CABS1. The eight modes per scalar/routine are two layouts
+and four shape paths: both empty, rows empty, columns empty and active rectangle.
+
+The original workspace, metadata-only preflight, aliasing, INFO and partial
+validity contracts above remain unchanged. Column-major has no numerical work;
+row-major packs the original matrix into M*N explicit live scalar entries.
+Plans bind actual native LDA separately from the original ASC row stride.
+M+N remains bounded for native INFO. No numeric old R/C/statistics values are
+inputs. On local completion only statistics are written; R/C remain untouched.
+
+The existing first-party Sample and ExpectedScales template blocks are retained
+unchanged in the new test-only support header, with their origin hash in
+`geequ-continuation-contract-01/fixture-oracle-origin.json`. The original test
+unit remains unchanged and independently compiled. This reuses the same
+nonzero fixture, binary-decomposition quantization and 16-epsilon scale oracle;
+no upstream algorithm was copied and no tolerance was relaxed. In particular,
+the oracle does not replace GEEQUB's quantized AMAX with the original maximum.
+
+The four new concurrency processes each cover both routines and layouts. Four
+workers use independent matrices, scales, statistics, explicit workspace,
+reports and serial provider contexts, sharing only a matching immutable plan.
+Each makes 32 real-provider calls on independently scaled ordinary fixtures
+and checks the existing scale equations. Final outcomes differ between an
+exact zero row, exact zero column, stale plan and success, checking private
+INFO/validity/index and output isolation. No mutable fault or allocation-audit
+callback participates in the threads. Both static TSan profiles pass 4/4;
+provider/runtime objects are not instrumented.
+
+The calibrated observer passes 592 controls over 64 scalar/routine/layout/shape
+cases: 320 intentional old-output reads, 64 restored writes, 64 protected
+queries, 64 stale plans, eight exact one-byte-short packing regions, 48 local
+completions, 16 validated native entries and eight legitimate row-packing
+input reads. Initialized, aligned containing arrays have valid object lifetimes;
+PROT_NONE pages and default terminating child signals observe attempted access.
+Each of the three statistics members is calibrated separately while sharing its
+containing object's page. Exact SDK-signature wrappers validate dimensions,
+LDA, routine and every output address before restoring access and entering the
+real provider. Metadata remains readable. Local statistics stay writable and
+their write-only completion is source-reviewed; local R/C are protected.
+This observes executed ASC handling before native entry, not foreign code.
+
+Initial compile attempts in both ABIs and the first modes strict check failed
+because the reused private test helper needs the generated configuration include
+path. `geequ-test-include-amendment-01` preserves that attempt and the CMake-only
+correction. Both new units now pass strict analysis; the unchanged observer's
+first strict result is reused. No mathematical or production C++ change was
+made for this correction.
+
+| Cause | Fixture and unchanged requirement | Actual result | Disposition |
+| --- | --- | --- | --- |
+| LP64 radix power-helper intermediate overflow | Nonzero 3-by-2 S/D/C/Z fixture from Sample, scaled by 2^-140 for S/C or 2^-1050 for D/Z, both layouts. Require successful equilibration and the existing 16-epsilon scale/statistic equations. | LP64 GEEQUB returns INFO=1, R=0, AMAX=0; C and both ratios retain initialized sentinels. The already recorded direct calls and helper disassembly reproduce this. LP64 libgcc forms the positive power before reciprocal; true ILP64's libgfortran power helper inverts the base first and succeeds. GEEQU succeeds in both ABIs. | Preserve the mathematical failure. A separately authorized provider/compiler-runtime strategy or explicitly named first-party radix evaluation is needed; no hidden remapping, provider patch, runtime change, waiver or numerical promotion. |
+
+Each LP64 profile has four failed mathematical processes, 88 assertions, four
+scalar fixtures and eight layout executions, sharing this one recorded cause.
+The extra assertions expose the already required scale and diagnostic outputs;
+they are not additional independent bugs. The maintained failure is separate
+from the existing provider-fidelity test. The source/fixture/direct evidence in
+the earlier section remains the cause evidence; no large reproduction sweep
+was restarted.
+
+Static Debug/Release/ASC-only ASan+UBSan in actual LP64 each pass the five new
+engineering checks and retain the four mathematical failures. True ILP64 passes
+all nine new checks in each profile. Both static TSan profiles pass all four
+concurrency processes. `geequ-static-audit-01/audit.json` records exact selected
+IDs, statuses, no skips and identical raw mathematical observations across
+profiles. Sanitizer instrumentation covers ASC/test code, not provider/runtime.
+
+Forty-eight existing ordinary/INFO processes are reused across those six static
+profiles. The selected compiler dependency closure has 41 first-party files;
+40 are byte-identical and the remaining difference is exactly four previously
+reviewed GESV RHS documentation lines. All six prepared provider archives were
+already proved identical by the prior GECON comparison, with no subsequent
+provider/compiler/runtime change. `geequ-existing-evidence-reuse-03/audit.json`
+retains exact IDs and records. Attempts01/02 failed in the audit parser's
+comment text and old record-schema assumptions; no tests were rerun for them.
+
+Four actual installed/relocated consumers are reused from the fresh static/shared
+LP64/ILP64 PTSVX packages. Actual GEEQU/GEEQUB calls are in
+`tests/dense_lapack/installed_lu/main.cc`, executable `installed_lu`, test
+`installed_lu_families`; the initial task pointer incorrectly called this the
+advanced LU consumer. Both routines, all four scalars and both layouts check an
+independent diagonal system's exact scales and diagnostics. Six source inputs
+are unchanged, 16 public functions are exported per package, and compile/runtime
+inspection confirms public relocated includes and the intended separate provider
+closure. `geequ-installed-reuse-01/audit.json` binds the actual executions.
+
+All shared Debug/Release/ASC-only ASan+UBSan profiles are complete. LP64 passes
+13/17 with the same four mathematical failures and 88 assertions; true ILP64
+passes 17/17. Both shared TSan profiles pass 4/4. The eight-profile audit in
+`geequ-shared-audit-01/audit.json` preserves exact IDs, exit statuses, no skips
+and identical raw mathematical observations. Shared observation uses the
+existing test-only DSO of production ASC objects; the actual installed exported
+DSO remains unwrapped. No foreign instrumentation is claimed.
+
+The frozen source is tree `f425f42893786c76280a58a465528252e3c891a5`, archive
+SHA-256 `553aa16cd04f1225b9b450e2ca2763552827ba2ab30e0c928dc85b6a72ed09f7`,
+based on feature revision a1ca7051. The 1,204 recorded product/build/test/example
+inputs are separate from final narrative changes. Both new test units passed
+strict analysis, and scoped coverage/backlog, format, links and whitespace
+checks passed. No public declaration, production source, export, ABI or
+documentation-generation input changed; prior matching package/header/Doxygen
+evidence remains reusable for those inputs. A later feature commit still needs
+its own hosted checks.
+
+All eight rows are callable-unverified with normalized modes; no Reference row
+is promoted to verified. Native20/array-I/O and the separate robust PPSVX
+milestone remain unchanged. Wider provider environments and owner decisions
+remain separate. The next ready existing family is GERFS, with its typed
+review in `gerfs-continuation-contract-01/review.json`. Its query legitimately
+validates raw pivot values, and X is an input/output. Those reads must be
+distinguished from old FERR/BERR reads when adding its missing observation.
