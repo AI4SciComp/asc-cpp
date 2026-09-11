@@ -17,6 +17,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_positive_tridiagonal.h"
 #include "asc/dense/providers/lapack_positive_tridiagonal_condition.h"
+#include "normal_return_guard.h"
 
 namespace {
 constexpr auto kHost = asc::MemorySpace::kHost;
@@ -194,6 +195,7 @@ bool Run(const asc::ReferenceLapackProvider& provider) {
 }
 }  // namespace
 int main() {
+  const asc_lapack_test::NormalReturnGuard normal_return;
   const auto provider = Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));
   return Run<float>(provider) && Run<double>(provider) &&

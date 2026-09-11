@@ -1380,8 +1380,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "PTRFS feature synchronization and hosted verification; next PTSV implementation",
-  "next_action": "Commit and ordinarily push the reviewed PTRFS integration; record hosted outcomes for that revision. Continue dependency-ready S/D/C/Z PTSV without waiting for independent numerical/notice decisions.",
+  "active_task": "PTSV candidate safety/strict review and narrow PT consumer guard synchronization",
+  "next_action": "Finish native fault/publication tests and metadata observation, strict review, then integrate and verify affected actual-ABI profiles. Do not reimplement PTTRF/PTTRS or repeat PPSVX.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2542,7 +2542,7 @@
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Commit/push the reviewed PTRFS candidate, then record actual hosted runs; existing numerical/static/shared/package/header executions must not be restarted without changed inputs.",
+  "next_command": "Inspect preserved ptsv-candidate-{lp64,ilp64}-04 records before any new execution; finish the exact pending observation/strict/integration steps. Guard amendment synchronization and hosted outcomes remain separate.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3366,9 +3366,9 @@
       }
     },
     "ptrfs": {
-      "state": "local_static_shared_delivery_complete_required_math_failed_feature_sync_pending",
+      "state": "integrated_and_pushed_hosted_audited_required_math_failed_consumer_guard_amendment_pending",
       "review": "programs/lapack-array-io/positive-tridiagonal-refinement-review.md",
-      "next": "Commit and ordinarily push the reviewed PTRFS integration; record hosted outcomes for that revision. Continue dependency-ready S/D/C/Z PTSV without waiting for independent numerical/notice decisions.",
+      "next": "Preserve numerical decision packet and completed delivery; verify the narrow public-consumer normal-return amendment on its own revision.",
       "source": "master-continuation-20260910-01/ptrfs-source-01",
       "candidate": "master-continuation-20260910-01/ptrfs-candidate-{lp64,ilp64}-02",
       "final_external": "master-continuation-20260910-01/ptrfs-final-external-audit-01/audit.json",
@@ -3376,9 +3376,8 @@
       "registration": "master-continuation-20260910-01/ptrfs-registration-02",
       "running": [],
       "unexecuted": [
-        "feature synchronization and fresh hosted verification",
-        "unavailable wider provider platforms",
-        "numerical acceptance requires explicit strategy for two recorded causes"
+        "numerical acceptance requires strategy for two recorded causes",
+        "unavailable wider provider platforms"
       ],
       "static_audit": "master-continuation-20260910-01/ptrfs-static-profile-audit-01/audit.json",
       "observer_time_budget": "master-continuation-20260910-01/ptrfs-observer-time-budget-01/review.json",
@@ -3459,12 +3458,31 @@
         "master-continuation-20260910-01/ptrfs-package-audit-01/audit.json",
         "master-continuation-20260910-01/ptrfs-delivery-checks-01/installed-header-audit.json",
         "master-continuation-20260910-01/ptrfs-delivery-checks-01/unchanged-inputs.json"
-      ]
+      ],
+      "delivery_commit": "6739b63f59b2d873471399ba2bafb7483a28798e",
+      "hosted": {
+        "ci": 34620080987,
+        "family": 34620080990,
+        "codeql": 34620081027,
+        "audit": "master-continuation-20260910-01/ptrfs-hosted-audit-01/audit.json",
+        "state": "completed:CI19jobs andCodeQL pass;fourfamilyprofiles164/181 with17requiredmathfailures andzero skips;provider111/111;PTRFS80assertions/32rawsignaturesunchanged"
+      }
     },
     "ptsv": {
-      "state": "dependency_ready_source_review_complete_implementation_pending",
+      "state": "external_candidate04_fault_concurrency_and_public_example_pass_required_math_failed",
       "prerequisites": "master-continuation-20260910-01/ptsv-prerequisite-01/review.json",
-      "next": "Implement the checked four-scalar PTSV driver using real D/lower E, explicit B staging, native N>0 NRHS0 factorization, raw INFO and existing typed FromRaw factor reuse."
+      "next": "Finish native fault/publication tests and metadata observation, strict review, then integrate and verify affected actual-ABI profiles. Do not reimplement PTTRF/PTTRS or repeat PPSVX.",
+      "source": "master-continuation-20260910-01/ptsv-source-01",
+      "initial_audit": "master-continuation-20260910-01/ptsv-initial-audit-01/audit.json",
+      "latest_executed": "master-continuation-20260910-01/ptsv-candidate-{lp64,ilp64}-04",
+      "scope": "Both actual ABI candidate04sixof10testprocessespass; fourrequiredmathfailures24assertions unchanged. Ordinarydriver/factorreuse/nativeNRHS0/concurrency/aliases/counts/publicexample and176TLSfaultprofiles pass. Observation/strict/integration/fullprofile/packagegates remain pending.",
+      "latest_audit": "master-continuation-20260910-01/ptsv-fault-concurrency-audit-01/audit.json"
+    },
+    "pt_consumer_return_guard": {
+      "state": "local_affected_consumers_and_strict_checks_passed_feature_sync_pending",
+      "review": "master-continuation-20260910-01/pt-consumer-return-guard-amendment-01/audit.json",
+      "index": "master-continuation-20260910-01/pt-consumer-return-guard-index-01",
+      "scope": "Three maintained PT/PTCON/PTRFS example mains add exact local existing guards. Twelve copied installed consumers pass against unchanged actual static/shared ABI libraries;3strict units/format/index/backlog pass.1166 frozen inputs unchanged;only3example mains plus3newhelperfiles differ. Fresh hosted revision pending."
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

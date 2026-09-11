@@ -178,3 +178,30 @@ hosted results are recorded against their actual revision separately. The next
 dependency-ready implementation is S/D/C/Z PTSV; its existing prerequisite review
 is `ptsv-prerequisite-01/review.json`. Neither the PTRFS numerical decision nor
 the pending notice packet blocks that independent first-party adapter work.
+
+
+## Hosted result and bounded consumer correction
+
+Commit `6739b63f59b2d873471399ba2bafb7483a28798e` completed CI run
+34620080987 (19 successful jobs) and CodeQL run 34620081027. Family run
+34620080990 executes 181 tests in each static/shared actual-ABI profile:
+164 pass, 17 required mathematical processes fail, and none skip. The failures
+are PTTRS four, PTCON four, PTRFS four, SGEDMDQ one and GBRFS four. Both new
+PTRFS public-header tests are included alongside the 11 family processes.
+All 32 PTRFS numerical observations remain identical; each provider passes
+111/111. `ptrfs-hosted-audit-01/audit.json` preserves these exact outcomes.
+
+Subsequent review found that the PT, PTCON and PTRFS public-example mains
+lacked the existing normal-return guard. Their observed solutions completed,
+but future Fortran STOP/exit(0) could otherwise masquerade as success. Each
+example now carries an exact local copy of the unchanged test guard and creates
+it first in main, with no private source-tree include dependency. The unchanged
+guard calibration covers real pinned STOP, exit(0) and ordinary return.
+`pt-consumer-return-guard-amendment-01` records the preserved original sources,
+format correction and three strict passes. All 12 copied installed consumers
+pass against the unchanged relocated static/shared actual-ABI libraries.
+Only three example mains and three local helper headers change; 1,166 other
+frozen build/API/test/package/ABI inputs remain identical. Current artifact
+indices change for 16 PT routine rows under a new explicit baseline bridge;
+contracts, route states, modes, historical executions and all native20 rows
+remain unchanged. The later guard revision needs its own hosted evidence.
