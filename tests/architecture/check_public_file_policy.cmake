@@ -57,6 +57,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_positive_tridiagonal_condition.h
   include/asc/dense/providers/lapack_positive_tridiagonal_refinement.h
   include/asc/dense/providers/lapack_positive_tridiagonal_driver.h
+  include/asc/dense/providers/lapack_positive_tridiagonal_expert.h
   include/asc/dense/providers/lapack_cholesky_packed_robust.h
   include/asc/dense/providers/lapack_qr.h
   include/asc/dense/providers/lapack_cholesky_condition.h
@@ -195,6 +196,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_positive_tridiagonal_condition.cc
   src/dense/lapack/reference_positive_tridiagonal_refinement.cc
   src/dense/lapack/reference_positive_tridiagonal_driver.cc
+  src/dense/lapack/reference_positive_tridiagonal_expert.cc
   src/dense/lapack/reference_qr.cc
   src/dense/lapack/reference_cholesky_condition.cc
   src/dense/lapack/reference_cholesky_driver.cc

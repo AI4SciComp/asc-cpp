@@ -9,7 +9,7 @@
         "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
         "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
         "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "mapping_sha256": "59776344fa05d031a60cd29fd083c16206136c821016bcbda7cee5345f25c877",
+        "mapping_sha256": "7c87790d4b6334004c5ad90824ee7151bb012a63f5f89b1050d48e10621ff5db",
         "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
         "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
       },
@@ -17145,7 +17145,7 @@
         "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
         "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
         "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-        "mapping_sha256": "59776344fa05d031a60cd29fd083c16206136c821016bcbda7cee5345f25c877",
+        "mapping_sha256": "7c87790d4b6334004c5ad90824ee7151bb012a63f5f89b1050d48e10621ff5db",
         "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
       },
       "configuration": {
@@ -19064,7 +19064,7 @@
         "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
         "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
         "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-        "mapping_sha256": "59776344fa05d031a60cd29fd083c16206136c821016bcbda7cee5345f25c877",
+        "mapping_sha256": "7c87790d4b6334004c5ad90824ee7151bb012a63f5f89b1050d48e10621ff5db",
         "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
       },
       "configuration": {
@@ -20976,13 +20976,13 @@
       ]
     }
   ],
-  "note": "Schema2 preserves the native20 execution source and adds explicitly partial Reference observations without verification credit. Prior schema1 ledger context (historical): Only the20 native routes have normalized executed evidence. Reference registrations remain partial and all2113 requirements remain incomplete. Raw logs/builds stay external; the retained candidate03 input bridge is embedded in the hashed normalized artifact. PT extension: the index mapping identity was extended after an exact unchanged native20 row/artifact comparison. docs/contracts/lapack-pt-native-evidence-extension.json identifies the complete original record in the baseline commit and retained external copy, with its execution identity. No later whole-tree test is claimed. Mixed-general index extension: two new Reference rows, unchanged native20 rows/52 implementation artifacts; prior exact normalized evidence retained at the baseline commit and in the chained compact extension. Original execution identity is preserved, not rerun. Mixed-general index extension: two new Reference rows, unchanged native20 rows/52 implementation artifacts; prior exact normalized evidence retained at the baseline commit and in the chained compact extension. Original execution identity is preserved, not rerun. Basic Reference LU delivery index extension preserves native20 contracts/artifacts/routes and original execution identity. Chained prior records remain exact; no later whole-tree execution is inferred. Four precision-conversion Reference rows extend the index only; native20 source/routes/contracts and original execution commit/tree are unchanged. Chained exact prior records remain preserved. Four matrix-copy Reference rows extend the index only; native20 source/routes/contracts and original execution commit/tree are unchanged. Chained exact prior records remain preserved. Four GEDMD Reference rows extend the index only; native20 source/routes/contracts and original execution commit/tree are unchanged. Chained exact prior records remain preserved. Four GEDMDQ Reference rows extend the index only; native20 source/routes/contracts and original execution commit/tree are unchanged. Chained exact prior records remain preserved. Four LASCL Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Four LASET Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Four PTCON Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Four PTRFS Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Current PT consumer artifact indices include exact local normal-return guards under a schema2 baseline bridge; previous source/provider identities and numerical outcomes are preserved. Four PTSV Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged.",
+  "note": "Schema2 preserves the native20 execution source and adds explicitly partial Reference observations without verification credit. Prior schema1 ledger context (historical): Only the20 native routes have normalized executed evidence. Reference registrations remain partial and all2113 requirements remain incomplete. Raw logs/builds stay external; the retained candidate03 input bridge is embedded in the hashed normalized artifact. PT extension: the index mapping identity was extended after an exact unchanged native20 row/artifact comparison. docs/contracts/lapack-pt-native-evidence-extension.json identifies the complete original record in the baseline commit and retained external copy, with its execution identity. No later whole-tree test is claimed. Mixed-general index extension: two new Reference rows, unchanged native20 rows/52 implementation artifacts; prior exact normalized evidence retained at the baseline commit and in the chained compact extension. Original execution identity is preserved, not rerun. Mixed-general index extension: two new Reference rows, unchanged native20 rows/52 implementation artifacts; prior exact normalized evidence retained at the baseline commit and in the chained compact extension. Original execution identity is preserved, not rerun. Basic Reference LU delivery index extension preserves native20 contracts/artifacts/routes and original execution identity. Chained prior records remain exact; no later whole-tree execution is inferred. Four precision-conversion Reference rows extend the index only; native20 source/routes/contracts and original execution commit/tree are unchanged. Chained exact prior records remain preserved. Four matrix-copy Reference rows extend the index only; native20 source/routes/contracts and original execution commit/tree are unchanged. Chained exact prior records remain preserved. Four GEDMD Reference rows extend the index only; native20 source/routes/contracts and original execution commit/tree are unchanged. Chained exact prior records remain preserved. Four GEDMDQ Reference rows extend the index only; native20 source/routes/contracts and original execution commit/tree are unchanged. Chained exact prior records remain preserved. Four LASCL Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Four LASET Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Four PTCON Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Four PTRFS Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Current PT consumer artifact indices include exact local normal-return guards under a schema2 baseline bridge; previous source/provider identities and numerical outcomes are preserved. Four PTSV Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged. Four PTSVX Reference rows extend only the current index under a schema2 baseline bridge; all existing executed source/provider identities and outcomes remain unchanged.",
   "expected_identities": {
     "native-installed-candidate03": {
       "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
       "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
       "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "mapping_sha256": "59776344fa05d031a60cd29fd083c16206136c821016bcbda7cee5345f25c877",
+      "mapping_sha256": "7c87790d4b6334004c5ad90824ee7151bb012a63f5f89b1050d48e10621ff5db",
       "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
       "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
     },
@@ -20991,7 +20991,7 @@
       "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
       "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
       "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-      "mapping_sha256": "59776344fa05d031a60cd29fd083c16206136c821016bcbda7cee5345f25c877",
+      "mapping_sha256": "7c87790d4b6334004c5ad90824ee7151bb012a63f5f89b1050d48e10621ff5db",
       "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
     }
   },
@@ -21027,6 +21027,10 @@
     {
       "path": "docs/contracts/lapack-positive-tridiagonal-driver-evidence-extension.json",
       "sha256": "18eac6524445842697eec2b3e12e1f0ec477938ec5f2d0d412e8fd9093eb87f2"
+    },
+    {
+      "path": "docs/contracts/lapack-positive-tridiagonal-expert-evidence-extension.json",
+      "sha256": "dbf2b918969c605cd355d26d5e4144b8eb8f00a9846a387b254dd37bde4eb4dc"
     }
   ]
 }

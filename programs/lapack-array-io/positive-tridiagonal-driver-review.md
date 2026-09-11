@@ -186,3 +186,20 @@ complete normalized remaining programme evidence, unavailable provider
 platforms and owner decisions remain separate obligations. PTSVX is the next
 existing dependency-ready family; its prerequisite/source review is retained
 in `ptsvx-prerequisite-01`, with no implementation credit yet.
+
+
+Fresh hosted PTSV evidence is now complete for integrated revision
+8e3123ff0122735f9835bc6718e39fed4b817b2f. CI34629605228 passes all19 jobs,
+including the documentation correction; CodeQL34629605266 passes. Selected
+family34629605245 remains failed with four profiles173/194 and exactly21
+required mathematical failures. All prior17 failure signatures are unchanged;
+PTSV adds4processes24assertions/profile. Each provider passes111/111 and all16
+PT-family public examples pass. Zero skips occur. The actual PR merge checkout
+4d5a7487c711d9461f02f5150564d2f252962874 has tree
+49bca18e94fc2e486bf4158c072a928543c116e3, identical to the feature revision.
+The raw records and exact comparison are in ptsv-hosted-artifacts-01,
+ptsv-hosted-audit-01 and ptsv-hosted-source-identity-01. These results supersede
+only the earlier pending-hosted pointer, not the preserved historical failures
+or the incomplete numerical acceptance. Draft47 was updated from these records.
+PTSVX has since reached reviewed external checks and local root integration;
+its own review/state records describe the still-running verification.

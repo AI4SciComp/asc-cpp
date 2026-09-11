@@ -87,6 +87,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_positive_tridiagonal_condition.h
   include/asc/dense/providers/lapack_positive_tridiagonal_refinement.h
   include/asc/dense/providers/lapack_positive_tridiagonal_driver.h
+  include/asc/dense/providers/lapack_positive_tridiagonal_expert.h
   include/asc/dense/providers/lapack_cholesky_packed_robust.h
   include/asc/dense/providers/lapack_qr.h
   include/asc/dense/providers/lapack_cholesky_condition.h

@@ -20,6 +20,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_condition_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_refinement_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_driver_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_expert_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/mixed_general_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/mixed_positive_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/general_lu_tests.cmake")
@@ -857,6 +858,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_positive_tridiagonal_condition.h
     lapack_positive_tridiagonal_refinement.h
     lapack_positive_tridiagonal_driver.h
+    lapack_positive_tridiagonal_expert.h
     lapack_tridiagonal.h lapack_tridiagonal_condition.h lapack_tridiagonal_driver.h lapack_tridiagonal_refinement.h
     lapack_cholesky_band_condition.h
     lapack_cholesky_band_driver.h
