@@ -97,4 +97,4 @@ execution commit/tree, covered cases and results are preserved. A later routine
 extension must update all named mapping-index expectations together without
 rewriting the underlying execution source identities.
 
-The initial Reference use is the [LU evidence review](../../programs/lapack-array-io/lu-execution-evidence-review.md).
+The initial Reference use is the [LU evidence review](https://github.com/AI4SciComp/asc-cpp/blob/2814b1a21edda2f006b08fc1d80578513ba795b3/programs/lapack-array-io/lu-execution-evidence-review.md).
