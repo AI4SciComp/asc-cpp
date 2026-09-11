@@ -1,5 +1,10 @@
 function(_asc_dense_lapack_configure_test target)
   target_link_libraries("${target}" PRIVATE ASC::dense_lapack)
+  if(BUILD_SHARED_LIBS)
+    # Private direct-provider oracles need their own explicit link dependency.
+    # Public installed consumers continue to link only exported ASC targets.
+    target_link_libraries("${target}" PRIVATE ASC_INTERNAL_LAPACK::reference)
+  endif()
   asc_target_enable_cxx20(TARGET "${target}")
   if(ASC_CPP_WARNINGS_AS_ERRORS)
     asc_target_enable_warnings(TARGET "${target}" AS_ERRORS)
@@ -786,6 +791,8 @@ add_test(NAME asc_cpp.dense_lapack.configuration_gates
     "-DASC_CPP_TEST_WORKSPACE_GUARD:FILEPATH=${ASC_CPP_TEST_WORKSPACE_GUARD}"
     "-DASCCMAKE_DIR:PATH=${ASCCMake_DIR}"
     "-DCXX_COMPILER:FILEPATH=${CMAKE_CXX_COMPILER}"
+    "-DC_COMPILER:FILEPATH=${CMAKE_C_COMPILER}"
+    "-DPRODUCER_SHARED:BOOL=${BUILD_SHARED_LIBS}"
     "-DFORTRAN_COMPILER:FILEPATH=${CMAKE_Fortran_COMPILER}"
     "-DFORTRAN_FLAGS:STRING=${CMAKE_Fortran_FLAGS}"
     "-DINTEGER_BITS:STRING=${ASC_CPP_LAPACK_INTEGER_BITS}"
@@ -1573,3 +1580,5 @@ foreach(_scalar IN ITEMS s d c z)
     TARGET asc_dense_lapack_packed_cholesky_refinement_math_test ARGUMENTS "${_scalar}"
     LABELS dense_lapack lapack runtime numerical TIMEOUT 120)
 endforeach()
+
+include("${CMAKE_CURRENT_SOURCE_DIR}/shared_observation.cmake")

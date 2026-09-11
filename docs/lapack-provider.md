@@ -10,12 +10,12 @@ through explicit caller-owned packing. `Gecon`, `Gerfs` and explicit GESVX
 FACT=N/E/F drivers add condition estimation, refinement and expert solves for
 the same four scalars, with independently selected A/AF/B/X layouts. The
 additional Cholesky, QR, least-squares, indefinite, LU helper and Sylvester
-routes below bring the development mapping to 362 partial scalar routines.
-The other 1,751 required
-LAPACK routines
-and shared-facet isolation remain incomplete. Native coverage is separate;
-registration and scoped tests
-do not close the full routine/mode/evidence manifest.
+routes below form part of the current 378 registered Reference routines:
+36 callable-unverified and 342 partial, with 1,735 not started and zero verified
+among the unchanged 2,113 requirements. Native coverage is separate;
+registration and scoped tests do not close the full routine/mode/evidence
+manifest. Linux x86_64 GNU 11.4 static and shared development profiles use
+separately attested matching providers. Wider platform admission remains open.
 
 `lapack_mixed_general.h` adds actual `Dsgesv` and `Zcgesv`, with explicit
 lower-precision scratch and separate ITER/fallback statistics. A/B/X layouts are
@@ -624,7 +624,8 @@ required; this four-route slice does not close P08.
 
 The default is `ASC_CPP_ENABLE_LAPACK=OFF`. The current private ABI proof is
 restricted to Linux x86-64, GCC/GFortran 11.4.0 and the recorded libstdc++ build;
-unknown configurations are rejected. Configure a static build using an exact
+unknown configurations are rejected. Static and shared linkage require their
+separately attested matching provider builds. Configure a static build using an exact
 Reference-LAPACK 3.12.1 prefix and its independently generated build attestation:
 
 ```sh
@@ -646,8 +647,13 @@ local toolchain must be supplied at the initial configuration.
 
 `test-lapack-full` sets `ASC_CPP_LAPACK_REQUIRE_FULL_PROFILE=ON` and fails until
 every required inventory row, mode and evidence gate is complete.
-`test-lapack-shared` currently fails the outstanding shared-isolation gate.
-Neither preset is a successful verification lane merely because it exists.
+`test-lapack-shared` selects shared ASC and requires a shared provider prepared
+with `tools/lapack/prepare_reference.py --linkage shared`. Its existing integer
+width may be overridden explicitly to 64 with the matching true ILP64 provider.
+The preset alone grants no numerical or platform verification credit. Shared
+ASC does not embed a static provider. Installed consumers retain the attested
+provider/runtime link closure and origin-relative ASC lookup; package tests
+clear producer loader variables and reject alternate system providers.
 
 ## Installed C++-only consumers
 
@@ -667,7 +673,7 @@ target_link_libraries(my_solver PRIVATE ASC::dense_lapack)
 
 Installed discovery enables neither C nor Fortran, invokes no Python, downloads
 nothing and searches for no system BLAS/LAPACK. It verifies the prefix-relative
-archive hashes and explicit runtime hashes before creating the private link
+library hashes and explicit runtime hashes before creating the private link
 dependency. An optional unavailable facet is reported not found without making
 a valid base component unavailable. An unrequested facet is never inspected.
 The profile and upstream build identity are available as

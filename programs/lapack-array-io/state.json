@@ -1380,8 +1380,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P11.shared_provider_prerequisites",
-  "next_action": "Finish the scoped evidence-ledger feature commit/push and actual hosted update; continue the available GNU11 Linux shared ASC facet experiment with narrow guards and explicit foreign-symbol isolation. No global family or native acceptance restart.",
+  "active_task": "P11.shared_provider_admission",
+  "next_action": "Freeze the integrated shared-support sources, execute fresh package/profile checks in both actual ABIs, synchronize ordinary feature writes, then implement dependency-ready LASCL and continue the ready queue.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2542,7 +2542,7 @@
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "execution-ledger-tests-05 passes111 tests normally and optimized; execution-migration-04 exactly matches reviewed outputs. Complete final record/style/scoped validator checks and feature synchronization. Shared-provider-link-prerequisite-02 passes both ABIs; no root shared provider has yet been built. Continue from actual public shared-library admission and test-wrapper boundary review, not the already completed provider link probe.",
+  "next_command": "Inspect shared-root-import-01 and execute the frozen integrated source validation; no reapplication of amendment04.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3137,7 +3137,7 @@
       "evidence": "master-continuation-20260910-01/dmdq-hosted-update-02; dmdq-hosted-artifacts-01/junit-audit.json"
     },
     "p09_stage": "Mixed general/positive, conversions, LACPY, GEDMD and GEDMDQ integrated. GEDMDQ c01abddf has fresh CI/CodeQL passes and family118/123 per ABI with exactly retained PT4 and SGEDMDQ1 failures. Both actual ABIs, six local profiles, real concurrency, relocated install and frozen-source package evidence retained; no global numerical acceptance.",
-    "remaining_actionable": "Full Reference mode/class evidence, Linux shared/root provider admission, remaining P05-P09 implementations and historical numerical-cause consolidation. Current ledger mechanism and initial basic-LU partial observations are delivered locally. No provider/notice decision blocks these independent tasks.",
+    "remaining_actionable": "Complete staged shared admission and integrate its reviewed first-party support when gates permit; finish full Reference mode/class evidence, remaining P05-P09 implementations and historical numerical-cause consolidation. S/D/C/Z LASCL symbols and seven source modes are reviewed as a ready P09 continuation. No PPSVX/notice decision blocks these independent tasks.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required_denominator": 2113,
@@ -3171,7 +3171,39 @@
       "registered_reference_operations_total": 378
     },
     "original_supplied_instruction_sha256": "98b9ad9665c2ff0aa75b94f80a5093b1db2a2164cc3c4c511f694044f9be862d",
-    "instruction_normalization": "Four trailing Markdown hard-break spaces removed for repository whitespace policy; original untracked user instruction and external copy preserved."
+    "instruction_normalization": "Four trailing Markdown hard-break spaces removed for repository whitespace policy; original untracked user instruction and external copy preserved.",
+    "shared_admission": {
+      "state": "root_patch_integrated_fresh_source_validation_pending",
+      "review": "programs/lapack-array-io/shared-provider-admission-review.md",
+      "root_head": "4e4e2b1aca29e51c5b659a6e59a01ff60902d6d5",
+      "root_tree": "ab5a28090338d49ac1fe118177a864d94aa260a8",
+      "staged_baseline_commit": "2814b1a21edda2f006b08fc1d80578513ba795b3",
+      "amendment_sha256": "68951896c1c1508750fc0483354573a72f4a7e232a2bde6c600412da7b89a758",
+      "provider_attestations": {
+        "lp64": "1f8ca85330618d8bf90806262ecfff64bf532a6e9c10dd1bcd04aff7de431747",
+        "ilp64": "2f80bdcaf91fd17bea2db45a6047cd583bed990a6c5bd34572666e9173d71141"
+      },
+      "completed": [
+        "Shared upstream111/111 in both actual ABIs, exact pinned source and separate shared attestations",
+        "Calibrated ASC shared observation10/10 per ABI; same production objects; foreign code uninstrumented",
+        "Shared Release118/123 per ABI with five retained mathematical failures; clean relocated package and28 controls pass",
+        "Shared full Reference668/751 per ABI,83 retained mathematical failed processes,zero skips; all83 outputs match static records after source-prefix normalization only",
+        "Shared Debug and ASC-only ASan/UBSan117/122 per ABI; five failure outputs byte-identical to Release,zero sanitizer diagnostics/skips",
+        "Shared TSan17/17 real-provider concurrency tests per ABI; ASC/test objects instrumented,foreign code not",
+        "Shared target inventory,architecture/public-surface/configuration5/5 and ELF inspection pass both ABIs",
+        "Fresh static compatibility product builds,configuration5/5 and complete relocated packages pass both ABIs; metadata/identity headers byte-identical",
+        "Exact eight-file amendment04 integrated; root strict Doxygen/links/documentation,coverage and backlog checks pass",
+        "Windows tooling fix4e4e2b1:115 normal/optimized tests pass; real migration reproduces all three existing manifests byte-for-byte"
+      ],
+      "running": [],
+      "not_executed": [
+        "Fresh integrated-source archive build and relocated public package",
+        "New integrated revision hosted static/shared actual-ABI checks"
+      ],
+      "next_dependency_ready_task": "P09.required.lascl",
+      "next_task_review": "master-continuation-20260910-01/lascl-prerequisite-01/review.json",
+      "preservation": "All original shared patches, failed builds/calibrations/loader/package runs and binary snapshots retained; no worktree deletion."
+    }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
     "state": "frozen_product_pushed; final_programme_records_separate",

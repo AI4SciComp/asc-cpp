@@ -127,10 +127,21 @@ set_target_properties(asc_dense_lapack PROPERTIES
   CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN YES
   EXPORT_NAME dense_lapack OUTPUT_NAME asc_dense_lapack)
 target_compile_definitions(asc_dense_lapack
-  PRIVATE ASC_DENSE_LAPACK_BUILDING_LIBRARY
-  PUBLIC ASC_DENSE_LAPACK_STATIC_DEFINE)
+  PRIVATE ASC_DENSE_LAPACK_BUILDING_LIBRARY)
+if(NOT BUILD_SHARED_LIBS)
+  target_compile_definitions(asc_dense_lapack PUBLIC ASC_DENSE_LAPACK_STATIC_DEFINE)
+endif()
+if(BUILD_SHARED_LIBS)
+  # Resolve installed ASC dependencies after relocation, as Dense does.
+  set_property(TARGET asc_dense_lapack PROPERTY INSTALL_RPATH "$ORIGIN")
+  target_link_options(asc_dense_lapack PRIVATE "LINKER:--no-undefined" "LINKER:-z,text")
+endif()
 target_link_libraries(asc_dense_lapack PUBLIC ASC::dense
   PRIVATE ASC_INTERNAL_LAPACK::reference)
+if(BUILD_SHARED_LIBS)
+  target_link_libraries(asc_dense_lapack INTERFACE
+    "$<LINK_ONLY:ASC_INTERNAL_LAPACK::reference>")
+endif()
 asc_target_enable_cxx20(TARGET asc_dense_lapack PUBLIC)
 if(ASC_CPP_WARNINGS_AS_ERRORS)
   asc_target_enable_warnings(TARGET asc_dense_lapack AS_ERRORS)
@@ -140,4 +151,26 @@ endif()
 if(ASC_CPP_SANITIZER_ARGUMENTS)
   asc_target_enable_sanitizers(TARGET asc_dense_lapack
     ${ASC_CPP_SANITIZER_ARGUMENTS})
+endif()
+
+if(BUILD_SHARED_LIBS)
+  # Production and observation libraries use exactly the same compiled PIC
+  # objects. Observation changes only link-time foreign-entry/allocator binding.
+  # The object target is private and is never installed or exported.
+  get_target_property(_asc_lapack_sources asc_dense_lapack SOURCES)
+  add_library(asc_dense_lapack_objects OBJECT ${_asc_lapack_sources})
+  set_property(TARGET asc_dense_lapack PROPERTY SOURCES
+    "$<TARGET_OBJECTS:asc_dense_lapack_objects>")
+  set_target_properties(asc_dense_lapack_objects PROPERTIES
+    POSITION_INDEPENDENT_CODE YES CXX_VISIBILITY_PRESET hidden
+    VISIBILITY_INLINES_HIDDEN YES CXX_STANDARD 20 CXX_STANDARD_REQUIRED YES
+    CXX_EXTENSIONS OFF)
+  foreach(_property IN ITEMS INCLUDE_DIRECTORIES COMPILE_DEFINITIONS COMPILE_OPTIONS
+      COMPILE_FEATURES)
+    set_property(TARGET asc_dense_lapack_objects PROPERTY "${_property}"
+      "$<TARGET_PROPERTY:asc_dense_lapack,${_property}>")
+  endforeach()
+  target_compile_definitions(asc_dense_lapack_objects PRIVATE asc_dense_lapack_EXPORTS)
+  unset(_asc_lapack_sources)
+  unset(_property)
 endif()

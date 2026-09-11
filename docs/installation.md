@@ -56,7 +56,8 @@ detect hidden source/build dependencies.
 ## Experimental first-party robust PPSVX
 
 The [robust PPSVX contract](contracts/robust-ppsvx.md) defines the limited
-Linux x86_64 GNU 11.4 static development profile. The feature defaults to OFF.
+Linux x86_64 GNU 11.4 static or shared development profile. The feature defaults
+to OFF; provider linkage must match ASC linkage.
 It uses an independently prepared, attested Reference-LAPACK 3.12.1 context
 while executing a separately named original numerical algorithm. Preparing the
 provider does not approve its redistribution or bundle it with ASC.
@@ -84,6 +85,11 @@ ctest --test-dir /tmp/asc-robust-32 --no-tests=error --output-on-failure \
   -R 'robust_ppsvx|dense_lapack.package_integration'
 cmake --install /tmp/asc-robust-32 --prefix /tmp/asc-robust-install-32
 ```
+
+For shared ASC, use a separate fresh provider directory with
+`prepare_reference.py --linkage shared` and configure ASC with
+`-DBUILD_SHARED_LIBS=ON`. Keep the corresponding attestation and prefix together.
+Static-provider embedding into shared ASC is not an admitted profile.
 
 Replace the runtime placeholders with the compiler's actual shared runtime
 files. See [the public example](../examples/robust_ppsvx/README.md) for a C++-only

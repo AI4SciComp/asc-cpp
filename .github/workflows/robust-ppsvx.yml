@@ -13,14 +13,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  linux-static:
-    name: Selected LAPACK / GNU 11 / static / integer ${{ matrix.bits }}
+  linux:
+    name: Selected LAPACK / GNU 11 / ${{ matrix.linkage }} / integer ${{ matrix.bits }}
     runs-on: ubuntu-22.04
     timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
         bits: [32, 64]
+        linkage: [static, shared]
     steps:
       - name: Check out ASC
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -34,7 +35,7 @@ jobs:
       - name: Build and attest the pinned provider outside ASC
         run: |
           python3 -B asc-cpp/tools/lapack/prepare_reference.py \
-            --work-dir "$RUNNER_TEMP/provider" --integer-bits ${{ matrix.bits }} --jobs 2
+            --work-dir "$RUNNER_TEMP/provider" --integer-bits ${{ matrix.bits }} --linkage ${{ matrix.linkage }} --jobs 2
       - name: Build the experimental integrated profile
         shell: bash
         run: |
@@ -43,7 +44,7 @@ jobs:
           cmake -S asc-cpp -B "$RUNNER_TEMP/asc-build" \
             -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11 \
             -DCMAKE_Fortran_COMPILER=gfortran-11 -DCMAKE_BUILD_TYPE=Release \
-            -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON \
+            -DBUILD_SHARED_LIBS=${{ matrix.linkage == 'shared' && 'ON' || 'OFF' }} -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_INSTALL=ON -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_WARNINGS_AS_ERRORS=ON -DASC_CPP_ENABLE_LAPACK=ON \
             -DASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX=ON \
@@ -115,7 +116,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: robust-ppsvx-${{ matrix.bits }}-records
+          name: robust-ppsvx-${{ matrix.linkage }}-${{ matrix.bits }}-records
           path: |
             ${{ runner.temp }}/provider/*.log
             ${{ runner.temp }}/provider/*.json

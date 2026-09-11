@@ -4,9 +4,12 @@
 implementation in the optional `dense_lapack` facet. It defaults to OFF and
 requires `ASC_CPP_ENABLE_LAPACK=ON`. Installed packages expose the Boolean
 `ASCCpp_EXPERIMENTAL_ROBUST_PPSVX`; consumers link `ASC::dense_lapack` and include
-`asc/dense/providers/lapack_cholesky_packed_robust.h`. The initial admitted
-profile is Linux x86_64, GNU 11.4.0, static ASC and the independently prepared
-pinned Reference-LAPACK 3.12.1 provider, with actual LP64 or global ILP64.
+`asc/dense/providers/lapack_cholesky_packed_robust.h`. The admitted development
+profile is Linux x86_64, GNU 11.4.0, with actual LP64 or global ILP64. Static
+ASC requires the separately attested static provider; shared ASC requires the
+separately attested shared provider. Both use pinned Reference-LAPACK 3.12.1.
+The shared package retains explicit provider/runtime dependencies and resolves
+relocated ASC libraries without requiring a producer-side loader environment.
 
 The four scalar overloads of `RobustPpsvx`, `RobustPpsvxEquilibrated` and
 `RobustPpsvxFactored`, and their workspace queries, are separately named.
@@ -71,6 +74,6 @@ instruments actual first-party adapter and test instructions, with calibrated
 negative/input/write controls. It does not instrument installed or foreign
 code, and does not admit a new provider platform.
 
-Wider compiler/platform/shared-package admission, owner notice review and
+Wider compiler/platform admission, owner notice review and
 release authorization remain separate. No upstream algorithm, source archive
 or runtime is bundled by this capability.

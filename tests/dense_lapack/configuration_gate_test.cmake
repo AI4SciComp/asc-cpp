@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 foreach(_required IN ITEMS SOURCE_DIR WORK_DIR ASC_CPP_TEST_WORKSPACE_ROOT
     ASC_CPP_TEST_WORKSPACE_GUARD ASCCMAKE_DIR CXX_COMPILER INTEGER_BITS
-    LAPACK_ROOT LAPACK_ATTESTATION LAPACK_RUNTIMES FORTRAN_COMPILER)
+    LAPACK_ROOT LAPACK_ATTESTATION LAPACK_RUNTIMES FORTRAN_COMPILER C_COMPILER)
   if(NOT DEFINED ${_required} OR "${${_required}}" STREQUAL "")
     message(FATAL_ERROR "${_required} is required")
   endif()
@@ -17,11 +17,12 @@ file(WRITE "${WORK_DIR}/provider-inputs.cmake"
   "set(CMAKE_Fortran_FLAGS [==[${FORTRAN_FLAGS}]==] CACHE STRING \"Audited test driver flags\")\n")
 math(EXPR _other_bits "96 - ${INTEGER_BITS}")
 
-foreach(_case IN ITEMS disabled-lazy full-disabled shared wrong-width
+foreach(_case IN ITEMS disabled-lazy full-disabled mismatched-linkage wrong-width
     missing-attestation full-profile robust-disabled)
   set(_command "${CMAKE_COMMAND}" -S "${SOURCE_DIR}"
     -B "${WORK_DIR}/${_case}" "-DASCCMake_DIR=${ASCCMAKE_DIR}"
     "-DCMAKE_CXX_COMPILER=${CXX_COMPILER}"
+    "-DBUILD_SHARED_LIBS=${PRODUCER_SHARED}"
     -DASC_CPP_BUILD_TESTING=OFF -DBUILD_TESTING=OFF
     -DASC_CPP_BUILD_DOCUMENTATION=OFF -DASC_CPP_INSTALL=ON
     -DASC_CPP_FETCH_ASCCMAKE=OFF -DASC_CPP_ENABLE_CUDA=OFF
@@ -45,10 +46,16 @@ foreach(_case IN ITEMS disabled-lazy full-disabled shared wrong-width
       -DASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX=ON)
     set(_expected "Experimental RobustPpsvx uses the explicit Dense LAPACK context")
   else()
-    list(APPEND _command -DASC_CPP_ENABLE_LAPACK=ON)
-    if(_case STREQUAL "shared")
-      list(APPEND _command -DBUILD_SHARED_LIBS=ON)
-      set(_expected "Shared reference-facet symbol/runtime isolation")
+    list(APPEND _command -DASC_CPP_ENABLE_LAPACK=ON
+      "-DCMAKE_C_COMPILER=${C_COMPILER}")
+    if(_case STREQUAL "mismatched-linkage")
+      if(PRODUCER_SHARED)
+        list(APPEND _command -DBUILD_SHARED_LIBS=OFF)
+        set(_expected "Static ASC requires its admitted static provider profile")
+      else()
+        list(APPEND _command -DBUILD_SHARED_LIBS=ON)
+        set(_expected "Shared ASC requires a separately attested shared provider")
+      endif()
     elseif(_case STREQUAL "wrong-width")
       list(APPEND _command "-DASC_CPP_LAPACK_INTEGER_BITS=${_other_bits}")
       set(_expected "Invalid reference provider")
@@ -80,4 +87,4 @@ foreach(_case IN ITEMS disabled-lazy full-disabled shared wrong-width
     message(FATAL_ERROR "${_case} did not fail its intended gate; see ${WORK_DIR}/${_case}.log")
   endif()
 endforeach()
-message(STATUS "Seven configuration gates passed; required full/shared profiles remain rejected")
+message(STATUS "Seven configuration gates passed; full and mismatched-linkage profiles remain rejected")

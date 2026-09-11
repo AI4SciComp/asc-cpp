@@ -26,6 +26,18 @@ function(asc_internal_lapack_dependencies
   string(JSON _schema ERROR_VARIABLE _schema_error GET "${_metadata}" schema_version)
   string(JSON _bits ERROR_VARIABLE _bits_error GET "${_metadata}" integer_bits)
   string(JSON _profile ERROR_VARIABLE _profile_error GET "${_metadata}" profile)
+  string(JSON _linkage ERROR_VARIABLE _linkage_error GET "${_metadata}" linkage)
+  if(_linkage_error)
+    set(_linkage static)
+  endif()
+  if(_linkage STREQUAL "static")
+    set(_extension a)
+  elseif(_linkage STREQUAL "shared")
+    set(_extension so)
+  else()
+    set("${error_variable}" "Unsupported reference provider linkage." PARENT_SCOPE)
+    return()
+  endif()
   if(_schema_error OR NOT _schema STREQUAL "1"
      OR _bits_error OR NOT _bits MATCHES "^(32|64)$"
      OR _profile_error OR NOT _profile STREQUAL "incremental-lapack-v27")
@@ -66,7 +78,7 @@ function(asc_internal_lapack_dependencies
       return()
     endif()
     list(GET _stems ${_index} _stem)
-    if(NOT _relative MATCHES "(^|/)lib${_stem}${_suffix}\\.a$")
+    if(NOT _relative MATCHES "(^|/)lib${_stem}${_suffix}\\.${_extension}$")
       set("${error_variable}" "Unexpected reference library role or integer ABI." PARENT_SCOPE)
       return()
     endif()
@@ -139,6 +151,13 @@ function(asc_internal_lapack_dependencies
   if(NOT _runtime_kinds STREQUAL "gfortran;quadmath")
     set("${error_variable}" "Duplicate or missing reference runtime role." PARENT_SCOPE)
     return()
+  endif()
+  if(_linkage STREQUAL "shared")
+    # Preserve exact provider/runtime DT_NEEDED entries in installed consumers.
+    # The consumer's explicit prefix then supplies its own runtime search path;
+    # --as-needed must not silently leave these to an unrelated system LAPACK.
+    list(PREPEND _links "-Wl,--push-state,--no-as-needed")
+    list(APPEND _links "-Wl,--pop-state")
   endif()
   if(TARGET ASC_INTERNAL_LAPACK::reference)
     get_target_property(_existing ASC_INTERNAL_LAPACK::reference ASC_LAPACK_IDENTITY)

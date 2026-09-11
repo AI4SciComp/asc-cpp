@@ -17,7 +17,7 @@ capabilities:
     facet: "dense_lapack"
     development_stage: 5
     status: "runtime-tested"
-    evidence_scope: "Explicit opt-in; Linux x86_64 GNU11.4 static, actual LP64/ILP64; source/API/report review and integrated tests are recorded in programs/lapack-array-io/packed-cholesky-expert-robust-integration.md. No Reference routine credit, wider-platform or release acceptance."
+    evidence_scope: "Explicit opt-in; Linux x86_64 GNU11.4 static and shared, actual LP64/ILP64 with separately attested matching providers. Original review: programs/lapack-array-io/packed-cholesky-expert-robust-integration.md; shared admission: programs/lapack-array-io/shared-provider-admission-review.md. No Reference routine credit, wider-platform or release acceptance."
     public_headers:
       - "include/asc/dense/providers/lapack_cholesky_packed_robust.h"
     direct_dependencies:
@@ -208,7 +208,7 @@ capabilities:
       - "explicit provider selection; provider-free aggregate remains independent"
     non_guarantees:
       - "full Reference-LAPACK profile"
-      - "shared providers or unaudited toolchains"
+      - "provider linkage mismatches or unaudited toolchains/platforms"
       - "successful GEEQUB equilibration for the recorded nonzero LP64 subnormal fixture"
       - "finite GERFS/GESVX error estimates or scale-invariant condition success on recorded tiny unscaled fixtures"
       - "finite LAQGE both-scale outputs on the recorded intermediate-overflow fixture"

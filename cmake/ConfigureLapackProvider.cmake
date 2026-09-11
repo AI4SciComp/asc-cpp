@@ -15,11 +15,6 @@ if(NOT CMAKE_SYSTEM_NAME STREQUAL "Linux"
     "Other compiler/platform gates remain required, not verified."
   )
 endif()
-if(BUILD_SHARED_LIBS)
-  message(FATAL_ERROR
-    "Shared reference-facet symbol/runtime isolation is not yet verified; use the explicit static subset."
-  )
-endif()
 if(NOT EXISTS "${ASC_CPP_LAPACK_ATTESTATION}")
   message(FATAL_ERROR "ASC_CPP_LAPACK_ATTESTATION must name an exact external build record.")
 endif()
@@ -39,22 +34,43 @@ if(NOT _attestation_result EQUAL 0)
   message(FATAL_ERROR "Invalid reference provider: ${_attestation_error}")
 endif()
 file(READ "${ASC_CPP_LAPACK_ATTESTATION}" _attestation)
+string(JSON _provider_shared GET "${_attestation}" payload options BUILD_SHARED_LIBS)
+if(BUILD_SHARED_LIBS)
+  if(NOT _provider_shared STREQUAL "ON")
+    message(FATAL_ERROR "Shared ASC requires a separately attested shared provider; static embedding is not supported.")
+  endif()
+  set(ASC_CPP_LAPACK_PROVIDER_LINKAGE shared)
+  set(_provider_extension so)
+else()
+  if(NOT _provider_shared STREQUAL "OFF")
+    message(FATAL_ERROR "Static ASC requires its admitted static provider profile.")
+  endif()
+  set(ASC_CPP_LAPACK_PROVIDER_LINKAGE static)
+  set(_provider_extension a)
+endif()
 string(JSON ASC_CPP_LAPACK_BUILD_ID GET "${_attestation}" identity_sha256)
 file(READ "${_asc_cpp_lapack_source_dir}/docs/contracts/lapack-provider-lock.json" _lock)
 string(JSON _source_digest GET "${_lock}" verification source_input_manifest_sha256)
 set(ASC_CPP_LAPACK_CONFIG_DIR "${PROJECT_BINARY_DIR}/dense-lapack-config")
 file(MAKE_DIRECTORY "${ASC_CPP_LAPACK_CONFIG_DIR}")
-file(WRITE "${ASC_CPP_LAPACK_CONFIG_DIR}/lapack_build_config.h"
+string(CONCAT _build_configuration
   "#ifndef ASC_INTERNAL_LAPACK_BUILD_CONFIG_H_\n#define ASC_INTERNAL_LAPACK_BUILD_CONFIG_H_\n"
   "#define ASC_LAPACK_INTEGER_BITS ${ASC_CPP_LAPACK_INTEGER_BITS}\n"
   "#define ASC_LAPACK_SOURCE_SHA256 \"${_source_digest}\"\n"
   "#define ASC_LAPACK_BUILD_SHA256 \"${ASC_CPP_LAPACK_BUILD_ID}\"\n#endif\n"
 )
+# Keep unchanged provider identity headers stable across CMake-only changes.
+file(CONFIGURE OUTPUT "${ASC_CPP_LAPACK_CONFIG_DIR}/lapack_build_config.h"
+  CONTENT "${_build_configuration}" @ONLY)
+unset(_build_configuration)
 
 # The relocation contract contains no original source/build/install paths.
 set(ASC_CPP_LAPACK_PROFILE "incremental-lapack-v27")
 file(SHA256 "${_asc_cpp_lapack_source_dir}/docs/contracts/lapack-upstream-inventory.json" _inventory_digest)
 set(_metadata "{\"schema_version\":1,\"identity_sha256\":\"${ASC_CPP_LAPACK_BUILD_ID}\",\"source_input_sha256\":\"${_source_digest}\",\"inventory_sha256\":\"${_inventory_digest}\",\"profile\":\"${ASC_CPP_LAPACK_PROFILE}\",\"integer_bits\":${ASC_CPP_LAPACK_INTEGER_BITS},\"libraries\":[],\"runtimes\":[]}")
+if(BUILD_SHARED_LIBS)
+  string(JSON _metadata SET "${_metadata}" linkage "\"shared\"")
+endif()
 set(_suffix)
 if(ASC_CPP_LAPACK_INTEGER_BITS STREQUAL "64")
   set(_suffix "64")
@@ -66,14 +82,14 @@ foreach(_stem IN ITEMS lapacke lapack blas)
   set(_found FALSE)
   foreach(_index RANGE 0 ${_last_file})
     string(JSON _path GET "${_attestation}" payload installed_files ${_index} path)
-    if(_path MATCHES "(^|/)lib${_stem}${_suffix}\\.a$")
+    if(_path MATCHES "(^|/)lib${_stem}${_suffix}\\.${_provider_extension}$")
       string(JSON _record GET "${_attestation}" payload installed_files ${_index})
       string(JSON _metadata SET "${_metadata}" libraries ${_library_index} "${_record}")
       set(_found TRUE)
     endif()
   endforeach()
   if(NOT _found)
-    message(FATAL_ERROR "The static reference subset needs attested lib${_stem}${_suffix}.a.")
+    message(FATAL_ERROR "The selected reference profile needs attested lib${_stem}${_suffix}.${_provider_extension}.")
   endif()
   math(EXPR _library_index "${_library_index} + 1")
 endforeach()

@@ -36,6 +36,13 @@ endif()
 list(GET _configs 0 _config)
 cmake_path(GET _config PARENT_PATH _package)
 file(READ "${_package}/ASCCppLapackProvider.json" _metadata)
+string(JSON _linkage ERROR_VARIABLE _linkage_error GET "${_metadata}" linkage)
+if(NOT _linkage_error AND _linkage STREQUAL "shared")
+  # Installed examples must resolve their explicit dependencies without a
+  # producer-side loader path masking an incomplete exported link closure.
+  unset(ENV{LD_LIBRARY_PATH})
+  unset(ENV{LD_PRELOAD})
+endif()
 file(GLOB _package_files "${_package}/*.cmake" "${_package}/*.json")
 foreach(_file IN LISTS _package_files)
   file(READ "${_file}" _contents)
@@ -298,6 +305,31 @@ _run(lu-families-build TRUE "${CMAKE_COMMAND}" --build
 _run(lu-families-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
   "${WORK_DIR}/LU families build" -C "${CONFIG}"
   --output-on-failure --no-tests=error)
+
+if(NOT _linkage_error AND _linkage STREQUAL "shared")
+  include("${SOURCE_DIR}/tests/dense_lapack/shared_runtime_check.cmake")
+  asc_cpp_check_shared_lapack_runtime(
+    "${WORK_DIR}/PT example build/positive_tridiagonal"
+    "${LAPACK_ROOT}" "${_metadata}" "${WORK_DIR}/shared-runtime-checks.log")
+  file(GLOB_RECURSE _bundled "${_relocated}/liblapack*" "${_relocated}/libblas*"
+    "${_relocated}/libgfortran*" "${_relocated}/libquadmath*"
+    "${_relocated}/*observed*.so*")
+  if(_bundled)
+    message(FATAL_ERROR "Installed ASC includes provider/runtime or observation libraries")
+  endif()
+  file(GLOB_RECURSE _dense_libraries "${_relocated}/libasc_dense.so")
+  list(LENGTH _dense_libraries _dense_count)
+  if(NOT _dense_count EQUAL 1)
+    message(FATAL_ERROR "Expected one relocated shared Dense library")
+  endif()
+  list(GET _dense_libraries 0 _dense_library)
+  cmake_path(GET _dense_library PARENT_PATH _library_directory)
+  foreach(_component IN ITEMS core dense sparse random utilities)
+    asc_cpp_check_provider_free_runtime(
+      "${_library_directory}/libasc_${_component}.so"
+      "${WORK_DIR}/shared-runtime-checks.log")
+  endforeach()
+endif()
 
 set(_probe [=[
 cmake_minimum_required(VERSION 3.25)
