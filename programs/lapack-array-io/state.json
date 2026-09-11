@@ -1380,8 +1380,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "Deliver GBRFS safeguarded-oracle correction and LASCL exact-header fix; implement P09.required.laset",
-  "next_action": "Execute reviewed ordinary feature commit/push after final checks; LASET original candidate source/API implementation is in laset-source-01 and awaits compilation/tests.",
+  "active_task": "LASET local integration gates complete; deliver and inspect hosted checks; implement P05.required.ptcon from reviewed external source",
+  "next_action": "Synchronize LASET with exact frozen-product/test-policy companion evidence. Continue PTCON tests and checked adapter; preserve all existing Reference numerical gates.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2535,14 +2535,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.laset",
+  "next_task": "Remaining dependency-ready P04-P09 coverage and P11 platform admission",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect gbrfs-delivery-checks-01 and execute reviewed synchronization; continue laset-source-01.",
+  "next_command": "Inspect laset-final-local-audit-01 and hosted retrieval records; continue ptcon-source-01 with actual LP64/ILP64 tests.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3124,34 +3124,29 @@
     "one_active_writer": true,
     "pt_progress": "Six 13/17 affected profiles; both TSan4/4; installed public/base isolation pass; both full package tests pass; one source-list omission corrected and retested; current strict signature/format/coverage/Doxygen checks pass. Four required math processes/eight scalar-input cases/one provider cause remain failed.",
     "current_remote_read": {
-      "head": "c01abddf739551d8512520f71711491d314b2c77",
-      "tree": "eb09d7860a49ddb53ddd4f1cfe64d21155fbff5c",
-      "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
+      "head": "d1cecff14aff90c0b14ffb7a6f1f65995ac86825",
+      "tree": "e2b9399a5ca885d4827fa9c765251e7f14b03889",
       "draft": true,
-      "checks": {
-        "pr_ci": 34547900736,
-        "pr_codeql": 34547900792,
-        "pr_families": 34547900720
-      },
-      "result": "CI/CodeQL pass. Families118/123 per actual ABI; exactly four retained PT and one SGEDMDQ required mathematical failed processes, zero skips. Provider111/111 each. No Reference mathematical waiver.",
-      "evidence": "master-continuation-20260910-01/dmdq-hosted-update-02; dmdq-hosted-artifacts-01/junit-audit.json"
+      "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
+      "evidence": "master-continuation-20260910-01/gbrfs-pr-update-01/verify",
+      "checks": "CodeQL success; CI only macOS configure fails pinned ASCCMake HTTP504, all other jobs pass. Three family profiles138/147, exactly PT4+SGEDMDQ1+GBRFS4 retained math failures, zero skips; static LP64 configure HTTP504, tests unexecuted."
     },
     "p09_stage": "Mixed general/positive, conversions, LACPY, GEDMD and GEDMDQ integrated. GEDMDQ c01abddf has fresh CI/CodeQL passes and family118/123 per ABI with exactly retained PT4 and SGEDMDQ1 failures. Both actual ABIs, six local profiles, real concurrency, relocated install and frozen-source package evidence retained; no global numerical acceptance.",
-    "remaining_actionable": "Finish the actual LASCL header inventory regression and GBRFS correction delivery; implement P09.required.laset; continue historical cause consolidation, remaining mode/class evidence, P05-P09 implementations and platform admission.",
+    "remaining_actionable": "Deliver LASET and inspect actual hosted outcomes; implement PTCON then remaining dependency-ready P04-P09 requirements, numerical cause consolidation and P11 platform work.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 68,
-      "callable_reference": 40,
+      "mapped_contracts": 72,
+      "callable_reference": 44,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1731,
+      "not_started_reference": 1727,
       "in_progress_reference": 342,
-      "incomplete_reference": 2073,
-      "implemented_unverified_reference": 40,
+      "incomplete_reference": 2069,
+      "implemented_unverified_reference": 44,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3207,7 +3202,7 @@
       }
     },
     "lascl": {
-      "state": "root_integrated_pushed_local_numerical_passes_header_oracle_repaired_delivery_pending",
+      "state": "root_integrated_pushed_local_numerical_and_hosted_family_passes_header_repair_delivered",
       "review": "programs/lapack-array-io/matrix-scale-review.md",
       "input_manifest": "master-continuation-20260910-01/lascl-integration-inputs-06/manifest.json",
       "external_source": "master-continuation-20260910-01/lascl-source-01",
@@ -3226,12 +3221,11 @@
         "Native20 rows/original execution record and selected native/I/O input comparison preserved",
         "Shared Debug14/14 per actual ABI",
         "Shared ASC sanitizer14/14 and TSan4/4 per ABI; no sanitizer/race diagnostics, provider/runtime uninstrumented",
-        "LASCL hosted exact-header omission corrected: fresh provider-free GNU11 Release11/11 inventory/package fixture checks,zero skips; product unchanged"
+        "LASCL hosted exact-header omission corrected: fresh provider-free GNU11 Release11/11 inventory/package fixture checks,zero skips; product unchanged",
+        "D1 hosted CI GNU11 header repair passes; sole macOS job fails external ASCCMake HTTP504 before compilation."
       ],
       "running": [],
-      "unexecuted": [
-        "hosted confirmation of exact header-oracle repair"
-      ],
+      "unexecuted": [],
       "numerical_scope": "Finite representable final results retain independent wide oracle and unchanged8epsilon plus one-denorm tolerance. Infinity branch comparisons are fidelity only; raw positive infinity from negative finite CFROM/positive infinite CTO is exposed, not a finite-result acceptance claim.",
       "frozen_tree": "b52fa952ccec39d08eebd8cd53f3f412bb48494e",
       "frozen_archive_sha256": "2a4d55bc26f84f5920a20c34cdb93bceef894f89be30323d366cc5c45af6cd43",
@@ -3245,12 +3239,14 @@
         "codeql_run": 34567090338,
         "codeql_result": "success",
         "family_run": 34567090347,
-        "family_result": "completed failure; artifacts being retrieved, exact per-test outcomes not yet audited",
-        "read": "master-continuation-20260910-01/lascl-hosted-ci-failure-02"
-      }
+        "family_result": "All four static/shared actual-ABI profiles134/139; all14LASCL checks pass,exactlyPT4+SGEDMDQ1 retained math failures,zero skips.",
+        "read": "master-continuation-20260910-01/lascl-hosted-ci-failure-02",
+        "family_audit": "master-continuation-20260910-01/lascl-hosted-audit-01/audit.json"
+      },
+      "header_fix_commit": "d1cecff14aff90c0b14ffb7a6f1f65995ac86825"
     },
     "gbrfs_oracle_review": {
-      "state": "maintained_correction_twelve_actual_profiles_executed_ready_for_delivery",
+      "state": "maintained_correction_committed_pushed_twelve_profiles_executed",
       "derivation": "master-continuation-20260910-01/gbrfs-oracle-review-01/derivation.md",
       "source": "master-continuation-20260910-01/gbrfs-oracle-source-03",
       "running": [],
@@ -3263,7 +3259,56 @@
       "audit": "master-continuation-20260910-01/gbrfs-integrated-audit-01/audit.json",
       "strict": "master-continuation-20260910-01/gbrfs-oracle-style-01",
       "review": "programs/lapack-array-io/general-band-refinement-oracle-review.md",
-      "product_unchanged_from": "dbc924d7aaada7f51dc1359739f7b54f981af6af"
+      "product_unchanged_from": "dbc924d7aaada7f51dc1359739f7b54f981af6af",
+      "implementation_commit": "d1cecff14aff90c0b14ffb7a6f1f65995ac86825",
+      "implementation_tree": "e2b9399a5ca885d4827fa9c765251e7f14b03889",
+      "hosted": {
+        "ci": 34569776583,
+        "codeql": 34569776581,
+        "family": 34569776579,
+        "result": "CodeQL success; CI only macOS configure fails pinned ASCCMake HTTP504, all other jobs pass. Three family profiles138/147, exactly PT4+SGEDMDQ1+GBRFS4 retained math failures, zero skips; static LP64 configure HTTP504, tests unexecuted.",
+        "reads": [
+          "master-continuation-20260910-01/gbrfs-hosted-read-02",
+          "master-continuation-20260910-01/gbrfs-hosted-failure-read-01",
+          "master-continuation-20260910-01/gbrfs-hosted-failure-read-02"
+        ],
+        "audit": "master-continuation-20260910-01/gbrfs-hosted-family-audit-01/audit.json"
+      }
+    },
+    "laset": {
+      "state": "root_registered_callable_unverified_local_gates_complete_delivery_pending",
+      "review": "programs/lapack-array-io/matrix-set-review.md",
+      "source": "master-continuation-20260910-01/laset-source-01",
+      "import": "master-continuation-20260910-01/laset-root-import-01/manifest.json",
+      "registration": "master-continuation-20260910-01/laset-registration-02",
+      "completed": [
+        "four-scalar pinned source/API review; eight declarations, six modes per scalar",
+        "isolated initial6/6 actual LP64/ILP64, calibrated foreign-entry observation",
+        "strict full repository source/test/example/observer checks; original mechanical findings retained",
+        "maintained source/export/header inventories/tests/public example/relocated package/hosted selection integrated",
+        "root Debug and Release6/6 in both actual ABIs including shared immutable-plan reuse",
+        "Static Debug/Release/ASC sanitizer6/6 and TSan4/4 in both actual ABIs; all44 processes passed",
+        "Shared Debug/ASC sanitizer6/6 and TSan4/4 in both actual ABIs; all32 processes passed",
+        "Four frozen static/shared actual-ABI producers12/13 plus reviewed exact two-entry public-policy correction1/1; original failures retained",
+        "All four complete relocated package tests1/1 and installed header selections11/11, eight exported symbols, exact runtime closure and28 isolation controls",
+        "Strict integrated Doxygen/documentation/link checks and scoped record validators pass"
+      ],
+      "running": [],
+      "unexecuted": [
+        "ordinary feature synchronization and fresh hosted audit"
+      ],
+      "mathematics": "Independent exact assignment oracle; zero tolerance weakening, provider unchanged. No native INFO exists. Other Reference mathematical failures remain required.",
+      "frozen_tree": "fbed0a859dc07044c0b184d8c634e3d863df7056",
+      "frozen_archive_sha256": "e04047a639365b29cfdcaa9c7468f536e91109329f53a31cbf73d31a87e57342",
+      "final_local_audit": "master-continuation-20260910-01/laset-final-local-audit-01/audit.json",
+      "package_audit": "master-continuation-20260910-01/laset-package-audit-01/audit.json",
+      "reviewed_test_only_companion": "master-continuation-20260910-01/laset-public-policy-amendment-02/identity.json"
+    },
+    "ptcon": {
+      "state": "external_original_adapter_written_not_compiled_or_registered",
+      "prerequisites": "master-continuation-20260910-01/ptcon-prerequisite-01/review.json",
+      "source": "master-continuation-20260910-01/ptcon-source-01",
+      "next": "Pure integer boundary helper, independent mathematical/validation/fault/observation/concurrency tests, real both-ABI execution and installed integration."
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

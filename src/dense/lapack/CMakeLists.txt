@@ -52,6 +52,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_precision_conversion.cc
   reference_matrix_copy.cc
   reference_matrix_scale.cc
+  reference_matrix_set.cc
   reference_dmd.cc
   reference_dmd_qr.cc
   reference_mixed_general.cc
@@ -101,6 +102,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_precision_conversion.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_copy.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_scale.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_set.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_dmd.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_dmd_qr.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_mixed_general.h"

@@ -50,6 +50,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_precision_conversion.h
   include/asc/dense/providers/lapack_matrix_copy.h
   include/asc/dense/providers/lapack_matrix_scale.h
+  include/asc/dense/providers/lapack_matrix_set.h
   include/asc/dense/providers/lapack_dmd.h
   include/asc/dense/providers/lapack_dmd_qr.h
   include/asc/dense/providers/lapack_positive_tridiagonal.h
@@ -184,6 +185,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_precision_conversion.cc
   src/dense/lapack/reference_matrix_copy.cc
   src/dense/lapack/reference_matrix_scale.cc
+  src/dense/lapack/reference_matrix_set.cc
   src/dense/lapack/reference_dmd.cc
   src/dense/lapack/reference_dmd_qr.cc
   src/dense/lapack/reference_positive_tridiagonal.cc

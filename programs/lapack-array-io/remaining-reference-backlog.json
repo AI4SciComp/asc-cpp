@@ -37441,26 +37441,69 @@
         "SRC/slaset.f",
         "SRC/zlaset.f"
       ],
-      "source_api_files": [],
-      "route_states": {
-        "lapack.claset": "not_started",
-        "lapack.dlaset": "not_started",
-        "lapack.slaset": "not_started",
-        "lapack.zlaset": "not_started"
-      },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
-      "required_mode_cases": {
-        "lapack.claset": [],
-        "lapack.dlaset": [],
-        "lapack.slaset": [],
-        "lapack.zlaset": []
-      },
-      "unreviewed_mode_rows": [
-        "lapack.claset",
-        "lapack.dlaset",
-        "lapack.slaset",
-        "lapack.zlaset"
+      "source_api_files": [
+        "examples/matrix_set/CMakeLists.txt",
+        "examples/matrix_set/main.cc",
+        "include/asc/dense/providers/lapack_matrix_copy.h",
+        "include/asc/dense/providers/lapack_matrix_set.h",
+        "src/dense/lapack/internal_layout.h",
+        "src/dense/lapack/internal_matrix_copy_counts.h",
+        "src/dense/lapack/internal_tridiagonal.h",
+        "src/dense/lapack/internal_workspace_context.h",
+        "src/dense/lapack/reference_matrix_set.cc",
+        "src/dense/lapack_foundations.cc",
+        "tests/dense/allocation_probe.cc",
+        "tests/dense_lapack/allocation_audit.cc",
+        "tests/dense_lapack/matrix_copy_test_support.h",
+        "tests/dense_lapack/matrix_set_entry.cc",
+        "tests/dense_lapack/matrix_set_entry.h",
+        "tests/dense_lapack/matrix_set_observation_test.cc",
+        "tests/dense_lapack/matrix_set_test.cc",
+        "tests/dense_lapack/matrix_set_tests.cmake",
+        "tests/dense_lapack/tridiagonal_test_support.h"
       ],
+      "route_states": {
+        "lapack.claset": "implemented_unverified",
+        "lapack.dlaset": "implemented_unverified",
+        "lapack.slaset": "implemented_unverified",
+        "lapack.zlaset": "implemented_unverified"
+      },
+      "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
+      "required_mode_cases": {
+        "lapack.claset": [
+          "A.column_major",
+          "A.row_major",
+          "U.column_major",
+          "U.row_major",
+          "L.column_major",
+          "L.row_major"
+        ],
+        "lapack.dlaset": [
+          "A.column_major",
+          "A.row_major",
+          "U.column_major",
+          "U.row_major",
+          "L.column_major",
+          "L.row_major"
+        ],
+        "lapack.slaset": [
+          "A.column_major",
+          "A.row_major",
+          "U.column_major",
+          "U.row_major",
+          "L.column_major",
+          "L.row_major"
+        ],
+        "lapack.zlaset": [
+          "A.column_major",
+          "A.row_major",
+          "U.column_major",
+          "U.row_major",
+          "L.column_major",
+          "L.row_major"
+        ]
+      },
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -37470,15 +37513,19 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/matrix-set-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
-      "integrated_revision": null,
-      "execution_progress": "not_executed",
+      "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
+      "execution_progress": "partial_source_and_review_exist",
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/matrix-set-review.md"
+      ]
     },
     {
       "task_id": "P07.required.lasq1",
@@ -49114,7 +49161,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "ddfd0295699984f387b17178e563554f4592c67245a02b68fcce1b8535f71350",
+    "lapack-coverage.yaml": "550a66c31eebf6b8d90458572e726d1b14d40d4812edaa10813900cea0b3c5ab",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }
