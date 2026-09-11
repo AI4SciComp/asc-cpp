@@ -222,6 +222,28 @@ _run(matrix-copy-example-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
   "${WORK_DIR}/matrix copy example build" -C "${CONFIG}"
   --output-on-failure --no-tests=error)
 
+file(COPY "${SOURCE_DIR}/examples/matrix_scale/"
+  DESTINATION "${WORK_DIR}/copied matrix scale example")
+file(READ "${WORK_DIR}/copied matrix scale example/CMakeLists.txt" _scale_project)
+file(WRITE "${WORK_DIR}/copied matrix scale example/CMakeLists.txt"
+  "string(REPLACE \"|\" \";\" ASC_CPP_LAPACK_RUNTIME_LIBRARIES \"\${TEST_RUNTIMES}\")\n"
+  "${_scale_project}\n")
+_run(matrix-scale-example-configure TRUE "${CMAKE_COMMAND}"
+  -S "${WORK_DIR}/copied matrix scale example" -B "${WORK_DIR}/matrix scale example build"
+  "-DASCCpp_DIR=${_package}" "-DCMAKE_CXX_COMPILER=${CXX_COMPILER}"
+  "-DASC_CPP_LAPACK_ROOT=${LAPACK_ROOT}"
+  "-DTEST_RUNTIMES=${LAPACK_RUNTIMES}"
+  -DCMAKE_DISABLE_FIND_PACKAGE_CUDAToolkit=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_Python3=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_LAPACK=TRUE
+  -DCMAKE_DISABLE_FIND_PACKAGE_BLAS=TRUE
+  -DCMAKE_FIND_USE_PACKAGE_REGISTRY=FALSE)
+_run(matrix-scale-example-build TRUE "${CMAKE_COMMAND}" --build
+  "${WORK_DIR}/matrix scale example build" --config "${CONFIG}")
+_run(matrix-scale-example-test TRUE "${CMAKE_CTEST_COMMAND}" --test-dir
+  "${WORK_DIR}/matrix scale example build" -C "${CONFIG}"
+  --output-on-failure --no-tests=error)
+
 file(COPY "${SOURCE_DIR}/examples/dmd/"
   DESTINATION "${WORK_DIR}/copied dmd example")
 file(READ "${WORK_DIR}/copied dmd example/CMakeLists.txt" _dmd_project)
@@ -311,6 +333,9 @@ if(NOT _linkage_error AND _linkage STREQUAL "shared")
   asc_cpp_check_shared_lapack_runtime(
     "${WORK_DIR}/PT example build/positive_tridiagonal"
     "${LAPACK_ROOT}" "${_metadata}" "${WORK_DIR}/shared-runtime-checks.log")
+  asc_cpp_check_shared_lapack_runtime(
+    "${WORK_DIR}/matrix scale example build/matrix_scale"
+    "${LAPACK_ROOT}" "${_metadata}" "${WORK_DIR}/matrix-scale-runtime-checks.log")
   file(GLOB_RECURSE _bundled "${_relocated}/liblapack*" "${_relocated}/libblas*"
     "${_relocated}/libgfortran*" "${_relocated}/libquadmath*"
     "${_relocated}/*observed*.so*")

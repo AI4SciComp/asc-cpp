@@ -60,7 +60,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             > "$RUNNER_TEMP/asc-selected.json"
           python3 - "$RUNNER_TEMP/asc-selected.json" <<'PY'
           import json
@@ -86,6 +86,10 @@ jobs:
           copying = "asc_cpp.dense_lapack.matrix_copy."
           required |= {copying + scalar for scalar in "sdcz"}
           required |= {copying + name for name in ("observation", "public_example")}
+          scaling = "asc_cpp.dense_lapack.matrix_scale."
+          required |= {scaling + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "fault_", "exception_")}
+          required |= {scaling + name for name in ("observation", "public_example")}
           dmd = "asc_cpp.dense_lapack.dmd."
           required |= {dmd + mode + scalar for scalar in "sdcz"
                        for mode in ("candidate_", "validation_")}
@@ -106,7 +110,7 @@ jobs:
               raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
           PY
           ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             --output-junit "$RUNNER_TEMP/asc-tests.xml" \
             2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
       - name: Audit JUnit outcomes even when numerical gates fail

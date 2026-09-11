@@ -22,6 +22,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/mixed_positive_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/general_lu_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/precision_conversion_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/matrix_copy_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/matrix_scale_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/dmd_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/dmd_qr_tests.cmake")
 
@@ -844,6 +845,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_mixed_positive.h
     lapack_precision_conversion.h
     lapack_matrix_copy.h
+    lapack_matrix_scale.h
     lapack_dmd.h
     lapack_dmd_qr.h
     lapack_positive_tridiagonal.h

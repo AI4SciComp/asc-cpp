@@ -1380,8 +1380,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P11.shared_provider_admission",
-  "next_action": "Freeze the integrated shared-support sources, execute fresh package/profile checks in both actual ABIs, synchronize ordinary feature writes, then implement dependency-ready LASCL and continue the ready queue.",
+  "active_task": "P09.required.lascl local integration complete: commit/push and audit fresh hosted results; next integrate independently reviewed GBRFS diagnostic oracle correction",
+  "next_action": "Read actual pending run records without rerunning completed work. Commit/push LASCL when remaining safety checks pass. The independently prepared GBRFS oracle correction is external-only and not yet execution credit.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2542,7 +2542,7 @@
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect shared-root-import-01 and execute the frozen integrated source validation; no reapplication of amendment04.",
+  "next_command": "Inspect lascl-shared-safety-audit-01 and staged diff, then execute ordinary feature synchronization; GBRFS correction remains external-only until the LASCL commit.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3137,46 +3137,32 @@
       "evidence": "master-continuation-20260910-01/dmdq-hosted-update-02; dmdq-hosted-artifacts-01/junit-audit.json"
     },
     "p09_stage": "Mixed general/positive, conversions, LACPY, GEDMD and GEDMDQ integrated. GEDMDQ c01abddf has fresh CI/CodeQL passes and family118/123 per ABI with exactly retained PT4 and SGEDMDQ1 failures. Both actual ABIs, six local profiles, real concurrency, relocated install and frozen-source package evidence retained; no global numerical acceptance.",
-    "remaining_actionable": "Complete staged shared admission and integrate its reviewed first-party support when gates permit; finish full Reference mode/class evidence, remaining P05-P09 implementations and historical numerical-cause consolidation. S/D/C/Z LASCL symbols and seven source modes are reviewed as a ready P09 continuation. No PPSVX/notice decision blocks these independent tasks.",
+    "remaining_actionable": "Synchronize completed local LASCL integration; integrate and reverify the demonstrated GBRFS oracle correction, then continue historical numerical-cause consolidation, missing Reference mode/class evidence and remaining dependency-ready P05-P09 implementations/platform admission.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
-      "required_denominator": 2113,
-      "specification_mapped": 64,
-      "callable_reference": 36,
+      "required": 2113,
+      "excluded": 1438,
+      "mapped_contracts": 68,
+      "callable_reference": 40,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
-      "reference_not_started_in_ledger": 1735,
-      "reference_in_progress_in_ledger": 342,
-      "reference_blocked_in_ledger": 0,
-      "incomplete_reference_contracts": 2077,
-      "implemented_unverified_native": 0,
-      "implemented_unverified_reference": 36,
-      "registered_partial_reference_operations": 342,
-      "unregistered_expert_operations_with_scoped_tests": 4,
-      "note": "2113 Reference requirements:36 callable-unverified,342 partial,1735 not started,0 verified;378 registered. GEDMDQ adds four partial rows/2880 legal mode IDs per scalar, not extra catalogue entries. Native20 verified112 modes/1120 class slots and four experimental first-party robust algorithms retain their separate scope.",
-      "unregistered_packed_operations_with_scoped_tests": 4,
-      "experimental_first_party_robust_ppsvx_algorithms": 4,
-      "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
-      "in_progress_reference": 342,
-      "not_started_reference": 1735,
-      "mapped_contracts": 64,
       "blocked_reference": 0,
+      "not_started_reference": 1731,
+      "in_progress_reference": 342,
+      "incomplete_reference": 2073,
+      "implemented_unverified_reference": 40,
+      "implemented_unverified_native": 0,
       "discovered": 3551,
-      "excluded": 1438,
-      "incomplete_reference": 2077,
-      "profile_complete": false,
-      "required": 2113,
-      "registered_callable_reference_operations": 36,
-      "registered_reference_operations_total": 378
+      "profile_complete": false
     },
     "original_supplied_instruction_sha256": "98b9ad9665c2ff0aa75b94f80a5093b1db2a2164cc3c4c511f694044f9be862d",
     "instruction_normalization": "Four trailing Markdown hard-break spaces removed for repository whitespace policy; original untracked user instruction and external copy preserved.",
     "shared_admission": {
-      "state": "root_patch_integrated_fresh_source_validation_pending",
+      "state": "root_integrated_local_and_hosted_limited_admission_passed_retained_math_failures",
       "review": "programs/lapack-array-io/shared-provider-admission-review.md",
-      "root_head": "4e4e2b1aca29e51c5b659a6e59a01ff60902d6d5",
-      "root_tree": "ab5a28090338d49ac1fe118177a864d94aa260a8",
+      "root_head": "129bba18ca8dd7fbd0ed4e1cfad708ab96fb0cf9",
+      "root_tree": "c8918635872eceea192591cf870111e062d14fea",
       "staged_baseline_commit": "2814b1a21edda2f006b08fc1d80578513ba795b3",
       "amendment_sha256": "68951896c1c1508750fc0483354573a72f4a7e232a2bde6c600412da7b89a758",
       "provider_attestations": {
@@ -3193,16 +3179,77 @@
         "Shared target inventory,architecture/public-surface/configuration5/5 and ELF inspection pass both ABIs",
         "Fresh static compatibility product builds,configuration5/5 and complete relocated packages pass both ABIs; metadata/identity headers byte-identical",
         "Exact eight-file amendment04 integrated; root strict Doxygen/links/documentation,coverage and backlog checks pass",
-        "Windows tooling fix4e4e2b1:115 normal/optimized tests pass; real migration reproduces all three existing manifests byte-for-byte"
+        "Windows tooling fix4e4e2b1:115 normal/optimized tests pass; real migration reproduces all three existing manifests byte-for-byte",
+        "Fresh integrated archived-source builds122/127 plus complete package1/1 per ABI; same five mathematical failures,zero skips; exact clean runtime closure",
+        "Fresh normalized ELF reports byte-identical to staged reports;1121 build/API/test/example/ABI files unchanged"
       ],
       "running": [],
-      "not_executed": [
-        "Fresh integrated-source archive build and relocated public package",
-        "New integrated revision hosted static/shared actual-ABI checks"
-      ],
+      "not_executed": [],
       "next_dependency_ready_task": "P09.required.lascl",
       "next_task_review": "master-continuation-20260910-01/lascl-prerequisite-01/review.json",
-      "preservation": "All original shared patches, failed builds/calibrations/loader/package runs and binary snapshots retained; no worktree deletion."
+      "preservation": "All original shared patches, failed builds/calibrations/loader/package runs and binary snapshots retained; no worktree deletion.",
+      "tested_integrated_tree": "d5a1a3bd92bfc521fce4fc1bf95fd5a708201641",
+      "hosted": {
+        "revision": "129bba18ca8dd7fbd0ed4e1cfad708ab96fb0cf9",
+        "family_run": 34561130495,
+        "profiles": 4,
+        "per_profile": "118/123 passed, retained PT4 and SGEDMDQ1 mathematical failures; 0 skipped; provider111/111",
+        "raw": "master-continuation-20260910-01/shared-integrated-hosted-family-02",
+        "audit": "master-continuation-20260910-01/shared-integrated-hosted-audit-01",
+        "codeql": {
+          "run": 34561130492,
+          "result": "success"
+        },
+        "ci": {
+          "run": 34561130500,
+          "result": "success"
+        }
+      }
+    },
+    "lascl": {
+      "state": "root_registered_callable_unverified_local_integration_complete_synchronization_pending",
+      "review": "programs/lapack-array-io/matrix-scale-review.md",
+      "input_manifest": "master-continuation-20260910-01/lascl-integration-inputs-06/manifest.json",
+      "external_source": "master-continuation-20260910-01/lascl-source-01",
+      "completed": [
+        "four-scalar/seven-storage-mode source/API/count review",
+        "candidate LP64/ILP64 14/14 including finite mathematical assertions, 108 exceptional direct comparisons/scalar, signature/INFO faults, calibrated observation and public example",
+        "product/wrapper/observer strict checks; remaining new-test/consumer mechanical findings fixed",
+        "12 original files imported; isolated external driver excluded; root exports/header/ABI/package/hosted selectors updated",
+        "integrated Debug/Release/ASC sanitizer14/14 in both actual ABIs",
+        "real-provider TSan4/4 per ABI, ASC/tests instrumented only",
+        "strict product/exception/consumer checks and strict documentation pass",
+        "schema2 four-row extension preserves all three old execution records and both source identities",
+        "All four frozen static/shared actual-ABI profiles21/21, actual header/architecture/configuration gates",
+        "All four full relocated package gates pass: static262.376/263.211s, shared233.603/233.794s; clean shared LASCL runtime closure and28 controls",
+        "Final strict annotation check and formatting pass; all eight prior profile input comparisons differ only by three comment lines",
+        "Native20 rows/original execution record and selected native/I/O input comparison preserved",
+        "Shared Debug14/14 per actual ABI",
+        "Shared ASC sanitizer14/14 and TSan4/4 per ABI; no sanitizer/race diagnostics, provider/runtime uninstrumented"
+      ],
+      "running": [],
+      "unexecuted": [
+        "final coherent narrative/record validation and commit/non-force push",
+        "actual integrated LASCL revision hosted results and draft PR update"
+      ],
+      "numerical_scope": "Finite representable final results retain independent wide oracle and unchanged8epsilon plus one-denorm tolerance. Infinity branch comparisons are fidelity only; raw positive infinity from negative finite CFROM/positive infinite CTO is exposed, not a finite-result acceptance claim.",
+      "frozen_tree": "b52fa952ccec39d08eebd8cd53f3f412bb48494e",
+      "frozen_archive_sha256": "2a4d55bc26f84f5920a20c34cdb93bceef894f89be30323d366cc5c45af6cd43",
+      "pending_patch": "master-continuation-20260910-01/lascl-integration-pending-01/identity.json"
+    },
+    "gbrfs_oracle_review": {
+      "state": "isolated_correction_executed_reviewed_not_integrated",
+      "derivation": "master-continuation-20260910-01/gbrfs-oracle-review-01/derivation.md",
+      "source": "master-continuation-20260910-01/gbrfs-oracle-source-03",
+      "running": [],
+      "failed_attempts": [
+        "gbrfs-oracle-lp64-02",
+        "gbrfs-oracle-ilp64-02"
+      ],
+      "reason": "Two tiny-fixture assertions contradict documented guarded estimates: BERR is not true zero residual and FERR need not be O(epsilon). Preserve the genuine finite-FERR failing gate, exact original inputs and tolerances. No provider or product change.",
+      "result": "Both actual ABIs4/8 pass; four genuine extreme FERR gates still fail72 assertions each, while ordinary cases and corrected guarded BERR checks pass. Initial108 per scalar preserved; no numerical requirement waived.",
+      "audit": "master-continuation-20260910-01/gbrfs-oracle-audit-03/audit.json",
+      "strict": "master-continuation-20260910-01/gbrfs-oracle-style-01"
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

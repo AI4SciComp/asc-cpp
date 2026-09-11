@@ -77,6 +77,7 @@ asc/dense/providers/lapack_lu_equilibration.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_helpers.h|asc_dense_lapack
 asc/dense/providers/lapack_lu_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_matrix_copy.h|asc_dense_lapack
+asc/dense/providers/lapack_matrix_scale.h|asc_dense_lapack
 asc/dense/providers/lapack_mixed_general.h|asc_dense_lapack
 asc/dense/providers/lapack_mixed_positive.h|asc_dense_lapack
 asc/dense/providers/lapack_positive_tridiagonal.h|asc_dense_lapack
