@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <cstdlib>
 
+// This is an example verification helper, not an installed ASC declaration.
+/// @cond ASC_EXAMPLE_INTERNAL
 namespace asc_lapack_test {
 
 // Create exactly once, as the first local in main. Some Fortran STOP paths call
@@ -38,5 +40,6 @@ class NormalReturnGuard {
 };
 
 }  // namespace asc_lapack_test
+/// @endcond
 
 #endif  // ASC_CPP_TESTS_DENSE_LAPACK_INSTALLED_LU_NORMAL_RETURN_GUARD_H_

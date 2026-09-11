@@ -81,6 +81,10 @@ jobs:
           required |= {refinement + mode + scalar for scalar in "sdcz"
                        for mode in ("", "required_math_")}
           required |= {refinement + name for name in ("fault", "observation", "public_example")}
+          driver = "asc_cpp.dense_lapack.positive_tridiagonal_driver."
+          required |= {driver + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "required_math_")}
+          required |= {driver + name for name in ("fault", "observation", "public_example")}
           for family in ("mixed_general", "mixed_positive"):
               mixed = "asc_cpp.dense_lapack." + family + "."
               required |= {mixed + mode + scalar for scalar in "dz"

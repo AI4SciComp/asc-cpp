@@ -3366,9 +3366,9 @@
       }
     },
     "ptrfs": {
-      "state": "integrated_and_pushed_hosted_audited_required_math_failed_consumer_guard_amendment_pending",
+      "state": "integrated_and_pushed_hosted_audited_required_math_failed",
       "review": "programs/lapack-array-io/positive-tridiagonal-refinement-review.md",
-      "next": "Preserve numerical decision packet and completed delivery; verify the narrow public-consumer normal-return amendment on its own revision.",
+      "next": "Retain the numerical decision packet and completed delivery. PTSV continuation and narrow comment-only example documentation correction are tracked separately.",
       "source": "master-continuation-20260910-01/ptrfs-source-01",
       "candidate": "master-continuation-20260910-01/ptrfs-candidate-{lp64,ilp64}-02",
       "final_external": "master-continuation-20260910-01/ptrfs-final-external-audit-01/audit.json",
@@ -3469,20 +3469,65 @@
       }
     },
     "ptsv": {
-      "state": "external_candidate04_fault_concurrency_and_public_example_pass_required_math_failed",
+      "state": "root_integrated_local_linux_static_shared_gates_executed_required_math_failed_feature_sync_pending",
       "prerequisites": "master-continuation-20260910-01/ptsv-prerequisite-01/review.json",
-      "next": "Finish native fault/publication tests and metadata observation, strict review, then integrate and verify affected actual-ABI profiles. Do not reimplement PTTRF/PTTRS or repeat PPSVX.",
+      "next": "Synchronize reviewed first-party PTSV feature changes, audit fresh hosted results and continue existing dependency-ready PTSVX; do not repeat PT/PTRFS/PPSVX/native20/I/O work.",
       "source": "master-continuation-20260910-01/ptsv-source-01",
       "initial_audit": "master-continuation-20260910-01/ptsv-initial-audit-01/audit.json",
-      "latest_executed": "master-continuation-20260910-01/ptsv-candidate-{lp64,ilp64}-04",
-      "scope": "Both actual ABI candidate04sixof10testprocessespass; fourrequiredmathfailures24assertions unchanged. Ordinarydriver/factorreuse/nativeNRHS0/concurrency/aliases/counts/publicexample and176TLSfaultprofiles pass. Observation/strict/integration/fullprofile/packagegates remain pending.",
-      "latest_audit": "master-continuation-20260910-01/ptsv-fault-concurrency-audit-01/audit.json"
+      "latest_executed": "master-continuation-20260910-01/ptsv-{debug,release,sanitizer,tsan}-{lp64,ilp64}-integrated-01",
+      "scope": "Static/shared Debug/Release/ASCsanitizeractualABI familyselections7of11,onlyfourrequiredmathfailures24assertions/onecause each;allfourTSanprofiles4of4. Fourpackages1of1,eightAPIexports,provider-freebaseclosure. Headerclosuresreuse7priorpassesplus4repairedpasses each;originalcountfailuresretained. Strict/Doxygen/format/scopedvalidatorspass. Mathematical andfullprogrammeacceptanceincomplete.",
+      "latest_audit": "master-continuation-20260910-01/ptsv-static-profile-audit-01/audit.json",
+      "review": "programs/lapack-array-io/positive-tridiagonal-driver-review.md",
+      "external_audit": "master-continuation-20260910-01/ptsv-external-final-audit-01/audit.json",
+      "root_import": "master-continuation-20260910-01/ptsv-root-import-01/manifest.json",
+      "registration": "master-continuation-20260910-01/ptsv-registration-02",
+      "frozen_source": {
+        "tree": "a34a722fc33ab4d6be840376a07907f49e1124b3",
+        "archive_sha256": "40270605180af0daf91ee0bc44fce66d36790c45debfed8c08adcab76382be19",
+        "base_head": "cc42d4ed295be1d1c48e9a9b1316c84238ccf080",
+        "compiled_build_api_test_example_abi_inputs": 1184,
+        "scope": "One final reviewed original PTSV integration; no provider or numerical source change. Root index unchanged; user instruction files excluded. Six static profiles and both TSan passed their stated behavioral scope; required math failures remain. Four local example guard changes are documentation comments only. Existing PT/PTRFS algorithms and provider bytes unchanged."
+      },
+      "running": [],
+      "unexecuted": [
+        "exact-revision fresh hosted checks",
+        "numerical acceptance requires an approved PT solve strategy or provider decision",
+        "unavailable wider provider platforms and complete normalized programme closure"
+      ],
+      "delivery": "master-continuation-20260910-01/ptsv-synchronization-01",
+      "final_local_audit": "master-continuation-20260910-01/ptsv-final-local-audit-01/audit.json",
+      "test_only_amendment": "master-continuation-20260910-01/ptsv-header-count-amendment-01/identity.json"
     },
     "pt_consumer_return_guard": {
-      "state": "local_affected_consumers_and_strict_checks_passed_feature_sync_pending",
+      "state": "cc42d4_pushed_hosted_family_audited_comment_only_documentation_fix_local",
       "review": "master-continuation-20260910-01/pt-consumer-return-guard-amendment-01/audit.json",
       "index": "master-continuation-20260910-01/pt-consumer-return-guard-index-01",
-      "scope": "Three maintained PT/PTCON/PTRFS example mains add exact local existing guards. Twelve copied installed consumers pass against unchanged actual static/shared ABI libraries;3strict units/format/index/backlog pass.1166 frozen inputs unchanged;only3example mains plus3newhelperfiles differ. Fresh hosted revision pending."
+      "scope": "cc42d4 hosted:fourfamilyprofiles164/181,17requiredmathfailuresunchanged,all12guardedexamplesandprovider111/111pass;CodeQLpass. CI18of19jobs;onlyDoxygenfailureonprivateexamplehelpers. Comment-only localcorrectionpassesstrictDoxygen andispartofPTSVdelivery. Newrevisionhostedcheckspending.",
+      "delivery_commit": "cc42d4ed295be1d1c48e9a9b1316c84238ccf080",
+      "hosted_audit": "master-continuation-20260910-01/pt-consumer-guard-hosted-audit-01/audit.json",
+      "documentation_amendment": "master-continuation-20260910-01/pt-example-helper-documentation-01/review.json"
+    },
+    "ptsvx": {
+      "state": "dependency_ready_source_review_started_implementation_unexecuted",
+      "prerequisites": "master-continuation-20260910-01/ptsvx-prerequisite-01/review.json",
+      "next": "Finish typed FACT N/F and transitive count/workspace review, then implement the checked expert adapter and maintained required matrix in both actual ABIs. Reuse PTCON/PTRFS numerical cause records; no new numerical strategy is authorized."
+    },
+    "current_reference_counts": {
+      "required": 2113,
+      "excluded": 1438,
+      "mapped_contracts": 84,
+      "callable_reference": 56,
+      "verified_reference": 0,
+      "callable_native": 20,
+      "verified_native": 20,
+      "blocked_reference": 0,
+      "not_started_reference": 1715,
+      "in_progress_reference": 342,
+      "incomplete_reference": 2057,
+      "implemented_unverified_reference": 56,
+      "implemented_unverified_native": 0,
+      "discovered": 3551,
+      "profile_complete": false
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
