@@ -187,3 +187,11 @@ Wider platform, normalized full-mode evidence and owner/numerical acceptance
 remain incomplete after local Linux/static delivery. The next ready engineering
 work is P04/P11 execution-identity normalization, followed by the existing
 Linux shared/profile admission and inventory-backed implementation queue.
+
+Fresh hosted checks on `c01abddf739551d8512520f71711491d314b2c77`
+(tree `eb09d7860a49ddb53ddd4f1cfe64d21155fbff5c`) complete: CI34547900736
+and CodeQL34547900792 pass. Family34547900720 passes118/123 per actual ABI,
+with exactly the four retained PT mathematical failures and SGEDMDQ
+required_math_s, zero skips; provider111/111 each. Raw downloaded artifacts
+and the per-test JUnit audit are `dmdq-hosted-artifacts-01`; these results
+certify their exact revision and scope, not later changed source.

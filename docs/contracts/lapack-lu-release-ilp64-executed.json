@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "id": "asc_cpp.dense_lapack.general_lu.public_modes",
+      "configured_id": 237,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_general_lu_public_example"
+      ],
+      "status": "passed",
+      "seconds": "0.00756301"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.normal_return_guard",
+      "configured_id": 292,
+      "command": [
+        "/usr/local/bin/cmake",
+        "-DPROBE:FILEPATH=/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_normal_return_probe",
+        "-P",
+        "/home/yicai/AI4SciComp/asc-cpp-lapack-array-io/tests/dense_lapack/normal_return_guard_test.cmake"
+      ],
+      "status": "passed",
+      "seconds": "0.012894"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.reference_lu.s",
+      "configured_id": 293,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_reference_lu_test",
+        "s"
+      ],
+      "status": "passed",
+      "seconds": "0.00305305"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.reference_lu.d",
+      "configured_id": 294,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_reference_lu_test",
+        "d"
+      ],
+      "status": "passed",
+      "seconds": "0.00300099"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.reference_lu.c",
+      "configured_id": 295,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_reference_lu_test",
+        "c"
+      ],
+      "status": "passed",
+      "seconds": "0.0035454"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.reference_lu.z",
+      "configured_id": 296,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_reference_lu_test",
+        "z"
+      ],
+      "status": "passed",
+      "seconds": "0.00366646"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_info.s",
+      "configured_id": 297,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_info_test",
+        "s"
+      ],
+      "status": "passed",
+      "seconds": "0.00345547"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_info.d",
+      "configured_id": 298,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_info_test",
+        "d"
+      ],
+      "status": "passed",
+      "seconds": "0.00335735"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_info.c",
+      "configured_id": 299,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_info_test",
+        "c"
+      ],
+      "status": "passed",
+      "seconds": "0.00321222"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_info.z",
+      "configured_id": 300,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_info_test",
+        "z"
+      ],
+      "status": "passed",
+      "seconds": "0.00329812"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_expert_info.s",
+      "configured_id": 301,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_expert_info_test",
+        "s"
+      ],
+      "status": "passed",
+      "seconds": "0.00617705"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_expert_info.d",
+      "configured_id": 302,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_expert_info_test",
+        "d"
+      ],
+      "status": "passed",
+      "seconds": "0.00644783"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_expert_info.c",
+      "configured_id": 303,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_expert_info_test",
+        "c"
+      ],
+      "status": "passed",
+      "seconds": "0.00641604"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_expert_info.z",
+      "configured_id": 304,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_expert_info_test",
+        "z"
+      ],
+      "status": "passed",
+      "seconds": "0.00701232"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_pivot.s",
+      "configured_id": 305,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_pivot_test",
+        "s"
+      ],
+      "status": "passed",
+      "seconds": "0.0951398"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_pivot.d",
+      "configured_id": 306,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_pivot_test",
+        "d"
+      ],
+      "status": "passed",
+      "seconds": "0.0922616"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_pivot.c",
+      "configured_id": 307,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_pivot_test",
+        "c"
+      ],
+      "status": "passed",
+      "seconds": "0.183778"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_pivot.z",
+      "configured_id": 308,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_pivot_test",
+        "z"
+      ],
+      "status": "passed",
+      "seconds": "0.176366"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_layout.s",
+      "configured_id": 309,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_layout_test",
+        "s"
+      ],
+      "status": "passed",
+      "seconds": "0.0213763"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_layout.d",
+      "configured_id": 310,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_layout_test",
+        "d"
+      ],
+      "status": "passed",
+      "seconds": "0.021221"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_layout.c",
+      "configured_id": 311,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_layout_test",
+        "c"
+      ],
+      "status": "passed",
+      "seconds": "0.0486799"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_layout.z",
+      "configured_id": 312,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_layout_test",
+        "z"
+      ],
+      "status": "passed",
+      "seconds": "0.0605662"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_expert.s",
+      "configured_id": 313,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_expert_test",
+        "s"
+      ],
+      "status": "passed",
+      "seconds": "0.0114105"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_expert.d",
+      "configured_id": 314,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_expert_test",
+        "d"
+      ],
+      "status": "passed",
+      "seconds": "0.0101975"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_expert.c",
+      "configured_id": 315,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_expert_test",
+        "c"
+      ],
+      "status": "passed",
+      "seconds": "0.0159747"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_expert.z",
+      "configured_id": 316,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_expert_test",
+        "z"
+      ],
+      "status": "passed",
+      "seconds": "0.0178628"
+    },
+    {
+      "id": "asc_cpp.dense_lapack.lu_counts",
+      "configured_id": 341,
+      "command": [
+        "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/build-release-ilp64/tests/dense_lapack/asc_dense_lapack_lu_counts_test"
+      ],
+      "status": "passed",
+      "seconds": "0.00291607"
+    }
+  ],
+  "raw_inputs": {
+    "command": {
+      "name": "record.json",
+      "sha256": "e5f196e89ce8c9d1596eb8dd4530e86b34510eebd334aeffbd998335a52b7e3c"
+    },
+    "selection": {
+      "name": "selected-tests.json",
+      "sha256": "ed7a2564ea70646fabdb748c7a3be47948ce8cff238b82aac6383d845ecdf90a"
+    },
+    "junit": {
+      "name": "tests.xml",
+      "sha256": "95539b892956102fbe1a255f92c251f651c14aa8c16b81de241474a07bbbd96f"
+    },
+    "metadata": {
+      "name": "ilp64-metadata.json",
+      "sha256": "ca638bfd80b1d8e322608976daa897035285e6158b3997c410218bd8df61cdc0"
+    }
+  }
+}

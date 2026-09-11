@@ -14,7 +14,7 @@
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
+  "last_implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
   "worktree_diff_identity": {
     "state": "gedmdq_partial_delivery_executed_pending_feature_sync",
     "base_commit": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
@@ -1365,16 +1365,23 @@
       "review": "programs/lapack-array-io/dmd-qr-review.md"
     },
     "P04.execution_evidence_identity_normalization": {
-      "state": "implementation_in_progress",
+      "state": "mechanism_and_initial_partial_records_implemented",
       "owner": "integration",
       "dependency": "Existing preserved native20 and Reference basic-LU executions need different explicit source expectations.",
-      "implementation": "tools/lapack/validate_coverage.py and test_validate_coverage.py unstaged next-slice work; schema1 retained, schema2 explicit catalog and per-route selectors;41 unit tests pass.",
-      "evidence": "master-continuation-20260910-01/execution-ledger-preflight-01; execution-ledger-tests-01",
-      "remaining": "Versioned contract, adversarial CLI hash checks, maintained generator/migration and exact execution mappings. No new verified Reference credit."
+      "implementation": "Maintained schema2 normalizer, migration generator and validator; explicit per-route source and partial class semantics. Existing schema1 compatibility retained.",
+      "evidence": "master-continuation-20260910-01/execution-ledger-tests-05; execution-migration-04; lu-execution-binding-{lp64,ilp64}-01; execution-ledger-gates-01/02; execution-ledger-final-checks-01",
+      "remaining": "Complete remaining Reference mode/class assignments and platform admission. Initial24 LU rows have184 explicitly partial assignments/96 modes per ABI, no verification promotion."
+    },
+    "P11.shared_provider_prerequisites": {
+      "state": "link_prerequisite_executed_admission_in_progress",
+      "owner": "integration",
+      "evidence": "master-continuation-20260910-01/shared-provider-link-prerequisite-01/02; platform-container-resource-01",
+      "scope": "Both actual pinned static ABIs pass a shared no-undefined/no-text-relocation link prerequisite with hidden archive symbols and normal BLAS extraction. Output was discarded; no provider/runtime binary was bundled or installed. First forced-whole-archive BLAS probe failed duplicate helper definitions and is retained. No root support guard changed. Docker unavailable in this WSL distro.",
+      "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P04.execution_evidence_identity_normalization",
-  "next_action": "Synchronize the reviewed GEDMDQ staged commit and read actual hosted results; continue the working-tree evidence-validator schema extension and its CLI/contract tests, then normalize existing Reference execution records without changing native20 identity. Linux shared and remaining implementation work stay ready.",
+  "active_task": "P11.shared_provider_prerequisites",
+  "next_action": "Finish the scoped evidence-ledger feature commit/push and actual hosted update; continue the available GNU11 Linux shared ASC facet experiment with narrow guards and explicit foreign-symbol isolation. No global family or native acceptance restart.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1382,7 +1389,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "456e878349a53d3ae6e1d08f352b6bb49022e61225f746a30a90ee37ea2ed2ff"
+    "coverage_mapping_sha256": "a611c21e9345df5adaeb34c33208ea8e5b8e3749aa481f765fcd1a1f20216a1c"
   },
   "provider": {
     "version": "3.12.1",
@@ -2024,12 +2031,11 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "precision-conversion-integration-01",
-    "state": "local_frozen_source_delivery_passed_feature_sync_next",
-    "source_records": "master-continuation-20260910-01/conversion-*/inputs.json",
-    "review": "programs/lapack-array-io/precision-conversion-review.md",
-    "frozen_tree": "a3a8bc38aad27a4b6910577138cc89ac6e5db5f9",
-    "fresh_results": "conversion-fresh-{lp64,ilp64}-01 each13/13, zero skips"
+    "candidate": "execution-ledger-integration-01",
+    "state": "local_scoped_checks_passed_feature_sync_next",
+    "executed_lu_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+    "review": "programs/lapack-array-io/lu-execution-evidence-review.md",
+    "scope": "Evidence-only extension; numerical C++ and provider inputs unchanged. Passing partial Reference fixtures never close whole classes."
   },
   "last_completed_verification": {
     "candidate": "ppsvx-robust-integration-01",
@@ -2529,14 +2535,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P04.partial_mode_evidence_and_P11_provider_platform_admission",
+  "next_task": "P11.shared_provider_admission_and_remaining_P04-P09_ready_queue",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "GEDMDQ fresh_dmdq.py both ABIs completed17/18 with only required_math_s; do not rerun those unchanged inputs. Two unstaged tools/lapack Python files implement named expected identities plus per-route execution_identity_ids, with41 unit tests passing in execution-ledger-tests-01. Finish the versioned evidence contract, adversarial CLI metadata-binding tests and actual Reference ledger normalization; preserve schema1/native20 and keep next work out of the GEDMDQ staged source freeze.",
+  "next_command": "execution-ledger-tests-05 passes111 tests normally and optimized; execution-migration-04 exactly matches reviewed outputs. Complete final record/style/scoped validator checks and feature synchronization. Shared-provider-link-prerequisite-02 passes both ABIs; no root shared provider has yet been built. Continue from actual public shared-library admission and test-wrapper boundary review, not the already completed provider link probe.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3118,20 +3124,20 @@
     "one_active_writer": true,
     "pt_progress": "Six 13/17 affected profiles; both TSan4/4; installed public/base isolation pass; both full package tests pass; one source-list omission corrected and retested; current strict signature/format/coverage/Doxygen checks pass. Four required math processes/eight scalar-input cases/one provider cause remain failed.",
     "current_remote_read": {
-      "head": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
-      "tested_tree": "962373995a2e8622a96b37a57a7ac3b07301a9d4",
+      "head": "c01abddf739551d8512520f71711491d314b2c77",
+      "tree": "eb09d7860a49ddb53ddd4f1cfe64d21155fbff5c",
       "pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
       "draft": true,
       "checks": {
-        "pr_ci": 34541545285,
-        "pr_codeql": 34541545286,
-        "pr_families": 34541545292
+        "pr_ci": 34547900736,
+        "pr_codeql": 34547900792,
+        "pr_families": 34547900720
       },
-      "result": "CI/CodeQL pass. Family104/108 per actual ABI, exactly four retained PT mathematical failed processes, zero skips; provider111/111 each. These runs include integrated GEDMD and predate GEDMDQ.",
-      "evidence": "master-continuation-20260910-01/dmd-hosted-update-04; dmd-hosted-pr-update-01"
+      "result": "CI/CodeQL pass. Families118/123 per actual ABI; exactly four retained PT and one SGEDMDQ required mathematical failed processes, zero skips. Provider111/111 each. No Reference mathematical waiver.",
+      "evidence": "master-continuation-20260910-01/dmdq-hosted-update-02; dmdq-hosted-artifacts-01/junit-audit.json"
     },
-    "p09_stage": "Mixed general/positive, precision conversions, LACPY and GEDMD delivered and hosted-tested. GEDMDQ checked APIs/tests/public consumer integrated and four partial rows registered; actual six-profile14/15 results retain only SGEDMDQ QR-factored mathematical failure. Both TSan, public headers,134-header/2341-member strict documentation and relocated installed use pass. Final package/fresh-source delivery continues. Both affected package gates now pass8/8; full package222.602/222.649 seconds. Frozen-source checks and feature synchronization remain. Frozen source17/18 per actual ABI completes; required_math_s remains the only failure, full package237.733/238.639 seconds. GEDMDQ ordinary feature delivery is ready.",
-    "remaining_actionable": "GEDMDQ ordinary synchronization/actual hosted status; in-progress P04/P11 evidence-identity extension and normalization; Linux shared/profile admission, remaining P05-P09 implementations and existing historical numerical-cause consolidation. No blocked provider decision stops these independent tasks.",
+    "p09_stage": "Mixed general/positive, conversions, LACPY, GEDMD and GEDMDQ integrated. GEDMDQ c01abddf has fresh CI/CodeQL passes and family118/123 per ABI with exactly retained PT4 and SGEDMDQ1 failures. Both actual ABIs, six local profiles, real concurrency, relocated install and frozen-source package evidence retained; no global numerical acceptance.",
+    "remaining_actionable": "Full Reference mode/class evidence, Linux shared/root provider admission, remaining P05-P09 implementations and historical numerical-cause consolidation. Current ledger mechanism and initial basic-LU partial observations are delivered locally. No provider/notice decision blocks these independent tasks.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required_denominator": 2113,

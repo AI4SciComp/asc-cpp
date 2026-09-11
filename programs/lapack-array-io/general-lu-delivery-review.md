@@ -123,3 +123,8 @@ Fresh hosted checks on `c4e6d4710629538bddf4a074aa200fb974b0b99d`
 and CodeQL34519820167 pass. Family34519820028 passes72/76 per actual ABI,
 with exactly the four retained PT mathematical failures and zero skips. Raw
 artifacts and JUnit audit are `lu-hosted-final-01`; no later source is credited.
+
+The first maintained partial Reference execution records and separate source
+expectations are now in the [execution identity review](lu-execution-evidence-review.md).
+They preserve all previous executions and do not complete the remaining classes
+or platform gates.
