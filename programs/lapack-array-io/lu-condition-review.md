@@ -147,3 +147,108 @@ The missing temporary header-check translation unit failed in header revision
 unit. The exact provider archive closure is unchanged. GERFS now has its own
 bounded evidence in `lu-refinement-review.md`; GESVX, integration, installed
 isolation and all other remaining required gates are not completed by this fix.
+
+## Master continuation: normalized GECON modes
+
+The integration-pending statements above describe historical checkpoints.
+GECON's existing public declarations, adapter, ordinary tests, full-width INFO
+checks and installed advanced LU consumer are already integrated. The current
+P04.required.gecon continuation adds bounded missing evidence and normalizes
+four routine contracts; it does not implement the estimator again. The eight
+modes per scalar are one/infinity norm, row/column storage and empty/active
+order. Original ANORM is a finite nonnegative input value, not another flag or
+catalogue entry. No FACT, UPLO, pivot array or Hermitian-only interpretation
+is introduced for general LU.
+
+`master-continuation-20260910-01/gecon-continuation-contract-01/review.json`
+binds all four pinned definitions, existing declarations and finite remaining
+work. Real S/D storage and RCOND/ANORM are float/double, with 4N scalar and N
+native-integer work. Complex C/Z factor/work storage is complex float/double;
+ANORM/RCOND and 2N real work use the underlying real scalar, with 2N complex
+work. Complex native adjoint solves are internal estimator operations, not a
+reinterpretation of caller LU. The earlier integer, layout, aliasing, output,
+local-completion and raw INFO contracts remain unchanged.
+
+The old composed root evidence is reusable for 48 ordinary/INFO processes:
+eight per static Debug/Release/ASC-only sanitizer profile in both actual ABIs.
+The selected compiler-dependency comparison found 39 identical files and one
+exact comment-only change: four GESV RHS documentation lines now say both
+layouts. No declaration or executable token changed. All six LAPACK/BLAS/
+LAPACKE archives match the current prepared providers byte for byte. Exact
+prior test IDs, commands, JUnit hashes and the comparison are retained in
+`gecon-existing-evidence-reuse-02/audit.json`; these tests were not rerun.
+The first audit attempt's unnormalized archive path is preserved separately.
+
+New Release concurrency tests pass for S/D/C/Z in both actual ABIs. Each norm
+and layout uses four independent caller/provider-context/workspace/report
+states, sharing only an immutable plan. Each worker performs 32 real-provider
+estimates on independent diagonal systems with analytic reciprocal condition
+one quarter, followed by distinct invalid-norm, singular, stale-plan or normal
+outcomes. There is no shared workspace or mutable global fault callback. The
+first version incorrectly assumed a specific INFO=1 outcome for an order-three
+nonfinite complex factor fixture, outside the accepted finiteness promise.
+That failed attempt and the exact diagnostic-fixture correction are retained
+in `gecon-concurrency-fixture-amendment-01`. The existing accepted INFO=1 test
+and every scalar mathematical assertion remain unchanged.
+
+The new observer passes 208 controls over 32 scalar/norm/layout/path cases in
+both actual ABIs: 32 intentional old-RCOND reads, 32 restored writes, 32
+protected queries, 32 stale plans, 40 exact one-byte-short workspaces, 16 local
+completions, 16 validated actual native entries and eight legitimate row-pack
+input reads. It uses initialized aligned containing arrays, PROT_NONE and
+terminating child signals. Exact SDK-checked entry wrappers restore only the
+output page before calling the real provider. Descriptor metadata remains
+readable. The observable region is executed ASC handling before native entry;
+provider/runtime internals are not instrumented. Local outputs remain writable,
+so local no-read semantics are source-reviewed rather than inferred from
+PROT_WRITE. `gecon-modes-{lp64,ilp64}-02` records the five passing new processes
+per ABI; `gecon-modes-style-01` records both strict-analysis passes.
+
+| Mathematical cause | Precise fixture and requirement | Observed result and comparison | Disposition |
+| --- | --- | --- | --- |
+| Guarded inverse-scale restoration | S/D/C/Z, N=1, raw LU=ANORM=minnormal/1024, one/infinity norm, both layouts. The exact nonzero scalar condition is one; retain the existing 32-epsilon scalar assertion. | RCOND=0, INFO=0, unchanged factors; direct pinned GECON matches. In xGECON, SCALE less than abs(WORK(IX))*SMLNUM (CABS1 for complex), or zero SCALE, returns before restoration and final condition evaluation. | Preserve the failed mathematical gate. Numerical acceptance needs a separately authorized scale-invariant inverse-estimation strategy or provider decision. Reference fidelity alone does not pass it. |
+
+The maintained scalar gate uses the already recorded GESVX/GECON tiny fixture
+and its 2*minnormal safeguard, which passes. For a nonzero scalar,
+abs(a)*abs(1/a)=1 regardless of either matrix norm; intermediate overflow in an
+implementation does not invalidate this analytic oracle. Each actual-ABI
+Release profile has four failed processes, 16 assertions, four failing
+scalar/value cases and 16 norm/layout executions, with one inherited cause.
+The direct and mathematical bodies are identical across the concurrency-only
+amendment; their original failed executions in `gecon-modes-{lp64,ilp64}-01`
+are reused explicitly. These failures are separate from passing concurrency
+and observer controls, and are never registered as expected-success tests.
+
+Static Debug/Release/ASC-only ASan+UBSan profiles in both actual ABIs complete
+the five new engineering checks, retaining four mathematical failures and 16
+assertions per profile. Both static TSan profiles pass all four concurrency
+processes. The exact initial Release executions and unchanged mathematical
+body comparison remain in `gecon-static-audit-01/audit.json`.
+
+Shared Debug/Release/ASC-only ASan+UBSan each pass 13 of 17 processes in both
+actual ABIs; the same four mathematical failures retain identical raw scalar
+observations and 16 failed assertions. Both shared TSan profiles pass 4/4.
+There are no skipped tests. `gecon-shared-audit-01/audit.json` retains actual
+selected IDs, commands, exit statuses and comparisons for all eight profiles.
+Sanitizer/race instrumentation covers ASC/test code, not the pinned provider
+or runtime. Shared observation uses the existing test-only DSO assembled from
+production ASC objects; the installed exported DSO remains unwrapped.
+
+The public installed advanced LU consumer passed in all four fresh PTSVX
+packages on feature revision 674c0987. The GECON source, declarations and
+consumer inputs are unchanged. `gecon-installed-reuse-01/audit.json` binds
+these actual relocated executions, the eight exported GECON functions per
+package, public include paths and intended runtime closure. This reuse does
+not claim a newly installed API or repeat native20/array-I/O acceptance.
+
+The frozen continuation source is tree
+`bc36402b0684791ff50e3996cd0b487f27b9939d`, archive SHA-256
+`962f8044bf57a8b5461b3e27d569ef8c4593984dd4c9f18684be7c45b02a8402`,
+based on 674c0987. Its 1,200 product/build/test/example inputs are retained in
+`gecon-frozen-product-01`. Both new test units pass strict analysis. No public
+declaration or production estimator changed. Final narrative updates do not
+give a later whole tree execution credit. The four normalized Reference rows
+remain callable-unverified; mathematical acceptance, wider provider platforms
+and owner decisions remain open. The next dependency-ready continuation is
+the existing GEEQU/GEEQUB family, whose prerequisites are recorded in
+`geequ-continuation-prerequisite-01/review.json`.

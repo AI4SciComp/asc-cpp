@@ -109,7 +109,7 @@ The single frozen product is tree
 `0a2ab0921f1f44976fd63b8ad6ce2ce06a9033ca50abdc45dc4695d5ab52c896`,
 based on `8e3123ff0122735f9835bc6718e39fed4b817b2f`. Its 1,197 recorded
 build/API/test/example/package inputs are retained in the external
-`master-continuation-20260910-01/ptsvx-frozen-product-01` directory. This is an
+`master-continuation-20260910-01/ptsvx-frozen-product-01` directory. This is a
 staged integration snapshot, not a hosted-tested feature revision.
 
 Static Debug and Release in both actual ABIs each passed seven engineering
@@ -151,6 +151,28 @@ runtime dependency (`ptsvx-package-isolation-02/audit.json`). The preceding
 audit attempt incorrectly classified the explicitly provider-enabled array-I/O
 example as provider-free; its failed assertion and correction are preserved.
 
-The separate installed-header matrix and shared sanitizer profiles remain in
-progress. No hosted or mathematical acceptance is inferred from these local
-checks.
+All four installed-header matrices passed 11/11. Both shared sanitizer profiles
+passed seven engineering checks and retained the same four mathematical
+failures, with unchanged raw observations. Shared fault/observer tests use the
+existing test-only DSO relinking of production ASC objects; their exact entry
+wrappers, sanitizer flags and link commands are recorded separately from the
+actual exported installed consumer. No provider/runtime instrumentation is
+claimed. `ptsvx-final-local-audit-01/audit.json` closes the bounded local
+engineering work and preserves every initial timeout/audit failure.
+
+Feature commit `674c09872e1717891acaab885623b3c33075ccd7`, tree
+`194442f2619eee2824d64c11e7e5fa18366f489a`, was ordinarily pushed. All 1,197
+frozen product inputs match it; its later narrative records do not imply that
+the entire frozen tree was tested as this commit. Draft PR47 remains a draft.
+Fresh CI34637183219 passed all 19 jobs and CodeQL34637183245 passed. The actual
+hosted checkout was merge commit 8bd0905947018b3173baa3098945a92138f5144b,
+whose tree exactly equals the feature tree above. Family34637183116 remains
+failed: each of four profiles passes 182/207 and retains 25 mathematical
+failures. The previous 21 failed process outputs are identical to the PTSV
+hosted records; the four new PTSVX failures retain 224 assertions and identical
+raw local/direct observations. All 111 provider checks and five PT public
+examples pass per profile, with no skips. `ptsvx-hosted-audit-02/audit.json`
+records the full selected IDs and source/provider identities. Audit attempt01
+excluded hyphens from the test-name parser; its failure is preserved, and only
+the parser was corrected. No tests were rerun for that audit. Hosted engineering
+success does not close any mathematical gate or admit another provider platform.

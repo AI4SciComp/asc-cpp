@@ -10,11 +10,11 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
+  "current_base_commit": "674c09872e1717891acaab885623b3c33075ccd7",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+  "last_implementation_commit": "674c09872e1717891acaab885623b3c33075ccd7",
   "worktree_diff_identity": {
     "state": "gedmdq_partial_delivery_executed_pending_feature_sync",
     "base_commit": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
@@ -1380,8 +1380,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "PTSV candidate safety/strict review and narrow PT consumer guard synchronization",
-  "next_action": "Finish native fault/publication tests and metadata observation, strict review, then integrate and verify affected actual-ABI profiles. Do not reimplement PTTRF/PTTRS or repeat PPSVX.",
+  "active_task": "P04.required.gecon: final delivery of normalized existing-family evidence; GEEQU/GEEQUB next",
+  "next_action": "Run final scoped record checks, commit/push reviewed GECON continuation and inspect actual hosted checks while continuing the ready GEEQU/GEEQUB slice.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1821,34 +1821,35 @@
   },
   "counts": {
     "required_denominator": 2113,
-    "specification_mapped": 80,
-    "callable_reference": 52,
+    "specification_mapped": 92,
+    "callable_reference": 64,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
-    "reference_not_started_in_ledger": 1719,
-    "reference_in_progress_in_ledger": 342,
+    "reference_not_started_in_ledger": 1711,
+    "reference_in_progress_in_ledger": 338,
     "reference_blocked_in_ledger": 0,
-    "incomplete_reference_contracts": 2061,
+    "incomplete_reference_contracts": 2049,
     "implemented_unverified_native": 0,
-    "implemented_unverified_reference": 52,
-    "registered_partial_reference_operations": 342,
+    "implemented_unverified_reference": 64,
+    "registered_partial_reference_operations": 338,
     "unregistered_expert_operations_with_scoped_tests": 4,
-    "note": "2113Reference requirements:52callable-unverified,342partial,1719notstarted,0verified;394registered and80reviewed routine contracts. Implemented-unverified does not mean mathematical acceptance or complete normalized classes. Native20verified112modes/1120classslots and4separate experimental robust algorithms retain their original scope. Current counts derive from ptrfs-registration-02; older top-level counts are retained in ptrfs-root-records-01/state-before.json.",
+    "note": "Current scoped validator:2113required,402registered Reference=64callable-unverified+338partial,1711notstarted,0verified;92reviewed routine contracts. GECON normalization changes four existing partial rows, not catalogue denominator. Native20and4separateexperimentalrobustalgorithms preserve prior acceptance scope; math/widerplatform/owner gates remain incomplete. Earlier state preserved in gecon-programme-records-01/state-before.json.",
     "unregistered_packed_operations_with_scoped_tests": 4,
     "experimental_first_party_robust_ppsvx_algorithms": 4,
     "experimental_first_party_robust_ppsvx_public_query_execute_declarations": 24,
-    "in_progress_reference": 342,
-    "not_started_reference": 1719,
-    "mapped_contracts": 80,
+    "in_progress_reference": 338,
+    "not_started_reference": 1711,
+    "mapped_contracts": 92,
     "blocked_reference": 0,
     "discovered": 3551,
     "excluded": 1438,
-    "incomplete_reference": 2061,
+    "incomplete_reference": 2049,
     "profile_complete": false,
     "required": 2113,
-    "registered_callable_reference_operations": 52,
-    "registered_reference_operations_total": 394
+    "registered_callable_reference_operations": 64,
+    "registered_reference_operations_total": 402,
+    "registered_reference_operations": 402
   },
   "blockers": [
     {
@@ -3137,16 +3138,16 @@
     "latest_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 80,
-      "callable_reference": 52,
+      "mapped_contracts": 92,
+      "callable_reference": 64,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1719,
-      "in_progress_reference": 342,
-      "incomplete_reference": 2061,
-      "implemented_unverified_reference": 52,
+      "not_started_reference": 1711,
+      "in_progress_reference": 338,
+      "incomplete_reference": 2049,
+      "implemented_unverified_reference": 64,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3511,9 +3512,9 @@
       "correction_hosted_run": 34629605228
     },
     "ptsvx": {
-      "state": "four_callable_unverified_rows_registered_integrated_verification_running",
+      "state": "bounded_engineering_and_hosted_audit_complete_numerical_acceptance_blocked",
       "prerequisites": "master-continuation-20260910-01/ptsvx-prerequisite-01/review.json",
-      "next": "Finish the preserved shared sanitizer and installed-header runs, plus pending shared header matrices. Collect fresh hosted evidence for the ordinary feature commit; no verified credit for mathematical failures. Continue P04.required.gecon normalized-mode continuation without reimplementing it.",
+      "next": "Independent GECON/GEEQU continuation; no PTSVX rerun or reimplementation.",
       "external_candidate": "master-continuation-20260910-01/ptsvx-source-01",
       "external_audit": "master-continuation-20260910-01/ptsvx-candidate-06-audit-01/audit.json",
       "reviewed_candidate": "master-continuation-20260910-01/ptsvx-candidate-{lp64,ilp64}-07",
@@ -3538,14 +3539,13 @@
         "four actual installed/relocated packages and public consumers pass;16exports and runtime closure audited",
         "both shared Debug7of11 with only4math failures224assertions each",
         "both shared TSan4of4 actual ordinary/concurrency processes pass",
-        "all32installedbase-onlyconsumer and10nonproviderDSO runtime dependency checks pass"
+        "all32installedbase-onlyconsumer and10nonproviderDSO runtime dependency checks pass",
+        "bothsharedASCsanitizer7of11;only4mathfail224assertions/profile",
+        "fourinstalledheadermatrices11of11",
+        "ordinaryfeaturecommit/push674c0987verified;Draft47updatedtruthfully",
+        "actual674cfeaturetreehostedCI19/19,CodeQL,andfourfamilyprofilesaudited;25genuinemathematicalfailures/profilepreserved"
       ],
-      "running": [
-        "ptsvx-shared-sanitizer-lp64-01",
-        "ptsvx-shared-sanitizer-ilp64-01",
-        "ptsvx-installed-header-static-lp64-01",
-        "ptsvx-installed-header-static-ilp64-01"
-      ],
+      "running": [],
       "registration": "master-continuation-20260910-01/ptsvx-registration-02",
       "frozen_source": {
         "tree": "198f1846f7422e1753869c399770a17448d0b77c",
@@ -3558,31 +3558,64 @@
       "timeout_amendment": "master-continuation-20260910-01/ptsvx-observer-timeout-amendment-01/review.json",
       "next_family": "P04.required.gecon; existing implementation and missing normalized-mode records selected in gecon-continuation-prerequisite-01. No completed evidence rerun or reimplementation.",
       "pending": [
-        "two shared installed-header matrices",
-        "fresh hosted evidence for integrated revision",
-        "mathematical strategy and wider provider platform admission remain separate"
+        "numerical strategy, wider provider platforms, owner/full programme gates"
       ],
       "fresh_audit": "master-continuation-20260910-01/ptsvx-observer-and-fresh-audit-01/audit.json",
       "package_audit": "master-continuation-20260910-01/ptsvx-package-audit-01",
       "shared_audit": "master-continuation-20260910-01/ptsvx-shared-debug-tsan-audit-01/audit.json",
-      "isolation_audit": "master-continuation-20260910-01/ptsvx-package-isolation-02/audit.json"
+      "isolation_audit": "master-continuation-20260910-01/ptsvx-package-isolation-02/audit.json",
+      "local_final_audit": "master-continuation-20260910-01/ptsvx-final-local-audit-01/audit.json",
+      "integrated_commit": "674c09872e1717891acaab885623b3c33075ccd7",
+      "hosted": {
+        "ci": 34637183219,
+        "codeql": 34637183245,
+        "family": 34637183116,
+        "current": "CI19/19 and CodeQL success; family182/207 x4 retains25mathfailures, previous21outputsidentical,new4PTSVX224assertionsmatchlocal;provider111/111 andfivePTexamples/profilepass"
+      },
+      "hosted_audit": "master-continuation-20260910-01/ptsvx-hosted-audit-02/audit.json"
     },
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 88,
-      "callable_reference": 60,
+      "mapped_contracts": 92,
+      "callable_reference": 64,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
       "not_started_reference": 1711,
-      "in_progress_reference": 342,
-      "incomplete_reference": 2053,
-      "implemented_unverified_reference": 60,
+      "in_progress_reference": 338,
+      "incomplete_reference": 2049,
+      "implemented_unverified_reference": 64,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
+    },
+    "gecon": {
+      "state": "bounded_local_engineering_complete_numerical_acceptance_blocked_delivery_pending",
+      "base_head": "674c09872e1717891acaab885623b3c33075ccd7",
+      "review": "programs/lapack-array-io/lu-condition-review.md",
+      "prerequisites": "master-continuation-20260910-01/gecon-continuation-contract-01/review.json",
+      "unchanged_regressions": "master-continuation-20260910-01/gecon-existing-evidence-reuse-02/audit.json",
+      "new_static_audit": "master-continuation-20260910-01/gecon-static-audit-01/audit.json",
+      "registration": "master-continuation-20260910-01/gecon-registration-02",
+      "strict": "master-continuation-20260910-01/gecon-modes-style-01",
+      "mathematical": "Fourgenuinefailedprocesses16assertions/profile,minnormal/1024scalarLU=ANORMrequiresRCOND1at32epsilon,ASC/directGECONreturn0INFO0. Onealreadyrecordedguardedinverse-scalerestorationcause;2minnormalcontrolpasses. No numerical waiver/providerchange.",
+      "remaining": [
+        "final scoped validators and reviewed feature commit/push",
+        "fresh hosted checks of actual delivered revision",
+        "numerical strategy, unavailable wider provider environments, full programme requirements"
+      ],
+      "next_family": "P04.required.geequ and P04.required.geequb; eight existing entries, preserved typed review and finite evidence gaps",
+      "new_shared_audit": "master-continuation-20260910-01/gecon-shared-audit-01/audit.json",
+      "installed_reuse": "master-continuation-20260910-01/gecon-installed-reuse-01/audit.json",
+      "frozen_source": {
+        "tree": "bc36402b0684791ff50e3996cd0b487f27b9939d",
+        "archive_sha256": "962f8044bf57a8b5461b3e27d569ef8c4593984dd4c9f18684be7c45b02a8402",
+        "base_head": "674c09872e1717891acaab885623b3c33075ccd7",
+        "compiled_build_api_test_example_abi_inputs": 1200,
+        "scope": "One reviewed existing GECON continuation. Public API and production estimator unchanged; two maintained new test units, test registration/workflow selectors, normalized four contracts and evidence records. Sixstaticprofilescomplete with five new engineering passes and four required mathfailures16assertions each; twoTSan4passes;48older ordinary/INFOprocesses reused through selecteddependency/providercomparison. Shared newprofilespending; installedGECONconsumer source and product unchanged. No numerical acceptance, provider/dependency/FPchange or native/PPSVXredo."
+      }
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

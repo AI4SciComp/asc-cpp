@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "scope": "Index-only extension for four existing GECON rows, now callable-unverified. Every other row and executed source/provider identity, selector, case and outcome is unchanged. Prior execution does not certify this later index.",
+  "baseline_commit": "674c09872e1717891acaab885623b3c33075ccd7",
+  "prior_mapping_sha256": "7c87790d4b6334004c5ad90824ee7151bb012a63f5f89b1050d48e10621ff5db",
+  "extended_mapping_sha256": "30b89d5a53bae56441ccafc7a9e160797a46a02d69e4034302b36aa6b8244e88",
+  "prior_evidence_sha256": "7ccc68d56810c029e4ae262755e6eb0e7a125f8b134f361a24138d05ef1cb469",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "7c87790d4b6334004c5ad90824ee7151bb012a63f5f89b1050d48e10621ff5db",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "7c87790d4b6334004c5ad90824ee7151bb012a63f5f89b1050d48e10621ff5db",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "d99f2f434fb1e7340c77ded73e3956af9e833a34cd3b0d0f27c50157af8d3d7e",
+    "reference-lu-release-lp64-20260911": "2e7373cd3b8df439aa9fb0d20d82cf932aa4f338ba0c1fafead50c16d0dac6b7",
+    "reference-lu-release-ilp64-20260911": "422378580907e7be4641688c86de64293f5ec168db16da0c363dcf333f3dc980"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cgecon",
+    "lapack.dgecon",
+    "lapack.sgecon",
+    "lapack.zgecon"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/gecon-registration-02",
+  "generator_sha256": "31a2cf619e45b2e4dbc08ff85a706da84a150dcb4cf9a3e2c754ffdba26f1c55"
+}
