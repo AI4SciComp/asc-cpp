@@ -18,6 +18,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu_band.h"
 #include "internal_indefinite.h"
+#include "internal_lu_band_abi.h"
 #include "internal_lu_band_limits.h"
 
 namespace asc {
@@ -33,29 +34,37 @@ struct Native;
 template <>
 struct Native<float> {
   static constexpr auto kScalar = LapackScalarKind::kF32;
-  static constexpr std::array<std::string_view, 2> kNames{"sgbtrf", "sgbtrs"};
+  static constexpr std::array<std::string_view, 3> kNames{"sgbtrf", "sgbtrs",
+                                                          "sgbtf2"};
   static constexpr auto kFactor = LAPACK_sgbtrf;
+  static constexpr auto kUnblocked = LAPACK_GLOBAL_SUFFIX(sgbtf2, SGBTF2);
   static constexpr auto kSolve = LAPACK_sgbtrs_base;
 };
 template <>
 struct Native<double> {
   static constexpr auto kScalar = LapackScalarKind::kF64;
-  static constexpr std::array<std::string_view, 2> kNames{"dgbtrf", "dgbtrs"};
+  static constexpr std::array<std::string_view, 3> kNames{"dgbtrf", "dgbtrs",
+                                                          "dgbtf2"};
   static constexpr auto kFactor = LAPACK_dgbtrf;
+  static constexpr auto kUnblocked = LAPACK_GLOBAL_SUFFIX(dgbtf2, DGBTF2);
   static constexpr auto kSolve = LAPACK_dgbtrs_base;
 };
 template <>
 struct Native<std::complex<float>> {
   static constexpr auto kScalar = LapackScalarKind::kC64;
-  static constexpr std::array<std::string_view, 2> kNames{"cgbtrf", "cgbtrs"};
+  static constexpr std::array<std::string_view, 3> kNames{"cgbtrf", "cgbtrs",
+                                                          "cgbtf2"};
   static constexpr auto kFactor = LAPACK_cgbtrf;
+  static constexpr auto kUnblocked = LAPACK_GLOBAL_SUFFIX(cgbtf2, CGBTF2);
   static constexpr auto kSolve = LAPACK_cgbtrs_base;
 };
 template <>
 struct Native<std::complex<double>> {
   static constexpr auto kScalar = LapackScalarKind::kC128;
-  static constexpr std::array<std::string_view, 2> kNames{"zgbtrf", "zgbtrs"};
+  static constexpr std::array<std::string_view, 3> kNames{"zgbtrf", "zgbtrs",
+                                                          "zgbtf2"};
   static constexpr auto kFactor = LAPACK_zgbtrf;
+  static constexpr auto kUnblocked = LAPACK_GLOBAL_SUFFIX(zgbtf2, ZGBTF2);
   static constexpr auto kSolve = LAPACK_zgbtrs_base;
 };
 
@@ -81,7 +90,8 @@ Status PivotValues(const Integer* pivots, extent_t m, extent_t n, extent_t kl) {
 }
 
 template <typename T>
-Status Band(const ReferenceLapackProvider& provider, LapackLuBandView<T> band) {
+Status Band(const ReferenceLapackProvider& provider, LapackLuBandView<T> band,
+            bool blocked = true) {
   auto status =
       common::Accessible(provider, band.storage().reachable_storage());
   if (!status.ok()) {
@@ -90,7 +100,7 @@ Status Band(const ReferenceLapackProvider& provider, LapackLuBandView<T> band) {
   return limits::Factor(band.rows(), band.columns(), band.lower_bandwidth(),
                         band.upper_bandwidth(),
                         band.storage().leading_dimension(),
-                        common::kIntegerLimit);
+                        common::kIntegerLimit, blocked);
 }
 
 bool Operation(DenseBlasTranspose operation) {
@@ -121,12 +131,13 @@ void Integers(extent_t count, LapackWorkspacePlan& plan) {
 template <typename T>
 Result<LapackWorkspacePlan> QueryFactor(const ReferenceLapackProvider& provider,
                                         LapackLuBandView<T> band,
-                                        DenseBlasVectorView<index_t> pivots) {
+                                        DenseBlasVectorView<index_t> pivots,
+                                        bool blocked = true) {
   const std::array operands{band.storage().reachable_storage(),
                             pivots.reachable_storage(),
                             common::Object(provider)};
   for (const auto& status :
-       {Band(provider, band),
+       {Band(provider, band, blocked),
         PivotMetadata(provider, pivots, std::min(band.rows(), band.columns())),
         common::Disjoint(operands)}) {
     if (!status.ok()) {
@@ -134,7 +145,7 @@ Result<LapackWorkspacePlan> QueryFactor(const ReferenceLapackProvider& provider,
     }
   }
   const auto identity = LapackPlanIdentity::Create(
-      Native<T>::kNames[0], Native<T>::kScalar,
+      Native<T>::kNames[blocked ? 0 : 2], Native<T>::kScalar,
       std::array{band.rows(), band.columns(), band.lower_bandwidth(),
                  band.upper_bandwidth(), band.storage().leading_dimension()},
       std::array<std::int64_t, 0>{}, provider.identity());
@@ -207,15 +218,15 @@ template <typename T>
 Status Factor(const ReferenceLapackProvider& provider, LapackLuBandView<T> band,
               DenseBlasVectorView<index_t> pivots,
               const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
-              LapackReport& report) {
+              LapackReport& report, bool blocked = true) {
   const std::array operands{band.storage().reachable_storage(),
                             pivots.reachable_storage()};
   auto status = common::Metadata(provider, plan, workspace, report, operands);
   if (!status.ok()) {
     return status;
   }
-  common::Start(provider, Native<T>::kNames[0], report);
-  const auto expected = QueryFactor(provider, band, pivots);
+  common::Start(provider, Native<T>::kNames[blocked ? 0 : 2], report);
+  const auto expected = QueryFactor(provider, band, pivots, blocked);
   if (!expected.ok()) {
     return expected.status();
   }
@@ -223,11 +234,11 @@ Status Factor(const ReferenceLapackProvider& provider, LapackLuBandView<T> band,
   if (!status.ok()) {
     return status;
   }
-  const auto m = static_cast<lapack_int>(band.rows());
-  const auto n = static_cast<lapack_int>(band.columns());
-  const auto kl = static_cast<lapack_int>(band.lower_bandwidth());
-  const auto ku = static_cast<lapack_int>(band.upper_bandwidth());
-  const auto ld = static_cast<lapack_int>(band.storage().leading_dimension());
+  auto m = static_cast<lapack_int>(band.rows());
+  auto n = static_cast<lapack_int>(band.columns());
+  auto kl = static_cast<lapack_int>(band.lower_bandwidth());
+  auto ku = static_cast<lapack_int>(band.upper_bandwidth());
+  auto ld = static_cast<lapack_int>(band.storage().leading_dimension());
   const auto count = std::min(m, n);
   T dummy{};
   lapack_int dummy_pivot = 0;
@@ -237,9 +248,15 @@ Status Factor(const ReferenceLapackProvider& provider, LapackLuBandView<T> band,
   std::fill_n(native, count, std::numeric_limits<lapack_int>::min());
   lapack_int info = std::numeric_limits<lapack_int>::min();
   report.called_provider = true;
-  Native<T>::kFactor(&m, &n, &kl, &ku,
-                     count == 0 ? &dummy : band.storage().data(), &ld, native,
-                     &info);
+  if (blocked) {
+    Native<T>::kFactor(&m, &n, &kl, &ku,
+                       count == 0 ? &dummy : band.storage().data(), &ld, native,
+                       &info);
+  } else {
+    Native<T>::kUnblocked(&m, &n, &kl, &ku,
+                          count == 0 ? &dummy : band.storage().data(), &ld,
+                          native, &info);
+  }
   report.native_info = info;
   if (info < 0 || info > count ||
       !PivotValues(native, band.rows(), band.columns(), band.lower_bandwidth())
@@ -347,9 +364,13 @@ ReferenceLuBandFactorView<Element>::Create(
   std::array<char, 32> origin{};
   std::copy(Native<Element>::kNames[0].begin(),
             Native<Element>::kNames[0].end(), origin.begin());
-  if (report.provider != provider.identity() || report.routine != origin ||
-      !report.called_provider || report.native_info != 0 ||
-      report.outcome != LapackOutcome::kSuccess ||
+  std::array<char, 32> unblocked_origin{};
+  std::copy(Native<Element>::kNames[2].begin(),
+            Native<Element>::kNames[2].end(), unblocked_origin.begin());
+  const bool unblocked = report.routine == unblocked_origin;
+  if (report.provider != provider.identity() ||
+      (report.routine != origin && !unblocked) || !report.called_provider ||
+      report.native_info != 0 || report.outcome != LapackOutcome::kSuccess ||
       report.output_validity != LapackOutputValidity::kComplete ||
       report.factor_family.has_value() || report.native_argument.has_value() ||
       report.diagnostic_index.has_value()) {
@@ -359,7 +380,7 @@ ReferenceLuBandFactorView<Element>::Create(
                             pivots.reachable_storage(),
                             common::Object(provider), common::Object(report)};
   for (const auto& status :
-       {Band(provider, factors),
+       {Band(provider, factors, !unblocked),
         PivotMetadata(provider, pivots,
                       std::min(factors.rows(), factors.columns())),
         common::Disjoint(operands)}) {
@@ -496,6 +517,64 @@ Status Gbtrs(const ReferenceLapackProvider& provider,
              const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
              LapackReport& report) {
   return Solve(provider, operation, factor, rhs, plan, workspace, report);
+}
+
+Result<LapackWorkspacePlan> QueryGbtf2Workspace(
+    const ReferenceLapackProvider& provider, LapackLuBandView<float> matrix,
+    DenseBlasVectorView<index_t> pivots) {
+  return QueryFactor(provider, matrix, pivots, false);
+}
+
+Status Gbtf2(const ReferenceLapackProvider& provider,
+             LapackLuBandView<float> matrix,
+             DenseBlasVectorView<index_t> pivots,
+             const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
+             LapackReport& report) {
+  return Factor(provider, matrix, pivots, plan, workspace, report, false);
+}
+
+Result<LapackWorkspacePlan> QueryGbtf2Workspace(
+    const ReferenceLapackProvider& provider, LapackLuBandView<double> matrix,
+    DenseBlasVectorView<index_t> pivots) {
+  return QueryFactor(provider, matrix, pivots, false);
+}
+
+Status Gbtf2(const ReferenceLapackProvider& provider,
+             LapackLuBandView<double> matrix,
+             DenseBlasVectorView<index_t> pivots,
+             const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
+             LapackReport& report) {
+  return Factor(provider, matrix, pivots, plan, workspace, report, false);
+}
+
+Result<LapackWorkspacePlan> QueryGbtf2Workspace(
+    const ReferenceLapackProvider& provider,
+    LapackLuBandView<std::complex<float>> matrix,
+    DenseBlasVectorView<index_t> pivots) {
+  return QueryFactor(provider, matrix, pivots, false);
+}
+
+Status Gbtf2(const ReferenceLapackProvider& provider,
+             LapackLuBandView<std::complex<float>> matrix,
+             DenseBlasVectorView<index_t> pivots,
+             const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
+             LapackReport& report) {
+  return Factor(provider, matrix, pivots, plan, workspace, report, false);
+}
+
+Result<LapackWorkspacePlan> QueryGbtf2Workspace(
+    const ReferenceLapackProvider& provider,
+    LapackLuBandView<std::complex<double>> matrix,
+    DenseBlasVectorView<index_t> pivots) {
+  return QueryFactor(provider, matrix, pivots, false);
+}
+
+Status Gbtf2(const ReferenceLapackProvider& provider,
+             LapackLuBandView<std::complex<double>> matrix,
+             DenseBlasVectorView<index_t> pivots,
+             const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
+             LapackReport& report) {
+  return Factor(provider, matrix, pivots, plan, workspace, report, false);
 }
 
 }  // namespace asc

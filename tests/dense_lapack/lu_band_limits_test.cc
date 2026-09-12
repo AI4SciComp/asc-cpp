@@ -80,6 +80,21 @@ void Check(TestContext& test, asc::extent_t maximum) {
   ASC_DENSE_TEST_EQ(test, limits::Solve(3, 1, 0, 3, 1, 2, maximum).code(),
                     asc::ErrorCode::kShape);
 }
+void CheckUnblocked(TestContext& test, asc::extent_t maximum) {
+  const auto count = maximum - 130;
+  // Explicit GBTF2 does not acquire the blocked cursor/pivot-row bounds.
+  ASC_DENSE_TEST_CHECK(
+      test,
+      limits::Factor(count + 33, count + 1, 32, 65, 130, maximum, false).ok());
+  ASC_DENSE_TEST_CHECK(test, limits::Factor(maximum - 98, maximum - 98, 32, 65,
+                                            130, maximum, false)
+                                 .ok());
+  ASC_DENSE_TEST_EQ(
+      test,
+      limits::Factor(maximum - 97, maximum - 97, 32, 65, 130, maximum, false)
+          .code(),
+      asc::ErrorCode::kOverflow);
+}
 }  // namespace
 int main() {
   TestContext test;
@@ -87,6 +102,7 @@ int main() {
        std::array<asc::extent_t, 2>{std::numeric_limits<std::int32_t>::max(),
                                     std::numeric_limits<std::int64_t>::max()}) {
     Check(test, maximum);
+    CheckUnblocked(test, maximum);
   }
   return test.Finish();
 }

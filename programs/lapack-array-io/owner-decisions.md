@@ -94,3 +94,21 @@ profile changes and eventual notice distribution retain their separate recorded
 approval requirements. None is inferred from ordinary feature-write authority.
 The raw review, archive and initial source-map attempt are retained under
 `master-continuation-20260910-01/xblas-review-01` and `xblas-closure-01.json`.
+
+## GBTF2 range disposition after 2026-09-12 continuation
+
+The new S/D/C/Z GBTF2 required mathematical tests fail for a 2-by-2 scaled
+identity at min-normal/1024 and twice the smallest positive subnormal. The
+exact zero multiplier is representable, and the twice-min-normal control
+passes. Pinned GBTF2 forms ONE/pivot before xSCAL, producing a nonfinite
+multiplier with INFO zero. Independent direct calls agree with ASC. All eight
+local static Debug/Release/ASC-sanitizer and shared Release profiles retain
+four failed processes and 24 failed assertions, with zero skips.
+
+Disposition: retain this provider arithmetic blocker and its live assertions.
+No numerical waiver, hidden scaling, provider replacement or full-family
+verification credit is inferred. Continue independent required work under the
+current full-programme instruction. A range-safe provider change or an
+explicitly different numerical route would need its own reviewed contract and
+verification; the pinned Reference route is preserved here. Exact evidence and
+bounded implementation scope are in [the GBTF2 review](lu-band-unblocked-review.md).

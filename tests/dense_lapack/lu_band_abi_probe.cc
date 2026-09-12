@@ -1,3 +1,8 @@
+#if defined(ASC_GBTF2_EMITTED_PROTOTYPES_HEADER)
+// Untouched compiler emissions independently check all private declarations.
+#include ASC_GBTF2_EMITTED_PROTOTYPES_HEADER
+#endif
+
 #if defined(ASC_LU_BAND_EMITTED_PROTOTYPES_HEADER)
 // Untouched pinned-source compiler emissions are supplied by the diagnostic
 // build with test-only function renames. They never enter an installed header.
@@ -10,9 +15,10 @@
 #include <cstddef>
 #include <cstdio>
 #include <limits>
+#include <string_view>
 #include <type_traits>
 
-#include "../../src/dense/lapack/internal_indefinite.h"
+#include "../../src/dense/lapack/internal_lu_band_abi.h"
 #include "asc/dense/blas.h"
 #include "installed_lu/normal_return_guard.h"
 #include "lapack_build_config.h"
@@ -67,21 +73,25 @@ struct Native;
 template <>
 struct Native<float> {
   static constexpr auto kFactor = LAPACK_sgbtrf;
+  static constexpr auto kUnblocked = LAPACK_GLOBAL_SUFFIX(sgbtf2, SGBTF2);
   static constexpr auto kSolve = LAPACK_sgbtrs_base;
 };
 template <>
 struct Native<double> {
   static constexpr auto kFactor = LAPACK_dgbtrf;
+  static constexpr auto kUnblocked = LAPACK_GLOBAL_SUFFIX(dgbtf2, DGBTF2);
   static constexpr auto kSolve = LAPACK_dgbtrs_base;
 };
 template <>
 struct Native<std::complex<float>> {
   static constexpr auto kFactor = LAPACK_cgbtrf;
+  static constexpr auto kUnblocked = LAPACK_GLOBAL_SUFFIX(cgbtf2, CGBTF2);
   static constexpr auto kSolve = LAPACK_cgbtrs_base;
 };
 template <>
 struct Native<std::complex<double>> {
   static constexpr auto kFactor = LAPACK_zgbtrf;
+  static constexpr auto kUnblocked = LAPACK_GLOBAL_SUFFIX(zgbtf2, ZGBTF2);
   static constexpr auto kSolve = LAPACK_zgbtrs_base;
 };
 
@@ -125,7 +135,7 @@ bool CheckRhs(const std::array<T, 10>& rhs, const std::array<T, 4>& expected,
 }
 
 template <typename T>
-bool ProbeOperation(char op) {
+bool ProbeOperation(char op, bool unblocked) {
   constexpr auto kGuard = std::numeric_limits<lapack_int>::max() - 23;
   const std::array<T, 4> a{T{}, Value<T>(2, 1), Value<T>(3, -1), T{1}};
   const T guard = Value<T>(-151, 47);
@@ -144,8 +154,13 @@ bool ProbeOperation(char op) {
   band[4] = a[2];
   band[7] = a[1];
   band[8] = a[3];
-  Native<T>::kFactor(&m[1], &n[1], &kl[1], &ku[1], band.data() + 1, &ld[1],
-                     pivots.data() + 1, &info[1]);
+  if (unblocked) {
+    Native<T>::kUnblocked(&m[1], &n[1], &kl[1], &ku[1], band.data() + 1, &ld[1],
+                          pivots.data() + 1, &info[1]);
+  } else {
+    Native<T>::kFactor(&m[1], &n[1], &kl[1], &ku[1], band.data() + 1, &ld[1],
+                       pivots.data() + 1, &info[1]);
+  }
   if (info[1] != 0 || pivots[1] != 2 || pivots[2] != 2 ||
       info.front() != kGuard || info.back() != kGuard ||
       pivots.front() != kGuard || pivots.back() != kGuard ||
@@ -196,25 +211,31 @@ bool ProbeOperation(char op) {
   return CheckRhs(rhs, expected, guard);
 }
 template <typename T>
-bool Probe() {
-  return ProbeOperation<T>('N') && ProbeOperation<T>('T') &&
-         ProbeOperation<T>('C');
+bool Probe(bool unblocked) {
+  return ProbeOperation<T>('N', unblocked) &&
+         ProbeOperation<T>('T', unblocked) && ProbeOperation<T>('C', unblocked);
 }
 }  // namespace
 
-int main() {
+int main(int argc, char** argv) {
+  if (argc != 1 && (argc != 2 || std::string_view(argv[1]) != "gbtf2")) {
+    return 2;
+  }
+  const bool unblocked = argc == 2;
   const asc_lapack_test::NormalReturnGuard return_guard;
   static_assert(sizeof(lapack_int) * 8 == ASC_LAPACK_INTEGER_BITS);
   static_assert(std::is_signed_v<lapack_int>);
   static_assert(std::is_same_v<lapack_complex_float, std::complex<float>>);
   static_assert(std::is_same_v<lapack_complex_double, std::complex<double>>);
-  if (!Probe<float>() || !Probe<double>() || !Probe<std::complex<float>>() ||
-      !Probe<std::complex<double>>()) {
+  if (!Probe<float>(unblocked) || !Probe<double>(unblocked) ||
+      !Probe<std::complex<float>>(unblocked) ||
+      !Probe<std::complex<double>>(unblocked)) {
     return 1;
   }
   std::printf(
-      "Actual all-eight GB prototypes, native INTEGER=%d, CHARACTER "
+      "Actual %s/GBTRS prototypes, native INTEGER=%d, CHARACTER "
       "length=%zu, guarded N/T/C solve checks passed.\n",
-      ASC_LAPACK_INTEGER_BITS, sizeof(FORTRAN_STRLEN));
+      unblocked ? "GBTF2" : "GBTRF", ASC_LAPACK_INTEGER_BITS,
+      sizeof(FORTRAN_STRLEN));
   return 0;
 }

@@ -99,3 +99,21 @@ relocated installed consumers pass. Strict checks and the atomic
 header/coverage update also pass. See [the bounded correction record](band-info-review.md).
 Full PB family verification remains open. GBTF2 is the next unfinished
 implementation; the four required rows have no existing public implementation.
+
+## GBTF2 continuation delivered locally
+
+The four GBTF2 APIs now exist with source-derived private ABI declarations,
+checked workspace and pivots, exact routine provenance, GBTRS reuse, maintained
+tests and installed consumers. Eight static Debug/Release/sanitizer and shared
+Release profiles have 33/37 passes, with four mathematical failures and zero
+skips each. The pinned provider's reciprocal-before-SCAL arithmetic produces
+a nonfinite multiplier for a tiny scaled identity whose exact multiplier is
+zero. The direct provider comparison agrees; the failing assertions remain.
+All four relocated installed consumers and the additive export audit pass.
+
+See [the GBTF2 review](lu-band-unblocked-review.md). The inventory records four
+new reviewed in-progress contracts: 80 implemented-unverified, 326 in progress,
+1,707 not started, and zero fully verified Reference rows out of 2,113 required.
+Status remains **FULL_PROGRAM_INCOMPLETE**. Next: complete the existing
+GBTRF/GBTRS normalized contracts and their inherited range disposition, reusing
+the ordinary and failure evidence just collected.

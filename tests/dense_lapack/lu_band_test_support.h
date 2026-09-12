@@ -30,9 +30,9 @@ using asc_dense_test::TestContext;
 constexpr auto kHost = asc::MemorySpace::kHost;
 constexpr auto kColumn = asc::DenseBlasLayout::kColumnMajor;
 constexpr auto kRow = asc::DenseBlasLayout::kRowMajor;
-constexpr std::array kOperations{asc::DenseBlasTranspose::kNone,
-                                 asc::DenseBlasTranspose::kTranspose,
-                                 asc::DenseBlasTranspose::kConjugateTranspose};
+inline constexpr std::array kOperations{
+    asc::DenseBlasTranspose::kNone, asc::DenseBlasTranspose::kTranspose,
+    asc::DenseBlasTranspose::kConjugateTranspose};
 constexpr auto kInteger =
     static_cast<std::size_t>(asc::LapackWorkspaceKind::kInteger);
 constexpr auto kLayout =

@@ -741,16 +741,23 @@ routine/mode contract. All remaining LAPACK families and optional-upstream
 dependencies remain required for the full reference profile.
 
 
-The general-band LU routes `Gbtrf` and `Gbtrs` support all four scalars.
+The general-band LU routes `Gbtrf`, explicit unblocked `Gbtf2` and `Gbtrs`
+support all four scalars.
 `LapackLuBandView` uses column-major `2*KL+KU+1` factor storage, with
 `KL+KU` as the zero-based diagonal row. `ReferenceLuBandFactorView` validates
-an actual successful matching GBTRF report and the complete one-based band
+an actual successful matching GBTRF or GBTF2 report and the complete one-based band
 pivot encoding. It is a separate factor family; rectangular factors can be
 inspected, while reusable N/T/C solves require square factors. RHS layouts
 are independently selected using explicit caller-owned packing when needed.
 The adapter checks pinned-source integer intermediates and detects unwritten
 or invalid native INFO/pivot outputs before publishing converted pivots or
-packed RHS results. These eight routes remain in progress until their full
+packed RHS results. GBTF2 has no native WORK array; its ASC plan provides
+exactly min(m,n) native integer entries for pivot conversion. Its plan identity
+is distinct from GBTRF, and the factor view preserves the actual routine name.
+Complex GBTF2 factors a general matrix without a Hermitian or UPLO assumption.
+The programme record `programs/lapack-array-io/lu-band-unblocked-review.md`
+details its source-derived ABI and numerical range gate.
+These twelve routes remain in progress until their full
 normalized mode and evidence requirements are closed.
 
 

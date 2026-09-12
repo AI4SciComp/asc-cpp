@@ -2003,26 +2003,58 @@
         "SRC/sgbtf2.f",
         "SRC/zgbtf2.f"
       ],
-      "source_api_files": [],
-      "route_states": {
-        "lapack.cgbtf2": "not_started",
-        "lapack.dgbtf2": "not_started",
-        "lapack.sgbtf2": "not_started",
-        "lapack.zgbtf2": "not_started"
-      },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
-      "required_mode_cases": {
-        "lapack.cgbtf2": [],
-        "lapack.dgbtf2": [],
-        "lapack.sgbtf2": [],
-        "lapack.zgbtf2": []
-      },
-      "unreviewed_mode_rows": [
-        "lapack.cgbtf2",
-        "lapack.dgbtf2",
-        "lapack.sgbtf2",
-        "lapack.zgbtf2"
+      "source_api_files": [
+        "include/asc/dense/lapack/report.h",
+        "include/asc/dense/lapack/structured_view.h",
+        "include/asc/dense/lapack/workspace.h",
+        "include/asc/dense/providers/lapack.h",
+        "include/asc/dense/providers/lapack_lu_band.h",
+        "src/dense/lapack/internal_indefinite.h",
+        "src/dense/lapack/internal_indefinite_counts.h",
+        "src/dense/lapack/internal_layout.h",
+        "src/dense/lapack/internal_lu_band_abi.h",
+        "src/dense/lapack/internal_lu_band_limits.h",
+        "src/dense/lapack/internal_workspace_context.h",
+        "src/dense/lapack/reference_lu_band.cc",
+        "tests/dense_lapack/CMakeLists.txt",
+        "tests/dense_lapack/band_cholesky_test_support.h",
+        "tests/dense_lapack/gbtf2_range_test.cc",
+        "tests/dense_lapack/installed_lu/CMakeLists.txt",
+        "tests/dense_lapack/installed_lu/factorization_support.h",
+        "tests/dense_lapack/installed_lu/lu_band_main.cc",
+        "tests/dense_lapack/installed_lu/normal_return_guard.h",
+        "tests/dense_lapack/lu_band_abi_probe.cc",
+        "tests/dense_lapack/lu_band_boundary_test.cc",
+        "tests/dense_lapack/lu_band_factor_test_support.h",
+        "tests/dense_lapack/lu_band_fault_test.cc",
+        "tests/dense_lapack/lu_band_faults.cc",
+        "tests/dense_lapack/lu_band_faults.h",
+        "tests/dense_lapack/lu_band_limits_test.cc",
+        "tests/dense_lapack/lu_band_test.cc",
+        "tests/dense_lapack/lu_band_test_support.h"
       ],
+      "route_states": {
+        "lapack.cgbtf2": "in_progress",
+        "lapack.dgbtf2": "in_progress",
+        "lapack.sgbtf2": "in_progress",
+        "lapack.zgbtf2": "in_progress"
+      },
+      "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
+      "required_mode_cases": {
+        "lapack.cgbtf2": [
+          "column_major_unblocked"
+        ],
+        "lapack.dgbtf2": [
+          "column_major_unblocked"
+        ],
+        "lapack.sgbtf2": [
+          "column_major_unblocked"
+        ],
+        "lapack.zgbtf2": [
+          "column_major_unblocked"
+        ]
+      },
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -2032,15 +2064,19 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/lu-band-unblocked-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
-      "integrated_revision": null,
-      "execution_progress": "not_executed",
+      "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
+      "execution_progress": "partial_source_and_review_exist",
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/lu-band-unblocked-review.md"
+      ]
     },
     {
       "task_id": "P05.required.gbtrf",
@@ -2070,6 +2106,7 @@
         "src/dense/lapack/internal_indefinite.h",
         "src/dense/lapack/internal_indefinite_counts.h",
         "src/dense/lapack/internal_layout.h",
+        "src/dense/lapack/internal_lu_band_abi.h",
         "src/dense/lapack/internal_lu_band_limits.h",
         "src/dense/lapack/internal_workspace_context.h",
         "src/dense/lapack/reference_lu_band.cc",
@@ -2079,6 +2116,7 @@
         "tests/dense_lapack/installed_lu/normal_return_guard.h",
         "tests/dense_lapack/lu_band_abi_probe.cc",
         "tests/dense_lapack/lu_band_boundary_test.cc",
+        "tests/dense_lapack/lu_band_factor_test_support.h",
         "tests/dense_lapack/lu_band_fault_test.cc",
         "tests/dense_lapack/lu_band_faults.cc",
         "tests/dense_lapack/lu_band_faults.h",
@@ -2152,6 +2190,7 @@
         "src/dense/lapack/internal_indefinite.h",
         "src/dense/lapack/internal_indefinite_counts.h",
         "src/dense/lapack/internal_layout.h",
+        "src/dense/lapack/internal_lu_band_abi.h",
         "src/dense/lapack/internal_lu_band_limits.h",
         "src/dense/lapack/internal_workspace_context.h",
         "src/dense/lapack/reference_lu_band.cc",
@@ -2161,6 +2200,7 @@
         "tests/dense_lapack/installed_lu/normal_return_guard.h",
         "tests/dense_lapack/lu_band_abi_probe.cc",
         "tests/dense_lapack/lu_band_boundary_test.cc",
+        "tests/dense_lapack/lu_band_factor_test_support.h",
         "tests/dense_lapack/lu_band_fault_test.cc",
         "tests/dense_lapack/lu_band_faults.cc",
         "tests/dense_lapack/lu_band_faults.h",
@@ -55223,7 +55263,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "fc6e84a28d3d76da9f9b85cee61f829d45a0fc7e17976fd775d6e641749ffa0e",
+    "lapack-coverage.yaml": "c0f2269b22f1b8b95ac986a503277b829b60a5b7d2ea5ff2695708a65c3acd8b",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

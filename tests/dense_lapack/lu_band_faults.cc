@@ -6,7 +6,7 @@
 #include <limits>
 #include <type_traits>
 
-#include "../../src/dense/lapack/internal_indefinite.h"
+#include "../../src/dense/lapack/internal_lu_band_abi.h"
 
 namespace {
 using asc_lu_band_faults::Fault;
@@ -86,6 +86,69 @@ void Select(Fault fault) {
 }
 int Calls() { return g_calls; }
 }  // namespace asc_lu_band_faults
+
+// NOLINTBEGIN(bugprone-reserved-identifier)
+extern "C" {
+void __real_sgbtf2_(lapack_int*, lapack_int*, lapack_int*, lapack_int*, float*,
+                    lapack_int*, lapack_int*, lapack_int*);
+void __wrap_sgbtf2_(lapack_int* m, lapack_int* n, lapack_int* kl,
+                    lapack_int* ku, float* ab, lapack_int* ld,
+                    lapack_int* pivots, lapack_int* info) {
+  ++g_calls;
+  if (g_fault == Fault::kPass) {
+    __real_sgbtf2_(m, n, kl, ku, ab, ld, pivots, info);
+  } else {
+    Factor(*m, *n, *kl, *ku, ab, pivots, info);
+  }
+}
+static_assert(std::is_same_v<decltype(__wrap_sgbtf2_),
+                             decltype(LAPACK_GLOBAL_SUFFIX(sgbtf2, SGBTF2))>);
+void __real_dgbtf2_(lapack_int*, lapack_int*, lapack_int*, lapack_int*, double*,
+                    lapack_int*, lapack_int*, lapack_int*);
+void __wrap_dgbtf2_(lapack_int* m, lapack_int* n, lapack_int* kl,
+                    lapack_int* ku, double* ab, lapack_int* ld,
+                    lapack_int* pivots, lapack_int* info) {
+  ++g_calls;
+  if (g_fault == Fault::kPass) {
+    __real_dgbtf2_(m, n, kl, ku, ab, ld, pivots, info);
+  } else {
+    Factor(*m, *n, *kl, *ku, ab, pivots, info);
+  }
+}
+static_assert(std::is_same_v<decltype(__wrap_dgbtf2_),
+                             decltype(LAPACK_GLOBAL_SUFFIX(dgbtf2, DGBTF2))>);
+void __real_cgbtf2_(lapack_int*, lapack_int*, lapack_int*, lapack_int*,
+                    lapack_complex_float*, lapack_int*, lapack_int*,
+                    lapack_int*);
+void __wrap_cgbtf2_(lapack_int* m, lapack_int* n, lapack_int* kl,
+                    lapack_int* ku, lapack_complex_float* ab, lapack_int* ld,
+                    lapack_int* pivots, lapack_int* info) {
+  ++g_calls;
+  if (g_fault == Fault::kPass) {
+    __real_cgbtf2_(m, n, kl, ku, ab, ld, pivots, info);
+  } else {
+    Factor(*m, *n, *kl, *ku, ab, pivots, info);
+  }
+}
+static_assert(std::is_same_v<decltype(__wrap_cgbtf2_),
+                             decltype(LAPACK_GLOBAL_SUFFIX(cgbtf2, CGBTF2))>);
+void __real_zgbtf2_(lapack_int*, lapack_int*, lapack_int*, lapack_int*,
+                    lapack_complex_double*, lapack_int*, lapack_int*,
+                    lapack_int*);
+void __wrap_zgbtf2_(lapack_int* m, lapack_int* n, lapack_int* kl,
+                    lapack_int* ku, lapack_complex_double* ab, lapack_int* ld,
+                    lapack_int* pivots, lapack_int* info) {
+  ++g_calls;
+  if (g_fault == Fault::kPass) {
+    __real_zgbtf2_(m, n, kl, ku, ab, ld, pivots, info);
+  } else {
+    Factor(*m, *n, *kl, *ku, ab, pivots, info);
+  }
+}
+static_assert(std::is_same_v<decltype(__wrap_zgbtf2_),
+                             decltype(LAPACK_GLOBAL_SUFFIX(zgbtf2, ZGBTF2))>);
+}
+// NOLINTEND(bugprone-reserved-identifier)
 
 // Exact GNU ld wrapper names are confined to this diagnostic executable.
 // NOLINTBEGIN(bugprone-reserved-identifier)

@@ -4,6 +4,7 @@
 #include <complex>
 #include <cstddef>
 #include <cstdio>
+#include <string_view>
 
 #include "asc/core/execution.h"
 #include "asc/core/status.h"
@@ -106,7 +107,7 @@ bool SolveCases(const asc::ReferenceLapackProvider& provider,
 }
 
 template <typename T>
-bool Run(const asc::ReferenceLapackProvider& provider) {
+bool Run(const asc::ReferenceLapackProvider& provider, bool unblocked) {
   // Column-major band with KL=1, KU=2, three fill/padding guard rows. The
   // 2x2 leading pivot block is nonsingular and forces an actual row swap.
   constexpr asc::extent_t kN = 3;
@@ -129,12 +130,15 @@ bool Run(const asc::ReferenceLapackProvider& provider) {
       {band.data(), sizeof(band), support::kHost}));
   std::array<asc::index_t, 3> pivots{};
   const auto swaps = support::Vector(pivots);
-  const auto plan =
-      support::Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan = support::Take(
+      unblocked ? asc::QueryGbtf2Workspace(provider, matrix, swaps)
+                : asc::QueryGbtrfWorkspace(provider, matrix, swaps));
   support::Scratch<T> scratch;
   asc::LapackReport report;
-  const auto status =
-      asc::Gbtrf(provider, matrix, swaps, plan, scratch.workspace, report);
+  const auto status = unblocked ? asc::Gbtf2(provider, matrix, swaps, plan,
+                                             scratch.workspace, report)
+                                : asc::Gbtrf(provider, matrix, swaps, plan,
+                                             scratch.workspace, report);
   if (!support::Succeeded(status, report) || report.factor_family.has_value() ||
       pivots[0] != 2) {
     return false;
@@ -144,7 +148,8 @@ bool Run(const asc::ReferenceLapackProvider& provider) {
       {band.data(), sizeof(band), support::kHost}));
   const auto factor = support::Take(asc::ReferenceLuBandFactorView<T>::Create(
       provider, const_band, support::ConstVector(pivots), report));
-  if (band.front() != guard || band.back() != guard) {
+  if (!factor.originating_routine().ends_with(unblocked ? "gbtf2" : "gbtrf") ||
+      band.front() != guard || band.back() != guard) {
     return false;
   }
   for (asc::extent_t j = 0; j < kN; ++j) {
@@ -158,17 +163,22 @@ bool Run(const asc::ReferenceLapackProvider& provider) {
 }
 }  // namespace
 
-int main() {
+int main(int argc, char** argv) {
+  if (argc != 1 && (argc != 2 || std::string_view(argv[1]) != "gbtf2")) {
+    return 2;
+  }
+  const bool unblocked = argc == 2;
   const asc_lapack_test::NormalReturnGuard return_guard;
   const auto provider = support::Take(
       asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));
-  if (!Run<float>(provider) || !Run<double>(provider) ||
-      !Run<std::complex<float>>(provider) ||
-      !Run<std::complex<double>>(provider)) {
+  if (!Run<float>(provider, unblocked) || !Run<double>(provider, unblocked) ||
+      !Run<std::complex<float>>(provider, unblocked) ||
+      !Run<std::complex<double>>(provider, unblocked)) {
     return 1;
   }
-  std::puts(
-      "Public GBTRF/GBTRS consumer: all eight routes, N/T/C, independent RHS "
-      "layouts, reuse, guards and rejections passed.");
+  std::printf(
+      "Public %s/GBTRS consumer: all eight routes, N/T/C, independent RHS "
+      "layouts, reuse, guards and rejections passed.\n",
+      unblocked ? "GBTF2" : "GBTRF");
   return 0;
 }

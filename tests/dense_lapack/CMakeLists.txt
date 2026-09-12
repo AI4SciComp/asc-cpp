@@ -524,7 +524,7 @@ foreach(_suite IN ITEMS lu_band lu_band_fault lu_band_boundary)
   if(NOT _suite STREQUAL "lu_band")
     target_sources("${_target}" PRIVATE lu_band_faults.cc)
     foreach(_scalar IN ITEMS s d c z)
-      foreach(_routine IN ITEMS gbtrf gbtrs)
+      foreach(_routine IN ITEMS gbtrf gbtrs gbtf2)
         target_link_options("${_target}" PRIVATE
           "-Wl,--wrap=${_scalar}${_routine}_")
       endforeach()
@@ -533,6 +533,10 @@ foreach(_suite IN ITEMS lu_band lu_band_fault lu_band_boundary)
   foreach(_scalar IN ITEMS s d c z)
     asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}.${_scalar}"
       TARGET "${_target}" ARGUMENTS "${_scalar}"
+      LABELS dense_lapack lapack runtime numerical validation allocation
+      TIMEOUT 180)
+    asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}_gbtf2.${_scalar}"
+      TARGET "${_target}" ARGUMENTS "${_scalar}" gbtf2
       LABELS dense_lapack lapack runtime numerical validation allocation
       TIMEOUT 180)
   endforeach()
@@ -549,6 +553,25 @@ target_include_directories(asc_dense_lapack_lu_band_abi_probe PRIVATE
 asc_register_test(NAME asc_cpp.dense_lapack.lu_band_abi
   TARGET asc_dense_lapack_lu_band_abi_probe
   LABELS dense_lapack lapack runtime abi TIMEOUT 120)
+
+asc_register_test(NAME asc_cpp.dense_lapack.gbtf2_abi
+  TARGET asc_dense_lapack_lu_band_abi_probe ARGUMENTS gbtf2
+  LABELS dense_lapack lapack runtime abi TIMEOUT 120)
+
+add_executable(asc_dense_lapack_gbtf2_range_test gbtf2_range_test.cc
+  allocation_audit.cc "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_gbtf2_range_test)
+target_include_directories(asc_dense_lapack_gbtf2_range_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_gbtf2_range_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_mode IN ITEMS mathematical fidelity)
+    asc_register_test(NAME "asc_cpp.dense_lapack.gbtf2_range.${_scalar}.${_mode}"
+      TARGET asc_dense_lapack_gbtf2_range_test ARGUMENTS "${_scalar}" "${_mode}"
+      LABELS dense_lapack lapack runtime numerical validation allocation TIMEOUT 120)
+  endforeach()
+endforeach()
 
 foreach(_suite IN ITEMS tridiagonal tridiagonal_expert tridiagonal_fault
     tridiagonal_extreme_math tridiagonal_counts)

@@ -10,6 +10,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu_band.h"
 #include "installed_lu/normal_return_guard.h"
+#include "lu_band_factor_test_support.h"
 #include "lu_band_faults.h"
 #include "lu_band_test_support.h"
 
@@ -27,7 +28,8 @@ void FactorAlias(TestContext& test,
   support::Pivots pivots(3);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto original_workspace = scratch.View();
   const auto band_before = band.values;
@@ -43,7 +45,8 @@ void FactorAlias(TestContext& test,
     faults::Select(faults::Fault::kLargePositive);
     asc::LapackReport report;
     const auto status = WithoutAllocation(test, [&] {
-      return asc::Gbtrf(provider, matrix, swaps, plan, workspace, report);
+      return asc_lu_band_test::Factor(provider, matrix, swaps, plan, workspace,
+                                      report);
     });
     ASC_DENSE_TEST_EQ(test, status.code(), asc::ErrorCode::kInvalidArgument);
     ASC_DENSE_TEST_EQ(test, faults::Calls(), 0);
@@ -62,14 +65,16 @@ void SolveAlias(TestContext& test,
   support::Pivots pivots(3);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   faults::Select(faults::Fault::kPass);
   asc::LapackReport factor_report;
   ASC_DENSE_TEST_CHECK(
-      test,
-      asc::Gbtrf(provider, matrix, swaps, plan, workspace, factor_report).ok());
+      test, asc_lu_band_test::Factor(provider, matrix, swaps, plan, workspace,
+                                     factor_report)
+                .ok());
   const auto factor = Take(asc::ReferenceLuBandFactorView<T>::Create(
       provider, band.ConstView(), pivots.ConstView(), factor_report));
   const auto band_before = band.values;
@@ -117,14 +122,16 @@ void OnePivotWidth(TestContext& test,
   support::Pivots pivots(1);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   const auto before = pivots.values;
   faults::Select(faults::Fault::kPartialWidth);
   asc::LapackReport report;
   const auto status = WithoutAllocation(test, [&] {
-    return asc::Gbtrf(provider, matrix, swaps, plan, workspace, report);
+    return asc_lu_band_test::Factor(provider, matrix, swaps, plan, workspace,
+                                    report);
   });
   // For actual ILP64 the fault writes valid pivot 1 into just the low four
   // bytes, leaving the native high sentinel. There are no other pivots whose
@@ -141,16 +148,49 @@ void OnePivotWidth(TestContext& test,
 }
 
 template <typename T>
+void DistinctPlans(TestContext& test,
+                   const asc::ReferenceLapackProvider& provider) {
+  support::Band<T> band(3, 3, 1, 1);
+  support::Pivots pivots(3);
+  const auto before = band.values;
+  const auto pivot_before = pivots.values;
+  const auto blocked =
+      Take(asc::QueryGbtrfWorkspace(provider, band.View(), pivots.View()));
+  const auto unblocked =
+      Take(asc::QueryGbtf2Workspace(provider, band.View(), pivots.View()));
+  for (const bool use_unblocked : {false, true}) {
+    const auto& wrong_plan = use_unblocked ? blocked : unblocked;
+    support::Scratch<T> scratch(wrong_plan);
+    faults::Select(faults::Fault::kLargePositive);
+    asc::LapackReport report;
+    const auto status = WithoutAllocation(test, [&] {
+      return use_unblocked ? asc::Gbtf2(provider, band.View(), pivots.View(),
+                                        wrong_plan, scratch.View(), report)
+                           : asc::Gbtrf(provider, band.View(), pivots.View(),
+                                        wrong_plan, scratch.View(), report);
+    });
+    ASC_DENSE_TEST_EQ(test, status.code(), asc::ErrorCode::kInvalidState);
+    ASC_DENSE_TEST_EQ(test, faults::Calls(), 0);
+    ASC_DENSE_TEST_CHECK(
+        test, !report.called_provider && !report.native_info.has_value());
+    ASC_DENSE_TEST_CHECK(test, support::SameBytes(before, band.values));
+    ASC_DENSE_TEST_EQ(test, pivot_before, pivots.values);
+    scratch.Check(test);
+  }
+}
+
+template <typename T>
 void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
   FactorAlias<T>(test, provider);
   SolveAlias<T>(test, provider);
   OnePivotWidth<T>(test, provider);
+  DistinctPlans<T>(test, provider);
 }
 }  // namespace
 
 int main(int argc, char** argv) {
   const asc_lapack_test::NormalReturnGuard return_guard;
-  if (argc != 2) {
+  if (!asc_lu_band_test::SelectFactor(argc, argv)) {
     return 2;
   }
   TestContext test;

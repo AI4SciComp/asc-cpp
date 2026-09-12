@@ -40,3 +40,5 @@ foreach(_family IN ITEMS cholesky qr helpers cholesky_expert least_squares
   target_link_libraries("installed_${_family}" PRIVATE ASC::dense_lapack)
   add_test(NAME "installed_${_family}" COMMAND "installed_${_family}")
 endforeach()
+
+add_test(NAME installed_gbtf2 COMMAND installed_lu_band gbtf2)

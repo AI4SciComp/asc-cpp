@@ -18,6 +18,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu_band.h"
 #include "installed_lu/normal_return_guard.h"
+#include "lu_band_factor_test_support.h"
 #include "lu_band_faults.h"
 #include "lu_band_test_support.h"
 
@@ -59,13 +60,15 @@ void FactorFaults(TestContext& test,
     const auto pivot_before = pivots.values;
     const auto matrix = band.View();
     const auto swaps = pivots.View();
-    const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+    const auto plan =
+        Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
     support::Scratch<T> scratch(plan);
     const auto workspace = scratch.View();
     asc::LapackReport report;
     faults::Select(fault);
     const auto status = WithoutAllocation(test, [&] {
-      return asc::Gbtrf(provider, matrix, swaps, plan, workspace, report);
+      return asc_lu_band_test::Factor(provider, matrix, swaps, plan, workspace,
+                                      report);
     });
     ASC_DENSE_TEST_EQ(test, status.code(), asc::ErrorCode::kProvider);
     ASC_DENSE_TEST_EQ(test, faults::Calls(), 1);
@@ -102,13 +105,15 @@ void SolveFaults(TestContext& test,
   support::Pivots pivots(5);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   asc::LapackReport report;
   faults::Select(Fault::kPass);
-  ASC_DENSE_TEST_CHECK(
-      test, asc::Gbtrf(provider, matrix, swaps, plan, workspace, report).ok());
+  ASC_DENSE_TEST_CHECK(test, asc_lu_band_test::Factor(provider, matrix, swaps,
+                                                      plan, workspace, report)
+                                 .ok());
   const auto factor = Take(asc::ReferenceLuBandFactorView<T>::Create(
       provider, band.ConstView(), pivots.ConstView(), report));
   const auto factored = band.values;
@@ -161,7 +166,8 @@ void PlanRejections(TestContext& test,
   const auto pivot_before = pivots.values;
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   // Every malformed plan/workspace is checked by the real wrapper under
@@ -201,8 +207,8 @@ void PlanRejections(TestContext& test,
     faults::Select(Fault::kLargePositive);
     asc::LapackReport rejected;
     const auto status = WithoutAllocation(test, [&] {
-      return asc::Gbtrf(provider, matrix, swaps, bad_plan, bad_workspace,
-                        rejected);
+      return asc_lu_band_test::Factor(provider, matrix, swaps, bad_plan,
+                                      bad_workspace, rejected);
     });
     ASC_DENSE_TEST_CHECK(test, !status.ok());
     ASC_DENSE_TEST_EQ(test, faults::Calls(), 0);
@@ -224,13 +230,15 @@ void FactorMetadataRejections(TestContext& test,
   support::Pivots pivots(5);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   faults::Select(Fault::kPass);
   asc::LapackReport report;
-  ASC_DENSE_TEST_CHECK(
-      test, asc::Gbtrf(provider, matrix, swaps, plan, workspace, report).ok());
+  ASC_DENSE_TEST_CHECK(test, asc_lu_band_test::Factor(provider, matrix, swaps,
+                                                      plan, workspace, report)
+                                 .ok());
   // Reject every unsupported outcome and provenance mutation; no labels are
   // inferred to mean success. Matrix coefficients are not scanned by Create.
   for (int which = 0; which < 11; ++which) {
@@ -287,13 +295,15 @@ void EveryPivotRejection(TestContext& test,
   support::Pivots pivots(5);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   faults::Select(Fault::kPass);
   asc::LapackReport report;
-  ASC_DENSE_TEST_CHECK(
-      test, asc::Gbtrf(provider, matrix, swaps, plan, workspace, report).ok());
+  ASC_DENSE_TEST_CHECK(test, asc_lu_band_test::Factor(provider, matrix, swaps,
+                                                      plan, workspace, report)
+                                 .ok());
   // The factory checks the entire encoding, including the last swap.
   for (std::size_t i = 1; i <= 5; ++i) {
     const auto saved = pivots.values[i];
@@ -315,13 +325,15 @@ void SolvePreflight(TestContext& test,
   support::Pivots pivots(5);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   faults::Select(Fault::kPass);
   asc::LapackReport report;
-  ASC_DENSE_TEST_CHECK(
-      test, asc::Gbtrf(provider, matrix, swaps, plan, workspace, report).ok());
+  ASC_DENSE_TEST_CHECK(test, asc_lu_band_test::Factor(provider, matrix, swaps,
+                                                      plan, workspace, report)
+                                 .ok());
   const auto factor = Take(asc::ReferenceLuBandFactorView<T>::Create(
       provider, band.ConstView(), pivots.ConstView(), report));
   for (const auto layout : {support::kColumn, support::kRow}) {
@@ -385,7 +397,8 @@ void DescriptorFactorRejections(TestContext& test,
   support::Pivots pivots(5);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   const auto before = band.values;
@@ -411,8 +424,8 @@ void DescriptorFactorRejections(TestContext& test,
     asc::LapackReport report;
     faults::Select(Fault::kLargePositive);
     const auto status = WithoutAllocation(test, [&] {
-      return asc::Gbtrf(provider, rejected_matrix, rejected_swaps, plan,
-                        workspace, report);
+      return asc_lu_band_test::Factor(provider, rejected_matrix, rejected_swaps,
+                                      plan, workspace, report);
     });
     ASC_DENSE_TEST_CHECK(test, !status.ok());
     ASC_DENSE_TEST_EQ(test, faults::Calls(), 0);
@@ -430,7 +443,8 @@ void DescriptorFactories(TestContext& test,
   support::Pivots pivots(5);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   // A report used as a byte workspace must be rejected without resetting the
@@ -443,11 +457,11 @@ void DescriptorFactories(TestContext& test,
   alias_workspace.regions[support::kInteger] = {
       &alias_report, sizeof(alias_report), support::kHost};
   faults::Select(Fault::kLargePositive);
-  ASC_DENSE_TEST_EQ(
-      test,
-      asc::Gbtrf(provider, matrix, swaps, plan, alias_workspace, alias_report)
-          .code(),
-      asc::ErrorCode::kInvalidArgument);
+  ASC_DENSE_TEST_EQ(test,
+                    asc_lu_band_test::Factor(provider, matrix, swaps, plan,
+                                             alias_workspace, alias_report)
+                        .code(),
+                    asc::ErrorCode::kInvalidArgument);
   ASC_DENSE_TEST_EQ(test, faults::Calls(), 0);
   ASC_DENSE_TEST_EQ(test, alias_report.called_provider,
                     alias_before.called_provider);
@@ -484,13 +498,15 @@ void SolveDescriptorRejections(TestContext& test,
   support::Pivots pivots(5);
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   support::Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   faults::Select(Fault::kPass);
   asc::LapackReport report;
-  ASC_DENSE_TEST_CHECK(
-      test, asc::Gbtrf(provider, matrix, swaps, plan, workspace, report).ok());
+  ASC_DENSE_TEST_CHECK(test, asc_lu_band_test::Factor(provider, matrix, swaps,
+                                                      plan, workspace, report)
+                                 .ok());
   const auto factor = Take(asc::ReferenceLuBandFactorView<T>::Create(
       provider, band.ConstView(), pivots.ConstView(), report));
   const auto factored = band.values;
@@ -564,7 +580,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 
 int main(int argc, char** argv) {
   const asc_lapack_test::NormalReturnGuard return_guard;
-  if (argc != 2) {
+  if (!asc_lu_band_test::SelectFactor(argc, argv)) {
     return 2;
   }
   TestContext test;

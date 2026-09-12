@@ -26,7 +26,7 @@ inline Status Storage(extent_t m, extent_t n, extent_t kl, extent_t ku,
 }
 
 inline Status Factor(extent_t m, extent_t n, extent_t kl, extent_t ku,
-                     extent_t ld, extent_t maximum) {
+                     extent_t ld, extent_t maximum, bool blocked = true) {
   auto status = Storage(m, n, kl, ku, ld, maximum);
   if (!status.ok() || m == 0 || n == 0) {
     return status;
@@ -34,7 +34,8 @@ inline Status Factor(extent_t m, extent_t n, extent_t kl, extent_t ku,
   const extent_t count = std::min(m, n);
   const extent_t kv = kl + ku;
   // ILAENV receives N4=KU, not KL. GBTRF then rejects NB>KL.
-  const extent_t step = ku > 64 && kl >= 32 ? 32 : 1;
+  // Explicit GBTF2 always uses unit-step elimination, including wide bands.
+  const extent_t step = blocked && ku > 64 && kl >= 32 ? 32 : 1;
   // Final DO cursor 1+step*ceil(min(m,n)/step), initial KU+2,
   // and J+KV / J+KU+JP (before -1). Blocked scalar expressions evaluate
   // KV+1+JJ before -J and local-JJ+J+KV before -1.

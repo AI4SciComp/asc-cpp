@@ -14,6 +14,7 @@
 #include "asc/dense/providers/lapack.h"
 #include "asc/dense/providers/lapack_lu_band.h"
 #include "installed_lu/normal_return_guard.h"
+#include "lu_band_factor_test_support.h"
 #include "lu_band_test_support.h"
 
 namespace {
@@ -91,15 +92,17 @@ void Exercise(TestContext& test, const asc::ReferenceLapackProvider& provider,
   const auto pivot_before = pivots.values;
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(WithoutAllocation(
-      test, [&] { return asc::QueryGbtrfWorkspace(provider, matrix, swaps); }));
+  const auto plan = Take(WithoutAllocation(test, [&] {
+    return asc_lu_band_test::QueryFactor(provider, matrix, swaps);
+  }));
   ASC_DENSE_TEST_CHECK(test, band_test::SameBytes(before, band.values));
   ASC_DENSE_TEST_EQ(test, pivot_before, pivots.values);
   Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   asc::LapackReport report;
   const auto status = WithoutAllocation(test, [&] {
-    return asc::Gbtrf(provider, matrix, swaps, plan, workspace, report);
+    return asc_lu_band_test::Factor(provider, matrix, swaps, plan, workspace,
+                                    report);
   });
   ASC_DENSE_TEST_CHECK(test, status.ok());
   ASC_DENSE_TEST_CHECK(test, report.called_provider && report.native_info == 0);
@@ -126,11 +129,16 @@ void Exercise(TestContext& test, const asc::ReferenceLapackProvider& provider,
     return asc::ReferenceLuBandFactorView<T>::Create(
         provider, band.ConstView(), pivots.ConstView(), report);
   }));
+  const std::string_view origin(report.routine.data());
+  ASC_DENSE_TEST_CHECK(
+      test, origin.ends_with(band_test::g_unblocked ? "gbtf2" : "gbtrf"));
+  ASC_DENSE_TEST_EQ(test, factor.originating_routine(), origin);
   std::printf(
-      "gbtrf numerical m=%lld n=%lld kl=%lld ku=%lld exponent=%d "
+      "%s numerical m=%lld n=%lld kl=%lld ku=%lld exponent=%d "
       "reconstruction=checked\n",
-      static_cast<long long>(m), static_cast<long long>(n),
-      static_cast<long long>(kl), static_cast<long long>(ku), exponent);
+      band_test::g_unblocked ? "gbtf2" : "gbtrf", static_cast<long long>(m),
+      static_cast<long long>(n), static_cast<long long>(kl),
+      static_cast<long long>(ku), exponent);
   if (m != n) {
     return;
   }
@@ -151,12 +159,14 @@ void Singular(TestContext& test, const asc::ReferenceLapackProvider& provider,
   const auto before = band.values;
   const auto matrix = band.View();
   const auto swaps = pivots.View();
-  const auto plan = Take(asc::QueryGbtrfWorkspace(provider, matrix, swaps));
+  const auto plan =
+      Take(asc_lu_band_test::QueryFactor(provider, matrix, swaps));
   Scratch<T> scratch(plan);
   const auto workspace = scratch.View();
   asc::LapackReport report;
   const auto status = WithoutAllocation(test, [&] {
-    return asc::Gbtrf(provider, matrix, swaps, plan, workspace, report);
+    return asc_lu_band_test::Factor(provider, matrix, swaps, plan, workspace,
+                                    report);
   });
   ASC_DENSE_TEST_EQ(test, status.code(), asc::ErrorCode::kNumerical);
   ASC_DENSE_TEST_CHECK(
@@ -215,7 +225,7 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
 
 int main(int argc, char** argv) {
   const asc_lapack_test::NormalReturnGuard return_guard;
-  if (argc != 2) {
+  if (!asc_lu_band_test::SelectFactor(argc, argv)) {
     return 2;
   }
   TestContext test;
