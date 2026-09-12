@@ -3686,7 +3686,7 @@
       "typed_review": "master-continuation-20260910-01/gesvx-continuation-contract-01/review.json",
       "unchanged_regressions": "master-continuation-20260910-01/gesvx-existing-evidence-reuse-01/audit.json",
       "new_source": "Maintained modes,calibratedobserver,CMake; existing publicAPI/production unchanged.",
-      "next": "Commit the reviewed GESVX continuation with staged source identity matching the frozen product; continue PBTRF/PBTF2/PBTRS INFO correction. Fresh hosted delivery and wider/full-profile numerical acceptance remain separate.",
+      "next": "Local continuation committed; preserve numerical blockers and continue dependency-ready P05 work. Hosted and wider profile verification remain open.",
       "release_audit": "master-continuation-20260910-01/gesvx-release-audit-01/audit.json",
       "installed_reuse": "master-continuation-20260910-01/gesvx-installed-reuse-01/audit.json",
       "registration": "master-continuation-20260910-01/gesvx-registration-01",
@@ -3698,7 +3698,20 @@
       "static_audit": "master-continuation-20260910-01/gesvx-static-audit-01/audit.json",
       "shared_audit": "master-continuation-20260910-01/gesvx-shared-audit-01/audit.json",
       "recovery_checks": "master-continuation-20260910-01/continuation-20260912-01/gesvx-current-contract-checks",
-      "recovered_shared_execution": "Six preexisting completed profiles reused; only two missing ASan/UBSan profiles executed. Six shared Debug/Release/ASC-only sanitizer profiles each17/21 with exactlyfourrequiredmathfailures240assertions; bothTSan4/4;zero skips. Originalfrozen1210build/API/test/ABIinputsmatch recoveredworkspace before independentPBcorrection."
+      "recovered_shared_execution": "Six preexisting completed profiles reused; only two missing ASan/UBSan profiles executed. Six shared Debug/Release/ASC-only sanitizer profiles each17/21 with exactlyfourrequiredmathfailures240assertions; bothTSan4/4;zero skips. Originalfrozen1210build/API/test/ABIinputsmatch recoveredworkspace before independentPBcorrection.",
+      "delivery_commit": "d9e6507"
+    },
+    "pb_info_correction": {
+      "state": "bounded_correction_locally_verified_family_incomplete",
+      "base_head": "d9e6507",
+      "review": "programs/lapack-array-io/band-info-review.md",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/pb-info-final-audit/audit.json",
+      "tests": "Both actual ABIs: static Release13/13, static Debug15/15, static ASC sanitizer15/15, shared Release15/15; four relocated consumers1/1; zero skips. Before correction: four failed processes per ABI, 672/1008 assertions preserved.",
+      "remaining": [
+        "Normalized full family contracts",
+        "Wider provider/platform profiles; shared Debug/sanitizer and TSan not claimed here"
+      ],
+      "next_family": "P05.required.gbtf2; four unimplemented required rows"
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

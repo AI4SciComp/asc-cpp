@@ -311,7 +311,7 @@ template <typename T>
 void Fault(TestContext& test, const asc::ReferenceLapackProvider& provider,
            int routine, asc::DenseBlasTriangle triangle,
            asc::DenseBlasLayout layout, asc::DenseBlasLayout rhs_layout,
-           std::int64_t info) {
+           std::int64_t info, InfoWrite info_write = InfoWrite::kComplete) {
   BandData<T> band(3, 1, triangle, layout);
   RhsData<T> rhs(band, 2, rhs_layout);
   const auto plan = Take(Query(provider, routine, band, rhs));
@@ -320,7 +320,7 @@ void Fault(TestContext& test, const asc::ReferenceLapackProvider& provider,
   const auto before_band = band.values;
   const auto before_rhs = rhs.values;
   asc::LapackReport report;
-  ResetFault(info, routine != 2 && layout == kRow);
+  ResetFault(info, routine != 2 && layout == kRow, info_write);
   const auto status = WithoutAllocation(test, [&] {
     return Execute(provider, routine, band, rhs, plan, workspace, report);
   });
@@ -366,6 +366,40 @@ void Fault(TestContext& test, const asc::ReferenceLapackProvider& provider,
     ASC_DENSE_TEST_CHECK(test, SameBytes(before_band, band.values));
   }
   storage.Check(test);
+}
+
+template <typename T>
+void MissingEmptyInfo(TestContext& test,
+                      const asc::ReferenceLapackProvider& provider) {
+  for (const auto triangle : {kUpper, kLower}) {
+    for (const auto layout : {kColumn, kRow}) {
+      for (const int routine : {0, 1, 2}) {
+        BandData<T> band(0, 0, triangle, layout);
+        RhsData<T> rhs(band, 2, layout);
+        const auto plan = Take(Query(provider, routine, band, rhs));
+        Storage<T> storage(plan);
+        const auto band_before = band.values;
+        const auto rhs_before = rhs.values;
+        asc::LapackReport report;
+        ResetFault(0, false, InfoWrite::kOmitted);
+        const auto status = WithoutAllocation(test, [&] {
+          return Execute(provider, routine, band, rhs, plan, storage.View(),
+                         report);
+        });
+        ASC_DENSE_TEST_EQ(test, FaultCalls(), 1U);
+        ASC_DENSE_TEST_CHECK(test, FaultArgumentsValid());
+        ASC_DENSE_TEST_CHECK(test, report.called_provider);
+        ASC_DENSE_TEST_EQ(test, status.code(), asc::ErrorCode::kProvider);
+        ASC_DENSE_TEST_EQ(test, report.native_info,
+                          std::numeric_limits<lapack_int>::min());
+        ASC_DENSE_TEST_EQ(test, report.output_validity,
+                          asc::LapackOutputValidity::kUnusable);
+        ASC_DENSE_TEST_CHECK(test, SameBytes(band_before, band.values));
+        ASC_DENSE_TEST_CHECK(test, SameBytes(rhs_before, rhs.values));
+        storage.Check(test);
+      }
+    }
+  }
 }
 
 template <typename T>
@@ -420,11 +454,19 @@ void Run(TestContext& test, const asc::ReferenceLapackProvider& provider) {
             Fault<T>(test, provider, routine, triangle, layout, rhs_layout,
                      info);
           }
+          Fault<T>(test, provider, routine, triangle, layout, rhs_layout,
+                   std::numeric_limits<lapack_int>::min(), InfoWrite::kOmitted);
+          if constexpr (sizeof(lapack_int) > sizeof(std::int32_t)) {
+            Fault<T>(test, provider, routine, triangle, layout, rhs_layout,
+                     std::numeric_limits<lapack_int>::min(),
+                     InfoWrite::kLowWordOnly);
+          }
         }
       }
     }
   }
   Empty<T>(test, provider);
+  MissingEmptyInfo<T>(test, provider);
 }
 }  // namespace
 

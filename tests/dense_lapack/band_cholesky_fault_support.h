@@ -5,7 +5,9 @@
 #include <cstdint>
 
 namespace asc_band_test {
-void ResetFault(std::int64_t info, bool require_zero_imaginary = false);
+enum class InfoWrite : std::uint8_t { kComplete, kOmitted, kLowWordOnly };
+void ResetFault(std::int64_t info, bool require_zero_imaginary = false,
+                InfoWrite info_write = InfoWrite::kComplete);
 std::size_t FaultCalls();
 bool FaultArgumentsValid();
 }  // namespace asc_band_test

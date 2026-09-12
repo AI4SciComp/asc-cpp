@@ -1,5 +1,9 @@
 # P05 positive-definite band factor and solve slice
 
+The integrated 2026-09-12 [INFO correction](band-info-review.md) records the
+subsequent bounded production fix and actual package verification. The
+original candidate evidence below remains preserved.
+
 Status: implementation candidate frozen; both-ABI scoped numerical and
 sanitizer verification passed. Root integration remains required and no
 full-family/native coverage is claimed.

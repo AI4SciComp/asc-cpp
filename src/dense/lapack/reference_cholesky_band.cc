@@ -364,7 +364,7 @@ Status Factor(const ReferenceLapackProvider& provider,
   auto n = static_cast<lapack_int>(band.order());
   auto kd = static_cast<lapack_int>(band.bandwidth());
   auto ldab = static_cast<lapack_int>(LeadingDimension(band));
-  lapack_int info = 0;
+  lapack_int info = std::numeric_limits<lapack_int>::min();
   report.factor_family = LapackFactorFamily::kCholesky;
   report.called_provider = true;
   if (blocked) {
@@ -418,7 +418,7 @@ Status Solve(const ReferenceLapackProvider& provider,
   const auto ldab = static_cast<lapack_int>(LeadingDimension(band));
   const auto ldb =
       static_cast<lapack_int>(internal_lapack_layout::LeadingDimension(rhs));
-  lapack_int info = 0;
+  lapack_int info = std::numeric_limits<lapack_int>::min();
   report.called_provider = true;
   Native<T>::kSolve(&triangle, &n, &kd, &nrhs, packed, &ldab, packed_rhs, &ldb,
                     &info, 1);

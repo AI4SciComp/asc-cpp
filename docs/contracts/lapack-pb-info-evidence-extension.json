@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "scope": "Current artifact index amendment for twelve PBTRF/PBTF2/PBTRS routes and twenty dependent PB rows. Two ASC native INFO seeds become full-width minimum sentinels; additive omitted/partial-width regression and exact twelve signature checks. Public declarations, normal numerical behavior, contracts, route states and all historical execution records remain unchanged. Fresh correction evidence is recorded separately; no new historical or full-family verification credit.",
+  "baseline_commit": "d9e650757c5e37eafa220b732142b46f04a6e650",
+  "prior_mapping_sha256": "0d4e4e6ca06515ed7eec92d72034d573cc60bccb73dc7810b17174a65353ab74",
+  "extended_mapping_sha256": "fc6e84a28d3d76da9f9b85cee61f829d45a0fc7e17976fd775d6e641749ffa0e",
+  "prior_evidence_sha256": "203842a76588450bfeab6de6c3d642cb60b2f9655d0e0b3e0cf8cda7cb1528fa",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "0d4e4e6ca06515ed7eec92d72034d573cc60bccb73dc7810b17174a65353ab74",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "0d4e4e6ca06515ed7eec92d72034d573cc60bccb73dc7810b17174a65353ab74",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "dfe08d684140e7fa921602efce791831d2a2e4915c7a7e8aa5b1476f93099528",
+    "reference-lu-release-lp64-20260911": "fd4c0fa379e6c8915b9780bcced01e3f168d1493963a45b869702e0b878c32bc",
+    "reference-lu-release-ilp64-20260911": "5ab3ea4c9d8c74020e970c417bd53cb60700b00f199f088f6cf15d4e440b2ebd"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cpbcon",
+    "lapack.cpbequ",
+    "lapack.cpbrfs",
+    "lapack.cpbsv",
+    "lapack.cpbsvx",
+    "lapack.cpbtf2",
+    "lapack.cpbtrf",
+    "lapack.cpbtrs",
+    "lapack.dpbcon",
+    "lapack.dpbequ",
+    "lapack.dpbrfs",
+    "lapack.dpbsv",
+    "lapack.dpbsvx",
+    "lapack.dpbtf2",
+    "lapack.dpbtrf",
+    "lapack.dpbtrs",
+    "lapack.spbcon",
+    "lapack.spbequ",
+    "lapack.spbrfs",
+    "lapack.spbsv",
+    "lapack.spbsvx",
+    "lapack.spbtf2",
+    "lapack.spbtrf",
+    "lapack.spbtrs",
+    "lapack.zpbcon",
+    "lapack.zpbequ",
+    "lapack.zpbrfs",
+    "lapack.zpbsv",
+    "lapack.zpbsvx",
+    "lapack.zpbtf2",
+    "lapack.zpbtrf",
+    "lapack.zpbtrs"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/continuation-20260912-01/pb-info-index",
+  "generator_sha256": "48a6d9495d0df95f5d3694441ff9ac904a21e703f39c384ba86001386583408d"
+}

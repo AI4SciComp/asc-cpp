@@ -93,6 +93,9 @@ The next active structured-solver correction is PBTRF/PBTF2/PBTRS native INFO
 publication. Both actual ABIs reproduced false success when the provider
 omits INFO; ILP64 also reproduces a partial-width zero write. The two production
 INFO seeds now use the full-width minimum sentinel. Both Release suites pass
-13/13 with the additive regression checks; strict checks, shared/static
-delivery, installed consumers and the atomic header/coverage update are in
-progress. This correction has not yet earned a completion verdict.
+13/13 with the additive regression checks. The correction's static Debug,
+static sanitizer and shared Release suites pass 15/15 per ABI; all four
+relocated installed consumers pass. Strict checks and the atomic
+header/coverage update also pass. See [the bounded correction record](band-info-review.md).
+Full PB family verification remains open. GBTF2 is the next unfinished
+implementation; the four required rows have no existing public implementation.

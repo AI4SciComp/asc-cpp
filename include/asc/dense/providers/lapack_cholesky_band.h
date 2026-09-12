@@ -37,9 +37,9 @@
  *
  * Reports preserve raw signed INFO. Factor positive INFO=i returns kNumerical,
  * kNotPositiveDefinite, zero-based diagnostic i-1 and kDocumentedPartial.
- * Negative or impossible INFO returns kProvider with unusable output;
- * packed output is not published, while directly supplied column storage
- * cannot be rolled back after an unexpected foreign failure. Successful
+ * Negative, impossible or unwritten INFO returns kProvider with unusable
+ * output; packed output is not published, while directly supplied column
+ * storage cannot be rolled back after an unexpected foreign failure. Successful
  * execution is not a finite-quality guarantee: pinned PBTF2 does not detect
  * NaN by its AJJ<=0 test, and PBTRS reports no numerical INFO. Such raw results
  * are not credited as mathematical success. No blanket finiteness/symmetry
