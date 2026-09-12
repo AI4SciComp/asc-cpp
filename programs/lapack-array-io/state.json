@@ -10,16 +10,16 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "ffc4bd8da06e1f70727081aba514957722cb7eb9",
+  "current_base_commit": "117865676171c4578da3005948d1f8c53b55a8bd",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "ffc4bd8da06e1f70727081aba514957722cb7eb9",
+  "last_implementation_commit": "117865676171c4578da3005948d1f8c53b55a8bd",
   "worktree_diff_identity": {
-    "state": "rk_factor_delivery_ready_after_evidence",
-    "base_commit": "ffc4bd8da06e1f70727081aba514957722cb7eb9",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-delivery-audit/audit.json",
-    "scope": "Twelve RK factor producers with typed persistent E, global permutation/triangular storage, independent signed paired pivots, checked native INFO and workspace. Original HE and row A packed; column SY direct. Existing ROOK factory rejects new provenance. No old numerical/provider source changed. Exact148-header registrations updated."
+    "state": "rk_solve_delivery_ready_after_evidence",
+    "base_commit": "117865676171c4578da3005948d1f8c53b55a8bd",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-solve-delivery-audit/audit.json",
+    "scope": "Six RK TRS_3 consumers with immutable A/E/pivots, global permutation storage, each-own-index paired target bounds, ignoredE semantics, no scalarWORK, checked private INTEGER and rowpacking. FullINFO/pivot mutation defects withhold row B. Existing numerical/provider code unchanged. Exact149-header registrations updated."
   },
   "packages": {
     "P00": {
@@ -1379,8 +1379,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P05.required.hetrs_3: RK factor-dependent solve family after recorded RK producer delivery",
-  "next_action": "Review S/D/C/Z SYTRS_3 and C/Z HETRS_3 against the pinned source, actual GNU declarations and the separate RK A/E/pivot storage. Establish factor provenance, INFO, mutation, workspace and integer contracts before implementation. Continue condition/inverse/driver dependents afterward; preserve frozen work, all failed cases and the existing workspace.",
+  "active_task": "P05.required.hecon_3: RK factor condition estimators after recorded TRS_3 delivery",
+  "next_action": "Review S/D/C/Z SYCON_3 and C/Z HECON_3 against pinned source, actual GNU declarations and separate RK A/E/pivots. Confirm norm/RCOND/INFO, immutable storage, estimator workspace and integer/source counts before implementation. Continue independent inverse/driver families while preserving all numerical/provider blockers and frozen deliveries.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1388,7 +1388,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "2419ba371d4348e2ad7cfb97cea7a0ce9eee4e55948c2300f27bb9ac64de85d6"
+    "coverage_mapping_sha256": "1357bbe1eec604ed4bdf0c9ee3999ec8bb4baecaa46d642235744360b97bfb5f"
   },
   "provider": {
     "version": "3.12.1",
@@ -1821,16 +1821,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 222,
-    "callable_reference": 182,
+    "mapped_contracts": 228,
+    "callable_reference": 188,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1635,
+    "not_started_reference": 1629,
     "in_progress_reference": 296,
-    "incomplete_reference": 1931,
-    "implemented_unverified_reference": 182,
+    "incomplete_reference": 1925,
+    "implemented_unverified_reference": 188,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2056,6 +2056,11 @@
       "id": "BLOCK-INDEFINITE-RK-EMPTY-E",
       "scope": "All6 pinned unblocked SYTF2_RK/HETF2_RK initialize E before the empty-order loop: upperE1 andlowerE0 overwritten withINFO0. Safe allocated interior-pointer probes retain12 failures/ABI; required CTest remains failed. ASC n0 is an explicit documented noncall; no native-source patch or waived provider admission.",
       "record": "programs/lapack-array-io/indefinite-rk-review.md"
+    },
+    {
+      "id": "BLOCK-INDEFINITE-RK-SOLVE-RANGE",
+      "scope": "All6 TRS_3 variants form overflowing scalar reciprocal forA=B=minnormal/8 exactX1. Fourcomplex variants yieldNaN forzero-diagonal2block withoffcomponents.75max andfiniteB exactones. Native20failed mathematical cases/ABI beforeadapter;12finalordinary/sanitizer profiles each6required failures160assertions. All input/INFO/nativefidelity controls pass. No provider patch, tolerance change or waived acceptance.",
+      "record": "programs/lapack-array-io/indefinite-rk-solve-review.md"
     }
   ],
   "external_approvals": [
@@ -2578,14 +2583,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hetrs_3",
+  "next_task": "P05.required.hecon_3",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect actual git and rk-factor-delivery/commit.txt, then review pinned TRS_3 consumers. No new workspace, stabilization or frozen-family rerun.",
+  "next_command": "Inspect actual git and rk-solve-delivery/commit.txt, then review CON_3 dependencies. Existing workspace only; no stabilization or frozen-family rerun.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3619,16 +3624,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 222,
-      "callable_reference": 182,
+      "mapped_contracts": 228,
+      "callable_reference": 188,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1635,
+      "not_started_reference": 1629,
       "in_progress_reference": 296,
-      "incomplete_reference": 1931,
-      "implemented_unverified_reference": 182,
+      "incomplete_reference": 1925,
+      "implemented_unverified_reference": 188,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3889,7 +3894,7 @@
       "family": "Eachstatic/sharedLP64 306/355,ILP64310/355,zero skips;PB21/21 andprovider111/111 perprofile. Twelveadditional failures exactlyGESVX4+GBTF2range4+GBTRFrange4;previousfailurespreserved.",
       "scope": "Original artifacts recovered, no completed workflow rerun;does not verifylaterindefinitechanges. PB43dependencyhashes remainunchanged."
     },
-    "next_task": "P05.required.hetrs_3",
+    "next_task": "P05.required.hecon_3",
     "last_confirmed_remote_head": "9d2f65b8f043a81d29c0f4633f9a8af86339fb9d",
     "rook_factor_solve": {
       "state": "implemented_unverified_numerical_gates_failed",
@@ -4044,7 +4049,26 @@
       "checks": "4 relocated consumers1440cases each;18strictTUs;4standaloneheader tests;24added/0removed dynamic exports perABI;336active direct GNU-emitted ABIcases and24required direct nativeempty failures;148headers/2573Doxygenmembers/0warnings;4manifest contexts+6fixtures;2architecture/dependency checks;actualCIselector includes44newruntimeprocesses.24concurrencygroups/class with384native384empty384structural rejections.312structural rejections perSYclass/328perHEclass,24protectedqueries8empty8oldROOKprovenance rejections26sourcecounts/class. Installed production byte identity proved after normal CMake shared RPATH installation.",
       "remaining": "BLOCK-INDEFINITE-RK-EMPTY-E: all6unblocked pinned TF2_RK routines write upperE1/lowerE0 forN0 before looping; nativeINFO0 andotherguards pass. ASC documentedempty noncalls pass. All earlier numerical/provider/CodeQL/platform/full execution-record blockers remain. Provider Fortran/BLAS internals uninstrumented; no verified Reference promotion.",
       "next_family": "SYTRS_3/HETRS_3 dependent consumers, followed by CON_3/inverse/driver routines.",
-      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-delivery-audit/audit.json"
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-delivery-audit/audit.json",
+      "delivery_commit": "117865676171c4578da3005948d1f8c53b55a8bd",
+      "hosted_recovery": {
+        "status_record": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-hosted-read-01/runs/record.json",
+        "artifact_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-hosted-family-artifacts-01/audit.json",
+        "summary": "Original1178656 push/PR CI and CodeQL analyses succeeded. Original selected-family fourprofiles each922tests,LP64798pass124required failures,ILP64802pass120required failures,0skip;provider111/111. Exactpriorfailure-set plusrequired RKnativeemptyE gate only. No rerun or alert dismissal; separate CodeQL alert gate remains open."
+      }
+    },
+    "rk_solve": {
+      "state": "implemented_unverified_required_mathematical_range_gates_failed",
+      "review": "programs/lapack-array-io/indefinite-rk-solve-review.md",
+      "implementation_parent": "117865676171c4578da3005948d1f8c53b55a8bd",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-solve-final-audit/audit.json",
+      "contracts": 6,
+      "normalized_modes": 96,
+      "profiles": "12 actual static/shared LP64/ILP64 Release/Debug/ASC-ASan+UBSan profiles each37/43,6 required mathematical failures160assertions0skip.4TSan profiles each6/6. Canonical540processes468pass72required failures1920assertions0skip. Ordinary496cases/process; range104cases=96representable+8nonrepresentable controls.",
+      "checks": "4 relocated consumers3168cases each,18strictTUs,4standaloneheaders,12added0removed exports perABI,288final guarded direct GNU-emitted ABIcases,149headers2585Doxygenmembers0warnings,4manifest contexts+6fixtures,2architecture/dependency checks. ActualCIselector967includes43newruntime+2newheader processes. Fault1920cases/class including896empty; structural408rejections32protectedqueries24empty26sourcecountchecks and32LP64/16ILP64original-stridequeries. Concurrency32groups/class,4workers4repeats:512native512empty512rejectedplan calls with read-only sharedA/E/pivots. Final installed production library identity proved.",
+      "remaining": "BLOCK-INDEFINITE-RK-SOLVE-RANGE: native scalar reciprocal overflow despite A=B/exactX1, complex large2x2 division NaN despite finiteB/exactones. RawINFO0/nativebytes preserved. Earlier RKemptyE and all numerical/provider/XBLAS/CodeQL/platform/full normalized execution-record blockers remain. Fortran/BLAS internals uninstrumented. No Reference row promoted to verified.",
+      "next_family": "SYCON_3/HECON_3, then remaining RK inverse/driver families.",
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-solve-delivery-audit/audit.json"
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
@@ -4063,11 +4087,11 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "rk_factor_12",
-    "implementation_parent": "ffc4bd8da06e1f70727081aba514957722cb7eb9",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-delivery/commit.txt",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-delivery-audit/audit.json",
-    "state": "implemented_unverified; active mathematical checks pass; unblocked native empty E gate remains failed; FULL_PROGRAM_INCOMPLETE"
+    "family": "rk_solve_6",
+    "implementation_parent": "117865676171c4578da3005948d1f8c53b55a8bd",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rk-solve-delivery/commit.txt",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-solve-delivery-audit/audit.json",
+    "state": "implemented_unverified; required scalar reciprocal/complex large-block mathematical gates remain failed; FULL_PROGRAM_INCOMPLETE"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4194,6 +4218,23 @@
       "base_commit": "c6eb9e5fa1acb6df3ae990c1e2df01ffd62c99ad",
       "audit": "master-continuation-20260910-01/continuation-20260912-01/block-solve-delivery-audit/audit.json",
       "scope": "Six classic SYTRS2/HETRS2 native routes with immutable raw factors/pivots, forced private factor packing, input restoration/full-width INFO checks and source WORKN/counts. No old solver/factor-view factory or provider numerical source changed. Exact147-header registrations updated."
+    }
+  },
+  "historical_delivery_pointers_before_rk_solve": {
+    "current_base_commit": "ffc4bd8da06e1f70727081aba514957722cb7eb9",
+    "last_implementation_commit": "ffc4bd8da06e1f70727081aba514957722cb7eb9",
+    "current_delivery": {
+      "family": "rk_factor_12",
+      "implementation_parent": "ffc4bd8da06e1f70727081aba514957722cb7eb9",
+      "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-delivery/commit.txt",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-delivery-audit/audit.json",
+      "state": "implemented_unverified; active mathematical checks pass; unblocked native empty E gate remains failed; FULL_PROGRAM_INCOMPLETE"
+    },
+    "worktree_diff_identity": {
+      "state": "rk_factor_delivery_ready_after_evidence",
+      "base_commit": "ffc4bd8da06e1f70727081aba514957722cb7eb9",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-factor-delivery-audit/audit.json",
+      "scope": "Twelve RK factor producers with typed persistent E, global permutation/triangular storage, independent signed paired pivots, checked native INFO and workspace. Original HE and row A packed; column SY direct. Existing ROOK factory rejects new provenance. No old numerical/provider source changed. Exact148-header registrations updated."
     }
   }
 }

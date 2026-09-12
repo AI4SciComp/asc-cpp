@@ -1,3 +1,71 @@
+## Latest checkpoint: RK solves integrated, required numerical gates open
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is pushed `1178656`; the exact new commit is recorded
+externally in `rk-solve-delivery/commit.txt`. Inspect actual git first.
+Both user instruction files, frozen records, failed attempts and existing
+commits remain preserved. No sibling workspace or provider patch was created.
+
+Six SYTRS_3/HETRS_3 routes have 96 reviewed modes and twelve public declarations.
+Immutable RK A/E/pivots retain raw Hermitian coefficients and ignored-E
+semantics. Own-index directional pivots are checked. No scalar WORK exists;
+active private INTEGER and row layout packing are checked. Empty execution
+is a metadata-only noncall. Full-width INFO and private pivot mutation are
+validated before publishing packed B; INFO=0 has no finiteness certificate.
+
+Sixteen final profiles yield 540 processes: 468 passes, 72 required mathematical
+failures, 1,920 failed assertions and zero skips. Twelve ordinary/sanitizer
+profiles each pass 37/43; four TSan profiles pass all six concurrency processes.
+Native scalar reciprocal and complex large-block failures remain explicit as
+`BLOCK-INDEFINITE-RK-SOLVE-RANGE`. The earlier native empty-E and all other
+programme blockers remain intact.
+
+Four relocated consumers pass 3,168 cases each. Eighteen strict TUs, four
+standalone headers, 288 guarded direct emitted-ABI cases, warning-free Doxygen
+for 149 headers/2,585 members, twelve added/no removed exports per ABI, package,
+architecture and actual CI-selector checks pass. Installed libraries match
+final Release producers. `rk-solve-final-audit/audit.json` binds source and raw
+evidence. ASC/tests are instrumented; provider Fortran/BLAS internals are not.
+Wider-platform admission and the separate CodeQL alert gate remain open.
+
+FULL_PROGRAM_INCOMPLETE: required 2,113; reviewed contracts 228;
+implemented_unverified Reference 188; in_progress 296; not_started 1,629;
+verified Reference 0. Continue `P05.required.hecon_3`: RK condition estimators,
+then remaining inverse/driver dependents without repeating frozen acceptance.
+
+## Historical recovery records
+
+## Active work: RK-dependent TRS_3 solves after pushed 1178656
+
+The RK producer delivery is committed and pushed as `1178656`; its sixteen
+profiles and native empty-E blocker are frozen. Only the two preserved user
+instruction files were dirty before this consumer work. The same branch and
+workspace remain in use.
+
+S/D/C/Z SYTRS_3 and C/Z HETRS_3 have six reviewed pinned sources and twelve
+actual GNU ABI emissions. Guarded 144-case native runs pass in each ABI.
+Native range probes retain twenty mathematical failures per ABI: twelve tiny
+scalar reciprocal cases and eight large complex 2-block cases, with INFO=0,
+exact representable solutions and passing input/padding guards. No provider
+arithmetic was changed. Raw evidence and the public decision are external
+under `rk-solve-prerequisite-01`.
+
+Twelve new query/execute declarations and a new source preserve immutable
+A/E/pivots, source INFO, ignored E entries and checked row packing/integer
+workspace. Both ABIs pass all twelve ordinary mathematical/fidelity processes, 496 cases
+each. Each range/ABI run has seven passes, six required mathematical failures,
+160 failed assertions and zero skips. All native fidelity and guarded ABI
+checks pass. Fault, structural and concurrency checks now each pass six processes
+per ABI with zero skips. Structural tests exercise 408 rejections per variant,
+32 protected queries, 24 empty noncalls, 26 integer source-count boundaries
+and 32 LP64/16 ILP64 original-stride queries. Concurrency shares protected
+read-only A/E/pivots in 32 groups per variant with four workers and four repeats.
+Installed consumers and final strict checks are running; final profiles,
+documentation and normalized-record work remain unfinished. See
+`indefinite-rk-solve-review.md`; no new Reference row is yet promoted.
+
+## Previous completed delivery and historical recovery
+
 ## Latest checkpoint: RK producers integrated, native empty-order gate open
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.

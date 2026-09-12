@@ -941,3 +941,14 @@ All sixteen profiles are recorded: active ordinary/range factor mathematics,
 fidelity, ABI, fault, structural, concurrency and relocated consumers pass.
 The required native empty-order E gate remains failed; no complete provider
 or Reference verification is claimed. See the [RK factor contract review](../programs/lapack-array-io/indefinite-rk-review.md).
+
+
+The header `asc/dense/providers/lapack_indefinite_rk_solve.h` adds S/D/C/Z
+`Sytrs3` and C/Z `Hetrs3` with metadata-only workspace queries. Immutable A/E
+and paired pivots must have matching RK TF2/TRF provenance. Row-major factors
+and right-hand sides need packing; active calls need n private provider
+INTEGER entries and no scalar WORK. Ignored E slots are never numerically
+validated. Native inputs remain unchanged, and INFO=0 does not certify finite
+or well-conditioned output. Required scalar reciprocal and complex large-block
+range failures remain explicit alongside passing native fidelity and installed
+consumers. See the [RK solve contract review](../programs/lapack-array-io/indefinite-rk-solve-review.md).

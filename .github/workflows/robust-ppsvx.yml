@@ -244,6 +244,14 @@ jobs:
                        for scalar in ("s", "d", "c", "z", "ch", "zh")}
           required.add("asc_cpp.dense_lapack.indefinite_rk_abi_probe")
           required.add("asc_cpp.dense_lapack.indefinite_rk_native_empty")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_solve{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_solve{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rk_solve_abi_probe")
           missing = required - selected
           if missing:
               raise SystemExit("Missing configured family tests: " + str(sorted(missing)))

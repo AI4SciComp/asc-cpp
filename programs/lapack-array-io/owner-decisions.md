@@ -271,3 +271,24 @@ concurrency profiles pass. All active mathematical/fidelity controls pass.
 See [the RK producer review](indefinite-rk-review.md) and external
 `rk-factor-final-audit/audit.json`. Provider adoption remains blocked on this
 native contract; continue independent RK consumers with the failed gate intact.
+
+
+## BLOCK-INDEFINITE-RK-SOLVE-RANGE
+
+All six pinned SYTRS_3/HETRS_3 variants form an overflowing reciprocal for
+scalar A=B=min_normal/8 despite exact X=1. The four complex variants also
+produce NaN for a zero-diagonal 2-by-2 block whose E components are each
+0.75*maximum finite, with finite B=A*ones and representable exact X=ones.
+Before adapter implementation, direct native probes retained twenty failed
+mathematical cases per ABI with INFO=0 and unchanged A/E/pivot/input guards.
+The new ASC routes reproduce native bytes and preserve those numerical gates.
+
+Keep all six required mathematical processes registered. No provider arithmetic,
+assertion, tolerance or INFO semantics is changed. Row packing preserves raw
+Hermitian factor coefficients; it does not normalize a failed native solution.
+Twelve final ordinary/sanitizer profiles retain six failures and 160 failed
+assertions each; four TSan profiles pass. Installed and engineering success is
+bounded evidence, not full numerical acceptance. Preserve the earlier RK
+producer empty-E blocker separately and continue independent CON_3/inverse/
+driver work. See the [RK solve record](indefinite-rk-solve-review.md) and external
+`rk-solve-final-audit/audit.json`.

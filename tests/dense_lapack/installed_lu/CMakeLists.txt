@@ -33,7 +33,7 @@ add_executable(installed_lu_advanced advanced_main.cc)
 target_link_libraries(installed_lu_advanced PRIVATE ASC::dense_lapack)
 add_test(NAME installed_lu_advanced COMMAND installed_lu_advanced)
 foreach(_family IN ITEMS cholesky qr helpers cholesky_expert least_squares
-    cholesky_band indefinite indefinite_rook indefinite_rook_condition indefinite_rook_driver indefinite_rook_inverse indefinite_inverse indefinite_block_inverse indefinite_block_solve indefinite_rk rank_revealing sylvester indefinite_expert
+    cholesky_band indefinite indefinite_rook indefinite_rook_condition indefinite_rook_driver indefinite_rook_inverse indefinite_inverse indefinite_block_inverse indefinite_block_solve indefinite_rk indefinite_rk_solve rank_revealing sylvester indefinite_expert
     svd_least_squares lu_band tridiagonal band_expert lu_band_expert
     lu_band_equilibration_radix triangular triangular_expert packed_triangular packed_triangular_expert triangular_band triangular_band_expert packed_cholesky packed_cholesky_solve packed_cholesky_inverse packed_cholesky_driver packed_cholesky_equilibration packed_cholesky_condition packed_cholesky_refinement)
   add_executable("installed_${_family}" "${_family}_main.cc")
