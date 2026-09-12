@@ -1,0 +1,82 @@
+# LAPACK and array-I/O programme recovery
+
+## Checkpoint recovered on 2026-09-12
+
+Status: **FULL_PROGRAM_INCOMPLETE**.
+
+The active workspace is `/home/yicai/AI4SciComp/asc-cpp-lapack-array-io`,
+branch `feature/lapack-array-io`, recovered at
+`6fd7c90185a5af60443b23fcae2f05d525294681`. The preceding recovery checkpoint
+is [the PT review](positive-tridiagonal-review.md#recovery-checkpoint-2026-09-12).
+All 15 preexisting modified/untracked files remain present. The index was
+empty; no previous source changes were discarded or committed by recovery.
+No live compiler, CTest or previous programme runner was found.
+
+The retained native acceptance, array-I/O acceptance and experimental robust
+PPSVX integration remain frozen. PTTRF/PTTRS is implemented at `fb8c86f`;
+the subsequent PTCON, PTRFS, PTSV, PTSVX, GECON, GEEQU/GEEQUB and GERFS
+commits are present. Their mathematical and profile limitations remain in
+their family reviews and [the decision record](owner-decisions.md).
+
+## Interrupted work
+
+The dirty implementation slice is GESVX verification, with two maintained
+test sources, CMake registration, workflow selectors, contract/evidence
+extensions and programme records. Its frozen source identity is tree
+`aa4012465076f33457b79f897b1761992be7c67f`, based on `663c7a4`.
+The existing Release and Debug shared executions completed for both ABIs,
+retaining four numerical failures; both shared TSan executions completed
+successfully. Neither shared ASan/UBSan profile has started. The shared
+audit and coherent delivery commit remain unfinished. Completed profiles
+must be reused, not restarted because the connection was interrupted.
+
+The recorded inventory has 2,113 required Reference rows: 80 implemented
+but unverified, 322 in progress and 1,711 not started; zero Reference rows
+are fully verified. Native20 retains its separate accepted scope. These
+counts come from the recovered records and require validator confirmation
+when the next contract update is finalized.
+
+## Active continuation
+
+1. PTTRS reproduction is complete; the provider numerical blocker below is
+   preserved. Continue independent work rather than repeating this fixture.
+2. Reconcile the requested structured families against actual pinned rows and
+   existing implementations. `SBTRF/SBTRS/HBTRF/HBTRS` have no rows in the
+   pinned inventory; do not invent those interfaces.
+3. Finish the interrupted GESVX verification without rerunning its completed
+   profiles, then continue dependency-ready structured/general solver work,
+   P06-P09, remaining P10 obligations and continuous P11 delivery.
+4. Keep unresolved mathematical, provider, dependency, license and platform
+   gates explicit while implementing independent required families.
+
+New raw evidence stays under the existing external root:
+`asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01`.
+`initial.json`, `initial-status.z` and `initial.patch` preserve this recovery's
+starting identities. No sibling worktrees or new project roots were created.
+
+## PTTRS numerical disposition
+
+Fresh builds of the maintained PT test and direct-comparison targets completed
+in the existing Release LP64 and ILP64 builds. Each selected five-test run
+has one passing direct-provider comparison, four failed required mathematical
+processes, 48 failed assertions and zero skips. Exact commands, current source
+hashes, configured test IDs, raw logs and JUnit are in
+`continuation-20260912-01/pt-reproduction-{lp64,ilp64}`. No ordinary or frozen
+acceptance subset was rerun.
+
+Classification: **pinned provider arithmetic; missing range-safe scalar solve**.
+All four PTTS2 implementations evaluate `1 / D(1)` before xSCAL, CSSCAL or
+ZDSCAL for N=1. With A=B equal to the smallest or twice-smallest positive
+subnormal, that intermediate reciprocal overflows even though the system's
+condition is one and its exact solution is one. The real provider returns
+Inf; the complex provider returns Inf/NaN. Native INFO is zero. The unchanged
+ASC implementation reports those values with its documented accuracy warning;
+the independent direct call reproduces them. PTTRF succeeds on these inputs.
+
+This is neither an incorrect Hermitian/UPLO mapping nor an invalid numerical
+oracle. A range-safe provider correction or an explicitly distinct algorithm
+could repair the mathematical result, but the current checked Reference route
+promises the selected provider's behavior without hidden scaling or replacement.
+The pinned provider and that public contract remain unchanged. Numerical
+acceptance is blocked; the existing required tests and decision record remain
+active. GESVX and the independent structured-solver work continue.
