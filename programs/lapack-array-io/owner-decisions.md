@@ -252,3 +252,22 @@ engineering success do not constitute full numerical acceptance. Preserve the
 raw failures and controls in `block-solve-*` continuation evidence and the
 [TRS2 contract review](indefinite-block-solve-review.md). Continue independent
 work on RK factor producers with separate E storage before their consumers.
+
+
+## BLOCK-INDEFINITE-RK-EMPTY-E
+
+All six pinned unblocked SYTF2_RK/HETF2_RK routines initialize E before their
+main loop checks n=0. Upper writes E(1); lower writes E(0), with INFO=0.
+Interior-pointer probes place both positions inside five allocated live
+objects, preserving a safe observation of the forbidden empty-array access.
+All twelve cases per ABI fail unchanged E while every other guard passes.
+The required native-empty CTest retains the failure without a skip or waiver.
+
+ASC's documented n=0 path makes no native call and accesses no numerical
+arrays. This adapter behavior passes, but does not repair or admit the pinned
+provider's native empty contract. No upstream numerical source is changed.
+Twelve final non-TSan profiles retain twelve failed assertions each; four TSan
+concurrency profiles pass. All active mathematical/fidelity controls pass.
+See [the RK producer review](indefinite-rk-review.md) and external
+`rk-factor-final-audit/audit.json`. Provider adoption remains blocked on this
+native contract; continue independent RK consumers with the failed gate intact.

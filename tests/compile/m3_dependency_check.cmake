@@ -104,6 +104,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_indefinite_inverse.h
   include/asc/dense/providers/lapack_indefinite_block_inverse.h
   include/asc/dense/providers/lapack_indefinite_block_solve.h
+  include/asc/dense/providers/lapack_indefinite_rk.h
   include/asc/dense/providers/lapack_rank_revealing.h
   include/asc/dense/providers/lapack_sylvester.h
   include/asc/dense/providers/lapack_indefinite_condition.h

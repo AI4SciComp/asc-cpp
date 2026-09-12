@@ -60,7 +60,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|lu_band_range|gbtf2|band_cholesky|indefinite_rook[._]|indefinite_inverse[._]|indefinite_block_inverse[._]|indefinite_block_solve[._]|indefinite([.]|_(preflight|info|counts|fault|abi_probe|range|concurrency))|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|lu_band_range|gbtf2|band_cholesky|indefinite_rook[._]|indefinite_inverse[._]|indefinite_block_inverse[._]|indefinite_block_solve[._]|indefinite_rk[._]|indefinite([.]|_(preflight|info|counts|fault|abi_probe|range|concurrency))|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             > "$RUNNER_TEMP/asc-selected.json"
           python3 - "$RUNNER_TEMP/asc-selected.json" <<'PY'
           import json
@@ -235,12 +235,21 @@ jobs:
                        for suite in ("_fault", "_validation", "_concurrency")
                        for scalar in ("s", "d", "c", "z", "ch", "zh")}
           required.add("asc_cpp.dense_lapack.indefinite_block_solve_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rk_abi_probe")
+          required.add("asc_cpp.dense_lapack.indefinite_rk_native_empty")
           missing = required - selected
           if missing:
               raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
           PY
           ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|lu_band_range|gbtf2|band_cholesky|indefinite_rook[._]|indefinite_inverse[._]|indefinite_block_inverse[._]|indefinite_block_solve[._]|indefinite([.]|_(preflight|info|counts|fault|abi_probe|range|concurrency))|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|lu_band_range|gbtf2|band_cholesky|indefinite_rook[._]|indefinite_inverse[._]|indefinite_block_inverse[._]|indefinite_block_solve[._]|indefinite_rk[._]|indefinite([.]|_(preflight|info|counts|fault|abi_probe|range|concurrency))|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             --output-junit "$RUNNER_TEMP/asc-tests.xml" \
             2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
       - name: Audit JUnit outcomes even when numerical gates fail

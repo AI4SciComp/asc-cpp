@@ -929,3 +929,15 @@ finiteness or conditioning guarantee. Scalar reciprocal overflow and complex
 large-block solve failures remain required mathematical gates. See the
 [converted-factor solve contract review](../programs/lapack-array-io/indefinite-block-solve-review.md)
 for storage, restoration checks and current verification limits.
+
+The optional `lapack_indefinite_rk.h` facet adds S/D/C/Z SYTF2_RK/SYTRF_RK
+and C/Z HETF2_RK/HETRF_RK with explicit persistent E storage for D's block
+offdiagonals. Global permutations and triangular factors differ from existing
+ROOK storage; old factor views reject RK provenance. Queries are metadata-only,
+with checked integer/layout work and source-derived minimum/reduced/preferred
+scalar work. Empty calls perform no native call or array access. The required
+native-empty gate separately preserves the pinned unblocked E(1)/E(0) write.
+All sixteen profiles are recorded: active ordinary/range factor mathematics,
+fidelity, ABI, fault, structural, concurrency and relocated consumers pass.
+The required native empty-order E gate remains failed; no complete provider
+or Reference verification is claimed. See the [RK factor contract review](../programs/lapack-array-io/indefinite-rk-review.md).

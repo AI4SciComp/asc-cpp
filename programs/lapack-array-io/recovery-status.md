@@ -1,3 +1,67 @@
+## Latest checkpoint: RK producers integrated, native empty-order gate open
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is pushed `ffc4bd8`; the exact delivery commit is recorded
+externally in `rk-factor-delivery/commit.txt`. Inspect actual git first.
+Both user instruction files, frozen acceptance records, failed attempts and
+existing commits remain preserved. No sibling workspace was created.
+
+Twelve S/D/C/Z SYTF2_RK/SYTRF_RK and C/Z HETF2_RK/HETRF_RK routes have
+120 reviewed modes and twenty-four public query/execute declarations. Typed
+persistent E and global permutation/triangular storage are explicit. Existing
+ROOK factor factories reject RK provenance. Native INFO and partial-factor
+semantics remain intact; original Hermitian and row-major A are privately
+packed. Source workspace minimum, rounding and reduced-block thresholds are
+checked and exercised. Queries and empty execution are metadata-only noncalls.
+
+Sixteen profiles yield 552 processes: 540 passes, twelve required native-empty
+failures, 144 failed assertions and zero skips. Each ordinary/sanitizer profile
+has 43 passes and the unchanged required empty-E failure. Four TSan profiles
+pass six concurrency processes each. All ordinary and range mathematical and
+native-fidelity checks pass, with explicit nonrepresentable controls.
+The pinned unblocked routines write upper E(1)/lower E(0) when n=0;
+`BLOCK-INDEFINITE-RK-EMPTY-E` remains open. ASC empty noncalls pass.
+
+Four relocated consumers pass 1,440 cases each. Eighteen strict TUs, four
+standalone headers, 336 active guarded emitted-ABI cases, 148-header/2,573-member
+warning-free Doxygen, twenty-four added/no removed exports per ABI, package
+manifest and architecture/dependency checks pass. Installed libraries match
+final producers after normal CMake installation. The external
+`rk-factor-final-audit/audit.json` binds final sources and all evidence.
+Provider Fortran/BLAS internals remain uninstrumented; wider-platform admission
+and the separate CodeQL alert gate remain open.
+
+FULL_PROGRAM_INCOMPLETE: required 2,113; reviewed contracts 222;
+implemented_unverified Reference 182; in_progress 296; not_started 1,635;
+verified Reference 0. Continue `P05.required.hetrs_3`: RK dependent solves,
+then condition/inverse/driver families, preserving all earlier blockers.
+
+## Historical recovery records
+
+## Active work: RK factor producers after pushed ffc4bd8
+
+The actual branch remains `feature/lapack-array-io` in the existing workspace.
+Recovery found pushed `ffc4bd8` with only the two preserved user instruction
+files untracked; no completed work was discarded or repeated. RK changes are
+now uncommitted: twelve producers and twenty-four declarations with explicit
+E storage, metadata-only workspace plans and guarded output publication.
+
+Before implementation, all twenty-four actual GNU prototype emissions and
+168 active native cases per ABI passed. Twelve native empty-order cases per
+ABI fail: unblocked upper writes E(1), lower E(0), INFO=0. Those raw failures
+are retained, and a required native-empty CTest keeps the gate visible. ASC
+empty execution is a validated noncall and leaves all numerical storage alone.
+
+The smallest double LP64 check passes 280 mathematical cases and 280 native
+fidelity cases. Both engineering ABIs pass all twelve ordinary processes.
+Each range/ABI run passes thirteen processes and retains the native-empty
+failure: twelve failed assertions, zero skips. Every range process executes
+360 representable factor cases and twelve explicitly nonrepresentable controls.
+See `indefinite-rk-review.md` and external `rk-factor-*` evidence. Fault checks
+are underway; structural, concurrency, installed, strict, final profiles and
+normalized documentation/evidence checks remain unfinished. Inspect actual
+processes and logs before resuming. FULL_PROGRAM_INCOMPLETE remains in force.
+
 ## Latest checkpoint: SYTRS2/HETRS2 evidence complete, range gates open
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
