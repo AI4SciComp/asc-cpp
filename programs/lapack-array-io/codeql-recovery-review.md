@@ -1,9 +1,10 @@
 # Recovered CodeQL alert gate
 
 Status: **open verification gate**, recovered read-only on 2026-09-12.
-PR 47 still points to feature commit `663c7a4c4b1388c3a2c78093e61f2e6e2f94f9f4`;
-its analyzed merge is `a09ef2393dc6ca5eda02ccde8e6f8ddd184559bc`.
-These remote results do not verify the subsequent local checkpoints.
+The original recovery read found PR 47 at feature commit
+`663c7a4c4b1388c3a2c78093e61f2e6e2f94f9f4`, with analyzed merge
+`a09ef2393dc6ca5eda02ccde8e6f8ddd184559bc`. The continuation below records
+the later pushed checkpoint separately.
 
 The [CodeQL analysis workflow](https://github.com/AI4SciComp/asc-cpp/actions/runs/34647493615)
 succeeded, but the separate
@@ -51,3 +52,21 @@ no hosted workflow was rerun to obtain them.
 
 Continue independent LAPACK work while retaining this gate. Full programme
 status remains **FULL_PROGRAM_INCOMPLETE**.
+
+## Optional backend analysis executed
+
+Feature checkpoint `736fa6c243c4310ed35675f0cb47a701321e7344` was pushed to
+the existing branch. Its [CodeQL workflow](https://github.com/AI4SciComp/asc-cpp/actions/runs/34673119204)
+completed successfully, including the default job and both actual LP64/ILP64
+optional-backend analysis jobs. Raw job outcomes are preserved in
+`continuation-20260912-01/continued-hosted-read-03`.
+
+The branch alert read now contains 2,626 open findings, including twelve
+security findings. New high alert 2612 identifies the offset used to begin
+the second native integer array in `internal_tridiagonal.h`. That expression
+intentionally advances a `std::byte*` by `order*sizeof(lapack_int)` inside
+checked caller workspace. The source remains unchanged. Exact alert payload,
+source hash and bounded review are in `continued-codeql-alerts-01/review.json`.
+The alert gate and complete note review remain open; no alert was dismissed
+and no query was suppressed. These analyses cover checkpoint 736fa6c, not
+the subsequent local indefinite INFO correction.

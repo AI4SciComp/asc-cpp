@@ -358,6 +358,32 @@ foreach(_suite IN ITEMS indefinite indefinite_preflight indefinite_counts
   endif()
 endforeach()
 
+add_executable(asc_dense_lapack_indefinite_info_test
+  indefinite_info_test.cc indefinite_info_faults.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_info_test)
+target_include_directories(asc_dense_lapack_indefinite_info_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_indefinite_info_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_routine IN ITEMS sytrf sytf2 sytrs)
+    target_link_options(asc_dense_lapack_indefinite_info_test PRIVATE
+      "-Wl,--wrap=${_scalar}${_routine}_")
+  endforeach()
+endforeach()
+foreach(_scalar IN ITEMS c z)
+  foreach(_routine IN ITEMS hetrf hetf2 hetrs)
+    target_link_options(asc_dense_lapack_indefinite_info_test PRIVATE
+      "-Wl,--wrap=${_scalar}${_routine}_")
+  endforeach()
+endforeach()
+foreach(_scalar IN ITEMS s d c z ch zh)
+  asc_register_test(NAME "asc_cpp.dense_lapack.indefinite_info.${_scalar}"
+    TARGET asc_dense_lapack_indefinite_info_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack validation allocation TIMEOUT 120)
+endforeach()
+
 add_executable(asc_dense_lapack_indefinite_abi_probe indefinite_abi_probe.cc)
 _asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_abi_probe)
 target_include_directories(asc_dense_lapack_indefinite_abi_probe PRIVATE

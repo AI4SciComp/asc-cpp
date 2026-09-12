@@ -546,6 +546,9 @@ retain their defined complex values. Positive factorization INFO preserves
 completed factors/pivots but does not certify a successful reusable factor.
 These eighteen routes have passed the recorded v7 numerical and installed
 checks; full normalized routine/mode coverage remains incomplete.
+Unwritten full-width INFO is rejected as a provider defect with unusable
+output. Empty operations retain INFO absence and make no foreign call. The
+continuation record is `programs/lapack-array-io/indefinite-info-review.md`.
 
 ## Rank-revealing QR and least squares
 

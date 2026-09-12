@@ -1,5 +1,13 @@
 # LAPACK and array-I/O programme recovery
 
+Latest continuation: classic indefinite INFO publication is corrected and
+locally verified; see [the correction record](indefinite-info-review.md).
+Twelve actual LP64/ILP64 static/shared Debug/Release/sanitizer profiles pass
+23/23 each, and four relocated consumers pass 1/1 each, with zero skips.
+The original omitted/partial-width failures remain preserved. The next task
+is classic indefinite normalized contracts and extreme-range acceptance.
+Full programme status remains **FULL_PROGRAM_INCOMPLETE**.
+
 ## Checkpoint recovered on 2026-09-12
 
 Status: **FULL_PROGRAM_INCOMPLETE**.

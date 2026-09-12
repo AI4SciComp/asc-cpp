@@ -54,8 +54,9 @@
  * guarantee is inferred from a successful provider return. Solve checks exact
  * zero 1-by-1 and 2-by-2 divisors before mutation; a rejected numeric factor
  * has no fabricated native INFO. Unexpected INFO is a provider defect with
- * the exact signed value retained. Raw source behavior and partial-output
- * details are described on each operation below.
+ * the exact signed value retained. An unwritten full-width INFO is likewise a
+ * provider defect; its signed sentinel is retained and output is unusable.
+ * Raw source behavior and partial-output details are described below.
  */
 
 #include <array>

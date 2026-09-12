@@ -1,5 +1,10 @@
 # P05 classic Bunch–Kaufman slice
 
+The historical candidate record below is preserved. Current integration work
+continues in [the INFO correction review](indefinite-info-review.md); its
+existing workspace and fresh evidence supersede the old candidate workspace
+as the location for ongoing development.
+
 Status: bounded implementation frozen with the local verification below;
 parent integration and owner-review gates remain open. This slice owns actual S/D/C/Z
 SYTRF/SYTF2/SYTRS and C/Z HETRF/HETF2/HETRS: 18 required source rows, not

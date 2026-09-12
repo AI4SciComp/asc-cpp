@@ -3,6 +3,7 @@
 #include <complex>
 #include <cstddef>
 #include <cstdint>
+#include <limits>
 #include <new>  // IWYU pragma: keep; caller-owned foreign integer lifetimes.
 #include <span>
 #include <string_view>
@@ -206,7 +207,7 @@ Status ExecuteFactor(const ReferenceLapackProvider& provider,
       lapack_int[static_cast<std::size_t>(n)]{};
   auto* cursor = static_cast<T*>(workspace.regions[bk::kLayout].data());
   T* packed = bk::PackTriangle(matrix, triangle, hermitian, cursor, hermitian);
-  lapack_int info = 0;
+  lapack_int info = std::numeric_limits<lapack_int>::min();
   report.called_provider = true;
   if (routine == bk::Routine::kTrf) {
     auto* work = static_cast<T*>(workspace.regions[bk::kScalar].data());
@@ -402,7 +403,7 @@ Status ExecuteSolve(const ReferenceLapackProvider& provider,
   auto* cursor = static_cast<T*>(workspace.regions[bk::kLayout].data());
   const T* packed = bk::PackTriangle(matrix, factor.triangle(), false, cursor);
   T* packed_rhs = bk::PackRhs(rhs, cursor);
-  lapack_int info = 0;
+  lapack_int info = std::numeric_limits<lapack_int>::min();
   report.called_provider = true;
   bk::TrsCall(hermitian, bk::Uplo(factor.triangle()), n,
               static_cast<lapack_int>(rhs.columns()), packed,
