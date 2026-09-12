@@ -165,7 +165,8 @@ jobs:
                        for scalar in "sdcz" for mode in ("mathematical", "fidelity", "solve")}
           required |= {"asc_cpp.dense_lapack." + suite + "." + scalar
                        for suite in ("band_cholesky", "band_cholesky_fidelity",
-                                     "band_cholesky_validation", "band_cholesky_range")
+                                     "band_cholesky_validation", "band_cholesky_range",
+                                     "band_cholesky_concurrency")
                        for scalar in "sdcz"}
           required.add("asc_cpp.dense_lapack.band_cholesky_limits")
           missing = required - selected

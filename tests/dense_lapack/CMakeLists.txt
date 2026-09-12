@@ -313,6 +313,18 @@ foreach(_suite IN ITEMS band_cholesky band_cholesky_fidelity band_cholesky_range
   endif()
 endforeach()
 
+find_package(Threads REQUIRED)
+add_executable(asc_dense_lapack_band_cholesky_concurrency_test
+  band_cholesky_concurrency_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_band_cholesky_concurrency_test)
+target_link_libraries(asc_dense_lapack_band_cholesky_concurrency_test
+  PRIVATE Threads::Threads)
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.band_cholesky_concurrency.${_scalar}"
+    TARGET asc_dense_lapack_band_cholesky_concurrency_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack numerical concurrency TIMEOUT 180)
+endforeach()
+
 foreach(_suite IN ITEMS indefinite indefinite_preflight indefinite_counts
     indefinite_fault)
   set(_target "asc_dense_lapack_${_suite}_test")

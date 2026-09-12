@@ -45507,6 +45507,7 @@
         "src/dense/lapack_foundations.cc",
         "tests/dense/lapack_structured_view_test.cc",
         "tests/dense_lapack/CMakeLists.txt",
+        "tests/dense_lapack/band_cholesky_concurrency_test.cc",
         "tests/dense_lapack/band_cholesky_fault_support.cc",
         "tests/dense_lapack/band_cholesky_fault_support.h",
         "tests/dense_lapack/band_cholesky_fidelity_test.cc",
@@ -45610,6 +45611,7 @@
         "src/dense/lapack_foundations.cc",
         "tests/dense/lapack_structured_view_test.cc",
         "tests/dense_lapack/CMakeLists.txt",
+        "tests/dense_lapack/band_cholesky_concurrency_test.cc",
         "tests/dense_lapack/band_cholesky_fault_support.cc",
         "tests/dense_lapack/band_cholesky_fault_support.h",
         "tests/dense_lapack/band_cholesky_fidelity_test.cc",
@@ -45713,6 +45715,7 @@
         "src/dense/lapack_foundations.cc",
         "tests/dense/lapack_structured_view_test.cc",
         "tests/dense_lapack/CMakeLists.txt",
+        "tests/dense_lapack/band_cholesky_concurrency_test.cc",
         "tests/dense_lapack/band_cholesky_fault_support.cc",
         "tests/dense_lapack/band_cholesky_fault_support.h",
         "tests/dense_lapack/band_cholesky_fidelity_test.cc",
@@ -55380,7 +55383,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "a213a2d894499559c0b56b7f8018742d3fe29e8c7e9ae9c548aadd683996d7aa",
+    "lapack-coverage.yaml": "2386d243b918c297b5bba70a989274db7988f6983800f7e2471d3ff590e7df59",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

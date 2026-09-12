@@ -529,8 +529,10 @@ PBTRS factor coefficients are not normalized as original Hermitian input.
 There is no native band coverage claim or complete structured-family claim.
 The PB continuation record in
 `programs/lapack-array-io/band-cholesky-continuation-review.md` normalizes all 64 modes and records passing subnormal-to-maximum-finite range
-cases on both actual ABIs. Concurrency and the wider verification profile
-remain required; no full-family verification is claimed.
+cases on both actual ABIs. The bounded static/shared Debug, Release and
+ASan/UBSan matrix passes 23/23 per profile, and each TSan concurrency profile
+passes 4/4. Wider admission, hosted and full execution-record gates remain;
+no full-family verification is claimed.
 
 ## Classic symmetric and Hermitian indefinite factors
 

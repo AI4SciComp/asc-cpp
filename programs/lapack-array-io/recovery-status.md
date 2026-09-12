@@ -141,3 +141,20 @@ counts are 92 implemented-unverified, 314 in progress, 1,707 not started and
 zero fully verified; 132 contracts are reviewed. Status remains
 **FULL_PROGRAM_INCOMPLETE**. Continue the missing PB concurrency/profile gates,
 then the existing classic indefinite families.
+
+## PB concurrency and remaining Linux profiles
+
+The local PB matrix now passes 23/23 in twelve static/shared Debug, Release
+and ASan/UBSan profiles, plus 4/4 in four TSan profiles, across both actual
+ABIs. This composes 144 new and 148 explicitly matched earlier process results,
+with zero skips; all four existing relocated consumers remain matched. The
+[PB continuation](band-cholesky-continuation-review.md) records the exact scope.
+The 18 existing classic indefinite APIs are next; both foreign call sites still
+initialize INFO to zero and require additive fault reproduction.
+
+The recovered remote GERFS workflows completed while the session was absent.
+Their numerical failures remain preserved. The separate CodeQL alert check
+fails even though its analysis job succeeded; see the
+[CodeQL recovery record](codeql-recovery-review.md). The additive optional
+LAPACK analysis jobs require actual hosted execution. No frozen acceptance
+was rerun or alert dismissed. **FULL_PROGRAM_INCOMPLETE** remains accurate.

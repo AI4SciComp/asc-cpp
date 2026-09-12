@@ -88,3 +88,58 @@ required. They are not numerical failures established by this range class.
 Continue those feasible PB checks and then the existing classic indefinite
 families; preserve unrelated mathematical and external blockers. The overall
 programme status remains **FULL_PROGRAM_INCOMPLETE**.
+
+## Subsequent concurrency and Linux matrix completion
+
+The maintained `band_cholesky_concurrency_test.cc` now closes the bounded local
+concurrency class for all 64 modes. Four workers share one immutable provider
+and factor plan while factoring separate matrices at distinct scales. Barriers
+coordinate repeated query and execution entry. They also solve simultaneously
+from one shared immutable factor, with separate RHS, workspace and reports.
+Both triangles, band layouts, RHS layouts, factor entries and n/kd = 3/2 and
+96/65 are exercised. Independent reconstruction, known solutions, residuals,
+finite factors, padding and scratch guards remain asserted.
+
+Each scalar executes 208 factor attempts, of which 192 enter the provider,
+and 512 solves. The final worker outcomes deliberately differ: a stale plan
+rejects before entry, two real matrices produce INFO 1 and INFO 2, and the
+fourth succeeds. No synthetic fault hook or shared allocation observer runs
+inside these concurrent calls. The previous independent allocation evidence
+remains applicable to its original scope.
+
+The completed matrix, composed only from new executions and explicitly matched
+prior evidence, is:
+
+| Profile | Static LP64 | Static ILP64 | Shared LP64 | Shared ILP64 |
+| --- | --- | --- | --- | --- |
+| Debug | 23/23 | 23/23 | 23/23 | 23/23 |
+| Release | 23/23 | 23/23 | 23/23 | 23/23 |
+| ASan/UBSan | 23/23 | 23/23 | 23/23 | 23/23 |
+| TSan concurrency | 4/4 | 4/4 | 4/4 | 4/4 |
+
+All 292 selected process results pass, with zero skips. Of these, 144 are new
+executions in this continuation; 148 are the unchanged earlier engineering and
+range results. The four relocated installed consumers are preserved separately
+and remain applicable by exact PB dependency identity. Static sanitizer profiles
+use Clang 19; shared sanitizer and TSan profiles use GNU 11. The pinned foreign
+provider is not instrumented. Source closure review and actual concurrent
+numerical outcomes complement that limitation; no claim of instrumented
+Fortran race detection is made.
+
+The new test's first compilation rejected a narrowing list initializer. The
+corrected expression selects `T{4}` or `T{}`; all assertions and values remain
+unchanged. The failed compilation is retained. Both actual-ABI strict checks
+and formatting pass. Six previously missing shared build configurations reuse
+the existing integration source and admitted providers; no source checkout or
+sibling worktree was created.
+
+`pb-completion-final-audit/audit.json` binds the full matrix, source/build inputs,
+reused results and metadata checks. The schema-2 concurrency extension preserves
+historical execution records and frozen acceptance. No public API, backend or
+provider arithmetic changed in this checkpoint. The earlier concurrency,
+shared-profile and TSan gaps listed above are now closed within the stated
+Linux scope. Hosted analysis, broader supported-provider/platform admission
+and normalized full execution records remain required; all 12 routes retain
+implemented-unverified status. The recovered [CodeQL gate](codeql-recovery-review.md)
+is reported separately. Next: classic indefinite factor/solve INFO regression,
+using the 18 existing implementations.
