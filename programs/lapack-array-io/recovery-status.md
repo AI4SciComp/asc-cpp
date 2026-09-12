@@ -1,3 +1,63 @@
+## Latest checkpoint: rook driver evidence complete, numerical gate blocked
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is `9d2f65b`; the exact new commit is recorded externally
+in `rook-driver-delivery/commit.txt`. Inspect actual git state first. Both user
+instruction files, frozen milestones and previous failure evidence are preserved.
+
+Six SYSV_ROOK/HESV_ROOK routes have 288 reviewed modes. Sixteen actual profiles
+yield 468 canonical processes: 396 passes, 72 required mathematical failures,
+6,912 failed assertions and zero skips. Four relocated consumers pass 768 cases
+each; twenty strict TUs, four standalone headers, actual emitted ABI probes,
+Doxygen, exports and all four package header-manifest contexts pass.
+`rook-driver-final-audit/audit.json` binds the evidence. No numerical failure
+or tolerance was waived. Successful actual driver reports permit rook factor
+reuse without fabricating a factorization origin.
+
+Hosted 9d2f65b artifacts were recovered without reruns. The missing condition
+source in the independent compiled-source oracle and unresolved Doxygen links
+are fixed through explicit registrations. Architecture/dependency and strict
+Doxygen checks now pass locally. Selected hosted families retain 497 tests per
+profile: LP64 424 passes/73 failures, ILP64 428 passes/69 failures, zero skips.
+CodeQL analysis succeeded; the separate alert gate and wider admission remain open.
+
+FULL_PROGRAM_INCOMPLETE: required 2113; reviewed contracts 180;
+implemented_unverified Reference 140; in_progress 296; not_started 1677;
+verified Reference 0. Next unfinished family is six SYTRI_ROOK/HETRI_ROOK
+inverses, with existing factorization dependencies. Continue in this workspace.
+
+## Historical in-progress recovery record
+
+## Active continuation: rook drivers implemented, verification in progress
+
+Recovered actual branch `feature/lapack-array-io` at pushed commit `9d2f65b`.
+The two untracked user instruction files remain unchanged. Current uncommitted
+work adds six SYSV_ROOK/HESV_ROOK drivers and admits their actual successful
+reports for rook factor reuse. It also registers the independent 143-header
+oracle. No worktree or provider change was made.
+
+Evidence remains under `master-continuation-20260910-01/continuation-20260912-01`.
+`rook-driver-prerequisite-01` retains source contracts and actual GNU compiler
+emissions; both executed ABI probes pass 288 cases. Initial LP64/ILP64 Release
+runs each pass 31 of 37 tests with six required mathematical failures and no
+skips. Native-output faults, structural rollback and concurrent calls pass.
+Tiny scalar solves reproduce the pinned reciprocal-overflow limitation while
+factor-only and native-fidelity checks pass. All failures remain required.
+
+The static LP64/ILP64 relocated consumers pass. Strict style, shared consumers,
+remaining profiles, final documentation and evidence mapping are in progress.
+Do not commit or infer full family acceptance from this provisional record.
+`rook-driver-first-01` preserves an initial missing generated Make target;
+explicit reconfiguration then enabled the first successful double test.
+
+The original fb20ed9 hosted artifacts have now been audited without reruns:
+458 tests per profile, LP64 391 passes/67 failures, ILP64 395 passes/63 failures,
+zero skips; each provider ran 111 checks successfully. See
+`rook-hosted-family-recovery-01/audit.json`. Frozen milestones and all earlier
+blockers remain unchanged. Overall status remains FULL_PROGRAM_INCOMPLETE.
+
+## Prior committed checkpoint
+
 ## Latest checkpoint: rook condition evidence complete, numerical gate blocked
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.

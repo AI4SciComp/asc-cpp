@@ -861,3 +861,20 @@ scaled-identity cases return zero, NaN or infinity instead of exact RCOND=1;
 direct native calls reproduce these results. The six required mathematical
 gates remain failing, so this family is implemented with numerical acceptance
 blocked. See the [contract and evidence record](../programs/lapack-array-io/indefinite-rook-condition-review.md).
+
+The header `lapack_indefinite_rook_driver.h` adds S/D/C/Z `SysvRook` and C/Z
+`HesvRook`, with explicit workspace queries. These execute actual rook drivers,
+using selected A and independently laid out B. Caller workspace controls
+factorization blocking; every solve uses TRS_ROOK. Output pivots retain both
+independent rook interchanges. Original Hermitian imaginary diagonals are
+ignored through explicit packing. Zero RHS still factors a nonempty matrix.
+
+Native INFO, every pivot and returned WORK are checked for omitted or malformed
+writes. Successful actual driver reports can create `ReferenceRookFactorView`
+for later solves while retaining the driver origin. Positive INFO preserves
+partial factors and leaves B unchanged. Tiny scalar solves reproduce native
+reciprocal overflow even though exact X=1 is representable; all six required
+mathematical tests remain failing. See the
+[driver contract and evidence record](../programs/lapack-array-io/indefinite-rook-driver-review.md)
+for current verification status. These additions do not establish full LAPACK
+numerical acceptance.

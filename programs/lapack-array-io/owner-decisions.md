@@ -170,3 +170,15 @@ scales, observable outputs and the independent oracle. No hidden replacement,
 new default algorithm, tolerance waiver or fully verified row is authorized
 by these results. Continue independent required families while retaining this
 numerical blocker.
+
+## Rook direct drivers: retained scalar solve range blocker
+
+`ROOK-INDEFINITE-DRIVER-RANGE` affects S/D/C/Z SYSV_ROOK and C/Z HESV_ROOK.
+For A=B=tiny, exact X=1 is finite, but the pinned TRS_ROOK reciprocal-before-
+SCAL path returns nonfinite X with INFO=0. Direct native fidelity passes;
+zero-RHS factor-only calls preserve finite factors. Both initial integer modes
+retain six required mathematical failures, with no skips or tolerance changes.
+The [driver record](indefinite-rook-driver-review.md) identifies exact scales,
+contracts and the independent mathematical oracle. The provider limitation
+remains explicit while independent work continues; it grants no full numerical
+acceptance or verification credit.

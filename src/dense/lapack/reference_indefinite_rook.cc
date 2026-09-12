@@ -22,6 +22,7 @@
 #include "internal_indefinite.h"
 #include "internal_indefinite_counts.h"
 #include "internal_indefinite_rook_calls.h"
+#include "internal_indefinite_rook_origin.h"
 #include "internal_indefinite_rook_pivots.h"
 
 namespace asc {
@@ -62,7 +63,8 @@ Status Origin(const LapackReport& report, bool hermitian, extent_t order) {
       report.routine.data(),
       static_cast<std::size_t>(end - report.routine.begin()));
   if (routine != rook::Name<T>(rook::Routine::kTrf, hermitian) &&
-      routine != rook::Name<T>(rook::Routine::kTf2, hermitian)) {
+      routine != rook::Name<T>(rook::Routine::kTf2, hermitian) &&
+      routine != rook::DriverName<T>(hermitian)) {
     return Status(ErrorCode::kInvalidState);
   }
   if (report.outcome != LapackOutcome::kSuccess ||
@@ -246,7 +248,8 @@ Status SolveMetadata(const ReferenceLapackProvider& provider,
   if (factor.originating_routine() !=
           rook::Name<T>(rook::Routine::kTrf, hermitian) &&
       factor.originating_routine() !=
-          rook::Name<T>(rook::Routine::kTf2, hermitian)) {
+          rook::Name<T>(rook::Routine::kTf2, hermitian) &&
+      factor.originating_routine() != rook::DriverName<T>(hermitian)) {
     return Status(ErrorCode::kInvalidState);
   }
   if (matrix.rows() != matrix.columns() || matrix.rows() != rhs.rows()) {

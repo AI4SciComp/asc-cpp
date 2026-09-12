@@ -101,7 +101,7 @@ class ReferenceRookFactorView {
    * @param symmetry Same-call symmetric or Hermitian operation; no inference.
    * @param pivots Same-call immutable rook signed paired pivots, exact n.
    * @param report Successful complete same-call
-   * SYTRF_ROOK/SYTF2_ROOK/HETRF_ROOK/HETF2_ROOK report.
+   * SYTRF_ROOK/SYTF2_ROOK/HETRF_ROOK/HETF2_ROOK/SYSV_ROOK/HESV_ROOK report.
    * @return Borrowed factor or structural/state error without numerical writes.
    * @pre Caller guarantees common origin and excludes concurrent mutation.
    */

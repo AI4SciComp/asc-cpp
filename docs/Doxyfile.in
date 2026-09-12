@@ -83,7 +83,9 @@ WARN_LOGFILE           = "@_asc_cpp_doxygen_warning_log@"
 INPUT                  = "@PROJECT_SOURCE_DIR@/include/asc" \
                          "@PROJECT_SOURCE_DIR@/docs" \
                          "@PROJECT_SOURCE_DIR@/release" \
-                         "@PROJECT_SOURCE_DIR@/examples"
+                         "@PROJECT_SOURCE_DIR@/examples" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rook-condition-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rook-driver-review.md"
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h *.md *.dox *.cc
 RECURSIVE              = YES

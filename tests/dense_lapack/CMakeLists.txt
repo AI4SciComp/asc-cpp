@@ -19,6 +19,7 @@ endfunction()
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_condition_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rook_condition_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rook_driver_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_refinement_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_driver_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_expert_tests.cmake")
@@ -1032,6 +1033,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_least_squares.h lapack_cholesky_band.h lapack_indefinite.h
     lapack_indefinite_rook.h
     lapack_indefinite_rook_condition.h
+    lapack_indefinite_rook_driver.h
     lapack_rank_revealing.h lapack_sylvester.h
     lapack_indefinite_condition.h lapack_indefinite_driver.h
     lapack_indefinite_refinement.h lapack_svd_least_squares.h
