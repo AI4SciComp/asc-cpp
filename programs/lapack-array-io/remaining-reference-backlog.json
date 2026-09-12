@@ -45506,11 +45506,13 @@
         "src/dense/lapack/reference_cholesky_band.cc",
         "src/dense/lapack_foundations.cc",
         "tests/dense/lapack_structured_view_test.cc",
+        "tests/dense_lapack/CMakeLists.txt",
         "tests/dense_lapack/band_cholesky_fault_support.cc",
         "tests/dense_lapack/band_cholesky_fault_support.h",
         "tests/dense_lapack/band_cholesky_fidelity_test.cc",
         "tests/dense_lapack/band_cholesky_limits_test.cc",
         "tests/dense_lapack/band_cholesky_native_test_support.h",
+        "tests/dense_lapack/band_cholesky_range_test.cc",
         "tests/dense_lapack/band_cholesky_test.cc",
         "tests/dense_lapack/band_cholesky_test_support.h",
         "tests/dense_lapack/band_cholesky_validation_test.cc",
@@ -45519,24 +45521,39 @@
         "tests/dense_lapack/installed_lu/normal_return_guard.h"
       ],
       "route_states": {
-        "lapack.cpbtf2": "in_progress",
-        "lapack.dpbtf2": "in_progress",
-        "lapack.spbtf2": "in_progress",
-        "lapack.zpbtf2": "in_progress"
+        "lapack.cpbtf2": "implemented_unverified",
+        "lapack.dpbtf2": "implemented_unverified",
+        "lapack.spbtf2": "implemented_unverified",
+        "lapack.zpbtf2": "implemented_unverified"
       },
       "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
       "required_mode_cases": {
-        "lapack.cpbtf2": [],
-        "lapack.dpbtf2": [],
-        "lapack.spbtf2": [],
-        "lapack.zpbtf2": []
+        "lapack.cpbtf2": [
+          "upper_column_major",
+          "upper_row_major",
+          "lower_column_major",
+          "lower_row_major"
+        ],
+        "lapack.dpbtf2": [
+          "upper_column_major",
+          "upper_row_major",
+          "lower_column_major",
+          "lower_row_major"
+        ],
+        "lapack.spbtf2": [
+          "upper_column_major",
+          "upper_row_major",
+          "lower_column_major",
+          "lower_row_major"
+        ],
+        "lapack.zpbtf2": [
+          "upper_column_major",
+          "upper_row_major",
+          "lower_column_major",
+          "lower_row_major"
+        ]
       },
-      "unreviewed_mode_rows": [
-        "lapack.cpbtf2",
-        "lapack.dpbtf2",
-        "lapack.spbtf2",
-        "lapack.zpbtf2"
-      ],
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -45546,7 +45563,9 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/band-cholesky-continuation-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
       "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
@@ -45554,7 +45573,9 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/band-cholesky-continuation-review.md"
+      ]
     },
     {
       "task_id": "P05.required.pbtrf",
@@ -45588,11 +45609,13 @@
         "src/dense/lapack/reference_cholesky_band.cc",
         "src/dense/lapack_foundations.cc",
         "tests/dense/lapack_structured_view_test.cc",
+        "tests/dense_lapack/CMakeLists.txt",
         "tests/dense_lapack/band_cholesky_fault_support.cc",
         "tests/dense_lapack/band_cholesky_fault_support.h",
         "tests/dense_lapack/band_cholesky_fidelity_test.cc",
         "tests/dense_lapack/band_cholesky_limits_test.cc",
         "tests/dense_lapack/band_cholesky_native_test_support.h",
+        "tests/dense_lapack/band_cholesky_range_test.cc",
         "tests/dense_lapack/band_cholesky_test.cc",
         "tests/dense_lapack/band_cholesky_test_support.h",
         "tests/dense_lapack/band_cholesky_validation_test.cc",
@@ -45601,24 +45624,39 @@
         "tests/dense_lapack/installed_lu/normal_return_guard.h"
       ],
       "route_states": {
-        "lapack.cpbtrf": "in_progress",
-        "lapack.dpbtrf": "in_progress",
-        "lapack.spbtrf": "in_progress",
-        "lapack.zpbtrf": "in_progress"
+        "lapack.cpbtrf": "implemented_unverified",
+        "lapack.dpbtrf": "implemented_unverified",
+        "lapack.spbtrf": "implemented_unverified",
+        "lapack.zpbtrf": "implemented_unverified"
       },
       "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
       "required_mode_cases": {
-        "lapack.cpbtrf": [],
-        "lapack.dpbtrf": [],
-        "lapack.spbtrf": [],
-        "lapack.zpbtrf": []
+        "lapack.cpbtrf": [
+          "upper_column_major",
+          "upper_row_major",
+          "lower_column_major",
+          "lower_row_major"
+        ],
+        "lapack.dpbtrf": [
+          "upper_column_major",
+          "upper_row_major",
+          "lower_column_major",
+          "lower_row_major"
+        ],
+        "lapack.spbtrf": [
+          "upper_column_major",
+          "upper_row_major",
+          "lower_column_major",
+          "lower_row_major"
+        ],
+        "lapack.zpbtrf": [
+          "upper_column_major",
+          "upper_row_major",
+          "lower_column_major",
+          "lower_row_major"
+        ]
       },
-      "unreviewed_mode_rows": [
-        "lapack.cpbtrf",
-        "lapack.dpbtrf",
-        "lapack.spbtrf",
-        "lapack.zpbtrf"
-      ],
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -45628,7 +45666,9 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/band-cholesky-continuation-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
       "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
@@ -45636,7 +45676,9 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/band-cholesky-continuation-review.md"
+      ]
     },
     {
       "task_id": "P05.required.pbtrs",
@@ -45670,11 +45712,13 @@
         "src/dense/lapack/reference_cholesky_band.cc",
         "src/dense/lapack_foundations.cc",
         "tests/dense/lapack_structured_view_test.cc",
+        "tests/dense_lapack/CMakeLists.txt",
         "tests/dense_lapack/band_cholesky_fault_support.cc",
         "tests/dense_lapack/band_cholesky_fault_support.h",
         "tests/dense_lapack/band_cholesky_fidelity_test.cc",
         "tests/dense_lapack/band_cholesky_limits_test.cc",
         "tests/dense_lapack/band_cholesky_native_test_support.h",
+        "tests/dense_lapack/band_cholesky_range_test.cc",
         "tests/dense_lapack/band_cholesky_test.cc",
         "tests/dense_lapack/band_cholesky_test_support.h",
         "tests/dense_lapack/band_cholesky_validation_test.cc",
@@ -45683,24 +45727,55 @@
         "tests/dense_lapack/installed_lu/normal_return_guard.h"
       ],
       "route_states": {
-        "lapack.cpbtrs": "in_progress",
-        "lapack.dpbtrs": "in_progress",
-        "lapack.spbtrs": "in_progress",
-        "lapack.zpbtrs": "in_progress"
+        "lapack.cpbtrs": "implemented_unverified",
+        "lapack.dpbtrs": "implemented_unverified",
+        "lapack.spbtrs": "implemented_unverified",
+        "lapack.zpbtrs": "implemented_unverified"
       },
       "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
       "required_mode_cases": {
-        "lapack.cpbtrs": [],
-        "lapack.dpbtrs": [],
-        "lapack.spbtrs": [],
-        "lapack.zpbtrs": []
+        "lapack.cpbtrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ],
+        "lapack.dpbtrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ],
+        "lapack.spbtrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ],
+        "lapack.zpbtrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ]
       },
-      "unreviewed_mode_rows": [
-        "lapack.cpbtrs",
-        "lapack.dpbtrs",
-        "lapack.spbtrs",
-        "lapack.zpbtrs"
-      ],
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -45710,7 +45785,9 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/band-cholesky-continuation-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
       "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
@@ -45718,7 +45795,9 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/band-cholesky-continuation-review.md"
+      ]
     },
     {
       "task_id": "P05.required.pftrf",
@@ -55301,7 +55380,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "0a7e6f8f781998be5d383881249bdef55875eb797fa562c9e695009fbade2d5f",
+    "lapack-coverage.yaml": "a213a2d894499559c0b56b7f8018742d3fe29e8c7e9ae9c548aadd683996d7aa",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

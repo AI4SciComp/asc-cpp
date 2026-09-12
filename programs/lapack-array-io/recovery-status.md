@@ -129,3 +129,15 @@ relocated default consumers pass on the existing packages. See the
 [continuation record](lu-band-continuation-review.md). The reviewed-contract
 count is now 120; all Reference route state counts and the incomplete programme
 status remain unchanged. PBTRF/PBTF2/PBTRS normalized contracts are next.
+
+## PB contract and range checkpoint
+
+The twelve existing PBTRF/PBTF2/PBTRS APIs retain the committed INFO correction.
+All 64 typed modes now have reviewed contracts. Eight new range profiles pass
+4/4 each with zero skips; 116 matching engineering passes and four matching
+relocated installed consumers are reused by an exact dependency audit. See
+[the continuation record](band-cholesky-continuation-review.md). Reference
+counts are 92 implemented-unverified, 314 in progress, 1,707 not started and
+zero fully verified; 132 contracts are reviewed. Status remains
+**FULL_PROGRAM_INCOMPLETE**. Continue the missing PB concurrency/profile gates,
+then the existing classic indefinite families.

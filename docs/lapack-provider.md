@@ -527,6 +527,10 @@ imaginary diagonal components actually normalized by the source's completed
 factor/update path, leaving untouched trailing components unwritten. Raw
 PBTRS factor coefficients are not normalized as original Hermitian input.
 There is no native band coverage claim or complete structured-family claim.
+The PB continuation record in
+`programs/lapack-array-io/band-cholesky-continuation-review.md` normalizes all 64 modes and records passing subnormal-to-maximum-finite range
+cases on both actual ABIs. Concurrency and the wider verification profile
+remain required; no full-family verification is claimed.
 
 ## Classic symmetric and Hermitian indefinite factors
 

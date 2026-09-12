@@ -1,5 +1,8 @@
 # P05 positive-definite band factor and solve slice
 
+The subsequent [contract and range continuation](band-cholesky-continuation-review.md)
+records the normalized twelve-row integration and new numerical classes.
+
 The integrated 2026-09-12 [INFO correction](band-info-review.md) records the
 subsequent bounded production fix and actual package verification. The
 original candidate evidence below remains preserved.

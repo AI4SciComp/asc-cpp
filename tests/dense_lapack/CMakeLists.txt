@@ -276,7 +276,7 @@ foreach(_suite IN ITEMS reference_least_squares least_squares_contract
   endif()
 endforeach()
 
-foreach(_suite IN ITEMS band_cholesky band_cholesky_fidelity
+foreach(_suite IN ITEMS band_cholesky band_cholesky_fidelity band_cholesky_range
     band_cholesky_validation band_cholesky_limits)
   set(_target "asc_dense_lapack_${_suite}_test")
   add_executable("${_target}" "${_suite}_test.cc"

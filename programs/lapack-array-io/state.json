@@ -10,7 +10,7 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "d889b0333af06af39d62464f18d30b11ddb5705b",
+  "current_base_commit": "322b968c0aa1eda66aef9f0da80b1f05cdab6e83",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
@@ -1380,7 +1380,7 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P05.required.gbtrf/gbtrs: bounded local normalized contract and range verification complete; delivery audit in progress",
+  "active_task": "P05.required.pbtrf/pbtf2/pbtrs: normalized contracts and bounded range tests complete; delivery audit in progress",
   "next_action": "Commit GBTRF/GBTRS continuation after final audit, retaining four factor mathematical failures and separate passing solve class; proceed to existing PB contracts.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
@@ -1822,16 +1822,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 120,
-    "callable_reference": 80,
+    "mapped_contracts": 132,
+    "callable_reference": 92,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
     "not_started_reference": 1707,
-    "in_progress_reference": 326,
-    "incomplete_reference": 2033,
-    "implemented_unverified_reference": 80,
+    "in_progress_reference": 314,
+    "incomplete_reference": 2021,
+    "implemented_unverified_reference": 92,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2531,7 +2531,7 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.pbtrf/pbtf2/pbtrs: normalized contracts and remaining numerical classes using existing implementation and matching correction evidence",
+  "next_task": "Finish feasible PB concurrency and remaining shared profiles, then classic symmetric/Hermitian indefinite families.",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
@@ -3572,16 +3572,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 120,
-      "callable_reference": 80,
+      "mapped_contracts": 132,
+      "callable_reference": 92,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
       "not_started_reference": 1707,
-      "in_progress_reference": 326,
-      "incomplete_reference": 2033,
-      "implemented_unverified_reference": 80,
+      "in_progress_reference": 314,
+      "incomplete_reference": 2021,
+      "implemented_unverified_reference": 92,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3752,7 +3752,23 @@
         "GBTRF range-safe numerical decision for both source-selected branches",
         "Shared Debug/sanitizer,TSan,hosted and wider provider/platform/full execution evidence"
       ],
-      "next_family": "PBTRF/PBTF2/PBTRS normalized contracts and missing numerical classes; reuse completed INFO-correction engineering evidence"
+      "next_family": "PBTRF/PBTF2/PBTRS normalized contracts and missing numerical classes; reuse completed INFO-correction engineering evidence",
+      "delivery_commit": "322b968c0aa1eda66aef9f0da80b1f05cdab6e83"
+    },
+    "pb_contract_range": {
+      "state": "implemented_unverified_bounded_range_passed",
+      "base_head": "322b968c0aa1eda66aef9f0da80b1f05cdab6e83",
+      "review": "programs/lapack-array-io/band-cholesky-continuation-review.md",
+      "contract": "master-continuation-20260910-01/continuation-20260912-01/pb-contract-01",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/pb-final-audit/audit.json",
+      "implementation": "Twelve existing APIs/backend unchanged;64 reviewed modes; new maintained range TU, registration and actual CI selector. Twelve routes accurately recorded implemented_unverified.",
+      "tests": "Eight actual-ABI static Debug/Release/ASC sanitizer and shared Release profiles4/4 each;116 matching engineering passes and4 relocated consumers reused through43 unchanged dependencies;zero skips. Both strict checks pass.",
+      "remaining": [
+        "Concurrency and TSan",
+        "Remaining shared Debug/sanitizer profiles",
+        "Hosted/wider provider/platform and full execution evidence"
+      ],
+      "next_family": "Finish feasible PB concurrency and remaining shared profiles, then classic symmetric/Hermitian indefinite families."
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
