@@ -1,5 +1,70 @@
 # PTTRF/PTTRS checked factor reuse
 
+## Recovery checkpoint, 2026-09-12
+
+The transport-interrupted session did not lose the PT implementation. Recovery
+started at `663c7a4c4b1388c3a2c78093e61f2e6e2f94f9f4` on
+`feature/lapack-array-io`, in the existing integration workspace. The public
+API, backend and integer-bound helper still match their integration commit
+`fb8c86fb390d88065d9f2b6d823a64cf9680c19f` byte for byte. Maintained tests,
+public-header checks, exports and installed consumer are already present.
+PTTRF/PTTRS must not be restarted as an unimplemented family.
+
+Recovery rechecked all eight pinned source hashes against the recorded LAPACK
+commit and tree. The scalar contracts remain:
+
+| Routines | D element type | E and B element type | Native solve UPLO |
+| --- | --- | --- | --- |
+| SPTTRF / SPTTRS | `float` | `float` | Absent |
+| DPTTRF / DPTTRS | `double` | `double` | Absent |
+| CPTTRF / CPTTRS | `float` | `std::complex<float>` | Lower or upper |
+| ZPTTRF / ZPTTRS | `double` | `std::complex<double>` | Lower or upper |
+
+All PTTRF signatures omit UPLO. D has n elements and E has max(n-1,0)
+elements, stored contiguously. The factorization consumes the lower off-diagonal;
+complex upper solve factors for the same Hermitian matrix require conjugated
+E. PTTRS overwrites B and preserves D/E. Neither native routine has workspace;
+ASC requires n*nrhs scalar layout entries only for active row-major solves.
+The disjoint operand, workspace and metadata rules and the exact INFO/partial
+output semantics in the implementation review below remain unchanged.
+
+The smallest recovery verification was an identity and saved-result audit.
+It checked the six original Debug/Release/ASan+UBSan LP64/ILP64 JUnit records:
+each has 13 passes, four required mathematical failures and zero skips. Both
+saved TSan profiles contain four passes and zero skips. These are historical
+executions, not fresh execution credit for the current working tree.
+
+Fresh smoke execution then used the four preserved installed PT consumers,
+starting with static LP64, followed by static ILP64 and both shared ABIs.
+Each passed its one all-scalar public example with zero skips. No build,
+installation, provider acquisition or worktree creation was needed. The
+copied examples retain their original source identities. Their guard differs
+from the current source by exactly three previously committed Doxygen/comment
+lines; recovery checks that exact delta and preserves the initial audit
+failure that detected it. This is a replay of installed artifacts, not a new
+full-profile or whole-tree acceptance result. Later shared-provider admission
+is documented in [its review](shared-provider-admission-review.md); the
+static-only wording below records the original integration boundary.
+
+Evidence remains outside source under
+`asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/pt-recovery-20260912-01`.
+`audit.py` and `audit.json` bind the pinned sources, current PT files, historical
+logs/JUnit, installed executable hashes and all 15 preexisting dirty files.
+Each `smoke-{static,shared}-{lp64,ilp64}` directory retains its command, exit
+status, raw log and JUnit. The frozen robust PPSVX, Native20 and array I/O
+subsets were not rerun. The preexisting GESVX changes remain separate and
+unchanged; this recovery does not claim their completion.
+
+The unfinished PT task is numerical acceptance: the recorded scalar reciprocal
+overflow still fails four required PTTRS tests. No failing test was removed,
+skipped, weakened or reclassified. A provider/algorithm strategy decision and
+the remaining profile/platform admission are still needed; implementation
+repetition or another identical scalar reproducer cannot close those gates.
+The programme milestone remains
+`PPSVX_ROBUST_INTEGRATED_EXPERIMENTAL_FULL_PROGRAM_INCOMPLETE`.
+
+## Original implementation and contract review
+
 This slice selects exactly SPTTRF, DPTTRF, CPTTRF, ZPTTRF, SPTTRS,
 DPTTRS, CPTTRS and ZPTTRS from the unchanged 2,113 required Reference rows.
 It adds the optional-provider public header
