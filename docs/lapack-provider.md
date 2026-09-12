@@ -878,3 +878,20 @@ mathematical tests remain failing. See the
 [driver contract and evidence record](../programs/lapack-array-io/indefinite-rook-driver-review.md)
 for current verification status. These additions do not establish full LAPACK
 numerical acceptance.
+
+The header `lapack_indefinite_rook_inverse.h` adds S/D/C/Z `SytriRook` and C/Z
+`HetriRook` with metadata-only workspace queries. These native routines replace
+the selected mutable raw rook factor with its inverse and leave public pivots
+unchanged. Native positive INFO preserves the singular factor without producing
+an inverse. Caller-owned workspace contains n scalars, n converted native
+pivots, and n*n layout entries only for row-major factors; raw Hermitian factor
+coefficients are preserved. Borrowed factor views become invalid when their
+storage is overwritten.
+
+Inverse numerical acceptance remains blocked for the four complex variants:
+a large 2-by-2 offdiagonal block has a representable exact inverse, but native
+SY's complex self-division becomes NaN and native HE's magnitude overflows,
+yielding zero inverse entries. Required mathematical failures and separate
+passing native fidelity are retained. See the
+[rook inverse contract review](../programs/lapack-array-io/indefinite-rook-inverse-review.md).
+No full-profile completion or broader provider admission is claimed.

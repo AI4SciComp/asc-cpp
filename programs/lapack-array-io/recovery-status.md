@@ -1,3 +1,47 @@
+## Latest checkpoint: rook inverse evidence complete, complex numerical gates blocked
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is pushed `7ed2e67`; the exact new commit is recorded
+externally in `rook-inverse-delivery/commit.txt`. Inspect actual git state first.
+Both user instruction files, frozen acceptance records and previous failures
+remain preserved. No worktree or provider numerical source was changed.
+
+Six SYTRI_ROOK/HETRI_ROOK routes have 72 reviewed triangle/layout/factor-origin
+modes. Sixteen actual profiles yield 468 processes: 420 passes, 48 required
+mathematical failures, 1,056 failed assertions, zero skips. The four complex
+range processes fail in each of twelve ordinary/sanitizer profiles; all four
+TSan profiles pass six concurrency processes. S/D representable-range mathematics
+and all six direct native fidelity processes pass. GNU Fortran probes identify
+SY T/T becoming NaN and HE ABS(T) overflowing for a large2x2 block with a
+representable exact inverse. The provider blocker remains explicit.
+
+Four relocated consumers pass 432 cases each acrossTRF/TF2/SV origins.
+Eighteen strict TUs, four standalone headers, 120 final emitted-ABI probe cases,
+144-header/2501-member warning-free Doxygen, twelve added/no removed exports per
+ABI, all four package-manifest contexts and architecture/dependency checks pass.
+Installed production artifacts match the final producer after CMake installation.
+`rook-inverse-final-audit/audit.json` binds this evidence; all failed attempts
+and pure helper refactors are retained. No assertion or tolerance was weakened.
+
+FULL_PROGRAM_INCOMPLETE: required2113; reviewed contracts186;
+implemented_unverified Reference146; in_progress296; not_started1671;
+verified Reference0. Next is six classic SYTRI/HETRI inverse routines,
+`P05.required.hetri`, using existing classic factor dependencies.
+
+## Historical recovery records
+
+## Active continuation: rook inverses in progress
+
+Recovered and pushed driver commit `7ed2e670b23b624d296164457c675cc482c090c7`.
+Only the two preserved user instruction files were untracked at recovery.
+New work in this workspace implements six SYTRI_ROOK/HETRI_ROOK inverse APIs;
+no inverse acceptance or delivery commit is claimed yet. The public mutable
+factor contract, exact GNU ABI emissions and source review are retained in
+`indefinite-rook-inverse-review.md` and external `rook-inverse-prerequisite-01`.
+The first build failure was a test setup using a nonexistent context factory;
+`rook-inverse-first-01` remains intact. The test now uses the existing Serial
+context factory. All prior milestones and numerical blockers remain frozen.
+
 ## Latest checkpoint: rook driver evidence complete, numerical gate blocked
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.

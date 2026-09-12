@@ -100,6 +100,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_indefinite_rook.h
   include/asc/dense/providers/lapack_indefinite_rook_condition.h
   include/asc/dense/providers/lapack_indefinite_rook_driver.h
+  include/asc/dense/providers/lapack_indefinite_rook_inverse.h
   include/asc/dense/providers/lapack_rank_revealing.h
   include/asc/dense/providers/lapack_sylvester.h
   include/asc/dense/providers/lapack_indefinite_condition.h

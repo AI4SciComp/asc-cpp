@@ -182,3 +182,20 @@ The [driver record](indefinite-rook-driver-review.md) identifies exact scales,
 contracts and the independent mathematical oracle. The provider limitation
 remains explicit while independent work continues; it grants no full numerical
 acceptance or verification credit.
+
+## Rook inverses: retained complex block range blocker
+
+`ROOK-INDEFINITE-INVERSE-RANGE` affects C/Z SYTRI_ROOK and HETRI_ROOK.
+For the recorded large zero-diagonal 2-by-2 block, exact inverse components
+are representable subnormals. Native SY evaluates complex T/T as NaN; native
+HE overflows ABS(T), then returns zero inverse offdiagonals. INFO is zero.
+Direct native comparisons and separate GNU Fortran arithmetic probes reproduce
+both mechanisms in LP64 and ILP64. S/D representable-range controls pass.
+
+The four complex mathematical processes remain required failures; native
+fidelity is reported separately. Tiny cases with nonrepresentable exact inverse
+entries retain that explicit classification, without an incorrect finite-output
+requirement. The [inverse record](indefinite-rook-inverse-review.md) binds source
+contracts, scales, oracles and preserved attempts. No hidden scaling, provider
+replacement, tolerance waiver or full verification credit follows. Continue
+independent required inverse and other solver families in the same workspace.
