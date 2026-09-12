@@ -292,3 +292,31 @@ bounded evidence, not full numerical acceptance. Preserve the earlier RK
 producer empty-E blocker separately and continue independent CON_3/inverse/
 driver work. See the [RK solve record](indefinite-rk-solve-review.md) and external
 `rk-solve-final-audit/audit.json`.
+
+
+## BLOCK-INDEFINITE-RK-CONDITION-RANGE
+
+All six pinned SYCON_3/HECON_3 variants fail exact-RCOND=1 scalar or two-block
+controls at min_normal/8. Complex variants also return zero at min_normal/2
+for a zero-diagonal two-block factor with E=(t,t). Reverse-communication
+Fortran traces show that every TRS_3 output component and true inverse norm
+is representable in the latter case, but the final SCSUM1/DZSUM1 alternating
+sum overflows before LACN2 divides it by 3*n. INFO remains zero. Native probes
+retain 32 required mathematical failures per ABI with unchanged inputs and
+passing guards; the ASC adapter matches native output bytes.
+
+Keep all six mathematical processes registered. Twelve final ordinary/sanitizer
+profiles each retain six failures and 208 failed assertions; four TSan profiles
+pass. Nonrepresentable true original norms are explicit finite-ANORM query and
+execution rollback controls, not waived mathematical cases. ASC does not patch
+provider arithmetic, reinterpret INFO=0 as an accuracy certificate, clamp RCOND
+or loosen tolerances. Finite zero RCOND can complete despite an inaccurate
+estimate, while nonfinite RCOND is retained as a numerical warning.
+
+Initial native probe/ILP64 trace compile findings, real ILP64 test-fixture
+capacity aborts and strict helper/include findings remain recorded. Corrections
+preserve every numerical assertion and guard. Installed and engineering passes
+do not close numerical acceptance. Preserve earlier blockers and continue
+TRI_3/TRI_3X inverse and RK driver dependencies. See the
+[RK condition record](indefinite-rk-condition-review.md) and external
+`rk-condition-final-audit/audit.json`.

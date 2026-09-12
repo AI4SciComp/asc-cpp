@@ -952,3 +952,16 @@ validated. Native inputs remain unchanged, and INFO=0 does not certify finite
 or well-conditioned output. Required scalar reciprocal and complex large-block
 range failures remain explicit alongside passing native fidelity and installed
 consumers. See the [RK solve contract review](../programs/lapack-array-io/indefinite-rk-solve-review.md).
+
+
+The header `asc/dense/providers/lapack_indefinite_rk_condition.h` adds S/D/C/Z
+`Sycon3` and C/Z `Hecon3` for immutable separate RK A/E/pivots. Associated-real
+ANORM must be finite and nonnegative; complex norms use Euclidean scalar
+modulus. Active calls use 2*n scalar WORK and private native INTEGER entries
+(n pivots plus n IWORK for real variants), with n*n additional layout entries
+for row-major A. Empty or zero-norm calls inspect no numerical arrays and
+write RCOND=1 or 0 respectively. Full-width INFO and output-write diagnostics
+are preserved; nonfinite RCOND remains a numerical warning, and finite RCOND
+carries no accuracy certificate. Required tiny reciprocal/estimator-sum range
+failures remain explicit alongside passing native fidelity and installed
+consumers. See the [RK condition contract review](../programs/lapack-array-io/indefinite-rk-condition-review.md).

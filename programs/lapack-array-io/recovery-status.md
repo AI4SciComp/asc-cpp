@@ -1,3 +1,89 @@
+## Latest checkpoint: RK condition estimators integrated, numerical gates open
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is pushed `7c00b77`; the exact new commit is recorded
+externally in `rk-condition-delivery/commit.txt`. Inspect actual git first.
+Both user instruction files, frozen records, failed attempts and commits
+remain preserved. No sibling workspace or provider patch was created.
+
+Six SYCON_3/HECON_3 routes have 96 reviewed modes and twelve public declarations.
+Immutable RK A/E/pivots preserve Hermitian coefficients and ignored-E semantics.
+ANORM explicitly requires finite nonnegative values; RCOND uses the associated
+real type. Active 2*n scalar WORK, private INTEGER and row-A packing are checked.
+Empty/zero-norm calls inspect no numerical arrays. Full-width INFO and output
+writes are validated; nonfinite RCOND remains a numerical warning and finite
+values do not certify accuracy.
+
+Sixteen final profiles execute 540 processes: 468 passes, 72 required numerical
+failures, 2,496 failed assertions and zero skips. Twelve ordinary/sanitizer
+profiles pass 37/43; four TSan profiles pass all six concurrency processes.
+`BLOCK-INDEFINITE-RK-CONDITION-RANGE` preserves native tiny reciprocal and
+complex estimator-sum failures. Initial fixture-capacity/compile/style failures
+remain recorded; all prior programme blockers are intact.
+
+Four relocated consumers pass 1,248 cases each. Eighteen strict TUs, four
+standalone headers, 288 guarded direct emitted-ABI cases, warning-free Doxygen
+for 150 headers/2,597 members, twelve added/no removed exports per ABI, package,
+architecture and actual CI-selector checks pass. Installed libraries match
+Release producers. `rk-condition-final-audit/audit.json` binds final sources and
+raw evidence. ASC/tests are instrumented; Fortran/BLAS internals are not.
+Wider-platform admission and the separate CodeQL alert gate remain open.
+
+FULL_PROGRAM_INCOMPLETE: required 2,113; reviewed contracts 234;
+implemented_unverified Reference 194; in_progress 296; not_started 1,623;
+verified Reference 0. Continue `P05.required.hetri_3`, including TRI_3X inverse
+dependencies, then RK drivers without repeating frozen acceptance.
+
+## Historical recovery records
+
+## Active work: RK CON_3 condition estimators after pushed 7c00b77
+
+The RK solve delivery is committed and pushed as `7c00b77`; its sixteen
+profiles and required range failures are frozen. Only the two preserved user
+instruction files were dirty before CON_3 implementation. Existing branch and
+workspace remain in use.
+
+Six exact CON_3 sources and twelve actual GNU emissions are reviewed. Each ABI
+passes 144 guarded and 144 small mathematical native controls. Range probes
+retain 32 failed mathematical cases per ABI among 184 finite-norm cases, plus
+eight nonrepresentable-norm controls; all 192 input/metadata/work guards pass.
+Reverse-communication traces isolate complex min-normal/2 estimator sum
+overflow despite representable solve components and true inverse norm.
+Original failed compile attempts and corrected evidence are preserved outside
+the source tree. See `indefinite-rk-condition-review.md`.
+
+Twelve public declarations and backend integration are registered. All twelve
+ordinary mathematical/fidelity processes pass 104 cases each in both ABIs.
+The original ILP64 run aborted four real processes at the frozen fixture's
+560-byte INTEGER capacity guard; a new CON_3-only fixture supplies 1,072 live
+bytes plus guards for n=67. Original failures and source snapshots remain in
+`rk-condition-workspace-finding-01`; corrected engineering records use `-02`.
+
+Each ABI's adapter range run has seven passes and six required mathematical
+failures, 208 failed assertions and zero skips. Each class executes 128 range
+cases; four complex classes include eight finite-norm admission rollbacks each.
+All native-fidelity processes and the 144-case guarded ABI probe pass. See
+`rk-condition-range-adapter-{lp64,ilp64}-01/audit.json`. No assertion is waived.
+All six fault, validation and concurrency processes pass in each ABI. Per
+class, faults exercise 1,280 cases (768 empty/zero-norm noncalls); validation
+has 236 rejections, 24 protected queries, 16 empty noncalls and ten source
+count boundaries; concurrency has 16 groups, four workers/eight rounds,
+768 native calls and 256 zero-norm/structural noncalls with read-only A/E/pivots.
+Four isolated relocated static/shared LP64/ILP64 consumers pass 1,248 cases
+each in `rk-condition-installed-01-*`. Six reviewed contracts/96 modes are
+normalized against the original pre-implementation decision outside the tree.
+
+Strict production and fault observer checks pass. Initial test strict checks
+found include/conditional/function-size issues; original files/logs and helper
+refactoring are preserved in `rk-condition-test-style-finding-01`. Follow-up
+strict checks are running; installed source also requires helper extraction
+and explicit byte-comparison intent. Preserve all passing first consumer runs.
+Final source/profile/installed-style/header/export/Doxygen/index audits remain
+unfinished. No CON_3 Reference row is yet promoted.
+FULL_PROGRAM_INCOMPLETE remains in force.
+
+## Previous completed delivery and historical recovery
+
 ## Latest checkpoint: RK solves integrated, required numerical gates open
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
