@@ -895,3 +895,15 @@ yielding zero inverse entries. Required mathematical failures and separate
 passing native fidelity are retained. See the
 [rook inverse contract review](../programs/lapack-array-io/indefinite-rook-inverse-review.md).
 No full-profile completion or broader provider admission is claimed.
+
+
+Classic SYTRI/HETRI inversion is available through
+`asc/dense/providers/lapack_indefinite_inverse.h`. It accepts mutable selected
+raw classic factors and immutable same-operation `kBunchKaufman` pivots,
+preserves native singular INFO and invalidates borrowed views of overwritten
+factors. C/Z SYTRI honors the documented 2*n complex WORK entries; S/D SYTRI
+and C/Z HETRI require n. This is a separate pivot contract from rook inversion.
+The four complex large-block mathematical gates remain required failures:
+`CLASSIC-INDEFINITE-INVERSE-RANGE`. See the
+[classic inverse contract review](../programs/lapack-array-io/indefinite-inverse-review.md).
+No full Reference verification is claimed.

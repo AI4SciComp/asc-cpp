@@ -1,3 +1,52 @@
+## Latest checkpoint: classic inverse evidence complete, complex numerical gates blocked
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is pushed `00835ce`; the exact new commit is recorded
+externally in `classic-inverse-delivery/commit.txt`. Inspect actual git first.
+Both user instruction files, frozen acceptance records and previous failures
+remain preserved. No worktree or provider numerical source was changed.
+
+Six SYTRI/HETRI routes have 72 reviewed triangle/layout/factor-origin modes.
+Pinned C declarations and actual GNU emissions agree. Complex SY honors the
+documented 2*n WORK contract; classic equal negative pivot pairs are validated.
+Sixteen actual profiles yield 468 processes: 420 passes, 48 required
+mathematical failures, 1,056 failed assertions, zero skips. Four complex range
+processes fail in each of twelve ordinary/sanitizer profiles; all four TSan
+profiles pass six concurrency processes. S/D representable-range mathematics
+and all six direct native fidelity processes pass. Corrected GNU Fortran probes
+confirm SY T/T produces NaNs and HE magnitude overflow yields zero inverse
+entries for a large2x2 block with representable exact inverse components.
+
+Four relocated consumers pass 432 cases each acrossTRF/TF2/SV origins.
+Eighteen strict TUs, four standalone headers, 120 emitted-ABI cases,
+145-header/2513-member warning-free Doxygen, twelve added/no removed dynamic
+exports perABI, package-manifest and architecture/dependency checks pass.
+Installed production matches final producer after CMake installation.
+`classic-inverse-final-audit/audit.json` binds evidence. The inadmissible first
+standalone arithmetic probe is retained separately from its corrected successor;
+C++ range tests always used actual classic factors and valid workspace.
+No assertion or tolerance was weakened.
+
+FULL_PROGRAM_INCOMPLETE: required2113; reviewed contracts192;
+implemented_unverified Reference152; in_progress296; not_started1665;
+verified Reference0. Next is SYTRI2/HETRI2 and explicit-block TRI2X dependencies,
+`P05.required.hetri2`. Their singular conversion/workspace behavior needs its own
+source review; preliminary read-only observations are preserved outside source.
+
+## Historical recovery records
+
+## Active continuation: classic inverses in progress
+
+Recovered commit `00835cea9b7acd884f422c6091dffa45e9d131eb` and confirmed its
+push completed. Existing workspace and branch are unchanged; only the two user
+instruction files were untracked before new work. All frozen records remain.
+Six classic SYTRI/HETRI inverse routes are now implemented and undergoing
+verification. The initial LP64/ILP64 Release selections each pass 33/37 with
+four required complex range failures and zero skips; the first double-real
+check passed. `indefinite-inverse-review.md` and external
+`classic-inverse-prerequisite-01` record scalar/workspace/pivot/INFO contracts.
+No classic delivery commit or completed-family verification is claimed yet.
+
 ## Latest checkpoint: rook inverse evidence complete, complex numerical gates blocked
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.

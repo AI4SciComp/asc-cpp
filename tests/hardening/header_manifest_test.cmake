@@ -149,6 +149,7 @@ set(_lapack_entries
   "dense_lapack|asc/dense/providers/lapack_indefinite_rook_condition.h"
   "dense_lapack|asc/dense/providers/lapack_indefinite_rook_driver.h"
   "dense_lapack|asc/dense/providers/lapack_indefinite_rook_inverse.h"
+  "dense_lapack|asc/dense/providers/lapack_indefinite_inverse.h"
   "dense_lapack|asc/dense/providers/lapack_rank_revealing.h"
   "dense_lapack|asc/dense/providers/lapack_sylvester.h"
   "dense_lapack|asc/dense/providers/lapack_indefinite_condition.h"
@@ -190,9 +191,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 144)
+if(NOT _all_header_count EQUAL 145)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 144 headers; got "
+    "Independent source-header oracle must contain 145 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -204,7 +205,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 144-header oracle.\n"
+    "Source public-header tree differs from the frozen 145-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

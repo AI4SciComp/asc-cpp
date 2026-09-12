@@ -10,16 +10,16 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "7ed2e670b23b624d296164457c675cc482c090c7",
+  "current_base_commit": "00835cea9b7acd884f422c6091dffa45e9d131eb",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "7ed2e670b23b624d296164457c675cc482c090c7",
+  "last_implementation_commit": "00835cea9b7acd884f422c6091dffa45e9d131eb",
   "worktree_diff_identity": {
-    "state": "rook_inverse_delivery_ready_after_evidence",
-    "base_commit": "7ed2e670b23b624d296164457c675cc482c090c7",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-delivery-audit/audit.json",
-    "scope": "Six native rook inverses with explicit mutable raw factors, immutable public/native pivots and exact source singular INFO. No old numerical kernel change. Exact144-header registrations and strict documentation inputs updated."
+    "state": "classic_inverse_delivery_ready_after_evidence",
+    "base_commit": "00835cea9b7acd884f422c6091dffa45e9d131eb",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/classic-inverse-delivery-audit/audit.json",
+    "scope": "Six native classic inverses with explicit mutable raw factors, immutable public/native pivots and exact source singular INFO. Pinned C declarations, documented2N complex SY WORK and equal-negative classic pairs. No old numerical kernel change. Exact145-header registrations updated."
   },
   "packages": {
     "P00": {
@@ -1379,8 +1379,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P05.required.hetri: next unfinished family after recorded rook inverse delivery",
-  "next_action": "Review and implement six classic SYTRI/HETRI inverse contracts using existing classic factors. Preserve all frozen work and numerical failures.",
+  "active_task": "P05.required.hetri2: next unfinished family after recorded classic inverse delivery",
+  "next_action": "Review and implement classic SYTRI2/HETRI2 and their explicit-block TRI2X dependencies; reconcile workspace and singular conversion mutation semantics with pinned source. Preserve frozen work and all numerical failures.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1388,7 +1388,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "30cdd8489bffaacb99b9e382b8df8530a3b03acf6dca8c13427d3e30d328b203"
+    "coverage_mapping_sha256": "eb58784d081cf1dc27aec1d2dd8998e661080b156ae930106a4adb3096316b51"
   },
   "provider": {
     "version": "3.12.1",
@@ -1821,16 +1821,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 186,
-    "callable_reference": 146,
+    "mapped_contracts": 192,
+    "callable_reference": 152,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1671,
+    "not_started_reference": 1665,
     "in_progress_reference": 296,
-    "incomplete_reference": 1967,
-    "implemented_unverified_reference": 146,
+    "incomplete_reference": 1961,
+    "implemented_unverified_reference": 152,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2031,6 +2031,11 @@
       "id": "ROOK-INDEFINITE-INVERSE-RANGE",
       "scope": "Four complex inverse mathematical gates: finite large2x2 inputs have representable inverse components, native SY self-division produces NaN and HE magnitude overflow produces zero. INFO0 and direct fidelity preserved; independent work continues.",
       "record": "programs/lapack-array-io/indefinite-rook-inverse-review.md"
+    },
+    {
+      "id": "CLASSIC-INDEFINITE-INVERSE-RANGE",
+      "scope": "Four complex inverse mathematical gates: finite large2x2 inputs have representable inverse components; native SY self-division returnsNaN and HE magnitude overflow yieldszero offdiagonals. INFO0 and direct fidelity preserved; independent work continues.",
+      "record": "programs/lapack-array-io/indefinite-inverse-review.md"
     }
   ],
   "external_approvals": [
@@ -2553,14 +2558,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hetri",
+  "next_task": "P05.required.hetri2",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect actual git and rook-inverse-delivery/commit.txt, then continue classic inverse routines in the existing workspace.",
+  "next_command": "Inspect actual git and classic-inverse-delivery/commit.txt, then continue block inverse routines in the existing workspace. Preliminary read-only source notes are preserved outside the source tree.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3594,16 +3599,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 186,
-      "callable_reference": 146,
+      "mapped_contracts": 192,
+      "callable_reference": 152,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1671,
+      "not_started_reference": 1665,
       "in_progress_reference": 296,
-      "incomplete_reference": 1967,
-      "implemented_unverified_reference": 146,
+      "incomplete_reference": 1961,
+      "implemented_unverified_reference": 152,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3864,7 +3869,7 @@
       "family": "Eachstatic/sharedLP64 306/355,ILP64310/355,zero skips;PB21/21 andprovider111/111 perprofile. Twelveadditional failures exactlyGESVX4+GBTF2range4+GBTRFrange4;previousfailurespreserved.",
       "scope": "Original artifacts recovered, no completed workflow rerun;does not verifylaterindefinitechanges. PB43dependencyhashes remainunchanged."
     },
-    "next_task": "P05.required.hetri",
+    "next_task": "P05.required.hetri2",
     "last_confirmed_remote_head": "9d2f65b8f043a81d29c0f4633f9a8af86339fb9d",
     "rook_factor_solve": {
       "state": "implemented_unverified_numerical_gates_failed",
@@ -3938,7 +3943,31 @@
       "checks": "4 relocated consumers with432 cases each acrossTRF/TF2/SV origins;18 strict TUs;4 standalone-header tests;12 new shared exports and0 removed perABI;120 final direct GNU-emitted ABI cases;Doxygen144 headers/2501 members/0 warnings;4 package-manifest contexts plus6 fixtures;2 architecture/dependency checks. Installed production byte identity proved after normal CMake RPATH transformation.",
       "remaining": "ROOK-INDEFINITE-INVERSE-RANGE affects C/Z SYTRI_ROOK/HETRI_ROOK. S/D representable inverse mathematics and six native-fidelity processes pass. All prior programme blockers, provider-internal instrumentation, wider platform/provider/full execution record admission remain open. No verified Reference promotion.",
       "next_family": "Six classic SYTRI/HETRI inverses with existing factor dependencies remain not_started.",
-      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-delivery-audit/audit.json"
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-delivery-audit/audit.json",
+      "delivery_commit": "00835cea9b7acd884f422c6091dffa45e9d131eb",
+      "hosted_recovery": {
+        "status_record": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-hosted-read-03/runs/record.json",
+        "artifact_audit": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-hosted-family-artifacts-01/audit.json",
+        "summary": "PR/push CI and CodeQL succeeded at00835ce. Original selected-family575 tests/profile:LP64492pass83required failures;ILP64496pass79required failures;zero skips,provider111/111 in each profile. No rerun; CodeQL analysis success does not close the separate alert gate."
+      }
+    },
+    "classic_inverse": {
+      "state": "implemented_unverified_complex_numerical_gates_failed",
+      "review": "programs/lapack-array-io/indefinite-inverse-review.md",
+      "implementation_parent": "00835cea9b7acd884f422c6091dffa45e9d131eb",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/classic-inverse-final-audit/audit.json",
+      "contracts": 6,
+      "normalized_modes": 72,
+      "profiles": "12 actual static/shared LP64/ILP64 Debug/Release/ASC-ASan+UBSan profiles each33/37 with4 required complex range failures and88 assertions.4 TSan profiles each6/6. Canonical468 processes:420pass,48fail,1056failed assertions,zero skips.",
+      "checks": "4 relocated consumers with432 cases each acrossTRF/TF2/SV origins;18 strict TUs;4 standalone-header tests;12 new shared exports and0 removed perABI across all dynamic symbols;120 direct GNU-emitted ABI cases;Doxygen145 headers/2513 members/0 warnings;4 package-manifest contexts plus6 fixtures;2 architecture/dependency checks. Installed production byte identity proved after normal CMake RPATH transformation.",
+      "remaining": "CLASSIC-INDEFINITE-INVERSE-RANGE affects C/Z SYTRI/HETRI. S/D representable inverse mathematics and all6 native-fidelity processes pass. All prior programme blockers, provider-internal instrumentation, wider platform/provider/full execution record admission remain open. No verified Reference promotion.",
+      "next_family": "Six SYTRI2/HETRI2 and explicit-block TRI2X dependencies. Source conversion precedes positive singular INFO in2X; do not inherit TRI unchanged-factor promise.",
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/classic-inverse-delivery-audit/audit.json",
+      "prior_hosted_recovery": {
+        "driver_commit": "7ed2e670b23b624d296164457c675cc482c090c7",
+        "original_family_artifact_audit": "master-continuation-20260910-01/continuation-20260912-01/rook-driver-hosted-family-artifacts-01/audit.json",
+        "summary": "Four original selected-family artifacts:536 tests/profile,LP64457pass79requiredfail,ILP64461pass75requiredfail,zero skips;providers111/111. CI and CodeQL succeeded; numerical family gates failed. No rerun."
+      }
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
@@ -3957,10 +3986,10 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "rook_inverse_6",
-    "implementation_parent": "7ed2e670b23b624d296164457c675cc482c090c7",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-delivery/commit.txt",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-delivery-audit/audit.json",
+    "family": "classic_inverse_6",
+    "implementation_parent": "00835cea9b7acd884f422c6091dffa45e9d131eb",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/classic-inverse-delivery/commit.txt",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/classic-inverse-delivery-audit/audit.json",
     "state": "implemented_unverified; four required complex inverse range tests remain blocked, FULL_PROGRAM_INCOMPLETE"
   },
   "historical_delivery_pointers_before_rook_condition": {
@@ -4020,6 +4049,23 @@
       "base_commit": "9d2f65b8f043a81d29c0f4633f9a8af86339fb9d",
       "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-driver-delivery-audit/audit.json",
       "scope": "Six additive rook direct drivers with actual driver-origin factor reuse; no old numerical kernel change. Missing compiled-source and Doxygen-input registrations repaired; exact assertions preserved."
+    }
+  },
+  "historical_delivery_pointers_before_classic_inverse": {
+    "current_base_commit": "7ed2e670b23b624d296164457c675cc482c090c7",
+    "last_implementation_commit": "7ed2e670b23b624d296164457c675cc482c090c7",
+    "current_delivery": {
+      "family": "rook_inverse_6",
+      "implementation_parent": "7ed2e670b23b624d296164457c675cc482c090c7",
+      "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-delivery/commit.txt",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-delivery-audit/audit.json",
+      "state": "implemented_unverified; four required complex inverse range tests remain blocked, FULL_PROGRAM_INCOMPLETE"
+    },
+    "worktree_diff_identity": {
+      "state": "rook_inverse_delivery_ready_after_evidence",
+      "base_commit": "7ed2e670b23b624d296164457c675cc482c090c7",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-inverse-delivery-audit/audit.json",
+      "scope": "Six native rook inverses with explicit mutable raw factors, immutable public/native pivots and exact source singular INFO. No old numerical kernel change. Exact144-header registrations and strict documentation inputs updated."
     }
   }
 }

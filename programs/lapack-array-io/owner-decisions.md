@@ -199,3 +199,18 @@ requirement. The [inverse record](indefinite-rook-inverse-review.md) binds sourc
 contracts, scales, oracles and preserved attempts. No hidden scaling, provider
 replacement, tolerance waiver or full verification credit follows. Continue
 independent required inverse and other solver families in the same workspace.
+
+
+## Classic inverses: retained complex block range blocker
+
+`CLASSIC-INDEFINITE-INVERSE-RANGE` affects C/Z SYTRI and HETRI. A well-conditioned
+zero-diagonal 2-by-2 block with each offdiagonal component at 0.75*maximum
+finite has representable exact inverse components. Native SY returns NaNs;
+HE returns zero offdiagonals; INFO=0 for both. Actual classic factorization,
+direct-native fidelity and corrected GNU Fortran arithmetic probes distinguish
+this provider arithmetic limitation from wrapper/pivot/workspace defects.
+Keep all four mathematical failures required. No scaling substitution or
+provider algorithm change is authorized by a fidelity contract. Continue
+independent families; full numerical verification remains open. The
+[classic inverse record](indefinite-inverse-review.md) preserves details and
+initial rejected probe admission without changing frozen rook evidence.
