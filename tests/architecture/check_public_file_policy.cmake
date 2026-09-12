@@ -68,6 +68,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_cholesky_band.h
   include/asc/dense/providers/lapack_indefinite.h
   include/asc/dense/providers/lapack_indefinite_rook.h
+  include/asc/dense/providers/lapack_indefinite_rook_condition.h
   include/asc/dense/providers/lapack_rank_revealing.h
   include/asc/dense/providers/lapack_sylvester.h
   include/asc/dense/providers/lapack_indefinite_condition.h

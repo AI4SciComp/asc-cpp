@@ -1,3 +1,52 @@
+## Latest checkpoint: rook condition evidence complete, numerical gate blocked
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is `fb20ed9`; the exact new commit is recorded externally
+in `rook-condition-delivery-02/commit.txt`. Inspect actual git state first.
+Both user instruction files and all earlier evidence remain preserved.
+
+Six SYCON_ROOK/HECON_ROOK routes have48 reviewed modes and implemented_unverified
+records. Sixteen profiles yield468canonical processes:396pass,72required
+mathematical failures,6336failed assertions,zero skips. Four installed consumers,
+eighteen strict TUs, guarded LP64/ILP64 direct ABI probes, Doxygen and exports
+pass. The corrected independent142-header oracle passes all four package
+contexts. `rook-condition-final-audit/audit.json` binds results and targeted
+fixture corrections without discarding the failed attempts.
+
+FULL_PROGRAM_INCOMPLETE: required2113, mapped contracts174,
+implemented_unverifiedReference134, in_progress296, not_started1683,
+verifiedReference0. The frozen Native20, array-I/O and robust PPSVX milestones
+remain separate and unchanged. All previous numerical and release blockers
+remain, with `ROOK-INDEFINITE-CONDITION-RANGE` added explicitly.
+
+Next unfinished family: six required SYSV_ROOK/HESV_ROOK drivers.
+Continue in this workspace. Completed hosted runs were recovered without reruns;
+`fb20ed9` CI's stale header count is fixed locally, CodeQL analysis succeeded,
+and the failed selected-family run still needs its original artifact audit.
+
+## Historical recovery before rook condition checks completed
+
+Recovered branch `feature/lapack-array-io` at `fb20ed9`; tracked tree was clean
+and both user instruction files were preserved untracked. Six SYCON_ROOK /
+HECON_ROOK routes, contract review, tests, installed consumer and documentation
+are now being verified in this same workspace. No new worktree was created.
+The existing PPSVX/native20/array-I/O records remain frozen.
+
+Evidence is under `master-continuation-20260910-01/continuation-20260912-01`.
+`rook-condition-prerequisite-01` has six source contracts, twelve compiler
+emissions and both executed 48-case ABI probes. Ordinary/fault/validation
+checks pass. Six independent range gates remain failing with direct native
+agreement. Profile runs and installed-consumer checks are still in progress;
+no new completion or verification claim is made here.
+
+Two new test-fixture corrections are recorded explicitly: condition concurrency
+needs simultaneous pivot/IWORK capacity for real ILP64 order67, and the empty
+installed example needs logical zero pivot length with valid backing metadata.
+Failed original logs and source copies are retained. Rerun only affected cases
+or profiles that never reached tests. The prior pushed CI failed because the
+independent header oracle still expected140; current explicit142-header oracle
+passes all four package contexts. `rook-hosted-read-01` preserves that finding.
+
 # LAPACK and array-I/O programme recovery
 
 Latest continuation: the eighteen rook factor/solve routines are implemented

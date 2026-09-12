@@ -10,17 +10,16 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
+  "current_base_commit": "fb20ed96f1287a5c631d64b667e6ec027abd817f",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "d889b0333af06af39d62464f18d30b11ddb5705b",
+  "last_implementation_commit": "fb20ed96f1287a5c631d64b667e6ec027abd817f",
   "worktree_diff_identity": {
-    "state": "gedmdq_partial_delivery_executed_pending_feature_sync",
-    "base_commit": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
-    "scope": "Four partial GEDMDQ rows; all six integrated profiles14/15 retain only required_math_s. Both TSan, installed relocation, strict source/docs/headers, both8/8 affected gates and both fresh17/18 tests pass within stated scope. Fresh package237.733/238.639 seconds. Numerical and wider acceptance remain incomplete.",
-    "candidate": "master-continuation-20260910-01/dmdq-integration-edits-01",
-    "freeze": "master-continuation-20260910-01/dmdq-frozen-product-01"
+    "state": "rook_condition_delivery_ready_after_evidence",
+    "base_commit": "fb20ed96f1287a5c631d64b667e6ec027abd817f",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-condition-delivery-audit-02/audit.json",
+    "scope": "Six additive rook condition routes; frozen implementation semantics and acceptance records preserved; exact header-manifest integration count corrected."
   },
   "packages": {
     "P00": {
@@ -1380,8 +1379,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P05.required.rook_condition_6: next implementation after the recorded rook factor/solve delivery",
-  "next_action": "Continue the six SYCON_ROOK/HECON_ROOK contracts and implementation; preserve the completed rook factor/solve checks and all required numerical failures.",
+  "active_task": "P05.required.rook_drivers_6: next unfinished family after recorded rook condition delivery",
+  "next_action": "Review and implement six SYSV_ROOK/HESV_ROOK driver contracts, preserving all completed work and required numerical failures.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1389,7 +1388,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "4e3c64c0b228ddfd620387c29d5a62e53d5e2342fe00b88362fd49312b001ddb"
+    "coverage_mapping_sha256": "f707dd13a415a6df3ca407b66b95d5c088a1d99b3875f3b109dc0d2524f275ce"
   },
   "provider": {
     "version": "3.12.1",
@@ -1822,16 +1821,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 168,
-    "callable_reference": 128,
+    "mapped_contracts": 174,
+    "callable_reference": 134,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1689,
+    "not_started_reference": 1683,
     "in_progress_reference": 296,
-    "incomplete_reference": 1985,
-    "implemented_unverified_reference": 128,
+    "incomplete_reference": 1979,
+    "implemented_unverified_reference": 134,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2022,6 +2021,11 @@
       "id": "ROOK-INDEFINITE-SOLVE-RECIPROCAL-RANGE",
       "scope": "All six scalar/symmetry classes fail exact scalar solution1 at tiny scales, with INFO0 and matching direct pinned provider behavior. Twelve profiles retain6mathematical processes1152assertions each. Rook factorization range cases pass; classic/PT and other existing failures remain separate.",
       "record": "programs/lapack-array-io/indefinite-rook-review.md"
+    },
+    {
+      "id": "ROOK-INDEFINITE-CONDITION-RANGE",
+      "scope": "Six scalar/symmetry condition estimates return0/NaN/Inf for exactRCOND1 scaled identities, INFO0 and matching direct provider.12profiles retain6mathematical processes528assertions each; independent work continues.",
+      "record": "programs/lapack-array-io/indefinite-rook-condition-review.md"
     }
   ],
   "external_approvals": [
@@ -2042,11 +2046,9 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "execution-ledger-integration-01",
-    "state": "local_scoped_checks_passed_feature_sync_next",
-    "executed_lu_tree": "777aad8584547809aaa3fe87e203921ad635959d",
-    "review": "programs/lapack-array-io/lu-execution-evidence-review.md",
-    "scope": "Evidence-only extension; numerical C++ and provider inputs unchanged. Passing partial Reference fixtures never close whole classes."
+    "candidate": "rook-condition",
+    "state": "bounded_verification_complete_numerical_acceptance_blocked",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-condition-final-audit/audit.json"
   },
   "last_completed_verification": {
     "candidate": "ppsvx-robust-integration-01",
@@ -2546,14 +2548,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.rook_condition_6",
+  "next_task": "P05.required.rook_drivers_6",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect actual git/delivery state and rook-final-audit-02, then continue rook-condition-prerequisite-01 in the existing workspace.",
+  "next_command": "Inspect actual git/delivery state and rook-condition-final-audit, then continue the six required rook drivers in the existing workspace.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3587,16 +3589,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 168,
-      "callable_reference": 128,
+      "mapped_contracts": 174,
+      "callable_reference": 134,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1689,
+      "not_started_reference": 1683,
       "in_progress_reference": 296,
-      "incomplete_reference": 1985,
-      "implemented_unverified_reference": 128,
+      "incomplete_reference": 1979,
+      "implemented_unverified_reference": 134,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3857,8 +3859,8 @@
       "family": "Eachstatic/sharedLP64 306/355,ILP64310/355,zero skips;PB21/21 andprovider111/111 perprofile. Twelveadditional failures exactlyGESVX4+GBTF2range4+GBTRFrange4;previousfailurespreserved.",
       "scope": "Original artifacts recovered, no completed workflow rerun;does not verifylaterindefinitechanges. PB43dependencyhashes remainunchanged."
     },
-    "next_task": "P05.required.rook_condition_6",
-    "last_confirmed_remote_head": "a0ff67ad52953400b19397e7d7e4cc05a3c867bc",
+    "next_task": "P05.required.rook_drivers_6",
+    "last_confirmed_remote_head": "fb20ed96f1287a5c631d64b667e6ec027abd817f",
     "rook_factor_solve": {
       "state": "implemented_unverified_numerical_gates_failed",
       "review": "programs/lapack-array-io/indefinite-rook-review.md",
@@ -3871,7 +3873,31 @@
       "abi": "Six omitted TF2 prototypes derived from actual GNU11.4 compiler separately forLP64/trueILP64;24direct ABI and24scalarNaN cases perABI;18full native wrapper signature assertions. All C++profiles actualGNU11.4; pinned provider remains uninstrumented.",
       "remaining": "Six reciprocal-before-SCAL solve-range decisions, hosted/wider platform/provider admission and full normalized execution records. No fully verified Reference promotion.",
       "next_family": "Six SYCON_ROOK/HECON_ROOK condition routines; exact required source rows inrook-condition-prerequisite-01.",
-      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery-audit/audit.json"
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery-audit/audit.json",
+      "delivery_commit": "fb20ed96f1287a5c631d64b667e6ec027abd817f"
+    },
+    "rook_condition": {
+      "state": "implemented_unverified_numerical_gates_failed",
+      "review": "programs/lapack-array-io/indefinite-rook-condition-review.md",
+      "implementation_parent": "fb20ed96f1287a5c631d64b667e6ec027abd817f",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-condition-final-audit/audit.json",
+      "contracts": 6,
+      "normalized_modes": 48,
+      "profiles": "12actualLP64/ILP64 static/shared Debug/Release/ASC-ASan+UBSan each31/37,6required failures528assertions.4TSan profiles each6/6. Canonical468processes396pass72fail6336assertions,0skips.36targeted concurrency refreshpasses replace only affected previous results; all failed original fixtures/builds remain retained.",
+      "checks": "4relocated installed consumers96cases each;18strictTUs;4standaloneheader processes;12new sharedexports0removed perABI;96guarded direct nativeABIcases after actualGNU11 emissions;Doxygen142headers2477members0warnings;4package-manifestcontexts plus6fixtures pass.",
+      "remaining": "ROOK-INDEFINITE-CONDITION-RANGE and all prior numerical blockers, provider-internal instrumentation, platform/provider/full execution record admission. No verifiedReference promotion.",
+      "next_family": "Six SYSV_ROOK/HESV_ROOK drivers, still not_started in pinned required inventory.",
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rook-condition-delivery-audit-02/audit.json"
+    },
+    "hosted_fb20ed9": {
+      "evidence": "master-continuation-20260910-01/continuation-20260912-01/rook-hosted-read-01",
+      "ci_run": 34678346203,
+      "ci_result": "failure: independent oracle expected140, actual141; fixed count142 for both rook additions and four local manifest contexts pass",
+      "codeql_run": 34678346295,
+      "codeql_analysis": "success; separate alert gate not closed",
+      "family_run": 34678346235,
+      "family_result": "completed failure; original artifact recovery remains pending, no fabricated failure counts",
+      "state": "remote transport did not imply execution failure or trigger a rerun"
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
@@ -3890,10 +3916,35 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "rook_factor_solve_18",
-    "implementation_parent": "a0ff67ad52953400b19397e7d7e4cc05a3c867bc",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery/commit.txt",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery-audit/audit.json",
-    "state": "implemented_unverified; six required solve-range cases remain blocked, FULL_PROGRAM_INCOMPLETE"
+    "family": "rook_condition_6",
+    "implementation_parent": "fb20ed96f1287a5c631d64b667e6ec027abd817f",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rook-condition-delivery-02/commit.txt",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-condition-delivery-audit-02/audit.json",
+    "state": "implemented_unverified; six required condition-range cases blocked, FULL_PROGRAM_INCOMPLETE"
+  },
+  "historical_delivery_pointers_before_rook_condition": {
+    "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
+    "last_implementation_commit": "d889b0333af06af39d62464f18d30b11ddb5705b",
+    "active_verification": {
+      "candidate": "execution-ledger-integration-01",
+      "state": "local_scoped_checks_passed_feature_sync_next",
+      "executed_lu_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "review": "programs/lapack-array-io/lu-execution-evidence-review.md",
+      "scope": "Evidence-only extension; numerical C++ and provider inputs unchanged. Passing partial Reference fixtures never close whole classes."
+    },
+    "worktree_diff_identity": {
+      "state": "gedmdq_partial_delivery_executed_pending_feature_sync",
+      "base_commit": "000e154f22071b0034cf5d4a0f3b0d4b4446d81c",
+      "scope": "Four partial GEDMDQ rows; all six integrated profiles14/15 retain only required_math_s. Both TSan, installed relocation, strict source/docs/headers, both8/8 affected gates and both fresh17/18 tests pass within stated scope. Fresh package237.733/238.639 seconds. Numerical and wider acceptance remain incomplete.",
+      "candidate": "master-continuation-20260910-01/dmdq-integration-edits-01",
+      "freeze": "master-continuation-20260910-01/dmdq-frozen-product-01"
+    },
+    "current_delivery": {
+      "family": "rook_factor_solve_18",
+      "implementation_parent": "a0ff67ad52953400b19397e7d7e4cc05a3c867bc",
+      "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery/commit.txt",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery-audit/audit.json",
+      "state": "implemented_unverified; six required solve-range cases remain blocked, FULL_PROGRAM_INCOMPLETE"
+    }
   }
 }

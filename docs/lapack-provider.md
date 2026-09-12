@@ -844,3 +844,20 @@ scaled PBCON can return an incorrect condition estimate; tiny PBRFS/PBSVX can
 return infinite error estimates or zero condition; the pinned PBSVX
 multiply order can overflow during explicit equilibration. Ten ordinary test
 failures retain those required modes in the coverage backlog.
+
+
+The header `lapack_indefinite_rook_condition.h` adds S/D/C/Z `SyconRook`
+and C/Z `HeconRook`, with explicit formula queries. These consume raw `kRook`
+factors and pivots, including singular factors for the native RCOND=0 return.
+Negative pivot partners encode independent interchanges. SY uses transpose;
+HE uses conjugate transpose and preserves full selected factor coefficients.
+The caller supplies the finite nonnegative original one-norm. Scalar WORK,
+converted native pivots, real-path IWORK and row packing are explicit,
+disjoint caller storage. No alternative estimator or hidden scaling is used.
+
+Missing or partial INFO and missing RCOND writes are detected. Native INFO and
+nonfinite estimates remain visible in the report and output. Independent
+scaled-identity cases return zero, NaN or infinity instead of exact RCOND=1;
+direct native calls reproduce these results. The six required mathematical
+gates remain failing, so this family is implemented with numerical acceptance
+blocked. See the [contract and evidence record](../programs/lapack-array-io/indefinite-rook-condition-review.md).

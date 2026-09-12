@@ -154,3 +154,19 @@ assertions. No hidden alternate algorithm, numerical waiver or full verification
 credit is granted. Continue the independent required routines using the existing
 workspace. The [rook record](indefinite-rook-review.md) binds the exact contracts
 and bounded validation; the pinned provider remains unchanged.
+
+
+## Rook condition estimation: retained provider range blocker
+
+`ROOK-INDEFINITE-CONDITION-RANGE` affects S/D/C/Z SYCON_ROOK and C/Z
+HECON_ROOK. For scale*I at orders 1 and 7, exact RCOND=1 is representable.
+The pinned reference returns zero, NaN or infinity with INFO=0 in the recorded
+small/large-scale cases. Direct calls reproduce the same output. The inverse
+application, estimator absolute-value sum and final reciprocal can exceed
+representable intermediate ranges. All six mathematical processes remain
+ordinary required CTest failures; wrapper fidelity is recorded separately.
+The [condition record](indefinite-rook-condition-review.md) specifies exact
+scales, observable outputs and the independent oracle. No hidden replacement,
+new default algorithm, tolerance waiver or fully verified row is authorized
+by these results. Continue independent required families while retaining this
+numerical blocker.

@@ -188,6 +188,13 @@ jobs:
                        for scalar in ("s", "d", "c", "z", "ch", "zh")
                        for mode in ("factor_mathematical", "factor_fidelity",
                                     "solve_mathematical", "solve_fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_condition{suite}.{scalar}"
+                       for suite in ("", "_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rook_condition_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_condition_range.{scalar}.{mode}"
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
           missing = required - selected
           if missing:
               raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
