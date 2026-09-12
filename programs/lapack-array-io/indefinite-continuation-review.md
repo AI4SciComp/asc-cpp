@@ -74,8 +74,45 @@ eighteen classic contracts and 24 PB/GB registration hashes. Reviewed contracts
 are now 150, with 110 implemented-unverified Reference rows and zero fully
 verified Reference rows. Historical executions and native20 remain unchanged.
 
-These eighteen rows remain numerically blocked. Concurrent factor creation,
-shared immutable factor reuse, hosted/wider admission and full execution
-records remain required. Continue their independent concurrency checks and
-then the missing rook families; retain the range failures as ordinary required
-CTest gates. No frozen native20, array-I/O or robust PPSVX acceptance is rerun.
+These eighteen rows remain numerically blocked. Hosted/wider admission and
+full execution records remain required. The independent concurrency work below
+is complete in its bounded scope; continue the missing rook families and retain
+the range failures as ordinary required CTest gates. No frozen native20,
+array-I/O or robust PPSVX acceptance is rerun.
+
+## Concurrent factorization and reuse
+
+The added six-scalar concurrency test uses four workers, each with independent
+matrices, pivots, workspace and reports, against one immutable provider and
+shared factorization plan. Workers also share one actual immutable nominal
+factor and its underlying matrix/pivots. No global allocation observer or
+synthetic provider-fault wrapper is active in this test.
+
+Inputs contain a nonsingular 2-by-2 block and distinct 1-by-1 blocks, with
+complex symmetric diagonals and Hermitian conjugation checked independently.
+Closed-form factors and pivots, finite solutions, known solutions, original
+matrix residuals, padding and immutable buffers are verified. Orders 7 and 67,
+both triangles/layouts, blocked/unblocked entries, two RHS layouts and
+minimum/preferred/reduced workspace cross all 168 reviewed option modes.
+The source contains 32 mode groups per scalar: 416 factor attempts, including
+32 stale-plan rejections and 384 reported native entries, plus 1,024 solves.
+The final simultaneous calls distinguish preflight rejection, first/last
+singular INFO and success, then check the separate reports after a barrier.
+
+All sixteen actual LP64/ILP64 static/shared Debug/Release/ASan+UBSan/TSan
+profiles pass six of six processes, with zero skips. Strict checks pass in both
+ABIs. The first LP64 and ILP64 runs established the fixture at preferred
+workspace; the expanded tests add the remaining workspace policies. Three
+nested-conditional style findings were corrected without suppressing a checker
+or weakening an assertion; all earlier records remain external.
+
+`indefinite-concurrency-final-audit/audit.json` binds the 96 new passes and retains the earlier
+276 engineering passes, 144 range-comparison passes, 144 required mathematical
+failures and four relocated consumers. Source/header/prior-test identities are
+unchanged. TSan instruments ASC and the concurrency test, not the pinned
+Fortran archives; this is no claim of instrumented provider-internal coverage.
+The matching contract extension refreshes 42 classic/GB/PB artifact indexes
+and records recovered PB hosted evidence. Coverage, backlog, actual CI selector,
+public surface, links, documentation consistency and Doxygen checks pass.
+The next implementation is the eighteen rook routes; their exact source rows
+and twelve compiler-emitted TF2 signatures are retained in `rook-prerequisite-01`.

@@ -30554,6 +30554,7 @@
         "src/dense/lapack_foundations.cc",
         "tests/dense_lapack/CMakeLists.txt",
         "tests/dense_lapack/indefinite_abi_probe.cc",
+        "tests/dense_lapack/indefinite_concurrency_test.cc",
         "tests/dense_lapack/indefinite_counts_test.cc",
         "tests/dense_lapack/indefinite_fault_test.cc",
         "tests/dense_lapack/indefinite_faults.cc",
@@ -31046,6 +31047,7 @@
         "src/dense/lapack_foundations.cc",
         "tests/dense_lapack/CMakeLists.txt",
         "tests/dense_lapack/indefinite_abi_probe.cc",
+        "tests/dense_lapack/indefinite_concurrency_test.cc",
         "tests/dense_lapack/indefinite_counts_test.cc",
         "tests/dense_lapack/indefinite_fault_test.cc",
         "tests/dense_lapack/indefinite_faults.cc",
@@ -31922,6 +31924,7 @@
         "src/dense/lapack_foundations.cc",
         "tests/dense_lapack/CMakeLists.txt",
         "tests/dense_lapack/indefinite_abi_probe.cc",
+        "tests/dense_lapack/indefinite_concurrency_test.cc",
         "tests/dense_lapack/indefinite_counts_test.cc",
         "tests/dense_lapack/indefinite_fault_test.cc",
         "tests/dense_lapack/indefinite_faults.cc",
@@ -55575,7 +55578,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "c490d8cd763f6fffd881cf88f0022aaa5ba2207d9d40597b31478e2a202575e5",
+    "lapack-coverage.yaml": "6e87f801a78c4c562c632615d6d644e120d7d01d8891757a97a594235394022a",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

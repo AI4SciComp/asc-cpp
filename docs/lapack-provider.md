@@ -553,6 +553,10 @@ The subsequent `programs/lapack-array-io/indefinite-continuation-review.md`
 normalizes 168 modes and retains explicit factor/solve failures at extreme
 scales. Reciprocal-before-scaling corrupts exact zero multipliers or the
 scalar solution one; direct-provider agreement does not close these gates.
+The independent six-scalar concurrency suite passes all sixteen bounded
+static/shared Debug, Release, ASan/UBSan and TSan profiles. It covers shared
+immutable factors and independent reports across the reviewed workspace modes;
+the foreign provider remains uninstrumented and numerical range gates remain.
 
 ## Rank-revealing QR and least squares
 

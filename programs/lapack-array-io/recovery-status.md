@@ -5,7 +5,9 @@ and 168 modes. [The range record](indefinite-continuation-review.md) retains
 twelve mathematical failures and twelve provider-comparison passes per actual
 profile, with zero skips. The completed [INFO correction](indefinite-info-review.md)
 supplies 276 unchanged engineering passes and four installed consumers.
-The next task is independent classic indefinite concurrency, then rook routes.
+Classic indefinite concurrency now passes 96 new tests across sixteen actual
+profiles, including TSan, with zero skips. The next task is rook factor/solve
+implementation after the retained source, pivot and ABI review.
 Full programme status remains **FULL_PROGRAM_INCOMPLETE**.
 
 ## Checkpoint recovered on 2026-09-12

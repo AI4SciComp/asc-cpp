@@ -70,3 +70,12 @@ source hash and bounded review are in `continued-codeql-alerts-01/review.json`.
 The alert gate and complete note review remain open; no alert was dismissed
 and no query was suppressed. These analyses cover checkpoint 736fa6c, not
 the subsequent local indefinite INFO correction.
+
+The same 736fa6c checkpoint's CI completed all nineteen jobs successfully.
+Its four family profiles pass 306/355 in LP64 or 310/355 in ILP64, with zero
+skips. All 21 PB processes and all 111 provider tests pass per profile.
+Compared with the recovered GERFS checkpoint, the twelve additional failures
+are exactly four GESVX mode gates, four GBTF2 range gates and four GBTRF range
+gates; all earlier failures remain. The original downloaded artifacts and audit
+are in `continued-hosted-family-recovery-01`. No completed hosted workflow was
+restarted, and these results do not verify the later indefinite changes.

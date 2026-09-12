@@ -412,6 +412,17 @@ asc_register_test(NAME asc_cpp.dense_lapack.indefinite_abi_probe
   TARGET asc_dense_lapack_indefinite_abi_probe
   LABELS dense_lapack lapack abi runtime TIMEOUT 120)
 
+add_executable(asc_dense_lapack_indefinite_concurrency_test
+  indefinite_concurrency_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_concurrency_test)
+target_link_libraries(asc_dense_lapack_indefinite_concurrency_test
+  PRIVATE Threads::Threads)
+foreach(_scalar IN ITEMS s d c z ch zh)
+  asc_register_test(NAME "asc_cpp.dense_lapack.indefinite_concurrency.${_scalar}"
+    TARGET asc_dense_lapack_indefinite_concurrency_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack numerical concurrency TIMEOUT 180)
+endforeach()
+
 foreach(_suite IN ITEMS reference_rank_revealing rank_revealing_contract
     rank_revealing_alias rank_revealing_empty rank_revealing_counts)
   set(_target "asc_dense_lapack_${_suite}_test")
