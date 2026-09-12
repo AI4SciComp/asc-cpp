@@ -117,3 +117,15 @@ new reviewed in-progress contracts: 80 implemented-unverified, 326 in progress,
 Status remains **FULL_PROGRAM_INCOMPLETE**. Next: complete the existing
 GBTRF/GBTRS normalized contracts and their inherited range disposition, reusing
 the ordinary and failure evidence just collected.
+
+## GBTRF/GBTRS contract checkpoint
+
+The existing eight APIs and production source remain unchanged. Their 28
+normalized modes now have source-derived contracts. Eight new range profiles
+pass 8/12 each, with four GBTRF mathematical failures and zero skips; both
+factor branches overflow a reciprocal before scaling an exact zero multiplier.
+Scalar GBTRS N/T/C/layout cases pass at the same scales. All four matching
+relocated default consumers pass on the existing packages. See the
+[continuation record](lu-band-continuation-review.md). The reviewed-contract
+count is now 120; all Reference route state counts and the incomplete programme
+status remain unchanged. PBTRF/PBTF2/PBTRS normalized contracts are next.

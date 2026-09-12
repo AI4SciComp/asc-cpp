@@ -757,8 +757,13 @@ is distinct from GBTRF, and the factor view preserves the actual routine name.
 Complex GBTF2 factors a general matrix without a Hermitian or UPLO assumption.
 The programme record `programs/lapack-array-io/lu-band-unblocked-review.md`
 details its source-derived ABI and numerical range gate.
-These twelve routes remain in progress until their full
-normalized mode and evidence requirements are closed.
+Both GBTRF algorithm branches retain a reciprocal-overflow limitation for
+very small scaled identities, even when their exact multiplier is zero.
+The separately tested scalar GBTRS N/T/C solves pass at those same scales.
+The eight GBTRF/GBTRS contracts now have 28 normalized modes; their numerical
+and full-profile requirements remain open. Exact results are recorded in
+`programs/lapack-array-io/lu-band-continuation-review.md`. These twelve routes
+remain in progress until their full evidence requirements are closed.
 
 
 The general-tridiagonal headers `lapack_tridiagonal.h`,

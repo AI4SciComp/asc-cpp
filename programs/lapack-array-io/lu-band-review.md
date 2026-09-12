@@ -1,5 +1,10 @@
 # P05 general-band LU bounded review
 
+The integrated [2026-09-12 continuation](lu-band-continuation-review.md) records
+subsequent normalized contracts, matched installed consumers and the newly
+confirmed factor range limitation. Original candidate records below remain
+preserved.
+
 This is the isolated, uncommitted S/D/C/Z GBTRF/GBTRS owner slice on
 `feature/lapack-p05-general-band`, based on
 `455c235f8a0c20e4994a035a6b64b81e9950a453`. The branch/path were confirmed

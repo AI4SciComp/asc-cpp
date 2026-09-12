@@ -60,7 +60,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|gbtf2|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|lu_band_range|gbtf2|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             > "$RUNNER_TEMP/asc-selected.json"
           python3 - "$RUNNER_TEMP/asc-selected.json" <<'PY'
           import json
@@ -161,12 +161,14 @@ jobs:
                        for scalar in "sdcz" for mode in ("mathematical", "fidelity")}
           required |= {"asc_cpp.dense_lapack." + name
                        for name in ("lu_band_abi", "lu_band_limits", "gbtf2_abi")}
+          required |= {"asc_cpp.dense_lapack.lu_band_range." + scalar + "." + mode
+                       for scalar in "sdcz" for mode in ("mathematical", "fidelity", "solve")}
           missing = required - selected
           if missing:
               raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
           PY
           ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|gbtf2|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|lu_band_range|gbtf2|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             --output-junit "$RUNNER_TEMP/asc-tests.xml" \
             2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
       - name: Audit JUnit outcomes even when numerical gates fail

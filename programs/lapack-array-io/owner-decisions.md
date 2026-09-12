@@ -112,3 +112,15 @@ current full-programme instruction. A range-safe provider change or an
 explicitly different numerical route would need its own reviewed contract and
 verification; the pinned Reference route is preserved here. Exact evidence and
 bounded implementation scope are in [the GBTF2 review](lu-band-unblocked-review.md).
+
+## GBTRF/GBTRS range distinction
+
+Both pinned GBTRF algorithm branches reproduce the GBTF2 reciprocal-before-SCAL
+cause. Eight static Debug/Release/ASC-sanitizer and shared Release actual-ABI
+profiles each retain four failed mathematical processes and 48 failed
+assertions. The scalar GBTRS N/T/C and independent RHS-layout cases at the same
+scales pass, including complex coefficients and conjugation. Preserve this
+factorization blocker without assigning it to a passing solve class. No
+numerical waiver or provider replacement is implied. The
+[GB continuation record](lu-band-continuation-review.md) contains the exact
+scope and retained evidence; independent PB and other required work continues.

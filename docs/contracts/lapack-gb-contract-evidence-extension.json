@@ -1,0 +1,48 @@
+{
+  "schema_version": 2,
+  "scope": "Eight existing GBTRF/GBTRS contracts normalized to28modes, with new maintained range tests; four GBTF2 registration artifact indexes refreshed. No public API, production implementation, provider or existing numerical tests change. No historical execution or full-family promotion.",
+  "baseline_commit": "d889b0333af06af39d62464f18d30b11ddb5705b",
+  "prior_mapping_sha256": "c0f2269b22f1b8b95ac986a503277b829b60a5b7d2ea5ff2695708a65c3acd8b",
+  "extended_mapping_sha256": "0a7e6f8f781998be5d383881249bdef55875eb797fa562c9e695009fbade2d5f",
+  "prior_evidence_sha256": "06d2ea22795a4c5641d0611f7332552cce6f4cda1de77e2e03e91cf30e3cae1f",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "c0f2269b22f1b8b95ac986a503277b829b60a5b7d2ea5ff2695708a65c3acd8b",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "c0f2269b22f1b8b95ac986a503277b829b60a5b7d2ea5ff2695708a65c3acd8b",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "103f627c95c27920339668d0008d14a3ae48bf84fe3b2654cd3f74befad533f7",
+    "reference-lu-release-lp64-20260911": "0c484445ff7ea7cd72483012354d0fbc91a1192684aa150f7cd77242298920e1",
+    "reference-lu-release-ilp64-20260911": "9458f0ea751efdb549a65a800853ec9db0e8eda7b0f36594da6abd03a8b01292"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cgbtf2",
+    "lapack.cgbtrf",
+    "lapack.cgbtrs",
+    "lapack.dgbtf2",
+    "lapack.dgbtrf",
+    "lapack.dgbtrs",
+    "lapack.sgbtf2",
+    "lapack.sgbtrf",
+    "lapack.sgbtrs",
+    "lapack.zgbtf2",
+    "lapack.zgbtrf",
+    "lapack.zgbtrs"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/continuation-20260912-01/gb-contract-index",
+  "generator_sha256": "88a1a7ee83c9f98085572db1f20ec1dcc033c381151c472121207c8a84d25260"
+}

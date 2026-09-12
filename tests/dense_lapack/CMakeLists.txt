@@ -573,6 +573,21 @@ foreach(_scalar IN ITEMS s d c z)
   endforeach()
 endforeach()
 
+add_executable(asc_dense_lapack_lu_band_range_test lu_band_range_test.cc
+  allocation_audit.cc "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_band_range_test)
+target_include_directories(asc_dense_lapack_lu_band_range_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_lu_band_range_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_mode IN ITEMS mathematical fidelity solve)
+    asc_register_test(NAME "asc_cpp.dense_lapack.lu_band_range.${_scalar}.${_mode}"
+      TARGET asc_dense_lapack_lu_band_range_test ARGUMENTS "${_scalar}" "${_mode}"
+      LABELS dense_lapack lapack runtime numerical validation allocation TIMEOUT 120)
+  endforeach()
+endforeach()
+
 foreach(_suite IN ITEMS tridiagonal tridiagonal_expert tridiagonal_fault
     tridiagonal_extreme_math tridiagonal_counts)
   set(_target "asc_dense_lapack_${_suite}_test")
