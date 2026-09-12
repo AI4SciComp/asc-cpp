@@ -558,6 +558,26 @@ static/shared Debug, Release, ASan/UBSan and TSan profiles. It covers shared
 immutable factors and independent reports across the reviewed workspace modes;
 the foreign provider remains uninstrumented and numerical range gates remain.
 
+## Rook symmetric and Hermitian indefinite factors
+
+`lapack_indefinite_rook.h` exposes S/D/C/Z SYTRF_ROOK/SYTF2_ROOK/SYTRS_ROOK
+and C/Z HETRF_ROOK/HETF2_ROOK/HETRS_ROOK. `ReferenceRookFactorView<T>`
+retains rook provenance and two independent signed pivot interchanges.
+Both layouts, both triangles, symmetric versus Hermitian coefficients,
+explicit caller workspace and full-width INFO are checked before mutation.
+The original Hermitian imaginary diagonal is ignored through packing; raw
+factor coefficients are preserved. Classic factor types and tags are rejected.
+
+All twelve actual static/shared LP64/ILP64 Debug/Release/ASC-ASan+UBSan
+profiles pass 44/50 tests. Six required solve-range gates remain per profile:
+reciprocal-before-SCAL returns nonfinite values for exact A=B=tiny and X=1,
+with INFO=0 and matching direct provider behavior. Factor range cases pass.
+All four TSan concurrency profiles, four relocated installed consumers and
+both standalone header modes per ABI pass. Shared exports add forty supported
+rook symbols and remove none. The foreign provider remains uninstrumented;
+this is incomplete numerical acceptance. The contract and evidence record is
+`programs/lapack-array-io/indefinite-rook-review.md`.
+
 ## Rank-revealing QR and least squares
 
 `lapack_rank_revealing.h` exposes S/D/C/Z GEQP3 and GELSY, with separate

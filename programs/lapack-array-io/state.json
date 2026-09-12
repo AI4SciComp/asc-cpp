@@ -1380,8 +1380,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P05.required.pbtrf/pbtf2/pbtrs: complete bounded Linux concurrency/profile matrix passed; delivery audit in progress",
-  "next_action": "Commit GBTRF/GBTRS continuation after final audit, retaining four factor mathematical failures and separate passing solve class; proceed to existing PB contracts.",
+  "active_task": "P05.required.rook_condition_6: next implementation after the recorded rook factor/solve delivery",
+  "next_action": "Continue the six SYCON_ROOK/HECON_ROOK contracts and implementation; preserve the completed rook factor/solve checks and all required numerical failures.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1389,7 +1389,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "6e87f801a78c4c562c632615d6d644e120d7d01d8891757a97a594235394022a"
+    "coverage_mapping_sha256": "4e3c64c0b228ddfd620387c29d5a62e53d5e2342fe00b88362fd49312b001ddb"
   },
   "provider": {
     "version": "3.12.1",
@@ -1822,16 +1822,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 150,
-    "callable_reference": 110,
+    "mapped_contracts": 168,
+    "callable_reference": 128,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1707,
+    "not_started_reference": 1689,
     "in_progress_reference": 296,
-    "incomplete_reference": 2003,
-    "implemented_unverified_reference": 110,
+    "incomplete_reference": 1985,
+    "implemented_unverified_reference": 128,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2017,6 +2017,11 @@
       "id": "CLASSIC-INDEFINITE-RECIPROCAL-RANGE",
       "scope": "All six scalar/symmetry classes fail exact scaled-identity factors and scalar solution1 at tiny scales. Direct pinned provider matches; blocked n67 additionally returns spuriousINFO4upper/64lower. Twelve mathematical processes1584assertions per actual profile remain required; independent work continues.",
       "record": "programs/lapack-array-io/indefinite-continuation-review.md"
+    },
+    {
+      "id": "ROOK-INDEFINITE-SOLVE-RECIPROCAL-RANGE",
+      "scope": "All six scalar/symmetry classes fail exact scalar solution1 at tiny scales, with INFO0 and matching direct pinned provider behavior. Twelve profiles retain6mathematical processes1152assertions each. Rook factorization range cases pass; classic/PT and other existing failures remain separate.",
+      "record": "programs/lapack-array-io/indefinite-rook-review.md"
     }
   ],
   "external_approvals": [
@@ -2541,14 +2546,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.classic_indefinite: reproduce unwritten/partial-width native INFO in the18 existing classic factor/solve implementations, then complete their remaining contracts and verification.",
+  "next_task": "P05.required.rook_condition_6",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction.",
+  "next_command": "Inspect actual git/delivery state and rook-final-audit-02, then continue rook-condition-prerequisite-01 in the existing workspace.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3122,7 +3127,7 @@
     "instruction": "programs/lapack-array-io/remaining-project-runbook.md",
     "instruction_sha256": "b9f5596fbded908ddcdcab855531e8de59d0271261763da6d56239e17d4e2a06",
     "base_head": "9032f622752d5014c673f08bc0a14a9ca1612989",
-    "state": "in_progress",
+    "state": "FULL_PROGRAM_INCOMPLETE",
     "workspace_reconciliation": "completed_once_no_retirement",
     "workspace_review": "workspace-cleanup-review.md",
     "evidence_root": "master-continuation-20260910-01",
@@ -3582,16 +3587,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 150,
-      "callable_reference": 110,
+      "mapped_contracts": 168,
+      "callable_reference": 128,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1707,
+      "not_started_reference": 1689,
       "in_progress_reference": 296,
-      "incomplete_reference": 2003,
-      "implemented_unverified_reference": 110,
+      "incomplete_reference": 1985,
+      "implemented_unverified_reference": 128,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3852,8 +3857,22 @@
       "family": "Eachstatic/sharedLP64 306/355,ILP64310/355,zero skips;PB21/21 andprovider111/111 perprofile. Twelveadditional failures exactlyGESVX4+GBTF2range4+GBTRFrange4;previousfailurespreserved.",
       "scope": "Original artifacts recovered, no completed workflow rerun;does not verifylaterindefinitechanges. PB43dependencyhashes remainunchanged."
     },
-    "next_task": "P05.required.classic_rook_factor_solve_18",
-    "last_confirmed_remote_head": "9721bd1a0548d823780a09e89238b25b25646544"
+    "next_task": "P05.required.rook_condition_6",
+    "last_confirmed_remote_head": "a0ff67ad52953400b19397e7d7e4cc05a3c867bc",
+    "rook_factor_solve": {
+      "state": "implemented_unverified_numerical_gates_failed",
+      "review": "programs/lapack-array-io/indefinite-rook-review.md",
+      "implementation_parent": "a0ff67ad52953400b19397e7d7e4cc05a3c867bc",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-final-audit-02/audit.json",
+      "contracts": 18,
+      "normalized_modes": 168,
+      "profiles": "12actual LP64/ILP64 static/shared Debug/Release/ASC-ASan+UBSan each44/50 with6required scalar-solve failures1152assertions;4TSan concurrency profiles6/6. Final selection624processes552pass72fail,zero skips.96targeted style-refresh passes replace only affected prior numerical/preflight results.",
+      "checks": "4relocated installed consumers;22strict TUs;4standalone header processes;40new shared exports and0removals perABI;Doxygen141headers2465members0warnings. No existing public declaration, implementation or prior numerical test changed. Eight metadata/public-surface/actual-CI-selector checks pass; sixty affected Reference indexes refreshed without historical execution changes.",
+      "abi": "Six omitted TF2 prototypes derived from actual GNU11.4 compiler separately forLP64/trueILP64;24direct ABI and24scalarNaN cases perABI;18full native wrapper signature assertions. All C++profiles actualGNU11.4; pinned provider remains uninstrumented.",
+      "remaining": "Six reciprocal-before-SCAL solve-range decisions, hosted/wider platform/provider admission and full normalized execution records. No fully verified Reference promotion.",
+      "next_family": "Six SYCON_ROOK/HECON_ROOK condition routines; exact required source rows inrook-condition-prerequisite-01.",
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery-audit/audit.json"
+    }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
     "state": "frozen_product_pushed; final_programme_records_separate",
@@ -3863,5 +3882,18 @@
     "bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/metadata-correction-input-bridge.json",
     "final_summary_bridge": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/final-summary-input-bridge.json",
     "scope": "Final record changes are restricted to programme summaries/state. Product/header/test/build/export/compiler/provider inputs remain those of the hosted-tested product."
+  },
+  "historical_task_pointers_before_rook": {
+    "active_task": "P05.required.pbtrf/pbtf2/pbtrs: complete bounded Linux concurrency/profile matrix passed; delivery audit in progress",
+    "next_task": "P05.classic_indefinite: reproduce unwritten/partial-width native INFO in the18 existing classic factor/solve implementations, then complete their remaining contracts and verification.",
+    "next_action": "Commit GBTRF/GBTRS continuation after final audit, retaining four factor mathematical failures and separate passing solve class; proceed to existing PB contracts.",
+    "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
+  },
+  "current_delivery": {
+    "family": "rook_factor_solve_18",
+    "implementation_parent": "a0ff67ad52953400b19397e7d7e4cc05a3c867bc",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery/commit.txt",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-delivery-audit/audit.json",
+    "state": "implemented_unverified; six required solve-range cases remain blocked, FULL_PROGRAM_INCOMPLETE"
   }
 }

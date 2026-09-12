@@ -145,6 +145,7 @@ set(_lapack_entries
   "dense_lapack|asc/dense/providers/lapack_least_squares.h"
   "dense_lapack|asc/dense/providers/lapack_cholesky_band.h"
   "dense_lapack|asc/dense/providers/lapack_indefinite.h"
+  "dense_lapack|asc/dense/providers/lapack_indefinite_rook.h"
   "dense_lapack|asc/dense/providers/lapack_rank_revealing.h"
   "dense_lapack|asc/dense/providers/lapack_sylvester.h"
   "dense_lapack|asc/dense/providers/lapack_indefinite_condition.h"

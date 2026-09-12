@@ -412,6 +412,102 @@ asc_register_test(NAME asc_cpp.dense_lapack.indefinite_abi_probe
   TARGET asc_dense_lapack_indefinite_abi_probe
   LABELS dense_lapack lapack abi runtime TIMEOUT 120)
 
+foreach(_suite IN ITEMS indefinite_rook indefinite_rook_preflight
+    indefinite_rook_fault)
+  set(_target "asc_dense_lapack_${_suite}_test")
+  add_executable("${_target}" "${_suite}_test.cc"
+    "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+  _asc_dense_lapack_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}")
+    target_sources("${_target}" PRIVATE allocation_audit.cc)
+    target_link_options("${_target}" PRIVATE
+      "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+  if(_suite STREQUAL "indefinite_rook_fault")
+    target_sources("${_target}" PRIVATE indefinite_rook_faults.cc)
+    target_include_directories("${_target}" PRIVATE
+      "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+    foreach(_symbol IN ITEMS dsytrf_rook dsytf2_rook dsytrs_rook)
+      target_link_options("${_target}" PRIVATE "-Wl,--wrap=${_symbol}_")
+    endforeach()
+  endif()
+  if(_suite STREQUAL "indefinite_rook" OR _suite STREQUAL "indefinite_rook_preflight")
+    foreach(_scalar IN ITEMS s d c z ch zh)
+      asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}.${_scalar}"
+        TARGET "${_target}" ARGUMENTS "${_scalar}"
+        LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
+    endforeach()
+  else()
+    asc_register_test(NAME "asc_cpp.dense_lapack.${_suite}"
+      TARGET "${_target}" LABELS dense_lapack lapack validation allocation
+      TIMEOUT 120)
+  endif()
+endforeach()
+
+add_executable(asc_dense_lapack_indefinite_rook_info_test
+  indefinite_rook_info_test.cc indefinite_rook_info_faults.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_rook_info_test)
+target_include_directories(asc_dense_lapack_indefinite_rook_info_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_indefinite_rook_info_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z)
+  foreach(_routine IN ITEMS sytrf sytf2 sytrs)
+    target_link_options(asc_dense_lapack_indefinite_rook_info_test PRIVATE
+      "-Wl,--wrap=${_scalar}${_routine}_rook_")
+  endforeach()
+endforeach()
+foreach(_scalar IN ITEMS c z)
+  foreach(_routine IN ITEMS hetrf hetf2 hetrs)
+    target_link_options(asc_dense_lapack_indefinite_rook_info_test PRIVATE
+      "-Wl,--wrap=${_scalar}${_routine}_rook_")
+  endforeach()
+endforeach()
+foreach(_scalar IN ITEMS s d c z ch zh)
+  asc_register_test(NAME "asc_cpp.dense_lapack.indefinite_rook_info.${_scalar}"
+    TARGET asc_dense_lapack_indefinite_rook_info_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack validation allocation TIMEOUT 120)
+endforeach()
+
+add_executable(asc_dense_lapack_indefinite_rook_range_test indefinite_rook_range_test.cc
+  allocation_audit.cc "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_rook_range_test)
+target_include_directories(asc_dense_lapack_indefinite_rook_range_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_indefinite_rook_range_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z ch zh)
+  foreach(_mode IN ITEMS factor_mathematical factor_fidelity
+      solve_mathematical solve_fidelity)
+    asc_register_test(NAME "asc_cpp.dense_lapack.indefinite_rook_range.${_scalar}.${_mode}"
+      TARGET asc_dense_lapack_indefinite_rook_range_test ARGUMENTS "${_scalar}" "${_mode}"
+      LABELS dense_lapack lapack numerical allocation TIMEOUT 180)
+  endforeach()
+endforeach()
+
+add_executable(asc_dense_lapack_indefinite_rook_abi_probe indefinite_rook_abi_probe.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_rook_abi_probe)
+target_include_directories(asc_dense_lapack_indefinite_rook_abi_probe PRIVATE
+  "${PROJECT_SOURCE_DIR}" "${ASC_CPP_LAPACK_CONFIG_DIR}"
+  "${ASC_CPP_LAPACK_ROOT}/include")
+# Exact compiler-emitted type comparisons are retained in the separately
+# audited external ABI lane. This installed-header route always executes all
+# six real TF2 symbols with full-width argument/pivot/INFO sentinels.
+asc_register_test(NAME asc_cpp.dense_lapack.indefinite_rook_abi_probe
+  TARGET asc_dense_lapack_indefinite_rook_abi_probe
+  LABELS dense_lapack lapack abi runtime TIMEOUT 120)
+
+add_executable(asc_dense_lapack_indefinite_rook_concurrency_test
+  indefinite_rook_concurrency_test.cc)
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_rook_concurrency_test)
+target_link_libraries(asc_dense_lapack_indefinite_rook_concurrency_test
+  PRIVATE Threads::Threads)
+foreach(_scalar IN ITEMS s d c z ch zh)
+  asc_register_test(NAME "asc_cpp.dense_lapack.indefinite_rook_concurrency.${_scalar}"
+    TARGET asc_dense_lapack_indefinite_rook_concurrency_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack numerical concurrency TIMEOUT 180)
+endforeach()
+
 add_executable(asc_dense_lapack_indefinite_concurrency_test
   indefinite_concurrency_test.cc)
 _asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_concurrency_test)
@@ -933,6 +1029,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_cholesky_equilibration.h
     lapack_cholesky_refinement.h
     lapack_least_squares.h lapack_cholesky_band.h lapack_indefinite.h
+    lapack_indefinite_rook.h
     lapack_rank_revealing.h lapack_sylvester.h
     lapack_indefinite_condition.h lapack_indefinite_driver.h
     lapack_indefinite_refinement.h lapack_svd_least_squares.h

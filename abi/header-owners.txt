@@ -59,6 +59,7 @@ asc/dense/providers/lapack_dmd_qr.h|asc_dense_lapack
 asc/dense/providers/lapack_export.h|asc_dense_lapack
 asc/dense/providers/lapack_general_band.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite.h|asc_dense_lapack
+asc/dense/providers/lapack_indefinite_rook.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_condition.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_refinement.h|asc_dense_lapack

@@ -1,5 +1,19 @@
 # LAPACK and array-I/O programme recovery
 
+Latest continuation: the eighteen rook factor/solve routines are implemented
+with 168 reviewed modes. [The rook record](indefinite-rook-review.md) binds
+sixteen actual profiles: 552 passes, 72 required mathematical failures and
+zero skips, plus four relocated consumers and the strict/header/export checks.
+The six tiny scalar-solve cases remain blocked by provider reciprocal-before-
+SCAL arithmetic. Existing classic, PT and other range failures are preserved.
+Metadata, public surface, documentation and CI selector checks pass on parent
+`a0ff67a`; consult actual git status and `rook-delivery/commit.txt` in the
+continuation evidence directory before repeating any work.
+The next independent task is six SYCON_ROOK/HECON_ROOK condition routines.
+Full programme status remains **FULL_PROGRAM_INCOMPLETE**.
+
+## Prior classic and initial rook checkpoints
+
 Latest continuation: classic indefinite contracts now cover eighteen routines
 and 168 modes. [The range record](indefinite-continuation-review.md) retains
 twelve mathematical failures and twelve provider-comparison passes per actual
@@ -9,6 +23,18 @@ Classic indefinite concurrency now passes 96 new tests across sixteen actual
 profiles, including TSan, with zero skips. The next task is rook factor/solve
 implementation after the retained source, pivot and ABI review.
 Full programme status remains **FULL_PROGRAM_INCOMPLETE**.
+
+## Active rook continuation
+
+The eighteen rook API/backend routes are now present as uncommitted work on
+`a0ff67a`, with [the live rook record](indefinite-rook-review.md). The same
+commit was pushed successfully; all prior evidence and user-owned untracked
+instruction files remain. Both initial expanded Release profiles pass 44/50,
+retaining only six reciprocal-overflow solve gates and 1,152 failed assertions.
+Direct ABI declarations and the corrected pinned GNU NaN behavior are recorded
+in `rook-emitted-abi-*-01`. Continue strict checks, expanded profiles, installed
+consumers and the atomic coverage/evidence update; do not restart prior work.
+
 
 ## Checkpoint recovered on 2026-09-12
 

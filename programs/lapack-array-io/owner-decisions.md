@@ -133,3 +133,24 @@ factorization blocker without assigning it to a passing solve class. No
 numerical waiver or provider replacement is implied. The
 [GB continuation record](lu-band-continuation-review.md) contains the exact
 scope and retained evidence; independent PB and other required work continues.
+
+## Rook factor/solve range distinction
+
+The new rook factorization tests pass exact scale*I at orders 2 and 67,
+including minimum-normal/1024 and twice minimum subnormal. Safe-minimum
+division guards in TF2_ROOK and the rook panels preserve zero multipliers.
+This does not resolve the separately retained classic factorization blocker.
+
+All six SYTRS_ROOK/HETRS_ROOK scalar/symmetry classes still return nonfinite
+solutions for A=B=tiny with INFO=0, although exact X=1 is representable. The
+source forms a reciprocal before scaling the RHS. Direct native comparisons
+pass, while finite-value, known-solution and original-matrix residual assertions
+fail. Each of twelve actual static/shared Debug/Release/ASC-ASan+UBSan profiles
+retains six failed mathematical processes and 1,152 failed assertions; no test
+is skipped. Both control scales pass.
+
+Disposition: preserve this provider arithmetic blocker and all live required
+assertions. No hidden alternate algorithm, numerical waiver or full verification
+credit is granted. Continue the independent required routines using the existing
+workspace. The [rook record](indefinite-rook-review.md) binds the exact contracts
+and bounded validation; the pinned provider remains unchanged.
