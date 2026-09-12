@@ -977,3 +977,20 @@ are metadata-only noncalls; valid positive INFO preserves original A and
 reports a singular result. Large-complex, exact-Hermitian-diagonal and native
 empty-WORK gates remain open; implementation does not imply numerical
 acceptance. See the [RK inverse contract review](../programs/lapack-array-io/indefinite-rk-inverse-review.md).
+
+
+The header `asc/dense/providers/lapack_indefinite_rk_driver.h` adds S/D/C/Z
+`SysvRk` and C/Z `HesvRk` with metadata-only workspace queries. These native
+drivers factor original A into separate RK A/E/pivots and solve B in place.
+Zero RHS columns still factorize; zero order makes no provider call. Caller
+storage supplies scalar WORK (minimum one, preferred checked rounded 64*n),
+private provider INTEGER pivots, and required A/B packing. HESV_RK ignores
+original diagonal imaginary components. Native INFO, WORK and structural factor
+outputs are checked before packed output and public pivot publication; valid
+singularity publishes factors and preserves B. The common TRF_RK stage origin
+allows reuse through the existing raw RK solve, condition and inverse APIs.
+Required tiny-reciprocal and large-complex solve failures remain open.
+The [installed public consumer](../tests/dense_lapack/installed_lu/indefinite_rk_driver_main.cc)
+shows caller-owned storage and factor reuse. See the
+[driver contract review](../programs/lapack-array-io/indefinite-rk-driver-review.md)
+for current engineering evidence and incomplete acceptance.

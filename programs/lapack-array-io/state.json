@@ -10,16 +10,16 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
+  "current_base_commit": "7add1a8fbf45a948d55da027862a5df278837995",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
+  "last_implementation_commit": "7add1a8fbf45a948d55da027862a5df278837995",
   "worktree_diff_identity": {
-    "state": "rk_inverse_delivery_ready_after_evidence",
-    "base_commit": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery-audit/audit.json",
-    "scope": "Twelve RK inverse routes with mutable selected A and immutable live exact-n E/pivots. Every E slot readable, own-index paired pivot bounds, SY transpose/HE adjoint and raw factor diagonals preserved. Driver NB1 always delegates X; explicit positive NB, checked scalar/native INTEGER/row packing workspace and original LDA. Full INFO/driver WORK/private-pivot diagnostics; empty execution noncall and singular original-factor publication. Provider kernels unchanged;151-header contract synchronized."
+    "state": "rk_driver_ready_after_evidence",
+    "base_commit": "7add1a8fbf45a948d55da027862a5df278837995",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-driver-final-audit/audit.json",
+    "scope": "Six checked native SYSV_RK/HESV_RK drivers with twelve public declarations and192reviewed modes; private native pivots, separate E, caller work/packing and source-bound publication. Named native driver always factors forN>0 evenNRHS0. Existing producer/solve/condition/inverse algorithms, provider and old ROOK factories unchanged."
   },
   "packages": {
     "P00": {
@@ -1379,8 +1379,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P05.required.hesv_rk: RK drivers after recorded TRI_3/TRI_3X inverse delivery",
-  "next_action": "Review S/D/C/Z SYSV_RK and C/Z HESV_RK against pinned source and actual GNU declarations. Establish factor A/E/pivots and solution B publication, empty/NRHS0 behavior, singular INFO, returned WORK, source workspace/integer bounds before implementation. Preserve RK inverse empty-WORK, complex range and exact-Hermitian-diagonal failures. Continue independent families without restarting frozen deliveries or provider stabilization.",
+  "active_task": "P05.required.hetrf_aa",
+  "next_action": "Checkpoint, commit and push the audited RK drivers; then review the six exact inventoried Aasen SYTRF_AA/HETRF_AA producer signatures, native storage/workspace and actual ABI prerequisites, implement the checked producer slice and continue its dependency-ready consumers. Preserve all recorded numerical/security/provider/XBLAS/platform blockers and earlier native20/array-I/O milestones.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1388,7 +1388,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "a5a2c0ae7481030b1baaaa04a5567549ec7d51d1e9b889b51930f12c9af4be14"
+    "coverage_mapping_sha256": "973a362029b72c3a949c3eaab255064cb8ce057df4cbee6a9039ee0316391852"
   },
   "provider": {
     "version": "3.12.1",
@@ -1821,16 +1821,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 246,
-    "callable_reference": 206,
+    "mapped_contracts": 252,
+    "callable_reference": 212,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1611,
+    "not_started_reference": 1605,
     "in_progress_reference": 296,
-    "incomplete_reference": 1907,
-    "implemented_unverified_reference": 206,
+    "incomplete_reference": 1901,
+    "implemented_unverified_reference": 212,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2059,7 +2059,7 @@
     },
     {
       "id": "BLOCK-INDEFINITE-RK-SOLVE-RANGE",
-      "scope": "All6 TRS_3 variants form overflowing scalar reciprocal forA=B=minnormal/8 exactX1. Fourcomplex variants yieldNaN forzero-diagonal2block withoffcomponents.75max andfiniteB exactones. Native20failed mathematical cases/ABI beforeadapter;12finalordinary/sanitizer profiles each6required failures160assertions. All input/INFO/nativefidelity controls pass. No provider patch, tolerance change or waived acceptance.",
+      "scope": "All6 TRS_3 variants form overflowing scalar reciprocal forA=B=minnormal/8 exactX1. Fourcomplex variants yieldNaN forzero-diagonal2block withoffcomponents.75max andfiniteB exactones. Native20failed mathematical cases/ABI beforeadapter;12finalordinary/sanitizer profiles each6required failures160assertions. All input/INFO/nativefidelity controls pass. No provider patch, tolerance change or waived acceptance. SYSV_RK/HESV_RK extension:12ordinary/sanitizer profiles retain6required failures/960assertions each; all native fidelity/engineering controls pass. No arithmetic change or waiver.",
       "record": "programs/lapack-array-io/indefinite-rk-solve-review.md"
     },
     {
@@ -2091,9 +2091,9 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "rk-inverse",
-    "state": "bounded_verification_complete_required_failures_remain",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-final-audit/audit.json",
+    "candidate": "rk-driver",
+    "state": "engineering_passed_required_numerics_failed",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-driver-final-audit/audit.json",
     "handoff": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-profile-recovery-01/latest-handoff.json"
   },
   "last_completed_verification": {
@@ -2594,14 +2594,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hesv_rk",
+  "next_task": "P05.required.hetrf_aa",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect actual git and rk-inverse-delivery/commit.txt, then review SYSV_RK/HESV_RK dependencies in this workspace only.",
+  "next_command": "Inspect actual git plus rk-driver-delivery/commit.txt and the existing latest-handoff.json; if driver delivery is uncommitted finish its owned staged review first, otherwise continue P05.required.hetrf_aa from pinned source.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3191,21 +3191,21 @@
       "checks": "CI and CodeQL success. Four family profiles146/155: all6LASET pass,exactlyPT4+SGEDMDQ1+GBRFS4 retained math failures,zero skips. PR merge tree identical to delivered feature tree."
     },
     "p09_stage": "Mixed general/positive, conversions, LACPY, GEDMD and GEDMDQ integrated. GEDMDQ c01abddf has fresh CI/CodeQL passes and family118/123 per ABI with exactly retained PT4 and SGEDMDQ1 failures. Both actual ABIs, six local profiles, real concurrency, relocated install and frozen-source package evidence retained; no global numerical acceptance.",
-    "remaining_actionable": "Deliver SYSV_RK/HESV_RK using recovered native prerequisites, then remaining dependency-ready P04-P09 and continuous P11 requirements. Retain provider, XBLAS, notice, security and platform blockers without serializing independent families.",
+    "remaining_actionable": "Deliver ready Aasen producers/consumers then continue actual ready P04\u2013P09 and continuous P11 tasks; no repeated frozen acceptance or review-only holding pattern.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 246,
-      "callable_reference": 206,
+      "mapped_contracts": 252,
+      "callable_reference": 212,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1611,
+      "not_started_reference": 1605,
       "in_progress_reference": 296,
-      "incomplete_reference": 1907,
-      "implemented_unverified_reference": 206,
+      "incomplete_reference": 1901,
+      "implemented_unverified_reference": 212,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3635,16 +3635,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 246,
-      "callable_reference": 206,
+      "mapped_contracts": 252,
+      "callable_reference": 212,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1611,
+      "not_started_reference": 1605,
       "in_progress_reference": 296,
-      "incomplete_reference": 1907,
-      "implemented_unverified_reference": 206,
+      "incomplete_reference": 1901,
+      "implemented_unverified_reference": 212,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3905,7 +3905,7 @@
       "family": "Eachstatic/sharedLP64 306/355,ILP64310/355,zero skips;PB21/21 andprovider111/111 perprofile. Twelveadditional failures exactlyGESVX4+GBTF2range4+GBTRFrange4;previousfailurespreserved.",
       "scope": "Original artifacts recovered, no completed workflow rerun;does not verifylaterindefinitechanges. PB43dependencyhashes remainunchanged."
     },
-    "next_task": "P05.required.hesv_rk",
+    "next_task": "P05.required.hetrf_aa",
     "last_confirmed_remote_head": "9d2f65b8f043a81d29c0f4633f9a8af86339fb9d",
     "rook_factor_solve": {
       "state": "implemented_unverified_numerical_gates_failed",
@@ -4118,7 +4118,24 @@
       "checks": "Four relocated consumers3360cases each;20strictTUs,4standaloneheaders,720final direct GNU-emitted ABIcases against24original emissions,24added/no removedexports perABI,151headers/2621Doxygenmembers/zero warnings. Four manifest contexts and6fixtures,architecture/dependency2,actualCIselector1227 including213newruntime+2headerspass. Fault360cases/variant includes60empty noncalls and15fault modes. Structural160rejections plus protected queries, emptycalls, NB0/source/returnedWORK/originalstride bounds. Concurrency16groups/variant4workers8repeats:768native128empty128stale calls with read-only E/pivots. Final installed production identity proved. Original failed native probes, wiring/byte-copy/style/header-count findings retained.",
       "remaining": "BLOCK-INDEFINITE-INVERSE-RANGE: complex huge2block NaN despite representable inverse. BLOCK-INDEFINITE-HERMITIAN-DIAGONAL: exact zero imaginary diagonal assertions fail. BLOCK-INDEFINITE-RK-INVERSE-EMPTY-WORK: CSY/ZSY/ZHE driver N0 execution omits documented WORK1. INFO0 and native fidelity do not certify accuracy/native contract completion. Earlier numerical/provider/XBLAS/CodeQL/platform/full normalized execution-record blockers remain. Fortran/BLAS internals uninstrumented. No Reference row verified.",
       "next_family": "SYSV_RK/HESV_RK drivers.",
-      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery-audit/audit.json"
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery-audit/audit.json",
+      "delivery_commit": "7add1a8fbf45a948d55da027862a5df278837995",
+      "hosted_recovery": {
+        "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-driver-remote-01/inverse-hosted-audit.json",
+        "summary": "Original7add1a8push/PRgeneralCIpasses; selectedpush4profiles1227tests each,LP641060pass167required failures,ILP641064pass163required failures,zero skips,upstream111/111. Exact priorcause set plus31inverse gates. No driver hosted credit; CodeQLalerts3059open including12security remain."
+      }
+    },
+    "rk_driver": {
+      "state": "implemented_unverified_required_numerical_gates_failed",
+      "review": "programs/lapack-array-io/indefinite-rk-driver-review.md",
+      "implementation_parent": "7add1a8fbf45a948d55da027862a5df278837995",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-driver-final-audit/audit.json",
+      "contracts": 6,
+      "normalized_modes": 192,
+      "profiles": "Twelve actual static/shared LP64/ILP64 Release/Debug/ASC-ASan+UBSan profiles each37/43 with6required failures960failedassertions0skips;fourTSan profiles6/6. Total540processes468pass72failures11520failedmathematicalassertions0skips.",
+      "checks": "18strictTUs;4relocated768-casepublicconsumers;576finalnativeguardedcasesagainst12actualemissions;4headers;12added0removedexports/ABI;package10;architecture2;CIselector1272with43explicitlyrequirednewruntimeprocesses;Doxygen152headers2633members0warnings. Installed libraries match producer; corrected constexpr consumer source separately rebuilt. Fault1024cases/class;structural240;concurrency32groups4workers8repeats1792nativecalls256rejections/class.",
+      "remaining": "BLOCK-INDEFINITE-RK-SOLVE-RANGE remains. No Reference verified. Prior provider/numerical/XBLAS/CodeQL/platform/final-programme gates retained; Fortran/BLAS internals uninstrumented.",
+      "next_family": "P05.required.hetrf_aa"
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
@@ -4137,11 +4154,11 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "rk_inverse_12",
-    "implementation_parent": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery/commit.txt",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery-audit/audit.json",
-    "state": "implemented_unverified; required complex range, exact-Hermitian-diagonal and native empty-WORK gates failed; FULL_PROGRAM_INCOMPLETE"
+    "family": "rk_driver_6",
+    "implementation_parent": "7add1a8fbf45a948d55da027862a5df278837995",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rk-driver-delivery/commit.txt",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-driver-final-audit/audit.json",
+    "state": "implemented_unverified; required tiny-scalar and large-complex TRS_3 range gates failed; FULL_PROGRAM_INCOMPLETE"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",

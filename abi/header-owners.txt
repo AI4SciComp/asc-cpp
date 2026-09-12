@@ -68,6 +68,7 @@ asc/dense/providers/lapack_indefinite_block_inverse.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_block_solve.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_rk.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_rk_condition.h|asc_dense_lapack
+asc/dense/providers/lapack_indefinite_rk_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_rk_inverse.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_rk_solve.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_condition.h|asc_dense_lapack

@@ -1,3 +1,46 @@
+## Latest checkpoint: RK drivers ready for feature integration
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Parent is pushed `7add1a8fbf45a948d55da027862a5df278837995`; inspect actual git
+and `rk-driver-delivery/commit.txt` for the delivery commit. User instruction
+files, prior inverse/native/I/O milestones and all failed evidence are preserved.
+
+Six SYSV_RK/HESV_RK routes add twelve public declarations and 192 reviewed modes.
+The named native driver produces separate RK A/E/pivots and solves B; zero RHS
+still factorizes, and zero order is an ASC noncall. Caller-owned scalar WORK,
+private INTEGER pivots and A/B packing have checked counts and lifetimes.
+Full-width INFO/pivots, E structure and WORK are checked before packed publication.
+Valid singular output publishes factors and preserves B. Driver-origin factors
+are reused through checked TRS_3, CON_3 and TRI_3 in installed consumers.
+
+Sixteen final profiles execute 540 processes: 468 passes, 72 required mathematical
+failures, 11,520 failed assertions and zero skips. Twelve Release/Debug/ASC-ASan+
+UBSan profiles each pass 37/43; four TSan concurrency profiles pass 6/6. Tiny
+scalar reciprocals and large complex two-block failures remain unchanged under
+BLOCK-INDEFINITE-RK-SOLVE-RANGE. Engineering success does not waive them.
+
+Four relocated consumers pass 768 cases each. Eighteen strict translation units,
+576 actual emitted-ABI guarded cases, four standalone headers, twelve added/zero
+removed exports per ABI, ten package checks and two architecture checks pass.
+The CI selector includes 1,272 processes and explicitly requires all 43 new
+runtime processes. Doxygen covers 152 headers and 2,633 members without warnings.
+Original fixture, style, Doxygen-input and audit-marker failures are preserved
+with corrections. Installed production libraries match final producers.
+Provider Fortran/BLAS internals are uninstrumented; wider admission and all
+previous blockers remain.
+
+The original inverse push's hosted 1,227-test profiles match prior failures plus
+31 required inverse gates; upstream provider tests pass 111/111 each and general
+CI passes. CodeQL still has 3,059 open alerts, including twelve security findings.
+This is older commit evidence; the new driver delivery has no hosted credit yet.
+
+FULL_PROGRAM_INCOMPLETE: required 2,113; reviewed 252; Reference callable-unverified
+212, partial 296, not-started 1,605, verified zero. Native20 and separately selected
+experimental RobustPpsvx remain distinct. Finish the owned staged/feature commit
+if pending, then continue P05.required.hetrf_aa and its actual dependency chain.
+The existing latest-handoff.json and active review retain exact commands and
+evidence paths.
+
 ## Latest checkpoint: RK inverses integrated, required gates remain open
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.

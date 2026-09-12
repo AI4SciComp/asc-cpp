@@ -23,6 +23,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_indefinite_block_solve.cc
   reference_indefinite_rk.cc
   reference_indefinite_rk_condition.cc
+  reference_indefinite_rk_driver.cc
   reference_indefinite_rk_inverse.cc
   reference_indefinite_rk_solve.cc
   reference_rank_revealing.cc
@@ -108,6 +109,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_block_solve.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rk.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rk_condition.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rk_driver.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rk_inverse.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rk_solve.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_rank_revealing.h"

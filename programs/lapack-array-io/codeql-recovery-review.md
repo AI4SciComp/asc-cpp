@@ -96,3 +96,33 @@ offset was also inspected; it begins the second array in checked byte storage.
 No security finding names the new RK inverse files. This read grants no
 security closure: no alert was dismissed, query suppressed or public I/O
 contract changed. The full alert review and hosted disposition remain open.
+
+
+### Feature 7add1a8 alert read during RK driver delivery
+
+The successful branch-specific API read in `rk-driver-remote-01` reports
+3,059 open alerts, including the same twelve security alerts (four critical,
+eight high), each bound to feature commit
+`7add1a8fbf45a948d55da027862a5df278837995`. Their alert numbers, rules and source
+locations are unchanged from the preceding review: 15, 17, 18, 225, 247–251,
+365, 366 and 2612. No finding is suppressed or dismissed, and the separate
+CodeQL alert gate remains failed despite successful analysis runs.
+
+At that read, original push workflow 34715651039 had failed static integer-32
+and integer-64 jobs; remaining jobs were still active. GitHub CLI refused the
+completed job's log because the workflow was still running. This is recorded
+as an unavailable log, with its actual exit code, not a numerical diagnosis.
+The current driver work is uncommitted and receives no hosted CI credit from
+this earlier feature commit. Preserve native20 and experimental robust PPSVX
+boundaries while obtaining terminal workflow artifacts when available.
+
+
+The later terminal read records successful push/PR general CI runs
+34715651212/34715653476 and failed selected-family runs
+34715651039/34715653586, all at 7add1a8. Original push artifacts are preserved
+and audited in `rk-driver-remote-01/inverse-hosted-audit.json`: each static/shared
+profile executes 1,227 tests; LP64 has 1,060 passes/167 required failures and
+ILP64 1,064 passes/163 required failures, with zero skips. Failure sets exactly
+match the prior condition delivery plus 31 required inverse gates; upstream
+provider tests pass 111/111 each. This closes the unavailable-log uncertainty
+for that push run while retaining every numerical and CodeQL alert failure.

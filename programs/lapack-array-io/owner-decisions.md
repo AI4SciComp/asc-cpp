@@ -294,6 +294,18 @@ driver work. See the [RK solve record](indefinite-rk-solve-review.md) and extern
 `rk-solve-final-audit/audit.json`.
 
 
+The six SYSV_RK/HESV_RK drivers inherit the TRS_3 causes. Initial actual-ABI
+Release tests retain six required mathematical failures per ABI (960 failed
+assertions), with six passing fidelity processes and no skips. Scalar tests
+include min_normal/1024 and twice the least subnormal; complex block tests
+retain .75*maximum with .25*maximum as a control. NRHS=0 factor-only controls
+pass. Direct driver comparisons reproduce the native outputs. Evidence is
+`rk-driver-range-{lp64,ilp64}-01`, including per-ABI classification records.
+The [active driver review](indefinite-rk-driver-review.md) tracks engineering
+work still in progress. This extension requests no duplicate scalar decision
+and grants no provider change, fallback, tolerance relaxation or waiver.
+
+
 ## BLOCK-INDEFINITE-RK-CONDITION-RANGE
 
 All six pinned SYCON_3/HECON_3 variants fail exact-RCOND=1 scalar or two-block

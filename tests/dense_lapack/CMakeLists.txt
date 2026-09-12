@@ -26,6 +26,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_block_inverse_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_block_solve_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_condition_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_driver_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_inverse_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_solve_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/positive_tridiagonal_refinement_tests.cmake")
@@ -1048,6 +1049,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_indefinite_block_solve.h
     lapack_indefinite_rk.h
     lapack_indefinite_rk_condition.h
+    lapack_indefinite_rk_driver.h
     lapack_indefinite_rk_inverse.h
     lapack_indefinite_rk_solve.h
     lapack_rank_revealing.h lapack_sylvester.h
