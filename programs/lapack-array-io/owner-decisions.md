@@ -397,3 +397,25 @@ remain separate. A corrected provider revision needs explicit owner authority;
 no clamp or silent native substitution is introduced. The exact source and
 maintained predicate are recorded in the
 [Aasen review](indefinite-aasen-review.md#native-workspace-contract).
+
+The exact CSYTRS_AA/ZSYTRS_AA consumer queries also return -2 at N=0, below
+their documented minimum one. Both actual ABI probes retain 16 required
+query failures (two triangles and four RHS counts for each scalar), while
+all 1,008 ordinary/query-fidelity/singular cases pass per ABI. This is the
+same native WORK recommendation decision, not another approval request.
+Preserve the unchanged predicate and continue checked consumer development.
+The [Aasen solve review](indefinite-aasen-solve-review.md) records source
+semantics, including positive GTSV singular INFO and its unusable solution.
+
+### AASEN-SOLVE-RANGE
+
+C/Z SYTRS_AA and HETRS_AA retain the existing large-complex arithmetic
+limitation with representable original matrices, factors, RHS and solutions.
+Both ABIs pass checked producer reconstruction and direct solve fidelity, but
+retain four required mathematical processes and 512 failed assertions. The
+scalar SY fixture isolates native GTSV complex division at .75*maximum; HE
+fails the complex-offdiagonal 2-by-2 fixture. Lower-scale controls and all real
+cases pass. The [solve review](indefinite-aasen-solve-review.md) binds the exact
+finite cases, source operation and logs. This extends the existing provider
+arithmetic decision and its remediation choices above. No provider correction,
+first-party algorithm, scaling substitution or mathematical waiver is approved.

@@ -1,3 +1,51 @@
+## 2026-09-13: Aasen solve consumers ready for feature integration
+
+Branch remains `feature/lapack-array-io`, with pushed parent
+`c02b549c48247c747df81bef66b7209b42a26529`. Inspect actual git and
+`aasen-solve-delivery/commit.txt` for the delivery commit. The three user
+instruction files and all prior milestones/failure records remain preserved.
+
+Six SYTRS_AA/HETRS_AA routes add twelve public declarations and 96 reviewed modes.
+Immutable common-origin A/pivots retain single-stage Aasen provenance. Caller
+WORK/native INTEGER/row A-B packing, counts, original/effective strides and
+aliases are checked. Full INFO/private input pivots and seeded singular WORK
+witnesses are validated. Consistent positive GTSV INFO reports singular,
+unusable solution; packed B is withheld and direct B may change. Empty N/RHS
+is a validated noncall before numerical reads.
+
+Sixteen profiles execute 552 processes:492 pass,60 required failures,zero skips.
+Twelve Release/Debug/ASC-ASan+UBSan profiles each pass 39/44; four TSan
+concurrency profiles each pass 6/6. Across normal profiles, 6144 mathematical and
+192 native query assertions fail. AASEN-SOLVE-RANGE retains large-complex
+solution/residual failures with representable matrices/factors/solutions;
+producer reconstruction, native fidelity and real/lower-scale controls pass.
+AASEN-EMPTY-WORK retains complex-SY native N0 query-2 below minimum1.
+The first completed CTest result was recovered after a parser double-counted
+repeated diagnostic summaries; its source/binaries/logs are unchanged and
+that invocation was not repeated. No requirement or test is weakened.
+
+Four relocated public consumers pass 768 cases each. Eighteen strict TUs,
+2,016 guarded emitted-ABI cases, 4 standalone headers, 12 new/no removed exports per
+ABI, 10 package and 3 architecture checks pass. Doxygen covers 154 headers and 2,657
+members without warnings; the maintained CI selector includes 1,365 processes.
+Installed libraries match final Release producers. Pinned Fortran/BLAS
+internals are uninstrumented; wider admission remains pending.
+
+Hosted parent profiles preserve exactly the prior failures plus 7 producer
+gates, zero skips, and provider 111/111 each. GeneralCI's provider-free inventory
+omission was reproduced and repaired through the existing explicit provider
+header list. Branch-specific CodeQL queries show 3,108 open alerts including the
+same 12 security findings; 15 new producer notes were read and remain open. No
+hosted consumer-tree or security-closure credit is inferred.
+
+FULL_PROGRAM_INCOMPLETE: required 2,113, reviewed 264, Reference callable-
+unverified 224, partial 296, not-started 1,593, verified 0. Native20 stays 20/20;
+experimental RobustPpsvx remains separate. Complete owned commit/push if
+pending, then continue `P05.required.hesv_aa` and the entire dependency-ready
+queue. Its driver overwrites WORK[0] after solve and factorizes with zero RHS:
+review these exact semantics before adapting consumer guards. The same latest
+handoff, solve review and `next-driver-read-notes.json` preserve the next action.
+
 ## 2026-09-13: Aasen producers ready for feature integration
 
 The worktree remains `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`,

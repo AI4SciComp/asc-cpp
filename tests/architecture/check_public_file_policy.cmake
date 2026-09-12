@@ -68,6 +68,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_cholesky_band.h
   include/asc/dense/providers/lapack_indefinite.h
   include/asc/dense/providers/lapack_indefinite_aasen.h
+  include/asc/dense/providers/lapack_indefinite_aasen_solve.h
   include/asc/dense/providers/lapack_indefinite_rook.h
   include/asc/dense/providers/lapack_indefinite_rook_condition.h
   include/asc/dense/providers/lapack_indefinite_rook_driver.h
@@ -219,6 +220,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_cholesky_band.cc
   src/dense/lapack/reference_indefinite.cc
   src/dense/lapack/reference_indefinite_aasen.cc
+  src/dense/lapack/reference_indefinite_aasen_solve.cc
   src/dense/lapack/reference_indefinite_rook.cc
   src/dense/lapack/reference_indefinite_rook_condition.cc
   src/dense/lapack/reference_indefinite_rook_driver.cc
