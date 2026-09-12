@@ -1,4 +1,69 @@
-## Latest checkpoint: TRI2/TRI2X evidence complete, numerical gates open
+## Latest checkpoint: SYTRS2/HETRS2 evidence complete, range gates open
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is pushed `c6eb9e5`; the new exact commit is recorded
+externally in `block-solve-delivery/commit.txt`. Inspect actual git first.
+Both user instruction files, frozen acceptance records and all failed attempts
+remain preserved. No new workspace or provider numerical source was created.
+
+Six classic TRS2 routes have 144 reviewed triangle/layout/origin modes.
+Both layouts copy immutable raw factors into private workspace because native
+SYCONV temporarily writes and restores A. Selected factor bytes and private
+input pivots are checked before publishing B; full-width INFO preserves source
+semantics. Active WORK is n, with no LWORK/query/returned-WORK contract.
+Empty n=0 or nrhs=0 is a noncall before any numerical array inspection.
+
+Sixteen profiles yield 540 processes: 468 passes, 72 required mathematical
+failures, 1,920 failed assertions and zero skips. Each of twelve ordinary/
+sanitizer profiles has six range failures. All four TSan profiles pass six
+processes. Scalar reciprocal overflow and complex large-block B/OFF NaN remain
+required gates; native INFO=0, factor restoration and exact byte fidelity pass.
+Direct GNU Fortran probes retain both controls and failures. Linux concurrency
+uses read-only shared factor pages; all structural/protected-memory checks pass.
+
+Four relocated consumers pass 3,456 cases each across TRF/TF2/actual SV origins.
+Eighteen strict TUs, four standalone headers, 288 guarded emitted-ABI cases,
+147-header/2,549-member warning-free Doxygen, twelve added/no removed exports
+per ABI, package-manifest and architecture/dependency checks pass. Installed
+libraries match final producers after normal CMake installation. The external
+`block-solve-final-audit/audit.json` binds all final sources and evidence.
+Original c6eb9e5 hosted artifacts were recovered without reruns: CI/CodeQL
+analysis pass; selected-family831tests/profile retain required failures and
+zero skips. The separate CodeQL alert gate remains open.
+
+FULL_PROGRAM_INCOMPLETE: required2,113; reviewed contracts210;
+implemented_unverified Reference170; in_progress296; not_started1,647;
+verified Reference0. Continue `P05.required.hetf2_rk`: RK unblocked factor
+producers, then blocked producers/dependent consumers. Review separate E
+storage, pivot encoding and actual pinned declarations before implementation.
+
+## Historical recovery records
+
+## Active work: SYTRS2/HETRS2 after pushed c6eb9e5
+
+TRI2/TRI2X delivery is committed and pushed as `c6eb9e5`. Its exact external
+record is `block-inverse-delivery/commit.txt`; the successful final audit is
+`block-inverse-final-audit-02/audit.json`. The failed Doxygen input-list build
+and incomplete first audit remain retained; the corrected Doxygen run is
+`block-inverse-documentation-final-02`. Both user instruction files remain
+untracked and untouched.
+
+Six TRS2 routes and twelve declarations are now uncommitted in this workspace.
+They use immutable raw classic factors/pivots and forced private A packing in
+both layouts, with native restoration and full-width INFO checks. The first
+double check passes 496 cases. Each engineering ABI runs 25 processes:
+19 pass and six required range processes fail, with 160 failed assertions
+and zero skips. All ordinary/native-fidelity and guarded ABI cases pass.
+Each ABI additionally passes six fault processes, 432 cases per scalar variant.
+Scalar reciprocal overflow and complex large-block failures remain visible.
+
+See `indefinite-block-solve-review.md` and external `block-solve-*` records.
+Structural, concurrency, installed-consumer, strict/final profile/documentation
+and normalized evidence checks are unfinished. Inspect actual processes and
+logs before resuming; do not discard files or repeat completed profiles.
+FULL_PROGRAM_INCOMPLETE remains in force.
+
+## Latest committed checkpoint: TRI2/TRI2X evidence complete, numerical gates open
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
 Implementation parent is pushed `a80a7ec`; the new exact commit is recorded

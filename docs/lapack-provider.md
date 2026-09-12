@@ -919,3 +919,13 @@ strict exactly-real Hermitian diagonal gates remain explicit. Native fidelity,
 real mathematical controls and all four relocated consumers pass. See the
 [block inverse contract review](../programs/lapack-array-io/indefinite-block-inverse-review.md)
 for workspace, mutation, INFO and the limits of numerical acceptance.
+
+The header `asc/dense/providers/lapack_indefinite_block_solve.h` adds
+S/D/C/Z `Sytrs2` and C/Z `Hetrs2` with matching workspace queries. Native
+conversion temporarily changes factors, so both layouts use private factor
+packing to preserve public input bytes. Active WORK has n scalar entries;
+row-major right-hand sides need separate packing. INFO=0 has no singularity,
+finiteness or conditioning guarantee. Scalar reciprocal overflow and complex
+large-block solve failures remain required mathematical gates. See the
+[converted-factor solve contract review](../programs/lapack-array-io/indefinite-block-solve-review.md)
+for storage, restoration checks and current verification limits.

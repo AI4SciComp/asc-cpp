@@ -234,3 +234,21 @@ The [block inverse record](indefinite-block-inverse-review.md) retains both
 required failure sets, singular-conversion semantics, native probes and every
 initial attempt. Continue classic TRS2 using existing factor dependencies;
 TRI3's additional RK storage dependencies remain separate unfinished work.
+
+## BLOCK-INDEFINITE-SOLVE-RANGE
+
+The six SYTRS2/HETRS2 wrappers preserve pinned native arithmetic and raw INFO.
+Required mathematical tests reject scalar A=B=min_normal/8, whose exact
+solution is one, when a formed reciprocal overflows. The four complex variants
+also reject a zero-diagonal 2-by-2 block with both offdiagonal components at
+0.75*maximum finite and finite B=A*ones: the exact solution is ones but native
+B/OFF becomes NaN. Direct GNU Fortran probes reproduce both mechanisms.
+Native INFO remains zero, factor restoration and ASC/native byte fidelity pass.
+
+Keep all six mathematical failure processes registered without tolerance or
+assertion changes. Do not substitute a provider kernel or add a source-absent
+positive singular INFO to the Reference route. Installed-consumer and bounded
+engineering success do not constitute full numerical acceptance. Preserve the
+raw failures and controls in `block-solve-*` continuation evidence and the
+[TRS2 contract review](indefinite-block-solve-review.md). Continue independent
+work on RK factor producers with separate E storage before their consumers.

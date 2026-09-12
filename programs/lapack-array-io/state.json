@@ -10,16 +10,16 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "a80a7ec7fbb7465b19fdb7c336af561f35741847",
+  "current_base_commit": "c6eb9e5fa1acb6df3ae990c1e2df01ffd62c99ad",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "a80a7ec7fbb7465b19fdb7c336af561f35741847",
+  "last_implementation_commit": "c6eb9e5fa1acb6df3ae990c1e2df01ffd62c99ad",
   "worktree_diff_identity": {
-    "state": "block_inverse_delivery_ready_after_evidence",
-    "base_commit": "a80a7ec7fbb7465b19fdb7c336af561f35741847",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-delivery-audit/audit.json",
-    "scope": "Twelve native TRI2/TRI2X routes with mutable raw classic factors, immutable pivots, scalar-specific/documented workspace and checked source counts. Positive INFO publishes converted partial selected output; no original-factor reuse promise. No old numerical kernel changed. Exact146-header registrations updated."
+    "state": "block_solve_delivery_ready_after_evidence",
+    "base_commit": "c6eb9e5fa1acb6df3ae990c1e2df01ffd62c99ad",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/block-solve-delivery-audit/audit.json",
+    "scope": "Six classic SYTRS2/HETRS2 native routes with immutable raw factors/pivots, forced private factor packing, input restoration/full-width INFO checks and source WORKN/counts. No old solver/factor-view factory or provider numerical source changed. Exact147-header registrations updated."
   },
   "packages": {
     "P00": {
@@ -1379,8 +1379,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P05.required.hetrs2: next unfinished family after recorded TRI2/TRI2X delivery",
-  "next_action": "Review and implement S/D/C/Z SYTRS2 and C/Z HETRS2 using existing classic factors. A is documented input but temporarily converted/restored; review forced private packing to preserve immutable public factors and concurrency. TRI3/RK storage dependencies remain separate. Preserve all frozen work and numerical failures.",
+  "active_task": "P05.required.hetf2_rk: next unfinished RK factor-producer family after recorded TRS2 delivery",
+  "next_action": "Review S/D/C/Z SYTF2_RK and C/Z HETF2_RK, then blocked RK factor producers and dependent routines. Review separate E storage, independent pivot interchanges, native INFO and actual GNU prototypes before public API implementation. Preserve frozen work, all failed numerical cases and the existing workspace.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1388,7 +1388,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "9d9f1be90b0ce84525ce1a19e800f5e2ae4a1c08e9ddc45218b14ef004ef1537"
+    "coverage_mapping_sha256": "96b06347a83e755ab37201c6ac15d644bbb7ab6d4fa261c23595770eccdb2094"
   },
   "provider": {
     "version": "3.12.1",
@@ -1821,16 +1821,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 204,
-    "callable_reference": 164,
+    "mapped_contracts": 210,
+    "callable_reference": 170,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1653,
+    "not_started_reference": 1647,
     "in_progress_reference": 296,
-    "incomplete_reference": 1949,
-    "implemented_unverified_reference": 164,
+    "incomplete_reference": 1943,
+    "implemented_unverified_reference": 170,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2046,6 +2046,11 @@
       "id": "BLOCK-INDEFINITE-HERMITIAN-DIAGONAL",
       "scope": "Blocked native HE GEMM/TRMM leaves small imaginary diagonal roundoff. Strict exactly-zero assertions remain required failures; independent inverse/residual and all selected-byte native fidelity checks pass. No normalization/tolerance change or inferred ABI defect.",
       "record": "programs/lapack-array-io/indefinite-block-inverse-review.md"
+    },
+    {
+      "id": "BLOCK-INDEFINITE-SOLVE-RANGE",
+      "scope": "All6classicTRS2 scalarreciprocal overflow on A=B=minnormal/8 despiteexactX1;fourcomplexzero-diagonal2x2 withoffcomponents0.75max andfiniteB=A*ones yieldsnonfiniteX. DirectGNUprobesconfirmreciprocalInf andB/OFFNaN. NativeINFO0/factorrestoration/fidelitypreserved;requiredmathfailuresretained.",
+      "record": "programs/lapack-array-io/indefinite-block-solve-review.md"
     }
   ],
   "external_approvals": [
@@ -2568,14 +2573,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hetrs2",
+  "next_task": "P05.required.hetf2_rk",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect actual git and block-inverse-delivery/commit.txt, then continue classic TRS2 in the existing workspace. Preliminary source notes are preserved outside the source tree.",
+  "next_command": "Inspect actual git and block-solve-delivery/commit.txt, then review pinned RK producers before creating their API. No new workspace, stabilization or frozen-family rerun.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3609,16 +3614,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 204,
-      "callable_reference": 164,
+      "mapped_contracts": 210,
+      "callable_reference": 170,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1653,
+      "not_started_reference": 1647,
       "in_progress_reference": 296,
-      "incomplete_reference": 1949,
-      "implemented_unverified_reference": 164,
+      "incomplete_reference": 1943,
+      "implemented_unverified_reference": 170,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3879,7 +3884,7 @@
       "family": "Eachstatic/sharedLP64 306/355,ILP64310/355,zero skips;PB21/21 andprovider111/111 perprofile. Twelveadditional failures exactlyGESVX4+GBTF2range4+GBTRFrange4;previousfailurespreserved.",
       "scope": "Original artifacts recovered, no completed workflow rerun;does not verifylaterindefinitechanges. PB43dependencyhashes remainunchanged."
     },
-    "next_task": "P05.required.hetrs2",
+    "next_task": "P05.required.hetf2_rk",
     "last_confirmed_remote_head": "9d2f65b8f043a81d29c0f4633f9a8af86339fb9d",
     "rook_factor_solve": {
       "state": "implemented_unverified_numerical_gates_failed",
@@ -3996,7 +4001,26 @@
       "checks": "4 relocated consumers2880 cases each acrossTRF/TF2/SV origins,driver and4explicit NB variants;18 strict TUs;4 standalone-header tests;24 new dynamic exports and0 removed/ABI;600 guarded direct GNU-emitted ABI cases plus144native-query cases;Doxygen146headers/2537members/0warnings;4package-manifest contexts+6fixtures;2architecture/dependency checks. Installed production byte identity proved after normal CMake shared RPATH transform.",
       "remaining": "BLOCK-INDEFINITE-INVERSE-RANGE: complex large2x2 nonfinite or zero output for representable exact inverse. BLOCK-INDEFINITE-HERMITIAN-DIAGONAL: small nonzero native imaginary diagonals, strict-zero assertions retained while independent inverse/residuals and exact native byte fidelity pass. All prior blockers, provider-internal instrumentation,wider platform/provider/full execution-record admission remain open. No verified Reference promotion.",
       "next_family": "Classic SYTRS2/HETRS2 with existing producers before TRI3/RK separated-E storage dependencies. Review native temporary A mutation and restoration before choosing public input contract.",
-      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-delivery-audit/audit.json"
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-delivery-audit/audit.json",
+      "delivery_commit": "c6eb9e5fa1acb6df3ae990c1e2df01ffd62c99ad",
+      "hosted_recovery": {
+        "status_record": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-hosted-read-01/runs/record.json",
+        "artifact_audit": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-hosted-family-artifacts-01/audit.json",
+        "summary": "PR/push CI and CodeQL analysis succeeded at c6eb9e5. Original selected-family831 tests/profile:LP64714pass117required failures;ILP64718pass113required failures;zero skips,provider111/111. No rerun. The separate CodeQL alert gate remains open."
+      }
+    },
+    "block_solve": {
+      "state": "implemented_unverified_reciprocal_and_complex_large_block_gates_failed",
+      "review": "programs/lapack-array-io/indefinite-block-solve-review.md",
+      "implementation_parent": "c6eb9e5fa1acb6df3ae990c1e2df01ffd62c99ad",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/block-solve-final-audit/audit.json",
+      "contracts": 6,
+      "normalized_modes": 144,
+      "profiles": "12 actual static/shared LP64/ILP64 Release/Debug/ASC-ASan+UBSan profiles each37/43 with6 required mathematical failures and160failed assertions.4 TSan profiles each6/6. Canonical540processes:468pass72required failures1920failed assertions0skip.",
+      "checks": "4 relocated consumers3456cases each acrossTRF/TF2/actualSV origins;18strictTUs;4standaloneheader tests;12added/0removed dynamic exports perABI;288guarded direct GNU-emitted ABIcases;147headers/2549Doxygenmembers/0warnings;4manifest contexts+6fixtures;2architecture/dependency checks;actualCIselector includes43newruntimeprocesses. Sixteen concurrencygroups/class with512native solves512empty noncalls512structural rejections;Linuxsharedfactorpagesread-only.328structuralrejections32protectedqueries24emptycalls26sourcecounts/class. Installed production byte identity proved after normal CMake shared RPATH installation.",
+      "remaining": "BLOCK-INDEFINITE-SOLVE-RANGE: scalar A=B=minnormal/8 exactX1 but reciprocal overflow;4complex large2x2 withfiniteB andexactones givesB/OFFNaN. RawINFO0 andnativebytefidelity preserved. All earlier numerical/provider/CodeQL/platform/full execution-record blockers remain. Provider Fortran/BLAS internals uninstrumented; no verified Reference promotion.",
+      "next_family": "RK unblocked factor producers then blocked producers/dependent consumers with separate E storage.",
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/block-solve-delivery-audit/audit.json"
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
@@ -4015,11 +4039,11 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "block_inverse_12",
-    "implementation_parent": "a80a7ec7fbb7465b19fdb7c336af561f35741847",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-delivery/commit.txt",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-delivery-audit/audit.json",
-    "state": "implemented_unverified; complex range and strict exactly-real Hermitian diagonal gates remain required failures;FULL_PROGRAM_INCOMPLETE"
+    "family": "block_solve_6",
+    "implementation_parent": "c6eb9e5fa1acb6df3ae990c1e2df01ffd62c99ad",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/block-solve-delivery/commit.txt",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/block-solve-delivery-audit/audit.json",
+    "state": "implemented_unverified; reciprocal overflow and complex large2x2 solve gates remain required failures;FULL_PROGRAM_INCOMPLETE"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4112,6 +4136,23 @@
       "base_commit": "00835cea9b7acd884f422c6091dffa45e9d131eb",
       "audit": "master-continuation-20260910-01/continuation-20260912-01/classic-inverse-delivery-audit/audit.json",
       "scope": "Six native classic inverses with explicit mutable raw factors, immutable public/native pivots and exact source singular INFO. Pinned C declarations, documented2N complex SY WORK and equal-negative classic pairs. No old numerical kernel change. Exact145-header registrations updated."
+    }
+  },
+  "historical_delivery_pointers_before_block_solve": {
+    "current_base_commit": "a80a7ec7fbb7465b19fdb7c336af561f35741847",
+    "last_implementation_commit": "a80a7ec7fbb7465b19fdb7c336af561f35741847",
+    "current_delivery": {
+      "family": "block_inverse_12",
+      "implementation_parent": "a80a7ec7fbb7465b19fdb7c336af561f35741847",
+      "commit_record": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-delivery/commit.txt",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-delivery-audit/audit.json",
+      "state": "implemented_unverified; complex range and strict exactly-real Hermitian diagonal gates remain required failures;FULL_PROGRAM_INCOMPLETE"
+    },
+    "worktree_diff_identity": {
+      "state": "block_inverse_delivery_ready_after_evidence",
+      "base_commit": "a80a7ec7fbb7465b19fdb7c336af561f35741847",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/block-inverse-delivery-audit/audit.json",
+      "scope": "Twelve native TRI2/TRI2X routes with mutable raw classic factors, immutable pivots, scalar-specific/documented workspace and checked source counts. Positive INFO publishes converted partial selected output; no original-factor reuse promise. No old numerical kernel changed. Exact146-header registrations updated."
     }
   }
 }

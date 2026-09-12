@@ -20,6 +20,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_indefinite_rook_inverse.cc
   reference_indefinite_inverse.cc
   reference_indefinite_block_inverse.cc
+  reference_indefinite_block_solve.cc
   reference_rank_revealing.cc
   reference_sylvester.cc
   reference_indefinite_condition.cc
@@ -100,6 +101,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rook_inverse.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_inverse.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_block_inverse.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_block_solve.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_rank_revealing.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_sylvester.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_condition.h"
