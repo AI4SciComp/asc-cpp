@@ -1822,16 +1822,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 104,
-    "callable_reference": 76,
+    "mapped_contracts": 108,
+    "callable_reference": 80,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
     "not_started_reference": 1711,
-    "in_progress_reference": 326,
-    "incomplete_reference": 2037,
-    "implemented_unverified_reference": 76,
+    "in_progress_reference": 322,
+    "incomplete_reference": 2033,
+    "implemented_unverified_reference": 80,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -3123,16 +3123,16 @@
     "latest_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 104,
-      "callable_reference": 76,
+      "mapped_contracts": 108,
+      "callable_reference": 80,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
       "not_started_reference": 1711,
-      "in_progress_reference": 326,
-      "incomplete_reference": 2037,
-      "implemented_unverified_reference": 76,
+      "in_progress_reference": 322,
+      "incomplete_reference": 2033,
+      "implemented_unverified_reference": 80,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3562,16 +3562,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 104,
-      "callable_reference": 76,
+      "mapped_contracts": 108,
+      "callable_reference": 80,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
       "not_started_reference": 1711,
-      "in_progress_reference": 326,
-      "incomplete_reference": 2037,
-      "implemented_unverified_reference": 76,
+      "in_progress_reference": 322,
+      "incomplete_reference": 2033,
+      "implemented_unverified_reference": 80,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3610,7 +3610,7 @@
       "hosted_audit": "master-continuation-20260910-01/gecon-hosted-audit-01/audit.json"
     },
     "geequ": {
-      "state": "bounded_local_engineering_pushed_hosted_pending_numerical_acceptance_blocked",
+      "state": "bounded_local_engineering_and_hosted_audit_complete_numerical_acceptance_blocked",
       "base_head": "a1ca705174e8e4f755c5a97a44efc488e5ab0ae6",
       "review": "programs/lapack-array-io/lu-equilibration-review.md",
       "prerequisites": "master-continuation-20260910-01/geequ-continuation-contract-01/review.json",
@@ -3621,8 +3621,7 @@
       "strict": "geequ-modes-style-02/modes plus unchanged geequ-modes-style-01/observation",
       "numerical": "LP64GEEQUBnonzero3x2fixture at2^-140single/2^-1050double:fourprocesses88assertions,fourscalarfixtures8layoutexecutions,oneknownpositive-power-before-reciprocal libgccoverflowcause. GEEQUbothABIs/GEEQUBtrueILP64pass. Same16epsilonoracle, provider/runtime unchanged; needseparatelyauthorizednumerical/providerdecision.",
       "remaining": [
-        "actual hosted audit of pushed45b8bb5",
-        "LP64GEEQUB numerical strategy, widerplatform and owner/fullprogramme requirements"
+        "LP64GEEQUB numerical strategy, wider provider platform and owner/fullprogramme requirements"
       ],
       "shared_audit": "master-continuation-20260910-01/geequ-shared-audit-01/audit.json",
       "frozen_source": {
@@ -3640,16 +3639,17 @@
         "ci": 34644695593,
         "codeql": 34644695420,
         "family": 34644695416,
-        "latest_read": "geequ-hosted-read-01:inprogress"
-      }
+        "latest_read": "geequ-hosted-read-04:CI19/19,CodeQL03success;LP64two212/245 andILP64two216/245 with33/29genuine mathfailures,previous29outputsidentical;newLP64four88assertionsmatchlocal;provider111/fivePTexamplespass"
+      },
+      "hosted_audit": "master-continuation-20260910-01/geequ-hosted-audit-01/audit.json"
     },
     "gerfs": {
-      "state": "bounded_local_engineering_complete_delivery_checks_next_numerical_acceptance_blocked",
+      "state": "bounded_local_engineering_pushed_hosted_pending_numerical_acceptance_blocked",
       "prerequisite": "master-continuation-20260910-01/gerfs-continuation-prerequisite-01/review.json",
       "typed_review": "master-continuation-20260910-01/gerfs-continuation-contract-01/review.json",
       "base_head": "45b8bb5073d72afb3af208a25c71c91deb3ed52a",
       "source_changes": "Three maintained test/registration files; public API and production adapter unchanged.",
-      "next": "Review/commit tested GERFS delta; ordinary push after prior GEEQU hosted checks finish to preserve those runs. Continue prepared GESVX maintained tests.",
+      "next": "Audit hosted checks when complete; continue GESVX modes/observer and remaining bounded engineering.",
       "initial_modes": "master-continuation-20260910-01/gerfs-modes-{lp64,ilp64}-01",
       "initial_observer": "master-continuation-20260910-01/gerfs-observation-{lp64,ilp64}-01",
       "observer_style_amendment": "master-continuation-20260910-01/gerfs-observer-style-amendment-01",
@@ -3669,15 +3669,36 @@
       "remaining": [
         "feature delivery and actual hosted checks",
         "separately authorized numerical strategy, unavailable wider provider environments, full programme requirements"
-      ]
+      ],
+      "delivery_commit": "663c7a4c4b1388c3a2c78093e61f2e6e2f94f9f4",
+      "delivery": "master-continuation-20260910-01/gerfs-feature-commit-01",
+      "push": "master-continuation-20260910-01/gerfs-feature-push-01",
+      "hosted": {
+        "ci": 34647493607,
+        "codeql": 34647493615,
+        "family": 34647493631,
+        "latest_read": "gerfs-hosted-read-01:queued/inprogress"
+      }
     },
     "gesvx": {
-      "state": "typed_review_and_unchanged_regression_reuse_complete_new_modes_source_prepared_uncompiled",
+      "state": "bounded_local_engineering_complete_numerical_acceptance_blocked",
       "prerequisite": "master-continuation-20260910-01/gesvx-continuation-prerequisite-01/review.json",
       "typed_review": "master-continuation-20260910-01/gesvx-continuation-contract-01/review.json",
       "unchanged_regressions": "master-continuation-20260910-01/gesvx-existing-evidence-reuse-01/audit.json",
-      "new_source": "tests/dense_lapack/lu_driver_modes_test.cc; not yet registered, compiled or included in GERFS delivery",
-      "next": "After GERFS delivery commit, register/build new modes, implement calibrated output observer, reuse installed evidence; no public API reimplementation."
+      "new_source": "Maintained modes,calibratedobserver,CMake; existing publicAPI/production unchanged.",
+      "next": "Commit the reviewed GESVX continuation with staged source identity matching the frozen product; continue PBTRF/PBTF2/PBTRS INFO correction. Fresh hosted delivery and wider/full-profile numerical acceptance remain separate.",
+      "release_audit": "master-continuation-20260910-01/gesvx-release-audit-01/audit.json",
+      "installed_reuse": "master-continuation-20260910-01/gesvx-installed-reuse-01/audit.json",
+      "registration": "master-continuation-20260910-01/gesvx-registration-01",
+      "strict": [
+        "gesvx-modes-style-03/modes",
+        "gesvx-observation-style-02/observation"
+      ],
+      "mathematical": "Fourfailedprocesses240assertions/profile;4scalarfixtures48N/Ftranspose/layout executions,2inheritedGECON/GERFScauses. ExactoriginalscalarX1/RCOND1/INFO0/finiteestimates oracleunchanged. ExplicitEand2minnormalcontrols pass.",
+      "static_audit": "master-continuation-20260910-01/gesvx-static-audit-01/audit.json",
+      "shared_audit": "master-continuation-20260910-01/gesvx-shared-audit-01/audit.json",
+      "recovery_checks": "master-continuation-20260910-01/continuation-20260912-01/gesvx-current-contract-checks",
+      "recovered_shared_execution": "Six preexisting completed profiles reused; only two missing ASan/UBSan profiles executed. Six shared Debug/Release/ASC-only sanitizer profiles each17/21 with exactlyfourrequiredmathfailures240assertions; bothTSan4/4;zero skips. Originalfrozen1210build/API/test/ABIinputsmatch recoveredworkspace before independentPBcorrection."
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

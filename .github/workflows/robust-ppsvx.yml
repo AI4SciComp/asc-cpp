@@ -60,7 +60,7 @@ jobs:
         run: |
           set -euo pipefail
           ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             > "$RUNNER_TEMP/asc-selected.json"
           python3 - "$RUNNER_TEMP/asc-selected.json" <<'PY'
           import json
@@ -116,6 +116,13 @@ jobs:
           required |= {gerfs + mode + scalar for scalar in "sdcz"
                        for mode in ("concurrency_", "required_math_")}
           required.add(gerfs + "observation")
+          for family in ("lu_driver", "lu_driver_info", "lu_driver_pivot"):
+              required |= {"asc_cpp.dense_lapack." + family + "." + scalar
+                           for scalar in "sdcz"}
+          gesvx = "asc_cpp.dense_lapack.lu_driver_modes."
+          required |= {gesvx + mode + scalar for scalar in "sdcz"
+                       for mode in ("concurrency_", "required_math_")}
+          required.add(gesvx + "observation")
           conversion = "asc_cpp.dense_lapack.precision_conversion."
           required |= {conversion + mode + scalar for scalar in "sdcz"
                        for mode in ("", "fault_")}
@@ -152,7 +159,7 @@ jobs:
               raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
           PY
           ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
-            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|reference_lu|normal_return_guard|dense_lapack.package_integration' \
             --output-junit "$RUNNER_TEMP/asc-tests.xml" \
             2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
       - name: Audit JUnit outcomes even when numerical gates fail

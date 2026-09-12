@@ -347,3 +347,18 @@ remain separate. The next ready existing family is GERFS, with its typed
 review in `gerfs-continuation-contract-01/review.json`. Its query legitimately
 validates raw pivot values, and X is an input/output. Those reads must be
 distinguished from old FERR/BERR reads when adding its missing observation.
+
+### Hosted completion for the integrated continuation
+
+Revision `45b8bb5073d72afb3af208a25c71c91deb3ed52a` was ordinarily pushed.
+`geequ-hosted-audit-01/audit.json` records CI34644695593 passing19/19 and
+CodeQL34644695420 passing. Selected-family34644695416 completed with static/
+shared LP64 each212/245 (33genuine mathematical failures), and true ILP64
+each216/245 (29failures). No test was skipped. The prior29failure outputs are
+byte-identical to the GECON hosted baseline; the four new LP64GEEQUB failures
+contain88assertions matching local raw values. The19added selectors comprise
+17family checks and two public-header checks. Each provider passes111tests,
+and all five PT public examples pass. Hosted merge
+`eb529589cee585c66bdc73dc788ce913560f2ee7` has the exact feature tree
+`ad6e7b680798c3527cf13616f186bf4368f1d192`. This is affected hosted evidence,
+not numerical acceptance or wider optional-provider platform admission.

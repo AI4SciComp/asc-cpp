@@ -212,3 +212,167 @@ provider-free/provider regressions, installed isolation, and the explicitly
 unmet tiny FACT=N/F condition/error mathematics above. The next bounded local
 task is the separate GEEQU/GEEQUB empty wide-row-stride correction against its
 unchanged prior snapshot. The full P04 and later runbook scope remains open.
+
+## Master continuation: normalized GESVX modes
+
+The 2026-09-12 continuation starts after the GERFS delivery at
+`663c7a4c4b1388c3a2c78093e61f2e6e2f94f9f4`. The older external handoff pointers
+above are historical. GESVX already has24public query/execute declarations,
+production integration, ordinary/INFO/pivot tests and actual relocated public
+consumer evidence. This continuation retains that implementation and its
+requirements, adding missing maintained observation, concurrency and genuine
+mathematical gates. No provider, algorithm, API, tolerance or floating-point
+setting changes.
+
+`master-continuation-20260910-01/gesvx-continuation-contract-01/review.json`
+binds the four pinned source definitions, the complete executable bodies,
+the common parameter contract and every scalar-specific declaration/documentation/
+initialization difference, and23selected existing ASC inputs. S/D use float/
+double matrices; C/Z use complex float/double. R/C, estimates and statistics
+use the underlying real type. General overlaid LU and one-based raw pivots
+are not Hermitian factors; no UPLO applies. Complex transpose and conjugate
+transpose remain distinct. Six explicit FACT/EQUED routes, three transposes,
+16independent A/AF/B/X layouts and four N/NRHS shapes give1,152cases per scalar.
+Four routines remain four catalogue entries, callable-unverified.
+
+### Mode transformations and publication
+
+Write the equilibrated matrix as Ae=Dr*A0*Dc, with each unused scaling diagonal
+set to identity. For TRANS=N, the driver solves Ae*Y=Dr*B0 and publishes
+X=Dc*Y. For T/C, it solves op(Ae)*Y=Dc*B0 and publishes X=Dr*Y; the positive
+real scales are unchanged by conjugation. FACT=N uses both identities. FACT=E
+computes optional scales explicitly. FACT=F receives Ae, its corresponding
+raw LU/pivots and selected scales, together with the original B0. RCOND
+estimates Ae; BERR belongs to the refinement system; FERR is adjusted for the
+selected solution scaling. These distinct systems must not be compared using
+an unadjusted original-system condition oracle.
+
+| Route | Numeric input and output contract |
+| --- | --- |
+| FACT=N | A/B immutable. AF, caller pivots, X, FERR/BERR and statistics are outputs whose old values are unread before native entry. |
+| FACT=E | A/B explicitly mutable. AF, caller pivots, R/C, actual EQUED, X, estimates and statistics are outputs. Query binds no old output EQUED value. R/C may be partial when internal equilibration fails; returned EQUED selects usable scales. |
+| FACT=F, EQUED=N/R/C/B | Ae/AF/pivots/selected scales immutable and from one origin. Query legitimately reads raw pivots and selected finite positive scales. Unused scale vectors may have zero or N entries and are unread. After workspace validation, execution checks exact-zero U before mutation. Original B may be scaled. Old X/estimates/statistics are not inputs. |
+
+Real scratch is max(1,4N) scalars and2Nforeign integers; complex scratch is2N
+scalars, max(1,2N) reals andNforeign integers. Converted pivots precede real
+IWORK. All row-major matrices pack consecutively into caller scratch; AF is
+read only in FACT=F and X is never packed as input. All eleven operand,
+statistics, EQUED and live workspace spans are disjoint. N and native leading
+dimensions are checked against the actual ABI; source row strides remain
+ASC-sized metadata. N=0 still needs the growth scratch element, writes it1,
+writes statistics1/1 and estimates0, and sets EQUED=N for FACT=E without native
+INFO. N>0, NRHS=0 still enters factorization/condition estimation.
+
+INFO1..N preserves completed singular factorization, scaling, RCOND0 and
+growth while leaving X/FERR/BERR unchanged. INFO=N+1 retains a computed
+solution and diagnostics with an accuracy warning. Invalid, unwritten,
+partial-width or excessive INFO, invalid returned EQUED or produced pivots
+remain provider defects. Post-return estimate/statistic checks preserve raw
+values and completed X; negative diagnostics take precedence over nonfinite
+ones. No raw INFO is invented and no universal finite-X promise is added.
+
+### Numerical disposition
+
+Both causes use the unchanged scalar fixture N=NRHS=1,
+A=AF=B=minnormal/1024 and pivot1 in FACT=N/F, N/T/C and all-column/all-row
+layouts. The original direct probe requires exact X=1, RCOND=1, INFO=0 and
+finite FERR/BERR. The maintained gate preserves that oracle exactly.
+
+| Unique cause | Expected and observed property | Evidence and required decision |
+| --- | --- | --- |
+| GECON guarded inverse-scale restoration | The scalar system has condition1. RCOND remains0 when the inverse estimate cannot be restored without overflow, although X=1 and growth=1. GESVX consequently returns INFO2, an accuracy warning rather than exact singularity. | The source guard and direct both-ABI reproduction already recorded above and in `lu-condition-review.md` apply unchanged. Preserve the scalar condition gate; a separately authorized provider or scale-invariant estimation strategy is needed. |
+| GERFS unscaled solve before small error weights | Required FERR is finite. Real N/T/C giveInf; complex N givesNaN and T/C giveInf. X=1 and the guarded BERR equation pass. | The direct probe and `lu-refinement-review.md` reproduce both actual ABIs. Preserve the finite-estimate gate; a separately authorized provider or scaled weighted-inverse strategy is needed. |
+
+The original direct processes failed24composite expectations in72printed cases
+per ABI. The maintained tests add the already required two layouts and retain
+individual report/property assertions: four failed processes contain240failed
+assertions, four failing scalar fixtures have48FACT/transpose/layout executions,
+and there are two inherited causes. This is not four new independent bugs.
+Explicit FACT=E and the2minnormal control pass; they are not fallbacks for N/F.
+The two decisions are in the existing owner packet. PPSVX-specific numerical
+authorization does not extend to GESVX.
+
+### Maintained tests and actual evidence
+
+Paths below are relative to the existing external
+`master-continuation-20260910-01` evidence root. Raw logs remain external.
+
+- `gesvx-modes-audit-01/audit.json`: both-ABI Release runs03 pass four
+  concurrency processes and retain four genuine mathematical failures,
+  240assertions each. Four workers use independent buffers, context, workspace
+  and reports, reusing immutable matching plans for32calls per mode/layout/
+  transpose. Diagonal real/complex fixtures have independent known solutions
+  and actual supplied N/R/C/B scales. Singular, invalid pivot or missing
+  workspace, stale plan and normal outcomes check diagnostic isolation.
+  Workers do not use global fault injection or allocation-audit state.
+- `gesvx-release-audit-01/audit.json`: both-ABI observer02 passes24,028checks
+  in216children. There are148intentional forbidden reads,24restored writes,
+  24legitimate supplied pivot/scale/U and A/B packing reads, and23,832phase
+  checks. Query/stale/exact-one-byte-short paths,2,304native entries including
+  zero RHS, and2,304local N=0 cases are observed. Signature, three trailing
+  character lengths, FACT/TRANS/EQUED, dimensions, actual packed/direct buffer
+  addresses and foreign pivot storage are checked before page access is restored.
+- The observer uses initialized, aligned containing arrays and terminating
+  child faults, with no fault-handler recovery or undefined pointer/object
+  proof. Selected supplied scales/pivots stay readable during admission; old
+  outputs and unused scales are protected until the validated boundary.
+  Local estimates/statistics are writable, and their write-only completion is
+  separately source-reviewed. Post-return quality scans are allowed. This
+  observes ASC preparation; it does not claim foreign-code instrumentation.
+- `gesvx-existing-evidence-reuse-01/audit.json`:72ordinary/INFO/pivot processes
+  reused across static Debug/Release/ASC-only sanitizer and both ABIs through
+  48selected compilation dependencies. Only four already reviewed GESV RHS
+  documentation lines differ. Provider archives/compiler/runtime are unchanged.
+- `gesvx-installed-reuse-01/audit.json`: four actual relocated public advanced
+  consumers, testID5, and24GESVXexports/package. Four scalars, N/T/C,16layouts,
+  ordinary/scaled2x2fixtures and FACT=N/E/F returned-factor reuse are exercised.
+  Ten selected source inputs and the product/package/ABI closure match the
+  actual PTSVX installs. No private source include, evidence-directory dependency
+  or bundled provider is necessary. Provider-free consumers remain isolated.
+- Modes strict03 and observer strict02 pass. The initial new diagnostic enum
+  control, missing empty-view constructor and two oversized observer functions/
+  wrapper-comment errors are preserved with their corrections. Only affected
+  tests were rebuilt; the mathematical function and observer phase results are
+  unchanged. No failed requirement was converted to expected success.
+
+Debug profiles each pass five engineering tests and retain four mathematical
+failures240assertions. Static sanitizer/race verification, shared profiles,
+final delivery and fresh hosted checks are in progress and receive no advance
+credit. Existing public API/export/Doxygen inputs remain unchanged. The
+accepted native20/array-I/O subset and separate RobustPpsvx capability remain
+closed. Other dependency-ready families continue independently of the two
+numerical decisions and unavailable wider provider platforms.
+
+### Static completion
+
+`gesvx-static-audit-01/audit.json` records six completed static Debug, Release
+and ASC-only ASan/UBSan profiles in actual LP64 and true ILP64. Each passes
+five engineering processes and retains four mathematical failures240assertions.
+Both static TSan profiles pass4/4. Every observer retains the same20phase
+records,23,832phase checks and196calibrations. No skips occurred. Exact selected
+IDs, commands, statuses and raw-value comparisons are preserved. Only ASC/test
+code is instrumented; the pinned provider/runtime is not. Shared verification
+and delivery remain the next finite steps.
+
+### Shared completion after transport recovery
+
+Recovery at `6fd7c90` found six shared profiles already complete. Only the
+previously unstarted LP64 and ILP64 ASan/UBSan profiles were executed. The
+existing `audit_gesvx_shared_01.py` then passed over all eight retained
+profiles without rerunning Debug, Release or TSan.
+
+`gesvx-shared-audit-01/audit.json` binds the original frozen tree
+`aa4012465076f33457b79f897b1761992be7c67f`. Each of the six shared
+Debug/Release/ASan+UBSan profiles passes 17 of 21 tests, retaining exactly
+four required mathematical failures and 240 failed assertions. Both shared
+TSan profiles pass four of four. Every observer's 20 phase records match the
+static baseline; the mathematical output signatures also match. Zero skips
+occurred. Sanitizers cover ASC and test code, not the pinned foreign provider.
+
+Before the next PB correction began, all 1,210 frozen build/API/test/ABI inputs
+were rehashed against the recovered workspace. Ten installed-consumer source
+dependencies still match the four retained relocated consumers. Coverage,
+backlog, documentation consistency, local links and whitespace checks passed
+in `continuation-20260912-01/gesvx-current-contract-checks`. The bounded local
+engineering slice is complete; numerical acceptance, normalized full-profile
+evidence, wider provider platforms and fresh hosted delivery remain open.

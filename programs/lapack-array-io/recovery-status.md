@@ -80,3 +80,19 @@ promises the selected provider's behavior without hidden scaling or replacement.
 The pinned provider and that public contract remain unchanged. Numerical
 acceptance is blocked; the existing required tests and decision record remain
 active. GESVX and the independent structured-solver work continue.
+
+## Continued implementation checkpoint
+
+GESVX's two missing shared sanitizer profiles are now complete. The original
+eight-profile shared audit passes: six profiles each retain four mathematical
+failures among 21 tests, and both TSan profiles pass four of four, with zero
+skips. See [the family review](lu-driver-review.md#shared-completion-after-transport-recovery).
+No GESVX production code, API or numerical requirement was replaced.
+
+The next active structured-solver correction is PBTRF/PBTF2/PBTRS native INFO
+publication. Both actual ABIs reproduced false success when the provider
+omits INFO; ILP64 also reproduces a partial-width zero write. The two production
+INFO seeds now use the full-width minimum sentinel. Both Release suites pass
+13/13 with the additive regression checks; strict checks, shared/static
+delivery, installed consumers and the atomic header/coverage update are in
+progress. This correction has not yet earned a completion verdict.
