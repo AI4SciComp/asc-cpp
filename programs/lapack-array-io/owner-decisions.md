@@ -361,3 +361,39 @@ close numerical acceptance. Original failed fixture/style/header-oracle runs
 remain preserved. Continue independent RK drivers and later families. See the
 [RK inverse contract review](indefinite-rk-inverse-review.md) and external
 `rk-inverse-final-audit/audit.json`.
+
+## AASEN-FACTOR-RANGE
+
+Six single-stage SYTRF_AA/HETRF_AA producer rows reproduce existing indefinite
+factor arithmetic categories through their xLASYF_AA/xLAHEF_AA panels. Exact
+shifted multiplier 1/2 and tridiagonal factors are representable for the
+maintained coupled order-3 and order-67 fixtures. At component min-normal/8,
+ONE/offdiagonal before SCAL produces nonfinite factors in all six classes. At
+component .75*max, complex SY/HE also lose reconstruction accuracy; .25*max
+controls pass. Independent reconstruction fails while direct native factor
+bytes match. Both actual ABIs initially retain six failed mathematical and
+six passing fidelity processes, with no skipped tests. Full verbose logs
+retain 323,952 mathematical assertions per ABI; initial JUnit output was
+truncated and is not the complete assertion record.
+
+[The source, exact representable factors and current evidence](indefinite-aasen-review.md#required-numerical-disposition)
+remain separate from completion of the checked interfaces. Consolidate these
+with the existing reciprocal and large-complex division decisions; successful
+interface checks do not approve any numerical strategy. Remediation requires
+an explicit decision either authorizing a provider correction and new locked
+revision, or a separately named first-party Aasen strategy with its own scope,
+proofs and acceptance. Neither is currently authorized. Preserve the pinned
+Reference mathematical gates and continue the ready Aasen consumers and other
+independent rows. The robust PPSVX decision does not extend to this family.
+
+### AASEN-EMPTY-WORK
+
+CSYTRF_AA/ZSYTRF_AA additionally return an optimal LWORK of zero at N=0, both
+for queries and normal execution, below their documented minimum one. This
+is another native WORK output-contract defect in the existing provider
+decision packet. The required contract process retains eight scalar/triangle/
+query-or-compute failures per ABI; formula fidelity and ASC's empty noncall
+remain separate. A corrected provider revision needs explicit owner authority;
+no clamp or silent native substitution is introduced. The exact source and
+maintained predicate are recorded in the
+[Aasen review](indefinite-aasen-review.md#native-workspace-contract).

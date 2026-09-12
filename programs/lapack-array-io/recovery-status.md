@@ -1,3 +1,48 @@
+## 2026-09-13: Aasen producers ready for feature integration
+
+The worktree remains `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`,
+with pushed parent `7dd45816ff3bdd4715223f2cc2f92fc230ea3c49`. Inspect actual git
+and `aasen-factor-delivery/commit.txt` for the delivery commit. All three user
+instruction files, prior milestones and failed records are preserved.
+
+Six SYTRF_AA/HETRF_AA routes add twelve public declarations and 72 reviewed
+modes. Selected A holds tridiagonal T and shifted triangular multipliers;
+positive one-based pivots have Aasen provenance. Caller-owned WORK, native
+INTEGER lifetimes, row/original-HE packing, source bounds, aliases and complete
+INFO/pivot/WORK writes are checked before publication. Empty calls are validated
+noncalls; singular factors may complete with INFO zero.
+
+Sixteen profiles have 564 canonical processes: 480 passes, 84 required failures,
+zero skips. Twelve Release/Debug/ASC-ASan+UBSan profiles each pass 38/45; four TSan
+profiles each pass 6/6. AASEN-FACTOR-RANGE retains tiny reciprocal and large complex
+coupled reconstruction failures; AASEN-EMPTY-WORK retains native CSY/ZSY empty
+optimal WORK zero below minimum one. Across normal profiles, 3,887,424 mathematical
+and 96 native WORK assertions fail. Every numerical requirement remains active.
+
+Each normal selection reuses 43 unchanged original core processes plus two
+current WORK processes after one direct-include correction. Original 45-process
+runs and the first 43+2 composite remain separate, with actual exit 8; all TSan
+invocations exit 0. Full verbose logs preserve assertions truncated in JUnit.
+Earlier style, header-oracle, Doxygen-link and audit-marker failures are retained.
+
+Four relocated consumers pass 288 analytic cases each; 20 strict TUs, 576 guarded
+native ABI cases, 4 standalone headers, 12 added/no removed exports per ABI,
+10 package checks and 2 architecture checks pass. Doxygen has 153 headers and
+2645 members without warnings; the maintained selector includes 1319 processes.
+Installed libraries match final producers. Pinned Fortran/BLAS internals remain
+uninstrumented; wider provider/platform admission remains pending.
+
+Previous RK-driver hosted profiles retain exactly the prior failures plus six
+driver range gates, zero skips; provider 111/111 each and general CI pass. CodeQL
+analysis passes but 3093 alerts remain open, including 12 security findings.
+Those are 7dd458 evidence and do not certify this Aasen working tree.
+
+FULL_PROGRAM_INCOMPLETE: required 2113; reviewed 258; Reference callable-unverified
+218, partial 296, not-started 1599, verified 0. Native20 stays 20/20 and experimental
+RobustPpsvx remains separate. Finish the owned commit/push if pending, then
+continue `P05.required.hetrs_aa` and its exact source dependencies. The existing
+latest handoff and `indefinite-aasen-review.md` identify all commands and evidence.
+
 ## Latest checkpoint: RK drivers ready for feature integration
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
@@ -857,3 +902,39 @@ workspace query probes are under the existing continuation evidence directory,
 failed compiler/command setup attempts remain recorded. The next implementation
 is S/D/C/Z SYTRI2/SYTRI2X and C/Z HETRI2/HETRI2X. This is an in-progress
 checkpoint, not numerical acceptance. `FULL_PROGRAM_INCOMPLETE`.
+
+## 2026-09-13: active Aasen producers after pushed RK drivers
+
+HEAD is `7dd45816ff3bdd4715223f2cc2f92fc230ea3c49` on the existing feature
+worktree/branch. The RK inverse and driver deliveries are committed and pushed;
+PR #47 is updated. The current writer has implemented six single-stage
+SYTRF_AA/HETRF_AA producer routes and their public header, source/build surface,
+maintained tests and installed consumer locally. These changes are uncommitted.
+The three pre-existing user instruction files remain untracked and untouched.
+
+Current task is `P05.required.hetrf_aa`. [The maintained review](indefinite-aasen-review.md)
+records exact source contracts and the first numerical disposition. Six source
+contracts/72 option modes and twelve actual GNU declarations are reviewed;
+native prerequisites pass288 cases per ABI. Initial ordinary suites pass13/13
+and engineering suites pass18/18 per ABI, zero skips. Range suites retain6
+mathematical failures and6 fidelity passes per ABI; all323952 failed assertions
+per ABI are in full verbose logs, while initial JUnit payloads were truncated.
+No failure is disabled, inverted or waived. `AASEN-FACTOR-RANGE` joins the
+existing owner packet without recording approval of a numerical strategy.
+
+Strict analysis is finding ordinary include/style issues, retained in
+`aasen-factor-strict-01`. Repair those, finish the guarded ABI probe and public
+installed consumer, run the finite sixteen profiles and required integration
+checks, then normalize evidence and commit/push owned changes. Continue the
+inventoried Aasen consumers after delivery. The existing local
+`rk-inverse-profile-recovery-01/latest-handoff.json` is the exact live command
+record; do not restart RK or repeat completed prerequisite tests blindly.
+
+On pushed7dd4581, general CI and CodeQL analysis succeeded, while selected
+LAPACK workflows were still running at the latest read. The alert API reports
+3093 open alerts, including the same12 security findings (4critical/8high),
+with current source hashes preserved in `aasen-factor-remote-01`. None is
+dismissed or treated as closed by successful analysis. Current integrated
+coverage remains required2113, callable-unverified212, in-progress296,
+not-started1605, verified Reference0; reviewed integrated contracts252;
+native20 stays20/20. The uncommitted Aasen work has no normalized row promotion.

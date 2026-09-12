@@ -14,6 +14,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_least_squares.cc
   reference_cholesky_band.cc
   reference_indefinite.cc
+  reference_indefinite_aasen.cc
   reference_indefinite_rook.cc
   reference_indefinite_rook_condition.cc
   reference_indefinite_rook_driver.cc
@@ -100,6 +101,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_least_squares.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_cholesky_band.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_aasen.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rook.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rook_condition.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rook_driver.h"
