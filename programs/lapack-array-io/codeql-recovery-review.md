@@ -79,3 +79,20 @@ are exactly four GESVX mode gates, four GBTF2 range gates and four GBTRF range
 gates; all earlier failures remain. The original downloaded artifacts and audit
 are in `continued-hosted-family-recovery-01`. No completed hosted workflow was
 restarted, and these results do not verify the later indefinite changes.
+
+## Recovery read at cd0d9aa
+
+The 2026-09-13 branch-specific alert read at `cd0d9aa` returns 3,002 open
+alerts, including four critical and eight high security findings. The three
+analysis jobs succeeded; the separate CodeQL alert check failed. These are
+distinct results. Exact responses and read exit codes are retained under
+`continuation-20260912-01/rk-inverse-profile-recovery-01/`.
+
+The twelve security findings occupy the same reviewed groups: virtual-array
+preview storage, intentional byte-offset tests, caller-selected file paths,
+the bounded GEMV benchmark oracle and the tridiagonal INTEGER workspace offset.
+The six earlier source hashes still match. Current code at the tridiagonal
+offset was also inspected; it begins the second array in checked byte storage.
+No security finding names the new RK inverse files. This read grants no
+security closure: no alert was dismissed, query suppressed or public I/O
+contract changed. The full alert review and hosted disposition remain open.

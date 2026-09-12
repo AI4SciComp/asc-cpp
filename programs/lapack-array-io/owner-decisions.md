@@ -320,3 +320,32 @@ do not close numerical acceptance. Preserve earlier blockers and continue
 TRI_3/TRI_3X inverse and RK driver dependencies. See the
 [RK condition record](indefinite-rk-condition-review.md) and external
 `rk-condition-final-audit/audit.json`.
+
+
+## BLOCK-INDEFINITE-RK-INVERSE-EMPTY-WORK
+
+At n=0, pinned CSYTRI_3/ZSYTRI_3/ZHETRI_3 queries return WORK(1)=8, but normal
+execution returns INFO=0 without writing documented WORK(1). SSYTRI_3/DSYTRI_3/
+CHETRI_3 query and execution return 1. Both triangles and integer modes retain
+this native contract failure separately from passing source fidelity and all
+storage guards. ASC empty execution remains a metadata-only noncall; it does
+not repair the native contract. Twelve final profiles each retain the failing
+contract process with six failed cases. No returned-WORK assertion is removed.
+
+The same twelve TRI_3/TRI_3X routes also extend two existing open decisions:
+`BLOCK-INDEFINITE-INVERSE-RANGE` retains complex two-block failures at
+E=(.75*max,.75*max), where exact inverse components are finite. Native Fortran
+traces isolate symmetric E/E and Hermitian ABS(E)/complex-D arithmetic overflow.
+`BLOCK-INDEFINITE-HERMITIAN-DIAGONAL` retains exact zero imaginary-diagonal
+assertions even when residual and accuracy controls pass. Native output
+fidelity is reported separately; no arithmetic patch, tolerance change or
+Hermitian normalization is silently introduced.
+
+Twelve normal/sanitizer profiles each retain 31 failed processes, 7,136 failed
+mathematical assertions and six failed native empty-WORK cases. Four TSan
+profiles and four relocated installed consumers pass bounded engineering
+checks. Implementation remains `implemented_unverified`; those passes do not
+close numerical acceptance. Original failed fixture/style/header-oracle runs
+remain preserved. Continue independent RK drivers and later families. See the
+[RK inverse contract review](indefinite-rk-inverse-review.md) and external
+`rk-inverse-final-audit/audit.json`.

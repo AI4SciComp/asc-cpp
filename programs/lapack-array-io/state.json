@@ -10,16 +10,16 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "7c00b77990d8c6d2c97d37edd05ab441e948a938",
+  "current_base_commit": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "7c00b77990d8c6d2c97d37edd05ab441e948a938",
+  "last_implementation_commit": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
   "worktree_diff_identity": {
-    "state": "rk_condition_delivery_ready_after_evidence",
-    "base_commit": "7c00b77990d8c6d2c97d37edd05ab441e948a938",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery-audit/audit.json",
-    "scope": "Six RK CON_3 consumers with immutable A/E/pivots, own-index paired target bounds, ignored-E semantics, explicit finite ANORM and associated-real RCOND diagnostics. Active 2*N scalar WORK and real 2*N/complex N private INTEGER entries; row A packing. Full INFO/output writes and private pivot immutability checked. Empty/zero-norm execution is a noncall. Provider kernels unchanged. Exact 150-header registrations updated."
+    "state": "rk_inverse_delivery_ready_after_evidence",
+    "base_commit": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery-audit/audit.json",
+    "scope": "Twelve RK inverse routes with mutable selected A and immutable live exact-n E/pivots. Every E slot readable, own-index paired pivot bounds, SY transpose/HE adjoint and raw factor diagonals preserved. Driver NB1 always delegates X; explicit positive NB, checked scalar/native INTEGER/row packing workspace and original LDA. Full INFO/driver WORK/private-pivot diagnostics; empty execution noncall and singular original-factor publication. Provider kernels unchanged;151-header contract synchronized."
   },
   "packages": {
     "P00": {
@@ -1379,8 +1379,8 @@
       "remaining": "Prepare separately attested shared providers from the unchanged pin; validate a staged shared ASC profile against those external libraries, exports/runtime isolation, real numerical/concurrent/relocated consumers and applicable observation scope. Static embedding is not the admitted external-provider model; no shared support guard is yet changed."
     }
   },
-  "active_task": "P05.required.hetri_3: RK inverse with TRI_3X dependencies after recorded CON_3 delivery",
-  "next_action": "Review S/D/C/Z SYTRI_3/SYTRI_3X and C/Z HETRI_3/HETRI_3X against pinned source and actual GNU declarations. Establish separate RK A/E/pivot mutation, selected inverse output, INFO, source-dependent block/workspace and integer counts before implementation. Continue independent RK drivers and other families while preserving all numerical/provider blockers and frozen deliveries.",
+  "active_task": "P05.required.hesv_rk: RK drivers after recorded TRI_3/TRI_3X inverse delivery",
+  "next_action": "Review S/D/C/Z SYSV_RK and C/Z HESV_RK against pinned source and actual GNU declarations. Establish factor A/E/pivots and solution B publication, empty/NRHS0 behavior, singular INFO, returned WORK, source workspace/integer bounds before implementation. Preserve RK inverse empty-WORK, complex range and exact-Hermitian-diagonal failures. Continue independent families without restarting frozen deliveries or provider stabilization.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1388,7 +1388,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "c434ea1d512a9ba9e30cad5748e499ba770812f39ce79d15dc459ca1da38b3a9"
+    "coverage_mapping_sha256": "a5a2c0ae7481030b1baaaa04a5567549ec7d51d1e9b889b51930f12c9af4be14"
   },
   "provider": {
     "version": "3.12.1",
@@ -1821,16 +1821,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 234,
-    "callable_reference": 194,
+    "mapped_contracts": 246,
+    "callable_reference": 206,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1623,
+    "not_started_reference": 1611,
     "in_progress_reference": 296,
-    "incomplete_reference": 1919,
-    "implemented_unverified_reference": 194,
+    "incomplete_reference": 1907,
+    "implemented_unverified_reference": 206,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2039,12 +2039,12 @@
     },
     {
       "id": "BLOCK-INDEFINITE-INVERSE-RANGE",
-      "scope": "Complex TRI2/TRI2X large2x2 inputs have representable exact inverse components but native arithmetic returns nonfinite values; small HE driver classic branch returns zero offdiagonals. INFO0 and native fidelity preserved.",
+      "scope": "Complex TRI2/TRI2X large2x2 inputs have representable exact inverse components but native arithmetic returns nonfinite values; small HE driver classic branch returns zero offdiagonals. INFO0 and native fidelity preserved. RK TRI_3/TRI_3X extension: four complex classes, both triangles and driver/XNB1/2/3/64 fail at E=(.75max,.75max) despite finite exact inverse components. Twelve final profiles each retain20range process failures/1920assertions. Pinned source traces and native fidelity preserved.",
       "record": "programs/lapack-array-io/indefinite-block-inverse-review.md"
     },
     {
       "id": "BLOCK-INDEFINITE-HERMITIAN-DIAGONAL",
-      "scope": "Blocked native HE GEMM/TRMM leaves small imaginary diagonal roundoff. Strict exactly-zero assertions remain required failures; independent inverse/residual and all selected-byte native fidelity checks pass. No normalization/tolerance change or inferred ABI defect.",
+      "scope": "Blocked native HE GEMM/TRMM leaves small imaginary diagonal roundoff. Strict exactly-zero assertions remain required failures; independent inverse/residual and all selected-byte native fidelity checks pass. No normalization/tolerance change or inferred ABI defect. RK TRI_3/TRI_3X extension: each final normal/sanitizer profile retains10ordinary Hermitian failed processes/5216exact imaginary-diagonal assertions; independent residual/accuracy and native bytes pass. No normalization/tolerance relaxation.",
       "record": "programs/lapack-array-io/indefinite-block-inverse-review.md"
     },
     {
@@ -2066,6 +2066,11 @@
       "id": "BLOCK-INDEFINITE-RK-CONDITION-RANGE",
       "scope": "All six CON_3 variants fail scalar/two-block exact-RCOND-one controls at min_normal/8. Four complex variants also return zero at min_normal/2 because the final LACN2 SCSUM1/DZSUM1 alternating sum overflows before division by 3*N despite representable true inverse norm and solve components. Native probes retain 32 mathematical failures/ABI; twelve final ordinary/sanitizer profiles each retain six failures and 208 failed assertions. Fidelity, guards, INFO/RCOND diagnostics and finite-ANORM rollback controls pass. No provider patch, tolerance change or waived acceptance.",
       "record": "programs/lapack-array-io/indefinite-rk-condition-review.md"
+    },
+    {
+      "id": "BLOCK-INDEFINITE-RK-INVERSE-EMPTY-WORK",
+      "scope": "Pinned CSYTRI_3/ZSYTRI_3/ZHETRI_3 N0 query returns8, normal execution returnsINFO0 without writing documentedWORK1. SSY/DSY/CHE query/execute return1. Both triangles and ABIs retain6required failed cases/profile with allguards and sourcefidelity passing. ASCempty noncall doesnotrepairnativecontract. Twelve final normal/sanitizer profiles retain12failed contract processes/72cases; no assertion removed.",
+      "record": "programs/lapack-array-io/indefinite-rk-inverse-review.md"
     }
   ],
   "external_approvals": [
@@ -2086,9 +2091,10 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "rook-condition",
-    "state": "bounded_verification_complete_numerical_acceptance_blocked",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rook-condition-final-audit/audit.json"
+    "candidate": "rk-inverse",
+    "state": "bounded_verification_complete_required_failures_remain",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-final-audit/audit.json",
+    "handoff": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-profile-recovery-01/latest-handoff.json"
   },
   "last_completed_verification": {
     "candidate": "ppsvx-robust-integration-01",
@@ -2588,14 +2594,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hetri_3",
+  "next_task": "P05.required.hesv_rk",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect actual git and rk-condition-delivery/commit.txt, then review TRI_3/TRI_3X dependencies. Existing workspace only; no stabilization or frozen-family rerun.",
+  "next_command": "Inspect actual git and rk-inverse-delivery/commit.txt, then review SYSV_RK/HESV_RK dependencies in this workspace only.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -3185,21 +3191,21 @@
       "checks": "CI and CodeQL success. Four family profiles146/155: all6LASET pass,exactlyPT4+SGEDMDQ1+GBRFS4 retained math failures,zero skips. PR merge tree identical to delivered feature tree."
     },
     "p09_stage": "Mixed general/positive, conversions, LACPY, GEDMD and GEDMDQ integrated. GEDMDQ c01abddf has fresh CI/CodeQL passes and family118/123 per ABI with exactly retained PT4 and SGEDMDQ1 failures. Both actual ABIs, six local profiles, real concurrency, relocated install and frozen-source package evidence retained; no global numerical acceptance.",
-    "remaining_actionable": "Complete integrated PTRFS safety/package delivery, actual PTCON/PTRFS hosted evidence, then PTSV/PTSVX and remaining P04-P09/platform/P11 ready queue. Existing numerical/notice decisions do not block unrelated engineering.",
+    "remaining_actionable": "Deliver SYSV_RK/HESV_RK using recovered native prerequisites, then remaining dependency-ready P04-P09 and continuous P11 requirements. Retain provider, XBLAS, notice, security and platform blockers without serializing independent families.",
     "owner_packet": "programs/lapack-array-io/owner-decisions.md",
     "latest_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 108,
-      "callable_reference": 80,
+      "mapped_contracts": 246,
+      "callable_reference": 206,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1711,
-      "in_progress_reference": 322,
-      "incomplete_reference": 2033,
-      "implemented_unverified_reference": 80,
+      "not_started_reference": 1611,
+      "in_progress_reference": 296,
+      "incomplete_reference": 1907,
+      "implemented_unverified_reference": 206,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3629,16 +3635,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 234,
-      "callable_reference": 194,
+      "mapped_contracts": 246,
+      "callable_reference": 206,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1623,
+      "not_started_reference": 1611,
       "in_progress_reference": 296,
-      "incomplete_reference": 1919,
-      "implemented_unverified_reference": 194,
+      "incomplete_reference": 1907,
+      "implemented_unverified_reference": 206,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3899,7 +3905,7 @@
       "family": "Eachstatic/sharedLP64 306/355,ILP64310/355,zero skips;PB21/21 andprovider111/111 perprofile. Twelveadditional failures exactlyGESVX4+GBTF2range4+GBTRFrange4;previousfailurespreserved.",
       "scope": "Original artifacts recovered, no completed workflow rerun;does not verifylaterindefinitechanges. PB43dependencyhashes remainunchanged."
     },
-    "next_task": "P05.required.hetri_3",
+    "next_task": "P05.required.hesv_rk",
     "last_confirmed_remote_head": "9d2f65b8f043a81d29c0f4633f9a8af86339fb9d",
     "rook_factor_solve": {
       "state": "implemented_unverified_numerical_gates_failed",
@@ -4092,7 +4098,27 @@
       "checks": "Four relocated consumers pass 1248 cases each. Eighteen strict TUs, four standalone headers, twelve added/no removed exports per ABI, 288 final direct GNU-emitted ABI cases, 150 headers/2597 Doxygen members/zero warnings. Four manifest contexts plus six fixtures and two architecture/dependency checks pass. Actual CI selector 1012 includes 43 new runtime and two header processes. Fault tests: 1280 cases/class, including 768 empty/zero-norm noncalls. Structural: 236 rejections, 24 protected queries, 16 empty calls, ten source boundaries, eight LP64/four ILP64 original-stride queries. Concurrency: sixteen groups/class, four workers/eight rounds, 768 native calls, 128 zero-norm calls and 128 rejected plans with read-only A/E/pivots. Final installed production identity proved.",
       "remaining": "BLOCK-INDEFINITE-RK-CONDITION-RANGE: native min_normal/8 scalar/two-block failures and complex min_normal/2 LACN2 alternating sum overflow despite representable true inverse norm. INFO zero and native bytes preserved; finite RCOND does not certify accuracy. Earlier numerical/provider/XBLAS/CodeQL/platform/full normalized execution-record blockers remain. Fortran/BLAS internals are uninstrumented. No Reference row promoted to verified.",
       "next_family": "SYTRI_3/HETRI_3 and TRI_3X dependencies, then RK drivers.",
-      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery-audit/audit.json"
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery-audit/audit.json",
+      "delivery_commit": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
+      "hosted_recovery": {
+        "status_record": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-hosted-read-01/runs/record.json",
+        "artifact_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-hosted-family-artifacts-01/audit.json",
+        "summary": "Original cd0d9aa push/PR CI and CodeQL analyses succeeded. Original selected-family artifacts have1012tests/profile:LP64876pass136required failures;ILP64880pass132required failures;zero skips and provider111/111. Exact prior failure set plus6RK condition range gates. No rerun/alert dismissal; separate CodeQL alert gate remains open."
+      }
+    },
+    "rk_inverse": {
+      "state": "implemented_unverified_required_numerical_and_native_work_contract_gates_failed",
+      "review": "programs/lapack-array-io/indefinite-rk-inverse-review.md",
+      "implementation_parent": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-final-audit/audit.json",
+      "contracts": 12,
+      "normalized_modes": 240,
+      "profile_recovery": "Two shared sanitizer profiles each retain190original completed tests and resume23unfinished tests after host/runtime interruption; composite JUnit and unknown original CTest exit status explicit. Two interrupted static TSan profiles retain27original terminal passes plus3resumed passes perABI; two shared TSan profiles previously unstarted. Allfourcomposites preserve unknown original whole-CTest exit statuses.",
+      "profiles": "Twelve actual static/shared LP64/ILP64 Release/Debug/ASC-ASan+UBSan profiles each182/213 with31required failures,7136failed mathematical assertions and6native empty-WORK cases,zero skips. Four TSan profiles each30/30. Canonical2676processes2304pass372required failures85632mathematical assertions72native empty-WORK failures0skip. Ordinary88cases/process; range144cases,120representable inverses and24nonrepresentable controls.",
+      "checks": "Four relocated consumers3360cases each;20strictTUs,4standaloneheaders,720final direct GNU-emitted ABIcases against24original emissions,24added/no removedexports perABI,151headers/2621Doxygenmembers/zero warnings. Four manifest contexts and6fixtures,architecture/dependency2,actualCIselector1227 including213newruntime+2headerspass. Fault360cases/variant includes60empty noncalls and15fault modes. Structural160rejections plus protected queries, emptycalls, NB0/source/returnedWORK/originalstride bounds. Concurrency16groups/variant4workers8repeats:768native128empty128stale calls with read-only E/pivots. Final installed production identity proved. Original failed native probes, wiring/byte-copy/style/header-count findings retained.",
+      "remaining": "BLOCK-INDEFINITE-INVERSE-RANGE: complex huge2block NaN despite representable inverse. BLOCK-INDEFINITE-HERMITIAN-DIAGONAL: exact zero imaginary diagonal assertions fail. BLOCK-INDEFINITE-RK-INVERSE-EMPTY-WORK: CSY/ZSY/ZHE driver N0 execution omits documented WORK1. INFO0 and native fidelity do not certify accuracy/native contract completion. Earlier numerical/provider/XBLAS/CodeQL/platform/full normalized execution-record blockers remain. Fortran/BLAS internals uninstrumented. No Reference row verified.",
+      "next_family": "SYSV_RK/HESV_RK drivers.",
+      "delivery_audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery-audit/audit.json"
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {
@@ -4111,11 +4137,11 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "rk_condition_6",
-    "implementation_parent": "7c00b77990d8c6d2c97d37edd05ab441e948a938",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery/commit.txt",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery-audit/audit.json",
-    "state": "implemented_unverified; required reciprocal/estimator-sum range gates remain failed; FULL_PROGRAM_INCOMPLETE"
+    "family": "rk_inverse_12",
+    "implementation_parent": "cd0d9aad74211d9f770ee90cdd948ef77a0592c1",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery/commit.txt",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-delivery-audit/audit.json",
+    "state": "implemented_unverified; required complex range, exact-Hermitian-diagonal and native empty-WORK gates failed; FULL_PROGRAM_INCOMPLETE"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4276,6 +4302,23 @@
       "base_commit": "117865676171c4578da3005948d1f8c53b55a8bd",
       "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-solve-delivery-audit/audit.json",
       "scope": "Six RK TRS_3 consumers with immutable A/E/pivots, global permutation storage, each-own-index paired target bounds, ignoredE semantics, no scalarWORK, checked private INTEGER and rowpacking. FullINFO/pivot mutation defects withhold row B. Existing numerical/provider code unchanged. Exact149-header registrations updated."
+    }
+  },
+  "historical_delivery_pointers_before_rk_inverse": {
+    "current_base_commit": "7c00b77990d8c6d2c97d37edd05ab441e948a938",
+    "last_implementation_commit": "7c00b77990d8c6d2c97d37edd05ab441e948a938",
+    "current_delivery": {
+      "family": "rk_condition_6",
+      "implementation_parent": "7c00b77990d8c6d2c97d37edd05ab441e948a938",
+      "commit_record": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery/commit.txt",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery-audit/audit.json",
+      "state": "implemented_unverified; required reciprocal/estimator-sum range gates remain failed; FULL_PROGRAM_INCOMPLETE"
+    },
+    "worktree_diff_identity": {
+      "state": "rk_condition_delivery_ready_after_evidence",
+      "base_commit": "7c00b77990d8c6d2c97d37edd05ab441e948a938",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery-audit/audit.json",
+      "scope": "Six RK CON_3 consumers with immutable A/E/pivots, own-index paired target bounds, ignored-E semantics, explicit finite ANORM and associated-real RCOND diagnostics. Active 2*N scalar WORK and real 2*N/complex N private INTEGER entries; row A packing. Full INFO/output writes and private pivot immutability checked. Empty/zero-norm execution is a noncall. Provider kernels unchanged. Exact 150-header registrations updated."
     }
   }
 }

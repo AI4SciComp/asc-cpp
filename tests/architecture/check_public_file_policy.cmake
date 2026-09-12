@@ -76,6 +76,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_indefinite_block_solve.h
   include/asc/dense/providers/lapack_indefinite_rk.h
   include/asc/dense/providers/lapack_indefinite_rk_condition.h
+  include/asc/dense/providers/lapack_indefinite_rk_inverse.h
   include/asc/dense/providers/lapack_indefinite_rk_solve.h
   include/asc/dense/providers/lapack_rank_revealing.h
   include/asc/dense/providers/lapack_sylvester.h
@@ -224,6 +225,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_indefinite_block_solve.cc
   src/dense/lapack/reference_indefinite_rk.cc
   src/dense/lapack/reference_indefinite_rk_condition.cc
+  src/dense/lapack/reference_indefinite_rk_inverse.cc
   src/dense/lapack/reference_indefinite_rk_solve.cc
   src/dense/lapack/reference_rank_revealing.cc
   src/dense/lapack/reference_sylvester.cc

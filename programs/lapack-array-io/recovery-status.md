@@ -1,3 +1,84 @@
+## Latest checkpoint: RK inverses integrated, required gates remain open
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is pushed `cd0d9aa`; the exact new commit is recorded
+externally in `rk-inverse-delivery/commit.txt`. Inspect actual git first.
+All pre-existing user instruction files, frozen records, failed attempts and commits remain
+preserved. No sibling workspace or provider patch was created.
+
+Twelve SYTRI_3/SYTRI_3X and HETRI_3/HETRI_3X routes have 240 reviewed modes and
+24 public declarations. Selected A is mutable; exact-n E and own-index paired
+RK pivots are immutable. All E slots are readable, including ignored NaNs.
+Driver NB1 always delegates X; explicit positive NB, scalar/native INTEGER/row
+packing workspace, rounded WORK and source bounds are checked. Full-width INFO,
+private pivots and driver WORK writes are validated. Empty calls inspect no
+numerical arrays; source-consistent singular output preserves original factors.
+
+Sixteen final profiles execute 2,676 processes: 2,304 passes, 372 required
+failures, 85,632 failed mathematical assertions, 72 failed native empty-WORK
+cases and zero skips. Twelve normal/sanitizer profiles pass 182/213; four TSan
+profiles pass all thirty concurrency processes. Complex range, exact Hermitian
+diagonal and native CSY/ZSY/ZHE empty-WORK gates remain explicit. Initial probe,
+fixture, strict and stale header-count failures remain preserved. Two shared
+sanitizer profiles combine 190 preserved completed tests with 23 resumed tests
+each after runtime interruption. Static TSan retains 27 terminal passes plus
+three resumed passes per ABI. Both shared TSan profiles were previously
+unstarted. All four composites retain unknown original whole-CTest exit status.
+
+Four relocated consumers pass 3,360 cases each. Twenty strict TUs, four standalone
+headers, 720 final direct emitted-ABI cases, warning-free Doxygen for 151 headers/
+2,621 members, 24 added/no removed exports per ABI, package, architecture and
+actual CI-selector checks pass. Installed libraries match Release producers.
+`rk-inverse-final-audit/audit.json` binds final sources and raw evidence. ASC/tests
+are instrumented; Fortran/BLAS internals are not. Wider-platform admission,
+CodeQL alerts, XBLAS and all earlier numerical/programme blockers remain open.
+
+FULL_PROGRAM_INCOMPLETE: required 2,113; reviewed contracts 246;
+implemented_unverified Reference 206; in_progress 296; not_started 1,611;
+verified Reference 0. Continue `P05.required.hesv_rk` SYSV_RK/HESV_RK drivers and
+dependencies without repeating frozen acceptance.
+
+## Historical recovery records
+
+## Active work: RK inverses after pushed cd0d9aa
+
+The actual workspace remains `feature/lapack-array-io` at pushed `cd0d9aa`.
+Only the two preserved user instruction files were dirty at recovery. Completed
+families and all earlier numerical failures remain frozen; no new worktree.
+
+Twelve TRI_3/TRI_3X sources and 24 GNU LP64/ILP64 declarations are reviewed.
+Each ABI passes 360 guarded small inverse cases. Sixty native workspace queries
+confirm driver NB=1; twelve empty execution controls retain six required
+WORK(1) contract failures per ABI. Range probes pass every storage/INFO guard
+but retain 40 failed representable-inverse cases among 1,080 cases per ABI.
+Native expression traces isolate complex E/E and modulus overflow. Original
+failed compile/extraction/record-path attempts are preserved outside the tree.
+
+The pre-implementation decision is retained under
+`rk-inverse-prerequisite-01/public-contract-decision.json`. Twenty-four public
+declarations, backend, package/header registrations and 213 runtime tests are
+now implemented. Each ABI's first complete engineering run has 92/123 passes,
+31 required failed processes, 7,136 mathematical failed assertions plus six
+native WORK-contract failures, and zero skips. All ordinary failures are exact
+Hermitian imaginary-diagonal checks; all fidelity/ABI controls pass. Full
+original CTest logs were recovered before their temporary copies were replaced.
+
+All thirty fault, thirty validation and thirty concurrency processes pass in
+each ABI. Per scalar/block variant: faults have 360 cases (60 empty noncalls);
+validation has 160 structural rejections, protected queries/empty noncalls and
+source/stride bounds; concurrency has sixteen groups, four workers/eight
+repeats, 768 worker native calls and 256 noncalls/rejections with protected E/P.
+Four isolated relocated static/shared LP64/ILP64 consumers pass 3,360 cases each.
+Original compile/wiring and deliberate-byte-write findings remain preserved.
+
+Initial strict checks are running against a retained sixteen-file C++ snapshot.
+Final profiles, strict/style completion, emitted ABI rebinding, exports,
+standalone headers, Doxygen, final consumers if sources change and normalized
+capability records remain unfinished. No inverse Reference row is promoted.
+See `indefinite-rk-inverse-review.md`. FULL_PROGRAM_INCOMPLETE remains in force.
+
+## Previous completed delivery and historical recovery
+
 ## Latest checkpoint: RK condition estimators integrated, numerical gates open
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.

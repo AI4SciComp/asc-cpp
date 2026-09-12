@@ -965,3 +965,15 @@ are preserved; nonfinite RCOND remains a numerical warning, and finite RCOND
 carries no accuracy certificate. Required tiny reciprocal/estimator-sum range
 failures remain explicit alongside passing native fidelity and installed
 consumers. See the [RK condition contract review](../programs/lapack-array-io/indefinite-rk-condition-review.md).
+
+
+The header `asc/dense/providers/lapack_indefinite_rk_inverse.h` adds S/D/C/Z
+`Sytri3`/`Sytri3x` and C/Z `Hetri3`/`Hetri3x` for mutable selected RK A and
+immutable separate E/pivots. Every E entry must be readable, including ignored
+slots copied by the source. Driver NB=1 and explicit positive X block sizes
+use checked `(n+nb+1)*(nb+3)` scalar WORK, private native INTEGER pivots and
+row-A packing. Full-width INFO and driver WORK output are checked. Empty calls
+are metadata-only noncalls; valid positive INFO preserves original A and
+reports a singular result. Large-complex, exact-Hermitian-diagonal and native
+empty-WORK gates remain open; implementation does not imply numerical
+acceptance. See the [RK inverse contract review](../programs/lapack-array-io/indefinite-rk-inverse-review.md).
