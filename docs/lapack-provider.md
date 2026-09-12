@@ -907,3 +907,15 @@ The four complex large-block mathematical gates remain required failures:
 `CLASSIC-INDEFINITE-INVERSE-RANGE`. See the
 [classic inverse contract review](../programs/lapack-array-io/indefinite-inverse-review.md).
 No full Reference verification is claimed.
+
+The header `asc/dense/providers/lapack_indefinite_block_inverse.h` adds
+S/D/C/Z `Sytri2`/`Sytri2x` and C/Z `Hetri2`/`Hetri2x`, with matching workspace
+queries. TRI2 uses the pinned scalar-specific block choice; TRI2X accepts an
+explicit positive block size. Both use the documented WORK product and
+immutable classic pivots. TRI2X converts factors before its singular scan, so
+valid positive INFO publishes native converted partial output in both layouts;
+that output is not a reusable original factor. Complex range failures and
+strict exactly-real Hermitian diagonal gates remain explicit. Native fidelity,
+real mathematical controls and all four relocated consumers pass. See the
+[block inverse contract review](../programs/lapack-array-io/indefinite-block-inverse-review.md)
+for workspace, mutation, INFO and the limits of numerical acceptance.

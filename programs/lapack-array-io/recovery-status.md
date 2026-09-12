@@ -1,3 +1,46 @@
+## Latest checkpoint: TRI2/TRI2X evidence complete, numerical gates open
+
+Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
+Implementation parent is pushed `a80a7ec`; the new exact commit is recorded
+externally in `block-inverse-delivery/commit.txt`. Inspect actual git first.
+Both user instruction files, frozen acceptance records and failed attempts
+remain preserved. No new workspace or provider numerical source was created.
+
+Twelve TRI2/TRI2X routes have 360 reviewed triangle/layout/origin/block modes.
+Native query probes confirm scalar-specific block sizes and small-order sizes;
+public queries honor the documented product. Positive INFO publishes native
+converted partial factors, without a reusable-original-factor promise.
+Full-width INFO, immutable pivots, workspace dimensions and source cursors
+are checked. Sixteen profiles yield 2,700 processes: 2,340 passes, 360 required
+mathematical failures, 74,112 failed assertions and zero skips. Each of twelve
+ordinary/sanitizer profiles has twenty complex range and ten strict exactly-real
+Hermitian diagonal failures. All four TSan profiles pass thirty processes.
+Native ordinary/range fidelity, real mathematics, fault and structural checks pass.
+
+Direct GNU Fortran probes show complex block overflow propagation. Direct native
+HE calls reproduce small imaginary diagonals while reconstruction/residuals pass;
+the exact-zero assertion is preserved. A draft concurrency oracle inherited
+classic unchanged-singular behavior; its failed logs and source are retained,
+and its full-byte assertion now compares with a separate serial partial result.
+No frozen test, assertion or tolerance was weakened.
+
+Four relocated consumers pass 2,880 cases each. Eighteen strict TUs, four
+standalone-header tests, 600 guarded emitted-ABI cases, 146-header/2,537-member
+warning-free Doxygen, 24 added/no removed exports per ABI, package-manifest and
+architecture/dependency checks pass. Installed production libraries match the
+final producer after normal CMake installation. `block-inverse-final-audit-02/audit.json`
+binds these records. Original hosted artifacts at a80a7ec were recovered without
+rerunning: CI/CodeQL analysis pass; selected-family mathematical failures remain.
+
+FULL_PROGRAM_INCOMPLETE: required2,113; reviewed contracts204;
+implemented_unverified Reference164; in_progress296; not_started1,653;
+verified Reference0. Next is `P05.required.hetrs2`, classic SYTRS2/HETRS2 using
+existing factor producers. Review the documented input A versus temporary native
+conversion/restoration. Preliminary read-only notes are outside source. TRI3's
+RK separated-E factor-storage dependencies are also unfinished.
+
+## Historical recovery records
+
 ## Latest checkpoint: classic inverse evidence complete, complex numerical gates blocked
 
 Workspace `asc-cpp-lapack-array-io`, branch `feature/lapack-array-io`.
@@ -396,3 +439,14 @@ fails even though its analysis job succeeded; see the
 [CodeQL recovery record](codeql-recovery-review.md). The additive optional
 LAPACK analysis jobs require actual hosted execution. No frozen acceptance
 was rerun or alert dismissed. **FULL_PROGRAM_INCOMPLETE** remains accurate.
+
+## Block inverse continuation
+
+Recovered at `a80a7ec7fbb7465b19fdb7c336af561f35741847`, synchronized with
+`origin/feature/lapack-array-io`; no tracked edits were lost. The two user
+instruction files remain untouched. TRI2/TRI2X contract review and native
+workspace query probes are under the existing continuation evidence directory,
+`block-inverse-prerequisite-01`. The corrected probe passes 72 cases per ABI;
+failed compiler/command setup attempts remain recorded. The next implementation
+is S/D/C/Z SYTRI2/SYTRI2X and C/Z HETRI2/HETRI2X. This is an in-progress
+checkpoint, not numerical acceptance. `FULL_PROGRAM_INCOMPLETE`.

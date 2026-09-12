@@ -214,3 +214,23 @@ provider algorithm change is authorized by a fidelity contract. Continue
 independent families; full numerical verification remains open. The
 [classic inverse record](indefinite-inverse-review.md) preserves details and
 initial rejected probe admission without changing frozen rook evidence.
+
+## Blocked inverses: range and strict Hermitian diagonal gates
+
+`BLOCK-INDEFINITE-INVERSE-RANGE` preserves the required complex TRI2/TRI2X
+range failures for large, finite 2-by-2 blocks with representable exact inverse
+entries. GNU Fortran probes show SY complex self-division produces NaN; HE
+complex T/D arithmetic propagates magnitude overflow to nonfinite output.
+INFO=0 and native fidelity remain distinct from mathematical acceptance.
+
+`BLOCK-INDEFINITE-HERMITIAN-DIAGONAL` preserves the exact-zero imaginary
+assertions. Native blocked HE GEMM/TRMM sums leave small imaginary diagonal
+components. Independent inverse/residual checks pass, and all selected bytes
+match LAPACK. This unmet strict acceptance condition does not by itself imply
+an ABI defect. No exact-zero assertion is removed, no tolerance is relaxed,
+and no output normalization or alternate kernel is silently introduced.
+
+The [block inverse record](indefinite-block-inverse-review.md) retains both
+required failure sets, singular-conversion semantics, native probes and every
+initial attempt. Continue classic TRS2 using existing factor dependencies;
+TRI3's additional RK storage dependencies remain separate unfinished work.
