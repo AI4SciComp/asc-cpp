@@ -1389,7 +1389,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "0678771576492034b457521921876f180522b5203a77a37a33c231f20d3edd38"
+    "coverage_mapping_sha256": "c490d8cd763f6fffd881cf88f0022aaa5ba2207d9d40597b31478e2a202575e5"
   },
   "provider": {
     "version": "3.12.1",
@@ -1822,16 +1822,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 132,
-    "callable_reference": 92,
+    "mapped_contracts": 150,
+    "callable_reference": 110,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
     "not_started_reference": 1707,
-    "in_progress_reference": 314,
-    "incomplete_reference": 2021,
-    "implemented_unverified_reference": 92,
+    "in_progress_reference": 296,
+    "incomplete_reference": 2003,
+    "implemented_unverified_reference": 110,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2010,8 +2010,13 @@
     },
     {
       "id": "P11-CODEQL-ALERT-GATE",
-      "scope": "Recovered separate alert check fails despite completed analysis workflow; source review retained, new optional-backend analyses pending. Independent LAPACK work continues.",
+      "scope": "Separate alert gate remains open despite successful default and actualLP64/ILP64 backend analyses at736fa6c. Branch read2626open findings includes12security alerts; source review retained, no dismissal or query suppression. Independent work continues.",
       "record": "programs/lapack-array-io/codeql-recovery-review.md"
+    },
+    {
+      "id": "CLASSIC-INDEFINITE-RECIPROCAL-RANGE",
+      "scope": "All six scalar/symmetry classes fail exact scaled-identity factors and scalar solution1 at tiny scales. Direct pinned provider matches; blocked n67 additionally returns spuriousINFO4upper/64lower. Twelve mathematical processes1584assertions per actual profile remain required; independent work continues.",
+      "record": "programs/lapack-array-io/indefinite-continuation-review.md"
     }
   ],
   "external_approvals": [
@@ -3577,16 +3582,16 @@
     "current_reference_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 132,
-      "callable_reference": 92,
+      "mapped_contracts": 150,
+      "callable_reference": 110,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
       "not_started_reference": 1707,
-      "in_progress_reference": 314,
-      "incomplete_reference": 2021,
-      "implemented_unverified_reference": 92,
+      "in_progress_reference": 296,
+      "incomplete_reference": 2003,
+      "implemented_unverified_reference": 110,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -3817,6 +3822,18 @@
       "artifact_bridge": "docs/contracts/lapack-indefinite-info-evidence-extension.json",
       "remaining": "Normalized18classic contracts and full execution records, extreme range/concurrency acceptance,hosted/wider provider/platform gates. No fully verified promotion.",
       "next_family": "Classic symmetric/Hermitian indefinite contract and range completion; preserve completed INFO correction."
+    },
+    "indefinite_contract_range": {
+      "state": "implemented_unverified_mathematical_gates_failed",
+      "review": "programs/lapack-array-io/indefinite-continuation-review.md",
+      "source_review": "master-continuation-20260910-01/continuation-20260912-01/indefinite-contract-01/review.json",
+      "contracts": 18,
+      "normalized_modes": 168,
+      "new_profiles": "12 actual LP64/ILP64 static/shared Debug/Release/ASan+UBSan profiles each12/24;12mathematical failures1584assertions,zero skips. Both controls pass; all direct-provider comparisons pass.",
+      "reuse": "Final range audit binds unchanged276 engineering passes and4 relocated consumers from75b189d; no repeated acceptance subset.",
+      "remaining": "Provider reciprocal-range decisions; concurrency; hosted/wider provider/platform/full execution-record gates. No full verified credit.",
+      "next_family": "Classic indefinite concurrency, then missing rook18; do not redo INFO correction or frozen acceptance.",
+      "audit": "master-continuation-20260910-01/continuation-20260912-01/indefinite-range-final-audit-02/audit.json"
     }
   },
   "historical_worktree_diff_identity_before_mixed_integration": {

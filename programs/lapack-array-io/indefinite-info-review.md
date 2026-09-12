@@ -70,3 +70,7 @@ full execution records. The [original source review](indefinite-review.md)
 retains its bounded numerical and ABI distinctions. Classic indefinite
 contract and numerical completion is the next independent task; the recorded
 PTTRS, GB and diagnostic-family mathematical blockers remain open.
+
+The subsequent [contract and range continuation](indefinite-continuation-review.md)
+reuses this correction's completed evidence and records the remaining
+mathematical failures separately.

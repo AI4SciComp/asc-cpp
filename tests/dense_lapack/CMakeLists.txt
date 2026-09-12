@@ -384,6 +384,22 @@ foreach(_scalar IN ITEMS s d c z ch zh)
     LABELS dense_lapack lapack validation allocation TIMEOUT 120)
 endforeach()
 
+add_executable(asc_dense_lapack_indefinite_range_test indefinite_range_test.cc
+  allocation_audit.cc "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_range_test)
+target_include_directories(asc_dense_lapack_indefinite_range_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_indefinite_range_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free")
+foreach(_scalar IN ITEMS s d c z ch zh)
+  foreach(_mode IN ITEMS factor_mathematical factor_fidelity
+      solve_mathematical solve_fidelity)
+    asc_register_test(NAME "asc_cpp.dense_lapack.indefinite_range.${_scalar}.${_mode}"
+      TARGET asc_dense_lapack_indefinite_range_test ARGUMENTS "${_scalar}" "${_mode}"
+      LABELS dense_lapack lapack numerical allocation TIMEOUT 180)
+  endforeach()
+endforeach()
+
 add_executable(asc_dense_lapack_indefinite_abi_probe indefinite_abi_probe.cc)
 _asc_dense_lapack_configure_test(asc_dense_lapack_indefinite_abi_probe)
 target_include_directories(asc_dense_lapack_indefinite_abi_probe PRIVATE

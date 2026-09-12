@@ -549,6 +549,10 @@ checks; full normalized routine/mode coverage remains incomplete.
 Unwritten full-width INFO is rejected as a provider defect with unusable
 output. Empty operations retain INFO absence and make no foreign call. The
 continuation record is `programs/lapack-array-io/indefinite-info-review.md`.
+The subsequent `programs/lapack-array-io/indefinite-continuation-review.md`
+normalizes 168 modes and retains explicit factor/solve failures at extreme
+scales. Reciprocal-before-scaling corrupts exact zero multipliers or the
+scalar solution one; direct-provider agreement does not close these gates.
 
 ## Rank-revealing QR and least squares
 

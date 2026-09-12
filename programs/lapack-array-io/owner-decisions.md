@@ -1,5 +1,14 @@
 # Remaining owner decisions
 
+The current classic indefinite continuation also retains a provider arithmetic
+blocker: [the exact range review](indefinite-continuation-review.md) records
+nonfinite scaled-identity factors and scalar solutions for all six
+scalar/symmetry classes. Blocked order-67 factorization additionally reports
+INFO=4/64 on nonsingular inputs. A range-safe provider or explicitly different
+numerical route needs its own reviewed contract and verification; no hidden
+substitution or waiver is inferred. Independent concurrency and missing-family
+work continues under the current programme instruction.
+
 This packet separates approval-controlled actions from ongoing ordinary
 engineering authorized by the master continuation. PR #47 remains a draft.
 No owner decision below is inferred from a successful build or provider-fidelity

@@ -30562,6 +30562,7 @@
         "tests/dense_lapack/indefinite_info_faults.h",
         "tests/dense_lapack/indefinite_info_test.cc",
         "tests/dense_lapack/indefinite_preflight_test.cc",
+        "tests/dense_lapack/indefinite_range_test.cc",
         "tests/dense_lapack/indefinite_test.cc",
         "tests/dense_lapack/indefinite_test_support.h",
         "tests/dense_lapack/installed_lu/factorization_support.h",
@@ -30569,30 +30570,53 @@
         "tests/dense_lapack/installed_lu/normal_return_guard.h"
       ],
       "route_states": {
-        "lapack.chetf2": "in_progress",
-        "lapack.csytf2": "in_progress",
-        "lapack.dsytf2": "in_progress",
-        "lapack.ssytf2": "in_progress",
-        "lapack.zhetf2": "in_progress",
-        "lapack.zsytf2": "in_progress"
+        "lapack.chetf2": "implemented_unverified",
+        "lapack.csytf2": "implemented_unverified",
+        "lapack.dsytf2": "implemented_unverified",
+        "lapack.ssytf2": "implemented_unverified",
+        "lapack.zhetf2": "implemented_unverified",
+        "lapack.zsytf2": "implemented_unverified"
       },
       "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
       "required_mode_cases": {
-        "lapack.chetf2": [],
-        "lapack.csytf2": [],
-        "lapack.dsytf2": [],
-        "lapack.ssytf2": [],
-        "lapack.zhetf2": [],
-        "lapack.zsytf2": []
+        "lapack.chetf2": [
+          "upper_column_major_unblocked",
+          "upper_row_major_unblocked",
+          "lower_column_major_unblocked",
+          "lower_row_major_unblocked"
+        ],
+        "lapack.csytf2": [
+          "upper_column_major_unblocked",
+          "upper_row_major_unblocked",
+          "lower_column_major_unblocked",
+          "lower_row_major_unblocked"
+        ],
+        "lapack.dsytf2": [
+          "upper_column_major_unblocked",
+          "upper_row_major_unblocked",
+          "lower_column_major_unblocked",
+          "lower_row_major_unblocked"
+        ],
+        "lapack.ssytf2": [
+          "upper_column_major_unblocked",
+          "upper_row_major_unblocked",
+          "lower_column_major_unblocked",
+          "lower_row_major_unblocked"
+        ],
+        "lapack.zhetf2": [
+          "upper_column_major_unblocked",
+          "upper_row_major_unblocked",
+          "lower_column_major_unblocked",
+          "lower_row_major_unblocked"
+        ],
+        "lapack.zsytf2": [
+          "upper_column_major_unblocked",
+          "upper_row_major_unblocked",
+          "lower_column_major_unblocked",
+          "lower_row_major_unblocked"
+        ]
       },
-      "unreviewed_mode_rows": [
-        "lapack.chetf2",
-        "lapack.csytf2",
-        "lapack.dsytf2",
-        "lapack.ssytf2",
-        "lapack.zhetf2",
-        "lapack.zsytf2"
-      ],
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -30602,7 +30626,9 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/indefinite-continuation-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
       "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
@@ -30610,7 +30636,9 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/indefinite-continuation-review.md"
+      ]
     },
     {
       "task_id": "P05.required.hetf2_rk",
@@ -31026,6 +31054,7 @@
         "tests/dense_lapack/indefinite_info_faults.h",
         "tests/dense_lapack/indefinite_info_test.cc",
         "tests/dense_lapack/indefinite_preflight_test.cc",
+        "tests/dense_lapack/indefinite_range_test.cc",
         "tests/dense_lapack/indefinite_test.cc",
         "tests/dense_lapack/indefinite_test_support.h",
         "tests/dense_lapack/installed_lu/factorization_support.h",
@@ -31033,30 +31062,125 @@
         "tests/dense_lapack/installed_lu/normal_return_guard.h"
       ],
       "route_states": {
-        "lapack.chetrf": "in_progress",
-        "lapack.csytrf": "in_progress",
-        "lapack.dsytrf": "in_progress",
-        "lapack.ssytrf": "in_progress",
-        "lapack.zhetrf": "in_progress",
-        "lapack.zsytrf": "in_progress"
+        "lapack.chetrf": "implemented_unverified",
+        "lapack.csytrf": "implemented_unverified",
+        "lapack.dsytrf": "implemented_unverified",
+        "lapack.ssytrf": "implemented_unverified",
+        "lapack.zhetrf": "implemented_unverified",
+        "lapack.zsytrf": "implemented_unverified"
       },
       "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
       "required_mode_cases": {
-        "lapack.chetrf": [],
-        "lapack.csytrf": [],
-        "lapack.dsytrf": [],
-        "lapack.ssytrf": [],
-        "lapack.zhetrf": [],
-        "lapack.zsytrf": []
+        "lapack.chetrf": [
+          "upper_column_major_minimum",
+          "upper_column_major_preferred",
+          "upper_column_major_reduced_at_threshold",
+          "upper_column_major_reduced_below_threshold",
+          "upper_row_major_minimum",
+          "upper_row_major_preferred",
+          "upper_row_major_reduced_at_threshold",
+          "upper_row_major_reduced_below_threshold",
+          "lower_column_major_minimum",
+          "lower_column_major_preferred",
+          "lower_column_major_reduced_at_threshold",
+          "lower_column_major_reduced_below_threshold",
+          "lower_row_major_minimum",
+          "lower_row_major_preferred",
+          "lower_row_major_reduced_at_threshold",
+          "lower_row_major_reduced_below_threshold"
+        ],
+        "lapack.csytrf": [
+          "upper_column_major_minimum",
+          "upper_column_major_preferred",
+          "upper_column_major_reduced_at_threshold",
+          "upper_column_major_reduced_below_threshold",
+          "upper_row_major_minimum",
+          "upper_row_major_preferred",
+          "upper_row_major_reduced_at_threshold",
+          "upper_row_major_reduced_below_threshold",
+          "lower_column_major_minimum",
+          "lower_column_major_preferred",
+          "lower_column_major_reduced_at_threshold",
+          "lower_column_major_reduced_below_threshold",
+          "lower_row_major_minimum",
+          "lower_row_major_preferred",
+          "lower_row_major_reduced_at_threshold",
+          "lower_row_major_reduced_below_threshold"
+        ],
+        "lapack.dsytrf": [
+          "upper_column_major_minimum",
+          "upper_column_major_preferred",
+          "upper_column_major_reduced_at_threshold",
+          "upper_column_major_reduced_below_threshold",
+          "upper_row_major_minimum",
+          "upper_row_major_preferred",
+          "upper_row_major_reduced_at_threshold",
+          "upper_row_major_reduced_below_threshold",
+          "lower_column_major_minimum",
+          "lower_column_major_preferred",
+          "lower_column_major_reduced_at_threshold",
+          "lower_column_major_reduced_below_threshold",
+          "lower_row_major_minimum",
+          "lower_row_major_preferred",
+          "lower_row_major_reduced_at_threshold",
+          "lower_row_major_reduced_below_threshold"
+        ],
+        "lapack.ssytrf": [
+          "upper_column_major_minimum",
+          "upper_column_major_preferred",
+          "upper_column_major_reduced_at_threshold",
+          "upper_column_major_reduced_below_threshold",
+          "upper_row_major_minimum",
+          "upper_row_major_preferred",
+          "upper_row_major_reduced_at_threshold",
+          "upper_row_major_reduced_below_threshold",
+          "lower_column_major_minimum",
+          "lower_column_major_preferred",
+          "lower_column_major_reduced_at_threshold",
+          "lower_column_major_reduced_below_threshold",
+          "lower_row_major_minimum",
+          "lower_row_major_preferred",
+          "lower_row_major_reduced_at_threshold",
+          "lower_row_major_reduced_below_threshold"
+        ],
+        "lapack.zhetrf": [
+          "upper_column_major_minimum",
+          "upper_column_major_preferred",
+          "upper_column_major_reduced_at_threshold",
+          "upper_column_major_reduced_below_threshold",
+          "upper_row_major_minimum",
+          "upper_row_major_preferred",
+          "upper_row_major_reduced_at_threshold",
+          "upper_row_major_reduced_below_threshold",
+          "lower_column_major_minimum",
+          "lower_column_major_preferred",
+          "lower_column_major_reduced_at_threshold",
+          "lower_column_major_reduced_below_threshold",
+          "lower_row_major_minimum",
+          "lower_row_major_preferred",
+          "lower_row_major_reduced_at_threshold",
+          "lower_row_major_reduced_below_threshold"
+        ],
+        "lapack.zsytrf": [
+          "upper_column_major_minimum",
+          "upper_column_major_preferred",
+          "upper_column_major_reduced_at_threshold",
+          "upper_column_major_reduced_below_threshold",
+          "upper_row_major_minimum",
+          "upper_row_major_preferred",
+          "upper_row_major_reduced_at_threshold",
+          "upper_row_major_reduced_below_threshold",
+          "lower_column_major_minimum",
+          "lower_column_major_preferred",
+          "lower_column_major_reduced_at_threshold",
+          "lower_column_major_reduced_below_threshold",
+          "lower_row_major_minimum",
+          "lower_row_major_preferred",
+          "lower_row_major_reduced_at_threshold",
+          "lower_row_major_reduced_below_threshold"
+        ]
       },
-      "unreviewed_mode_rows": [
-        "lapack.chetrf",
-        "lapack.csytrf",
-        "lapack.dsytrf",
-        "lapack.ssytrf",
-        "lapack.zhetrf",
-        "lapack.zsytrf"
-      ],
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -31066,7 +31190,9 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/indefinite-continuation-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
       "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
@@ -31074,7 +31200,9 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/indefinite-continuation-review.md"
+      ]
     },
     {
       "task_id": "P05.required.hetrf_aa",
@@ -31802,6 +31930,7 @@
         "tests/dense_lapack/indefinite_info_faults.h",
         "tests/dense_lapack/indefinite_info_test.cc",
         "tests/dense_lapack/indefinite_preflight_test.cc",
+        "tests/dense_lapack/indefinite_range_test.cc",
         "tests/dense_lapack/indefinite_test.cc",
         "tests/dense_lapack/indefinite_test_support.h",
         "tests/dense_lapack/installed_lu/factorization_support.h",
@@ -31809,30 +31938,77 @@
         "tests/dense_lapack/installed_lu/normal_return_guard.h"
       ],
       "route_states": {
-        "lapack.chetrs": "in_progress",
-        "lapack.csytrs": "in_progress",
-        "lapack.dsytrs": "in_progress",
-        "lapack.ssytrs": "in_progress",
-        "lapack.zhetrs": "in_progress",
-        "lapack.zsytrs": "in_progress"
+        "lapack.chetrs": "implemented_unverified",
+        "lapack.csytrs": "implemented_unverified",
+        "lapack.dsytrs": "implemented_unverified",
+        "lapack.ssytrs": "implemented_unverified",
+        "lapack.zhetrs": "implemented_unverified",
+        "lapack.zsytrs": "implemented_unverified"
       },
       "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
       "required_mode_cases": {
-        "lapack.chetrs": [],
-        "lapack.csytrs": [],
-        "lapack.dsytrs": [],
-        "lapack.ssytrs": [],
-        "lapack.zhetrs": [],
-        "lapack.zsytrs": []
+        "lapack.chetrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ],
+        "lapack.csytrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ],
+        "lapack.dsytrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ],
+        "lapack.ssytrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ],
+        "lapack.zhetrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ],
+        "lapack.zsytrs": [
+          "upper_column_major_rhs_column_major",
+          "upper_column_major_rhs_row_major",
+          "upper_row_major_rhs_column_major",
+          "upper_row_major_rhs_row_major",
+          "lower_column_major_rhs_column_major",
+          "lower_column_major_rhs_row_major",
+          "lower_row_major_rhs_column_major",
+          "lower_row_major_rhs_row_major"
+        ]
       },
-      "unreviewed_mode_rows": [
-        "lapack.chetrs",
-        "lapack.csytrs",
-        "lapack.dsytrs",
-        "lapack.ssytrs",
-        "lapack.zhetrs",
-        "lapack.zsytrs"
-      ],
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -31842,7 +32018,9 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/indefinite-continuation-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
       "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
@@ -31850,7 +32028,9 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/indefinite-continuation-review.md"
+      ]
     },
     {
       "task_id": "P05.required.hetrs2",
@@ -55395,7 +55575,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "0678771576492034b457521921876f180522b5203a77a37a33c231f20d3edd38",
+    "lapack-coverage.yaml": "c490d8cd763f6fffd881cf88f0022aaa5ba2207d9d40597b31478e2a202575e5",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }
