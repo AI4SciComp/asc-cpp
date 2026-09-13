@@ -1320,3 +1320,32 @@ dismissed or treated as closed by successful analysis. Current integrated
 coverage remains required2113, callable-unverified212, in-progress296,
 not-started1605, verified Reference0; reviewed integrated contracts252;
 native20 stays20/20. The uncommitted Aasen work has no normalized row promotion.
+
+
+## 2026-09-14: packed producer CI surface repair
+
+The pushed packed producer checkpoint is
+`e40387f140208b823f012fd255c248915df59ae2`. General CI push34768952137 and
+PR34768954138 each failed15 of19 jobs; the shared failure is the source and
+installed public-header surface comparison. The new packed header had the
+correct content hash but occupied the wrong position in the sorted baseline.
+This correction restores lexicographic path ordering without changing any
+header, checksum, target, contract, numerical input or assertion.
+
+The unchanged public-surface checker now passes on the corrected committed
+source projection and all four existing relocated static/shared LP64/ILP64
+packages. Its producer surface remains159 headers and six components. A
+separate reviewed evidence extension rebinds only that baseline artifact in12
+unverified rows, preserves Native20 and all historical executions, and grants
+no verification credit. Counts remain2113 required,254 callable-unverified,
+296 in progress,1563 not started,294 reviewed contracts and0 verified Reference.
+Raw failed hosted logs, the correction generator, exact before/after mappings
+and local check results are retained under the existing external evidence
+root in `completion-execution-01/public-surface-repair-01`.
+
+The next packed solve implementation remains separate, uncommitted work. Both
+actual ABI ordinary suites pass12/12 with864 cases per class/mode; strict
+production and ordinary-test checks pass after ordinary style repairs. Range,
+fault, structural, concurrency, installed-consumer and full profile gates are
+still required. The producer's144 required numerical/native endpoint failures
+remain failures. Whole-project status remains **FULL_PROGRAM_INCOMPLETE**.
