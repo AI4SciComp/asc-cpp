@@ -23,6 +23,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_indefinite_packed.cc
   reference_indefinite_packed_inverse.cc
   reference_indefinite_packed_condition.cc
+  reference_indefinite_packed_refinement.cc
   reference_indefinite_packed_solve.cc
   reference_indefinite_rook.cc
   reference_indefinite_rook_condition.cc
@@ -119,6 +120,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_packed.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_packed_inverse.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_packed_condition.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_packed_refinement.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_packed_solve.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rook.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_indefinite_rook_condition.h"

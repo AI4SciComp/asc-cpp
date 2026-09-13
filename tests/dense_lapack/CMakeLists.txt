@@ -36,6 +36,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_packed_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_packed_solve_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_packed_inverse_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_packed_condition_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_packed_refinement_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_driver_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_inverse_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_solve_tests.cmake")
@@ -1059,6 +1060,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_indefinite_packed.h
     lapack_indefinite_packed_inverse.h
     lapack_indefinite_packed_condition.h
+    lapack_indefinite_packed_refinement.h
     lapack_indefinite_packed_solve.h
     lapack_indefinite_rook.h
     lapack_indefinite_rook_condition.h

@@ -1,3 +1,35 @@
+## 2026-09-14: packed refinement engineering checkpoint
+
+Six checked SPRFS/HPRFS routes and 192 independent triangle/AP/AFP/B/X layout
+modes are implemented_unverified. The 2,113 required Reference rows comprise
+278 callable-unverified, 296 in progress and 1,539 not started; 318 contracts
+are reviewed, zero Reference rows verified, and Native20 remains intact.
+
+Sixteen profiles retain 72 mandatory mathematical failures alongside 480
+passes and zero skips. All four TSan profiles pass 6/6. Four relocated consumers
+each pass 6,912 factor/refinement workflows. Ten strict TUs, two actual-emitted
+1,296-case ABI probes, four header tests, ten package manifests, three
+architecture checks, five 163-header public surfaces, twelve added/zero removed
+exports per ABI, actual CI selection 1787 including all 44 refinement tests,
+and strict Doxygen 163/2765 pass. See the
+[refinement review](indefinite-packed-refinement-review.md) and external
+`completion-execution-01/packed-refinement-final-audit.json`. The corrected
+BERR oracle retains independent solution-quality checks and all 512 range
+inputs; mandatory numerical failures are not excluded, skipped or waived.
+
+Pushed condition head `1332f35ce673e4202e2a3b76b17bc5cac0df2dfa` passes both
+hosted general CI runs 19/19 and all six CodeQL analysis jobs. Both selected
+LAPACK workflows and the separate CodeQL alert gate fail. Those runs do not
+admit this newer refinement candidate or resolve existing alerts.
+
+Continue `P05.required.hpsv`. Six exact driver sources, twelve actual GNU
+signatures and both 1,944-case guarded native prerequisites pass under
+`packed-driver-source-review-01`, `packed-driver-emissions-01` and
+`packed-driver-native-01-{lp64,ilp64}`. They cover zero-RHS factorization and
+completed singular factors with preserved RHS. Implement checked drivers,
+then packed expert drivers and the whole remaining queue. Programme completion
+and provider/platform/security/XBLAS/notice gates remain open.
+
 ## 2026-09-14: packed condition engineering checkpoint
 
 Six checked SPCON/HPCON APIs and 24 reviewed triangle/layout modes are

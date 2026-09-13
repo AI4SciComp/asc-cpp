@@ -10,7 +10,9 @@ passes and zero skips. The inverse checkpoint adds six callable-unverified rows 
 modes: 552 runs retain 48 required complex range failures, with 504 passes
 and zero skips. The condition checkpoint adds six callable-unverified rows and 24 reviewed
 modes: 552 runs retain 72 required range failures, with 480 passes and zero
-skips. Work advances to `P05.required.hprfs`.
+skips. The refinement checkpoint adds six callable-unverified rows and 192 reviewed
+modes: 552 processes retain 72 mandatory failures, 480 passes and zero skips.
+Work advances to `P05.required.hpsv`.
 
 Packed range/native endpoint failures, current security findings, provider and
 XBLAS decisions, notices and missing platform acceptance remain unresolved.
@@ -18,6 +20,18 @@ The user permits recording unresolved trouble and advancing independent work;
 this does not promote blocked rows or turn failed tests into skips/passes.
 Remaining P00–P11 requirements retain their original scope. Use current state
 and family reviews before following historical next-task prose below.
+
+## PACKED-INDEFINITE-REFINEMENT-RANGE — required finite-input gate unmet
+
+All six SPRFS/HPRFS variants fail maintained mathematical range tests after
+correcting the independent BERR safe-minimum expression. The complete 512
+finite-input cases remain admitted; initial Release has 96 failed input groups
+per real variant and 144 per complex variant. Tiny and very large inputs can
+retain nonfinite estimates or failed independent solution quality. Raw native
+fidelity passes. Sixteen profiles retain 72 mandatory failures, 480 passes and
+zero skips; all four TSan profiles pass 6/6. See the
+[refinement review](indefinite-packed-refinement-review.md). Preserve this
+limitation and continue packed drivers; no provider change or numerical waiver.
 
 ## PACKED-INDEFINITE-CONDITION-RANGE — required finite-input gate unmet
 

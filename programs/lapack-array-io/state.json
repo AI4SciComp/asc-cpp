@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "32ef513187a11d69352d948ad1e9f6c878e492ff",
+  "current_base_commit": "1332f35ce673e4202e2a3b76b17bc5cac0df2dfa",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "32ef513187a11d69352d948ad1e9f6c878e492ff",
+  "last_implementation_commit": "1332f35ce673e4202e2a3b76b17bc5cac0df2dfa",
   "worktree_diff_identity": {
-    "state": "packed_solve_adapters_in_progress",
-    "base_commit": "e40387f140208b823f012fd255c248915df59ae2",
-    "scope": "Six SPTRS/HPTRS checked wrappers and paired-count/packing integration; no new normalized callable or verified credit yet."
+    "state": "packed_refinement_engineering_checkpoint",
+    "base_commit": "1332f35ce673e4202e2a3b76b17bc5cac0df2dfa",
+    "scope": "Six new checked refinement routes, full retained-failure engineering evidence and additive registration; no numerical verification."
   },
   "packages": {
     "P00": {
@@ -1258,7 +1258,7 @@
       "state": "in_progress",
       "owner": "integration",
       "backlog": "programs/lapack-array-io/remaining-reference-backlog.json",
-      "backlog_sha256": "9a685bb843efaa2ce59658ccf1a844ba49a6565ddc8adac9ebbfca47c5625db0",
+      "backlog_sha256": "f589f1c520ab4066167020f5a48bffe6429bdd394f8aead32ad8c4f0a78e35f0",
       "scope": "All2113 required rows remain exactly once in568 tasks. Corrected PSTRF/PSTF2 ownership toP05 and TGSJA toP07; explicit seven-family packed interface dependencies prevent incorrect basic-driver/inverse ordering. Other family dependencies remain review_required before execution; source and verification states are unchanged.",
       "next_action": "Execute the dependency-ready family queue; normalize per-row historical mode/profile evidence without rerunning unchanged numerical failures."
     },
@@ -1465,15 +1465,23 @@
       "engineering_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-condition-final-audit.json"
     },
     "P05.required.hprfs": {
-      "state": "in_progress",
-      "scope": "Six required packed refinement routines; exact source/ABI prerequisites ready, checked adapters not yet implemented.",
+      "state": "implemented_unverified",
+      "scope": "Six callable packed refinements /192 independent triangle/AP/AFP/B/X layout modes. Required range mathematics and broader admission remain unmet.",
       "source_prerequisites": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-source-review-01/inputs.json",
       "native_prerequisites": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-native-01-results.json",
-      "next_action": "Implement six checked SPRFS/HPRFS packed iterative-refinement routes using exact reviewed sources, actual GNU signatures and both 1296-case native prerequisites. Preserve mandatory packed condition/inverse/solve range and producer endpoint failures; continue all independent remaining work."
+      "next_action": "Retain six required mathematical failures per normal/sanitizer profile; advance packed solve drivers.",
+      "engineering_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-final-audit.json"
+    },
+    "P05.required.hpsv": {
+      "state": "in_progress",
+      "scope": "Six required SPSV/HPSV packed solve drivers; exact source and actual ABI prerequisites pass, checked adapters not yet implemented.",
+      "source_prerequisites": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-driver-source-review-01/inputs.json",
+      "native_prerequisites": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-driver-native-01-results.json",
+      "next_action": "Implement six checked SPSV/HPSV packed solve drivers from reviewed exact sources, twelve actual GNU signatures and both 1944-case native prerequisites. Preserve all required refinement/condition/inverse/solve/producer mathematical failures; continue packed expert drivers and every remaining independent task."
     }
   },
-  "active_task": "P05.required.hprfs",
-  "next_action": "Implement six checked SPRFS/HPRFS packed iterative-refinement routes using exact reviewed sources, actual GNU signatures and both 1296-case native prerequisites. Preserve mandatory packed condition/inverse/solve range and producer endpoint failures; continue all independent remaining work.",
+  "active_task": "P05.required.hpsv",
+  "next_action": "Implement six checked SPSV/HPSV packed solve drivers from reviewed exact sources, twelve actual GNU signatures and both 1944-case native prerequisites. Preserve all required refinement/condition/inverse/solve/producer mathematical failures; continue packed expert drivers and every remaining independent task.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1481,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "83957cb214a97afe3d9e484449874d3dd2682e562d4398f5e1225ad44c7ff5b3"
+    "coverage_mapping_sha256": "49d657843861b7f4aab23f0baf940c0b1d42e6becf1a1e9d11c11864fc5d338d"
   },
   "provider": {
     "version": "3.12.1",
@@ -1914,16 +1922,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 312,
-    "callable_reference": 272,
+    "mapped_contracts": 318,
+    "callable_reference": 278,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1545,
+    "not_started_reference": 1539,
     "in_progress_reference": 296,
-    "incomplete_reference": 1841,
-    "implemented_unverified_reference": 272,
+    "incomplete_reference": 1835,
+    "implemented_unverified_reference": 278,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2189,6 +2197,12 @@
       "scope": "All six SPCON/HPCON variants fail required range mathematics on finite admitted tiny inputs in twelve normal/sanitizer profiles. Sixteen profiles552 selected/480 passed/72 mandatory failures/zero skips; all four TSan profiles pass6/6 and native fidelity passes.",
       "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-condition-final-audit.json",
       "disposition": "recorded_unresolved_advance_independent_work"
+    },
+    {
+      "id": "PACKED-INDEFINITE-REFINEMENT-RANGE",
+      "scope": "All six SPRFS/HPRFS variants fail required mathematics on admitted finite extreme inputs after correction of the independent source-safe-minimum BERR oracle. Sixteen profiles: 552 selected, 480 passed, 72 mandatory failures, zero skips; all four TSan profiles pass 6/6 and raw native fidelity pass. Initial Release input groups fail 96 per real variant and 144 per complex variant out of 512.",
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-final-audit.json",
+      "disposition": "recorded_unresolved_advance_independent_work"
     }
   ],
   "external_approvals": [
@@ -2209,9 +2223,9 @@
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": null,
   "last_completed_verification": {
-    "state": "packed_condition_engineering_complete_required_gates_failed",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-condition-final-audit.json",
-    "scope": "Sixteen profiles:552 selected,480 passed,72 required mathematical failures,zero skips. Four installed consumers,ten strict TUs,two648-case emitted ABI probes,headers/architecture/package/surfaces/exports/CI selector and Doxygen pass. Foreign internals remain uninstrumented."
+    "state": "packed_refinement_engineering_complete_required_gates_failed",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-final-audit.json",
+    "scope": "Sixteen profiles:552 selected,480 passed,72 mandatory mathematical failures,zero skips. Four6912-workflow installed consumers,ten strict TUs,two 1296-case emitted ABI probes,headers/manifests/architecture/surfaces/exports/actual CI selector and strict Doxygen pass. Foreign internals remain uninstrumented."
   },
   "remote_checkpoint": {
     "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
@@ -2255,7 +2269,7 @@
   "pending_verifications": [
     {
       "task": "full_reference_program",
-      "scope": "All 2113 required Reference rows remain required:272 callable-unverified,296 in-progress,1545 not-started,zero verified. Six packed condition estimates /24 modes added as implemented_unverified; Native20 preserved. Extra-precision130 missing selected definitions, provider failures, broader platforms and final P11/notice gates remain open."
+      "scope": "All 2113 required Reference rows remain required:278 callable-unverified,296 in-progress,1539 not-started,zero verified. Six packed refinements /192 reviewed modes are implemented_unverified; Native20 preserved. Extra-precision 130 missing selected definitions, required provider mathematics, broader platforms and final P11/security/notice gates remain open."
     },
     {
       "task": "owner_provenance",
@@ -2695,14 +2709,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hprfs",
+  "next_task": "P05.required.hpsv",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Read packed-refinement-source-review-01/contract-draft.md and inputs.json, packed-refinement-emissions-01 and packed-refinement-native-01-{lp64,ilp64}; implement checked APIs and maintained tests. Do not replay completed exclusive attempts.",
+  "next_command": "Read packed-driver-source-review-01/contract-draft.md and inputs.json, packed-driver-emissions-01 and packed-driver-native-01-results.json; implement checked SPSV/HPSV APIs and maintained acceptance tests. Do not replay exclusive completed attempts.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4255,18 +4269,18 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "packed_indefinite_condition_6",
-    "implementation_parent": "32ef513187a11d69352d948ad1e9f6c878e492ff",
-    "state": "Engineering checkpoint ready for feature commit/push after final consistency checks; full program incomplete.",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-condition-final-audit.json",
+    "family": "packed_indefinite_refinement_6",
+    "implementation_parent": "1332f35ce673e4202e2a3b76b17bc5cac0df2dfa",
+    "state": "Engineering checkpoint ready for feature commit/push after consistency checks; full program incomplete.",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-final-audit.json",
     "selected_processes": 552,
     "passing_processes": 480,
     "required_failed_processes": 72,
     "unexpected_skips": 0,
     "reviewed_contracts": 6,
-    "reviewed_modes": 24,
+    "reviewed_modes": 192,
     "callable_routes": 6,
-    "next_family": "P05.required.hprfs"
+    "next_family": "P05.required.hpsv"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4504,7 +4518,7 @@
   },
   "completion_execution": {
     "plan": "programs/lapack-array-io/completion-plan-2026-09-13.md",
-    "state": "packed_condition_engineering_checkpoint_complete_full_program_incomplete",
+    "state": "packed_refinement_engineering_checkpoint_complete_full_program_incomplete",
     "scope": "User authorized executing the complete plan and recording/defering unresolved trouble while independent required work continues. Failed tests are not converted to skips or successes.",
     "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
     "m0": "Current artifact bindings, generator ownership, seven packed interface dependencies and active pointers are reconciled. Remaining families require individual dependency review before execution.",
@@ -4524,21 +4538,21 @@
     },
     "packed_concurrency_initial": "Six Debug LP64 scalar/symmetry processes pass with24 groups,4 workers,8 repeats each; serial independent reconstruction, private storage/reports and concurrent stale-plan rejection.",
     "ci_selector_fix": "Prior regex omitted indefinite_packed while requiring43 packed IDs; both actual listing/execution selectors now include the family and all49 IDs, pending full selector validation.",
-    "updated_utc": "2026-09-13T19:38:41.743608+00:00",
+    "updated_utc": "2026-09-13T21:00:39.835619+00:00",
     "m0_pending": "Review remaining family prerequisites at each implementation boundary; no generic foundation-only task is marked dependency-reviewed.",
     "current_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 312,
-      "callable_reference": 272,
+      "mapped_contracts": 318,
+      "callable_reference": 278,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1545,
+      "not_started_reference": 1539,
       "in_progress_reference": 296,
-      "incomplete_reference": 1841,
-      "implemented_unverified_reference": 272,
+      "incomplete_reference": 1835,
+      "implemented_unverified_reference": 278,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -4570,6 +4584,52 @@
       "process_session": null,
       "acceptance": "engineering complete; required numerical failures retained",
       "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-condition-final-audit.json"
+    },
+    "packed_refinement": {
+      "state": "engineering_complete_required_numerical_failures_retained",
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-source-review-01",
+      "native_results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-native-01-results.json",
+      "decision": "Use private NaN-seeded FERR/BERR buffers in caller-owned real workspace; preserve caller errors on INFO/pivot defects. Publish raw estimates after protocol validation, and withhold row X for negative/provider-invalid estimates. No changes to existing APIs or provider.",
+      "production_compiles": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-compile-01-results.json",
+      "production_strict": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-production-strict-01/record.json",
+      "ordinary_process_session": null,
+      "partial_scope": "Production and all seven maintained test translation units plus fault shim and installed consumer pass strict checks. Both Release ABIs pass 19 validation/count/concurrency/fault tests and initial ABI1296 probes; final validation adds object-alias cases. Final four relocated installs and 16 exact-source profiles now running; contract/mapping/CI/documentation gates pending. Required range mathematics remains failed.",
+      "ordinary_results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-ordinary-01-results.json",
+      "range_process_session": null,
+      "corrected_tests": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-ordinary-range-02-results.json",
+      "range_limitation": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-range-limitation-01.json",
+      "strict_process_session": null,
+      "strict_ordinary_range": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-strict-02/results.json",
+      "fault_process_session": null,
+      "fault_results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-fault-01-results.json",
+      "fault_strict_first": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-strict-03/results.json",
+      "validation_first": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-validation-counts-01-results.json",
+      "validation_concurrency_results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-validation-concurrency-02-results.json",
+      "abi_initial": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-abi-01-results.json",
+      "strict_fault_shim": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-strict-05/results.json",
+      "strict_validation": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-strict-06/results.json",
+      "strict_abi": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-strict-07/results.json",
+      "strict_installed": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-installed-strict-02/record.json",
+      "installed_lp64": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-installed-02-static-lp64/audit.json",
+      "updated_utc": "2026-09-13T20:33:10.753080+00:00",
+      "profile_process_session": null,
+      "contract_review": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-contract-review-01/reviewed-contracts.json",
+      "condition_hosted": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-condition-hosted-followup-01/command.log",
+      "strict_final": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-strict-final.json",
+      "native_final": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-native-final-results.json",
+      "integration": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-integration-01/results.json",
+      "public_surfaces": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-public-surface-02/audit.json",
+      "ci_selector": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-ci-selector-01/audit.json",
+      "acceptance": "engineering complete; required numerical failures retained",
+      "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-refinement-final-audit.json",
+      "next": "Implement six checked SPSV/HPSV packed solve drivers from reviewed exact sources, twelve actual GNU signatures and both 1944-case native prerequisites. Preserve all required refinement/condition/inverse/solve/producer mathematical failures; continue packed expert drivers and every remaining independent task."
+    },
+    "packed_driver_prerequisites": {
+      "source": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-driver-source-review-01/inputs.json",
+      "emissions": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-driver-emissions-01/emissions.json",
+      "native": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-driver-native-01-results.json",
+      "native_cases_each_abi": 1944,
+      "state": "six_source_rows_and_actual_abi_prerequisites_ready_no_implementation_or_coverage_credit"
     }
   },
   "historical_active_verification_before_completion_execution": {

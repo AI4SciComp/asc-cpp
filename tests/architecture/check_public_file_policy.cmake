@@ -76,6 +76,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_indefinite_packed.h
   include/asc/dense/providers/lapack_indefinite_packed_inverse.h
   include/asc/dense/providers/lapack_indefinite_packed_condition.h
+  include/asc/dense/providers/lapack_indefinite_packed_refinement.h
   include/asc/dense/providers/lapack_indefinite_packed_solve.h
   include/asc/dense/providers/lapack_indefinite_rook.h
   include/asc/dense/providers/lapack_indefinite_rook_condition.h
@@ -236,6 +237,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_indefinite_packed.cc
   src/dense/lapack/reference_indefinite_packed_inverse.cc
   src/dense/lapack/reference_indefinite_packed_condition.cc
+  src/dense/lapack/reference_indefinite_packed_refinement.cc
   src/dense/lapack/reference_indefinite_packed_solve.cc
   src/dense/lapack/reference_indefinite_rook.cc
   src/dense/lapack/reference_indefinite_rook_condition.cc
