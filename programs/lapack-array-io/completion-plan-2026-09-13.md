@@ -420,3 +420,18 @@ APIs, full tests, installation and evidence registration are next. Use live
 state and family reviews instead of replaying the original producer command.
 Existing provider/security/XBLAS/notice decisions remain open while independent
 required implementation continues. This is not whole-project completion.
+
+
+**Packed inverse checkpoint — 2026-09-14**
+
+Six SPTRI/HPTRI routes and 24 reviewed modes are now callable-unverified.
+The sixteen-profile matrix has 504 passes, 48 retained complex range failures
+and no skips. Four relocated consumers and scoped P11 checks pass. Accounting
+advances to 266 callable-unverified rows and 306 reviewed contracts, with zero
+verified Reference rows; the 2,113 denominator and Native20 remain unchanged.
+
+Continue six SPCON/HPCON condition estimates, then their dependency-ready
+refinement and driver families. Condition sources, actual emitted signatures
+and guarded native prerequisites are already recorded. Provider/numerical,
+security, XBLAS, platform and notice decisions remain open; this checkpoint
+does not complete the whole assignment.

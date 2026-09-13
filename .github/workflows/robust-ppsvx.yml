@@ -341,6 +341,15 @@ jobs:
                        for scalar in ("s", "d", "c", "z", "ch", "zh")}
           required.add("asc_cpp.dense_lapack.indefinite_packed_solve_counts")
           required.add("asc_cpp.dense_lapack.indefinite_packed_solve_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_packed_inverse{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_packed_inverse_{suite}.{scalar}"
+                       for suite in ("validation", "fault", "concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_packed_inverse_counts")
+          required.add("asc_cpp.dense_lapack.indefinite_packed_inverse_abi_probe")
           required |= {f"asc_cpp.dense_lapack.indefinite_packed{suite}.{scalar}.{mode}"
                        for suite in ("", "_range")
                        for scalar in ("s", "d", "c", "z", "ch", "zh")

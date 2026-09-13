@@ -6,7 +6,9 @@ unverified rows; sixteen final profiles execute 612 tests with 468 passes,
 engineering checks pass. See the [packed review](indefinite-packed-review.md).
 The matching solve checkpoint adds six callable-unverified rows and 48
 reviewed modes; 552 runs retain 72 required range failures, with 480
-passes and zero skips. Work advances to `P05.required.hptri`.
+passes and zero skips. The inverse checkpoint adds six callable-unverified rows and 24 reviewed
+modes: 552 runs retain 48 required complex range failures, with 504 passes
+and zero skips. Work advances to `P05.required.hpcon`.
 
 Packed range/native endpoint failures, current security findings, provider and
 XBLAS decisions, notices and missing platform acceptance remain unresolved.
@@ -14,6 +16,17 @@ The user permits recording unresolved trouble and advancing independent work;
 this does not promote blocked rows or turn failed tests into skips/passes.
 Remaining P00–P11 requirements retain their original scope. Use current state
 and family reviews before following historical next-task prose below.
+
+## PACKED-INDEFINITE-INVERSE-RANGE — required finite-inverse gate unmet
+
+CSPTRI/ZSPTRI/CHPTRI/ZHPTRI fail the maintained mathematical range test for
+zero-diagonal2x2 blocks whose off-diagonal real/imaginary components are each
+0.75*max. Exact inverse entries remain representable. Both triangles/layouts
+fail in every normal/sanitizer profile, while raw-native fidelity passes.
+The final matrix retains48 mandatory failures across552 processes, with504
+passes and zero skips; all four TSan profiles pass6/6. See the
+[inverse review](indefinite-packed-inverse-review.md). Record the provider
+limitation and advance condition estimation without weakening a requirement.
 
 ## PACKED-INDEFINITE-SOLVE-RANGE — required finite-solution gate unmet
 

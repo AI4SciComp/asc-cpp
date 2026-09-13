@@ -1,3 +1,34 @@
+## 2026-09-14: packed inverse engineering checkpoint
+
+Six checked SPTRI/HPTRI APIs and 24 reviewed triangle/layout modes are
+implemented_unverified. Counts: 2,113 required Reference rows, 266 callable-
+unverified, 296 in progress, 1,551 not started, 306 reviewed contracts and zero
+verified Reference. Native20 and accepted array-I/O contracts remain unchanged.
+
+The final sixteen profiles select 552 processes: 504 pass, 48 mandatory complex
+range failures, zero skips. Each TSan profile passes 6/6. Four relocated public
+consumers each pass 576 producer/inverse workflows. Ten strict TUs, two 432-case
+emitted-ABI probes, four standalone headers, ten package manifests, three
+architecture checks, source/four installed surfaces, twelve added/zero removed
+symbols per ABI, actual CI selection and Doxygen161/2741 pass. See the
+[inverse review](indefinite-packed-inverse-review.md) and the external
+`completion-execution-01/packed-inverse-final-audit.json`. Original nonzero
+results and source/provider/binary identities remain preserved; no numerical
+requirement, scope denominator or provider source is relaxed.
+
+The pushed solve head `b779474925ccc4275303512e7ee18ce2d3489483` passes both
+hosted general CI runs19/19 and both CodeQL analysis runs. Selected-LAPACK and
+security-alert gates remain separate. The inverse working tree has its own
+local evidence; those previous hosted runs do not admit this newer candidate.
+
+Continue `P05.required.hpcon`. Six exact condition-estimator sources, twelve
+actual GNU emissions and both648-case guarded native prerequisites are ready
+in `packed-condition-source-review-01`, `packed-condition-emissions-01` and
+`packed-condition-native-02-{lp64,ilp64}`. The initial test-helper compile failure
+and its corrected attempt are retained. Implement the checked packed condition
+API next; no routine approval, restart, merge or release is implied. Full
+programme remains incomplete.
+
 ## 2026-09-14: packed solve engineering checkpoint
 
 Six checked SPTRS/HPTRS consumers and 48 reviewed modes are registered
