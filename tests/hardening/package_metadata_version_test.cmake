@@ -29,12 +29,16 @@ endif()
 
 set(_known_components
   core utilities expression dense sparse random random_dense random_sparse cpp
+  dense_lapack
   core_cuda dense_cuda sparse_cuda random_cuda random_dense_cuda
   random_sparse_cuda
 )
 set(_available_components
   core utilities expression dense sparse random random_dense random_sparse cpp
 )
+if(EXPECT_LAPACK)
+  list(APPEND _available_components dense_lapack)
+endif()
 if(EXPECT_CUDA)
   list(APPEND _available_components
     core_cuda dense_cuda sparse_cuda random_cuda random_dense_cuda
@@ -54,6 +58,7 @@ set(_closure_cpp
   core cpp dense expression random random_dense random_sparse sparse utilities
 )
 set(_closure_core_cuda core core_cuda)
+set(_closure_dense_lapack core dense dense_lapack expression)
 set(_closure_dense_cuda core core_cuda dense dense_cuda expression)
 set(_closure_sparse_cuda core core_cuda expression sparse sparse_cuda)
 set(_closure_random_cuda core core_cuda random random_cuda)
@@ -89,6 +94,8 @@ function(_run_configure_case)
   set(_build "${_case_dir}/build")
   file(MAKE_DIRECTORY "${_source}")
   file(WRITE "${_source}/CMakeLists.txt"
+    "set(ASC_CPP_LAPACK_ROOT [==[${LAPACK_ROOT}]==])\n"
+    "string(REPLACE \"|\" \";\" ASC_CPP_LAPACK_RUNTIME_LIBRARIES [==[${LAPACK_RUNTIMES}]==])\n"
     "${${CASE_CONTENT_VARIABLE}}"
   )
 
@@ -175,6 +182,7 @@ set(_expected_links_cpp
   "ASC::core;ASC::utilities;ASC::expression;ASC::dense;ASC::sparse;ASC::random;ASC::random_dense;ASC::random_sparse"
 )
 set(_expected_links_core_cuda "ASC::core")
+set(_expected_links_dense_lapack "ASC::dense")
 set(_expected_links_dense_cuda "ASC::dense;ASC::core_cuda")
 set(_expected_links_sparse_cuda "ASC::sparse;ASC::core_cuda")
 set(_expected_links_random_cuda "ASC::random;ASC::core_cuda")
@@ -190,6 +198,7 @@ set(_static_macro_dense ASC_DENSE_STATIC_DEFINE)
 set(_static_macro_sparse ASC_SPARSE_STATIC_DEFINE)
 set(_static_macro_random ASC_RANDOM_STATIC_DEFINE)
 set(_static_macro_core_cuda ASC_CORE_CUDA_STATIC_DEFINE)
+set(_static_macro_dense_lapack ASC_DENSE_LAPACK_STATIC_DEFINE)
 set(_static_macro_dense_cuda ASC_DENSE_CUDA_STATIC_DEFINE)
 set(_static_macro_sparse_cuda ASC_SPARSE_CUDA_STATIC_DEFINE)
 set(_static_macro_random_cuda ASC_RANDOM_CUDA_STATIC_DEFINE)
@@ -330,6 +339,7 @@ if(NOT "${_actual}" STREQUAL "${_expected}")
   )
 endif()
 foreach(_cuda_target IN ITEMS
+    ASC::dense_lapack ASC_INTERNAL_LAPACK::reference
     CUDA::cudart CUDA::cublas CUDA::cusparse
     ASC::core_cuda ASC::dense_cuda ASC::sparse_cuda ASC::random_cuda
     ASC::random_dense_cuda ASC::random_sparse_cuda)

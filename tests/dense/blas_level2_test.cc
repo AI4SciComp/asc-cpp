@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <array>
 #include <cmath>
 #include <complex>
@@ -7,6 +8,7 @@
 #include <span>
 #include <type_traits>
 
+#include "allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
@@ -184,7 +186,7 @@ Element MaybeConjugate(Element value) {
 }
 
 template <typename Element>
-void TestGeneralMatrixVector(TestContext& test) {
+void TestDenseMatrixVector(TestContext& test) {
   const auto context = asc::ExecutionContext::Serial();
   for (asc::DenseBlasLayout layout :
        {asc::DenseBlasLayout::kColumnMajor, asc::DenseBlasLayout::kRowMajor}) {
@@ -255,7 +257,11 @@ void TestGeneralMatrixVector(TestContext& test) {
           test, Near(transpose_output_storage[column], expected_value));
     }
   }
+}
 
+template <typename Element>
+void TestBandMatrixVector(TestContext& test) {
+  const auto context = asc::ExecutionContext::Serial();
   std::array<Element, 12> band_storage{};
   auto band = MakeBand(band_storage.data(), 3, 3, 1, 1,
                        asc::DenseBlasLayout::kColumnMajor, 4,
@@ -298,6 +304,12 @@ void TestGeneralMatrixVector(TestContext& test) {
     }
     ASC_DENSE_TEST_CHECK(test, Near(y_storage[column], expected));
   }
+}
+
+template <typename Element>
+void TestGeneralMatrixVector(TestContext& test) {
+  TestDenseMatrixVector<Element>(test);
+  TestBandMatrixVector<Element>(test);
 }
 
 template <typename Element>
@@ -459,6 +471,134 @@ void FillLowerTriangular(asc::DenseBlasMatrixView<Element> full,
   }
 }
 
+template <typename Element, typename Multiply, typename Solve>
+void CheckTriangularRoundTrip(TestContext& test, Multiply multiply,
+                              Solve solve) {
+  std::array<Element, 5> vector_storage{};
+  vector_storage[4] = Element{1};
+  vector_storage[2] = Element{-2};
+  vector_storage[0] = Element{3};
+  auto vector = MakeVector(vector_storage.data() + 4, 3, -2,
+                           Storage(std::span(vector_storage)));
+  ASC_DENSE_TEST_CHECK(test, multiply(vector).ok());
+  ASC_DENSE_TEST_CHECK(test, solve(vector).ok());
+  constexpr std::array<Real<Element>, 3> kExpected{1, -2, 3};
+  for (std::size_t index = 0; index < kExpected.size(); ++index) {
+    ASC_DENSE_TEST_CHECK(
+        test,
+        Near(vector
+                 .data()[static_cast<asc::index_t>(index) * vector.increment()],
+             Element{kExpected[index]}));
+  }
+}
+
+template <typename Element>
+void TestUpperTriangular(TestContext& test,
+                         const asc::ExecutionContext& context,
+                         asc::DenseBlasMatrixView<Element> full,
+                         asc::DenseBlasTriangularBandView<Element> band,
+                         asc::DenseBlasPackedMatrixView<Element> packed) {
+  CheckTriangularRoundTrip<Element>(
+      test,
+      [&](auto vector) {
+        return asc::Trmv(context, asc::DenseBlasTriangle::kUpper,
+                         asc::DenseBlasTranspose::kNone,
+                         asc::DenseBlasDiagonal::kNonUnit,
+                         asc::DenseBlasMatrixView<const Element>(full), vector);
+      },
+      [&](auto vector) {
+        return asc::Trsv(context, asc::DenseBlasTriangle::kUpper,
+                         asc::DenseBlasTranspose::kNone,
+                         asc::DenseBlasDiagonal::kNonUnit,
+                         asc::DenseBlasMatrixView<const Element>(full), vector);
+      });
+  CheckTriangularRoundTrip<Element>(
+      test,
+      [&](auto vector) {
+        return asc::Tbmv(context, asc::DenseBlasTriangle::kUpper,
+                         asc::DenseBlasTranspose::kTranspose,
+                         asc::DenseBlasDiagonal::kNonUnit,
+                         asc::DenseBlasTriangularBandView<const Element>(band),
+                         vector);
+      },
+      [&](auto vector) {
+        return asc::Tbsv(context, asc::DenseBlasTriangle::kUpper,
+                         asc::DenseBlasTranspose::kTranspose,
+                         asc::DenseBlasDiagonal::kNonUnit,
+                         asc::DenseBlasTriangularBandView<const Element>(band),
+                         vector);
+      });
+  CheckTriangularRoundTrip<Element>(
+      test,
+      [&](auto vector) {
+        return asc::Tpmv(context, asc::DenseBlasTriangle::kUpper,
+                         asc::DenseBlasTranspose::kConjugateTranspose,
+                         asc::DenseBlasDiagonal::kNonUnit,
+                         asc::DenseBlasPackedMatrixView<const Element>(packed),
+                         vector);
+      },
+      [&](auto vector) {
+        return asc::Tpsv(context, asc::DenseBlasTriangle::kUpper,
+                         asc::DenseBlasTranspose::kConjugateTranspose,
+                         asc::DenseBlasDiagonal::kNonUnit,
+                         asc::DenseBlasPackedMatrixView<const Element>(packed),
+                         vector);
+      });
+}
+
+template <typename Element>
+void TestLowerTriangular(TestContext& test,
+                         const asc::ExecutionContext& context,
+                         asc::DenseBlasMatrixView<Element> full,
+                         asc::DenseBlasTriangularBandView<Element> band,
+                         asc::DenseBlasPackedMatrixView<Element> packed) {
+  FillLowerTriangular(full, band, packed);
+  CheckTriangularRoundTrip<Element>(
+      test,
+      [&](auto vector) {
+        return asc::Trmv(context, asc::DenseBlasTriangle::kLower,
+                         asc::DenseBlasTranspose::kTranspose,
+                         asc::DenseBlasDiagonal::kUnit,
+                         asc::DenseBlasMatrixView<const Element>(full), vector);
+      },
+      [&](auto vector) {
+        return asc::Trsv(context, asc::DenseBlasTriangle::kLower,
+                         asc::DenseBlasTranspose::kTranspose,
+                         asc::DenseBlasDiagonal::kUnit,
+                         asc::DenseBlasMatrixView<const Element>(full), vector);
+      });
+  CheckTriangularRoundTrip<Element>(
+      test,
+      [&](auto vector) {
+        return asc::Tbmv(
+            context, asc::DenseBlasTriangle::kLower,
+            asc::DenseBlasTranspose::kNone, asc::DenseBlasDiagonal::kUnit,
+            asc::DenseBlasTriangularBandView<const Element>(band), vector);
+      },
+      [&](auto vector) {
+        return asc::Tbsv(
+            context, asc::DenseBlasTriangle::kLower,
+            asc::DenseBlasTranspose::kNone, asc::DenseBlasDiagonal::kUnit,
+            asc::DenseBlasTriangularBandView<const Element>(band), vector);
+      });
+  CheckTriangularRoundTrip<Element>(
+      test,
+      [&](auto vector) {
+        return asc::Tpmv(context, asc::DenseBlasTriangle::kLower,
+                         asc::DenseBlasTranspose::kConjugateTranspose,
+                         asc::DenseBlasDiagonal::kUnit,
+                         asc::DenseBlasPackedMatrixView<const Element>(packed),
+                         vector);
+      },
+      [&](auto vector) {
+        return asc::Tpsv(context, asc::DenseBlasTriangle::kLower,
+                         asc::DenseBlasTranspose::kConjugateTranspose,
+                         asc::DenseBlasDiagonal::kUnit,
+                         asc::DenseBlasPackedMatrixView<const Element>(packed),
+                         vector);
+      });
+}
+
 template <typename Element>
 void TestTriangular(TestContext& test) {
   const auto context = asc::ExecutionContext::Serial();
@@ -476,110 +616,126 @@ void TestTriangular(TestContext& test) {
                  Storage(std::span(packed_storage)));
   FillUpperTriangular(full, band, packed);
 
-  auto round_trip = [&](auto multiply, auto solve) {
-    std::array<Element, 5> vector_storage{};
-    vector_storage[4] = Element{1};
-    vector_storage[2] = Element{-2};
-    vector_storage[0] = Element{3};
-    auto vector = MakeVector(vector_storage.data() + 4, 3, -2,
-                             Storage(std::span(vector_storage)));
-    ASC_DENSE_TEST_CHECK(test, multiply(vector).ok());
-    ASC_DENSE_TEST_CHECK(test, solve(vector).ok());
-    constexpr std::array<Real<Element>, 3> kExpected{1, -2, 3};
-    for (std::size_t index = 0; index < kExpected.size(); ++index) {
-      ASC_DENSE_TEST_CHECK(test,
-                           Near(vector.data()[static_cast<asc::index_t>(index) *
-                                              vector.increment()],
-                                Element{kExpected[index]}));
-    }
-  };
+  TestUpperTriangular(test, context, full, band, packed);
+  TestLowerTriangular(test, context, full, band, packed);
+}
 
-  round_trip(
-      [&](auto vector) {
-        return asc::Trmv(context, asc::DenseBlasTriangle::kUpper,
-                         asc::DenseBlasTranspose::kNone,
-                         asc::DenseBlasDiagonal::kNonUnit,
-                         asc::DenseBlasMatrixView<const Element>(full), vector);
-      },
-      [&](auto vector) {
-        return asc::Trsv(context, asc::DenseBlasTriangle::kUpper,
-                         asc::DenseBlasTranspose::kNone,
-                         asc::DenseBlasDiagonal::kNonUnit,
-                         asc::DenseBlasMatrixView<const Element>(full), vector);
-      });
-  round_trip(
-      [&](auto vector) {
-        return asc::Tbmv(context, asc::DenseBlasTriangle::kUpper,
-                         asc::DenseBlasTranspose::kTranspose,
-                         asc::DenseBlasDiagonal::kNonUnit,
-                         asc::DenseBlasTriangularBandView<const Element>(band),
-                         vector);
-      },
-      [&](auto vector) {
-        return asc::Tbsv(context, asc::DenseBlasTriangle::kUpper,
-                         asc::DenseBlasTranspose::kTranspose,
-                         asc::DenseBlasDiagonal::kNonUnit,
-                         asc::DenseBlasTriangularBandView<const Element>(band),
-                         vector);
-      });
-  round_trip(
-      [&](auto vector) {
-        return asc::Tpmv(context, asc::DenseBlasTriangle::kUpper,
-                         asc::DenseBlasTranspose::kConjugateTranspose,
-                         asc::DenseBlasDiagonal::kNonUnit,
-                         asc::DenseBlasPackedMatrixView<const Element>(packed),
-                         vector);
-      },
-      [&](auto vector) {
-        return asc::Tpsv(context, asc::DenseBlasTriangle::kUpper,
-                         asc::DenseBlasTranspose::kConjugateTranspose,
-                         asc::DenseBlasDiagonal::kNonUnit,
-                         asc::DenseBlasPackedMatrixView<const Element>(packed),
-                         vector);
-      });
+template <typename Element>
+void TestComplexRankUpdates(TestContext& test,
+                            const asc::ExecutionContext& context,
+                            asc::DenseBlasVectorView<const Element> x,
+                            asc::DenseBlasVectorView<const Element> y,
+                            asc::DenseBlasMatrixView<Element> matrix,
+                            asc::DenseBlasPackedMatrixView<Element> packed,
+                            auto reset_matrix, auto reset_packed) {
+  reset_matrix();
+  ASC_DENSE_TEST_CHECK(test, asc::Geru(context, Element{1}, x, y, matrix).ok());
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{3}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{-1}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{6}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-2}));
+  reset_matrix();
+  ASC_DENSE_TEST_CHECK(test, asc::Gerc(context, Element{1}, x, y, matrix).ok());
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{3}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{-1}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{6}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-2}));
+  reset_matrix();
+  ASC_DENSE_TEST_CHECK(test, asc::Her(context, asc::DenseBlasTriangle::kUpper,
+                                      Real<Element>{2}, x, matrix)
+                                 .ok());
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{2}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{4}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{8}));
+  reset_packed();
+  ASC_DENSE_TEST_CHECK(test, asc::Hpr(context, asc::DenseBlasTriangle::kUpper,
+                                      Real<Element>{2}, x, packed)
+                                 .ok());
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 0, 0), Element{2}));
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 0, 1), Element{4}));
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 1, 1), Element{8}));
+  reset_matrix();
+  ASC_DENSE_TEST_CHECK(test, asc::Her2(context, asc::DenseBlasTriangle::kLower,
+                                       Element{1, 1}, x, y, matrix)
+                                 .ok());
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{6}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{5, 7}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-4}));
+  reset_packed();
+  ASC_DENSE_TEST_CHECK(test, asc::Hpr2(context, asc::DenseBlasTriangle::kLower,
+                                       Element{1, 1}, x, y, packed)
+                                 .ok());
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 0, 0), Element{6}));
+  ASC_DENSE_TEST_CHECK(
+      test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 1, 0),
+                 Element{5, 7}));
+  ASC_DENSE_TEST_CHECK(
+      test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 1, 1),
+                 Element{-4}));
+}
 
-  FillLowerTriangular(full, band, packed);
-  round_trip(
-      [&](auto vector) {
-        return asc::Trmv(context, asc::DenseBlasTriangle::kLower,
-                         asc::DenseBlasTranspose::kTranspose,
-                         asc::DenseBlasDiagonal::kUnit,
-                         asc::DenseBlasMatrixView<const Element>(full), vector);
-      },
-      [&](auto vector) {
-        return asc::Trsv(context, asc::DenseBlasTriangle::kLower,
-                         asc::DenseBlasTranspose::kTranspose,
-                         asc::DenseBlasDiagonal::kUnit,
-                         asc::DenseBlasMatrixView<const Element>(full), vector);
-      });
-  round_trip(
-      [&](auto vector) {
-        return asc::Tbmv(
-            context, asc::DenseBlasTriangle::kLower,
-            asc::DenseBlasTranspose::kNone, asc::DenseBlasDiagonal::kUnit,
-            asc::DenseBlasTriangularBandView<const Element>(band), vector);
-      },
-      [&](auto vector) {
-        return asc::Tbsv(
-            context, asc::DenseBlasTriangle::kLower,
-            asc::DenseBlasTranspose::kNone, asc::DenseBlasDiagonal::kUnit,
-            asc::DenseBlasTriangularBandView<const Element>(band), vector);
-      });
-  round_trip(
-      [&](auto vector) {
-        return asc::Tpmv(context, asc::DenseBlasTriangle::kLower,
-                         asc::DenseBlasTranspose::kConjugateTranspose,
-                         asc::DenseBlasDiagonal::kUnit,
-                         asc::DenseBlasPackedMatrixView<const Element>(packed),
-                         vector);
-      },
-      [&](auto vector) {
-        return asc::Tpsv(context, asc::DenseBlasTriangle::kLower,
-                         asc::DenseBlasTranspose::kConjugateTranspose,
-                         asc::DenseBlasDiagonal::kUnit,
-                         asc::DenseBlasPackedMatrixView<const Element>(packed),
-                         vector);
-      });
+template <typename Element>
+void TestRealRankUpdates(TestContext& test,
+                         const asc::ExecutionContext& context,
+                         asc::DenseBlasVectorView<const Element> x,
+                         asc::DenseBlasVectorView<const Element> y,
+                         asc::DenseBlasMatrixView<Element> matrix,
+                         asc::DenseBlasPackedMatrixView<Element> packed,
+                         auto reset_matrix, auto reset_packed) {
+  reset_matrix();
+  ASC_DENSE_TEST_CHECK(test, asc::Ger(context, Element{1}, x, y, matrix).ok());
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{3}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{-1}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{6}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-2}));
+  reset_matrix();
+  ASC_DENSE_TEST_CHECK(test, asc::Syr(context, asc::DenseBlasTriangle::kUpper,
+                                      Element{2}, x, matrix)
+                                 .ok());
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{2}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{4}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{8}));
+  reset_packed();
+  ASC_DENSE_TEST_CHECK(test, asc::Spr(context, asc::DenseBlasTriangle::kUpper,
+                                      Element{2}, x, packed)
+                                 .ok());
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 0, 0), Element{2}));
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 0, 1), Element{4}));
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 1, 1), Element{8}));
+  reset_matrix();
+  ASC_DENSE_TEST_CHECK(test, asc::Syr2(context, asc::DenseBlasTriangle::kLower,
+                                       Element{1}, x, y, matrix)
+                                 .ok());
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{6}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{5}));
+  ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-4}));
+  reset_packed();
+  ASC_DENSE_TEST_CHECK(test, asc::Spr2(context, asc::DenseBlasTriangle::kLower,
+                                       Element{1}, x, y, packed)
+                                 .ok());
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 0, 0), Element{6}));
+  ASC_DENSE_TEST_CHECK(
+      test,
+      Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 1, 0), Element{5}));
+  ASC_DENSE_TEST_CHECK(
+      test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 1, 1),
+                 Element{-4}));
 }
 
 template <typename Element>
@@ -602,112 +758,11 @@ void TestRankUpdates(TestContext& test) {
   auto reset_matrix = [&]() { matrix_storage.fill(Element{0}); };
   auto reset_packed = [&]() { packed_storage.fill(Element{0}); };
   if constexpr (asc::DenseBlasComplex<Element>) {
-    reset_matrix();
-    ASC_DENSE_TEST_CHECK(test,
-                         asc::Geru(context, Element{1}, x, y, matrix).ok());
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{3}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{-1}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{6}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-2}));
-    reset_matrix();
-    ASC_DENSE_TEST_CHECK(test,
-                         asc::Gerc(context, Element{1}, x, y, matrix).ok());
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{3}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{-1}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{6}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-2}));
-    reset_matrix();
-    ASC_DENSE_TEST_CHECK(test, asc::Her(context, asc::DenseBlasTriangle::kUpper,
-                                        Real<Element>{2}, x, matrix)
-                                   .ok());
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{2}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{4}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{8}));
-    reset_packed();
-    ASC_DENSE_TEST_CHECK(test, asc::Hpr(context, asc::DenseBlasTriangle::kUpper,
-                                        Real<Element>{2}, x, packed)
-                                   .ok());
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 0, 0),
-                   Element{2}));
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 0, 1),
-                   Element{4}));
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 1, 1),
-                   Element{8}));
-    reset_matrix();
-    ASC_DENSE_TEST_CHECK(
-        test, asc::Her2(context, asc::DenseBlasTriangle::kLower, Element{1, 1},
-                        x, y, matrix)
-                  .ok());
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{6}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{5, 7}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-4}));
-    reset_packed();
-    ASC_DENSE_TEST_CHECK(
-        test, asc::Hpr2(context, asc::DenseBlasTriangle::kLower, Element{1, 1},
-                        x, y, packed)
-                  .ok());
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 0, 0),
-                   Element{6}));
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 1, 0),
-                   Element{5, 7}));
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 1, 1),
-                   Element{-4}));
+    TestComplexRankUpdates(test, context, x, y, matrix, packed, reset_matrix,
+                           reset_packed);
   } else {
-    reset_matrix();
-    ASC_DENSE_TEST_CHECK(test,
-                         asc::Ger(context, Element{1}, x, y, matrix).ok());
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{3}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{-1}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{6}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-2}));
-    reset_matrix();
-    ASC_DENSE_TEST_CHECK(test, asc::Syr(context, asc::DenseBlasTriangle::kUpper,
-                                        Element{2}, x, matrix)
-                                   .ok());
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{2}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 1), Element{4}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{8}));
-    reset_packed();
-    ASC_DENSE_TEST_CHECK(test, asc::Spr(context, asc::DenseBlasTriangle::kUpper,
-                                        Element{2}, x, packed)
-                                   .ok());
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 0, 0),
-                   Element{2}));
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 0, 1),
-                   Element{4}));
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kUpper, 1, 1),
-                   Element{8}));
-    reset_matrix();
-    ASC_DENSE_TEST_CHECK(
-        test, asc::Syr2(context, asc::DenseBlasTriangle::kLower, Element{1}, x,
-                        y, matrix)
-                  .ok());
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 0, 0), Element{6}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 0), Element{5}));
-    ASC_DENSE_TEST_CHECK(test, Near(MatrixAt(matrix, 1, 1), Element{-4}));
-    reset_packed();
-    ASC_DENSE_TEST_CHECK(
-        test, asc::Spr2(context, asc::DenseBlasTriangle::kLower, Element{1}, x,
-                        y, packed)
-                  .ok());
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 0, 0),
-                   Element{6}));
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 1, 0),
-                   Element{5}));
-    ASC_DENSE_TEST_CHECK(
-        test, Near(PackedAt(packed, asc::DenseBlasTriangle::kLower, 1, 1),
-                   Element{-4}));
+    TestRealRankUpdates(test, context, x, y, matrix, packed, reset_matrix,
+                        reset_packed);
   }
 }
 
@@ -763,7 +818,7 @@ void TestAlphaBetaEdges(TestContext& test) {
   }
 }
 
-void TestInvalidEmptyAndEdges(TestContext& test) {
+void TestInvalidDescriptors(TestContext& test) {
   std::array<float, 4> storage{};
   auto too_small = asc::DenseBlasMatrixView<float>::Create(
       storage.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 1,
@@ -787,66 +842,10 @@ void TestInvalidEmptyAndEdges(TestContext& test) {
       storage.data(), std::numeric_limits<asc::extent_t>::max(),
       asc::DenseBlasLayout::kColumnMajor, Storage(std::span(storage)));
   ASC_DENSE_TEST_CHECK(test, !overflow_packed.ok());
+}
 
+void TestEmptyMatrixVector(TestContext& test) {
   const auto context = asc::ExecutionContext::Serial();
-  std::array<float, 4> matrix_storage{1, 0, 0, 1};
-  auto matrix = MakeMatrix(matrix_storage.data(), 2, 2,
-                           asc::DenseBlasLayout::kColumnMajor, 2,
-                           Storage(std::span(matrix_storage)));
-  std::array<float, 2> vector_storage{1, 2};
-  auto input = MakeVector<const float>(vector_storage.data(), 2, 1,
-                                       Storage(std::span(vector_storage)));
-  auto output = MakeVector(vector_storage.data(), 2, 1,
-                           Storage(std::span(vector_storage)));
-  std::array<float, 1> short_input_storage{1};
-  auto short_input =
-      MakeVector<const float>(short_input_storage.data(), 1, 1,
-                              Storage(std::span(short_input_storage)));
-  const auto before = vector_storage;
-  auto bad_shape = asc::Gemv(context, asc::DenseBlasTranspose::kNone, 1.0F,
-                             asc::DenseBlasMatrixView<const float>(matrix),
-                             short_input, 0.0F, output);
-  ASC_DENSE_TEST_CHECK(test, !bad_shape.ok());
-  ASC_DENSE_TEST_EQ(test, vector_storage, before);
-  auto bad_diagonal = asc::Trmv(
-      context, asc::DenseBlasTriangle::kUpper, asc::DenseBlasTranspose::kNone,
-      static_cast<asc::DenseBlasDiagonal>(255),
-      asc::DenseBlasMatrixView<const float>(matrix), output);
-  ASC_DENSE_TEST_CHECK(test, !bad_diagonal.ok());
-  ASC_DENSE_TEST_EQ(test, vector_storage, before);
-  auto bad_triangle = asc::Symv(
-      context, static_cast<asc::DenseBlasTriangle>(255), 1.0F,
-      asc::DenseBlasMatrixView<const float>(matrix), input, 0.0F, output);
-  ASC_DENSE_TEST_CHECK(test, !bad_triangle.ok());
-  ASC_DENSE_TEST_EQ(test, vector_storage, before);
-  auto invalid = asc::Gemv(context, static_cast<asc::DenseBlasTranspose>(255),
-                           1.0F, asc::DenseBlasMatrixView<const float>(matrix),
-                           input, 0.0F, output);
-  ASC_DENSE_TEST_CHECK(test, !invalid.ok());
-  ASC_DENSE_TEST_EQ(test, vector_storage, before);
-  auto overlap = asc::Gemv(context, asc::DenseBlasTranspose::kNone, 1.0F,
-                           asc::DenseBlasMatrixView<const float>(matrix), input,
-                           0.0F, output);
-  ASC_DENSE_TEST_CHECK(test, !overlap.ok());
-  ASC_DENSE_TEST_EQ(test, vector_storage, before);
-
-  const float nan = std::numeric_limits<float>::quiet_NaN();
-  matrix_storage.fill(nan);
-  std::array<float, 2> nan_input{nan, nan};
-  std::array<float, 2> nan_output{nan, nan};
-  input = MakeVector<const float>(nan_input.data(), 2, 1,
-                                  Storage(std::span(nan_input)));
-  output = MakeVector(nan_output.data(), 2, 1, Storage(std::span(nan_output)));
-  ASC_DENSE_TEST_CHECK(
-      test, asc::Gemv(context, asc::DenseBlasTranspose::kNone, 0.0F,
-                      asc::DenseBlasMatrixView<const float>(matrix), input,
-                      0.0F, output)
-                .ok());
-  ASC_DENSE_TEST_CHECK(test,
-                       nan_output[0] == 0.0F && !std::signbit(nan_output[0]));
-  ASC_DENSE_TEST_CHECK(test,
-                       nan_output[1] == 0.0F && !std::signbit(nan_output[1]));
-
   std::array<float, 1> empty_backing{};
   auto empty_matrix = MakeMatrix<float>(
       nullptr, 0, 2, asc::DenseBlasLayout::kColumnMajor, 1,
@@ -880,6 +879,87 @@ void TestInvalidEmptyAndEdges(TestContext& test) {
                       (std::array<float, 2>{6, 8}));
   }
   static_cast<void>(empty_backing);
+}
+
+void TestInvalidMatrixVector(TestContext& test) {
+  const auto context = asc::ExecutionContext::Serial();
+  std::array<float, 4> matrix_storage{1, 0, 0, 1};
+  auto matrix = MakeMatrix(matrix_storage.data(), 2, 2,
+                           asc::DenseBlasLayout::kColumnMajor, 2,
+                           Storage(std::span(matrix_storage)));
+  std::array<float, 2> vector_storage{1, 2};
+  auto input = MakeVector<const float>(vector_storage.data(), 2, 1,
+                                       Storage(std::span(vector_storage)));
+  auto output = MakeVector(vector_storage.data(), 2, 1,
+                           Storage(std::span(vector_storage)));
+  std::array<float, 1> short_input_storage{1};
+  auto short_input =
+      MakeVector<const float>(short_input_storage.data(), 1, 1,
+                              Storage(std::span(short_input_storage)));
+  const auto before = vector_storage;
+  auto bad_shape = asc::Gemv(context, asc::DenseBlasTranspose::kNone, 1.0F,
+                             asc::DenseBlasMatrixView<const float>(matrix),
+                             short_input, 0.0F, output);
+  ASC_DENSE_TEST_CHECK(test, !bad_shape.ok());
+  ASC_DENSE_TEST_EQ(test, vector_storage, before);
+  auto bad_diagonal = asc::Trmv(
+      context, asc::DenseBlasTriangle::kUpper, asc::DenseBlasTranspose::kNone,
+      // Deliberately invalid API flag; representable by this uint8_t enum.
+      // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+      static_cast<asc::DenseBlasDiagonal>(255),
+      asc::DenseBlasMatrixView<const float>(matrix), output);
+  ASC_DENSE_TEST_CHECK(test, !bad_diagonal.ok());
+  ASC_DENSE_TEST_EQ(test, vector_storage, before);
+  auto bad_triangle = asc::Symv(
+      // Deliberately invalid API flag; representable by this uint8_t enum.
+      // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+      context, static_cast<asc::DenseBlasTriangle>(255), 1.0F,
+      asc::DenseBlasMatrixView<const float>(matrix), input, 0.0F, output);
+  ASC_DENSE_TEST_CHECK(test, !bad_triangle.ok());
+  ASC_DENSE_TEST_EQ(test, vector_storage, before);
+  // Deliberately invalid API flag; representable by this uint8_t enum.
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  auto invalid = asc::Gemv(context, static_cast<asc::DenseBlasTranspose>(255),
+                           1.0F, asc::DenseBlasMatrixView<const float>(matrix),
+                           input, 0.0F, output);
+  ASC_DENSE_TEST_CHECK(test, !invalid.ok());
+  ASC_DENSE_TEST_EQ(test, vector_storage, before);
+  auto overlap = asc::Gemv(context, asc::DenseBlasTranspose::kNone, 1.0F,
+                           asc::DenseBlasMatrixView<const float>(matrix), input,
+                           0.0F, output);
+  ASC_DENSE_TEST_CHECK(test, !overlap.ok());
+  ASC_DENSE_TEST_EQ(test, vector_storage, before);
+}
+
+void TestIgnoredMatrixVectorInputs(TestContext& test) {
+  const auto context = asc::ExecutionContext::Serial();
+  std::array<float, 4> matrix_storage{1, 0, 0, 1};
+  auto matrix = MakeMatrix(matrix_storage.data(), 2, 2,
+                           asc::DenseBlasLayout::kColumnMajor, 2,
+                           Storage(std::span(matrix_storage)));
+  std::array<float, 2> vector_storage{1, 2};
+  auto input = MakeVector<const float>(vector_storage.data(), 2, 1,
+                                       Storage(std::span(vector_storage)));
+  auto output = MakeVector(vector_storage.data(), 2, 1,
+                           Storage(std::span(vector_storage)));
+  const float nan = std::numeric_limits<float>::quiet_NaN();
+  matrix_storage.fill(nan);
+  std::array<float, 2> nan_input{nan, nan};
+  std::array<float, 2> nan_output{nan, nan};
+  input = MakeVector<const float>(nan_input.data(), 2, 1,
+                                  Storage(std::span(nan_input)));
+  output = MakeVector(nan_output.data(), 2, 1, Storage(std::span(nan_output)));
+  ASC_DENSE_TEST_CHECK(
+      test, asc::Gemv(context, asc::DenseBlasTranspose::kNone, 0.0F,
+                      asc::DenseBlasMatrixView<const float>(matrix), input,
+                      0.0F, output)
+                .ok());
+  ASC_DENSE_TEST_CHECK(test,
+                       nan_output[0] == 0.0F && !std::signbit(nan_output[0]));
+  ASC_DENSE_TEST_CHECK(test,
+                       nan_output[1] == 0.0F && !std::signbit(nan_output[1]));
+
+  TestEmptyMatrixVector(test);
 
   auto device_matrix = MakeMatrix(
       matrix_storage.data(), 2, 2, asc::DenseBlasLayout::kColumnMajor, 2,
@@ -903,7 +983,14 @@ void TestInvalidEmptyAndEdges(TestContext& test) {
     ASC_DENSE_TEST_CHECK(test, status.ok());
     allocations = probe.count();
   }
-  ASC_DENSE_TEST_EQ(test, allocations, std::size_t{0});
+  ASC_DENSE_TEST_CHECK(test,
+                       asc_test::ProcessAllocationCountMatches(allocations, 0));
+}
+
+void TestInvalidEmptyAndEdges(TestContext& test) {
+  TestInvalidDescriptors(test);
+  TestInvalidMatrixVector(test);
+  TestIgnoredMatrixVectorInputs(test);
 }
 
 }  // namespace

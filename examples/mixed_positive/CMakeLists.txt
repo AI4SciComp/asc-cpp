@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.25)
+project(ASCCppMixedPositiveExample LANGUAGES CXX)
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense_lapack)
+add_executable(mixed_positive main.cc)
+target_compile_features(mixed_positive PRIVATE cxx_std_20)
+target_link_libraries(mixed_positive PRIVATE ASC::dense_lapack)
+enable_testing()
+add_test(NAME mixed_positive.public_example COMMAND mixed_positive)

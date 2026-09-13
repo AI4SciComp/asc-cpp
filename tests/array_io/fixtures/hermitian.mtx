@@ -1,0 +1,6 @@
+%%MatrixMarket matrix coordinate complex hermitian
+% Independent ASC interoperability fixture.
+2 2 3
+1 1 4 0
+2 1 2 2
+2 2 11 0

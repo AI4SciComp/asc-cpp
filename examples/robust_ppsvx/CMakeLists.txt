@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.25)
+project(ASCCppRobustPpsvxExample LANGUAGES CXX)
+
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense_lapack)
+if(NOT ASCCpp_EXPERIMENTAL_ROBUST_PPSVX)
+  message(FATAL_ERROR "Build ASC with ASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX=ON")
+endif()
+add_executable(robust_ppsvx main.cc)
+target_compile_features(robust_ppsvx PRIVATE cxx_std_20)
+target_link_libraries(robust_ppsvx PRIVATE ASC::dense_lapack)
+enable_testing()
+add_test(NAME robust_ppsvx.public_example COMMAND robust_ppsvx)

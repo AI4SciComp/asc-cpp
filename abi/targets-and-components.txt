@@ -14,6 +14,7 @@ target|asc_sparse_cuda|ASC::sparse_cuda|COMPILED|sparse_cuda|asc_sparse_cuda|ASC
 target|asc_random_cuda|ASC::random_cuda|COMPILED|random_cuda|asc_random_cuda|ASC_RANDOM_CUDA_STATIC_DEFINE|ASC::random,ASC::core_cuda|ASC::random,ASC::core_cuda|cuda
 target|asc_random_dense_cuda|ASC::random_dense_cuda|COMPILED|random_dense_cuda|asc_random_dense_cuda|ASC_RANDOM_DENSE_CUDA_STATIC_DEFINE|ASC::random_dense,ASC::random_cuda,ASC::core_cuda|ASC::random_dense,ASC::random_cuda,ASC::core_cuda|cuda
 target|asc_random_sparse_cuda|ASC::random_sparse_cuda|COMPILED|random_sparse_cuda|asc_random_sparse_cuda|ASC_RANDOM_SPARSE_CUDA_STATIC_DEFINE|ASC::random_sparse,ASC::random_cuda,ASC::core_cuda|ASC::random_sparse,ASC::random_cuda,ASC::core_cuda|cuda
+target|asc_dense_lapack|ASC::dense_lapack|COMPILED|dense_lapack|asc_dense_lapack|ASC_DENSE_LAPACK_STATIC_DEFINE|ASC::dense,ASC_INTERNAL_LAPACK::reference|ASC::dense|lapack
 # component|name|direct-component-dependencies
 component|core|
 component|utilities|core
@@ -24,6 +25,7 @@ component|random|core
 component|random_dense|random,dense
 component|random_sparse|random,sparse
 component|cpp|core,utilities,expression,dense,sparse,random,random_dense,random_sparse
+component|dense_lapack|dense
 component|core_cuda|core
 component|dense_cuda|dense,core_cuda
 component|sparse_cuda|sparse,core_cuda

@@ -24,6 +24,7 @@ if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0")
 endif()
 
 set(_expected_known_components
+  dense_lapack
   core
   utilities
   expression
@@ -53,6 +54,9 @@ set(_expected_available_components
   core utilities expression dense sparse random
   random_dense random_sparse cpp
 )
+if(ASCCPP_EXPECT_LAPACK)
+  list(APPEND _expected_available_components dense_lapack)
+endif()
 if(DEFINED ASCCPP_EXPECT_CUDA AND ASCCPP_EXPECT_CUDA)
   list(APPEND _expected_available_components
     core_cuda
@@ -81,6 +85,7 @@ if(DEFINED ASCCPP_OPTIONAL_COMPONENT
 endif()
 
 foreach(_target IN ITEMS
+    ASC::dense_lapack
     ASC::utilities
     ASC::expression
     ASC::dense

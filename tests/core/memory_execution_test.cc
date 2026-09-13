@@ -1,12 +1,14 @@
 #include <array>
 #include <cstddef>
 #include <cstdint>
-#include <span>
+#include <string>
 #include <type_traits>
 #include <utility>
 
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
+#include "asc/core/result.h"
+#include "asc/core/status.h"
 #include "test_support.h"
 
 namespace {
@@ -23,7 +25,7 @@ static_assert(std::is_nothrow_move_assignable_v<asc::CompletionEvent>);
 
 class CountingResource final : public asc::MemoryResource {
  public:
-  enum class Behavior {
+  enum class Behavior : std::uint8_t {
     kDelegate,
     kFailure,
     kNull,
@@ -97,12 +99,14 @@ class MisalignedResource final : public asc::MemoryResource {
     return asc::MemorySpace::kHost;
   }
 
-  asc::Result<void*> Allocate(std::size_t, std::size_t) override {
+  asc::Result<void*> Allocate(std::size_t /*bytes*/,
+                              std::size_t /*alignment*/) override {
     ++allocate_calls_;
     return static_cast<void*>(storage_ + 1);
   }
 
-  void Deallocate(void* pointer, std::size_t, std::size_t) noexcept override {
+  void Deallocate(void* pointer, std::size_t /*bytes*/,
+                  std::size_t /*alignment*/) noexcept override {
     ++deallocate_calls_;
     deallocated_pointer_ = pointer;
   }
@@ -122,6 +126,50 @@ class MisalignedResource final : public asc::MemoryResource {
   int allocate_calls_ = 0;
   int deallocate_calls_ = 0;
 };
+
+class LongFailureResource final : public asc::MemoryResource {
+ public:
+  LongFailureResource()
+      : failure_(asc::ErrorCode::kAllocation, std::string(8192, 'm'),
+                 std::string(4096, 'p'), -1729),
+        message_data_(failure_.message().data()),
+        provider_data_(failure_.provider().data()) {}
+  [[nodiscard]] asc::MemorySpace space() const noexcept override {
+    return asc::MemorySpace::kHost;
+  }
+  asc::Result<void*> Allocate(std::size_t /*bytes*/,
+                              std::size_t /*alignment*/) override {
+    return std::move(failure_);
+  }
+  void Deallocate(void* /*pointer*/, std::size_t /*bytes*/,
+                  std::size_t /*alignment*/) noexcept override {}
+  [[nodiscard]] const char* message_data() const { return message_data_; }
+  [[nodiscard]] const char* provider_data() const { return provider_data_; }
+
+ private:
+  asc::Status failure_;
+  const char* message_data_;
+  const char* provider_data_;
+};
+
+void CheckFailureOwnership(asc_core_test::TestContext& context) {
+  for (const auto bytes : {std::size_t{0}, std::size_t{128}}) {
+    LongFailureResource resource;
+    const auto result = asc::Buffer::Allocate(resource, bytes, 64);
+    ASC_TEST_CHECK(context, !result.ok());
+    ASC_TEST_EQ(context, result.status().code(), asc::ErrorCode::kAllocation);
+    ASC_TEST_EQ(context, result.status().native_code(), -1729);
+    ASC_TEST_EQ(context, result.status().message(), std::string(8192, 'm'));
+    ASC_TEST_EQ(context, result.status().provider(), std::string(4096, 'p'));
+    // Moving std::allocator-backed long strings retains their allocated
+    // storage. The regular Dense allocation-probe lane separately observes
+    // zero process allocations throughout Buffer/owner failure propagation.
+    ASC_TEST_EQ(context, result.status().message().data(),
+                resource.message_data());
+    ASC_TEST_EQ(context, result.status().provider().data(),
+                resource.provider_data());
+  }
+}
 
 void CheckHostResource(asc_core_test::TestContext& context) {
   asc::HostMemoryResource resource;
@@ -250,6 +298,9 @@ void CheckContexts(asc_core_test::TestContext& context) {
       asc::Backend::kSycl, asc::Device{asc::Backend::kSycl, 0});
   ASC_TEST_EQ(context, sycl.status().code(), asc::ErrorCode::kUnsupported);
 
+  // Fixed uint8_t enums may represent 255; deliberate unnamed values exercise
+  // recoverable enum validation, not an out-of-underlying-range conversion.
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
   const auto invalid_backend = static_cast<asc::Backend>(255);
   ASC_TEST_EQ(context,
               asc::ExecutionContext::Create(invalid_backend,
@@ -257,13 +308,15 @@ void CheckContexts(asc_core_test::TestContext& context) {
                   .status()
                   .code(),
               asc::ErrorCode::kInvalidArgument);
-  ASC_TEST_EQ(context,
-              asc::ExecutionContext::Create(asc::Backend::kSerial,
-                                            asc::Device::Serial(),
-                                            static_cast<asc::Determinism>(255))
-                  .status()
-                  .code(),
-              asc::ErrorCode::kInvalidArgument);
+  // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+  const auto invalid_determinism = static_cast<asc::Determinism>(255);
+  ASC_TEST_EQ(
+      context,
+      asc::ExecutionContext::Create(asc::Backend::kSerial,
+                                    asc::Device::Serial(), invalid_determinism)
+          .status()
+          .code(),
+      asc::ErrorCode::kInvalidArgument);
 }
 
 void CheckCopiesAndEvents(asc_core_test::TestContext& context) {
@@ -352,6 +405,7 @@ int main() {
   CheckHostResource(context);
   CheckBufferLifetime(context);
   CheckBufferFailures(context);
+  CheckFailureOwnership(context);
   CheckContexts(context);
   CheckCopiesAndEvents(context);
   return context.Finish();

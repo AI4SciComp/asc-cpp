@@ -50,6 +50,7 @@ if(NOT ASCCpp_VERSION STREQUAL "0.9.0")
 endif()
 
 set(_expected_known_components
+  dense_lapack
   core
   utilities
   expression
@@ -80,6 +81,9 @@ set(_provider_free_components
   random_dense random_sparse cpp
 )
 set(_expected_available_components "${_provider_free_components}")
+if(ASCCPP_EXPECT_LAPACK)
+  list(APPEND _expected_available_components dense_lapack)
+endif()
 if(DEFINED ASCCPP_EXPECT_CUDA AND ASCCPP_EXPECT_CUDA)
   list(APPEND _expected_available_components
     core_cuda

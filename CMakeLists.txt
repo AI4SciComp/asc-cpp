@@ -27,6 +27,9 @@ if(ASC_CPP_INTERNAL_ENABLE_CUDA_RUNTIME_TEST_HOOKS
 endif()
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/AcquireASCCMake.cmake")
+if(ASC_CPP_ENABLE_LAPACK)
+  include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/ConfigureLapackProvider.cmake")
+endif()
 
 if(ASC_CPP_ENABLE_CUDA)
   set(CMAKE_CUDA_RUNTIME_LIBRARY Shared)
@@ -80,6 +83,7 @@ foreach(_asc_cpp_compiled_target IN ITEMS
     asc_core
     asc_utilities
     asc_dense
+    asc_dense_lapack
     asc_sparse
     asc_random
     asc_core_cuda
@@ -191,6 +195,9 @@ set(ASC_CPP_AVAILABLE_COMPONENTS
   random_sparse
   cpp
 )
+if(ASC_CPP_ENABLE_LAPACK)
+  list(APPEND ASC_CPP_AVAILABLE_COMPONENTS dense_lapack)
+endif()
 if(ASC_CPP_ENABLE_CUDA)
   list(APPEND ASC_CPP_AVAILABLE_COMPONENTS
     core_cuda
@@ -279,6 +286,15 @@ export(
   FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppSparseTargets.cmake"
   NAMESPACE ASC::
 )
+if(ASC_CPP_ENABLE_LAPACK)
+  export(TARGETS asc_dense_lapack
+    FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppDenseLapackTargets.cmake"
+    NAMESPACE ASC::)
+  configure_file("${ASC_CPP_LAPACK_METADATA}"
+    "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppLapackProvider.json" COPYONLY)
+  configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/ASCCppLapackDependency.cmake"
+    "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppLapackDependency.cmake" COPYONLY)
+endif()
 export(
   TARGETS asc_random
   FILE "${ASC_CPP_BUILD_PACKAGE_DIR}/ASCCppRandomTargets.cmake"
@@ -344,6 +360,19 @@ write_basic_package_version_file(
 )
 
 if(ASC_CPP_INSTALL)
+  if(ASC_CPP_ENABLE_LAPACK)
+    install(TARGETS asc_dense_lapack EXPORT ASCCppDenseLapackTargets
+      RUNTIME DESTINATION "${_asc_cpp_install_bindir}"
+      LIBRARY DESTINATION "${_asc_cpp_install_libdir}"
+      ARCHIVE DESTINATION "${_asc_cpp_install_libdir}"
+      FILE_SET HEADERS DESTINATION "${_asc_cpp_install_includedir}")
+    install(EXPORT ASCCppDenseLapackTargets
+      FILE ASCCppDenseLapackTargets.cmake NAMESPACE ASC::
+      DESTINATION "${_asc_cpp_install_package_dir}")
+    install(FILES "${ASC_CPP_LAPACK_METADATA}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/cmake/ASCCppLapackDependency.cmake"
+      DESTINATION "${_asc_cpp_install_package_dir}")
+  endif()
   install(
     TARGETS asc_core
     EXPORT ASCCppCoreTargets

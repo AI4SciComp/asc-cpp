@@ -13,6 +13,7 @@
  */
 
 #include <array>
+#include <complex>
 #include <concepts>
 #include <cstddef>
 #include <cstdint>
@@ -32,15 +33,20 @@
 namespace asc {
 
 /**
- * @brief Defines the public DenseElement concept contract.
+ * @brief Selects arithmetic storage other than bool, plus float/double complex.
  *
- * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
- * semantics follow the public Dense module contract.
+ * Elements are unqualified, trivially copyable and trivially destructible.
+ * Complex eligibility is checked against the actual C++20 standard library;
+ * arbitrary class types and `std::complex<long double>` are not supported.
+ * Storage
+ * eligibility does not grant an algorithm's scalar or placement requirements.
  * @ingroup asc_dense
  */
 template <typename T>
 concept DenseElement =
-    std::same_as<T, std::remove_cv_t<T>> && std::is_arithmetic_v<T> &&
+    std::same_as<T, std::remove_cv_t<T>> &&
+    (std::is_arithmetic_v<T> || std::same_as<T, std::complex<float>> ||
+     std::same_as<T, std::complex<double>>) &&
     !std::same_as<T, bool> && std::is_trivially_copyable_v<T> &&
     std::is_trivially_destructible_v<T>;
 

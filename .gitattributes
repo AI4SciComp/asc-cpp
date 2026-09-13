@@ -1,5 +1,9 @@
+# Keep byte fixtures and content-addressed source contracts identical on Windows.
+* text=auto eol=lf
 data/random/LICENSE.joe-kuo text eol=lf
 data/random/new-joe-kuo-6.21201 text eol=lf
 src/random/sobol_table_generated.cc text eol=lf
 THIRD_PARTY_NOTICES text eol=lf
 tools/random/generate_sobol_table.py text eol=lf
+programs/lapack-array-io export-ignore
+docs/contracts/lapack-upstream-inventory.json linguist-generated=true

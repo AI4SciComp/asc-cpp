@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "scope": "Index-only extension for four callable-unverified PTSV rows. Sixteen existing PT/PTCON/PTRFS rows update only Doxygen-comment-only example guard hashes, with unchanged contracts/states/modes. All other rows and every executed source/provider identity, selector, case and outcome remain unchanged. This is not a claim that the extended index existed during prior execution.",
+  "baseline_commit": "cc42d4ed295be1d1c48e9a9b1316c84238ccf080",
+  "prior_mapping_sha256": "5480fa02cafaa7498ef249280721fc3c08e8ff1af1be4fcb685571ab6c48db94",
+  "extended_mapping_sha256": "59776344fa05d031a60cd29fd083c16206136c821016bcbda7cee5345f25c877",
+  "prior_evidence_sha256": "a7f007de3abffe3373b0f8329e184f60c805e1cd18d21f799dbcb9fc6ddedf4a",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "5480fa02cafaa7498ef249280721fc3c08e8ff1af1be4fcb685571ab6c48db94",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "5480fa02cafaa7498ef249280721fc3c08e8ff1af1be4fcb685571ab6c48db94",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "702b7844c73aadd1a2bf07c347df3bbe8085f1763f1b86573992fc081e82d806",
+    "reference-lu-release-lp64-20260911": "92aa169e79cb19f0ab75fdf48710b865605714dac98851fde16deed4175ffe15",
+    "reference-lu-release-ilp64-20260911": "6571a4f97e841610ce46325af728227ffb3bd939777bd70c631648026ac122ac"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cptcon",
+    "lapack.cptrfs",
+    "lapack.cptsv",
+    "lapack.cpttrf",
+    "lapack.cpttrs",
+    "lapack.dptcon",
+    "lapack.dptrfs",
+    "lapack.dptsv",
+    "lapack.dpttrf",
+    "lapack.dpttrs",
+    "lapack.sptcon",
+    "lapack.sptrfs",
+    "lapack.sptsv",
+    "lapack.spttrf",
+    "lapack.spttrs",
+    "lapack.zptcon",
+    "lapack.zptrfs",
+    "lapack.zptsv",
+    "lapack.zpttrf",
+    "lapack.zpttrs"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/ptsv-registration-02",
+  "generator_sha256": "697fbb1b593630ba760f4cf16142588eeb59dfaf82eac8c9931a884b4be46544"
+}

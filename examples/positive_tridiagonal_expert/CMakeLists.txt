@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.25)
+project(ASCCppPositiveTridiagonalExpertExample LANGUAGES CXX)
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense_lapack)
+add_executable(positive_tridiagonal_expert main.cc)
+target_compile_features(positive_tridiagonal_expert PRIVATE cxx_std_20)
+target_link_libraries(positive_tridiagonal_expert PRIVATE ASC::dense_lapack)
+enable_testing()
+add_test(NAME positive_tridiagonal_expert.public_example
+  COMMAND positive_tridiagonal_expert)

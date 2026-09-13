@@ -12,6 +12,224 @@ evidence_labels:
   - "blocked"
 
 capabilities:
+  - capability: "experimental first-party robust PPSVX"
+    owner: "dense"
+    facet: "dense_lapack"
+    development_stage: 5
+    status: "runtime-tested"
+    evidence_scope: "Explicit opt-in; Linux x86_64 GNU11.4 static and shared, actual LP64/ILP64 with separately attested matching providers. Original review: programs/lapack-array-io/packed-cholesky-expert-robust-integration.md; shared admission: programs/lapack-array-io/shared-provider-admission-review.md. No Reference routine credit, wider-platform or release acceptance."
+    public_headers:
+      - "include/asc/dense/providers/lapack_cholesky_packed_robust.h"
+    direct_dependencies:
+      - "dense"
+    tests:
+      - "unchanged four-scalar extreme mathematical predicate and bounded generalization"
+      - "explicit workspace, publication loss, factor reuse and diagnostic isolation"
+      - "independent-context concurrency and relocated installed public example"
+    guarantees:
+      - "separately named original algorithm, no foreign INFO or silent fallback"
+    non_guarantees:
+      - "universal forward-error theorem, cheap quadratic expert diagnostics or wider-platform admission"
+      - "Reference PPSVX acceptance, dependency redistribution or release authorization"
+
+  - capability: "bounded Matrix Market lexical and scalar primitives"
+    owner: "core"
+    development_stage: 10
+    status: "runtime-tested"
+    evidence_scope: "unreleased P10; frozen74ff2fb full provider-free Debug/Release271 each and shared Release273 pass, zero skips; unchanged candidate01 ASC sanitizer6 and Doxygen71/1413 pass; final platform/mode evidence remains required"
+    public_headers:
+      - "include/asc/core/matrix_market.h"
+    direct_dependencies: []
+    tests:
+      - "bounded banners, comments, CRLF, exact field counts and EOF"
+      - "all12 destination scalar paths, finite decimal parsing and exact integer conversion"
+      - "short/failing streams, limits and observed allocation-free parsing/formatting"
+    guarantees:
+      - "no Dense/Sparse/provider dependency or implicit precision conversion"
+    non_guarantees:
+      - "general arbitrary-rank Matrix Market objects"
+
+  - capability: "Dense Matrix Market array interchange"
+    owner: "dense"
+    development_stage: 10
+    status: "runtime-tested"
+    evidence_scope: "unreleased P10; frozen74ff2fb full Debug/Release271 each and shared Release273 pass, zero skips, including separately installed Dense-only example; Dense05 scoped numerical/format/rollback and external interoperability evidence remains distinct"
+    public_headers:
+      - "include/asc/dense/matrix_market.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "all10 valid array field/symmetry classes and invalid combinations"
+      - "independent Hermitian values, both layouts, staged rollback and1024 mutation cases"
+      - "explicit resources, malformed/short streams, failure propagation and allocation probes"
+      - "separate external SciPy bidirectional development checks, not a runtime dependency"
+    guarantees:
+      - "rank-two array interchange with explicit resource, scratch and staging"
+      - "finite values, checked type conversion and complete structured-write validation"
+    non_guarantees:
+      - "coordinate-to-Dense conversion, automatic provider/codec selection or hidden transfers"
+      - "atomic file replacement or crash durability"
+
+  - capability: "Sparse Matrix Market coordinate interchange"
+    owner: "sparse"
+    development_stage: 10
+    status: "runtime-tested"
+    evidence_scope: "unreleased P10; frozen74ff2fb full Debug/Release271 each and shared Release273 pass, zero skips, including separately installed Sparse-only example; Sparse05 scoped258 cases and12294 mutations remain distinct"
+    public_headers:
+      - "include/asc/sparse/matrix_market.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "COO/CSR/CSC, all12 valid coordinate field/symmetry classes, explicit pattern units"
+      - "stable checked duplicate sums, zero policies, lower-half expansion and exact structure matching"
+      - "resource/sort budgets, malformed input, source failures, staged rollback and allocation probes"
+    guarantees:
+      - "bounded explicit assembly without Dense dependency or densification"
+      - "whole represented-matrix checks before structured stream output"
+    non_guarantees:
+      - "array-to-Sparse conversion or implicit memory transfer"
+      - "linear-time insertion sorting or exact asymmetric stored-zero structure after symmetry compression"
+      - "atomic file replacement or crash durability"
+
+  - capability: "native Cholesky and Householder QR"
+    owner: "dense"
+    development_stage: 6
+    status: "runtime-tested"
+    evidence_scope: "unreleased native P05/P06; v5 f021fb8 full provider-free Debug/Release each277 and shared279 pass, installed aggregate10 plus standalone Dense-only1. Native scoped ASan5 passes on identical numerical bytes; exact normalized mode-evidence closure pending, no full-native claim"
+    public_headers:
+      - "include/asc/dense/lapack/cholesky.h"
+      - "include/asc/dense/lapack/qr.h"
+    direct_dependencies:
+      - "core"
+      - "expression"
+    tests:
+      - "Cholesky selected-triangle reconstruction, factor reuse, independent RHS layouts and first/last failed pivots"
+      - "QR rectangular/scaled/rank-deficient reconstruction, orthogonality, reflector conventions and Q formation/application"
+      - "explicit scratch, host admission, metadata alias, padding and zero-allocation controls"
+    guarantees:
+      - "provider-free native POTRF/POTRS/GEQRF; no foreign INFO or fallback"
+    non_guarantees:
+      - "rank or conditioning certificate, reference-equivalent ORG/UNG/ORM/UNM expert coverage"
+
+  - capability: "incremental Reference-LAPACK factorizations provider"
+    owner: "dense"
+    facet: "dense_lapack"
+    development_stage: 6
+    status: "runtime-tested"
+    evidence_scope: "unreleased incremental-lapack-v27 with350 partial Reference scalar routes;zero fully verified. PPRFS4 candidate15: six runs each pass five behavioral tests and fail four ordinary required mathematical tests,zero skips. Audited root v27 freshly compiles72 primary TUs in six lanes;Release each861/939 with78 required math failures,Debug111/127 andASC-only sanitizer48/64 eachwith16 required math failures. Zero skips/timeouts/sanitizer diagnostics;four31-family packages and126-header/2204-member Doxygen pass. Scoped provider-free static/shared16/16 eachpass. All78 required mathematical gates,130 missing XBLAS and complete2113 routine/mode/platform closure remain required"
+    public_headers:
+      - "include/asc/dense/providers/lapack.h"
+      - "include/asc/dense/providers/lapack_export.h"
+      - "include/asc/dense/providers/lapack_lu.h"
+      - "include/asc/dense/providers/lapack_lu_equilibration.h"
+      - "include/asc/dense/providers/lapack_lu_condition.h"
+      - "include/asc/dense/providers/lapack_lu_refinement.h"
+      - "include/asc/dense/providers/lapack_lu_driver.h"
+      - "include/asc/dense/providers/lapack_lu_helpers.h"
+      - "include/asc/dense/providers/lapack_cholesky.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed_solve.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed_inverse.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed_driver.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed_equilibration.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed_condition.h"
+      - "include/asc/dense/providers/lapack_cholesky_packed_refinement.h"
+      - "include/asc/dense/providers/lapack_qr.h"
+      - "include/asc/dense/providers/lapack_cholesky_condition.h"
+      - "include/asc/dense/providers/lapack_cholesky_driver.h"
+      - "include/asc/dense/providers/lapack_cholesky_equilibration.h"
+      - "include/asc/dense/providers/lapack_cholesky_refinement.h"
+      - "include/asc/dense/providers/lapack_least_squares.h"
+      - "include/asc/dense/providers/lapack_cholesky_band.h"
+      - "include/asc/dense/providers/lapack_indefinite.h"
+      - "include/asc/dense/providers/lapack_indefinite_rook.h"
+      - "include/asc/dense/providers/lapack_indefinite_rook_condition.h"
+      - "include/asc/dense/providers/lapack_indefinite_rook_driver.h"
+      - "include/asc/dense/providers/lapack_indefinite_rook_inverse.h"
+      - "include/asc/dense/providers/lapack_indefinite_inverse.h"
+      - "include/asc/dense/providers/lapack_indefinite_block_inverse.h"
+      - "include/asc/dense/providers/lapack_indefinite_block_solve.h"
+      - "include/asc/dense/providers/lapack_indefinite_rk.h"
+      - "include/asc/dense/providers/lapack_indefinite_rk_condition.h"
+      - "include/asc/dense/providers/lapack_indefinite_rk_solve.h"
+      - "include/asc/dense/providers/lapack_rank_revealing.h"
+      - "include/asc/dense/providers/lapack_sylvester.h"
+      - "include/asc/dense/providers/lapack_indefinite_condition.h"
+      - "include/asc/dense/providers/lapack_indefinite_driver.h"
+      - "include/asc/dense/providers/lapack_indefinite_refinement.h"
+      - "include/asc/dense/providers/lapack_svd_least_squares.h"
+      - "include/asc/dense/providers/lapack_lu_band.h"
+      - "include/asc/dense/providers/lapack_general_band.h"
+      - "include/asc/dense/providers/lapack_lu_band_condition.h"
+      - "include/asc/dense/providers/lapack_lu_band_driver.h"
+      - "include/asc/dense/providers/lapack_lu_band_equilibration.h"
+      - "include/asc/dense/providers/lapack_lu_band_equilibration_radix.h"
+      - "include/asc/dense/providers/lapack_triangular.h"
+      - "include/asc/dense/providers/lapack_triangular_condition.h"
+      - "include/asc/dense/providers/lapack_triangular_error_bounds.h"
+      - "include/asc/dense/providers/lapack_triangular_packed.h"
+      - "include/asc/dense/providers/lapack_triangular_band.h"
+      - "include/asc/dense/providers/lapack_triangular_band_condition.h"
+      - "include/asc/dense/providers/lapack_triangular_band_error_bounds.h"
+      - "include/asc/dense/lapack/triangular_band_view.h"
+      - "include/asc/dense/providers/lapack_triangular_packed_condition.h"
+      - "include/asc/dense/providers/lapack_triangular_packed_error_bounds.h"
+      - "include/asc/dense/providers/lapack_lu_band_expert.h"
+      - "include/asc/dense/providers/lapack_lu_band_refinement.h"
+      - "include/asc/dense/providers/lapack_mixed_general.h"
+      - "include/asc/dense/providers/lapack_mixed_positive.h"
+      - "include/asc/dense/providers/lapack_positive_tridiagonal.h"
+      - "include/asc/dense/providers/lapack_positive_tridiagonal_condition.h"
+      - "include/asc/dense/providers/lapack_positive_tridiagonal_refinement.h"
+      - "include/asc/dense/providers/lapack_positive_tridiagonal_driver.h"
+      - "include/asc/dense/providers/lapack_positive_tridiagonal_expert.h"
+      - "include/asc/dense/providers/lapack_precision_conversion.h"
+      - "include/asc/dense/providers/lapack_matrix_copy.h"
+      - "include/asc/dense/providers/lapack_matrix_scale.h"
+      - "include/asc/dense/providers/lapack_matrix_set.h"
+      - "include/asc/dense/providers/lapack_dmd.h"
+      - "include/asc/dense/providers/lapack_dmd_qr.h"
+      - "include/asc/dense/providers/lapack_tridiagonal.h"
+      - "include/asc/dense/providers/lapack_tridiagonal_condition.h"
+      - "include/asc/dense/providers/lapack_tridiagonal_driver.h"
+      - "include/asc/dense/providers/lapack_tridiagonal_refinement.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_condition.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_driver.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_equilibration.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_expert.h"
+      - "include/asc/dense/providers/lapack_cholesky_band_refinement.h"
+    direct_dependencies:
+      - "dense"
+    tests:
+      - "actual S/D/C/Z GETRF reconstruction and GETRS N/T/C residuals"
+      - "ordinary TRSYL scaled equations, real Schur blocks, operations/signs, raw warnings, guarded ABI and explicit caller packing"
+      - "raw INFO, ABI, explicit integer workspace and preflight failures"
+      - "explicit SLAG2D/DLAG2S/CLAG2Z/ZLAG2C conversion, independent padded layouts, staged range-failure publication and calibrated pre-native output observation"
+      - "explicit S/D/C/Z LACPY all/upper/lower rectangular copy, independent layouts, complement preservation, absent INFO and calibrated output/unselected-input observation"
+      - "explicit S/D/C/Z LASCL seven storage modes, bounded safe finite scaling, raw exceptional arithmetic, full-width INFO and calibrated metadata/input/complement observation"
+      - "actual GETRF2/GETF2 reconstruction, GETRI two-sided inverse residual and GESV driver residual"
+      - "GEEQU/GEEQUB both-layout equations and partial outputs; LP64 subnormal GEEQUB success gate unmet"
+      - "GECON one/infinity norm estimates; GERFS N/T/C residual/refinement and FERR/BERR quality"
+      - "GESVX explicit FACT=N/E/F, all16 A/AF/B/X layouts, scaling and singular/accuracy outputs"
+      - "POTRF/POTRF2/POTF2/POTRS/POTRI/POSV selected-triangle equations, failure publication and original ASC strides"
+      - "GEQRF/GEQR2 and ORG/UNG/ORM/UNM QR reconstruction, orthogonality and independent application oracles"
+      - "LASWP selected sequential swaps and LAQGE explicit N/R/C/B scaling with absent INFO"
+      - "source-specific foreign integer/query bounds and per-role/per-operand context rejection controls"
+      - "POCON/PORFS/POSVX/POEQU/POEQUB selected-triangle condition/refinement/equilibration and explicit FACT=N/E/F"
+      - "actual GELS/GELST/GETSLS residual optimality, nullspace minimum norm and distinct B publication"
+      - "actual PBTRF/PBTF2 selected band reconstruction, partial diagonal publication and PBTRS residuals without densification"
+      - "classic SYTRF/SYTF2/SYTRS and HETRF/HETF2/HETRS block reconstruction, paired pivots, independent RHS layouts and failure validity"
+    guarantees:
+      - "explicit provider selection; provider-free aggregate remains independent"
+    non_guarantees:
+      - "full Reference-LAPACK profile"
+      - "provider linkage mismatches or unaudited toolchains/platforms"
+      - "successful GEEQUB equilibration for the recorded nonzero LP64 subnormal fixture"
+      - "finite GERFS/GESVX error estimates or scale-invariant condition success on recorded tiny unscaled fixtures"
+      - "finite LAQGE both-scale outputs on the recorded intermediate-overflow fixture"
+
   - capability: "checked logical metadata and mixed extents"
     owner: "core"
     development_stage: 1

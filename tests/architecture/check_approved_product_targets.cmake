@@ -30,6 +30,9 @@ set(_approved_targets
   asc_sparse
   asc_utilities
 )
+if(ENABLE_LAPACK)
+  list(APPEND _approved_targets ASC::dense_lapack asc_dense_lapack)
+endif()
 if(ENABLE_CUDA)
   list(APPEND
     _approved_targets

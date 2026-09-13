@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "scope": "Index-only extension for four callable-unverified LASET rows. All old rows, source/provider identities, selector allowlists, execution cases, outcomes and artifacts remain unchanged. This is not a claim that the extended index existed during prior execution.",
+  "baseline_commit": "d1cecff14aff90c0b14ffb7a6f1f65995ac86825",
+  "prior_mapping_sha256": "ddfd0295699984f387b17178e563554f4592c67245a02b68fcce1b8535f71350",
+  "extended_mapping_sha256": "550a66c31eebf6b8d90458572e726d1b14d40d4812edaa10813900cea0b3c5ab",
+  "prior_evidence_sha256": "aa32a9ab57618c2ab022f564808df0585ffbf4c94ecca17de622dacfc7514903",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "ddfd0295699984f387b17178e563554f4592c67245a02b68fcce1b8535f71350",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "ddfd0295699984f387b17178e563554f4592c67245a02b68fcce1b8535f71350",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "5b5e69da820dbce3abb871261a8835a2f5d65b810b65c021268a4c2eb75201ff",
+    "reference-lu-release-lp64-20260911": "c0e2b467b6bcce8c93c95cacb8e2cd6b6bd3e616a2b1cad1eef336f3c428524f",
+    "reference-lu-release-ilp64-20260911": "3e5d5e1dc1446db380f5db833ca24702045192096b8471cfd66ebd79ce6a1d81"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.claset",
+    "lapack.dlaset",
+    "lapack.slaset",
+    "lapack.zlaset"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/laset-registration-02",
+  "generator_sha256": "a6852cb75897cf20db017e7e4067da2353f0813aef34387342c093d64a92b9cb"
+}

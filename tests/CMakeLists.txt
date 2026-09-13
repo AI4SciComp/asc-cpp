@@ -95,6 +95,7 @@ function(_asc_cpp_write_target_inventory)
     asc_utilities
     asc_expression
     asc_dense
+    asc_dense_lapack
     asc_sparse
     asc_random
     asc_random_dense
@@ -110,6 +111,7 @@ function(_asc_cpp_write_target_inventory)
     ASC::utilities
     ASC::expression
     ASC::dense
+    ASC::dense_lapack
     ASC::sparse
     ASC::random
     ASC::random_dense
@@ -146,11 +148,15 @@ cmake_language(
 )
 
 add_subdirectory(architecture)
+add_subdirectory(lapack_program)
 add_subdirectory(compile)
 add_subdirectory(core)
 add_subdirectory(utilities)
 add_subdirectory(expression)
 add_subdirectory(dense)
+if(ASC_CPP_ENABLE_LAPACK)
+  add_subdirectory(dense_lapack)
+endif()
 add_subdirectory(sparse)
 add_subdirectory(random)
 add_subdirectory(random_dense)

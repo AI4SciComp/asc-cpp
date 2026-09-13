@@ -110,8 +110,7 @@ Status ValidateNoAlias(const Expression& expression,
         if (!destination_element.ok()) {
           return destination_element.status();
         }
-        if (MayAlias(expression, AliasToken(static_cast<const void*>(
-                                     *destination_element)))) {
+        if (MayAlias(expression, AliasToken(*destination_element))) {
           return Status(
               ErrorCode::kInvalidArgument,
               "Dense evaluation rejects possible destination overlap");
@@ -214,6 +213,8 @@ Status Evaluate(const ExecutionContext& context, const Expression& expression,
 
 /**
  * @brief Performs the public ReduceSum operation defined by the Dense contract.
+ * Complex values are added algebraically without conjugation, in the existing
+ * first-dimension-fastest coordinate order; empty input returns zero.
  *
  * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
  * semantics follow the public Dense module contract.
@@ -260,6 +261,8 @@ Result<std::remove_const_t<Element>> ReduceSum(
 
 /**
  * @brief Performs the public ReduceMin operation defined by the Dense contract.
+ * This ordered reduction accepts arithmetic elements only; complex values
+ * have no implicit ordering and do not satisfy this overload's constraints.
  *
  * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
  * semantics follow the public Dense module contract.
@@ -273,7 +276,8 @@ Result<std::remove_const_t<Element>> ReduceSum(
  * @ingroup asc_dense
  */
 template <typename Element, std::size_t Rank>
-  requires DenseElement<std::remove_const_t<Element>>
+  requires(DenseElement<std::remove_const_t<Element>> &&
+           std::is_arithmetic_v<std::remove_const_t<Element>>)
 Result<std::remove_const_t<Element>> ReduceMin(
     const ExecutionContext& context, DenseView<Element, Rank> source) {
   using Value = std::remove_const_t<Element>;
@@ -309,6 +313,8 @@ Result<std::remove_const_t<Element>> ReduceMin(
 
 /**
  * @brief Performs the public ReduceMax operation defined by the Dense contract.
+ * This ordered reduction accepts arithmetic elements only; complex values
+ * have no implicit ordering and do not satisfy this overload's constraints.
  *
  * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
  * semantics follow the public Dense module contract.
@@ -322,7 +328,8 @@ Result<std::remove_const_t<Element>> ReduceMin(
  * @ingroup asc_dense
  */
 template <typename Element, std::size_t Rank>
-  requires DenseElement<std::remove_const_t<Element>>
+  requires(DenseElement<std::remove_const_t<Element>> &&
+           std::is_arithmetic_v<std::remove_const_t<Element>>)
 Result<std::remove_const_t<Element>> ReduceMax(
     const ExecutionContext& context, DenseView<Element, Rank> source) {
   using Value = std::remove_const_t<Element>;

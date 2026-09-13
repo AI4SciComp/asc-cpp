@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "scope": "Add maintained PB concurrency tests and completed bounded Linux profile index; refresh12 GB registration hashes. No public API/production/provider/old-test change, historical execution rewrite or fully verified promotion.",
+  "baseline_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
+  "prior_mapping_sha256": "a213a2d894499559c0b56b7f8018742d3fe29e8c7e9ae9c548aadd683996d7aa",
+  "extended_mapping_sha256": "2386d243b918c297b5bba70a989274db7988f6983800f7e2471d3ff590e7df59",
+  "prior_evidence_sha256": "2e3dd842ba8cc253b6efdc3293ac48e9c4f93ebf098a1313dd32aaa30b67a6bf",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "a213a2d894499559c0b56b7f8018742d3fe29e8c7e9ae9c548aadd683996d7aa",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "a213a2d894499559c0b56b7f8018742d3fe29e8c7e9ae9c548aadd683996d7aa",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "e39b9e8c6822e611b7470a39ef9bd67f76d4ed26e89b5c262403cdf40b6ac980",
+    "reference-lu-release-lp64-20260911": "4411ebbb76e91d0e0df1811021957181fe0732ea59430fb24be832eff6f9047e",
+    "reference-lu-release-ilp64-20260911": "779d12f9f2b813213442441949c2175579d902a047cd2ee5b3e376f28777ea7d"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cgbtf2",
+    "lapack.cgbtrf",
+    "lapack.cgbtrs",
+    "lapack.cpbtf2",
+    "lapack.cpbtrf",
+    "lapack.cpbtrs",
+    "lapack.dgbtf2",
+    "lapack.dgbtrf",
+    "lapack.dgbtrs",
+    "lapack.dpbtf2",
+    "lapack.dpbtrf",
+    "lapack.dpbtrs",
+    "lapack.sgbtf2",
+    "lapack.sgbtrf",
+    "lapack.sgbtrs",
+    "lapack.spbtf2",
+    "lapack.spbtrf",
+    "lapack.spbtrs",
+    "lapack.zgbtf2",
+    "lapack.zgbtrf",
+    "lapack.zgbtrs",
+    "lapack.zpbtf2",
+    "lapack.zpbtrf",
+    "lapack.zpbtrs"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/continuation-20260912-01/pb-completion-index",
+  "generator_sha256": "6f43c85f04021e8ad3c6c04e2424fd7ddc2ba5683cefb94b4e3252a4fd0c81ce"
+}

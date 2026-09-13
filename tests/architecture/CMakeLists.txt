@@ -23,6 +23,7 @@ add_test(
     "-DSOURCE_DIR:PATH=${PROJECT_SOURCE_DIR}"
     "-DTARGET_INVENTORY:FILEPATH=${CMAKE_CURRENT_BINARY_DIR}/observed-targets-$<CONFIG>.txt"
     "-DENABLE_CUDA:BOOL=${ASC_CPP_ENABLE_CUDA}"
+    "-DENABLE_LAPACK:BOOL=${ASC_CPP_ENABLE_LAPACK}"
     -P "${CMAKE_CURRENT_SOURCE_DIR}/check_approved_product_targets.cmake"
 )
 

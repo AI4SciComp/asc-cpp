@@ -1,0 +1,215 @@
+{
+  "schema": "root-p02-printing-modes-partial-acceptance-v1",
+  "contract": {
+    "path": "docs/contracts/array-display-v1.md",
+    "sha256": "91b560f696b94246f231298a62a106c1ad6e646fabfee44363c8c110b9f3bbc8"
+  },
+  "overall_verified": false,
+  "program_status": "Root scoped printing-mode/rank0 acceptance complete; P02 remains in progress.",
+  "native_credit_added": 0,
+  "reference_credit_added": 0,
+  "source": [
+    {
+      "path": "tests/array_display_modes_test_support.h",
+      "sha256": "8a44cd56c05459f11c2647a177b6736af059fa0b67dbd5084b88f8d4e32df6df"
+    },
+    {
+      "path": "tests/dense/CMakeLists.txt",
+      "sha256": "269880ccd74422f7a608bf73d73a40b0fe7678c128bbd8575e4801d8a2353d9d"
+    },
+    {
+      "path": "tests/dense/print_modes_test.cc",
+      "sha256": "ee4c950adca5b00cbb05e6094fb760fba256b74cec12b192fd7efbf5ff16799d"
+    },
+    {
+      "path": "tests/sparse/CMakeLists.txt",
+      "sha256": "bc8a8cd8fdccc178aa985e7ac34b669c8d0ef75d14a1391844681ed2161291f2"
+    },
+    {
+      "path": "tests/sparse/print_modes_test.cc",
+      "sha256": "6ff371c7ef9e08dd42641dd7bfd2aeddedf7d48d77f7c3e79273e94935281d81"
+    }
+  ],
+  "executed_linux": [
+    {
+      "id": "precision_and_locale_modes",
+      "scope": "All four real/complex wire types, general/fixed/scientific, precision 1 and 32, five selected values, baseline and custom C++ comma-decimal/grouping locale.",
+      "dense_cases": 48,
+      "sparse_coo_csr_csc_cases": 144,
+      "checks": "Independent literal bytes, five complete tokens, three-byte sink chunks, redzones and allocation observation under recorded lane policy."
+    },
+    {
+      "id": "budget_rank0",
+      "scope": "Dense and rank-zero COO i64 nineteen-digit token; metadata off/on; every byte budget from zero through complete bytes plus 64; every failing sink prefix boundary.",
+      "checks": "At least one full and truncated success, byte limit, visible omission, balanced delimiters, complete-token progress, exact sink prefix."
+    },
+    {
+      "id": "metadata_suppressed_empties",
+      "dense_cases": 12,
+      "sparse_cases": 22,
+      "scope": "Dense rank1/2/3/4 zero-extent views in both physical layouts plus two rank3 owners; Sparse rank0/1/2/3 COO views and empty owner; CSR/CSC owners/views at four zero/nonzero outer shapes with valid complete offsets.",
+      "checks": "Dense empty shape remains visible; Sparse [] plus LF; selected zero preview limits do not invent truncation; exact view budgets and no owner-resource allocation."
+    },
+    {
+      "id": "owner_and_view_object_scratch_aliases",
+      "dense_cases": 9,
+      "sparse_cases": 27,
+      "scope": "Actual live owner, mutable view and const-value view objects, full-object/first-byte/last-byte spans; Dense and all three Sparse formats.",
+      "checks": "InvalidArgument before output, full report reset, unchanged complete object bytes, retained disjoint-print usability and no owner-resource allocation. Every span is genuine object storage; no fabricated capacity or changed object lifetime."
+    }
+  ],
+  "execution": {
+    "status": "bounded complete",
+    "fresh_production_lanes": [
+      "GNU11 Debug",
+      "GNU11 Release",
+      "GNU11 Release shared",
+      "Clang19 Debug ASan+UBSan"
+    ],
+    "composed_tests_passed": 48,
+    "composed_tests_failed": 0,
+    "composed_tests_skipped": 0,
+    "preserved_noexceptions_printing_tests_passed": 6,
+    "libc": "Six fresh test consumers of this candidate freshly built Debug libraries, with direct libc and shared libstdc++ positive controls; no fifth production compilation claim.",
+    "fresh_installed_consumers": 6,
+    "production_rebuilt_here": "92 Core/Dense/Sparse objects across four lanes, plus 21 Random/Utilities objects solely as package installation prerequisites.",
+    "production_installed_here": "Three fresh relocated prefixes; Debug82, Release82, shared92 installed file entries verified.",
+    "prior_global_noexceptions_bundle": "Failed at unchanged Random seed.cc catch boundary; its 23 successful printing production objects separately support six noexceptions printing tests. Three partial Random objects do not establish that library mode. Preserved predecessor evidence only; no new root global-noexceptions build claim.",
+    "records": "$EVIDENCE_ROOT/p02-printing-modes-integration-01/logs",
+    "audit": "$EVIDENCE_ROOT/p02-printing-modes-integration-01/audit.json",
+    "audit_sha256": "9318cb2fbf4167626ed55c46c8b05caad77647b04ab75d18f6fb66107e4272fc",
+    "metadata": {
+      "base_commit": "fe160ad1c098f56c472349ceeae3816bae4def11",
+      "implementation_tree": "567a39f761bfccdf9d994297d62dbab5e9a73fac",
+      "source_archive_sha256": "0e148c387482b7a6fc924a247c17aab9d0ebad29368afb211b3061fcabcca26e",
+      "coverage_mapping_sha256": "91defdbf15f2d7df6cbcb630ccc8b1e352ba80b5fe0e2cc0ae76b7bbefbb829c",
+      "scope": "P02 five-file printing-mode and rank-zero acceptance integration. No production change. Partial Linux evidence; full mode/platform requirements remain open."
+    }
+  },
+  "required_remaining": [
+    {
+      "id": "root_import_and_identity_check",
+      "status": "executed_scoped",
+      "details": "Five exact files imported; root975-file archive/tree and all compiled inputs audited;48 fresh root executions passed. Larger program gates remain separate."
+    },
+    {
+      "id": "windows_msvc",
+      "status": "open",
+      "details": "Actual Windows/MSVC configurations have not been executed here; Linux does not substitute."
+    },
+    {
+      "id": "macos_appleclang",
+      "status": "open",
+      "details": "Actual macOS/AppleClang execution has not been performed here."
+    },
+    {
+      "id": "full_mode_cross_products",
+      "status": "partial",
+      "details": "The selected finite fixtures, endpoints 1/32, ranks/layouts/placements/metadata/preview/failure/empty/owner cases do not establish every cross product, precision value or rounding boundary."
+    },
+    {
+      "id": "other_locales",
+      "status": "partial",
+      "details": "The unnamed custom C++ locale is positively exercised; named C setlocale locales, other locale facets and platform library implementations remain unexecuted."
+    },
+    {
+      "id": "element_read_counts_and_cost_bounds",
+      "status": "partial",
+      "details": "No new mode load instrumentation was added. Preserved prior Clang19/O1 evidence remains limited to its Dense rank2 and zero-cap all12 scalar, COO rank1 all12 scalar and CSR/CSC double outer-lookup cases; no new read-count or performance claim."
+    },
+    {
+      "id": "whole_random_noexceptions_build",
+      "status": "failed-open",
+      "details": "Initial global -fno-exceptions package prerequisite build failed at existing std::random_device exception translation in src/random/seed.cc:24. ADR0004 remains Proposed. Preserve Random behavior and failed logs/debug-build; no Random correction or full compiler-mode credit from ordinary defaults or passing noexception Print consumers."
+    }
+  ],
+  "allocation_limit": "Exact process counts in regular/glibc lanes; ASan keeps sanitizer allocator interceptors and does not claim exact process allocation counts. Caller owner-resource attempts are checked in all lanes.",
+  "previous_matrix": {
+    "path": "$EVIDENCE_ROOT/p02-display-modes-01-z_zo1_8j/handoff/remaining-matrix.json",
+    "sha256": "d2120b12add79e2885574a0beee88235c1c92e9964af92621b4aeda34644a244"
+  },
+  "bounded_assertion_changes": {
+    "rank0_budget": "Independent literal layout, exact ErrorCode, all three report fields at every budget; prior assertions retained.",
+    "rank0_sink_failure": "Exact truncated state on all complete-output and omission-output byte boundaries, including before/at/after metadata completion."
+  },
+  "rank0_exact_cases": [
+    {
+      "storage": "dense",
+      "metadata": false,
+      "header_bytes": 0,
+      "complete": "3141592653589793238\n",
+      "omitted": "... (truncated)\n",
+      "budget_minimum_success": 16,
+      "budget_minimum_complete": 20,
+      "budget_failures": 16,
+      "budget_truncated_successes": 4,
+      "budget_complete_successes": 65,
+      "complete_layout_io_failure_boundaries": 20,
+      "complete_layout_failure_truncated_true": 0,
+      "omission_layout_io_failure_boundaries": 16,
+      "omission_failure_truncated_false": 0,
+      "omission_failure_truncated_true": 16
+    },
+    {
+      "storage": "dense",
+      "metadata": true,
+      "header_bytes": 34,
+      "complete": "dense scalar=i64 shape=() count=1\n3141592653589793238\n",
+      "omitted": "dense scalar=i64 shape=() count=1\n... (truncated)\n",
+      "budget_minimum_success": 50,
+      "budget_minimum_complete": 54,
+      "budget_failures": 50,
+      "budget_truncated_successes": 4,
+      "budget_complete_successes": 65,
+      "complete_layout_io_failure_boundaries": 54,
+      "complete_layout_failure_truncated_true": 0,
+      "omission_layout_io_failure_boundaries": 50,
+      "omission_failure_truncated_false": 34,
+      "omission_failure_truncated_true": 16
+    },
+    {
+      "storage": "coo",
+      "metadata": false,
+      "header_bytes": 0,
+      "complete": "() = 3141592653589793238\n",
+      "omitted": "... (truncated)\n",
+      "budget_minimum_success": 16,
+      "budget_minimum_complete": 25,
+      "budget_failures": 16,
+      "budget_truncated_successes": 9,
+      "budget_complete_successes": 65,
+      "complete_layout_io_failure_boundaries": 25,
+      "complete_layout_failure_truncated_true": 0,
+      "omission_layout_io_failure_boundaries": 16,
+      "omission_failure_truncated_false": 0,
+      "omission_failure_truncated_true": 16
+    },
+    {
+      "storage": "coo",
+      "metadata": true,
+      "header_bytes": 33,
+      "complete": "coo scalar=i64 shape=() stored=1\n() = 3141592653589793238\n",
+      "omitted": "coo scalar=i64 shape=() stored=1\n... (truncated)\n",
+      "budget_minimum_success": 49,
+      "budget_minimum_complete": 58,
+      "budget_failures": 49,
+      "budget_truncated_successes": 9,
+      "budget_complete_successes": 65,
+      "complete_layout_io_failure_boundaries": 58,
+      "complete_layout_failure_truncated_true": 0,
+      "omission_layout_io_failure_boundaries": 49,
+      "omission_failure_truncated_false": 33,
+      "omission_failure_truncated_true": 16
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "$EVIDENCE_ROOT/p02-display-rank0-assertions-01-j09h_i1y/handoff.json",
+      "sha256": "992edc1f4c01729f4d90ef2d643cd6595945d17cbaeea7ecd399546f7078210f"
+    }
+  ],
+  "prior_composed_handoff": {
+    "path": "$EVIDENCE_ROOT/p02-display-composed-v13-04-01-_70o_er0/handoff.json",
+    "sha256": "f09b214797929477cec92ab7c6f38262a1f4f5a41adbaf0309f9d4f79bfd9dcd"
+  }
+}
