@@ -1,3 +1,58 @@
+## 2026-09-13: Two-stage Aasen consumers ready for feature integration
+
+Branch `feature/lapack-array-io`, pushed parent
+`68bb0915666c94eb68a73cab83416e5ad60a14e3`. Inspect actual git and
+`aasen-two-stage-solve-delivery/commit.txt` for the delivery commit. All three
+user instruction files, prior milestones and raw failures remain preserved.
+The full P00–P11 programme remains incomplete.
+
+Six SYTRS_AA_2STAGE/HETRS_AA_2STAGE consumers add twelve public declarations
+and 144 reviewed modes. They solve with immutable same-origin A, persistent TB,
+outer kAasen pivots and a separate band-pivot vector, retaining exact original
+LTB/provider/scalar/triangle/symmetry. Metadata-only queries and empty noncalls
+read no numerical inputs. Caller workspace owns two native INTEGER arrays and
+row packing; no native WORK/LWORK/query exists. Exact block-width/pivot checks
+and zero band-U diagonal rejection precede mutable scratch and B. Singular
+preflight returns kUnchanged with no call or synthetic INFO. Only full-width
+INFO0 and unchanged private pivots are valid native results; defects withhold
+packed B. Source-proven read-only TB preserves the pinned mutable-pointer ABI.
+
+Sixteen profiles execute 540 processes: 468
+pass, 72 required mathematical failures, zero skips.
+Twelve normal profiles pass 37/43 each; four TSan profiles pass 6/6 each. All six
+classes retain tiny-scale inherited GBTRF/GBTF2 failures; four complex classes
+also retain large-complex division through GBTRS upper TBSV. Across the twelve
+normal profiles, 80,640 required finiteness assertions fail. Ordinary independent
+solutions/residuals and reconstruction, native fidelity, structural/fault and
+read-only shared-factor concurrency pass. No mathematical requirement, valid
+input or tolerance is weakened; no provider patch, fallback or waiver is made.
+
+Four relocated installed consumers each pass 1,920 cases with two solves per
+factor set. Eighteen strict TUs, 4,608 actual emitted-ABI native cases, four
+standalone headers, twelve new/zero removed exports per ABI, ten package and
+three architecture checks pass. CI selection includes 1,506 configured tests;
+Doxygen covers 157 headers / 2,693 public members without warnings. Four final
+Release libraries match the installed products. Initial empty-count admission,
+singular report-oracle, build and strict failures remain preserved with exact
+source and raw exit identities. Pinned Fortran/BLAS internals are uninstrumented.
+
+Parent 68bb091 general CI / CodeQL succeed. Its four hosted selected profiles each
+execute 1,461 processes with zero skips: LP64 passes 1,260 / fails 201;
+ILP64 passes 1,264 / fails 197. All earlier failures and exactly seven new producer required gates
+remain; provider 111/111 passes. Feature CodeQL has 3,199 open alerts including the
+same 12 security findings. All 15 new notes were read; none dismissed/suppressed.
+`aasen-two-stage-solve-remote-01/hosted-followup` distinguishes GitHub run/head
+identity from missing independent ASC checkout/tree artifacts. No dirty-source
+or PR merge-tree hosted admission is inferred.
+
+Validator counts: required 2113; reviewed contracts 282;
+Reference callable-unverified 242; partial
+296; not-started1575; verified
+0. Native remains 20/20; experimental RobustPpsvx is separate.
+Finish owned commit/push/draft47 update if pending, then continue
+`P05.required.hesv_aa_2stage` and all other ready programme rows using the same
+latest handoff and current review. No single-family instruction is required.
+
 ## 2026-09-13: Two-stage Aasen producers ready for feature integration
 
 Branch `feature/lapack-array-io`, pushed parent

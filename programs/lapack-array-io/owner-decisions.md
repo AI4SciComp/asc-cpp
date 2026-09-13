@@ -467,3 +467,37 @@ at twice denorm-min, min-normal/1024 and min-normal/8; scalar N=1 and all larger
 controls pass. Native fidelity passes in all six classes. These extend the
 [existing band-LU decision](#gbtrfgbtrs-range-distinction), not the TB query
 rounding cause. No fresh provider strategy or waiver is authorized.
+
+The six two-stage Aasen consumers extend the same two existing arithmetic
+causes. Their 1,024-case/class range matrix uses exactly representable RHS
+columns and retains 6,336 tiny-scale nonfinite-solution assertions per ABI from
+the producer GBTRF/GBTF2 cause. Complex offdiagonal N=2 at .75*max additionally
+retains 384 assertions per ABI: factors reconstruct correctly, and NB>=N reaches
+GBTRS/TBSV complex division directly, extending `AASEN-SOLVE-RANGE`. All six
+native-fidelity processes and 960 fault cases/class/ABI pass. See the
+[two-stage consumer review](indefinite-aasen-two-stage-solve-review.md) and its
+source-bound range classification. These affected rows do not create a separate
+approval or waive either mathematical requirement; provider remediation choices
+and the pinned identity remain unchanged.
+
+### Feature 68bb091: two-stage producer hosted/security follow-up
+
+The explicit feature-ref CodeQL read during two-stage consumer development
+records 3,199 open alerts, including the unchanged twelve security findings.
+The fifteen new notes are read with source-bound excerpts: fourteen accepted
+80-byte matrix-descriptor parameters and one exact TB block-width encoding
+comparison (`reference_indefinite_aasen_two_stage.cc:204`). That equality is an
+integer witness in the exactly representable range 1..192; a tolerance would
+admit malformed output. All alerts remain open. No dismissal, suppression,
+security closure or public-signature change is authorized or inferred.
+
+Feature `68bb0915666c94eb68a73cab83416e5ad60a14e3` passes general CI and CodeQL
+analysis. Its four hosted selected profiles each execute 1,461 processes with
+no skips: LP64 passes 1,260 and fails 201; ILP64 passes 1,264 and fails 197.
+Exactly the six producer range mathematical gates and its optimal TB-query
+gate join all previously required failures. Provider checks pass 111/111 each.
+The current `aasen-two-stage-solve-remote-01` evidence records actual alerts,
+jobs, downloaded raw/JUnit/provider artifacts and the missing independent ASC
+checkout/tree artifact identity. This is feature/run evidence; it grants no PR
+merge-tree or uncommitted consumer admission. Existing numerical and security
+owner decisions remain pending; ordinary independent development continues.

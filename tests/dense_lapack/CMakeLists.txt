@@ -30,6 +30,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_aasen_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_aasen_solve_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_aasen_driver_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_aasen_two_stage_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_aasen_two_stage_solve_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_driver_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_inverse_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/indefinite_rk_solve_tests.cmake")
@@ -1048,6 +1049,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_indefinite_aasen_solve.h
     lapack_indefinite_aasen_driver.h
     lapack_indefinite_aasen_two_stage.h
+    lapack_indefinite_aasen_two_stage_solve.h
     lapack_indefinite_rook.h
     lapack_indefinite_rook_condition.h
     lapack_indefinite_rook_driver.h
