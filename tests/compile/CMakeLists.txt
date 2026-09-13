@@ -1,11 +1,14 @@
 set(_asc_core_public_headers
   asc/core.h
+  asc/core/array_format.h
+  asc/core/array_io.h
   asc/core/configuration.h
   asc/core/contracts.h
   asc/core/execution.h
   asc/core/export.h
   asc/core/extents.h
   asc/core/io.h
+  asc/core/matrix_market.h
   asc/core/memory.h
   asc/core/result.h
   asc/core/status.h
@@ -318,6 +321,18 @@ set(_asc_m3_public_headers
   asc/dense/layout.h
   asc/dense/blas.h
   asc/dense/view.h
+  asc/dense/print.h
+  asc/dense/io.h
+  asc/dense/matrix_market.h
+  asc/dense/lapack/types.h
+  asc/dense/lapack/workspace.h
+  asc/dense/lapack/report.h
+  asc/dense/lapack/factor_view.h
+  asc/dense/lapack/structured_view.h
+  asc/dense/lapack/triangular_band_view.h
+  asc/dense/lapack/lu.h
+  asc/dense/lapack/cholesky.h
+  asc/dense/lapack/qr.h
 )
 
 foreach(_header IN LISTS _asc_m3_public_headers)
@@ -481,6 +496,9 @@ set(_asc_m4_public_headers
   asc/sparse/evaluate.h
   asc/sparse/export.h
   asc/sparse/blas.h
+  asc/sparse/print.h
+  asc/sparse/io.h
+  asc/sparse/matrix_market.h
 )
 
 foreach(_header IN LISTS _asc_m4_public_headers)

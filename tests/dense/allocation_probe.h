@@ -12,6 +12,8 @@ class AllocationProbe {
   AllocationProbe() noexcept;
   AllocationProbe(const AllocationProbe&) = delete;
   AllocationProbe& operator=(const AllocationProbe&) = delete;
+  AllocationProbe(AllocationProbe&&) = delete;
+  AllocationProbe& operator=(AllocationProbe&&) = delete;
   ~AllocationProbe();
 
   [[nodiscard]] std::size_t count() const noexcept;

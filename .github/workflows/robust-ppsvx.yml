@@ -1,0 +1,365 @@
+name: Selected LAPACK families
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "robust-ppsvx-${{ github.event.pull_request.number || github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    name: Selected LAPACK / GNU 11 / ${{ matrix.linkage }} / integer ${{ matrix.bits }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        bits: [32, 64]
+        linkage: [static, shared]
+    steps:
+      - name: Check out ASC
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: asc-cpp
+          persist-credentials: false
+      - name: Prepare GNU compilers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-11 g++-11 gfortran-11
+      - name: Build and attest the pinned provider outside ASC
+        run: |
+          python3 -B asc-cpp/tools/lapack/prepare_reference.py \
+            --work-dir "$RUNNER_TEMP/provider" --integer-bits ${{ matrix.bits }} --linkage ${{ matrix.linkage }} --jobs 2
+      - name: Build the experimental integrated profile
+        shell: bash
+        run: |
+          set -euo pipefail
+          runtimes="$(realpath "$(gfortran-11 -print-file-name=libgfortran.so)");$(realpath "$(gfortran-11 -print-file-name=libquadmath.so)")"
+          cmake -S asc-cpp -B "$RUNNER_TEMP/asc-build" \
+            -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11 \
+            -DCMAKE_Fortran_COMPILER=gfortran-11 -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=${{ matrix.linkage == 'shared' && 'ON' || 'OFF' }} -DBUILD_TESTING=ON -DASC_CPP_BUILD_TESTING=ON \
+            -DASC_CPP_INSTALL=ON -DASC_CPP_ENABLE_CUDA=OFF \
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON -DASC_CPP_ENABLE_LAPACK=ON \
+            -DASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX=ON \
+            -DASC_CPP_LAPACK_INTEGER_BITS=${{ matrix.bits }} \
+            -DASC_CPP_LAPACK_ROOT="$RUNNER_TEMP/provider/prefix" \
+            -DASC_CPP_LAPACK_ATTESTATION="$RUNNER_TEMP/provider/attestation.json" \
+            -DASC_CPP_LAPACK_RUNTIME_LIBRARIES="$runtimes" \
+            2>&1 | tee "$RUNNER_TEMP/asc-configure.log"
+          cmake --build "$RUNNER_TEMP/asc-build" --parallel 2 \
+            2>&1 | tee "$RUNNER_TEMP/asc-build.log"
+      - name: Check actual selectors, numerical requirements, concurrency and relocation
+        shell: bash
+        run: |
+          set -euo pipefail
+          ctest --test-dir "$RUNNER_TEMP/asc-build" --show-only=json-v1 \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|lu_band_range|gbtf2|band_cholesky|indefinite_rook[._]|indefinite_inverse[._]|indefinite_block_inverse[._]|indefinite_block_solve[._]|indefinite_rk[._]|indefinite_aasen[._]|indefinite([.]|_(preflight|info|counts|fault|abi_probe|range|concurrency))|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            > "$RUNNER_TEMP/asc-selected.json"
+          python3 - "$RUNNER_TEMP/asc-selected.json" <<'PY'
+          import json
+          import sys
+
+          with open(sys.argv[1], encoding="utf-8") as source:
+              selected = {test["name"] for test in json.load(source)["tests"]}
+          prefix = "asc_cpp.dense_lapack.positive_tridiagonal."
+          required = {prefix + mode + scalar for scalar in "sdcz"
+                      for mode in ("", "required_math_", "fault_")}
+          required |= {prefix + name for name in
+                       ("native_comparison", "observation", "public_example")}
+          condition = "asc_cpp.dense_lapack.positive_tridiagonal_condition."
+          required |= {condition + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "required_math_")}
+          required |= {condition + name for name in ("fault", "observation", "public_example")}
+          refinement = "asc_cpp.dense_lapack.positive_tridiagonal_refinement."
+          required |= {refinement + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "required_math_")}
+          required |= {refinement + name for name in ("fault", "observation", "public_example")}
+          driver = "asc_cpp.dense_lapack.positive_tridiagonal_driver."
+          required |= {driver + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "required_math_")}
+          required |= {driver + name for name in ("fault", "observation", "public_example")}
+          expert = "asc_cpp.dense_lapack.positive_tridiagonal_expert."
+          required |= {expert + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "required_math_")}
+          required |= {expert + name for name in ("fault", "observation", "public_example")}
+          for family in ("mixed_general", "mixed_positive"):
+              mixed = "asc_cpp.dense_lapack." + family + "."
+              required |= {mixed + mode + scalar for scalar in "dz"
+                           for mode in ("", "required_math_", "fault_")}
+              required |= {mixed + name for name in ("observation", "public_example")}
+          required.add("asc_cpp.dense_lapack.general_lu.public_modes")
+          for family in ("lu_condition", "lu_condition_info"):
+              required |= {"asc_cpp.dense_lapack." + family + "." + scalar
+                           for scalar in "sdcz"}
+          gecon = "asc_cpp.dense_lapack.lu_condition_modes."
+          required |= {gecon + mode + scalar for scalar in "sdcz"
+                       for mode in ("concurrency_", "required_math_")}
+          required.add(gecon + "observation")
+          for family in ("lu_equilibration", "lu_equilibration_info"):
+              required |= {"asc_cpp.dense_lapack." + family + "." + scalar
+                           for scalar in "sdcz"}
+          geequ = "asc_cpp.dense_lapack.lu_equilibration_modes."
+          required |= {geequ + mode + scalar for scalar in "sdcz"
+                       for mode in ("concurrency_", "required_math_")}
+          required.add(geequ + "observation")
+          for family in ("lu_refinement", "lu_refinement_info"):
+              required |= {"asc_cpp.dense_lapack." + family + "." + scalar
+                           for scalar in "sdcz"}
+          gerfs = "asc_cpp.dense_lapack.lu_refinement_modes."
+          required |= {gerfs + mode + scalar for scalar in "sdcz"
+                       for mode in ("concurrency_", "required_math_")}
+          required.add(gerfs + "observation")
+          for family in ("lu_driver", "lu_driver_info", "lu_driver_pivot"):
+              required |= {"asc_cpp.dense_lapack." + family + "." + scalar
+                           for scalar in "sdcz"}
+          gesvx = "asc_cpp.dense_lapack.lu_driver_modes."
+          required |= {gesvx + mode + scalar for scalar in "sdcz"
+                       for mode in ("concurrency_", "required_math_")}
+          required.add(gesvx + "observation")
+          conversion = "asc_cpp.dense_lapack.precision_conversion."
+          required |= {conversion + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "fault_")}
+          required |= {conversion + name for name in ("observation", "public_example")}
+          copying = "asc_cpp.dense_lapack.matrix_copy."
+          required |= {copying + scalar for scalar in "sdcz"}
+          required |= {copying + name for name in ("observation", "public_example")}
+          scaling = "asc_cpp.dense_lapack.matrix_scale."
+          required |= {scaling + mode + scalar for scalar in "sdcz"
+                       for mode in ("", "fault_", "exception_")}
+          required |= {scaling + name for name in ("observation", "public_example")}
+          dmd = "asc_cpp.dense_lapack.dmd."
+          required |= {dmd + mode + scalar for scalar in "sdcz"
+                       for mode in ("candidate_", "validation_")}
+          required |= {dmd + name for name in ("minimum_counts", "minimum_counts_native",
+                                              "observation", "public_example")}
+          dmd_qr = "asc_cpp.dense_lapack.dmd_qr."
+          required |= {dmd_qr + mode + scalar for scalar in "sdcz"
+                       for mode in ("required_math_", "validation_", "contract_")}
+          required |= {dmd_qr + name for name in ("counts", "observation", "public_example")}
+          for family in ("reference_lu", "lu_layout", "lu_expert", "lu_info",
+                         "lu_expert_info", "lu_pivot"):
+              required |= {"asc_cpp.dense_lapack." + family + "." + scalar
+                           for scalar in "sdcz"}
+          required |= {"asc_cpp.dense_lapack.matrix_set." + scalar for scalar in "sdcz"}
+          required |= {"asc_cpp.dense_lapack.matrix_set." + name
+                       for name in ("observation", "public_example")}
+          required |= {"asc_cpp.dense_lapack.lu_band_refinement." + scalar + "." + mode
+                       for scalar in "sdcz" for mode in ("regular", "extreme")}
+          required |= {"asc_cpp.dense_lapack." + name
+                       for name in ("lu_counts", "normal_return_guard")}
+          required |= {"asc_cpp.dense_lapack." + suite + suffix + "." + scalar
+                       for suite in ("lu_band", "lu_band_fault", "lu_band_boundary")
+                       for suffix in ("", "_gbtf2") for scalar in "sdcz"}
+          required |= {"asc_cpp.dense_lapack.gbtf2_range." + scalar + "." + mode
+                       for scalar in "sdcz" for mode in ("mathematical", "fidelity")}
+          required |= {"asc_cpp.dense_lapack." + name
+                       for name in ("lu_band_abi", "lu_band_limits", "gbtf2_abi")}
+          required |= {"asc_cpp.dense_lapack.lu_band_range." + scalar + "." + mode
+                       for scalar in "sdcz" for mode in ("mathematical", "fidelity", "solve")}
+          required |= {"asc_cpp.dense_lapack." + suite + "." + scalar
+                       for suite in ("band_cholesky", "band_cholesky_fidelity",
+                                     "band_cholesky_validation", "band_cholesky_range",
+                                     "band_cholesky_concurrency")
+                       for scalar in "sdcz"}
+          required.add("asc_cpp.dense_lapack.band_cholesky_limits")
+          required |= {f"asc_cpp.dense_lapack.{suite}.{scalar}"
+                       for suite in ("indefinite", "indefinite_preflight",
+                                     "indefinite_info", "indefinite_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_{suite}"
+                       for suite in ("counts", "fault", "abi_probe")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_range.{scalar}.{mode}"
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("factor_mathematical", "factor_fidelity",
+                                    "solve_mathematical", "solve_fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook{suite}.{scalar}"
+                       for suite in ("", "_preflight", "_info", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_{suite}"
+                       for suite in ("fault", "abi_probe")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_range.{scalar}.{mode}"
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("factor_mathematical", "factor_fidelity",
+                                    "solve_mathematical", "solve_fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_condition{suite}.{scalar}"
+                       for suite in ("", "_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rook_condition_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_condition_range.{scalar}.{mode}"
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_driver{suite}.{scalar}"
+                       for suite in ("", "_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rook_driver_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_driver_range.{scalar}.{mode}"
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_inverse{suite}.{scalar}"
+                       for suite in ("", "_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rook_inverse_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rook_inverse_range.{scalar}.{mode}"
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_inverse{suite}.{scalar}"
+                       for suite in ("", "_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_inverse_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_inverse_range.{scalar}.{mode}"
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_block_inverse{suite}.{scalar}.{variant}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for variant in ("driver", "1", "2", "3", "64")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_block_inverse{suite}.{scalar}.{variant}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for variant in ("driver", "1", "2", "3", "64")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_block_inverse_abi_probe.{variant}"
+                       for variant in ("driver", "1", "2", "3", "64")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_block_solve{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_block_solve{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_block_solve_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rk_abi_probe")
+          required.add("asc_cpp.dense_lapack.indefinite_rk_native_empty")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_solve{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_solve{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rk_solve_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_condition{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_condition{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rk_condition_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_inverse{suite}.{scalar}.{variant}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for variant in ("driver", "1", "2", "3", "64")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_inverse{suite}.{scalar}.{variant}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for variant in ("driver", "1", "2", "3", "64")}
+          required.add("asc_cpp.dense_lapack.indefinite_rk_inverse_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_inverse_workspace.{mode}"
+                       for mode in ("contract", "fidelity")}
+
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_driver{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_rk_driver{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_rk_driver_abi_probe")
+
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_abi_probe")
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_workspace.{mode}"
+                       for mode in ("contract", "fidelity")}
+
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_solve{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_solve{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_solve_abi_probe")
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_solve_workspace.contract")
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_driver{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_driver{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_driver_abi_probe")
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_driver_workspace.contract")
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_driver_empty.c.{triangle}.{rhs}"
+                       for triangle in ("U", "L") for rhs in (0, 3)}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_two_stage{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_two_stage{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_two_stage_abi_probe")
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_two_stage_workspace.contract")
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_two_stage_solve{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_two_stage_solve{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_two_stage_solve_abi_probe")
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_two_stage_driver_abi_probe")
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_two_stage_driver_workspace.contract")
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_two_stage_driver{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_two_stage_driver{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          missing = required - selected
+          if missing:
+              raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
+          PY
+          ctest --test-dir "$RUNNER_TEMP/asc-build" --no-tests=error --verbose \
+            -R 'robust_ppsvx|positive_tridiagonal|mixed_general|mixed_positive|precision_conversion|matrix_copy|matrix_scale|matrix_set|dense_lapack[.]dmd[.]|dense_lapack[.]dmd_qr[.]|general_lu|lu_condition|lu_equilibration|lu_refinement|lu_driver|lu_layout|lu_expert|lu_info|lu_pivot|lu_counts|lu_band_refinement[.]|lu_band(_(fault|boundary))?(_gbtf2)?[.]|lu_band_(abi|limits)|lu_band_range|gbtf2|band_cholesky|indefinite_rook[._]|indefinite_inverse[._]|indefinite_block_inverse[._]|indefinite_block_solve[._]|indefinite_rk[._]|indefinite_aasen[._]|indefinite([.]|_(preflight|info|counts|fault|abi_probe|range|concurrency))|reference_lu|normal_return_guard|dense_lapack.package_integration' \
+            --output-junit "$RUNNER_TEMP/asc-tests.xml" \
+            2>&1 | tee "$RUNNER_TEMP/asc-tests.log"
+      - name: Audit JUnit outcomes even when numerical gates fail
+        if: always()
+        run: python3 asc-cpp/tools/ci/check_ctest_junit.py "$RUNNER_TEMP/asc-tests.xml"
+      - name: Preserve command and test records only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: robust-ppsvx-${{ matrix.linkage }}-${{ matrix.bits }}-records
+          path: |
+            ${{ runner.temp }}/provider/*.log
+            ${{ runner.temp }}/provider/*.json
+            ${{ runner.temp }}/provider/*.xml
+            ${{ runner.temp }}/asc-*.log
+            ${{ runner.temp }}/asc-selected.json
+            ${{ runner.temp }}/asc-tests.xml
+          if-no-files-found: warn

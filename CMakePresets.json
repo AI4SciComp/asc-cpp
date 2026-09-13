@@ -11,7 +11,8 @@
       "hidden": true,
       "binaryDir": "${sourceParentDir}/asc-cpp-build/${presetName}",
       "cacheVariables": {
-        "ASC_CPP_ENABLE_CUDA": "OFF"
+        "ASC_CPP_ENABLE_CUDA": "OFF",
+        "ASC_CPP_ENABLE_LAPACK": "OFF"
       }
     },
     {
@@ -135,6 +136,33 @@
       }
     },
     {
+      "name": "test-lapack-lp64",
+      "displayName": "Incremental Reference-LAPACK / LP64 static",
+      "inherits": "test-release",
+      "cacheVariables": {
+        "ASC_CPP_ENABLE_LAPACK": "ON",
+        "ASC_CPP_LAPACK_INTEGER_BITS": "32"
+      }
+    },
+    {
+      "name": "test-lapack-ilp64",
+      "displayName": "Incremental Reference-LAPACK / true ILP64 static",
+      "inherits": "test-lapack-lp64",
+      "cacheVariables": { "ASC_CPP_LAPACK_INTEGER_BITS": "64" }
+    },
+    {
+      "name": "test-lapack-full",
+      "displayName": "Required full Reference-LAPACK profile gate",
+      "inherits": "test-lapack-lp64",
+      "cacheVariables": { "ASC_CPP_LAPACK_REQUIRE_FULL_PROFILE": "ON" }
+    },
+    {
+      "name": "test-lapack-shared",
+      "displayName": "Required Reference-LAPACK shared isolation gate",
+      "inherits": "test-lapack-lp64",
+      "cacheVariables": { "BUILD_SHARED_LIBS": "ON" }
+    },
+    {
       "name": "test-cuda",
       "displayName": "Experimental CUDA evidence / Release static",
       "inherits": "test-release",
@@ -153,6 +181,8 @@
     }
   ],
   "buildPresets": [
+    { "name": "test-lapack-lp64", "configurePreset": "test-lapack-lp64", "configuration": "Release" },
+    { "name": "test-lapack-ilp64", "configurePreset": "test-lapack-ilp64", "configuration": "Release" },
     { "name": "dev-debug", "configurePreset": "dev-debug", "configuration": "Debug" },
     { "name": "dev-release", "configurePreset": "dev-release", "configuration": "Release" },
     { "name": "test-debug", "configurePreset": "test-debug", "configuration": "Debug" },
@@ -174,6 +204,18 @@
     { "name": "test-cuda-shared", "configurePreset": "test-cuda-shared", "configuration": "Release" }
   ],
   "testPresets": [
+    {
+      "name": "test-lapack-lp64",
+      "configurePreset": "test-lapack-lp64",
+      "configuration": "Release",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "test-lapack-ilp64",
+      "configurePreset": "test-lapack-ilp64",
+      "configuration": "Release",
+      "output": { "outputOnFailure": true }
+    },
     {
       "name": "test-debug",
       "configurePreset": "test-debug",

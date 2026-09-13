@@ -240,6 +240,7 @@ _assert_exact_set(
 )
 
 set(_expected_providers
+  dense_lapack
   core_cuda
   dense_cuda
   sparse_cuda
@@ -248,6 +249,7 @@ set(_expected_providers
   random_sparse_cuda
 )
 set(_expected_provider_edges
+  "dense_lapack>dense"
   "core_cuda>core"
   "dense_cuda>dense"
   "dense_cuda>core_cuda"
@@ -263,6 +265,7 @@ set(_expected_provider_edges
   "random_sparse_cuda>core_cuda"
 )
 set(_expected_provider_build_targets
+  "dense_lapack=asc_dense_lapack"
   "core_cuda=asc_core_cuda"
   "dense_cuda=asc_dense_cuda"
   "sparse_cuda=asc_sparse_cuda"
@@ -271,6 +274,7 @@ set(_expected_provider_build_targets
   "random_sparse_cuda=asc_random_sparse_cuda"
 )
 set(_expected_provider_installed_targets
+  "dense_lapack=ASC::dense_lapack"
   "core_cuda=ASC::core_cuda"
   "dense_cuda=ASC::dense_cuda"
   "sparse_cuda=ASC::sparse_cuda"
@@ -299,6 +303,7 @@ _assert_exact_set(
   "${_expected_provider_installed_targets}"
 )
 set(_expected_provider_owners
+  "dense_lapack=dense"
   "core_cuda=core"
   "dense_cuda=dense"
   "sparse_cuda=sparse"
@@ -322,6 +327,7 @@ set(_expected_dependencies_cpp
   core utilities expression dense sparse random random_dense random_sparse
 )
 set(_expected_dependencies_core_cuda core)
+set(_expected_dependencies_dense_lapack dense)
 set(_expected_dependencies_dense_cuda dense core_cuda)
 set(_expected_dependencies_sparse_cuda sparse core_cuda)
 set(_expected_dependencies_random_cuda random core_cuda)
@@ -332,6 +338,7 @@ set(_expected_dependencies_random_sparse_cuda
 set(_expected_owner_random_dense random)
 set(_expected_owner_random_sparse random)
 set(_expected_owner_core_cuda core)
+set(_expected_owner_dense_lapack dense)
 set(_expected_owner_dense_cuda dense)
 set(_expected_owner_sparse_cuda sparse)
 set(_expected_owner_random_cuda random)
@@ -378,7 +385,7 @@ endforeach()
 _assert_exact_set(
   "implemented package components"
   "${_manifest_implemented_components}"
-  "core;utilities;expression;dense;sparse;random;random_dense;random_sparse;cpp;core_cuda;dense_cuda;sparse_cuda;random_cuda;random_dense_cuda;random_sparse_cuda"
+  "core;utilities;expression;dense;sparse;random;random_dense;random_sparse;cpp;dense_lapack;core_cuda;dense_cuda;sparse_cuda;random_cuda;random_dense_cuda;random_sparse_cuda"
 )
 _assert_exact_set(
   "unavailable package components"
@@ -476,6 +483,12 @@ endforeach()
 _finalize_capability()
 
 set(_expected_capabilities
+  "experimental first-party robust PPSVX"
+  "bounded Matrix Market lexical and scalar primitives"
+  "Dense Matrix Market array interchange"
+  "Sparse Matrix Market coordinate interchange"
+  "incremental Reference-LAPACK factorizations provider"
+  "native Cholesky and Householder QR"
   "checked logical metadata and mixed extents"
   "status, result, and release-active contracts"
   "storage-independent configuration model"
@@ -540,7 +553,17 @@ macro(_assert_capability_status)
     elseif(_current_capability STREQUAL
            "storage-neutral engines and scalar distributions"
            OR _current_capability STREQUAL
-              "storage-neutral QMC sequences")
+              "incremental Reference-LAPACK factorizations provider"
+           OR _current_capability STREQUAL
+              "native Cholesky and Householder QR"
+           OR _current_capability STREQUAL
+              "storage-neutral QMC sequences"
+           OR _current_capability STREQUAL
+              "bounded Matrix Market lexical and scalar primitives"
+           OR _current_capability STREQUAL
+              "Dense Matrix Market array interchange"
+           OR _current_capability STREQUAL
+              "Sparse Matrix Market coordinate interchange")
       set(_expected_status runtime-tested)
     else()
       set(_expected_status proposed)

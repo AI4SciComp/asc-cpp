@@ -84,6 +84,7 @@ function(_configure_build_run package_directory case_name)
     "-DASCCpp_DIR:PATH=${package_directory}"
     "-DASCCPP_EXPECT_LIBRARY_TYPE:STRING=${EXPECT_LIBRARY_TYPE}"
     "-DASCCPP_EXPECT_CUDA:BOOL=${ASCCPP_EXPECT_CUDA}"
+    "-DASCCPP_EXPECT_LAPACK:BOOL=${ASCCPP_EXPECT_LAPACK}"
     "-DASCCPP_OPTIONAL_COMPONENT:STRING=definitely_unknown"
   )
 

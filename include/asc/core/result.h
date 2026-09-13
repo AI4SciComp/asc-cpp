@@ -23,6 +23,10 @@
 
 namespace asc {
 
+namespace internal_core_result {
+class StatusAccess;
+}  // namespace internal_core_result
+
 // Stores either one T or one non-OK Status. Result supports move-only values.
 /**
  * @brief Stores either one value or one non-OK Status.
@@ -276,6 +280,9 @@ class [[nodiscard]] Result {
   const T* operator->() const { return &CheckedValue(); }
 
  private:
+  /// @cond ASC_INTERNAL
+  friend class internal_core_result::StatusAccess;
+  /// @endcond
   struct FailureTag {};
 
   Result(FailureTag /*tag*/, Status status) : status_(std::move(status)) {}
@@ -304,6 +311,22 @@ class [[nodiscard]] Result {
   std::optional<T> value_;
   Status status_;
 };
+
+namespace internal_core_result {
+
+// Internal ownership transfer for failure propagation across ASC factories.
+// Result::status() remains a stable const-reference public API. Consuming a
+// failed temporary must not allocate merely to copy its owning diagnostics.
+class StatusAccess {
+ public:
+  template <typename T>
+  static Status TakeFailure(Result<T>&& result) noexcept {
+    ASC_CHECK_MESSAGE(!result.ok(), "Only failed Results have a movable error");
+    return std::move(result.status_);
+  }
+};
+
+}  // namespace internal_core_result
 
 }  // namespace asc
 

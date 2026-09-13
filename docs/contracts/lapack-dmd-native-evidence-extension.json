@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "Index-only extension for four new callable-unverified Reference GEDMD rows. Native20 source, contracts, artifacts, routes and actual execution records unchanged; no later whole-tree credit.",
+  "baseline_commit": "18fd37e469a47fe914aea0ceaba038735855ad85",
+  "prior_mapping_sha256": "5fceaee52b4d409cc828516d15b3872da364f9c282dfc3c358f0178e235ef029",
+  "extended_mapping_sha256": "94384ff6a5ca96d0d134897d93e8c128d4ca425fa3e6fa8fff01aa9b4c594b60",
+  "changed_reference_rows": [
+    "lapack.cgedmd",
+    "lapack.dgedmd",
+    "lapack.sgedmd",
+    "lapack.zgedmd"
+  ],
+  "unchanged_native_rows_sha256": "8fda2e83d31007c2d2b875eec4f89e0ee6d5d58cda2af806018e23404b367dba",
+  "prior_expected_identity": {
+    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mapping_sha256": "5fceaee52b4d409cc828516d15b3872da364f9c282dfc3c358f0178e235ef029",
+    "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+  },
+  "prior_mapping_extension": {
+    "path": "docs/contracts/lapack-matrix-copy-native-evidence-extension.json",
+    "sha256": "4af7bc138f09f9c48dd3a2a401758347c956dfa1ffc25434625e1d3b2dbde255",
+    "execution_reused": true
+  },
+  "prior_evidence_sha256": "895f4366a8b031b51b21eea9cac2ed1a0f06501485b1fb977982c9f40a28d5c5",
+  "external_exact_copy": "master-continuation-20260910-01/dmd-registration-01/prior-evidence.json",
+  "generator_sha256": "091f3b5c3d78172d8de1611a082be8367484645e549edb2125feeb6a96fe9866"
+}

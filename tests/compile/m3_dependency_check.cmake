@@ -16,12 +16,30 @@ set(_expected_public_files
   include/asc/dense/layout.h
   include/asc/dense/blas.h
   include/asc/dense/view.h
+  include/asc/dense/print.h
+  include/asc/dense/io.h
+  include/asc/dense/matrix_market.h
+  include/asc/dense/lapack/types.h
+  include/asc/dense/lapack/workspace.h
+  include/asc/dense/lapack/report.h
+  include/asc/dense/lapack/factor_view.h
+  include/asc/dense/lapack/structured_view.h
+  include/asc/dense/lapack/triangular_band_view.h
+  include/asc/dense/lapack/lu.h
+  include/asc/dense/lapack/cholesky.h
+  include/asc/dense/lapack/qr.h
 )
 set(_expected_source_files
   src/dense/blas.cc
+  src/dense/array_io.cc
+  src/dense/matrix_market.cc
   src/dense/blas_level1.cc
   src/dense/blas_level2.cc
   src/dense/blas_level3.cc
+  src/dense/lapack_foundations.cc
+  src/dense/lapack_lu.cc
+  src/dense/lapack_cholesky.cc
+  src/dense/lapack_qr.cc
 )
 
 set(_observed_public_files)
@@ -35,12 +53,100 @@ file(
   "${SOURCE_DIR}/include/asc/dense/*"
 )
 list(APPEND _observed_public_files ${_dense_headers})
-# The separately audited Dense CUDA provider facet is not part of this
+# The separately audited Dense CUDA and reference LAPACK facets are not part of this
 # provider-free Dense dependency check.
 list(REMOVE_ITEM
   _observed_public_files
   include/asc/dense/providers/cuda.h
   include/asc/dense/providers/cuda_export.h
+  include/asc/dense/providers/lapack.h
+  include/asc/dense/providers/lapack_export.h
+  include/asc/dense/providers/lapack_lu.h
+  include/asc/dense/providers/lapack_lu_equilibration.h
+  include/asc/dense/providers/lapack_lu_condition.h
+  include/asc/dense/providers/lapack_lu_refinement.h
+  include/asc/dense/providers/lapack_lu_driver.h
+  include/asc/dense/providers/lapack_lu_helpers.h
+  include/asc/dense/providers/lapack_cholesky.h
+  include/asc/dense/providers/lapack_cholesky_packed.h
+  include/asc/dense/providers/lapack_cholesky_packed_solve.h
+  include/asc/dense/providers/lapack_cholesky_packed_inverse.h
+  include/asc/dense/providers/lapack_cholesky_packed_driver.h
+  include/asc/dense/providers/lapack_cholesky_packed_equilibration.h
+  include/asc/dense/providers/lapack_cholesky_packed_condition.h
+  include/asc/dense/providers/lapack_cholesky_packed_refinement.h
+  include/asc/dense/providers/lapack_mixed_general.h
+  include/asc/dense/providers/lapack_mixed_positive.h
+  include/asc/dense/providers/lapack_precision_conversion.h
+  include/asc/dense/providers/lapack_matrix_copy.h
+  include/asc/dense/providers/lapack_matrix_scale.h
+  include/asc/dense/providers/lapack_matrix_set.h
+  include/asc/dense/providers/lapack_dmd.h
+  include/asc/dense/providers/lapack_dmd_qr.h
+  include/asc/dense/providers/lapack_positive_tridiagonal.h
+  include/asc/dense/providers/lapack_positive_tridiagonal_condition.h
+  include/asc/dense/providers/lapack_positive_tridiagonal_refinement.h
+  include/asc/dense/providers/lapack_positive_tridiagonal_driver.h
+  include/asc/dense/providers/lapack_positive_tridiagonal_expert.h
+  include/asc/dense/providers/lapack_cholesky_packed_robust.h
+  include/asc/dense/providers/lapack_qr.h
+  include/asc/dense/providers/lapack_cholesky_condition.h
+  include/asc/dense/providers/lapack_cholesky_driver.h
+  include/asc/dense/providers/lapack_cholesky_equilibration.h
+  include/asc/dense/providers/lapack_cholesky_refinement.h
+  include/asc/dense/providers/lapack_least_squares.h
+  include/asc/dense/providers/lapack_cholesky_band.h
+  include/asc/dense/providers/lapack_indefinite.h
+  include/asc/dense/providers/lapack_indefinite_aasen.h
+  include/asc/dense/providers/lapack_indefinite_aasen_solve.h
+  include/asc/dense/providers/lapack_indefinite_aasen_driver.h
+  include/asc/dense/providers/lapack_indefinite_aasen_two_stage.h
+  include/asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h
+  include/asc/dense/providers/lapack_indefinite_aasen_two_stage_driver.h
+  include/asc/dense/providers/lapack_indefinite_rook.h
+  include/asc/dense/providers/lapack_indefinite_rook_condition.h
+  include/asc/dense/providers/lapack_indefinite_rook_driver.h
+  include/asc/dense/providers/lapack_indefinite_rook_inverse.h
+  include/asc/dense/providers/lapack_indefinite_inverse.h
+  include/asc/dense/providers/lapack_indefinite_block_inverse.h
+  include/asc/dense/providers/lapack_indefinite_block_solve.h
+  include/asc/dense/providers/lapack_indefinite_rk.h
+  include/asc/dense/providers/lapack_indefinite_rk_condition.h
+  include/asc/dense/providers/lapack_indefinite_rk_driver.h
+  include/asc/dense/providers/lapack_indefinite_rk_inverse.h
+  include/asc/dense/providers/lapack_indefinite_rk_solve.h
+  include/asc/dense/providers/lapack_rank_revealing.h
+  include/asc/dense/providers/lapack_sylvester.h
+  include/asc/dense/providers/lapack_indefinite_condition.h
+  include/asc/dense/providers/lapack_indefinite_driver.h
+  include/asc/dense/providers/lapack_indefinite_refinement.h
+  include/asc/dense/providers/lapack_svd_least_squares.h
+  include/asc/dense/providers/lapack_lu_band.h
+  include/asc/dense/providers/lapack_general_band.h
+  include/asc/dense/providers/lapack_lu_band_condition.h
+  include/asc/dense/providers/lapack_lu_band_driver.h
+  include/asc/dense/providers/lapack_lu_band_equilibration.h
+  include/asc/dense/providers/lapack_lu_band_equilibration_radix.h
+  include/asc/dense/providers/lapack_triangular.h
+  include/asc/dense/providers/lapack_triangular_condition.h
+  include/asc/dense/providers/lapack_triangular_error_bounds.h
+  include/asc/dense/providers/lapack_triangular_packed.h
+  include/asc/dense/providers/lapack_triangular_band.h
+  include/asc/dense/providers/lapack_triangular_band_condition.h
+  include/asc/dense/providers/lapack_triangular_band_error_bounds.h
+  include/asc/dense/providers/lapack_triangular_packed_condition.h
+  include/asc/dense/providers/lapack_triangular_packed_error_bounds.h
+  include/asc/dense/providers/lapack_lu_band_expert.h
+  include/asc/dense/providers/lapack_lu_band_refinement.h
+  include/asc/dense/providers/lapack_tridiagonal.h
+  include/asc/dense/providers/lapack_tridiagonal_condition.h
+  include/asc/dense/providers/lapack_tridiagonal_driver.h
+  include/asc/dense/providers/lapack_tridiagonal_refinement.h
+  include/asc/dense/providers/lapack_cholesky_band_condition.h
+  include/asc/dense/providers/lapack_cholesky_band_driver.h
+  include/asc/dense/providers/lapack_cholesky_band_equilibration.h
+  include/asc/dense/providers/lapack_cholesky_band_expert.h
+  include/asc/dense/providers/lapack_cholesky_band_refinement.h
 )
 
 file(
@@ -53,7 +159,7 @@ list(REMOVE_ITEM _observed_source_files src/dense/CMakeLists.txt)
 list(FILTER
   _observed_source_files
   EXCLUDE
-  REGEX "^src/dense/cuda/"
+  REGEX "^src/dense/(cuda|lapack)/"
 )
 
 list(SORT _expected_public_files)
@@ -79,6 +185,19 @@ set(_provider_pattern
   "(^|/)(cuda|cublas|cusolver|cusparse|curand|hip|rocm|sycl|mkl|blas|lapack)(/|\\.|_)"
 )
 set(_all_files ${_observed_public_files} ${_observed_source_files})
+# These exact ASC-owned headers are provider-neutral contracts, not foreign
+# SDK headers. Keep the foreign include guard active for every other path.
+set(_asc_lapack_contract_headers
+  asc/dense/lapack/types.h
+  asc/dense/lapack/workspace.h
+  asc/dense/lapack/report.h
+  asc/dense/lapack/factor_view.h
+  asc/dense/lapack/structured_view.h
+  asc/dense/lapack/triangular_band_view.h
+  asc/dense/lapack/lu.h
+  asc/dense/lapack/cholesky.h
+  asc/dense/lapack/qr.h
+)
 foreach(_relative_file IN LISTS _all_files)
   set(_path "${SOURCE_DIR}/${_relative_file}")
   file(STRINGS "${_path}" _includes REGEX "^[ \t]*#[ \t]*include")
@@ -99,6 +218,7 @@ foreach(_relative_file IN LISTS _all_files)
       endif()
       string(TOLOWER "${_included_path}" _included_path_lower)
       if(NOT _included_path_lower STREQUAL "asc/dense/blas.h"
+         AND NOT _included_path_lower IN_LIST _asc_lapack_contract_headers
          AND _included_path_lower MATCHES "${_provider_pattern}")
         message(FATAL_ERROR
           "Provider SDK include leaked into ${_relative_file}: "

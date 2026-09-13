@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.25)
+project(ASCCppMatrixCopyExample LANGUAGES CXX)
+find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense_lapack)
+add_executable(matrix_copy main.cc)
+target_compile_features(matrix_copy PRIVATE cxx_std_20)
+target_link_libraries(matrix_copy PRIVATE ASC::dense_lapack)
+enable_testing()
+add_test(NAME matrix_copy.public_example COMMAND matrix_copy)

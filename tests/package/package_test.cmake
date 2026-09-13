@@ -66,6 +66,9 @@ function(_assert_package_files package_directory)
     ASCCppRandomSparseTargets.cmake
     ASCCppCppTargets.cmake
   )
+  if(ENABLE_LAPACK)
+    list(APPEND _expected_target_exports ASCCppDenseLapackTargets.cmake)
+  endif()
   if(ENABLE_CUDA)
     list(APPEND
       _expected_target_exports
@@ -165,6 +168,7 @@ function(
     "-DASCCPP_EXPECT_FOUND:BOOL=${expect_found}"
     "-DASCCPP_EXPECT_CORE_TARGET:BOOL=${expect_core_target}"
     "-DASCCPP_EXPECT_CUDA:BOOL=${ENABLE_CUDA}"
+    "-DASCCPP_EXPECT_LAPACK:BOOL=${ENABLE_LAPACK}"
     "-DCMAKE_FIND_USE_PACKAGE_REGISTRY:BOOL=OFF"
     "-DCMAKE_FIND_USE_SYSTEM_PACKAGE_REGISTRY:BOOL=OFF"
   )

@@ -4,10 +4,14 @@ add_library(ASC::core ALIAS asc_core)
 target_sources(
   asc_core
   PRIVATE
+    array_format.cc
+    array_io.cc
+    array_parse.cc
     configuration.cc
     contracts.cc
     execution.cc
     io.cc
+    matrix_market.cc
     memory.cc
     status.cc
   PUBLIC
@@ -15,12 +19,15 @@ target_sources(
     BASE_DIRS "${PROJECT_SOURCE_DIR}/include"
     FILES
       "${PROJECT_SOURCE_DIR}/include/asc/core.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/core/array_format.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/core/array_io.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/configuration.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/contracts.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/execution.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/export.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/extents.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/io.h"
+      "${PROJECT_SOURCE_DIR}/include/asc/core/matrix_market.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/memory.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/result.h"
       "${PROJECT_SOURCE_DIR}/include/asc/core/status.h"

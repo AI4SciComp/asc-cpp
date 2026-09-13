@@ -83,7 +83,24 @@ WARN_LOGFILE           = "@_asc_cpp_doxygen_warning_log@"
 INPUT                  = "@PROJECT_SOURCE_DIR@/include/asc" \
                          "@PROJECT_SOURCE_DIR@/docs" \
                          "@PROJECT_SOURCE_DIR@/release" \
-                         "@PROJECT_SOURCE_DIR@/examples"
+                         "@PROJECT_SOURCE_DIR@/examples" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rook-condition-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rook-driver-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rook-inverse-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-inverse-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-block-inverse-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-block-solve-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rk-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rk-solve-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rk-condition-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rk-inverse-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-rk-driver-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-solve-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-driver-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-two-stage-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-two-stage-solve-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md"
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h *.md *.dox *.cc
 RECURSIVE              = YES
@@ -192,7 +209,9 @@ DIRECTORY_GRAPH        = NO
 DIR_GRAPH_MAX_DEPTH    = 1
 DOT_IMAGE_FORMAT       = svg
 INTERACTIVE_SVG        = NO
-DOT_GRAPH_MAX_NODES    = 50
+# Include every node in the growing public-header dependency graphs; warnings
+# remain errors. The v5 result/status graphs already require 52/53 nodes.
+DOT_GRAPH_MAX_NODES    = 256
 MAX_DOT_GRAPH_DEPTH    = 0
 DOT_MULTI_TARGETS      = NO
 GENERATE_LEGEND        = YES

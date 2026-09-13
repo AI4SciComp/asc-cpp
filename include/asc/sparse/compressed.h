@@ -14,8 +14,10 @@
 
 #include <algorithm>
 #include <array>
+#include <complex>
 #include <concepts>
 #include <cstddef>
+#include <new>
 #include <span>
 #include <type_traits>
 #include <utility>
@@ -774,6 +776,11 @@ class ProviderAccess {
 /**
  * @brief Owns canonical CSR or CSC sparse storage.
  *
+ * Create and conversion factories explicitly default construct host complex
+ * elements to start typed lifetimes, then overwrite their initial zeros with
+ * copied/converted values. Arithmetic initialization, resource-request counts
+ * and host-only placement are unchanged.
+ *
  * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
  * semantics follow the public Sparse module contract.
  * @ingroup asc_sparse
@@ -819,6 +826,9 @@ class CompressedSparseArray {
    * access, allocation, provider, or numerical failure.
    * @ingroup asc_sparse
    */
+  // Complex storage is default constructed (zeroed) to start typed lifetimes
+  // before copying; arithmetic initialization and allocation counts are
+  // unchanged.
   static Result<CompressedSparseArray> Create(
       MemoryResource& resource, std::span<const extent_t, 2> shape,
       std::span<const nnz_t> outer_offsets,
@@ -847,17 +857,29 @@ class CompressedSparseArray {
     auto offset_buffer =
         Buffer::Allocate(resource, *offset_bytes, alignof(nnz_t));
     if (!offset_buffer.ok()) {
-      return offset_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(offset_buffer));
     }
     auto index_buffer =
         Buffer::Allocate(resource, *index_bytes, alignof(index_t));
     if (!index_buffer.ok()) {
-      return index_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(index_buffer));
     }
     auto value_buffer =
         Buffer::Allocate(resource, *value_bytes, alignof(Element));
     if (!value_buffer.ok()) {
-      return value_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(value_buffer));
+    }
+    if constexpr (std::same_as<Element, std::complex<float>> ||
+                  std::same_as<Element, std::complex<double>>) {
+      if (!values.empty()) {
+        // Complex array/element lifetimes precede typed copies. Default zeros
+        // are replaced below; arithmetic storage and allocation counts stay
+        // as-is.
+        ::new (value_buffer->data()) Element[values.size()];
+      }
     }
     std::copy(outer_offsets.begin(), outer_offsets.end(),
               static_cast<nnz_t*>(offset_buffer->data()));
@@ -1249,17 +1271,28 @@ class CompressedSparseArray {
     auto offset_buffer =
         Buffer::Allocate(resource, *offset_bytes, alignof(nnz_t));
     if (!offset_buffer.ok()) {
-      return offset_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(offset_buffer));
     }
     auto index_buffer =
         Buffer::Allocate(resource, *index_bytes, alignof(index_t));
     if (!index_buffer.ok()) {
-      return index_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(index_buffer));
     }
     auto value_buffer =
         Buffer::Allocate(resource, *value_bytes, alignof(Element));
     if (!value_buffer.ok()) {
-      return value_buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(
+          std::move(value_buffer));
+    }
+    if constexpr (std::same_as<Element, std::complex<float>> ||
+                  std::same_as<Element, std::complex<double>>) {
+      if (nonzeros != 0) {
+        // Conversion fills live complex elements, with no extra allocation.
+        ::new (value_buffer->data())
+            Element[static_cast<std::size_t>(nonzeros)];
+      }
     }
     Status fill_status = fill(static_cast<nnz_t*>(offset_buffer->data()),
                               static_cast<index_t*>(index_buffer->data()),
@@ -1802,7 +1835,7 @@ ConvertToCoordinate(const ExecutionContext& context,
   auto builder = CoordinateBuilder<Value, DynamicExtents>::Create(
       destination_resource, *extents, source.nnz());
   if (!builder.ok()) {
-    return builder.status();
+    return internal_core_result::StatusAccess::TakeFailure(std::move(builder));
   }
   const extent_t outer_extent =
       internal_sparse_compressed::OuterExtent<Format>(source.extents());

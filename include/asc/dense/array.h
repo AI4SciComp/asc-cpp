@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <concepts>
 #include <cstddef>
+#include <new>
 #include <type_traits>
 #include <utility>
 
@@ -34,6 +35,10 @@ namespace asc {
  *
  * Ownership, lifetime, failure, memory-placement, aliasing, and concurrency
  * semantics follow the public Dense module contract.
+ * Host complex elements have their C++20 lifetimes started by typed
+ * construction. They are trivially destructible; releasing the buffer ends
+ * their lifetimes without a separate destruction pass. Views remain borrowed
+ * and are invalidated by owner destruction, assignment, or successful resize.
  * @ingroup asc_dense
  */
 template <DenseElement Element, DenseExtents ExtentsType>
@@ -124,6 +129,11 @@ class DenseArray {
    * documented bounds.
    * @param[in] resource Allocator that must outlive storage allocated from it.
    * @param[in] layout The layout value required by this contract.
+   * @note Arithmetic elements are not initialized. Float/double complex
+   * elements are default-constructed to zero to start their C++20 lifetimes,
+   * even in this factory. Complex storage requires host or pinned-host
+   * resources; device/managed requests fail before allocation. Construction
+   * performs one explicit buffer allocation and O(n) complex initializations.
    * @return The value on success, or a non-OK Status describing validation,
    * access, allocation, provider, or numerical failure.
    * @ingroup asc_dense
@@ -148,6 +158,11 @@ class DenseArray {
    * documented bounds.
    * @param[in] resource Allocator that must outlive storage allocated from it.
    * @param[in] layout The layout value required by this contract.
+   * @note Arithmetic elements are not initialized. Float/double complex
+   * elements are default-constructed to zero to start their C++20 lifetimes,
+   * even in this factory. Complex storage requires host or pinned-host
+   * resources; device/managed requests fail before allocation. Construction
+   * performs one explicit buffer allocation and O(n) complex initializations.
    * @return The value on success, or a non-OK Status describing validation,
    * access, allocation, provider, or numerical failure.
    * @ingroup asc_dense
@@ -320,6 +335,10 @@ class DenseArray {
    * @param[in] destination_resource Allocator for the returned owning
    * destination.
    * @param[in] context Execution backend and accessibility/order contract.
+   * @note Complex cloning requires serial execution and host source and
+   * destination storage. It allocates one destination buffer and copies n
+   * live values in O(n) work, with no hidden workspace or provider dispatch.
+   * The source is unchanged on allocation or validation failure.
    * @return The value on success, or a non-OK Status describing validation,
    * access, allocation, provider, or numerical failure.
    * @ingroup asc_dense
@@ -341,24 +360,41 @@ class DenseArray {
       return Status(ErrorCode::kMemoryAccess,
                     "DenseArray clone storage is inaccessible to the context");
     }
+    if constexpr (!std::is_arithmetic_v<Element>) {
+      if (context.backend() != Backend::kSerial) {
+        return Status(ErrorCode::kUnsupported,
+                      "Complex DenseArray cloning requires serial execution");
+      }
+    }
     auto clone = CreateUninitializedWithMapping(destination_resource, extents_,
                                                 mapping_);
     if (!clone.ok()) {
       return clone.status();
     }
-    auto destination_memory = clone->buffer_.mutable_view();
-    if (!destination_memory.ok()) {
-      return destination_memory.status();
+    if constexpr (!std::is_arithmetic_v<Element>) {
+      // Both ranges contain live objects. No byte reinterpretation, transfer,
+      // workspace allocation, or provider dispatch is needed for this copy.
+      if (mapping_.required_span_size() != 0) {
+        std::copy_n(static_cast<const Element*>(buffer_.data()),
+                    mapping_.required_span_size(),
+                    static_cast<Element*>(clone->buffer_.data()));
+      }
+      return std::move(*clone);
+    } else {
+      auto destination_memory = clone->buffer_.mutable_view();
+      if (!destination_memory.ok()) {
+        return destination_memory.status();
+      }
+      auto copied = CopyBytes(context, *destination_memory, *source_memory);
+      if (!copied.ok()) {
+        return copied.status();
+      }
+      Status wait_status = copied->Wait();
+      if (!wait_status.ok()) {
+        return wait_status;
+      }
+      return std::move(*clone);
     }
-    auto copied = CopyBytes(context, *destination_memory, *source_memory);
-    if (!copied.ok()) {
-      return copied.status();
-    }
-    Status wait_status = copied->Wait();
-    if (!wait_status.ok()) {
-      return wait_status;
-    }
-    return std::move(*clone);
   }
 
   /**
@@ -450,7 +486,7 @@ class DenseArray {
     auto array = CreateUninitializedWithMapping(resource, std::move(extents),
                                                 std::move(mapping));
     if (!array.ok()) {
-      return array.status();
+      return internal_core_result::StatusAccess::TakeFailure(std::move(array));
     }
     if (array->mapping_.logical_size() != 0) {
       std::fill_n(static_cast<Element*>(array->buffer_.data()),
@@ -472,6 +508,14 @@ class DenseArray {
         return Status(ErrorCode::kInvalidArgument,
                       "DenseArray requires a recognized memory space");
     }
+    if constexpr (!std::is_arithmetic_v<Element>) {
+      if (resource.space() != MemorySpace::kHost &&
+          resource.space() != MemorySpace::kPinnedHost) {
+        return Status(
+            ErrorCode::kUnsupported,
+            "Complex DenseArray construction requires host or pinned storage");
+      }
+    }
     if (!mapping.is_unique() || !mapping.is_exhaustive()) {
       return Status(
           ErrorCode::kInvalidArgument,
@@ -488,7 +532,15 @@ class DenseArray {
     }
     auto buffer = Buffer::Allocate(resource, *bytes, alignof(Element));
     if (!buffer.ok()) {
-      return buffer.status();
+      return internal_core_result::StatusAccess::TakeFailure(std::move(buffer));
+    }
+    if constexpr (!std::is_arithmetic_v<Element>) {
+      if (mapping.required_span_size() != 0) {
+        // Nonallocating placement array new starts the array and element
+        // lifetimes in C++20. std::complex default construction yields zero;
+        // byte zeroing or C++23 implicit-lifetime guarantees are not used.
+        ::new (buffer->data()) Element[mapping.required_span_size()];
+      }
     }
     return DenseArray(&resource, std::move(*buffer), std::move(extents),
                       mapping);

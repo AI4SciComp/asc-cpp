@@ -1,0 +1,1666 @@
+{
+  "schema_version": 1,
+  "prior_expected_identity": {
+    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mapping_sha256": "456e878349a53d3ae6e1d08f352b6bb49022e61225f746a30a90ee37ea2ed2ff",
+    "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "e0d679d556f9f2199b592a9425b22e4c72f35b8649adeb6424e97ce182920fdf"
+  },
+  "new_mapping_sha256": "a611c21e9345df5adaeb34c33208ea8e5b8e3749aa481f765fcd1a1f20216a1c",
+  "changed_routes": [
+    {
+      "routine_id": "lapack.cgeqrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cgesv",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cgetf2",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cgetrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cgetrf",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cgetrf2",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cgetri",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cgetrs",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cgetrs",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cpotrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.cpotrs",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgeqrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgesv",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgetf2",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgetrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgetrf",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgetrf2",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgetri",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgetrs",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dgetrs",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dpotrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.dpotrs",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgeqrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgesv",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgetf2",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgetrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgetrf",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgetrf2",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgetri",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgetrs",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.sgetrs",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.spotrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.spotrs",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgeqrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgesv",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgetf2",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgetrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgetrf",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgetrf2",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgetri",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgetrs",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen numerical, sanitizer and installed tests are indexed in programs/lapack-array-io/verification-summary.md; final contract-bound mode/evidence closure is pending.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zgetrs",
+      "route": "reference_cpu",
+      "before": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified"
+      },
+      "after": {
+        "delivery_artifacts": [
+          {
+            "path": "examples/general_lu/main.cc",
+            "sha256": "8d4bdef8a499df2058ad9f0ea1857cb21ab5fc17fad6ff943e7b07e0c13b7192"
+          },
+          {
+            "path": "examples/general_lu/CMakeLists.txt",
+            "sha256": "5648a16f3896457f3a67b865cf2fd2834684e7c36bf712290ac6613b6adb84f9"
+          },
+          {
+            "path": "tests/dense_lapack/general_lu_tests.cmake",
+            "sha256": "d5214fbc09166b183a84cb23821117dbc80279fdfe78e10fe60262c232e429f5"
+          }
+        ],
+        "evidence_ids": [],
+        "partial_scope": "Existing callable body and reviewed contract with maintained public all-scalar/layout/transpose/factor-reuse/concurrency consumer. Exact current prepared-profile results are recorded in the review. Normalized per-mode/class Reference execution ledger and mandatory wider-platform admission remain incomplete; this is not verified Reference or whole P04 acceptance.",
+        "review": "programs/lapack-array-io/general-lu-delivery-review.md",
+        "state": "implemented_unverified",
+        "partial_evidence_ids": [
+          "reference-lu-release-lp64-20260911",
+          "reference-lu-release-ilp64-20260911"
+        ],
+        "execution_identity_ids": [
+          "reference-lu-source-20260911"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zpotrf",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    },
+    {
+      "routine_id": "lapack.zpotrs",
+      "route": "native",
+      "before": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts."
+      },
+      "after": {
+        "evidence_ids": [
+          "native-installed-candidate03"
+        ],
+        "state": "verified",
+        "verification_note": "Frozen native numerical/sanitizer/allocation diagnostics are separate from pending combined/installed and exact contract-bound mode evidence. Native Q conveniences do not credit ORG/UNG/ORM/UNM experts.",
+        "execution_identity_ids": [
+          "native-installed-candidate03"
+        ]
+      }
+    }
+  ],
+  "scope": "Selector migration and passing partial evidence only. No state, numerical contract, old source identity or execution outcome changes. The current mapping hash identifies the extended index; it is not a claim that this index was present during old execution.",
+  "baseline_files": {
+    "mapping_sha256": "456e878349a53d3ae6e1d08f352b6bb49022e61225f746a30a90ee37ea2ed2ff",
+    "evidence_sha256": "8ae879251dafc9f19610cdda1409b0540fbad81d9ae3f9eeb7273edc0afea3da"
+  }
+}

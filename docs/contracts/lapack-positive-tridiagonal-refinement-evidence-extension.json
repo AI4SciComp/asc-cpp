@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "scope": "Index-only extension for four callable-unverified PTRFS rows. All old rows, source/provider identities, selector allowlists, execution cases, outcomes and artifacts remain unchanged. This is not a claim that the extended index existed during prior execution.",
+  "baseline_commit": "e8509cc342a86c8904d87daf8e96107acf5d2326",
+  "prior_mapping_sha256": "909a5a9bce09e90f658e7b636821cb26292f3a8be3ca4dd597bc687d9024fd4e",
+  "extended_mapping_sha256": "af007e3593db5db53ca47a1b18520bf573509a4eb729f1f2252baea8ec95b0cc",
+  "prior_evidence_sha256": "7ea3b3fabfa241f837f562060df12fd708724db684f3076349a6dbf291eb1955",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "909a5a9bce09e90f658e7b636821cb26292f3a8be3ca4dd597bc687d9024fd4e",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "909a5a9bce09e90f658e7b636821cb26292f3a8be3ca4dd597bc687d9024fd4e",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "4c63bc36b5d0fd958dce71c22f523c77b695ed72aebabf9fa8124b2550e30187",
+    "reference-lu-release-lp64-20260911": "4e9ceb7a263c707760369326876f810b3a847f3ef0ca2758927bb18d9a09bfcc",
+    "reference-lu-release-ilp64-20260911": "c6e19ba4ad35b47ad5fd3b9021821730e35cd675231c029f247d57ada20260f6"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cptrfs",
+    "lapack.dptrfs",
+    "lapack.sptrfs",
+    "lapack.zptrfs"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/ptrfs-registration-02",
+  "generator_sha256": "63e960c3d7b1be29a6538d8f9cf4fc6061d1fd99c5cc634dd53d83749a1fd891"
+}

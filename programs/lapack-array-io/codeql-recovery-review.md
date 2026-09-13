@@ -1,0 +1,128 @@
+# Recovered CodeQL alert gate
+
+Status: **open verification gate**, recovered read-only on 2026-09-12.
+The original recovery read found PR 47 at feature commit
+`663c7a4c4b1388c3a2c78093e61f2e6e2f94f9f4`, with analyzed merge
+`a09ef2393dc6ca5eda02ccde8e6f8ddd184559bc`. The continuation below records
+the later pushed checkpoint separately.
+
+The [CodeQL analysis workflow](https://github.com/AI4SciComp/asc-cpp/actions/runs/34647493615)
+succeeded, but the separate
+[CodeQL alert check](https://github.com/AI4SciComp/asc-cpp/runs/103426990987)
+failed. The check reports 248 new alerts: four critical security findings,
+four high findings and 240 notes. The branch alert API contains 380 open
+findings, including those eight security findings and three other high findings.
+A successful analysis job must not be reported as a passing alert gate.
+The recovered workflow built the default provider-disabled configuration; it
+did not enable `ASC_CPP_ENABLE_LAPACK`. The additive `lapack_cpp` job now
+configures the real LP64 and ILP64 providers and compiles the complete
+first-party `asc_dense_lapack` production target under CodeQL extraction. The
+provider is built and attested before extraction. Existing default analysis
+remains unchanged; the new analyses use distinct categories as described by
+[GitHub's workflow documentation](https://docs.github.com/en/code-security/reference/code-scanning/workflow-configuration-options#analysis-category).
+Actual hosted execution and findings remain required; adding a workflow is
+not a passing analysis result.
+
+## Source review
+
+All six affected source files remain byte-identical to feature commit 663c7a4.
+The raw alert data, source hashes and review are external under
+`master-continuation-20260910-01/continuation-20260912-01/codeql-alert-recovery-01`.
+
+| Alerts | Actual source behavior | Current disposition |
+| --- | --- | --- |
+| 247–250, critical | The Linux-only huge-preview test maps 8,000,000,000 bytes, computes the count and byte extent with `size_t`, begins the array lifetimes, and touches indices 0, 1, count−2 and count−1. | The reported negative 32-bit offsets do not match the audited 64-bit source arithmetic. Preserve the frozen test and evidence; model/platform disposition remains open. |
+| 366, 251, 225, high | Deliberate byte offsets exercise rejected alignment and aliasing. The arithmetic uses `std::byte*`; misaligned typed pointers are not dereferenced by the rejection tests. | Preserve the rejection and zero-write assertions. Alert disposition remains open. |
+| 18, 17, high | Sparse test adapters use byte pointers and `memcpy` with explicit element-to-byte conversion. | The byte scaling is intentional. Alert disposition remains open. |
+| 365, high | The public local-file API opens the caller's explicit filesystem path. It is not a restricted-directory API. | Imposing path containment would change the frozen API. Calling applications own path authorization; the alert remains open. |
+| 15, high | The private GEMV benchmark oracle multiplies doubles before accumulating into long double. Its only caller sets extent 128, matrix coefficients at most 7/16 and vector coefficients at most 11/8. | Products are at most 77/128 for the actual fixture. Preserve the source and alert pending disposition; no performance claim follows. |
+
+No query was suppressed, alert dismissed, production or test source changed,
+or frozen native/array-I/O/robust PPSVX acceptance rerun. This review records
+source evidence and the remaining gate; it does not claim CodeQL approval.
+
+## Other recovered hosted results
+
+The old GERFS checkpoint's CI workflow completed successfully. Its four actual
+LAPACK profiles retain 37 LP64 or 33 ILP64 failures: 227/264 and 231/264 pass,
+respectively, for both static and shared linkage, with zero skips. Each provider
+suite passes 111/111. All four GERFS required mathematical tests remain failed.
+The downloaded original artifacts are preserved in `gerfs-hosted-recovery-01`;
+no hosted workflow was rerun to obtain them.
+
+Continue independent LAPACK work while retaining this gate. Full programme
+status remains **FULL_PROGRAM_INCOMPLETE**.
+
+## Optional backend analysis executed
+
+Feature checkpoint `736fa6c243c4310ed35675f0cb47a701321e7344` was pushed to
+the existing branch. Its [CodeQL workflow](https://github.com/AI4SciComp/asc-cpp/actions/runs/34673119204)
+completed successfully, including the default job and both actual LP64/ILP64
+optional-backend analysis jobs. Raw job outcomes are preserved in
+`continuation-20260912-01/continued-hosted-read-03`.
+
+The branch alert read now contains 2,626 open findings, including twelve
+security findings. New high alert 2612 identifies the offset used to begin
+the second native integer array in `internal_tridiagonal.h`. That expression
+intentionally advances a `std::byte*` by `order*sizeof(lapack_int)` inside
+checked caller workspace. The source remains unchanged. Exact alert payload,
+source hash and bounded review are in `continued-codeql-alerts-01/review.json`.
+The alert gate and complete note review remain open; no alert was dismissed
+and no query was suppressed. These analyses cover checkpoint 736fa6c, not
+the subsequent local indefinite INFO correction.
+
+The same 736fa6c checkpoint's CI completed all nineteen jobs successfully.
+Its four family profiles pass 306/355 in LP64 or 310/355 in ILP64, with zero
+skips. All 21 PB processes and all 111 provider tests pass per profile.
+Compared with the recovered GERFS checkpoint, the twelve additional failures
+are exactly four GESVX mode gates, four GBTF2 range gates and four GBTRF range
+gates; all earlier failures remain. The original downloaded artifacts and audit
+are in `continued-hosted-family-recovery-01`. No completed hosted workflow was
+restarted, and these results do not verify the later indefinite changes.
+
+## Recovery read at cd0d9aa
+
+The 2026-09-13 branch-specific alert read at `cd0d9aa` returns 3,002 open
+alerts, including four critical and eight high security findings. The three
+analysis jobs succeeded; the separate CodeQL alert check failed. These are
+distinct results. Exact responses and read exit codes are retained under
+`continuation-20260912-01/rk-inverse-profile-recovery-01/`.
+
+The twelve security findings occupy the same reviewed groups: virtual-array
+preview storage, intentional byte-offset tests, caller-selected file paths,
+the bounded GEMV benchmark oracle and the tridiagonal INTEGER workspace offset.
+The six earlier source hashes still match. Current code at the tridiagonal
+offset was also inspected; it begins the second array in checked byte storage.
+No security finding names the new RK inverse files. This read grants no
+security closure: no alert was dismissed, query suppressed or public I/O
+contract changed. The full alert review and hosted disposition remain open.
+
+
+### Feature 7add1a8 alert read during RK driver delivery
+
+The successful branch-specific API read in `rk-driver-remote-01` reports
+3,059 open alerts, including the same twelve security alerts (four critical,
+eight high), each bound to feature commit
+`7add1a8fbf45a948d55da027862a5df278837995`. Their alert numbers, rules and source
+locations are unchanged from the preceding review: 15, 17, 18, 225, 247–251,
+365, 366 and 2612. No finding is suppressed or dismissed, and the separate
+CodeQL alert gate remains failed despite successful analysis runs.
+
+At that read, original push workflow 34715651039 had failed static integer-32
+and integer-64 jobs; remaining jobs were still active. GitHub CLI refused the
+completed job's log because the workflow was still running. This is recorded
+as an unavailable log, with its actual exit code, not a numerical diagnosis.
+The current driver work is uncommitted and receives no hosted CI credit from
+this earlier feature commit. Preserve native20 and experimental robust PPSVX
+boundaries while obtaining terminal workflow artifacts when available.
+
+
+The later terminal read records successful push/PR general CI runs
+34715651212/34715653476 and failed selected-family runs
+34715651039/34715653586, all at 7add1a8. Original push artifacts are preserved
+and audited in `rk-driver-remote-01/inverse-hosted-audit.json`: each static/shared
+profile executes 1,227 tests; LP64 has 1,060 passes/167 required failures and
+ILP64 1,064 passes/163 required failures, with zero skips. Failure sets exactly
+match the prior condition delivery plus 31 required inverse gates; upstream
+provider tests pass 111/111 each. This closes the unavailable-log uncertainty
+for that push run while retaining every numerical and CodeQL alert failure.
