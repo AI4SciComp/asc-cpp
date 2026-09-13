@@ -101,7 +101,8 @@ INPUT                  = "@PROJECT_SOURCE_DIR@/include/asc" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-two-stage-review.md" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-two-stage-solve-review.md" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md" \
-                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-packed-review.md"
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-packed-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/indefinite-packed-solve-review.md"
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h *.md *.dox *.cc
 RECURSIVE              = YES

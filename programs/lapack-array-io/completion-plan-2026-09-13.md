@@ -403,3 +403,20 @@ exact failures/skips, changed inputs, pending decisions and one executable next
 action in existing state/handoff records. Use dependency readiness and verified
 deliverables to measure progress. Do not assign unsupported calendar estimates
 or derive project-completion percentages from routine counts alone.
+
+
+**Execution checkpoint — 2026-09-14**
+
+The packed producer and solve engineering slices have complete local sixteen-
+profile matrices, installed public consumers and scoped P11 checks. Required
+numerical failures remain. The separate header-order repair passes both hosted
+CI runs 19/19. Current counts are 260 callable-unverified Reference rows,
+300 reviewed contracts and zero verified Reference rows; the full 2,113
+denominator and Native20 remain unchanged. Broader platform admission is open.
+
+The implementation queue advances to six SPTRI/HPTRI packed inverses. Exact
+sources, emitted ABIs and guarded native prerequisites are complete; checked
+APIs, full tests, installation and evidence registration are next. Use live
+state and family reviews instead of replaying the original producer command.
+Existing provider/security/XBLAS/notice decisions remain open while independent
+required implementation continues. This is not whole-project completion.

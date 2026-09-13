@@ -4,7 +4,9 @@ The packed producer engineering checkpoint is complete: six callable,
 unverified rows; sixteen final profiles execute 612 tests with 468 passes,
 144 required failures and zero skips. Four installed consumers and the scoped
 engineering checks pass. See the [packed review](indefinite-packed-review.md).
-Independent work advances to `P05.required.hptrs`.
+The matching solve checkpoint adds six callable-unverified rows and 48
+reviewed modes; 552 runs retain 72 required range failures, with 480
+passes and zero skips. Work advances to `P05.required.hptri`.
 
 Packed range/native endpoint failures, current security findings, provider and
 XBLAS decisions, notices and missing platform acceptance remain unresolved.
@@ -12,6 +14,22 @@ The user permits recording unresolved trouble and advancing independent work;
 this does not promote blocked rows or turn failed tests into skips/passes.
 Remaining P00–P11 requirements retain their original scope. Use current state
 and family reviews before following historical next-task prose below.
+
+## PACKED-INDEFINITE-SOLVE-RANGE — required finite-solution gate unmet
+
+SSPTRS/DSPTRS/CSPTRS/ZSPTRS/CHPTRS/ZHPTRS each fail the maintained finite-range
+mathematical test in both actual ABIs while separate direct native fidelity
+passes. Scalar/2x2 fixtures have finite A, B and known solutions; checked
+producer reconstruction passes. Small scalar reciprocal paths and native
+complex block divisions remain unchanged. The complete six-class, both-layout,
+both-triangle scope and raw records are in the
+[packed solve review](indefinite-packed-solve-review.md).
+
+Record this alongside the existing provider limitations and continue
+independent tasks. No provider patch, hidden fallback, finite-input exclusion,
+weakened tolerance or verification credit is authorized by the user's request
+to move past unresolved trouble. The final sixteen profiles retain72 required range-mathematical failures
+among552 runs, with480 passes and zero skips; all four TSan profiles pass.
 
 ## Historical program blocker introduction
 

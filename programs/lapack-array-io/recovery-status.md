@@ -1,3 +1,35 @@
+## 2026-09-14: packed solve engineering checkpoint
+
+Six checked SPTRS/HPTRS consumers and 48 reviewed modes are registered
+implemented_unverified. Counts are 2,113 required, 260 callable-unverified,
+296 in progress, 1,557 not started, 300 reviewed contracts and zero verified
+Reference. Native20 and accepted array-I/O contracts remain unchanged.
+
+The final sixteen profiles execute 552 processes: 480 pass, 72 required
+range-math failures and zero skips. Four TSan profiles each pass 6/6. Four
+relocated consumers each pass 576 producer workflows and 2,160 solves. Nine
+strict TUs, both 1,080-case emitted-ABI probes, four header tests, ten manifest
+checks, three architecture checks, source/installed surfaces, 12 added/zero
+removed exports per ABI, the actual selector and Doxygen 160/2729 pass.
+Exact source/provider/binary identities and failed attempts are retained in
+`completion-execution-01/packed-solve-final-audit.json`; see the
+[solve review](indefinite-packed-solve-review.md).
+
+The header-order repair at `defaf2498db07e2f25cd6cf7445e81fce085a8ea` passes
+both hosted general CI runs 19/19 and both CodeQL analysis runs. Existing
+security alerts and selected-LAPACK numerical gates remain separate. An
+accidental all-header lint override is recorded: its diagnostics occur only
+in two immutable provider headers. The unchanged repository lint policy and
+complete prescribed first-party header filter pass. No assertion, test or
+provider source was weakened.
+
+Continue `P05.required.hptri`. Six exact inverse sources, twelve actual GNU
+emissions and both 432-case guarded native prerequisites are complete in
+`packed-inverse-source-review-01`, `packed-inverse-emissions-01` and
+`packed-inverse-native-01-{lp64,ilp64}`. Review the saved contract draft, then
+implement this next required family. No restart or routine approval is needed;
+no release, merge or provider decision is inferred. Full programme incomplete.
+
 ## 2026-09-14: Packed engineering checkpoint and completion execution
 
 Finished the packed producer engineering matrix and installed consumption;

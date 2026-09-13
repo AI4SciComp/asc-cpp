@@ -38151,32 +38151,145 @@
         "SRC/zhptrs.f",
         "SRC/zsptrs.f"
       ],
-      "source_api_files": [],
-      "route_states": {
-        "lapack.chptrs": "not_started",
-        "lapack.csptrs": "not_started",
-        "lapack.dsptrs": "not_started",
-        "lapack.ssptrs": "not_started",
-        "lapack.zhptrs": "not_started",
-        "lapack.zsptrs": "not_started"
-      },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
-      "required_mode_cases": {
-        "lapack.chptrs": [],
-        "lapack.csptrs": [],
-        "lapack.dsptrs": [],
-        "lapack.ssptrs": [],
-        "lapack.zhptrs": [],
-        "lapack.zsptrs": []
-      },
-      "unreviewed_mode_rows": [
-        "lapack.chptrs",
-        "lapack.csptrs",
-        "lapack.dsptrs",
-        "lapack.ssptrs",
-        "lapack.zhptrs",
-        "lapack.zsptrs"
+      "source_api_files": [
+        ".github/workflows/robust-ppsvx.yml",
+        "abi/header-owners.txt",
+        "abi/public-headers.sha256",
+        "docs/Doxyfile.in",
+        "docs/contracts/lapack-provider-lock.json",
+        "include/asc/core/contracts.h",
+        "include/asc/core/execution.h",
+        "include/asc/core/export.h",
+        "include/asc/core/memory.h",
+        "include/asc/core/result.h",
+        "include/asc/core/status.h",
+        "include/asc/core/types.h",
+        "include/asc/dense/blas.h",
+        "include/asc/dense/export.h",
+        "include/asc/dense/lapack/factor_view.h",
+        "include/asc/dense/lapack/report.h",
+        "include/asc/dense/lapack/structured_view.h",
+        "include/asc/dense/lapack/types.h",
+        "include/asc/dense/lapack/workspace.h",
+        "include/asc/dense/layout.h",
+        "include/asc/dense/providers/lapack.h",
+        "include/asc/dense/providers/lapack_export.h",
+        "include/asc/dense/providers/lapack_indefinite.h",
+        "include/asc/dense/providers/lapack_indefinite_packed.h",
+        "include/asc/dense/providers/lapack_indefinite_packed_solve.h",
+        "include/asc/dense/view.h",
+        "include/asc/expression/expression.h",
+        "include/asc/expression/writable.h",
+        "programs/lapack-array-io/indefinite-packed-solve-review.md",
+        "src/dense/lapack/CMakeLists.txt",
+        "src/dense/lapack/internal_indefinite.h",
+        "src/dense/lapack/internal_indefinite_calls.h",
+        "src/dense/lapack/internal_indefinite_counts.h",
+        "src/dense/lapack/internal_indefinite_packed_solve_counts.h",
+        "src/dense/lapack/internal_indefinite_prototypes.h",
+        "src/dense/lapack/internal_packed_triangular.h",
+        "src/dense/lapack/reference_indefinite_packed_solve.cc",
+        "tests/allocation_observation.h",
+        "tests/architecture/check_public_file_policy.cmake",
+        "tests/compile/m3_dependency_check.cmake",
+        "tests/dense/allocation_probe.h",
+        "tests/dense/test_support.h",
+        "tests/dense_lapack/CMakeLists.txt",
+        "tests/dense_lapack/allocation_audit.h",
+        "tests/dense_lapack/indefinite_packed_fixture.h",
+        "tests/dense_lapack/indefinite_packed_native.h",
+        "tests/dense_lapack/indefinite_packed_solve_abi_probe.cc",
+        "tests/dense_lapack/indefinite_packed_solve_concurrency_test.cc",
+        "tests/dense_lapack/indefinite_packed_solve_counts_test.cc",
+        "tests/dense_lapack/indefinite_packed_solve_fault_test.cc",
+        "tests/dense_lapack/indefinite_packed_solve_faults.cc",
+        "tests/dense_lapack/indefinite_packed_solve_faults.h",
+        "tests/dense_lapack/indefinite_packed_solve_native.h",
+        "tests/dense_lapack/indefinite_packed_solve_test.cc",
+        "tests/dense_lapack/indefinite_packed_solve_test_support.h",
+        "tests/dense_lapack/indefinite_packed_solve_tests.cmake",
+        "tests/dense_lapack/indefinite_packed_solve_validation_test.cc",
+        "tests/dense_lapack/indefinite_packed_test_support.h",
+        "tests/dense_lapack/indefinite_test_support.h",
+        "tests/dense_lapack/installed_lu/CMakeLists.txt",
+        "tests/dense_lapack/installed_lu/factorization_support.h",
+        "tests/dense_lapack/installed_lu/indefinite_packed_solve_main.cc",
+        "tests/dense_lapack/installed_lu/normal_return_guard.h",
+        "tests/dense_lapack/shared_observation.cmake",
+        "tests/hardening/header_manifest_test.cmake"
       ],
+      "route_states": {
+        "lapack.chptrs": "implemented_unverified",
+        "lapack.csptrs": "implemented_unverified",
+        "lapack.dsptrs": "implemented_unverified",
+        "lapack.ssptrs": "implemented_unverified",
+        "lapack.zhptrs": "implemented_unverified",
+        "lapack.zsptrs": "implemented_unverified"
+      },
+      "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
+      "required_mode_cases": {
+        "lapack.chptrs": [
+          "upper_column_major_column_major_rhs",
+          "upper_column_major_row_major_rhs",
+          "upper_row_major_column_major_rhs",
+          "upper_row_major_row_major_rhs",
+          "lower_column_major_column_major_rhs",
+          "lower_column_major_row_major_rhs",
+          "lower_row_major_column_major_rhs",
+          "lower_row_major_row_major_rhs"
+        ],
+        "lapack.csptrs": [
+          "upper_column_major_column_major_rhs",
+          "upper_column_major_row_major_rhs",
+          "upper_row_major_column_major_rhs",
+          "upper_row_major_row_major_rhs",
+          "lower_column_major_column_major_rhs",
+          "lower_column_major_row_major_rhs",
+          "lower_row_major_column_major_rhs",
+          "lower_row_major_row_major_rhs"
+        ],
+        "lapack.dsptrs": [
+          "upper_column_major_column_major_rhs",
+          "upper_column_major_row_major_rhs",
+          "upper_row_major_column_major_rhs",
+          "upper_row_major_row_major_rhs",
+          "lower_column_major_column_major_rhs",
+          "lower_column_major_row_major_rhs",
+          "lower_row_major_column_major_rhs",
+          "lower_row_major_row_major_rhs"
+        ],
+        "lapack.ssptrs": [
+          "upper_column_major_column_major_rhs",
+          "upper_column_major_row_major_rhs",
+          "upper_row_major_column_major_rhs",
+          "upper_row_major_row_major_rhs",
+          "lower_column_major_column_major_rhs",
+          "lower_column_major_row_major_rhs",
+          "lower_row_major_column_major_rhs",
+          "lower_row_major_row_major_rhs"
+        ],
+        "lapack.zhptrs": [
+          "upper_column_major_column_major_rhs",
+          "upper_column_major_row_major_rhs",
+          "upper_row_major_column_major_rhs",
+          "upper_row_major_row_major_rhs",
+          "lower_column_major_column_major_rhs",
+          "lower_column_major_row_major_rhs",
+          "lower_row_major_column_major_rhs",
+          "lower_row_major_row_major_rhs"
+        ],
+        "lapack.zsptrs": [
+          "upper_column_major_column_major_rhs",
+          "upper_column_major_row_major_rhs",
+          "upper_row_major_column_major_rhs",
+          "upper_row_major_row_major_rhs",
+          "lower_column_major_column_major_rhs",
+          "lower_column_major_row_major_rhs",
+          "lower_row_major_column_major_rhs",
+          "lower_row_major_row_major_rhs"
+        ]
+      },
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -38186,15 +38299,19 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/indefinite-packed-solve-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
-      "integrated_revision": null,
-      "execution_progress": "not_executed",
+      "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
+      "execution_progress": "partial_source_and_review_exist",
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/indefinite-packed-solve-review.md"
+      ]
     },
     {
       "task_id": "P08.required.hsein",
@@ -61671,7 +61788,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "4c82f8bf543610242981da0cbb553161ea444475ba3f60a773c823a951097091",
+    "lapack-coverage.yaml": "a3f70fc371aa0e9b2c95cb888d385024fd80bd0142eeb5c3377f3c3d2de4452b",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

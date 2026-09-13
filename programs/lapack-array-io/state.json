@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
+  "current_base_commit": "defaf2498db07e2f25cd6cf7445e81fce085a8ea",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
+  "last_implementation_commit": "defaf2498db07e2f25cd6cf7445e81fce085a8ea",
   "worktree_diff_identity": {
-    "state": "packed_indefinite_guard_repair_complete_family_in_progress",
-    "base_commit": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
-    "scope": "Six SPTRF/HPTRF producers remain uncommitted. Bounded guarded workspace/publication/scalar-NaN regression repair complete; no normalized callable or verified promotion."
+    "state": "packed_solve_adapters_in_progress",
+    "base_commit": "e40387f140208b823f012fd255c248915df59ae2",
+    "scope": "Six SPTRS/HPTRS checked wrappers and paired-count/packing integration; no new normalized callable or verified credit yet."
   },
   "packages": {
     "P00": {
@@ -1258,7 +1258,7 @@
       "state": "in_progress",
       "owner": "integration",
       "backlog": "programs/lapack-array-io/remaining-reference-backlog.json",
-      "backlog_sha256": "8edb265790ebb3ecc4c82a5957115d58de3b8dd8c814c47fbcced09bf2588f99",
+      "backlog_sha256": "7a9afd4a897645c161882c822c6a9ab042a675db8ecb81ff686e626ae2b74784",
       "scope": "All2113 required rows remain exactly once in568 tasks. Corrected PSTRF/PSTF2 ownership toP05 and TGSJA toP07; explicit seven-family packed interface dependencies prevent incorrect basic-driver/inverse ordering. Other family dependencies remain review_required before execution; source and verification states are unchanged.",
       "next_action": "Execute the dependency-ready family queue; normalize per-row historical mode/profile evidence without rerunning unchanged numerical failures."
     },
@@ -1423,17 +1423,36 @@
       "engineering_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-audit.json"
     },
     "P05.required.hptrs": {
+      "state": "implemented_unverified",
+      "prerequisite_ids": [
+        "P05.required.hptrf"
+      ],
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
+      "next_action": "Retain six per-profile range failures pending an explicit provider/numerical decision; advance packed inverse work.",
+      "verification_dependency": "Producer acceptance remains incomplete; independent consumer implementation is permitted, verification is not inherited from engineering success.",
+      "current_evidence": "programs/lapack-array-io/indefinite-packed-solve-review.md",
+      "source_sha256": {
+        "include/asc/dense/providers/lapack_indefinite_packed_solve.h": "d723567b2a6e72cee6c6e1069a007bc83282c55934d5038f5826f5409acf5e8b",
+        "src/dense/lapack/reference_indefinite_packed_solve.cc": "782c51736f61cc498d7e54a69e69d26d17ff119c53fd3d554fde194464ac8463",
+        "src/dense/lapack/internal_indefinite_packed_solve_counts.h": "5bba268685bb20e24b614d28ef01510f9235a91360c4cd063beedaaad09479fb"
+      },
+      "native_probe_evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-solve-native-results.json",
+      "strict": "Eight production/test TUs plus installed consumer pass. Final minimal direct count guards added; no numerical inputs/assertions/tolerances changed.",
+      "engineering_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-solve-final-audit.json",
+      "scope": "Six callable checked packed solves / 48 reviewed modes; required range/provider and broader admission remain incomplete."
+    },
+    "P05.required.hptri": {
       "state": "source_contract_review",
       "prerequisite_ids": [
         "P05.required.hptrf"
       ],
-      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-solve-source-review-01",
-      "next_action": "Complete source/emitted-ABI review and implement the six SPTRS/HPTRS checked packed consumers from their existing inventory rows. The packed producer checkpoint is implemented_unverified; retain its numerical/native-span failures and inherited verification dependencies. Continue independent P00\u2013P11 work without retrying unchanged provider or security blockers.",
-      "verification_dependency": "Producer acceptance remains incomplete; independent consumer implementation is permitted, verification is not inherited from engineering success."
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-inverse-source-review-01",
+      "source_review": "Six exact pinned sources and twelve actual GNU emissions verified. Both guarded native inverse probes pass432 cases. No public implementation yet.",
+      "verification_dependency": "Packed producer remains implemented_unverified."
     }
   },
-  "active_task": "P05.required.hptrs",
-  "next_action": "Complete source/emitted-ABI review and implement the six SPTRS/HPTRS checked packed consumers from their existing inventory rows. The packed producer checkpoint is implemented_unverified; retain its numerical/native-span failures and inherited verification dependencies. Continue independent P00\u2013P11 work without retrying unchanged provider or security blockers.",
+  "active_task": "P05.required.hptri",
+  "next_action": "Finish source-count/divisor/mutation decisions and implement the six SPTRI/HPTRI checked packed inverse APIs from the verified sources and emitted native prerequisites. Preserve solve range and producer endpoint failures; continue all independent required work.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1441,7 +1460,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "4c82f8bf543610242981da0cbb553161ea444475ba3f60a773c823a951097091"
+    "coverage_mapping_sha256": "a3f70fc371aa0e9b2c95cb888d385024fd80bd0142eeb5c3377f3c3d2de4452b"
   },
   "provider": {
     "version": "3.12.1",
@@ -1874,16 +1893,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 294,
-    "callable_reference": 254,
+    "mapped_contracts": 300,
+    "callable_reference": 260,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1563,
+    "not_started_reference": 1557,
     "in_progress_reference": 296,
-    "incomplete_reference": 1859,
-    "implemented_unverified_reference": 254,
+    "incomplete_reference": 1853,
+    "implemented_unverified_reference": 260,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2131,6 +2150,12 @@
       "record": "programs/lapack-array-io/indefinite-packed-review.md",
       "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-audit.json",
       "disposition": "recorded_unresolved_advance_independent_work"
+    },
+    {
+      "id": "PACKED-INDEFINITE-SOLVE-RANGE",
+      "scope": "Six SPTRS/HPTRS range-math tests fail in each of twelve normal/sanitizer profiles; native fidelity passes. Sixteen profiles 552 selected / 480 passed / 72 required failures / zero skips; all four TSan profiles pass. No input or assertion is removed.",
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-solve-final-audit.json",
+      "disposition": "recorded_unresolved_advance_independent_work"
     }
   ],
   "external_approvals": [
@@ -2151,13 +2176,9 @@
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": null,
   "last_completed_verification": {
-    "candidate": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
-    "state": "packed_engineering_complete_required_gates_failed",
-    "scope": "Sixteen final profiles:612 selected/468 passed/144 required failures/zero skips. Four installed consumers, ten strict TUs, two emitted ABI probes, headers/exports/architecture/documentation and actual CI selectors pass; foreign internals remain uninstrumented.",
-    "command": "python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/finish_packed_checks.py",
-    "results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-profile-results.json",
-    "foreign_instrumentation": "Pinned Fortran/BLAS internals are uninstrumented.",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-audit.json"
+    "state": "packed_solve_engineering_complete_required_gates_failed",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-solve-final-audit.json",
+    "scope": "Sixteen profiles: 552 selected, 480 passed, 72 required failures, zero skips. Four installed consumers, nine strict TUs, two emitted ABI probes, headers/architecture/package/surface/exports/selector/docs pass. Native internals uninstrumented."
   },
   "remote_checkpoint": {
     "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
@@ -2201,7 +2222,7 @@
   "pending_verifications": [
     {
       "task": "full_reference_program",
-      "scope": "All 2113 required Reference rows remain required:254 callable-unverified,296 in progress,1563 not started,0 verified. The six packed producers are now registered implemented_unverified. Missing130 source-selected extra-precision definitions, retained provider failures, broader platforms and final P11 gates remain open. Earlier completed technical slices are not restarted."
+      "scope": "All 2113 required Reference rows remain required: 260 callable unverified, 296 in progress, 1557 not started, zero verified. Six packed solves / 48 modes are implemented_unverified. Missing 130 selected extra-precision definitions, retained provider failures, broader platforms and final P11 gates remain open. Completed subsets and Native20 are not restarted."
     },
     {
       "task": "owner_provenance",
@@ -2641,14 +2662,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hptrs",
+  "next_task": "P05.required.hptri",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/emit_packed_solve.py",
+  "next_command": "Read completion-execution-01/packed-inverse-source-review-01/contract-draft.md and inputs.json, then implement the reviewed packed inverse adapter and public header. Both native ABI prerequisites are complete; do not replay exclusive attempt directories.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4201,19 +4222,18 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "packed_indefinite_producer_6",
-    "implementation_parent": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
-    "state": "Scoped engineering checkpoint ready in the working tree; mandatory numerical/provider gates remain failed. No new commit or hosted result is inferred.",
-    "review": "programs/lapack-array-io/indefinite-packed-review.md",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-audit.json",
-    "canonical_processes": 612,
-    "passing_processes": 468,
-    "required_failed_processes": 144,
+    "family": "packed_indefinite_solve_6",
+    "implementation_parent": "defaf2498db07e2f25cd6cf7445e81fce085a8ea",
+    "state": "Engineering checkpoint ready for feature commit/push after final consistency checks; full program incomplete.",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-solve-final-audit.json",
+    "selected_processes": 552,
+    "passing_processes": 480,
+    "required_failed_processes": 72,
     "unexpected_skips": 0,
     "reviewed_contracts": 6,
-    "reviewed_modes": 24,
+    "reviewed_modes": 48,
     "callable_routes": 6,
-    "next_family": "P05.required.hptrs"
+    "next_family": "P05.required.hptri"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4451,7 +4471,7 @@
   },
   "completion_execution": {
     "plan": "programs/lapack-array-io/completion-plan-2026-09-13.md",
-    "state": "packed_engineering_checkpoint_complete_full_program_incomplete",
+    "state": "packed_solve_engineering_checkpoint_complete_full_program_incomplete",
     "scope": "User authorized executing the complete plan and recording/defering unresolved trouble while independent required work continues. Failed tests are not converted to skips or successes.",
     "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
     "m0": "Current artifact bindings, generator ownership, seven packed interface dependencies and active pointers are reconciled. Remaining families require individual dependency review before execution.",
@@ -4471,21 +4491,21 @@
     },
     "packed_concurrency_initial": "Six Debug LP64 scalar/symmetry processes pass with24 groups,4 workers,8 repeats each; serial independent reconstruction, private storage/reports and concurrent stale-plan rejection.",
     "ci_selector_fix": "Prior regex omitted indefinite_packed while requiring43 packed IDs; both actual listing/execution selectors now include the family and all49 IDs, pending full selector validation.",
-    "updated_utc": "2026-09-13T16:28:39.096797+00:00",
+    "updated_utc": "2026-09-13T17:57:33.408377+00:00",
     "m0_pending": "Review remaining family prerequisites at each implementation boundary; no generic foundation-only task is marked dependency-reviewed.",
     "current_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 294,
-      "callable_reference": 254,
+      "mapped_contracts": 300,
+      "callable_reference": 260,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1563,
+      "not_started_reference": 1557,
       "in_progress_reference": 296,
-      "incomplete_reference": 1859,
-      "implemented_unverified_reference": 254,
+      "incomplete_reference": 1853,
+      "implemented_unverified_reference": 260,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -4516,5 +4536,10 @@
     "next_family": "P05.required.hptrf",
     "previous_hosted_product": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
     "previous_hosted_scope": "Parent two-stage consumer general CI/CodeQL succeed. Four1506-process selected profiles retain six new consumer range failures and all earlier failures:LP64 passes1299/fails207,ILP64 passes1303/fails203,zero skips,provider111/111. Feature alerts3244 include unchanged12 security findings; all45 new notes read and retained. No hosted credit for dirty drivers or independently attested PR merge tree."
+  },
+  "historical_diff_identity_before_packed_solve": {
+    "state": "packed_indefinite_guard_repair_complete_family_in_progress",
+    "base_commit": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
+    "scope": "Six SPTRF/HPTRF producers remain uncommitted. Bounded guarded workspace/publication/scalar-NaN regression repair complete; no normalized callable or verified promotion."
   }
 }
