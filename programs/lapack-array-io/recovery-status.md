@@ -1,3 +1,58 @@
+## 2026-09-13: Two-stage Aasen drivers ready for feature integration
+
+Branch `feature/lapack-array-io`, pushed parent
+`d58b8c315ddcf8d5e07bc544fb8cb35a861474f1`. Inspect actual git and
+`aasen-two-stage-driver-delivery/commit.txt` for the delivery commit. All three
+user instruction files, prior milestones and raw failures remain preserved.
+The full P00–P11 programme remains incomplete.
+
+Six SYSV_AA_2STAGE/HESV_AA_2STAGE drivers add twelve public declarations and
+144 reviewed modes. They factor original A and solve B with caller-owned
+persistent TB, two pivot outputs, scalar WORK, native INTEGER lifetimes and
+explicit row/HE-A and row-B packing. Queries read metadata only. Empty N is a
+checked noncall; nonempty N with zero RHS still factors A and preserves B.
+Dual native query arithmetic, original strides, aliasing, both pivot sequences,
+block width, final WORK and positive-INFO zero-diagonal witnesses are checked.
+Valid positive INFO publishes partial factors with B unchanged; defects
+withhold packed A/B and public pivots. No factor-factory or pivot-family API
+expansion, provider change, fallback, robust route or waiver is introduced.
+
+Sixteen profiles execute 552 processes: 468
+pass, 84 required failures, zero skips. Twelve normal
+profiles pass 37/44 each; four TSan profiles pass 6/6 each. The normal profiles
+retain 412,416 factor/solution finiteness assertions from existing tiny-scale
+GBTRF/GBTF2 and large-complex GBTRS/TBSV causes, plus 48 native optimal-TB
+capacity assertions from the existing CSY rounding cause. Exact failed range
+groups match preserved producer/consumer evidence. No required input,
+mathematical predicate or tolerance is weakened.
+
+Four relocated installed consumers each pass 1,920 driver cases. Eighteen
+strict TUs pass. Current emitted-ABI probes pass 4,896 ordinary and 576
+query-fidelity cases; 576 separate required query cases retain eight capacity
+assertions. Four standalone headers, twelve new/zero removed exports per ABI,
+ten package and three architecture checks pass. CI selects 1,552 tests;
+Doxygen covers 158 headers and 2,705 public members without warnings. Four final
+Release libraries match installed products. Strict diagnostics and before/after
+source records remain preserved. Pinned Fortran/BLAS internals are uninstrumented.
+
+Parent d58b8c3 general CI/CodeQL pass. Four hosted selections each execute
+1,506 processes with no skips: LP64 passes 1,299/fails 207; ILP64 passes
+1,303/fails 203. Exactly six new consumer range gates join every prior failure;
+provider checks pass 111/111 each. Explicit feature CodeQL alerts total 3,244,
+including the same twelve security findings. All 45 new notes were read with
+source excerpts; none dismissed or suppressed. Hosted run/head identity is
+distinct from absent independent ASC checkout/tree artifacts and grants no
+current dirty-driver or PR merge-tree admission.
+
+Validator counts: required 2113; reviewed contracts 288;
+Reference callable-unverified 248; partial
+296; not started 1569; verified
+0. Native remains 20/20; experimental RobustPpsvx is separate.
+Finish owned commit/push/draft47 update if pending, then continue
+`P05.required.hptrf`, the actual packed-indefinite dependency chain and all
+other ready programme rows through the same latest handoff. No new family
+instruction is needed.
+
 ## 2026-09-13: Two-stage Aasen consumers ready for feature integration
 
 Branch `feature/lapack-array-io`, pushed parent

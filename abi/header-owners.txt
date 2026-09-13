@@ -63,6 +63,7 @@ asc/dense/providers/lapack_indefinite_aasen.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_aasen_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_aasen_solve.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_aasen_two_stage.h|asc_dense_lapack
+asc/dense/providers/lapack_indefinite_aasen_two_stage_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_block_inverse.h|asc_dense_lapack
 asc/dense/providers/lapack_indefinite_block_solve.h|asc_dense_lapack

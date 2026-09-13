@@ -72,6 +72,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_indefinite_aasen_driver.h
   include/asc/dense/providers/lapack_indefinite_aasen_two_stage.h
   include/asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h
+  include/asc/dense/providers/lapack_indefinite_aasen_two_stage_driver.h
   include/asc/dense/providers/lapack_indefinite_rook.h
   include/asc/dense/providers/lapack_indefinite_rook_condition.h
   include/asc/dense/providers/lapack_indefinite_rook_driver.h
@@ -227,6 +228,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_indefinite_aasen_driver.cc
   src/dense/lapack/reference_indefinite_aasen_two_stage.cc
   src/dense/lapack/reference_indefinite_aasen_two_stage_solve.cc
+  src/dense/lapack/reference_indefinite_aasen_two_stage_driver.cc
   src/dense/lapack/reference_indefinite_rook.cc
   src/dense/lapack/reference_indefinite_rook_condition.cc
   src/dense/lapack/reference_indefinite_rook_driver.cc

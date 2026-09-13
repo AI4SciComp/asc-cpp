@@ -10,16 +10,16 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "68bb0915666c94eb68a73cab83416e5ad60a14e3",
+  "current_base_commit": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "68bb0915666c94eb68a73cab83416e5ad60a14e3",
+  "last_implementation_commit": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
   "worktree_diff_identity": {
-    "state": "two_stage_aasen_consumers_ready_after_evidence",
-    "base_commit": "68bb0915666c94eb68a73cab83416e5ad60a14e3",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-solve-final-audit/audit.json",
-    "scope": "Immutable A/TB/P/Q, caller native-integer/layout scratch, checked metadata-only query and zero-diagonal noncall rejection, explicit same-origin producer provenance. Pinned provider, Native20 and experimental RobustPpsvx unchanged."
+    "state": "two_stage_aasen_drivers_ready_after_evidence",
+    "base_commit": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-final-audit/audit.json",
+    "scope": "Checked combined A/TB/P/Q/B execution, metadata-only query, caller WORK and native INTEGER lifetimes, explicit packing, factor-on-zero-RHS and positive-INFO partial factors with B unchanged. Pinned provider, Native20 and experimental RobustPpsvx unchanged."
   },
   "packages": {
     "P00": {
@@ -1404,13 +1404,19 @@
     },
     "P05.required.hetrs_aa_2stage": {
       "state": "implemented_unverified",
-      "next_action": "Finish owned two-stage consumer staged review, normal feature commit/push and draft47 update, then implement the exact two-stage Aasen drivers from the live backlog and continue all ready programme work. Preserve pinned provider, same-origin A/TB/P/Q semantics and existing required numerical/security/owner failures.",
+      "next_action": "Integrated and pushed at d58b8c315ddcf8d5e07bc544fb8cb35a861474f1; retain required numerical gates and continue two-stage drivers.",
       "current_evidence": "programs/lapack-array-io/indefinite-aasen-two-stage-solve-review.md",
       "scope": "Six checked two-stage Aasen consumers, twelve public declarations and144 reviewed modes. Engineering passes; tiny-scale inherited GBTRF/GBTF2 and large-complex TBSV mathematical requirements remain failed."
+    },
+    "P05.required.hesv_aa_2stage": {
+      "state": "implemented_unverified",
+      "next_action": "Finish owned two-stage driver staged review, normal feature commit/push and draft47 update, then implement the exact packed-indefinite producers from the live backlog and continue all ready programme work. Preserve the pinned provider and all required numerical, security and owner gates.",
+      "current_evidence": "programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md",
+      "scope": "Six checked two-stage Aasen drivers, twelve public declarations and144 reviewed modes. Engineering passes; required tiny factor/solution, large-complex solution and native optimal-TB query gates remain failed."
     }
   },
-  "active_task": "P05.required.hetrs_aa_2stage",
-  "next_action": "Finish owned two-stage consumer staged review, normal feature commit/push and draft47 update, then implement the exact two-stage Aasen drivers from the live backlog and continue all ready programme work. Preserve pinned provider, same-origin A/TB/P/Q semantics and existing required numerical/security/owner failures.",
+  "active_task": "P05.required.hesv_aa_2stage",
+  "next_action": "Finish owned two-stage driver staged review, normal feature commit/push and draft47 update, then implement the exact packed-indefinite producers from the live backlog and continue all ready programme work. Preserve the pinned provider and all required numerical, security and owner gates.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1851,16 +1857,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 282,
-    "callable_reference": 242,
+    "mapped_contracts": 288,
+    "callable_reference": 248,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1575,
+    "not_started_reference": 1569,
     "in_progress_reference": 296,
-    "incomplete_reference": 1871,
-    "implemented_unverified_reference": 242,
+    "incomplete_reference": 1865,
+    "implemented_unverified_reference": 248,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2121,10 +2127,10 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "aasen-two-stage-solve-delivery",
+    "candidate": "aasen-two-stage-driver-delivery",
     "state": "engineering_passed_required_mathematical_gates_failed",
-    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-solve-review.md",
-    "scope": "Sixteen finite Linux actual ABI/static/shared profiles:540 processes,468 pass,72 required failures,zero skips. No broader admission or full Reference verification."
+    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md",
+    "scope": "Sixteen finite Linux actual ABI/static/shared profiles:552 processes,468 pass,84 required failures,zero skips. No broader admission or full Reference verification."
   },
   "last_completed_verification": {
     "candidate": "ppsvx-robust-integration-01",
@@ -2624,14 +2630,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hesv_aa_2stage",
+  "next_task": "P05.required.hptrf",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect aasen-two-stage-solve-delivery and the same rk-inverse-profile-recovery-01/latest-handoff.json; finish any pending owned commit/push, then execute P05.required.hesv_aa_2stage from the regenerated backlog and pinned signatures. No new task prompt is needed.",
+  "next_command": "Inspect aasen-two-stage-driver-delivery and the same rk-inverse-profile-recovery-01/latest-handoff.json; finish pending owned commit/push, then execute P05.required.hptrf from the regenerated backlog and pinned signatures. No new task prompt is needed.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4184,24 +4190,24 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "aasen_two_stage_consumer_6",
-    "implementation_parent": "68bb0915666c94eb68a73cab83416e5ad60a14e3",
+    "family": "aasen_two_stage_driver_6",
+    "implementation_parent": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
     "state": "ready_for_owned_feature_commit; required provider gates remain failed; FULL_PROGRAM_INCOMPLETE",
-    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-solve-review.md",
+    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md",
     "local_handoff": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-profile-recovery-01/latest-handoff.json",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-solve-final-audit/audit.json",
-    "audit_sha256": "f3719293790c5337a260b07f73ad875ef4d2530eccb3e8e4f4234c45ea2f6b1d",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-solve-delivery/commit.txt",
-    "canonical_processes": 540,
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-final-audit/audit.json",
+    "audit_sha256": "124e27e6a513485f7bdadd77aa0c231e5dd70ba5578363ce0183e79e6abd4e76",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-delivery/commit.txt",
+    "canonical_processes": 552,
     "passing_processes": 468,
-    "required_failed_processes": 72,
+    "required_failed_processes": 84,
     "unexpected_skips": 0,
     "reviewed_contracts": 6,
     "reviewed_modes": 144,
     "callable_routes": 6,
-    "next_family": "P05.required.hesv_aa_2stage",
-    "previous_hosted_product": "68bb0915666c94eb68a73cab83416e5ad60a14e3",
-    "previous_hosted_scope": "Parent two-stage producer generalCI/CodeQL succeed. Four1461-process selected profiles retain seven new producer required failures and all earlier failures:LP64 passes1260/fails201,ILP64 passes1264/fails197,zero skips,provider111/111. Feature alerts3199 include unchanged12 security findings; all15 new notes read and retained. No hosted credit for dirty consumers or independently attested PR merge tree."
+    "next_family": "P05.required.hptrf",
+    "previous_hosted_product": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
+    "previous_hosted_scope": "Parent two-stage consumer general CI/CodeQL succeed. Four1506-process selected profiles retain six new consumer range failures and all earlier failures:LP64 passes1299/fails207,ILP64 passes1303/fails203,zero skips,provider111/111. Feature alerts3244 include unchanged12 security findings; all45 new notes read and retained. No hosted credit for dirty drivers or independently attested PR merge tree."
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",

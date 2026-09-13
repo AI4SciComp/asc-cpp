@@ -480,6 +480,18 @@ source-bound range classification. These affected rows do not create a separate
 approval or waive either mathematical requirement; provider remediation choices
 and the pinned identity remain unchanged.
 
+The six SYSV_AA_2STAGE/HESV_AA_2STAGE drivers reach these same three
+requirements. Their dual native query reproduces four CSY optimal-TB capacity
+failures per ABI. The maintained 1,024-case/class driver range adds full factor
+reconstruction to the existing consumer solution checks: 27,648 factor and
+6,336 solution finiteness assertions per ABI match the tiny-scale cause, and
+384 solution assertions match the large-complex division cause. Every failed
+parameter group is compared with the source-bound producer/consumer records;
+all driver native-fidelity and 4,480 fault/control cases/class/ABI pass. The
+[driver review](indefinite-aasen-two-stage-driver-review.md) records the exact
+scope. Numerical acceptance still needs the existing explicit provider/strategy
+decisions; no additional approval, fallback or waiver is inferred.
+
 ### Feature 68bb091: two-stage producer hosted/security follow-up
 
 The explicit feature-ref CodeQL read during two-stage consumer development
