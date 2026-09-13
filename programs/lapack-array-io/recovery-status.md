@@ -1,3 +1,50 @@
+## 2026-09-13: Aasen drivers ready for feature integration
+
+Branch `feature/lapack-array-io`, pushed parent `cb05d524f2dfea67de9d42185c7b975549496642`.
+Inspect actual git and `aasen-driver-delivery/commit.txt` for the delivery commit.
+All three untracked user instruction files, previous milestones and raw failures
+remain preserved. This is the full remaining programme, not a completed project.
+
+Six SYSV_AA/HESV_AA routes add twelve public declarations and 192 reviewed modes.
+They factor original symmetric/HE A and solve B, publishing positive Aasen
+pivots. Queries are metadata-only; empty N is a noncall, zero RHS still
+factorizes. Caller workspace/native INTEGER lifetimes/packing, source counts,
+strides/aliases and final WORK/INFO/pivot/singular witnesses are checked.
+Consistent singularity publishes factors/pivots but withholds packed B;
+direct B may change. Factors can be reused through the checked Aasen solver.
+
+Sixteen profiles execute 600 processes: 492 pass, 108 required failures, zero skips.
+Twelve Release/Debug/ASC-ASan+UBSan profiles each pass 39/48; four TSan profiles
+each pass 6/6. Retained requirements include 12,288 mathematical and 192 workspace
+assertions plus 48 native empty-call STOP processes. Native fidelity and factor
+reconstruction pass; large-complex solution failures extend AASEN-SOLVE-RANGE.
+Complex SY empty recommendations and CSYSV_AA legal LWORK0 nested TRF_AA STOP
+extend AASEN-EMPTY-WORK. Direct native records confirm exit 93. Provider fixes,
+new algorithms and waivers are not authorized by these results.
+
+Four relocated consumers pass 768 driver/factor-reuse cases each. Twenty strict
+TUs (twelve unchanged first results explicitly reused), 2,016 emitted-ABI cases,
+four standalone headers, twelve new/zero removed exports per ABI, ten package
+and three architecture checks pass. Doxygen covers 155 headers/2,669 members
+without warnings; CI selector includes 1,415 processes. Installed libraries match
+final Release identities. Original configure/fixture/strict failures remain
+preserved with their corrections; numerical requirements are unchanged.
+
+Parent solve generalCI/CodeQL jobs succeed. Its four hosted selected profiles
+each execute 1,365 tests with no skips: LP64passes 1,180/fails185; ILP64passes 1,184/
+fails 181. Exactly the five new solve gates join retained prior failures;
+provider tests pass 111/111 each. Source-bound artifacts are under
+`aasen-driver-remote-01/hosted-followup`. Feature/PR CodeQL queries show 3,152 open
+alerts including twelve security findings; 44 new descriptor notes remain open.
+No hosted driver credit, security closure or wider provider admission is inferred.
+
+FULL_PROGRAM_INCOMPLETE: required 2,113; reviewed 270; Reference callable-
+unverified 230; partial 296; not-started 1,587; verified 0. Native operations remain 20/20,
+experimental RobustPpsvx separate. Finish owned commit/push/PR update if pending,
+then continue `P05.required.hetrf_aa_2stage` before its consumers/drivers and
+other ready rows. The same latest handoff and driver review preserve the exact
+next command and evidence paths. No new single-family instruction is required.
+
 ## 2026-09-13: Aasen solve consumers ready for feature integration
 
 Branch remains `feature/lapack-array-io`, with pushed parent

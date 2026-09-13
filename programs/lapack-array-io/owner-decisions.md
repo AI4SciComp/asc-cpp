@@ -407,6 +407,16 @@ Preserve the unchanged predicate and continue checked consumer development.
 The [Aasen solve review](indefinite-aasen-solve-review.md) records source
 semantics, including positive GTSV singular INFO and its unusable solution.
 
+The six SYSV_AA/HESV_AA drivers are now exercised directly in both ABIs.
+CSYSV_AA/ZSYSV_AA empty queries return zero after combining those dependency
+recommendations; sixteen query-contract cases fail per ABI. Four separate
+CSYSV_AA processes per ABI also reproduce a nested CSYTRF_AA argument-7
+XERBLA/STOP for documented legal LWORK=0, both triangles and NRHS=0,3.
+NormalReturnGuard records exit 93, not a successful zero-exit test. See the
+[driver review](indefinite-aasen-driver-review.md#native-empty-workspace-requirement)
+and `aasen-driver-initial-{abi}-02`. These rows extend this same unresolved
+provider decision; a checked empty noncall does not close the native contract.
+
 ### AASEN-SOLVE-RANGE
 
 C/Z SYTRS_AA and HETRS_AA retain the existing large-complex arithmetic
@@ -419,3 +429,12 @@ cases pass. The [solve review](indefinite-aasen-solve-review.md) binds the exact
 finite cases, source operation and logs. This extends the existing provider
 arithmetic decision and its remediation choices above. No provider correction,
 first-party algorithm, scaling substitution or mathematical waiver is approved.
+
+The new SYSV_AA/HESV_AA drivers retain the same four complex mathematical
+range failures in both ABIs, with native fidelity and independent factor
+reconstruction passing. The maintained driver tests also reuse each produced
+factor through the checked solve, so their 1,024 failed assertions per ABI
+count both solution routes; this is not a new arithmetic cause. Producer
+`AASEN-FACTOR-RANGE` failures remain prerequisite limitations, with their exact
+source-bound reproductions retained instead of repeating that unchanged sweep.
+No additional remediation is authorized by these driver results.

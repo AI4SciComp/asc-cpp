@@ -99,6 +99,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_indefinite.h
   include/asc/dense/providers/lapack_indefinite_aasen.h
   include/asc/dense/providers/lapack_indefinite_aasen_solve.h
+  include/asc/dense/providers/lapack_indefinite_aasen_driver.h
   include/asc/dense/providers/lapack_indefinite_rook.h
   include/asc/dense/providers/lapack_indefinite_rook_condition.h
   include/asc/dense/providers/lapack_indefinite_rook_driver.h
