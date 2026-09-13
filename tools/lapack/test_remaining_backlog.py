@@ -19,17 +19,18 @@ class RemainingBacklogTest(unittest.TestCase):
         for name, family, required, state in (('dsgesv', 'gesv_mixed', True,
                                                'in_progress'),
                                               ('zcgesv', 'gesv_mixed', True,
-                                               'not_started'),
-                                              ('dgerfsx', 'gerfsx', True,
-                                               'not_started'), ('tester',
-                                                                'test', False,
-                                                                'not_started')):
+                                               'not_started'), ('dgerfsx',
+                                                                'gerfsx', True,
+                                                                'not_started'),
+                                              ('tester', 'test', False,
+                                               'not_started')):
             rows.append({
                 'id':
-                    'lapack.' + name,
+                'lapack.' + name,
                 'routine':
-                    name,
-                'required_profiles': ['reference_cpu_full'] if required else [],
+                name,
+                'required_profiles':
+                ['reference_cpu_full'] if required else [],
                 'family': [family],
                 'source_instances': [{
                     'path': 'SRC/' + name + '.f',
@@ -86,11 +87,64 @@ class RemainingBacklogTest(unittest.TestCase):
     def test_programme_ownership(self):
         """SVD, eigenproblems and mixed drivers retain separate Pxx owners."""
         for family, package in [('getrf', 'P04'), ('pttrs', 'P05'),
+                                ('pstrf', 'P05'), ('pstf2', 'P05'),
                                 ('geqrf', 'P06'), ('gesvd', 'P07'),
-                                ('heev', 'P08'), ('trsyl', 'P08'),
-                                ('posv_mixed', 'P09'), ('la_wwaddw', 'P09')]:
+                                ('tgsja', 'P07'), ('heev', 'P08'),
+                                ('trsyl', 'P08'), ('posv_mixed', 'P09'),
+                                ('la_wwaddw', 'P09')]:
             with self.subTest(family=family):
                 self.assertEqual(backlog.owner(family), package)
+
+    def test_foundations_do_not_imply_reviewed_dependencies(self):
+        """Unreviewed family dependencies remain visible to the scheduler."""
+        result = backlog.generate(*self.fixture())
+        for task in result['tasks']:
+            self.assertEqual(task['dependency_review']['state'],
+                             'review_required')
+
+    def test_packed_dependencies_and_missing_producer(self):
+        """Consumers retain producer dependencies without a false inverse edge."""
+        inventory, mapping, _ = self.fixture()
+        inventory['routines'] = []
+        mapping['routines'] = []
+        for family in backlog.PACKED_PREREQUISITES:
+            identifier = 'lapack.c' + family
+            inventory['routines'].append({
+                'id':
+                identifier,
+                'routine':
+                'c' + family,
+                'required_profiles': ['reference_cpu_full'],
+                'family': [family],
+                'source_instances': [],
+            })
+            mapping['routines'].append({
+                'id': identifier,
+                'implementations': {
+                    'reference_cpu': {
+                        'state': 'not_started'
+                    }
+                },
+                'contract': {
+                    'mode_cases': []
+                },
+                'implementation_artifacts': [],
+            })
+        result = backlog.generate(inventory, mapping, {'rows': []})
+        tasks = {task['task_id']: task for task in result['tasks']}
+        basic = tasks['P05.required.hpsv']['prerequisite_ids']
+        self.assertIn('P05.required.hptrf', basic)
+        self.assertIn('P05.required.hptrs', basic)
+        self.assertNotIn('P05.required.hptri', basic)
+        expert = tasks['P05.required.hpsvx']['prerequisite_ids']
+        self.assertIn('P05.required.hpcon', expert)
+        self.assertIn('P05.required.hprfs', expert)
+        inventory['routines'] = [
+            row for row in inventory['routines']
+            if row['id'] != 'lapack.chptrf'
+        ]
+        with self.assertRaises(validate_coverage.ValidationError):
+            backlog.generate(inventory, mapping, {'rows': []})
 
 
 if __name__ == '__main__':

@@ -1,4 +1,19 @@
-# Program blockers and required external decisions
+# Current completion execution and retained blockers
+
+The packed producer engineering checkpoint is complete: six callable,
+unverified rows; sixteen final profiles execute 612 tests with 468 passes,
+144 required failures and zero skips. Four installed consumers and the scoped
+engineering checks pass. See the [packed review](indefinite-packed-review.md).
+Independent work advances to `P05.required.hptrs`.
+
+Packed range/native endpoint failures, current security findings, provider and
+XBLAS decisions, notices and missing platform acceptance remain unresolved.
+The user permits recording unresolved trouble and advancing independent work;
+this does not promote blocked rows or turn failed tests into skips/passes.
+Remaining P00–P11 requirements retain their original scope. Use current state
+and family reviews before following historical next-task prose below.
+
+## Historical program blocker introduction
 
 Current PPSVX scope: the authorized first-party robust capability has completed
 its opt-in experimental Linux/static integration in both actual ABIs; see the

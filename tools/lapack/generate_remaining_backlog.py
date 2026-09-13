@@ -10,6 +10,19 @@ import pathlib
 
 import validate_coverage
 
+# These are ASC interface dependencies, not inferred Fortran call edges. The
+# packed producer/consumer contracts were reviewed together; other families
+# must review their actual prerequisites before claiming execution readiness.
+PACKED_PREREQUISITES = {
+    'hptrf': (),
+    'hptrs': ('hptrf', ),
+    'hptri': ('hptrf', ),
+    'hpcon': ('hptrf', ),
+    'hprfs': ('hptrf', 'hptrs'),
+    'hpsv': ('hptrf', 'hptrs'),
+    'hpsvx': ('hptrf', 'hptrs', 'hpcon', 'hprfs'),
+}
+
 
 def owner(family):
     """Assign programme ownership; general auxiliaries stay in P09 closure."""
@@ -20,8 +33,12 @@ def owner(family):
             'gecon', 'gerfs', 'geequ', 'geequb', 'getc2', 'gesc2'
     }:
         return 'P04'
-    if family in {'gebrd', 'gebd2', 'gbbrd', 'labrd', 'lasv2', 'lapll'}:
+    if family in {
+            'gebrd', 'gebd2', 'gbbrd', 'labrd', 'lasv2', 'lapll', 'tgsja'
+    }:
         return 'P07'
+    if family in {'pstrf', 'pstf2'}:
+        return 'P05'
     if family.startswith(
         ('gesvd', 'gesdd', 'gesvj', 'gejsv', 'gsvj', 'ggsv', 'bbcsd', 'bds',
          'lasd', 'lasq', 'lals', 'orcsd', 'uncsd')):
@@ -59,7 +76,8 @@ def generate(inventory, mapping, dependency_map):
         if 'reference_cpu_full' in row['required_profiles']
     ]
     validate_coverage.require(
-        len({row['id'] for row in required}) == len(required),
+        len({row['id']
+             for row in required}) == len(required),
         'Duplicate required inventory row')
     for row in required:
         validate_coverage.require(row['id'] in rows,
@@ -73,14 +91,13 @@ def generate(inventory, mapping, dependency_map):
         selected = [rows[identifier] for identifier in ids]
         missing = [identifier for identifier in ids if identifier in blocked]
         registered = [
-            row for row in selected
-            if row['implementations']['reference_cpu']['state'] != 'not_started'
+            row for row in selected if row['implementations']['reference_cpu']
+            ['state'] != 'not_started'
         ]
         sources = sorted({
             source['path']
             for row in members
-            for source in row['source_instances']
-            if source['required']
+            for source in row['source_instances'] if source['required']
         })
         files = sorted({
             item['path']
@@ -92,64 +109,80 @@ def generate(inventory, mapping, dependency_map):
             for row in selected
         }
         reviews = sorted(
-            {row['contract'].get('documentation', '') for row in selected} -
-            {''})
+            {row['contract'].get('documentation', '')
+             for row in selected} - {''})
         if missing:
             action = 'Review the bound extra-precision/source-selection decision for these rows; retain source and ABI contracts while provider admission is pending.'
         elif registered:
             action = 'Reconcile this family\'s existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.'
         else:
             action = 'Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.'
+        prerequisites = [
+            'P01.workspace_report_pivots', 'P04.provider_component'
+        ]
+        prerequisites += [
+            owner(dependency) + '.required.' + dependency
+            for dependency in PACKED_PREREQUISITES.get(family, ())
+        ]
         task = {
             'task_id':
-                package + '.required.' + family,
+            package + '.required.' + family,
             'owner':
-                package,
+            package,
             'upstream_rows':
-                ids,
-            'prerequisite_ids': [
-                'P01.workspace_report_pivots', 'P04.provider_component'
-            ],
+            ids,
+            'prerequisite_ids':
+            prerequisites,
+            'dependency_review': {
+                'state':
+                'reviewed_interface_dependencies'
+                if family in PACKED_PREREQUISITES else 'review_required',
+                'scope':
+                'Prerequisites express stable ASC interface contracts; '
+                'all required numerical/profile gates remain necessary '
+                'for verification. Generic foundations alone do not '
+                'establish execution readiness.',
+            },
             'upstream_source_files':
-                sources,
+            sources,
             'source_api_files':
-                files,
+            files,
             'route_states': {
                 row['id']: row['implementations']['reference_cpu']['state']
                 for row in selected
             },
             'next_action':
-                action,
+            action,
             'required_mode_cases':
-                modes,
-            'unreviewed_mode_rows': [
-                identifier for identifier in ids if not modes[identifier]
-            ],
+            modes,
+            'unreviewed_mode_rows':
+            [identifier for identifier in ids if not modes[identifier]],
             'required_tests': [
                 'exact_contract_modes', 'independent_mathematics',
                 'failure_reports', 'workspace_aliasing',
-                'public_install_relocation', 'actual_abis', 'required_platforms'
+                'public_install_relocation', 'actual_abis',
+                'required_platforms'
             ],
             'reuse_candidates':
-                reviews,
+            reviews,
             'blocked_rows':
-                missing,
+            missing,
             'blocker_id':
-                'P09.extra_precision_provider_decision' if missing else None,
+            'P09.extra_precision_provider_decision' if missing else None,
             'integrated_revision':
-                'See route-specific review/source artifacts; no whole-tree execution is inferred.'
-                if registered else None,
+            'See route-specific review/source artifacts; no whole-tree execution is inferred.'
+            if registered else None,
             'execution_progress':
-                'partial_source_and_review_exist'
-                if registered else 'not_executed',
+            'partial_source_and_review_exist'
+            if registered else 'not_executed',
             'numerical_result':
-                'Use exact route review; no blanket pass or failure is inferred from registration.',
+            'Use exact route review; no blanket pass or failure is inferred from registration.',
             'profile_admission':
-                'GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.',
+            'GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.',
             'owner_decision':
-                'Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.',
+            'Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.',
             'evidence_references':
-                reviews,
+            reviews,
         }
         tasks.append(task)
     flattened = [
@@ -158,14 +191,22 @@ def generate(inventory, mapping, dependency_map):
     validate_coverage.require(
         len(flattened) == len(set(flattened)) == len(required),
         'Backlog does not account for every required row exactly once')
+    task_ids = {task['task_id'] for task in tasks}
+    for task in tasks:
+        for dependency in task['prerequisite_ids']:
+            if '.required.' in dependency:
+                validate_coverage.require(
+                    dependency in task_ids,
+                    'Required prerequisite task missing: ' + dependency)
     return {
         'schema_version':
-            1,
+        1,
         'required_denominator':
-            len(required),
+        len(required),
         'scope':
-            'Finite source/mode backlog, not implementation or verification evidence. P09 owns auxiliary/compatibility classification where no narrower programme family applies.',
+        'Finite source/mode backlog, not implementation or verification evidence. P09 owns auxiliary/compatibility classification where no narrower programme family applies.',
         'ready_priority': [
+            'P05.required.hptrf', 'P05.required.hptrs',
             'P09.mixed_general_solve', 'P09.mixed_positive_solve',
             'P04.partial_mode_evidence', 'P09.dmd',
             'P05.positive_tridiagonal_expert', 'P06.remaining_factors',
@@ -173,7 +214,7 @@ def generate(inventory, mapping, dependency_map):
             'P09.remaining_auxiliaries', 'P11.provider_platform_admission'
         ],
         'tasks':
-            tasks
+        tasks
     }
 
 

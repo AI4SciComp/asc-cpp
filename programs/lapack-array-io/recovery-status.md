@@ -1,3 +1,129 @@
+## 2026-09-14: Packed engineering checkpoint and completion execution
+
+Finished the packed producer engineering matrix and installed consumption;
+registered six callable, unverified Reference rows and 24 reviewed modes.
+Current totals are 254 callable/unverified Reference rows, 294 reviewed
+contracts, zero verified Reference rows and unchanged Native20 verification.
+The full required denominator remains 2,113; the programme is incomplete.
+
+Final sixteen-profile results: 612 selected, 468 pass, 144 required failures,
+zero skips. The known six range and six native endpoint failures remain in
+each normal/sanitizer profile. All four TSan profiles pass. Four relocated
+consumers each pass 576 workflows; ten strict TUs, both emitted ABI probes,
+public headers/exports, package/architecture and Doxygen checks pass. Read the
+[packed review](indefinite-packed-review.md) and external
+`completion-execution-01/packed-final-audit.json` for exact scope and identities.
+
+Corrected a CI omission: the previous entry's claim that the actual regex
+selected all 43 packed tests was false. Both actual regexes omitted the family.
+The repaired selector includes all 49 current packed runtime tests, retains the
+prior required IDs, and passes the workflow's actual configured-set check.
+The final strict review uses the full repository header filter; it repaired
+fixture structure and direct includes without changing mathematical predicates.
+An attempted tooling discovery under tools/ci found no unit-test suite and
+gets no test credit; its exit/log is preserved. The actual workflow guard and
+117 LAPACK tooling tests provide the relevant executed checks.
+
+The backlog generator now records the seven reviewed packed dependencies,
+leaves other families explicitly awaiting dependency review, and corrects
+PSTRF/PSTF2 and TGSJA ownership without changing any required row. Reviewed
+artifact extensions preserve historical execution identities and Native20.
+Current security findings were read and recorded without suppression or
+unsupported production changes; their acceptance gate remains unresolved.
+
+Advance to the six SPTRS/HPTRS packed consumers. Their pinned declarations and
+source hashes are already reviewed in the external next-family packet. Known
+provider, security, XBLAS, notice and platform trouble remains recorded under
+the user's instruction to continue independent work. No release, merge,
+provider change or numerical waiver occurred in this checkpoint.
+
+## 2026-09-13: Bounded packed SPTRF/HPTRF guard repair completed
+
+Recovered actual branch `feature/lapack-array-io`, HEAD
+`bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2`. All 30 initially dirty files and
+zero-byte staged diff were preserved before edits. The current task was the
+partially applied `P05.required.hptrf` endpoint repair, not the old Aasen,
+native20, array-I/O or experimental robust PPSVX tasks. No commit, push,
+publication, notice approval, provider change or worktree reset was performed.
+The producer family and the full P00–P11 programme remain incomplete.
+
+Completed guarded caller-owned AP/IPIV execution for both packed layouts,
+withholding all public factors/pivots on a provider defect. Column-major
+packing uses contiguous copies. Updated workspace and native-fidelity tests
+for the already documented guarded regions; added four independent endpoint
+faults and scalar-NaN nonentry controls, with ignored Hermitian imaginary NaNs
+still executed. Fixed the unfinished validation fixture's pivot alignment and
+explicit empty memory-view construction. All prior fault cases remain;
+reconstruction oracle, ordinary/range input bodies and tolerances, and native
+span assertions are unchanged. Native span and validation tests are now
+maintained CTest entries and all 43 packed tests are explicitly selected by CI.
+
+Current static GNU 11.4 Release and ASC ASan+UBSan, each with actual LP64 and
+true ILP64, execute 43 tests per profile: 31 pass, 12 required failures, zero
+skips. Across four current profiles: 172 processes, 124 pass, 48 fail. Each
+profile passes `indefinite_packed_abi_probe`, all twelve
+`indefinite_packed.{s,d,c,z,ch,zh}.{mathematical,fidelity}`, six
+`indefinite_packed_range.{s,d,c,z,ch,zh}.fidelity`, six
+`indefinite_packed_fault.{s,d,c,z,ch,zh}` and six
+`indefinite_packed_validation.{s,d,c,z,ch,zh}` tests, all under
+`asc_cpp.dense_lapack.`. The six `_range.*.mathematical` and six
+`_native_span.*` gates remain failed, with actual CTest exit 8. Per profile,
+4,600 range assertions and 12 native endpoint assertions fail. There are no
+sanitizer diagnostics in the two current instrumented profiles. The pinned
+Fortran/BLAS archives are uninstrumented; this does not establish general
+provider memory safety or numerical acceptance.
+
+Eight strict translation units pass; four standalone header tests and six
+architecture processes pass. Nine-file formatting, exact 43-test local CI
+selection, public-header hash consistency, Doxygen (159 headers / 2,717 public
+members, zero warnings), and links (241 Markdown files) pass. No hosted or
+installed-consumer execution is claimed for this recovery.
+
+The baseline workspace assertion failure, first validation compile failure,
+five initial strict failures, and original sandbox sanitizer failure remain
+preserved. The sandbox sanitizer attempt records 43 failures due to
+LeakSanitizer's fatal ptrace restriction and gets no pass credit. Its approval
+request was interrupted without execution; after the user changed permissions
+and requested continuation, leak detection remained enabled in both completed
+sanitizer runs. No failed requirement was waived or converted to an expected
+success.
+
+Files changed during this bounded recovery:
+
+- `src/dense/lapack/reference_indefinite_packed.cc`
+- `tests/dense_lapack/indefinite_packed_numerical_support.h`
+- `tests/dense_lapack/indefinite_packed_fault_test.cc`
+- `tests/dense_lapack/indefinite_packed_faults.cc`
+- `tests/dense_lapack/indefinite_packed_faults.h`
+- `tests/dense_lapack/indefinite_packed_validation_test.cc`
+- `tests/dense_lapack/indefinite_packed_test.cc` (direct includes / formatting)
+- `tests/dense_lapack/indefinite_packed_range_test.cc` (direct includes / formatting)
+- `tests/dense_lapack/indefinite_packed_tests.cmake`
+- `.github/workflows/robust-ppsvx.yml`
+- `abi/public-headers.sha256`
+- `programs/lapack-array-io/indefinite-packed-review.md`
+- `programs/lapack-array-io/state.json`
+- `programs/lapack-array-io/recovery-status.md`
+
+Evidence is under the existing continuation root:
+`packed-indefinite-prerequisite-01/containment-recovery-01/summary.json`.
+Each invocation has its exact argv, raw log, exit, input hashes, binary/provider
+identities and JUnit. The same existing
+`rk-inverse-profile-recovery-01/latest-handoff.json` points here. The retained
+`PACKED-INDEFINITE-RANGE-AND-SPAN` blocker requires a separate provider/numerical
+disposition; it does not block independent development.
+
+Next executable action (not run in this bounded task):
+
+```sh
+python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/packed-indefinite-prerequisite-01/containment-recovery-01/run_checks.py debug lp64 01
+```
+
+Then run the existing Debug ILP64 selection, add independent-call concurrency,
+and complete shared/TSan, installed-consumer and P11 delivery checks before
+packed consumer admission. All previous provider, numerical, XBLAS, security,
+notice and platform decisions and the wider P00–P11 requirements remain.
+
 ## 2026-09-13: Two-stage Aasen drivers ready for feature integration
 
 Branch `feature/lapack-array-io`, pushed parent

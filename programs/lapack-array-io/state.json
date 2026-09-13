@@ -10,16 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
+  "current_base_commit": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
+  "last_implementation_commit": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
   "worktree_diff_identity": {
-    "state": "two_stage_aasen_drivers_ready_after_evidence",
-    "base_commit": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-final-audit/audit.json",
-    "scope": "Checked combined A/TB/P/Q/B execution, metadata-only query, caller WORK and native INTEGER lifetimes, explicit packing, factor-on-zero-RHS and positive-INFO partial factors with B unchanged. Pinned provider, Native20 and experimental RobustPpsvx unchanged."
+    "state": "packed_indefinite_guard_repair_complete_family_in_progress",
+    "base_commit": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
+    "scope": "Six SPTRF/HPTRF producers remain uncommitted. Bounded guarded workspace/publication/scalar-NaN regression repair complete; no normalized callable or verified promotion."
   },
   "packages": {
     "P00": {
@@ -1259,8 +1258,8 @@
       "state": "in_progress",
       "owner": "integration",
       "backlog": "programs/lapack-array-io/remaining-reference-backlog.json",
-      "backlog_sha256": "f76906b432e700bbb23f585c60d1d60b3087dfee122e07fa4743dbd7ca5322fb",
-      "scope": "All 2113 required rows occur exactly once in 568 finite family tasks, with source/API pointers, modes, reuse candidates, route status and next action; unreviewed modes remain explicit. No generated task or declaration earns implementation/evidence credit.",
+      "backlog_sha256": "8edb265790ebb3ecc4c82a5957115d58de3b8dd8c814c47fbcced09bf2588f99",
+      "scope": "All2113 required rows remain exactly once in568 tasks. Corrected PSTRF/PSTF2 ownership toP05 and TGSJA toP07; explicit seven-family packed interface dependencies prevent incorrect basic-driver/inverse ordering. Other family dependencies remain review_required before execution; source and verification states are unchanged.",
       "next_action": "Execute the dependency-ready family queue; normalize per-row historical mode/profile evidence without rerunning unchanged numerical failures."
     },
     "P09.extra_precision_provider_decision": {
@@ -1410,13 +1409,31 @@
     },
     "P05.required.hesv_aa_2stage": {
       "state": "implemented_unverified",
-      "next_action": "Finish owned two-stage driver staged review, normal feature commit/push and draft47 update, then implement the exact packed-indefinite producers from the live backlog and continue all ready programme work. Preserve the pinned provider and all required numerical, security and owner gates.",
+      "next_action": "Integrated and pushed at bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2; preserve required numerical failures and continue packed producers.",
       "current_evidence": "programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md",
       "scope": "Six checked two-stage Aasen drivers, twelve public declarations and144 reviewed modes. Engineering passes; required tiny factor/solution, large-complex solution and native optimal-TB query gates remain failed."
+    },
+    "P05.required.hptrf": {
+      "state": "implemented_unverified",
+      "next_action": "Resolve recorded provider range/endpoint gates through an explicit corrective provider disposition; do not repeatedly rerun unchanged failures.",
+      "current_evidence": "programs/lapack-array-io/indefinite-packed-review.md",
+      "bounded_containment_complete": true,
+      "containment_evidence": "master-continuation-20260910-01/continuation-20260912-01/packed-indefinite-prerequisite-01/containment-recovery-01/summary.json",
+      "scope": "Six callable checked producers/24 reviewed modes; complete scoped engineering matrix and installed delivery. Required numerical/provider and broader platform gates remain incomplete.",
+      "engineering_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-audit.json"
+    },
+    "P05.required.hptrs": {
+      "state": "source_contract_review",
+      "prerequisite_ids": [
+        "P05.required.hptrf"
+      ],
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-solve-source-review-01",
+      "next_action": "Complete source/emitted-ABI review and implement the six SPTRS/HPTRS checked packed consumers from their existing inventory rows. The packed producer checkpoint is implemented_unverified; retain its numerical/native-span failures and inherited verification dependencies. Continue independent P00\u2013P11 work without retrying unchanged provider or security blockers.",
+      "verification_dependency": "Producer acceptance remains incomplete; independent consumer implementation is permitted, verification is not inherited from engineering success."
     }
   },
-  "active_task": "P05.required.hesv_aa_2stage",
-  "next_action": "Finish owned two-stage driver staged review, normal feature commit/push and draft47 update, then implement the exact packed-indefinite producers from the live backlog and continue all ready programme work. Preserve the pinned provider and all required numerical, security and owner gates.",
+  "active_task": "P05.required.hptrs",
+  "next_action": "Complete source/emitted-ABI review and implement the six SPTRS/HPTRS checked packed consumers from their existing inventory rows. The packed producer checkpoint is implemented_unverified; retain its numerical/native-span failures and inherited verification dependencies. Continue independent P00\u2013P11 work without retrying unchanged provider or security blockers.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1424,7 +1441,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "973a362029b72c3a949c3eaab255064cb8ce057df4cbee6a9039ee0316391852"
+    "coverage_mapping_sha256": "4c82f8bf543610242981da0cbb553161ea444475ba3f60a773c823a951097091"
   },
   "provider": {
     "version": "3.12.1",
@@ -1857,16 +1874,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 288,
-    "callable_reference": 248,
+    "mapped_contracts": 294,
+    "callable_reference": 254,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1569,
+    "not_started_reference": 1563,
     "in_progress_reference": 296,
-    "incomplete_reference": 1865,
-    "implemented_unverified_reference": 248,
+    "incomplete_reference": 1859,
+    "implemented_unverified_reference": 254,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2107,6 +2124,13 @@
       "id": "BLOCK-INDEFINITE-RK-INVERSE-EMPTY-WORK",
       "scope": "Pinned CSYTRI_3/ZSYTRI_3/ZHETRI_3 N0 query returns8, normal execution returnsINFO0 without writing documentedWORK1. SSY/DSY/CHE query/execute return1. Both triangles and ABIs retain6required failed cases/profile with allguards and sourcefidelity passing. ASCempty noncall doesnotrepairnativecontract. Twelve final normal/sanitizer profiles retain12failed contract processes/72cases; no assertion removed.",
       "record": "programs/lapack-array-io/indefinite-rk-inverse-review.md"
+    },
+    {
+      "id": "PACKED-INDEFINITE-RANGE-AND-SPAN",
+      "scope": "Twelve final normal/sanitizer profiles each retain six finite-range and six direct-native endpoint required failures. Across sixteen profiles:612 selected/468 passed/144 required failures/zero skips. Checked containment withholds unsafe public output; no provider patch, finite-input restriction or numerical waiver. Independent packed consumer implementation proceeds.",
+      "record": "programs/lapack-array-io/indefinite-packed-review.md",
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-audit.json",
+      "disposition": "recorded_unresolved_advance_independent_work"
     }
   ],
   "external_approvals": [
@@ -2118,35 +2142,22 @@
     }
   ],
   "independent_work": [
-    "Extend all LU layouts using the integrated ASC-sized layout-conversion workspace correction; all foreign-work roles retain ABI bounds",
-    "Complete remaining P04 LU-family bindings including all actual S/D/C/Z modes",
-    "Close P02/P03 machine-readable coverage and remaining platform evidence without attributing older tests to newer code",
-    "Native Cholesky/HouseholderQR and complete provider P05-P09 after prerequisites",
-    "Full P11 platform/docs/provenance/profile evidence; no scope reduction",
-    "Close P10 final exact mode/evidence ledger and required platforms; required native Matrix Market paths already pass integrated tests"
+    "Finish the current packed producer engineering matrix and installed delivery; retain numerical/native-span failures.",
+    "Execute the maintained dependency-reviewed queue; complete missing P04-P09 rows and exact modes, checking existing implementations before starting.",
+    "Normalize only actual passing evidence with exact historical source identities; preserve Native20 and accepted P02/P03/P10 scopes.",
+    "Complete missing provider/platform, package, public API, documentation and security gates alongside family delivery.",
+    "Record unresolved provider, XBLAS and notice decisions and advance independent ready work without waiving required gates."
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
-  "active_verification": {
-    "candidate": "aasen-two-stage-driver-delivery",
-    "state": "engineering_passed_required_mathematical_gates_failed",
-    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md",
-    "scope": "Sixteen finite Linux actual ABI/static/shared profiles:552 processes,468 pass,84 required failures,zero skips. No broader admission or full Reference verification."
-  },
+  "active_verification": null,
   "last_completed_verification": {
-    "candidate": "ppsvx-robust-integration-01",
-    "state": "PPSVX_ROBUST_INTEGRATED_EXPERIMENTAL_FULL_PROGRAM_INCOMPLETE",
-    "implementation_commit": "1e15d843d8968f659c393af85e6bdcf99af3345a",
-    "implementation_tree": "ca291bf16f76ef78144f91caffc97bb84da442fa",
-    "tested_head": "1e15d843d8968f659c393af85e6bdcf99af3345a",
-    "tested_merge": "a8f7e30560c873ceb4dbdf7d6e70324ff168dd92",
-    "tested_tree": "ca291bf16f76ef78144f91caffc97bb84da442fa",
-    "local_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/local-audit-01.json",
-    "local_audit_sha256": "78e3c0cdf9146a50ceabf09211a635e02c97a75248dc695165b0953c97f71b8e",
-    "hosted_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/ppsvx-robust-integration-01/hosted-audit-01.json",
-    "scope": "First-party S/D/C/Z robust PPSVX opt-in experimental Linux x86_64 GNU11.4 static actual LP64/global ILP64. Six local numerical/safety lanes, ASC TSan both ABIs, calibrated Clang supplemental observer, fresh relocated public consumers and hosted source checks passed. Reference numerical acceptance and wider provider platform admission remain incomplete.",
-    "reference_full_release": "Each original 957-test run:871 passed,78 genuine required Reference mathematical failures,8 metadata failures;14/14 metadata/package closure per ABI passes. Original full invocations remain failed.",
-    "reference_ppsvx_replay": "Each ABI:4 failing processes,176 failed assertions,44 unique scalar/mode/value cases,5 overlapping causes; ordered lines match candidate22.",
-    "native_subset_milestone": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE"
+    "candidate": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
+    "state": "packed_engineering_complete_required_gates_failed",
+    "scope": "Sixteen final profiles:612 selected/468 passed/144 required failures/zero skips. Four installed consumers, ten strict TUs, two emitted ABI probes, headers/exports/architecture/documentation and actual CI selectors pass; foreign internals remain uninstrumented.",
+    "command": "python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/finish_packed_checks.py",
+    "results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-profile-results.json",
+    "foreign_instrumentation": "Pinned Fortran/BLAS internals are uninstrumented.",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-audit.json"
   },
   "remote_checkpoint": {
     "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
@@ -2190,7 +2201,7 @@
   "pending_verifications": [
     {
       "task": "full_reference_program",
-      "scope": "All2113 Reference contracts remain incomplete:350 partial registrations,1763 not started;130 required XBLAS definitions absent and78 historical root mathematical failures retained. Reference PPSVX finite Linux engineering is complete but five arithmetic causes block its mathematical gates/root numerical promotion. Four first-party robust algorithms have independently completed authorized experimental Linux/static integration. Next PTTRF/PTTRS contract review is selected, not started."
+      "scope": "All 2113 required Reference rows remain required:254 callable-unverified,296 in progress,1563 not started,0 verified. The six packed producers are now registered implemented_unverified. Missing130 source-selected extra-precision definitions, retained provider failures, broader platforms and final P11 gates remain open. Earlier completed technical slices are not restarted."
     },
     {
       "task": "owner_provenance",
@@ -2630,14 +2641,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hptrf",
+  "next_task": "P05.required.hptrs",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect aasen-two-stage-driver-delivery and the same rk-inverse-profile-recovery-01/latest-handoff.json; finish pending owned commit/push, then execute P05.required.hptrf from the regenerated backlog and pinned signatures. No new task prompt is needed.",
+  "next_command": "python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/emit_packed_solve.py",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4190,24 +4201,19 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "aasen_two_stage_driver_6",
-    "implementation_parent": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
-    "state": "ready_for_owned_feature_commit; required provider gates remain failed; FULL_PROGRAM_INCOMPLETE",
-    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md",
-    "local_handoff": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-profile-recovery-01/latest-handoff.json",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-final-audit/audit.json",
-    "audit_sha256": "124e27e6a513485f7bdadd77aa0c231e5dd70ba5578363ce0183e79e6abd4e76",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-delivery/commit.txt",
-    "canonical_processes": 552,
+    "family": "packed_indefinite_producer_6",
+    "implementation_parent": "bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2",
+    "state": "Scoped engineering checkpoint ready in the working tree; mandatory numerical/provider gates remain failed. No new commit or hosted result is inferred.",
+    "review": "programs/lapack-array-io/indefinite-packed-review.md",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/packed-final-audit.json",
+    "canonical_processes": 612,
     "passing_processes": 468,
-    "required_failed_processes": 84,
+    "required_failed_processes": 144,
     "unexpected_skips": 0,
     "reviewed_contracts": 6,
-    "reviewed_modes": 144,
+    "reviewed_modes": 24,
     "callable_routes": 6,
-    "next_family": "P05.required.hptrf",
-    "previous_hosted_product": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
-    "previous_hosted_scope": "Parent two-stage consumer general CI/CodeQL succeed. Four1506-process selected profiles retain six new consumer range failures and all earlier failures:LP64 passes1299/fails207,ILP64 passes1303/fails203,zero skips,provider111/111. Feature alerts3244 include unchanged12 security findings; all45 new notes read and retained. No hosted credit for dirty drivers or independently attested PR merge tree."
+    "next_family": "P05.required.hptrs"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4386,5 +4392,129 @@
       "audit": "master-continuation-20260910-01/continuation-20260912-01/rk-condition-delivery-audit/audit.json",
       "scope": "Six RK CON_3 consumers with immutable A/E/pivots, own-index paired target bounds, ignored-E semantics, explicit finite ANORM and associated-real RCOND diagnostics. Active 2*N scalar WORK and real 2*N/complex N private INTEGER entries; row A packing. Full INFO/output writes and private pivot immutability checked. Empty/zero-norm execution is a noncall. Provider kernels unchanged. Exact 150-header registrations updated."
     }
+  },
+  "bounded_recovery": {
+    "task": "P05.required.hptrf.span_containment",
+    "state": "bounded_repair_complete_family_and_programme_incomplete",
+    "record": "master-continuation-20260910-01/continuation-20260912-01/packed-indefinite-prerequisite-01/containment-recovery-01/summary.json",
+    "next_argv": [
+      "python3",
+      "-B",
+      "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/packed-indefinite-prerequisite-01/containment-recovery-01/run_checks.py",
+      "debug",
+      "lp64",
+      "01"
+    ],
+    "completed_utc": "2026-09-13T14:54:40.810743+00:00"
+  },
+  "historical_pending_verifications_before_completion_execution": [
+    {
+      "task": "full_reference_program",
+      "scope": "All 2113 required Reference rows remain required:248 callable-unverified,296 in progress,1569 not started,0 verified. Current six packed producers are uncommitted and not promoted. Missing130 source-selected extra-precision definitions, recorded provider failures, wider profiles and final P11 gates remain open; mixed/PT/DMD milestones are not restarted."
+    },
+    {
+      "task": "owner_provenance",
+      "scope": "Amended external-provider packet380a8792 and unchanged proposed notice9ebeaf30 pending explicit owner/reviewer decision; separate from completed native/I/O technical acceptance."
+    },
+    {
+      "task": "robust_ppsvx_wider_provider_admission",
+      "scope": "Full Clang/provider, shared, macOS and Windows provider admission remains unexecuted/unadmitted; no blanket guard removal. This does not block the verified limited Linux GNU11 static experimental integration."
+    }
+  ],
+  "historical_independent_work_before_completion_execution": [
+    "Extend all LU layouts using the integrated ASC-sized layout-conversion workspace correction; all foreign-work roles retain ABI bounds",
+    "Complete remaining P04 LU-family bindings including all actual S/D/C/Z modes",
+    "Close P02/P03 machine-readable coverage and remaining platform evidence without attributing older tests to newer code",
+    "Native Cholesky/HouseholderQR and complete provider P05-P09 after prerequisites",
+    "Full P11 platform/docs/provenance/profile evidence; no scope reduction",
+    "Close P10 final exact mode/evidence ledger and required platforms; required native Matrix Market paths already pass integrated tests"
+  ],
+  "historical_current_delivery_before_completion_execution": {
+    "family": "aasen_two_stage_driver_6",
+    "implementation_parent": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
+    "state": "Integrated and pushed at bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2; required numerical gates remain failed. Packed producer continuation is active.",
+    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md",
+    "local_handoff": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-profile-recovery-01/latest-handoff.json",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-final-audit/audit.json",
+    "audit_sha256": "124e27e6a513485f7bdadd77aa0c231e5dd70ba5578363ce0183e79e6abd4e76",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-delivery/commit.txt",
+    "canonical_processes": 552,
+    "passing_processes": 468,
+    "required_failed_processes": 84,
+    "unexpected_skips": 0,
+    "reviewed_contracts": 6,
+    "reviewed_modes": 144,
+    "callable_routes": 6,
+    "next_family": "P05.required.hptrf",
+    "previous_hosted_product": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
+    "previous_hosted_scope": "Parent two-stage consumer general CI/CodeQL succeed. Four1506-process selected profiles retain six new consumer range failures and all earlier failures:LP64 passes1299/fails207,ILP64 passes1303/fails203,zero skips,provider111/111. Feature alerts3244 include unchanged12 security findings; all45 new notes read and retained. No hosted credit for dirty drivers or independently attested PR merge tree."
+  },
+  "completion_execution": {
+    "plan": "programs/lapack-array-io/completion-plan-2026-09-13.md",
+    "state": "packed_engineering_checkpoint_complete_full_program_incomplete",
+    "scope": "User authorized executing the complete plan and recording/defering unresolved trouble while independent required work continues. Failed tests are not converted to skips or successes.",
+    "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
+    "m0": "Current artifact bindings, generator ownership, seven packed interface dependencies and active pointers are reconciled. Remaining families require individual dependency review before execution.",
+    "packed_debug_before_concurrency": {
+      "lp64": {
+        "executed": 43,
+        "passed": 31,
+        "failed": 12,
+        "skipped": 0
+      },
+      "ilp64": {
+        "executed": 43,
+        "passed": 31,
+        "failed": 12,
+        "skipped": 0
+      }
+    },
+    "packed_concurrency_initial": "Six Debug LP64 scalar/symmetry processes pass with24 groups,4 workers,8 repeats each; serial independent reconstruction, private storage/reports and concurrent stale-plan rejection.",
+    "ci_selector_fix": "Prior regex omitted indefinite_packed while requiring43 packed IDs; both actual listing/execution selectors now include the family and all49 IDs, pending full selector validation.",
+    "updated_utc": "2026-09-13T16:28:39.096797+00:00",
+    "m0_pending": "Review remaining family prerequisites at each implementation boundary; no generic foundation-only task is marked dependency-reviewed.",
+    "current_counts": {
+      "required": 2113,
+      "excluded": 1438,
+      "mapped_contracts": 294,
+      "callable_reference": 254,
+      "verified_reference": 0,
+      "callable_native": 20,
+      "verified_native": 20,
+      "blocked_reference": 0,
+      "not_started_reference": 1563,
+      "in_progress_reference": 296,
+      "incomplete_reference": 1859,
+      "implemented_unverified_reference": 254,
+      "implemented_unverified_native": 0,
+      "discovered": 3551,
+      "profile_complete": false
+    }
+  },
+  "historical_active_verification_before_completion_execution": {
+    "candidate": "master-continuation-20260910-01/continuation-20260912-01/packed-indefinite-prerequisite-01/containment-recovery-01",
+    "state": "bounded_repair_complete_required_provider_gates_failed",
+    "scope": "172 current static Release/ASC-ASan+UBSan processes across both actual ABIs:124pass,48requiredfail,0skip. Eight strict TUs, four standalone headers, six architecture processes and Doxygen/link checks pass. Foreign LAPACK/BLAS is uninstrumented. Complete producer and programme admission remains pending."
+  },
+  "historical_next_command_before_completion_execution": "python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/packed-indefinite-prerequisite-01/containment-recovery-01/run_checks.py debug lp64 01",
+  "historical_delivery_before_packed_checkpoint": {
+    "family": "aasen_two_stage_driver_6",
+    "implementation_parent": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
+    "state": "Integrated and pushed at bfc95f44ff1e6ace5dfa39e05a75ba52b98203e2; required numerical gates remain failed. Packed producer continuation is active.",
+    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-driver-review.md",
+    "local_handoff": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-profile-recovery-01/latest-handoff.json",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-final-audit/audit.json",
+    "audit_sha256": "124e27e6a513485f7bdadd77aa0c231e5dd70ba5578363ce0183e79e6abd4e76",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-driver-delivery/commit.txt",
+    "canonical_processes": 552,
+    "passing_processes": 468,
+    "required_failed_processes": 84,
+    "unexpected_skips": 0,
+    "reviewed_contracts": 6,
+    "reviewed_modes": 144,
+    "callable_routes": 6,
+    "next_family": "P05.required.hptrf",
+    "previous_hosted_product": "d58b8c315ddcf8d5e07bc544fb8cb35a861474f1",
+    "previous_hosted_scope": "Parent two-stage consumer general CI/CodeQL succeed. Four1506-process selected profiles retain six new consumer range failures and all earlier failures:LP64 passes1299/fails207,ILP64 passes1303/fails203,zero skips,provider111/111. Feature alerts3244 include unchanged12 security findings; all45 new notes read and retained. No hosted credit for dirty drivers or independently attested PR merge tree."
   }
 }

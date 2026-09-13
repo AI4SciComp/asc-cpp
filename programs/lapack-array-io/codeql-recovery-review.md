@@ -126,3 +126,31 @@ ILP64 1,064 passes/163 required failures, with zero skips. Failure sets exactly
 match the prior condition delivery plus 31 required inverse gates; upstream
 provider tests pass 111/111 each. This closes the unavailable-log uncertainty
 for that push run while retaining every numerical and CodeQL alert failure.
+
+
+## Completion-plan execution at bfc95f4
+
+The new explicit feature-branch API read finds 3,277 open alerts, including the
+same four critical and eight high findings (twelve branch security alerts,
+separate from the PR gate's nine reported security findings). All twelve source
+locations were reread. The existing bounded-fixture and intended-API analysis
+above still applies: 64-bit mmap array lifetime/indices, deliberate byte-offset
+rejections, explicit byte workspace partitions, caller-selected local paths,
+and the bounded benchmark oracle. No new confirmed production defect was
+identified in these twelve findings. This is a source-review result, not
+CodeQL gate approval or a guarantee about unrelated code.
+
+The current raw alert response, exact source hashes and excerpts are preserved
+under `completion-execution-01/current-codeql-alerts.json` and
+`completion-execution-01/codeql-security-source-review.json` in the existing
+continuation evidence root. The separate failed push Analyze job remains an
+unresolved execution/hosted-service diagnosis; the previous audit retained its
+complete failed-job log and annotations, which do not identify a concrete
+source compilation failure. No unchanged hosted workflow is rerun merely to
+obtain another result.
+
+Under the user's instruction to record unresolved trouble and move forward,
+this analyzer/owner-disposition gate is deferred while independent numerical
+and delivery work continues. No alert is dismissed, query suppressed, public
+path contract restricted, or required test weakened. Final security acceptance
+remains open.

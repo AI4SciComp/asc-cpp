@@ -1,0 +1,34 @@
+#ifndef ASC_TESTS_DENSE_LAPACK_INDEFINITE_PACKED_FAULTS_H_
+#define ASC_TESTS_DENSE_LAPACK_INDEFINITE_PACKED_FAULTS_H_
+#include <cstddef>
+#include <cstdint>
+namespace asc_packed_indefinite_fault_test {
+enum class Fault : std::uint8_t {
+  kPass,
+  kOmitInfo,
+  kWrite32BitInfo,
+  kNegativeInfo,
+  kOutOfRangeInfo,
+  kOmitPivots,
+  kWrite32BitPivots,
+  kOmitLastPivot,
+  kZeroPivot,
+  kLargePositivePivot,
+  kLargeNegativePivot,
+  kWrongDirection,
+  kUnpairedEdge,
+  kUnequalPair,
+  kWrongPairDirection,
+  kNonzeroPartial,
+  kNanPartial,
+  kMatrixPrefix,
+  kMatrixSuffix,
+  kPivotPrefix,
+  kPivotSuffix,
+};
+void SetFault(Fault fault);
+std::size_t Calls();
+std::int64_t LastNativeInfo();
+std::int64_t LastInjectedInfo();
+}  // namespace asc_packed_indefinite_fault_test
+#endif  // ASC_TESTS_DENSE_LAPACK_INDEFINITE_PACKED_FAULTS_H_
