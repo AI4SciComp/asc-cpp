@@ -105,6 +105,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_indefinite_aasen_two_stage_driver.h
   include/asc/dense/providers/lapack_indefinite_packed.h
   include/asc/dense/providers/lapack_indefinite_packed_inverse.h
+  include/asc/dense/providers/lapack_indefinite_packed_condition.h
   include/asc/dense/providers/lapack_indefinite_packed_solve.h
   include/asc/dense/providers/lapack_indefinite_rook.h
   include/asc/dense/providers/lapack_indefinite_rook_condition.h

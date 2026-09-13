@@ -1,3 +1,32 @@
+## 2026-09-14: packed condition engineering checkpoint
+
+Six checked SPCON/HPCON APIs and 24 reviewed triangle/layout modes are
+implemented_unverified. Accounting is 2,113 required Reference rows, 272
+callable-unverified, 296 in progress, 1,545 not started, 312 reviewed contracts
+and zero verified Reference rows. Native20 and accepted array-I/O remain intact.
+
+The final sixteen profiles select 552 processes: 480 pass, 72 mandatory range
+mathematical failures, zero skips. All four TSan profiles pass 6/6. Four relocated
+consumers each pass 576 producer/condition workflows. Ten strict TUs, two 648-case
+emitted-ABI probes, four standalone headers, ten package manifests, three
+architecture checks, source/four installed surfaces, twelve added/zero removed
+symbols per ABI, actual CI selection 1741 including all44 condition tests, and
+Doxygen162/2753 pass. See the [condition review](indefinite-packed-condition-review.md)
+and external `completion-execution-01/packed-condition-final-audit.json`.
+Original failures, corrections, sources, providers and binary identities remain
+preserved. No test, numerical requirement or inventory denominator is weakened.
+
+The pushed inverse head `32ef513187a11d69352d948ad1e9f6c878e492ff` passes both
+hosted general CI runs 19/19 and all CodeQL analysis jobs. Both selected-LAPACK
+workflows and the security-alert gate remain failing. Those runs do not admit
+the newer condition candidate or close any existing alert.
+
+Continue `P05.required.hprfs`. Six exact refinement source instances, twelve
+actual GNU declarations and both 1,296-case guarded native prerequisites pass
+in `packed-refinement-source-review-01`, `packed-refinement-emissions-01` and
+`packed-refinement-native-01-{lp64,ilp64}`. Implement the checked API and full
+maintained acceptance gates next. This delivery does not finish the programme.
+
 ## 2026-09-14: packed inverse engineering checkpoint
 
 Six checked SPTRI/HPTRI APIs and 24 reviewed triangle/layout modes are

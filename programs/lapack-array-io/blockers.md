@@ -8,7 +8,9 @@ The matching solve checkpoint adds six callable-unverified rows and 48
 reviewed modes; 552 runs retain 72 required range failures, with 480
 passes and zero skips. The inverse checkpoint adds six callable-unverified rows and 24 reviewed
 modes: 552 runs retain 48 required complex range failures, with 504 passes
-and zero skips. Work advances to `P05.required.hpcon`.
+and zero skips. The condition checkpoint adds six callable-unverified rows and 24 reviewed
+modes: 552 runs retain 72 required range failures, with 480 passes and zero
+skips. Work advances to `P05.required.hprfs`.
 
 Packed range/native endpoint failures, current security findings, provider and
 XBLAS decisions, notices and missing platform acceptance remain unresolved.
@@ -16,6 +18,17 @@ The user permits recording unresolved trouble and advancing independent work;
 this does not promote blocked rows or turn failed tests into skips/passes.
 Remaining P00–P11 requirements retain their original scope. Use current state
 and family reviews before following historical next-task prose below.
+
+## PACKED-INDEFINITE-CONDITION-RANGE — required finite-input gate unmet
+
+All six SPCON/HPCON variants fail the maintained mathematical range test on
+admitted finite tiny inputs with exact reciprocal condition number 1. At
+min-normal/8, scalar native estimates return 0 and paired blocks can produce
+NaN; additional complex paired cases return 0. Raw native fidelity passes.
+The sixteen-profile matrix retains 72 mandatory failures across 552 processes,
+with 480 passes and zero skips; all four TSan profiles pass6/6. See the
+[condition review](indefinite-packed-condition-review.md). Record the limitation
+and advance packed refinement without changing the provider or a requirement.
 
 ## PACKED-INDEFINITE-INVERSE-RANGE — required finite-inverse gate unmet
 

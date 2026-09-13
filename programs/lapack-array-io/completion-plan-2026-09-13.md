@@ -435,3 +435,15 @@ refinement and driver families. Condition sources, actual emitted signatures
 and guarded native prerequisites are already recorded. Provider/numerical,
 security, XBLAS, platform and notice decisions remain open; this checkpoint
 does not complete the whole assignment.
+
+
+**Packed condition checkpoint — 2026-09-14**
+
+Six SPCON/HPCON routes and 24 reviewed modes are callable-unverified. Sixteen
+profiles retain 72 mandatory range failures alongside 480 passes and no skips.
+Four relocated consumers and scoped P11 engineering checks pass. Accounting
+advances to 272 callable-unverified rows and 312 reviewed contracts, with zero
+verified Reference rows; the 2,113 denominator and Native20 remain unchanged.
+Continue six SPRFS/HPRFS refinement routes, then dependency-ready packed drivers.
+Exact sources, actual GNU emissions and guarded native prerequisites are ready.
+Provider/numerical, security, XBLAS, platform and notice gates remain open.
