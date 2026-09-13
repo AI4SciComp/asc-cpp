@@ -10,16 +10,16 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "cb05d524f2dfea67de9d42185c7b975549496642",
+  "current_base_commit": "80e1d01576b92a799541901c9a0fd73f90db26f2",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "cb05d524f2dfea67de9d42185c7b975549496642",
+  "last_implementation_commit": "80e1d01576b92a799541901c9a0fd73f90db26f2",
   "worktree_diff_identity": {
-    "state": "aasen_drivers_ready_after_evidence",
-    "base_commit": "cb05d524f2dfea67de9d42185c7b975549496642",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-driver-final-audit/audit.json",
-    "scope": "Six named native Aasen drivers; original A/output pivots, zero-RHS factorization, caller scalar/native INTEGER/packing, checked final WORK/INFO/singular witnesses. Pinned provider/native20/experimental RobustPpsvx unchanged."
+    "state": "two_stage_aasen_producers_ready_after_evidence",
+    "base_commit": "80e1d01576b92a799541901c9a0fd73f90db26f2",
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-final-audit/audit.json",
+    "scope": "Original selected A, persistent caller TB, two native pivot arrays; caller scratch/packing, checked block width/INFO/pivots/singular witnesses. Pinned provider, Native20 and experimental RobustPpsvx unchanged."
   },
   "packages": {
     "P00": {
@@ -1392,13 +1392,19 @@
     },
     "P05.required.hesv_aa": {
       "state": "implemented_unverified",
-      "next_action": "Review exact six SYSV_AA/HESV_AA native signatures, workspace query closure and positive singular output validity; implement checked named drivers using the existing producer/solve infrastructure, then execute their finite actual ABI/public/profile delivery.",
+      "next_action": "Integrated at 80e1d01576b92a799541901c9a0fd73f90db26f2; retain required failures and continue two-stage producer prerequisite.",
       "scope": "Six checked named Aasen drivers,12public declarations/192modes. Engineering passes; AASEN-SOLVE-RANGE and AASEN-EMPTY-WORK retain required mathematical/query/native empty STOP failures.",
       "current_evidence": "programs/lapack-array-io/indefinite-aasen-driver-review.md"
+    },
+    "P05.required.hetrf_aa_2stage": {
+      "state": "implemented_unverified",
+      "next_action": "Engineering and finite numerical delivery are terminal; finish owned commit/push/draft47 update, then continue P05.required.hetrs_aa_2stage. Retain required GBTRF/GBTF2 range and optimal TB-query failures.",
+      "current_evidence": "programs/lapack-array-io/indefinite-aasen-two-stage-review.md",
+      "scope": "Six checked named two-stage Aasen producers, twelve public declarations and 216 modes. Engineering passes; tiny-scale GBTRF/GBTF2 factor reconstruction and AASEN-TWO-STAGE-TB-QUERY remain required failures."
     }
   },
-  "active_task": "P05.required.hesv_aa",
-  "next_action": "Complete owned Aasen driver staged review, normal feature commit/push and draft PR update, then continue the exact six two-stage Aasen producers before their consumers/drivers. Review TB storage/workspace-query closure, both output pivot provenances and actual native dependency signatures. Keep all existing required numerical and owner gates visible.",
+  "active_task": "P05.required.hetrf_aa_2stage",
+  "next_action": "Complete owned two-stage producer staged review, normal feature commit/push and draft47 update, then implement the six exact two-stage Aasen consumers and their drivers from the live backlog. Preserve exact same-origin A/TB/both pivots and original LTB. Keep required numerical/native query and all owner gates visible.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1839,16 +1845,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 270,
-    "callable_reference": 230,
+    "mapped_contracts": 276,
+    "callable_reference": 236,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1587,
+    "not_started_reference": 1581,
     "in_progress_reference": 296,
-    "incomplete_reference": 1883,
-    "implemented_unverified_reference": 230,
+    "incomplete_reference": 1877,
+    "implemented_unverified_reference": 236,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2109,10 +2115,10 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "candidate": "aasen-driver-delivery",
-    "state": "engineering_passed_required_mathematical_workspace_and_empty_call_gates_failed",
-    "review": "programs/lapack-array-io/indefinite-aasen-driver-review.md",
-    "scope": "16finite Linux actualABI/static/shared profiles:600canonical processes,492pass,108requiredfailures,0skip. No broader admission or full Reference verification."
+    "candidate": "aasen-two-stage-delivery",
+    "state": "engineering_passed_required_mathematical_and_native_workspace_gates_failed",
+    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-review.md",
+    "scope": "Sixteen finite Linux actual ABI/static/shared profiles: 552 processes, 468 pass, 84 required failures, zero skips. No broader admission or full Reference verification."
   },
   "last_completed_verification": {
     "candidate": "ppsvx-robust-integration-01",
@@ -2612,14 +2618,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P05.required.hetrf_aa_2stage",
+  "next_task": "P05.required.hetrs_aa_2stage",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Inspect aasen-driver-delivery and same rk-inverse-profile-recovery-01/latest-handoff.json; finish pending owned commit/push, then execute P05.required.hetrf_aa_2stage from the regenerated live backlog and pinned inventory. No new task prompt is needed.",
+  "next_command": "Inspect aasen-two-stage-delivery and the same rk-inverse-profile-recovery-01/latest-handoff.json; finish any pending owned commit/push, then execute P05.required.hetrs_aa_2stage using the regenerated backlog, pinned signatures and two-stage producer review. No new task prompt is needed.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4172,24 +4178,24 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "aasen_driver_6",
-    "implementation_parent": "cb05d524f2dfea67de9d42185c7b975549496642",
+    "family": "aasen_two_stage_producer_6",
+    "implementation_parent": "80e1d01576b92a799541901c9a0fd73f90db26f2",
     "state": "ready_for_owned_feature_commit; required provider gates remain failed; FULL_PROGRAM_INCOMPLETE",
-    "review": "programs/lapack-array-io/indefinite-aasen-driver-review.md",
+    "review": "programs/lapack-array-io/indefinite-aasen-two-stage-review.md",
     "local_handoff": "master-continuation-20260910-01/continuation-20260912-01/rk-inverse-profile-recovery-01/latest-handoff.json",
-    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-driver-final-audit/audit.json",
-    "audit_sha256": "54bd803a7c940a6ef06761fb4c6fb0d0b82a6fc56d65eb016585f5dc5e88c578",
-    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/aasen-driver-delivery/commit.txt",
-    "canonical_processes": 600,
-    "passing_processes": 492,
-    "required_failed_processes": 108,
+    "audit": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-final-audit/audit.json",
+    "audit_sha256": "3d3b9046a40cdf2be4aa18ad6c4e126c35ae8622fbd62c963c8be0acf4aa3138",
+    "commit_record": "master-continuation-20260910-01/continuation-20260912-01/aasen-two-stage-delivery/commit.txt",
+    "canonical_processes": 552,
+    "passing_processes": 468,
+    "required_failed_processes": 84,
     "unexpected_skips": 0,
     "reviewed_contracts": 6,
-    "reviewed_modes": 192,
+    "reviewed_modes": 216,
     "callable_routes": 6,
-    "next_family": "P05.required.hetrf_aa_2stage",
-    "previous_hosted_product": "cb05d524f2dfea67de9d42185c7b975549496642",
-    "previous_hosted_scope": "GeneralCI and CodeQL succeed on parent solve commit. Four actual1365-process selected profiles retain exactly five new solve gates and all prior failures; LP64has185failures,ILP64has181,0skip,provider111/111each. Explicit feature/PR alerts3152open including same12security;44new descriptor notes read and retained. No hosted driver-tree credit."
+    "next_family": "P05.required.hetrs_aa_2stage",
+    "previous_hosted_product": "80e1d01576b92a799541901c9a0fd73f90db26f2",
+    "previous_hosted_scope": "Parent driver general CI and CodeQL succeed. Four actual 1,415-process selected profiles retain exactly nine new driver failures and all earlier failures; LP64 passes 1,221/fails 194, ILP64 passes 1,225/fails 190, zero skips, provider 111/111. Explicit feature alerts 3,184 including the same 12 security findings; all 32 new notes read and retained. No hosted credit for dirty two-stage code."
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",

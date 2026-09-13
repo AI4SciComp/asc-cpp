@@ -438,3 +438,32 @@ count both solution routes; this is not a new arithmetic cause. Producer
 `AASEN-FACTOR-RANGE` failures remain prerequisite limitations, with their exact
 source-bound reproductions retained instead of repeating that unchanged sweep.
 No additional remediation is authorized by these driver results.
+
+### AASEN-TWO-STAGE-TB-QUERY
+
+The current two-stage producer probes identify a separate optimal-workspace
+rounding case in CSYTRF_AA_2STAGE. At N=30001, its TB query converts the exact
+577*N=17,310,577 to float without upward rounding, returning 17,310,576.
+That allocation gives LDTB=576 and NB=191 instead of the preferred NB=192.
+Both triangles and TB-only/both queries fail the optimal-capacity requirement:
+four failed assertions per actual ABI in the separate 288-case query probe.
+The native minimum still fits; this finding does not establish a memory access
+defect or a mathematical factorization failure. Both 972-case factorization
+and independent reconstruction probes pass. See the
+[two-stage review](indefinite-aasen-two-stage-review.md#finite-prerequisite-evidence).
+
+This extends the current provider workspace decision packet. A separately
+reviewed provider correction would need to round the CSYTRF_AA_2STAGE TB
+recommendation upward, with both ABI/query regressions and an explicit provider
+identity decision. Retaining the exact current provider retains this failed
+requirement. Neither provider adoption nor a waiver is approved here; checked
+integer metadata and independent family development continue.
+
+The two-stage producers also reach the already recorded GBTRF/GBTF2
+reciprocal-before-SCAL cause. Each actual ABI retains six failed range processes
+and 13,824 nonfinite-reconstruction assertions over the finite 512-case matrix
+per scalar class. Identity N=2/7 and zero-diagonal nonsingular N=2 blocks fail
+at twice denorm-min, min-normal/1024 and min-normal/8; scalar N=1 and all larger
+controls pass. Native fidelity passes in all six classes. These extend the
+[existing band-LU decision](#gbtrfgbtrs-range-distinction), not the TB query
+rounding cause. No fresh provider strategy or waiver is authorized.

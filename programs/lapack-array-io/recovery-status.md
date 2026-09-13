@@ -1,3 +1,54 @@
+## 2026-09-13: Two-stage Aasen producers ready for feature integration
+
+Branch `feature/lapack-array-io`, pushed parent
+`80e1d01576b92a799541901c9a0fd73f90db26f2`. Inspect actual git and
+`aasen-two-stage-delivery/commit.txt` for the delivery commit. All three user
+instruction files, prior milestones and raw failures remain preserved.
+The full P00–P11 programme remains incomplete.
+
+Six SYTRF_AA_2STAGE/HETRF_AA_2STAGE producers add twelve public declarations
+and 216 reviewed modes. They factor original selected symmetric/HE A using
+persistent caller TB and two output pivot arrays. Independent TB/WORK
+capacities choose the actual block width. Queries are metadata-only and empty
+checked calls do not enter the provider. Caller native INTEGER lifetimes,
+packing, source counts/strides/aliases and INFO/both pivots/block width/singular
+band-diagonal witnesses are checked. Consistent singularity publishes factors
+and pivots with documented partial validity. Existing factor factories stay
+unchanged; retain same-origin A/TB/pivots, triangle/symmetry and exact LTB.
+
+Sixteen profiles execute 552 processes: 468 pass, 84 required failures, zero skips.
+Twelve Release/Debug/ASC-ASan+UBSan profiles pass 37/44 each; four TSan profiles
+pass 6/6 each. Required tiny-scale nonfinite reconstructions reproduce the
+existing GBTRF/GBTF2 reciprocal-overflow cause in all six scalar classes:
+165,888 mathematical assertions across the twelve normal profiles. Native
+CSYTRF_AA_2STAGE optimal TB queries round down at N=30001, reducing NB 192 to 191;
+48 required query assertions remain failed. Minimum TB capacity still fits.
+All ordinary reconstruction/native fidelity, range fidelity and larger-scale
+controls pass. Neither provider changes nor numerical waivers are inferred.
+
+Four relocated installed consumers each pass 864 reconstruction cases.
+Eighteen strict translation units, 1,944 emitted-ABI cases, four standalone
+headers, twelve new/zero removed exports per ABI, ten package and three
+architecture checks pass. CI selection includes 1,461 tests; Doxygen covers
+156 headers and 2,681 members without warnings. Final Release libraries match
+the installed products. Initial HE fidelity signed-zero oracle failures and
+strict repairs remain preserved with exact sources and raw results.
+
+Parent driver hosted CI and CodeQL succeed. Four selected profiles each execute
+1,415 tests without skips: LP64 passes 1,221/fails 194; ILP64 passes 1,225/fails 190.
+Exactly nine new driver gates join all retained prior failures; provider checks
+pass 111/111. Source-bound artifacts are in
+`aasen-two-stage-remote-01/hosted-followup`. Explicit feature CodeQL alerts total
+3,184 open, including the same twelve security findings; all 32 new notes were
+read and remain open. No security closure or hosted two-stage credit is inferred.
+
+Current required rows: 2,113; reviewed contracts 276; Reference callable-
+unverified 236; partial 296; not-started 1,581; verified 0. Native operations remain
+20/20, with experimental RobustPpsvx separate. Finish owned commit/push/PR update
+if pending, then continue `P05.required.hetrs_aa_2stage`, its drivers and the
+other ready programme rows. Use the same latest handoff and producer review
+for exact next actions; no single-family prompt is needed.
+
 ## 2026-09-13: Aasen drivers ready for feature integration
 
 Branch `feature/lapack-array-io`, pushed parent `cb05d524f2dfea67de9d42185c7b975549496642`.

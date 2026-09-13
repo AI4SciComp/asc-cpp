@@ -313,6 +313,15 @@ jobs:
           required.add("asc_cpp.dense_lapack.indefinite_aasen_driver_workspace.contract")
           required |= {f"asc_cpp.dense_lapack.indefinite_aasen_driver_empty.c.{triangle}.{rhs}"
                        for triangle in ("U", "L") for rhs in (0, 3)}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_two_stage{suite}.{scalar}.{mode}"
+                       for suite in ("", "_range")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")
+                       for mode in ("mathematical", "fidelity")}
+          required |= {f"asc_cpp.dense_lapack.indefinite_aasen_two_stage{suite}.{scalar}"
+                       for suite in ("_fault", "_validation", "_concurrency")
+                       for scalar in ("s", "d", "c", "z", "ch", "zh")}
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_two_stage_abi_probe")
+          required.add("asc_cpp.dense_lapack.indefinite_aasen_two_stage_workspace.contract")
           missing = required - selected
           if missing:
               raise SystemExit("Missing configured family tests: " + str(sorted(missing)))
