@@ -30,8 +30,10 @@ PACKED_PREREQUISITES = {
 # LASRT source/stack and NaN ordering are reviewed in scalar-sort-review.md.
 # TRTTP/TPTTR source/ABI and layout copies are reviewed in
 # triangular-storage-conversion-review.md.
+# LAPMR/LAPMT LOGICAL and permutation validation are reviewed in
+# matrix-permutation-review.md.
 REVIEWED_AUXILIARY_FAMILIES = {
-    '_lat2_', 'lacgv', 'lapy2', 'lapy3', 'lasrt', 'trttp', 'tpttr'
+    '_lat2_', 'lacgv', 'lapy2', 'lapy3', 'lasrt', 'trttp', 'tpttr', 'lapmr', 'lapmt'
 }
 
 

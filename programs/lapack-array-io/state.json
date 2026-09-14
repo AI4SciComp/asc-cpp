@@ -10,11 +10,11 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "fe67c54b6cce1eadb7e3916e5f14b66050012643",
+  "current_base_commit": "6622af01ef31e8622540cf3a7c0892f317516f8c",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "fe67c54b6cce1eadb7e3916e5f14b66050012643",
+  "last_implementation_commit": "6622af01ef31e8622540cf3a7c0892f317516f8c",
   "worktree_diff_identity": {
     "state": "scalar_sort_local_checks_complete_commit_pending",
     "base_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4",
@@ -1481,7 +1481,7 @@
     }
   },
   "active_task": "P09.required.lapmr",
-  "next_action": "Review LAPMR/LAPMT sources and actual LOGICAL/integer ABI; execute bounded valid permutation prerequisites before checked row/column permutation adapters.",
+  "next_action": "After finishing the current permutation checkpoint, reject all numeric/workspace overlap with live metadata before StartReport for both GETRF and GETRS. Add typed no-entry bounded metadata tests, preserve valid numerical behavior and existing failures; update documented report-reset exception and evidence consumers atomically.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1922,16 +1922,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 336,
-    "callable_reference": 296,
+    "mapped_contracts": 344,
+    "callable_reference": 304,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1521,
+    "not_started_reference": 1513,
     "in_progress_reference": 296,
-    "incomplete_reference": 1817,
-    "implemented_unverified_reference": 296,
+    "incomplete_reference": 1809,
+    "implemented_unverified_reference": 304,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2714,7 +2714,7 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.lapmr",
+  "next_task": "P04.reference_lu.metadata_preflight",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
@@ -4274,18 +4274,21 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "TRTTP/TPTTR triangular storage conversions",
-    "implementation_parent": "fe67c54b6cce1eadb7e3916e5f14b66050012643",
-    "state": "local_checks_complete_commit_pending",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/triangular-storage-final-audit.json",
-    "selected_processes": 176,
-    "passing_processes": 176,
-    "required_failed_processes": 0,
-    "unexpected_skips": 0,
-    "reviewed_contracts": 8,
-    "reviewed_modes": 64,
-    "new_callable_routes": 8,
-    "next_family": "P09.required.lapmr and P09.required.lapmt"
+    "family": "LAPMR/LAPMT matrix permutations",
+    "status": "local_validation_and_index_complete",
+    "source_parent_commit": "6622af01ef31e8622540cf3a7c0892f317516f8c",
+    "reference_rows": 8,
+    "reviewed_modes": 32,
+    "selected_local_tests": 176,
+    "passed_local_tests": 176,
+    "skipped_local_tests": 0,
+    "native_prerequisite_cases_each_abi": 254976,
+    "installed_consumers": 4,
+    "installed_cases_each": 169984,
+    "strict_translation_units_passed": 6,
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-permutation-final-audit.json",
+    "scope": "Ordinary local validation only; all deferred admission and previous failures remain open. No Reference verification granted.",
+    "next_action": "After finishing the current permutation checkpoint, reject all numeric/workspace overlap with live metadata before StartReport for both GETRF and GETRS. Add typed no-entry bounded metadata tests, preserve valid numerical behavior and existing failures; update documented report-reset exception and evidence consumers atomically."
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4548,16 +4551,16 @@
     "current_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 336,
-      "callable_reference": 296,
+      "mapped_contracts": 344,
+      "callable_reference": 304,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1521,
+      "not_started_reference": 1513,
       "in_progress_reference": 296,
-      "incomplete_reference": 1817,
-      "implemented_unverified_reference": 296,
+      "incomplete_reference": 1809,
+      "implemented_unverified_reference": 304,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -4803,7 +4806,29 @@
         "passed": 176,
         "failed": 0,
         "skipped": 0
-      }
+      },
+      "commit": "6622af01ef31e8622540cf3a7c0892f317516f8c"
+    },
+    "matrix_permutation": {
+      "prerequisite": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-permutation-prerequisite-01.json",
+      "initial04_results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-permutation-initial04-results.json",
+      "strict02_results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-permutation-strict-02/results.json",
+      "installed_strict01": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-permutation-installed-strict-01/record.json",
+      "coverage_credit": 0,
+      "status": "local_validation_and_index_complete",
+      "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-permutation-final-audit.json",
+      "reviewed_contracts": 8,
+      "reviewed_modes": 32,
+      "callable_rows_added": 8
+    },
+    "reference_lu_metadata_preflight": {
+      "review": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/reference-lu-metadata-preflight-review-01.json",
+      "status": "source_defect_identified_implementation_pending"
+    },
+    "complete_pivoting_prerequisite": {
+      "review": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-prerequisite-01.json",
+      "cases_each_abi": 2596,
+      "status": "bounded_native_prerequisite_passed_adapter_pending_after_shared_fix"
     }
   },
   "historical_active_verification_before_completion_execution": {
@@ -4897,5 +4922,6 @@
     "callable_routes": 2,
     "next_family": "P09.required.lasrt",
     "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
-  }
+  },
+  "updated_utc": "2026-09-14T16:23:46.726043+00:00"
 }
