@@ -127,6 +127,7 @@ set(_lapack_entries
   "dense_lapack|asc/dense/providers/lapack_mixed_positive.h"
   "dense_lapack|asc/dense/providers/lapack_precision_conversion.h"
   "dense_lapack|asc/dense/providers/lapack_scalar_norm.h"
+  "dense_lapack|asc/dense/providers/lapack_rotation.h"
   "dense_lapack|asc/dense/providers/lapack_vector_conjugation.h"
   "dense_lapack|asc/dense/providers/lapack_scalar_sort.h"
   "dense_lapack|asc/dense/providers/lapack_triangular_storage_conversion.h"
@@ -215,9 +216,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 169)
+if(NOT _all_header_count EQUAL 170)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 169 headers; got "
+    "Independent source-header oracle must contain 170 headers; got "
     "${_all_header_count}"
   )
 endif()
@@ -229,7 +230,7 @@ file(GLOB_RECURSE _source_headers
 list(SORT _source_headers)
 if(NOT "${_source_headers}" STREQUAL "${_all_headers}")
   message(FATAL_ERROR
-    "Source public-header tree differs from the frozen 168-header oracle.\n"
+    "Source public-header tree differs from the frozen 170-header oracle.\n"
     "Expected: ${_all_headers}\n"
     "Actual: ${_source_headers}"
   )

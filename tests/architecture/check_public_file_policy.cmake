@@ -49,6 +49,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_mixed_positive.h
   include/asc/dense/providers/lapack_precision_conversion.h
   include/asc/dense/providers/lapack_scalar_norm.h
+  include/asc/dense/providers/lapack_rotation.h
   include/asc/dense/providers/lapack_vector_conjugation.h
   include/asc/dense/providers/lapack_scalar_sort.h
   include/asc/dense/providers/lapack_triangular_storage_conversion.h
@@ -218,6 +219,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_precision_conversion.cc
   src/dense/lapack/reference_triangular_conversion.cc
   src/dense/lapack/reference_scalar_norm.cc
+  src/dense/lapack/reference_rotation.cc
   src/dense/lapack/reference_vector_conjugation.cc
   src/dense/lapack/reference_scalar_sort.cc
   src/dense/lapack/reference_triangular_storage_conversion.cc

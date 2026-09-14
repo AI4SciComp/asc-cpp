@@ -597,3 +597,21 @@ numerical gate requires an authorized provider correction or contract/profile
 decision. Under the user's instruction to record and skip unresolved trouble,
 this leaf is deferred while independent LACGV work proceeds. No provider change,
 fallback, tolerance waiver, disabled test or numerical promotion is introduced.
+
+## LARTG-COMPLEX-EXTREME-R — failed finite prerequisite, deferred
+
+C/Z LARTG remain unimplemented after bounded native extreme-range checks fail
+496 dimensional-result comparisons in each actual ABI. The original 16,456-case
+S/D/C/Z grid and expanded 22,984-case diagnostic retain the same failures, zero
+guard failures and no real-scalar failures. Complex outputs include infinite R
+components near maximum finite magnitude. For some norms the exact excess above
+maximum is too small for long double to resolve; the failed gate concerns finite
+rounded-output accuracy, not exact mathematical representability. Neither the
+input classes nor error tolerances were removed or relaxed.
+
+The [rotation review](rotation-review.md) records the source distinction and
+continued checked S/D work. Exact source, emissions, binaries, provider/runtime
+identities and failed commands are retained in external
+`completion-execution-01/lartg-prerequisite-disposition-01.json`. C/Z need a
+separate numerical/provider disposition. No provider patch, fallback, waiver,
+complex API credit or global verification is inferred from the real slice.

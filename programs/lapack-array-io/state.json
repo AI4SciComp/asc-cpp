@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "1a0a39a9c23d664e1cbfdc403a4d93d0797d2886",
+  "current_base_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "1a0a39a9c23d664e1cbfdc403a4d93d0797d2886",
+  "last_implementation_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
   "worktree_diff_identity": {
-    "state": "helpers_metadata_preflight_local_checks_complete_commit_pending",
-    "base_commit": "1a0a39a9c23d664e1cbfdc403a4d93d0797d2886",
-    "scope": "Metadata preflight correctness fix for existing in_progress routes; normalized helper contracts remain pending. Native20, historical executions, tiny LAQGE overflow and all earlier failures remain preserved."
+    "state": "real_rotation_local_checks_complete_commit_pending",
+    "base_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
   },
   "packages": {
     "P00": {
@@ -1258,8 +1258,8 @@
       "state": "in_progress",
       "owner": "integration",
       "backlog": "programs/lapack-array-io/remaining-reference-backlog.json",
-      "backlog_sha256": "f589f1c520ab4066167020f5a48bffe6429bdd394f8aead32ad8c4f0a78e35f0",
-      "scope": "All2113 required rows remain exactly once in568 tasks. Corrected PSTRF/PSTF2 ownership toP05 and TGSJA toP07; explicit seven-family packed interface dependencies prevent incorrect basic-driver/inverse ordering. Other family dependencies remain review_required before execution; source and verification states are unchanged.",
+      "backlog_sha256": "a21165a353ad74a31de30cd8a0c7ea3af9e1076e2d8de8047af79c8aed56b7cb",
+      "scope": "All2113 required rows remain exactly once in568 tasks. Corrected PSTRF/PSTF2 ownership toP05 and TGSJA toP07; explicit seven-family packed interface dependencies prevent incorrect basic-driver/inverse ordering. Other family dependencies remain review_required before execution; source and verification states are unchanged. LARTG reviewed interfaces and per-scalar route blockers are explicit; C/Z failures do not block independent S/D registration or alter the130 missing-provider-symbol rows.",
       "next_action": "Execute the dependency-ready family queue; normalize per-row historical mode/profile evidence without rerunning unchanged numerical failures."
     },
     "P09.extra_precision_provider_decision": {
@@ -1480,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P09.required.laswp",
-  "next_action": "Save the helper metadata-preflight checkpoint, then review four pinned LARTG definitions, existing reuse candidates and actual provider ABI prerequisites for checked rotation generation. Preserve all deferred gates and numerical failures.",
+  "active_task": "P09.required.lartg",
+  "next_action": "Save the checked real rotation checkpoint, then review existing reuse candidates, pinned S/D LARTGP definitions and actual ABI prerequisites. Retain C/Z LARTG and all earlier failures; avoid deferred risky operations.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1489,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "0c2b25b1f9a515786bf76da235411c9cfad4b17c472dbe58a15611d51a0c8ebf"
+    "coverage_mapping_sha256": "16f1bfc415336d778226980ab696c850c646a684529e8ba4799724e93462f314"
   },
   "provider": {
     "version": "3.12.1",
@@ -1922,16 +1922,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 352,
-    "callable_reference": 312,
+    "mapped_contracts": 354,
+    "callable_reference": 314,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1505,
+    "not_started_reference": 1503,
     "in_progress_reference": 296,
-    "incomplete_reference": 1801,
-    "implemented_unverified_reference": 312,
+    "incomplete_reference": 1799,
+    "implemented_unverified_reference": 314,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2208,6 +2208,17 @@
       "id": "PACKED-DRIVER-CONTAINMENT-DEFERRED",
       "scope": "Known producer endpoint corruption is observed; whole-driver continuation into TRS poses an unresolved containment question by source inspection. No deliberate whole-driver endpoint probe was run. Ordinary 1944-case prerequisites per ABI remain passing within their scope.",
       "record": "programs/lapack-array-io/blockers.md"
+    },
+    {
+      "id": "LARTG-COMPLEX-EXTREME-R",
+      "scope": "C/Z LARTG finite extreme-range prerequisites fail496 cases per actual ABI in both preserved original and expanded diagnostics; zero real-scalar/guard failures. Complex API deferred, real implementation continues. No numerical/provider waiver.",
+      "rows": [
+        "lapack.clartg",
+        "lapack.zlartg"
+      ],
+      "record": "programs/lapack-array-io/rotation-review.md",
+      "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lartg-prerequisite-disposition-01.json",
+      "disposition": "recorded_unresolved_advance_independent_work"
     }
   ],
   "external_approvals": [
@@ -2228,15 +2239,15 @@
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
     "state": "none_running",
-    "completed_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/helpers-metadata-preflight-final-audit.json"
+    "completed_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json"
   },
   "last_completed_verification": {
-    "family": "Reference LASWP/LAQGE metadata preflight",
-    "selected": 64,
-    "passed": 64,
+    "family": "Checked real SLARTG/DLARTG rotations",
+    "selected": 88,
+    "passed": 88,
     "skipped": 0,
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/helpers-metadata-preflight-final-audit.json",
-    "scope": "Metadata preflight correctness fix for existing in_progress routes; normalized helper contracts remain pending. Native20, historical executions, tiny LAQGE overflow and all earlier failures remain preserved."
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
   },
   "remote_checkpoint": {
     "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
@@ -2720,15 +2731,15 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.lartg",
+  "next_task": "P09.required.lartgp",
   "documentation_verification": {
-    "public_headers": 169,
-    "documented_public_members": 2833,
-    "explicit_programme_pages": 29,
+    "public_headers": 170,
+    "documented_public_members": 2835,
+    "explicit_programme_pages": 30,
     "warnings": 0,
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/helpers-metadata-preflight-documentation-01/audit/record.json"
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-documentation-02/audit/record.json"
   },
-  "next_command": "Run six checkpoint checks and commit only owned helper changes; then begin the bounded LARTG prerequisite review.",
+  "next_command": "Run final six checkpoint checks and commit only owned real rotation changes; then start bounded LARTGP prerequisite review.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4281,22 +4292,27 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "Reference LASWP/LAQGE metadata preflight",
+    "family": "Checked real SLARTG/DLARTG rotations",
     "status": "local_validation_and_index_complete_commit_pending",
-    "source_parent_commit": "1a0a39a9c23d664e1cbfdc403a4d93d0797d2886",
-    "reference_rows": 8,
-    "existing_normalized_modes": 0,
-    "selected_local_tests": 64,
-    "passed_local_tests": 64,
+    "source_parent_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
+    "reference_rows": 2,
+    "reviewed_modes": 2,
+    "selected_local_tests": 88,
+    "passed_local_tests": 88,
     "skipped_local_tests": 0,
-    "metadata_rejection_cases_each_scalar": 1040,
-    "ordinary_controls_each_scalar": 56,
+    "metadata_rejection_cases": {
+      "s": 222,
+      "d": 111
+    },
+    "native_cases_each_abi": 2050,
     "installed_consumers": 4,
-    "strict_translation_units_passed": 4,
-    "callable_rows_added": 0,
+    "installed_cases_each": 2050,
+    "strict_translation_units_passed": 7,
+    "callable_rows_added": 2,
     "verification_credit": 0,
-    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/helpers-metadata-preflight-final-audit.json",
-    "scope": "Metadata preflight correctness fix for existing in_progress routes; normalized helper contracts remain pending. Native20, historical executions, tiny LAQGE overflow and all earlier failures remain preserved."
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
+    "complex_disposition": "C/Z remain not_started; LARTG-COMPLEX-EXTREME-R carries496 preserved failed prerequisite comparisons perABI."
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4534,7 +4550,7 @@
   },
   "completion_execution": {
     "plan": "programs/lapack-array-io/completion-plan-2026-09-13.md",
-    "state": "helpers_metadata_preflight_local_checkpoint_continue_required",
+    "state": "real_rotation_local_checkpoint_continue_required",
     "scope": "User authorized executing the complete plan and recording/defering unresolved trouble while independent required work continues. Failed tests are not converted to skips or successes.",
     "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
     "m0": "Current artifact bindings, generator ownership, seven packed interface dependencies and active pointers are reconciled. Remaining families require individual dependency review before execution.",
@@ -4892,7 +4908,7 @@
     },
     "helpers_metadata_preflight": {
       "family": "Reference LASWP/LAQGE metadata preflight",
-      "status": "local_validation_and_index_complete_commit_pending",
+      "status": "committed_local_validation_and_index_complete",
       "source_parent_commit": "1a0a39a9c23d664e1cbfdc403a4d93d0797d2886",
       "reference_rows": 8,
       "existing_normalized_modes": 0,
@@ -4906,7 +4922,36 @@
       "callable_rows_added": 0,
       "verification_credit": 0,
       "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/helpers-metadata-preflight-final-audit.json",
-      "scope": "Metadata preflight correctness fix for existing in_progress routes; normalized helper contracts remain pending. Native20, historical executions, tiny LAQGE overflow and all earlier failures remain preserved."
+      "scope": "Metadata preflight correctness fix for existing in_progress routes; normalized helper contracts remain pending. Native20, historical executions, tiny LAQGE overflow and all earlier failures remain preserved.",
+      "commit": "b36e04fd03315ba7e931b849394c48754edf4103"
+    },
+    "lartg_prerequisite": {
+      "record": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lartg-prerequisite-disposition-01.json",
+      "real": "bounded finite native prerequisites passed; maintained checked S/D implementation in progress",
+      "complex": "C/Z extreme-range prerequisite failed, deferred; no credit or waiver"
+    },
+    "real_rotation_implementation": {
+      "family": "Checked real SLARTG/DLARTG rotations",
+      "status": "local_validation_and_index_complete_commit_pending",
+      "source_parent_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
+      "reference_rows": 2,
+      "reviewed_modes": 2,
+      "selected_local_tests": 88,
+      "passed_local_tests": 88,
+      "skipped_local_tests": 0,
+      "metadata_rejection_cases": {
+        "s": 222,
+        "d": 111
+      },
+      "native_cases_each_abi": 2050,
+      "installed_consumers": 4,
+      "installed_cases_each": 2050,
+      "strict_translation_units_passed": 7,
+      "callable_rows_added": 2,
+      "verification_credit": 0,
+      "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json",
+      "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
+      "complex_disposition": "C/Z remain not_started; LARTG-COMPLEX-EXTREME-R carries496 preserved failed prerequisite comparisons perABI."
     }
   },
   "historical_active_verification_before_completion_execution": {
@@ -5001,7 +5046,7 @@
     "next_family": "P09.required.lasrt",
     "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
   },
-  "updated_utc": "2026-09-14T18:26:51.928177+00:00",
+  "updated_utc": "2026-09-14T19:01:14.922082+00:00",
   "historical_delivery_before_complete_pivoting": {
     "family": "Reference GETRF/GETRS metadata preflight",
     "status": "committed_local_validation_and_index_complete",
@@ -5040,5 +5085,24 @@
     "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-final-audit.json",
     "scope": "Finite-component checked API, retained perturbed factor provenance and explicit SCALE; all old failures, Native20 and historical executions preserved. Required deferred admission remains open.",
     "commit": "1a0a39a9c23d664e1cbfdc403a4d93d0797d2886"
+  },
+  "historical_delivery_before_real_rotation": {
+    "family": "Reference LASWP/LAQGE metadata preflight",
+    "status": "committed_local_validation_and_index_complete",
+    "source_parent_commit": "1a0a39a9c23d664e1cbfdc403a4d93d0797d2886",
+    "reference_rows": 8,
+    "existing_normalized_modes": 0,
+    "selected_local_tests": 64,
+    "passed_local_tests": 64,
+    "skipped_local_tests": 0,
+    "metadata_rejection_cases_each_scalar": 1040,
+    "ordinary_controls_each_scalar": 56,
+    "installed_consumers": 4,
+    "strict_translation_units_passed": 4,
+    "callable_rows_added": 0,
+    "verification_credit": 0,
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/helpers-metadata-preflight-final-audit.json",
+    "scope": "Metadata preflight correctness fix for existing in_progress routes; normalized helper contracts remain pending. Native20, historical executions, tiny LAQGE overflow and all earlier failures remain preserved.",
+    "commit": "b36e04fd03315ba7e931b849394c48754edf4103"
   }
 }

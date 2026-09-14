@@ -75,6 +75,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_precision_conversion.cc
   reference_triangular_conversion.cc
   reference_scalar_norm.cc
+  reference_rotation.cc
   reference_vector_conjugation.cc
   reference_scalar_sort.cc
   reference_triangular_storage_conversion.cc
@@ -158,6 +159,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_mixed_positive.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_precision_conversion.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_scalar_norm.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_rotation.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_vector_conjugation.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_scalar_sort.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_storage_conversion.h"

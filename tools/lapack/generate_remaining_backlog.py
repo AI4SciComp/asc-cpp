@@ -37,8 +37,11 @@ COMPLETE_PIVOTING_PREREQUISITES = {'getc2': (), 'gesc2': ('getc2',)}
 # triangular-storage-conversion-review.md.
 # LAPMR/LAPMT LOGICAL and permutation validation are reviewed in
 # matrix-permutation-review.md.
+# LARTG scalar interfaces are reviewed in rotation-review.md; complex
+# numerical blockers remain separate from the reviewed interface prerequisites.
 REVIEWED_AUXILIARY_FAMILIES = {
-    '_lat2_', 'lacgv', 'lapy2', 'lapy3', 'lasrt', 'trttp', 'tpttr', 'lapmr', 'lapmt'
+    '_lat2_', 'lacgv', 'lapy2', 'lapy3', 'lasrt', 'trttp', 'tpttr', 'lapmr', 'lapmt',
+    'lartg'
 }
 
 
@@ -204,6 +207,22 @@ def generate(inventory, mapping, dependency_map):
             'evidence_references':
             reviews,
         }
+        # A numerical/resource blocker may affect only one scalar in a family.
+        # Keep it distinct from the frozen missing-provider-symbol inventory
+        # and preserve the route's actual registration state and denominator.
+        route_blockers = {}
+        for row in selected:
+            route = row['implementations']['reference_cpu']
+            if route.get('blocker_id'):
+                route_blockers[row['id']] = {
+                    'blocker_id': route['blocker_id'],
+                    'review': route.get('review'),
+                }
+        if route_blockers:
+            task['route_blockers'] = route_blockers
+            task['next_action'] += (
+                ' Review the listed route blockers separately; continue '
+                'independent scalar work without granting blocked-route credit.')
         tasks.append(task)
     flattened = [
         identifier for task in tasks for identifier in task['upstream_rows']

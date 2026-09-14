@@ -79,10 +79,34 @@ class RemainingBacklogTest(unittest.TestCase):
         mapping['routines'].pop(0)
         with self.assertRaises(validate_coverage.ValidationError):
             backlog.generate(inventory, mapping, blocked)
+
         inventory, mapping, blocked = self.fixture()
         inventory['routines'].append(inventory['routines'][0])
         with self.assertRaises(validate_coverage.ValidationError):
             backlog.generate(inventory, mapping, blocked)
+
+    def test_scalar_blocker_preserves_independent_route(self):
+        """A failed scalar prerequisite neither blocks siblings nor adds credit."""
+        inventory, mapping, missing = self.fixture()
+        route = mapping['routines'][1]['implementations']['reference_cpu']
+        route['blocker_id'] = 'FINITE_RANGE'
+        route['review'] = 'programs/lapack-array-io/fixture-review.md'
+        result = backlog.generate(inventory, mapping, missing)
+        task = next(task for task in result['tasks']
+                    if task['task_id'].endswith('gesv_mixed'))
+        self.assertEqual(result['required_denominator'], 3)
+        self.assertEqual(task['blocked_rows'], [])
+        self.assertEqual(task['route_states'], {
+            'lapack.dsgesv': 'in_progress',
+            'lapack.zcgesv': 'not_started'
+        })
+        self.assertEqual(task['route_blockers'], {
+            'lapack.zcgesv': {
+                'blocker_id': 'FINITE_RANGE',
+                'review': 'programs/lapack-array-io/fixture-review.md'
+            }
+        })
+        self.assertIn('continue independent scalar work', task['next_action'])
 
     def test_programme_ownership(self):
         """SVD, eigenproblems and mixed drivers retain separate Pxx owners."""
