@@ -43,7 +43,11 @@
  * read statistic/scale values and writes only kNone without a foreign call.
  * Neither upstream routine has INFO:
  * reports keep native_info absent even on actual foreign calls, and do not
- * certify an LU factor. Malformed metadata/workspace fails before all writes.
+ * certify an LU factor. Provider, plan, workspace and report objects must be
+ * disjoint from each other, all operands (including statistics/applied) and
+ * every workspace region. Metadata overlap returns kInvalidArgument before
+ * report reset or any other write. Other structural failures reset the report
+ * while preserving operands and workspace values.
  * A provider-invalid EQUED leaves applied unchanged and gives unusable output
  * with no invented INFO. Raw column-major A effects remain visible; row-major
  * raw effects remain in caller packing without publishing them into A.
@@ -97,7 +101,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLaswpWorkspace(
  * @param pivot_increment Signed slot spacing; zero is an explicit no-op.
  * @param plan Unmodified matching checked formula query result.
  * @param workspace Disjoint caller integer/packing storage; see file contract.
- * @param report Mandatory reset-before-preflight report; INFO stays absent.
+ * @param report Mandatory report; metadata overlap preserves it, otherwise
+ * reset.
  * @return OK or structural error; no numerical singularity test is performed.
  */
 ASC_DENSE_LAPACK_EXPORT Status Laswp(
@@ -128,7 +133,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLaswpWorkspace(
  * @param pivot_increment Signed slot spacing; zero is an explicit no-op.
  * @param plan Unmodified matching checked formula query result.
  * @param workspace Disjoint caller integer/packing storage; see file contract.
- * @param report Mandatory reset-before-preflight report; INFO stays absent.
+ * @param report Mandatory report; metadata overlap preserves it, otherwise
+ * reset.
  * @return OK or structural error; no numerical singularity test is performed.
  */
 ASC_DENSE_LAPACK_EXPORT Status Laswp(
@@ -159,7 +165,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLaswpWorkspace(
  * @param pivot_increment Signed slot spacing; zero is an explicit no-op.
  * @param plan Unmodified matching checked formula query result.
  * @param workspace Disjoint caller integer/packing storage; see file contract.
- * @param report Mandatory reset-before-preflight report; INFO stays absent.
+ * @param report Mandatory report; metadata overlap preserves it, otherwise
+ * reset.
  * @return OK or structural error; no numerical singularity test is performed.
  */
 ASC_DENSE_LAPACK_EXPORT Status
@@ -191,7 +198,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLaswpWorkspace(
  * @param pivot_increment Signed slot spacing; zero is an explicit no-op.
  * @param plan Unmodified matching checked formula query result.
  * @param workspace Disjoint caller integer/packing storage; see file contract.
- * @param report Mandatory reset-before-preflight report; INFO stays absent.
+ * @param report Mandatory report; metadata overlap preserves it, otherwise
+ * reset.
  * @return OK or structural error; no numerical singularity test is performed.
  */
 ASC_DENSE_LAPACK_EXPORT Status
@@ -225,7 +233,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLaqgeWorkspace(
  * @param applied Actual N/R/C/B result; empty matrices produce kNone.
  * @param plan Unmodified matching query, including exact statistic bits.
  * @param workspace Disjoint caller-owned live scalar packing objects.
- * @param report Mandatory reset-before-preflight report; INFO always absent.
+ * @param report Mandatory report; metadata overlap preserves it, otherwise
+ * reset.
  * @return OK, structural error, kProvider for invalid EQUED, or kNumerical
  * with an accuracy warning for nonfinite scaled values; see file contract.
  */
@@ -261,7 +270,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLaqgeWorkspace(
  * @param applied Actual N/R/C/B result; empty matrices produce kNone.
  * @param plan Unmodified matching query, including exact statistic bits.
  * @param workspace Disjoint caller-owned live scalar packing objects.
- * @param report Mandatory reset-before-preflight report; INFO always absent.
+ * @param report Mandatory report; metadata overlap preserves it, otherwise
+ * reset.
  * @return OK, structural error, kProvider for invalid EQUED, or kNumerical
  * with an accuracy warning for nonfinite scaled values; see file contract.
  */
@@ -298,7 +308,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLaqgeWorkspace(
  * @param applied Actual N/R/C/B result; empty matrices produce kNone.
  * @param plan Unmodified matching query, including exact statistic bits.
  * @param workspace Disjoint caller-owned live scalar packing objects.
- * @param report Mandatory reset-before-preflight report; INFO always absent.
+ * @param report Mandatory report; metadata overlap preserves it, otherwise
+ * reset.
  * @return OK, structural error, kProvider for invalid EQUED, or kNumerical
  * with an accuracy warning for nonfinite scaled values; see file contract.
  */
@@ -336,7 +347,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLaqgeWorkspace(
  * @param applied Actual N/R/C/B result; empty matrices produce kNone.
  * @param plan Unmodified matching query, including exact statistic bits.
  * @param workspace Disjoint caller-owned live scalar packing objects.
- * @param report Mandatory reset-before-preflight report; INFO always absent.
+ * @param report Mandatory report; metadata overlap preserves it, otherwise
+ * reset.
  * @return OK, structural error, kProvider for invalid EQUED, or kNumerical
  * with an accuracy warning for nonfinite scaled values; see file contract.
  */

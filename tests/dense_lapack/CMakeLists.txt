@@ -173,6 +173,21 @@ foreach(_scalar IN ITEMS s d c z)
     LABELS dense_lapack lapack runtime numerical allocation TIMEOUT 120)
 endforeach()
 
+add_executable(asc_dense_lapack_lu_helpers_metadata_test
+  lu_helpers_metadata_test.cc lu_helpers_metadata_probe.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_dense_lapack_lu_helpers_metadata_test)
+target_include_directories(asc_dense_lapack_lu_helpers_metadata_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_dense_lapack_lu_helpers_metadata_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free"
+  "-Wl,--wrap=slaswp_,--wrap=dlaswp_,--wrap=claswp_,--wrap=zlaswp_,--wrap=slaqge_,--wrap=dlaqge_,--wrap=claqge_,--wrap=zlaqge_")
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.lu_helpers_metadata.${_scalar}"
+    TARGET asc_dense_lapack_lu_helpers_metadata_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack validation TIMEOUT 120)
+endforeach()
+
 foreach(_family IN ITEMS expert equilibration condition refinement driver helpers)
   set(_target "asc_dense_lapack_lu_${_family}_test")
   add_executable("${_target}"

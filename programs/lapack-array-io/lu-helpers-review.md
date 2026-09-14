@@ -1,10 +1,10 @@
 # Reference LASWP/LAQGE helper implementation evidence
 
-This is a separate implemented eight-row S/D/C/Z helper slice with completed
-bounded frozen checks, pending integration. It does not
-change the previously frozen ordinary/advanced LU or equilibration source
-identities and does not close P04 or the full provider profile. All paths to
-raw evidence below are relative to the external program evidence root.
+The eight S/D/C/Z helper routes are integrated; their required numerical and
+provider admission remain incomplete. Historical frozen checks below retain
+their original source identities and scope. The metadata-preflight continuation
+is a separate local correctness fix, without added coverage or verification
+credit. All raw evidence paths are relative to the external programme root.
 
 ## Exact source and private interoperability
 
@@ -263,3 +263,33 @@ candidate. All bounded final process exits and strict checks are recorded
 above; no local helper test remains running. Further implementation must use
 a separately linked agent worktree as directed by the integrator; no new
 shared-root ownership is taken.
+
+
+## Metadata preflight continuation
+
+The integrated LASWP/LAQGE adapter previously reset its report before checking
+whether provider, plan, workspace or report objects overlapped operands or
+workspace regions. An alias could therefore modify live caller data before
+rejection. Both execution paths now check those actual object extents before
+report reset, including LAQGE statistics and applied output among the operand
+spans. Metadata overlap returns kInvalidArgument and preserves every affected
+object. Other structural failures retain report-reset behavior. The new check
+uses subtraction for overlap comparisons to avoid address-addition overflow.
+
+The numerical branches, signatures, native integer/character ABI, plan sizes,
+selected pivot/scale reads, raw output publication and LAQGE warning policy
+remain unchanged. This does not resolve the historical tiny-input C*R*A
+intermediate overflow described above, and it does not reinterpret a faithful
+warning test as a passing finite-output mathematical gate.
+
+New typed entry observers forward valid calls unchanged for all eight native
+names. Each scalar checks 1,040 live metadata aliases, all eight workspace
+roles, both layouts, signed/zero swap increments, four scaling branches and
+empty paths. Another 56 valid/stale controls verify ordinary completion and
+report reset. Rejected operations preserve numeric/workspace and live metadata
+bytes with zero native entry and zero observed allocation. These are bounded
+ordinary checks; no protected page, deliberate invalid foreign call, process
+crash or ASLR modification is used. Evidence is under
+`master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/`
+with the `helpers-metadata-preflight-` prefix. Required deferred admission and
+all earlier mathematical failures remain open.

@@ -109,6 +109,47 @@ struct Native<std::complex<double>> {
   static constexpr auto kScaleCall = zlaqge_;
 };
 
+bool Overlap(ConstMemoryView first, ConstMemoryView second) {
+  if (first.size() == 0 || second.size() == 0) {
+    return false;
+  }
+  const auto a = reinterpret_cast<std::uintptr_t>(first.data());
+  const auto b = reinterpret_cast<std::uintptr_t>(second.data());
+  return a <= b ? b - a < first.size() : a - b < second.size();
+}
+
+template <typename T>
+ConstMemoryView ObjectStorage(const T& object) {
+  return {&object, sizeof(T), MemorySpace::kHost};
+}
+
+Status CheckMetadata(const ReferenceLapackProvider& provider,
+                     const LapackWorkspacePlan& plan,
+                     const LapackWorkspace& workspace,
+                     const LapackReport& report,
+                     std::span<const ConstMemoryView> operands) {
+  const std::array metadata{ObjectStorage(provider), ObjectStorage(plan),
+                            ObjectStorage(workspace), ObjectStorage(report)};
+  for (std::size_t i = 0; i < metadata.size(); ++i) {
+    for (std::size_t j = i + 1; j < metadata.size(); ++j) {
+      if (Overlap(metadata[i], metadata[j])) {
+        return Status(ErrorCode::kInvalidArgument);
+      }
+    }
+    for (const auto operand : operands) {
+      if (Overlap(metadata[i], operand)) {
+        return Status(ErrorCode::kInvalidArgument);
+      }
+    }
+    for (const auto region : workspace.regions) {
+      if (Overlap(metadata[i], region)) {
+        return Status(ErrorCode::kInvalidArgument);
+      }
+    }
+  }
+  return Status::Ok();
+}
+
 Status CheckOperands(const ReferenceLapackProvider& provider,
                      std::span<const ConstMemoryView> operands) {
   for (const auto operand : operands) {
@@ -306,15 +347,19 @@ Status Swap(const ReferenceLapackProvider& provider,
             extent_t row_count, RawLapackPivotView pivots, index_t increment,
             const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
             LapackReport& report) {
+  const std::array operands{matrix.reachable_storage(),
+                            pivots.reachable_storage()};
+  Status status = CheckMetadata(provider, plan, workspace, report, operands);
+  if (!status.ok()) {
+    return status;
+  }
   BeginReport(provider, Native<T>::kSwap, report);
   const auto expected =
       SwapQuery(provider, matrix, first_row, row_count, pivots, increment);
   if (!expected.ok()) {
     return expected.status();
   }
-  Status status = CheckPlan(
-      provider, *expected, plan, workspace,
-      std::array{matrix.reachable_storage(), pivots.reachable_storage()});
+  status = CheckPlan(provider, *expected, plan, workspace, operands);
   if (!status.ok()) {
     return status;
   }
@@ -536,15 +581,19 @@ Status Scale(
     const LapackEquilibrationStatistics<DenseBlasRealType<T>>& statistics,
     LapackEquilibration& applied, const LapackWorkspacePlan& plan,
     const LapackWorkspace& workspace, LapackReport& report) {
+  const auto operands =
+      ScaleOperands(matrix, rows, columns, statistics, applied);
+  Status status = CheckMetadata(provider, plan, workspace, report, operands);
+  if (!status.ok()) {
+    return status;
+  }
   BeginReport(provider, Native<T>::kScale, report);
   const auto expected =
       ScaleQuery(provider, matrix, rows, columns, statistics, applied);
   if (!expected.ok()) {
     return expected.status();
   }
-  Status status =
-      CheckPlan(provider, *expected, plan, workspace,
-                ScaleOperands(matrix, rows, columns, statistics, applied));
+  status = CheckPlan(provider, *expected, plan, workspace, operands);
   if (!status.ok()) {
     return status;
   }
