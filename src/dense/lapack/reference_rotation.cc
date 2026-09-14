@@ -18,9 +18,13 @@ namespace asc {
 namespace {
 namespace checked = internal_tridiagonal;
 
-template <typename T>
+template <typename T, bool Positive>
 constexpr std::string_view Routine() {
-  return std::is_same_v<T, float> ? "slartg" : "dlartg";
+  if constexpr (Positive) {
+    return std::is_same_v<T, float> ? "slartgp" : "dlartgp";
+  } else {
+    return std::is_same_v<T, float> ? "slartg" : "dlartg";
+  }
 }
 
 template <typename T>
@@ -28,16 +32,20 @@ auto Bits(T value) {
   return std::bit_cast<std::array<std::byte, sizeof(T)>>(value);
 }
 
-template <typename T>
+template <typename T, bool Positive>
 void Native(T& f, T& g, T& c, T& s, T& r) {
-  if constexpr (std::is_same_v<T, float>) {
+  if constexpr (Positive && std::is_same_v<T, float>) {
+    LAPACK_slartgp(&f, &g, &c, &s, &r);
+  } else if constexpr (Positive) {
+    LAPACK_dlartgp(&f, &g, &c, &s, &r);
+  } else if constexpr (std::is_same_v<T, float>) {
     ASC_LAPACK_slartg(&f, &g, &c, &s, &r);
   } else {
     ASC_LAPACK_dlartg(&f, &g, &c, &s, &r);
   }
 }
 
-template <typename T>
+template <typename T, bool Positive = false>
 Status Execute(const ReferenceLapackProvider& provider, T f, T g,
                DenseBlasVectorView<T> cosine, DenseBlasVectorView<T> sine,
                DenseBlasVectorView<T> rotated, LapackReport& report) {
@@ -57,7 +65,7 @@ Status Execute(const ReferenceLapackProvider& provider, T f, T g,
       }
     }
   }
-  checked::StartReport(provider, Routine<T>(), report);
+  checked::StartReport(provider, Routine<T, Positive>(), report);
   status = checked::Disjoint(operands);
   if (!status.ok()) {
     return status;
@@ -78,9 +86,11 @@ Status Execute(const ReferenceLapackProvider& provider, T f, T g,
   T s = c;
   T r = c;
   report.called_provider = true;
-  Native(f, g, c, s, r);
+  Native<T, Positive>(f, g, c, s, r);
+  const bool invalid_sign = Positive ? r < 0 : c < 0;
   if (Bits(f) != original_f || Bits(g) != original_g || !std::isfinite(c) ||
-      c < 0 || c > 1 || !std::isfinite(s) || std::abs(s) > 1 || std::isnan(r)) {
+      invalid_sign || std::abs(c) > 1 || !std::isfinite(s) || std::abs(s) > 1 ||
+      std::isnan(r)) {
     report.outcome = LapackOutcome::kPartialResult;
     report.output_validity = LapackOutputValidity::kUnusable;
     return Status(ErrorCode::kProvider);
@@ -109,4 +119,18 @@ Status Lartg(const ReferenceLapackProvider& provider, double f, double g,
              DenseBlasVectorView<double> rotated, LapackReport& report) {
   return Execute(provider, f, g, cosine, sine, rotated, report);
 }
+Status Lartgp(const ReferenceLapackProvider& provider, float f, float g,
+              DenseBlasVectorView<float> cosine,
+              DenseBlasVectorView<float> sine,
+              DenseBlasVectorView<float> rotated, LapackReport& report) {
+  return Execute<float, true>(provider, f, g, cosine, sine, rotated, report);
+}
+
+Status Lartgp(const ReferenceLapackProvider& provider, double f, double g,
+              DenseBlasVectorView<double> cosine,
+              DenseBlasVectorView<double> sine,
+              DenseBlasVectorView<double> rotated, LapackReport& report) {
+  return Execute<double, true>(provider, f, g, cosine, sine, rotated, report);
+}
+
 }  // namespace asc

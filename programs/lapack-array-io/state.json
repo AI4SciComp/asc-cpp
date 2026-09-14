@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
+  "current_base_commit": "247d6b954d025b9f896f0749905e6c2366e50e1a",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
+  "last_implementation_commit": "247d6b954d025b9f896f0749905e6c2366e50e1a",
   "worktree_diff_identity": {
-    "state": "real_rotation_local_checks_complete_commit_pending",
-    "base_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
-    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
+    "state": "positive_rotation_checkpoint_pending",
+    "base_commit": "247d6b954d025b9f896f0749905e6c2366e50e1a",
+    "scope": "Two checked LARTGP overloads and full maintained validation, contracts and backlog; no Reference verification credit."
   },
   "packages": {
     "P00": {
@@ -1480,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P09.required.lartg",
-  "next_action": "Save the checked real rotation checkpoint, then review existing reuse candidates, pinned S/D LARTGP definitions and actual ABI prerequisites. Retain C/Z LARTG and all earlier failures; avoid deferred risky operations.",
+  "active_task": "P11.positive_rotation_checkpoint",
+  "next_action": "Run final checkpoint consistency checks, commit the reviewed LARTGP slice locally, then review exact S/D LARTGS sources, reuse and native numerical prerequisites.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1489,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "16f1bfc415336d778226980ab696c850c646a684529e8ba4799724e93462f314"
+    "coverage_mapping_sha256": "963d7c49934bf729e28ddb7d5e3d11818bbcce234e48b81cf1dc2ab1d8dc1a25"
   },
   "provider": {
     "version": "3.12.1",
@@ -1922,16 +1922,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 354,
-    "callable_reference": 314,
+    "mapped_contracts": 356,
+    "callable_reference": 316,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1503,
+    "not_started_reference": 1501,
     "in_progress_reference": 296,
-    "incomplete_reference": 1799,
-    "implemented_unverified_reference": 314,
+    "incomplete_reference": 1797,
+    "implemented_unverified_reference": 316,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2238,15 +2238,16 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "state": "none_running",
-    "completed_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json"
+    "state": "complete",
+    "running": [],
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/positive-rotation-final-audit.json"
   },
   "last_completed_verification": {
-    "family": "Checked real SLARTG/DLARTG rotations",
-    "selected": 88,
-    "passed": 88,
+    "family": "Checked SLARTGP/DLARTGP nonnegative-result rotations",
+    "selected": 176,
+    "passed": 176,
     "skipped": 0,
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/positive-rotation-final-audit.json",
     "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
   },
   "remote_checkpoint": {
@@ -2731,15 +2732,15 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.lartgp",
+  "next_task": "P09.required.lartgs",
   "documentation_verification": {
     "public_headers": 170,
-    "documented_public_members": 2835,
-    "explicit_programme_pages": 30,
+    "documented_public_members": 2837,
+    "explicit_programme_pages": 31,
     "warnings": 0,
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-documentation-02/audit/record.json"
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/positive-rotation-documentation-02/audit/record.json"
   },
-  "next_command": "Run final six checkpoint checks and commit only owned real rotation changes; then start bounded LARTGP prerequisite review.",
+  "next_command": "python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/check_positive_rotation_checkpoint.py",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4292,27 +4293,27 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "Checked real SLARTG/DLARTG rotations",
+    "family": "Checked SLARTGP/DLARTGP nonnegative-result rotations",
     "status": "local_validation_and_index_complete_commit_pending",
-    "source_parent_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
+    "source_parent_commit": "247d6b954d025b9f896f0749905e6c2366e50e1a",
     "reference_rows": 2,
     "reviewed_modes": 2,
-    "selected_local_tests": 88,
-    "passed_local_tests": 88,
+    "selected_local_tests": 176,
+    "passed_local_tests": 176,
     "skipped_local_tests": 0,
     "metadata_rejection_cases": {
       "s": 222,
       "d": 111
     },
-    "native_cases_each_abi": 2050,
-    "installed_consumers": 4,
-    "installed_cases_each": 2050,
-    "strict_translation_units_passed": 7,
+    "native_cases_each_abi": 3874,
+    "installed_packages": 4,
+    "installed_consumers": 8,
+    "installed_cases_each_package": 5924,
+    "strict_translation_units_passed": 8,
     "callable_rows_added": 2,
     "verification_credit": 0,
-    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json",
-    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
-    "complex_disposition": "C/Z remain not_started; LARTG-COMPLEX-EXTREME-R carries496 preserved failed prerequisite comparisons perABI."
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/positive-rotation-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4550,7 +4551,7 @@
   },
   "completion_execution": {
     "plan": "programs/lapack-array-io/completion-plan-2026-09-13.md",
-    "state": "real_rotation_local_checkpoint_continue_required",
+    "state": "positive_rotation_installed_validation_running",
     "scope": "User authorized executing the complete plan and recording/defering unresolved trouble while independent required work continues. Failed tests are not converted to skips or successes.",
     "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
     "m0": "Current artifact bindings, generator ownership, seven packed interface dependencies and active pointers are reconciled. Remaining families require individual dependency review before execution.",
@@ -4932,7 +4933,7 @@
     },
     "real_rotation_implementation": {
       "family": "Checked real SLARTG/DLARTG rotations",
-      "status": "local_validation_and_index_complete_commit_pending",
+      "status": "committed_local_validation_and_index_complete",
       "source_parent_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
       "reference_rows": 2,
       "reviewed_modes": 2,
@@ -4951,8 +4952,33 @@
       "verification_credit": 0,
       "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json",
       "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
-      "complex_disposition": "C/Z remain not_started; LARTG-COMPLEX-EXTREME-R carries496 preserved failed prerequisite comparisons perABI."
-    }
+      "complex_disposition": "C/Z remain not_started; LARTG-COMPLEX-EXTREME-R carries496 preserved failed prerequisite comparisons perABI.",
+      "commit": "247d6b954d025b9f896f0749905e6c2366e50e1a"
+    },
+    "positive_rotation_implementation": {
+      "family": "Checked SLARTGP/DLARTGP nonnegative-result rotations",
+      "status": "local_validation_and_index_complete_commit_pending",
+      "source_parent_commit": "247d6b954d025b9f896f0749905e6c2366e50e1a",
+      "reference_rows": 2,
+      "reviewed_modes": 2,
+      "selected_local_tests": 176,
+      "passed_local_tests": 176,
+      "skipped_local_tests": 0,
+      "metadata_rejection_cases": {
+        "s": 222,
+        "d": 111
+      },
+      "native_cases_each_abi": 3874,
+      "installed_packages": 4,
+      "installed_consumers": 8,
+      "installed_cases_each_package": 5924,
+      "strict_translation_units_passed": 8,
+      "callable_rows_added": 2,
+      "verification_credit": 0,
+      "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/positive-rotation-final-audit.json",
+      "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
+    },
+    "remaining_backlog_sha256": "fa3b67ec7a0b8a1d2b13c9318affdf59bff4a38663a349ccb390a679960dc449"
   },
   "historical_active_verification_before_completion_execution": {
     "candidate": "master-continuation-20260910-01/continuation-20260912-01/packed-indefinite-prerequisite-01/containment-recovery-01",
@@ -5046,7 +5072,7 @@
     "next_family": "P09.required.lasrt",
     "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
   },
-  "updated_utc": "2026-09-14T19:01:14.922082+00:00",
+  "updated_utc": "2026-09-14T19:28:10.609971+00:00",
   "historical_delivery_before_complete_pivoting": {
     "family": "Reference GETRF/GETRS metadata preflight",
     "status": "committed_local_validation_and_index_complete",
@@ -5104,5 +5130,29 @@
     "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/helpers-metadata-preflight-final-audit.json",
     "scope": "Metadata preflight correctness fix for existing in_progress routes; normalized helper contracts remain pending. Native20, historical executions, tiny LAQGE overflow and all earlier failures remain preserved.",
     "commit": "b36e04fd03315ba7e931b849394c48754edf4103"
+  },
+  "historical_delivery_before_positive_rotation": {
+    "family": "Checked real SLARTG/DLARTG rotations",
+    "status": "committed_local_validation_and_index_complete",
+    "source_parent_commit": "b36e04fd03315ba7e931b849394c48754edf4103",
+    "reference_rows": 2,
+    "reviewed_modes": 2,
+    "selected_local_tests": 88,
+    "passed_local_tests": 88,
+    "skipped_local_tests": 0,
+    "metadata_rejection_cases": {
+      "s": 222,
+      "d": 111
+    },
+    "native_cases_each_abi": 2050,
+    "installed_consumers": 4,
+    "installed_cases_each": 2050,
+    "strict_translation_units_passed": 7,
+    "callable_rows_added": 2,
+    "verification_credit": 0,
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/rotation-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
+    "complex_disposition": "C/Z remain not_started; LARTG-COMPLEX-EXTREME-R carries496 preserved failed prerequisite comparisons perABI.",
+    "commit": "247d6b954d025b9f896f0749905e6c2366e50e1a"
   }
 }

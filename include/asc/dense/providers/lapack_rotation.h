@@ -7,7 +7,10 @@
  * For finite f and g, LARTG computes [c s; -s c] * [f; g] = [r; 0],
  * with c nonnegative and c*c+s*s approximately one. If g is zero, the result
  * is c=1, s=0, r=f; otherwise if f is zero, c=0, s=sign(g), r=abs(g).
- * The sign of r otherwise follows f. Inputs are copied by value; outputs are
+ * The sign of r otherwise follows f. LARTGP instead chooses r nonnegative,
+ * with signed c and s; if g is zero it returns c=sign(f), s=0, r=abs(f).
+ * Negative-zero f and zero g give LARTGP c=-1 and r=+0.
+ * Inputs are copied by value; outputs are
  * three distinct live host or admitted pinned-host scalars, each with length
  * and increment one. No previous output value is read.
  *
@@ -21,7 +24,8 @@
  * Invalid native coefficients, NaN r or changed native input copies are
  * provider defects: no output is published, and the report records
  * partial/unusable. These checks do not certify the accuracy of arbitrary
- * finite native writes.
+ * finite native writes. LARTGP also rejects negative r, including negative
+ * infinity.
  *
  * Provider and report storage must be disjoint from each other and all outputs.
  * Metadata overlap rejects without changing any bytes. Other structural errors
@@ -78,6 +82,48 @@ ASC_DENSE_LAPACK_EXPORT Status Lartg(const ReferenceLapackProvider& provider,
                                      DenseBlasVectorView<double> sine,
                                      DenseBlasVectorView<double> rotated,
                                      LapackReport& report);
+
+/** @brief Generates a SLARTGP rotation with nonnegative rotated component.
+ * @param provider Explicit checked serial Reference provider.
+ * @param f Finite first component, copied before execution.
+ * @param g Finite second component, copied before execution.
+ * @param cosine One live float receiving the signed cosine in [-1,1].
+ * @param sine One live float receiving the signed sine in [-1,1].
+ * @param rotated One live float receiving the nonnegative component r.
+ * @param report Records actual entry, absent INFO and publication validity.
+ * @return Success for finite output, kNumerical for nonfinite input or
+ * published positive infinity, kProvider for invalid native output, or a
+ * structural error.
+ * @post Outputs publish together after native validation. Zero g produces
+ * cosine=sign(f), sine=0 and rotated=abs(f); see the shared file contract.
+ */
+ASC_DENSE_LAPACK_EXPORT Status Lartgp(const ReferenceLapackProvider& provider,
+                                      float f, float g,
+                                      DenseBlasVectorView<float> cosine,
+                                      DenseBlasVectorView<float> sine,
+                                      DenseBlasVectorView<float> rotated,
+                                      LapackReport& report);
+
+/** @brief Generates a DLARTGP rotation with nonnegative rotated component.
+ * @param provider Explicit checked serial Reference provider.
+ * @param f Finite first component, copied before execution.
+ * @param g Finite second component, copied before execution.
+ * @param cosine One live double receiving the signed cosine in [-1,1].
+ * @param sine One live double receiving the signed sine in [-1,1].
+ * @param rotated One live double receiving the nonnegative component r.
+ * @param report Records actual entry, absent INFO and publication validity.
+ * @return Success for finite output, kNumerical for nonfinite input or
+ * published positive infinity, kProvider for invalid native output, or a
+ * structural error.
+ * @post Outputs publish together after native validation. Zero g produces
+ * cosine=sign(f), sine=0 and rotated=abs(f); see the shared file contract.
+ */
+ASC_DENSE_LAPACK_EXPORT Status Lartgp(const ReferenceLapackProvider& provider,
+                                      double f, double g,
+                                      DenseBlasVectorView<double> cosine,
+                                      DenseBlasVectorView<double> sine,
+                                      DenseBlasVectorView<double> rotated,
+                                      LapackReport& report);
 
 }  // namespace asc
 
