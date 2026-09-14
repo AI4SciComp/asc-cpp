@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "scope": "Records six LAE2/LAEV2 source-range prerequisite blockers only. No contract, artifact, implementation state, execution or credit changes; Native20 wholly unchanged.",
+  "baseline_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
+  "prior_mapping_sha256": "1897a97ddb7f5613ecd489a50771f0e654204761c7544d521fe998ed69f1748a",
+  "extended_mapping_sha256": "de53bb5ab9c380db5385ddafacf0e59752a864e9cf76d5d223c2176f36e106ce",
+  "prior_evidence_sha256": "fa4a12c69ae99decdf78fee9c8c1d2ef6a97e7b7574ba0690005b1a1a33cb4b0",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "1897a97ddb7f5613ecd489a50771f0e654204761c7544d521fe998ed69f1748a",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "1897a97ddb7f5613ecd489a50771f0e654204761c7544d521fe998ed69f1748a",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "eeb633469358009043275625b5f11b56a7c4d2bb9a7c18b0583d63972d1d940d",
+    "reference-lu-release-lp64-20260911": "b50c182289554a1cda813045b08c70317a282fe5c01c77a05ab13e2eee6027ce",
+    "reference-lu-release-ilp64-20260911": "3919752d5ae6237ce1f7f73bed647d8dbf405d1d18d54e192e4c10b354d5207c"
+  },
+  "unchanged_native_rows_sha256": "5c82b581b8147b13e88d561f792d519b771a5f83d0778a49cbd36bc78abb1c29",
+  "changed_reference_rows": [
+    "lapack.claev2",
+    "lapack.dlae2",
+    "lapack.dlaev2",
+    "lapack.slae2",
+    "lapack.slaev2",
+    "lapack.zlaev2"
+  ],
+  "reviewed_artifact_changes": {},
+  "exact_baseline": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-eigen-blocker-index-01",
+  "generator_sha256": "122324981ce543f17a767909099c58a10e691b142becf202afc56bb1afb434b1"
+}

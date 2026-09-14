@@ -198430,7 +198430,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LAE2/LAEV2 source-documented overflow limits fail retained finite-root comparisons; all six diag(max,-max) results overflow although exact roots are representable. Source caveat acknowledged. No reduced domain, numerical waiver, implementation or credit. Exact evidence: completion-execution-01/scalar-eigen-prerequisite-disposition-01.json. Continue independent LASSQ work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },
@@ -415554,7 +415557,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LAE2/LAEV2 source-documented overflow limits fail retained finite-root comparisons; all six diag(max,-max) results overflow although exact roots are representable. Source caveat acknowledged. No reduced domain, numerical waiver, implementation or credit. Exact evidence: completion-execution-01/scalar-eigen-prerequisite-disposition-01.json. Continue independent LASSQ work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },
@@ -415904,7 +415910,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LAE2/LAEV2 source-documented overflow limits fail retained finite-root comparisons; all six diag(max,-max) results overflow although exact roots are representable. Source caveat acknowledged. No reduced domain, numerical waiver, implementation or credit. Exact evidence: completion-execution-01/scalar-eigen-prerequisite-disposition-01.json. Continue independent LASSQ work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },
@@ -639726,7 +639735,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LAE2/LAEV2 source-documented overflow limits fail retained finite-root comparisons; all six diag(max,-max) results overflow although exact roots are representable. Source caveat acknowledged. No reduced domain, numerical waiver, implementation or credit. Exact evidence: completion-execution-01/scalar-eigen-prerequisite-disposition-01.json. Continue independent LASSQ work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },
@@ -640076,7 +640088,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LAE2/LAEV2 source-documented overflow limits fail retained finite-root comparisons; all six diag(max,-max) results overflow although exact roots are representable. Source caveat acknowledged. No reduced domain, numerical waiver, implementation or credit. Exact evidence: completion-execution-01/scalar-eigen-prerequisite-disposition-01.json. Continue independent LASSQ work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },
@@ -889966,7 +889981,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LAE2/LAEV2 source-documented overflow limits fail retained finite-root comparisons; all six diag(max,-max) results overflow although exact roots are representable. Source caveat acknowledged. No reduced domain, numerical waiver, implementation or credit. Exact evidence: completion-execution-01/scalar-eigen-prerequisite-disposition-01.json. Continue independent LASSQ work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },

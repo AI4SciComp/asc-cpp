@@ -41802,7 +41802,7 @@
         "lapack.dlae2": "not_started",
         "lapack.slae2": "not_started"
       },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
+      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs. Review the listed route blockers separately; continue independent scalar work without granting blocked-route credit.",
       "required_mode_cases": {
         "lapack.dlae2": [],
         "lapack.slae2": []
@@ -41828,7 +41828,17 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [],
+      "route_blockers": {
+        "lapack.dlae2": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        },
+        "lapack.slae2": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        }
+      }
     },
     {
       "task_id": "P09.required.laebz",
@@ -42628,7 +42638,7 @@
         "lapack.slaev2": "not_started",
         "lapack.zlaev2": "not_started"
       },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
+      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs. Review the listed route blockers separately; continue independent scalar work without granting blocked-route credit.",
       "required_mode_cases": {
         "lapack.claev2": [],
         "lapack.dlaev2": [],
@@ -42658,7 +42668,25 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [],
+      "route_blockers": {
+        "lapack.claev2": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        },
+        "lapack.dlaev2": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        },
+        "lapack.slaev2": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        },
+        "lapack.zlaev2": {
+          "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        }
+      }
     },
     {
       "task_id": "P09.required.laexc",
@@ -63062,7 +63090,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "1897a97ddb7f5613ecd489a50771f0e654204761c7544d521fe998ed69f1748a",
+    "lapack-coverage.yaml": "de53bb5ab9c380db5385ddafacf0e59752a864e9cf76d5d223c2176f36e106ce",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

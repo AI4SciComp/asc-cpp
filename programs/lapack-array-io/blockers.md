@@ -636,3 +636,35 @@ installed signatures, binaries, guard observations and command results are
 bound in external `completion-execution-01/lartgs-prerequisite-disposition-01.json`.
 A numerical/provider or explicit domain decision remains necessary. Independent
 LABAD work continues without an LARTGS API, callable credit or verification.
+
+## SCALAR-EIGEN-FINITE-RANGE — source range limit, deferred
+
+S/D LAE2 and S/D/C/Z LAEV2 remain unimplemented after bounded, guarded native
+prerequisites in both actual integer ABIs. For the finite diagonal matrix
+`diag(max, -max)`, all six routes return infinite roots although the exact
+roots are `max` and `-max`. The pinned sources form unscaled diagonal sums and
+differences; complex LAEV2 enters the matching real operation. All six sources
+explicitly allow overflow within a factor of five of the finite limit. This is
+a failed strict finite-root comparison within that documented caveat, rather
+than a contradiction of the upstream numerical guarantee.
+
+Each ABI passes 250 ordinary LAE2 cases. Its 65,536-case finite grid retains
+21,504 failed comparisons and 21,632 nonfinite output tuples. A classification
+replay keeps every input and comparison unchanged: every failure lies within
+the source's overflow region and involves nonfinite output; none occurs with
+both outputs finite. Two of four targeted LAE2 cases fail; the scaled diagonal
+controls pass. LAEV2 separately passes eight ordinary/scaled controls, including
+non-real complex off-diagonals, and fails four targeted extreme cases per ABI.
+Those are targeted LAEV2 checks, not a full-grid claim. No guard or input
+representation failure occurs.
+
+The exact sources, emitted signatures, archive/header identities, original
+nonzero commands, replay and targeted observations are retained in external
+`completion-execution-01/scalar-eigen-prerequisite-disposition-01.json`.
+Its remediation design SCALAR-EIGEN-SCALED-01 proposes a separately admitted
+power-of-two-scaled symmetric/Hermitian analytic eigensolver with compensated
+determinant evaluation. That alternative has no implementation or approval;
+it would retain the original provider and all unchanged failed requirements.
+No hidden scaling adapter, provider patch, reduced domain, tolerance waiver or
+callable/verification credit is introduced. The user authorized recording and
+skipping unresolved trouble; independent LASSQ work continues.

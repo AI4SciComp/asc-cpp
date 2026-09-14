@@ -10,16 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "30598370c297a394d267c7ff2ae9cf9f5e27ff3b",
+  "current_base_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "30598370c297a394d267c7ff2ae9cf9f5e27ff3b",
+  "last_implementation_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
   "worktree_diff_identity": {
-    "state": "lasv2_local_implementation_and_contracts_validated",
-    "base_commit": "30598370c297a394d267c7ff2ae9cf9f5e27ff3b",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-final-audit.json",
-    "scope": "Two callable-unverified LASV2 routes and two modes; original failures retained; six final checkpoint checks and local commit next."
+    "state": "scalar_eigen_blockers_recorded",
+    "base_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
+    "scope": "Six prerequisite route blockers, no API/contract/credit change. Preserve all original failures; LASSQ follows."
   },
   "packages": {
     "P00": {
@@ -1481,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P07.required.lasv2",
-  "next_action": "Commit the validated LASV2 slice locally, then continue P09.required.lae2 source/ABI/numerical prerequisites. All original failed and user-deferred gates remain open.",
+  "active_task": "P09.required.lassq",
+  "next_action": "Record six scalar-eigen route blockers atomically, retain original nonzero prerequisite gates, then review S/D/C/Z LASSQ source, installed signatures and actual ABI prerequisites.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1490,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "1897a97ddb7f5613ecd489a50771f0e654204761c7544d521fe998ed69f1748a"
+    "coverage_mapping_sha256": "de53bb5ab9c380db5385ddafacf0e59752a864e9cf76d5d223c2176f36e106ce"
   },
   "provider": {
     "version": "3.12.1",
@@ -2231,6 +2230,21 @@
       "record": "programs/lapack-array-io/blockers.md",
       "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lartgs-prerequisite-disposition-01.json",
       "disposition": "recorded_unresolved_advance_independent_work"
+    },
+    {
+      "id": "SCALAR-EIGEN-FINITE-RANGE",
+      "scope": "Six source-documented overflow limits fail retained finite-root comparisons. LAE2 21504 failed finite-grid comparisons/ABI, all within the source overflow region; LAEV2 four targeted representable-root failures/ABI. No upstream guarantee violation is inferred.",
+      "rows": [
+        "lapack.slae2",
+        "lapack.dlae2",
+        "lapack.slaev2",
+        "lapack.dlaev2",
+        "lapack.claev2",
+        "lapack.zlaev2"
+      ],
+      "record": "programs/lapack-array-io/blockers.md",
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-eigen-prerequisite-disposition-01.json",
+      "disposition": "recorded_unresolved_advance_independent_work"
     }
   ],
   "external_approvals": [
@@ -2250,9 +2264,9 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "state": "lasv2_local_validation_and_checkpoint_complete",
+    "state": "scalar_eigen_prerequisites_recorded_deferred",
     "running": [],
-    "record": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-checkpoint-final-checks.json"
+    "record": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-eigen-prerequisite-disposition-01.json"
   },
   "last_completed_verification": {
     "family": "Checked S/D LASV2 singular values and vectors",
@@ -2744,7 +2758,7 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.lae2",
+  "next_task": "P09.required.lassq",
   "documentation_verification": {
     "public_headers": 172,
     "documented_public_members": 2844,
@@ -2752,7 +2766,7 @@
     "warnings": 0,
     "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-documentation-02/audit/record.json"
   },
-  "next_command": "Run check_scalar_svd_checkpoint.py, commit the owned LASV2 change, then record LAE2 reuse and actual-provider prerequisites.",
+  "next_command": "Rebind blocker-only metadata and regenerate the backlog; continue LASSQ prerequisite review.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4306,7 +4320,7 @@
   },
   "current_delivery": {
     "family": "Checked S/D LASV2 singular values and vectors",
-    "status": "local_validation_and_index_complete_pending_commit",
+    "status": "committed_local_validation_and_index_complete",
     "source_parent_commit": "30598370c297a394d267c7ff2ae9cf9f5e27ff3b",
     "reference_rows": 2,
     "reviewed_modes": 2,
@@ -4327,7 +4341,8 @@
     "verification_credit": 0,
     "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-final-audit.json",
     "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
-    "final_checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-checkpoint-final-checks.json"
+    "final_checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-checkpoint-final-checks.json",
+    "commit": "0e01bacd142311211df9fa2574db95bcaa572c20"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4993,7 +5008,7 @@
       "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
       "commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad"
     },
-    "remaining_backlog_sha256": "81338f2a213c22116d4bcb0d129fff640b9253f56fdca63953f98eb855758cd9",
+    "remaining_backlog_sha256": "519c375aa053988fdc050efcc34f22b9ce08c57c36ac84c0710139069f877118",
     "shift_rotation_prerequisite": {
       "blocker_id": "LARTGS-FINITE-RANGE",
       "source_parent_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
@@ -5089,7 +5104,7 @@
     },
     "scalar_svd_vectors_implementation": {
       "family": "Checked S/D LASV2 singular values and vectors",
-      "status": "local_validation_and_index_complete_pending_commit",
+      "status": "committed_local_validation_and_index_complete",
       "source_parent_commit": "30598370c297a394d267c7ff2ae9cf9f5e27ff3b",
       "reference_rows": 2,
       "reviewed_modes": 2,
@@ -5109,7 +5124,55 @@
       "callable_rows_added": 2,
       "verification_credit": 0,
       "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-final-audit.json",
-      "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
+      "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
+      "final_checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-checkpoint-final-checks.json",
+      "commit": "0e01bacd142311211df9fa2574db95bcaa572c20"
+    },
+    "scalar_eigen_prerequisites": {
+      "blocker_id": "SCALAR-EIGEN-FINITE-RANGE",
+      "source_parent_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
+      "rows": [
+        "lapack.slae2",
+        "lapack.dlae2",
+        "lapack.slaev2",
+        "lapack.dlaev2",
+        "lapack.claev2",
+        "lapack.zlaev2"
+      ],
+      "source_findings": [
+        "All six pinned sources read in full. LAE2 and real LAEV2 evaluate unscaled A+C, A-C, B+B. For diag(max,-max), A-C overflows and both returned eigenvalues become infinite although exact roots are max and -max.",
+        "Complex LAEV2 computes real diagonal values, abs(B), and calls the matching real LAEV2; its phase calculation uses conjugate(B)/abs(B), with B=0 special-cased to one. The targeted failure is observed in all four scalar routes, not inferred solely from shared code.",
+        "All six sources explicitly permit overflow within a factor of five of the finite limit and warn about cancellation-sensitive small roots and underflow. The failing strict finite-root comparisons are within that source caveat, not evidence of a contradiction of the upstream guarantee.",
+        "LAE2 has five mutable real pointers; real LAEV2 has seven. Complex LAEV2 has three complex input pointers, three real output pointers and one complex output pointer. Actual GNU11 emissions used directly in both actual integer ABIs; installed headers omit all six declarations. No integer/character/hidden/INFO arguments, loops, arrays or allocation cross these entries.",
+        "Both 18-worktree searches and named-commit searches found no reusable adapter. All native inputs are finite, storage live and guarded, and all guards/input representations remain intact. No deliberate fault, crash, trap or remote operation."
+      ],
+      "lae2": {
+        "ordinary_cases_each_abi": 250,
+        "ordinary_failures": 0,
+        "finite_grid_cases_each_abi": 65536,
+        "failed_comparisons_each_abi": 21504,
+        "nonfinite_output_tuples_each_abi": 21632,
+        "failed_outside_source_overflow_region": 0,
+        "failed_with_both_outputs_finite": 0,
+        "targeted_cases_each_abi": 4,
+        "targeted_failures_each_abi": 2,
+        "classification_replay": "Same cases and unchanged comparisons/tolerances; only counters added. Original nonzero executions retained."
+      },
+      "laev2": {
+        "ordinary_and_scaled_controls_each_abi": 8,
+        "ordinary_failures": 0,
+        "targeted_cases_each_abi": 4,
+        "targeted_failures_each_abi": 4,
+        "scope": "Three cases per scalar, including complex non-real off-diagonal controls. No full LAEV2 finite-grid claim."
+      },
+      "guard_failures": 0,
+      "remediation_recommendation": {
+        "identity": "Proposed separate ASC power-of-two-scaled 2x2 symmetric/Hermitian eigensolver, design SCALAR-EIGEN-SCALED-01; no implementation or authorized replacement yet.",
+        "algorithm": "Scale A, B and C by one exact binary exponent chosen from their maximum component exponent before trace/difference/hypot evaluation; compute the large root using signed trace and hypot, the small root through a compensated determinant divided by the large root, and vectors from the scaled Hermitian matrix. Rescale eigenvalues with explicit representability reporting. Compensated products are needed where determinant cancellation matters.",
+        "admission": "Preserve exact pinned provider identity and all original nonzero gates. A separately authorized alternative profile/algorithm would need the unchanged finite grid, targeted representable-root checks, both actual ABIs, complex phase/residual tests, standard checked metadata/workspace/installed gates and expanded proof of the alternative algorithm. No hidden scaling adapter or provider patch is introduced."
+      },
+      "disposition": "Record and defer six unimplemented rows under user instruction; no contract/implementation/numerical credit, domain narrowing or tolerance waiver. Continue independent LASSQ work.",
+      "recorded_utc": "2026-09-14T20:51:26.758298+00:00"
     }
   },
   "historical_active_verification_before_completion_execution": {
@@ -5204,7 +5267,7 @@
     "next_family": "P09.required.lasrt",
     "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
   },
-  "updated_utc": "2026-09-14T20:43:02.473878+00:00",
+  "updated_utc": "2026-09-14T20:51:26.758298+00:00",
   "historical_delivery_before_complete_pivoting": {
     "family": "Reference GETRF/GETRS metadata preflight",
     "status": "committed_local_validation_and_index_complete",
