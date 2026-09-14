@@ -668,3 +668,35 @@ it would retain the original provider and all unchanged failed requirements.
 No hidden scaling adapter, provider patch, reduced domain, tolerance waiver or
 callable/verification credit is introduced. The user authorized recording and
 skipping unresolved trouble; independent LASSQ work continues.
+
+## LASSQ-EXISTING-PAIR-RANGE — failed accumulator prerequisite, deferred
+
+S/D/C/Z LASSQ remain unimplemented. Both actual ABIs pass all 2,560 finite
+vector cases starting from a zero represented sum, including positive,
+negative and zero strides and empty vectors. The 2,016-case existing-pair grid
+retains 114 failed comparisons per ABI: 96 nonfinite outputs and 18 finite
+representation errors, including underflow losses. Eight targeted cases per
+ABI have four failures; all ordinary controls and every guard check pass.
+
+The decisive input is `N=1, INCX=1, X=0, SCALE=SUMSQ=max`. Adding zero leaves
+the input pair a valid exact finite representation. All four routines instead
+return an infinite SUMSQ after converting the seed into a fixed-scale
+accumulator. The unscaled norm exceeds the scalar's finite maximum; the failed
+requirement concerns the exposed scaled representation, which can remain
+finite. The oracle compares widened squared energy and uses the scaled pair's
+product quantum, rather than asserting a representable unscaled norm.
+
+All four exact sources, LA_CONSTANTS/LA_XISNAN, actual compiled module inputs,
+GNU11 emitted/installed declarations, provider identities and original nonzero
+commands are retained in external
+`completion-execution-01/lassq-prerequisite-disposition-01.json`. Input-pointee
+const is the only signature normalization. Empty calls normalize zero
+accumulators before returning; integer admission must include the final loop
+index update. No malformed native length, stride or backing store was used.
+
+Remediation design LASSQ-PAIR-01 proposes a separately admitted accumulator with
+exponent/mantissa decomposition and a dynamic output factorization. There is
+no implemented or approved substitute for the full seeded contract. The
+original failures remain open; no reset-only domain, tolerance waiver, hidden
+fallback or provider change is introduced. Independent ILALC/ILALR work proceeds
+under the user's instruction to record and skip unresolved trouble.

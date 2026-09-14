@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
+  "current_base_commit": "c1b201b066b1a586b908ff0ab92a03fb54246237",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
   "last_implementation_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
   "worktree_diff_identity": {
-    "state": "scalar_eigen_blockers_recorded",
-    "base_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
-    "scope": "Six prerequisite route blockers, no API/contract/credit change. Preserve all original failures; LASSQ follows."
+    "state": "lassq_blockers_recorded",
+    "base_commit": "c1b201b066b1a586b908ff0ab92a03fb54246237",
+    "scope": "Four failed seeded-accumulator prerequisites; no API/contract/credit change. ILALC/ILALR follows."
   },
   "packages": {
     "P00": {
@@ -1480,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P09.required.lassq",
-  "next_action": "Record six scalar-eigen route blockers atomically, retain original nonzero prerequisite gates, then review S/D/C/Z LASSQ source, installed signatures and actual ABI prerequisites.",
+  "active_task": "P09.required.ilalc",
+  "next_action": "Record four LASSQ route blockers atomically, retain all failed seeded-accumulator gates, then review ILALC/ILALR exact sources and both actual integer ABIs.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1489,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "de53bb5ab9c380db5385ddafacf0e59752a864e9cf76d5d223c2176f36e106ce"
+    "coverage_mapping_sha256": "edc33538c2fcb2140e4bcf0034aaa633ef6484dd7803994eb64cce8d3cd6c2cd"
   },
   "provider": {
     "version": "3.12.1",
@@ -2245,6 +2245,19 @@
       "record": "programs/lapack-array-io/blockers.md",
       "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-eigen-prerequisite-disposition-01.json",
       "disposition": "recorded_unresolved_advance_independent_work"
+    },
+    {
+      "id": "LASSQ-EXISTING-PAIR-RANGE",
+      "rows": [
+        "lapack.slassq",
+        "lapack.dlassq",
+        "lapack.classq",
+        "lapack.zlassq"
+      ],
+      "scope": "Finite seeded accumulator pairs lose their represented energy: 114/2016 failed comparisons/ABI, including96 nonfinite outputs; all2560 reset-vector cases pass. Four targeted zero-addition failures/ABI have an exact finite scaled output pair. No unscaled norm representability claim.",
+      "record": "programs/lapack-array-io/blockers.md",
+      "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lassq-prerequisite-disposition-01.json",
+      "disposition": "recorded_unresolved_advance_independent_work"
     }
   ],
   "external_approvals": [
@@ -2264,9 +2277,9 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "state": "scalar_eigen_prerequisites_recorded_deferred",
+    "state": "lassq_prerequisite_recorded_deferred",
     "running": [],
-    "record": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-eigen-prerequisite-disposition-01.json"
+    "record": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lassq-prerequisite-disposition-01.json"
   },
   "last_completed_verification": {
     "family": "Checked S/D LASV2 singular values and vectors",
@@ -2758,7 +2771,7 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.lassq",
+  "next_task": "P09.required.ilalr",
   "documentation_verification": {
     "public_headers": 172,
     "documented_public_members": 2844,
@@ -2766,7 +2779,7 @@
     "warnings": 0,
     "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-documentation-02/audit/record.json"
   },
-  "next_command": "Rebind blocker-only metadata and regenerate the backlog; continue LASSQ prerequisite review.",
+  "next_command": "Rebind LASSQ blocker-only metadata and regenerate the backlog, then continue matrix support-index prerequisites.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -5008,7 +5021,7 @@
       "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
       "commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad"
     },
-    "remaining_backlog_sha256": "519c375aa053988fdc050efcc34f22b9ce08c57c36ac84c0710139069f877118",
+    "remaining_backlog_sha256": "920e7d46710287820a09a646feb97e4b81f611196c269e3253846539df4b0d15",
     "shift_rotation_prerequisite": {
       "blocker_id": "LARTGS-FINITE-RANGE",
       "source_parent_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
@@ -5173,6 +5186,46 @@
       },
       "disposition": "Record and defer six unimplemented rows under user instruction; no contract/implementation/numerical credit, domain narrowing or tolerance waiver. Continue independent LASSQ work.",
       "recorded_utc": "2026-09-14T20:51:26.758298+00:00"
+    },
+    "scaled_sum_prerequisites": {
+      "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
+      "source_parent_commit": "c1b201b066b1a586b908ff0ab92a03fb54246237",
+      "rows": [
+        "lapack.slassq",
+        "lapack.dlassq",
+        "lapack.classq",
+        "lapack.zlassq"
+      ],
+      "source_findings": [
+        "All four definitions and LA_CONSTANTS/LA_XISNAN read in full. LA_CONSTANTS supplies compile-time scaling thresholds, not mutable global state. Actual provider compilation selects fallback x!=y NaN checks, with neither USE_IEEE_INTRINSIC nor USE_ISNAN defined.",
+        "Complex routines accumulate squared real/imaginary magnitudes separately. The introductory x(i)**2 equation is interpreted as squared magnitude for complex inputs, matching the code and norm purpose.",
+        "N and INCX use actual lapack_int; data X is read-only by intent. Mutable emitted pointers agree with installed const input declarations after input-pointee const normalization only. Two real in/out scalars; no hidden/CHARACTER/INFO arguments.",
+        "Empty native operations normalize sumsq==0 or scale==0 before returning; NaN accumulator inputs return first. Negative increments adjust the start; zero increments count the same live element N times. All tested strides and lengths are bounded, with valid live backing storage. The loop advances IX once after its last read; future public integer admission must account for that update.",
+        "For nonnegative finite existing SCALE/SUMSQ, the source forms scale*sqrt(sumsq), then combines into accumulators at fixed scaling thresholds. A valid finite pair can be converted into an infinite sumsq or lose a very small represented energy. The targeted zero-addition case preserves the exact represented energy mathematically yet overflows in all four routines.",
+        "No existing adapter or named commit found across 18 registered worktrees. The unchanged native archive/header and actual module files/compiler flags are bound. All native tests avoid invalid memory, deliberate crashes, traps and remote operations."
+      ],
+      "reset_cases_each_abi": 2560,
+      "reset_failures": 0,
+      "existing_pair_cases_each_abi": 2016,
+      "existing_pair_failed_comparisons_each_abi": 114,
+      "existing_pair_nonfinite_outputs_each_abi": 96,
+      "existing_pair_finite_failed_comparisons_each_abi": 18,
+      "targeted_cases_each_abi": 8,
+      "targeted_failures_each_abi": 4,
+      "guard_failures": 0,
+      "oracle": "Widened sum of squared magnitudes plus scale^2*sumsq; 128 scalar epsilon relative energy tolerance plus eight times denorm_min cubed, the minimal positive product quantum of a finite scaled pair. The gate concerns the exposed scaled representation, not a promise of a representable unscaled norm. Original comparison and nonzero results retained.",
+      "decisive_case": "N=1,INCX=1,X=0,SCALE=SUMSQ=max. Exact output is representable by the unchanged input pair. Native returns scale=2^76 or2^538 and sumsq=infinity. Its unscaled norm exceeds scalar max, but that does not preclude a finite scaled output pair.",
+      "remediation_recommendation": {
+        "identity": "Proposed separate ASC dynamic-exponent scaled-energy accumulator, design LASSQ-PAIR-01; no implemented or approved substitute.",
+        "algorithm": "Represent the incoming scale^2*sumsq via exponent/mantissa decomposition without evaluating that product in the scalar type. Accumulate vector component squares after aligning binary exponents, then choose a finite output scale/sumsq factorization that preserves representable energy. Reuse existing checked placement, integer-span and workspace primitives; a new numerical route requires its own proof/tests and explicit admission.",
+        "admission": "No currently reviewed LASSQ route supplies the full seeded accumulator contract. Keep the original pinned route and all failed gates unchanged; no silent reset-only domain, native bypass, provider patch or hidden fallback."
+      },
+      "disposition": "Record and defer four unimplemented rows under the user instruction. No contract or callable/verification credit. Continue independent ILALC/ILALR matrix support-index work.",
+      "recorded_utc": "2026-09-14T20:59:53.623818+00:00",
+      "module_build_proof": {
+        "path": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lassq-module-build-proof-01.json",
+        "sha256": "a602b1170a93b3f4ee412e047f3c82e23008a8095aafb2830de81132ea6be7c6"
+      }
     }
   },
   "historical_active_verification_before_completion_execution": {
@@ -5267,7 +5320,7 @@
     "next_family": "P09.required.lasrt",
     "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
   },
-  "updated_utc": "2026-09-14T20:51:26.758298+00:00",
+  "updated_utc": "2026-09-14T20:59:53.623818+00:00",
   "historical_delivery_before_complete_pivoting": {
     "family": "Reference GETRF/GETRS metadata preflight",
     "status": "committed_local_validation_and_index_complete",

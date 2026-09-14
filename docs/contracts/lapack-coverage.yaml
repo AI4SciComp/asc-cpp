@@ -202380,7 +202380,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LASSQ seeded-accumulator prerequisites fail114/2016 comparisons in each actual ABI; zero addition to SCALE=SUMSQ=max loses an exactly representable finite pair. All2560 reset-vector cases pass. No domain narrowing, tolerance waiver, implementation or credit. Exact evidence: completion-execution-01/lassq-prerequisite-disposition-01.json. Continue ILALC/ILALR work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },
@@ -422410,7 +422413,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LASSQ seeded-accumulator prerequisites fail114/2016 comparisons in each actual ABI; zero addition to SCALE=SUMSQ=max loses an exactly representable finite pair. All2560 reset-vector cases pass. No domain narrowing, tolerance waiver, implementation or credit. Exact evidence: completion-execution-01/lassq-prerequisite-disposition-01.json. Continue ILALC/ILALR work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },
@@ -646588,7 +646594,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LASSQ seeded-accumulator prerequisites fail114/2016 comparisons in each actual ABI; zero addition to SCALE=SUMSQ=max loses an exactly representable finite pair. All2560 reset-vector cases pass. No domain narrowing, tolerance waiver, implementation or credit. Exact evidence: completion-execution-01/lassq-prerequisite-disposition-01.json. Continue ILALC/ILALR work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },
@@ -893931,7 +893940,10 @@
           "state": "not_started"
         },
         "reference_cpu": {
+          "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
           "evidence_ids": [],
+          "partial_scope": "Pinned LASSQ seeded-accumulator prerequisites fail114/2016 comparisons in each actual ABI; zero addition to SCALE=SUMSQ=max loses an exactly representable finite pair. All2560 reset-vector cases pass. No domain narrowing, tolerance waiver, implementation or credit. Exact evidence: completion-execution-01/lassq-prerequisite-disposition-01.json. Continue ILALC/ILALR work.",
+          "review": "programs/lapack-array-io/blockers.md",
           "state": "not_started"
         }
       },

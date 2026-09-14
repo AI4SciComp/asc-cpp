@@ -50505,7 +50505,7 @@
         "lapack.slassq": "not_started",
         "lapack.zlassq": "not_started"
       },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
+      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs. Review the listed route blockers separately; continue independent scalar work without granting blocked-route credit.",
       "required_mode_cases": {
         "lapack.classq": [],
         "lapack.dlassq": [],
@@ -50535,7 +50535,25 @@
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [],
+      "route_blockers": {
+        "lapack.classq": {
+          "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        },
+        "lapack.dlassq": {
+          "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        },
+        "lapack.slassq": {
+          "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        },
+        "lapack.zlassq": {
+          "blocker_id": "LASSQ-EXISTING-PAIR-RANGE",
+          "review": "programs/lapack-array-io/blockers.md"
+        }
+      }
     },
     {
       "task_id": "P07.required.lasv2",
@@ -63090,7 +63108,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "de53bb5ab9c380db5385ddafacf0e59752a864e9cf76d5d223c2176f36e106ce",
+    "lapack-coverage.yaml": "edc33538c2fcb2140e4bcf0034aaa633ef6484dd7803994eb64cce8d3cd6c2cd",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }
