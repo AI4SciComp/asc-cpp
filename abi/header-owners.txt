@@ -110,6 +110,7 @@ asc/dense/providers/lapack_positive_tridiagonal_driver.h|asc_dense_lapack
 asc/dense/providers/lapack_positive_tridiagonal_expert.h|asc_dense_lapack
 asc/dense/providers/lapack_positive_tridiagonal_refinement.h|asc_dense_lapack
 asc/dense/providers/lapack_precision_conversion.h|asc_dense_lapack
+asc/dense/providers/lapack_scalar_norm.h|asc_dense_lapack
 asc/dense/providers/lapack_qr.h|asc_dense_lapack
 asc/dense/providers/lapack_rank_revealing.h|asc_dense_lapack
 asc/dense/providers/lapack_svd_least_squares.h|asc_dense_lapack

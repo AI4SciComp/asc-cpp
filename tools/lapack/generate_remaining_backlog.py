@@ -24,8 +24,9 @@ PACKED_PREREQUISITES = {
 }
 
 # DLAT2S/ZLAT2C require only the checked provider/workspace interfaces. The
-# source and SLAMCH/LSAME dependencies are reviewed in triangular-conversion-review.md.
-REVIEWED_AUXILIARY_FAMILIES = {'_lat2_'}
+# source dependencies are reviewed in triangular-conversion-review.md.
+# LAPY2/LAPY3 scalar-return dependencies are reviewed in scalar-norm-review.md.
+REVIEWED_AUXILIARY_FAMILIES = {'_lat2_', 'lapy2', 'lapy3'}
 
 
 def owner(family):

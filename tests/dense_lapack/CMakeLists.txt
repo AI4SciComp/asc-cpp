@@ -52,6 +52,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/lu_refinement_modes_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/lu_driver_modes_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/precision_conversion_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/triangular_conversion_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/scalar_norm_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/matrix_copy_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/matrix_scale_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/matrix_set_tests.cmake")
@@ -1098,6 +1099,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_mixed_general.h
     lapack_mixed_positive.h
     lapack_precision_conversion.h
+    lapack_scalar_norm.h
     lapack_matrix_copy.h
     lapack_matrix_scale.h
     lapack_matrix_set.h

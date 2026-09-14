@@ -74,6 +74,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_mixed_positive.cc
   reference_precision_conversion.cc
   reference_triangular_conversion.cc
+  reference_scalar_norm.cc
   reference_matrix_copy.cc
   reference_matrix_scale.cc
   reference_matrix_set.cc
@@ -151,6 +152,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_lu_band_refinement.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_mixed_positive.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_precision_conversion.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_scalar_norm.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_copy.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_scale.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_set.h"
