@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
+  "current_base_commit": "6a3fc1f565ff50d377c8a850174cba5c341d5630",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
+  "last_implementation_commit": "6a3fc1f565ff50d377c8a850174cba5c341d5630",
   "worktree_diff_identity": {
-    "state": "machine_compatibility_checkpoint_pending",
-    "base_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
-    "scope": "Two checked LABAD overloads, maintained tests/contracts/backlog; LARTGS failed-prerequisite blocker retained without credit."
+    "state": "machine_constants_checkpoint_pending",
+    "base_commit": "6a3fc1f565ff50d377c8a850174cba5c341d5630",
+    "scope": "Two checked Lamch overloads, ten-member parameter enum, twenty reviewed modes and full maintained local validation; no Reference verification credit."
   },
   "packages": {
     "P00": {
@@ -1480,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P11.machine_compatibility_checkpoint",
-  "next_action": "Run checkpoint consistency checks and save LABAD plus the LARTGS blocker locally; continue exact S/D LAMCH source, reuse and ABI prerequisites.",
+  "active_task": "P11.machine_constants_checkpoint",
+  "next_action": "Run checkpoint consistency checks, save LAMCH locally, then review exact S/D LASV2 sources, reuse, ABI and bounded numerical prerequisites.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1489,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "ad2085327fdf98a0e51e20d8b09ed4ce3a35834bc20556b919005687f061f131"
+    "coverage_mapping_sha256": "fd8d8279ad7f95c3ab6b69c1610de5368cdcbd42b7c83dcf8c23057f40e629a8"
   },
   "provider": {
     "version": "3.12.1",
@@ -1922,16 +1922,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 358,
-    "callable_reference": 318,
+    "mapped_contracts": 360,
+    "callable_reference": 320,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1499,
+    "not_started_reference": 1497,
     "in_progress_reference": 296,
-    "incomplete_reference": 1795,
-    "implemented_unverified_reference": 318,
+    "incomplete_reference": 1793,
+    "implemented_unverified_reference": 320,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2251,14 +2251,14 @@
   "active_verification": {
     "state": "complete",
     "running": [],
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-final-audit.json"
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-constants-final-audit.json"
   },
   "last_completed_verification": {
-    "family": "Checked S/D LABAD machine-threshold compatibility",
-    "selected": 88,
-    "passed": 88,
+    "family": "Checked S/D LAMCH machine constants",
+    "selected": 176,
+    "passed": 176,
     "skipped": 0,
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-final-audit.json",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-constants-final-audit.json",
     "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
   },
   "remote_checkpoint": {
@@ -2743,15 +2743,15 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.lamch",
+  "next_task": "P07.required.lasv2",
   "documentation_verification": {
     "public_headers": 171,
-    "documented_public_members": 2839,
-    "explicit_programme_pages": 32,
+    "documented_public_members": 2842,
+    "explicit_programme_pages": 33,
     "warnings": 0,
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-documentation-02/audit/record.json"
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-constants-documentation-02/audit/record.json"
   },
-  "next_command": "python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/check_machine_checkpoint.py",
+  "next_command": "python3 -B /home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/check_machine_constants_checkpoint.py",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4304,28 +4304,28 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "Checked S/D LABAD machine-threshold compatibility",
+    "family": "Checked S/D LAMCH machine constants",
     "status": "local_validation_and_index_complete_commit_pending",
-    "source_parent_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
+    "source_parent_commit": "6a3fc1f565ff50d377c8a850174cba5c341d5630",
     "reference_rows": 2,
-    "reviewed_modes": 2,
-    "selected_local_tests": 88,
-    "passed_local_tests": 88,
+    "reviewed_modes": 20,
+    "selected_local_tests": 176,
+    "passed_local_tests": 176,
     "skipped_local_tests": 0,
     "metadata_rejection_cases": {
-      "s": 148,
-      "d": 74
+      "s": 74,
+      "d": 37
     },
-    "native_cases_each_abi": 800,
+    "invalid_enum_values_each_scalar": 246,
+    "native_cases_each_abi": 80,
     "installed_packages": 4,
-    "installed_consumers": 4,
-    "installed_cases_each_package": 800,
-    "strict_translation_units_passed": 7,
+    "installed_consumers": 8,
+    "installed_cases_each_package": 860,
+    "strict_translation_units_passed": 8,
     "callable_rows_added": 2,
     "verification_credit": 0,
-    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-final-audit.json",
-    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
-    "consumer_repair": "Three declarations split; four fresh consumers tested against unchanged installed production packages, strict repair passed."
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-constants-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4991,7 +4991,7 @@
       "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
       "commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad"
     },
-    "remaining_backlog_sha256": "b27479e7227324f6858474f971559bc14f218fc5973c339cf5fd3f47721a83cd",
+    "remaining_backlog_sha256": "4530c94e10bd1fbcb01080ab99174e900c5f8573ef31d2d3b6e7220140dc883a",
     "shift_rotation_prerequisite": {
       "blocker_id": "LARTGS-FINITE-RANGE",
       "source_parent_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
@@ -5019,7 +5019,7 @@
     },
     "machine_implementation": {
       "family": "Checked S/D LABAD machine-threshold compatibility",
-      "status": "local_validation_and_index_complete_commit_pending",
+      "status": "committed_local_validation_and_index_complete",
       "source_parent_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
       "reference_rows": 2,
       "reviewed_modes": 2,
@@ -5039,7 +5039,32 @@
       "verification_credit": 0,
       "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-final-audit.json",
       "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
-      "consumer_repair": "Three declarations split; four fresh consumers tested against unchanged installed production packages, strict repair passed."
+      "consumer_repair": "Three declarations split; four fresh consumers tested against unchanged installed production packages, strict repair passed.",
+      "commit": "6a3fc1f565ff50d377c8a850174cba5c341d5630"
+    },
+    "machine_constants_implementation": {
+      "family": "Checked S/D LAMCH machine constants",
+      "status": "local_validation_and_index_complete_commit_pending",
+      "source_parent_commit": "6a3fc1f565ff50d377c8a850174cba5c341d5630",
+      "reference_rows": 2,
+      "reviewed_modes": 20,
+      "selected_local_tests": 176,
+      "passed_local_tests": 176,
+      "skipped_local_tests": 0,
+      "metadata_rejection_cases": {
+        "s": 74,
+        "d": 37
+      },
+      "invalid_enum_values_each_scalar": 246,
+      "native_cases_each_abi": 80,
+      "installed_packages": 4,
+      "installed_consumers": 8,
+      "installed_cases_each_package": 860,
+      "strict_translation_units_passed": 8,
+      "callable_rows_added": 2,
+      "verification_credit": 0,
+      "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-constants-final-audit.json",
+      "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
     }
   },
   "historical_active_verification_before_completion_execution": {
@@ -5134,7 +5159,7 @@
     "next_family": "P09.required.lasrt",
     "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
   },
-  "updated_utc": "2026-09-14T19:52:30.581746+00:00",
+  "updated_utc": "2026-09-14T20:11:44.793171+00:00",
   "historical_delivery_before_complete_pivoting": {
     "family": "Reference GETRF/GETRS metadata preflight",
     "status": "committed_local_validation_and_index_complete",
@@ -5240,5 +5265,30 @@
     "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/positive-rotation-final-audit.json",
     "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
     "commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad"
+  },
+  "historical_delivery_before_machine_constants": {
+    "family": "Checked S/D LABAD machine-threshold compatibility",
+    "status": "committed_local_validation_and_index_complete",
+    "source_parent_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
+    "reference_rows": 2,
+    "reviewed_modes": 2,
+    "selected_local_tests": 88,
+    "passed_local_tests": 88,
+    "skipped_local_tests": 0,
+    "metadata_rejection_cases": {
+      "s": 148,
+      "d": 74
+    },
+    "native_cases_each_abi": 800,
+    "installed_packages": 4,
+    "installed_consumers": 4,
+    "installed_cases_each_package": 800,
+    "strict_translation_units_passed": 7,
+    "callable_rows_added": 2,
+    "verification_credit": 0,
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
+    "consumer_repair": "Three declarations split; four fresh consumers tested against unchanged installed production packages, strict repair passed.",
+    "commit": "6a3fc1f565ff50d377c8a850174cba5c341d5630"
   }
 }

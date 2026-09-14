@@ -77,6 +77,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_scalar_norm.cc
   reference_rotation.cc
   reference_machine.cc
+  reference_machine_constants.cc
   reference_vector_conjugation.cc
   reference_scalar_sort.cc
   reference_triangular_storage_conversion.cc

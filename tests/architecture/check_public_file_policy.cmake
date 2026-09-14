@@ -222,6 +222,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_scalar_norm.cc
   src/dense/lapack/reference_rotation.cc
   src/dense/lapack/reference_machine.cc
+  src/dense/lapack/reference_machine_constants.cc
   src/dense/lapack/reference_vector_conjugation.cc
   src/dense/lapack/reference_scalar_sort.cc
   src/dense/lapack/reference_triangular_storage_conversion.cc
