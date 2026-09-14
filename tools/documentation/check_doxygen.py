@@ -44,7 +44,14 @@ def main() -> None:
         path.relative_to(args.source).as_posix()
         for path in (args.source / "include" / "asc").rglob("*.h")
     }
+    # Explicit programme inputs must actually become pages. Header-only coverage
+    # cannot detect a missing Doxyfile continuation or malformed path quotes.
+    template = (args.source / "docs" / "Doxyfile.in").read_text(encoding="utf-8")
+    expected_reviews = set(re.findall(
+        r"@PROJECT_SOURCE_DIR@/(programs/[A-Za-z0-9_./-]+\.md)", template
+    ))
     observed_headers: set[str] = set()
+    observed_reviews: set[str] = set()
     undocumented: list[str] = []
     public_members = 0
     xml_files = list(args.xml.glob("*.xml"))
@@ -61,6 +68,8 @@ def main() -> None:
         kind = compound.get("kind", "")
         if kind == "file" and location_file.startswith("include/asc/"):
             observed_headers.add(location_file)
+        if kind == "page" and location_file in expected_reviews:
+            observed_reviews.add(location_file)
         if (location_file.startswith("include/asc/") and
                 compound.get("prot", "public") == "public" and
                 kind in {"class", "struct", "union", "concept"} and
@@ -85,6 +94,10 @@ def main() -> None:
     missing_headers = sorted(expected_headers - observed_headers)
     if missing_headers:
         raise SystemExit("headers absent from Doxygen XML:\n" + "\n".join(missing_headers))
+    missing_reviews = sorted(expected_reviews - observed_reviews)
+    if missing_reviews:
+        raise SystemExit("explicit programme inputs absent from Doxygen pages:\n" +
+                         "\n".join(missing_reviews))
     if undocumented:
         raise SystemExit(
             "undocumented public compounds/members:\n" +
@@ -105,7 +118,9 @@ def main() -> None:
         raise SystemExit("machine-local path leakage:\n" + "\n".join(leaked))
     print(
         f"Doxygen coverage: {len(observed_headers)}/{len(expected_headers)} headers, "
-        f"{public_members} documented public members, zero warnings"
+        f"{public_members} documented public members, "
+        f"{len(observed_reviews)}/{len(expected_reviews)} explicit programme pages, "
+        "zero warnings"
     )
 
 

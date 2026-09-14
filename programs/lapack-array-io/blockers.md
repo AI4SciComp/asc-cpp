@@ -579,3 +579,21 @@ test is disabled, failure waived, provider changed, or callable credit added.
 Exact prerequisite paths and the instruction are retained in
 `completion-execution-01/user-safe-continuation-01.json` under the existing
 continuation evidence root.
+
+## LAS2-SINGLE-INFINITY — failed native prerequisite, deferred
+
+Both pinned SLAS2/DLAS2 definitions document correct behavior with one infinite
+matrix element. Bounded native probes in LP64 and global ILP64 each execute
+16,000 cases: all 11,664 finite mathematical cases pass, while 1,288 of 1,944
+single-infinity cases fail. Another 2,392 NaN/multiple-infinity cases are observed
+without numerical acceptance credit. All argument and output guards are intact.
+For example, F=1, G=0, H=+infinity should have singular values 1 and +infinity;
+the provider returns NaN/NaN through an infinity/infinity source expression.
+
+The exact sources, GNU emissions, unchanged oracle and nonzero executions are
+retained in `completion-execution-01/scalar-svd-prerequisite-limitation-01.json`
+and its referenced records. No ASC route is registered. Closing the documented
+numerical gate requires an authorized provider correction or contract/profile
+decision. Under the user's instruction to record and skip unresolved trouble,
+this leaf is deferred while independent LACGV work proceeds. No provider change,
+fallback, tolerance waiver, disabled test or numerical promotion is introduced.

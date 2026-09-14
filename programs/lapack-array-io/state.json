@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "c12ef09e669e8cbd8b8f8b10ad14a47ed12069a9",
+  "current_base_commit": "aa6e9aa5e67e77e4e70e4a1cc822e4e169d286e1",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "c12ef09e669e8cbd8b8f8b10ad14a47ed12069a9",
+  "last_implementation_commit": "aa6e9aa5e67e77e4e70e4a1cc822e4e169d286e1",
   "worktree_diff_identity": {
-    "state": "scalar_norm_local_checks_complete_commit_pending",
-    "base_commit": "c12ef09e669e8cbd8b8f8b10ad14a47ed12069a9",
-    "scope": "Four checked scalar norm routes /4 modes, local136/136 and package/documentation gates pass; mandatory deferred admission remains open."
+    "state": "vector_conjugation_local_checks_complete_commit_pending",
+    "base_commit": "aa6e9aa5e67e77e4e70e4a1cc822e4e169d286e1",
+    "scope": "Two LACGV routes/eight spacing modes,80/80 local processes and4 relocated consumers pass. Doxygen page inclusion repaired and enforced. Deferred required gates remain open."
   },
   "packages": {
     "P00": {
@@ -1480,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P09.required.las2",
-  "next_action": "Review exact S/D LAS2 source, ABI and bounded native mathematical prerequisites; implement the checked two-by-two triangular singular-value kernel if ready. Continue local work under the latest execution constraint.",
+  "active_task": "P09.required.lasrt",
+  "next_action": "Review exact S/D LASRT source, actual ABI and bounded sorting prerequisites; implement the checked scalar sort if ready. Keep LAS2 documented single-infinity failure and other deferred gates recorded.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1489,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "059fdb6dd0b05a31d1b0e1dc3380772586a06dcd7c15fc5e3e4d74f479a100e8"
+    "coverage_mapping_sha256": "c69afd7681450aa94379536ab1bb9f9551a44b0f4e08e7705e1eafafc137acec"
   },
   "provider": {
     "version": "3.12.1",
@@ -1922,16 +1922,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 324,
-    "callable_reference": 284,
+    "mapped_contracts": 326,
+    "callable_reference": 286,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1533,
+    "not_started_reference": 1531,
     "in_progress_reference": 296,
-    "incomplete_reference": 1829,
-    "implemented_unverified_reference": 284,
+    "incomplete_reference": 1827,
+    "implemented_unverified_reference": 286,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2714,14 +2714,14 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.las2",
+  "next_task": "P09.required.lasrt",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
     "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
     "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
   },
-  "next_command": "Read both pinned LAS2 sources and emitted native signatures; preserve current local norm checkpoint and all deferred gates.",
+  "next_command": "Read both pinned LASRT sources and emitted signatures; review finite/NaN sort semantics and bounded native integer/stack calculations.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4274,18 +4274,18 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "scalar_norm_4",
-    "implementation_parent": "c12ef09e669e8cbd8b8f8b10ad14a47ed12069a9",
+    "family": "vector_conjugation_2",
+    "implementation_parent": "aa6e9aa5e67e77e4e70e4a1cc822e4e169d286e1",
     "state": "Local implementation and routine checks complete; local commit pending. Remote delivery deferred under user instruction.",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-norm-final-audit.json",
-    "selected_processes": 136,
-    "passing_processes": 136,
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/vector-conjugation-final-audit.json",
+    "selected_processes": 80,
+    "passing_processes": 80,
     "required_failed_processes": 0,
     "unexpected_skips": 0,
-    "reviewed_contracts": 4,
-    "reviewed_modes": 4,
-    "callable_routes": 4,
-    "next_family": "P09.required.las2"
+    "reviewed_contracts": 2,
+    "reviewed_modes": 8,
+    "callable_routes": 2,
+    "next_family": "P09.required.lasrt"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4523,7 +4523,7 @@
   },
   "completion_execution": {
     "plan": "programs/lapack-array-io/completion-plan-2026-09-13.md",
-    "state": "scalar_norm_local_checks_complete_next_ready_leaf",
+    "state": "vector_conjugation_local_checks_complete_next_ready_leaf",
     "scope": "User authorized executing the complete plan and recording/defering unresolved trouble while independent required work continues. Failed tests are not converted to skips or successes.",
     "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
     "m0": "Current artifact bindings, generator ownership, seven packed interface dependencies and active pointers are reconciled. Remaining families require individual dependency review before execution.",
@@ -4543,21 +4543,21 @@
     },
     "packed_concurrency_initial": "Six Debug LP64 scalar/symmetry processes pass with24 groups,4 workers,8 repeats each; serial independent reconstruction, private storage/reports and concurrent stale-plan rejection.",
     "ci_selector_fix": "Prior regex omitted indefinite_packed while requiring43 packed IDs; both actual listing/execution selectors now include the family and all49 IDs, pending full selector validation.",
-    "updated_utc": "2026-09-14T04:55:23.573851+00:00",
+    "updated_utc": "2026-09-14T05:24:31.514930+00:00",
     "m0_pending": "Review remaining family prerequisites at each implementation boundary; no generic foundation-only task is marked dependency-reviewed.",
     "current_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 324,
-      "callable_reference": 284,
+      "mapped_contracts": 326,
+      "callable_reference": 286,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1533,
+      "not_started_reference": 1531,
       "in_progress_reference": 296,
-      "incomplete_reference": 1829,
-      "implemented_unverified_reference": 284,
+      "incomplete_reference": 1827,
+      "implemented_unverified_reference": 286,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -4665,7 +4665,7 @@
       "implementation_commit": "c12ef09e669e8cbd8b8f8b10ad14a47ed12069a9"
     },
     "scalar_norm": {
-      "state": "local_checks_complete_commit_pending",
+      "state": "committed_locally_remote_deferred",
       "source_review": "programs/lapack-array-io/scalar-norm-review.md",
       "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-norm-final-audit.json",
       "profile_processes": 136,
@@ -4679,7 +4679,48 @@
       "contract_review": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-norm-contract-review-01/reviewed-contracts.json",
       "oracle_correction": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-norm-oracle-correction-01/review.json",
       "acceptance": "callable_unverified; mandatory deferred admission remains open",
-      "next": "P09.required.las2"
+      "next": "P09.required.las2",
+      "implementation_commit": "aa6e9aa5e67e77e4e70e4a1cc822e4e169d286e1"
+    },
+    "scalar_svd_prerequisites": {
+      "state": "failed_documented_single_infinity_prerequisite_deferred",
+      "routines": [
+        "slas2",
+        "dlas2"
+      ],
+      "abis": [
+        "lp64",
+        "ilp64"
+      ],
+      "cases_each_abi": 16000,
+      "finite_cases_each_abi": 11664,
+      "finite_failed_each_abi": 0,
+      "single_infinity_cases_each_abi": 1944,
+      "single_infinity_failed_each_abi": 1288,
+      "unspecified_nonfinite_observed_each_abi": 2392,
+      "input_or_output_guard_failures": 0,
+      "source": "scalar-svd-source-review-01/inputs.json",
+      "native_results": "scalar-svd-native-01-results.json",
+      "scope": "No ASC adapter or coverage credit. Source documents one infinite element as correct. Example f=1,g=0,h=+Inf returns NaN/NaN instead of1/+Inf. Source computes Inf/Inf; no crash or unsafe-memory experiment. Inputs with NaN or multiple infinities are observation only, not numerical pass credit.",
+      "next_decision": "An explicitly authorized pinned-provider correction or contract/profile decision is required to close this documented numerical gate. Per user permission to record/skip unresolved trouble, defer this leaf and continue independent LACGV. No fallback, tolerance change, weakened test or provider mutation."
+    },
+    "vector_conjugation": {
+      "state": "local_checks_complete_commit_pending",
+      "source_review": "programs/lapack-array-io/vector-conjugation-review.md",
+      "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/vector-conjugation-final-audit.json",
+      "profile_processes": 80,
+      "passed": 80,
+      "failed": 0,
+      "skipped": 0,
+      "native_cases_each_abi": 28000,
+      "installed_consumers": 4,
+      "installed_cases_each": 4480,
+      "strict_tus": 5,
+      "contract_review": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/vector-conjugation-contract-review-01/reviewed-contracts.json",
+      "documentation": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/vector-conjugation-documentation-03/audit/record.json",
+      "documentation_regression": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/vector-conjugation-documentation-regression-01/result.json",
+      "acceptance": "callable_unverified; required deferred admission remains open",
+      "next": "P09.required.lasrt"
     }
   },
   "historical_active_verification_before_completion_execution": {
@@ -4743,5 +4784,20 @@
     "callable_routes": 2,
     "next_family": "P09.required.lapy2",
     "implementation_commit": "c12ef09e669e8cbd8b8f8b10ad14a47ed12069a9"
+  },
+  "historical_delivery_before_vector_conjugation": {
+    "family": "scalar_norm_4",
+    "implementation_parent": "c12ef09e669e8cbd8b8f8b10ad14a47ed12069a9",
+    "state": "Committed locally; remote delivery deferred under user instruction.",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-norm-final-audit.json",
+    "selected_processes": 136,
+    "passing_processes": 136,
+    "required_failed_processes": 0,
+    "unexpected_skips": 0,
+    "reviewed_contracts": 4,
+    "reviewed_modes": 4,
+    "callable_routes": 4,
+    "next_family": "P09.required.las2",
+    "implementation_commit": "aa6e9aa5e67e77e4e70e4a1cc822e4e169d286e1"
   }
 }
