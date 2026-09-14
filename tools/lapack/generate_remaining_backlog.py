@@ -27,7 +27,8 @@ PACKED_PREREQUISITES = {
 # source dependencies are reviewed in triangular-conversion-review.md.
 # LAPY2/LAPY3 scalar-return dependencies are reviewed in scalar-norm-review.md.
 # LACGV signed/zero spacing is reviewed in vector-conjugation-review.md.
-REVIEWED_AUXILIARY_FAMILIES = {'_lat2_', 'lacgv', 'lapy2', 'lapy3'}
+# LASRT source/stack and NaN ordering are reviewed in scalar-sort-review.md.
+REVIEWED_AUXILIARY_FAMILIES = {'_lat2_', 'lacgv', 'lapy2', 'lapy3', 'lasrt'}
 
 
 def owner(family):
