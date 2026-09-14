@@ -117,7 +117,8 @@ INPUT                  = "@PROJECT_SOURCE_DIR@/include/asc" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/positive-rotation-review.md" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/machine-compatibility-review.md" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/machine-constants-review.md" \
-                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/scalar-svd-vectors-review.md"
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/scalar-svd-vectors-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/matrix-support-review.md"
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h *.md *.dox *.cc
 RECURSIVE              = YES

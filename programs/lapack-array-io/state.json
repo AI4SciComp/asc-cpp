@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "c1b201b066b1a586b908ff0ab92a03fb54246237",
+  "current_base_commit": "2f202ef1a93ef1a9e36ca2814d6f1d3f1018e633",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
   "last_implementation_commit": "0e01bacd142311211df9fa2574db95bcaa572c20",
   "worktree_diff_identity": {
-    "state": "lassq_blockers_recorded",
-    "base_commit": "c1b201b066b1a586b908ff0ab92a03fb54246237",
-    "scope": "Four failed seeded-accumulator prerequisites; no API/contract/credit change. ILALC/ILALR follows."
+    "state": "matrix_support_ready_for_local_commit",
+    "base_commit": "2f202ef1a93ef1a9e36ca2814d6f1d3f1018e633",
+    "scope": "Eight checked ILALC/ILALR routes and sixteen layout modes; 328/328 tests, four relocated consumers, strict7, exact native ABI and current inventory checks. Earlier failures and deferred tasks preserved."
   },
   "packages": {
     "P00": {
@@ -1480,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P09.required.ilalc",
-  "next_action": "Record four LASSQ route blockers atomically, retain all failed seeded-accumulator gates, then review ILALC/ILALR exact sources and both actual integer ABIs.",
+  "active_task": "P09.required.ilaprec",
+  "next_action": "Commit the validated matrix support slice after final checkpoint checks, then continue provider metadata prerequisites (ILAPREC/ILATRANS/ILAUPLO/ILADIAG, CHLA_TRANSTYPE and ILAVER). Exact sources and LSAME are read; actual emissions and symbols are recorded; no next-family implementation credit yet.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1489,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "edc33538c2fcb2140e4bcf0034aaa633ef6484dd7803994eb64cce8d3cd6c2cd"
+    "coverage_mapping_sha256": "2f0beca165e5aac6b565485dcc31c74f50062f433c3f9c5cdabac3cf4f1516c9"
   },
   "provider": {
     "version": "3.12.1",
@@ -1922,16 +1922,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 362,
-    "callable_reference": 322,
+    "mapped_contracts": 370,
+    "callable_reference": 330,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1495,
+    "not_started_reference": 1487,
     "in_progress_reference": 296,
-    "incomplete_reference": 1791,
-    "implemented_unverified_reference": 322,
+    "incomplete_reference": 1783,
+    "implemented_unverified_reference": 330,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2277,17 +2277,17 @@
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
   "active_verification": {
-    "state": "lassq_prerequisite_recorded_deferred",
+    "state": "matrix_support_final_checkpoint_pending",
     "running": [],
-    "record": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lassq-prerequisite-disposition-01.json"
+    "record": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-support-final-audit.json"
   },
   "last_completed_verification": {
-    "family": "Checked S/D LASV2 singular values and vectors",
-    "selected": 88,
-    "passed": 88,
+    "family": "Checked S/D/C/Z ILALC and ILALR matrix extents",
+    "selected": 328,
+    "passed": 328,
     "skipped": 0,
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-final-audit.json",
-    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20."
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-support-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Eight callable-unverified matrix support routes, no Reference verification and unchanged Native20."
   },
   "remote_checkpoint": {
     "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
@@ -2771,15 +2771,15 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.ilalr",
+  "next_task": "P09.required.ilatrans",
   "documentation_verification": {
-    "public_headers": 172,
-    "documented_public_members": 2844,
-    "explicit_programme_pages": 34,
+    "public_headers": 173,
+    "documented_public_members": 2860,
+    "explicit_programme_pages": 35,
     "warnings": 0,
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-documentation-02/audit/record.json"
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-support-documentation-01/audit/record.json"
   },
-  "next_command": "Rebind LASSQ blocker-only metadata and regenerate the backlog, then continue matrix support-index prerequisites.",
+  "next_command": "Run check_matrix_support_checkpoint.py, explicitly stage owned paths and commit; then run bounded provider metadata native prerequisite and reuse checks.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4332,30 +4332,29 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "Checked S/D LASV2 singular values and vectors",
-    "status": "committed_local_validation_and_index_complete",
-    "source_parent_commit": "30598370c297a394d267c7ff2ae9cf9f5e27ff3b",
-    "reference_rows": 2,
-    "reviewed_modes": 2,
-    "selected_local_tests": 88,
-    "passed_local_tests": 88,
+    "family": "Checked S/D/C/Z ILALC and ILALR matrix extents",
+    "status": "local_validation_and_index_complete",
+    "source_parent_commit": "2f202ef1a93ef1a9e36ca2814d6f1d3f1018e633",
+    "reference_rows": 8,
+    "reviewed_modes": 16,
+    "selected_local_tests": 328,
+    "passed_local_tests": 328,
     "skipped_local_tests": 0,
-    "metadata_rejection_cases": {
-      "s": 444,
-      "d": 222
+    "metadata_rejection_cases_each_operation": {
+      "s": 464,
+      "d": 320,
+      "c": 460,
+      "z": 316
     },
-    "locally_rejected_nonfinite_triples_each_scalar": 57,
-    "native_cases_each_abi": 77824,
+    "native_cases_each_abi": 32472,
     "installed_packages": 4,
     "installed_consumers": 4,
-    "installed_cases_each_package": 77824,
+    "installed_cases_each_package": 65056,
     "strict_translation_units_passed": 7,
-    "callable_rows_added": 2,
+    "callable_rows_added": 8,
     "verification_credit": 0,
-    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-final-audit.json",
-    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
-    "final_checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-checkpoint-final-checks.json",
-    "commit": "0e01bacd142311211df9fa2574db95bcaa572c20"
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-support-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Eight callable-unverified matrix support routes, no Reference verification and unchanged Native20."
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4613,21 +4612,21 @@
     },
     "packed_concurrency_initial": "Six Debug LP64 scalar/symmetry processes pass with24 groups,4 workers,8 repeats each; serial independent reconstruction, private storage/reports and concurrent stale-plan rejection.",
     "ci_selector_fix": "Prior regex omitted indefinite_packed while requiring43 packed IDs; both actual listing/execution selectors now include the family and all49 IDs, pending full selector validation.",
-    "updated_utc": "2026-09-14T20:43:02.473878+00:00",
+    "updated_utc": "2026-09-14T21:47:39.519148+00:00",
     "m0_pending": "Review remaining family prerequisites at each implementation boundary; no generic foundation-only task is marked dependency-reviewed.",
     "current_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 362,
-      "callable_reference": 322,
+      "mapped_contracts": 370,
+      "callable_reference": 330,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1495,
+      "not_started_reference": 1487,
       "in_progress_reference": 296,
-      "incomplete_reference": 1791,
-      "implemented_unverified_reference": 322,
+      "incomplete_reference": 1783,
+      "implemented_unverified_reference": 330,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -5021,7 +5020,7 @@
       "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
       "commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad"
     },
-    "remaining_backlog_sha256": "920e7d46710287820a09a646feb97e4b81f611196c269e3253846539df4b0d15",
+    "remaining_backlog_sha256": "3ebfd64880c459d3ef157643f291c2a0ee2486853deeb0d5bdd9801cb1737349",
     "shift_rotation_prerequisite": {
       "blocker_id": "LARTGS-FINITE-RANGE",
       "source_parent_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
@@ -5226,6 +5225,51 @@
         "path": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lassq-module-build-proof-01.json",
         "sha256": "a602b1170a93b3f4ee412e047f3c82e23008a8095aafb2830de81132ea6be7c6"
       }
+    },
+    "matrix_support_prerequisites": {
+      "family": "ILALC/ILALR matrix support extents",
+      "source_parent_commit": "2f202ef1a93ef1a9e36ca2814d6f1d3f1018e633",
+      "source_findings": [
+        "All eight pinned sources read in full. Native result is one-based last nonzero row/column, equivalently the leading row/column extent containing every nonzero; zero denotes all-zero or empty. Exact comparisons classify signed zero as zero, and infinity/NaN as nonzero. Complex equality compares both components.",
+        "Three mutable integer input pointers and one mutable scalar matrix pointer, with actual INTEGER function return. Installed lapack.h omits all eight; actual GNU11 LP64/global-ILP64 emissions are used directly and exact function-type assertions pass. No INTEGER/CHARACTER hidden arguments, INFO, workspace, allocation or mutable global state.",
+        "Column scan only quick-returns for N=0 and otherwise reads A(1,N),A(M,N); row scan only quick-returns for M=0 and otherwise reads A(M,1),A(M,N). Future checked API must handle every empty shape locally. Only source-proven quick-return orientations were probed natively.",
+        "Column scan loops through I=1..M with final M+1 and downward column control ending at0. Row scan loops J=1..N with final N+1, and safely uses A(MAX(I,1),J) even if Fortran evaluates both operands of .AND.; inner I stops at0. Conservative shared matrix-copy count admission M,N<actual integer maximum covers loop terminals; descriptor reachability covers address-sized linear arithmetic.",
+        "Read-only scans may use existing explicit row-major packing to preserve the exact named native routine. No transpose counterpart substitution or independent scan fallback is needed.",
+        "Both searches of18 registered worktrees and named commits found no reusable adapter."
+      ],
+      "cases_each_abi": 32472,
+      "column_cases_each_abi": 16236,
+      "row_cases_each_abi": 16236,
+      "index_failures": 0,
+      "guard_failures": 0,
+      "coverage": "Positive dimensions1/2/3/5, leading padding0/2, all-zero/single-entry/dense/checkerboard patterns, real and complex markers including signed zeros, subnormals, finite extremes, infinities, real/imaginary NaNs and non-real complex values; source-proven native empty orientations.",
+      "planned_contract": "Eight checked Ilalc/Ilalr execute overloads plus eight metadata-only workspace queries. index_t output carries the one-based native value/leading extent, zero for empty/all-zero. Independent row/column layouts via explicit row-major packing. Validate provider/plan/workspace/report/input/output overlaps before report reset or numeric access; output untouched on rejection. Local empty result0, no native INFO. Native result bounds and private integer inputs validated before publication. In-range wrong results are not certified by runtime checks; independent exact index oracle remains separate from native fidelity.",
+      "recorded_utc": "2026-09-14T21:08:58.005063+00:00"
+    },
+    "matrix_support_implementation": {
+      "family": "Checked S/D/C/Z ILALC and ILALR matrix extents",
+      "status": "local_validation_and_index_complete",
+      "source_parent_commit": "2f202ef1a93ef1a9e36ca2814d6f1d3f1018e633",
+      "reference_rows": 8,
+      "reviewed_modes": 16,
+      "selected_local_tests": 328,
+      "passed_local_tests": 328,
+      "skipped_local_tests": 0,
+      "metadata_rejection_cases_each_operation": {
+        "s": 464,
+        "d": 320,
+        "c": 460,
+        "z": 316
+      },
+      "native_cases_each_abi": 32472,
+      "installed_packages": 4,
+      "installed_consumers": 4,
+      "installed_cases_each_package": 65056,
+      "strict_translation_units_passed": 7,
+      "callable_rows_added": 8,
+      "verification_credit": 0,
+      "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-support-final-audit.json",
+      "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Eight callable-unverified matrix support routes, no Reference verification and unchanged Native20."
     }
   },
   "historical_active_verification_before_completion_execution": {
@@ -5320,7 +5364,7 @@
     "next_family": "P09.required.lasrt",
     "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
   },
-  "updated_utc": "2026-09-14T20:59:53.623818+00:00",
+  "updated_utc": "2026-09-14T21:47:39.519148+00:00",
   "historical_delivery_before_complete_pivoting": {
     "family": "Reference GETRF/GETRS metadata preflight",
     "status": "committed_local_validation_and_index_complete",
@@ -5476,5 +5520,31 @@
     "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/machine-constants-final-audit.json",
     "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
     "commit": "30598370c297a394d267c7ff2ae9cf9f5e27ff3b"
+  },
+  "historical_delivery_before_matrix_support": {
+    "family": "Checked S/D LASV2 singular values and vectors",
+    "status": "committed_local_validation_and_index_complete",
+    "source_parent_commit": "30598370c297a394d267c7ff2ae9cf9f5e27ff3b",
+    "reference_rows": 2,
+    "reviewed_modes": 2,
+    "selected_local_tests": 88,
+    "passed_local_tests": 88,
+    "skipped_local_tests": 0,
+    "metadata_rejection_cases": {
+      "s": 444,
+      "d": 222
+    },
+    "locally_rejected_nonfinite_triples_each_scalar": 57,
+    "native_cases_each_abi": 77824,
+    "installed_packages": 4,
+    "installed_consumers": 4,
+    "installed_cases_each_package": 77824,
+    "strict_translation_units_passed": 7,
+    "callable_rows_added": 2,
+    "verification_credit": 0,
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-final-audit.json",
+    "scope": "Local ordinary Release/Debug static/shared LP64/globalILP64 only; all old failures and deferred deliberate-fault observations, ASLR-changing instrumentation, remote/security and broader admission remain open. Shared observations bind exact production PIC objects; native/public consumers bind production libraries. Fortran/BLAS/runtime uninstrumented. Two callable-unverified real routes, no Reference verification and unchanged Native20.",
+    "final_checkpoint": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-svd-checkpoint-final-checks.json",
+    "commit": "0e01bacd142311211df9fa2574db95bcaa572c20"
   }
 }

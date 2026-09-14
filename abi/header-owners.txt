@@ -115,6 +115,7 @@ asc/dense/providers/lapack_scalar_norm.h|asc_dense_lapack
 asc/dense/providers/lapack_rotation.h|asc_dense_lapack
 asc/dense/providers/lapack_machine.h|asc_dense_lapack
 asc/dense/providers/lapack_scalar_svd.h|asc_dense_lapack
+asc/dense/providers/lapack_matrix_support.h|asc_dense_lapack
 asc/dense/providers/lapack_vector_conjugation.h|asc_dense_lapack
 asc/dense/providers/lapack_scalar_sort.h|asc_dense_lapack
 asc/dense/providers/lapack_triangular_storage_conversion.h|asc_dense_lapack
