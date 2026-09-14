@@ -29,18 +29,24 @@
  * buffers. Execution revalidates all requirements, aliases and pivot values
  * first.
  *
+ * Execution requires provider, plan, workspace and report objects to be
+ * mutually disjoint and disjoint from every numerical operand and supplied
+ * workspace region, including unused regions. Metadata overlap returns
+ * kInvalidArgument before resetting the report or reading numerical values;
+ * all objects and buffers remain unchanged. Other structural failures reset
+ * the report, leave numerical buffers unchanged, and set called_provider false
+ * with INFO absent. These checks also precede empty-operation completion.
+ *
  * Raw signed Fortran INFO is preserved without LAPACKE argument-index shifting.
- * A structural failure leaves all numerical buffers unchanged, called_provider
- * false and INFO absent. GETRF positive INFO returns kNumerical with completed
- * raw LU/pivots, kSingular/kDocumentedPartial and zero-based first zero
- * diagonal. Negative INFO denotes a provider-contract defect and retains the
- * one-based foreign argument position; output is unusable. Success provides a
- * complete LU factor or solution. GETRS rechecks pivots and exact-zero U
- * diagonals before writing B, consumes without changing a same-build successful
- * square factor, and supports N/T/C. Empty operations complete without a
- * foreign call or INFO. Nonfinite arithmetic follows Reference LAPACK; success
- * is not a condition or finiteness guarantee. Callers preserve buffer lifetimes
- * and exclude mutation.
+ * GETRF positive INFO returns kNumerical with completed raw LU/pivots,
+ * kSingular/kDocumentedPartial and zero-based first zero diagonal. Negative
+ * INFO denotes a provider-contract defect and retains the one-based foreign
+ * argument position; output is unusable. Success provides a complete LU factor
+ * or solution. GETRS rechecks pivots and exact-zero U diagonals before writing
+ * B, consumes without changing a same-build successful square factor, and
+ * supports N/T/C. Empty operations complete without a foreign call or INFO.
+ * Nonfinite arithmetic follows Reference LAPACK; success is not a condition or
+ * finiteness guarantee. Callers preserve buffer lifetimes and exclude mutation.
  */
 
 #include <complex>
@@ -118,8 +124,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrsWorkspace(
  * @param pivots Contiguous min(m,n) signed one-based raw sequential row swaps.
  * @param plan Unmodified query result matching all current metadata.
  * @param workspace Caller-owned disjoint conversion storage; see file contract.
- * @param report Mandatory failure-surviving diagnostics; reset before
- * preflight.
+ * @param report Mandatory diagnostics; unchanged on metadata overlap, otherwise
+ * reset before structural validation; see file contract.
  * @return OK, structural error, or kNumerical for exact singularity.
  */
 ASC_DENSE_LAPACK_EXPORT Status Getrf(const ReferenceLapackProvider& provider,
@@ -135,8 +141,8 @@ ASC_DENSE_LAPACK_EXPORT Status Getrf(const ReferenceLapackProvider& provider,
  * @param rhs In-place B/X, disjoint from factor, pivots and all workspace.
  * @param plan Unmodified query result matching all current metadata.
  * @param workspace Caller-owned disjoint conversion storage; see file contract.
- * @param report Mandatory failure-surviving diagnostics; reset before
- * preflight.
+ * @param report Mandatory diagnostics; unchanged on metadata overlap, otherwise
+ * reset before structural validation; see file contract.
  * @return OK, structural failure, or kNumerical for an exact-zero U diagonal.
  */
 ASC_DENSE_LAPACK_EXPORT Status Getrs(const ReferenceLapackProvider& provider,
@@ -172,8 +178,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrsWorkspace(
  * @param pivots Contiguous min(m,n) signed one-based raw sequential row swaps.
  * @param plan Unmodified query result matching all current metadata.
  * @param workspace Caller-owned disjoint conversion storage; see file contract.
- * @param report Mandatory failure-surviving diagnostics; reset before
- * preflight.
+ * @param report Mandatory diagnostics; unchanged on metadata overlap, otherwise
+ * reset before structural validation; see file contract.
  * @return OK, structural error, or kNumerical for exact singularity.
  */
 ASC_DENSE_LAPACK_EXPORT Status Getrf(const ReferenceLapackProvider& provider,
@@ -189,8 +195,8 @@ ASC_DENSE_LAPACK_EXPORT Status Getrf(const ReferenceLapackProvider& provider,
  * @param rhs In-place B/X, disjoint from factor, pivots and all workspace.
  * @param plan Unmodified query result matching all current metadata.
  * @param workspace Caller-owned disjoint conversion storage; see file contract.
- * @param report Mandatory failure-surviving diagnostics; reset before
- * preflight.
+ * @param report Mandatory diagnostics; unchanged on metadata overlap, otherwise
+ * reset before structural validation; see file contract.
  * @return OK, structural failure, or kNumerical for an exact-zero U diagonal.
  */
 ASC_DENSE_LAPACK_EXPORT Status Getrs(const ReferenceLapackProvider& provider,
@@ -228,8 +234,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrsWorkspace(
  * @param pivots Contiguous min(m,n) signed one-based raw sequential row swaps.
  * @param plan Unmodified query result matching all current metadata.
  * @param workspace Caller-owned disjoint conversion storage; see file contract.
- * @param report Mandatory failure-surviving diagnostics; reset before
- * preflight.
+ * @param report Mandatory diagnostics; unchanged on metadata overlap, otherwise
+ * reset before structural validation; see file contract.
  * @return OK, structural error, or kNumerical for exact singularity.
  */
 ASC_DENSE_LAPACK_EXPORT Status
@@ -244,8 +250,8 @@ Getrf(const ReferenceLapackProvider& provider,
  * @param rhs In-place B/X, disjoint from factor, pivots and all workspace.
  * @param plan Unmodified query result matching all current metadata.
  * @param workspace Caller-owned disjoint conversion storage; see file contract.
- * @param report Mandatory failure-surviving diagnostics; reset before
- * preflight.
+ * @param report Mandatory diagnostics; unchanged on metadata overlap, otherwise
+ * reset before structural validation; see file contract.
  * @return OK, structural failure, or kNumerical for an exact-zero U diagonal.
  */
 ASC_DENSE_LAPACK_EXPORT Status
@@ -282,8 +288,8 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryGetrsWorkspace(
  * @param pivots Contiguous min(m,n) signed one-based raw sequential row swaps.
  * @param plan Unmodified query result matching all current metadata.
  * @param workspace Caller-owned disjoint conversion storage; see file contract.
- * @param report Mandatory failure-surviving diagnostics; reset before
- * preflight.
+ * @param report Mandatory diagnostics; unchanged on metadata overlap, otherwise
+ * reset before structural validation; see file contract.
  * @return OK, structural error, or kNumerical for exact singularity.
  */
 ASC_DENSE_LAPACK_EXPORT Status
@@ -298,8 +304,8 @@ Getrf(const ReferenceLapackProvider& provider,
  * @param rhs In-place B/X, disjoint from factor, pivots and all workspace.
  * @param plan Unmodified query result matching all current metadata.
  * @param workspace Caller-owned disjoint conversion storage; see file contract.
- * @param report Mandatory failure-surviving diagnostics; reset before
- * preflight.
+ * @param report Mandatory diagnostics; unchanged on metadata overlap, otherwise
+ * reset before structural validation; see file contract.
  * @return OK, structural failure, or kNumerical for an exact-zero U diagonal.
  */
 ASC_DENSE_LAPACK_EXPORT Status

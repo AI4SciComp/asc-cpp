@@ -12,7 +12,8 @@ The review reuses the actual source/report/publication findings in
 [LU layouts](lu-layout-review.md), [INFO](lu-info-review.md),
 [expert INFO](lu-expert-info-review.md) and
 [returned pivots](lu-output-pivot-review.md), including their later root imports.
-The current adapters and existing tests have not changed. Four GESV query
+The original delivery left the adapters and existing tests unchanged. The later
+Reference metadata correction is recorded below. Four GESV query
 comments now correctly describe the already supported row/column layouts;
 public declarations, calling conventions and behavior are unchanged.
 
@@ -128,3 +129,79 @@ The first maintained partial Reference execution records and separate source
 expectations are now in the [execution identity review](lu-execution-evidence-review.md).
 They preserve all previous executions and do not complete the remaining classes
 or platform gates.
+
+
+## Reference GETRF/GETRS metadata preflight correction
+
+The current Reference execution paths check numeric and workspace overlap with
+all four live metadata objects (provider, plan, workspace and report) before
+resetting the report or constructing the expected plan. The objects must also
+be mutually disjoint. Every supplied workspace region participates, including
+unused regions and empty operations. Overlap returns `kInvalidArgument` with
+all metadata and numeric storage unchanged. Other structural failures retain
+the established report reset and leave numeric storage unchanged. Address-range
+comparison uses subtraction so an unchecked workspace byte count cannot wrap
+an endpoint sum. Public declarations, valid numerical paths, foreign integer
+conversions, provider identity and numerical outcomes are unchanged.
+
+This corrects a source-confirmed ordering defect: the earlier adapter reset the
+report before checking any overlap with live metadata. GETRS could subsequently
+read aliased pivot or diagonal values while constructing the expected plan.
+No malformed alias fixture was executed against that earlier implementation.
+
+The maintained `lu_metadata_test.cc` contains 1,032 bounded rejection cases per
+scalar: 144 factor cases and 888 solve cases. They span both matrix layouts,
+independent solve RHS layouts, N/T/C, all four metadata objects, every workspace
+region and empty/nonempty matrices. Each case observes zero calls through the
+existing eight typed GNU entry wrappers, checks allocation counts, and compares
+all metadata objects and numeric/workspace arrays with their pre-call byte
+snapshots, including padding. Fifty-six ordinary/stale-plan/empty controls per
+scalar retain reset behavior, successful native entry, exact singleton results
+and guards. Setup factorization uses valid bounded inputs.
+
+The solve-factor factory validates raw pivots. Its pivot alias fixtures therefore
+use real live signed-index subobjects equal to one: a plan requirement and the
+report diagnostic index. They do not reinterpret unrelated object bytes as
+pivot values. Factor-matrix and RHS descriptors are rejected without numerical
+reads. These are ordinary return-value tests; they use no protected pages,
+signals, ASLR changes or malformed foreign arguments. They do not replace the
+separately deferred calibrated memory-observation or instrumentation gates.
+
+The eight shared GETRF/GETRS inventory contracts, their 56 native mode IDs,
+native implementation selections and accepted native executions remain frozen.
+The correction applies to the separate Reference overloads documented in
+`asc/dense/providers/lapack.h`. A reviewed mapping extension will bind the
+Reference source/header correction and supplemental tests without attributing
+new behavior or execution to the native route. No new callable or verified row
+is added. The exact completed ordinary validation is recorded with the local
+implementation checkpoint; previous failures and deferred admission remain open.
+
+
+The final `lu-metadata-preflight-*-02` records in
+`master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/`
+pass 168/168 across Release/Debug, static/shared and actual LP64/ILP64, with
+zero failures or skips. Each 21-test selection includes the four new metadata
+tests, existing reference LU/INFO/pivot/layout regressions and the public LU
+example. Initial ABI runs pass20/20 each; profile01 passes168/168 before the
+final test-helper extraction. Profile02 verifies all product, header, CMake and
+workflow inputs are unchanged and only the metadata test source differs;
+it reuses successful configuration and rebuilds/reruns the entire selection.
+
+Strict02 passes the adapter and unchanged typed INFO shim. Strict04 passes the
+final metadata test; installed-strict01 passes the public consumer. Earlier
+strict attempts retain the function-size and redundant-expression findings;
+helpers were extracted and combined compile-time assertions split without
+removing cases or checks. Four installed01 packages pass the unchanged public
+concurrent example after relocation, with public-only include paths and resolved
+runtime libraries. Shared wrapper observations bind the actual production PIC
+objects; the installed examples use production libraries. The pinned foreign
+Fortran/BLAS/runtime remains uninstrumented.
+
+The integration checks pass four header builds/tests, ten package manifests and
+three architecture checks. All five 168-header public surfaces pass, and both
+ABIs retain exactly the prior exports. The actual workflow guard selects1897
+processes, adding exactly four metadata tests and removing none; this is selector
+validation, not execution of the whole selected suite. Doxygen passes168/168
+headers,2811 documented members and28/28 explicit programme pages with zero
+warnings. The final audit and reviewed evidence extension bind these records.
+No previous numerical failure or deferred admission gate is waived.

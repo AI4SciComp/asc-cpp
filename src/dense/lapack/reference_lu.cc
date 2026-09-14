@@ -187,10 +187,44 @@ struct Native<std::complex<double>> {
 };
 
 bool Overlap(ConstMemoryView first, ConstMemoryView second) {
+  if (first.size() == 0 || second.size() == 0) {
+    return false;
+  }
   const auto a = reinterpret_cast<std::uintptr_t>(first.data());
   const auto b = reinterpret_cast<std::uintptr_t>(second.data());
-  return first.size() != 0 && second.size() != 0 && a < b + second.size() &&
-         b < a + first.size();
+  return a <= b ? b - a < first.size() : a - b < second.size();
+}
+
+template <typename T>
+ConstMemoryView ObjectStorage(const T& object) {
+  return {&object, sizeof(T), MemorySpace::kHost};
+}
+
+Status CheckMetadata(const ReferenceLapackProvider& provider,
+                     const LapackWorkspacePlan& plan,
+                     const LapackWorkspace& workspace,
+                     const LapackReport& report,
+                     std::span<const ConstMemoryView> operands) {
+  const std::array metadata{ObjectStorage(provider), ObjectStorage(plan),
+                            ObjectStorage(workspace), ObjectStorage(report)};
+  for (std::size_t i = 0; i < metadata.size(); ++i) {
+    for (std::size_t j = i + 1; j < metadata.size(); ++j) {
+      if (Overlap(metadata[i], metadata[j])) {
+        return Status(ErrorCode::kInvalidArgument);
+      }
+    }
+    for (const auto operand : operands) {
+      if (Overlap(metadata[i], operand)) {
+        return Status(ErrorCode::kInvalidArgument);
+      }
+    }
+    for (const auto region : workspace.regions) {
+      if (Overlap(metadata[i], region)) {
+        return Status(ErrorCode::kInvalidArgument);
+      }
+    }
+  }
+  return Status::Ok();
 }
 
 template <typename T>
@@ -395,14 +429,18 @@ Status Factor(const ReferenceLapackProvider& provider,
               DenseBlasVectorView<index_t> pivots,
               const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
               LapackReport& report) {
+  const std::array operands{matrix.reachable_storage(),
+                            pivots.reachable_storage()};
+  Status status = CheckMetadata(provider, plan, workspace, report, operands);
+  if (!status.ok()) {
+    return status;
+  }
   StartReport<T>(provider, false, report);
   const auto expected = QueryFactor(provider, matrix, pivots);
   if (!expected.ok()) {
     return expected.status();
   }
-  Status status = ValidatePlan(
-      provider, *expected, plan, workspace,
-      std::array{matrix.reachable_storage(), pivots.reachable_storage()});
+  status = ValidatePlan(provider, *expected, plan, workspace, operands);
   if (!status.ok()) {
     return status;
   }
@@ -456,16 +494,20 @@ Status Solve(const ReferenceLapackProvider& provider,
              DenseBlasTranspose transpose, LapackLuFactorView<T> factor,
              DenseBlasMatrixView<T> rhs, const LapackWorkspacePlan& plan,
              const LapackWorkspace& workspace, LapackReport& report) {
+  const auto matrix = factor.factors();
+  const std::array operands{matrix.reachable_storage(),
+                            factor.pivots().reachable_storage(),
+                            rhs.reachable_storage()};
+  Status status = CheckMetadata(provider, plan, workspace, report, operands);
+  if (!status.ok()) {
+    return status;
+  }
   StartReport<T>(provider, true, report);
   const auto expected = QuerySolve(provider, transpose, factor, rhs);
   if (!expected.ok()) {
     return expected.status();
   }
-  const auto matrix = factor.factors();
-  Status status = ValidatePlan(
-      provider, *expected, plan, workspace,
-      std::array{matrix.reachable_storage(),
-                 factor.pivots().reachable_storage(), rhs.reachable_storage()});
+  status = ValidatePlan(provider, *expected, plan, workspace, operands);
   if (!status.ok()) {
     return status;
   }
