@@ -10,15 +10,15 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "a7b14b0bf3a0f3794fe86378189ad597c8990246",
+  "current_base_commit": "2d1f7d605b3978710f8cd1e9832642454d4ad3eb",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "a7b14b0bf3a0f3794fe86378189ad597c8990246",
+  "last_implementation_commit": "2d1f7d605b3978710f8cd1e9832642454d4ad3eb",
   "worktree_diff_identity": {
-    "state": "scalar_sort_local_checks_complete_commit_pending",
-    "base_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4",
-    "scope": "Two LASRT routes/four order modes,80/80 local processes,4 relocated consumers and strict/public/Doxygen gates pass. Deferred required admission remains open."
+    "state": "complete_pivoting_local_checks_complete_commit_pending",
+    "base_commit": "2d1f7d605b3978710f8cd1e9832642454d4ad3eb",
+    "scope": "Finite-component checked API, retained perturbed factor provenance and explicit SCALE; all old failures, Native20 and historical executions preserved. Required deferred admission remains open."
   },
   "packages": {
     "P00": {
@@ -1480,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P04.reference_lu.metadata_preflight",
-  "next_action": "Finish current Reference LU metadata validation, evidence rebind and local commit, preserving Native20 contracts and native implementation artifacts. Continue complete-pivoting LU from the passed bounded prerequisites.",
+  "active_task": "P04.required.getc2",
+  "next_action": "Save the complete-pivoting local checkpoint, then review and implement dependency-ready LASCL2/LARSCL2 diagonal row scaling after exact source/signature/provider prerequisites. Continue preserving all deferred unsafe or external gates.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -1489,7 +1489,7 @@
   "manifest_hashes": {
     "upstream_inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
     "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3",
-    "coverage_mapping_sha256": "0a6882e9c169d68ab8b3373adc11e7c6fefbc38c33ea1faee7ccbe447942f3c2"
+    "coverage_mapping_sha256": "a66c6b20c807efd19754df161fed6456d7dcac100fc3ffd4967b820bd9dd9540"
   },
   "provider": {
     "version": "3.12.1",
@@ -1922,16 +1922,16 @@
   "counts": {
     "required": 2113,
     "excluded": 1438,
-    "mapped_contracts": 344,
-    "callable_reference": 304,
+    "mapped_contracts": 352,
+    "callable_reference": 312,
     "verified_reference": 0,
     "callable_native": 20,
     "verified_native": 20,
     "blocked_reference": 0,
-    "not_started_reference": 1513,
+    "not_started_reference": 1505,
     "in_progress_reference": 296,
-    "incomplete_reference": 1809,
-    "implemented_unverified_reference": 304,
+    "incomplete_reference": 1801,
+    "implemented_unverified_reference": 312,
     "implemented_unverified_native": 0,
     "discovered": 3551,
     "profile_complete": false
@@ -2226,11 +2226,17 @@
     "Record unresolved provider, XBLAS and notice decisions and advance independent ready work without waiving required gates."
   ],
   "draft_pull_request": "https://github.com/AI4SciComp/asc-cpp/pull/47",
-  "active_verification": null,
+  "active_verification": {
+    "state": "none_running",
+    "completed_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-final-audit.json"
+  },
   "last_completed_verification": {
-    "state": "triangular_conversion_local_checks_complete_deferred_admission_open",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/triangular-conversion-final-audit.json",
-    "scope": "Eight local Release/Debug ABI/linkage profiles160/160; four installed1280-case consumers; seven strict TUs; two emitted960-case native probes; headers/manifests/architecture/surfaces/CI selector/Doxygen/tools pass. Required sanitizer/observation/remote/platform/owner gates remain deferred/open."
+    "family": "GETC2/GESC2 complete-pivoting LU",
+    "selected": 208,
+    "passed": 208,
+    "skipped": 0,
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-final-audit.json",
+    "scope": "Finite-component checked API, retained perturbed factor provenance and explicit SCALE; all old failures, Native20 and historical executions preserved. Required deferred admission remains open."
   },
   "remote_checkpoint": {
     "head": "c4e6d4710629538bddf4a074aa200fb974b0b99d",
@@ -2714,14 +2720,15 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P04.required.getc2",
+  "next_task": "P09.required.lascl2",
   "documentation_verification": {
-    "state": "recorded_externally_after_summary_freeze",
-    "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
-    "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-check-01/record.json",
-    "identity_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/subset-closure-20260909-01/final-documentation-audit-01.json"
+    "public_headers": 169,
+    "documented_public_members": 2833,
+    "explicit_programme_pages": 29,
+    "warnings": 0,
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-documentation-01/audit/record.json"
   },
-  "next_command": "Review existing LACPY contracts and move unsafe metadata-alias rejection before report reset; test only bounded local repaired paths.",
+  "next_command": "Run the six checkpoint checks, commit only owned changes, then inspect the eight pinned LASCL2/LARSCL2 definitions and installed actual-ABI symbol availability.",
   "stabilization_checkpoint": {
     "status": "SUBSET_REVIEW_READY_FULL_PROGRAM_INCOMPLETE",
     "stage": "W1_W4_technical_scope_closed",
@@ -4274,22 +4281,23 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "Reference GETRF/GETRS metadata preflight",
-    "status": "local_validation_and_index_complete",
-    "source_parent_commit": "a7b14b0bf3a0f3794fe86378189ad597c8990246",
+    "family": "GETC2/GESC2 complete-pivoting LU",
+    "status": "local_validation_and_index_complete_commit_pending",
+    "source_parent_commit": "2d1f7d605b3978710f8cd1e9832642454d4ad3eb",
     "reference_rows": 8,
-    "existing_modes": 56,
-    "selected_local_tests": 168,
-    "passed_local_tests": 168,
+    "reviewed_modes": 16,
+    "selected_local_tests": 208,
+    "passed_local_tests": 208,
     "skipped_local_tests": 0,
-    "metadata_rejection_cases_each_scalar": 1032,
-    "ordinary_controls_each_scalar": 56,
+    "metadata_rejection_cases_each_scalar": 320,
+    "native_cases_each_abi": 2896,
     "installed_consumers": 4,
-    "strict_translation_units_passed": 4,
-    "callable_rows_added": 0,
+    "installed_cases_each": 5840,
+    "strict_translation_units_passed": 7,
+    "callable_rows_added": 8,
     "verification_credit": 0,
-    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lu-metadata-preflight-final-audit.json",
-    "scope": "Reference-only correctness fix; native contracts/routes/native artifacts and historical executions preserved. All previous failures and deferred admission remain open."
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-final-audit.json",
+    "scope": "Finite-component checked API, retained perturbed factor provenance and explicit SCALE; all old failures, Native20 and historical executions preserved. Required deferred admission remains open."
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4527,7 +4535,7 @@
   },
   "completion_execution": {
     "plan": "programs/lapack-array-io/completion-plan-2026-09-13.md",
-    "state": "scalar_sort_local_checks_complete_bounded_copy_fix_next",
+    "state": "complete_pivoting_local_checkpoint_continue_required",
     "scope": "User authorized executing the complete plan and recording/defering unresolved trouble while independent required work continues. Failed tests are not converted to skips or successes.",
     "evidence": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01",
     "m0": "Current artifact bindings, generator ownership, seven packed interface dependencies and active pointers are reconciled. Remaining families require individual dependency review before execution.",
@@ -4547,21 +4555,21 @@
     },
     "packed_concurrency_initial": "Six Debug LP64 scalar/symmetry processes pass with24 groups,4 workers,8 repeats each; serial independent reconstruction, private storage/reports and concurrent stale-plan rejection.",
     "ci_selector_fix": "Prior regex omitted indefinite_packed while requiring43 packed IDs; both actual listing/execution selectors now include the family and all49 IDs, pending full selector validation.",
-    "updated_utc": "2026-09-14T07:05:32.587136+00:00",
+    "updated_utc": "2026-09-14T18:08:36.304737+00:00",
     "m0_pending": "Review remaining family prerequisites at each implementation boundary; no generic foundation-only task is marked dependency-reviewed.",
     "current_counts": {
       "required": 2113,
       "excluded": 1438,
-      "mapped_contracts": 344,
-      "callable_reference": 304,
+      "mapped_contracts": 352,
+      "callable_reference": 312,
       "verified_reference": 0,
       "callable_native": 20,
       "verified_native": 20,
       "blocked_reference": 0,
-      "not_started_reference": 1513,
+      "not_started_reference": 1505,
       "in_progress_reference": 296,
-      "incomplete_reference": 1809,
-      "implemented_unverified_reference": 304,
+      "incomplete_reference": 1801,
+      "implemented_unverified_reference": 312,
       "implemented_unverified_native": 0,
       "discovered": 3551,
       "profile_complete": false
@@ -4825,7 +4833,7 @@
     },
     "reference_lu_metadata_preflight": {
       "review": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/reference-lu-metadata-preflight-review-01.json",
-      "status": "local_validation_and_index_complete",
+      "status": "committed_local_validation_and_index_complete",
       "initial_abi_results": [
         "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lu-metadata-preflight-static-release-lp64-initial01/result.json",
         "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lu-metadata-preflight-static-release-ilp64-initial01/result.json"
@@ -4836,7 +4844,8 @@
       "coverage_credit": 0,
       "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lu-metadata-preflight-final-audit.json",
       "final_profiles": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lu-metadata-preflight-profile-results-02.json",
-      "final_strict": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lu-metadata-preflight-strict-04/results.json"
+      "final_strict": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lu-metadata-preflight-strict-04/results.json",
+      "commit": "2d1f7d605b3978710f8cd1e9832642454d4ad3eb"
     },
     "complete_pivoting_prerequisite": {
       "review": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-prerequisite-01.json",
@@ -4844,6 +4853,25 @@
       "status": "bounded_native_and_perturbation_prerequisites_passed_adapter_pending",
       "perturbation_prerequisite": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-perturbation-prerequisite-01.json",
       "perturbation_cases_each_abi": 300
+    },
+    "complete_pivoting_implementation": {
+      "family": "GETC2/GESC2 complete-pivoting LU",
+      "status": "local_validation_and_index_complete_commit_pending",
+      "source_parent_commit": "2d1f7d605b3978710f8cd1e9832642454d4ad3eb",
+      "reference_rows": 8,
+      "reviewed_modes": 16,
+      "selected_local_tests": 208,
+      "passed_local_tests": 208,
+      "skipped_local_tests": 0,
+      "metadata_rejection_cases_each_scalar": 320,
+      "native_cases_each_abi": 2896,
+      "installed_consumers": 4,
+      "installed_cases_each": 5840,
+      "strict_translation_units_passed": 7,
+      "callable_rows_added": 8,
+      "verification_credit": 0,
+      "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/complete-pivoting-final-audit.json",
+      "scope": "Finite-component checked API, retained perturbed factor provenance and explicit SCALE; all old failures, Native20 and historical executions preserved. Required deferred admission remains open."
     }
   },
   "historical_active_verification_before_completion_execution": {
@@ -4938,5 +4966,24 @@
     "next_family": "P09.required.lasrt",
     "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
   },
-  "updated_utc": "2026-09-14T16:23:46.726043+00:00"
+  "updated_utc": "2026-09-14T18:08:36.304737+00:00",
+  "historical_delivery_before_complete_pivoting": {
+    "family": "Reference GETRF/GETRS metadata preflight",
+    "status": "committed_local_validation_and_index_complete",
+    "source_parent_commit": "a7b14b0bf3a0f3794fe86378189ad597c8990246",
+    "reference_rows": 8,
+    "existing_modes": 56,
+    "selected_local_tests": 168,
+    "passed_local_tests": 168,
+    "skipped_local_tests": 0,
+    "metadata_rejection_cases_each_scalar": 1032,
+    "ordinary_controls_each_scalar": 56,
+    "installed_consumers": 4,
+    "strict_translation_units_passed": 4,
+    "callable_rows_added": 0,
+    "verification_credit": 0,
+    "final_audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lu-metadata-preflight-final-audit.json",
+    "scope": "Reference-only correctness fix; native contracts/routes/native artifacts and historical executions preserved. All previous failures and deferred admission remain open.",
+    "commit": "2d1f7d605b3978710f8cd1e9832642454d4ad3eb"
+  }
 }

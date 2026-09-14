@@ -111,7 +111,8 @@ INPUT                  = "@PROJECT_SOURCE_DIR@/include/asc" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/vector-conjugation-review.md" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/scalar-sort-review.md" \
                          "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/triangular-storage-conversion-review.md" \
-                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/matrix-permutation-review.md"
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/matrix-permutation-review.md" \
+                         "@PROJECT_SOURCE_DIR@/programs/lapack-array-io/complete-pivoting-lu-review.md"
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h *.md *.dox *.cc
 RECURSIVE              = YES

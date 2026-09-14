@@ -23,6 +23,11 @@ PACKED_PREREQUISITES = {
     'hpsvx': ('hptrf', 'hptrs', 'hpcon', 'hprfs'),
 }
 
+# The named complete-pivot factor view is the sole GESC2 factor prerequisite.
+# Its separate GETC2/perturbation contract is reviewed in
+# complete-pivoting-lu-review.md. These are ASC interfaces, not native call edges.
+COMPLETE_PIVOTING_PREREQUISITES = {'getc2': (), 'gesc2': ('getc2',)}
+
 # DLAT2S/ZLAT2C require only the checked provider/workspace interfaces. The
 # source dependencies are reviewed in triangular-conversion-review.md.
 # LAPY2/LAPY3 scalar-return dependencies are reviewed in scalar-norm-review.md.
@@ -135,7 +140,7 @@ def generate(inventory, mapping, dependency_map):
         ]
         prerequisites += [
             owner(dependency) + '.required.' + dependency
-            for dependency in PACKED_PREREQUISITES.get(family, ())
+            for dependency in {**PACKED_PREREQUISITES, **COMPLETE_PIVOTING_PREREQUISITES}.get(family, ())
         ]
         task = {
             'task_id':
@@ -150,6 +155,7 @@ def generate(inventory, mapping, dependency_map):
                 'state':
                 'reviewed_interface_dependencies'
                 if family in PACKED_PREREQUISITES or
+                family in COMPLETE_PIVOTING_PREREQUISITES or
                 family in REVIEWED_AUXILIARY_FAMILIES else 'review_required',
                 'scope':
                 'Prerequisites express stable ASC interface contracts; '

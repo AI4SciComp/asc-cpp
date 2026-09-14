@@ -130,6 +130,7 @@ set(_lapack_entries
   "dense_lapack|asc/dense/providers/lapack_vector_conjugation.h"
   "dense_lapack|asc/dense/providers/lapack_scalar_sort.h"
   "dense_lapack|asc/dense/providers/lapack_triangular_storage_conversion.h"
+  "dense_lapack|asc/dense/providers/lapack_complete_pivoting.h"
   "dense_lapack|asc/dense/providers/lapack_matrix_permutation.h"
   "dense_lapack|asc/dense/providers/lapack_matrix_copy.h"
   "dense_lapack|asc/dense/providers/lapack_matrix_scale.h"
@@ -214,9 +215,9 @@ endforeach()
 list(SORT _all_headers)
 list(REMOVE_DUPLICATES _all_headers)
 list(LENGTH _all_headers _all_header_count)
-if(NOT _all_header_count EQUAL 168)
+if(NOT _all_header_count EQUAL 169)
   message(FATAL_ERROR
-    "Independent source-header oracle must contain 168 headers; got "
+    "Independent source-header oracle must contain 169 headers; got "
     "${_all_header_count}"
   )
 endif()
