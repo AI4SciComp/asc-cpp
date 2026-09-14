@@ -13,6 +13,21 @@ foreach(_scalar IN ITEMS s d c z)
       concurrency TIMEOUT 120)
 endforeach()
 
+add_executable(asc_matrix_copy_metadata_test matrix_copy_metadata_test.cc
+  matrix_copy_entry.cc allocation_audit.cc
+  "${PROJECT_SOURCE_DIR}/tests/dense/allocation_probe.cc")
+_asc_dense_lapack_configure_test(asc_matrix_copy_metadata_test)
+target_include_directories(asc_matrix_copy_metadata_test PRIVATE
+  "${ASC_CPP_LAPACK_CONFIG_DIR}" "${ASC_CPP_LAPACK_ROOT}/include")
+target_link_options(asc_matrix_copy_metadata_test PRIVATE
+  "-Wl,--wrap=malloc,--wrap=calloc,--wrap=realloc,--wrap=aligned_alloc,--wrap=posix_memalign,--wrap=free"
+  "-Wl,--wrap=slacpy_,--wrap=dlacpy_,--wrap=clacpy_,--wrap=zlacpy_")
+foreach(_scalar IN ITEMS s d c z)
+  asc_register_test(NAME "asc_cpp.dense_lapack.matrix_copy.metadata.${_scalar}"
+    TARGET asc_matrix_copy_metadata_test ARGUMENTS "${_scalar}"
+    LABELS dense_lapack lapack matrix_copy validation allocation TIMEOUT 120)
+endforeach()
+
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   add_executable(asc_matrix_copy_observation_test matrix_copy_observation_test.cc
     matrix_copy_entry.cc allocation_audit.cc

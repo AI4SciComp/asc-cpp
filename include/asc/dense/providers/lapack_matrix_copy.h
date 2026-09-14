@@ -7,8 +7,10 @@
  * native INFO. Caller output is staged without reading its old numeric values;
  * only selected cells publish. Input packing reads only the selected part.
  * Queries, stale plans and workspace rejection inspect metadata only. Empty
- * dimensions complete locally. Calls allocate, transfer and synchronize
- * nothing. Independent caller buffers/workspace/reports are reentrant.
+ * dimensions complete locally. Metadata aliases reject before report reset;
+ * provider, plan, workspace and report objects remain unchanged on that path.
+ * Calls allocate, transfer and synchronize nothing. Independent caller
+ * buffers/workspace/reports are reentrant.
  */
 #include <complex>
 #include <cstdint>
@@ -47,8 +49,9 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLacpyWorkspace(
  * conjugation, finiteness filter or NaN replacement.
  * @param plan Matching scalar, part, dimensions, layouts, strides and provider.
  * @param workspace Explicit simultaneous live scalar packing/staging arrays.
- * @param report Reset before validation; records actual native entry, with
- * absent native INFO on every path because LACPY has no INFO parameter.
+ * @param report Unsafe metadata aliases reject without reset; otherwise reset
+ * before validation. Records actual native entry, with absent native INFO on
+ * every path because LACPY has no INFO parameter.
  * @return Success after ordinary native return, or preflight error with caller
  * numeric buffers unchanged. There is no native numerical failure channel.
  */
@@ -80,8 +83,9 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLacpyWorkspace(
  * conjugation, finiteness filter or NaN replacement.
  * @param plan Matching scalar, part, dimensions, layouts, strides and provider.
  * @param workspace Explicit simultaneous live scalar packing/staging arrays.
- * @param report Reset before validation; records actual native entry, with
- * absent native INFO on every path because LACPY has no INFO parameter.
+ * @param report Unsafe metadata aliases reject without reset; otherwise reset
+ * before validation. Records actual native entry, with absent native INFO on
+ * every path because LACPY has no INFO parameter.
  * @return Success after ordinary native return, or preflight error with caller
  * numeric buffers unchanged. There is no native numerical failure channel.
  */
@@ -113,8 +117,9 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLacpyWorkspace(
  * conjugation, finiteness filter or NaN replacement.
  * @param plan Matching scalar, part, dimensions, layouts, strides and provider.
  * @param workspace Explicit simultaneous live scalar packing/staging arrays.
- * @param report Reset before validation; records actual native entry, with
- * absent native INFO on every path because LACPY has no INFO parameter.
+ * @param report Unsafe metadata aliases reject without reset; otherwise reset
+ * before validation. Records actual native entry, with absent native INFO on
+ * every path because LACPY has no INFO parameter.
  * @return Success after ordinary native return, or preflight error with caller
  * numeric buffers unchanged. There is no native numerical failure channel.
  */
@@ -145,8 +150,9 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryLacpyWorkspace(
  * conjugation, finiteness filter or NaN replacement.
  * @param plan Matching scalar, part, dimensions, layouts, strides and provider.
  * @param workspace Explicit simultaneous live scalar packing/staging arrays.
- * @param report Reset before validation; records actual native entry, with
- * absent native INFO on every path because LACPY has no INFO parameter.
+ * @param report Unsafe metadata aliases reject without reset; otherwise reset
+ * before validation. Records actual native entry, with absent native INFO on
+ * every path because LACPY has no INFO parameter.
  * @return Success after ordinary native return, or preflight error with caller
  * numeric buffers unchanged. There is no native numerical failure channel.
  */

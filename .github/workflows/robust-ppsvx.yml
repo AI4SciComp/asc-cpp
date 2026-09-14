@@ -152,6 +152,7 @@ jobs:
                        for mode in ("", "fault_")}
           required |= {conversion + name for name in ("observation", "public_example")}
           copying = "asc_cpp.dense_lapack.matrix_copy."
+          required |= {f"{copying}metadata.{scalar}" for scalar in "sdcz"}
           required |= {copying + scalar for scalar in "sdcz"}
           required |= {copying + name for name in ("observation", "public_example")}
           scaling = "asc_cpp.dense_lapack.matrix_scale."

@@ -120,18 +120,19 @@ Status Execute(const ReferenceLapackProvider& provider, LapackMatrixPart part,
                DenseBlasMatrixView<const T> input,
                DenseBlasMatrixView<T> output, const LapackWorkspacePlan& plan,
                const LapackWorkspace& workspace, LapackReport& report) {
+  const std::array spans{input.reachable_storage(),
+                         ConstMemoryView(output.reachable_storage())};
+  Status status =
+      checked::CheckMetadata(provider, plan, workspace, report, spans);
+  if (!status.ok()) {
+    return status;
+  }
   checked::StartReport(provider, Routine<T>(), report);
   const auto expected = Query(provider, part, input, output);
   if (!expected.ok()) {
     return expected.status();
   }
-  const std::array spans{input.reachable_storage(),
-                         ConstMemoryView(output.reachable_storage())};
-  Status status =
-      checked::CheckMetadata(provider, plan, workspace, report, spans);
-  if (status.ok()) {
-    status = checked::ValidatePlan(provider, *expected, plan, workspace, spans);
-  }
+  status = checked::ValidatePlan(provider, *expected, plan, workspace, spans);
   if (!status.ok()) {
     return status;
   }

@@ -41346,10 +41346,13 @@
         "SRC/zlacpy.f"
       ],
       "source_api_files": [
+        ".github/workflows/robust-ppsvx.yml",
+        "abi/public-headers.sha256",
         "examples/matrix_copy/CMakeLists.txt",
         "examples/matrix_copy/README.md",
         "examples/matrix_copy/main.cc",
         "include/asc/dense/providers/lapack_matrix_copy.h",
+        "programs/lapack-array-io/matrix-copy-review.md",
         "src/dense/lapack/internal_layout.h",
         "src/dense/lapack/internal_matrix_copy_counts.h",
         "src/dense/lapack/internal_tridiagonal.h",
@@ -41358,8 +41361,10 @@
         "src/dense/lapack_foundations.cc",
         "tests/dense/allocation_probe.cc",
         "tests/dense_lapack/allocation_audit.cc",
+        "tests/dense_lapack/installed_lu/normal_return_guard.h",
         "tests/dense_lapack/matrix_copy_entry.cc",
         "tests/dense_lapack/matrix_copy_entry.h",
+        "tests/dense_lapack/matrix_copy_metadata_test.cc",
         "tests/dense_lapack/matrix_copy_observation_test.cc",
         "tests/dense_lapack/matrix_copy_test.cc",
         "tests/dense_lapack/matrix_copy_test_support.h",
@@ -62438,7 +62443,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "0a6882e9c169d68ab8b3373adc11e7c6fefbc38c33ea1faee7ccbe447942f3c2",
+    "lapack-coverage.yaml": "60a15c1d79ab0588ba9a7497867ecb9a8d319f8f04501981456d3e36fa036978",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

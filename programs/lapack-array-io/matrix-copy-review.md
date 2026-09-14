@@ -1,5 +1,56 @@
 # Checked selected matrix copying
 
+## Metadata preflight correction
+
+The current adapter checks metadata overlap before resetting the report or
+querying the expected plan. An operand or workspace region overlapping the
+provider, plan, workspace or report object returns an invalid-argument status
+without changing those objects or numeric storage. Safe metadata still permits
+the normal report reset before other validation. This corrects an earlier
+ordering defect: resetting an aliased report could modify storage before
+rejecting it. The public signatures, selected-copy numerical semantics and
+native entry signatures are unchanged.
+
+Four maintained metadata tests cover all scalar types. Each checks 192 overlap
+cases: three parts, four independent layout pairs, four metadata objects, and
+input/output/two workspace region targets. They compare the same live objects
+and numeric arrays byte-for-byte before and after rejection, and require zero
+foreign entries and allocations. Twelve real native controls per scalar check
+the wrapper binding and correct copying; twelve stale-plan and twelve empty
+controls check the ordinary report reset. The descriptors in rejection cases
+refer to real metadata objects; the tests do not dereference them as scalars.
+No protected pages, intentional signals or invalid foreign calls are involved.
+
+This correction is separate from the historical observation results below.
+The existing calibrated memory-observation test remains required, but a new
+run is deferred under the user's current execution constraint, along with
+instrumentation requiring the historical ASLR workaround and remote checks.
+No historical failure or acceptance requirement is removed.
+
+Current local records are under
+`master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/`.
+All eight `matrix-copy-preflight-{static,shared}-{release,debug}-{abi}-01`
+profiles pass nine selected tests each: 72 passed, zero failed or skipped.
+These comprise the four existing scalar tests, the existing public example
+and four new metadata tests. All four `matrix-copy-preflight-installed-01-*`
+relocated public examples pass using the production libraries. Strict checks
+pass for the adapter, entry wrapper, new test and copied public example.
+Initial test compilation used an incorrect memory-view type name; that build
+failure is retained in `initial01`. Strict analysis prompted explicit byte-span
+snapshots and separate alignment assertions; every case and check is retained.
+The final test source is the one exercised by all eight profiles.
+
+The header checks pass for both ABIs with and without exceptions. Ten package
+manifest and three architecture checks pass. The actual CI selector includes
+1,845 tests, adding exactly four metadata regressions and removing none.
+The correction adds no public declarations or exports. Normalized coverage
+remains 288 callable-unverified Reference rows, 328 reviewed contracts and
+zero verified Reference rows. The four existing LACPY contracts now explicitly
+require metadata preservation before report reset; their 48 modes and all
+prior test requirements remain intact.
+
+## Original integration and historical evidence
+
 This P09 leaf integrates SLACPY, DLACPY, CLACPY and ZLACPY through eight public
 query/execute declarations and the explicit `LapackMatrixPart` enum. These are
 four callable-unverified Reference rows, with12 modes each (three parts and

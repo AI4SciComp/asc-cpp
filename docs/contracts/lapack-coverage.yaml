@@ -172417,7 +172417,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -173622,7 +173622,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -173630,7 +173630,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -174903,7 +174903,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_rk.h",
@@ -179130,7 +179130,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -180391,7 +180391,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage.h",
@@ -190339,7 +190339,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -191476,7 +191476,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h",
@@ -192320,7 +192320,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -192328,7 +192328,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -194197,7 +194197,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -194205,7 +194205,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -194783,7 +194783,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -194791,7 +194791,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -195228,7 +195228,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -195236,7 +195236,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -195841,7 +195841,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -195849,7 +195849,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -197014,7 +197014,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -197022,7 +197022,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -197217,7 +197217,7 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise. Metadata overlap is checked before report reset or the expected-plan query. Operand or workspace overlap with provider, plan, workspace or report metadata rejects without modifying those objects. Other preflight paths retain the ordinary report reset.",
         "asc_operation": "asc::Lacpy",
         "descriptors": "Immutable full input and same-shape staged output; explicit all/upper/lower trapezoid with independent padded row/column layouts. Empty M or N is local.",
         "documentation": "programs/lapack-array-io/matrix-copy-review.md",
@@ -197241,7 +197241,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197269,7 +197270,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197297,7 +197299,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197325,7 +197328,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197353,7 +197357,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197381,7 +197386,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197409,7 +197415,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197437,7 +197444,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197465,7 +197473,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197493,7 +197502,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197521,7 +197531,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197549,7 +197560,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "254542ac878eff491b0fd146039afb3a939df83292b7ecc897360af2727818bd",
@@ -197580,6 +197592,14 @@
       "id": "lapack.clacpy",
       "implementation_artifacts": [
         {
+          "path": ".github/workflows/robust-ppsvx.yml",
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
+        },
+        {
+          "path": "abi/public-headers.sha256",
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
+        },
+        {
           "path": "examples/matrix_copy/CMakeLists.txt",
           "sha256": "b4694893eb19a5e7ad3c365e572e28d1c457e3f3ddf6a6fdab51817980b2396c"
         },
@@ -197593,7 +197613,11 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_copy.h",
-          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+          "sha256": "bd8d7f31a481df61d1e11b2ce27469f7ef2e4e7bf11a40930123869fd82b249b"
+        },
+        {
+          "path": "programs/lapack-array-io/matrix-copy-review.md",
+          "sha256": "c319c3570de0a64027e7d24a5ed29b5649ddea72af3a1f35352073ff1b56de1d"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -197613,7 +197637,7 @@
         },
         {
           "path": "src/dense/lapack/reference_matrix_copy.cc",
-          "sha256": "69a3a384b342091284606cdbcb13bbb23dd5f4c831c39bd800faf183164da0eb"
+          "sha256": "7945d4bf14c976dbe02d78fa37e0a8059ba6d17f57c6f14a962155ddab7d5ab6"
         },
         {
           "path": "src/dense/lapack_foundations.cc",
@@ -197628,12 +197652,20 @@
           "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
         },
         {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
           "path": "tests/dense_lapack/matrix_copy_entry.cc",
           "sha256": "fd49934eb8e0b60d747bda896404487266f42e78576d1425e4c18cd65e17db18"
         },
         {
           "path": "tests/dense_lapack/matrix_copy_entry.h",
           "sha256": "74d769ff68e732468caa85ac787ec4aa4f7ab512332e955d42a2c96bc92b7e2d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_metadata_test.cc",
+          "sha256": "06ad0dcb1a0be53eb5a19b7c56e6fc5a5ac4d0af058f45effa10829db15367f3"
         },
         {
           "path": "tests/dense_lapack/matrix_copy_observation_test.cc",
@@ -197649,7 +197681,7 @@
         },
         {
           "path": "tests/dense_lapack/matrix_copy_tests.cmake",
-          "sha256": "be2ddc161e3167824322f1277a0dada9f0bb91add70d7fbf832454c023883e9c"
+          "sha256": "6592f54f1e74464b092ca0b3efbe210d9dcccd13b5da6257bf1380b51dfdb12c"
         },
         {
           "path": "tests/dense_lapack/tridiagonal_test_support.h",
@@ -197663,7 +197695,7 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Checked native selected matrix copy, maintained three-part/four-layout tests, calibrated output and unselected-input observations, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "partial_scope": "Checked S/D/C/Z selected matrix copies preserve metadata before report reset on overlap rejection. Four existing contracts /48 modes gain explicit metadata-preservation tests. Eight Release/Debug static/shared actual LP64/ILP64 profiles pass72/72 selected ordinary processes with zero skips. Four relocated production-library public examples and four strict TUs pass. Four final normal/no-exception headers, ten package manifests, three architecture checks,166-header public surfaces with zero added/removed exports, actual1845-test CI selector (four added, none removed) and Doxygen166/166headers2778members26/26programme pages pass. Existing calibrated crash/memory observation and ASLR-changing instrumentation, remote/security and wider-platform acceptance remain mandatory and deferred under latest user constraint. No prior failure, execution ledger or Native20 row changed; no new callable or verified Reference credit.",
           "review": "programs/lapack-array-io/matrix-copy-review.md",
           "state": "implemented_unverified"
         }
@@ -201125,7 +201157,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_copy.h",
-          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+          "sha256": "bd8d7f31a481df61d1e11b2ce27469f7ef2e4e7bf11a40930123869fd82b249b"
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_set.h",
@@ -212637,7 +212669,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -212645,7 +212677,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -214320,7 +214352,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -214328,7 +214360,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -214904,7 +214936,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -214912,7 +214944,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -215349,7 +215381,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -215357,7 +215389,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -215962,7 +215994,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -215970,7 +216002,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -219517,7 +219549,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -220722,7 +220754,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -220730,7 +220762,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -222003,7 +222035,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_rk.h",
@@ -226105,7 +226137,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -227366,7 +227398,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage.h",
@@ -237254,7 +237286,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -238391,7 +238423,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h",
@@ -412300,7 +412332,7 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise. Metadata overlap is checked before report reset or the expected-plan query. Operand or workspace overlap with provider, plan, workspace or report metadata rejects without modifying those objects. Other preflight paths retain the ordinary report reset.",
         "asc_operation": "asc::Lacpy",
         "descriptors": "Immutable full input and same-shape staged output; explicit all/upper/lower trapezoid with independent padded row/column layouts. Empty M or N is local.",
         "documentation": "programs/lapack-array-io/matrix-copy-review.md",
@@ -412324,7 +412356,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412352,7 +412385,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412380,7 +412414,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412408,7 +412443,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412436,7 +412472,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412464,7 +412501,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412492,7 +412530,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412520,7 +412559,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412548,7 +412588,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412576,7 +412617,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412604,7 +412646,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412632,7 +412675,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "b1a700ddf1453c64f4c6f41880d76aaed4f10883295b3995b0ef3307c2ed54a3",
@@ -412663,6 +412707,14 @@
       "id": "lapack.dlacpy",
       "implementation_artifacts": [
         {
+          "path": ".github/workflows/robust-ppsvx.yml",
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
+        },
+        {
+          "path": "abi/public-headers.sha256",
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
+        },
+        {
           "path": "examples/matrix_copy/CMakeLists.txt",
           "sha256": "b4694893eb19a5e7ad3c365e572e28d1c457e3f3ddf6a6fdab51817980b2396c"
         },
@@ -412676,7 +412728,11 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_copy.h",
-          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+          "sha256": "bd8d7f31a481df61d1e11b2ce27469f7ef2e4e7bf11a40930123869fd82b249b"
+        },
+        {
+          "path": "programs/lapack-array-io/matrix-copy-review.md",
+          "sha256": "c319c3570de0a64027e7d24a5ed29b5649ddea72af3a1f35352073ff1b56de1d"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -412696,7 +412752,7 @@
         },
         {
           "path": "src/dense/lapack/reference_matrix_copy.cc",
-          "sha256": "69a3a384b342091284606cdbcb13bbb23dd5f4c831c39bd800faf183164da0eb"
+          "sha256": "7945d4bf14c976dbe02d78fa37e0a8059ba6d17f57c6f14a962155ddab7d5ab6"
         },
         {
           "path": "src/dense/lapack_foundations.cc",
@@ -412711,12 +412767,20 @@
           "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
         },
         {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
           "path": "tests/dense_lapack/matrix_copy_entry.cc",
           "sha256": "fd49934eb8e0b60d747bda896404487266f42e78576d1425e4c18cd65e17db18"
         },
         {
           "path": "tests/dense_lapack/matrix_copy_entry.h",
           "sha256": "74d769ff68e732468caa85ac787ec4aa4f7ab512332e955d42a2c96bc92b7e2d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_metadata_test.cc",
+          "sha256": "06ad0dcb1a0be53eb5a19b7c56e6fc5a5ac4d0af058f45effa10829db15367f3"
         },
         {
           "path": "tests/dense_lapack/matrix_copy_observation_test.cc",
@@ -412732,7 +412796,7 @@
         },
         {
           "path": "tests/dense_lapack/matrix_copy_tests.cmake",
-          "sha256": "be2ddc161e3167824322f1277a0dada9f0bb91add70d7fbf832454c023883e9c"
+          "sha256": "6592f54f1e74464b092ca0b3efbe210d9dcccd13b5da6257bf1380b51dfdb12c"
         },
         {
           "path": "tests/dense_lapack/tridiagonal_test_support.h",
@@ -412746,7 +412810,7 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Checked native selected matrix copy, maintained three-part/four-layout tests, calibrated output and unselected-input observations, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "partial_scope": "Checked S/D/C/Z selected matrix copies preserve metadata before report reset on overlap rejection. Four existing contracts /48 modes gain explicit metadata-preservation tests. Eight Release/Debug static/shared actual LP64/ILP64 profiles pass72/72 selected ordinary processes with zero skips. Four relocated production-library public examples and four strict TUs pass. Four final normal/no-exception headers, ten package manifests, three architecture checks,166-header public surfaces with zero added/removed exports, actual1845-test CI selector (four added, none removed) and Doxygen166/166headers2778members26/26programme pages pass. Existing calibrated crash/memory observation and ASLR-changing instrumentation, remote/security and wider-platform acceptance remain mandatory and deferred under latest user constraint. No prior failure, execution ledger or Native20 row changed; no new callable or verified Reference credit.",
           "review": "programs/lapack-array-io/matrix-copy-review.md",
           "state": "implemented_unverified"
         }
@@ -414786,7 +414850,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -414794,7 +414858,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -414953,7 +415017,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -414961,7 +415025,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -417678,7 +417742,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_copy.h",
-          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+          "sha256": "bd8d7f31a481df61d1e11b2ce27469f7ef2e4e7bf11a40930123869fd82b249b"
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_set.h",
@@ -418020,7 +418084,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -418028,7 +418092,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -418748,11 +418812,11 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -431969,7 +432033,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -431977,7 +432041,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -434447,7 +434511,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -434455,7 +434519,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -435033,7 +435097,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -435041,7 +435105,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -435478,7 +435542,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -435486,7 +435550,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -436091,7 +436155,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -436099,7 +436163,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -440209,7 +440273,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -441414,7 +441478,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -441422,7 +441486,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -442695,7 +442759,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_rk.h",
@@ -446922,7 +446986,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -448183,7 +448247,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage.h",
@@ -458071,7 +458135,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -459208,7 +459272,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h",
@@ -633167,7 +633231,7 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise. Metadata overlap is checked before report reset or the expected-plan query. Operand or workspace overlap with provider, plan, workspace or report metadata rejects without modifying those objects. Other preflight paths retain the ordinary report reset.",
         "asc_operation": "asc::Lacpy",
         "descriptors": "Immutable full input and same-shape staged output; explicit all/upper/lower trapezoid with independent padded row/column layouts. Empty M or N is local.",
         "documentation": "programs/lapack-array-io/matrix-copy-review.md",
@@ -633191,7 +633255,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633219,7 +633284,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633247,7 +633313,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633275,7 +633342,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633303,7 +633371,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633331,7 +633400,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633359,7 +633429,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633387,7 +633458,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633415,7 +633487,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633443,7 +633516,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633471,7 +633545,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633499,7 +633574,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "0a2968fdc6b816529f37e6543c09a9dd69463d10b0f5cf94d2b835b95d70c8e5",
@@ -633530,6 +633606,14 @@
       "id": "lapack.slacpy",
       "implementation_artifacts": [
         {
+          "path": ".github/workflows/robust-ppsvx.yml",
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
+        },
+        {
+          "path": "abi/public-headers.sha256",
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
+        },
+        {
           "path": "examples/matrix_copy/CMakeLists.txt",
           "sha256": "b4694893eb19a5e7ad3c365e572e28d1c457e3f3ddf6a6fdab51817980b2396c"
         },
@@ -633543,7 +633627,11 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_copy.h",
-          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+          "sha256": "bd8d7f31a481df61d1e11b2ce27469f7ef2e4e7bf11a40930123869fd82b249b"
+        },
+        {
+          "path": "programs/lapack-array-io/matrix-copy-review.md",
+          "sha256": "c319c3570de0a64027e7d24a5ed29b5649ddea72af3a1f35352073ff1b56de1d"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -633563,7 +633651,7 @@
         },
         {
           "path": "src/dense/lapack/reference_matrix_copy.cc",
-          "sha256": "69a3a384b342091284606cdbcb13bbb23dd5f4c831c39bd800faf183164da0eb"
+          "sha256": "7945d4bf14c976dbe02d78fa37e0a8059ba6d17f57c6f14a962155ddab7d5ab6"
         },
         {
           "path": "src/dense/lapack_foundations.cc",
@@ -633578,12 +633666,20 @@
           "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
         },
         {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
           "path": "tests/dense_lapack/matrix_copy_entry.cc",
           "sha256": "fd49934eb8e0b60d747bda896404487266f42e78576d1425e4c18cd65e17db18"
         },
         {
           "path": "tests/dense_lapack/matrix_copy_entry.h",
           "sha256": "74d769ff68e732468caa85ac787ec4aa4f7ab512332e955d42a2c96bc92b7e2d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_metadata_test.cc",
+          "sha256": "06ad0dcb1a0be53eb5a19b7c56e6fc5a5ac4d0af058f45effa10829db15367f3"
         },
         {
           "path": "tests/dense_lapack/matrix_copy_observation_test.cc",
@@ -633599,7 +633695,7 @@
         },
         {
           "path": "tests/dense_lapack/matrix_copy_tests.cmake",
-          "sha256": "be2ddc161e3167824322f1277a0dada9f0bb91add70d7fbf832454c023883e9c"
+          "sha256": "6592f54f1e74464b092ca0b3efbe210d9dcccd13b5da6257bf1380b51dfdb12c"
         },
         {
           "path": "tests/dense_lapack/tridiagonal_test_support.h",
@@ -633613,7 +633709,7 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Checked native selected matrix copy, maintained three-part/four-layout tests, calibrated output and unselected-input observations, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "partial_scope": "Checked S/D/C/Z selected matrix copies preserve metadata before report reset on overlap rejection. Four existing contracts /48 modes gain explicit metadata-preservation tests. Eight Release/Debug static/shared actual LP64/ILP64 profiles pass72/72 selected ordinary processes with zero skips. Four relocated production-library public examples and four strict TUs pass. Four final normal/no-exception headers, ten package manifests, three architecture checks,166-header public surfaces with zero added/removed exports, actual1845-test CI selector (four added, none removed) and Doxygen166/166headers2778members26/26programme pages pass. Existing calibrated crash/memory observation and ASLR-changing instrumentation, remote/security and wider-platform acceptance remain mandatory and deferred under latest user constraint. No prior failure, execution ledger or Native20 row changed; no new callable or verified Reference credit.",
           "review": "programs/lapack-array-io/matrix-copy-review.md",
           "state": "implemented_unverified"
         }
@@ -635653,7 +635749,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -635661,7 +635757,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -635820,7 +635916,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -635828,7 +635924,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -638545,7 +638641,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_copy.h",
-          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+          "sha256": "bd8d7f31a481df61d1e11b2ce27469f7ef2e4e7bf11a40930123869fd82b249b"
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_set.h",
@@ -638887,7 +638983,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -638895,7 +638991,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -652010,7 +652106,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -652018,7 +652114,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -653887,7 +653983,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -653895,7 +653991,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -654473,7 +654569,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -654481,7 +654577,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -654918,7 +655014,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -654926,7 +655022,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -655531,7 +655627,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -655539,7 +655635,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -659649,7 +659745,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -660854,7 +660950,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -660862,7 +660958,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -662135,7 +662231,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_rk.h",
@@ -666362,7 +666458,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -667623,7 +667719,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage.h",
@@ -677511,7 +677607,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -678648,7 +678744,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h",
@@ -855418,7 +855514,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -856623,7 +856719,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -856631,7 +856727,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -857904,7 +858000,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_rk.h",
@@ -862131,7 +862227,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -863392,7 +863488,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage.h",
@@ -873340,7 +873436,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -874477,7 +874573,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h",
@@ -875273,7 +875369,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -875281,7 +875377,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -877150,7 +877246,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -877158,7 +877254,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -877736,7 +877832,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -877744,7 +877840,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -878181,7 +878277,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -878189,7 +878285,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -878794,7 +878890,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -878802,7 +878898,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -879967,7 +880063,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -879975,7 +880071,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -880170,7 +880266,7 @@
     {
       "classification": "expert_auxiliary",
       "contract": {
-        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise.",
+        "aliasing": "Reachable operand spans, active workspace and report metadata must be disjoint. Plans bind scalar, part, provider and descriptor metadata. Independent contexts/buffers/workspace/reports are reentrant; no shared-workspace promise. Metadata overlap is checked before report reset or the expected-plan query. Operand or workspace overlap with provider, plan, workspace or report metadata rejects without modifying those objects. Other preflight paths retain the ordinary report reset.",
         "asc_operation": "asc::Lacpy",
         "descriptors": "Immutable full input and same-shape staged output; explicit all/upper/lower trapezoid with independent padded row/column layouts. Empty M or N is local.",
         "documentation": "programs/lapack-array-io/matrix-copy-review.md",
@@ -880194,7 +880290,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880222,7 +880319,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880250,7 +880348,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880278,7 +880377,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880306,7 +880406,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880334,7 +880435,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880362,7 +880464,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880390,7 +880493,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880418,7 +880522,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880446,7 +880551,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880474,7 +880580,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880502,7 +880609,8 @@
               "pre_native_output_observation",
               "unselected_input_observation",
               "concurrency",
-              "installed_consumer"
+              "installed_consumer",
+              "metadata_preservation_before_report_reset"
             ],
             "source_evidence": {
               "argument_contracts_sha256": "fea4a03e2e238545d791ab216522fcbd782028c9c48b71c1d3437502186b151f",
@@ -880533,6 +880641,14 @@
       "id": "lapack.zlacpy",
       "implementation_artifacts": [
         {
+          "path": ".github/workflows/robust-ppsvx.yml",
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
+        },
+        {
+          "path": "abi/public-headers.sha256",
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
+        },
+        {
           "path": "examples/matrix_copy/CMakeLists.txt",
           "sha256": "b4694893eb19a5e7ad3c365e572e28d1c457e3f3ddf6a6fdab51817980b2396c"
         },
@@ -880546,7 +880662,11 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_copy.h",
-          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+          "sha256": "bd8d7f31a481df61d1e11b2ce27469f7ef2e4e7bf11a40930123869fd82b249b"
+        },
+        {
+          "path": "programs/lapack-array-io/matrix-copy-review.md",
+          "sha256": "c319c3570de0a64027e7d24a5ed29b5649ddea72af3a1f35352073ff1b56de1d"
         },
         {
           "path": "src/dense/lapack/internal_layout.h",
@@ -880566,7 +880686,7 @@
         },
         {
           "path": "src/dense/lapack/reference_matrix_copy.cc",
-          "sha256": "69a3a384b342091284606cdbcb13bbb23dd5f4c831c39bd800faf183164da0eb"
+          "sha256": "7945d4bf14c976dbe02d78fa37e0a8059ba6d17f57c6f14a962155ddab7d5ab6"
         },
         {
           "path": "src/dense/lapack_foundations.cc",
@@ -880581,12 +880701,20 @@
           "sha256": "b0eec50de6a8a862c42de5219f3e18a0288af7848aaf70daf1a0e6bf08e19c9d"
         },
         {
+          "path": "tests/dense_lapack/installed_lu/normal_return_guard.h",
+          "sha256": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d"
+        },
+        {
           "path": "tests/dense_lapack/matrix_copy_entry.cc",
           "sha256": "fd49934eb8e0b60d747bda896404487266f42e78576d1425e4c18cd65e17db18"
         },
         {
           "path": "tests/dense_lapack/matrix_copy_entry.h",
           "sha256": "74d769ff68e732468caa85ac787ec4aa4f7ab512332e955d42a2c96bc92b7e2d"
+        },
+        {
+          "path": "tests/dense_lapack/matrix_copy_metadata_test.cc",
+          "sha256": "06ad0dcb1a0be53eb5a19b7c56e6fc5a5ac4d0af058f45effa10829db15367f3"
         },
         {
           "path": "tests/dense_lapack/matrix_copy_observation_test.cc",
@@ -880602,7 +880730,7 @@
         },
         {
           "path": "tests/dense_lapack/matrix_copy_tests.cmake",
-          "sha256": "be2ddc161e3167824322f1277a0dada9f0bb91add70d7fbf832454c023883e9c"
+          "sha256": "6592f54f1e74464b092ca0b3efbe210d9dcccd13b5da6257bf1380b51dfdb12c"
         },
         {
           "path": "tests/dense_lapack/tridiagonal_test_support.h",
@@ -880616,7 +880744,7 @@
         },
         "reference_cpu": {
           "evidence_ids": [],
-          "partial_scope": "Checked native selected matrix copy, maintained three-part/four-layout tests, calibrated output and unselected-input observations, isolated concurrency and installed public consumer. Actual LP64/global ILP64 Linux GNU/static evidence is in the review. Normalized full Reference execution ledger and mandatory wider-platform/owner acceptance remain incomplete.",
+          "partial_scope": "Checked S/D/C/Z selected matrix copies preserve metadata before report reset on overlap rejection. Four existing contracts /48 modes gain explicit metadata-preservation tests. Eight Release/Debug static/shared actual LP64/ILP64 profiles pass72/72 selected ordinary processes with zero skips. Four relocated production-library public examples and four strict TUs pass. Four final normal/no-exception headers, ten package manifests, three architecture checks,166-header public surfaces with zero added/removed exports, actual1845-test CI selector (four added, none removed) and Doxygen166/166headers2778members26/26programme pages pass. Existing calibrated crash/memory observation and ASLR-changing instrumentation, remote/security and wider-platform acceptance remain mandatory and deferred under latest user constraint. No prior failure, execution ledger or Native20 row changed; no new callable or verified Reference credit.",
           "review": "programs/lapack-array-io/matrix-copy-review.md",
           "state": "implemented_unverified"
         }
@@ -884078,7 +884206,7 @@
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_copy.h",
-          "sha256": "cfde5eafcdd1bba5be784bfcfe2b25c63e631405f0b259bda3ef5aaceec6966d"
+          "sha256": "bd8d7f31a481df61d1e11b2ce27469f7ef2e4e7bf11a40930123869fd82b249b"
         },
         {
           "path": "include/asc/dense/providers/lapack_matrix_set.h",
@@ -884710,11 +884838,11 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -896010,7 +896138,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -896018,7 +896146,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -897693,7 +897821,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -897701,7 +897829,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -898277,7 +898405,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -898285,7 +898413,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -898722,7 +898850,7 @@
         },
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -898730,7 +898858,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -899335,7 +899463,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -899343,7 +899471,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -902819,7 +902947,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -904024,7 +904152,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "abi/header-owners.txt",
@@ -904032,7 +904160,7 @@
         },
         {
           "path": "abi/public-headers.sha256",
-          "sha256": "197def7a293ced0a8e21f2456b04f860bfb8edf48425068225c7cc740e778101"
+          "sha256": "09da0ee2a4e6a2f000ad0788e4c2340bfb3f8547ea32af8905ae736ebb818fd8"
         },
         {
           "path": "docs/Doxyfile.in",
@@ -905305,7 +905433,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_rk.h",
@@ -909407,7 +909535,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -910668,7 +910796,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage.h",
@@ -920556,7 +920684,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen.h",
@@ -921693,7 +921821,7 @@
       "implementation_artifacts": [
         {
           "path": ".github/workflows/robust-ppsvx.yml",
-          "sha256": "76eb996e9912c602cef40b8f3070b7d0d701beb4a3100f06a2290ed00452b6e4"
+          "sha256": "1ce146040cc0b8b9e3facd095df475994433e826a9fbe48f11bb0dffd0a1ea71"
         },
         {
           "path": "include/asc/dense/providers/lapack_indefinite_aasen_two_stage_solve.h",

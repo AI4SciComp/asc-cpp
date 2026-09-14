@@ -10,11 +10,11 @@
   "initial_checkout_commit": "31587a41ab8c949101480910df59266f1c6384fd",
   "initial_checkout_dirty_diff_sha256": "a9fd9651f9c3dc3050bc3c868852e92e9d55932a6e774e5ed288f3469d1f8657",
   "initial_base_commit": "46412183b2ae86101b2361c52376a8db8efff264",
-  "current_base_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4",
+  "current_base_commit": "c58e825af7f2ca0631de6f0bfa9d6880eb28f9db",
   "active_worktree": "../asc-cpp-lapack-array-io",
   "active_branch": "feature/lapack-array-io",
   "integration_target": "develop",
-  "last_implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4",
+  "last_implementation_commit": "c58e825af7f2ca0631de6f0bfa9d6880eb28f9db",
   "worktree_diff_identity": {
     "state": "scalar_sort_local_checks_complete_commit_pending",
     "base_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4",
@@ -1480,8 +1480,8 @@
       "next_action": "Review and probe the recorded factorization endpoint defect through whole SPSV/HPSV internal TRS calls. Establish bounded memory containment before implementing checked drivers; record an unresolved limitation and advance independent tasks if not resolvable. Continue the full programme."
     }
   },
-  "active_task": "P09.required.lacpy",
-  "next_action": "Apply the bounded matrix-copy metadata preflight correction recorded during storage-conversion review, with safe local regression tests and atomic contract/evidence updates. Then continue P09.required.trttp/tpttr dense/packed triangular conversions. Keep all deferred gates recorded.",
+  "active_task": "P09.required.trttp",
+  "next_action": "Implement checked TRTTP/TPTTR triangular-storage conversions after the passed source/emitted native prerequisite; use metadata validation before report reset.",
   "source_hashes": {
     "lapack_commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
     "lapack_tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b"
@@ -2714,7 +2714,7 @@
       "completion_audit_sha256": "f4437d76f079b358643b2c266847c8f3a8526bc2796094f4e8a55409fdb8e51b"
     }
   ],
-  "next_task": "P09.required.lacpy",
+  "next_task": "P09.required.trttp",
   "documentation_verification": {
     "state": "recorded_externally_after_summary_freeze",
     "scope": "Final summary-only delta is checked separately; no whole-tree CI claim for the later commit.",
@@ -4274,19 +4274,18 @@
     "next_command": "Inspect gb-final-audit and delivery status before repeating any work; reconcile PB normalized contract gaps against the committed INFO correction."
   },
   "current_delivery": {
-    "family": "scalar_sort_2",
-    "implementation_parent": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4",
-    "state": "Local implementation and routine checks complete; local commit pending. Remote delivery deferred under user instruction.",
-    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-sort-final-audit.json",
-    "selected_processes": 80,
-    "passing_processes": 80,
+    "family": "LACPY metadata preflight correction",
+    "implementation_parent": "c58e825af7f2ca0631de6f0bfa9d6880eb28f9db",
+    "state": "local_checks_complete_commit_pending",
+    "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-copy-preflight-final-audit.json",
+    "selected_processes": 72,
+    "passing_processes": 72,
     "required_failed_processes": 0,
     "unexpected_skips": 0,
-    "reviewed_contracts": 2,
-    "reviewed_modes": 4,
-    "callable_routes": 2,
-    "next_family": "P09.required.lacpy",
-    "next_numerical_family": "P09.required.trttp"
+    "existing_contracts_corrected": 4,
+    "existing_modes_preserved": 48,
+    "new_callable_routes": 0,
+    "next_family": "P09.required.trttp and P09.required.tpttr"
   },
   "historical_delivery_pointers_before_rook_condition": {
     "current_base_commit": "47f7c4773055c36c4054a60eb5dc2c9cecca56b3",
@@ -4725,7 +4724,7 @@
       "implementation_commit": "9934c829a18fa8e9cfcdc7ed1f9c25b6f72eabc4"
     },
     "scalar_sort": {
-      "state": "local_checks_complete_commit_pending",
+      "state": "local_commit_complete_remote_deferred",
       "source": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-sort-source-review-01/inputs.json",
       "native_results": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-sort-native-01-results.json",
       "cases_each_abi": 5120,
@@ -4742,7 +4741,7 @@
       "strict_tus": 6,
       "first_installed_cases": 1280,
       "first_installed": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-sort-installed-02-static-lp64/audit.json",
-      "final_installed": "Final03 static/sharedLP64 and staticILP64 each1280pass; sharedILP64 running.",
+      "final_installed": "All four final03 static/shared LP64/ILP64 consumers passed 1280 cases each.",
       "native_final": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-sort-native-03-results.json",
       "local_profiles": {
         "profiles": 8,
@@ -4757,12 +4756,35 @@
       "installed_consumers": 4,
       "installed_cases_each": 1280,
       "contract_review": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/scalar-sort-contract-review-01/reviewed-contracts.json",
-      "acceptance": "callable_unverified; required deferred admission remains open"
+      "acceptance": "callable_unverified; required deferred admission remains open",
+      "implementation_commit": "c58e825af7f2ca0631de6f0bfa9d6880eb28f9db"
     },
     "matrix_copy_preflight_finding": {
       "state": "source_finding_ready_bounded_repair",
       "evidence": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-copy-preflight-source-finding-01.json",
       "scope": "No crash or invalid native access reproduced or executed; old source resets report before rejecting overlap and conflicts with numeric preservation. Bounded correction next."
+    },
+    "matrix_copy_preflight": {
+      "state": "local_checks_complete_commit_pending",
+      "finding": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-copy-preflight-source-finding-01.json",
+      "audit": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/matrix-copy-preflight-final-audit.json",
+      "profile_count": 8,
+      "selected": 72,
+      "passed": 72,
+      "failed": 0,
+      "skipped": 0,
+      "installed_consumers": 4,
+      "strict_tus": 4,
+      "coverage_credit": 0,
+      "deferred": "Existing calibrated memory observation and ASLR-changing instrumentation remain mandatory; remote/security and broader-platform gates remain deferred."
+    },
+    "triangular_storage": {
+      "state": "native_prerequisite_passed_adapter_not_started",
+      "prerequisite": "/home/yicai/AI4SciComp/asc-cpp-evidence/lapack-array-io/master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/triangular-storage-prerequisite-01.json",
+      "native_cases_each_abi": 6144,
+      "reviewed_entry_points": 8,
+      "coverage_credit": 0,
+      "next": "Implement QueryTrttpWorkspace/Trttp and QueryTpttrWorkspace/Tpttr for S/D/C/Z with independent dense/packed layouts."
     }
   },
   "historical_active_verification_before_completion_execution": {
