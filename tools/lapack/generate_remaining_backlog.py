@@ -23,6 +23,10 @@ PACKED_PREREQUISITES = {
     'hpsvx': ('hptrf', 'hptrs', 'hpcon', 'hprfs'),
 }
 
+# DLAT2S/ZLAT2C require only the checked provider/workspace interfaces. The
+# source and SLAMCH/LSAME dependencies are reviewed in triangular-conversion-review.md.
+REVIEWED_AUXILIARY_FAMILIES = {'_lat2_'}
+
 
 def owner(family):
     """Assign programme ownership; general auxiliaries stay in P09 closure."""
@@ -136,7 +140,8 @@ def generate(inventory, mapping, dependency_map):
             'dependency_review': {
                 'state':
                 'reviewed_interface_dependencies'
-                if family in PACKED_PREREQUISITES else 'review_required',
+                if family in PACKED_PREREQUISITES or
+                family in REVIEWED_AUXILIARY_FAMILIES else 'review_required',
                 'scope':
                 'Prerequisites express stable ASC interface contracts; '
                 'all required numerical/profile gates remain necessary '

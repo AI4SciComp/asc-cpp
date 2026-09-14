@@ -372,3 +372,15 @@ prior ownership remain recoverable from the preserved baseline.
 Nine additive packed integration artifacts have a reviewed schema2 index
 extension. Existing source/command/outcome identities and Native20 rows are
 preserved; no Reference route is promoted by refreshing its artifact binding.
+
+## 2026-09-14 local continuation under the latest execution constraint
+
+The user requested avoiding operations that cause cybersecurity requests or
+interrupt execution, recording and deferring risky work while continuing the
+project. Crash-prone whole-driver endpoint experiments and security-sensitive
+remote operations are deferred. Existing mandatory tests and failures remain
+unchanged. The packed driver containment question is recorded in
+[blockers.md](blockers.md#packed-driver-containment-deferred--user-execution-constraint).
+P09 DLAT2S/ZLAT2C source review and ordinary local implementation are independent
+of that question. Earlier remote delivery records remain historical; no current
+remote verification or delivery is inferred.

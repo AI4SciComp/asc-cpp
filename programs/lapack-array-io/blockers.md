@@ -559,3 +559,23 @@ The amended external-provider packet 380a8792 still needs an explicit owner
 decision; no proposed notice was applied. These are separate from subset
 technical readiness. The next unblocked task is retained PPSVX candidate19
 active-buffer/workspace boundary acceptance, not a new architecture phase.
+
+## PACKED-DRIVER-CONTAINMENT-DEFERRED — user execution constraint
+
+The six SPSV/HPSV drivers remain unimplemented. Their ordinary native
+prerequisites pass 1,944 cases per actual integer ABI, but this does not establish
+endpoint containment. The [packed producer review](indefinite-packed-review.md)
+records an observed finite endpoint defect in SPTRF/HPTRF. Source inspection
+shows that the whole drivers enter TRS before ASC can validate the factorization
+outputs. Possible invalid accesses or provider termination in that continuation
+are an unresolved inference, not a newly reproduced driver failure.
+
+The latest user instruction defers operations likely to cause cybersecurity
+requests or interrupt execution. No deliberate whole-driver endpoint probe was
+run. That experiment and dependent driver admission are deferred, alongside
+security-sensitive remote operations and new remote delivery. Local independent
+implementation continues with P09 triangular precision conversion. No existing
+test is disabled, failure waived, provider changed, or callable credit added.
+Exact prerequisite paths and the instruction are retained in
+`completion-execution-01/user-safe-continuation-01.json` under the existing
+continuation evidence root.

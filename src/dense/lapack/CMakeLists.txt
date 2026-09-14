@@ -73,6 +73,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_cholesky_packed_refinement.cc
   reference_mixed_positive.cc
   reference_precision_conversion.cc
+  reference_triangular_conversion.cc
   reference_matrix_copy.cc
   reference_matrix_scale.cc
   reference_matrix_set.cc

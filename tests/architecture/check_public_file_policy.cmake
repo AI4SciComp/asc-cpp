@@ -210,6 +210,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_mixed_general.cc
   src/dense/lapack/reference_mixed_positive.cc
   src/dense/lapack/reference_precision_conversion.cc
+  src/dense/lapack/reference_triangular_conversion.cc
   src/dense/lapack/reference_matrix_copy.cc
   src/dense/lapack/reference_matrix_scale.cc
   src/dense/lapack/reference_matrix_set.cc

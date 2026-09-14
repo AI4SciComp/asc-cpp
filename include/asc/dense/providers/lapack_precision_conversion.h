@@ -1,7 +1,7 @@
 #ifndef ASC_DENSE_PROVIDERS_LAPACK_PRECISION_CONVERSION_H_
 #define ASC_DENSE_PROVIDERS_LAPACK_PRECISION_CONVERSION_H_
 /** @file
- * @brief Explicit checked native LAG2 precision conversion of full matrices.
+ * @brief Explicit checked native full and triangular precision conversion.
  *
  * These optional provider calls preserve the input and all destination padding.
  * Input/output layouts are independent. Queries inspect metadata only. Every
@@ -16,7 +16,12 @@
  * Nonfinite published values remain visible with an accuracy warning, without
  * clamping. No floating-point environment setting is changed. Empty operations
  * complete locally with absent native INFO. Independent caller state is
- * reentrant.
+ * reentrant. The triangular LAT2 calls reference only the selected triangle,
+ * including its diagonal. They preserve the other triangle. Unlike LAG2, the
+ * pinned LAT2 routines leave INFO unchanged on success: ASC initializes the
+ * entire native integer to zero. A returned zero therefore does not prove a
+ * native INFO write, and partial-width writes may be indistinguishable. The
+ * supported ABI is established separately by provider identity and ABI tests.
  */
 #include <complex>
 
@@ -146,6 +151,78 @@ ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryZlag2cWorkspace(
  */
 ASC_DENSE_LAPACK_EXPORT Status
 Zlag2c(const ReferenceLapackProvider& provider,
+       DenseBlasMatrixView<const std::complex<double>> input,
+       DenseBlasMatrixView<std::complex<float>> output,
+       const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
+       LapackReport& report);
+/** @brief Plans DLAT2S narrowing of one triangle of a square real matrix.
+ * @param provider Explicit checked host Reference provider.
+ * @param triangle Upper or lower triangle, including the diagonal.
+ * @param input Immutable square matrix; only the selected triangle is read.
+ * @param output Same shape with independent layout and leading dimension.
+ * @return Metadata-only plan for N*N live float staging entries and, for row
+ * input, N*N live double packing entries. Empty matrices need no workspace.
+ */
+ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryDlat2sWorkspace(
+    const ReferenceLapackProvider& provider, DenseBlasTriangle triangle,
+    DenseBlasMatrixView<const double> input, DenseBlasMatrixView<float> output);
+/** @brief Narrows the selected real triangle with transactional publication.
+ * @param provider Same immutable provider identity as the query.
+ * @param triangle Same upper/lower selection as the query.
+ * @param input Immutable input, disjoint from output and workspace.
+ * @param output Receives only the selected triangle after valid native INFO=0;
+ * its other triangle and padding are preserved and never numerically read.
+ * @param plan Exact matching scalar, triangle, shape, layouts and strides.
+ * @param workspace Live float kScratch and optional double kLayoutConversion
+ * objects with the queried sizes and alignments; disjoint from operands.
+ * @param report Reset before ordinary validation. Unsafe metadata aliasing
+ * leaves it unchanged. Native INFO starts at zero and is retained after return.
+ * @return Success for finite output; kNumerical/kAccuracyWarning for INFO=1
+ * (unchanged caller output), or INFO=0 with visible nonfinite output; kProvider
+ * for other INFO values, or the structural validation error.
+ * @post Range, provider and preflight errors preserve all caller output. Empty
+ * execution has no native call, numeric access or native INFO. No allocation,
+ * fallback, clipping or floating-point environment change occurs.
+ */
+ASC_DENSE_LAPACK_EXPORT Status Dlat2s(const ReferenceLapackProvider& provider,
+                                      DenseBlasTriangle triangle,
+                                      DenseBlasMatrixView<const double> input,
+                                      DenseBlasMatrixView<float> output,
+                                      const LapackWorkspacePlan& plan,
+                                      const LapackWorkspace& workspace,
+                                      LapackReport& report);
+/** @brief Plans ZLAT2C narrowing of one triangle of a square complex matrix.
+ * @param provider Explicit checked host Reference provider.
+ * @param triangle Upper or lower triangle, including both diagonal components.
+ * @param input Immutable square matrix; only the selected triangle is read.
+ * @param output Same shape with independent layout and leading dimension.
+ * @return Metadata-only plan for N*N live complex<float> staging entries and,
+ * for row input, N*N live complex<double> packing entries; none when empty.
+ */
+ASC_DENSE_LAPACK_EXPORT Result<LapackWorkspacePlan> QueryZlat2cWorkspace(
+    const ReferenceLapackProvider& provider, DenseBlasTriangle triangle,
+    DenseBlasMatrixView<const std::complex<double>> input,
+    DenseBlasMatrixView<std::complex<float>> output);
+/** @brief Narrows both components of the selected complex triangle.
+ * @param provider Same immutable provider identity as the query.
+ * @param triangle Same upper/lower selection; no Hermitian interpretation.
+ * @param input Immutable input, disjoint from output and workspace.
+ * @param output Receives only the selected triangle after valid native INFO=0;
+ * its other triangle and padding are preserved and never numerically read.
+ * @param plan Exact matching scalar, triangle, shape, layouts and strides.
+ * @param workspace Live complex<float> kScratch and optional complex<double>
+ * kLayoutConversion objects, disjoint from operands, with queried capacities.
+ * @param report Reset before ordinary validation. Unsafe metadata aliasing
+ * leaves it unchanged. Native INFO starts at zero and is retained after return.
+ * @return Success for finite components; kNumerical/kAccuracyWarning for INFO=1
+ * (unchanged caller output), or INFO=0 with visible nonfinite components;
+ * kProvider for other INFO values, or the structural validation error.
+ * @post Range, provider and preflight errors preserve all caller output. Empty
+ * execution has no native call, numeric access or native INFO. Component
+ * rounding and underflow follow the pinned provider; no bits are reconstructed.
+ */
+ASC_DENSE_LAPACK_EXPORT Status
+Zlat2c(const ReferenceLapackProvider& provider, DenseBlasTriangle triangle,
        DenseBlasMatrixView<const std::complex<double>> input,
        DenseBlasMatrixView<std::complex<float>> output,
        const LapackWorkspacePlan& plan, const LapackWorkspace& workspace,
