@@ -51,6 +51,7 @@ set(_expected_public_files
   include/asc/dense/providers/lapack_scalar_norm.h
   include/asc/dense/providers/lapack_rotation.h
   include/asc/dense/providers/lapack_machine.h
+  include/asc/dense/providers/lapack_scalar_svd.h
   include/asc/dense/providers/lapack_vector_conjugation.h
   include/asc/dense/providers/lapack_scalar_sort.h
   include/asc/dense/providers/lapack_triangular_storage_conversion.h
@@ -222,6 +223,7 @@ set(_expected_compiled_sources
   src/dense/lapack/reference_scalar_norm.cc
   src/dense/lapack/reference_rotation.cc
   src/dense/lapack/reference_machine.cc
+  src/dense/lapack/reference_scalar_svd.cc
   src/dense/lapack/reference_machine_constants.cc
   src/dense/lapack/reference_vector_conjugation.cc
   src/dense/lapack/reference_scalar_sort.cc

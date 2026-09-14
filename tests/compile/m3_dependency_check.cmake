@@ -81,6 +81,7 @@ list(REMOVE_ITEM
   include/asc/dense/providers/lapack_scalar_norm.h
   include/asc/dense/providers/lapack_rotation.h
   include/asc/dense/providers/lapack_machine.h
+  include/asc/dense/providers/lapack_scalar_svd.h
   include/asc/dense/providers/lapack_vector_conjugation.h
   include/asc/dense/providers/lapack_scalar_sort.h
   include/asc/dense/providers/lapack_triangular_storage_conversion.h
