@@ -28,7 +28,11 @@ PACKED_PREREQUISITES = {
 # LAPY2/LAPY3 scalar-return dependencies are reviewed in scalar-norm-review.md.
 # LACGV signed/zero spacing is reviewed in vector-conjugation-review.md.
 # LASRT source/stack and NaN ordering are reviewed in scalar-sort-review.md.
-REVIEWED_AUXILIARY_FAMILIES = {'_lat2_', 'lacgv', 'lapy2', 'lapy3', 'lasrt'}
+# TRTTP/TPTTR source/ABI and layout copies are reviewed in
+# triangular-storage-conversion-review.md.
+REVIEWED_AUXILIARY_FAMILIES = {
+    '_lat2_', 'lacgv', 'lapy2', 'lapy3', 'lasrt', 'trttp', 'tpttr'
+}
 
 
 def owner(family):

@@ -58729,7 +58729,7 @@
         "P04.provider_component"
       ],
       "dependency_review": {
-        "state": "review_required",
+        "state": "reviewed_interface_dependencies",
         "scope": "Prerequisites express stable ASC interface contracts; all required numerical/profile gates remain necessary for verification. Generic foundations alone do not establish execution readiness."
       },
       "upstream_source_files": [
@@ -58738,26 +58738,93 @@
         "SRC/stpttr.f",
         "SRC/ztpttr.f"
       ],
-      "source_api_files": [],
-      "route_states": {
-        "lapack.ctpttr": "not_started",
-        "lapack.dtpttr": "not_started",
-        "lapack.stpttr": "not_started",
-        "lapack.ztpttr": "not_started"
-      },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
-      "required_mode_cases": {
-        "lapack.ctpttr": [],
-        "lapack.dtpttr": [],
-        "lapack.stpttr": [],
-        "lapack.ztpttr": []
-      },
-      "unreviewed_mode_rows": [
-        "lapack.ctpttr",
-        "lapack.dtpttr",
-        "lapack.stpttr",
-        "lapack.ztpttr"
+      "source_api_files": [
+        ".github/workflows/robust-ppsvx.yml",
+        "abi/header-owners.txt",
+        "abi/public-headers.sha256",
+        "docs/Doxyfile.in",
+        "include/asc/dense/providers/lapack_triangular_storage_conversion.h",
+        "programs/lapack-array-io/triangular-storage-conversion-review.md",
+        "src/dense/lapack/CMakeLists.txt",
+        "src/dense/lapack/internal_indefinite.h",
+        "src/dense/lapack/internal_layout.h",
+        "src/dense/lapack/internal_packed_triangular.h",
+        "src/dense/lapack/internal_triangular_storage_counts.h",
+        "src/dense/lapack/internal_tridiagonal.h",
+        "src/dense/lapack/internal_workspace_context.h",
+        "src/dense/lapack/reference_triangular_storage_conversion.cc",
+        "src/dense/lapack_foundations.cc",
+        "tests/architecture/check_public_file_policy.cmake",
+        "tests/compile/m3_dependency_check.cmake",
+        "tests/dense/allocation_probe.cc",
+        "tests/dense/allocation_probe.h",
+        "tests/dense/test_support.h",
+        "tests/dense_lapack/CMakeLists.txt",
+        "tests/dense_lapack/allocation_audit.cc",
+        "tests/dense_lapack/installed_lu/CMakeLists.txt",
+        "tests/dense_lapack/installed_lu/normal_return_guard.h",
+        "tests/dense_lapack/installed_lu/triangular_storage_conversion_main.cc",
+        "tests/dense_lapack/triangular_storage_conversion_abi_probe.cc",
+        "tests/dense_lapack/triangular_storage_conversion_fault_test.cc",
+        "tests/dense_lapack/triangular_storage_conversion_faults.cc",
+        "tests/dense_lapack/triangular_storage_conversion_faults.h",
+        "tests/dense_lapack/triangular_storage_conversion_test.cc",
+        "tests/dense_lapack/triangular_storage_conversion_test_support.h",
+        "tests/dense_lapack/triangular_storage_conversion_tests.cmake",
+        "tests/dense_lapack/tridiagonal_test_support.h",
+        "tests/hardening/header_manifest_test.cmake",
+        "tools/lapack/generate_remaining_backlog.py"
       ],
+      "route_states": {
+        "lapack.ctpttr": "implemented_unverified",
+        "lapack.dtpttr": "implemented_unverified",
+        "lapack.stpttr": "implemented_unverified",
+        "lapack.ztpttr": "implemented_unverified"
+      },
+      "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
+      "required_mode_cases": {
+        "lapack.ctpttr": [
+          "upper.column_major.column_major",
+          "upper.column_major.row_major",
+          "upper.row_major.column_major",
+          "upper.row_major.row_major",
+          "lower.column_major.column_major",
+          "lower.column_major.row_major",
+          "lower.row_major.column_major",
+          "lower.row_major.row_major"
+        ],
+        "lapack.dtpttr": [
+          "upper.column_major.column_major",
+          "upper.column_major.row_major",
+          "upper.row_major.column_major",
+          "upper.row_major.row_major",
+          "lower.column_major.column_major",
+          "lower.column_major.row_major",
+          "lower.row_major.column_major",
+          "lower.row_major.row_major"
+        ],
+        "lapack.stpttr": [
+          "upper.column_major.column_major",
+          "upper.column_major.row_major",
+          "upper.row_major.column_major",
+          "upper.row_major.row_major",
+          "lower.column_major.column_major",
+          "lower.column_major.row_major",
+          "lower.row_major.column_major",
+          "lower.row_major.row_major"
+        ],
+        "lapack.ztpttr": [
+          "upper.column_major.column_major",
+          "upper.column_major.row_major",
+          "upper.row_major.column_major",
+          "upper.row_major.row_major",
+          "lower.column_major.column_major",
+          "lower.column_major.row_major",
+          "lower.row_major.column_major",
+          "lower.row_major.row_major"
+        ]
+      },
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -58767,15 +58834,19 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/triangular-storage-conversion-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
-      "integrated_revision": null,
-      "execution_progress": "not_executed",
+      "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
+      "execution_progress": "partial_source_and_review_exist",
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/triangular-storage-conversion-review.md"
+      ]
     },
     {
       "task_id": "P05.required.trcon",
@@ -59728,7 +59799,7 @@
         "P04.provider_component"
       ],
       "dependency_review": {
-        "state": "review_required",
+        "state": "reviewed_interface_dependencies",
         "scope": "Prerequisites express stable ASC interface contracts; all required numerical/profile gates remain necessary for verification. Generic foundations alone do not establish execution readiness."
       },
       "upstream_source_files": [
@@ -59737,26 +59808,93 @@
         "SRC/strttp.f",
         "SRC/ztrttp.f"
       ],
-      "source_api_files": [],
-      "route_states": {
-        "lapack.ctrttp": "not_started",
-        "lapack.dtrttp": "not_started",
-        "lapack.strttp": "not_started",
-        "lapack.ztrttp": "not_started"
-      },
-      "next_action": "Review the listed pinned declarations, arguments and legal modes; write their checked ASC contract and adapter, then execute ordinary, failure, workspace and public-consumer tests in both actual ABIs.",
-      "required_mode_cases": {
-        "lapack.ctrttp": [],
-        "lapack.dtrttp": [],
-        "lapack.strttp": [],
-        "lapack.ztrttp": []
-      },
-      "unreviewed_mode_rows": [
-        "lapack.ctrttp",
-        "lapack.dtrttp",
-        "lapack.strttp",
-        "lapack.ztrttp"
+      "source_api_files": [
+        ".github/workflows/robust-ppsvx.yml",
+        "abi/header-owners.txt",
+        "abi/public-headers.sha256",
+        "docs/Doxyfile.in",
+        "include/asc/dense/providers/lapack_triangular_storage_conversion.h",
+        "programs/lapack-array-io/triangular-storage-conversion-review.md",
+        "src/dense/lapack/CMakeLists.txt",
+        "src/dense/lapack/internal_indefinite.h",
+        "src/dense/lapack/internal_layout.h",
+        "src/dense/lapack/internal_packed_triangular.h",
+        "src/dense/lapack/internal_triangular_storage_counts.h",
+        "src/dense/lapack/internal_tridiagonal.h",
+        "src/dense/lapack/internal_workspace_context.h",
+        "src/dense/lapack/reference_triangular_storage_conversion.cc",
+        "src/dense/lapack_foundations.cc",
+        "tests/architecture/check_public_file_policy.cmake",
+        "tests/compile/m3_dependency_check.cmake",
+        "tests/dense/allocation_probe.cc",
+        "tests/dense/allocation_probe.h",
+        "tests/dense/test_support.h",
+        "tests/dense_lapack/CMakeLists.txt",
+        "tests/dense_lapack/allocation_audit.cc",
+        "tests/dense_lapack/installed_lu/CMakeLists.txt",
+        "tests/dense_lapack/installed_lu/normal_return_guard.h",
+        "tests/dense_lapack/installed_lu/triangular_storage_conversion_main.cc",
+        "tests/dense_lapack/triangular_storage_conversion_abi_probe.cc",
+        "tests/dense_lapack/triangular_storage_conversion_fault_test.cc",
+        "tests/dense_lapack/triangular_storage_conversion_faults.cc",
+        "tests/dense_lapack/triangular_storage_conversion_faults.h",
+        "tests/dense_lapack/triangular_storage_conversion_test.cc",
+        "tests/dense_lapack/triangular_storage_conversion_test_support.h",
+        "tests/dense_lapack/triangular_storage_conversion_tests.cmake",
+        "tests/dense_lapack/tridiagonal_test_support.h",
+        "tests/hardening/header_manifest_test.cmake",
+        "tools/lapack/generate_remaining_backlog.py"
       ],
+      "route_states": {
+        "lapack.ctrttp": "implemented_unverified",
+        "lapack.dtrttp": "implemented_unverified",
+        "lapack.strttp": "implemented_unverified",
+        "lapack.ztrttp": "implemented_unverified"
+      },
+      "next_action": "Reconcile this family's existing implementation/review against its exact mode cases; add the first missing required class/profile evidence or repair a concrete first-party defect.",
+      "required_mode_cases": {
+        "lapack.ctrttp": [
+          "upper.column_major.column_major",
+          "upper.column_major.row_major",
+          "upper.row_major.column_major",
+          "upper.row_major.row_major",
+          "lower.column_major.column_major",
+          "lower.column_major.row_major",
+          "lower.row_major.column_major",
+          "lower.row_major.row_major"
+        ],
+        "lapack.dtrttp": [
+          "upper.column_major.column_major",
+          "upper.column_major.row_major",
+          "upper.row_major.column_major",
+          "upper.row_major.row_major",
+          "lower.column_major.column_major",
+          "lower.column_major.row_major",
+          "lower.row_major.column_major",
+          "lower.row_major.row_major"
+        ],
+        "lapack.strttp": [
+          "upper.column_major.column_major",
+          "upper.column_major.row_major",
+          "upper.row_major.column_major",
+          "upper.row_major.row_major",
+          "lower.column_major.column_major",
+          "lower.column_major.row_major",
+          "lower.row_major.column_major",
+          "lower.row_major.row_major"
+        ],
+        "lapack.ztrttp": [
+          "upper.column_major.column_major",
+          "upper.column_major.row_major",
+          "upper.row_major.column_major",
+          "upper.row_major.row_major",
+          "lower.column_major.column_major",
+          "lower.column_major.row_major",
+          "lower.row_major.column_major",
+          "lower.row_major.row_major"
+        ]
+      },
+      "unreviewed_mode_rows": [],
       "required_tests": [
         "exact_contract_modes",
         "independent_mathematics",
@@ -59766,15 +59904,19 @@
         "actual_abis",
         "required_platforms"
       ],
-      "reuse_candidates": [],
+      "reuse_candidates": [
+        "programs/lapack-array-io/triangular-storage-conversion-review.md"
+      ],
       "blocked_rows": [],
       "blocker_id": null,
-      "integrated_revision": null,
-      "execution_progress": "not_executed",
+      "integrated_revision": "See route-specific review/source artifacts; no whole-tree execution is inferred.",
+      "execution_progress": "partial_source_and_review_exist",
       "numerical_result": "Use exact route review; no blanket pass or failure is inferred from registration.",
       "profile_admission": "GNU/Linux/static ABI prerequisites exist; routine and wider-platform acceptance remain separate.",
       "owner_decision": "Source/dependency decision pending for blocked rows; ordinary checked development authorized for remaining rows.",
-      "evidence_references": []
+      "evidence_references": [
+        "programs/lapack-array-io/triangular-storage-conversion-review.md"
+      ]
     },
     {
       "task_id": "P09.required.tzrqf",
@@ -62443,7 +62585,7 @@
   ],
   "input_sha256": {
     "lapack-upstream-inventory.json": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
-    "lapack-coverage.yaml": "60a15c1d79ab0588ba9a7497867ecb9a8d319f8f04501981456d3e36fa036978",
+    "lapack-coverage.yaml": "47c00595fcea4f1efbdc058d09f982d998457b0e61f8d72d20c26f190e42d499",
     "xblas-dependency-closure.json": "ad9e65efc4ad364f98515e6ab0fc973533099d28cfc73f490d2c426732dc3640"
   }
 }

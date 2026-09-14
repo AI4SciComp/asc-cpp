@@ -77,6 +77,7 @@ target_sources(asc_dense_lapack PRIVATE
   reference_scalar_norm.cc
   reference_vector_conjugation.cc
   reference_scalar_sort.cc
+  reference_triangular_storage_conversion.cc
   reference_matrix_copy.cc
   reference_matrix_scale.cc
   reference_matrix_set.cc
@@ -157,6 +158,7 @@ target_sources(asc_dense_lapack PRIVATE
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_scalar_norm.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_vector_conjugation.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_scalar_sort.h"
+    "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_triangular_storage_conversion.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_copy.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_scale.h"
     "${PROJECT_SOURCE_DIR}/include/asc/dense/providers/lapack_matrix_set.h"

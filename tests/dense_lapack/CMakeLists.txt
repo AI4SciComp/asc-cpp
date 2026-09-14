@@ -55,6 +55,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/triangular_conversion_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/scalar_norm_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/vector_conjugation_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/scalar_sort_tests.cmake")
+include("${CMAKE_CURRENT_SOURCE_DIR}/triangular_storage_conversion_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/matrix_copy_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/matrix_scale_tests.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/matrix_set_tests.cmake")
@@ -1104,6 +1105,7 @@ foreach(_header IN ITEMS lapack.h lapack_export.h lapack_lu.h
     lapack_scalar_norm.h
     lapack_vector_conjugation.h
     lapack_scalar_sort.h
+    lapack_triangular_storage_conversion.h
     lapack_matrix_copy.h
     lapack_matrix_scale.h
     lapack_matrix_set.h
