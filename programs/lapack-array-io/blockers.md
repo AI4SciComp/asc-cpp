@@ -615,3 +615,24 @@ identities and failed commands are retained in external
 `completion-execution-01/lartg-prerequisite-disposition-01.json`. C/Z need a
 separate numerical/provider disposition. No provider patch, fallback, waiver,
 complex API credit or global verification is inferred from the real slice.
+
+## LARTGS-FINITE-RANGE — failed finite prerequisite, deferred
+
+S/D LARTGS remain unimplemented. Each actual ABI passes 392 ordinary cases, but
+the 25,992-case finite extreme grid retains 4,144 failed comparisons, including
+1,728 nonfinite coefficient tuples, with zero guard or input-mutation failures.
+The decisive small reproducer uses finite X=Y=1 and SIGMA equal to the largest
+finite scalar: both S/D return a NaN cosine and zero sine. A separate X=Y=0,
+SIGMA equal to the minimum normal scalar reproducer returns the zero-vector
+PI/2 fallback after the squared shift underflows. All four targeted comparisons
+fail in each ABI; their original nonzero results remain retained.
+
+The introductory source equation writes X squared minus SIGMA; the executable
+code and adjacent comment use SIGMA squared. The probe uses the latter and
+respects the explicit tiny-X approximation. The aggregate comparison count is
+not a claim of 4,144 independently established provider defects. No input
+domain or tolerance was narrowed to obtain a pass. Exact sources, emitted and
+installed signatures, binaries, guard observations and command results are
+bound in external `completion-execution-01/lartgs-prerequisite-disposition-01.json`.
+A numerical/provider or explicit domain decision remains necessary. Independent
+LABAD work continues without an LARTGS API, callable credit or verification.

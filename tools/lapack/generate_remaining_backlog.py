@@ -42,7 +42,7 @@ COMPLETE_PIVOTING_PREREQUISITES = {'getc2': (), 'gesc2': ('getc2',)}
 # LARTGP finite scalar interfaces are reviewed in positive-rotation-review.md.
 REVIEWED_AUXILIARY_FAMILIES = {
     '_lat2_', 'lacgv', 'lapy2', 'lapy3', 'lasrt', 'trttp', 'tpttr', 'lapmr', 'lapmt',
-    'lartg', 'lartgp'
+    'lartg', 'lartgp', 'labad'
 }
 
 

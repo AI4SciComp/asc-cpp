@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "scope": "Records only two LARTGS failed-prerequisite blockers; no contract, artifact, implementation state, execution or credit changes. Native20 unchanged.",
+  "baseline_commit": "79e384d2574d8834a304e66958715fbb2d8fb7ad",
+  "prior_mapping_sha256": "963d7c49934bf729e28ddb7d5e3d11818bbcce234e48b81cf1dc2ab1d8dc1a25",
+  "extended_mapping_sha256": "09d959e2a4021a43454c8498ef1791f96f6a4756ee640239f2c62d6ba7db8f90",
+  "prior_evidence_sha256": "64893e47aba52e5985b86d32e59cadd64f0b1c877903f69d065a7d8c0148f970",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "963d7c49934bf729e28ddb7d5e3d11818bbcce234e48b81cf1dc2ab1d8dc1a25",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "963d7c49934bf729e28ddb7d5e3d11818bbcce234e48b81cf1dc2ab1d8dc1a25",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "bde2ff45ac77ed9bd64cabfa7c88f8bbe889cc9e222cdaa70632cdcffb5c245a",
+    "reference-lu-release-lp64-20260911": "19cce64eac9c97816adc688c8bf86566a847d0992c516d8ee853746c34cbdda4",
+    "reference-lu-release-ilp64-20260911": "cf6598d50a6802c2adebf061161f4f1c467e02d9c15c37a7cb613cf2ae707973"
+  },
+  "unchanged_native_rows_sha256": "5c82b581b8147b13e88d561f792d519b771a5f83d0778a49cbd36bc78abb1c29",
+  "changed_reference_rows": [
+    "lapack.slartgs",
+    "lapack.dlartgs"
+  ],
+  "reviewed_artifact_changes": {},
+  "exact_baseline": "master-continuation-20260910-01/continuation-20260912-01/completion-execution-01/lartgs-blocker-index-01"
+}
