@@ -1,0 +1,1061 @@
+diff --git a/include/asc/dense/providers/lapack_provider_metadata.h b/include/asc/dense/providers/lapack_provider_metadata.h
+new file mode 100644
+index 0000000..44bf271
+--- /dev/null
++++ b/include/asc/dense/providers/lapack_provider_metadata.h
+@@ -0,0 +1,117 @@
++#ifndef ASC_DENSE_PROVIDERS_LAPACK_PROVIDER_METADATA_H_
++#define ASC_DENSE_PROVIDERS_LAPACK_PROVIDER_METADATA_H_
++/** @file
++ * @brief Checked native option codes, transpose characters and LAPACK version.
++ *
++ * These scalar metadata operations preserve native sentinel results: -1 for
++ * an unrecognized character and 'X' for an unrecognized transpose code are
++ * complete values, not native INFO. Every character bit pattern is admitted.
++ * Alphabetic option letters are case insensitive in the selected provider.
++ * Outputs are live host objects, disjoint from provider/report metadata; their
++ * old values are not read. Metadata overlap rejects before report reset or
++ * numeric access. By-value inputs may originate in output objects.
++ *
++ * Each call stages its outputs and validates private input preservation and
++ * the operation's result domain before publication. An invalid native result
++ * returns kProvider with partial/unusable output validity and preserves caller
++ * outputs. In-domain results are not an accuracy or provenance certificate.
++ * There is no workspace, allocation, transfer, synchronization or native query.
++ * Native INFO, argument, diagnostic index and factor family remain absent.
++ * Floating-point controls remain unchanged. Concurrent calls keep mutable
++ * output and report state private.
++ */
++#include <array>
++
++#include "asc/core/status.h"
++#include "asc/core/types.h"
++#include "asc/dense/lapack/report.h"
++#include "asc/dense/providers/lapack.h"
++#include "asc/dense/providers/lapack_export.h"
++namespace asc {
++/** @brief Translates S/D/I/X or E to single/double/indigenous/extra precision.
++ * @param provider Explicit checked serial Reference provider.
++ * @param precision One character, including lower-case aliases; other values
++ * produce the native -1 sentinel.
++ * @param code Receives 211/212/213/214, respectively, or -1. A live host
++ * index_t.
++ * @param report Preserved on metadata alias; otherwise reset and records the
++ * actual native call and complete or unusable publication validity.
++ * @return Success after native code publication, including -1; kProvider for
++ * changed private character or result outside the documented set; or local
++ * metadata-overlap error. No output is published on error.
++ */
++ASC_DENSE_LAPACK_EXPORT Status Ilaprec(const ReferenceLapackProvider& provider,
++                                       char precision, index_t& code,
++                                       LapackReport& report);
++/** @brief Translates N/T/C to no transpose/transpose/conjugate transpose.
++ * @param provider Explicit checked serial Reference provider.
++ * @param transpose One character, including lower-case aliases; other values
++ * produce the native -1 sentinel.
++ * @param code Receives 111/112/113, respectively, or -1. A live host index_t.
++ * @param report Preserved on metadata alias; otherwise reset and records the
++ * actual native call and complete or unusable publication validity.
++ * @return Success after native code publication, including -1; kProvider for
++ * changed private character or result outside the documented set; or local
++ * metadata-overlap error. No output is published on error.
++ */
++ASC_DENSE_LAPACK_EXPORT Status Ilatrans(const ReferenceLapackProvider& provider,
++                                        char transpose, index_t& code,
++                                        LapackReport& report);
++/** @brief Translates U/L to upper/lower triangle.
++ * @param provider Explicit checked serial Reference provider.
++ * @param triangle One character, including lower-case aliases; other values
++ * produce the native -1 sentinel.
++ * @param code Receives 121/122, respectively, or -1. A live host index_t.
++ * @param report Preserved on metadata alias; otherwise reset and records the
++ * actual native call and complete or unusable publication validity.
++ * @return Success after native code publication, including -1; kProvider for
++ * changed private character or result outside the documented set; or local
++ * metadata-overlap error. No output is published on error.
++ */
++ASC_DENSE_LAPACK_EXPORT Status Ilauplo(const ReferenceLapackProvider& provider,
++                                       char triangle, index_t& code,
++                                       LapackReport& report);
++/** @brief Translates N/U to non-unit/unit diagonal.
++ * @param provider Explicit checked serial Reference provider.
++ * @param diagonal One character, including lower-case aliases; other values
++ * produce the native -1 sentinel.
++ * @param code Receives 131/132, respectively, or -1. A live host index_t.
++ * @param report Preserved on metadata alias; otherwise reset and records the
++ * actual native call and complete or unusable publication validity.
++ * @return Success after native code publication, including -1; kProvider for
++ * changed private character or result outside the documented set; or local
++ * metadata-overlap error. No output is published on error.
++ */
++ASC_DENSE_LAPACK_EXPORT Status Iladiag(const ReferenceLapackProvider& provider,
++                                       char diagonal, index_t& code,
++                                       LapackReport& report);
++/** @brief Translates native transpose codes to their single characters.
++ * @param provider Explicit checked serial Reference provider.
++ * @param code 111/112/113 maps to N/T/C; other represented integers map to X.
++ * Must fit the actual provider INTEGER; no narrowing is implied.
++ * @param transpose Live host char receiving the native character on success.
++ * @param report Preserved on metadata alias; otherwise reset and records native
++ * entry, absent INFO and publication validity.
++ * @return Success including X, local kOverflow for unrepresentable input,
++ * kProvider for changed private integer or a character outside N/T/C/X, or
++ * metadata-overlap error. All errors preserve the caller's output.
++ */
++ASC_DENSE_LAPACK_EXPORT Status
++ChlaTranstype(const ReferenceLapackProvider& provider, index_t code,
++              char& transpose, LapackReport& report);
++/** @brief Obtains the native LAPACK major, minor and patch version numbers.
++ * @param provider Explicit checked serial Reference provider.
++ * @param version Live host array receiving major/minor/patch in that order.
++ * All three values publish together; its old values are not read.
++ * @param report Preserved on metadata alias; otherwise reset and records native
++ * entry, absent INFO and publication validity.
++ * @return Success for three nonnegative native integers; kProvider for a
++ * negative or omitted staged output, or local metadata-overlap error. Errors
++ * preserve the entire array. Returned numbers describe the native routine and
++ * do not replace the provider's attested source/build identity.
++ */
++ASC_DENSE_LAPACK_EXPORT Status Ilaver(const ReferenceLapackProvider& provider,
++                                      std::array<index_t, 3>& version,
++                                      LapackReport& report);
++}  // namespace asc
++#endif  // ASC_DENSE_PROVIDERS_LAPACK_PROVIDER_METADATA_H_
+diff --git a/src/dense/lapack/internal_provider_metadata_prototypes.h b/src/dense/lapack/internal_provider_metadata_prototypes.h
+new file mode 100644
+index 0000000..d91e617
+--- /dev/null
++++ b/src/dense/lapack/internal_provider_metadata_prototypes.h
+@@ -0,0 +1,21 @@
++#ifndef ASC_DENSE_LAPACK_INTERNAL_PROVIDER_METADATA_PROTOTYPES_H_
++#define ASC_DENSE_LAPACK_INTERNAL_PROVIDER_METADATA_PROTOTYPES_H_
++#include <cstddef>
++
++#include "internal_tridiagonal.h"
++// Actual GNU11 declarations. CHARACTER return uses leading result storage and
++// size_t length; scalar CHARACTER inputs have a trailing size_t length.
++#define ASC_LAPACK_ilaprec LAPACK_GLOBAL(ilaprec, ILAPREC)
++#define ASC_LAPACK_ilatrans LAPACK_GLOBAL(ilatrans, ILATRANS)
++#define ASC_LAPACK_ilauplo LAPACK_GLOBAL(ilauplo, ILAUPLO)
++#define ASC_LAPACK_iladiag LAPACK_GLOBAL(iladiag, ILADIAG)
++#define ASC_LAPACK_chla_transtype LAPACK_GLOBAL(chla_transtype, CHLA_TRANSTYPE)
++extern "C" {
++lapack_int ASC_LAPACK_ilaprec(char* input, std::size_t input_length);
++lapack_int ASC_LAPACK_ilatrans(char* input, std::size_t input_length);
++lapack_int ASC_LAPACK_ilauplo(char* input, std::size_t input_length);
++lapack_int ASC_LAPACK_iladiag(char* input, std::size_t input_length);
++void ASC_LAPACK_chla_transtype(char* result, std::size_t result_length,
++                               lapack_int* code);
++}
++#endif  // ASC_DENSE_LAPACK_INTERNAL_PROVIDER_METADATA_PROTOTYPES_H_
+diff --git a/src/dense/lapack/reference_provider_metadata.cc b/src/dense/lapack/reference_provider_metadata.cc
+new file mode 100644
+index 0000000..6dffca0
+--- /dev/null
++++ b/src/dense/lapack/reference_provider_metadata.cc
+@@ -0,0 +1,128 @@
++#include <array>
++#include <cstddef>
++#include <limits>
++#include <string_view>
++
++#include "asc/core/status.h"
++#include "asc/core/types.h"
++#include "asc/dense/lapack/report.h"
++#include "asc/dense/providers/lapack.h"
++#include "asc/dense/providers/lapack_provider_metadata.h"
++#include "internal_provider_metadata_prototypes.h"
++#include "internal_tridiagonal.h"
++namespace asc {
++namespace {
++namespace checked = internal_tridiagonal;
++template <typename T>
++Status Begin(const ReferenceLapackProvider& provider, const T& output,
++             std::string_view routine, LapackReport& report) {
++  const std::array spans{checked::ObjectStorage(provider),
++                         checked::ObjectStorage(output),
++                         checked::ObjectStorage(report)};
++  const Status status = checked::Disjoint(spans);
++  if (!status.ok()) {
++    return status;
++  }
++  checked::StartReport(provider, routine, report);
++  return Status::Ok();
++}
++Status Defect(LapackReport& report) {
++  report.outcome = LapackOutcome::kPartialResult;
++  report.output_validity = LapackOutputValidity::kUnusable;
++  return Status(ErrorCode::kProvider);
++}
++template <std::size_t Operation>
++bool Allowed(lapack_int code) {
++  if (code == -1) {
++    return true;
++  }
++  if constexpr (Operation == 0) {
++    return code >= 211 && code <= 214;
++  } else if constexpr (Operation == 1) {
++    return code >= 111 && code <= 113;
++  } else if constexpr (Operation == 2) {
++    return code == 121 || code == 122;
++  } else {
++    return code == 131 || code == 132;
++  }
++}
++template <std::size_t Operation>
++Status Code(const ReferenceLapackProvider& provider, char flag, index_t& code,
++            LapackReport& report) {
++  constexpr std::array<std::string_view, 4> kNames{"ilaprec", "ilatrans",
++                                                   "ilauplo", "iladiag"};
++  const Status status = Begin(provider, code, kNames[Operation], report);
++  if (!status.ok()) {
++    return status;
++  }
++  using Function = lapack_int(char*, std::size_t);
++  constexpr std::array<Function*, 4> kFunctions{
++      ASC_LAPACK_ilaprec, ASC_LAPACK_ilatrans, ASC_LAPACK_ilauplo,
++      ASC_LAPACK_iladiag};
++  char input = flag;
++  report.called_provider = true;
++  const lapack_int result = kFunctions[Operation](&input, 1);
++  if (input != flag || !Allowed<Operation>(result)) {
++    return Defect(report);
++  }
++  code = static_cast<index_t>(result);
++  return checked::Complete(report);
++}
++}  // namespace
++Status Ilaprec(const ReferenceLapackProvider& provider, char precision,
++               index_t& code, LapackReport& report) {
++  return Code<0>(provider, precision, code, report);
++}
++Status Ilatrans(const ReferenceLapackProvider& provider, char transpose,
++                index_t& code, LapackReport& report) {
++  return Code<1>(provider, transpose, code, report);
++}
++Status Ilauplo(const ReferenceLapackProvider& provider, char triangle,
++               index_t& code, LapackReport& report) {
++  return Code<2>(provider, triangle, code, report);
++}
++Status Iladiag(const ReferenceLapackProvider& provider, char diagonal,
++               index_t& code, LapackReport& report) {
++  return Code<3>(provider, diagonal, code, report);
++}
++Status ChlaTranstype(const ReferenceLapackProvider& provider, index_t code,
++                     char& transpose, LapackReport& report) {
++  const Status status = Begin(provider, transpose, "chla_transtype", report);
++  if (!status.ok()) {
++    return status;
++  }
++  if (code < std::numeric_limits<lapack_int>::min() ||
++      code > std::numeric_limits<lapack_int>::max()) {
++    return Status(ErrorCode::kOverflow);
++  }
++  lapack_int input = static_cast<lapack_int>(code);
++  char result = '\0';
++  report.called_provider = true;
++  ASC_LAPACK_chla_transtype(&result, 1, &input);
++  if (input != code ||
++      (result != 'N' && result != 'T' && result != 'C' && result != 'X')) {
++    return Defect(report);
++  }
++  transpose = result;
++  return checked::Complete(report);
++}
++Status Ilaver(const ReferenceLapackProvider& provider,
++              std::array<index_t, 3>& version, LapackReport& report) {
++  const Status status = Begin(provider, version, "ilaver", report);
++  if (!status.ok()) {
++    return status;
++  }
++  std::array<lapack_int, 3> result{-1, -1, -1};
++  report.called_provider = true;
++  LAPACK_ilaver(&result[0], &result[1], &result[2]);
++  for (auto field : result) {
++    if (field < 0) {
++      return Defect(report);
++    }
++  }
++  for (std::size_t i = 0; i < version.size(); ++i) {
++    version[i] = static_cast<index_t>(result[i]);
++  }
++  return checked::Complete(report);
++}
++}  // namespace asc
+diff --git a/tests/dense_lapack/installed_lu/provider_metadata_numerical.h b/tests/dense_lapack/installed_lu/provider_metadata_numerical.h
+new file mode 100644
+index 0000000..abe8dfb
+--- /dev/null
++++ b/tests/dense_lapack/installed_lu/provider_metadata_numerical.h
+@@ -0,0 +1,157 @@
++#ifndef ASC_TESTS_DENSE_LAPACK_INSTALLED_LU_PROVIDER_METADATA_NUMERICAL_H_
++#define ASC_TESTS_DENSE_LAPACK_INSTALLED_LU_PROVIDER_METADATA_NUMERICAL_H_
++#include <array>
++#include <bit>
++#include <cstdint>
++#include <limits>
++#include <string_view>
++#include <type_traits>
++namespace asc_provider_metadata_numerical {
++enum class Operation : std::uint8_t {
++  kPrecision,
++  kTranspose,
++  kTriangle,
++  kDiagonal,
++  kCharacter,
++  kVersion
++};
++struct Input {
++  char flag = 'N';
++  std::int64_t code = 0;
++};
++template <Operation Op>
++using Output = std::conditional_t<
++    Op == Operation::kCharacter, char,
++    std::conditional_t<Op == Operation::kVersion, std::array<std::int64_t, 3>,
++                       std::int64_t>>;
++template <Operation Op>
++constexpr std::string_view Name() {
++  constexpr std::array<std::string_view, 6> kNames{
++      "ilaprec", "ilatrans", "ilauplo", "iladiag", "chla_transtype", "ilaver"};
++  return kNames[static_cast<unsigned int>(Op)];
++}
++inline std::int64_t CodeExpected(Operation operation, char c) {
++  switch (operation) {
++    case Operation::kPrecision:
++      switch (c) {
++        case 'S':
++        case 's':
++          return 211;
++        case 'D':
++        case 'd':
++          return 212;
++        case 'I':
++        case 'i':
++          return 213;
++        case 'X':
++        case 'x':
++        case 'E':
++        case 'e':
++          return 214;
++        default:
++          return -1;
++      }
++    case Operation::kTranspose:
++      switch (c) {
++        case 'N':
++        case 'n':
++          return 111;
++        case 'T':
++        case 't':
++          return 112;
++        case 'C':
++        case 'c':
++          return 113;
++        default:
++          return -1;
++      }
++    case Operation::kTriangle:
++      switch (c) {
++        case 'U':
++        case 'u':
++          return 121;
++        case 'L':
++        case 'l':
++          return 122;
++        default:
++          return -1;
++      }
++    case Operation::kDiagonal:
++      switch (c) {
++        case 'N':
++        case 'n':
++          return 131;
++        case 'U':
++        case 'u':
++          return 132;
++        default:
++          return -1;
++      }
++    case Operation::kCharacter:
++    case Operation::kVersion:
++      return -1;
++  }
++  return -1;
++}
++template <Operation Op>
++Output<Op> Expected(Input input) {
++  if constexpr (Op == Operation::kVersion) {
++    return {3, 12, 0};
++  } else if constexpr (Op == Operation::kCharacter) {
++    switch (input.code) {
++      case 111:
++        return 'N';
++      case 112:
++        return 'T';
++      case 113:
++        return 'C';
++      default:
++        return 'X';
++    }
++  } else {
++    return CodeExpected(Op, input.flag);
++  }
++}
++template <Operation Op>
++bool Admitted(Input input, bool lp64) {
++  if constexpr (Op == Operation::kCharacter) {
++    return !lp64 || (input.code >= std::numeric_limits<std::int32_t>::min() &&
++                     input.code <= std::numeric_limits<std::int32_t>::max());
++  } else {
++    return true;
++  }
++}
++template <Operation Op>
++Output<Op> Initial(Input input) {
++  if constexpr (Op == Operation::kCharacter) {
++    return '?';
++  } else if constexpr (Op == Operation::kVersion) {
++    return {input.code, input.code, input.code};
++  } else {
++    return -19;
++  }
++}
++template <Operation Op, typename Function>
++void ForEach(Function function) {
++  if constexpr (Op == Operation::kVersion) {
++    for (std::int64_t initial :
++         {std::numeric_limits<std::int64_t>::min(), std::int64_t{-19},
++          std::int64_t{0}, std::numeric_limits<std::int64_t>::max()}) {
++      function(Input{'N', initial});
++    }
++  } else if constexpr (Op == Operation::kCharacter) {
++    for (std::int64_t code : std::array<std::int64_t, 14>{
++             std::numeric_limits<std::int64_t>::min(), -1, 0, 1, 110, 111, 112,
++             113, 114, 211, 214, std::numeric_limits<std::int64_t>::max(),
++             std::numeric_limits<std::int32_t>::min(),
++             std::numeric_limits<std::int32_t>::max()}) {
++      function(Input{'N', code});
++    }
++  } else {
++    for (unsigned int byte = 0; byte < 256; ++byte) {
++      function(Input{std::bit_cast<char>(static_cast<unsigned char>(byte)), 0});
++    }
++  }
++}
++}  // namespace asc_provider_metadata_numerical
++#endif  // ASC_TESTS_DENSE_LAPACK_INSTALLED_LU_PROVIDER_METADATA_NUMERICAL_H_
+diff --git a/tests/dense_lapack/provider_metadata_abi_probe.cc b/tests/dense_lapack/provider_metadata_abi_probe.cc
+new file mode 100644
+index 0000000..7a1827b
+--- /dev/null
++++ b/tests/dense_lapack/provider_metadata_abi_probe.cc
+@@ -0,0 +1,198 @@
++#include <array>
++#include <bit>
++#include <climits>
++#include <cstddef>
++#include <cstdio>
++#include <limits>
++#include <type_traits>
++
++#include "../../src/dense/lapack/internal_provider_metadata_prototypes.h"
++#include "../../src/dense/lapack/internal_tridiagonal.h"
++#include "installed_lu/normal_return_guard.h"
++#if defined(ASC_ILAPREC_HEADER)
++#define ilaprec_ emitted_ilaprec
++#include ASC_ILAPREC_HEADER
++#undef ilaprec_
++static_assert(
++    std::is_same_v<decltype(ASC_LAPACK_ilaprec), decltype(emitted_ilaprec)>);
++#define ilatrans_ emitted_ilatrans
++#include ASC_ILATRANS_HEADER
++#undef ilatrans_
++static_assert(
++    std::is_same_v<decltype(ASC_LAPACK_ilatrans), decltype(emitted_ilatrans)>);
++#define ilauplo_ emitted_ilauplo
++#include ASC_ILAUPLO_HEADER
++#undef ilauplo_
++static_assert(
++    std::is_same_v<decltype(ASC_LAPACK_ilauplo), decltype(emitted_ilauplo)>);
++#define iladiag_ emitted_iladiag
++#include ASC_ILADIAG_HEADER
++#undef iladiag_
++static_assert(
++    std::is_same_v<decltype(ASC_LAPACK_iladiag), decltype(emitted_iladiag)>);
++#define chla_transtype_ emitted_chla_transtype
++#include ASC_CHLA_TRANSTYPE_HEADER
++#undef chla_transtype_
++static_assert(std::is_same_v<decltype(ASC_LAPACK_chla_transtype),
++                             decltype(emitted_chla_transtype)>);
++#define ilaver_ emitted_ilaver
++#include ASC_ILAVER_HEADER
++#undef ilaver_
++static_assert(
++    std::is_same_v<decltype(LAPACK_ilaver), decltype(emitted_ilaver)>);
++#endif
++using CodeFunction = lapack_int(char*, std::size_t);
++static_assert(CHAR_BIT == 8 && 'Z' == 90 && sizeof(std::size_t) == 8);
++struct Counts {
++  int cases = 0;
++  int failures = 0;
++  int guards = 0;
++};
++int Expected(int operation, unsigned char c) {
++  switch (operation) {
++    case 0:
++      switch (c) {
++        case 'S':
++        case 's':
++          return 211;
++        case 'D':
++        case 'd':
++          return 212;
++        case 'I':
++        case 'i':
++          return 213;
++        case 'X':
++        case 'x':
++        case 'E':
++        case 'e':
++          return 214;
++        default:
++          return -1;
++      }
++    case 1:
++      switch (c) {
++        case 'N':
++        case 'n':
++          return 111;
++        case 'T':
++        case 't':
++          return 112;
++        case 'C':
++        case 'c':
++          return 113;
++        default:
++          return -1;
++      }
++    case 2:
++      switch (c) {
++        case 'U':
++        case 'u':
++          return 121;
++        case 'L':
++        case 'l':
++          return 122;
++        default:
++          return -1;
++      }
++    default:
++      switch (c) {
++        case 'N':
++        case 'n':
++          return 131;
++        case 'U':
++        case 'u':
++          return 132;
++        default:
++          return -1;
++      }
++  }
++}
++void Codes(Counts& count) {
++  const std::array<CodeFunction*, 4> functions{
++      ASC_LAPACK_ilaprec, ASC_LAPACK_ilatrans, ASC_LAPACK_ilauplo,
++      ASC_LAPACK_iladiag};
++  for (int operation = 0; operation < 4; ++operation) {
++    for (unsigned int byte = 0; byte < 256; ++byte) {
++      const auto bits = static_cast<unsigned char>(byte);
++      std::array<char, 3> flag{'Q', std::bit_cast<char>(bits), 'R'};
++      const auto original = flag;
++      for (int repeat = 0; repeat < 2; ++repeat) {
++        const lapack_int result =
++            functions[static_cast<std::size_t>(operation)](&flag[1], 1);
++        ++count.cases;
++        count.failures += result != Expected(operation, bits);
++        count.guards += flag != original;
++      }
++    }
++  }
++}
++void Characters(Counts& count) {
++  const std::array<lapack_int, 12> values{
++      std::numeric_limits<lapack_int>::min(),
++      -1,
++      0,
++      1,
++      110,
++      111,
++      112,
++      113,
++      114,
++      211,
++      214,
++      std::numeric_limits<lapack_int>::max()};
++  for (auto value : values) {
++    std::array<lapack_int, 3> input{71, value, 73};
++    const auto before = input;
++    char expected = 'X';
++    if (value == 111) {
++      expected = 'N';
++    } else if (value == 112) {
++      expected = 'T';
++    } else if (value == 113) {
++      expected = 'C';
++    }
++    for (int repeat = 0; repeat < 2; ++repeat) {
++      std::array<char, 3> result{'Q', '?', 'R'};
++      ASC_LAPACK_chla_transtype(&result[1], 1, &input[1]);
++      ++count.cases;
++      count.failures += result[1] != expected;
++      count.guards += input != before || result[0] != 'Q' || result[2] != 'R';
++    }
++  }
++}
++void Version(Counts& count) {
++  for (lapack_int initial :
++       {std::numeric_limits<lapack_int>::min(), lapack_int{-19}, lapack_int{0},
++        std::numeric_limits<lapack_int>::max()}) {
++    std::array<lapack_int, 3> major{71, initial, 73};
++    std::array<lapack_int, 3> minor{71, initial, 73};
++    std::array<lapack_int, 3> patch{71, initial, 73};
++    for (int repeat = 0; repeat < 2; ++repeat) {
++      LAPACK_ilaver(&major[1], &minor[1], &patch[1]);
++      ++count.cases;
++      count.failures += major[1] != 3 || minor[1] != 12 || patch[1] != 0;
++      count.guards += major[0] != 71 || major[2] != 73 || minor[0] != 71 ||
++                      minor[2] != 73 || patch[0] != 71 || patch[2] != 73;
++    }
++  }
++}
++int main() {
++  const asc_lapack_test::NormalReturnGuard guard;
++  Counts codes;
++  Counts characters;
++  Counts version;
++  Codes(codes);
++  Characters(characters);
++  Version(version);
++  std::printf(
++      "codes=%d failures=%d guards=%d; characters=%d failures=%d guards=%d; "
++      "version=%d failures=%d guards=%d; integer_bytes=%zu\n",
++      codes.cases, codes.failures, codes.guards, characters.cases,
++      characters.failures, characters.guards, version.cases, version.failures,
++      version.guards, sizeof(lapack_int));
++  return codes.failures + codes.guards + characters.failures +
++                     characters.guards + version.failures + version.guards !=
++                 0
++             ? 1
++             : 0;
++}
+diff --git a/tests/dense_lapack/provider_metadata_faults.cc b/tests/dense_lapack/provider_metadata_faults.cc
+new file mode 100644
+index 0000000..7866449
+--- /dev/null
++++ b/tests/dense_lapack/provider_metadata_faults.cc
+@@ -0,0 +1,149 @@
++#include "provider_metadata_faults.h"
++
++#include <array>
++#include <cstddef>
++#include <type_traits>
++
++#include "../../src/dense/lapack/internal_provider_metadata_prototypes.h"
++#include "../../src/dense/lapack/internal_tridiagonal.h"
++#include "installed_lu/provider_metadata_numerical.h"
++namespace asc_provider_metadata_fault {
++namespace {
++namespace numerical = asc_provider_metadata_numerical;
++thread_local Mode g_mode = Mode::kPass;
++thread_local std::size_t g_calls = 0;
++thread_local std::size_t g_unexpected = 0;
++template <numerical::Operation Op, typename Function>
++lapack_int Code(Function real, char* flag, std::size_t length) {
++  ++g_calls;
++  std::array<char, 3> input{'Q', *flag, 'R'};
++  const auto before = input;
++  lapack_int result = real(&input[1], 1);
++  if (length != 1 || input != before ||
++      result != numerical::Expected<Op>({*flag, 0})) {
++    ++g_unexpected;
++  }
++  switch (g_mode) {
++    case Mode::kChangeInput:
++      *flag = '?';
++      break;
++    case Mode::kInvalidLow:
++      result = -2;
++      break;
++    case Mode::kInvalidHigh:
++      result = 999;
++      break;
++    case Mode::kWrongInDomain:
++      result = -1;
++      break;
++    default:
++      break;
++  }
++  return result;
++}
++template <typename Function>
++void Character(Function real, char* output, std::size_t length,
++               lapack_int* code) {
++  ++g_calls;
++  std::array<char, 3> result{'Q', '?', 'R'};
++  std::array<lapack_int, 3> input{71, *code, 73};
++  const auto before = input;
++  real(&result[1], 1, &input[1]);
++  if (length != 1 || input != before || result[0] != 'Q' || result[2] != 'R' ||
++      result[1] !=
++          numerical::Expected<numerical::Operation::kCharacter>({'N', *code})) {
++    ++g_unexpected;
++  }
++  if (g_mode != Mode::kOmit0) {
++    *output = result[1];
++  }
++  if (g_mode == Mode::kChangeInput) {
++    *code = 0;
++  } else if (g_mode == Mode::kInvalidLow) {
++    *output = '?';
++  } else if (g_mode == Mode::kWrongInDomain) {
++    *output = 'X';
++  }
++}
++std::size_t Field(Mode first) {
++  const auto value = static_cast<unsigned int>(g_mode);
++  const auto start = static_cast<unsigned int>(first);
++  return value >= start && value < start + 3 ? value - start : 3;
++}
++template <typename Function>
++void Version(Function real, lapack_int* major, lapack_int* minor,
++             lapack_int* patch) {
++  ++g_calls;
++  std::array<std::array<lapack_int, 3>, 3> result{};
++  for (auto& field : result) {
++    field = {71, -19, 73};
++  }
++  real(&result[0][1], &result[1][1], &result[2][1]);
++  const std::array<lapack_int, 3> expected{3, 12, 0};
++  const std::array<lapack_int*, 3> output{major, minor, patch};
++  for (std::size_t i = 0; i < result.size(); ++i) {
++    if (result[i][0] != 71 || result[i][2] != 73 ||
++        result[i][1] != expected[i]) {
++      ++g_unexpected;
++    }
++    if (i != Field(Mode::kOmit0)) {
++      *output[i] = result[i][1];
++    }
++    if (i == Field(Mode::kNegative0)) {
++      *output[i] = -2;
++    }
++    if (g_mode == Mode::kWrongInDomain) {
++      *output[i] = 1;
++    }
++  }
++}
++}  // namespace
++void Reset(Mode mode) {
++  g_mode = mode;
++  g_calls = 0;
++  g_unexpected = 0;
++}
++std::size_t Calls() { return g_calls; }
++std::size_t UnexpectedNativeResults() { return g_unexpected; }
++// NOLINTBEGIN(bugprone-reserved-identifier)
++extern "C" decltype(ASC_LAPACK_ilaprec) __real_ilaprec_;
++extern "C" lapack_int __wrap_ilaprec_(char* input, std::size_t length) {
++  return Code<numerical::Operation::kPrecision>(__real_ilaprec_, input, length);
++}
++static_assert(
++    std::is_same_v<decltype(__wrap_ilaprec_), decltype(ASC_LAPACK_ilaprec)>);
++extern "C" decltype(ASC_LAPACK_ilatrans) __real_ilatrans_;
++extern "C" lapack_int __wrap_ilatrans_(char* input, std::size_t length) {
++  return Code<numerical::Operation::kTranspose>(__real_ilatrans_, input,
++                                                length);
++}
++static_assert(
++    std::is_same_v<decltype(__wrap_ilatrans_), decltype(ASC_LAPACK_ilatrans)>);
++extern "C" decltype(ASC_LAPACK_ilauplo) __real_ilauplo_;
++extern "C" lapack_int __wrap_ilauplo_(char* input, std::size_t length) {
++  return Code<numerical::Operation::kTriangle>(__real_ilauplo_, input, length);
++}
++static_assert(
++    std::is_same_v<decltype(__wrap_ilauplo_), decltype(ASC_LAPACK_ilauplo)>);
++extern "C" decltype(ASC_LAPACK_iladiag) __real_iladiag_;
++extern "C" lapack_int __wrap_iladiag_(char* input, std::size_t length) {
++  return Code<numerical::Operation::kDiagonal>(__real_iladiag_, input, length);
++}
++static_assert(
++    std::is_same_v<decltype(__wrap_iladiag_), decltype(ASC_LAPACK_iladiag)>);
++extern "C" decltype(ASC_LAPACK_chla_transtype) __real_chla_transtype_;
++extern "C" void __wrap_chla_transtype_(char* output, std::size_t length,
++                                       lapack_int* code) {
++  Character(__real_chla_transtype_, output, length, code);
++}
++static_assert(std::is_same_v<decltype(__wrap_chla_transtype_),
++                             decltype(ASC_LAPACK_chla_transtype)>);
++extern "C" decltype(LAPACK_ilaver) __real_ilaver_;
++extern "C" void __wrap_ilaver_(lapack_int* major, lapack_int* minor,
++                               lapack_int* patch) {
++  Version(__real_ilaver_, major, minor, patch);
++}
++static_assert(
++    std::is_same_v<decltype(__wrap_ilaver_), decltype(LAPACK_ilaver)>);
++// NOLINTEND(bugprone-reserved-identifier)
++}  // namespace asc_provider_metadata_fault
+diff --git a/tests/dense_lapack/provider_metadata_faults.h b/tests/dense_lapack/provider_metadata_faults.h
+new file mode 100644
+index 0000000..69121f2
+--- /dev/null
++++ b/tests/dense_lapack/provider_metadata_faults.h
+@@ -0,0 +1,23 @@
++#ifndef ASC_TESTS_DENSE_LAPACK_PROVIDER_METADATA_FAULTS_H_
++#define ASC_TESTS_DENSE_LAPACK_PROVIDER_METADATA_FAULTS_H_
++#include <cstddef>
++#include <cstdint>
++namespace asc_provider_metadata_fault {
++enum class Mode : std::uint8_t {
++  kPass,
++  kChangeInput,
++  kInvalidLow,
++  kInvalidHigh,
++  kWrongInDomain,
++  kOmit0,
++  kOmit1,
++  kOmit2,
++  kNegative0,
++  kNegative1,
++  kNegative2
++};
++void Reset(Mode mode);
++std::size_t Calls();
++std::size_t UnexpectedNativeResults();
++}  // namespace asc_provider_metadata_fault
++#endif  // ASC_TESTS_DENSE_LAPACK_PROVIDER_METADATA_FAULTS_H_
+diff --git a/tests/dense_lapack/provider_metadata_test.cc b/tests/dense_lapack/provider_metadata_test.cc
+new file mode 100644
+index 0000000..f92a728
+--- /dev/null
++++ b/tests/dense_lapack/provider_metadata_test.cc
+@@ -0,0 +1,164 @@
++#include <array>
++#include <cstddef>
++#include <cstdio>
++#include <string_view>
++#include <thread>
++
++#include "../../src/dense/lapack/internal_provider_metadata_prototypes.h"
++#include "../../src/dense/lapack/internal_tridiagonal.h"
++#include "../dense/test_support.h"
++#include "asc/core/execution.h"
++#include "asc/core/status.h"
++#include "asc/dense/lapack/report.h"
++#include "asc/dense/lapack/types.h"
++#include "asc/dense/providers/lapack.h"
++#include "installed_lu/normal_return_guard.h"
++#include "provider_metadata_test_support.h"
++namespace {
++namespace support = asc_provider_metadata_test;
++namespace numerical = asc_provider_metadata_numerical;
++using numerical::Input;
++using numerical::Operation;
++using support::TestContext;
++template <Operation Op>
++numerical::Output<Op> Native(TestContext& test, Input input) {
++  if constexpr (Op == Operation::kVersion) {
++    std::array<lapack_int, 3> major{71, -19, 73};
++    std::array<lapack_int, 3> minor{71, -19, 73};
++    std::array<lapack_int, 3> patch{71, -19, 73};
++    LAPACK_ilaver(&major[1], &minor[1], &patch[1]);
++    for (const auto& field : {major, minor, patch}) {
++      ASC_DENSE_TEST_EQ(test, field[0], 71);
++      ASC_DENSE_TEST_EQ(test, field[2], 73);
++    }
++    return {major[1], minor[1], patch[1]};
++  } else if constexpr (Op == Operation::kCharacter) {
++    std::array<lapack_int, 3> code{71, static_cast<lapack_int>(input.code), 73};
++    const auto original = code;
++    std::array<char, 3> result{'Q', '?', 'R'};
++    ASC_LAPACK_chla_transtype(&result[1], 1, &code[1]);
++    ASC_DENSE_TEST_EQ(test, code, original);
++    ASC_DENSE_TEST_EQ(test, result[0], 'Q');
++    ASC_DENSE_TEST_EQ(test, result[2], 'R');
++    return result[1];
++  } else {
++    using Function = lapack_int(char*, std::size_t);
++    constexpr std::array<Function*, 4> kFunctions{
++        ASC_LAPACK_ilaprec, ASC_LAPACK_ilatrans, ASC_LAPACK_ilauplo,
++        ASC_LAPACK_iladiag};
++    std::array<char, 3> flag{'Q', input.flag, 'R'};
++    const auto before = flag;
++    const auto result = kFunctions[static_cast<std::size_t>(Op)](&flag[1], 1);
++    ASC_DENSE_TEST_EQ(test, flag, before);
++    return result;
++  }
++}
++template <Operation Op>
++void Case(TestContext& test, const asc::ReferenceLapackProvider& provider,
++          Input input, bool fidelity, bool audit) {
++  support::Guarded<Op> output;
++  output.values[1] = numerical::Initial<Op>(input);
++  const auto before = output.values;
++  const auto provider_before = support::Bytes(provider);
++  const bool admitted = numerical::Admitted<Op>(
++      input, provider.identity().integer_abi == asc::LapackIntegerAbi::kLp64);
++  asc::LapackReport report;
++  for (int repeat = 0; repeat < 2; ++repeat) {
++    const auto call = [&] {
++      return support::Execute<Op>(provider, input, output.values[1], report);
++    };
++    const auto status = audit ? support::WithoutAllocation(test, call) : call();
++    ASC_DENSE_TEST_EQ(
++        test, status.code(),
++        admitted ? asc::ErrorCode::kOk : asc::ErrorCode::kOverflow);
++    ASC_DENSE_TEST_EQ(test, report.called_provider, admitted);
++    ASC_DENSE_TEST_EQ(test, report.provider, provider.identity());
++    ASC_DENSE_TEST_EQ(test, std::string_view(report.routine.data()),
++                      numerical::Name<Op>());
++    ASC_DENSE_TEST_CHECK(test, !report.native_info.has_value());
++    ASC_DENSE_TEST_CHECK(test, !report.native_argument.has_value());
++    ASC_DENSE_TEST_CHECK(test, !report.diagnostic_index.has_value());
++    ASC_DENSE_TEST_CHECK(test, !report.factor_family.has_value());
++    if (admitted) {
++      ASC_DENSE_TEST_EQ(test, report.outcome, asc::LapackOutcome::kSuccess);
++      ASC_DENSE_TEST_EQ(test, report.output_validity,
++                        asc::LapackOutputValidity::kComplete);
++      const auto expected =
++          fidelity ? Native<Op>(test, input) : numerical::Expected<Op>(input);
++      ASC_DENSE_TEST_EQ(test, output.values[1], expected);
++    } else {
++      ASC_DENSE_TEST_EQ(test, report.outcome, asc::LapackOutcome::kNotRun);
++      ASC_DENSE_TEST_EQ(test, report.output_validity,
++                        asc::LapackOutputValidity::kUnchanged);
++      ASC_DENSE_TEST_EQ(test, output.values, before);
++    }
++    ASC_DENSE_TEST_EQ(test, output.values[0], before[0]);
++    ASC_DENSE_TEST_EQ(test, output.values[2], before[2]);
++    ASC_DENSE_TEST_EQ(test, support::Bytes(provider), provider_before);
++  }
++}
++template <Operation Op>
++void Concurrent(TestContext& test,
++                const asc::ReferenceLapackProvider& provider) {
++  std::array<std::thread, 4> threads;
++  std::array<int, 4> failures{};
++  for (std::size_t worker = 0; worker < threads.size(); ++worker) {
++    threads[worker] = std::thread([&, worker] {
++      TestContext local;
++      numerical::ForEach<Op>(
++          [&](Input input) { Case<Op>(local, provider, input, false, false); });
++      failures[worker] = local.Finish();
++    });
++  }
++  for (auto& thread : threads) {
++    thread.join();
++  }
++  for (int failure : failures) {
++    ASC_DENSE_TEST_EQ(test, failure, 0);
++  }
++}
++template <Operation Op>
++void Run(TestContext& test, std::string_view mode) {
++  const auto provider = support::Take(
++      asc::ReferenceLapackProvider::Create(asc::ExecutionContext::Serial()));
++  if (mode == "concurrency") {
++    Concurrent<Op>(test, provider);
++    return;
++  }
++  std::size_t count = 0;
++  numerical::ForEach<Op>([&](Input input) {
++    Case<Op>(test, provider, input, mode == "fidelity", true);
++    ++count;
++  });
++  std::printf("%zu provider metadata fixtures; first and reused outputs\n",
++              count);
++}
++}  // namespace
++int main(int argc, char** argv) {
++  const asc_lapack_test::NormalReturnGuard guard;
++  if (argc != 3) {
++    return 2;
++  }
++  const std::string_view operation(argv[1]);
++  const std::string_view mode(argv[2]);
++  if (mode != "mathematical" && mode != "fidelity" && mode != "concurrency") {
++    return 2;
++  }
++  TestContext test;
++  if (operation == "ilaprec") {
++    Run<Operation::kPrecision>(test, mode);
++  } else if (operation == "ilatrans") {
++    Run<Operation::kTranspose>(test, mode);
++  } else if (operation == "ilauplo") {
++    Run<Operation::kTriangle>(test, mode);
++  } else if (operation == "iladiag") {
++    Run<Operation::kDiagonal>(test, mode);
++  } else if (operation == "chla_transtype") {
++    Run<Operation::kCharacter>(test, mode);
++  } else if (operation == "ilaver") {
++    Run<Operation::kVersion>(test, mode);
++  } else {
++    return 2;
++  }
++  return test.Finish();
++}
+diff --git a/tests/dense_lapack/provider_metadata_test_support.h b/tests/dense_lapack/provider_metadata_test_support.h
+new file mode 100644
+index 0000000..cb95cd5
+--- /dev/null
++++ b/tests/dense_lapack/provider_metadata_test_support.h
+@@ -0,0 +1,50 @@
++#ifndef ASC_TESTS_DENSE_LAPACK_PROVIDER_METADATA_TEST_SUPPORT_H_
++#define ASC_TESTS_DENSE_LAPACK_PROVIDER_METADATA_TEST_SUPPORT_H_
++#include <algorithm>
++#include <array>
++#include <cstddef>
++#include <span>
++
++#include "asc/dense/lapack/report.h"
++#include "asc/dense/providers/lapack.h"
++#include "asc/dense/providers/lapack_provider_metadata.h"
++#include "installed_lu/provider_metadata_numerical.h"  // IWYU pragma: export
++#include "tridiagonal_test_support.h"                  // IWYU pragma: export
++namespace asc_provider_metadata_test {
++using asc_provider_metadata_numerical::Input;
++using asc_provider_metadata_numerical::Operation;
++using asc_provider_metadata_numerical::Output;
++using asc_tridiagonal_test::Take;
++using asc_tridiagonal_test::TestContext;
++using asc_tridiagonal_test::WithoutAllocation;
++template <typename T>
++auto Bytes(const T& object) {
++  std::array<std::byte, sizeof(T)> result{};
++  const auto bytes = std::as_bytes(std::span(&object, 1));
++  std::copy(bytes.begin(), bytes.end(), result.begin());
++  return result;
++}
++template <Operation Op>
++auto Execute(const asc::ReferenceLapackProvider& provider, Input input,
++             Output<Op>& result, asc::LapackReport& report) {
++  if constexpr (Op == Operation::kPrecision) {
++    return asc::Ilaprec(provider, input.flag, result, report);
++  } else if constexpr (Op == Operation::kTranspose) {
++    return asc::Ilatrans(provider, input.flag, result, report);
++  } else if constexpr (Op == Operation::kTriangle) {
++    return asc::Ilauplo(provider, input.flag, result, report);
++  } else if constexpr (Op == Operation::kDiagonal) {
++    return asc::Iladiag(provider, input.flag, result, report);
++  } else if constexpr (Op == Operation::kCharacter) {
++    return asc::ChlaTranstype(provider, input.code, result, report);
++  } else {
++    return asc::Ilaver(provider, result, report);
++  }
++}
++template <Operation Op>
++struct Guarded {
++  std::array<Output<Op>, 3> values{Output<Op>{71}, Output<Op>{},
++                                   Output<Op>{73}};
++};
++}  // namespace asc_provider_metadata_test
++#endif  // ASC_TESTS_DENSE_LAPACK_PROVIDER_METADATA_TEST_SUPPORT_H_

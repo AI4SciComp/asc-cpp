@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "preserved_unbuilt_draft",
+  "source_commit": "df91a449037b5f16945f6aa6bf3602c3481970f7",
+  "patch": "provider-metadata.patch",
+  "patch_sha256": "2067d50b40dfb23cf5d53dd5a5ade6e5b7d136ed0c156126b3092c26eca39c4d",
+  "files": [
+    {
+      "path": "include/asc/dense/providers/lapack_provider_metadata.h",
+      "sha256": "5a63e8e849fd041b659374510dc9e5518e7b63e1bf1e7c2fe386a7d4183065d8",
+      "bytes": 6991
+    },
+    {
+      "path": "src/dense/lapack/internal_provider_metadata_prototypes.h",
+      "sha256": "b24fc44292d8dd68a0e19d507b8d90d8a3dd990d906c607a33ffe8b9d07ee8cc",
+      "bytes": 1144
+    },
+    {
+      "path": "src/dense/lapack/reference_provider_metadata.cc",
+      "sha256": "78da1bc9fed9d10c818026f15bfb65323aa2ba65b8959dde4b442db15391603b",
+      "bytes": 4525
+    },
+    {
+      "path": "tests/dense_lapack/installed_lu/provider_metadata_numerical.h",
+      "sha256": "4048f46bf474ff2849db58dba2515563e15d2734d51f8dd29c613f7adadd8261",
+      "bytes": 4210
+    },
+    {
+      "path": "tests/dense_lapack/provider_metadata_abi_probe.cc",
+      "sha256": "94f8e0dee31ffaf360668f74f841def0e2d7da0010fa13ba5f3f56e244d54f9a",
+      "bytes": 5751
+    },
+    {
+      "path": "tests/dense_lapack/provider_metadata_faults.cc",
+      "sha256": "de0cbecc3a4e72e57ba59c39a47b28c2216da7ced839e3509c22b1882b20d5b7",
+      "bytes": 5286
+    },
+    {
+      "path": "tests/dense_lapack/provider_metadata_faults.h",
+      "sha256": "4e81c5f6c3607294383fcf9ba6baf07452709853adada865a249dcd8a76b7b46",
+      "bytes": 566
+    },
+    {
+      "path": "tests/dense_lapack/provider_metadata_test.cc",
+      "sha256": "f24d382afd2137a52dc997426bc94fe18875aa0bb4bb9555d9339312c90a2e63",
+      "bytes": 6371
+    },
+    {
+      "path": "tests/dense_lapack/provider_metadata_test_support.h",
+      "sha256": "914a0d967a7a33c25cd3be4e150348204ba2de2973fbca96b2883efce4056f68",
+      "bytes": 2111
+    }
+  ],
+  "registration": "Not compiled, installed or included in the accepted public surface; restore and finish through the continuation plan.",
+  "verified_reference_credit": 0
+}

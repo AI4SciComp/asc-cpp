@@ -5,6 +5,13 @@ ownership, failure, memory-placement, execution, numerical, and package
 contracts. It provides provider-free reference implementations suitable for
 correctness, integration, and research infrastructure.
 
+The `develop` branch also preserves incremental LAPACK and array-I/O work
+beyond the immutable `v0.9.0` baseline. This is a development integration, not a
+new release or a claim of full LAPACK support. The external LAPACK facet remains
+disabled by default. See the [integration and continuation checkpoint](
+programs/lapack-array-io/integration-checkpoint-2026-10-17.md) for the accepted
+subset, unfinished drafts, known failures, and remaining plan.
+
 ## Release boundary
 
 Supported CPU modules are Core, Utilities, Expression, Dense, Sparse, and
