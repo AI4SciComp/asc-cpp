@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "scope": "Four new reviewed but incomplete GBTF2 contracts and current dependency index amendment for28 existing GB rows. Explicit unblocked entry and nominal same-format GBTRS reuse; no existing numerical algorithm/provider change, no historical execution or full-family verification promotion.",
+  "baseline_commit": "bdfaeb8b466dcc4895e469404236958efc206ae6",
+  "prior_mapping_sha256": "fc6e84a28d3d76da9f9b85cee61f829d45a0fc7e17976fd775d6e641749ffa0e",
+  "extended_mapping_sha256": "c0f2269b22f1b8b95ac986a503277b829b60a5b7d2ea5ff2695708a65c3acd8b",
+  "prior_evidence_sha256": "21a28726ce9ce0a39504d85b1280f5403500cccda08c2e578e071917b654b255",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "fc6e84a28d3d76da9f9b85cee61f829d45a0fc7e17976fd775d6e641749ffa0e",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "fc6e84a28d3d76da9f9b85cee61f829d45a0fc7e17976fd775d6e641749ffa0e",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "c036a29406ef05341a7a2a6ce4ddb384f46d0326b44eff41a561f83f1171e3da",
+    "reference-lu-release-lp64-20260911": "7cb86906b50814851e94d6897df186ff941a44c4a3c6d38413173e7632510188",
+    "reference-lu-release-ilp64-20260911": "52572bbde78d9f0a11bdddbe0493c3aa436636dd4a5450bd8b8ef6d9c2e5601a"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cgbcon",
+    "lapack.cgbequ",
+    "lapack.cgbrfs",
+    "lapack.cgbsv",
+    "lapack.cgbsvx",
+    "lapack.cgbtf2",
+    "lapack.cgbtrf",
+    "lapack.cgbtrs",
+    "lapack.dgbcon",
+    "lapack.dgbequ",
+    "lapack.dgbrfs",
+    "lapack.dgbsv",
+    "lapack.dgbsvx",
+    "lapack.dgbtf2",
+    "lapack.dgbtrf",
+    "lapack.dgbtrs",
+    "lapack.sgbcon",
+    "lapack.sgbequ",
+    "lapack.sgbrfs",
+    "lapack.sgbsv",
+    "lapack.sgbsvx",
+    "lapack.sgbtf2",
+    "lapack.sgbtrf",
+    "lapack.sgbtrs",
+    "lapack.zgbcon",
+    "lapack.zgbequ",
+    "lapack.zgbrfs",
+    "lapack.zgbsv",
+    "lapack.zgbsvx",
+    "lapack.zgbtf2",
+    "lapack.zgbtrf",
+    "lapack.zgbtrs"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/continuation-20260912-01/gbtf2-index",
+  "generator_sha256": "70cfbb55d0b155c74ec1b5da405142af7adee8ac753393defdbc6c3872099259"
+}

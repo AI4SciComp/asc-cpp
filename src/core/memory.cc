@@ -83,7 +83,8 @@ Result<Buffer> Buffer::Allocate(MemoryResource& resource, std::size_t bytes,
   }
   auto allocation = resource.Allocate(bytes, alignment);
   if (!allocation.ok()) {
-    return allocation.status();
+    return internal_core_result::StatusAccess::TakeFailure(
+        std::move(allocation));
   }
   if (bytes != 0 && *allocation == nullptr) {
     return Status(ErrorCode::kAllocation,

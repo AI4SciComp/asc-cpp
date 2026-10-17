@@ -4,8 +4,8 @@
 #include <cstddef>
 #include <cstdlib>
 #include <limits>
-#include <type_traits>
 
+#include "allocation_observation.h"
 #include "allocation_probe.h"
 #include "asc/core/execution.h"
 #include "asc/core/memory.h"
@@ -162,11 +162,12 @@ void TestVectorUpdates(TestContext& test) {
     allocations = probe.count();
     ASC_DENSE_TEST_CHECK(test, status.ok());
   }
-  ASC_DENSE_TEST_EQ(test, allocations, std::size_t{0});
+  ASC_DENSE_TEST_CHECK(test,
+                       asc_test::ProcessAllocationCountMatches(allocations, 0));
 }
 
 template <typename Real>
-void TestRealRotations(TestContext& test) {
+void TestOrdinaryRealRotations(TestContext& test) {
   const asc::ExecutionContext context = asc::ExecutionContext::Serial();
   std::array<Real, 1> a_storage{Real{3}};
   std::array<Real, 1> b_storage{Real{4}};
@@ -190,7 +191,11 @@ void TestRealRotations(TestContext& test) {
                     (std::array<Real, 3>{Real{4}, Real{5}, Real{6}}));
   ASC_DENSE_TEST_EQ(test, y_storage,
                     (std::array<Real, 3>{Real{-1}, Real{-2}, Real{-3}}));
+}
 
+template <typename Real>
+void TestModifiedRealRotations(TestContext& test) {
+  const asc::ExecutionContext context = asc::ExecutionContext::Serial();
   std::array<Real, 1> d1_storage{Real{1}};
   std::array<Real, 1> d2_storage{Real{1}};
   std::array<Real, 1> x1_storage{Real{1}};
@@ -249,6 +254,12 @@ void TestRealRotations(TestContext& test) {
   ASC_DENSE_TEST_EQ(test, x1_storage[0], Real{3});
   ASC_DENSE_TEST_EQ(test, parameter_storage[0], Real{-2});
   ASC_DENSE_TEST_EQ(test, parameter_storage[1], Real{9});
+}
+
+template <typename Real>
+void TestRealRotations(TestContext& test) {
+  TestOrdinaryRealRotations<Real>(test);
+  TestModifiedRealRotations<Real>(test);
 }
 
 template <typename Real>
@@ -494,11 +505,14 @@ void TestFailuresAndEmpty(TestContext& test) {
     ASC_DENSE_TEST_CHECK(test, asc::Iamax(context, const_empty, index).ok());
     ASC_DENSE_TEST_EQ(test, index_storage[0], asc::index_t{-1});
   }
-  CheckError(test,
-             asc::Dot(context, static_cast<asc::DenseBlasDotAccumulation>(99),
-                      Vector<const float>(source), Vector<const float>(source),
-                      double_scalar),
-             asc::ErrorCode::kInvalidArgument);
+  CheckError(
+      test,
+      // Deliberately invalid API flag; representable by this uint8_t enum.
+      // NOLINTNEXTLINE(clang-analyzer-optin.core.EnumCastOutOfRange)
+      asc::Dot(context, static_cast<asc::DenseBlasDotAccumulation>(99),
+               Vector<const float>(source), Vector<const float>(source),
+               double_scalar),
+      asc::ErrorCode::kInvalidArgument);
 }
 
 }  // namespace

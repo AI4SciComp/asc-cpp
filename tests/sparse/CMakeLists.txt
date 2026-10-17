@@ -34,6 +34,14 @@ foreach(_source IN ITEMS
     evaluate_test.cc
     blas_test.cc
     standard_blas_test.cc
+    print_test.cc
+    print_acceptance_test.cc
+    print_modes_test.cc
+    io_test.cc
+    io_fuzz_test.cc
+    io_shapes_test.cc
+    matrix_market_test.cc
+    matrix_market_fuzz_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_sparse_${_name}")
@@ -44,6 +52,31 @@ foreach(_source IN ITEMS
     TARGET "${_target}"
     LABELS "sparse;runtime"
   )
+endforeach()
+
+target_include_directories(
+  asc_sparse_io_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_sparse_print_acceptance_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_sparse_print_modes_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_sparse_io_fuzz_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_sparse_io_shapes_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+if(MSVC)
+  # The scalar/storage/shape cross product exceeds COFF's section limit.
+  target_compile_options(asc_sparse_io_shapes_test PRIVATE /bigobj)
+endif()
+
+foreach(_target IN ITEMS asc_sparse_matrix_market_test
+    asc_sparse_matrix_market_fuzz_test)
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}/tests")
 endforeach()
 
 set_property(
@@ -129,3 +162,15 @@ unset(_negative_output)
 unset(_negative_source)
 unset(_source)
 unset(_target)
+
+# Portable per-call faults run the same private path-helper body as public
+# save/load. Core File still belongs to the linked static/shared library.
+add_executable(asc_sparse_file_cleanup_test file_cleanup_test.cc)
+_asc_sparse_configure_test(asc_sparse_file_cleanup_test)
+set(_cleanup_scratch "${CMAKE_CURRENT_BINARY_DIR}/cleanup scratch")
+file(MAKE_DIRECTORY "${_cleanup_scratch}")
+add_test(NAME asc_cpp.sparse.file_cleanup_test
+  COMMAND asc_sparse_file_cleanup_test "${_cleanup_scratch}")
+set_tests_properties(asc_cpp.sparse.file_cleanup_test PROPERTIES
+  LABELS "sparse;runtime;array-io;file-cleanup" TIMEOUT 120)
+unset(_cleanup_scratch)

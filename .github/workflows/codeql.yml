@@ -35,15 +35,17 @@ jobs:
       - name: Configure and build
         shell: bash
         run: |
+          set -euo pipefail
           build="$RUNNER_TEMP/codeql"
+          mkdir -p "$build"
           cmake -S . -B "$build" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DBUILD_SHARED_LIBS=ON \
             -DBUILD_TESTING=ON \
             -DASC_CPP_BUILD_TESTING=ON \
             -DASC_CPP_ENABLE_CUDA=OFF \
-            -DASC_CPP_WARNINGS_AS_ERRORS=ON
-          cmake --build "$build" --parallel 2
+            -DASC_CPP_WARNINGS_AS_ERRORS=ON 2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 2>&1 | tee "$build/ci-build.log"
       - name: Analyze
         uses: github/codeql-action/analyze@a2983b8bed1923f44751c5c43237f479442827b3
         with:
@@ -54,6 +56,74 @@ jobs:
         with:
           name: codeql-cpp-failure
           path: |
+            ${{ runner.temp }}/**/ci-*.log
+            ${{ runner.temp }}/**/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/**/CMakeFiles/CMakeError.log
             ${{ runner.temp }}/codeql/CMakeFiles/CMakeOutput.log
             ${{ runner.temp }}/codeql/Testing/**
+          if-no-files-found: warn
+
+  lapack_cpp:
+    name: LAPACK C++ security analysis / integer ${{ matrix.bits }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        bits: [32, 64]
+    steps:
+      - name: Check out ASCCpp
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Prepare GNU compilers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-11 g++-11 gfortran-11
+      - name: Build and attest the pinned provider before C++ extraction
+        run: |
+          python3 -B tools/lapack/prepare_reference.py \
+            --work-dir "$RUNNER_TEMP/provider" --integer-bits ${{ matrix.bits }} \
+            --linkage static --jobs 2
+      - name: Initialize CodeQL for the optional LAPACK backend
+        uses: github/codeql-action/init@a2983b8bed1923f44751c5c43237f479442827b3
+        with:
+          languages: c-cpp
+          build-mode: manual
+          queries: security-and-quality
+      - name: Configure and build the first-party LAPACK production target
+        shell: bash
+        run: |
+          set -euo pipefail
+          build="$RUNNER_TEMP/codeql-lapack"
+          mkdir -p "$build"
+          runtimes="$(realpath "$(gfortran-11 -print-file-name=libgfortran.so)");$(realpath "$(gfortran-11 -print-file-name=libquadmath.so)")"
+          cmake -S . -B "$build" \
+            -DCMAKE_C_COMPILER=gcc-11 -DCMAKE_CXX_COMPILER=g++-11 \
+            -DCMAKE_Fortran_COMPILER=gfortran-11 -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=OFF -DBUILD_TESTING=OFF -DASC_CPP_BUILD_TESTING=OFF \
+            -DASC_CPP_ENABLE_CUDA=OFF -DASC_CPP_WARNINGS_AS_ERRORS=ON \
+            -DASC_CPP_ENABLE_LAPACK=ON -DASC_CPP_ENABLE_EXPERIMENTAL_ROBUST_PPSVX=ON \
+            -DASC_CPP_LAPACK_INTEGER_BITS=${{ matrix.bits }} \
+            -DASC_CPP_LAPACK_ROOT="$RUNNER_TEMP/provider/prefix" \
+            -DASC_CPP_LAPACK_ATTESTATION="$RUNNER_TEMP/provider/attestation.json" \
+            -DASC_CPP_LAPACK_RUNTIME_LIBRARIES="$runtimes" \
+            2>&1 | tee "$build/ci-configure.log"
+          cmake --build "$build" --parallel 2 --target asc_dense_lapack \
+            2>&1 | tee "$build/ci-build.log"
+      - name: Analyze the optional LAPACK backend
+        uses: github/codeql-action/analyze@a2983b8bed1923f44751c5c43237f479442827b3
+        with:
+          category: /language:c-cpp/lapack-${{ matrix.bits }}
+      - name: Preserve configuration and provider records
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: codeql-lapack-${{ matrix.bits }}-records
+          path: |
+            ${{ runner.temp }}/provider/*.log
+            ${{ runner.temp }}/provider/*.json
+            ${{ runner.temp }}/codeql-lapack/ci-*.log
+            ${{ runner.temp }}/codeql-lapack/CMakeFiles/CMakeConfigureLog.yaml
+            ${{ runner.temp }}/codeql-lapack/CMakeFiles/CMakeError.log
           if-no-files-found: warn

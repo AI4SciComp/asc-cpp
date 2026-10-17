@@ -16,6 +16,7 @@ set(ASC_CPP_AGGREGATE_COMPONENTS
   cpp
 )
 set(ASC_CPP_PROVIDER_COMPONENTS
+  dense_lapack
   core_cuda
   dense_cuda
   sparse_cuda
@@ -50,6 +51,7 @@ set(ASC_CPP_COMPONENT_cpp_DEPENDENCIES
   random_sparse
 )
 set(ASC_CPP_COMPONENT_core_cuda_DEPENDENCIES core)
+set(ASC_CPP_COMPONENT_dense_lapack_DEPENDENCIES dense)
 set(ASC_CPP_COMPONENT_dense_cuda_DEPENDENCIES dense core_cuda)
 set(ASC_CPP_COMPONENT_sparse_cuda_DEPENDENCIES sparse core_cuda)
 set(ASC_CPP_COMPONENT_random_cuda_DEPENDENCIES random core_cuda)
@@ -74,6 +76,7 @@ set(ASC_CPP_COMPONENT_random_dense_EXPORT_NAME RandomDense)
 set(ASC_CPP_COMPONENT_random_sparse_EXPORT_NAME RandomSparse)
 set(ASC_CPP_COMPONENT_cpp_EXPORT_NAME Cpp)
 set(ASC_CPP_COMPONENT_core_cuda_EXPORT_NAME CoreCuda)
+set(ASC_CPP_COMPONENT_dense_lapack_EXPORT_NAME DenseLapack)
 set(ASC_CPP_COMPONENT_dense_cuda_EXPORT_NAME DenseCuda)
 set(ASC_CPP_COMPONENT_sparse_cuda_EXPORT_NAME SparseCuda)
 set(ASC_CPP_COMPONENT_random_cuda_EXPORT_NAME RandomCuda)

@@ -20,6 +20,15 @@ APIs. The narrow `<asc/sparse/blas.h>` header declares the standardized
 operations and the retained pre-standardization `Spmv` overload, and
 `<asc/sparse/export.h>` supplies the compiled-library visibility macro.
 
+Include `<asc/sparse/print.h>` explicitly for bounded `PrintArray` previews of
+coordinate and CSR/CSC owners/views. A supplied Core `ByteSink`, scratch span,
+options and progress report make output and temporary storage explicit. The
+printer traverses stored entries, preserving explicit zeros and without Dense
+conversion or value densification. Only host value storage is supported;
+there is no implicit transfer or synchronization. See the
+[display contract](../contracts/array-display-v1.md). Display output is not a
+round-trip persistence representation.
+
 ## Common vocabulary
 
 `SparseElement<T>` accepts an unqualified, non-Boolean arithmetic type or
@@ -246,6 +255,50 @@ synchronization, provider dispatch, or fallback. Coordinate destination
 traversal is linear in destination NNZ apart from source reads. The current
 compressed coordinate reconstruction additionally scans outer offsets for
 each stored entry.
+
+## Native archives and values-only reads
+
+Include `<asc/sparse/io.h>` for explicit ASC text/binary archives of canonical
+COO, CSR and CSC owners or views. Writers retain the exact storage kind,
+immutable structure and all stored values, including explicit zeros. They
+do not sort, merge duplicates, densify, select a provider or link Dense.
+The wire scalar must match the requested owner/view scalar exactly.
+
+`SparseArrayReader::PrepareText`/`PrepareBinary` consume one bounded header
+and retain its cursor with caller metadata, scratch and report. Keep these
+borrowed objects live and unchanged until the one-use reader finishes. The
+new-owner `ReadSparseArray` overloads use an explicit resource for bounded
+staging and final storage, publishing only after canonical structure, complete
+values, trailer/checksum and requested EOF validation. Source wrappers take an
+explicit owner type, for example `ReadSparseArrayText<CsrArray<double>>`.
+
+`ReadSparseArrayTextInto`/`ReadSparseArrayBinaryInto` are values-only operations
+on existing finalized views. They compare every input offset/index with the
+target's immutable pattern, stage values in disjoint caller storage, and commit
+only after the complete frame is valid. A different valid pattern is still a
+mismatch; every target value and structure byte stays unchanged on failure.
+Aliases with metadata/scratch are rejected before the source header is read.
+Failures consume source prefixes without promising rewind or resynchronization.
+
+The shared `ArrayIoLimits` bounds input/output, rank/shape, structure, values,
+staging, cumulative resource bytes and successful allocation requests. Existing
+COO factories issue two final requests and compressed factories issue three,
+including zero-byte requests; live null storage and request counts are
+different quantities. Only actual nonempty staging buffers allocate. Reported
+progress and transaction state survive failure. Borrowed source/sink errors
+retain ErrorCode and native code without copying unbounded diagnostic strings.
+
+Path `SaveSparseArrayText`/`SaveSparseArrayBinary` calls require explicit
+`ArrayFileOverwrite::kTruncate`; corresponding `Load` calls validate whole-file
+EOF and checked close. These File conveniences retain their own handle/path
+allocation behavior and do not promise atomic replacement or crash durability.
+The EOF probe needs spare input budget on a nonseekable source.
+
+The [Sparse-only installed example](../../examples/sparse_array_io/README.md)
+previews stored values, round-trips all three kinds in both native formats,
+and rejects a corrupt CRC without changing its existing destination. See the
+[text](../contracts/array-text-v1.md) and [binary](../contracts/array-binary-v1.md)
+wire contracts. Matrix Market remains a separate required interchange package.
 
 ## Standardized Sparse BLAS
 
@@ -586,6 +639,16 @@ Failures use `Status`/`Result` with stable ASC error codes plus provider/native
 diagnostics. Diagnostic strings and native codes are not control-flow APIs.
 Submission failure may synchronize already-enqueued work only to make cleanup
 safe; successful calls never hide a wait or device-wide synchronization.
+
+## Matrix Market interchange
+
+`asc/sparse/matrix_market.h` adds rank-two Matrix Market coordinate reading and
+writing for COO, CSR and CSC, with no Dense dependency or densification. Assembly
+uses explicit duplicate, zero and pattern policies and bounded sorting work.
+Values-only reads compare exact canonical coordinates before committing staged
+values. See the [interchange guide](../matrix-market.md),
+[normative profile](../contracts/matrix-market-profile.md) and
+[standalone example](../../examples/sparse_matrix_market/README.md).
 
 ## Deliberate omissions
 

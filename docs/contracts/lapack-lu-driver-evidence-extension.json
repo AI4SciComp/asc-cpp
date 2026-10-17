@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "scope": "Index-only extension for four existing GESVX rows, now callable-unverified. Every other row and executed source/provider identity, selector, case and outcome is unchanged. Prior execution does not certify this later index.",
+  "baseline_commit": "663c7a4c4b1388c3a2c78093e61f2e6e2f94f9f4",
+  "prior_mapping_sha256": "3bc8da3622ebc3f34df5a4feca48320b45ec263aa5bed208b323aa59b3bdb102",
+  "extended_mapping_sha256": "0d4e4e6ca06515ed7eec92d72034d573cc60bccb73dc7810b17174a65353ab74",
+  "prior_evidence_sha256": "33eea61550b538dfd464714499dcc8d989e19578abda5100943b7305919dc7a5",
+  "prior_expected_identities": {
+    "native-installed-candidate03": {
+      "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+      "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+      "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mapping_sha256": "3bc8da3622ebc3f34df5a4feca48320b45ec263aa5bed208b323aa59b3bdb102",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    },
+    "reference-lu-source-20260911": {
+      "implementation_commit": "c01abddf739551d8512520f71711491d314b2c77",
+      "implementation_tree": "777aad8584547809aaa3fe87e203921ad635959d",
+      "dirty_diff_sha256": "5c7d5c111058736f28d3faeeb0e54b0afed80d69d5645b23f4b272f42958905d",
+      "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+      "mapping_sha256": "3bc8da3622ebc3f34df5a4feca48320b45ec263aa5bed208b323aa59b3bdb102",
+      "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+    }
+  },
+  "prior_record_hashes": {
+    "native-installed-candidate03": "193a8c1266f5303ede7b37744c4584ba948c76083f28662f24fac0dbac3502fd",
+    "reference-lu-release-lp64-20260911": "90d48e9b9523ea027e7575235fb103635e81d70f6c637d62ea0f92d7b11984fe",
+    "reference-lu-release-ilp64-20260911": "049fc79ce65d44de3574eb53c85ba300ad2f98c7ad463546c273b867a0164bb1"
+  },
+  "unchanged_native_rows_sha256": "fc8a6c46d11cb30bd7006518f4de51e0e715847dc6da72b1233d402b023fd464",
+  "changed_reference_rows": [
+    "lapack.cgesvx",
+    "lapack.dgesvx",
+    "lapack.sgesvx",
+    "lapack.zgesvx"
+  ],
+  "exact_baseline": "master-continuation-20260910-01/gesvx-registration-01",
+  "generator_sha256": "9f7c47baf12f9649747a8abeaa06ca45813306334ac0dacce6157fb4d43b0462"
+}

@@ -15,6 +15,7 @@ package:
     - "random_sparse"
     - "cpp"
   implemented_components:
+    - "dense_lapack"
     - "core"
     - "utilities"
     - "expression"
@@ -127,6 +128,15 @@ facets:
     is_module: false
 
 provider_facets:
+  dense_lapack:
+    owner: "dense"
+    build_target: "asc_dense_lapack"
+    installed_target: "ASC::dense_lapack"
+    development_stage: 4
+    direct_dependencies:
+      - "dense"
+    external_dependencies:
+      - "ASC_INTERNAL_LAPACK::reference"
   core_cuda:
     owner: "core"
     build_target: "asc_core_cuda"
@@ -187,6 +197,7 @@ provider_facets:
     external_dependencies: []
 
 rules:
+  - "dense_lapack is an explicitly enabled incremental provider facet, not full LAPACK verification."
   - "There are exactly six modules; facets are not modules."
   - "Every public-header include dependency has a matching direct target edge."
   - "Expression contains no dense, sparse, utilities, random, or provider include."

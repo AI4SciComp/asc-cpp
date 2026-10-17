@@ -18,10 +18,26 @@ endfunction()
 foreach(_source IN ITEMS
     layout_view_test.cc
     array_evaluate_test.cc
+    complex_array_test.cc
     blas_test.cc
     blas_level1_test.cc
     blas_level2_test.cc
     blas_level3_test.cc
+    lapack_foundations_test.cc
+    lapack_structured_view_test.cc
+    lapack_triangular_band_view_test.cc
+    lapack_lu_test.cc
+    lapack_cholesky_test.cc
+    lapack_qr_test.cc
+    print_test.cc
+    print_acceptance_test.cc
+    print_modes_test.cc
+    io_test.cc
+    io_shapes_test.cc
+    io_fuzz_test.cc
+    io_stream_progress_test.cc
+    matrix_market_test.cc
+    resource_failure_test.cc
 )
   get_filename_component(_name "${_source}" NAME_WE)
   set(_target "asc_dense_${_name}")
@@ -33,6 +49,73 @@ foreach(_source IN ITEMS
     LABELS "dense;runtime"
   )
 endforeach()
+
+foreach(_target IN ITEMS
+    asc_dense_blas_test
+    asc_dense_blas_level1_test
+    asc_dense_blas_level2_test
+    asc_dense_blas_level3_test)
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}/tests")
+endforeach()
+
+target_include_directories(
+  asc_dense_complex_array_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_print_acceptance_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_print_modes_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_lapack_lu_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_lapack_cholesky_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+target_include_directories(
+  asc_dense_lapack_qr_test PRIVATE "${PROJECT_SOURCE_DIR}/tests"
+)
+
+foreach(_source IN ITEMS
+    native_mode_acceptance_test.cc
+    native_alias_acceptance_test.cc
+    native_report_alias_test.cc)
+  get_filename_component(_name "${_source}" NAME_WE)
+  set(_target "asc_dense_${_name}")
+  add_executable("${_target}" "${_source}" allocation_probe.cc)
+  _asc_dense_configure_test("${_target}")
+  target_include_directories("${_target}" PRIVATE "${PROJECT_SOURCE_DIR}/tests")
+  asc_register_test(
+    NAME "asc_cpp.dense.${_name}"
+    TARGET "${_target}"
+    LABELS "dense;runtime;native-lapack")
+endforeach()
+
+find_package(Threads REQUIRED)
+add_executable(asc_dense_native_concurrency_test native_concurrency_test.cc)
+_asc_dense_configure_test(asc_dense_native_concurrency_test)
+target_link_libraries(asc_dense_native_concurrency_test PRIVATE Threads::Threads)
+asc_register_test(
+  NAME asc_cpp.dense.native_concurrency_test
+  TARGET asc_dense_native_concurrency_test
+  LABELS "dense;runtime;native-lapack;concurrency")
+
+add_executable(asc_dense_matrix_market_interop_test
+  matrix_market_interop_test.cc)
+_asc_dense_configure_test(asc_dense_matrix_market_interop_test)
+set(_matrix_market_directory "${CMAKE_CURRENT_BINARY_DIR}/matrix-market-interop")
+file(MAKE_DIRECTORY "${_matrix_market_directory}")
+foreach(_mode IN ITEMS write read)
+  asc_register_test(NAME "asc_cpp.dense.matrix_market_interop.${_mode}"
+    TARGET asc_dense_matrix_market_interop_test
+    ARGUMENTS "${_mode}" "${_matrix_market_directory}"
+    LABELS dense runtime matrix-market)
+endforeach()
+set_tests_properties(asc_cpp.dense.matrix_market_interop.write PROPERTIES
+  FIXTURES_SETUP asc_dense_matrix_market_files)
+set_tests_properties(asc_cpp.dense.matrix_market_interop.read PROPERTIES
+  FIXTURES_REQUIRED asc_dense_matrix_market_files)
 
 set_property(
   TEST asc_cpp.dense.blas_level2_test
@@ -89,6 +172,37 @@ foreach(_negative_source IN ITEMS
   endif()
 endforeach()
 
+function(_asc_dense_check_complex_negative source)
+  # A static try-compile checks the declaration itself. Missing main or
+  # unresolved library symbols must not make an accepted operation look invalid.
+  set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+  get_filename_component(_name "${source}" NAME_WE)
+  try_compile(
+    _compiled
+    "${CMAKE_CURRENT_BINARY_DIR}/negative/${_name}"
+    SOURCES "${PROJECT_SOURCE_DIR}/tests/compile/${source}"
+    CMAKE_FLAGS
+      "-DCMAKE_CXX_EXTENSIONS:BOOL=OFF"
+      "-DCMAKE_CXX_STANDARD:STRING=20"
+      "-DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON"
+      "-DINCLUDE_DIRECTORIES:STRING=${PROJECT_SOURCE_DIR}/include"
+    OUTPUT_VARIABLE _output
+  )
+  if(_compiled)
+    message(FATAL_ERROR "Expected ${source} to fail compilation.\n${_output}")
+  endif()
+endfunction()
+
+foreach(_source IN ITEMS
+    p01_negative_bool_owner.cc
+    p01_negative_class_owner.cc
+    p01_negative_complex_min.cc
+    p01_negative_complex_max.cc
+    p01_negative_complex_precision_conversion.cc
+)
+  _asc_dense_check_complex_negative("${_source}")
+endforeach()
+
 add_executable(
   asc_dense_benchmark
   "${PROJECT_SOURCE_DIR}/benchmarks/dense/dense_benchmark.cc"
@@ -112,3 +226,25 @@ unset(_negative_output)
 unset(_negative_source)
 unset(_source)
 unset(_target)
+
+# Linux page protection observes descriptor reads on a real live array.
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  add_executable(asc_dense_lapack_triangular_band_read_observation_test
+    lapack_triangular_band_read_observation_test.cc allocation_probe.cc)
+  _asc_dense_configure_test(asc_dense_lapack_triangular_band_read_observation_test)
+  asc_register_test(NAME asc_cpp.dense.lapack_triangular_band_read_observation_test
+    TARGET asc_dense_lapack_triangular_band_read_observation_test
+    LABELS dense runtime validation allocation TIMEOUT 120)
+endif()
+
+# Portable per-call faults run the same private path-helper body as public
+# save/load. Core File still belongs to the linked static/shared library.
+add_executable(asc_dense_file_cleanup_test file_cleanup_test.cc)
+_asc_dense_configure_test(asc_dense_file_cleanup_test)
+set(_cleanup_scratch "${CMAKE_CURRENT_BINARY_DIR}/cleanup scratch")
+file(MAKE_DIRECTORY "${_cleanup_scratch}")
+add_test(NAME asc_cpp.dense.file_cleanup_test
+  COMMAND asc_dense_file_cleanup_test "${_cleanup_scratch}")
+set_tests_properties(asc_cpp.dense.file_cleanup_test PROPERTIES
+  LABELS "dense;runtime;array-io;file-cleanup" TIMEOUT 120)
+unset(_cleanup_scratch)

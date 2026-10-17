@@ -1,0 +1,55 @@
+{
+  "acquisition": {
+    "archive_sha256": null,
+    "archive_url": null,
+    "authentication": "HTTPS transport; upstream annotated tag is unsigned",
+    "method": "git_from_authoritative_https_remote"
+  },
+  "build_options": {
+    "deprecated": "BUILD_DEPRECATED retained in required inventory",
+    "extra_precision": "USE_XBLAS retained in required inventory",
+    "required_precisions": [
+      "S",
+      "D",
+      "C",
+      "Z"
+    ],
+    "status": "not_built"
+  },
+  "license_expression": "LicenseRef-LAPACK-3.12.1-Root",
+  "license_observations": [
+    "Root BSD-style terms contain an additional intellectual-property non-assurance clause",
+    "LAPACKE/LICENSE contains BSD-3-Clause terms; redistribution remains owner-reviewed"
+  ],
+  "licenses_and_notices": [
+    {
+      "path": "LICENSE",
+      "sha256": "978539245c405775bf347b1256c36df4daf8b69a64b099e94b1d53742201621e"
+    },
+    {
+      "path": "LAPACKE/LICENSE",
+      "sha256": "871f415ebd2fd06c7ab8cc3c0016aa2d26b918622345116e2d0c740b688d4843"
+    }
+  ],
+  "metadata_discrepancies": [
+    "Pinned v3.12.1 CMakeLists.txt declares LAPACK_PATCH_VERSION 0"
+  ],
+  "patches": [],
+  "provider_builds": [],
+  "redistribution_approval": "pending_owner_review",
+  "schema_version": 1,
+  "specification": {
+    "commit": "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca",
+    "project": "Reference-LAPACK",
+    "tag": "v3.12.1",
+    "tag_object": "5ebe92156143a341ab7b14bf76560d30093cfc54",
+    "tag_signature": "unsigned",
+    "tree": "7217db728e4f7ee87dabf545a1a87a3d6cd30e9b",
+    "upstream_url": "https://github.com/Reference-LAPACK/lapack.git",
+    "version": "3.12.1"
+  },
+  "verification": {
+    "method": "exact HEAD, tree, tag object and peeled commit; pristine git status; each input byte sequence matches pinned Git blob",
+    "source_input_manifest_sha256": "5a0b8771c9496e65a2e40d1b9ffd7add38332cadde334abe8f762b750aefea9a"
+  }
+}

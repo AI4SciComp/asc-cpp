@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "scope": "Index-only extension for two new Reference rows plus comment-only shared-statistics identity update in two existing mixed-general rows. Native20 source/rows and original execution are unchanged; no later whole-tree execution is inferred.",
+  "baseline_commit": "c7155adfeb978db95e41814dd860c7bf3c427a09",
+  "prior_mapping_sha256": "98e92fbef1d31e3cdfcf83734465308a96d9aec9e4e18cf6289ef9492c7581c4",
+  "extended_mapping_sha256": "cfb16180b6a49e694e2593fd675b9dd767243895551617501ee164b9c5508624",
+  "changed_reference_rows": [
+    "lapack.dsgesv",
+    "lapack.dsposv",
+    "lapack.zcgesv",
+    "lapack.zcposv"
+  ],
+  "unchanged_native_rows_sha256": "405e88a3cfb9e2e0a72cda04c61399b22ba31d557b1858df1296790b5b7e96b2",
+  "checked_unchanged_implementation_artifacts": {
+    "include/asc/dense/lapack/qr.h": "cb5af236141fe99f9e14a1ae7a438eb7ddeff97ea81addc20b65acf272f029b5",
+    "src/dense/lapack_qr.cc": "a362791fb1e7eb084d2a77510bf17432f7fdcb05ad45925e3c546ad329056a69",
+    "tests/dense/lapack_qr_test.cc": "22aec42c0cf4cb95cdb6678fd59bb852b6b8a20e75dfa9dd4eeb533f9a1658c8",
+    "docs/contracts/lapack-native-cholesky-qr.md": "a6867e50bf520bb2498652b789fbf6a6257e63a2c23f46fc2bbe1d8fe7b8ef78",
+    "include/asc/dense/lapack/factor_view.h": "400feabf1d37e300301feddcc5689c2541496c5d3bfff7edfaa6780ae4347bfb",
+    "include/asc/dense/lapack/report.h": "13bd90c836ab78a03d1f21ace7104e6c861c319d3e924166421ba56b222e80fe",
+    "include/asc/dense/blas.h": "b2776f137f93399a41e4052aa7593363fab66b30585ce89f0006cece1fba834f",
+    "src/dense/lapack_foundations.cc": "382f4746f3e7968b9c8f6d4230e5e2d3b1eee17a9f3e6078650b42e86d704676",
+    "examples/dense_factorizations/main.cc": "1c06a495251df11909089c85b734fa381e2356b075723fe17760c07cdd54a449",
+    "include/asc/dense/providers/lapack_qr.h": "efec65fba584e857fcc67fc8d7cec70b8d3573f6628a75b998c20a32e5866d22",
+    "src/dense/lapack/reference_qr.cc": "b6e5f8b9d0756e1f503350b32548535e2eef387a5102abee46b214c5365fe008",
+    "src/dense/lapack/internal_qr_counts.h": "ea5f8c75a0cdd66a8c5e24ce7be50ca96f83e46e5bebf95f7bd94f295f96e60e",
+    "src/dense/lapack/internal_layout.h": "138fab5a7f8d9e7782cadf929e5fdfb853d54745ce70f1da7ec9eeefc77c6205",
+    "tests/dense_lapack/reference_qr_test.cc": "eb95f6eac013e40acdc4aa209df22a2cf2c7ca5c7d19b7dc831c7f86a9caf995",
+    "tests/dense_lapack/qr_counts_test.cc": "f6c337ec77471f6275b83114e9435bb95f5377b178c70a832c52adc5de04ee61",
+    "tests/dense_lapack/qr_test_support.h": "86afc93fda447af82e6e5476b1e16231b4934bb22ab42f00c551229288e899c8",
+    "tests/dense_lapack/qr_faults.h": "de75df050c125a44f03b436e5d6d166ac01c8b7ae30da1f67d06456253f78249",
+    "tests/dense_lapack/qr_faults.cc": "8808e1852f6d8cc5a574e7e5279111f605708b01298e001b00fec90523434bdc",
+    "tests/dense_lapack/qr_workspace_placement_test.cc": "07320cef946916c416fbef48613dd4b9fd2017330d9b6ccc4d604810adbef388",
+    "include/asc/dense/providers/lapack.h": "df96ff73e73ef44202a9e02a9eee1fd8e8c1319affcbd3113ad8743fbcc76719",
+    "include/asc/dense/lapack/types.h": "0e383cc83767014a94558bb9f109500d43ab411be7f1ff6909e2c8bb143f45b5",
+    "include/asc/dense/lapack/workspace.h": "39f15a4cdb5d486dd8a79755b8b89cf98f9033b44dc17288be7a348e8f881232",
+    "tests/dense_lapack/installed_lu/qr_main.cc": "0617090158b0c3e3fcefd5e716a14db720fbae203c9205ca9f3fdd7a88f847b5",
+    "tests/dense_lapack/installed_lu/factorization_support.h": "71dc1d555b6793eaa176fa24b5fc635f6d32bd6f3d4dbbb9fe6564a376fc73c0",
+    "tests/dense_lapack/installed_lu/normal_return_guard.h": "6d0d088037e666f0e9c92d912dbddb2a7c48501284183c52cb79e3b0c9bdc81d",
+    "tests/dense_lapack/lu_layout_test.cc": "0d571bd8e8d4186105e19bad7e5757500486ae6b375b2e887491944dc82b839a",
+    "src/dense/lapack/reference_lu.cc": "6f39b66e232c9805052aef5ad75c34eb2bec4e2d9e367aebd62c197a5a3d16b2",
+    "tests/dense_lapack/reference_lu_test.cc": "1ec8f1b585dd600cdc7341e03ce20baf8e12771e4a1674fdb966c58e32cd723a",
+    "include/asc/dense/lapack/lu.h": "2658de20c806d3528378ac015d74059b45a1e1877d3b47d253826b1f25bf07d2",
+    "src/dense/lapack_lu.cc": "ec79a9b4102e5d2ae85271ea8327b0748a89f34fa4dc6dc89eade47449439162",
+    "tests/dense/lapack_lu_test.cc": "115333eecc83cd816e1937cbb232d9e7b97e8d4595fa61445753fe2f8a4ed2f4",
+    "docs/contracts/lapack-general-lu.md": "a10a652a296f39b1efda616ef9126e8049750d6b6c1ba2db505bf50dbfdca603",
+    "src/dense/blas_level3.cc": "82fe03fda2dc15a97f4b19bca7da2bb7432e6bd00e02179b13bf3ad90361e2e9",
+    "src/dense/lapack/internal_lu_counts.h": "834a371b8b637f787a8dcb1c08526370f564ab408f35e4cbbf285a9c5fa8a777",
+    "tests/dense_lapack/lu_counts_test.cc": "0e10b8d0031e6c6443adaa79b4f629ba9cbecec8ba540206a21abf1446d13d73",
+    "src/dense/lapack/internal_workspace_context.h": "86c8606e1590945f35781c041249380214ac4e0f39cee9bf1309d311ea2fdb94",
+    "tests/dense_lapack/provider_placement_test.cc": "f5d7e31a5b6df903efd2d370a76899f0b98126becaf687297a7562791f01eff1",
+    "tests/dense_lapack/provider_placement_support.h": "e8e47fda46a38b333a5170e3941b981810daf5eb06f0770b9483e0d37b36189f",
+    "tests/dense_lapack/provider_placement_routes.h": "88d297045727b64b8c1ed0d01674e028b1e2ad572c05172766c1b23aa712b128",
+    "tests/dense_lapack/provider_operand_placement_test.h": "c6f3e10c7969e733a5b455c5eb2900d7d2082e27e74db6078761cc36d011c9b5",
+    "include/asc/dense/lapack/cholesky.h": "0e4a7332790ab0598252c9b7e40437891dbb0256ed2f18589fda19d88c0a2b24",
+    "src/dense/lapack_cholesky.cc": "3321c6c0469632d47eb43ea9dcbd2b06251c6259a9491530148f2e8434f81080",
+    "tests/dense/lapack_cholesky_test.cc": "73f4a66a4f41d16251eaff70cedead7d0d096e6881d5017cf4348519408ddd9f",
+    "include/asc/dense/providers/lapack_cholesky.h": "0125c2b9ed0ee5bcd9335f768abed5ff663521fa1d3c43fe1c94bd76afe8a166",
+    "src/dense/lapack/reference_cholesky.cc": "607780868ca22886644486a235483bb01a9d9ab8145e0e7f16051c5b026756ba",
+    "src/dense/lapack/internal_cholesky_limits.h": "22d13baed3999f9dc94902532042552b4d6bf4daba98a5a2453caf685ed5b70f",
+    "tests/dense_lapack/reference_cholesky_test.cc": "c192975eac05ff411077aedfd9ca5fca53c7d2480b4b0bd0da59f74f5cdb74b9",
+    "tests/dense_lapack/cholesky_stride_test.cc": "74e71d2c8f14a2a2206f94fcc38a0ed9b20aa9bebb146c9f20342402cbd3f4bc",
+    "tests/dense_lapack/cholesky_test_support.h": "dc7a3f065a7d8dd1fd947d35a6da960847e7dd23c3b50e09ed93d3c87357b3fe",
+    "tests/dense_lapack/cholesky_faults.h": "390d554668b2eb4febd3b3a6db1a72140a6e552f0b7d6bd88bcd0103577f09a3",
+    "tests/dense_lapack/cholesky_faults.cc": "d4c62d48d5d54579063ea6442e85d890ffc26621c599adcc0687fe102df09af8",
+    "tests/dense_lapack/installed_lu/cholesky_main.cc": "67126c7e07945f93b9d09c7fd64c8c2c5809584b528ae0b883b3e9e130ad301b"
+  },
+  "prior_evidence": {
+    "path": "docs/contracts/lapack-evidence.json",
+    "sha256": "ce71b624352b10457ce38b39f3b1d2f9eea02e8a97e12dcde7b423b96dec466b",
+    "record_ids": [
+      "native-installed-candidate03"
+    ],
+    "record_sha256": [
+      "2b21956f9fe48f0672c0f0b35eb74b7a69a27fef57453eda94cfd83ad2e4ac58"
+    ]
+  },
+  "prior_expected_identity": {
+    "implementation_commit": "5cc3a9350f7ea176552340de41a38ef73de0aebe",
+    "implementation_tree": "34c7712b7d67090114aa522e6206000638273d2d",
+    "dirty_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mapping_sha256": "98e92fbef1d31e3cdfcf83734465308a96d9aec9e4e18cf6289ef9492c7581c4",
+    "inventory_sha256": "1397a216e4ffd8b92c5b91976c1569c26ecc62b775136769f0ffb731b57a51c7",
+    "provider_lock_sha256": "e40cc81715470c6059bb6f742421585c308121a6f3157b425207f09b18585bb3"
+  },
+  "prior_mapping_extension": {
+    "path": "docs/contracts/lapack-mixed-native-evidence-extension.json",
+    "sha256": "e1fb07f67eaa97500129dbd052ba1f93cae89d74d6220d188baf3821a4964419",
+    "execution_reused": true
+  },
+  "external_exact_copy": "master-continuation-20260910-01/positive-registration-01/prior-evidence.json",
+  "generator_sha256": "418e8bc59f4a52e0d4e0738412b6e168883d45ae4570972cebd22c88d34a97e9"
+}

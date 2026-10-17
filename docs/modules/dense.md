@@ -85,14 +85,20 @@ header or gain ownership of referenced storage.
 
 `DenseArray<Element, ExtentsType>` is a move-only owner backed by a Core
 `Buffer` allocated from an explicit `MemoryResource`. It supports non-cv
-arithmetic elements other than `bool`; they are trivially copyable and
+arithmetic elements other than `bool`, plus `std::complex<float>` and
+`std::complex<double>`; accepted elements remain trivially copyable and
 trivially destructible. Existing `Create` remains host-only and
-value-initializes every element.
+value-initializes every element. Complex storage starts typed array and element
+lifetimes using C++20 non-allocating placement array construction.
 
-`CreateUninitialized(extents, resource, layout)` accepts every valid Core
-memory space and allocates the exact unique, exhaustive owner span without
-touching its elements. Use it when a provider operation or an explicit copy
-will initialize storage. Reading an uninitialized element is a caller error.
+For arithmetic elements, `CreateUninitialized(extents, resource, layout)`
+accepts every valid Core memory space and allocates the exact unique,
+exhaustive owner span without touching its elements. Use it when a provider
+operation or an explicit copy will initialize storage. Reading an
+uninitialized arithmetic element is a caller error. Complex owners support
+host/pinned-host storage only: their typed default construction initializes
+complex values to zero even in this named factory. Device/managed complex
+creation is rejected before allocation or host access.
 Layout-left and layout-right owners are available; arbitrary-stride and padded
 mappings remain view-only.
 
@@ -106,10 +112,94 @@ array's eventual deallocation. Every view is also non-owning and becomes
 invalid when its storage is released.
 
 A named deep clone takes an explicit destination resource and execution
-context. It allocates an uninitialized destination, enqueues `CopyBytes`,
+context. For arithmetic elements it allocates an uninitialized destination, enqueues `CopyBytes`,
 waits for that event, and publishes the new owner only after successful
 completion. Clone is therefore synchronous even for CUDA. It performs no
 implicit fallback or extra staging.
+
+Complex cloning requires the existing serial host execution contract and
+host/pinned-host resources, copying typed live elements without a transfer.
+`ReduceSum` supports complex algebra; ordered `ReduceMin` and `ReduceMax`
+remain constrained to arithmetic elements. Exact scalar matching still
+rejects implicit real/complex or complex precision conversions.
+
+## Bounded value display and LAPACK foundations
+
+Include `<asc/dense/print.h>` explicitly for `PrintArray`. It writes a bounded
+logical-value preview of an owner or view to a supplied Core `ByteSink`, using
+caller-owned scratch, options and progress report. It does not evaluate lazy
+expressions, allocate a formatting buffer, transfer device values or select a
+provider. Rank-zero, empty and higher-rank output and truncation are defined
+by the [display contract](../contracts/array-display-v1.md). This display is
+not a serialization format.
+
+The narrow `<asc/dense/lapack/{types,workspace,report,factor_view,structured_view}.h>` headers
+define provider-neutral copied identities, caller workspace plans, mandatory
+failure-surviving reports, and family-tagged raw pivots/factors. They reuse
+the checked Dense BLAS full-matrix descriptor. A raw singular factor cannot
+be promoted into a successful reusable factor view. These foundations alone
+provide no external LAPACK dispatch or numerical capability; the
+[source inventory](../contracts/lapack-upstream-inventory.json) and
+[coverage ledger](../contracts/lapack-coverage.yaml) retain required,
+implemented and verified states separately.
+
+Distinct LU-factor band, positive-definite band, tridiagonal, square
+bidiagonal and RFP storage descriptors expose their actual packed arrays and
+validate full reachable backing spans without densifying. Successful LU,
+Cholesky and Householder QR views borrow factors and retain their originating
+family; these are representations, not factorization implementations.
+Indefinite variant-specific factor arrays, blocked reflectors and rectangular
+bidiagonal storage remain pending with their associated routine contracts.
+
+Include `<asc/dense/lapack/lu.h>` for native `Getrf` and `Getrs` overloads
+taking an explicit serial `ExecutionContext`. They support all four LAPACK
+real/complex scalar types, rectangular partial-pivot factors, reusable square
+solves with multiple RHS and N/T/C operations, and both physical layouts.
+Callers provide the matrix, one-based signed 64-bit pivots, RHS and report;
+the native route uses no scratch allocation or external provider. Exact-zero
+singularity is a numerical failure with inspectable partial factors, not a
+successful reusable factor. See the [general LU contract](../contracts/lapack-general-lu.md)
+for reconstruction, provenance, aliasing, mutation and evidence boundaries.
+
+## Native text and binary archives
+
+Include `<asc/dense/io.h>` explicitly for ASC text/binary read and write APIs.
+`WriteDenseArrayText` and `WriteDenseArrayBinary` traverse logical values in
+dimension-zero-fastest order, independent of physical layout and padding.
+Wire scalar identity is exact; these formats never implicitly narrow, promote
+real data to complex, or evaluate an expression. They are distinct from a
+bounded `PrintArray` preview.
+
+`DenseArrayReader::PrepareText`/`PrepareBinary` validate one header using
+caller metadata and scratch. A prepared reader retains the current source
+position and is consumed once. It borrows the source, metadata, scratch and
+report: keep those objects live and unchanged until completion. Failure does
+not rewind or resynchronize the source. `ReadDenseArray<T, ExtentsType>`
+creates a new owner through an explicit resource and left/right layout;
+`ReadDenseArrayInto` uses explicit disjoint typed staging and commits to the
+existing view only after full payload/trailer validation. Source-wrapper
+`ReadDenseArrayTextInto`/`ReadDenseArrayBinaryInto` also reject destination
+aliases before header parsing.
+
+`ArrayIoLimits` bounds bytes, metadata, extents/products, decoded/staging
+storage, allocation requests and scratch. Zero is a real zero limit. One
+empty-owner resource request still counts. Whole-file EOF checks require
+spare input budget for the nonseekable probe; framed reads need not consume
+the next frame. `ArrayIoReport` retains actual progress and commit state.
+
+`LoadDenseArrayText`/`LoadDenseArrayBinary` compose checked Core File reads;
+`SaveDenseArrayText`/`SaveDenseArrayBinary` require explicit
+`ArrayFileOverwrite::kTruncate` and checked write/flush/close. They do not
+promise atomic replacement or durability. Borrowed stream codecs allocate no
+hidden parser buffers, while path/File and caller stream conveniences retain
+their own documented allocation behavior. Source/sink ErrorCode and native
+code survive without copying unbounded diagnostic strings.
+
+See the [text](../contracts/array-text-v1.md) and
+[binary](../contracts/array-binary-v1.md) contracts and the
+[installed read–solve–archive example](../../examples/lapack_array_io/README.md).
+Array I/O has no LAPACK dependency; Matrix Market is a separate required
+interchange package and is not supplied by these native format APIs.
 
 Discard-resize uses the owner's resource and is transactional: allocation or
 validation failure leaves the array and every existing view unchanged;
@@ -580,6 +670,15 @@ memory model. CUDA event dependencies and stream ordering additionally govern
 device storage. A `DenseCudaContext` serializes its mutable provider handle;
 independent contexts may submit independent work without that serialization.
 
+## Matrix Market interchange
+
+`asc/dense/matrix_market.h` adds rank-two Matrix Market array reading and writing
+without a Sparse or provider dependency. Owning reads use an explicit resource;
+view reads use supplied typed staging and commit only after complete validation.
+See the [interchange guide](../matrix-market.md),
+[normative profile](../contracts/matrix-market-profile.md) and
+[standalone example](../../examples/dense_matrix_market/README.md).
+
 ## Deliberately absent
 
 The current Dense surface provides no:
@@ -591,13 +690,13 @@ The current Dense surface provides no:
 - shared ownership, external adoption, or custom deleter;
 - hidden temporary, packing, transfer, synchronization, or fallback;
 - mixed-precision, batched, or tensor operation;
-- factorization, solver, or workspace-bearing algorithm;
+- full Reference-LAPACK routine coverage (the explicit facet is incremental);
 - optimized CPU provider; or
 - CUDA arbitrary external expression evaluation, general broadcasting,
   native handle/stream adoption, or hidden workspace;
 - CUDA arbitrary-stride ordinary-view Gemv or Gemm;
 - Sparse CUDA, Random CUDA, HIP, or SYCL; or
-- OpenMP, TBB, Eigen, BLAS/LAPACK, or oneMKL integration.
+- OpenMP, TBB, Eigen, optimized CPU BLAS, or oneMKL integration.
 
 The [frozen CUDA Core and Dense contract][contract] is authoritative for the CUDA
 facet. The [Dense contract][dense-contract] remains the provider-free

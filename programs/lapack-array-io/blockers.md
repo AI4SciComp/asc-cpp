@@ -1,0 +1,702 @@
+# Current completion execution and retained blockers
+
+The packed producer engineering checkpoint is complete: six callable,
+unverified rows; sixteen final profiles execute 612 tests with 468 passes,
+144 required failures and zero skips. Four installed consumers and the scoped
+engineering checks pass. See the [packed review](indefinite-packed-review.md).
+The matching solve checkpoint adds six callable-unverified rows and 48
+reviewed modes; 552 runs retain 72 required range failures, with 480
+passes and zero skips. The inverse checkpoint adds six callable-unverified rows and 24 reviewed
+modes: 552 runs retain 48 required complex range failures, with 504 passes
+and zero skips. The condition checkpoint adds six callable-unverified rows and 24 reviewed
+modes: 552 runs retain 72 required range failures, with 480 passes and zero
+skips. The refinement checkpoint adds six callable-unverified rows and 192 reviewed
+modes: 552 processes retain 72 mandatory failures, 480 passes and zero skips.
+Work advances to `P05.required.hpsv`.
+
+Packed range/native endpoint failures, current security findings, provider and
+XBLAS decisions, notices and missing platform acceptance remain unresolved.
+The user permits recording unresolved trouble and advancing independent work;
+this does not promote blocked rows or turn failed tests into skips/passes.
+Remaining P00–P11 requirements retain their original scope. Use current state
+and family reviews before following historical next-task prose below.
+
+## PACKED-INDEFINITE-REFINEMENT-RANGE — required finite-input gate unmet
+
+All six SPRFS/HPRFS variants fail maintained mathematical range tests after
+correcting the independent BERR safe-minimum expression. The complete 512
+finite-input cases remain admitted; initial Release has 96 failed input groups
+per real variant and 144 per complex variant. Tiny and very large inputs can
+retain nonfinite estimates or failed independent solution quality. Raw native
+fidelity passes. Sixteen profiles retain 72 mandatory failures, 480 passes and
+zero skips; all four TSan profiles pass 6/6. See the
+[refinement review](indefinite-packed-refinement-review.md). Preserve this
+limitation and continue packed drivers; no provider change or numerical waiver.
+
+## PACKED-INDEFINITE-CONDITION-RANGE — required finite-input gate unmet
+
+All six SPCON/HPCON variants fail the maintained mathematical range test on
+admitted finite tiny inputs with exact reciprocal condition number 1. At
+min-normal/8, scalar native estimates return 0 and paired blocks can produce
+NaN; additional complex paired cases return 0. Raw native fidelity passes.
+The sixteen-profile matrix retains 72 mandatory failures across 552 processes,
+with 480 passes and zero skips; all four TSan profiles pass6/6. See the
+[condition review](indefinite-packed-condition-review.md). Record the limitation
+and advance packed refinement without changing the provider or a requirement.
+
+## PACKED-INDEFINITE-INVERSE-RANGE — required finite-inverse gate unmet
+
+CSPTRI/ZSPTRI/CHPTRI/ZHPTRI fail the maintained mathematical range test for
+zero-diagonal2x2 blocks whose off-diagonal real/imaginary components are each
+0.75*max. Exact inverse entries remain representable. Both triangles/layouts
+fail in every normal/sanitizer profile, while raw-native fidelity passes.
+The final matrix retains48 mandatory failures across552 processes, with504
+passes and zero skips; all four TSan profiles pass6/6. See the
+[inverse review](indefinite-packed-inverse-review.md). Record the provider
+limitation and advance condition estimation without weakening a requirement.
+
+## PACKED-INDEFINITE-SOLVE-RANGE — required finite-solution gate unmet
+
+SSPTRS/DSPTRS/CSPTRS/ZSPTRS/CHPTRS/ZHPTRS each fail the maintained finite-range
+mathematical test in both actual ABIs while separate direct native fidelity
+passes. Scalar/2x2 fixtures have finite A, B and known solutions; checked
+producer reconstruction passes. Small scalar reciprocal paths and native
+complex block divisions remain unchanged. The complete six-class, both-layout,
+both-triangle scope and raw records are in the
+[packed solve review](indefinite-packed-solve-review.md).
+
+Record this alongside the existing provider limitations and continue
+independent tasks. No provider patch, hidden fallback, finite-input exclusion,
+weakened tolerance or verification credit is authorized by the user's request
+to move past unresolved trouble. The final sixteen profiles retain72 required range-mathematical failures
+among552 runs, with480 passes and zero skips; all four TSan profiles pass.
+
+## Historical program blocker introduction
+
+Current PPSVX scope: the authorized first-party robust capability has completed
+its opt-in experimental Linux/static integration in both actual ABIs; see the
+[integration review](packed-cholesky-expert-robust-integration.md). No blocking
+first-party finding remains in that finite slice. Full Clang/provider, shared,
+macOS and Windows provider admission remains incomplete. The pinned Reference
+path retains five arithmetic causes and its four mathematical test failures;
+the [exact numerical disposition](packed-cholesky-expert-disposition.md) still
+requires a separate provider/algorithm decision under unchanged requirements.
+First-party success neither closes those rows nor approves the notice packet.
+The next independent family is the existing P05 PTTRF/PTTRS contract/signature
+review. Historical continuation pointers below retain their original context.
+
+## TRSYL-FINITE-DIAGONAL-OVERFLOW — required mathematical gate unmet
+
+Independent review reproduced a silent wrong finite solution in all four
+scalars and both actual ABIs. For m=n=1, N/N/plus and
+A=B=C=0.75*the underlying real maximum, exact X is 0.5. Pinned TRSYL
+forms the overflowing diagonal sum before guarded division, returns X=0,
+scale=1 and INFO=0, and frozen V8 incorrectly reports ASC success. The
+normalized scaled residual is one. A=B=C=4 controls return X=0.5.
+
+All probe, command, source/archive/binary hashes and raw output are external
+at `p08-sylvester-extreme-review-v4_uhob1`. Both mathematical run commands
+exit one; the initial ILP64 archive-name compile failure is retained separately.
+Root read the complete independent probe and both ABI outputs. No provider
+patch, hidden scaling, alternate driver or denominator change is authorized.
+
+The checked adapter now rejects finite diagonal coefficient sums beyond the
+scalar component range before packing or foreign entry. Query stays
+numerical-input-free. Rejection returns kNumerical/kNotRun/kUnchanged,
+preserving C, scale and scratch, with absent INFO. This closes the demonstrated
+silent-success admission bug only after its fresh tests pass. The required
+large finite solution mode remains incomplete; it is not credited as a solved
+equation. Other intermediate overflow and arbitrary nonfinite behavior remain
+separate requirements. Independent expert and array work can continue.
+
+No unavoidable local implementation blocker has been established. GCC11
+Fortran and repository-pinned Clang18 formatting/tidy tools were prepared
+externally without privileged installation. Baseline Debug/Release and the
+external reference LP64 and true-ILP64 upstream tests passed. Missing platform/provider
+verification remains a required gate, not a pass or a reason to stop
+independent work.
+
+## LAPACK-REDISTRIBUTION — pending owner/reviewer decision
+
+The [concrete review packet](redistribution-review-packet.md) is now assembled
+with complete license texts, exact hashes, proposed notice and external-only
+distribution contents. Approval remains pending; no product notice was changed.
+
+Affected work: import/distribution of upstream material and the final provider
+notice inventory, including any extra-precision dependency. ADR 0017 requires
+reviewer approval for direct source/data adaptation; the existing provenance
+review requires owner approval of new notice inventory. Program direction does
+not establish that approval. The packet identifies the concrete license paths, hashes and proposed
+redistribution contents for the requested decision.
+
+Unblocked: exact external dependency preparation, source-derived inventory,
+independent ASC implementation, local tests, native algorithms and array I/O.
+Closure: actual approval of the concrete recorded materials by the responsible
+owner/reviewer. No such approval is claimed here.
+
+## LP64-GEEQUB-SUBNORMAL — unmet mathematical-success gate
+
+The exact pinned LP64 S/D/C/Z GEEQUB route returns INFO=1 and zero computed
+row scales for a tested nonzero subnormal matrix. Direct calls outside ASC
+reproduce it; the true ILP64 route succeeds on the same fixture. The reviewed
+power-helper evaluation order explains the ABI-dependent intermediate
+overflow. Exact code/provider/runtime/source identities, preserved failing
+mathematical logs and passing fidelity tests are in
+[lu-equilibration-review.md](lu-equilibration-review.md).
+
+The adapter preserves the raw numerical failure and documented partial
+outputs, not a false singularity certificate. Fidelity/error-report tests do
+not close mathematical success. No upstream patch or new provider identity
+has been silently approved. A conforming disposition and fresh verification
+remain required for this gate. All other ordinary LU, native algorithms,
+Matrix Market and later independent family work continue.
+
+## GERFS-TINY-ESTIMATE — unmet finite-estimate mathematical gate
+
+Both exact LP64 and true ILP64 S/D/C/Z GERFS providers can return nonfinite
+FERR for the finite scalar system A=AF=B=minimum_normal/1024 and X initially
+0.75. The exact solution is one and the independently weighted estimate is
+finite, but unscaled inverse application overflows before the error weights.
+Actual real FERR is Inf; complex N is NaN and T/C is Inf. Raw INFO remains zero.
+ASC preserves raw results and marks an accuracy warning, not successful finite
+error estimation. The original failed mathematical expectations and distinct
+passing source-fidelity probes remain in
+[lu-refinement-review.md](lu-refinement-review.md). A conforming disposition
+and fresh mathematical verification are required; no provider patch is approved
+or hidden. Independent work continues.
+
+## GESVX-TINY-CONDITION — unmet unscaled expert-driver mathematical gate
+
+For the same scalar system, explicit FACT=N/F on both ABIs/all four scalars
+returns X=1 and growth=1, but RCOND=0 and INFO=n+1 although the exact reciprocal
+condition is one. Its guarded inverse-norm estimator cannot safely undo the
+intermediate scaling. FERR has the distinct nonfinite results above; guarded
+BERR remains finite. The failed mathematical probe retains24 failed expectations
+and72 printed cases per ABI. Explicit FACT=E succeeds on this fixture with
+EQUED=R, RCOND=1 and finite estimates; it is a different requested mode, never
+an implicit fallback. See [lu-driver-review.md](lu-driver-review.md).
+Faithful status/partial-output tests do not satisfy the unmet mathematics gate.
+
+## LU-INTEGER-ARITHMETIC — corrected, v5 combined verification passed
+
+The pinned S/C GETRI query calls SROUNDUP_LWORK before its query return. A
+checked integer N*64 can still round to the signed ABI limit plus one, or reach
+it during the helper's upward epsilon multiplication. D/Z directly return a
+floating LWKOPT which can round down in true ILP64. Guards must precede foreign
+entry and preserve the independently checked integer preferred capacity.
+The broader registered LU call graph also needs explicit provider-INTEGER
+vector-cursor/blocked-loop bounds, not merely ASC address/size validation.
+Pure private integer tests, not fabricated huge live arrays, are the regression
+mechanism. The correction and old-code controls are frozen and tested for both
+real ABIs in [lu-integer-review.md](lu-integer-review.md), then imported into
+v5. V4 evidence excludes them. The final v5 f021fb8 product passed full
+LP64/true ILP64 each344 and installed5 each with zero skips. The distinct
+new reflector-cursor gap below remains open; these results do not close it.
+
+## PROVIDER-WORKSPACE-CONTEXT — corrected, v5 combined verification passed
+
+The generic public workspace validator intentionally permits host/pinned-host
+storage. The explicit Serial reference provider context currently admits only
+host storage. A new helper adversarial test demonstrated that relying on the
+generic validator alone can admit pinned workspace while rejecting the same
+placement for operands. The seven existing LU/Cholesky adapters and four missing
+pivot admission sites are now corrected and imported into v5. Exact candidate
+02 passes 35/35 affected tests in Debug/Release/scoped sanitizers for both ABIs;
+old workspace and operand controls fail for both ABIs. See
+[provider-placement-review.md](provider-placement-review.md). Root retains the
+prior explicit Host/Pinned pivot predicate as well as the new context check;
+that defensive amendment passed the final v5 f021fb8 combined source run:
+LP64/true ILP64 each344 and installed5 each, zero skips. QR/helpers have
+separate placement controls. Neutral public workspace policy and unused
+zero-byte compatibility remain unchanged. Exact normalized per-mode evidence
+is separate from these completed command-level checks.
+
+## LAQGE-TINY-MATH — unmet finite scaled-output mathematical gate
+
+Both ABIs/all four scalars reproduce overflow in the pinned C[j]*R[i]*A[i,j]
+order after GEEQU on diag(minimum_normal/1024, 1): R[0]=1/minimum_normal and
+C[0]=1024 are finite, but their product overflows before multiplication by the
+tiny entry. The exact scaled diagonal should be one. The independent failing
+mathematical probe and separate passing fidelity/allocation/source-closure
+tests are retained in [lu-helpers-review.md](lu-helpers-review.md).
+ASC reports nonfinite scaled output as a numerical accuracy warning while
+preserving raw A and actual EQUED. It does not reassociate, patch the provider,
+or credit this gate as passed. Independent implementation continues.
+
+## GELSY-FIXED-ZERO-COLUMN — unmet minimum-norm/optimality gate
+
+The pinned DGELSY on actual LP64 and true ILP64 reproduces INFO=0, rank=0,
+X=[0,0] for A=[[0,1],[0,0]], B=[1,0], fixed-column flags JPVT=[1,0]
+and RCOND=1e-12. Its squared residual is one and A^H residual is nonzero;
+the independently known minimum-norm X=[0,1] has zero residual. The source
+starts its rank decision with the forced zero leading column and exits before
+considering a free nonzero column. Successful provider fidelity/ABI reports
+do not satisfy this mathematical mode gate. No flags, RCOND, routine or source
+are silently substituted. The independent mathematical gate is external
+`p06-rank-revealing-fixed-zero-01/source/optimality_probe.cc`, SHA256
+`df81908f3adf8612c0a62bdf58384c22c141a05bb46c0254bcbce58355dcc273`.
+Both builds exit zero; actual `logs/test-{lp64,ilp64}/record.json` commands
+and evidence exit one, with no CTest-count credit. The respective record hashes
+are `a2dae14fc27a53b6d4becfeb49612297864a35e0e1cb4d41c1f1017c78bd55f1`
+and `813b8ad10ee0260bc74b5fc1001ae20448814f5d80631f200cdabf441ab4b15c`.
+Root read the exact probe and confirmed its known-optimum/residual and raw
+records. Earlier bootstrap fidelity-only zero exits are separate, not
+optimality evidence. Other modes and independent required families continue;
+no full GELSY correctness is claimed.
+
+The new separate `p06-rank-revealing-fixed-zero-02` probe extends this gate to
+S/D/C/Z on both real provider ABIs, with explicit RCOND=0.0001. It is not the
+same threshold/source as the earlier D-only 1e-12 probe. Root read the complete
+new source, SHA256
+`f4b5d3e2877ad9b09d755a87c153f5a31c9a905b97e3b28a9e28b48ab2e36084`.
+All eight commands genuinely exit1: raw INFO0/rank0/X0, residual squared1,
+nonzero normal residual; independent X=[0,1] gives zero residual and minimum
+norm. Source/provider/binary identities and failed outputs remain external in
+`logs/test-{lp64,ilp64}-{s,d,c,z}/record.json`; no CTest pass credit is assigned.
+
+## REFLECTOR-ROW-CURSOR — newly identified QR/least-squares preflight gap
+
+The exact 3.12.1 LARF1F and LARFB sources pass a matrix row to strided BLAS.
+The final INTEGER cursor advance, including N*LDC+1 in COPY/AXPY/SCAL, is
+not implied by a valid ASC last-element address or checked LWORK. This affects
+already integrated reference QR and imported least-squares count checks, not
+just the new rank-revealing slice. Root confirmed the pinned GEQR2, ORG2R,
+ORM2R, LARF1F/LARFB and compact-WY call sites. Ordinary v5 full CTests do not
+close this extreme-count gate. Add source-conditioned pure integer regressions
+and explicit effective-foreign-stride guards, preserve legitimate original
+ASC-only wide strides, and rerun affected exact-source lanes. No fabricated
+large live span or integer-width typedef simulation is an acceptable test.
+
+Root has now added those guards. Integer-only tests for both actual limits
+pass, and the same independent least-squares query regression fails on the
+frozen old helper and passes on the correction. Both count test TUs pass
+strict Clang18. Full corrected-source provider/installed/sanitizer lanes
+remain required. See [reflector-cursor-review.md](reflector-cursor-review.md).
+
+## BAND-IGNORED-DIAGONAL — identified before root integration
+
+Root reviewed all fourteen frozen band code/test files and found that row-major
+factor packing copies whole complex input diagonals. Although NaN fixtures
+show no mathematical effect, this reads ignored imaginary components. Strict
+no-ignored-read semantics require real-only packing and component-wise partial
+publication. PBTF2's prior CHER and blocked PBTRF's prior HERK can normalize
+trailing diagonals beyond the failed pivot; simply retaining or clearing all
+trailing imaginary parts would violate exact raw output semantics.
+
+The exact source proof agrees between root and the isolated owner. An amended
+dependency freeze with prefix-limited imaginary publication and direct-source
+failure tests is being prepared in the new band-expert worktree. The original
+band freeze remains unchanged. Root's new public-only band consumer is not
+registered or included in v6; no band row is credited yet. This local fix does
+not block independent expert, indefinite or rank work.
+
+## GEQP3-EMPTY-EXECUTION — actual provider call required before integration
+
+Root review found that isolated rank candidate01 locally emulates the JPVT
+permutation for M=0, N>0. Its passing fidelity checks are not evidence of an
+actual GEQP3 execution. That frozen candidate remains unchanged and is not
+registered in the root coverage mapping. The approved correction executes the
+real provider with canonical foreign LDA=1 and N live caller scalar staging
+slots: zero-length SWAP calls still form addresses A(1,J). The original ASC
+stride remains in the plan key. The actual outer query returns one, whereas
+fixed-column execution needs at least N workspace elements for nested ORMQR
+validation. Preflight also checks N+1 and the nested N*32+4160 query arithmetic
+and scalar rounding before its empty quick return. N=0 alone may return
+locally. No hidden allocation or dummy out-of-bounds address is permitted.
+
+The isolated owner has implemented this correction and direct-source tests
+for all scalar types, free/mixed/all-fixed flags, actual call counters, padded
+zero-row backing, minimum-work rejection and original ASC LD=INT64_MAX.
+Fresh candidate02 verification and root review remain required. Candidate01's
+eight 16/16 diagnostic lanes are explicitly pre-correction evidence only.
+
+## GELSD-ZERO-RHS — unsafe nested argument-error termination
+
+Pinned S/D/C/Z GELSD admits NRHS=0 but enters LALSD, whose actual argument
+check rejects NRHS<1, for nonzero A with nonempty dimensions. Root read the
+independent probe and return gate and inspected the pinned DGELSD/DLALSD
+call/validation sites. All eight real scalar/ABI probes for A=diag(1,2),
+M=N=2, NRHS=0, genuine backing and actual queried workspaces fail the gate.
+The provider process exits zero via Fortran STOP after printing the LALSD
+argument4 error; it does not emit the normal-return marker. Zero process exit
+alone is not successful execution. The subprocess wrapper records exit1 and
+no CTest count. Safe zero-A/zero-size and GELSS NRHS=0 controls are distinct.
+
+Evidence is external `p06-svd-ls-source-probes-01/logs/gelsd-zero-rhs-<abi>-<s|d|c|z>`.
+Probe SHA256 is
+`c11fd7486147df8999d847cf57160b6a41f36a9c6c303c6eba38d0e3b4189d11`;
+the read-only subprocess gate is
+`764f3bd3426d651c884377f2ed3c92107cc3b8edb304a20628944be9ce2d425f`.
+Checked ASC execution must reject unsafe admission before mutation and must
+not silently substitute another routine. Safe source exceptions need explicit
+proof. The incomplete mode remains required; independent modes continue.
+
+## GELSS-WIDE-RIGHT-VECTORS — documented output mathematical gate unmet
+
+For A=[[1,0,1],[0,2,0]], B=[2,6] and actual preferred workspace, all eight
+scalar/ABI GELSS probes return INFO0, rank2 and the expected minimum-norm
+solution approximately [1,3,1]. The returned first two rows of A are not
+orthonormal: the independent row-Gram error is about3.22065, exceeding the
+scalar-derived tolerance. The source documentation promises rowwise right
+singular vectors, but wide path2a retains its LQ representation in A and
+computes the intermediate L right vectors in WORK. Root read the full probe,
+checked all eight exit1 records, and inspected those pinned source paths.
+
+The same probe source/hash above produces external
+`p06-svd-ls-source-probes-01/logs/wide-vectors-<abi>-<s|d|c|z>` failures.
+These failed output-vector gates are not relabeled as successful because the
+solution is correct. Preserve actual raw outputs and report the limitation;
+do not fabricate V^H, change workspace to force a different algorithm, patch
+the provider or remove this required output mode from the full scope.
+
+## PBCON-LOWER-COMPLEX-SCALED — condition-estimate mathematical gate
+
+Root read the full isolated condition review and actual direct probe, checked
+both ABI outputs and the exact CLATBS/ZLATBS versus real source branches.
+For L=t*[[1,0],[1,1]], A=t^2*[[1,1],[1,2]], the inverse is
+t^-2*[[2,-1],[-1,1]]; the exact reciprocal one-norm condition is1/9.
+With C t=2^-60 or Z t=2^-510, finite positive ANORM and nonzero factors,
+lower CPBCON/ZPBCON return0.25 with INFO0 in both actual ABIs. Upper, real
+and unscaled controls return approximately1/9. Complex lower LATBS's manual
+T/C branch omits a dot product of length one (`JLEN.GT.1`); the real branch
+uses `JLEN.GT.0`. No triangle substitution or provider patch is authorized.
+
+Direct source `p05-band-expert-agxp4Sxi/condition-scaled-probe-01.cc` SHA256
+`0fe5442277cddb940d23fba4b6e4b1520b88b4dcf129178db49d01c5e027e8d6`;
+both direct ABI run logs SHA256
+`a184be5dee144396aa981077ad5b6c44d0a6ad2753f7942e224f36e908b54be5`.
+Isolated condition candidate01 preserves real failing required math tests:
+each ABI x Debug/Release/scoped-ASan selection17 executed,15 pass,2 fail,
+zero skips, CTest8. Source archive
+`fe952d168cbd6ef4a503fdb39cc7e83f4c9b1594c06b3967dca0e8e7080e95d0`.
+Root has not yet imported/reviewed all twelve candidate implementation files;
+this is source-gate review, not integration or a green suite. Independent
+PBRFS/PBSVX work continues. Full required mode closure needs an explicitly
+approved disposition and passing unchanged mathematical tests.
+
+## GELSD-WIDE-MINIMUM — nested workspace argument termination
+
+Root read the complete actual `minimum_probe.cc`, all sixteen ABI/scalar
+minimum/safe command outputs and pinned SGELSD branch/offset calculations.
+For M=1,N=1000,NRHS=1, real source MINWRK=739 passes outer validation
+but falls through to full bidiagonalization with insufficient GEBRD workspace.
+All S/D x both-ABI minimum subprocess gates fail: GEBRD argument10 error,
+Fortran process exit0, absent normal-return marker. Actual preferred1002
+selects a safe branch and all four scalar types x both ABIs return the known
+minimum-norm solution0.002; complex source minimum already equals1002.
+
+External `p06-svd-ls-source-probes-02/source/minimum_probe.cc` SHA256
+`9312992958e7cf342038ecb8de25e07c5b040eebf1124cab79f9a3e9df35b77a`
+includes the frozen source01 direct-call helper. The checked minimum must
+cover either fallback3*M+N or the complete source path2a admission threshold,
+without changing the actual preferred query or silently replacing the driver.
+The raw source minimum and safe ASC minimum remain distinct evidence.
+
+## GELSD-SINGLE-TREE — oversized bottom singular subproblem
+
+Both actual SLASDT ABIs at N=212992,SMLSIZ=25 return LVL13,ND8191 and
+largest bottom rows26, while DLASDT controls return LVL14 and largest13.
+Root read the entire direct Fortran tree probe and exhaustive proof, actual
+logs and pinned LASDT/LALSD/LASDA slices. Single-REAL logarithm rounding
+produces too few levels. SLALSD/CLALSD reserve U with25 columns and VT
+with26; SLASDA's bottom SLASET/LASDQ calls need26 and27 respectively,
+crossing simultaneously live workspace slices. This is an actual tree-storage
+gate and source-derived driver safety finding, not a claimed full-driver
+residual or sanitizer failure.
+
+External `p06-svd-ls-levels-probe-01/source/tree_probe.f90` SHA256
+`2028475121d5545424e3e1ffeead1c4d5a6a9577f69cc913c07e82ddd7a66d11`.
+The separate proof evaluates every212966 possible nontrivial subproblem
+26..212991 using the exact source single-REAL formula, and238 actual pinned
+SLASDT calls around all fourteen relevant transitions; both ABI proofs pass
+with zero failures and retain the first unsafe boundary. This supports an
+execution-only conservative S/C GELSD bound for nonzero A, not D/Z or
+GELSS. Query and proven all-zero-A/empty source quick returns remain distinct.
+Input-dependent splitting means checking only the full size's logarithm is
+insufficient. Larger required sizes remain unsupported/incomplete pending
+approved provider disposition; there is no silent alternate algorithm.
+
+## GELSD-NONFINITE — actual source termination, not a normal return
+
+Root read the complete nonfinite probe, its previously reviewed direct-call
+dependency and all 64 raw outcomes in `p06-svd-ls-nonfinite-probe-01`.
+For a genuinely backed 3x2 system with one NaN or Inf entry in A, all four
+GELSD scalars in both ABIs terminate through LASCL argument4 and Fortran STOP:
+16 subprocess gates exit1 despite the foreign process exiting0. The other
+48 GELSS/GELSD A/B nonfinite probes return, but that does not establish
+mathematical success: even INFO0 may accompany NaN singular values or X.
+Probe SHA256
+`5a568b7dc62be66ffb7635740209b177e258989faa8216afe40cc240470078d5`.
+The candidate's meaningful-input admission must be checked before mutation;
+output-only B tail/S and proven zero/empty quick returns remain distinct.
+Root full candidate implementation review and integration are still pending.
+
+## PBRFS-TINY-ESTIMATE and PBSVX-TINY — required numerical gates unmet
+
+Root read both complete direct probes and their two actual-ABI logs, plus
+the pinned DPBRFS weighted inverse-estimate and DLAQSB/ZLAQHB evaluation
+branches. With n=1, kd=0, t=2^-70 for S/C or 2^-520 for D/Z,
+A=B=t^2, AF=t and X=1, PBRFS returns INFO0 and X1 but FERR=Inf.
+The SAFE1/SAFE2 guarded BERR is finite and near one, not required to be
+O(epsilon) on this subnormal denominator. A finite weighted mathematical
+estimate remains possible; fidelity to the raw Inf is not its verification.
+
+PBSVX FACT=N/F on the same scalar system returns X1, RCOND0, FERR=Inf and
+INFO=n+1, although the exact scale-invariant reciprocal condition is one.
+FACT=E produces finite S=1/t but the source's left-associated S*S*A
+overflows its intermediate product: exact scaled A is one, actual A/AF are
+Inf, X is zero, FERR/BERR are NaN, EQUED=Y and INFO=n+1. All four scalars
+and both actual ABIs reproduce these results. No reassociation, hidden
+equilibration fallback, source patch or weakened mathematical test is approved.
+
+External `p05-band-expert-agxp4Sxi/refinement-tiny-probe-01.cc` SHA256
+`4b318c50e8df94b0f56c56909c87c1d889c29a495d22c3020050028ee8f018e5`;
+each ABI run log SHA256
+`9778a0b3d3412841030dba290f615b5ca3bdf17aafa9ecec68dff3a9cc2409f4`.
+`expert-tiny-probe-01.cc` SHA256
+`0220f286e827b1580f9ded14c14be329f7cb6289e6121adc5b25be99ce8d9901`;
+each ABI run log SHA256
+`11916c0d7eb17b8902cf691005a1ba6c37c8e0bc50409e1ea0366da1e0458636`.
+These are direct source diagnostics, not claims that the unregistered band
+expert implementation has passed its still-failing required math suites.
+
+## STANDARD-SVD-NONFINITE — bounded timeout and actual STOP evidence
+
+Root reviewed all four GESDD NaN max-norm return branches, the complete
+32x32 bidiagonal probe and return gate, and all 64 outcomes in
+`p07-svd-nonfinite-02`. All eight GESVD full-vector Inf subprocesses exceed
+the explicit ten-second limit; that observation is not proof of infinite
+execution. All eight GESDD full-vector Inf subprocesses print LASCL argument4
+and terminate through Fortran STOP without a normal-return marker. Both
+classes retain exit1 gate records. The other 48 processes return; INFO0 with
+NaN singular values is not numerical success.
+
+Source probe SHA256
+`4c756eb9a126a1cb2652d45c4bc17192a15541fbec882b45f1a000ab28b818c5`;
+return gate SHA256
+`9c537b2868f1e29079698d6342c5be664f7e04a419e5b5807d1461640227238e`.
+All four exact GESDD sources have an explicit NaN-only INFO=-4 return before
+numerical mutation; preserve that separate source behavior as recorded in
+D021. Meaningful Inf admission is rejected before numerical mutation;
+GESVD also rejects NaNs. Whether complex finite components can overflow the
+source magnitude calculation is an additional requested probe, not yet a
+confirmed finding or closed finite-input gate. Independent finite-mode work
+continues; no full P07 or arbitrary-input safety claim is made.
+
+Follow-up `p07-svd-norm-01` is now root-reviewed: complete probe SHA256
+`1b333b259a544372a4cd45a13e7ed75ac29c53c4f2feaaa6559e7a20be68b4de`
+and all 48 actual outcomes. All 16 C/Z x driver x N/A x ABI cases with
+A(1,1)=(max,max) have finite components but infinite modulus and return
+INFO0 with NaN singular values. This is a representational/output failure,
+not non-return: its largest singular magnitude exceeds the output type range.
+Half-max controls return finite S but are not independent accuracy proofs.
+Four complex GESVD values-only imaginary-NaN cases additionally terminate
+via LASCL STOP; GESDD imaginary-NaN returns the actual documented -4.
+Root approves a checked pre-entry numerical rejection of finite complex
+entries with nonfinite modulus, with unchanged numerical destinations and
+absent INFO, bound to the audited runtime. No hidden rescaling or substitute
+driver is introduced. Full finite-input numerical verification remains required.
+
+
+## Native INFO output validation audit
+
+Actual GT24 fault controls demonstrated false successful reports when the
+pinned native call wrote INFO only into a wrapper-local destination. The
+reviewed correction seeds all24 INFO locals and both pivot producers with
+native MIN; all added checks pass while four mathematical failures remain.
+The independent current public consumer04 passes both actual ABIs.
+
+GB8 already prepares full-width invalid native INFO/pivots. Root's subsequent
+read-only `provider-info-initialization-audit-01/audit.json` identifies103
+zero-initialized INFO locals across22 integrated translation units for further
+per-family review; these counts identify source candidates, not executed proof
+that every listed routine has a defect. Band20's five corresponding call
+sites are now undergoing bounded independent reproduction/correction before
+import. No existing source is reset, and prior full numerical suites do not
+establish this missing error-contract mode. Other implementation continues.
+
+## COMPLEX-LATBS-SINGLE-TERM — required mathematical gate unmet
+
+Pinned CLATBS/ZLATBS lower slow transpose/conjugate paths use JLEN>1 and
+omit a one-element dot product. Both ABI finite equation tests return wrong
+X with INFO=0 and SCALE=1: for A=t*[[1,0],[1+i,1]], Xtrue=[1,1], the returned
+X is [2+i,1] (transpose) or [2-i,1] (conjugate), t=min-normal. Sixteen tiny
+cases per ABI fail, while real and unit-scale controls pass. Exact shared
+runtime/link-map evidence and all source identities are in the
+[band estimator source review](triangular-band-expert-admission-review.md).
+No provider patch, fallback, rescaling or tolerance waiver is introduced.
+This remains a required LATBS mathematical gap and known TBCON dependency
+defect; independent implementation continues.
+
+## Historical subset checkpoint — 5cc3a935
+
+Candidate03 PR/push CI each pass 19/19 jobs and both CodeQL runs pass.
+All 18 expanded lint findings and the original 40 native alias slots have
+closing executed evidence. Their earlier open labels remain historical.
+See [the checkpoint](stabilization-review.md) for source/configuration scope.
+
+The 20 native routes still need normalized row evidence and ledger review. Array-I/O needs
+maintained independent binary readback and extended load checks, precision
+acceptance review, primary read/write plus cleanup errors, and portable
+shared/Windows/macOS cleanup fault injection. These are finite technical
+acceptance tasks, not new numerical families or an owner-approval dependency.
+
+The exact redistribution packet remains pending with unchanged bound materials.
+The 130 absent required XBLAS definitions and 78 historical mathematical failures
+remain visible in their original families. No denominator or tolerance changed.
+
+## Current native/I/O technical checkpoint
+
+W1–W4 are closed at the exact candidate and evidence in
+[stabilization-review.md](stabilization-review.md). Existing validator accepts
+20 native rows; the finite 20-group I/O matrix has no remaining technical cell.
+The new Windows shared installed-consumer DLL-path failure is closed in both
+fresh PR/push platform runs. Historical failures remain retained.
+
+Full Reference 2,113 contracts remain incomplete: 350 partial / 1,763 not started,
+130 required XBLAS definitions absent and 78 historical mathematical failures.
+The amended external-provider packet 380a8792 still needs an explicit owner
+decision; no proposed notice was applied. These are separate from subset
+technical readiness. The next unblocked task is retained PPSVX candidate19
+active-buffer/workspace boundary acceptance, not a new architecture phase.
+
+## PACKED-DRIVER-CONTAINMENT-DEFERRED — user execution constraint
+
+The six SPSV/HPSV drivers remain unimplemented. Their ordinary native
+prerequisites pass 1,944 cases per actual integer ABI, but this does not establish
+endpoint containment. The [packed producer review](indefinite-packed-review.md)
+records an observed finite endpoint defect in SPTRF/HPTRF. Source inspection
+shows that the whole drivers enter TRS before ASC can validate the factorization
+outputs. Possible invalid accesses or provider termination in that continuation
+are an unresolved inference, not a newly reproduced driver failure.
+
+The latest user instruction defers operations likely to cause cybersecurity
+requests or interrupt execution. No deliberate whole-driver endpoint probe was
+run. That experiment and dependent driver admission are deferred, alongside
+security-sensitive remote operations and new remote delivery. Local independent
+implementation continues with P09 triangular precision conversion. No existing
+test is disabled, failure waived, provider changed, or callable credit added.
+Exact prerequisite paths and the instruction are retained in
+`completion-execution-01/user-safe-continuation-01.json` under the existing
+continuation evidence root.
+
+## LAS2-SINGLE-INFINITY — failed native prerequisite, deferred
+
+Both pinned SLAS2/DLAS2 definitions document correct behavior with one infinite
+matrix element. Bounded native probes in LP64 and global ILP64 each execute
+16,000 cases: all 11,664 finite mathematical cases pass, while 1,288 of 1,944
+single-infinity cases fail. Another 2,392 NaN/multiple-infinity cases are observed
+without numerical acceptance credit. All argument and output guards are intact.
+For example, F=1, G=0, H=+infinity should have singular values 1 and +infinity;
+the provider returns NaN/NaN through an infinity/infinity source expression.
+
+The exact sources, GNU emissions, unchanged oracle and nonzero executions are
+retained in `completion-execution-01/scalar-svd-prerequisite-limitation-01.json`
+and its referenced records. No ASC route is registered. Closing the documented
+numerical gate requires an authorized provider correction or contract/profile
+decision. Under the user's instruction to record and skip unresolved trouble,
+this leaf is deferred while independent LACGV work proceeds. No provider change,
+fallback, tolerance waiver, disabled test or numerical promotion is introduced.
+
+## LARTG-COMPLEX-EXTREME-R — failed finite prerequisite, deferred
+
+C/Z LARTG remain unimplemented after bounded native extreme-range checks fail
+496 dimensional-result comparisons in each actual ABI. The original 16,456-case
+S/D/C/Z grid and expanded 22,984-case diagnostic retain the same failures, zero
+guard failures and no real-scalar failures. Complex outputs include infinite R
+components near maximum finite magnitude. For some norms the exact excess above
+maximum is too small for long double to resolve; the failed gate concerns finite
+rounded-output accuracy, not exact mathematical representability. Neither the
+input classes nor error tolerances were removed or relaxed.
+
+The [rotation review](rotation-review.md) records the source distinction and
+continued checked S/D work. Exact source, emissions, binaries, provider/runtime
+identities and failed commands are retained in external
+`completion-execution-01/lartg-prerequisite-disposition-01.json`. C/Z need a
+separate numerical/provider disposition. No provider patch, fallback, waiver,
+complex API credit or global verification is inferred from the real slice.
+
+## LARTGS-FINITE-RANGE — failed finite prerequisite, deferred
+
+S/D LARTGS remain unimplemented. Each actual ABI passes 392 ordinary cases, but
+the 25,992-case finite extreme grid retains 4,144 failed comparisons, including
+1,728 nonfinite coefficient tuples, with zero guard or input-mutation failures.
+The decisive small reproducer uses finite X=Y=1 and SIGMA equal to the largest
+finite scalar: both S/D return a NaN cosine and zero sine. A separate X=Y=0,
+SIGMA equal to the minimum normal scalar reproducer returns the zero-vector
+PI/2 fallback after the squared shift underflows. All four targeted comparisons
+fail in each ABI; their original nonzero results remain retained.
+
+The introductory source equation writes X squared minus SIGMA; the executable
+code and adjacent comment use SIGMA squared. The probe uses the latter and
+respects the explicit tiny-X approximation. The aggregate comparison count is
+not a claim of 4,144 independently established provider defects. No input
+domain or tolerance was narrowed to obtain a pass. Exact sources, emitted and
+installed signatures, binaries, guard observations and command results are
+bound in external `completion-execution-01/lartgs-prerequisite-disposition-01.json`.
+A numerical/provider or explicit domain decision remains necessary. Independent
+LABAD work continues without an LARTGS API, callable credit or verification.
+
+## SCALAR-EIGEN-FINITE-RANGE — source range limit, deferred
+
+S/D LAE2 and S/D/C/Z LAEV2 remain unimplemented after bounded, guarded native
+prerequisites in both actual integer ABIs. For the finite diagonal matrix
+`diag(max, -max)`, all six routes return infinite roots although the exact
+roots are `max` and `-max`. The pinned sources form unscaled diagonal sums and
+differences; complex LAEV2 enters the matching real operation. All six sources
+explicitly allow overflow within a factor of five of the finite limit. This is
+a failed strict finite-root comparison within that documented caveat, rather
+than a contradiction of the upstream numerical guarantee.
+
+Each ABI passes 250 ordinary LAE2 cases. Its 65,536-case finite grid retains
+21,504 failed comparisons and 21,632 nonfinite output tuples. A classification
+replay keeps every input and comparison unchanged: every failure lies within
+the source's overflow region and involves nonfinite output; none occurs with
+both outputs finite. Two of four targeted LAE2 cases fail; the scaled diagonal
+controls pass. LAEV2 separately passes eight ordinary/scaled controls, including
+non-real complex off-diagonals, and fails four targeted extreme cases per ABI.
+Those are targeted LAEV2 checks, not a full-grid claim. No guard or input
+representation failure occurs.
+
+The exact sources, emitted signatures, archive/header identities, original
+nonzero commands, replay and targeted observations are retained in external
+`completion-execution-01/scalar-eigen-prerequisite-disposition-01.json`.
+Its remediation design SCALAR-EIGEN-SCALED-01 proposes a separately admitted
+power-of-two-scaled symmetric/Hermitian analytic eigensolver with compensated
+determinant evaluation. That alternative has no implementation or approval;
+it would retain the original provider and all unchanged failed requirements.
+No hidden scaling adapter, provider patch, reduced domain, tolerance waiver or
+callable/verification credit is introduced. The user authorized recording and
+skipping unresolved trouble; independent LASSQ work continues.
+
+## LASSQ-EXISTING-PAIR-RANGE — failed accumulator prerequisite, deferred
+
+S/D/C/Z LASSQ remain unimplemented. Both actual ABIs pass all 2,560 finite
+vector cases starting from a zero represented sum, including positive,
+negative and zero strides and empty vectors. The 2,016-case existing-pair grid
+retains 114 failed comparisons per ABI: 96 nonfinite outputs and 18 finite
+representation errors, including underflow losses. Eight targeted cases per
+ABI have four failures; all ordinary controls and every guard check pass.
+
+The decisive input is `N=1, INCX=1, X=0, SCALE=SUMSQ=max`. Adding zero leaves
+the input pair a valid exact finite representation. All four routines instead
+return an infinite SUMSQ after converting the seed into a fixed-scale
+accumulator. The unscaled norm exceeds the scalar's finite maximum; the failed
+requirement concerns the exposed scaled representation, which can remain
+finite. The oracle compares widened squared energy and uses the scaled pair's
+product quantum, rather than asserting a representable unscaled norm.
+
+All four exact sources, LA_CONSTANTS/LA_XISNAN, actual compiled module inputs,
+GNU11 emitted/installed declarations, provider identities and original nonzero
+commands are retained in external
+`completion-execution-01/lassq-prerequisite-disposition-01.json`. Input-pointee
+const is the only signature normalization. Empty calls normalize zero
+accumulators before returning; integer admission must include the final loop
+index update. No malformed native length, stride or backing store was used.
+
+Remediation design LASSQ-PAIR-01 proposes a separately admitted accumulator with
+exponent/mantissa decomposition and a dynamic output factorization. There is
+no implemented or approved substitute for the full seeded contract. The
+original failures remain open; no reset-only domain, tolerance waiver, hidden
+fallback or provider change is introduced. Independent ILALC/ILALR work proceeds
+under the user's instruction to record and skip unresolved trouble.
