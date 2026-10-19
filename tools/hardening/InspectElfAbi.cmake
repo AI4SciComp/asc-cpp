@@ -137,8 +137,25 @@ foreach(_library IN LISTS _libraries)
     _soname_rows
     "${_dynamic_output}"
   )
+  if(DEFINED ASC_CPP_HARDENING_EXPECTED_SOVERSION)
+    list(LENGTH _soname_rows _soname_count)
+    if(NOT _soname_count EQUAL 1)
+      message(FATAL_ERROR "Expected exactly one SONAME for '${_library_name}'.")
+    endif()
+    string(REGEX REPLACE "\\.so(\\..*)?$"
+      ".so.${ASC_CPP_HARDENING_EXPECTED_SOVERSION}"
+      _expected_soname "${_library_name}"
+    )
+  endif()
   foreach(_row IN LISTS _soname_rows)
     string(REGEX REPLACE ".*\\[([^]]+)\\].*" "\\1" _soname "${_row}")
+    if(DEFINED ASC_CPP_HARDENING_EXPECTED_SOVERSION
+       AND NOT _soname STREQUAL _expected_soname)
+      message(FATAL_ERROR
+        "SONAME mismatch for '${_library_name}': expected "
+        "'${_expected_soname}', observed '${_soname}'."
+      )
+    endif()
     string(APPEND _report "soname|${_library_name}|${_soname}\n")
   endforeach()
   string(
