@@ -1,6 +1,6 @@
 # Performance methodology and envelope
 
-Status: `0.9.0` measurement contract
+Status: `1.0.0` measurement contract
 
 Date: 2026-08-02
 

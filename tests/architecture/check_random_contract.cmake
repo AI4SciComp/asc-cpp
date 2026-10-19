@@ -73,7 +73,7 @@ _require_document_text(
   "GenerateSparseStructure"
 )
 _require_document_text(
-  "release/release-notes-v0.9.0.md"
+  "release/release-notes-v1.0.0.md"
   "random generation, storage adapters"
 )
 _require_document_text(

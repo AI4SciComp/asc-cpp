@@ -11,7 +11,7 @@ on:
       tag:
         description: Prospective version tag to validate without publishing
         required: true
-        default: v0.9.0
+        default: v1.0.0
         type: string
 
 permissions:
@@ -57,7 +57,7 @@ jobs:
             if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
               tag="${{ inputs.tag }}"
             else
-              tag="v0.9.0"
+              tag="v1.0.0"
             fi
             test "$(git -C asc-cpp rev-parse HEAD)" = "${{ github.sha }}"
             python3 asc-cpp/tools/release/verify_release_state.py \
@@ -80,21 +80,21 @@ jobs:
       - name: Build deterministic source and installed archives
         shell: bash
         env:
-          # 2026-08-03T00:00:00+08:00, fixed so installed archives do not
+          # 2026-10-19T00:00:00+08:00, fixed so installed archives do not
           # depend on the wall-clock time of the eventual release commit.
-          RELEASE_ARCHIVE_EPOCH: "1785686400"
+          RELEASE_ARCHIVE_EPOCH: "1792339200"
         run: |
           assets="$RUNNER_TEMP/release-assets"
           staging="$RUNNER_TEMP/release-staging"
           mkdir "$assets" "$staging"
 
-          git -C asc-cpp archive --format=tar --prefix=ASCCpp-0.9.0/ HEAD | \
-            gzip -n > "$assets/ASCCpp-0.9.0-source.tar.gz"
+          git -C asc-cpp archive --format=tar --prefix=ASCCpp-1.0.0/ HEAD | \
+            gzip -n > "$assets/ASCCpp-1.0.0-source.tar.gz"
 
           for linkage in static shared; do
             if [[ "$linkage" == "shared" ]]; then shared=ON; else shared=OFF; fi
             build="$RUNNER_TEMP/release-$linkage"
-            root="ASCCpp-0.9.0-linux-x86_64-$linkage"
+            root="ASCCpp-1.0.0-linux-x86_64-$linkage"
             prefix="$staging/$root"
             cmake -S asc-cpp -B "$build" \
               -DCMAKE_BUILD_TYPE=Release \
@@ -127,7 +127,7 @@ jobs:
             -DASC_CPP_ENABLE_CUDA=OFF \
             -DASC_CPP_INSTALL=OFF
           cmake --build "$docs_build" --target asc_cpp_docs_check --parallel 2
-          docs_root="$staging/ASCCpp-0.9.0-docs"
+          docs_root="$staging/ASCCpp-1.0.0-docs"
           mkdir "$docs_root"
           cp -a "$docs_build/docs/doxygen/html" "$docs_root/html"
           cp -a "$docs_build/docs/doxygen/xml" "$docs_root/xml"
@@ -137,16 +137,16 @@ jobs:
           tar --sort=name --mtime="@$RELEASE_ARCHIVE_EPOCH" \
             --owner=0 --group=0 --numeric-owner \
             --pax-option=delete=atime,delete=ctime \
-            -C "$staging" -cf - ASCCpp-0.9.0-docs | \
-            gzip -n > "$assets/ASCCpp-0.9.0-docs.tar.gz"
+            -C "$staging" -cf - ASCCpp-1.0.0-docs | \
+            gzip -n > "$assets/ASCCpp-1.0.0-docs.tar.gz"
           cp "$docs_build/docs/doxygen/ASCCpp.tag" \
-            "$assets/ASCCpp-0.9.0.tag"
+            "$assets/ASCCpp-1.0.0.tag"
       - name: Generate pinned SPDX SBOM
         uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610
         with:
           path: asc-cpp
           format: spdx-json
-          output-file: ${{ runner.temp }}/release-assets/ASCCpp-0.9.0.spdx.json
+          output-file: ${{ runner.temp }}/release-assets/ASCCpp-1.0.0.spdx.json
           syft-version: v1.50.0
           dependency-snapshot: "false"
           upload-artifact: "false"
@@ -156,17 +156,17 @@ jobs:
         run: |
           assets="$RUNNER_TEMP/release-assets"
           python3 asc-cpp/tools/release/check_archive.py \
-            "$assets/ASCCpp-0.9.0-source.tar.gz" --kind source \
+            "$assets/ASCCpp-1.0.0-source.tar.gz" --kind source \
             --forbid-bytes "$GITHUB_WORKSPACE" \
             --forbid-bytes "$RUNNER_TEMP"
           for linkage in static shared; do
             python3 asc-cpp/tools/release/check_archive.py \
-              "$assets/ASCCpp-0.9.0-linux-x86_64-$linkage.tar.gz" \
+              "$assets/ASCCpp-1.0.0-linux-x86_64-$linkage.tar.gz" \
               --kind install \
               --forbid-bytes "$GITHUB_WORKSPACE" \
               --forbid-bytes "$RUNNER_TEMP"
           done
-          (cd "$assets" && sha256sum ASCCpp-0.9.0* > SHA256SUMS)
+          (cd "$assets" && sha256sum ASCCpp-1.0.0* > SHA256SUMS)
           (cd "$assets" && sha256sum --check --strict SHA256SUMS)
       - name: Attest release artifacts
         if: github.ref_type == 'tag'
@@ -193,8 +193,8 @@ jobs:
           gh release create "$RELEASE_TAG" "$RUNNER_TEMP"/release-assets/* \
             --repo "$GITHUB_REPOSITORY" \
             --verify-tag --draft --prerelease \
-            --title "ASCCpp 0.9.0" \
-            --notes-file asc-cpp/release/release-notes-v0.9.0.md
+            --title "ASCCpp 1.0.0" \
+            --notes-file asc-cpp/release/release-notes-v1.0.0.md
       - name: Preserve failure evidence
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
@@ -240,22 +240,22 @@ jobs:
           assets="$RUNNER_TEMP/downloaded-assets"
           (cd "$assets" && sha256sum --check --strict SHA256SUMS)
           python3 verifier/tools/release/check_archive.py \
-            "$assets/ASCCpp-0.9.0-source.tar.gz" --kind source
+            "$assets/ASCCpp-1.0.0-source.tar.gz" --kind source
           for linkage in static shared; do
             python3 verifier/tools/release/check_archive.py \
-              "$assets/ASCCpp-0.9.0-linux-x86_64-$linkage.tar.gz" \
+              "$assets/ASCCpp-1.0.0-linux-x86_64-$linkage.tar.gz" \
               --kind install
           done
 
           mkdir "$RUNNER_TEMP/source" "$RUNNER_TEMP/install"
-          tar -xzf "$assets/ASCCpp-0.9.0-source.tar.gz" \
+          tar -xzf "$assets/ASCCpp-1.0.0-source.tar.gz" \
             -C "$RUNNER_TEMP/source"
-          source_root="$RUNNER_TEMP/source/ASCCpp-0.9.0"
+          source_root="$RUNNER_TEMP/source/ASCCpp-1.0.0"
           for linkage in static shared; do
             tar -xzf \
-              "$assets/ASCCpp-0.9.0-linux-x86_64-$linkage.tar.gz" \
+              "$assets/ASCCpp-1.0.0-linux-x86_64-$linkage.tar.gz" \
               -C "$RUNNER_TEMP/install"
-            install_root="$RUNNER_TEMP/install/ASCCpp-0.9.0-linux-x86_64-$linkage"
+            install_root="$RUNNER_TEMP/install/ASCCpp-1.0.0-linux-x86_64-$linkage"
             build="$RUNNER_TEMP/downloaded-example-build-$linkage"
             cmake -S "$source_root/examples" -B "$build" \
               -DASCCpp_DIR="$install_root/lib/cmake/ASCCpp" \

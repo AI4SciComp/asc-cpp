@@ -5,6 +5,24 @@ completion and release publication require separate approval.
 
 ## Unreleased
 
+## [1.0.0] - 2026-10-19
+
+### Changed
+
+- Promoted the six-module C++20 reference package to 1.0.0, retaining public
+  signatures, numerical algorithms, Random sequence versions, and CPU/CUDA
+  isolation. CUDA remains experimental.
+- Updated package consumers, release contracts/generators, and publication
+  workflows together. Libraries use VERSION 1.0.0 and SOVERSION 1.0;
+  SameMinorVersion package matching remains in effect. Rebuild from 0.9.x.
+
+### Fixed
+
+- Fixed GCC 15 warnings-as-errors for intentional CUDA context self-move and
+  fixed-rank Sparse shape copying.
+- Restricted CUDA BLAS test readbacks to initialized output storage while
+  retaining numerical and validation assertions.
+
 ## [0.9.0] - 2026-08-03
 
 ### Added

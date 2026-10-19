@@ -22,19 +22,19 @@ endfunction()
 if(ENABLE_CUDA)
   set(CMAKE_DISABLE_FIND_PACKAGE_CUDAToolkit TRUE)
   find_package(
-    ASCCpp 0.9 CONFIG REQUIRED
+    ASCCpp 1.0 CONFIG REQUIRED
     COMPONENTS core
     OPTIONAL_COMPONENTS core_cuda
   )
   unset(CMAKE_DISABLE_FIND_PACKAGE_CUDAToolkit)
   unset(CUDAToolkit_FOUND)
 else()
-  find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core)
+  find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS core)
 endif()
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0"
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0"
    OR NOT ASCCpp_core_FOUND
    OR NOT TARGET ASC::core)
-  message(FATAL_ERROR "The first lookup did not import ASCCpp 0.9.0 Core.")
+  message(FATAL_ERROR "The first lookup did not import ASCCpp 1.0.0 Core.")
 endif()
 if(ENABLE_CUDA AND ASCCpp_core_cuda_FOUND)
   message(FATAL_ERROR
@@ -58,7 +58,7 @@ foreach(_unexpected IN ITEMS
 endforeach()
 
 if(ENABLE_CUDA)
-  find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense_cuda)
+  find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense_cuda)
   set(_expected_targets
     ASC::core
     ASC::expression
@@ -69,7 +69,7 @@ if(ENABLE_CUDA)
     CUDA::cublas
   )
 else()
-  find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense)
+  find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense)
   set(_expected_targets ASC::core ASC::expression ASC::dense)
 endif()
 foreach(_target IN LISTS _expected_targets)
@@ -124,7 +124,7 @@ if(ENABLE_CUDA)
   endif()
 endif()
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS utilities)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS utilities)
 if(NOT ASCCpp_utilities_FOUND OR NOT TARGET ASC::utilities)
   message(FATAL_ERROR "The third lookup did not import Utilities.")
 endif()

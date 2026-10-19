@@ -2,16 +2,16 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppRandomDenseConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_dense)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random_dense)
 
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0"
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0"
    OR NOT ASCCpp_random_dense_FOUND
    OR NOT ASCCpp_random_FOUND
    OR NOT ASCCpp_dense_FOUND
    OR NOT ASCCpp_expression_FOUND
    OR NOT ASCCpp_core_FOUND)
   message(FATAL_ERROR
-    "Expected ASCCpp 0.9.0 random_dense with its exact closure."
+    "Expected ASCCpp 1.0.0 random_dense with its exact closure."
   )
 endif()
 foreach(_required IN ITEMS core expression random dense random_dense)

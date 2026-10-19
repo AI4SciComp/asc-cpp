@@ -84,7 +84,7 @@ cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8AscXdeTrial LANGUAGES CXX)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY FALSE)
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense)
 
 get_property(_imported DIRECTORY PROPERTY IMPORTED_TARGETS)
 set(_actual_asc_targets)

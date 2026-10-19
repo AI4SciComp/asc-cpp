@@ -3,9 +3,9 @@
 
 /**
  * @file
- * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ * @brief Public CUDA provider declarations for ASCCpp 1.0.0.
  *
- * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Generated public contract documentation baseline for ASCCpp 1.0.0.
  * Every declaration below is governed by the module, ownership, failure,
  * memory-placement, numerical, concurrency, and package contracts linked
  * from the generated API reference.
@@ -170,7 +170,7 @@ Result<OperandDescriptor> DescribeOperand(const Operand& operand) {
 /**
  * @brief Owns experimental cuBLAS state bound to an execution context.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -180,7 +180,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
   /**
    * @brief Validates inputs and creates the requested CUDA provider object.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -196,7 +196,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
    * @brief Constructs a DenseCudaContext with the documented ownership and
    * validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -205,7 +205,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -218,7 +218,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
    * @brief Constructs a DenseCudaContext with the documented ownership and
    * validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -229,7 +229,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -243,7 +243,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
    * @brief Releases owned resources after required completion/lifetime
    * conditions.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -254,7 +254,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
    * @brief Performs the public execution_context operation defined by the CUDA
    * provider contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -271,7 +271,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
    * @brief Performs the public Access operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -291,7 +291,7 @@ class ASC_DENSE_CUDA_EXPORT DenseCudaContext {
  * @brief Enqueues the experimental CUDA Evaluate operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -421,7 +421,7 @@ Result<CompletionEvent> CudaEvaluate(DenseCudaContext& context,
  * @brief Defines the public MatrixOperation type used by this CUDA provider
  * contract.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -432,7 +432,7 @@ using MatrixOperation = DenseBlasTranspose;
 /**
  * @brief Enqueues the experimental CUDA Rotg operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -452,7 +452,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
 /**
  * @brief Enqueues the experimental CUDA Rotg operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -472,7 +472,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
 /**
  * @brief Enqueues the experimental CUDA Rotg operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -492,7 +492,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
 /**
  * @brief Enqueues the experimental CUDA Rotg operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -513,7 +513,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotg(
 /**
  * @brief Enqueues the experimental CUDA Rotmg operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -534,7 +534,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotmg(
 /**
  * @brief Enqueues the experimental CUDA Rotmg operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -557,7 +557,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotmg(
 /**
  * @brief Enqueues the experimental CUDA Rot operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -576,7 +576,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
 /**
  * @brief Enqueues the experimental CUDA Rot operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -595,7 +595,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
 /**
  * @brief Enqueues the experimental CUDA Rot operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -614,7 +614,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
 /**
  * @brief Enqueues the experimental CUDA Rot operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -634,7 +634,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRot(
 /**
  * @brief Enqueues the experimental CUDA Rotm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -652,7 +652,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotm(
 /**
  * @brief Enqueues the experimental CUDA Rotm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -672,7 +672,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaRotm(
 /**
  * @brief Enqueues the experimental CUDA Swap operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -689,7 +689,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
 /**
  * @brief Enqueues the experimental CUDA Swap operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -706,7 +706,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
 /**
  * @brief Enqueues the experimental CUDA Swap operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -723,7 +723,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
 /**
  * @brief Enqueues the experimental CUDA Swap operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -741,7 +741,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSwap(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -759,7 +759,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -777,7 +777,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -795,7 +795,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -813,7 +813,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -831,7 +831,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -850,7 +850,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Copy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -868,7 +868,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
 /**
  * @brief Enqueues the experimental CUDA Copy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -886,7 +886,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
 /**
  * @brief Enqueues the experimental CUDA Copy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -905,7 +905,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
 /**
  * @brief Enqueues the experimental CUDA Copy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -925,7 +925,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
 /**
  * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -945,7 +945,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
 /**
  * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -965,7 +965,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
 /**
  * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -985,7 +985,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
 /**
  * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1006,7 +1006,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
 /**
  * @brief Enqueues the experimental CUDA Dot operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1024,7 +1024,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
 /**
  * @brief Enqueues the experimental CUDA Dot operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1043,7 +1043,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
 /**
  * @brief Enqueues the experimental CUDA Dot operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1063,7 +1063,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
 /**
  * @brief Enqueues the experimental CUDA Dot operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1084,7 +1084,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDot(
 /**
  * @brief Enqueues the experimental CUDA Dotu operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1104,7 +1104,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotu(
 /**
  * @brief Enqueues the experimental CUDA Dotu operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1124,7 +1124,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotu(
 /**
  * @brief Enqueues the experimental CUDA Dotc operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1144,7 +1144,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotc(
 /**
  * @brief Enqueues the experimental CUDA Dotc operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1165,7 +1165,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaDotc(
 /**
  * @brief Enqueues the experimental CUDA Nrm2 operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1182,7 +1182,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
 /**
  * @brief Enqueues the experimental CUDA Nrm2 operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1199,7 +1199,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
 /**
  * @brief Enqueues the experimental CUDA Nrm2 operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1217,7 +1217,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
 /**
  * @brief Enqueues the experimental CUDA Nrm2 operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1236,7 +1236,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaNrm2(
 /**
  * @brief Enqueues the experimental CUDA Asum operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1253,7 +1253,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
 /**
  * @brief Enqueues the experimental CUDA Asum operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1270,7 +1270,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
 /**
  * @brief Enqueues the experimental CUDA Asum operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1288,7 +1288,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
 /**
  * @brief Enqueues the experimental CUDA Asum operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1307,7 +1307,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAsum(
 /**
  * @brief Enqueues the experimental CUDA Iamax operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1326,7 +1326,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
 /**
  * @brief Enqueues the experimental CUDA Iamax operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1345,7 +1345,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
 /**
  * @brief Enqueues the experimental CUDA Iamax operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1365,7 +1365,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
 /**
  * @brief Enqueues the experimental CUDA Iamax operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1386,7 +1386,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaIamax(
 /**
  * @brief Enqueues the experimental CUDA Gemv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1414,7 +1414,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemv(
 /**
  * @brief Enqueues the experimental CUDA Gbmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1442,7 +1442,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGbmv(
 /**
  * @brief Enqueues the experimental CUDA Hemv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1470,7 +1470,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHemv(
 /**
  * @brief Enqueues the experimental CUDA Hbmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1498,7 +1498,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHbmv(
 /**
  * @brief Enqueues the experimental CUDA Hpmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1526,7 +1526,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpmv(
 /**
  * @brief Enqueues the experimental CUDA Symv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1554,7 +1554,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSymv(
 /**
  * @brief Enqueues the experimental CUDA Sbmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1582,7 +1582,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSbmv(
 /**
  * @brief Enqueues the experimental CUDA Spmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1610,7 +1610,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpmv(
 /**
  * @brief Enqueues the experimental CUDA Trmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1636,7 +1636,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrmv(
 /**
  * @brief Enqueues the experimental CUDA Tbmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1662,7 +1662,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTbmv(
 /**
  * @brief Enqueues the experimental CUDA Tpmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1688,7 +1688,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTpmv(
 /**
  * @brief Enqueues the experimental CUDA Trsv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1714,7 +1714,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrsv(
 /**
  * @brief Enqueues the experimental CUDA Tbsv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1740,7 +1740,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTbsv(
 /**
  * @brief Enqueues the experimental CUDA Tpsv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1766,7 +1766,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTpsv(
 /**
  * @brief Enqueues the experimental CUDA Ger operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1790,7 +1790,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGer(
 /**
  * @brief Enqueues the experimental CUDA Geru operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1814,7 +1814,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGeru(
 /**
  * @brief Enqueues the experimental CUDA Gerc operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1838,7 +1838,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGerc(
 /**
  * @brief Enqueues the experimental CUDA Her operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1862,7 +1862,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer(
 /**
  * @brief Enqueues the experimental CUDA Hpr operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1886,7 +1886,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpr(
 /**
  * @brief Enqueues the experimental CUDA Her2 operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1911,7 +1911,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer2(
 /**
  * @brief Enqueues the experimental CUDA Hpr2 operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1936,7 +1936,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHpr2(
 /**
  * @brief Enqueues the experimental CUDA Syr operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1959,7 +1959,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr(
 /**
  * @brief Enqueues the experimental CUDA Spr operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1983,7 +1983,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpr(
 /**
  * @brief Enqueues the experimental CUDA Syr2 operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2008,7 +2008,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr2(
 /**
  * @brief Enqueues the experimental CUDA Spr2 operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2033,7 +2033,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSpr2(
 /**
  * @brief Enqueues the experimental CUDA Gemm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2064,7 +2064,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemm(
 /**
  * @brief Enqueues the experimental CUDA Symm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2093,7 +2093,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSymm(
 /**
  * @brief Enqueues the experimental CUDA Hemm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2122,7 +2122,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHemm(
 /**
  * @brief Enqueues the experimental CUDA Syrk operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2150,7 +2150,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyrk(
 /**
  * @brief Enqueues the experimental CUDA Herk operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2178,7 +2178,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHerk(
 /**
  * @brief Enqueues the experimental CUDA Syr2k operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2208,7 +2208,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaSyr2k(
 /**
  * @brief Enqueues the experimental CUDA Her2k operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2238,7 +2238,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaHer2k(
 /**
  * @brief Enqueues the experimental CUDA Trmm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2266,7 +2266,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrmm(
 /**
  * @brief Enqueues the experimental CUDA Trsm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2294,7 +2294,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaTrsm(
 /**
  * @brief Enqueues the experimental CUDA Copy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2312,7 +2312,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
 /**
  * @brief Enqueues the experimental CUDA Copy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2330,7 +2330,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
 /**
  * @brief Enqueues the experimental CUDA Copy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2348,7 +2348,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
 /**
  * @brief Enqueues the experimental CUDA Copy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2367,7 +2367,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaCopy(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2384,7 +2384,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2401,7 +2401,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2418,7 +2418,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Scal operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2436,7 +2436,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaScal(
 /**
  * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2455,7 +2455,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
 /**
  * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2474,7 +2474,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
 /**
  * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2493,7 +2493,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
 /**
  * @brief Enqueues the experimental CUDA Axpy operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2513,7 +2513,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaAxpy(
 /**
  * @brief Enqueues the experimental CUDA Gemv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2537,7 +2537,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemv(
 /**
  * @brief Enqueues the experimental CUDA Gemv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2562,7 +2562,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemv(
 /**
  * @brief Enqueues the experimental CUDA Gemm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -2588,7 +2588,7 @@ ASC_DENSE_CUDA_EXPORT Result<CompletionEvent> CudaGemm(
 /**
  * @brief Enqueues the experimental CUDA Gemm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *

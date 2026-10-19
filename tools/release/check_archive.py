@@ -130,7 +130,7 @@ def main() -> None:
             for library in INSTALL_REQUIRED_LIBRARIES
             if not any(
                 name == f"lib/lib{library}.a"
-                or name == f"lib/lib{library}.so.0.9.0"
+                or name == f"lib/lib{library}.so.1.0.0"
                 for name in names
             )
         )

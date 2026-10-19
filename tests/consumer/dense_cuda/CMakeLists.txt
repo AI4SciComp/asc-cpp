@@ -2,15 +2,15 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppDenseCudaConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense_cuda)
 
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0"
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0"
    OR NOT ASCCpp_core_FOUND
    OR NOT ASCCpp_expression_FOUND
    OR NOT ASCCpp_dense_FOUND
    OR NOT ASCCpp_core_cuda_FOUND
    OR NOT ASCCpp_dense_cuda_FOUND)
-  message(FATAL_ERROR "Expected ASCCpp 0.9.0 dense_cuda closure.")
+  message(FATAL_ERROR "Expected ASCCpp 1.0.0 dense_cuda closure.")
 endif()
 foreach(_required IN ITEMS core expression dense core_cuda dense_cuda)
   if(NOT TARGET "ASC::${_required}")

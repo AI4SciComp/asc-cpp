@@ -9,8 +9,8 @@ import subprocess
 from pathlib import Path
 
 
-VERSION = "0.9.0"
-DATE = "2026-08-03"
+VERSION = "1.0.0"
+DATE = "2026-10-19"
 
 
 def require(path: Path, pattern: str) -> None:
@@ -34,8 +34,8 @@ def main() -> None:
     require(source / "CITATION.cff", rf'^version: ["\']?{re.escape(VERSION)}["\']?$')
     require(source / "CITATION.cff", rf'^date-released: ["\']?{DATE}["\']?$')
     require(source / "docs" / "Doxyfile.in", r'^PROJECT_NUMBER\s*=\s*"@PROJECT_VERSION@"$')
-    require(source / "release" / "release-notes-v0.9.0.md", rf"^# ASCCpp {re.escape(VERSION)} release notes$")
-    require(source / "release" / "known-limitations-v0.9.0.md", rf"^# ASCCpp {re.escape(VERSION)} known limitations$")
+    require(source / "release" / "release-notes-v1.0.0.md", rf"^# ASCCpp {re.escape(VERSION)} release notes$")
+    require(source / "release" / "known-limitations-v1.0.0.md", rf"^# ASCCpp {re.escape(VERSION)} known limitations$")
 
     development = source / "docs" / "development"
     if development.exists() and any(

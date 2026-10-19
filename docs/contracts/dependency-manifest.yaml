@@ -1,5 +1,5 @@
 schema_version: 1
-status: "v0.9.0-release-contract"
+status: "v1.0.0-release-contract"
 package:
   name: "ASCCpp"
   namespace: "ASC::"

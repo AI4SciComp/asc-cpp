@@ -10,7 +10,7 @@ compiled library with one direct ASC dependency, `ASC::core`, and no external
 dependency.
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random)
 target_link_libraries(my_target PRIVATE ASC::random)
 ```
 
@@ -447,7 +447,7 @@ const double unit_double =
 Request and link the facet explicitly:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_dense)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random_dense)
 target_link_libraries(my_target PRIVATE ASC::random_dense)
 ```
 
@@ -515,7 +515,7 @@ layout invariance, explicit-workspace, and no-hidden-allocation boundary.
 Request and link the sparse facet independently:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_sparse)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random_sparse)
 target_link_libraries(my_target PRIVATE ASC::random_sparse)
 ```
 
@@ -639,7 +639,7 @@ only the facet needed by the consumer:
 For example:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_dense_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random_dense_cuda)
 target_link_libraries(my_target PRIVATE ASC::random_dense_cuda)
 ```
 
@@ -885,7 +885,7 @@ remains authoritative for provider-free storage generation.
 [provenance]: ../provenance/mdecpp-review.md
 [m5-contract]: ../architecture/decisions/0020-random-contract.md
 [m7-contract]: ../architecture/decisions/0015-random-reproducibility.md
-[random-completion]: ../../release/release-notes-v0.9.0.md
+[random-completion]: ../../release/release-notes-v1.0.0.md
 [random-contract]: ../architecture/decisions/0020-random-contract.md
 [random-crosswalk]: ../random-crosswalk.md
 [qmc-example]: ../examples/random-qmc.md

@@ -4,7 +4,7 @@ The advanced portable-CPU samplers live in the existing Random-owned storage
 facets. Request only the facets used by the application:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED
+find_package(ASCCpp 1.0 CONFIG REQUIRED
              COMPONENTS random_dense random_sparse)
 target_link_libraries(my_sampler PRIVATE
                       ASC::random_dense ASC::random_sparse)

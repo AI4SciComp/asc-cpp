@@ -140,7 +140,7 @@ reproducibility evidence.
 
 ## CUDA
 
-CUDA is experimental for 0.9.0. Local CUDA work uses `test-cuda` and
+CUDA is experimental for 1.0.0. Local CUDA work uses `test-cuda` and
 `test-cuda-shared`, but a support claim requires the complete trusted
 real-NVIDIA matrix, Compute Sanitizer, exact toolkit/driver/device/architecture,
 all six component consumers, parity, lifetime/concurrency, and failure paths.

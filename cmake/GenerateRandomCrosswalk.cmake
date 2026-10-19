@@ -174,7 +174,7 @@ foreach(_upstream IN LISTS _upstream_names)
 endforeach()
 
 set(_frozen_contract_status
-  "v0.9.0-release-contract"
+  "v1.0.0-release-contract"
 )
 set(_frozen_source_commit
   "f6294e9079262682ce63ae7ff2d8a643e658bf5d"
@@ -192,7 +192,7 @@ set(_frozen_crosswalk_sha256
   "3a54b6ab7d39cc2a6936c8fa39cccdbea589a5545509f75f0a20d19b6ed66bd4"
 )
 set(_frozen_provenance_identity_sha256
-  "da2ca0d40a5be375b6b730cbd7d654ddbf41cb02176905f72e3bd6a04f1e7f6e"
+  "7069b01081d320d42a6f39db46e5da5e08db5b8d2da0fb50e5fc1782355af518"
 )
 
 foreach(_frozen IN ITEMS

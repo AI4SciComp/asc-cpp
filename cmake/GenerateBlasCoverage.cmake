@@ -182,7 +182,7 @@ set(_frozen_cuda_toolkit "12.9.1 compiler 12.9.86")
 set(_frozen_cublas_version "12.9.1.4")
 set(_frozen_cusparse_version "12.5.10.65")
 set(_frozen_contract_status
-  "v0.9.0-release-contract"
+  "v1.0.0-release-contract"
 )
 set(_frozen_dense_rows 150)
 set(_frozen_sparse_rows 79)

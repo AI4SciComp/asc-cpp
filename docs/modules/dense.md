@@ -8,7 +8,7 @@ the separately requested `ASC::dense_cuda` provider facet without adding a
 provider edge to the base module.
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense)
 target_link_libraries(my_target PRIVATE ASC::dense)
 ```
 
@@ -350,7 +350,7 @@ Build asc-cpp with `ASC_CPP_ENABLE_CUDA=ON` and an explicit
 default. An installed consumer requests the Dense provider explicitly:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense_cuda)
 target_link_libraries(my_target PRIVATE ASC::dense_cuda)
 ```
 

@@ -29,7 +29,7 @@ endif()
 find_package(ASCCMake 0.1.0 EXACT CONFIG REQUIRED)
 if(NOT ASCCMake_VERSION VERSION_EQUAL "0.1.0")
   message(FATAL_ERROR
-    "ASCCpp 0.9.0 requires ASCCMake 0.1.0 exactly; found "
+    "ASCCpp 1.0.0 requires ASCCMake 0.1.0 exactly; found "
     "'${ASCCMake_VERSION}'."
   )
 endif()

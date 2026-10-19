@@ -1,11 +1,12 @@
 # ASCCpp API and compatibility policy
 
-Status: `0.9.0` release contract
+Status: `1.0.0` release contract
 
-Date: 2026-08-03
+Date: 2026-10-19
 
-Validation, publication, and release are separate decisions. Version `0.9.0`
-does not claim `1.0` source or ABI stability.
+Version `1.0.0` preserves the documented public contract within `1.0.x` patches.
+Source, numerical, Random-bit, provider, and binary compatibility remain
+separate dimensions. Upgrades from `0.9.x` require rebuilding all binary boundaries.
 
 Random release contract changes no compatibility dimension. It audits every approved Random
 mapping against the public surface, versioned semantics, implementation path,
@@ -14,24 +15,25 @@ registered evidence, and package consumers recorded by the
 
 ## Version policy
 
-- An approved pre-1.0 minor may break source or ABI and must carry migration
-  documentation.
-- A published patch within one pre-1.0 minor preserves that minor's documented
-  public contract.
+- A published patch within 1.0.x preserves the documented public contract.
 - The CMake package version file uses `SameMinorVersion`.
-- Downstreams should pin and review a pre-1.0 minor.
+- Another minor or major requires explicit downstream compatibility review.
+- Cross-toolchain ABI compatibility is not promised.
 - Published tags are immutable; fixes use a new version.
 
-For an installed `0.9.0` package, non-`EXACT` requests for `0.9` and `0.9.0`
+See [ADR 0022](architecture/decisions/0022-v1-release-boundary.md) for the
+1.0 release boundary and its relationship to the historical 0.9.0 policy.
+
+For an installed `1.0.0` package, non-`EXACT` requests for `1.0` and `1.0.0`
 are compatible. A request newer than the installed patch, a different minor,
-or a different major is incompatible. `EXACT 0.9.0` requires the exact
+or a different major is incompatible. `EXACT 1.0.0` requires the exact
 release version.
 
 ## Separate compatibility dimensions
 
-| Dimension | 0.9.0 statement |
+| Dimension | 1.0.0 statement |
 | --- | --- |
-| source | Declared public headers, names, signatures, concepts, constraints, and documented behavior form the reviewed `0.9.x` C++ surface |
+| source | Declared public headers, names, signatures, concepts, constraints, and documented behavior form the reviewed `1.0.x` C++ surface |
 | ABI | Local symbols, layouts, sizes, and alignments are observations only; there is no cross-toolchain or cross-minor ABI promise |
 | symbol | Shared targets request hidden project visibility and export compiled public APIs plus intentional template-support symbols; compiler/STL weak artifacts can remain observable |
 | numerical | Named traversal and validation rules are contractual; floating rounding, contraction, NaN, infinity, signed zero, and provider behavior remain within documented bounds |
@@ -155,11 +157,11 @@ between:
 - CUDA toolkit/host compiler pairs; or
 - operating systems and architectures.
 
-Compiled shared libraries set `VERSION 0.9.0` and `SOVERSION 0.9`. The
-`0.9` SONAME deliberately limits the compatibility boundary to this pre-1.0
-minor line and makes no cross-minor promise. A baseline under
+Compiled shared libraries set `VERSION 1.0.0` and `SOVERSION 1.0`. The
+`1.0` SONAME deliberately limits the compatibility boundary to the 1.0.x
+patch line and makes no cross-minor promise. A baseline under
 [`abi/`](../abi) is enforced only
-when the complete recorded environment selector matches, including operating
+when the project version and complete recorded environment selector match, including operating
 system/distribution and architecture, compiler identity and full version,
 standard library, configuration, linkage, inspection-tool identities, and
 applicable CUDA compiler, host compiler, and architecture. Any other
@@ -280,7 +282,7 @@ breaking release; it cannot silently alter version 1.
 component/target and explicit execution objects. There is no provider registry,
 native-handle adoption, automatic backend, or silent CPU fallback.
 
-Before changing an ASCCpp pre-1.0 minor, a downstream should:
+Before upgrading from 0.9.x or changing an ASCCpp minor, a downstream should:
 
 1. read the changelog, migration notes, support matrix, and remaining risks;
 2. request only explicit package components;

@@ -4,7 +4,7 @@ The `ASC::random` component exposes QMC algorithms through caller-owned spans.
 No Dense or Sparse object is required, and no operation allocates a result.
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random)
 target_link_libraries(my_qmc PRIVATE ASC::random)
 ```
 

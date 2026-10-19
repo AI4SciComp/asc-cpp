@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppSparseCudaConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS sparse_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS sparse_cuda)
 
 foreach(_required IN ITEMS core expression sparse core_cuda sparse_cuda)
   if(NOT ASCCpp_${_required}_FOUND OR NOT TARGET "ASC::${_required}")

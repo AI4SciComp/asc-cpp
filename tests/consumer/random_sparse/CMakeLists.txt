@@ -2,16 +2,16 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppRandomSparseConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_sparse)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random_sparse)
 
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0"
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0"
    OR NOT ASCCpp_random_sparse_FOUND
    OR NOT ASCCpp_random_FOUND
    OR NOT ASCCpp_sparse_FOUND
    OR NOT ASCCpp_expression_FOUND
    OR NOT ASCCpp_core_FOUND)
   message(FATAL_ERROR
-    "Expected ASCCpp 0.9.0 random_sparse with its exact closure."
+    "Expected ASCCpp 1.0.0 random_sparse with its exact closure."
   )
 endif()
 foreach(_required IN ITEMS core expression random sparse random_sparse)

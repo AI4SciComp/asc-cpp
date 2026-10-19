@@ -16,7 +16,7 @@ if(ASC_CPP_EXAMPLES_ENABLE_CUDA)
   list(APPEND _asc_cpp_example_components core_cuda)
 endif()
 find_package(
-  ASCCpp 0.9.0 EXACT CONFIG REQUIRED
+  ASCCpp 1.0.0 EXACT CONFIG REQUIRED
   COMPONENTS ${_asc_cpp_example_components}
 )
 

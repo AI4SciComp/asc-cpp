@@ -74,7 +74,8 @@ int main() {
     ASC_DENSE_CUDA_CHECK(test, scaled->Wait().ok());
   }
 
-  *context = std::move(*context);
+  // Call explicitly because self-move is intentional in this regression test.
+  context->operator=(std::move(*context));
   auto after_self_move = asc::RecordCudaEvent(context->execution_context());
   ASC_DENSE_CUDA_CHECK(test, after_self_move.ok());
   if (after_self_move.ok()) {

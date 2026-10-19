@@ -3,9 +3,9 @@
 
 /**
  * @file
- * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ * @brief Public CUDA provider declarations for ASCCpp 1.0.0.
  *
- * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Generated public contract documentation baseline for ASCCpp 1.0.0.
  * Every declaration below is governed by the module, ownership, failure,
  * memory-placement, numerical, concurrency, and package contracts linked
  * from the generated API reference.
@@ -55,7 +55,7 @@ struct CudaTriangularCsrClone;
  * @brief Enqueues the experimental CUDA CloneIndexedVector operation and
  * returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -77,7 +77,7 @@ CudaCloneIndexedVector(SparseCudaContext& context,
  * @brief Enqueues the experimental CUDA CloneTriangularCsr operation and
  * returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -491,7 +491,7 @@ Result<PreparedEvaluation> PrepareEvaluation(const Expression& expression) {
 /**
  * @brief Owns experimental cuSPARSE state bound to an execution context.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -501,7 +501,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
   /**
    * @brief Validates inputs and creates the requested CUDA provider object.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -517,7 +517,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
    * @brief Constructs a SparseCudaContext with the documented ownership and
    * validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -526,7 +526,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -537,7 +537,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
    * @brief Constructs a SparseCudaContext with the documented ownership and
    * validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -548,7 +548,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -561,7 +561,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
    * @brief Releases owned resources after required completion/lifetime
    * conditions.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -572,7 +572,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
    * @brief Performs the public execution_context operation defined by the CUDA
    * provider contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -589,7 +589,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
    * @brief Performs the public Access operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -608,7 +608,7 @@ class ASC_SPARSE_CUDA_EXPORT SparseCudaContext {
 /**
  * @brief Describes an experimental CUDA-accessible strided vector.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -620,7 +620,7 @@ class CudaStridedVectorView {
   /**
    * @brief Validates inputs and creates the requested CUDA provider object.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -649,7 +649,7 @@ class CudaStridedVectorView {
    * @brief Constructs a CudaStridedVectorView with the documented ownership and
    * validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -668,7 +668,7 @@ class CudaStridedVectorView {
   /**
    * @brief Returns the object's data contract value.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -681,7 +681,7 @@ class CudaStridedVectorView {
    * @brief Performs the public extent operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -694,7 +694,7 @@ class CudaStridedVectorView {
    * @brief Performs the public stride operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -707,7 +707,7 @@ class CudaStridedVectorView {
    * @brief Performs the public memory_space operation defined by the CUDA
    * provider contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -802,7 +802,7 @@ class Access {
 /**
  * @brief Owns experimental CUDA CSR storage and its completion state.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -815,7 +815,7 @@ class CudaCsrArray {
    * @brief Constructs a CudaCsrArray with the documented ownership and validity
    * state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -824,7 +824,7 @@ class CudaCsrArray {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -837,7 +837,7 @@ class CudaCsrArray {
    * @brief Constructs a CudaCsrArray with the documented ownership and validity
    * state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -846,7 +846,7 @@ class CudaCsrArray {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -859,7 +859,7 @@ class CudaCsrArray {
    * @brief Releases owned resources after required completion/lifetime
    * conditions.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -869,7 +869,7 @@ class CudaCsrArray {
   /**
    * @brief Reports whether the documented valid condition holds.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -883,7 +883,7 @@ class CudaCsrArray {
   /**
    * @brief Returns the object's rows contract value.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -895,7 +895,7 @@ class CudaCsrArray {
   /**
    * @brief Returns the object's columns contract value.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -907,7 +907,7 @@ class CudaCsrArray {
   /**
    * @brief Returns the object's nnz contract value.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -921,7 +921,7 @@ class CudaCsrArray {
    * @brief Performs the public view operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -946,7 +946,7 @@ class CudaCsrArray {
    * @brief Performs the public view operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -992,7 +992,7 @@ class CudaCsrArray {
 /**
  * @brief Owns an experimental asynchronous CUDA CSR clone result.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -1003,7 +1003,7 @@ struct CudaCsrClone {
   /**
    * @brief Stores the array value for this contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1013,7 +1013,7 @@ struct CudaCsrClone {
   /**
    * @brief Stores the completion value for this contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1026,7 +1026,7 @@ struct CudaCsrClone {
  * @brief Enqueues the experimental CUDA CloneCsr operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1058,7 +1058,7 @@ CudaCloneCsr(SparseCudaContext& context, CsrView<SourceElement> source,
 /**
  * @brief Owns an experimental CUDA indexed sparse vector.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -1071,7 +1071,7 @@ class CudaIndexedVectorArray {
    * @brief Constructs a CudaIndexedVectorArray with the documented ownership
    * and validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -1080,7 +1080,7 @@ class CudaIndexedVectorArray {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1093,7 +1093,7 @@ class CudaIndexedVectorArray {
    * @brief Constructs a CudaIndexedVectorArray with the documented ownership
    * and validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -1102,7 +1102,7 @@ class CudaIndexedVectorArray {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1116,7 +1116,7 @@ class CudaIndexedVectorArray {
    * @brief Releases owned resources after required completion/lifetime
    * conditions.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -1126,7 +1126,7 @@ class CudaIndexedVectorArray {
   /**
    * @brief Reports whether the documented valid condition holds.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1142,7 +1142,7 @@ class CudaIndexedVectorArray {
    * @brief Performs the public view operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1167,7 +1167,7 @@ class CudaIndexedVectorArray {
    * @brief Performs the public view operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1214,7 +1214,7 @@ class CudaIndexedVectorArray {
 /**
  * @brief Owns an experimental asynchronous CUDA indexed-vector clone.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -1225,7 +1225,7 @@ struct CudaIndexedVectorClone {
   /**
    * @brief Stores the array value for this contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1235,7 +1235,7 @@ struct CudaIndexedVectorClone {
   /**
    * @brief Stores the completion value for this contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1266,7 +1266,7 @@ CudaCloneIndexedVector(SparseCudaContext& context,
 /**
  * @brief Owns an experimental CUDA triangular CSR descriptor and storage.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -1279,7 +1279,7 @@ class CudaTriangularCsrArray {
    * @brief Constructs a CudaTriangularCsrArray with the documented ownership
    * and validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -1288,7 +1288,7 @@ class CudaTriangularCsrArray {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1301,7 +1301,7 @@ class CudaTriangularCsrArray {
    * @brief Constructs a CudaTriangularCsrArray with the documented ownership
    * and validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -1310,7 +1310,7 @@ class CudaTriangularCsrArray {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1324,7 +1324,7 @@ class CudaTriangularCsrArray {
    * @brief Releases owned resources after required completion/lifetime
    * conditions.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -1335,7 +1335,7 @@ class CudaTriangularCsrArray {
    * @brief Performs the public matrix operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1350,7 +1350,7 @@ class CudaTriangularCsrArray {
    * @brief Performs the public triangle operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1365,7 +1365,7 @@ class CudaTriangularCsrArray {
    * @brief Performs the public diagonal operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1397,7 +1397,7 @@ class CudaTriangularCsrArray {
 /**
  * @brief Owns an asynchronous CUDA triangular-CSR clone result.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -1408,7 +1408,7 @@ struct CudaTriangularCsrClone {
   /**
    * @brief Stores the array value for this contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1418,7 +1418,7 @@ struct CudaTriangularCsrClone {
   /**
    * @brief Stores the completion value for this contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -1446,7 +1446,7 @@ template <SparseBlasScalar Element>
  * @brief Enqueues the experimental CUDA SparseDot operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1479,7 +1479,7 @@ template <SparseBlasScalar Element>
  * @brief Enqueues the experimental CUDA SparseAxpy operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1509,7 +1509,7 @@ template <SparseBlasScalar Element>
  * @brief Enqueues the experimental CUDA SparseGather operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1538,7 +1538,7 @@ template <SparseBlasScalar Element>
  * @brief Enqueues the experimental CUDA SparseGatherZero operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1567,7 +1567,7 @@ template <SparseBlasScalar Element>
  * @brief Enqueues the experimental CUDA SparseScatter operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1596,7 +1596,7 @@ template <SparseBlasScalar Element>
 /**
  * @brief Enqueues the experimental CUDA Spmv operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1628,7 +1628,7 @@ template <SparseBlasScalar Element>
 /**
  * @brief Enqueues the experimental CUDA Spmm operation and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1661,7 +1661,7 @@ template <SparseBlasScalar Element>
  * @brief Enqueues the experimental CUDA SparseTriangularSolve operation and
  * returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1707,7 +1707,7 @@ template <SparseBlasScalar Element>
  * @brief Enqueues the experimental CUDA SparseTriangularSolveMultiple operation
  * and returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1742,7 +1742,7 @@ template <SparseBlasScalar Element>
  * @brief Enqueues the experimental CUDA CsrSpmvWorkspaceSize operation and
  * returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1771,7 +1771,7 @@ template <typename Element>
  * @brief Enqueues the experimental CUDA CsrSpmv operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1805,7 +1805,7 @@ template <typename Element>
  * @brief Enqueues the experimental CUDA Evaluate operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -1847,7 +1847,7 @@ template <ReadableExpression Expression, typename Element, std::size_t Rank>
  * @brief Enqueues the experimental CUDA Evaluate operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *

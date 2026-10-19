@@ -21,7 +21,7 @@ and `asc::Spmv` do not change.
 Consumer targets also remain unchanged:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense sparse)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense sparse)
 target_link_libraries(my_target PRIVATE ASC::dense ASC::sparse)
 ```
 

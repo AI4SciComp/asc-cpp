@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppAggregateConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED)
+find_package(ASCCpp 1.0 CONFIG REQUIRED)
 
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0")
-  message(FATAL_ERROR "Expected ASCCpp 0.9.0.")
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0")
+  message(FATAL_ERROR "Expected ASCCpp 1.0.0.")
 endif()
 foreach(_required
         IN ITEMS

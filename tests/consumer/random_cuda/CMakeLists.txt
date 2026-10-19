@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppRandomCudaConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random_cuda)
 
 foreach(_required IN ITEMS core random core_cuda random_cuda)
   if(NOT ASCCpp_${_required}_FOUND OR NOT TARGET "ASC::${_required}")

@@ -1,5 +1,5 @@
 schema_version: 1
-contract_status: "v0.9.0-release-contract"
+contract_status: "v1.0.0-release-contract"
 evidence_date: "2026-08-01"
 allowed_statuses: "planned,implemented,verified,not-applicable,blocked"
 dense_standard: "Reference-LAPACK v3.12.1 BLAS and CBLAS"
