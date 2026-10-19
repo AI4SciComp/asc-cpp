@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 project(
   ASCCpp
-  VERSION 0.9.0
+  VERSION 1.0.0
   DESCRIPTION "AI4SciComp C++ scientific-computing foundation"
   LANGUAGES CXX
 )

@@ -4,6 +4,7 @@ function(asc_cpp_select_elf_baseline)
   set(_one_value
     OUTPUT_VARIABLE
     BASELINE_DIRECTORY
+    PROJECT_VERSION
     SYSTEM_NAME
     PROCESSOR
     DISTRIBUTION
@@ -36,6 +37,13 @@ function(asc_cpp_select_elf_baseline)
   endforeach()
 
   set(_baseline)
+  # The committed digest files describe the 0.9.0 SONAME and symbols.
+  # Another project version must retain a fresh observation instead.
+  if(DEFINED ENV_PROJECT_VERSION
+     AND NOT ENV_PROJECT_VERSION VERSION_EQUAL "0.9.0")
+    set("${ENV_OUTPUT_VARIABLE}" "" PARENT_SCOPE)
+    return()
+  endif()
   if(NOT ENV_SYSTEM_NAME STREQUAL "Linux"
      OR NOT ENV_PROCESSOR STREQUAL "x86_64"
      OR NOT ENV_DISTRIBUTION STREQUAL "Ubuntu 22.04.5 LTS"

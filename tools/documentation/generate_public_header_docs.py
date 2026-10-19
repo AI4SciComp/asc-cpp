@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Insert release documentation comments from Doxygen discovery XML.
 
-The tool is intentionally one-shot for the 0.9.0 documentation baseline. It
+The tool is intentionally one-shot for the 1.0.0 documentation baseline. It
 only inserts comments, processes locations bottom-up, and refuses to touch a
 header that already contains its marker.
 """
@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 
-MARKER = "Generated public contract documentation baseline for ASCCpp 0.9.0."
+MARKER = "Generated public contract documentation baseline for ASCCpp 1.0.0."
 INTERNAL = re.compile(r"(^|::)internal[^:]*($|::)|_internal($|::)")
 
 
@@ -264,7 +264,7 @@ def parameter_description(name: str) -> tuple[str, str]:
 def details_for(group: str, module: str) -> list[str]:
     if group == "asc_cuda":
         return [
-            "This API is experimental in 0.9.0. CUDA storage, context, stream,",
+            "This API is experimental in 1.0.0. CUDA storage, context, stream,",
             "event, and workspace owners must remain alive until returned completion",
             "has been ordered or waited. Enqueue success does not imply completion.",
         ]
@@ -346,7 +346,7 @@ def file_header(group: str, module: str) -> list[str]:
     return [
         "/**",
         " * @file",
-        f" * @brief Public {module} declarations for ASCCpp 0.9.0.",
+        f" * @brief Public {module} declarations for ASCCpp 1.0.0.",
         " *",
         f" * {MARKER}",
         " * Every declaration below is governed by the module, ownership, failure,",
@@ -364,9 +364,9 @@ def humanize_enum_value(name: str) -> str:
         "Ok": "Successful operation with no failure.",
         "None": "No transformation or optional behavior.",
         "Serial": "Synchronous provider-free CPU execution.",
-        "Cuda": "CUDA execution; experimental in ASCCpp 0.9.0.",
-        "Hip": "HIP execution identifier; no 0.9.0 provider is implemented.",
-        "Sycl": "SYCL execution identifier; no 0.9.0 provider is implemented.",
+        "Cuda": "CUDA execution; experimental in ASCCpp 1.0.0.",
+        "Hip": "HIP execution identifier; no 1.0.0 provider is implemented.",
+        "Sycl": "SYCL execution identifier; no 1.0.0 provider is implemented.",
         "Host": "Ordinary host-accessible memory.",
         "Pinned Host": "Page-locked host memory suitable for CUDA transfers.",
         "Device": "Device-resident memory.",

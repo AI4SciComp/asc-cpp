@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppRandomSparseCudaConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_sparse_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random_sparse_cuda)
 
 foreach(_required IN ITEMS
     core

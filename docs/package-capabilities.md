@@ -1,4 +1,4 @@
-# ASCCpp 0.9.0 package capabilities
+# ASCCpp 1.0.0 package capabilities
 
 ASCCpp exports isolated CMake components. Consumers request only the component
 closure they use; a provider-free request does not load CUDA metadata or locate
@@ -29,7 +29,7 @@ their component `_FOUND` result without contaminating provider-free requests.
 ## Discovery
 
 ```cmake
-find_package(ASCCpp 0.9.0 EXACT CONFIG REQUIRED COMPONENTS dense random)
+find_package(ASCCpp 1.0.0 EXACT CONFIG REQUIRED COMPONENTS dense random)
 target_link_libraries(app PRIVATE ASC::dense ASC::random)
 ```
 

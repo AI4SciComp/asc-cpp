@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppExpressionConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS expression)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS expression)
 
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0"
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0"
    OR NOT ASCCpp_expression_FOUND
    OR NOT ASCCpp_core_FOUND)
-  message(FATAL_ERROR "Expected ASCCpp 0.9.0 expression with core closure.")
+  message(FATAL_ERROR "Expected ASCCpp 1.0.0 expression with core closure.")
 endif()
 if(NOT TARGET ASC::expression OR NOT TARGET ASC::core)
   message(FATAL_ERROR "Expression lookup omitted an imported target.")

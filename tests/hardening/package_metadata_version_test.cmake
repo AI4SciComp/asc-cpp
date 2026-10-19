@@ -139,8 +139,8 @@ set(_metadata_template [=[
 cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8Metadata LANGUAGES CXX)
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY FALSE)
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS @AVAILABLE_COMPONENTS@)
-if(NOT ASCCpp_VERSION STREQUAL "0.9.0")
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS @AVAILABLE_COMPONENTS@)
+if(NOT ASCCpp_VERSION STREQUAL "1.0.0")
   message(FATAL_ERROR "Unexpected ASCCpp_VERSION='${ASCCpp_VERSION}'")
 endif()
 set(_expected_known "@KNOWN_COMPONENTS@")
@@ -275,7 +275,7 @@ cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8Closure LANGUAGES CXX)
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY FALSE)
 find_package(
-  ASCCpp 0.9 CONFIG REQUIRED COMPONENTS @EXPLICIT_COMPONENT@
+  ASCCpp 1.0 CONFIG REQUIRED COMPONENTS @EXPLICIT_COMPONENT@
 )
 get_property(_imported DIRECTORY PROPERTY IMPORTED_TARGETS)
 set(_actual)
@@ -310,7 +310,7 @@ set(_default_content [=[
 cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8Default LANGUAGES CXX)
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY FALSE)
-find_package(ASCCpp 0.9 CONFIG REQUIRED)
+find_package(ASCCpp 1.0 CONFIG REQUIRED)
 get_property(_imported DIRECTORY PROPERTY IMPORTED_TARGETS)
 set(_actual)
 foreach(_target IN LISTS _imported)
@@ -352,7 +352,7 @@ cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8Optional LANGUAGES NONE)
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY FALSE)
 find_package(
-  ASCCpp 0.9 CONFIG QUIET
+  ASCCpp 1.0 CONFIG QUIET
   COMPONENTS core
   OPTIONAL_COMPONENTS imaginary
 )
@@ -372,7 +372,7 @@ _run_configure_case(
 set(_unknown_required_content [=[
 cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8UnknownRequired LANGUAGES NONE)
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS imaginary)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS imaginary)
 ]=])
 _run_configure_case(
   NAME unknown-required
@@ -383,7 +383,7 @@ if(NOT EXPECT_CUDA)
   set(_unavailable_required_content [=[
 cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8UnavailableRequired LANGUAGES NONE)
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS core_cuda)
 ]=])
   _run_configure_case(
     NAME unavailable-required
@@ -393,12 +393,12 @@ find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core_cuda)
 endif()
 
 foreach(_version_case IN ITEMS
-    "minor-compatible|0.9|REQUIRED|success"
-    "exact|0.9.0|EXACT REQUIRED|success"
-    "older-minor|0.8|REQUIRED|failure"
-    "newer-minor|0.10|REQUIRED|failure"
-    "different-major|1.0|REQUIRED|failure"
-    "newer-patch|0.9.1|REQUIRED|failure")
+    "minor-compatible|1.0|REQUIRED|success"
+    "exact|1.0.0|EXACT REQUIRED|success"
+    "older-major|0.9|REQUIRED|failure"
+    "newer-minor|1.1|REQUIRED|failure"
+    "different-major|2.0|REQUIRED|failure"
+    "newer-patch|1.0.1|REQUIRED|failure")
   string(REPLACE "|" ";" _parts "${_version_case}")
   list(GET _parts 0 _name)
   list(GET _parts 1 _version)
@@ -430,6 +430,6 @@ find_package(
 endforeach()
 
 message(STATUS
-  "Verified ASCCpp 0.9 package metadata, versions, and component closures "
+  "Verified ASCCpp 1.0 package metadata, versions, and component closures "
   "(CUDA enabled: ${EXPECT_CUDA})"
 )

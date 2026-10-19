@@ -4,6 +4,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/SelectElfBaseline.cmake")
 
 set(_common
   BASELINE_DIRECTORY "/baseline"
+  PROJECT_VERSION 0.9.0
   SYSTEM_NAME Linux
   PROCESSOR x86_64
   DISTRIBUTION "Ubuntu 22.04.5 LTS"
@@ -39,6 +40,10 @@ _expect_baseline(
   "/baseline/linux-x86_64-gcc11-cpu-shared.txt"
   ${_common}
 )
+
+set(_v1 ${_common})
+list(TRANSFORM _v1 REPLACE "^0\\.9\\.0$" "1.0.0")
+_expect_baseline(v1_requires_new_observation "" ${_v1})
 
 set(_clang ${_common})
 list(TRANSFORM _clang REPLACE "^GNU$" "Clang")

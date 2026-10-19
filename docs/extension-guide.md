@@ -1,6 +1,6 @@
 # Extending ASCCpp safely
 
-Status: `0.9.0` extension contract
+Status: `1.0.0` extension contract
 
 Date: 2026-07-28
 
@@ -182,7 +182,7 @@ already read into or accepted from caller storage.
 A downstream can combine components without changing ASCCpp:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense sparse)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense sparse)
 
 add_library(my_numerics)
 target_sources(my_numerics PRIVATE my_numerics.cc)
@@ -222,7 +222,7 @@ cleanup does not change the successful asynchronous lifetime contract above.
 `MemoryResource`, `ByteSource`, and `ByteSink` are polymorphic C++ interfaces.
 Passing a downstream-derived object across a shared-library boundary requires
 a mutually compatible compiler, standard library/runtime, build mode, and
-ASCCpp binary. The pre-1.0 package makes no cross-toolchain or cross-minor ABI
+ASCCpp binary. The package makes no cross-toolchain or cross-minor ABI
 promise.
 
 ## Changes that require architecture approval

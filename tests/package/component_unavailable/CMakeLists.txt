@@ -11,31 +11,31 @@ foreach(_required_variable IN ITEMS
 endforeach()
 
 if(ASCCPP_REQUEST_MODE STREQUAL "component")
-  find_package(ASCCpp 0.9.0 QUIET COMPONENTS "${ASCCPP_REQUEST_COMPONENT}")
+  find_package(ASCCpp 1.0.0 QUIET COMPONENTS "${ASCCPP_REQUEST_COMPONENT}")
 elseif(ASCCPP_REQUEST_MODE STREQUAL "required-component")
   find_package(
-    ASCCpp 0.9.0 REQUIRED COMPONENTS "${ASCCPP_REQUEST_COMPONENT}"
+    ASCCpp 1.0.0 REQUIRED COMPONENTS "${ASCCPP_REQUEST_COMPONENT}"
   )
 elseif(ASCCPP_REQUEST_MODE STREQUAL "optional-component")
   find_package(
-    ASCCpp 0.9.0 QUIET OPTIONAL_COMPONENTS "${ASCCPP_REQUEST_COMPONENT}"
+    ASCCpp 1.0.0 QUIET OPTIONAL_COMPONENTS "${ASCCPP_REQUEST_COMPONENT}"
   )
 elseif(ASCCPP_REQUEST_MODE STREQUAL "core-with-optional-component")
   find_package(
-    ASCCpp 0.9.0 REQUIRED
+    ASCCpp 1.0.0 REQUIRED
     COMPONENTS core
     OPTIONAL_COMPONENTS "${ASCCPP_REQUEST_COMPONENT}"
   )
 elseif(ASCCPP_REQUEST_MODE STREQUAL "dense-with-optional-component")
   find_package(
-    ASCCpp 0.9.0 REQUIRED
+    ASCCpp 1.0.0 REQUIRED
     COMPONENTS dense
     OPTIONAL_COMPONENTS "${ASCCPP_REQUEST_COMPONENT}"
   )
 elseif(ASCCPP_REQUEST_MODE STREQUAL "no-component")
-  find_package(ASCCpp 0.9.0 QUIET)
+  find_package(ASCCpp 1.0.0 QUIET)
 elseif(ASCCPP_REQUEST_MODE STREQUAL "required-no-component")
-  find_package(ASCCpp 0.9.0 REQUIRED)
+  find_package(ASCCpp 1.0.0 REQUIRED)
 else()
   message(FATAL_ERROR "Unknown request mode: ${ASCCPP_REQUEST_MODE}")
 endif()
@@ -45,8 +45,8 @@ if(ASCCpp_FOUND AND NOT ASCCPP_EXPECT_FOUND)
 elseif(NOT ASCCpp_FOUND AND ASCCPP_EXPECT_FOUND)
   message(FATAL_ERROR "ASCCpp was unexpectedly not found.")
 endif()
-if(NOT ASCCpp_VERSION STREQUAL "0.9.0")
-  message(FATAL_ERROR "Expected ASCCpp version 0.9.0, got '${ASCCpp_VERSION}'.")
+if(NOT ASCCpp_VERSION STREQUAL "1.0.0")
+  message(FATAL_ERROR "Expected ASCCpp version 1.0.0, got '${ASCCpp_VERSION}'.")
 endif()
 
 set(_expected_known_components

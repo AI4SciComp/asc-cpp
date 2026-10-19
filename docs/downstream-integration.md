@@ -1,6 +1,6 @@
 # Downstream integration
 
-Status: `0.9.0` release contract
+Status: `1.0.0` release contract
 
 Date: 2026-08-03
 
@@ -46,7 +46,7 @@ optional provider.
 cmake_minimum_required(VERSION 3.25)
 project(my_xde_consumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense)
 
 add_executable(my_xde_consumer main.cc)
 target_link_libraries(my_xde_consumer PRIVATE ASC::dense)
@@ -76,7 +76,7 @@ fixture models the dependency shape of a small ODE/PDE consumer. It requests
 only:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS dense)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS dense)
 target_link_libraries(asc_xde_trial PRIVATE ASC::dense)
 ```
 
@@ -132,7 +132,7 @@ provider-free for a CPU-only component request.
 A CUDA consumer requests a facet explicitly:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS random_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS random_cuda)
 target_link_libraries(my_gpu_target PRIVATE ASC::random_cuda)
 ```
 

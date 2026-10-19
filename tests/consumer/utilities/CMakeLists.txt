@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppUtilitiesConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS utilities)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS utilities)
 
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0"
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0"
    OR NOT ASCCpp_utilities_FOUND
    OR NOT ASCCpp_core_FOUND)
-  message(FATAL_ERROR "Expected ASCCpp 0.9.0 utilities with core closure.")
+  message(FATAL_ERROR "Expected ASCCpp 1.0.0 utilities with core closure.")
 endif()
 if(NOT TARGET ASC::utilities OR NOT TARGET ASC::core)
   message(FATAL_ERROR "Utilities lookup omitted an imported target.")

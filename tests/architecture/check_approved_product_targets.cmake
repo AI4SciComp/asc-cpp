@@ -117,9 +117,9 @@ string(
   _project_declaration "${_project_declaration}"
 )
 if(NOT _project_declaration MATCHES "^project\\( ASCCpp( |\\))"
-   OR NOT _project_declaration MATCHES " VERSION 0\\.9\\.0( |\\))"
+   OR NOT _project_declaration MATCHES " VERSION 1\\.0\\.0( |\\))"
    OR NOT _project_declaration MATCHES " LANGUAGES CXX( |\\))")
   message(FATAL_ERROR
-    "release hardening must declare project ASCCpp 0.9.0 with LANGUAGES CXX."
+    "release hardening must declare project ASCCpp 1.0.0 with LANGUAGES CXX."
   )
 endif()

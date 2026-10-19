@@ -1,3 +1,5 @@
+> Historical 0.9.0 validation record. See the exact-tag 1.0.0 workflow for current release evidence.
+
 # ASCCpp 0.9.0 release validation
 
 Status: Gate B local validation was completed and owner-approved on

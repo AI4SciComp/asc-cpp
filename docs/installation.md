@@ -2,7 +2,7 @@
 
 ## Requirements
 
-ASCCpp 0.9.0 requires CMake 3.25+, C++20, and `ASCCMake 0.1.0` exactly. CUDA
+ASCCpp 1.0.0 requires CMake 3.25+, C++20, and `ASCCMake 0.1.0` exactly. CUDA
 Toolkit 12 is required only for experimental CUDA builds.
 
 The approved ASCCMake identity is:

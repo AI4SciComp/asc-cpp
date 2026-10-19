@@ -3,9 +3,9 @@
 
 /**
  * @file
- * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ * @brief Public CUDA provider declarations for ASCCpp 1.0.0.
  *
- * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Generated public contract documentation baseline for ASCCpp 1.0.0.
  * Every declaration below is governed by the module, ownership, failure,
  * memory-placement, numerical, concurrency, and package contracts linked
  * from the generated API reference.
@@ -28,7 +28,7 @@ namespace asc {
  * @brief Enqueues the experimental CUDA DeviceCount operation and returns
  * completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -41,7 +41,7 @@ ASC_CORE_CUDA_EXPORT Result<std::int32_t> CudaDeviceCount();
 /**
  * @brief Allocates CUDA device or pinned-host memory for one device.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -51,7 +51,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
   /**
    * @brief Validates inputs and creates the requested CUDA provider object.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -68,7 +68,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
    * @brief Constructs a CudaMemoryResource with the documented ownership and
    * validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -77,7 +77,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -90,7 +90,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
    * @brief Constructs a CudaMemoryResource with the documented ownership and
    * validity state.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -99,7 +99,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
   /**
    * @brief Replaces this object's state while preserving ownership invariants.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -112,7 +112,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
    * @brief Releases owned resources after required completion/lifetime
    * conditions.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    * @ingroup asc_cuda
@@ -122,7 +122,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
   /**
    * @brief Returns the object's space contract value.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -137,7 +137,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
    * @brief Performs the public device operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -151,7 +151,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
    * @brief Performs the public Allocate operation defined by the CUDA provider
    * contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -166,7 +166,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
    * @brief Performs the public Deallocate operation defined by the CUDA
    * provider contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -188,7 +188,7 @@ class ASC_CORE_CUDA_EXPORT CudaMemoryResource final : public MemoryResource {
 /**
  * @brief Validates inputs and creates the requested CUDA provider object.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *
@@ -205,7 +205,7 @@ ASC_CORE_CUDA_EXPORT Result<ExecutionContext> CreateCudaExecutionContext(
  * @brief Performs the public RecordCudaEvent operation defined by the CUDA
  * provider contract.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *

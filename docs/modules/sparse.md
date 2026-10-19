@@ -7,7 +7,7 @@ provider, or third-party dependency. CUDA Sparse and Random adds the separately 
 `ASC::sparse_cuda` provider without changing that base dependency graph.
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS sparse)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS sparse)
 target_link_libraries(my_target PRIVATE ASC::sparse)
 ```
 
@@ -395,7 +395,7 @@ CUDA is default-off. Build asc-cpp with `ASC_CPP_ENABLE_CUDA=ON`, CUDAToolkit
 installed consumer requests the provider explicitly:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS sparse_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS sparse_cuda)
 target_link_libraries(my_target PRIVATE ASC::sparse_cuda)
 ```
 

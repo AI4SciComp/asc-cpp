@@ -3,9 +3,9 @@
 
 /**
  * @file
- * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ * @brief Public CUDA provider declarations for ASCCpp 1.0.0.
  *
- * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Generated public contract documentation baseline for ASCCpp 1.0.0.
  * Every declaration below is governed by the module, ownership, failure,
  * memory-placement, numerical, concurrency, and package contracts linked
  * from the generated API reference.
@@ -61,7 +61,7 @@ ASC_RANDOM_DENSE_CUDA_EXPORT Result<Generation> FillDenseUniform01Erased(
 /**
  * @brief Owns an experimental CUDA dense random generation result.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda
@@ -72,7 +72,7 @@ struct CudaDenseUniform01Generation {
   /**
    * @brief Stores the completion value for this contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -82,7 +82,7 @@ struct CudaDenseUniform01Generation {
   /**
    * @brief Stores the next offset value for this contract.
    *
-   * This API is experimental in 0.9.0. CUDA storage, context, stream,
+   * This API is experimental in 1.0.0. CUDA storage, context, stream,
    * event, and workspace owners must remain alive until returned completion
    * has been ordered or waited. Enqueue success does not imply completion.
    *
@@ -95,7 +95,7 @@ struct CudaDenseUniform01Generation {
  * @brief Enqueues the experimental CUDA FillDenseUniform01 operation and
  * returns completion.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  *

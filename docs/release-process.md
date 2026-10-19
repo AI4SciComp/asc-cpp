@@ -1,7 +1,7 @@
 # Release process
 
-`main` is release-only, `develop` is integration, and `release/0.9.0` is the
-sole 0.9.0 preparation branch. The original tree is preserved by the annotated
+`main` is release-only, `develop` is integration, and `release/1.0.0` is the
+sole 1.0.0 preparation branch. The original tree is preserved by the annotated
 snapshot tag documented in [`release/release-plan.md`](../release/release-plan.md).
 
 The release gate requires the exact provider-free compiler/platform/linkage

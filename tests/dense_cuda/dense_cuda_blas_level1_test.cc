@@ -302,7 +302,7 @@ void TestComplexOperations(TestContext& test, asc::MemoryResource& pinned,
                            asc::DenseCudaContext& context) {
   using Complex = std::complex<Real>;
   auto values = AllocatePair<Complex>(pinned, device, 8);
-  auto reals = AllocatePair<Real>(pinned, device, 2);
+  auto reals = AllocatePair<Real>(pinned, device, 1);
   ASC_DENSE_CUDA_CHECK(test, values.ok());
   ASC_DENSE_CUDA_CHECK(test, reals.ok());
   if (!values.ok() || !reals.ok()) {
@@ -708,8 +708,15 @@ void TestEmptyAndValidation(TestContext& test, asc::MemoryResource& pinned,
   if (!Wait(test, iamax)) {
     return;
   }
-  ASC_DENSE_CUDA_CHECK(test, CopyAndWait(context.execution_context(),
-                                         result->host, result->device));
+  // The empty reduction writes only the result, not its scratch workspace.
+  ASC_DENSE_CUDA_CHECK(
+      test,
+      CopyAndWait(
+          context.execution_context(),
+          asc::MutableMemoryView(result->host.data(), sizeof(asc::index_t),
+                                 asc::MemorySpace::kPinnedHost),
+          asc::ConstMemoryView(result->device.data(), sizeof(asc::index_t),
+                               asc::MemorySpace::kDevice)));
   ASC_DENSE_CUDA_EQ(test, Data<asc::index_t>(result->host)[0],
                     asc::index_t{-1});
 

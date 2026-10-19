@@ -3,9 +3,9 @@
 
 /**
  * @file
- * @brief Public CUDA provider declarations for ASCCpp 0.9.0.
+ * @brief Public CUDA provider declarations for ASCCpp 1.0.0.
  *
- * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Generated public contract documentation baseline for ASCCpp 1.0.0.
  * Every declaration below is governed by the module, ownership, failure,
  * memory-placement, numerical, concurrency, and package contracts linked
  * from the generated API reference.
@@ -27,7 +27,7 @@
  * @brief Controls the public ASC_RANDOM_CUDA_EXPORT declaration or contract
  * behavior.
  *
- * This API is experimental in 0.9.0. CUDA storage, context, stream,
+ * This API is experimental in 1.0.0. CUDA storage, context, stream,
  * event, and workspace owners must remain alive until returned completion
  * has been ordered or waited. Enqueue success does not imply completion.
  * @ingroup asc_cuda

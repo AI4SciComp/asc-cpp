@@ -1,5 +1,5 @@
 schema_version: 2
-contract_status: "v0.9.0-release-contract"
+contract_status: "v1.0.0-release-contract"
 evidence_date: "2026-08-02"
 source_repository: "https://github.com/escapetiger/MdeCpp"
 source_commit: "f6294e9079262682ce63ae7ff2d8a643e658bf5d"
@@ -19,7 +19,7 @@ expected_rejected: 11
 expected_absent: 0
 source_inventory_sha256: "f47d8ecf5cfbb689fe0643d1bbb8e772138523b68a8055cdb73dc4ae3b1cb6ff"
 crosswalk_sha256: "3a54b6ab7d39cc2a6936c8fa39cccdbea589a5545509f75f0a20d19b6ed66bd4"
-provenance_identity_sha256: "da2ca0d40a5be375b6b730cbd7d654ddbf41cb02176905f72e3bd6a04f1e7f6e"
+provenance_identity_sha256: "7069b01081d320d42a6f39db46e5da5e08db5b8d2da0fb50e5fc1782355af518"
 splitmix64_url: "https://prng.di.unimi.it/splitmix64.c"
 splitmix64_sha256: "071795a8e29978a5cbd7015ce8f7d772e7ab4631e574e9102b748fe99105ff3d"
 xoroshiro64star_url: "https://prng.di.unimi.it/xoroshiro64star.c"

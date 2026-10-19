@@ -5,7 +5,7 @@ protocol. It is an interface library with one direct ASC dependency,
 `ASC::core`; it has no compiled object and no external dependency.
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS expression)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS expression)
 target_link_libraries(my_target PRIVATE ASC::expression)
 ```
 

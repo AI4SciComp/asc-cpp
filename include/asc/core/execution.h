@@ -3,9 +3,9 @@
 
 /**
  * @file
- * @brief Public Core declarations for ASCCpp 0.9.0.
+ * @brief Public Core declarations for ASCCpp 1.0.0.
  *
- * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Generated public contract documentation baseline for ASCCpp 1.0.0.
  * Every declaration below is governed by the module, ownership, failure,
  * memory-placement, numerical, concurrency, and package contracts linked
  * from the generated API reference.
@@ -41,9 +41,9 @@ class ExecutionState;
  */
 enum class Backend : std::uint8_t {
   kSerial = 0,  ///< Synchronous provider-free CPU execution.
-  kCuda = 1,    ///< CUDA execution; experimental in ASCCpp 0.9.0.
-  kHip = 2,     ///< HIP execution identifier; no 0.9.0 provider is implemented.
-  kSycl = 3,  ///< SYCL execution identifier; no 0.9.0 provider is implemented.
+  kCuda = 1,    ///< CUDA execution; experimental in ASCCpp 1.0.0.
+  kHip = 2,     ///< HIP execution identifier; no 1.0.0 provider is implemented.
+  kSycl = 3,  ///< SYCL execution identifier; no 1.0.0 provider is implemented.
 };
 
 /**

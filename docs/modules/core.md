@@ -9,7 +9,7 @@ umbrella.
 Request the component and include its umbrella:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS core)
 target_link_libraries(my_target PRIVATE ASC::core)
 ```
 
@@ -287,7 +287,7 @@ disable the provider silently.
 An installed consumer requests the facet explicitly:
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS core_cuda)
 target_link_libraries(my_target PRIVATE ASC::core_cuda)
 ```
 
@@ -393,7 +393,7 @@ propagated to consumers.
 
 Build-tree, installed, relocated, static, shared, and isolated consumers use
 the same component name and headers. A component-free
-`find_package(ASCCpp 0.9 CONFIG REQUIRED)` request selects the provider-free
+`find_package(ASCCpp 1.0 CONFIG REQUIRED)` request selects the provider-free
 `cpp` aggregate. It does not select `core_cuda` or discover CUDAToolkit.
 
 CUDA Core and Dense Core deliberately excludes:

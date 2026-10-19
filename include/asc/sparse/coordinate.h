@@ -3,9 +3,9 @@
 
 /**
  * @file
- * @brief Public Sparse declarations for ASCCpp 0.9.0.
+ * @brief Public Sparse declarations for ASCCpp 1.0.0.
  *
- * Generated public contract documentation baseline for ASCCpp 0.9.0.
+ * Generated public contract documentation baseline for ASCCpp 1.0.0.
  * Every declaration below is governed by the module, ownership, failure,
  * memory-placement, numerical, concurrency, and package contracts linked
  * from the generated API reference.
@@ -1066,8 +1066,7 @@ class CoordinateArray {
   [[nodiscard]] std::array<extent_t, kRank> Shape() const noexcept {
     std::array<extent_t, kRank> result{};
     if constexpr (kRank != 0) {
-      std::copy(extents_.values().begin(), extents_.values().end(),
-                result.begin());
+      std::copy_n(extents_.values().begin(), kRank, result.begin());
     }
     return result;
   }

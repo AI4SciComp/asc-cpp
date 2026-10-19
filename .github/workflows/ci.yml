@@ -413,7 +413,7 @@ jobs:
           cmake \
             -DASC_CPP_DOCUMENTATION_SOURCE_DIR="$GITHUB_WORKSPACE/asc-cpp" \
             -DASC_CPP_DOCUMENTATION_BUILD_DIR="$build" \
-            -DASC_CPP_DOCUMENTATION_VERSION=0.9.0 \
+            -DASC_CPP_DOCUMENTATION_VERSION=1.0.0 \
             -DASC_CPP_DOCUMENTATION_DOXYGEN_EXECUTABLE="$(command -v doxygen)" \
             -P asc-cpp/tools/documentation/BuildDoxygen.cmake
           python3 asc-cpp/tools/documentation/check_doxygen.py \
@@ -450,7 +450,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: ASCCpp-0.9.0-documentation
+          name: ASCCpp-1.0.0-documentation
           path: |
             ${{ runner.temp }}/package-docs/docs/doxygen/html/**
             ${{ runner.temp }}/package-docs/docs/doxygen/xml/**

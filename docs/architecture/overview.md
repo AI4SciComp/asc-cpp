@@ -322,6 +322,6 @@ compatibility policy, provider status, or provenance require an ADR and matching
 contract/test updates. The release process in `docs/release-process.md` governs
 validation and publication.
 
-The provider-free C++20 surface is supported for 0.9.0. CUDA providers remain
+The provider-free C++20 surface is supported for 1.0.0. CUDA providers remain
 explicit experimental components. MdeCpp is a behavioral catalogue only;
 copied MdeCpp implementation or test material is not approved.

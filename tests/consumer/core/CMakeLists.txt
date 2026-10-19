@@ -5,12 +5,12 @@ project(ASCCppCoreConsumer LANGUAGES CXX)
 if(DEFINED ASCCPP_OPTIONAL_COMPONENT
    AND NOT ASCCPP_OPTIONAL_COMPONENT STREQUAL "")
   find_package(
-    ASCCpp 0.9 CONFIG REQUIRED
+    ASCCpp 1.0 CONFIG REQUIRED
     COMPONENTS core
     OPTIONAL_COMPONENTS "${ASCCPP_OPTIONAL_COMPONENT}"
   )
 else()
-  find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core)
+  find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS core)
 endif()
 
 if(NOT ASCCpp_FOUND OR NOT ASCCpp_core_FOUND)
@@ -19,8 +19,8 @@ endif()
 if(NOT TARGET ASC::core)
   message(FATAL_ERROR "ASCCpp core package did not define ASC::core.")
 endif()
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0")
-  message(FATAL_ERROR "Expected ASCCpp 0.9.0, found '${ASCCpp_VERSION}'.")
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0")
+  message(FATAL_ERROR "Expected ASCCpp 1.0.0, found '${ASCCpp_VERSION}'.")
 endif()
 
 set(_expected_known_components

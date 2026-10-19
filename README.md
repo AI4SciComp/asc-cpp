@@ -1,6 +1,6 @@
 # ASCCpp
 
-ASCCpp 0.9.0 is a portable C++20 scientific-computing foundation with explicit
+ASCCpp 1.0.0 is a portable C++20 scientific-computing foundation with explicit
 ownership, failure, memory-placement, execution, numerical, and package
 contracts. It provides provider-free reference implementations suitable for
 correctness, integration, and research infrastructure.
@@ -12,13 +12,13 @@ Random, including the Random Dense/Sparse storage facets. Dense BLAS Levels
 1--3 and Sparse BLAS are serial correctness-reference implementations; they
 are not optimized OpenBLAS, BLIS, oneMKL, or vendor providers.
 
-CUDA source and package components are retained as **experimental** in 0.9.0.
+CUDA source and package components are retained as **experimental** in 1.0.0.
 They are not part of the supported matrix without the complete hosted
 real-NVIDIA release gate on the exact release commit.
 
 ## Components
 
-| Component | CMake target | Purpose | 0.9.0 status |
+| Component | CMake target | Purpose | 1.0.0 status |
 | --- | --- | --- | --- |
 | `core` | `ASC::core` | status/result, configuration, I/O, types, memory, execution | supported |
 | `utilities` | `ASC::utilities` | command-line parsing and timing | supported |
@@ -69,7 +69,7 @@ cmake --preset test-release \
 cmake_minimum_required(VERSION 3.25)
 project(consumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9.0 EXACT CONFIG REQUIRED COMPONENTS dense random)
+find_package(ASCCpp 1.0.0 EXACT CONFIG REQUIRED COMPONENTS dense random)
 add_executable(consumer main.cc)
 target_link_libraries(consumer PRIVATE ASC::dense ASC::random)
 target_compile_features(consumer PRIVATE cxx_std_20)
@@ -87,7 +87,7 @@ CUDA completion.
 - [Support matrix](docs/support-matrix.md)
 - [Package capabilities](docs/package-capabilities.md)
 - [`linalg` to `blas` migration](docs/migration/linalg-to-blas.md)
-- [Changelog](CHANGELOG.md) and [0.9.0 release notes](release/release-notes-v0.9.0.md)
+- [Changelog](CHANGELOG.md) and [1.0.0 release notes](release/release-notes-v1.0.0.md)
 - [Citation](CITATION.cff), [references](docs/references.md), and [provenance](docs/provenance/)
 - [Security](SECURITY.md), [contributing](CONTRIBUTING.md), and [governance](GOVERNANCE.md)
 

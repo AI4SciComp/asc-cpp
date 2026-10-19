@@ -4,10 +4,10 @@
 
 | Version | Security support |
 | --- | --- |
-| `0.9.x` | Supported after public 0.9.0 publication |
+| `1.0.x` | Supported after public 1.0.0 publication |
 | unreleased branches and older versions | No security support promise |
 
-The 0.9.0 release must not be published until a private vulnerability-reporting
+The 1.0.0 release must not be published until a private vulnerability-reporting
 route is enabled and verified. No response or remediation deadline is promised.
 
 ## Reporting a vulnerability
@@ -35,7 +35,7 @@ same private route.
   event, and workspace lifetimes through completion.
 - Provider-free CPU execution requires accessible host memory and is
   synchronous. CUDA enqueue success is not completion; CUDA remains
-  experimental in 0.9.0.
+  experimental in 1.0.0.
 - Configuration sensitivity metadata controls rendering/redaction behavior but
   does not encrypt values.
 - File and serialization helpers enforce documented byte/version boundaries;

@@ -25,7 +25,7 @@ endfunction()
 
 _require_text(
   "docs/contracts/random-crosswalk.yaml"
-  "contract_status: \"v0.9.0-release-contract\""
+  "contract_status: \"v1.0.0-release-contract\""
 )
 _require_text(
   "docs/contracts/random-crosswalk.yaml"
@@ -60,7 +60,7 @@ _require_text(
   "thread-local mutable engine, seed"
 )
 _require_text(
-  "release/release-notes-v0.9.0.md"
+  "release/release-notes-v1.0.0.md"
   "random generation, storage adapters"
 )
 

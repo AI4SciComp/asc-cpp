@@ -1,10 +1,10 @@
-# ASCCpp 0.9.0 {#mainpage}
+# ASCCpp 1.0.0 {#mainpage}
 
 ASCCpp is a portable C++20 scientific-computing foundation with explicit
 ownership, memory placement, execution, failure, numerical, and package
 contracts.
 
-The supported 0.9.0 profile is provider-free CPU Core, Utilities, Expression,
+The supported 1.0.0 profile is provider-free CPU Core, Utilities, Expression,
 Dense, Sparse, Random, and Random Dense/Sparse storage facets. CPU BLAS is a
 correctness reference, not an optimized provider. CUDA provider components are
 experimental unless the exact release commit passes the complete hosted

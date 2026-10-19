@@ -17,9 +17,9 @@ These instructions apply to the entire `asc-cpp` repository.
   artifacts outside the source tree.
 - Obtain `ASCCMake 0.1.0` only from the exact commit and checksum recorded in
   `docs/installation.md`; do not invent helper interfaces.
-- CUDA is experimental for `v0.9.0` unless the complete real-NVIDIA release
+- CUDA is experimental for `v1.0.0` unless the complete real-NVIDIA release
   gate passes on the exact release commit.
 - Do not make performance claims for the CPU Dense or Sparse BLAS reference
   implementations.
-- Release preparation occurs only on `release/0.9.0`; do not work directly on
+- Release preparation occurs only on `release/1.0.0`; do not work directly on
   `main`.

@@ -4,7 +4,7 @@
 
 # BLAS coverage
 
-Contract status: `v0.9.0-release-contract`
+Contract status: `v1.0.0-release-contract`
 
 Evidence date: `2026-08-01`
 

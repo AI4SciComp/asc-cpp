@@ -569,6 +569,7 @@ if(BUILD_SHARED_LIBS)
   asc_cpp_select_elf_baseline(
     OUTPUT_VARIABLE _m8_elf_baseline
     BASELINE_DIRECTORY "${PROJECT_SOURCE_DIR}/abi"
+    PROJECT_VERSION "${PROJECT_VERSION}"
     SYSTEM_NAME "${CMAKE_SYSTEM_NAME}"
     PROCESSOR "${CMAKE_SYSTEM_PROCESSOR}"
     DISTRIBUTION "${_m8_distribution}"
@@ -644,6 +645,7 @@ if(BUILD_SHARED_LIBS)
         "-DASC_CPP_HARDENING_LIBRARIES:STRING=${_m8_shared_libraries}"
         "-DASC_CPP_HARDENING_OUTPUT:FILEPATH=${_m8_hardening_report_dir}/elf-abi-$<CONFIG>.txt"
         "-DASC_CPP_HARDENING_BASELINE:FILEPATH=${_m8_elf_baseline}"
+        "-DASC_CPP_HARDENING_EXPECTED_SOVERSION:STRING=${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
         -P "${PROJECT_SOURCE_DIR}/tools/hardening/InspectElfAbi.cmake"
     )
     set_tests_properties(

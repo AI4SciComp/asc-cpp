@@ -19,8 +19,8 @@ set(_required_files
   docs/contracts/capability-manifest.yaml
   docs/contracts/dependency-manifest.yaml
   release/release-plan.md
-  release/release-notes-v0.9.0.md
-  release/known-limitations-v0.9.0.md
+  release/release-notes-v1.0.0.md
+  release/known-limitations-v1.0.0.md
   release/release-tree-manifest.md
 )
 foreach(_relative_path IN LISTS _required_files)
@@ -37,7 +37,7 @@ function(_require_text relative_path expected)
   endif()
 endfunction()
 
-_require_text(SECURITY.md "| `0.9.x` | Supported after public 0.9.0 publication |")
+_require_text(SECURITY.md "| `1.0.x` | Supported after public 1.0.0 publication |")
 _require_text(SECURITY.md "private vulnerability-reporting")
 _require_text(SECURITY.md "route is enabled and verified")
 _require_text(docs/support-matrix.md "provider-free C++20 reference release")
@@ -45,9 +45,9 @@ _require_text(docs/support-matrix.md "experimental")
 _require_text(docs/installation.md "8a7dcbad3a97267cce59810aff24de800a3497a7")
 _require_text(docs/installation.md "67765391bef06c6c9a1a0c43e934d0db7a9c52876e66e0cf644042eeb0c2a5c9")
 _require_text(docs/contracts/capability-manifest.yaml
-              "status: \"v0.9.0-release-contract\"")
+              "status: \"v1.0.0-release-contract\"")
 _require_text(docs/contracts/dependency-manifest.yaml
-              "status: \"v0.9.0-release-contract\"")
+              "status: \"v1.0.0-release-contract\"")
 _require_text(release/release-plan.md
               "The release may become public only after all of the following are verified:")
 

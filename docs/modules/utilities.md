@@ -6,7 +6,7 @@ library with one direct ASC dependency, `ASC::core`, and no external
 dependency.
 
 ```cmake
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS utilities)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS utilities)
 target_link_libraries(my_target PRIVATE ASC::utilities)
 ```
 

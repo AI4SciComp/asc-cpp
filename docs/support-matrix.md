@@ -1,13 +1,13 @@
-# ASCCpp 0.9.0 support matrix
+# ASCCpp 1.0.0 support matrix
 
-ASCCpp 0.9.0 is a provider-free C++20 reference release. This page
+ASCCpp 1.0.0 is a provider-free C++20 reference release. This page
 distinguishes the release contract from evidence. A row is supported
 only after its job passes on the exact release commit; configuration files are
 not evidence by themselves.
 
 ## Release contract
 
-| Area | 0.9.0 status | Boundary |
+| Area | 1.0.0 status | Boundary |
 | --- | --- | --- |
 | C++ language | supported | C++20, extensions disabled |
 | Core | supported | provider-free CPU status/configuration/I/O/memory/execution |
@@ -18,7 +18,7 @@ not evidence by themselves.
 | Random | supported | deterministic engines/distributions/QMC and storage adapters |
 | CPU BLAS performance | not claimed | serial correctness reference, not optimized provider |
 | CUDA components | experimental | source/package retained; no support without full GPU gate |
-| ABI | `0.9.x` patch line | SONAME `0.9`; no cross-minor `0.x` promise |
+| ABI | `1.0.x` patch line | SONAME `1.0`; no cross-minor or cross-toolchain promise |
 
 ## Platforms requiring exact-commit evidence
 

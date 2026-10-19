@@ -140,7 +140,7 @@ cmake_minimum_required(VERSION 3.25)
 project(ASCCppM8HeaderManifestProbe LANGUAGES NONE)
 set(CMAKE_FIND_USE_PACKAGE_REGISTRY FALSE)
 find_package(
-  ASCCpp 0.9 CONFIG REQUIRED
+  ASCCpp 1.0 CONFIG REQUIRED
   COMPONENTS @COMPONENT_ARGUMENTS@
 )
 set(_expected_entries "@EXPECTED_ENTRIES@")

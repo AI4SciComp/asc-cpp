@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 3.25)
 
 project(ASCCppCoreCudaConsumer LANGUAGES CXX)
 
-find_package(ASCCpp 0.9 CONFIG REQUIRED COMPONENTS core_cuda)
+find_package(ASCCpp 1.0 CONFIG REQUIRED COMPONENTS core_cuda)
 
-if(NOT ASCCpp_VERSION VERSION_EQUAL "0.9.0"
+if(NOT ASCCpp_VERSION VERSION_EQUAL "1.0.0"
    OR NOT ASCCpp_core_FOUND
    OR NOT ASCCpp_core_cuda_FOUND)
-  message(FATAL_ERROR "Expected ASCCpp 0.9.0 core_cuda closure.")
+  message(FATAL_ERROR "Expected ASCCpp 1.0.0 core_cuda closure.")
 endif()
 foreach(_required IN ITEMS core core_cuda)
   if(NOT TARGET "ASC::${_required}")
