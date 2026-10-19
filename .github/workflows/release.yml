@@ -212,7 +212,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
-      contents: read
+      # GitHub requires write access to read unpublished release drafts.
+      contents: write
     steps:
       - name: Check out verifier
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
