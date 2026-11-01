@@ -174,7 +174,7 @@ jobs:
         with:
           subject-path: ${{ runner.temp }}/release-assets/*
       - name: Upload assembled artifacts
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: release-assets
           path: ${{ runner.temp }}/release-assets/*
@@ -197,7 +197,7 @@ jobs:
             --notes-file asc-cpp/release/release-notes-v1.0.0.md
       - name: Preserve failure evidence
         if: failure()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: release-assembly-failure
           path: |
@@ -269,7 +269,7 @@ jobs:
           done
       - name: Preserve consumption failure evidence
         if: failure()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: downloaded-artifact-consumption-failure
           path: |
