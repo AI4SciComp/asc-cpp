@@ -45,7 +45,7 @@ jobs:
             -DASC_CPP_WARNINGS_AS_ERRORS=ON
           cmake --build "$build" --parallel 2
       - name: Analyze
-        uses: github/codeql-action/analyze@a2983b8bed1923f44751c5c43237f479442827b3
+        uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370
         with:
           category: /language:c-cpp
       - name: Preserve failure evidence
